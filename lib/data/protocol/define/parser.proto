@@ -1,0 +1,31 @@
+syntax = 'proto3';
+import 'selector.proto';
+
+message StarSelector {
+  Selector selector = 1;
+  int32 maxStar = 2;
+}
+
+message TagSelector {
+  Selector selector = 1;
+  string color = 2;
+}
+
+
+message ListViewParser {
+  bool isJson = 1;  // 是否为json解析器
+  repeated Selector list = 2; // 选取整个列表
+
+  repeated Selector title = 3;
+  repeated Selector subtitle = 4;
+  repeated Selector uploadTIme = 5;
+  repeated StarSelector star = 6;
+  repeated Selector pageCount = 7;
+  repeated Selector imgUrl = 8;
+  repeated Selector imgWidth = 9;
+  repeated Selector imgHeight = 10;
+
+  repeated TagSelector largeTag = 11;
+  repeated TagSelector smallTag = 12;
+}
+
