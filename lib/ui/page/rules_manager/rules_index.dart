@@ -70,13 +70,6 @@ class RulesIndex extends StatelessWidget {
                   store.needCookies = value!;
                 },
               ),
-              CheckBoxTile(
-                text: '需要Cookies',
-                value: store.needCookies,
-                onChanged: (value) {
-                  store.needCookies = value!;
-                },
-              ),
             ],
           )
         ],
