@@ -1,0 +1,12 @@
+syntax = 'proto3';
+import 'selector.proto';
+
+
+
+message RulesProtocol {
+  string name = 1;
+  string baseUrl = 2;
+  string cookies = 3;
+  string headers = 4;
+  bool needCookies = 5;
+}

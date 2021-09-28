@@ -4,6 +4,7 @@ enum SelectorFunction {
   HTML = 0;
   TEXT = 1;
   ATTR = 2;
+  STYLE = 3;
 }
 
 message Selector {
@@ -12,7 +13,29 @@ message Selector {
   string param = 3;
   string regex = 4;
   string replace = 5;
-  string hint = 6;
-  string js = 7;
+  string js = 6;
 }
 
+message StarSelector {
+  Selector selector = 1;
+  int32 maxStar = 2;
+}
+
+message TagSelector {
+  Selector selector = 1;
+  string color = 2;
+}
+
+message ImageSelector {
+  repeated Selector imgUrl = 1;
+  repeated Selector imgWidth = 2;
+  repeated Selector imgHeight = 3;
+  repeated Selector imgX = 4;
+  repeated Selector imgY = 5;
+}
+
+message CommentSelector {
+  repeated Selector username = 1;
+  repeated Selector postTime = 2;
+  repeated Selector vote = 3;
+}

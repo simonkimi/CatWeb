@@ -13,11 +13,13 @@ class SelectorFunction extends $pb.ProtobufEnum {
   static const SelectorFunction HTML = SelectorFunction._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'HTML');
   static const SelectorFunction TEXT = SelectorFunction._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'TEXT');
   static const SelectorFunction ATTR = SelectorFunction._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'ATTR');
+  static const SelectorFunction STYLE = SelectorFunction._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'STYLE');
 
   static const $core.List<SelectorFunction> values = <SelectorFunction> [
     HTML,
     TEXT,
     ATTR,
+    STYLE,
   ];
 
   static final $core.Map<$core.int, SelectorFunction> _byValue = $pb.ProtobufEnum.initByValue(values);

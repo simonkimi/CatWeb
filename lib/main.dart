@@ -1,6 +1,8 @@
-import 'package:cat_web/gen/protobuf/selector.pb.dart';
+import 'package:cat_web/i18n.dart';
 import 'package:cat_web/ui/page/rules_manager/rules_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'navigator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,10 +16,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'CatWeb',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const RulesManager(),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        I.delegate
+      ],
+      supportedLocales: I.supportedLocales,
+      navigatorKey: AppNavigator().key,
+      home:  RulesManager(),
     );
   }
 }

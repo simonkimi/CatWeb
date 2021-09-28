@@ -1,31 +1,39 @@
 syntax = 'proto3';
 import 'selector.proto';
 
-message StarSelector {
-  Selector selector = 1;
-  int32 maxStar = 2;
-}
-
-message TagSelector {
-  Selector selector = 1;
-  string color = 2;
-}
-
-
 message ListViewParser {
   bool isJson = 1;  // 是否为json解析器
-  repeated Selector list = 2; // 选取整个列表
+  repeated Selector item = 2; // 选取整个列表
 
   repeated Selector title = 3;
   repeated Selector subtitle = 4;
   repeated Selector uploadTIme = 5;
   repeated StarSelector star = 6;
-  repeated Selector pageCount = 7;
-  repeated Selector imgUrl = 8;
-  repeated Selector imgWidth = 9;
-  repeated Selector imgHeight = 10;
+  repeated Selector imgCount = 7;
+  repeated ImageSelector img = 8;
 
-  repeated TagSelector largeTag = 11;
-  repeated TagSelector smallTag = 12;
+  repeated TagSelector largeTag = 9;
+  repeated TagSelector smallTag = 10;
 }
 
+message GalleryParser {
+  // 基础
+  repeated Selector title = 1;
+  repeated Selector subtitle = 2;
+  repeated Selector uploadTIme = 3;
+  repeated StarSelector star = 4;
+  repeated Selector imgCount = 5;  // 有多少面
+  repeated Selector prePageImg = 6;  // 一面有多少图片
+  repeated Selector favorited = 7;  // 收藏次数
+  repeated Selector language = 8;  // 语言
+  repeated ImageSelector coverImg = 9;  // 封面图
+  repeated Selector description = 10;  // 描述
+
+  // 缩略图
+  repeated Selector thumbnailItem = 11;
+  repeated ImageSelector thumbnail = 12;
+
+  // 评论
+  repeated Selector commentItem = 13;
+  repeated CommentSelector comments = 14;
+}
