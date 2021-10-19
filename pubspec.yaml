@@ -14,12 +14,18 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+
+  # state
   get: ^4.3.8
   flutter_mobx: ^2.0.2
+
+  # database
   moor: ^4.5.0
   sqlite3_flutter_libs: ^0.5.0
   path_provider: ^2.0.0
   path: ^1.8.0
+
+  # tools
   protobuf: ^2.0.0
   intl: ^0.17.0
 

@@ -1,3 +1,4 @@
+import 'package:cat_web/gen/protobuf/parser.pbserver.dart';
 import 'package:cat_web/gen/protobuf/store.pbserver.dart';
 import 'package:mobx/mobx.dart';
 
@@ -12,6 +13,9 @@ abstract class RulesStoreBase with Store {
         cookies = entity?.cookies ?? '',
         headers = entity?.headers ?? '',
         needCookies = entity?.needCookies ?? false;
+
+  final galleryParsers = ObservableList<GalleryParser>();
+  final listViewParsers = ObservableList<ListViewParser>();
 
   @observable
   String siteName;

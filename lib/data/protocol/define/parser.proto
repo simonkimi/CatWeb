@@ -2,7 +2,8 @@ syntax = 'proto3';
 import 'selector.proto';
 
 message ListViewParser {
-  bool isJson = 1;  // 是否为json解析器
+  string name = 1;
+
   repeated Selector item = 2; // 选取整个列表
 
   repeated Selector title = 3;
@@ -17,23 +18,25 @@ message ListViewParser {
 }
 
 message GalleryParser {
+  string name = 1;
+
   // 基础
-  repeated Selector title = 1;
-  repeated Selector subtitle = 2;
-  repeated Selector uploadTIme = 3;
-  repeated StarSelector star = 4;
-  repeated Selector imgCount = 5;  // 有多少面
-  repeated Selector prePageImg = 6;  // 一面有多少图片
-  repeated Selector favorited = 7;  // 收藏次数
-  repeated Selector language = 8;  // 语言
-  repeated ImageSelector coverImg = 9;  // 封面图
-  repeated Selector description = 10;  // 描述
+  repeated Selector title = 2;
+  repeated Selector subtitle = 3;
+  repeated Selector uploadTIme = 4;
+  repeated StarSelector star = 5;
+  repeated Selector imgCount = 6;  // 有多少面
+  repeated Selector prePageImg = 7;  // 一面有多少图片
+  repeated Selector favorited = 8;  // 收藏次数
+  repeated Selector language = 9;  // 语言
+  repeated ImageSelector coverImg = 10;  // 封面图
+  repeated Selector description = 11;  // 描述
 
   // 缩略图
-  repeated Selector thumbnailItem = 11;
-  repeated ImageSelector thumbnail = 12;
+  repeated Selector thumbnailItem = 12;
+  repeated ImageSelector thumbnail = 13;
 
   // 评论
-  repeated Selector commentItem = 13;
-  repeated CommentSelector comments = 14;
+  repeated Selector commentItem = 14;
+  repeated CommentSelector comments = 15;
 }

@@ -1,7 +1,6 @@
 syntax = 'proto3';
 import 'selector.proto';
-
-
+import 'parser.proto'
 
 message RulesProtocol {
   string name = 1;
@@ -9,4 +8,7 @@ message RulesProtocol {
   string cookies = 3;
   string headers = 4;
   bool needCookies = 5;
+
+  repeated GalleryParser galleryParsers = 10;
+  repeated ListViewParser listViewParser = 11;
 }

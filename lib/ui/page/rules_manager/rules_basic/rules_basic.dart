@@ -1,10 +1,11 @@
 import 'package:cat_web/ui/components/checkbox_tile.dart';
+import 'package:cat_web/ui/components/title_text.dart';
 import 'package:cat_web/ui/page/rules_manager/rules_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-class RulesIndex extends StatelessWidget {
-  const RulesIndex({
+class RulesBasic extends StatelessWidget {
+  const RulesBasic({
     Key? key,
     required this.store,
   }) : super(key: key);
@@ -17,13 +18,7 @@ class RulesIndex extends StatelessWidget {
       return ListView(
         padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Text(
-              '- 基础设置',
-              style: TextStyle(color: Theme.of(context).primaryColor),
-            ),
-          ),
+          const TitleText(text: '- 基础设置'),
           TextFormField(
             initialValue: store.siteName,
             decoration: const InputDecoration(
