@@ -7,6 +7,7 @@ enum SelectorFunction {
   STYLE = 3;
 }
 
+// 基础选择器
 message Selector {
   string selector = 1;
   SelectorFunction function = 2;
@@ -16,26 +17,17 @@ message Selector {
   string js = 6;
 }
 
-message StarSelector {
-  Selector selector = 1;
-  int32 maxStar = 2;
-}
-
-message TagSelector {
-  Selector selector = 1;
-  string color = 2;
-}
 
 message ImageSelector {
-  repeated Selector imgUrl = 1;
-  repeated Selector imgWidth = 2;
-  repeated Selector imgHeight = 3;
-  repeated Selector imgX = 4;
-  repeated Selector imgY = 5;
+  Selector imgUrl = 1;
+  Selector imgWidth = 2;
+  Selector imgHeight = 3;
+  Selector imgX = 4;
+  Selector imgY = 5;
 }
 
 message CommentSelector {
-  repeated Selector username = 1;
-  repeated Selector postTime = 2;
-  repeated Selector vote = 3;
+  Selector username = 1;
+  Selector postTime = 2;
+  Selector vote = 3;
 }

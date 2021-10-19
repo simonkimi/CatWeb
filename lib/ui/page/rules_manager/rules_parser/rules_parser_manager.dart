@@ -2,7 +2,6 @@ import 'package:cat_web/ui/page/rules_manager/rules_parser/rules_parser_editor.d
 import 'package:cat_web/ui/page/rules_manager/rules_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:get/get.dart';
 
 class RulesParserManager extends StatelessWidget {
   const RulesParserManager({
@@ -32,8 +31,7 @@ class RulesParserManager extends StatelessWidget {
                 title: const Text('添加'),
                 leading: const Icon(Icons.add),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const RulesAddGuide()));
+                  Navigator.of(context).pushNamed(RulesParserEditor.routeName);
                 },
               ),
             ],

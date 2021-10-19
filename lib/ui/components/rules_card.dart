@@ -18,8 +18,9 @@ class RulesCard extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title),
+            Center(child: Text(title)),
             ...children,
           ],
         ),

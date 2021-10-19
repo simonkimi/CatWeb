@@ -130,165 +130,39 @@ class Selector extends $pb.GeneratedMessage {
   void clearJs() => clearField(6);
 }
 
-class StarSelector extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'StarSelector', createEmptyInstance: create)
-    ..aOM<Selector>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'selector', subBuilder: Selector.create)
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'maxStar', $pb.PbFieldType.O3, protoName: 'maxStar')
-    ..hasRequiredFields = false
-  ;
-
-  StarSelector._() : super();
-  factory StarSelector({
-    Selector? selector,
-    $core.int? maxStar,
-  }) {
-    final _result = create();
-    if (selector != null) {
-      _result.selector = selector;
-    }
-    if (maxStar != null) {
-      _result.maxStar = maxStar;
-    }
-    return _result;
-  }
-  factory StarSelector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory StarSelector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  StarSelector clone() => StarSelector()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  StarSelector copyWith(void Function(StarSelector) updates) => super.copyWith((message) => updates(message as StarSelector)) as StarSelector; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static StarSelector create() => StarSelector._();
-  StarSelector createEmptyInstance() => create();
-  static $pb.PbList<StarSelector> createRepeated() => $pb.PbList<StarSelector>();
-  @$core.pragma('dart2js:noInline')
-  static StarSelector getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StarSelector>(create);
-  static StarSelector? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  Selector get selector => $_getN(0);
-  @$pb.TagNumber(1)
-  set selector(Selector v) { setField(1, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasSelector() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearSelector() => clearField(1);
-  @$pb.TagNumber(1)
-  Selector ensureSelector() => $_ensure(0);
-
-  @$pb.TagNumber(2)
-  $core.int get maxStar => $_getIZ(1);
-  @$pb.TagNumber(2)
-  set maxStar($core.int v) { $_setSignedInt32(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasMaxStar() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMaxStar() => clearField(2);
-}
-
-class TagSelector extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TagSelector', createEmptyInstance: create)
-    ..aOM<Selector>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'selector', subBuilder: Selector.create)
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'color')
-    ..hasRequiredFields = false
-  ;
-
-  TagSelector._() : super();
-  factory TagSelector({
-    Selector? selector,
-    $core.String? color,
-  }) {
-    final _result = create();
-    if (selector != null) {
-      _result.selector = selector;
-    }
-    if (color != null) {
-      _result.color = color;
-    }
-    return _result;
-  }
-  factory TagSelector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TagSelector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  TagSelector clone() => TagSelector()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TagSelector copyWith(void Function(TagSelector) updates) => super.copyWith((message) => updates(message as TagSelector)) as TagSelector; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static TagSelector create() => TagSelector._();
-  TagSelector createEmptyInstance() => create();
-  static $pb.PbList<TagSelector> createRepeated() => $pb.PbList<TagSelector>();
-  @$core.pragma('dart2js:noInline')
-  static TagSelector getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TagSelector>(create);
-  static TagSelector? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  Selector get selector => $_getN(0);
-  @$pb.TagNumber(1)
-  set selector(Selector v) { setField(1, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasSelector() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearSelector() => clearField(1);
-  @$pb.TagNumber(1)
-  Selector ensureSelector() => $_ensure(0);
-
-  @$pb.TagNumber(2)
-  $core.String get color => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set color($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasColor() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearColor() => clearField(2);
-}
-
 class ImageSelector extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ImageSelector', createEmptyInstance: create)
-    ..pc<Selector>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgUrl', $pb.PbFieldType.PM, protoName: 'imgUrl', subBuilder: Selector.create)
-    ..pc<Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgWidth', $pb.PbFieldType.PM, protoName: 'imgWidth', subBuilder: Selector.create)
-    ..pc<Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgHeight', $pb.PbFieldType.PM, protoName: 'imgHeight', subBuilder: Selector.create)
-    ..pc<Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgX', $pb.PbFieldType.PM, protoName: 'imgX', subBuilder: Selector.create)
-    ..pc<Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgY', $pb.PbFieldType.PM, protoName: 'imgY', subBuilder: Selector.create)
+    ..aOM<Selector>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgUrl', protoName: 'imgUrl', subBuilder: Selector.create)
+    ..aOM<Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgWidth', protoName: 'imgWidth', subBuilder: Selector.create)
+    ..aOM<Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgHeight', protoName: 'imgHeight', subBuilder: Selector.create)
+    ..aOM<Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgX', protoName: 'imgX', subBuilder: Selector.create)
+    ..aOM<Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgY', protoName: 'imgY', subBuilder: Selector.create)
     ..hasRequiredFields = false
   ;
 
   ImageSelector._() : super();
   factory ImageSelector({
-    $core.Iterable<Selector>? imgUrl,
-    $core.Iterable<Selector>? imgWidth,
-    $core.Iterable<Selector>? imgHeight,
-    $core.Iterable<Selector>? imgX,
-    $core.Iterable<Selector>? imgY,
+    Selector? imgUrl,
+    Selector? imgWidth,
+    Selector? imgHeight,
+    Selector? imgX,
+    Selector? imgY,
   }) {
     final _result = create();
     if (imgUrl != null) {
-      _result.imgUrl.addAll(imgUrl);
+      _result.imgUrl = imgUrl;
     }
     if (imgWidth != null) {
-      _result.imgWidth.addAll(imgWidth);
+      _result.imgWidth = imgWidth;
     }
     if (imgHeight != null) {
-      _result.imgHeight.addAll(imgHeight);
+      _result.imgHeight = imgHeight;
     }
     if (imgX != null) {
-      _result.imgX.addAll(imgX);
+      _result.imgX = imgX;
     }
     if (imgY != null) {
-      _result.imgY.addAll(imgY);
+      _result.imgY = imgY;
     }
     return _result;
   }
@@ -314,44 +188,84 @@ class ImageSelector extends $pb.GeneratedMessage {
   static ImageSelector? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<Selector> get imgUrl => $_getList(0);
+  Selector get imgUrl => $_getN(0);
+  @$pb.TagNumber(1)
+  set imgUrl(Selector v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasImgUrl() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearImgUrl() => clearField(1);
+  @$pb.TagNumber(1)
+  Selector ensureImgUrl() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $core.List<Selector> get imgWidth => $_getList(1);
+  Selector get imgWidth => $_getN(1);
+  @$pb.TagNumber(2)
+  set imgWidth(Selector v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasImgWidth() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearImgWidth() => clearField(2);
+  @$pb.TagNumber(2)
+  Selector ensureImgWidth() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $core.List<Selector> get imgHeight => $_getList(2);
+  Selector get imgHeight => $_getN(2);
+  @$pb.TagNumber(3)
+  set imgHeight(Selector v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasImgHeight() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearImgHeight() => clearField(3);
+  @$pb.TagNumber(3)
+  Selector ensureImgHeight() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $core.List<Selector> get imgX => $_getList(3);
+  Selector get imgX => $_getN(3);
+  @$pb.TagNumber(4)
+  set imgX(Selector v) { setField(4, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasImgX() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearImgX() => clearField(4);
+  @$pb.TagNumber(4)
+  Selector ensureImgX() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  $core.List<Selector> get imgY => $_getList(4);
+  Selector get imgY => $_getN(4);
+  @$pb.TagNumber(5)
+  set imgY(Selector v) { setField(5, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasImgY() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearImgY() => clearField(5);
+  @$pb.TagNumber(5)
+  Selector ensureImgY() => $_ensure(4);
 }
 
 class CommentSelector extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CommentSelector', createEmptyInstance: create)
-    ..pc<Selector>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'username', $pb.PbFieldType.PM, subBuilder: Selector.create)
-    ..pc<Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'postTime', $pb.PbFieldType.PM, protoName: 'postTime', subBuilder: Selector.create)
-    ..pc<Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'vote', $pb.PbFieldType.PM, subBuilder: Selector.create)
+    ..aOM<Selector>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'username', subBuilder: Selector.create)
+    ..aOM<Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'postTime', protoName: 'postTime', subBuilder: Selector.create)
+    ..aOM<Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'vote', subBuilder: Selector.create)
     ..hasRequiredFields = false
   ;
 
   CommentSelector._() : super();
   factory CommentSelector({
-    $core.Iterable<Selector>? username,
-    $core.Iterable<Selector>? postTime,
-    $core.Iterable<Selector>? vote,
+    Selector? username,
+    Selector? postTime,
+    Selector? vote,
   }) {
     final _result = create();
     if (username != null) {
-      _result.username.addAll(username);
+      _result.username = username;
     }
     if (postTime != null) {
-      _result.postTime.addAll(postTime);
+      _result.postTime = postTime;
     }
     if (vote != null) {
-      _result.vote.addAll(vote);
+      _result.vote = vote;
     }
     return _result;
   }
@@ -377,12 +291,36 @@ class CommentSelector extends $pb.GeneratedMessage {
   static CommentSelector? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<Selector> get username => $_getList(0);
+  Selector get username => $_getN(0);
+  @$pb.TagNumber(1)
+  set username(Selector v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasUsername() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearUsername() => clearField(1);
+  @$pb.TagNumber(1)
+  Selector ensureUsername() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $core.List<Selector> get postTime => $_getList(1);
+  Selector get postTime => $_getN(1);
+  @$pb.TagNumber(2)
+  set postTime(Selector v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPostTime() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPostTime() => clearField(2);
+  @$pb.TagNumber(2)
+  Selector ensurePostTime() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $core.List<Selector> get vote => $_getList(2);
+  Selector get vote => $_getN(2);
+  @$pb.TagNumber(3)
+  set vote(Selector v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasVote() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearVote() => clearField(3);
+  @$pb.TagNumber(3)
+  Selector ensureVote() => $_ensure(2);
 }
 

@@ -1,6 +1,6 @@
 syntax = 'proto3';
 import 'selector.proto';
-import 'parser.proto'
+import 'parser.proto';
 
 message RulesProtocol {
   string name = 1;

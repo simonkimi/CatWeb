@@ -17,8 +17,10 @@ const RulesProtocol$json = const {
     const {'1': 'cookies', '3': 3, '4': 1, '5': 9, '10': 'cookies'},
     const {'1': 'headers', '3': 4, '4': 1, '5': 9, '10': 'headers'},
     const {'1': 'needCookies', '3': 5, '4': 1, '5': 8, '10': 'needCookies'},
+    const {'1': 'galleryParsers', '3': 10, '4': 3, '5': 11, '6': '.GalleryParser', '10': 'galleryParsers'},
+    const {'1': 'listViewParser', '3': 11, '4': 3, '5': 11, '6': '.ListViewParser', '10': 'listViewParser'},
   ],
 };
 
 /// Descriptor for `RulesProtocol`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List rulesProtocolDescriptor = $convert.base64Decode('Cg1SdWxlc1Byb3RvY29sEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHYmFzZVVybBgCIAEoCVIHYmFzZVVybBIYCgdjb29raWVzGAMgASgJUgdjb29raWVzEhgKB2hlYWRlcnMYBCABKAlSB2hlYWRlcnMSIAoLbmVlZENvb2tpZXMYBSABKAhSC25lZWRDb29raWVz');
+final $typed_data.Uint8List rulesProtocolDescriptor = $convert.base64Decode('Cg1SdWxlc1Byb3RvY29sEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHYmFzZVVybBgCIAEoCVIHYmFzZVVybBIYCgdjb29raWVzGAMgASgJUgdjb29raWVzEhgKB2hlYWRlcnMYBCABKAlSB2hlYWRlcnMSIAoLbmVlZENvb2tpZXMYBSABKAhSC25lZWRDb29raWVzEjYKDmdhbGxlcnlQYXJzZXJzGAogAygLMg4uR2FsbGVyeVBhcnNlclIOZ2FsbGVyeVBhcnNlcnMSNwoObGlzdFZpZXdQYXJzZXIYCyADKAsyDy5MaXN0Vmlld1BhcnNlclIObGlzdFZpZXdQYXJzZXI=');

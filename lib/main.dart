@@ -1,5 +1,6 @@
 import 'package:cat_web/i18n.dart';
 import 'package:cat_web/ui/page/rules_manager/rules_manager.dart';
+import 'package:cat_web/ui/page/rules_manager/rules_parser/rules_parser_editor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'navigator.dart';
@@ -27,7 +28,10 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: I.supportedLocales,
       navigatorKey: AppNavigator().key,
-      home:  RulesManager(),
+      home: RulesManager(),
+      routes: {
+        RulesParserEditor.routeName: (_) => RulesParserEditor(),
+      },
     );
   }
 }

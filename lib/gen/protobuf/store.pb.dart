@@ -9,6 +9,8 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import 'parser.pb.dart' as $0;
+
 class RulesProtocol extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RulesProtocol', createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
@@ -16,6 +18,8 @@ class RulesProtocol extends $pb.GeneratedMessage {
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cookies')
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'headers')
     ..aOB(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'needCookies', protoName: 'needCookies')
+    ..pc<$0.GalleryParser>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'galleryParsers', $pb.PbFieldType.PM, protoName: 'galleryParsers', subBuilder: $0.GalleryParser.create)
+    ..pc<$0.ListViewParser>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'listViewParser', $pb.PbFieldType.PM, protoName: 'listViewParser', subBuilder: $0.ListViewParser.create)
     ..hasRequiredFields = false
   ;
 
@@ -26,6 +30,8 @@ class RulesProtocol extends $pb.GeneratedMessage {
     $core.String? cookies,
     $core.String? headers,
     $core.bool? needCookies,
+    $core.Iterable<$0.GalleryParser>? galleryParsers,
+    $core.Iterable<$0.ListViewParser>? listViewParser,
   }) {
     final _result = create();
     if (name != null) {
@@ -42,6 +48,12 @@ class RulesProtocol extends $pb.GeneratedMessage {
     }
     if (needCookies != null) {
       _result.needCookies = needCookies;
+    }
+    if (galleryParsers != null) {
+      _result.galleryParsers.addAll(galleryParsers);
+    }
+    if (listViewParser != null) {
+      _result.listViewParser.addAll(listViewParser);
     }
     return _result;
   }
@@ -110,5 +122,11 @@ class RulesProtocol extends $pb.GeneratedMessage {
   $core.bool hasNeedCookies() => $_has(4);
   @$pb.TagNumber(5)
   void clearNeedCookies() => clearField(5);
+
+  @$pb.TagNumber(10)
+  $core.List<$0.GalleryParser> get galleryParsers => $_getList(5);
+
+  @$pb.TagNumber(11)
+  $core.List<$0.ListViewParser> get listViewParser => $_getList(6);
 }
 

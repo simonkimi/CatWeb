@@ -4,39 +4,42 @@ import 'selector.proto';
 message ListViewParser {
   string name = 1;
 
-  repeated Selector item = 2; // 选取整个列表
+  string itemSelector = 2; // 选取整个列表
+  Selector title = 3;
+  Selector subtitle = 4;
+  Selector uploadTIme = 5;
+  Selector star = 6;
+  Selector imgCount = 7;
+  ImageSelector previewImg = 8;
 
-  repeated Selector title = 3;
-  repeated Selector subtitle = 4;
-  repeated Selector uploadTIme = 5;
-  repeated StarSelector star = 6;
-  repeated Selector imgCount = 7;
-  repeated ImageSelector img = 8;
+  Selector tag = 9;
+  Selector tagColor = 10;
 
-  repeated TagSelector largeTag = 9;
-  repeated TagSelector smallTag = 10;
+  string badgeSelector = 11;
+  Selector badgeText = 12;
+  Selector badgeColor = 13;
 }
 
 message GalleryParser {
   string name = 1;
 
   // 基础
-  repeated Selector title = 2;
-  repeated Selector subtitle = 3;
-  repeated Selector uploadTIme = 4;
-  repeated StarSelector star = 5;
-  repeated Selector imgCount = 6;  // 有多少面
-  repeated Selector prePageImg = 7;  // 一面有多少图片
-  repeated Selector favorited = 8;  // 收藏次数
-  repeated Selector language = 9;  // 语言
-  repeated ImageSelector coverImg = 10;  // 封面图
-  repeated Selector description = 11;  // 描述
+  Selector title = 2;
+  Selector subtitle = 3;
+  Selector uploadTIme = 4;
+  Selector star = 5;
+  Selector imgCount = 6;  // 有多少面
+  Selector prePageImg = 7;  // 一面有多少图片
+  Selector favorited = 8;  // 收藏次数
+  Selector language = 9;  // 语言
+  ImageSelector coverImg = 10;  // 封面图
+  Selector description = 11;  // 描述
 
   // 缩略图
-  repeated Selector thumbnailItem = 12;
-  repeated ImageSelector thumbnail = 13;
+  Selector thumbnailItem = 12;
+  ImageSelector thumbnail = 13;
 
   // 评论
-  repeated Selector commentItem = 14;
-  repeated CommentSelector comments = 15;
+  Selector commentItem = 14;
+  CommentSelector comments = 15;
 }

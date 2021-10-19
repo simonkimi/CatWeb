@@ -1,8 +1,9 @@
 {
-  "basic_setting": "基础设置",
-  "page_manager": "页面管理",
+  "basic_setting": "基础",
+  "page_manager": "页面",
   "parser": "解析器",
   "action": "动作器",
   "positive": "确认",
-  "negative": "取消"
+  "negative": "取消",
+  "selector": "选择器"
 }
