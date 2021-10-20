@@ -1,8 +1,17 @@
 import 'package:cat_web/data/protocol/model/selector.dart';
 import 'package:cat_web/gen/protobuf/parser.pbserver.dart';
+import 'package:cat_web/gen/protobuf/selector.pbserver.dart';
 import 'package:get/get.dart';
 
-abstract class ParserBaseModel {}
+abstract class ParserBaseModel {
+  ParserBaseModel(Iterable<ExtraSelector>? pb)
+      : extraSelectorModel =
+            pb?.map((e) => ExtraSelectorModel(e)).toList().obs ??
+                <ExtraSelectorModel>[].obs;
+
+  // 额外信息
+  final RxList<ExtraSelectorModel> extraSelectorModel;
+}
 
 class ListViewParserModel extends ParserBaseModel {
   ListViewParserModel([ListViewParser? pb])
@@ -18,7 +27,8 @@ class ListViewParserModel extends ParserBaseModel {
         tagColor = SelectorModel(pb?.imgCount),
         badgeSelector = pb?.badgeSelector.obs ?? ''.obs,
         badgeText = SelectorModel(pb?.badgeText),
-        badgeColor = SelectorModel(pb?.badgeColor);
+        badgeColor = SelectorModel(pb?.badgeColor),
+  super(pb?.extraSelector);
 
   final RxString name;
 
@@ -58,5 +68,6 @@ class ListViewParserModel extends ParserBaseModel {
         badgeSelector: badgeSelector.value,
         badgeText: badgeText.toPb(),
         badgeColor: badgeColor.toPb(),
+        extraSelector: extraSelectorModel.map((e) => e.toPb()),
       );
 }

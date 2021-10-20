@@ -15,6 +15,13 @@ message Selector {
   string regex = 4;
   string replace = 5;
   string js = 6;
+  bool computed = 7;
+}
+
+message ExtraSelector {
+  string id = 1;
+  Selector selector = 2;
+  bool global = 3;
 }
 
 

@@ -1,5 +1,4 @@
 syntax = 'proto3';
-import 'selector.proto';
 import 'parser.proto';
 
 message RulesProtocol {

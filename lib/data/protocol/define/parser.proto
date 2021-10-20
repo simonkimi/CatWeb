@@ -18,6 +18,8 @@ message ListViewParser {
   string badgeSelector = 11;
   Selector badgeText = 12;
   Selector badgeColor = 13;
+
+  repeated ExtraSelector extraSelector = 14;
 }
 
 message GalleryParser {

@@ -15,21 +15,42 @@ class RulesParserEditor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context, title: '规则编辑'),
-      body: Observer(
-        builder: (context) {
-          return ColoredBox(
-            color: const Color(0xfff1f1f6),
-            child: ListView(
-              padding: const EdgeInsets.all(5),
-              children: [
-                buildListParser(context, store.parserBase),
-              ],
-            ),
-          );
-        },
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: buildAppBar(
+          context,
+          title: '规则编辑',
+          bottom: const TabBar(
+            tabs: [
+              Tab(text: '基础规则'),
+              Tab(text: '附加字段'),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            buildBody(),
+            Container(),
+          ],
+        ),
       ),
+    );
+  }
+
+  Widget buildBody() {
+    return Observer(
+      builder: (context) {
+        return ColoredBox(
+          color: const Color(0xfff1f1f6),
+          child: ListView(
+            padding: const EdgeInsets.all(5),
+            children: [
+              buildListParser(context, store.parserBase),
+            ],
+          ),
+        );
+      },
     );
   }
 }

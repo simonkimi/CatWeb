@@ -27,6 +27,7 @@ Widget buildListParser(BuildContext context, ListViewParserModel model) {
         buildInputForm(labelText: '解析器名称'),
         buildInputForm(labelText: '项目选择器'),
       ]),
+      const SizedBox(height: 5),
       buildCardList([
         RulesForm(
           title: '标题',
@@ -48,10 +49,7 @@ Widget buildListParser(BuildContext context, ListViewParserModel model) {
           selectorModel: model.star,
         ),
       ]),
-      const Padding(
-        padding: EdgeInsets.symmetric(vertical: 5),
-        child: Divider(),
-      ),
+      const SizedBox(height: 5),
       buildCardList([
         RulesForm(
           title: '封面',
@@ -78,10 +76,7 @@ Widget buildListParser(BuildContext context, ListViewParserModel model) {
           selectorModel: model.previewImg.imgY,
         ),
       ]),
-      const Padding(
-        padding: EdgeInsets.symmetric(vertical: 5),
-        child: Divider(),
-      ),
+      const SizedBox(height: 5),
       buildCardList([
         RulesForm(
           title: '分类',
@@ -93,10 +88,7 @@ Widget buildListParser(BuildContext context, ListViewParserModel model) {
           selectorModel: model.tagColor,
         ),
       ]),
-      const Padding(
-        padding: EdgeInsets.symmetric(vertical: 5),
-        child: Divider(),
-      ),
+      const SizedBox(height: 5),
       buildCardList([
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),

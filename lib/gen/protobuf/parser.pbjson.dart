@@ -25,11 +25,12 @@ const ListViewParser$json = const {
     const {'1': 'badgeSelector', '3': 11, '4': 1, '5': 9, '10': 'badgeSelector'},
     const {'1': 'badgeText', '3': 12, '4': 1, '5': 11, '6': '.Selector', '10': 'badgeText'},
     const {'1': 'badgeColor', '3': 13, '4': 1, '5': 11, '6': '.Selector', '10': 'badgeColor'},
+    const {'1': 'extraSelector', '3': 14, '4': 3, '5': 11, '6': '.ExtraSelector', '10': 'extraSelector'},
   ],
 };
 
 /// Descriptor for `ListViewParser`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List listViewParserDescriptor = $convert.base64Decode('Cg5MaXN0Vmlld1BhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEiIKDGl0ZW1TZWxlY3RvchgCIAEoCVIMaXRlbVNlbGVjdG9yEh8KBXRpdGxlGAMgASgLMgkuU2VsZWN0b3JSBXRpdGxlEiUKCHN1YnRpdGxlGAQgASgLMgkuU2VsZWN0b3JSCHN1YnRpdGxlEikKCnVwbG9hZFRJbWUYBSABKAsyCS5TZWxlY3RvclIKdXBsb2FkVEltZRIdCgRzdGFyGAYgASgLMgkuU2VsZWN0b3JSBHN0YXISJQoIaW1nQ291bnQYByABKAsyCS5TZWxlY3RvclIIaW1nQ291bnQSLgoKcHJldmlld0ltZxgIIAEoCzIOLkltYWdlU2VsZWN0b3JSCnByZXZpZXdJbWcSGwoDdGFnGAkgASgLMgkuU2VsZWN0b3JSA3RhZxIlCgh0YWdDb2xvchgKIAEoCzIJLlNlbGVjdG9yUgh0YWdDb2xvchIkCg1iYWRnZVNlbGVjdG9yGAsgASgJUg1iYWRnZVNlbGVjdG9yEicKCWJhZGdlVGV4dBgMIAEoCzIJLlNlbGVjdG9yUgliYWRnZVRleHQSKQoKYmFkZ2VDb2xvchgNIAEoCzIJLlNlbGVjdG9yUgpiYWRnZUNvbG9y');
+final $typed_data.Uint8List listViewParserDescriptor = $convert.base64Decode('Cg5MaXN0Vmlld1BhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEiIKDGl0ZW1TZWxlY3RvchgCIAEoCVIMaXRlbVNlbGVjdG9yEh8KBXRpdGxlGAMgASgLMgkuU2VsZWN0b3JSBXRpdGxlEiUKCHN1YnRpdGxlGAQgASgLMgkuU2VsZWN0b3JSCHN1YnRpdGxlEikKCnVwbG9hZFRJbWUYBSABKAsyCS5TZWxlY3RvclIKdXBsb2FkVEltZRIdCgRzdGFyGAYgASgLMgkuU2VsZWN0b3JSBHN0YXISJQoIaW1nQ291bnQYByABKAsyCS5TZWxlY3RvclIIaW1nQ291bnQSLgoKcHJldmlld0ltZxgIIAEoCzIOLkltYWdlU2VsZWN0b3JSCnByZXZpZXdJbWcSGwoDdGFnGAkgASgLMgkuU2VsZWN0b3JSA3RhZxIlCgh0YWdDb2xvchgKIAEoCzIJLlNlbGVjdG9yUgh0YWdDb2xvchIkCg1iYWRnZVNlbGVjdG9yGAsgASgJUg1iYWRnZVNlbGVjdG9yEicKCWJhZGdlVGV4dBgMIAEoCzIJLlNlbGVjdG9yUgliYWRnZVRleHQSKQoKYmFkZ2VDb2xvchgNIAEoCzIJLlNlbGVjdG9yUgpiYWRnZUNvbG9yEjQKDWV4dHJhU2VsZWN0b3IYDiADKAsyDi5FeHRyYVNlbGVjdG9yUg1leHRyYVNlbGVjdG9y');
 @$core.Deprecated('Use galleryParserDescriptor instead')
 const GalleryParser$json = const {
   '1': 'GalleryParser',

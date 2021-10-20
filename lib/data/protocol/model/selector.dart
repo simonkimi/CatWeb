@@ -8,7 +8,8 @@ class SelectorModel {
         param = pb?.param.obs ?? ''.obs,
         regex = pb?.regex.obs ?? ''.obs,
         replace = pb?.replace.obs ?? ''.obs,
-        js = pb?.js.obs ?? ''.obs;
+        js = pb?.js.obs ?? ''.obs,
+        computed = pb?.computed.obs ?? false.obs;
 
   final RxString selector;
 
@@ -17,6 +18,7 @@ class SelectorModel {
   final RxString regex;
   final RxString replace;
   final RxString js;
+  final RxBool computed;
 
   Selector toPb() => Selector(
         selector: selector.value,
@@ -25,6 +27,24 @@ class SelectorModel {
         regex: regex.value,
         replace: replace.value,
         js: js.value,
+        computed: computed.value,
+      );
+}
+
+class ExtraSelectorModel {
+  ExtraSelectorModel(ExtraSelector? pb)
+      : id = pb?.id.obs ?? ''.obs,
+        selector = SelectorModel(pb?.selector),
+        global = pb?.global.obs ?? false.obs;
+
+  final RxString id;
+  final SelectorModel selector;
+  final RxBool global;
+
+  ExtraSelector toPb() => ExtraSelector(
+        selector: selector.toPb(),
+        global: global.value,
+        id: id.value,
       );
 }
 

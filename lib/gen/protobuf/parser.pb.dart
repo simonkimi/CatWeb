@@ -26,6 +26,7 @@ class ListViewParser extends $pb.GeneratedMessage {
     ..aOS(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeSelector', protoName: 'badgeSelector')
     ..aOM<$0.Selector>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeText', protoName: 'badgeText', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeColor', protoName: 'badgeColor', subBuilder: $0.Selector.create)
+    ..pc<$0.ExtraSelector>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, protoName: 'extraSelector', subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false
   ;
 
@@ -44,6 +45,7 @@ class ListViewParser extends $pb.GeneratedMessage {
     $core.String? badgeSelector,
     $0.Selector? badgeText,
     $0.Selector? badgeColor,
+    $core.Iterable<$0.ExtraSelector>? extraSelector,
   }) {
     final _result = create();
     if (name != null) {
@@ -84,6 +86,9 @@ class ListViewParser extends $pb.GeneratedMessage {
     }
     if (badgeColor != null) {
       _result.badgeColor = badgeColor;
+    }
+    if (extraSelector != null) {
+      _result.extraSelector.addAll(extraSelector);
     }
     return _result;
   }
@@ -244,6 +249,9 @@ class ListViewParser extends $pb.GeneratedMessage {
   void clearBadgeColor() => clearField(13);
   @$pb.TagNumber(13)
   $0.Selector ensureBadgeColor() => $_ensure(12);
+
+  @$pb.TagNumber(14)
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(13);
 }
 
 class GalleryParser extends $pb.GeneratedMessage {
