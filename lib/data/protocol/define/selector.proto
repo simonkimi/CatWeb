@@ -5,6 +5,7 @@ enum SelectorFunction {
   TEXT = 1;
   ATTR = 2;
   STYLE = 3;
+  NONE = 4;
 }
 
 // 基础选择器

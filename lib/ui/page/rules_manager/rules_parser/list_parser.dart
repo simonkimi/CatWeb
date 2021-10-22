@@ -1,31 +1,16 @@
 import 'package:cat_web/data/protocol/model/parser.dart';
+import 'package:cat_web/ui/components/form.dart';
 import 'package:cat_web/ui/components/rules_card.dart';
 import 'package:cat_web/ui/page/rules_manager/rules_parser/rules_form.dart';
 import 'package:flutter/material.dart';
-
-Widget buildInputForm({required String labelText}) {
-  return TextFormField(
-    decoration: InputDecoration(
-      labelText: labelText,
-      isDense: true,
-      floatingLabelBehavior: FloatingLabelBehavior.always,
-    ),
-  );
-}
-
-Widget buildCardList(List<Widget> children) {
-  return Card(
-    child: Column(mainAxisSize: MainAxisSize.min, children: children),
-  );
-}
 
 Widget buildListParser(BuildContext context, ListViewParserModel model) {
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: [
       RulesCard(title: '基础设置', children: [
-        buildInputForm(labelText: '解析器名称'),
-        buildInputForm(labelText: '项目选择器'),
+        buildInputForm(labelText: '解析器名称', value: model.name),
+        buildInputForm(labelText: '项目选择器', value: model.itemSelector),
       ]),
       const SizedBox(height: 5),
       buildCardList([
@@ -52,7 +37,7 @@ Widget buildListParser(BuildContext context, ListViewParserModel model) {
       const SizedBox(height: 5),
       buildCardList([
         RulesForm(
-          title: '封面',
+          title: '封面地址',
           selectorModel: model.previewImg.imgUrl,
         ),
         const Divider(),
@@ -92,7 +77,7 @@ Widget buildListParser(BuildContext context, ListViewParserModel model) {
       buildCardList([
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: buildInputForm(labelText: '徽章选择器'),
+          child: buildInputForm(labelText: '徽章选择器', value: model.badgeSelector),
         ),
         RulesForm(
           title: '徽章内容',

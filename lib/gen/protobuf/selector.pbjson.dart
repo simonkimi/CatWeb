@@ -16,11 +16,12 @@ const SelectorFunction$json = const {
     const {'1': 'TEXT', '2': 1},
     const {'1': 'ATTR', '2': 2},
     const {'1': 'STYLE', '2': 3},
+    const {'1': 'NONE', '2': 4},
   ],
 };
 
 /// Descriptor for `SelectorFunction`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List selectorFunctionDescriptor = $convert.base64Decode('ChBTZWxlY3RvckZ1bmN0aW9uEggKBEhUTUwQABIICgRURVhUEAESCAoEQVRUUhACEgkKBVNUWUxFEAM=');
+final $typed_data.Uint8List selectorFunctionDescriptor = $convert.base64Decode('ChBTZWxlY3RvckZ1bmN0aW9uEggKBEhUTUwQABIICgRURVhUEAESCAoEQVRUUhACEgkKBVNUWUxFEAMSCAoETk9ORRAE');
 @$core.Deprecated('Use selectorDescriptor instead')
 const Selector$json = const {
   '1': 'Selector',

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class SelectorModel {
   SelectorModel([Selector? pb])
       : selector = pb?.selector.obs ?? ''.obs,
-        function = pb?.function.obs ?? SelectorFunction.HTML.obs,
+        function = pb?.function.obs ?? SelectorFunction.NONE.obs,
         param = pb?.param.obs ?? ''.obs,
         regex = pb?.regex.obs ?? ''.obs,
         replace = pb?.replace.obs ?? ''.obs,
@@ -32,7 +32,7 @@ class SelectorModel {
 }
 
 class ExtraSelectorModel {
-  ExtraSelectorModel(ExtraSelector? pb)
+  ExtraSelectorModel([ExtraSelector? pb])
       : id = pb?.id.obs ?? ''.obs,
         selector = SelectorModel(pb?.selector),
         global = pb?.global.obs ?? false.obs;
@@ -75,15 +75,16 @@ extension SelectorFunctionE on SelectorFunction {
   String get string {
     switch (this) {
       case SelectorFunction.ATTR:
-        return 'Attr';
+        return 'attr';
       case SelectorFunction.HTML:
-        return 'Html';
+        return 'html';
       case SelectorFunction.STYLE:
-        return 'Style';
-
+        return 'style';
       case SelectorFunction.TEXT:
-      default:
-        return 'Text';
+        return 'text';
+      case SelectorFunction.NONE:
+        return '';
     }
+    return '';
   }
 }

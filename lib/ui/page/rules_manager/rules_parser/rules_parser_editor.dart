@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'editor_store.dart';
+import 'extra_parser.dart';
 
 class RulesParserEditor extends StatelessWidget {
   RulesParserEditor({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class RulesParserEditor extends StatelessWidget {
         body: TabBarView(
           children: [
             buildBody(),
-            Container(),
+            buildExtra(),
           ],
         ),
       ),
@@ -47,6 +48,22 @@ class RulesParserEditor extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             children: [
               buildListParser(context, store.parserBase),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget buildExtra() {
+    return Observer(
+      builder: (context) {
+        return ColoredBox(
+          color: const Color(0xfff1f1f6),
+          child: ListView(
+            padding: const EdgeInsets.all(5),
+            children: [
+              buildExtraParser(context, store.parserBase),
             ],
           ),
         );
