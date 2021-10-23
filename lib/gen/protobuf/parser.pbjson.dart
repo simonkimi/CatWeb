@@ -42,16 +42,24 @@ const GalleryParser$json = const {
     const {'1': 'star', '3': 5, '4': 1, '5': 11, '6': '.Selector', '10': 'star'},
     const {'1': 'imgCount', '3': 6, '4': 1, '5': 11, '6': '.Selector', '10': 'imgCount'},
     const {'1': 'prePageImg', '3': 7, '4': 1, '5': 11, '6': '.Selector', '10': 'prePageImg'},
-    const {'1': 'favorited', '3': 8, '4': 1, '5': 11, '6': '.Selector', '10': 'favorited'},
+    const {'1': 'favoriteCount', '3': 8, '4': 1, '5': 11, '6': '.Selector', '10': 'favoriteCount'},
     const {'1': 'language', '3': 9, '4': 1, '5': 11, '6': '.Selector', '10': 'language'},
     const {'1': 'coverImg', '3': 10, '4': 1, '5': 11, '6': '.ImageSelector', '10': 'coverImg'},
     const {'1': 'description', '3': 11, '4': 1, '5': 11, '6': '.Selector', '10': 'description'},
-    const {'1': 'thumbnailItem', '3': 12, '4': 1, '5': 11, '6': '.Selector', '10': 'thumbnailItem'},
+    const {'1': 'thumbnailSelector', '3': 12, '4': 1, '5': 9, '10': 'thumbnailSelector'},
     const {'1': 'thumbnail', '3': 13, '4': 1, '5': 11, '6': '.ImageSelector', '10': 'thumbnail'},
-    const {'1': 'commentItem', '3': 14, '4': 1, '5': 11, '6': '.Selector', '10': 'commentItem'},
-    const {'1': 'comments', '3': 15, '4': 1, '5': 11, '6': '.CommentSelector', '10': 'comments'},
+    const {'1': 'thumbnailUrl', '3': 14, '4': 1, '5': 11, '6': '.Selector', '10': 'thumbnailUrl'},
+    const {'1': 'commentSelector', '3': 15, '4': 1, '5': 9, '10': 'commentSelector'},
+    const {'1': 'comments', '3': 16, '4': 1, '5': 11, '6': '.CommentSelector', '10': 'comments'},
+    const {'1': 'tag', '3': 17, '4': 1, '5': 11, '6': '.Selector', '10': 'tag'},
+    const {'1': 'tagColor', '3': 18, '4': 1, '5': 11, '6': '.Selector', '10': 'tagColor'},
+    const {'1': 'badgeSelector', '3': 19, '4': 1, '5': 9, '10': 'badgeSelector'},
+    const {'1': 'badgeText', '3': 20, '4': 1, '5': 11, '6': '.Selector', '10': 'badgeText'},
+    const {'1': 'badgeColor', '3': 21, '4': 1, '5': 11, '6': '.Selector', '10': 'badgeColor'},
+    const {'1': 'badgeType', '3': 22, '4': 1, '5': 11, '6': '.Selector', '10': 'badgeType'},
+    const {'1': 'extraSelector', '3': 99, '4': 3, '5': 11, '6': '.ExtraSelector', '10': 'extraSelector'},
   ],
 };
 
 /// Descriptor for `GalleryParser`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List galleryParserDescriptor = $convert.base64Decode('Cg1HYWxsZXJ5UGFyc2VyEhIKBG5hbWUYASABKAlSBG5hbWUSHwoFdGl0bGUYAiABKAsyCS5TZWxlY3RvclIFdGl0bGUSJQoIc3VidGl0bGUYAyABKAsyCS5TZWxlY3RvclIIc3VidGl0bGUSKQoKdXBsb2FkVEltZRgEIAEoCzIJLlNlbGVjdG9yUgp1cGxvYWRUSW1lEh0KBHN0YXIYBSABKAsyCS5TZWxlY3RvclIEc3RhchIlCghpbWdDb3VudBgGIAEoCzIJLlNlbGVjdG9yUghpbWdDb3VudBIpCgpwcmVQYWdlSW1nGAcgASgLMgkuU2VsZWN0b3JSCnByZVBhZ2VJbWcSJwoJZmF2b3JpdGVkGAggASgLMgkuU2VsZWN0b3JSCWZhdm9yaXRlZBIlCghsYW5ndWFnZRgJIAEoCzIJLlNlbGVjdG9yUghsYW5ndWFnZRIqCghjb3ZlckltZxgKIAEoCzIOLkltYWdlU2VsZWN0b3JSCGNvdmVySW1nEisKC2Rlc2NyaXB0aW9uGAsgASgLMgkuU2VsZWN0b3JSC2Rlc2NyaXB0aW9uEi8KDXRodW1ibmFpbEl0ZW0YDCABKAsyCS5TZWxlY3RvclINdGh1bWJuYWlsSXRlbRIsCgl0aHVtYm5haWwYDSABKAsyDi5JbWFnZVNlbGVjdG9yUgl0aHVtYm5haWwSKwoLY29tbWVudEl0ZW0YDiABKAsyCS5TZWxlY3RvclILY29tbWVudEl0ZW0SLAoIY29tbWVudHMYDyABKAsyEC5Db21tZW50U2VsZWN0b3JSCGNvbW1lbnRz');
+final $typed_data.Uint8List galleryParserDescriptor = $convert.base64Decode('Cg1HYWxsZXJ5UGFyc2VyEhIKBG5hbWUYASABKAlSBG5hbWUSHwoFdGl0bGUYAiABKAsyCS5TZWxlY3RvclIFdGl0bGUSJQoIc3VidGl0bGUYAyABKAsyCS5TZWxlY3RvclIIc3VidGl0bGUSKQoKdXBsb2FkVEltZRgEIAEoCzIJLlNlbGVjdG9yUgp1cGxvYWRUSW1lEh0KBHN0YXIYBSABKAsyCS5TZWxlY3RvclIEc3RhchIlCghpbWdDb3VudBgGIAEoCzIJLlNlbGVjdG9yUghpbWdDb3VudBIpCgpwcmVQYWdlSW1nGAcgASgLMgkuU2VsZWN0b3JSCnByZVBhZ2VJbWcSLwoNZmF2b3JpdGVDb3VudBgIIAEoCzIJLlNlbGVjdG9yUg1mYXZvcml0ZUNvdW50EiUKCGxhbmd1YWdlGAkgASgLMgkuU2VsZWN0b3JSCGxhbmd1YWdlEioKCGNvdmVySW1nGAogASgLMg4uSW1hZ2VTZWxlY3RvclIIY292ZXJJbWcSKwoLZGVzY3JpcHRpb24YCyABKAsyCS5TZWxlY3RvclILZGVzY3JpcHRpb24SLAoRdGh1bWJuYWlsU2VsZWN0b3IYDCABKAlSEXRodW1ibmFpbFNlbGVjdG9yEiwKCXRodW1ibmFpbBgNIAEoCzIOLkltYWdlU2VsZWN0b3JSCXRodW1ibmFpbBItCgx0aHVtYm5haWxVcmwYDiABKAsyCS5TZWxlY3RvclIMdGh1bWJuYWlsVXJsEigKD2NvbW1lbnRTZWxlY3RvchgPIAEoCVIPY29tbWVudFNlbGVjdG9yEiwKCGNvbW1lbnRzGBAgASgLMhAuQ29tbWVudFNlbGVjdG9yUghjb21tZW50cxIbCgN0YWcYESABKAsyCS5TZWxlY3RvclIDdGFnEiUKCHRhZ0NvbG9yGBIgASgLMgkuU2VsZWN0b3JSCHRhZ0NvbG9yEiQKDWJhZGdlU2VsZWN0b3IYEyABKAlSDWJhZGdlU2VsZWN0b3ISJwoJYmFkZ2VUZXh0GBQgASgLMgkuU2VsZWN0b3JSCWJhZGdlVGV4dBIpCgpiYWRnZUNvbG9yGBUgASgLMgkuU2VsZWN0b3JSCmJhZGdlQ29sb3ISJwoJYmFkZ2VUeXBlGBYgASgLMgkuU2VsZWN0b3JSCWJhZGdlVHlwZRI0Cg1leHRyYVNlbGVjdG9yGGMgAygLMg4uRXh0cmFTZWxlY3RvclINZXh0cmFTZWxlY3Rvcg==');

@@ -7,5 +7,5 @@ class EditorStore = EditorStoreBase with _$EditorStore;
 
 abstract class EditorStoreBase with Store {
   @observable
-  var parserBase = ListViewParserModel();
+  var parserBase = GalleryParserModel();
 }

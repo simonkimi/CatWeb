@@ -339,6 +339,7 @@ class CommentSelector extends $pb.GeneratedMessage {
     ..aOM<Selector>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'username', subBuilder: Selector.create)
     ..aOM<Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'postTime', protoName: 'postTime', subBuilder: Selector.create)
     ..aOM<Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'vote', subBuilder: Selector.create)
+    ..aOM<Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content', subBuilder: Selector.create)
     ..hasRequiredFields = false
   ;
 
@@ -347,6 +348,7 @@ class CommentSelector extends $pb.GeneratedMessage {
     Selector? username,
     Selector? postTime,
     Selector? vote,
+    Selector? content,
   }) {
     final _result = create();
     if (username != null) {
@@ -357,6 +359,9 @@ class CommentSelector extends $pb.GeneratedMessage {
     }
     if (vote != null) {
       _result.vote = vote;
+    }
+    if (content != null) {
+      _result.content = content;
     }
     return _result;
   }
@@ -413,5 +418,16 @@ class CommentSelector extends $pb.GeneratedMessage {
   void clearVote() => clearField(3);
   @$pb.TagNumber(3)
   Selector ensureVote() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  Selector get content => $_getN(3);
+  @$pb.TagNumber(4)
+  set content(Selector v) { setField(4, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasContent() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearContent() => clearField(4);
+  @$pb.TagNumber(4)
+  Selector ensureContent() => $_ensure(3);
 }
 

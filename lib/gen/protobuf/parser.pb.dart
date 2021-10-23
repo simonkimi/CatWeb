@@ -263,14 +263,22 @@ class GalleryParser extends $pb.GeneratedMessage {
     ..aOM<$0.Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'star', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgCount', protoName: 'imgCount', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'prePageImg', protoName: 'prePageImg', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'favorited', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'favoriteCount', protoName: 'favoriteCount', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'language', subBuilder: $0.Selector.create)
     ..aOM<$0.ImageSelector>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'coverImg', protoName: 'coverImg', subBuilder: $0.ImageSelector.create)
     ..aOM<$0.Selector>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'description', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'thumbnailItem', protoName: 'thumbnailItem', subBuilder: $0.Selector.create)
+    ..aOS(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'thumbnailSelector', protoName: 'thumbnailSelector')
     ..aOM<$0.ImageSelector>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'thumbnail', subBuilder: $0.ImageSelector.create)
-    ..aOM<$0.Selector>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'commentItem', protoName: 'commentItem', subBuilder: $0.Selector.create)
-    ..aOM<$0.CommentSelector>(15, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'comments', subBuilder: $0.CommentSelector.create)
+    ..aOM<$0.Selector>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'thumbnailUrl', protoName: 'thumbnailUrl', subBuilder: $0.Selector.create)
+    ..aOS(15, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'commentSelector', protoName: 'commentSelector')
+    ..aOM<$0.CommentSelector>(16, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'comments', subBuilder: $0.CommentSelector.create)
+    ..aOM<$0.Selector>(17, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tag', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(18, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tagColor', protoName: 'tagColor', subBuilder: $0.Selector.create)
+    ..aOS(19, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeSelector', protoName: 'badgeSelector')
+    ..aOM<$0.Selector>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeText', protoName: 'badgeText', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeColor', protoName: 'badgeColor', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeType', protoName: 'badgeType', subBuilder: $0.Selector.create)
+    ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, protoName: 'extraSelector', subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false
   ;
 
@@ -283,14 +291,22 @@ class GalleryParser extends $pb.GeneratedMessage {
     $0.Selector? star,
     $0.Selector? imgCount,
     $0.Selector? prePageImg,
-    $0.Selector? favorited,
+    $0.Selector? favoriteCount,
     $0.Selector? language,
     $0.ImageSelector? coverImg,
     $0.Selector? description,
-    $0.Selector? thumbnailItem,
+    $core.String? thumbnailSelector,
     $0.ImageSelector? thumbnail,
-    $0.Selector? commentItem,
+    $0.Selector? thumbnailUrl,
+    $core.String? commentSelector,
     $0.CommentSelector? comments,
+    $0.Selector? tag,
+    $0.Selector? tagColor,
+    $core.String? badgeSelector,
+    $0.Selector? badgeText,
+    $0.Selector? badgeColor,
+    $0.Selector? badgeType,
+    $core.Iterable<$0.ExtraSelector>? extraSelector,
   }) {
     final _result = create();
     if (name != null) {
@@ -314,8 +330,8 @@ class GalleryParser extends $pb.GeneratedMessage {
     if (prePageImg != null) {
       _result.prePageImg = prePageImg;
     }
-    if (favorited != null) {
-      _result.favorited = favorited;
+    if (favoriteCount != null) {
+      _result.favoriteCount = favoriteCount;
     }
     if (language != null) {
       _result.language = language;
@@ -326,17 +342,41 @@ class GalleryParser extends $pb.GeneratedMessage {
     if (description != null) {
       _result.description = description;
     }
-    if (thumbnailItem != null) {
-      _result.thumbnailItem = thumbnailItem;
+    if (thumbnailSelector != null) {
+      _result.thumbnailSelector = thumbnailSelector;
     }
     if (thumbnail != null) {
       _result.thumbnail = thumbnail;
     }
-    if (commentItem != null) {
-      _result.commentItem = commentItem;
+    if (thumbnailUrl != null) {
+      _result.thumbnailUrl = thumbnailUrl;
+    }
+    if (commentSelector != null) {
+      _result.commentSelector = commentSelector;
     }
     if (comments != null) {
       _result.comments = comments;
+    }
+    if (tag != null) {
+      _result.tag = tag;
+    }
+    if (tagColor != null) {
+      _result.tagColor = tagColor;
+    }
+    if (badgeSelector != null) {
+      _result.badgeSelector = badgeSelector;
+    }
+    if (badgeText != null) {
+      _result.badgeText = badgeText;
+    }
+    if (badgeColor != null) {
+      _result.badgeColor = badgeColor;
+    }
+    if (badgeType != null) {
+      _result.badgeType = badgeType;
+    }
+    if (extraSelector != null) {
+      _result.extraSelector.addAll(extraSelector);
     }
     return _result;
   }
@@ -437,15 +477,15 @@ class GalleryParser extends $pb.GeneratedMessage {
   $0.Selector ensurePrePageImg() => $_ensure(6);
 
   @$pb.TagNumber(8)
-  $0.Selector get favorited => $_getN(7);
+  $0.Selector get favoriteCount => $_getN(7);
   @$pb.TagNumber(8)
-  set favorited($0.Selector v) { setField(8, v); }
+  set favoriteCount($0.Selector v) { setField(8, v); }
   @$pb.TagNumber(8)
-  $core.bool hasFavorited() => $_has(7);
+  $core.bool hasFavoriteCount() => $_has(7);
   @$pb.TagNumber(8)
-  void clearFavorited() => clearField(8);
+  void clearFavoriteCount() => clearField(8);
   @$pb.TagNumber(8)
-  $0.Selector ensureFavorited() => $_ensure(7);
+  $0.Selector ensureFavoriteCount() => $_ensure(7);
 
   @$pb.TagNumber(9)
   $0.Selector get language => $_getN(8);
@@ -481,15 +521,13 @@ class GalleryParser extends $pb.GeneratedMessage {
   $0.Selector ensureDescription() => $_ensure(10);
 
   @$pb.TagNumber(12)
-  $0.Selector get thumbnailItem => $_getN(11);
+  $core.String get thumbnailSelector => $_getSZ(11);
   @$pb.TagNumber(12)
-  set thumbnailItem($0.Selector v) { setField(12, v); }
+  set thumbnailSelector($core.String v) { $_setString(11, v); }
   @$pb.TagNumber(12)
-  $core.bool hasThumbnailItem() => $_has(11);
+  $core.bool hasThumbnailSelector() => $_has(11);
   @$pb.TagNumber(12)
-  void clearThumbnailItem() => clearField(12);
-  @$pb.TagNumber(12)
-  $0.Selector ensureThumbnailItem() => $_ensure(11);
+  void clearThumbnailSelector() => clearField(12);
 
   @$pb.TagNumber(13)
   $0.ImageSelector get thumbnail => $_getN(12);
@@ -503,25 +541,101 @@ class GalleryParser extends $pb.GeneratedMessage {
   $0.ImageSelector ensureThumbnail() => $_ensure(12);
 
   @$pb.TagNumber(14)
-  $0.Selector get commentItem => $_getN(13);
+  $0.Selector get thumbnailUrl => $_getN(13);
   @$pb.TagNumber(14)
-  set commentItem($0.Selector v) { setField(14, v); }
+  set thumbnailUrl($0.Selector v) { setField(14, v); }
   @$pb.TagNumber(14)
-  $core.bool hasCommentItem() => $_has(13);
+  $core.bool hasThumbnailUrl() => $_has(13);
   @$pb.TagNumber(14)
-  void clearCommentItem() => clearField(14);
+  void clearThumbnailUrl() => clearField(14);
   @$pb.TagNumber(14)
-  $0.Selector ensureCommentItem() => $_ensure(13);
+  $0.Selector ensureThumbnailUrl() => $_ensure(13);
 
   @$pb.TagNumber(15)
-  $0.CommentSelector get comments => $_getN(14);
+  $core.String get commentSelector => $_getSZ(14);
   @$pb.TagNumber(15)
-  set comments($0.CommentSelector v) { setField(15, v); }
+  set commentSelector($core.String v) { $_setString(14, v); }
   @$pb.TagNumber(15)
-  $core.bool hasComments() => $_has(14);
+  $core.bool hasCommentSelector() => $_has(14);
   @$pb.TagNumber(15)
-  void clearComments() => clearField(15);
-  @$pb.TagNumber(15)
-  $0.CommentSelector ensureComments() => $_ensure(14);
+  void clearCommentSelector() => clearField(15);
+
+  @$pb.TagNumber(16)
+  $0.CommentSelector get comments => $_getN(15);
+  @$pb.TagNumber(16)
+  set comments($0.CommentSelector v) { setField(16, v); }
+  @$pb.TagNumber(16)
+  $core.bool hasComments() => $_has(15);
+  @$pb.TagNumber(16)
+  void clearComments() => clearField(16);
+  @$pb.TagNumber(16)
+  $0.CommentSelector ensureComments() => $_ensure(15);
+
+  @$pb.TagNumber(17)
+  $0.Selector get tag => $_getN(16);
+  @$pb.TagNumber(17)
+  set tag($0.Selector v) { setField(17, v); }
+  @$pb.TagNumber(17)
+  $core.bool hasTag() => $_has(16);
+  @$pb.TagNumber(17)
+  void clearTag() => clearField(17);
+  @$pb.TagNumber(17)
+  $0.Selector ensureTag() => $_ensure(16);
+
+  @$pb.TagNumber(18)
+  $0.Selector get tagColor => $_getN(17);
+  @$pb.TagNumber(18)
+  set tagColor($0.Selector v) { setField(18, v); }
+  @$pb.TagNumber(18)
+  $core.bool hasTagColor() => $_has(17);
+  @$pb.TagNumber(18)
+  void clearTagColor() => clearField(18);
+  @$pb.TagNumber(18)
+  $0.Selector ensureTagColor() => $_ensure(17);
+
+  @$pb.TagNumber(19)
+  $core.String get badgeSelector => $_getSZ(18);
+  @$pb.TagNumber(19)
+  set badgeSelector($core.String v) { $_setString(18, v); }
+  @$pb.TagNumber(19)
+  $core.bool hasBadgeSelector() => $_has(18);
+  @$pb.TagNumber(19)
+  void clearBadgeSelector() => clearField(19);
+
+  @$pb.TagNumber(20)
+  $0.Selector get badgeText => $_getN(19);
+  @$pb.TagNumber(20)
+  set badgeText($0.Selector v) { setField(20, v); }
+  @$pb.TagNumber(20)
+  $core.bool hasBadgeText() => $_has(19);
+  @$pb.TagNumber(20)
+  void clearBadgeText() => clearField(20);
+  @$pb.TagNumber(20)
+  $0.Selector ensureBadgeText() => $_ensure(19);
+
+  @$pb.TagNumber(21)
+  $0.Selector get badgeColor => $_getN(20);
+  @$pb.TagNumber(21)
+  set badgeColor($0.Selector v) { setField(21, v); }
+  @$pb.TagNumber(21)
+  $core.bool hasBadgeColor() => $_has(20);
+  @$pb.TagNumber(21)
+  void clearBadgeColor() => clearField(21);
+  @$pb.TagNumber(21)
+  $0.Selector ensureBadgeColor() => $_ensure(20);
+
+  @$pb.TagNumber(22)
+  $0.Selector get badgeType => $_getN(21);
+  @$pb.TagNumber(22)
+  set badgeType($0.Selector v) { setField(22, v); }
+  @$pb.TagNumber(22)
+  $core.bool hasBadgeType() => $_has(21);
+  @$pb.TagNumber(22)
+  void clearBadgeType() => clearField(22);
+  @$pb.TagNumber(22)
+  $0.Selector ensureBadgeType() => $_ensure(21);
+
+  @$pb.TagNumber(99)
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(22);
 }
 

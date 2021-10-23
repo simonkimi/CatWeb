@@ -2,14 +2,14 @@ import 'package:cat_web/gen/protobuf/selector.pbserver.dart';
 import 'package:get/get.dart';
 
 class SelectorModel {
-  SelectorModel([Selector? pb])
+  SelectorModel([Selector? pb, bool computed = false])
       : selector = pb?.selector.obs ?? ''.obs,
         function = pb?.function.obs ?? SelectorFunction.NONE.obs,
         param = pb?.param.obs ?? ''.obs,
         regex = pb?.regex.obs ?? ''.obs,
         replace = pb?.replace.obs ?? ''.obs,
         js = pb?.js.obs ?? ''.obs,
-        computed = pb?.computed.obs ?? false.obs;
+        computed = pb?.computed.obs ?? computed.obs;
 
   final RxString selector;
 
@@ -51,10 +51,10 @@ class ExtraSelectorModel {
 class ImageSelectorModel {
   ImageSelectorModel([ImageSelector? pb])
       : imgUrl = SelectorModel(pb?.imgUrl),
-        imgWidth = SelectorModel(pb?.imgWidth),
-        imgHeight = SelectorModel(pb?.imgHeight),
-        imgX = SelectorModel(pb?.imgX),
-        imgY = SelectorModel(pb?.imgY);
+        imgWidth = SelectorModel(pb?.imgWidth, true),
+        imgHeight = SelectorModel(pb?.imgHeight, true),
+        imgX = SelectorModel(pb?.imgX, true),
+        imgY = SelectorModel(pb?.imgY, true);
 
   final SelectorModel imgUrl;
   final SelectorModel imgWidth;
@@ -68,6 +68,26 @@ class ImageSelectorModel {
         imgWidth: imgWidth.toPb(),
         imgX: imgX.toPb(),
         imgY: imgY.toPb(),
+      );
+}
+
+class CommentSelectorModel {
+  CommentSelectorModel([CommentSelector? pb])
+      : username = SelectorModel(pb?.username),
+        postTime = SelectorModel(pb?.postTime),
+        vote = SelectorModel(pb?.vote, true),
+        content = SelectorModel(pb?.content);
+
+  final SelectorModel username;
+  final SelectorModel postTime;
+  final SelectorModel vote;
+  final SelectorModel content;
+
+  CommentSelector toPb() => CommentSelector(
+        username: username.toPb(),
+        postTime: postTime.toPb(),
+        vote: vote.toPb(),
+        content: content.toPb(),
       );
 }
 

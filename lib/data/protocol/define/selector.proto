@@ -38,4 +38,5 @@ message CommentSelector {
   Selector username = 1;
   Selector postTime = 2;
   Selector vote = 3;
+  Selector content = 4;
 }

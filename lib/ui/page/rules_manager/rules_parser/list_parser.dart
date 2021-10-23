@@ -1,7 +1,6 @@
 import 'package:cat_web/data/protocol/model/parser.dart';
 import 'package:cat_web/ui/components/form.dart';
 import 'package:cat_web/ui/components/rules_card.dart';
-import 'package:cat_web/ui/page/rules_manager/rules_parser/rules_form.dart';
 import 'package:flutter/material.dart';
 
 Widget buildListParser(BuildContext context, ListViewParserModel model) {

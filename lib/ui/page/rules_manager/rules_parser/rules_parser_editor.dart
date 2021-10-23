@@ -1,9 +1,8 @@
 import 'package:cat_web/ui/components/app_bar.dart';
-import 'package:cat_web/ui/page/rules_manager/rules_parser/list_parser.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import 'gallery_parser.dart';
 import 'editor_store.dart';
 import 'extra_parser.dart';
 
@@ -31,7 +30,7 @@ class RulesParserEditor extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            buildBody(),
+            buildBody(context),
             buildExtra(),
           ],
         ),
@@ -39,19 +38,15 @@ class RulesParserEditor extends StatelessWidget {
     );
   }
 
-  Widget buildBody() {
-    return Observer(
-      builder: (context) {
-        return ColoredBox(
-          color: const Color(0xfff1f1f6),
-          child: ListView(
-            padding: const EdgeInsets.all(5),
-            children: [
-              buildListParser(context, store.parserBase),
-            ],
-          ),
-        );
-      },
+  Widget buildBody(BuildContext context) {
+    return ColoredBox(
+      color: const Color(0xfff1f1f6),
+      child: ListView(
+        padding: const EdgeInsets.all(5),
+        children: [
+          buildGalleryParser(context, store.parserBase),
+        ],
+      ),
     );
   }
 
