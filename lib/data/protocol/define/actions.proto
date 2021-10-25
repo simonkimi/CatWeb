@@ -1,0 +1,18 @@
+syntax = 'proto3';
+
+
+enum ActionType {
+  GET = 0;
+  POST = 1;
+  PUT = 2;
+  DELETE = 3;
+}
+
+
+message Action {
+  string name = 1;
+  string label = 2;
+  string url = 3;
+  string data = 4;
+  string icon = 5;
+}

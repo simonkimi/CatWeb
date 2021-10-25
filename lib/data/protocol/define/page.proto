@@ -1,0 +1,16 @@
+syntax = 'proto3';
+
+enum SitePageType {
+  List = 0;
+  Gallery = 1;
+}
+
+
+
+message SitePage {
+  string name = 1;
+  string url = 2;
+  SitePageType type = 3;
+
+  string rule = 4;
+}
