@@ -1,5 +1,5 @@
 import 'package:cat_web/data/protocol/model/parser.dart';
-import 'package:cat_web/ui/components/select_tile.dart';
+import 'package:cat_web/ui/components/dialog.dart';
 import 'package:cat_web/ui/pages/rules_manager/rules_parser/rules_parser_editor.dart';
 import 'package:cat_web/ui/pages/rules_manager/rules_store.dart';
 import 'package:flutter/material.dart';

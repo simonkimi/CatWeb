@@ -1,9 +1,10 @@
 import 'package:cat_web/data/protocol/model/selector.dart';
 import 'package:cat_web/gen/protobuf/selector.pbserver.dart';
-import 'package:cat_web/ui/components/select_tile.dart';
 import 'package:cat_web/utils/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'dialog.dart';
 
 Widget buildInputForm({
   required String labelText,

@@ -97,6 +97,13 @@ class ListParser extends StatelessWidget {
             selectorModel: model.badgeColor,
           ),
         ]),
+        const SizedBox(height: 5),
+        buildCardList([
+          RulesForm(
+            title: '下一面地址',
+            selectorModel: model.nextPage,
+          ),
+        ]),
       ],
     );
   }

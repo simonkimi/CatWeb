@@ -2,7 +2,6 @@ import 'package:cat_web/i18n.dart';
 import 'package:cat_web/ui/pages/main_page/main_page.dart';
 import 'package:cat_web/ui/pages/rules_manager/rules_edit_page.dart';
 import 'package:cat_web/ui/pages/rules_manager/rules_manager.dart';
-import 'package:cat_web/ui/pages/rules_manager/rules_parser/rules_parser_editor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'navigator.dart';

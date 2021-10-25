@@ -16,6 +16,10 @@ class GalleryParser extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         buildCardList([
+          buildInputForm(labelText: '名称', value: model.name),
+        ], padding: const EdgeInsets.symmetric(vertical: 10)),
+        const SizedBox(height: 5),
+        buildCardList([
           RulesForm(
             title: '标题',
             selectorModel: model.title,
