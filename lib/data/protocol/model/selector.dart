@@ -1,14 +1,15 @@
 import 'package:cat_web/gen/protobuf/selector.pbserver.dart';
+import 'package:cat_web/utils/utils.dart';
 import 'package:get/get.dart';
 
 class SelectorModel {
   SelectorModel([Selector? pb, bool computed = false])
-      : selector = pb?.selector.obs ?? ''.obs,
+      : selector = sobs(pb?.selector),
         function = pb?.function.obs ?? SelectorFunction.NONE.obs,
-        param = pb?.param.obs ?? ''.obs,
-        regex = pb?.regex.obs ?? ''.obs,
-        replace = pb?.replace.obs ?? ''.obs,
-        js = pb?.js.obs ?? ''.obs,
+        param = sobs(pb?.param),
+        regex = sobs(pb?.regex),
+        replace = sobs(pb?.replace),
+        js = sobs(pb?.js),
         computed = pb?.computed.obs ?? computed.obs;
 
   final RxString selector;
@@ -33,7 +34,7 @@ class SelectorModel {
 
 class ExtraSelectorModel {
   ExtraSelectorModel([ExtraSelector? pb])
-      : id = pb?.id.obs ?? ''.obs,
+      : id = sobs(pb?.id),
         selector = SelectorModel(pb?.selector),
         global = pb?.global.obs ?? false.obs;
 

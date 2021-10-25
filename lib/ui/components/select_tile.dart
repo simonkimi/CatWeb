@@ -158,8 +158,9 @@ class TinySelectTile<T> extends StatelessWidget {
 Future<T?> showSelectDialog<T>({
   required BuildContext context,
   required List<SelectTileItem<T>> items,
-  required T selectedValue,
+  T? selectedValue,
   required String title,
+  bool displayRadio = true,
 }) async {
   return await showDialog(
       context: context,
@@ -171,7 +172,7 @@ Future<T?> showSelectDialog<T>({
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 child: Text(
                   title,
                   style: const TextStyle(fontSize: 20),
@@ -179,14 +180,27 @@ Future<T?> showSelectDialog<T>({
               ),
               const Divider(height: 0),
               ...items.map(
-                (e) => RadioListTile<T>(
-                  value: e.value,
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    Navigator.of(context).pop(value as T);
-                  },
-                  title: Text(e.title),
-                ),
+                    (e) {
+                  if (!displayRadio) {
+                    return ListTile(
+                      title: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Text(e.title),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).pop(e.value);
+                      },
+                    );
+                  }
+                  return RadioListTile<T>(
+                    value: e.value,
+                    groupValue: selectedValue,
+                    onChanged: (value) {
+                      Navigator.of(context).pop(value as T);
+                    },
+                    title: Text(e.title),
+                  );
+                },
               )
             ],
           ),

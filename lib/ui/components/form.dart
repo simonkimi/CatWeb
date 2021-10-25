@@ -1,10 +1,15 @@
 import 'package:cat_web/data/protocol/model/selector.dart';
 import 'package:cat_web/gen/protobuf/selector.pbserver.dart';
 import 'package:cat_web/ui/components/select_tile.dart';
+import 'package:cat_web/utils/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget buildInputForm({required String labelText, required RxString value}) {
+Widget buildInputForm({
+  required String labelText,
+  required RxString value,
+  int minLine = 1,
+}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10),
     child: TextFormField(
@@ -15,13 +20,18 @@ Widget buildInputForm({required String labelText, required RxString value}) {
         floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
       onChanged: (v) => value.value = v,
+      maxLines: minLine,
     ),
   );
 }
 
-Widget buildCardList(List<Widget> children) {
+Widget buildCardList(
+  List<Widget> children, {
+  EdgeInsets padding = EdgeInsets.zero,
+}) {
   return Card(
-    child: Column(mainAxisSize: MainAxisSize.min, children: children),
+    child: Column(mainAxisSize: MainAxisSize.min, children: children)
+        .padding(padding),
   );
 }
 

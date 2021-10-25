@@ -1,4 +1,6 @@
+import 'package:cat_web/data/protocol/model/parser.dart';
 import 'package:cat_web/ui/components/app_bar.dart';
+import 'package:cat_web/ui/pages/rules_manager/rules_parser/list_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -44,7 +46,10 @@ class RulesParserEditor extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.all(5),
         children: [
-          buildGalleryParser(context, store.parserBase),
+          if (store.parserBase is GalleryParserModel)
+            GalleryParser(model: store.parserBase as GalleryParserModel),
+          if (store.parserBase is ListViewParserModel)
+            ListParser(model: store.parserBase as ListViewParserModel),
         ],
       ),
     );
@@ -58,7 +63,7 @@ class RulesParserEditor extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.all(5),
             children: [
-              buildExtraParser(context, store.parserBase),
+              ExtraParser(model: store.parserBase),
             ],
           ),
         );

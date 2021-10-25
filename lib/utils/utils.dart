@@ -2,6 +2,7 @@ import 'dart:core' as core;
 import 'dart:core';
 import 'dart:math' as math;
 import 'dart:ui';
+import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';
 
@@ -82,3 +83,5 @@ extension AnimationControllerHelper on AnimationController {
 
   bool get atEnd => value == 1.0;
 }
+
+RxString sobs(String? str) => str?.obs ?? ''.obs;

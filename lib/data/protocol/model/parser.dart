@@ -1,7 +1,13 @@
 import 'package:cat_web/data/protocol/model/selector.dart';
 import 'package:cat_web/gen/protobuf/parser.pbserver.dart';
 import 'package:cat_web/gen/protobuf/selector.pbserver.dart';
+import 'package:cat_web/utils/utils.dart';
 import 'package:get/get.dart';
+
+enum ParserType {
+  list,
+  gallery,
+}
 
 abstract class ParserBaseModel {
   ParserBaseModel(Iterable<ExtraSelector>? pb)
@@ -15,7 +21,7 @@ abstract class ParserBaseModel {
 
 class GalleryParserModel extends ParserBaseModel {
   GalleryParserModel([GalleryParser? pb])
-      : name = pb?.name.obs ?? ''.obs,
+      : name = sobs(pb?.name),
         title = SelectorModel(pb?.title),
         subTitle = SelectorModel(pb?.subtitle),
         uploadTIme = SelectorModel(pb?.uploadTIme),
@@ -26,17 +32,18 @@ class GalleryParserModel extends ParserBaseModel {
         language = SelectorModel(pb?.language),
         coverImg = ImageSelectorModel(pb?.coverImg),
         description = SelectorModel(pb?.description),
-        thumbnailSelector = pb?.thumbnailSelector.obs ?? ''.obs,
+        thumbnailSelector = sobs(pb?.thumbnailSelector),
         thumbnail = ImageSelectorModel(pb?.thumbnail),
         thumbnailUrl = SelectorModel(pb?.thumbnailUrl),
-        commentSelector = pb?.commentSelector.obs ?? ''.obs,
+        commentSelector = sobs(pb?.commentSelector),
         comments = CommentSelectorModel(pb?.comments),
         tag = SelectorModel(pb?.tag),
         tagColor = SelectorModel(pb?.tagColor),
-        badgeSelector = pb?.badgeSelector.obs ?? ''.obs,
+        badgeSelector = sobs(pb?.badgeSelector),
         badgeText = SelectorModel(pb?.badgeText),
         badgeColor = SelectorModel(pb?.badgeColor),
         badgeType = SelectorModel(pb?.badgeType),
+        nextPage = SelectorModel(pb?.nextPage),
         super(pb?.extraSelector);
 
   final RxString name;
@@ -67,6 +74,8 @@ class GalleryParserModel extends ParserBaseModel {
   final SelectorModel badgeColor;
   final SelectorModel badgeType;
 
+  final SelectorModel nextPage;
+
   GalleryParser toPb() => GalleryParser(
         name: name.value,
         title: title.toPb(),
@@ -91,13 +100,14 @@ class GalleryParserModel extends ParserBaseModel {
         badgeColor: badgeColor.toPb(),
         badgeType: badgeType.toPb(),
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
+        nextPage: nextPage.toPb(),
       );
 }
 
 class ListViewParserModel extends ParserBaseModel {
   ListViewParserModel([ListViewParser? pb])
-      : name = pb?.name.obs ?? ''.obs,
-        itemSelector = pb?.itemSelector.obs ?? ''.obs,
+      : name = sobs(pb?.name),
+        itemSelector = sobs(pb?.itemSelector),
         title = SelectorModel(pb?.title),
         subtitle = SelectorModel(pb?.subtitle),
         uploadTIme = SelectorModel(pb?.uploadTIme),
@@ -106,9 +116,10 @@ class ListViewParserModel extends ParserBaseModel {
         previewImg = ImageSelectorModel(pb?.previewImg),
         tag = SelectorModel(pb?.imgCount),
         tagColor = SelectorModel(pb?.imgCount),
-        badgeSelector = pb?.badgeSelector.obs ?? ''.obs,
+        badgeSelector = sobs(pb?.badgeSelector),
         badgeText = SelectorModel(pb?.badgeText),
         badgeColor = SelectorModel(pb?.badgeColor),
+        nextPage = SelectorModel(pb?.nextPage),
         super(pb?.extraSelector);
 
   final RxString name;
@@ -135,6 +146,9 @@ class ListViewParserModel extends ParserBaseModel {
   final SelectorModel badgeText;
   final SelectorModel badgeColor;
 
+  // 下一页
+  final SelectorModel nextPage;
+
   ListViewParser toPb() => ListViewParser(
         name: name.value,
         itemSelector: itemSelector.value,
@@ -150,5 +164,6 @@ class ListViewParserModel extends ParserBaseModel {
         badgeText: badgeText.toPb(),
         badgeColor: badgeColor.toPb(),
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
+        nextPage: nextPage.toPb(),
       );
 }

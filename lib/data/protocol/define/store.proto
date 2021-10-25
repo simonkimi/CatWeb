@@ -6,7 +6,9 @@ message RulesProtocol {
   string baseUrl = 2;
   string cookies = 3;
   string headers = 4;
-  bool needCookies = 5;
+  string extraCookies = 5;
+  string loginUrl = 6;
+
 
   repeated GalleryParser galleryParsers = 10;
   repeated ListViewParser listViewParser = 11;

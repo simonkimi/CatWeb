@@ -1,6 +1,8 @@
 import 'package:cat_web/i18n.dart';
-import 'package:cat_web/ui/page/rules_manager/rules_manager.dart';
-import 'package:cat_web/ui/page/rules_manager/rules_parser/rules_parser_editor.dart';
+import 'package:cat_web/ui/pages/main_page/main_page.dart';
+import 'package:cat_web/ui/pages/rules_manager/rules_edit_page.dart';
+import 'package:cat_web/ui/pages/rules_manager/rules_manager.dart';
+import 'package:cat_web/ui/pages/rules_manager/rules_parser/rules_parser_editor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'navigator.dart';
@@ -28,9 +30,12 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: I.supportedLocales,
       navigatorKey: AppNavigator().key,
-      home: RulesManager(),
+      initialRoute: MainPage.routeName,
       routes: {
         RulesParserEditor.routeName: (_) => RulesParserEditor(),
+        MainPage.routeName: (_) => const MainPage(),
+        SiteManager.routeName: (_) => const SiteManager(),
+        RulesEditPage.routeName: (_) => RulesEditPage(),
       },
     );
   }

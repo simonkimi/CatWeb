@@ -26,7 +26,8 @@ class ListViewParser extends $pb.GeneratedMessage {
     ..aOS(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeSelector', protoName: 'badgeSelector')
     ..aOM<$0.Selector>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeText', protoName: 'badgeText', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeColor', protoName: 'badgeColor', subBuilder: $0.Selector.create)
-    ..pc<$0.ExtraSelector>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, protoName: 'extraSelector', subBuilder: $0.ExtraSelector.create)
+    ..aOM<$0.Selector>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage', protoName: 'nextPage', subBuilder: $0.Selector.create)
+    ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, protoName: 'extraSelector', subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false
   ;
 
@@ -45,6 +46,7 @@ class ListViewParser extends $pb.GeneratedMessage {
     $core.String? badgeSelector,
     $0.Selector? badgeText,
     $0.Selector? badgeColor,
+    $0.Selector? nextPage,
     $core.Iterable<$0.ExtraSelector>? extraSelector,
   }) {
     final _result = create();
@@ -86,6 +88,9 @@ class ListViewParser extends $pb.GeneratedMessage {
     }
     if (badgeColor != null) {
       _result.badgeColor = badgeColor;
+    }
+    if (nextPage != null) {
+      _result.nextPage = nextPage;
     }
     if (extraSelector != null) {
       _result.extraSelector.addAll(extraSelector);
@@ -251,7 +256,18 @@ class ListViewParser extends $pb.GeneratedMessage {
   $0.Selector ensureBadgeColor() => $_ensure(12);
 
   @$pb.TagNumber(14)
-  $core.List<$0.ExtraSelector> get extraSelector => $_getList(13);
+  $0.Selector get nextPage => $_getN(13);
+  @$pb.TagNumber(14)
+  set nextPage($0.Selector v) { setField(14, v); }
+  @$pb.TagNumber(14)
+  $core.bool hasNextPage() => $_has(13);
+  @$pb.TagNumber(14)
+  void clearNextPage() => clearField(14);
+  @$pb.TagNumber(14)
+  $0.Selector ensureNextPage() => $_ensure(13);
+
+  @$pb.TagNumber(99)
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(14);
 }
 
 class GalleryParser extends $pb.GeneratedMessage {
@@ -278,6 +294,7 @@ class GalleryParser extends $pb.GeneratedMessage {
     ..aOM<$0.Selector>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeText', protoName: 'badgeText', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeColor', protoName: 'badgeColor', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeType', protoName: 'badgeType', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(23, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage', protoName: 'nextPage', subBuilder: $0.Selector.create)
     ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, protoName: 'extraSelector', subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false
   ;
@@ -306,6 +323,7 @@ class GalleryParser extends $pb.GeneratedMessage {
     $0.Selector? badgeText,
     $0.Selector? badgeColor,
     $0.Selector? badgeType,
+    $0.Selector? nextPage,
     $core.Iterable<$0.ExtraSelector>? extraSelector,
   }) {
     final _result = create();
@@ -374,6 +392,9 @@ class GalleryParser extends $pb.GeneratedMessage {
     }
     if (badgeType != null) {
       _result.badgeType = badgeType;
+    }
+    if (nextPage != null) {
+      _result.nextPage = nextPage;
     }
     if (extraSelector != null) {
       _result.extraSelector.addAll(extraSelector);
@@ -635,7 +656,18 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(22)
   $0.Selector ensureBadgeType() => $_ensure(21);
 
+  @$pb.TagNumber(23)
+  $0.Selector get nextPage => $_getN(22);
+  @$pb.TagNumber(23)
+  set nextPage($0.Selector v) { setField(23, v); }
+  @$pb.TagNumber(23)
+  $core.bool hasNextPage() => $_has(22);
+  @$pb.TagNumber(23)
+  void clearNextPage() => clearField(23);
+  @$pb.TagNumber(23)
+  $0.Selector ensureNextPage() => $_ensure(22);
+
   @$pb.TagNumber(99)
-  $core.List<$0.ExtraSelector> get extraSelector => $_getList(22);
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(23);
 }
 

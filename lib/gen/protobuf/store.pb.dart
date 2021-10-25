@@ -17,7 +17,8 @@ class RulesProtocol extends $pb.GeneratedMessage {
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'baseUrl', protoName: 'baseUrl')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cookies')
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'headers')
-    ..aOB(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'needCookies', protoName: 'needCookies')
+    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraCookies', protoName: 'extraCookies')
+    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'loginUrl', protoName: 'loginUrl')
     ..pc<$0.GalleryParser>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'galleryParsers', $pb.PbFieldType.PM, protoName: 'galleryParsers', subBuilder: $0.GalleryParser.create)
     ..pc<$0.ListViewParser>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'listViewParser', $pb.PbFieldType.PM, protoName: 'listViewParser', subBuilder: $0.ListViewParser.create)
     ..hasRequiredFields = false
@@ -29,7 +30,8 @@ class RulesProtocol extends $pb.GeneratedMessage {
     $core.String? baseUrl,
     $core.String? cookies,
     $core.String? headers,
-    $core.bool? needCookies,
+    $core.String? extraCookies,
+    $core.String? loginUrl,
     $core.Iterable<$0.GalleryParser>? galleryParsers,
     $core.Iterable<$0.ListViewParser>? listViewParser,
   }) {
@@ -46,8 +48,11 @@ class RulesProtocol extends $pb.GeneratedMessage {
     if (headers != null) {
       _result.headers = headers;
     }
-    if (needCookies != null) {
-      _result.needCookies = needCookies;
+    if (extraCookies != null) {
+      _result.extraCookies = extraCookies;
+    }
+    if (loginUrl != null) {
+      _result.loginUrl = loginUrl;
     }
     if (galleryParsers != null) {
       _result.galleryParsers.addAll(galleryParsers);
@@ -115,18 +120,27 @@ class RulesProtocol extends $pb.GeneratedMessage {
   void clearHeaders() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.bool get needCookies => $_getBF(4);
+  $core.String get extraCookies => $_getSZ(4);
   @$pb.TagNumber(5)
-  set needCookies($core.bool v) { $_setBool(4, v); }
+  set extraCookies($core.String v) { $_setString(4, v); }
   @$pb.TagNumber(5)
-  $core.bool hasNeedCookies() => $_has(4);
+  $core.bool hasExtraCookies() => $_has(4);
   @$pb.TagNumber(5)
-  void clearNeedCookies() => clearField(5);
+  void clearExtraCookies() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get loginUrl => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set loginUrl($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasLoginUrl() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearLoginUrl() => clearField(6);
 
   @$pb.TagNumber(10)
-  $core.List<$0.GalleryParser> get galleryParsers => $_getList(5);
+  $core.List<$0.GalleryParser> get galleryParsers => $_getList(6);
 
   @$pb.TagNumber(11)
-  $core.List<$0.ListViewParser> get listViewParser => $_getList(6);
+  $core.List<$0.ListViewParser> get listViewParser => $_getList(7);
 }
 

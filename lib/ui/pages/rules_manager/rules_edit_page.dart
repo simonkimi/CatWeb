@@ -1,14 +1,17 @@
-import 'package:cat_web/i18n.dart';
 import 'package:cat_web/ui/components/app_bar.dart';
-import 'package:cat_web/ui/page/rules_manager/rules_basic/rules_basic.dart';
-import 'package:cat_web/ui/page/rules_manager/rules_parser/rules_parser_manager.dart';
-import 'package:cat_web/ui/page/rules_manager/rules_store.dart';
+import 'package:cat_web/ui/pages/rules_manager/rules_basic/rules_basic.dart';
+import 'package:cat_web/ui/pages/rules_manager/rules_parser/rules_parser_manager.dart';
+import 'package:cat_web/ui/pages/rules_manager/rules_store.dart';
 import 'package:flutter/material.dart';
 
-class RulesManager extends StatelessWidget {
-  RulesManager({Key? key}) : super(key: key);
+import '../../../i18n.dart';
 
-  final store = RulesStore(null);
+class RulesEditPage extends StatelessWidget {
+  RulesEditPage({Key? key}) : super(key: key);
+
+  static const routeName = 'RulesEditPage';
+
+  final store = RulesStore();
 
   @override
   Widget build(BuildContext context) {
