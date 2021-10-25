@@ -12,8 +12,7 @@ enum ParserType {
 abstract class ParserBaseModel {
   ParserBaseModel(Iterable<ExtraSelector>? pb)
       : extraSelectorModel =
-            pb?.map((e) => ExtraSelectorModel(e)).toList().obs ??
-                <ExtraSelectorModel>[].obs;
+            lobs(pb, (ExtraSelector e) => ExtraSelectorModel(e));
 
   // 额外信息
   final RxList<ExtraSelectorModel> extraSelectorModel;

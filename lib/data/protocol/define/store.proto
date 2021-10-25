@@ -1,5 +1,6 @@
 syntax = 'proto3';
 import 'parser.proto';
+import 'actions.proto';
 
 message RulesProtocol {
   string name = 1;
@@ -12,4 +13,5 @@ message RulesProtocol {
 
   repeated GalleryParser galleryParsers = 10;
   repeated ListViewParser listViewParser = 11;
+  repeated Action actionList = 12;
 }

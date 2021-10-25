@@ -20,8 +20,9 @@ const RulesProtocol$json = const {
     const {'1': 'loginUrl', '3': 6, '4': 1, '5': 9, '10': 'loginUrl'},
     const {'1': 'galleryParsers', '3': 10, '4': 3, '5': 11, '6': '.GalleryParser', '10': 'galleryParsers'},
     const {'1': 'listViewParser', '3': 11, '4': 3, '5': 11, '6': '.ListViewParser', '10': 'listViewParser'},
+    const {'1': 'actionList', '3': 12, '4': 3, '5': 11, '6': '.Action', '10': 'actionList'},
   ],
 };
 
 /// Descriptor for `RulesProtocol`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List rulesProtocolDescriptor = $convert.base64Decode('Cg1SdWxlc1Byb3RvY29sEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHYmFzZVVybBgCIAEoCVIHYmFzZVVybBIYCgdjb29raWVzGAMgASgJUgdjb29raWVzEhgKB2hlYWRlcnMYBCABKAlSB2hlYWRlcnMSIgoMZXh0cmFDb29raWVzGAUgASgJUgxleHRyYUNvb2tpZXMSGgoIbG9naW5VcmwYBiABKAlSCGxvZ2luVXJsEjYKDmdhbGxlcnlQYXJzZXJzGAogAygLMg4uR2FsbGVyeVBhcnNlclIOZ2FsbGVyeVBhcnNlcnMSNwoObGlzdFZpZXdQYXJzZXIYCyADKAsyDy5MaXN0Vmlld1BhcnNlclIObGlzdFZpZXdQYXJzZXI=');
+final $typed_data.Uint8List rulesProtocolDescriptor = $convert.base64Decode('Cg1SdWxlc1Byb3RvY29sEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHYmFzZVVybBgCIAEoCVIHYmFzZVVybBIYCgdjb29raWVzGAMgASgJUgdjb29raWVzEhgKB2hlYWRlcnMYBCABKAlSB2hlYWRlcnMSIgoMZXh0cmFDb29raWVzGAUgASgJUgxleHRyYUNvb2tpZXMSGgoIbG9naW5VcmwYBiABKAlSCGxvZ2luVXJsEjYKDmdhbGxlcnlQYXJzZXJzGAogAygLMg4uR2FsbGVyeVBhcnNlclIOZ2FsbGVyeVBhcnNlcnMSNwoObGlzdFZpZXdQYXJzZXIYCyADKAsyDy5MaXN0Vmlld1BhcnNlclIObGlzdFZpZXdQYXJzZXISJwoKYWN0aW9uTGlzdBgMIAMoCzIHLkFjdGlvblIKYWN0aW9uTGlzdA==');

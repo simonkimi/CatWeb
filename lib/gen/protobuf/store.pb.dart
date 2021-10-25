@@ -10,6 +10,7 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'parser.pb.dart' as $0;
+import 'actions.pb.dart' as $1;
 
 class RulesProtocol extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RulesProtocol', createEmptyInstance: create)
@@ -21,6 +22,7 @@ class RulesProtocol extends $pb.GeneratedMessage {
     ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'loginUrl', protoName: 'loginUrl')
     ..pc<$0.GalleryParser>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'galleryParsers', $pb.PbFieldType.PM, protoName: 'galleryParsers', subBuilder: $0.GalleryParser.create)
     ..pc<$0.ListViewParser>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'listViewParser', $pb.PbFieldType.PM, protoName: 'listViewParser', subBuilder: $0.ListViewParser.create)
+    ..pc<$1.Action>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'actionList', $pb.PbFieldType.PM, protoName: 'actionList', subBuilder: $1.Action.create)
     ..hasRequiredFields = false
   ;
 
@@ -34,6 +36,7 @@ class RulesProtocol extends $pb.GeneratedMessage {
     $core.String? loginUrl,
     $core.Iterable<$0.GalleryParser>? galleryParsers,
     $core.Iterable<$0.ListViewParser>? listViewParser,
+    $core.Iterable<$1.Action>? actionList,
   }) {
     final _result = create();
     if (name != null) {
@@ -59,6 +62,9 @@ class RulesProtocol extends $pb.GeneratedMessage {
     }
     if (listViewParser != null) {
       _result.listViewParser.addAll(listViewParser);
+    }
+    if (actionList != null) {
+      _result.actionList.addAll(actionList);
     }
     return _result;
   }
@@ -142,5 +148,8 @@ class RulesProtocol extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(11)
   $core.List<$0.ListViewParser> get listViewParser => $_getList(7);
+
+  @$pb.TagNumber(12)
+  $core.List<$1.Action> get actionList => $_getList(8);
 }
 

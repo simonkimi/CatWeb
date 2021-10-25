@@ -1,7 +1,11 @@
 import 'package:cat_web/data/protocol/model/parser.dart';
+import 'package:cat_web/gen/protobuf/actions.pbserver.dart';
+import 'package:cat_web/gen/protobuf/parser.pbserver.dart';
 import 'package:cat_web/gen/protobuf/store.pbserver.dart';
 import 'package:cat_web/utils/utils.dart';
 import 'package:get/get.dart';
+
+import 'actions.dart';
 
 class RulesProtocolModel {
   RulesProtocolModel([RulesProtocol? pb])
@@ -11,14 +15,13 @@ class RulesProtocolModel {
         extraCookies = sobs(pb?.extraCookies),
         headers = sobs(pb?.headers),
         loginUrl = sobs(pb?.loginUrl),
-        galleryParsers =
-            pb?.galleryParsers.map((e) => GalleryParserModel(e)).toList().obs ??
-                <GalleryParserModel>[].obs,
-        listViewParser = pb?.listViewParser
-                .map((e) => ListViewParserModel(e))
-                .toList()
-                .obs ??
-            <ListViewParserModel>[].obs;
+        galleryParsers = lobs(
+            pb?.galleryParsers, (GalleryParser e) => GalleryParserModel(e)),
+        listViewParser = lobs(
+          pb?.listViewParser,
+          (ListViewParser e) => ListViewParserModel(e),
+        ),
+        actionList = lobs(pb?.actionList, (Action e) => ActionModel(e));
 
   final RxString name;
   final RxString baseUrl;
@@ -29,4 +32,5 @@ class RulesProtocolModel {
 
   final RxList<GalleryParserModel> galleryParsers;
   final RxList<ListViewParserModel> listViewParser;
+  final RxList<ActionModel> actionList;
 }

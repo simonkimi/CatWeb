@@ -19,7 +19,7 @@ class RulesEditPage extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         final confirm = await showConfirmDialog(
-            context: context, text: '您确定要退出吗?\n所做的修改将不会保存');
+            context: context, text: '您确定要退出吗? 所做的修改将不会保存.');
         return confirm == true;
       },
       child: DefaultTabController(

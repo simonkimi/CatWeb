@@ -85,3 +85,6 @@ extension AnimationControllerHelper on AnimationController {
 }
 
 RxString sobs(String? str) => str?.obs ?? ''.obs;
+
+RxList<T> lobs<T, E>(core.Iterable<E>? pb, T Function(E e) func) =>
+    pb?.map((E e) => func(e)).toList().obs ?? <T>[].obs;
