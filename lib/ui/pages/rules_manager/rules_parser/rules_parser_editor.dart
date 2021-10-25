@@ -9,11 +9,18 @@ import 'editor_store.dart';
 import 'extra_parser.dart';
 
 class RulesParserEditor extends StatelessWidget {
-  RulesParserEditor({Key? key}) : super(key: key);
+  RulesParserEditor({
+    Key? key,
+    required this.type,
+    dynamic model,
+  })  : store = EditorStore(type: type, model: model),
+        super(key: key);
 
   static String routeName = 'rules_parser_editor';
 
-  final store = EditorStore();
+  final ParserType type;
+
+  final EditorStore store;
 
   @override
   Widget build(BuildContext context) {

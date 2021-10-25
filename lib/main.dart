@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
       navigatorKey: AppNavigator().key,
       initialRoute: MainPage.routeName,
       routes: {
-        RulesParserEditor.routeName: (_) => RulesParserEditor(),
         MainPage.routeName: (_) => const MainPage(),
         SiteManager.routeName: (_) => const SiteManager(),
         RulesEditPage.routeName: (_) => RulesEditPage(),

@@ -35,9 +35,7 @@ class RulesParserManager extends StatelessWidget {
               ListTile(
                 title: const Text('添加'),
                 leading: const Icon(Icons.add),
-                onTap: () {
-                  Navigator.of(context).pushNamed(RulesParserEditor.routeName);
-                },
+                onTap: () => addRulesParser(context),
               ),
             ],
           );
@@ -49,6 +47,7 @@ class RulesParserManager extends StatelessWidget {
   Future<void> addRulesParser(BuildContext context) async {
     final selection = await showSelectDialog<ParserType>(
       context: context,
+      displayRadio: false,
       items: const [
         SelectTileItem(title: '列表', value: ParserType.list),
         SelectTileItem(title: '画廊', value: ParserType.gallery),
@@ -57,7 +56,10 @@ class RulesParserManager extends StatelessWidget {
       title: '规则类型',
     );
     if (selection != null) {
-
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => RulesParserEditor(
+                type: selection,
+              )));
     }
   }
 }
