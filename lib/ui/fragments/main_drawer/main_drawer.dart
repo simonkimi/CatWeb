@@ -16,6 +16,7 @@ class MainDrawer extends StatelessWidget {
               ],
             ),
           ),
+          const Divider(),
           ListTile(
             leading: const Icon(Icons.settings_outlined),
             title: const Text('站点管理'),

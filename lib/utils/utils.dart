@@ -84,7 +84,9 @@ extension AnimationControllerHelper on AnimationController {
   bool get atEnd => value == 1.0;
 }
 
-RxString sobs(String? str) => str?.obs ?? ''.obs;
+RxString sobs(String? pb) => pb?.obs ?? ''.obs;
+
+RxBool bobs(bool? pb) => pb?.obs ?? false.obs;
 
 RxList<T> lobs<T, E>(core.Iterable<E>? pb, T Function(E e) func) =>
     pb?.map((E e) => func(e)).toList().obs ?? <T>[].obs;

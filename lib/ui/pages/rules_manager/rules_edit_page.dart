@@ -23,7 +23,7 @@ class RulesEditPage extends StatelessWidget {
         return confirm == true;
       },
       child: DefaultTabController(
-        length: 4,
+        length: 5,
         child: Scaffold(
           appBar: buildAppBar(
             context,
@@ -34,6 +34,7 @@ class RulesEditPage extends StatelessWidget {
                 Tab(text: I.of(context).page_manager),
                 Tab(text: I.of(context).parser),
                 Tab(text: I.of(context).action),
+                const Tab(text: '高级'),
               ],
             ),
           ),
@@ -42,6 +43,7 @@ class RulesEditPage extends StatelessWidget {
               RulesBasic(store: store),
               Container(),
               RulesParserManager(store: store),
+              Container(),
               Container(),
             ],
           ),

@@ -4,12 +4,14 @@ import 'package:cat_web/gen/protobuf/selector.pbserver.dart';
 import 'package:cat_web/utils/utils.dart';
 import 'package:get/get.dart';
 
+import 'interface.dart';
+
 enum ParserType {
   list,
   gallery,
 }
 
-abstract class ParserBaseModel {
+abstract class ParserBaseModel implements PbAble {
   ParserBaseModel(Iterable<ExtraSelector>? pb)
       : extraSelectorModel =
             lobs(pb, (ExtraSelector e) => ExtraSelectorModel(e));
@@ -18,7 +20,7 @@ abstract class ParserBaseModel {
   final RxList<ExtraSelectorModel> extraSelectorModel;
 }
 
-class GalleryParserModel extends ParserBaseModel {
+class GalleryParserModel extends ParserBaseModel  {
   GalleryParserModel([GalleryParser? pb])
       : name = sobs(pb?.name),
         title = SelectorModel(pb?.title),
@@ -75,6 +77,7 @@ class GalleryParserModel extends ParserBaseModel {
 
   final SelectorModel nextPage;
 
+  @override
   GalleryParser toPb() => GalleryParser(
         name: name.value,
         title: title.toPb(),
@@ -148,6 +151,7 @@ class ListViewParserModel extends ParserBaseModel {
   // 下一页
   final SelectorModel nextPage;
 
+  @override
   ListViewParser toPb() => ListViewParser(
         name: name.value,
         itemSelector: itemSelector.value,

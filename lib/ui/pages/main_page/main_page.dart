@@ -9,6 +9,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawerEdgeDragWidth: 500,
       drawer: const MainDrawer(),
       appBar: AppBar(),
       body: Column(),

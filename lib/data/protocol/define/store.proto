@@ -2,16 +2,23 @@ syntax = 'proto3';
 import 'parser.proto';
 import 'actions.proto';
 
+
+message Header {
+  string reg = 1;
+  string headers = 2;
+}
+
+
 message RulesProtocol {
   string name = 1;
   string baseUrl = 2;
   string cookies = 3;
-  string headers = 4;
-  string extraCookies = 5;
-  string loginUrl = 6;
+  string extraCookies = 4;
+  string loginUrl = 5;
+  repeated Header headers = 6;
 
 
   repeated GalleryParser galleryParsers = 10;
   repeated ListViewParser listViewParser = 11;
-  repeated Action actionList = 12;
+  repeated ActionCombine actionList = 12;
 }

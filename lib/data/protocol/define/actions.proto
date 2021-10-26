@@ -1,18 +1,53 @@
 syntax = 'proto3';
 
-
-enum ActionType {
+enum NetWorkActionType {
   GET = 0;
   POST = 1;
   PUT = 2;
   DELETE = 3;
 }
 
+enum InputActionType {
+  NUM = 0;
+  STRING = 1;
+}
 
-message Action {
+// 动作: 输入
+message InputAction {
   string name = 1;
-  string label = 2;
+  string id = 2;
+  InputActionType type = 3;
+  bool global = 4;
+}
+
+
+// 动作: 网络
+message NetWorkAction {
+  string name = 1;
+  NetWorkActionType type = 2;
   string url = 3;
   string data = 4;
+}
+
+// 动作: 设置id
+message SetIdAction {
+  string name = 1;
+  string id = 2;
+  string reg = 3;
+  string replace = 4;
+  bool global = 5;
+}
+
+
+// 动作: 打开页面
+message OpenPageAction {
+  string name = 1;
+  string target = 2;
+}
+
+
+message ActionCombine {
+  string name = 1;
+  repeated string actions = 2;
   string icon = 5;
 }

@@ -2,7 +2,9 @@ import 'package:cat_web/gen/protobuf/selector.pbserver.dart';
 import 'package:cat_web/utils/utils.dart';
 import 'package:get/get.dart';
 
-class SelectorModel {
+import 'interface.dart';
+
+class SelectorModel implements PbAble {
   SelectorModel([Selector? pb, bool computed = false])
       : selector = sobs(pb?.selector),
         function = pb?.function.obs ?? SelectorFunction.NONE.obs,
@@ -21,6 +23,7 @@ class SelectorModel {
   final RxString js;
   final RxBool computed;
 
+  @override
   Selector toPb() => Selector(
         selector: selector.value,
         function: function.value,
@@ -32,7 +35,7 @@ class SelectorModel {
       );
 }
 
-class ExtraSelectorModel {
+class ExtraSelectorModel implements PbAble {
   ExtraSelectorModel([ExtraSelector? pb])
       : id = sobs(pb?.id),
         selector = SelectorModel(pb?.selector),
@@ -42,6 +45,7 @@ class ExtraSelectorModel {
   final SelectorModel selector;
   final RxBool global;
 
+  @override
   ExtraSelector toPb() => ExtraSelector(
         selector: selector.toPb(),
         global: global.value,
@@ -49,7 +53,7 @@ class ExtraSelectorModel {
       );
 }
 
-class ImageSelectorModel {
+class ImageSelectorModel implements PbAble {
   ImageSelectorModel([ImageSelector? pb])
       : imgUrl = SelectorModel(pb?.imgUrl),
         imgWidth = SelectorModel(pb?.imgWidth, true),
@@ -63,6 +67,7 @@ class ImageSelectorModel {
   final SelectorModel imgX;
   final SelectorModel imgY;
 
+  @override
   ImageSelector toPb() => ImageSelector(
         imgHeight: imgHeight.toPb(),
         imgUrl: imgUrl.toPb(),
@@ -72,7 +77,7 @@ class ImageSelectorModel {
       );
 }
 
-class CommentSelectorModel {
+class CommentSelectorModel implements PbAble {
   CommentSelectorModel([CommentSelector? pb])
       : username = SelectorModel(pb?.username),
         postTime = SelectorModel(pb?.postTime),
@@ -84,6 +89,7 @@ class CommentSelectorModel {
   final SelectorModel vote;
   final SelectorModel content;
 
+  @override
   CommentSelector toPb() => CommentSelector(
         username: username.toPb(),
         postTime: postTime.toPb(),
