@@ -97,5 +97,6 @@ class ActionCombineModel implements PbAble {
   ActionCombine toPb() => ActionCombine(
         name: name.value,
         actions: actions.toList(),
+        icon: icon.value,
       );
 }
