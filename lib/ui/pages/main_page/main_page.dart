@@ -9,7 +9,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawerEdgeDragWidth: 500,
+      drawerEdgeDragWidth: MediaQuery.of(context).size.width,
       drawer: const MainDrawer(),
       appBar: AppBar(),
       body: Column(),

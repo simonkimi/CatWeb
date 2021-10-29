@@ -26,12 +26,14 @@ class ExtraParser extends StatelessWidget {
               ),
             ]);
           }),
-          ListTile(
-            leading: const Icon(Icons.add),
-            title: const Text('添加'),
-            onTap: () {
-              model.extraSelectorModel.add(ExtraSelectorModel());
-            },
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.add),
+              title: const Text('添加'),
+              onTap: () {
+                model.extraSelectorModel.add(ExtraSelectorModel());
+              },
+            ),
           ),
         ],
       );

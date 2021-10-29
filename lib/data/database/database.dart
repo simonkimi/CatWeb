@@ -1,9 +1,12 @@
 import 'dart:ffi';
 import 'dart:io';
+import 'package:cat_web/data/database/tables/site_table.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
+
+import 'daos/site_dao.dart';
 
 part 'database.g.dart';
 
@@ -20,12 +23,13 @@ DynamicLibrary openOnWindows() {
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
-    final file = File(p.join((await getApplicationDocumentsDirectory()).path, 'db.sqlite'));
+    final file = File(
+        p.join((await getApplicationDocumentsDirectory()).path, 'db.sqlite'));
     return VmDatabase(file);
   });
 }
 
-@UseMoor(tables: [], daos: [])
+@UseMoor(tables: [SiteTable], daos: [SiteDao])
 class AppDataBase extends _$AppDataBase {
   AppDataBase() : super(_openConnection());
 
@@ -40,4 +44,6 @@ class DB {
 
   static final DB _db = DB._();
   final AppDataBase _database = AppDataBase();
+
+  SiteDao get siteDao => _database.siteDao;
 }

@@ -21,16 +21,20 @@ class RulesBasic extends StatelessWidget {
             buildInputForm(labelText: '名称', value: store.rulesModel.name),
             buildInputForm(labelText: '基础Url', value: store.rulesModel.baseUrl),
           ], padding: const EdgeInsets.symmetric(vertical: 10)),
+          const Divider(),
           buildCardList([
-            buildInputForm(labelText: '登录Url', value: store.rulesModel.loginUrl),
             buildInputForm(
-              labelText: 'Cookies',
-              value: store.rulesModel.cookies,
-              minLine: 3,
+              labelText: '登录Url',
+              value: store.rulesModel.loginUrl,
             ),
             buildInputForm(
-              labelText: '额外Cookies',
-              value: store.rulesModel.cookies,
+              labelText: '登录Cookie作用域',
+              value: store.rulesModel.loginCookieReg,
+              hintText: '^(.*?)\$',
+            ),
+            buildInputForm(
+              labelText: 'Cookies',
+              value: store.rulesModel.extraCookies,
               minLine: 3,
             ),
           ], padding: const EdgeInsets.symmetric(vertical: 10)),

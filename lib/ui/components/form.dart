@@ -1,6 +1,5 @@
 import 'package:cat_web/data/protocol/model/selector.dart';
 import 'package:cat_web/gen/protobuf/selector.pbserver.dart';
-import 'package:cat_web/utils/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +9,7 @@ Widget buildInputForm({
   required String labelText,
   required RxString value,
   int minLine = 1,
+  String? hintText,
 }) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -19,6 +19,7 @@ Widget buildInputForm({
         labelText: labelText,
         isDense: true,
         floatingLabelBehavior: FloatingLabelBehavior.always,
+        hintText: hintText,
       ),
       onChanged: (v) => value.value = v,
       maxLines: minLine,
@@ -30,9 +31,9 @@ Widget buildCardList(
   List<Widget> children, {
   EdgeInsets padding = EdgeInsets.zero,
 }) {
-  return Card(
-    child: Column(mainAxisSize: MainAxisSize.min, children: children)
-        .padding(padding),
+  return Padding(
+    padding: padding,
+    child: Column(mainAxisSize: MainAxisSize.min, children: children),
   );
 }
 
@@ -50,6 +51,8 @@ class RulesForm extends StatelessWidget {
   final ExtraSelectorModel? extraSelectorModel;
 
   static const textWidth = 80.0;
+  static final Color filledColor = Colors.grey[300]!;
+  static const radius = 3.0;
 
   Widget buildText(BuildContext context, String text) {
     return SizedBox(
@@ -69,9 +72,13 @@ class RulesForm extends StatelessWidget {
       child: Center(
         child: Obx(() => TextFormField(
               initialValue: value.value,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 isDense: true,
                 isCollapsed: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(radius),
+                  borderSide: BorderSide.none,
+                ),
               ),
               onChanged: (v) {
                 value.value = v;
@@ -206,10 +213,16 @@ class RulesForm extends StatelessWidget {
           child: Obx(() => TextFormField(
                 controller: TextEditingController(
                     text: selectorModel.function.value.string),
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   isDense: true,
                   isCollapsed: true,
                   enabled: false,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(radius),
+                    borderSide: BorderSide.none,
+                  ),
+                  fillColor: filledColor,
+                  filled: true,
                 ),
               )),
         ),

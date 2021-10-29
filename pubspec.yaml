@@ -22,6 +22,7 @@ dependencies:
   # state
   get: ^4.3.8
   flutter_mobx: ^2.0.2
+  flutter_hooks: ^0.18.0
 
   # database
   moor: ^4.5.0

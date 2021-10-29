@@ -19,6 +19,7 @@ class GalleryParser extends StatelessWidget {
           buildInputForm(labelText: '名称', value: model.name),
         ], padding: const EdgeInsets.symmetric(vertical: 10)),
         const SizedBox(height: 5),
+        const Divider(),
         buildCardList([
           RulesForm(
             title: '标题',
@@ -58,6 +59,7 @@ class GalleryParser extends StatelessWidget {
           ),
         ]),
         const SizedBox(height: 5),
+        const Divider(),
         buildCardList([
           RulesForm(
             title: '封面地址',
