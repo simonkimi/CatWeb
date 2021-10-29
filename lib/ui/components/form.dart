@@ -72,13 +72,9 @@ class RulesForm extends StatelessWidget {
       child: Center(
         child: Obx(() => TextFormField(
               initialValue: value.value,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 isDense: true,
                 isCollapsed: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(radius),
-                  borderSide: BorderSide.none,
-                ),
               ),
               onChanged: (v) {
                 value.value = v;
@@ -90,88 +86,91 @@ class RulesForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (extraSelectorModel == null) Text(title!),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (extraSelectorModel != null) buildText(context, '名称'),
-                  buildText(context, '选择器'),
-                  buildText(context, '函数'),
-                  Obx(() {
-                    // 参数
-                    if (selectorModel.function.value ==
-                            SelectorFunction.STYLE ||
-                        selectorModel.function.value == SelectorFunction.ATTR) {
-                      return buildText(context, '参数');
-                    }
-                    return const SizedBox();
-                  }),
-                  buildText(context, '正则'),
-                  buildText(context, '替换'),
-                ],
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (extraSelectorModel == null) Text(title!),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
                   mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (extraSelectorModel != null)
-                      buildForm(extraSelectorModel!.id),
-                    buildForm(selectorModel.selector), // 选择器
-                    buildFunction(context), // 函数
+                    if (extraSelectorModel != null) buildText(context, '名称'),
+                    buildText(context, '选择器'),
+                    buildText(context, '函数'),
                     Obx(() {
                       // 参数
                       if (selectorModel.function.value ==
                               SelectorFunction.STYLE ||
                           selectorModel.function.value ==
                               SelectorFunction.ATTR) {
-                        return buildForm(selectorModel.param);
+                        return buildText(context, '参数');
                       }
                       return const SizedBox();
                     }),
-                    buildForm(selectorModel.regex), // 正则
-                    buildForm(selectorModel.replace), // 替换
+                    buildText(context, '正则'),
+                    buildText(context, '替换'),
                   ],
                 ),
-              ),
-            ],
-          ),
-          if (extraSelectorModel != null)
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                buildText(context, '计算'),
                 const SizedBox(width: 10),
-                Obx(() => Checkbox(
-                      value: selectorModel.computed.value,
-                      onChanged: (value) {
-                        selectorModel.computed.value = value!;
-                      },
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    )),
-                const Expanded(child: SizedBox()),
-                buildText(context, '全局'),
-                const SizedBox(width: 10),
-                Obx(() => Checkbox(
-                      value: extraSelectorModel!.global.value,
-                      onChanged: (value) {
-                        extraSelectorModel!.global.value = value!;
-                      },
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    )),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      if (extraSelectorModel != null)
+                        buildForm(extraSelectorModel!.id),
+                      buildForm(selectorModel.selector), // 选择器
+                      buildFunction(context), // 函数
+                      Obx(() {
+                        // 参数
+                        if (selectorModel.function.value ==
+                                SelectorFunction.STYLE ||
+                            selectorModel.function.value ==
+                                SelectorFunction.ATTR) {
+                          return buildForm(selectorModel.param);
+                        }
+                        return const SizedBox();
+                      }),
+                      buildForm(selectorModel.regex), // 正则
+                      buildForm(selectorModel.replace), // 替换
+                    ],
+                  ),
+                ),
               ],
             ),
-        ],
+            if (extraSelectorModel != null)
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  buildText(context, '计算'),
+                  const SizedBox(width: 10),
+                  Obx(() => Checkbox(
+                        value: selectorModel.computed.value,
+                        onChanged: (value) {
+                          selectorModel.computed.value = value!;
+                        },
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      )),
+                  const Expanded(child: SizedBox()),
+                  buildText(context, '全局'),
+                  const SizedBox(width: 10),
+                  Obx(() => Checkbox(
+                        value: extraSelectorModel!.global.value,
+                        onChanged: (value) {
+                          extraSelectorModel!.global.value = value!;
+                        },
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      )),
+                ],
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -213,16 +212,10 @@ class RulesForm extends StatelessWidget {
           child: Obx(() => TextFormField(
                 controller: TextEditingController(
                     text: selectorModel.function.value.string),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   isDense: true,
                   isCollapsed: true,
                   enabled: false,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(radius),
-                    borderSide: BorderSide.none,
-                  ),
-                  fillColor: filledColor,
-                  filled: true,
                 ),
               )),
         ),

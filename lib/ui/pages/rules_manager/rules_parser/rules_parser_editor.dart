@@ -1,6 +1,6 @@
 import 'package:cat_web/data/protocol/model/parser.dart';
 import 'package:cat_web/ui/components/app_bar.dart';
-import 'package:cat_web/ui/pages/rules_manager/rules_parser/list_parser.dart';
+import 'package:cat_web/ui/fragments/rules_list_parser/rules_list_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -48,31 +48,25 @@ class RulesParserEditor extends StatelessWidget {
   }
 
   Widget buildBody(BuildContext context) {
-    return ColoredBox(
-      color: const Color(0xfff1f1f6),
-      child: ListView(
-        padding: const EdgeInsets.all(5),
-        children: [
-          if (store.parserBase is GalleryParserModel)
-            GalleryParser(model: store.parserBase as GalleryParserModel),
-          if (store.parserBase is ListViewParserModel)
-            ListParser(model: store.parserBase as ListViewParserModel),
-        ],
-      ),
+    return ListView(
+      padding: const EdgeInsets.all(5),
+      children: [
+        if (store.parserBase is GalleryParserModel)
+          GalleryParser(model: store.parserBase as GalleryParserModel),
+        if (store.parserBase is ListViewParserModel)
+          RulesListVisualEditor(model: store.parserBase as ListViewParserModel),
+      ],
     );
   }
 
   Widget buildExtra() {
     return Observer(
       builder: (context) {
-        return ColoredBox(
-          color: const Color(0xfff1f1f6),
-          child: ListView(
-            padding: const EdgeInsets.all(5),
-            children: [
-              ExtraParser(model: store.parserBase),
-            ],
-          ),
+        return ListView(
+          padding: const EdgeInsets.all(5),
+          children: [
+            ExtraParser(model: store.parserBase),
+          ],
         );
       },
     );

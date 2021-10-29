@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';
 
+import '../i18n.dart';
+
 extension IterableUtils<T> on Iterable<T> {
   T? get(bool Function(T e) test) {
     for (final e in this) {
@@ -90,3 +92,6 @@ RxBool bobs(bool? pb) => pb?.obs ?? false.obs;
 
 RxList<T> lobs<T, E>(core.Iterable<E>? pb, T Function(E e) func) =>
     pb?.map((E e) => func(e)).toList().obs ?? <T>[].obs;
+
+bool isDarkMode([BuildContext? context]) =>
+    Theme.of(context ?? I.context).brightness == Brightness.dark;
