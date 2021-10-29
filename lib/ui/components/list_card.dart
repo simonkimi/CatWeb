@@ -3,8 +3,8 @@ import 'package:cat_web/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class ExtendedCardTag {
-  ExtendedCardTag({
+class CardTag {
+  CardTag({
     this.color,
     required this.text,
   });
@@ -13,8 +13,8 @@ class ExtendedCardTag {
   final String text;
 }
 
-class ExtendedCardModel {
-  ExtendedCardModel({
+class CardModel {
+  CardModel({
     this.title,
     this.subtitle,
     this.tagList,
@@ -28,7 +28,7 @@ class ExtendedCardModel {
 
   final String? title;
   final String? subtitle;
-  final List<ExtendedCardTag>? tagList;
+  final List<CardTag>? tagList;
   final double? star;
   final String? category;
   final Color? categoryColor;
@@ -37,13 +37,150 @@ class ExtendedCardModel {
   final String? badge;
 }
 
+class SimpleCard extends StatelessWidget {
+  const SimpleCard({
+    Key? key,
+    required this.model,
+  }) : super(key: key);
+
+  final CardModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusDirectional.circular(5),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: () {},
+        child: Column(
+          children: [
+            buildImage(context),
+            if (model.title != null) Text(model.title!),
+            if (model.subtitle != null)
+              Text(
+                model.subtitle!,
+                style: TextStyle(
+                  fontSize: 12.5,
+                  color: Theme.of(context).textTheme.headline1!.color,
+                ),
+              ),
+            if (model.tagList != null) buildTagList()
+          ],
+        ),
+      ),
+    );
+  }
+
+  SizedBox buildTagList() {
+    return SizedBox(
+      height: 20,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 2),
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          itemCount: 2,
+          itemBuilder: (context, index) {
+            final e = model.tagList![index];
+            return Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: e.color ??
+                      (isDarkMode(context)
+                          ? const Color(0xFF312F32)
+                          : const Color(0xFFEFEEF1)),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: Text(
+                    e.text,
+                    style: TextStyle(
+                      height: 1,
+                      fontSize: 11,
+                      color: e.color == null
+                          ? isDarkMode(context)
+                              ? Colors.white
+                              : Colors.black
+                          : e.color!.isDark()
+                              ? Colors.white
+                              : Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+          separatorBuilder: (context, index) => const SizedBox(width: 2),
+        ),
+      ),
+    );
+  }
+
+  Widget buildCategory(BuildContext context) {
+    return ClipPath(
+      clipper: _RightAngledTriangleClipper(),
+      child: const SizedBox(
+        width: 11,
+        height: 11,
+        child: ColoredBox(
+          color: Colors.red,
+        ),
+      ),
+    );
+  }
+
+  AspectRatio buildImage(BuildContext context) {
+    return AspectRatio(
+      aspectRatio: 0.75,
+      child: Stack(
+        children: [
+          const ColoredBox(
+            color: kLightGrey,
+            child: Center(
+              child: Text('Preview'),
+            ),
+          ),
+          if (model.badge != null)
+            Positioned(
+              left: 0,
+              bottom: 0,
+              child: buildBadge(),
+            ),
+          if (model.category != null)
+            Positioned(
+              right: 0,
+              child: buildCategory(context),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Padding buildBadge() {
+    return Padding(
+      padding: const EdgeInsets.all(3),
+      child: Container(
+        padding: const EdgeInsets.all(1),
+        decoration: BoxDecoration(
+            color: Colors.black38, borderRadius: BorderRadius.circular(2)),
+        child: Text(
+          model.badge!,
+          style: const TextStyle(color: Colors.white, fontSize: 12),
+        ),
+      ),
+    );
+  }
+}
+
 class ExtendedCard extends StatelessWidget {
   const ExtendedCard({
     Key? key,
     required this.model,
   }) : super(key: key);
 
-  final ExtendedCardModel model;
+  final CardModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -210,22 +347,25 @@ class ExtendedCard extends StatelessWidget {
           ),
           if (model.badge != null)
             Positioned(
-              right: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(3),
-                child: Container(
-                  padding: const EdgeInsets.all(1),
-                  decoration: BoxDecoration(
-                      color: Colors.black38,
-                      borderRadius: BorderRadius.circular(2)),
-                  child: Text(
-                    model.badge!,
-                    style: const TextStyle(color: Colors.white, fontSize: 12),
-                  ),
-                ),
-              ),
+              right: 0,
+              child: buildBadge(),
             ),
         ],
+      ),
+    );
+  }
+
+  Padding buildBadge() {
+    return Padding(
+      padding: const EdgeInsets.all(3),
+      child: Container(
+        padding: const EdgeInsets.all(1),
+        decoration: BoxDecoration(
+            color: Colors.black38, borderRadius: BorderRadius.circular(2)),
+        child: Text(
+          model.badge!,
+          style: const TextStyle(color: Colors.white, fontSize: 12),
+        ),
       ),
     );
   }
@@ -263,5 +403,22 @@ class ExtendedCard extends StatelessWidget {
         );
       }).toList(),
     );
+  }
+}
+
+class _RightAngledTriangleClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.moveTo(0, 0);
+    path.lineTo(size.width, size.height);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return true;
   }
 }

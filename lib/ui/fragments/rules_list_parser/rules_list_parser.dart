@@ -1,5 +1,5 @@
 import 'package:cat_web/data/protocol/model/parser.dart';
-import 'package:cat_web/ui/components/extended_card.dart';
+import 'package:cat_web/ui/components/list_card.dart';
 import 'package:flutter/material.dart';
 
 class RulesListVisualEditor extends StatelessWidget {
@@ -12,37 +12,45 @@ class RulesListVisualEditor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ExtendedCard(
-          model: ExtendedCardModel(
-            title: 'Title',
-            subtitle: 'SubTitle',
-            star: 4.5,
-            category: 'Category',
-            categoryColor: Colors.blue,
-            page: 100,
-            uploadTime: DateTime.now().toString().split('.')[0],
-            badge: 'Badge',
-            tagList: [
-              ...Colors.primaries
-                  .take(9)
-                  .toList()
-                  .asMap()
-                  .map((key, value) => MapEntry(
+    final model = CardModel(
+        title: 'Title',
+        subtitle: 'SubTitle',
+        star: 4.5,
+        category: 'Category',
+        categoryColor: Colors.blue,
+        page: 100,
+        uploadTime: DateTime.now().toString().split('.')[0],
+        badge: 'Badge',
+        tagList: [
+          ...Colors.primaries
+              .take(9)
+              .toList()
+              .asMap()
+              .map((key, value) => MapEntry(
                   key,
-                  ExtendedCardTag(
+                  CardTag(
                     text: 'Tag ${key + 1}',
                     color: value,
                   )))
-                  .values,
-              ExtendedCardTag(
-                text: 'Tag 10',
-              )
-            ]
-          ),
-        ),
+              .values,
+          CardTag(
+            text: 'Tag 10',
+          )
+        ]);
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ExtendedCard(model: model),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 3,
+              child: SimpleCard(model: model),
+            ),
+          ],
+        )
       ],
     );
   }
