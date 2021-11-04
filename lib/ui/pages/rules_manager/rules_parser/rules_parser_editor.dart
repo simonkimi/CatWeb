@@ -1,6 +1,7 @@
 import 'package:cat_web/data/protocol/model/parser.dart';
 import 'package:cat_web/ui/components/app_bar.dart';
 import 'package:cat_web/ui/fragments/rules_list_parser/rules_list_parser.dart';
+import 'package:cat_web/ui/pages/rules_manager/rules_parser/list_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -25,13 +26,14 @@ class RulesParserEditor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: buildAppBar(
           context,
           title: '规则编辑',
           bottom: const TabBar(
             tabs: [
+              Tab(text: '预览'),
               Tab(text: '基础规则'),
               Tab(text: '附加字段'),
             ],
@@ -39,6 +41,7 @@ class RulesParserEditor extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
+            buildPreview(context),
             buildBody(context),
             buildExtra(),
           ],
@@ -47,6 +50,20 @@ class RulesParserEditor extends StatelessWidget {
     );
   }
 
+  Widget buildPreview(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.all(5),
+      children: [
+        if (store.parserBase is GalleryParserModel)
+          // GalleryParser(model: store.parserBase as GalleryParserModel),
+          const SizedBox(),
+        if (store.parserBase is ListViewParserModel)
+          RulesListVisualEditor(model: store.parserBase as ListViewParserModel),
+      ],
+    );
+  }
+
+
   Widget buildBody(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(5),
@@ -54,7 +71,7 @@ class RulesParserEditor extends StatelessWidget {
         if (store.parserBase is GalleryParserModel)
           GalleryParser(model: store.parserBase as GalleryParserModel),
         if (store.parserBase is ListViewParserModel)
-          RulesListVisualEditor(model: store.parserBase as ListViewParserModel),
+          ListParser(model: store.parserBase as ListViewParserModel),
       ],
     );
   }
