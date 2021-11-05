@@ -1,6 +1,6 @@
-import 'package:cat_web/data/database/database.dart';
-import 'package:cat_web/gen/protobuf/store.pbserver.dart';
-import 'package:cat_web/ui/pages/rules_manager/rules_manager.dart';
+import 'package:catweb/data/database/database.dart';
+import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 

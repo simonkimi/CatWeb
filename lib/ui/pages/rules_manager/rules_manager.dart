@@ -1,6 +1,6 @@
-import 'package:cat_web/ui/components/app_bar.dart';
-import 'package:cat_web/ui/pages/rules_manager/rules_edit_page.dart';
-import 'package:cat_web/utils/widget.dart';
+import 'package:catweb/ui/components/app_bar.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
+import 'package:catweb/utils/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 

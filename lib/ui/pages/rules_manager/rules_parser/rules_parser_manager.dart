@@ -1,7 +1,7 @@
-import 'package:cat_web/data/protocol/model/parser.dart';
-import 'package:cat_web/ui/components/dialog.dart';
-import 'package:cat_web/ui/pages/rules_manager/rules_parser/rules_parser_editor.dart';
-import 'package:cat_web/ui/pages/rules_manager/rules_store.dart';
+import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/ui/components/dialog.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_editor.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 

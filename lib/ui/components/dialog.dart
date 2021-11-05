@@ -75,9 +75,7 @@ Future<T?> showSelectDialog<T>({
                   return RadioListTile<T>(
                     value: e.value,
                     groupValue: selectedValue,
-                    onChanged: (value) {
-                      Navigator.of(context).pop(value as T);
-                    },
+                    onChanged: Navigator.of(context).pop,
                     title: Text(e.title),
                   );
                 },

@@ -1,5 +1,5 @@
-import 'package:cat_web/data/database/database.dart';
-import 'package:cat_web/data/database/tables/site_table.dart';
+import 'package:catweb/data/database/database.dart';
+import 'package:catweb/data/database/tables/site_table.dart';
 import 'package:moor/moor.dart';
 
 part 'site_dao.g.dart';

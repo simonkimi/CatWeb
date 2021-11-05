@@ -1,5 +1,5 @@
-import 'package:cat_web/ui/components/form.dart';
-import 'package:cat_web/ui/pages/rules_manager/rules_store.dart';
+import 'package:catweb/ui/components/form.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 

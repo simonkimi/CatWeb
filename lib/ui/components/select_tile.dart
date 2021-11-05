@@ -1,4 +1,4 @@
-import 'package:cat_web/utils/utils.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'dialog.dart';
 

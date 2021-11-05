@@ -1,4 +1,4 @@
-import 'package:cat_web/ui/fragments/main_drawer/main_drawer.dart';
+import 'package:catweb/ui/fragments/main_drawer/main_drawer.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatelessWidget {

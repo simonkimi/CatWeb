@@ -1,5 +1,5 @@
-import 'package:cat_web/data/protocol/model/selector.dart';
-import 'package:cat_web/gen/protobuf/selector.pbserver.dart';
+import 'package:catweb/data/protocol/model/selector.dart';
+import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

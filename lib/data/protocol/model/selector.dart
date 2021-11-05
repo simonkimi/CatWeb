@@ -1,5 +1,5 @@
-import 'package:cat_web/gen/protobuf/selector.pbserver.dart';
-import 'package:cat_web/utils/utils.dart';
+import 'package:catweb/gen/protobuf/selector.pbserver.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:get/get.dart';
 
 import 'interface.dart';

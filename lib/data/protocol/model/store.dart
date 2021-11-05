@@ -1,8 +1,8 @@
-import 'package:cat_web/data/protocol/model/parser.dart';
-import 'package:cat_web/gen/protobuf/actions.pbserver.dart';
-import 'package:cat_web/gen/protobuf/parser.pbserver.dart';
-import 'package:cat_web/gen/protobuf/store.pbserver.dart';
-import 'package:cat_web/utils/utils.dart';
+import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/gen/protobuf/actions.pbserver.dart';
+import 'package:catweb/gen/protobuf/parser.pbserver.dart';
+import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:get/get.dart';
 
 import 'actions.dart';

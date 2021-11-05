@@ -1,5 +1,5 @@
-import 'package:cat_web/data/protocol/model/parser.dart';
-import 'package:cat_web/gen/protobuf/parser.pbserver.dart';
+import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/gen/protobuf/parser.pbserver.dart';
 import 'package:mobx/mobx.dart';
 
 part 'editor_store.g.dart';

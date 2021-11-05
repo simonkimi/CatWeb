@@ -1,5 +1,5 @@
-import 'package:cat_web/data/protocol/model/store.dart';
-import 'package:cat_web/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/data/protocol/model/store.dart';
+import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:mobx/mobx.dart';
 
 part 'rules_store.g.dart';

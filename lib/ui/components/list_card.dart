@@ -1,5 +1,5 @@
-import 'package:cat_web/data/constant.dart';
-import 'package:cat_web/utils/utils.dart';
+import 'package:catweb/data/constant.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 

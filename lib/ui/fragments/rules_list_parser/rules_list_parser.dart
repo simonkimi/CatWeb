@@ -1,5 +1,5 @@
-import 'package:cat_web/data/protocol/model/parser.dart';
-import 'package:cat_web/ui/components/list_card.dart';
+import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/ui/components/list_card.dart';
 import 'package:flutter/material.dart';
 
 class RulesListVisualEditor extends StatelessWidget {

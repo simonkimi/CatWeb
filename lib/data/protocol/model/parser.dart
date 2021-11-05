@@ -1,7 +1,7 @@
-import 'package:cat_web/data/protocol/model/selector.dart';
-import 'package:cat_web/gen/protobuf/parser.pbserver.dart';
-import 'package:cat_web/gen/protobuf/selector.pbserver.dart';
-import 'package:cat_web/utils/utils.dart';
+import 'package:catweb/data/protocol/model/selector.dart';
+import 'package:catweb/gen/protobuf/parser.pbserver.dart';
+import 'package:catweb/gen/protobuf/selector.pbserver.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:get/get.dart';
 
 import 'interface.dart';

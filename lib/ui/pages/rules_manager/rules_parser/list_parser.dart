@@ -1,6 +1,6 @@
-import 'package:cat_web/data/protocol/model/parser.dart';
-import 'package:cat_web/ui/components/form.dart';
-import 'package:cat_web/ui/components/rules_card.dart';
+import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/ui/components/form.dart';
+import 'package:catweb/ui/components/rules_card.dart';
 import 'package:flutter/material.dart';
 
 class ListParser extends StatelessWidget {

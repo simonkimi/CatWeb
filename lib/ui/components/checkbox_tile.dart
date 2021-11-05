@@ -17,9 +17,7 @@ class CheckBoxTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3),
       child: GestureDetector(
-        onTap: () {
-          onChanged(!value);
-        },
+        onTap: () => onChanged(!value),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

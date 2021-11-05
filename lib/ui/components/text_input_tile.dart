@@ -1,4 +1,4 @@
-import 'package:cat_web/i18n.dart';
+import 'package:catweb/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

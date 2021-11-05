@@ -1,6 +1,6 @@
 import 'dart:ffi';
 import 'dart:io';
-import 'package:cat_web/data/database/tables/site_table.dart';
+import 'package:catweb/data/database/tables/site_table.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:moor/ffi.dart';
