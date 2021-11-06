@@ -1,13 +1,13 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/ui/components/app_bar.dart';
 import 'package:catweb/ui/fragments/rules_list_parser/rules_list_parser.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_parser/list_parser.dart';
+import 'package:catweb/ui/fragments/rules_list_parser/list_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import 'gallery_parser.dart';
+import '../../../fragments/rules_list_parser/gallery_parser.dart';
 import 'editor_store.dart';
-import 'extra_parser.dart';
+import '../../../fragments/rules_list_parser/extra_parser.dart';
 
 class RulesParserEditor extends StatelessWidget {
   RulesParserEditor({
@@ -62,7 +62,6 @@ class RulesParserEditor extends StatelessWidget {
       ],
     );
   }
-
 
   Widget buildBody(BuildContext context) {
     return ListView(

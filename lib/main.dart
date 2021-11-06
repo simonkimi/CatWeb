@@ -5,6 +5,7 @@ import 'package:catweb/ui/pages/rules_manager/rules_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'navigator.dart';
+import 'themes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,9 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'CatWeb',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: blueTheme,
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

@@ -38,7 +38,11 @@ class ListParser extends StatelessWidget {
             title: '评分',
             selectorModel: model.star,
           ),
-        ]),
+          RulesForm(
+            title: '面数',
+            selectorModel: model.imgCount,
+          ),
+        ], padding: const EdgeInsets.symmetric(horizontal: 5)),
         const SizedBox(height: 5),
         buildCardList([
           RulesForm(
@@ -61,7 +65,7 @@ class ListParser extends StatelessWidget {
             title: '封面Y偏移',
             selectorModel: model.previewImg.imgY,
           ),
-        ]),
+        ], padding: const EdgeInsets.symmetric(horizontal: 5)),
         const SizedBox(height: 5),
         buildCardList([
           RulesForm(
@@ -72,14 +76,10 @@ class ListParser extends StatelessWidget {
             title: '分类颜色',
             selectorModel: model.tagColor,
           ),
-        ]),
+        ], padding: const EdgeInsets.symmetric(horizontal: 5)),
         const SizedBox(height: 5),
         buildCardList([
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child:
-                buildInputForm(labelText: '徽章选择器', value: model.badgeSelector),
-          ),
+          buildInputForm(labelText: '徽章选择器', value: model.badgeSelector),
           RulesForm(
             title: '徽章内容',
             selectorModel: model.badgeText,
@@ -88,14 +88,14 @@ class ListParser extends StatelessWidget {
             title: '徽章颜色',
             selectorModel: model.badgeColor,
           ),
-        ]),
+        ], padding: const EdgeInsets.symmetric(horizontal: 5)),
         const SizedBox(height: 5),
         buildCardList([
           RulesForm(
             title: '下一面地址',
             selectorModel: model.nextPage,
           ),
-        ]),
+        ], padding: const EdgeInsets.symmetric(horizontal: 5)),
       ],
     );
   }

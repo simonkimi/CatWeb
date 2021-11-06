@@ -19,12 +19,12 @@ class ExtraParser extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           ...model.extraSelectorModel.map((model) {
-            return buildCardList([
-              RulesForm(
+            return Card(
+              child: RulesForm(
                 extraSelectorModel: model,
                 selectorModel: model.selector,
               ),
-            ]);
+            );
           }),
           Card(
             child: ListTile(
@@ -40,5 +40,3 @@ class ExtraParser extends StatelessWidget {
     });
   }
 }
-
-

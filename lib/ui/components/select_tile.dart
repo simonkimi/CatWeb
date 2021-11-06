@@ -2,8 +2,6 @@ import 'package:catweb/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'dialog.dart';
 
-
-
 class SelectTile<T> extends StatelessWidget {
   const SelectTile({
     Key? key,
@@ -150,4 +148,3 @@ class TinySelectTile<T> extends StatelessWidget {
     );
   }
 }
-
