@@ -216,6 +216,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.18.0"
+  flutter_linkify:
+    dependency: "direct main"
+    description:
+      name: flutter_linkify
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "5.0.2"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -335,6 +342,13 @@ packages:
     dependency: transitive
     description:
       name: json_annotation
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.1.0"
+  linkify:
+    dependency: transitive
+    description:
+      name: linkify
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.1.0"

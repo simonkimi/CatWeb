@@ -20,9 +20,12 @@ class ExtraParser extends StatelessWidget {
         children: [
           ...model.extraSelectorModel.map((model) {
             return Card(
-              child: RulesForm(
-                extraSelectorModel: model,
-                selectorModel: model.selector,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: RulesForm(
+                  extraSelectorModel: model,
+                  selectorModel: model.selector,
+                ),
               ),
             );
           }),

@@ -1,13 +1,15 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/ui/components/app_bar.dart';
-import 'package:catweb/ui/fragments/rules_list_parser/rules_list_parser.dart';
-import 'package:catweb/ui/fragments/rules_list_parser/list_parser.dart';
+import 'package:catweb/ui/fragments/gallery_detail/gallery_detail.dart';
+import 'package:catweb/ui/fragments/parser/extra_parser.dart';
+import 'package:catweb/ui/fragments/parser/gallery_parser.dart';
+import 'package:catweb/ui/fragments/parser/gallery_preview.dart';
+import 'package:catweb/ui/fragments/parser/list_parser.dart';
+import 'package:catweb/ui/fragments/parser/list_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../fragments/rules_list_parser/gallery_parser.dart';
 import 'editor_store.dart';
-import '../../../fragments/rules_list_parser/extra_parser.dart';
 
 class RulesParserEditor extends StatelessWidget {
   RulesParserEditor({
@@ -54,11 +56,9 @@ class RulesParserEditor extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(5),
       children: [
-        if (store.parserBase is GalleryParserModel)
-          // GalleryParser(model: store.parserBase as GalleryParserModel),
-          const SizedBox(),
-        if (store.parserBase is ListViewParserModel)
-          RulesListVisualEditor(model: store.parserBase as ListViewParserModel),
+        if (store.parserBase is GalleryParserModel) const GalleryPreview(),
+        const SizedBox(),
+        if (store.parserBase is ListViewParserModel) const ListParserPreview(),
       ],
     );
   }

@@ -49,8 +49,8 @@ class RulesParserManager extends StatelessWidget {
       context: context,
       displayRadio: false,
       items: const [
-        SelectTileItem(title: '列表', value: ParserType.list),
-        SelectTileItem(title: '画廊', value: ParserType.gallery),
+        SelectTileItem(title: '列表解析器', value: ParserType.list),
+        SelectTileItem(title: '详情解析器', value: ParserType.gallery),
       ],
       selectedValue: ParserType.list,
       title: '规则类型',

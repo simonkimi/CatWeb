@@ -1,5 +1,6 @@
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
+import 'package:catweb/ui/components/checkbox_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -118,25 +119,22 @@ class RulesForm extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                buildText(context, '计算'),
-                const SizedBox(width: 10),
-                Obx(() => Checkbox(
+                Obx(() => CheckBoxTile(
+                      text: '计算',
                       value: selectorModel.computed.value,
                       onChanged: (value) {
                         selectorModel.computed.value = value!;
                       },
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  textColor: Theme.of(context).textTheme.headline1!.color,
                     )),
-                const Expanded(child: SizedBox()),
-                buildText(context, '全局'),
-                const SizedBox(width: 10),
-                Obx(() => Checkbox(
-                      value: extraSelectorModel!.global.value,
-                      onChanged: (value) {
-                        extraSelectorModel!.global.value = value!;
-                      },
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    )),
+                Obx(() => CheckBoxTile(
+                  text: '全局',
+                  value: extraSelectorModel!.global.value,
+                  onChanged: (value) {
+                    extraSelectorModel!.global.value = value!;
+                  },
+                  textColor: Theme.of(context).textTheme.headline1!.color,
+                )),
               ],
             ),
         ],

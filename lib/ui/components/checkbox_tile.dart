@@ -6,11 +6,13 @@ class CheckBoxTile extends StatelessWidget {
     required this.text,
     required this.value,
     required this.onChanged,
+    this.textColor,
   }) : super(key: key);
 
   final String text;
   final bool value;
   final ValueChanged<bool?> onChanged;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +30,8 @@ class CheckBoxTile extends StatelessWidget {
             ),
             Text(
               text,
-              style: TextStyle(color: Theme.of(context).primaryColor),
+              style: TextStyle(color: textColor ?? Theme.of(context).primaryColor),
             ),
-            const SizedBox(width: 5),
           ],
         ),
       ),

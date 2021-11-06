@@ -17,9 +17,8 @@ class GalleryParser extends StatelessWidget {
       children: [
         buildCardList([
           buildInputForm(labelText: '名称', value: model.name),
-        ], padding: const EdgeInsets.symmetric(vertical: 10)),
+        ], padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5)),
         const SizedBox(height: 5),
-        const Divider(),
         buildCardList([
           RulesForm(
             title: '标题',
@@ -59,28 +58,23 @@ class GalleryParser extends StatelessWidget {
           ),
         ]),
         const SizedBox(height: 5),
-        const Divider(),
         buildCardList([
           RulesForm(
             title: '封面地址',
             selectorModel: model.coverImg.imgUrl,
           ),
-          const Divider(),
           RulesForm(
             title: '封面宽度',
             selectorModel: model.coverImg.imgWidth,
           ),
-          const Divider(),
           RulesForm(
             title: '封面高度',
             selectorModel: model.coverImg.imgHeight,
           ),
-          const Divider(),
           RulesForm(
             title: '封面X偏移',
             selectorModel: model.coverImg.imgX,
           ),
-          const Divider(),
           RulesForm(
             title: '封面Y偏移',
             selectorModel: model.coverImg.imgY,
@@ -93,27 +87,22 @@ class GalleryParser extends StatelessWidget {
             title: '缩略图地址',
             selectorModel: model.thumbnail.imgUrl,
           ),
-          const Divider(),
           RulesForm(
             title: '缩略图宽度',
             selectorModel: model.thumbnail.imgWidth,
           ),
-          const Divider(),
           RulesForm(
             title: '缩略图高度',
             selectorModel: model.thumbnail.imgHeight,
           ),
-          const Divider(),
           RulesForm(
             title: '缩略图X偏移',
             selectorModel: model.thumbnail.imgX,
           ),
-          const Divider(),
           RulesForm(
             title: '缩略图Y偏移',
             selectorModel: model.thumbnail.imgY,
           ),
-          const Divider(),
           RulesForm(
             title: '缩略图目标',
             selectorModel: model.thumbnailUrl,
@@ -125,7 +114,6 @@ class GalleryParser extends StatelessWidget {
             title: '分类',
             selectorModel: model.tag,
           ),
-          const Divider(),
           RulesForm(
             title: '分类颜色',
             selectorModel: model.tagColor,
@@ -138,17 +126,14 @@ class GalleryParser extends StatelessWidget {
             title: '评论内容',
             selectorModel: model.comments.content,
           ),
-          const Divider(),
           RulesForm(
             title: '用户名',
             selectorModel: model.comments.username,
           ),
-          const Divider(),
           RulesForm(
             title: '评论时间',
             selectorModel: model.comments.postTime,
           ),
-          const Divider(),
           RulesForm(
             title: '评论评分',
             selectorModel: model.comments.vote,
@@ -161,12 +146,10 @@ class GalleryParser extends StatelessWidget {
             title: '徽章内容',
             selectorModel: model.badgeText,
           ),
-          const Divider(),
           RulesForm(
             title: '徽章颜色',
             selectorModel: model.badgeColor,
           ),
-          const Divider(),
           RulesForm(
             title: '徽章类型',
             selectorModel: model.badgeType,
