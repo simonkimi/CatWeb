@@ -1,10 +1,14 @@
+import 'dart:math';
+
 import 'package:catweb/ui/components/comment_item.dart';
 import 'package:catweb/ui/components/icon_text.dart';
 import 'package:catweb/ui/components/info_column.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
+import '../../../data/store/setting_store.dart';
+import '../../../main.dart';
 import '../../../themes.dart';
+import '../../components/post_preview_card.dart';
 
 class GalleryDetailModel {
   GalleryDetailModel({
@@ -19,6 +23,7 @@ class GalleryDetailModel {
     this.uploadTime,
     this.tagList,
     this.commentList,
+    this.prePageImageCount,
   });
 
   final String? title;
@@ -31,6 +36,7 @@ class GalleryDetailModel {
   final int? favoriteCount;
   final String? uploadTime;
   final List<TagModel>? tagList;
+  final int? prePageImageCount;
 
   final List<CommentItemModel>? commentList;
 }
@@ -69,13 +75,13 @@ class GalleryDetail extends StatelessWidget {
         const Divider(),
         buildCommentTitle(context),
         buildCommentList(context),
-        // const Divider(),
-        // buildPreviewList(context),
+        const Divider(),
+        buildPreviewList(context),
       ],
     );
   }
 
-  Padding buildCommentTitle(BuildContext context) {
+  Widget buildCommentTitle(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
@@ -394,6 +400,54 @@ class GalleryDetail extends StatelessWidget {
                   ),
                 ],
               ),
+      ),
+    );
+  }
+
+  Widget buildPreviewList(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: Column(
+        children: [
+          GridView.builder(
+            padding: const EdgeInsets.only(
+              right: 15,
+              left: 15,
+              top: 10,
+              bottom: 5,
+            ),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: CardSize.of(settingStore.cardSize).toDouble(),
+              childAspectRatio: 100 / 142,
+              crossAxisSpacing: 5,
+              mainAxisSpacing: 5,
+            ),
+            // TODO 改为真实长度
+            itemCount: min(model.imageCount!, 60),
+            itemBuilder: (context, index) {
+              return PostPreviewCard(
+                  title: '#${index + 1}',
+                  body: ColoredBox(
+                    color: Colors.grey[200]!,
+                  ));
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.all(5),
+            child: Text(
+              model.imageCount! <= min(80, model.prePageImageCount ?? 0)
+                  ? '没有其他预览了'
+                  : '展示更多预览',
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
