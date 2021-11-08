@@ -18,13 +18,17 @@ class ExtraParser extends StatelessWidget {
       return Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ...model.extraSelectorModel.map((model) {
+          ...model.extraSelectorModel.asMap().entries.map((entity) {
             return Card(
+              key: UniqueKey(),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: RulesForm(
-                  extraSelectorModel: model,
-                  selectorModel: model.selector,
+                  extraSelectorModel: entity.value,
+                  selectorModel: entity.value.selector,
+                  onDelete: () {
+                    model.extraSelectorModel.removeAt(entity.key);
+                  },
                 ),
               ),
             );

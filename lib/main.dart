@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/main_page/main_page.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
@@ -34,6 +35,8 @@ class MyApp extends StatelessWidget {
       supportedLocales: I.supportedLocales,
       navigatorKey: AppNavigator().key,
       initialRoute: MainPage.routeName,
+      navigatorObservers: [BotToastNavigatorObserver()],
+      builder: BotToastInit(),
       routes: {
         MainPage.routeName: (_) => const MainPage(),
         SiteManager.routeName: (_) => const SiteManager(),

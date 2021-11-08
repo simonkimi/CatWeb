@@ -1,6 +1,8 @@
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:catweb/ui/components/checkbox_tile.dart';
+import 'package:catweb/ui/components/dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,13 +47,17 @@ class RulesForm extends StatelessWidget {
     required this.selectorModel,
     this.onTap,
     this.extraSelectorModel,
+    this.onDelete,
+    this.field,
   })  : assert(title != null || extraSelectorModel != null),
         super(key: key);
 
   final String? title;
+  final String? field;
   final SelectorModel selectorModel;
   final ExtraSelectorModel? extraSelectorModel;
   final VoidCallback? onTap;
+  final VoidCallback? onDelete;
 
   static const textWidth = 80.0;
   static final Color filledColor = Colors.grey[300]!;
@@ -64,7 +70,16 @@ class RulesForm extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (extraSelectorModel == null) Text(title!),
+          if (extraSelectorModel == null)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(title!),
+                const SizedBox(width: 5),
+                if (field != null)
+                  Text('(${field!})'),
+              ],
+            ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -125,16 +140,37 @@ class RulesForm extends StatelessWidget {
                       onChanged: (value) {
                         selectorModel.computed.value = value!;
                       },
-                  textColor: Theme.of(context).textTheme.headline1!.color,
+                      textColor: Theme.of(context).textTheme.headline1!.color,
                     )),
+                const SizedBox(width: 10),
                 Obx(() => CheckBoxTile(
-                  text: '全局',
-                  value: extraSelectorModel!.global.value,
-                  onChanged: (value) {
-                    extraSelectorModel!.global.value = value!;
+                      text: '全局',
+                      value: extraSelectorModel!.global.value,
+                      onChanged: (value) {
+                        extraSelectorModel!.global.value = value!;
+                      },
+                      textColor: Theme.of(context).textTheme.headline1!.color,
+                    )),
+                const SizedBox(width: 10),
+                Obx(() => CheckBoxTile(
+                      text: 'Js脚本',
+                      value: selectorModel.js.isNotEmpty,
+                      onChanged: (value) {
+                        // TODO js处理器
+                      },
+                      textColor: Theme.of(context).textTheme.headline1!.color,
+                    )),
+                const Expanded(child: SizedBox()),
+                IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () async {
+                    final result = await showConfirmDialog(
+                        context: context, text: '确认删除此字段?');
+                    if (result == true) {
+                      onDelete?.call();
+                    }
                   },
-                  textColor: Theme.of(context).textTheme.headline1!.color,
-                )),
+                ),
               ],
             ),
         ],
@@ -240,7 +276,8 @@ class RulesForm extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                  color: Theme.of(context).textTheme.headline1!.color),
+                color: Theme.of(context).textTheme.headline1!.color,
+              ),
             ),
           ),
           const SizedBox(width: 10),
