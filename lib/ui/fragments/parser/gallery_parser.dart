@@ -33,7 +33,7 @@ class GalleryParser extends StatelessWidget {
           RulesForm(
             title: '上传时间',
             field: '#uploadTime',
-            selectorModel: model.uploadTIme,
+            selectorModel: model.uploadTime,
           ),
           RulesForm(
             title: '评分',

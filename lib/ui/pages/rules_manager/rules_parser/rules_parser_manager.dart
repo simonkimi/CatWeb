@@ -27,15 +27,18 @@ class RulesParserManager extends StatelessWidget {
                   return const ListTile();
                 }).toList(),
               ),
-              const ListTile(
-                leading: Icon(Icons.list),
-                title: Text('index'),
-                subtitle: Text('ListParser'),
+              const Card(
+                child: ListTile(
+                  title: Text('index'),
+                  subtitle: Text('ListParser'),
+                ),
               ),
-              ListTile(
-                title: const Text('添加'),
-                leading: const Icon(Icons.add),
-                onTap: () => addRulesParser(context),
+              Card(
+                child: ListTile(
+                  title: const Text('添加'),
+                  leading: const Icon(Icons.add),
+                  onTap: () => addRulesParser(context),
+                ),
               ),
             ],
           );

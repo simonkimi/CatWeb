@@ -7,7 +7,7 @@ message ListViewParser {
   string itemSelector = 2; // 选取整个列表
   Selector title = 3;
   Selector subtitle = 4;
-  Selector uploadTIme = 5;
+  Selector uploadTime = 5;
   Selector star = 6;
   Selector imgCount = 7;
   ImageSelector previewImg = 8;
@@ -31,7 +31,7 @@ message GalleryParser {
   // 基础
   Selector title = 2;
   Selector subtitle = 3;
-  Selector uploadTIme = 4;
+  Selector uploadTime = 4;
   Selector star = 5;
   Selector imgCount = 6;  // 有多少面
   Selector prePageImg = 7;  // 一面有多少图片

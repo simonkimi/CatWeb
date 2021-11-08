@@ -17,7 +17,7 @@ class ListViewParser extends $pb.GeneratedMessage {
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'itemSelector', protoName: 'itemSelector')
     ..aOM<$0.Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'title', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subtitle', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTIme', protoName: 'uploadTIme', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTime', protoName: 'uploadTime', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'star', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgCount', protoName: 'imgCount', subBuilder: $0.Selector.create)
     ..aOM<$0.ImageSelector>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'previewImg', protoName: 'previewImg', subBuilder: $0.ImageSelector.create)
@@ -37,7 +37,7 @@ class ListViewParser extends $pb.GeneratedMessage {
     $core.String? itemSelector,
     $0.Selector? title,
     $0.Selector? subtitle,
-    $0.Selector? uploadTIme,
+    $0.Selector? uploadTime,
     $0.Selector? star,
     $0.Selector? imgCount,
     $0.ImageSelector? previewImg,
@@ -62,8 +62,8 @@ class ListViewParser extends $pb.GeneratedMessage {
     if (subtitle != null) {
       _result.subtitle = subtitle;
     }
-    if (uploadTIme != null) {
-      _result.uploadTIme = uploadTIme;
+    if (uploadTime != null) {
+      _result.uploadTime = uploadTime;
     }
     if (star != null) {
       _result.star = star;
@@ -159,15 +159,15 @@ class ListViewParser extends $pb.GeneratedMessage {
   $0.Selector ensureSubtitle() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  $0.Selector get uploadTIme => $_getN(4);
+  $0.Selector get uploadTime => $_getN(4);
   @$pb.TagNumber(5)
-  set uploadTIme($0.Selector v) { setField(5, v); }
+  set uploadTime($0.Selector v) { setField(5, v); }
   @$pb.TagNumber(5)
-  $core.bool hasUploadTIme() => $_has(4);
+  $core.bool hasUploadTime() => $_has(4);
   @$pb.TagNumber(5)
-  void clearUploadTIme() => clearField(5);
+  void clearUploadTime() => clearField(5);
   @$pb.TagNumber(5)
-  $0.Selector ensureUploadTIme() => $_ensure(4);
+  $0.Selector ensureUploadTime() => $_ensure(4);
 
   @$pb.TagNumber(6)
   $0.Selector get star => $_getN(5);
@@ -275,7 +275,7 @@ class GalleryParser extends $pb.GeneratedMessage {
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..aOM<$0.Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'title', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subtitle', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTIme', protoName: 'uploadTIme', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTime', protoName: 'uploadTime', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'star', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgCount', protoName: 'imgCount', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'prePageImg', protoName: 'prePageImg', subBuilder: $0.Selector.create)
@@ -304,7 +304,7 @@ class GalleryParser extends $pb.GeneratedMessage {
     $core.String? name,
     $0.Selector? title,
     $0.Selector? subtitle,
-    $0.Selector? uploadTIme,
+    $0.Selector? uploadTime,
     $0.Selector? star,
     $0.Selector? imgCount,
     $0.Selector? prePageImg,
@@ -336,8 +336,8 @@ class GalleryParser extends $pb.GeneratedMessage {
     if (subtitle != null) {
       _result.subtitle = subtitle;
     }
-    if (uploadTIme != null) {
-      _result.uploadTIme = uploadTIme;
+    if (uploadTime != null) {
+      _result.uploadTime = uploadTime;
     }
     if (star != null) {
       _result.star = star;
@@ -454,15 +454,15 @@ class GalleryParser extends $pb.GeneratedMessage {
   $0.Selector ensureSubtitle() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $0.Selector get uploadTIme => $_getN(3);
+  $0.Selector get uploadTime => $_getN(3);
   @$pb.TagNumber(4)
-  set uploadTIme($0.Selector v) { setField(4, v); }
+  set uploadTime($0.Selector v) { setField(4, v); }
   @$pb.TagNumber(4)
-  $core.bool hasUploadTIme() => $_has(3);
+  $core.bool hasUploadTime() => $_has(3);
   @$pb.TagNumber(4)
-  void clearUploadTIme() => clearField(4);
+  void clearUploadTime() => clearField(4);
   @$pb.TagNumber(4)
-  $0.Selector ensureUploadTIme() => $_ensure(3);
+  $0.Selector ensureUploadTime() => $_ensure(3);
 
   @$pb.TagNumber(5)
   $0.Selector get star => $_getN(4);

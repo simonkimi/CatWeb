@@ -35,7 +35,7 @@ class ListParser extends StatelessWidget {
           RulesForm(
             title: '上传时间',
             field: '#uploadTIme',
-            selectorModel: model.uploadTIme,
+            selectorModel: model.uploadTime,
           ),
           RulesForm(
             title: '评分',

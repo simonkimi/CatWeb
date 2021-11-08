@@ -25,7 +25,7 @@ class GalleryParserModel extends ParserBaseModel  {
       : name = sobs(pb?.name),
         title = SelectorModel(pb?.title),
         subTitle = SelectorModel(pb?.subtitle),
-        uploadTIme = SelectorModel(pb?.uploadTIme),
+        uploadTime = SelectorModel(pb?.uploadTime),
         star = SelectorModel(pb?.star, true),
         imgCount = SelectorModel(pb?.imgCount, true),
         prePageImg = SelectorModel(pb?.prePageImg, true),
@@ -51,7 +51,7 @@ class GalleryParserModel extends ParserBaseModel  {
 
   final SelectorModel title;
   final SelectorModel subTitle;
-  final SelectorModel uploadTIme;
+  final SelectorModel uploadTime;
   final SelectorModel star;
   final SelectorModel imgCount;
   final SelectorModel prePageImg;
@@ -82,7 +82,7 @@ class GalleryParserModel extends ParserBaseModel  {
         name: name.value,
         title: title.toPb(),
         subtitle: subTitle.toPb(),
-        uploadTIme: uploadTIme.toPb(),
+        uploadTime: uploadTime.toPb(),
         star: star.toPb(),
         imgCount: imgCount.toPb(),
         prePageImg: prePageImg.toPb(),
@@ -112,7 +112,7 @@ class ListViewParserModel extends ParserBaseModel {
         itemSelector = sobs(pb?.itemSelector),
         title = SelectorModel(pb?.title),
         subtitle = SelectorModel(pb?.subtitle),
-        uploadTIme = SelectorModel(pb?.uploadTIme),
+        uploadTime = SelectorModel(pb?.uploadTime),
         star = SelectorModel(pb?.star, true),
         imgCount = SelectorModel(pb?.imgCount, true),
         previewImg = ImageSelectorModel(pb?.previewImg),
@@ -132,7 +132,7 @@ class ListViewParserModel extends ParserBaseModel {
   // 基础信息
   final SelectorModel title;
   final SelectorModel subtitle;
-  final SelectorModel uploadTIme;
+  final SelectorModel uploadTime;
   final SelectorModel star;
   final SelectorModel imgCount;
 
@@ -157,7 +157,7 @@ class ListViewParserModel extends ParserBaseModel {
         itemSelector: itemSelector.value,
         title: title.toPb(),
         subtitle: subtitle.toPb(),
-        uploadTIme: uploadTIme.toPb(),
+        uploadTime: uploadTime.toPb(),
         star: star.toPb(),
         imgCount: imgCount.toPb(),
         previewImg: previewImg.toPb(),
