@@ -25,26 +25,30 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Get.isDarkMode ? const Color(0xff2b2b2b): null,
+      backgroundColor: Get.isDarkMode ? const Color(0xff2b2b2b) : null,
       appBar: buildAppBar(context),
-      floatingActionButton: FloatingActionButton(
-        child: isEdit ? const Icon(Icons.check) : const Icon(Icons.edit),
-        onPressed: () {
-          setState(() {
-            isEdit = !isEdit;
-          });
-        },
-      ),
+      floatingActionButton: buildFloatingActionButton(),
       body: isEdit ? buildInput(context) : buildHighlightView(),
+    );
+  }
+
+  FloatingActionButton buildFloatingActionButton() {
+    return FloatingActionButton(
+      child: isEdit ? const Icon(Icons.check) : const Icon(Icons.edit),
+      onPressed: () {
+        setState(() {
+          isEdit = !isEdit;
+        });
+      },
     );
   }
 
   Widget buildHighlightView() {
     return Obx(() => HighlightView(
-      widget.js.value,
-      language: 'javascript',
-      theme: Get.isDarkMode ? a11yDarkTheme : a11yLightTheme,
-    ));
+          widget.js.value,
+          language: 'javascript',
+          theme: Get.isDarkMode ? a11yDarkTheme : a11yLightTheme,
+        ));
   }
 
   Widget buildInput(BuildContext context) {

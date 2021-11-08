@@ -1,4 +1,3 @@
-import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/ui/components/list_card.dart';
 import 'package:flutter/material.dart';
 

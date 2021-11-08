@@ -1,6 +1,5 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/ui/components/app_bar.dart';
-import 'package:catweb/ui/fragments/gallery_detail/gallery_detail.dart';
 import 'package:catweb/ui/fragments/parser/extra_parser.dart';
 import 'package:catweb/ui/fragments/parser/gallery_parser.dart';
 import 'package:catweb/ui/fragments/parser/gallery_preview.dart';
