@@ -2,6 +2,7 @@ import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:catweb/ui/components/checkbox_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
+import 'package:catweb/ui/pages/javascript_editor/editor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -76,8 +77,7 @@ class RulesForm extends StatelessWidget {
               children: [
                 Text(title!),
                 const SizedBox(width: 5),
-                if (field != null)
-                  Text('(${field!})'),
+                if (field != null) Text('(${field!})'),
               ],
             ),
           Row(
@@ -156,7 +156,10 @@ class RulesForm extends StatelessWidget {
                       text: 'Js脚本',
                       value: selectorModel.js.isNotEmpty,
                       onChanged: (value) {
-                        // TODO js处理器
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => JavaScriptEditor(
+                                  js: selectorModel.js,
+                                )));
                       },
                       textColor: Theme.of(context).textTheme.headline1!.color,
                     )),
