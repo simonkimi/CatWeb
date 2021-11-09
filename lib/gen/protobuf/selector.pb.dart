@@ -22,6 +22,7 @@ class Selector extends $pb.GeneratedMessage {
     ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'replace')
     ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'js')
     ..aOB(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'computed')
+    ..aOS(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'defaultValue', protoName: 'defaultValue')
     ..hasRequiredFields = false
   ;
 
@@ -34,6 +35,7 @@ class Selector extends $pb.GeneratedMessage {
     $core.String? replace,
     $core.String? js,
     $core.bool? computed,
+    $core.String? defaultValue,
   }) {
     final _result = create();
     if (selector != null) {
@@ -56,6 +58,9 @@ class Selector extends $pb.GeneratedMessage {
     }
     if (computed != null) {
       _result.computed = computed;
+    }
+    if (defaultValue != null) {
+      _result.defaultValue = defaultValue;
     }
     return _result;
   }
@@ -142,6 +147,15 @@ class Selector extends $pb.GeneratedMessage {
   $core.bool hasComputed() => $_has(6);
   @$pb.TagNumber(7)
   void clearComputed() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get defaultValue => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set defaultValue($core.String v) { $_setString(7, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasDefaultValue() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearDefaultValue() => clearField(8);
 }
 
 class ExtraSelector extends $pb.GeneratedMessage {

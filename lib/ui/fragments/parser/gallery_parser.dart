@@ -2,8 +2,8 @@ import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/ui/components/form.dart';
 import 'package:flutter/material.dart';
 
-class GalleryParser extends StatelessWidget {
-  const GalleryParser({
+class GalleryParserFragment extends StatelessWidget {
+  const GalleryParserFragment({
     Key? key,
     required this.model,
   }) : super(key: key);

@@ -67,9 +67,9 @@ class RulesParserEditor extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       children: [
         if (store.parserBase is GalleryParserModel)
-          GalleryParser(model: store.parserBase as GalleryParserModel),
+          GalleryParserFragment(model: store.parserBase as GalleryParserModel),
         if (store.parserBase is ListViewParserModel)
-          ListParser(model: store.parserBase as ListViewParserModel),
+          ListParserFragment(model: store.parserBase as ListViewParserModel),
       ],
     );
   }

@@ -17,6 +17,7 @@ message Selector {
   string replace = 5;
   string js = 6;
   bool computed = 7;
+  string defaultValue = 8;
 }
 
 message ExtraSelector {

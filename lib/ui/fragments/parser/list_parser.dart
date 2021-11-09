@@ -3,8 +3,8 @@ import 'package:catweb/ui/components/form.dart';
 import 'package:catweb/ui/components/rules_card.dart';
 import 'package:flutter/material.dart';
 
-class ListParser extends StatelessWidget {
-  const ListParser({
+class ListParserFragment extends StatelessWidget {
+  const ListParserFragment({
     Key? key,
     required this.model,
   }) : super(key: key);

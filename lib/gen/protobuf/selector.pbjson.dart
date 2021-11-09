@@ -33,11 +33,12 @@ const Selector$json = const {
     const {'1': 'replace', '3': 5, '4': 1, '5': 9, '10': 'replace'},
     const {'1': 'js', '3': 6, '4': 1, '5': 9, '10': 'js'},
     const {'1': 'computed', '3': 7, '4': 1, '5': 8, '10': 'computed'},
+    const {'1': 'defaultValue', '3': 8, '4': 1, '5': 9, '10': 'defaultValue'},
   ],
 };
 
 /// Descriptor for `Selector`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List selectorDescriptor = $convert.base64Decode('CghTZWxlY3RvchIaCghzZWxlY3RvchgBIAEoCVIIc2VsZWN0b3ISLQoIZnVuY3Rpb24YAiABKA4yES5TZWxlY3RvckZ1bmN0aW9uUghmdW5jdGlvbhIUCgVwYXJhbRgDIAEoCVIFcGFyYW0SFAoFcmVnZXgYBCABKAlSBXJlZ2V4EhgKB3JlcGxhY2UYBSABKAlSB3JlcGxhY2USDgoCanMYBiABKAlSAmpzEhoKCGNvbXB1dGVkGAcgASgIUghjb21wdXRlZA==');
+final $typed_data.Uint8List selectorDescriptor = $convert.base64Decode('CghTZWxlY3RvchIaCghzZWxlY3RvchgBIAEoCVIIc2VsZWN0b3ISLQoIZnVuY3Rpb24YAiABKA4yES5TZWxlY3RvckZ1bmN0aW9uUghmdW5jdGlvbhIUCgVwYXJhbRgDIAEoCVIFcGFyYW0SFAoFcmVnZXgYBCABKAlSBXJlZ2V4EhgKB3JlcGxhY2UYBSABKAlSB3JlcGxhY2USDgoCanMYBiABKAlSAmpzEhoKCGNvbXB1dGVkGAcgASgIUghjb21wdXRlZBIiCgxkZWZhdWx0VmFsdWUYCCABKAlSDGRlZmF1bHRWYWx1ZQ==');
 @$core.Deprecated('Use extraSelectorDescriptor instead')
 const ExtraSelector$json = const {
   '1': 'ExtraSelector',

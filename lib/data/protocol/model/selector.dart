@@ -12,7 +12,8 @@ class SelectorModel implements PbAble {
         regex = sobs(pb?.regex),
         replace = sobs(pb?.replace),
         js = sobs(pb?.js),
-        computed = pb?.computed.obs ?? computed.obs;
+        computed = pb?.computed.obs ?? computed.obs,
+        defaultValue = sobs(pb?.defaultValue);
 
   final RxString selector;
 
@@ -22,6 +23,7 @@ class SelectorModel implements PbAble {
   final RxString replace;
   final RxString js;
   final RxBool computed;
+  final RxString defaultValue;
 
   @override
   Selector toPb() => Selector(
@@ -32,6 +34,7 @@ class SelectorModel implements PbAble {
         replace: replace.value,
         js: js.value,
         computed: computed.value,
+        defaultValue: defaultValue.value,
       );
 }
 
