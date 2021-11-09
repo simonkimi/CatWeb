@@ -92,9 +92,7 @@ class RulesForm extends StatelessWidget {
                   buildText(context, '函数'),
                   Obx(() {
                     // 参数
-                    if (selectorModel.function.value ==
-                            SelectorFunction.STYLE ||
-                        selectorModel.function.value == SelectorFunction.ATTR) {
+                    if (selectorModel.function.value == SelectorFunction.ATTR) {
                       return buildText(context, '参数');
                     }
                     return const SizedBox();
