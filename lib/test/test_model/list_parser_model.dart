@@ -18,11 +18,12 @@ final listViewParserModel = ListViewParserModel(ListViewParser(
             '.gl4c :nth-child(2), .gl5m :nth-child(2), .gl3e :nth-child(2)',
         function: SelectorFunction.TEXT,
         regex: r'\d+'),
-    badgeSelector: '.gl3c .gt',
     badgeText: Selector(
+      selector: '.gl3c .gt',
       function: SelectorFunction.TEXT,
     ),
     badgeColor: Selector(
+      selector: '.gl3c .gt',
       function: SelectorFunction.STYLE,
       regex: r'#[0-9a-fA-F]{6}',
     ),

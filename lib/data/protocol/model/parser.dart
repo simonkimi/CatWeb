@@ -33,14 +33,11 @@ class GalleryParserModel extends ParserBaseModel  {
         language = SelectorModel(pb?.language),
         coverImg = ImageSelectorModel(pb?.coverImg),
         description = SelectorModel(pb?.description),
-        thumbnailSelector = sobs(pb?.thumbnailSelector),
         thumbnail = ImageSelectorModel(pb?.thumbnail),
         thumbnailUrl = SelectorModel(pb?.thumbnailUrl),
-        commentSelector = sobs(pb?.commentSelector),
         comments = CommentSelectorModel(pb?.comments),
         tag = SelectorModel(pb?.tag),
         tagColor = SelectorModel(pb?.tagColor),
-        badgeSelector = sobs(pb?.badgeSelector),
         badgeText = SelectorModel(pb?.badgeText),
         badgeColor = SelectorModel(pb?.badgeColor),
         badgeType = SelectorModel(pb?.badgeType),
@@ -60,17 +57,14 @@ class GalleryParserModel extends ParserBaseModel  {
   final ImageSelectorModel coverImg;
   final SelectorModel description;
 
-  final RxString thumbnailSelector;
   final ImageSelectorModel thumbnail;
   final SelectorModel thumbnailUrl;
 
-  final RxString commentSelector;
   final CommentSelectorModel comments;
 
   final SelectorModel tag;
   final SelectorModel tagColor;
 
-  final RxString badgeSelector;
   final SelectorModel badgeText;
   final SelectorModel badgeColor;
   final SelectorModel badgeType;
@@ -90,14 +84,11 @@ class GalleryParserModel extends ParserBaseModel  {
         language: language.toPb(),
         coverImg: coverImg.toPb(),
         description: description.toPb(),
-        thumbnailSelector: thumbnailSelector.value,
         thumbnail: thumbnail.toPb(),
         thumbnailUrl: thumbnailUrl.toPb(),
-        commentSelector: commentSelector.value,
         comments: comments.toPb(),
         tag: tag.toPb(),
         tagColor: tagColor.toPb(),
-        badgeSelector: badgeSelector.value,
         badgeText: badgeText.toPb(),
         badgeColor: badgeColor.toPb(),
         badgeType: badgeType.toPb(),
@@ -118,7 +109,6 @@ class ListViewParserModel extends ParserBaseModel {
         previewImg = ImageSelectorModel(pb?.previewImg),
         tag = SelectorModel(pb?.imgCount),
         tagColor = SelectorModel(pb?.imgCount),
-        badgeSelector = sobs(pb?.badgeSelector),
         badgeText = SelectorModel(pb?.badgeText),
         badgeColor = SelectorModel(pb?.badgeColor),
         nextPage = SelectorModel(pb?.nextPage),
@@ -144,7 +134,6 @@ class ListViewParserModel extends ParserBaseModel {
   final SelectorModel tagColor;
 
   // 小徽章
-  final RxString badgeSelector;
   final SelectorModel badgeText;
   final SelectorModel badgeColor;
 
@@ -163,7 +152,6 @@ class ListViewParserModel extends ParserBaseModel {
         previewImg: previewImg.toPb(),
         tag: tag.toPb(),
         tagColor: tagColor.toPb(),
-        badgeSelector: badgeSelector.value,
         badgeText: badgeText.toPb(),
         badgeColor: badgeColor.toPb(),
         extraSelector: extraSelectorModel.map((e) => e.toPb()),

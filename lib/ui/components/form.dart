@@ -221,6 +221,10 @@ class RulesForm extends StatelessWidget {
         showSelectDialog<SelectorFunction>(
           context: context,
           items: [
+            const SelectTileItem(
+              title: 'auto',
+              value: SelectorFunction.NONE,
+            ),
             SelectTileItem(
               title: SelectorFunction.HTML.string,
               value: SelectorFunction.HTML,

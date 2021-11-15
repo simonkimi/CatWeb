@@ -15,7 +15,6 @@ message ListViewParser {
   Selector tag = 9;
   Selector tagColor = 10;
 
-  string badgeSelector = 11;
   Selector badgeText = 12;
   Selector badgeColor = 13;
 
@@ -41,12 +40,10 @@ message GalleryParser {
   Selector description = 11;  // 描述
 
   // 缩略图
-  string thumbnailSelector = 12;
   ImageSelector thumbnail = 13;
   Selector thumbnailUrl = 14;
 
   // 评论
-  string commentSelector = 15;
   CommentSelector comments = 16;
 
   // 分类
@@ -54,7 +51,6 @@ message GalleryParser {
   Selector tagColor = 18;
 
   // 徽章
-  string badgeSelector = 19;
   Selector badgeText = 20;
   Selector badgeColor = 21;
   Selector badgeType = 22;

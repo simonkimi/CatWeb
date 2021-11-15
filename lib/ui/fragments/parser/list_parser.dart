@@ -91,7 +91,6 @@ class ListParserFragment extends StatelessWidget {
         ], padding: const EdgeInsets.symmetric(horizontal: 5)),
         const SizedBox(height: 5),
         buildCardList([
-          buildInputForm(labelText: '徽章选择器', value: model.badgeSelector),
           RulesForm(
             title: '徽章内容',
             field: '#badgeText',

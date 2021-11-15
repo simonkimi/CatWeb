@@ -96,7 +96,6 @@ class GalleryParserFragment extends StatelessWidget {
         ]),
         const SizedBox(height: 5),
         buildCardList([
-          buildInputForm(labelText: '缩略图选择器', value: model.thumbnailSelector),
           RulesForm(
             title: '缩略图地址',
             field: '#thumbnailUrl',
@@ -143,7 +142,6 @@ class GalleryParserFragment extends StatelessWidget {
         ]),
         const SizedBox(height: 5),
         buildCardList([
-          buildInputForm(labelText: '评论选择器', value: model.commentSelector),
           RulesForm(
             title: '评论内容',
             field: '#comment',
@@ -167,7 +165,6 @@ class GalleryParserFragment extends StatelessWidget {
         ]),
         const SizedBox(height: 5),
         buildCardList([
-          buildInputForm(labelText: '徽章选择器', value: model.badgeSelector),
           RulesForm(
             title: '徽章内容',
             field: '#badgeText',

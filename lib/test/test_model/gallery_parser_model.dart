@@ -45,62 +45,61 @@ final galleryParserModel = GalleryParserModel(GalleryParser(
     param: 'class',
     js: r'function hook(t){for(var c=["ct2","ct3","ct4","ct5","cta","ct9","ct6","ct7","ct8","ct1"],f=["f66158","f09e19","d2d303","0fa911","2fd92c","0bbfd3","4f5ce6","9030df","f38af2","8a8a8a"],a=0;a<c.length;a++)if(-1!==t.indexOf(c[a]))return f[a];return null}',
   ),
-  badgeSelector: '.gt,.gtl',
   badgeText: Selector(
+    selector: '.gt,.gtl',
     function: SelectorFunction.TEXT,
   ),
   badgeType: Selector(
+      selector: '.gt,.gtl',
     function: SelectorFunction.ATTR,
     param: 'id',
     regex: 'td_(.+?):'
   ),
-  commentSelector: '#cdiv',
   comments: CommentSelector(
     content: Selector(
-      selector: '.c6',
+      selector: '#cdiv .c6',
       function: SelectorFunction.TEXT,
     ),
     username: Selector(
-      selector: '.c3 a',
+      selector: '#cdiv .c3 a',
       function: SelectorFunction.TEXT,
     ),
     postTime: Selector(
-      selector: '.c3',
+      selector: '#cdiv .c3',
       function: SelectorFunction.TEXT,
       regex: r'on(.+)\sby',
     ),
     vote: Selector(
-      selector: '.c5',
+      selector: '#cdiv .c5',
       function: SelectorFunction.TEXT,
       regex: r'-?\d+',
     ),
   ),
-  thumbnailSelector: '.gdtm, .gdtl',
   thumbnailUrl: Selector(
-    selector: '.a',
+    selector: '.gdtm a, .gdtl a',
     function: SelectorFunction.ATTR,
     param: 'href',
   ),
   thumbnail: ImageSelector(
     imgWidth: Selector(
-      selector: 'img',
+      selector: '.gdtm img, .gdtl img',
       function: SelectorFunction.STYLE,
       regex: r'width:(\d+)px',
       defaultValue: '200'
     ),
     imgHeight: Selector(
-      selector: 'img',
+      selector: '.gdtm img, .gdtl img',
       function: SelectorFunction.STYLE,
       regex: r'height:(\d+)px',
       defaultValue: '282',
     ),
     imgX: Selector(
-      selector: 'div',
+      selector: '.gdtm div',
       function: SelectorFunction.STYLE,
       regex: r'-(\d)px 0 no-repeat'
     ),
     imgUrl: Selector(
-      selector: 'img',
+      selector: '.gdtm img, .gdtl img',
       function: SelectorFunction.ATTR,
       param: 'src',
     ),
