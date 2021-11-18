@@ -35,7 +35,8 @@ class CheckBoxTile extends StatelessWidget {
             const SizedBox(width: 5),
             Text(
               text,
-              style: TextStyle(color: textColor ?? Theme.of(context).primaryColor),
+              style:
+                  TextStyle(color: textColor ?? Theme.of(context).primaryColor),
             ),
           ],
         ),

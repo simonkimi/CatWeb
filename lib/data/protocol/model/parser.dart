@@ -20,7 +20,7 @@ abstract class ParserBaseModel implements PbAble {
   final RxList<ExtraSelectorModel> extraSelectorModel;
 }
 
-class GalleryParserModel extends ParserBaseModel  {
+class GalleryParserModel extends ParserBaseModel {
   GalleryParserModel([GalleryParser? pb])
       : name = sobs(pb?.name),
         title = SelectorModel(pb?.title),

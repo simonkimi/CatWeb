@@ -114,9 +114,7 @@ class RulesForm extends StatelessWidget {
                     Obx(() {
                       // 参数
                       if (selectorModel.function.value ==
-                              SelectorFunction.style ||
-                          selectorModel.function.value ==
-                              SelectorFunction.attr) {
+                          SelectorFunction.attr) {
                         return buildForm(selectorModel.param);
                       }
                       return const SizedBox();
@@ -223,19 +221,15 @@ class RulesForm extends StatelessWidget {
           items: [
             const SelectTileItem(
               title: 'auto',
-              value: SelectorFunction.disable,
+              value: SelectorFunction.auto,
             ),
             SelectTileItem(
-              title: SelectorFunction.html.string,
-              value: SelectorFunction.html,
+              title: SelectorFunction.raw.string,
+              value: SelectorFunction.raw,
             ),
             SelectTileItem(
               title: SelectorFunction.text.string,
               value: SelectorFunction.text,
-            ),
-            SelectTileItem(
-              title: SelectorFunction.style.string,
-              value: SelectorFunction.style,
             ),
             SelectTileItem(
               title: SelectorFunction.attr.string,

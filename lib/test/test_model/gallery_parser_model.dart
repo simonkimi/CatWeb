@@ -13,28 +13,21 @@ final galleryParserModel = GalleryParserModel(GalleryParser(
     function: SelectorFunction.text,
   ),
   uploadTime: Selector(
-    selector: '#gdd tr:nth-child(1) .gdt2',
-    function: SelectorFunction.text
-  ),
+      selector: '#gdd tr:nth-child(1) .gdt2', function: SelectorFunction.text),
   language: Selector(
-    selector: '#gdd tr:nth-child(4) .gdt2',
-    function: SelectorFunction.text
-  ),
+      selector: '#gdd tr:nth-child(4) .gdt2', function: SelectorFunction.text),
   imgCount: Selector(
-    selector: '#gdd tr:nth-child(6) .gdt2',
-    function: SelectorFunction.text,
-    regex: r'\d+'
-  ),
+      selector: '#gdd tr:nth-child(6) .gdt2',
+      function: SelectorFunction.text,
+      regex: r'\d+'),
   favoriteCount: Selector(
-    selector: '#gdd tr:nth-child(7) .gdt2',
-    function: SelectorFunction.text,
-    regex: r'\d+'
-  ),
+      selector: '#gdd tr:nth-child(7) .gdt2',
+      function: SelectorFunction.text,
+      regex: r'\d+'),
   star: Selector(
-    selector: '#rating_label',
-    function: SelectorFunction.text,
-    regex: r'Average: (.+)'
-  ),
+      selector: '#rating_label',
+      function: SelectorFunction.text,
+      regex: r'Average: (.+)'),
   tag: Selector(
     selector: '.cs',
     function: SelectorFunction.text,
@@ -51,10 +44,9 @@ final galleryParserModel = GalleryParserModel(GalleryParser(
   ),
   badgeType: Selector(
       selector: '.gt,.gtl',
-    function: SelectorFunction.attr,
-    param: 'id',
-    regex: 'td_(.+?):'
-  ),
+      function: SelectorFunction.attr,
+      param: 'id',
+      regex: 'td_(.+?):'),
   comments: CommentSelector(
     content: Selector(
       selector: '#cdiv .c6',
@@ -82,22 +74,23 @@ final galleryParserModel = GalleryParserModel(GalleryParser(
   ),
   thumbnail: ImageSelector(
     imgWidth: Selector(
-      selector: '.gdtm img, .gdtl img',
-      function: SelectorFunction.style,
-      regex: r'width:(\d+)px',
-      defaultValue: '200'
-    ),
+        selector: '.gdtm img, .gdtl img',
+        function: SelectorFunction.attr,
+        param: 'style',
+        regex: r'width:(\d+)px',
+        defaultValue: '200'),
     imgHeight: Selector(
       selector: '.gdtm img, .gdtl img',
-      function: SelectorFunction.style,
+      function: SelectorFunction.attr,
+      param: 'style',
       regex: r'height:(\d+)px',
       defaultValue: '282',
     ),
     imgX: Selector(
-      selector: '.gdtm div',
-      function: SelectorFunction.style,
-      regex: r'-(\d)px 0 no-repeat'
-    ),
+        selector: '.gdtm div',
+        function: SelectorFunction.attr,
+        param: 'style',
+        regex: r'-(\d)px 0 no-repeat'),
     imgUrl: Selector(
       selector: '.gdtm img, .gdtl img',
       function: SelectorFunction.attr,
@@ -106,26 +99,25 @@ final galleryParserModel = GalleryParserModel(GalleryParser(
   ),
   coverImg: ImageSelector(
     imgUrl: Selector(
-      selector: '#gd1 div',
-      function: SelectorFunction.style,
-      regex: r'url(.+)\)'
-    ),
+        selector: '#gd1 div',
+        function: SelectorFunction.attr,
+        param: 'style',
+        regex: r'url(.+)\)'),
     imgWidth: Selector(
-      selector: '#gd1 div',
-      function: SelectorFunction.style,
-      regex: r'width:(\d+)px'
-    ),
+        selector: '#gd1 div',
+        function: SelectorFunction.attr,
+        param: 'style',
+        regex: r'width:(\d+)px'),
     imgHeight: Selector(
-      selector: '#gd1 div',
-      function: SelectorFunction.style,
-      regex: r'height:(\d+)px'
-    ),
+        selector: '#gd1 div',
+        function: SelectorFunction.attr,
+        param: 'style',
+        regex: r'height:(\d+)px'),
   ),
   prePageImg: Selector(
-    selector: '#gdo',
-    function: SelectorFunction.html,
-    regex: 'l">(.+?)<',
-    replace: r'$1|$2',
-    js: 'function hook(a){const b=a.split("|");return rows=4,-1!==b[0].indexOf("40 rows")?rows=40:-1!==b[0].indexOf("20 rows")?rows=20:-1!==b[0].indexOf("10 rows")&&(rows=10),column=10,-1!==b[1].indexOf("Large")&&(column=5),rows*column}'
-  ),
+      selector: '#gdo',
+      function: SelectorFunction.raw,
+      regex: 'l">(.+?)<',
+      replace: r'$1|$2',
+      js: 'function hook(a){const b=a.split("|");return rows=4,-1!==b[0].indexOf("40 rows")?rows=40:-1!==b[0].indexOf("20 rows")?rows=20:-1!==b[0].indexOf("10 rows")&&(rows=10),column=10,-1!==b[1].indexOf("Large")&&(column=5),rows*column}'),
 ));

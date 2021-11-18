@@ -24,7 +24,8 @@ final listViewParserModel = ListViewParserModel(ListViewParser(
     ),
     badgeColor: Selector(
       selector: '.gl3c .gt',
-      function: SelectorFunction.style,
+      function: SelectorFunction.attr,
+      param: 'style',
       regex: r'#[0-9a-fA-F]{6}',
     ),
     tag: Selector(
@@ -39,7 +40,8 @@ final listViewParserModel = ListViewParserModel(ListViewParser(
     ),
     star: Selector(
         selector: 'div .ir',
-        function: SelectorFunction.style,
+        function: SelectorFunction.attr,
+        param: 'style',
         regex: r'background-position:-?(\d+)px -?(\d+)px',
         replace: r'5-$1/16-($2-1)/40'),
     uploadTime: Selector(
@@ -54,6 +56,7 @@ final listViewParserModel = ListViewParserModel(ListViewParser(
       ),
       imgWidth: Selector(
           selector: 'div.glthumb img , div.gl3t img, .gl1e img',
-          function: SelectorFunction.style,
+          function: SelectorFunction.attr,
+          param: 'style',
           regex: r'height:(\d+)'),
     )));

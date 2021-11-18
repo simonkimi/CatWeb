@@ -9,9 +9,7 @@ import 'data/store/setting_store.dart';
 import 'navigator.dart';
 import 'themes.dart';
 
-
 final settingStore = SettingStore();
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

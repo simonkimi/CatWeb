@@ -14,17 +14,57 @@ import 'selector.pbenum.dart';
 export 'selector.pbenum.dart';
 
 class Selector extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Selector', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'selector')
-    ..e<SelectorFunction>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'function', $pb.PbFieldType.OE, defaultOrMaker: SelectorFunction.html, valueOf: SelectorFunction.valueOf, enumValues: SelectorFunction.values)
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'param')
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'regex')
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'replace')
-    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'js')
-    ..aOB(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'computed')
-    ..aOS(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'defaultValue', protoName: 'defaultValue')
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'Selector',
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'selector')
+    ..e<SelectorFunction>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'function',
+        $pb.PbFieldType.OE,
+        defaultOrMaker: SelectorFunction.auto,
+        valueOf: SelectorFunction.valueOf,
+        enumValues: SelectorFunction.values)
+    ..aOS(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'param')
+    ..aOS(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'regex')
+    ..aOS(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'replace')
+    ..aOS(
+        6,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'js')
+    ..aOB(
+        7,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'computed')
+    ..aOS(
+        8,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'defaultValue',
+        protoName: 'defaultValue')
+    ..hasRequiredFields = false;
 
   Selector._() : super();
   factory Selector({
@@ -64,31 +104,39 @@ class Selector extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory Selector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory Selector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory Selector.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory Selector.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   Selector clone() => Selector()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  Selector copyWith(void Function(Selector) updates) => super.copyWith((message) => updates(message as Selector)) as Selector; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  Selector copyWith(void Function(Selector) updates) =>
+      super.copyWith((message) => updates(message as Selector))
+          as Selector; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static Selector create() => Selector._();
   Selector createEmptyInstance() => create();
   static $pb.PbList<Selector> createRepeated() => $pb.PbList<Selector>();
   @$core.pragma('dart2js:noInline')
-  static Selector getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Selector>(create);
+  static Selector getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Selector>(create);
   static Selector? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get selector => $_getSZ(0);
   @$pb.TagNumber(1)
-  set selector($core.String v) { $_setString(0, v); }
+  set selector($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasSelector() => $_has(0);
   @$pb.TagNumber(1)
@@ -97,7 +145,10 @@ class Selector extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   SelectorFunction get function => $_getN(1);
   @$pb.TagNumber(2)
-  set function(SelectorFunction v) { setField(2, v); }
+  set function(SelectorFunction v) {
+    setField(2, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasFunction() => $_has(1);
   @$pb.TagNumber(2)
@@ -106,7 +157,10 @@ class Selector extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.String get param => $_getSZ(2);
   @$pb.TagNumber(3)
-  set param($core.String v) { $_setString(2, v); }
+  set param($core.String v) {
+    $_setString(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasParam() => $_has(2);
   @$pb.TagNumber(3)
@@ -115,7 +169,10 @@ class Selector extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $core.String get regex => $_getSZ(3);
   @$pb.TagNumber(4)
-  set regex($core.String v) { $_setString(3, v); }
+  set regex($core.String v) {
+    $_setString(3, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasRegex() => $_has(3);
   @$pb.TagNumber(4)
@@ -124,7 +181,10 @@ class Selector extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   $core.String get replace => $_getSZ(4);
   @$pb.TagNumber(5)
-  set replace($core.String v) { $_setString(4, v); }
+  set replace($core.String v) {
+    $_setString(4, v);
+  }
+
   @$pb.TagNumber(5)
   $core.bool hasReplace() => $_has(4);
   @$pb.TagNumber(5)
@@ -133,7 +193,10 @@ class Selector extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   $core.String get js => $_getSZ(5);
   @$pb.TagNumber(6)
-  set js($core.String v) { $_setString(5, v); }
+  set js($core.String v) {
+    $_setString(5, v);
+  }
+
   @$pb.TagNumber(6)
   $core.bool hasJs() => $_has(5);
   @$pb.TagNumber(6)
@@ -142,7 +205,10 @@ class Selector extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   $core.bool get computed => $_getBF(6);
   @$pb.TagNumber(7)
-  set computed($core.bool v) { $_setBool(6, v); }
+  set computed($core.bool v) {
+    $_setBool(6, v);
+  }
+
   @$pb.TagNumber(7)
   $core.bool hasComputed() => $_has(6);
   @$pb.TagNumber(7)
@@ -151,7 +217,10 @@ class Selector extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   $core.String get defaultValue => $_getSZ(7);
   @$pb.TagNumber(8)
-  set defaultValue($core.String v) { $_setString(7, v); }
+  set defaultValue($core.String v) {
+    $_setString(7, v);
+  }
+
   @$pb.TagNumber(8)
   $core.bool hasDefaultValue() => $_has(7);
   @$pb.TagNumber(8)
@@ -159,12 +228,28 @@ class Selector extends $pb.GeneratedMessage {
 }
 
 class ExtraSelector extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ExtraSelector', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
-    ..aOM<Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'selector', subBuilder: Selector.create)
-    ..aOB(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'global')
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ExtraSelector',
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'id')
+    ..aOM<Selector>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'selector',
+        subBuilder: Selector.create)
+    ..aOB(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'global')
+    ..hasRequiredFields = false;
 
   ExtraSelector._() : super();
   factory ExtraSelector({
@@ -184,31 +269,40 @@ class ExtraSelector extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory ExtraSelector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ExtraSelector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory ExtraSelector.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ExtraSelector.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   ExtraSelector clone() => ExtraSelector()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ExtraSelector copyWith(void Function(ExtraSelector) updates) => super.copyWith((message) => updates(message as ExtraSelector)) as ExtraSelector; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ExtraSelector copyWith(void Function(ExtraSelector) updates) =>
+      super.copyWith((message) => updates(message as ExtraSelector))
+          as ExtraSelector; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ExtraSelector create() => ExtraSelector._();
   ExtraSelector createEmptyInstance() => create();
-  static $pb.PbList<ExtraSelector> createRepeated() => $pb.PbList<ExtraSelector>();
+  static $pb.PbList<ExtraSelector> createRepeated() =>
+      $pb.PbList<ExtraSelector>();
   @$core.pragma('dart2js:noInline')
-  static ExtraSelector getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ExtraSelector>(create);
+  static ExtraSelector getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ExtraSelector>(create);
   static ExtraSelector? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get id => $_getSZ(0);
   @$pb.TagNumber(1)
-  set id($core.String v) { $_setString(0, v); }
+  set id($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
@@ -217,7 +311,10 @@ class ExtraSelector extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   Selector get selector => $_getN(1);
   @$pb.TagNumber(2)
-  set selector(Selector v) { setField(2, v); }
+  set selector(Selector v) {
+    setField(2, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasSelector() => $_has(1);
   @$pb.TagNumber(2)
@@ -228,7 +325,10 @@ class ExtraSelector extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.bool get global => $_getBF(2);
   @$pb.TagNumber(3)
-  set global($core.bool v) { $_setBool(2, v); }
+  set global($core.bool v) {
+    $_setBool(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasGlobal() => $_has(2);
   @$pb.TagNumber(3)
@@ -236,14 +336,47 @@ class ExtraSelector extends $pb.GeneratedMessage {
 }
 
 class ImageSelector extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ImageSelector', createEmptyInstance: create)
-    ..aOM<Selector>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgUrl', protoName: 'imgUrl', subBuilder: Selector.create)
-    ..aOM<Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgWidth', protoName: 'imgWidth', subBuilder: Selector.create)
-    ..aOM<Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgHeight', protoName: 'imgHeight', subBuilder: Selector.create)
-    ..aOM<Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgX', protoName: 'imgX', subBuilder: Selector.create)
-    ..aOM<Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgY', protoName: 'imgY', subBuilder: Selector.create)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ImageSelector',
+      createEmptyInstance: create)
+    ..aOM<Selector>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'imgUrl',
+        protoName: 'imgUrl',
+        subBuilder: Selector.create)
+    ..aOM<Selector>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'imgWidth',
+        protoName: 'imgWidth',
+        subBuilder: Selector.create)
+    ..aOM<Selector>(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'imgHeight',
+        protoName: 'imgHeight',
+        subBuilder: Selector.create)
+    ..aOM<Selector>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'imgX',
+        protoName: 'imgX',
+        subBuilder: Selector.create)
+    ..aOM<Selector>(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'imgY',
+        protoName: 'imgY',
+        subBuilder: Selector.create)
+    ..hasRequiredFields = false;
 
   ImageSelector._() : super();
   factory ImageSelector({
@@ -271,31 +404,40 @@ class ImageSelector extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory ImageSelector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ImageSelector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory ImageSelector.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ImageSelector.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   ImageSelector clone() => ImageSelector()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ImageSelector copyWith(void Function(ImageSelector) updates) => super.copyWith((message) => updates(message as ImageSelector)) as ImageSelector; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ImageSelector copyWith(void Function(ImageSelector) updates) =>
+      super.copyWith((message) => updates(message as ImageSelector))
+          as ImageSelector; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ImageSelector create() => ImageSelector._();
   ImageSelector createEmptyInstance() => create();
-  static $pb.PbList<ImageSelector> createRepeated() => $pb.PbList<ImageSelector>();
+  static $pb.PbList<ImageSelector> createRepeated() =>
+      $pb.PbList<ImageSelector>();
   @$core.pragma('dart2js:noInline')
-  static ImageSelector getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ImageSelector>(create);
+  static ImageSelector getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ImageSelector>(create);
   static ImageSelector? _defaultInstance;
 
   @$pb.TagNumber(1)
   Selector get imgUrl => $_getN(0);
   @$pb.TagNumber(1)
-  set imgUrl(Selector v) { setField(1, v); }
+  set imgUrl(Selector v) {
+    setField(1, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasImgUrl() => $_has(0);
   @$pb.TagNumber(1)
@@ -306,7 +448,10 @@ class ImageSelector extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   Selector get imgWidth => $_getN(1);
   @$pb.TagNumber(2)
-  set imgWidth(Selector v) { setField(2, v); }
+  set imgWidth(Selector v) {
+    setField(2, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasImgWidth() => $_has(1);
   @$pb.TagNumber(2)
@@ -317,7 +462,10 @@ class ImageSelector extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   Selector get imgHeight => $_getN(2);
   @$pb.TagNumber(3)
-  set imgHeight(Selector v) { setField(3, v); }
+  set imgHeight(Selector v) {
+    setField(3, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasImgHeight() => $_has(2);
   @$pb.TagNumber(3)
@@ -328,7 +476,10 @@ class ImageSelector extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   Selector get imgX => $_getN(3);
   @$pb.TagNumber(4)
-  set imgX(Selector v) { setField(4, v); }
+  set imgX(Selector v) {
+    setField(4, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasImgX() => $_has(3);
   @$pb.TagNumber(4)
@@ -339,7 +490,10 @@ class ImageSelector extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   Selector get imgY => $_getN(4);
   @$pb.TagNumber(5)
-  set imgY(Selector v) { setField(5, v); }
+  set imgY(Selector v) {
+    setField(5, v);
+  }
+
   @$pb.TagNumber(5)
   $core.bool hasImgY() => $_has(4);
   @$pb.TagNumber(5)
@@ -349,13 +503,37 @@ class ImageSelector extends $pb.GeneratedMessage {
 }
 
 class CommentSelector extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CommentSelector', createEmptyInstance: create)
-    ..aOM<Selector>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'username', subBuilder: Selector.create)
-    ..aOM<Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'postTime', protoName: 'postTime', subBuilder: Selector.create)
-    ..aOM<Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'vote', subBuilder: Selector.create)
-    ..aOM<Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content', subBuilder: Selector.create)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'CommentSelector',
+      createEmptyInstance: create)
+    ..aOM<Selector>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'username',
+        subBuilder: Selector.create)
+    ..aOM<Selector>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'postTime',
+        protoName: 'postTime',
+        subBuilder: Selector.create)
+    ..aOM<Selector>(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'vote',
+        subBuilder: Selector.create)
+    ..aOM<Selector>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'content',
+        subBuilder: Selector.create)
+    ..hasRequiredFields = false;
 
   CommentSelector._() : super();
   factory CommentSelector({
@@ -379,31 +557,40 @@ class CommentSelector extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory CommentSelector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory CommentSelector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory CommentSelector.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory CommentSelector.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   CommentSelector clone() => CommentSelector()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  CommentSelector copyWith(void Function(CommentSelector) updates) => super.copyWith((message) => updates(message as CommentSelector)) as CommentSelector; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  CommentSelector copyWith(void Function(CommentSelector) updates) =>
+      super.copyWith((message) => updates(message as CommentSelector))
+          as CommentSelector; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static CommentSelector create() => CommentSelector._();
   CommentSelector createEmptyInstance() => create();
-  static $pb.PbList<CommentSelector> createRepeated() => $pb.PbList<CommentSelector>();
+  static $pb.PbList<CommentSelector> createRepeated() =>
+      $pb.PbList<CommentSelector>();
   @$core.pragma('dart2js:noInline')
-  static CommentSelector getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CommentSelector>(create);
+  static CommentSelector getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<CommentSelector>(create);
   static CommentSelector? _defaultInstance;
 
   @$pb.TagNumber(1)
   Selector get username => $_getN(0);
   @$pb.TagNumber(1)
-  set username(Selector v) { setField(1, v); }
+  set username(Selector v) {
+    setField(1, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasUsername() => $_has(0);
   @$pb.TagNumber(1)
@@ -414,7 +601,10 @@ class CommentSelector extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   Selector get postTime => $_getN(1);
   @$pb.TagNumber(2)
-  set postTime(Selector v) { setField(2, v); }
+  set postTime(Selector v) {
+    setField(2, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasPostTime() => $_has(1);
   @$pb.TagNumber(2)
@@ -425,7 +615,10 @@ class CommentSelector extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   Selector get vote => $_getN(2);
   @$pb.TagNumber(3)
-  set vote(Selector v) { setField(3, v); }
+  set vote(Selector v) {
+    setField(3, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasVote() => $_has(2);
   @$pb.TagNumber(3)
@@ -436,7 +629,10 @@ class CommentSelector extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   Selector get content => $_getN(3);
   @$pb.TagNumber(4)
-  set content(Selector v) { setField(4, v); }
+  set content(Selector v) {
+    setField(4, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasContent() => $_has(3);
   @$pb.TagNumber(4)
@@ -444,4 +640,3 @@ class CommentSelector extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   Selector ensureContent() => $_ensure(3);
 }
-

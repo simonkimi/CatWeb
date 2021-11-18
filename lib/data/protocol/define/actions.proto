@@ -8,8 +8,8 @@ enum NetWorkActionType {
 }
 
 enum InputActionType {
-  num = 0;
-  string = 1;
+  string = 0;
+  num = 1;
 }
 
 // 动作: 输入

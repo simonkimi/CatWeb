@@ -86,6 +86,9 @@ extension AnimationControllerHelper on AnimationController {
   bool get atEnd => value == 1.0;
 }
 
+T df<T>(T? value, T defaultValue, bool Function()? has) =>
+    has != null && has() ? value ?? defaultValue : defaultValue;
+
 RxString sobs(String? pb) => pb?.obs ?? ''.obs;
 
 RxBool bobs(bool? pb) => pb?.obs ?? false.obs;

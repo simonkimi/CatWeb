@@ -1,14 +1,13 @@
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:get/get.dart';
-import 'package:universal_html/html.dart';
 
 import 'interface.dart';
 
 class SelectorModel implements PbAble {
   SelectorModel([Selector? pb, bool computed = false])
       : selector = sobs(pb?.selector),
-        function = pb?.function.obs ?? SelectorFunction.disable.obs,
+        function = df(pb?.function, SelectorFunction.auto, pb?.hasFunction).obs,
         param = sobs(pb?.param),
         regex = sobs(pb?.regex),
         replace = sobs(pb?.replace),
@@ -37,68 +36,6 @@ class SelectorModel implements PbAble {
         computed: computed.value,
         defaultValue: defaultValue.value,
       );
-
-  String? select(Element parent) {
-    final dfv = defaultValue.value.isNotEmpty ? defaultValue.value : null;
-
-    if (function.value == SelectorFunction.disable) {
-      return dfv; // 禁用状态
-    }
-    final List<Element> elements =
-        selector.isEmpty ? [parent] : parent.querySelectorAll(selector.value);
-    for (final element in elements) {
-      final param = callFunction(element);
-      if (param != null) {
-        final reg = callReg(param);
-        // TODO js处理器
-        return reg;
-      }
-    }
-  }
-
-
-
-  String? callReg(String param) {
-    if (regex.value.isNotEmpty) {
-      final RegExp reg = RegExp(regex.value);
-      final match = reg.allMatches(param).toList();
-      if (match.isEmpty) return null;
-      if (replace.value.isEmpty) {
-        return match[0][1]!;
-      } else {
-        var rep = replace.value;
-        for (var i = match.length; i >= 1; i--) {
-          rep = rep.replaceAll('\$$i', match[i - 1][1]!);
-        }
-        return rep;
-      }
-    } else {
-      return param;
-    }
-  }
-
-  String? callFunction(Element element) {
-    switch (function.value) {
-      case SelectorFunction.text:
-        return element.text;
-      case SelectorFunction.html:
-        return element.innerHtml;
-      case SelectorFunction.attr:
-        if (param.value.contains(',')) {
-          for (final p in param.value.split(',')) {
-            final rv = element.attributes[p.trim()];
-            if (rv != null) return rv;
-          }
-        } else {
-          return element.attributes[param.value];
-        }
-        return null;
-      case SelectorFunction.style:
-        return element.style.toString();
-      default:
-        return null;
-    }
-  }
 }
 
 class ExtraSelectorModel implements PbAble {
@@ -169,13 +106,11 @@ extension SelectorFunctionE on SelectorFunction {
     switch (this) {
       case SelectorFunction.attr:
         return 'attr';
-      case SelectorFunction.html:
-        return 'html';
-      case SelectorFunction.style:
-        return 'style';
+      case SelectorFunction.raw:
+        return 'raw';
       case SelectorFunction.text:
         return 'text';
-      case SelectorFunction.disable:
+      case SelectorFunction.auto:
         return '';
     }
     return '';

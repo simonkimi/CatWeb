@@ -10,17 +10,25 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class SitePageType extends $pb.ProtobufEnum {
-  static const SitePageType List_ = SitePageType._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'List');
-  static const SitePageType Gallery = SitePageType._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'Gallery');
+  static const SitePageType list = SitePageType._(
+      0,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'list');
+  static const SitePageType gallery = SitePageType._(
+      1,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'gallery');
 
-  static const $core.List<SitePageType> values = <SitePageType> [
-    List_,
-    Gallery,
+  static const $core.List<SitePageType> values = <SitePageType>[
+    list,
+    gallery,
   ];
 
-  static final $core.Map<$core.int, SitePageType> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, SitePageType> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
   static SitePageType? valueOf($core.int value) => _byValue[value];
 
   const SitePageType._($core.int v, $core.String n) : super(v, n);
 }
-

@@ -1,11 +1,10 @@
 syntax = 'proto3';
 
 enum SelectorFunction {
-  html = 0;
+  auto = 0;
   text = 1;
   attr = 2;
-  style = 3;
-  disable = 4;
+  raw = 3;
 }
 
 // 基础选择器
