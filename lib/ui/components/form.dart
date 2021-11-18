@@ -92,7 +92,7 @@ class RulesForm extends StatelessWidget {
                   buildText(context, '函数'),
                   Obx(() {
                     // 参数
-                    if (selectorModel.function.value == SelectorFunction.ATTR) {
+                    if (selectorModel.function.value == SelectorFunction.attr) {
                       return buildText(context, '参数');
                     }
                     return const SizedBox();
@@ -114,9 +114,9 @@ class RulesForm extends StatelessWidget {
                     Obx(() {
                       // 参数
                       if (selectorModel.function.value ==
-                              SelectorFunction.STYLE ||
+                              SelectorFunction.style ||
                           selectorModel.function.value ==
-                              SelectorFunction.ATTR) {
+                              SelectorFunction.attr) {
                         return buildForm(selectorModel.param);
                       }
                       return const SizedBox();
@@ -223,23 +223,23 @@ class RulesForm extends StatelessWidget {
           items: [
             const SelectTileItem(
               title: 'auto',
-              value: SelectorFunction.NONE,
+              value: SelectorFunction.disable,
             ),
             SelectTileItem(
-              title: SelectorFunction.HTML.string,
-              value: SelectorFunction.HTML,
+              title: SelectorFunction.html.string,
+              value: SelectorFunction.html,
             ),
             SelectTileItem(
-              title: SelectorFunction.TEXT.string,
-              value: SelectorFunction.TEXT,
+              title: SelectorFunction.text.string,
+              value: SelectorFunction.text,
             ),
             SelectTileItem(
-              title: SelectorFunction.STYLE.string,
-              value: SelectorFunction.STYLE,
+              title: SelectorFunction.style.string,
+              value: SelectorFunction.style,
             ),
             SelectTileItem(
-              title: SelectorFunction.ATTR.string,
-              value: SelectorFunction.ATTR,
+              title: SelectorFunction.attr.string,
+              value: SelectorFunction.attr,
             ),
           ],
           selectedValue: selectorModel.function.value,

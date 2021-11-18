@@ -1,8 +1,8 @@
 syntax = 'proto3';
 
 enum SitePageType {
-  List = 0;
-  Gallery = 1;
+  list = 0;
+  gallery = 1;
 }
 
 

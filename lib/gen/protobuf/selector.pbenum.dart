@@ -10,18 +10,18 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class SelectorFunction extends $pb.ProtobufEnum {
-  static const SelectorFunction HTML = SelectorFunction._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'HTML');
-  static const SelectorFunction TEXT = SelectorFunction._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'TEXT');
-  static const SelectorFunction ATTR = SelectorFunction._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'ATTR');
-  static const SelectorFunction STYLE = SelectorFunction._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'STYLE');
-  static const SelectorFunction NONE = SelectorFunction._(4, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'NONE');
+  static const SelectorFunction html = SelectorFunction._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'html');
+  static const SelectorFunction text = SelectorFunction._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'text');
+  static const SelectorFunction attr = SelectorFunction._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'attr');
+  static const SelectorFunction style = SelectorFunction._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'style');
+  static const SelectorFunction disable = SelectorFunction._(4, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'disable');
 
   static const $core.List<SelectorFunction> values = <SelectorFunction> [
-    HTML,
-    TEXT,
-    ATTR,
-    STYLE,
-    NONE,
+    html,
+    text,
+    attr,
+    style,
+    disable,
   ];
 
   static final $core.Map<$core.int, SelectorFunction> _byValue = $pb.ProtobufEnum.initByValue(values);

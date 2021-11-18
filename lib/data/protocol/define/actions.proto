@@ -1,15 +1,15 @@
 syntax = 'proto3';
 
 enum NetWorkActionType {
-  GET = 0;
-  POST = 1;
-  PUT = 2;
-  DELETE = 3;
+  get = 0;
+  post = 1;
+  put = 2;
+  delete = 3;
 }
 
 enum InputActionType {
-  NUM = 0;
-  STRING = 1;
+  num = 0;
+  string = 1;
 }
 
 // 动作: 输入

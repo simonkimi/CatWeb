@@ -8,7 +8,7 @@ import 'interface.dart';
 class SelectorModel implements PbAble {
   SelectorModel([Selector? pb, bool computed = false])
       : selector = sobs(pb?.selector),
-        function = pb?.function.obs ?? SelectorFunction.NONE.obs,
+        function = pb?.function.obs ?? SelectorFunction.disable.obs,
         param = sobs(pb?.param),
         regex = sobs(pb?.regex),
         replace = sobs(pb?.replace),
@@ -41,7 +41,7 @@ class SelectorModel implements PbAble {
   String? select(Element parent) {
     final dfv = defaultValue.value.isNotEmpty ? defaultValue.value : null;
 
-    if (function.value == SelectorFunction.NONE) {
+    if (function.value == SelectorFunction.disable) {
       return dfv; // 禁用状态
     }
     final List<Element> elements =
@@ -55,6 +55,8 @@ class SelectorModel implements PbAble {
       }
     }
   }
+
+
 
   String? callReg(String param) {
     if (regex.value.isNotEmpty) {
@@ -77,11 +79,11 @@ class SelectorModel implements PbAble {
 
   String? callFunction(Element element) {
     switch (function.value) {
-      case SelectorFunction.TEXT:
+      case SelectorFunction.text:
         return element.text;
-      case SelectorFunction.HTML:
+      case SelectorFunction.html:
         return element.innerHtml;
-      case SelectorFunction.ATTR:
+      case SelectorFunction.attr:
         if (param.value.contains(',')) {
           for (final p in param.value.split(',')) {
             final rv = element.attributes[p.trim()];
@@ -91,7 +93,7 @@ class SelectorModel implements PbAble {
           return element.attributes[param.value];
         }
         return null;
-      case SelectorFunction.STYLE:
+      case SelectorFunction.style:
         return element.style.toString();
       default:
         return null;
@@ -165,15 +167,15 @@ class CommentSelectorModel implements PbAble {
 extension SelectorFunctionE on SelectorFunction {
   String get string {
     switch (this) {
-      case SelectorFunction.ATTR:
+      case SelectorFunction.attr:
         return 'attr';
-      case SelectorFunction.HTML:
+      case SelectorFunction.html:
         return 'html';
-      case SelectorFunction.STYLE:
+      case SelectorFunction.style:
         return 'style';
-      case SelectorFunction.TEXT:
+      case SelectorFunction.text:
         return 'text';
-      case SelectorFunction.NONE:
+      case SelectorFunction.disable:
         return '';
     }
     return '';

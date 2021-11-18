@@ -8,7 +8,7 @@ class NetWorkActionModel implements PbAble {
       : name = sobs(pb?.name),
         url = sobs(pb?.url),
         data = sobs(pb?.data),
-        type = pb?.type.obs ?? NetWorkActionType.GET.obs;
+        type = pb?.type.obs ?? NetWorkActionType.get.obs;
 
   final RxString name;
   final RxString url;
@@ -28,7 +28,7 @@ class InputActionModel implements PbAble {
       : name = sobs(pb?.name),
         id = sobs(pb?.id),
         global = bobs(pb?.global),
-        type = pb?.type.obs ?? InputActionType.STRING.obs;
+        type = pb?.type.obs ?? InputActionType.string.obs;
 
   final RxString name;
   final RxString id;

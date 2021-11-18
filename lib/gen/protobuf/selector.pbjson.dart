@@ -12,16 +12,16 @@ import 'dart:typed_data' as $typed_data;
 const SelectorFunction$json = const {
   '1': 'SelectorFunction',
   '2': const [
-    const {'1': 'HTML', '2': 0},
-    const {'1': 'TEXT', '2': 1},
-    const {'1': 'ATTR', '2': 2},
-    const {'1': 'STYLE', '2': 3},
-    const {'1': 'NONE', '2': 4},
+    const {'1': 'html', '2': 0},
+    const {'1': 'text', '2': 1},
+    const {'1': 'attr', '2': 2},
+    const {'1': 'style', '2': 3},
+    const {'1': 'disable', '2': 4},
   ],
 };
 
 /// Descriptor for `SelectorFunction`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List selectorFunctionDescriptor = $convert.base64Decode('ChBTZWxlY3RvckZ1bmN0aW9uEggKBEhUTUwQABIICgRURVhUEAESCAoEQVRUUhACEgkKBVNUWUxFEAMSCAoETk9ORRAE');
+final $typed_data.Uint8List selectorFunctionDescriptor = $convert.base64Decode('ChBTZWxlY3RvckZ1bmN0aW9uEggKBGh0bWwQABIICgR0ZXh0EAESCAoEYXR0chACEgkKBXN0eWxlEAMSCwoHZGlzYWJsZRAE');
 @$core.Deprecated('Use selectorDescriptor instead')
 const Selector$json = const {
   '1': 'Selector',
