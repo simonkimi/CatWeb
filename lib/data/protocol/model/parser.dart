@@ -11,7 +11,7 @@ enum ParserType {
   gallery,
 }
 
-abstract class ParserBaseModel implements PbAble {
+abstract class ParserBaseModel implements PbAble, CombineSelector {
   ParserBaseModel(Iterable<ExtraSelector>? pb)
       : extraSelectorModel =
             lobs(pb, (ExtraSelector e) => ExtraSelectorModel(e));
@@ -99,7 +99,23 @@ class GalleryParserModel extends ParserBaseModel {
   @override
   Map<String, SelectorModel> get combine => {
     'title': title,
-
+    'subtitle': subTitle,
+    'uploadTime': uploadTime,
+    'star': star,
+    'imgCount': imgCount,
+    'prePageImg': prePageImg,
+    'favoriteCount': favoriteCount,
+    'language': language,
+    ...coverImg.combine,
+    'description': description,
+    ...thumbnail.combine,
+    'thumbnailUrl': thumbnailUrl,
+    ...comments.combine,
+    'tag': tag,
+    'tagColor': tagColor,
+    'badgeText': badgeText,
+    'badgeType': badgeType,
+    'nextPage': nextPage,
   };
 }
 
@@ -163,4 +179,18 @@ class ListViewParserModel extends ParserBaseModel {
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
         nextPage: nextPage.toPb(),
       );
+
+  @override
+  Map<String, SelectorModel> get combine => {
+    'title': title,
+    'subtitle': subtitle,
+    'uploadTime': uploadTime,
+    'star': star,
+    'imgCount': imgCount,
+    ...previewImg.combine,
+    'tag': tag,
+    'tagColor': tagColor,
+    'badgeText': badgeText,
+    'nextPage': nextPage
+  };
 }
