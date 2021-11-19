@@ -1,4 +1,5 @@
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,10 @@ class SiteManager extends StatelessWidget {
                   leading: const Icon(CupertinoIcons.add_circled_solid),
                   title: const Text('编写一个规则'),
                   trailing: const Icon(CupertinoIcons.forward),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(CupertinoPageRoute(
+                        builder: (context) => RulesEditPage()));
+                  },
                 ),
                 const SizedBox(height: 5),
                 CupertinoListTile(

@@ -15,7 +15,7 @@ class RulesBasic extends StatelessWidget {
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
       return ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         children: [
           buildInputForm(labelText: '名称', value: store.rulesModel.name),
           buildInputForm(labelText: '基础Url', value: store.rulesModel.baseUrl),

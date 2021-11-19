@@ -1,8 +1,8 @@
-import 'package:catweb/ui/components/app_bar.dart';
-import 'package:catweb/ui/components/dialog.dart';
+import 'package:catweb/ui/components/grey_tab_indicator.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_basic/rules_basic.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_manager.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../i18n.dart';
@@ -14,41 +14,70 @@ class RulesEditPage extends StatelessWidget {
 
   final store = RulesStore();
 
+  CupertinoNavigationBar buildAppbar(BuildContext context) {
+    return CupertinoNavigationBar(
+      leading: CupertinoButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        child: const Icon(CupertinoIcons.back),
+        padding: EdgeInsets.zero,
+        minSize: 0,
+      ),
+      middle: const Text('规则编辑'),
+      border: const Border(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        final confirm = await showConfirmDialog(
-            context: context, text: '您确定要退出吗? 所做的修改将不会保存.');
-        return confirm == true;
-      },
-      child: DefaultTabController(
-        length: 5,
-        child: Scaffold(
-          appBar: buildAppBar(
-            context,
-            title: '规则管理',
-            bottom: TabBar(
-              tabs: [
-                Tab(text: I.of(context).basic_setting),
-                Tab(text: I.of(context).page_manager),
-                Tab(text: I.of(context).parser),
-                Tab(text: I.of(context).action),
-                const Tab(text: '高级'),
-              ],
+    return DefaultTabController(
+        length: 4,
+        child: CupertinoPageScaffold(
+          navigationBar: buildAppbar(context),
+          child: SafeArea(
+            child: Material(
+              child: Column(
+                children: [
+                  buildTabBar(context),
+                  Expanded(
+                    child: TabBarView(
+                      children: [
+                        RulesBasic(store: store),
+                        Container(),
+                        RulesParserManager(store: store),
+                        Container(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-          body: TabBarView(
-            children: [
-              RulesBasic(store: store),
-              Container(),
-              RulesParserManager(store: store),
-              Container(),
-              Container(),
-            ],
-          ),
-        ),
+        ));
+  }
+
+  TabBar buildTabBar(BuildContext context) {
+    return TabBar(
+      padding: EdgeInsets.zero,
+      labelColor: CupertinoColors.systemBlue,
+      indicator: const GreyUnderlineTabIndicator(),
+      tabs: [
+        buildTab(text: I.of(context).basic_setting),
+        buildTab(text: I.of(context).page_manager),
+        buildTab(text: I.of(context).parser),
+        buildTab(text: I.of(context).action),
+      ],
+    );
+  }
+
+  Tab buildTab({required String text}) {
+    return Tab(
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 12),
       ),
+      height: 25,
     );
   }
 }
