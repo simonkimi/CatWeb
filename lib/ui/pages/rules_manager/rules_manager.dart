@@ -1,8 +1,6 @@
-import 'package:catweb/ui/components/app_bar.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
-import 'package:catweb/utils/widget.dart';
+import 'package:catweb/ui/components/cupertino_list_tile.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class SiteManager extends StatelessWidget {
   const SiteManager({Key? key}) : super(key: key);
@@ -11,36 +9,55 @@ class SiteManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context, title: '站点管理'),
-      floatingActionButton: SpeedDial(
-        icon: Icons.add,
-        overlayColor: Colors.transparent,
-        overlayOpacity: 0.0,
-        children: [
-          SpeedDialChild(
-            child: const Icon(Icons.more_horiz),
+    return CupertinoPageScaffold(
+      navigationBar: buildAppbar(context),
+      child: SafeArea(
+        child: SizedBox(
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Column(
+              children: [
+                CupertinoListTile(
+                  selected: true,
+                  title: const Text('EHentai'),
+                  subtitle: const Text('https://e-hentai.org'),
+                  trailing: const Icon(Icons.more_horiz),
+                  onTap: () {},
+                ),
+                const SizedBox(height: 5),
+                CupertinoListTile(
+                  leading: const Icon(CupertinoIcons.add_circled_solid),
+                  title: const Text('编写一个规则'),
+                  trailing: const Icon(CupertinoIcons.forward),
+                  onTap: () {},
+                ),
+                const SizedBox(height: 5),
+                CupertinoListTile(
+                  leading: const Icon(CupertinoIcons.qrcode_viewfinder),
+                  title: const Text('扫码获取规则'),
+                  trailing: const Icon(CupertinoIcons.forward),
+                  onTap: () {},
+                ),
+              ],
+            ),
           ),
-          SpeedDialChild(
-            child: const Icon(Icons.qr_code),
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.edit_outlined),
-            onTap: () {
-              Navigator.of(context).pushNamed(RulesEditPage.routeName);
-            },
-          ),
-        ],
+        ),
       ),
-      body: ListView(
-        children: [
-          const ListTile(
-            title: Text('ExHentai'),
-            subtitle: Text('https://exhentai.org'),
-            trailing: Icon(Icons.more_vert),
-          ).card(),
-        ],
+    );
+  }
+
+  CupertinoNavigationBar buildAppbar(BuildContext context) {
+    return CupertinoNavigationBar(
+      leading: CupertinoButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        child: const Icon(CupertinoIcons.back),
+        padding: EdgeInsets.zero,
+        minSize: 0,
       ),
+      middle: const Text('站点管理'),
     );
   }
 }

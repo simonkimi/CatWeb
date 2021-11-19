@@ -1,5 +1,5 @@
-import 'package:catweb/ui/fragments/main_drawer/main_drawer.dart';
-import 'package:flutter/material.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_manager.dart';
+import 'package:flutter/cupertino.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -8,11 +8,69 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawerEdgeDragWidth: MediaQuery.of(context).size.width,
-      drawer: const MainDrawer(),
-      appBar: AppBar(),
-      body: Column(),
+    return CupertinoPageScaffold(
+      resizeToAvoidBottomInset: true,
+      navigationBar: CupertinoNavigationBar(
+        middle: const Text('CatWeb'),
+        leading: CupertinoButton(
+          onPressed: () {},
+          child: const Icon(CupertinoIcons.layers_alt),
+          padding: EdgeInsets.zero,
+          minSize: 0,
+        ),
+      ),
+      child: SafeArea(
+        child: emptyWidget(context),
+      ),
+    );
+  }
+
+  Stack emptyWidget(BuildContext context) {
+    return Stack(
+      children: [
+        Center(
+          child: CupertinoButton(
+            onPressed: () {
+              Navigator.of(context).push(CupertinoPageRoute(
+                  builder: (context) => const SiteManager()));
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Icon(
+                  CupertinoIcons.add,
+                  color: CupertinoColors.activeBlue,
+                ),
+                SizedBox(width: 5),
+                Text(
+                  '添加站点',
+                  style: TextStyle(
+                    color: CupertinoColors.activeBlue,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                )
+              ],
+            ),
+            color: CupertinoColors.systemGrey6,
+          ),
+        ),
+        Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              SizedBox(height: 100),
+              Text(
+                '没有找到任何站点',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: CupertinoColors.systemGrey,
+                ),
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 }

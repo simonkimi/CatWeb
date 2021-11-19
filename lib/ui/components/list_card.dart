@@ -103,7 +103,7 @@ class SimpleCard extends StatelessWidget {
                           ? isDarkMode(context)
                               ? Colors.white
                               : Colors.black
-                          : e.color!.isDark()
+                          : e.color!.isDark
                               ? Colors.white
                               : Colors.black,
                     ),
@@ -394,7 +394,7 @@ class ExtendedCard extends StatelessWidget {
                     ? isDarkMode(context)
                         ? Colors.white
                         : Colors.black
-                    : e.color!.isDark()
+                    : e.color!.isDark
                         ? Colors.white
                         : Colors.black,
               ),
