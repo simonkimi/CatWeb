@@ -90,7 +90,7 @@ class HtmlXmlSelectorExec {
             ? (element).element.innerHtml
             : (element as XmlElementTree).element.innerXml;
       case SelectorFunction.text:
-        return element.text ?? '';
+        return element.text;
       case SelectorFunction.auto:
         break;
     }

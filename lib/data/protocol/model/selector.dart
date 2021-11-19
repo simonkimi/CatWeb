@@ -4,6 +4,11 @@ import 'package:get/get.dart';
 
 import 'interface.dart';
 
+abstract class CombineSelector {
+  Map<String, SelectorModel> get combine;
+}
+
+
 class SelectorModel implements PbAble {
   SelectorModel([Selector? pb, bool computed = false])
       : selector = sobs(pb?.selector),
@@ -56,7 +61,7 @@ class ExtraSelectorModel implements PbAble {
       );
 }
 
-class ImageSelectorModel implements PbAble {
+class ImageSelectorModel implements PbAble, CombineSelector {
   ImageSelectorModel([ImageSelector? pb])
       : imgUrl = SelectorModel(pb?.imgUrl),
         imgWidth = SelectorModel(pb?.imgWidth, true),
@@ -78,9 +83,18 @@ class ImageSelectorModel implements PbAble {
         imgX: imgX.toPb(),
         imgY: imgY.toPb(),
       );
+
+  @override
+  Map<String, SelectorModel> get combine => {
+    'imgUrl': imgUrl,
+    'imgWidth': imgWidth,
+    'imgHeight': imgHeight,
+    'imgX': imgX,
+    'imgY': imgY,
+  };
 }
 
-class CommentSelectorModel implements PbAble {
+class CommentSelectorModel implements PbAble, CombineSelector {
   CommentSelectorModel([CommentSelector? pb])
       : username = SelectorModel(pb?.username),
         postTime = SelectorModel(pb?.postTime),
@@ -92,6 +106,7 @@ class CommentSelectorModel implements PbAble {
   final SelectorModel vote;
   final SelectorModel content;
 
+
   @override
   CommentSelector toPb() => CommentSelector(
         username: username.toPb(),
@@ -99,6 +114,14 @@ class CommentSelectorModel implements PbAble {
         vote: vote.toPb(),
         content: content.toPb(),
       );
+
+  @override
+  Map<String, SelectorModel> get combine => {
+    'username': username,
+    'postTime': postTime,
+    'vote': vote,
+    'content': content,
+  };
 }
 
 extension SelectorFunctionE on SelectorFunction {

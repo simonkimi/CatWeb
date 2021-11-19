@@ -95,6 +95,12 @@ class GalleryParserModel extends ParserBaseModel {
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
         nextPage: nextPage.toPb(),
       );
+
+  @override
+  Map<String, SelectorModel> get combine => {
+    'title': title,
+
+  };
 }
 
 class ListViewParserModel extends ParserBaseModel {
