@@ -23,6 +23,7 @@ dependencies:
   bot_toast: ^4.0.1
   flutter_highlight: ^0.7.0
   cupertino_icons: ^1.0.4
+  flutter_sticky_header: ^0.6.0
 
   # state
   get: ^4.3.8

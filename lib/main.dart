@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'CatWeb',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [
+        GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         I.delegate

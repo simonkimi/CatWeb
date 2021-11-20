@@ -1,42 +1,93 @@
+import 'dart:math';
+
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
-import 'package:catweb/ui/components/checkbox_tile.dart';
-import 'package:catweb/ui/components/dialog.dart';
-import 'package:catweb/ui/pages/javascript_editor/editor.dart';
+import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:get/get.dart';
 
 import 'dialog.dart';
-
-Widget buildInputForm({
-  required String labelText,
-  required RxString value,
-  int minLine = 1,
-  String? hintText,
-  bool padding = true,
-}) {
-  return TextFormField(
-    initialValue: value.value,
-    decoration: InputDecoration(
-      labelText: labelText,
-      isDense: true,
-      floatingLabelBehavior: FloatingLabelBehavior.always,
-      hintText: hintText,
-    ),
-    onChanged: (v) => value.value = v,
-    maxLines: minLine,
-  );
-}
 
 Widget buildCardList(
   List<Widget> children, {
   EdgeInsets? padding,
 }) {
-  return Card(
-    child: Padding(
-      padding: padding ?? const EdgeInsets.symmetric(horizontal: 5),
-      child: Column(mainAxisSize: MainAxisSize.min, children: children),
+  return Padding(
+    padding: padding ?? const EdgeInsets.symmetric(horizontal: 5),
+    child: Column(mainAxisSize: MainAxisSize.min, children: children),
+  );
+}
+
+class StickyClassifyList extends StatelessWidget {
+  const StickyClassifyList({
+    Key? key,
+    required this.title,
+    required this.children,
+  }) : super(key: key);
+
+  final String title;
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverStickyHeader(
+      header: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        child: Container(
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.blue[100],
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.blue[800],
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+      sliver: SliverList(delegate: SliverChildListDelegate(children)),
+    );
+  }
+}
+
+Widget buildCupertinoInput({
+  required String label,
+  required RxString value,
+   double? width,
+}) {
+  return CupertinoTextField(
+    controller: TextEditingController(text: value.value),
+    decoration: const BoxDecoration(
+      border: Border(),
+    ),
+    onChanged: (v) => value.value = v,
+    style: const TextStyle(fontSize: 14),
+    prefix: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: SizedBox(
+        width: width,
+        child: Text(
+          label,
+          style: const TextStyle(
+            color: CupertinoColors.label,
+            fontSize: 12,
+          ),
+        ),
+      ),
     ),
   );
 }
@@ -66,234 +117,150 @@ class RulesForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final widget = Padding(
+    final labelWidth = ['选择器', '函数', '参数', '正则', '替换']
+        .map((e) => boundingTextSize(
+            context: context,
+            text: e,
+            style: const TextStyle(
+              color: CupertinoColors.label,
+              fontSize: 12,
+            )).width)
+        .reduce(max);
+
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (extraSelectorModel == null)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(title!),
-                const SizedBox(width: 5),
-                if (field != null) Text('(${field!})'),
-              ],
-            ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (extraSelectorModel != null) buildText(context, '名称'),
-                  buildText(context, '选择器'),
-                  buildText(context, '函数'),
-                  Obx(() {
-                    // 参数
-                    if (selectorModel.function.value == SelectorFunction.attr) {
-                      return buildText(context, '参数');
-                    }
-                    return const SizedBox();
-                  }),
-                  buildText(context, '正则'),
-                  buildText(context, '替换'),
-                ],
+      child: Container(
+        decoration: BoxDecoration(
+          color: CupertinoColors.systemGrey6,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Column(
+          children: [
+            if (title != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Text(
+                  title!,
+                  style: const TextStyle(
+                      color: CupertinoColors.label, fontSize: 12),
+                ),
               ),
-              const SizedBox(width: 10),
-              Expanded(
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: CupertinoColors.systemBackground,
+                  borderRadius: BorderRadius.circular(5),
+                ),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    if (extraSelectorModel != null)
-                      buildForm(extraSelectorModel!.id),
-                    buildForm(selectorModel.selector), // 选择器
-                    buildFunction(context), // 函数
-                    Obx(() {
-                      // 参数
-                      if (selectorModel.function.value ==
-                          SelectorFunction.attr) {
-                        return buildForm(selectorModel.param);
-                      }
-                      return const SizedBox();
-                    }),
-                    buildForm(selectorModel.regex), // 正则
-                    buildForm(selectorModel.replace), // 替换
+                    buildCupertinoInput(
+                      label: '选择器',
+                      value: selectorModel.selector,
+                      width: labelWidth,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      child: Divider(height: 1, thickness: 0.3),
+                    ),
+                    buildFunction(
+                      context: context,
+                      width: labelWidth,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      child: Divider(height: 1, thickness: 0.3),
+                    ),
+                    buildCupertinoInput(
+                      label: '参数',
+                      value: selectorModel.param,
+                      width: labelWidth,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      child: Divider(height: 1, thickness: 0.3),
+                    ),
+                    buildCupertinoInput(
+                      label: '正则',
+                      value: selectorModel.regex,
+                      width: labelWidth,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      child: Divider(height: 1, thickness: 0.3),
+                    ),
+                    buildCupertinoInput(
+                      label: '替换',
+                      value: selectorModel.replace,
+                      width: labelWidth,
+                    ),
                   ],
                 ),
               ),
-            ],
-          ),
-          if (extraSelectorModel != null)
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Obx(() => CheckBoxTile(
-                      text: '计算',
-                      value: selectorModel.computed.value,
-                      onChanged: (value) {
-                        selectorModel.computed.value = value!;
-                      },
-                      textColor: Theme.of(context).textTheme.headline1!.color,
-                    )),
-                const SizedBox(width: 10),
-                Obx(() => CheckBoxTile(
-                      text: '全局',
-                      value: extraSelectorModel!.global.value,
-                      onChanged: (value) {
-                        extraSelectorModel!.global.value = value!;
-                      },
-                      textColor: Theme.of(context).textTheme.headline1!.color,
-                    )),
-                const SizedBox(width: 10),
-                Obx(() => CheckBoxTile(
-                      text: 'Js脚本',
-                      value: selectorModel.js.isNotEmpty,
-                      onChanged: (value) {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => JavaScriptEditor(
-                                  js: selectorModel.js,
-                                )));
-                      },
-                      textColor: Theme.of(context).textTheme.headline1!.color,
-                    )),
-                const Expanded(child: SizedBox()),
-                IconButton(
-                  icon: const Icon(Icons.delete),
-                  onPressed: () async {
-                    final result = await showConfirmDialog(
-                        context: context, text: '确认删除此字段?');
-                    if (result == true) {
-                      onDelete?.call();
-                    }
-                  },
-                ),
-              ],
-            ),
-        ],
-      ),
-    );
-    return onTap != null
-        ? InkWell(
-            onTap: onTap,
-            child: widget,
-          )
-        : widget;
-  }
-
-  Widget buildText(BuildContext context, String text) {
-    return SizedBox(
-      height: 30,
-      child: Center(
-        child: Text(
-          text,
-          style: TextStyle(color: Theme.of(context).textTheme.headline1!.color),
-        ),
-      ),
-    );
-  }
-
-  Widget buildForm(RxString value) {
-    return SizedBox(
-      height: 30,
-      child: Center(
-        child: Obx(() => TextFormField(
-              initialValue: value.value,
-              decoration: const InputDecoration(
-                isDense: true,
-                isCollapsed: true,
-              ),
-              onChanged: (v) {
-                value.value = v;
-              },
-            )),
-      ),
-    );
-  }
-
-  Widget buildFunction(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        showSelectDialog<SelectorFunction>(
-          context: context,
-          items: [
-            const SelectTileItem(
-              title: 'auto',
-              value: SelectorFunction.auto,
-            ),
-            SelectTileItem(
-              title: SelectorFunction.raw.string,
-              value: SelectorFunction.raw,
-            ),
-            SelectTileItem(
-              title: SelectorFunction.text.string,
-              value: SelectorFunction.text,
-            ),
-            SelectTileItem(
-              title: SelectorFunction.attr.string,
-              value: SelectorFunction.attr,
-            ),
+            )
           ],
-          selectedValue: selectorModel.function.value,
-          title: '函数类型',
-        ).then((v) {
-          if (v != null) {
-            selectorModel.function.value = v;
-          }
-        });
-      },
-      child: SizedBox(
-        height: 30,
-        child: Center(
-          child: Obx(() => TextFormField(
-                controller: TextEditingController(
-                    text: selectorModel.function.value.string),
-                decoration: const InputDecoration(
-                  isDense: true,
-                  isCollapsed: true,
-                  enabled: false,
-                ),
-              )),
         ),
       ),
     );
   }
 
-  Widget buildFormItem(
-    BuildContext context, {
-    required String title,
-    required RxString value,
+  Widget buildFunction({
+    required BuildContext context,
+    required double width,
   }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Row(
-        children: [
-          SizedBox(
-            width: textWidth,
-            child: Text(
-              title,
+    return Obx(() {
+      return CupertinoTextField(
+        controller: TextEditingController(
+          text: selectorModel.function.value.string,
+        ),
+        decoration: const BoxDecoration(
+          border: Border(),
+        ),
+        style: const TextStyle(fontSize: 14),
+        readOnly: true,
+        onTap: () {
+          showCupertinoSelectDialog<SelectorFunction>(
+            context: context,
+            items: [
+              const SelectTileItem(
+                title: 'auto',
+                value: SelectorFunction.auto,
+              ),
+              SelectTileItem(
+                title: SelectorFunction.raw.string,
+                value: SelectorFunction.raw,
+              ),
+              SelectTileItem(
+                title: SelectorFunction.text.string,
+                value: SelectorFunction.text,
+              ),
+              SelectTileItem(
+                title: SelectorFunction.attr.string,
+                value: SelectorFunction.attr,
+              ),
+            ],
+            selectedValue: selectorModel.function.value,
+            title: '函数类型',
+          ).then((v) {
+            if (v != null) {
+              selectorModel.function.value = v;
+            }
+          });
+        },
+        prefix: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: SizedBox(
+            width: width,
+            child: const Text(
+              '函数',
               style: TextStyle(
-                color: Theme.of(context).textTheme.headline1!.color,
+                color: CupertinoColors.label,
+                fontSize: 12,
               ),
             ),
           ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Obx(() => TextFormField(
-                  initialValue: value.value,
-                  decoration: const InputDecoration(
-                    isDense: true,
-                    isCollapsed: true,
-                  ),
-                  onChanged: (v) {
-                    value.value = v;
-                  },
-                )),
-          )
-        ],
-      ),
-    );
+        ),
+      );
+    });
   }
 }

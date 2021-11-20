@@ -1,10 +1,12 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/ui/components/app_bar.dart';
+import 'package:catweb/ui/components/grey_tab_indicator.dart';
 import 'package:catweb/ui/fragments/parser/extra_parser.dart';
 import 'package:catweb/ui/fragments/parser/gallery_parser.dart';
 import 'package:catweb/ui/fragments/parser/gallery_preview.dart';
 import 'package:catweb/ui/fragments/parser/list_parser.dart';
 import 'package:catweb/ui/fragments/parser/list_preview.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -24,28 +26,44 @@ class RulesParserEditor extends StatelessWidget {
 
   final EditorStore store;
 
+  CupertinoNavigationBar buildAppbar(BuildContext context) {
+    return CupertinoNavigationBar(
+      leading: CupertinoButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        child: const Icon(CupertinoIcons.back),
+        padding: EdgeInsets.zero,
+        minSize: 0,
+      ),
+      middle: const Text('规则'),
+      border: const Border(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
-      child: Scaffold(
-        appBar: buildAppBar(
-          context,
-          title: '规则编辑',
-          bottom: const TabBar(
-            tabs: [
-              Tab(text: '预览'),
-              Tab(text: '基础规则'),
-              Tab(text: '附加字段'),
-            ],
+      child: CupertinoPageScaffold(
+        navigationBar: buildAppbar(context),
+        child: SafeArea(
+          child: Material(
+            child: Column(
+              children: [
+                buildTabBar(context),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      buildPreview(context),
+                      buildBody(context),
+                      buildExtra(),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        body: TabBarView(
-          children: [
-            buildPreview(context),
-            buildBody(context),
-            buildExtra(),
-          ],
         ),
       ),
     );
@@ -63,15 +81,14 @@ class RulesParserEditor extends StatelessWidget {
   }
 
   Widget buildBody(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(5),
-      children: [
-        if (store.parserBase is GalleryParserModel)
-          GalleryParserFragment(model: store.parserBase as GalleryParserModel),
-        if (store.parserBase is ListViewParserModel)
-          ListParserFragment(model: store.parserBase as ListViewParserModel),
-      ],
-    );
+    if (store.parserBase is GalleryParserModel) {
+      return GalleryParserFragment(
+          model: store.parserBase as GalleryParserModel);
+    }
+    if (store.parserBase is ListViewParserModel) {
+      return ListParserFragment(model: store.parserBase as ListViewParserModel);
+    }
+    throw UnimplementedError('UnSupport');
   }
 
   Widget buildExtra() {
@@ -84,6 +101,29 @@ class RulesParserEditor extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+
+  TabBar buildTabBar(BuildContext context) {
+    return TabBar(
+      padding: EdgeInsets.zero,
+      labelColor: CupertinoColors.systemBlue,
+      indicator: const GreyUnderlineTabIndicator(),
+      tabs: [
+        buildTab(text: '预览'),
+        buildTab(text: '基础规则'),
+        buildTab(text: '附加字段'),
+      ],
+    );
+  }
+
+  Tab buildTab({required String text}) {
+    return Tab(
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 12),
+      ),
+      height: 30,
     );
   }
 }
