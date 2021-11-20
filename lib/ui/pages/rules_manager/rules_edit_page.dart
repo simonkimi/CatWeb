@@ -36,38 +36,39 @@ class RulesEditPage extends StatelessWidget {
         child: CupertinoPageScaffold(
           navigationBar: buildAppbar(context),
           child: SafeArea(
-            child: Material(
-              child: Column(
-                children: [
-                  buildTabBar(context),
-                  Expanded(
-                    child: TabBarView(
-                      children: [
-                        RulesBasic(store: store),
-                        Container(),
-                        RulesParserManager(store: store),
-                        Container(),
-                      ],
-                    ),
+            child: Column(
+              children: [
+                buildTabBar(context),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      RulesBasic(store: store),
+                      Container(),
+                      RulesParserManager(store: store),
+                      Container(),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ));
   }
 
-  TabBar buildTabBar(BuildContext context) {
-    return TabBar(
-      padding: EdgeInsets.zero,
-      labelColor: CupertinoColors.systemBlue,
-      indicator: const GreyUnderlineTabIndicator(),
-      tabs: [
-        buildTab(text: I.of(context).basic_setting),
-        buildTab(text: I.of(context).page_manager),
-        buildTab(text: I.of(context).parser),
-        buildTab(text: I.of(context).action),
-      ],
+  Widget buildTabBar(BuildContext context) {
+    return Material(
+      color: CupertinoTheme.of(context).barBackgroundColor,
+      child: TabBar(
+        padding: EdgeInsets.zero,
+        labelColor: CupertinoColors.systemBlue,
+        indicator: const GreyUnderlineTabIndicator(),
+        tabs: [
+          buildTab(text: I.of(context).basic_setting),
+          buildTab(text: I.of(context).page_manager),
+          buildTab(text: I.of(context).parser),
+          buildTab(text: I.of(context).action),
+        ],
+      ),
     );
   }
 

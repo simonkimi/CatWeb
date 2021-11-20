@@ -1,5 +1,4 @@
 import 'package:catweb/data/protocol/model/parser.dart';
-import 'package:catweb/ui/components/app_bar.dart';
 import 'package:catweb/ui/components/grey_tab_indicator.dart';
 import 'package:catweb/ui/fragments/parser/extra_parser.dart';
 import 'package:catweb/ui/fragments/parser/gallery_parser.dart';
@@ -48,21 +47,19 @@ class RulesParserEditor extends StatelessWidget {
       child: CupertinoPageScaffold(
         navigationBar: buildAppbar(context),
         child: SafeArea(
-          child: Material(
-            child: Column(
-              children: [
-                buildTabBar(context),
-                Expanded(
-                  child: TabBarView(
-                    children: [
-                      buildPreview(context),
-                      buildBody(context),
-                      buildExtra(),
-                    ],
-                  ),
-                )
-              ],
-            ),
+          child: Column(
+            children: [
+              buildTabBar(context),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    buildPreview(context),
+                    buildBody(context),
+                    buildExtra(),
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       ),
@@ -104,16 +101,19 @@ class RulesParserEditor extends StatelessWidget {
     );
   }
 
-  TabBar buildTabBar(BuildContext context) {
-    return TabBar(
-      padding: EdgeInsets.zero,
-      labelColor: CupertinoColors.systemBlue,
-      indicator: const GreyUnderlineTabIndicator(),
-      tabs: [
-        buildTab(text: '预览'),
-        buildTab(text: '基础规则'),
-        buildTab(text: '附加字段'),
-      ],
+  Widget buildTabBar(BuildContext context) {
+    return Material(
+      color: CupertinoTheme.of(context).barBackgroundColor,
+      child: TabBar(
+        padding: EdgeInsets.zero,
+        overlayColor: MaterialStateProperty.all(Colors.blue),
+        indicator: const GreyUnderlineTabIndicator(),
+        tabs: [
+          buildTab(text: '预览'),
+          buildTab(text: '基础规则'),
+          buildTab(text: '附加字段'),
+        ],
+      ),
     );
   }
 
