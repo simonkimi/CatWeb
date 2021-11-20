@@ -77,7 +77,7 @@ class RulesEditPage extends StatelessWidget {
         text,
         style: const TextStyle(fontSize: 12),
       ),
-      height: 25,
+      height: 30,
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SelectTileItem<T> {
@@ -5,6 +6,42 @@ class SelectTileItem<T> {
 
   final String title;
   final T value;
+}
+
+Future<T?> showCupertinoSelectDialog<T>({
+  required BuildContext context,
+  required List<SelectTileItem<T>> items,
+  T? selectedValue,
+  String? title,
+  String? message,
+  String? cancelText,
+}) {
+  return showCupertinoModalPopup(
+    context: context,
+    builder: (context) {
+      return CupertinoActionSheet(
+        title: title != null ? Text(title) : null,
+        message: message != null ? Text(message) : null,
+        actions: items.map((item) {
+          return CupertinoActionSheetAction(
+            child: Text(item.title),
+            isDefaultAction: item.value == selectedValue,
+            onPressed: () {
+              Navigator.pop(context, item.value);
+            },
+          );
+        }).toList(),
+        cancelButton: cancelText != null
+            ? CupertinoActionSheetAction(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(cancelText),
+              )
+            : null,
+      );
+    },
+  );
 }
 
 Future<bool?> showConfirmDialog({

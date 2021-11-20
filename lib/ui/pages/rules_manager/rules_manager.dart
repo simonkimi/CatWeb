@@ -17,7 +17,7 @@ class SiteManager extends StatelessWidget {
           width: double.infinity,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Column(
+            child: ListView(
               children: [
                 CupertinoListTile(
                   selected: true,
@@ -26,7 +26,7 @@ class SiteManager extends StatelessWidget {
                   trailing: const Icon(Icons.more_horiz),
                   onTap: () {},
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 50),
                 CupertinoListTile(
                   leading: const Icon(CupertinoIcons.add_circled_solid),
                   title: const Text('编写一个规则'),

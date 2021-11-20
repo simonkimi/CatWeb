@@ -1,4 +1,5 @@
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_editor.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
@@ -15,48 +16,37 @@ class RulesParserManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Observer(
-        builder: (context) {
-          return ListView(
-            padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: store.rulesModel.listViewParser.map((element) {
-                  return const ListTile();
-                }).toList(),
-              ),
-              const Card(
-                child: ListTile(
-                  title: Text('index'),
-                  subtitle: Text('ListParser'),
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  title: const Text('添加'),
-                  leading: const Icon(Icons.add),
-                  onTap: () => addRulesParser(context),
-                ),
-              ),
-            ],
-          );
-        },
-      ),
+    return Observer(
+      builder: (context) {
+        return ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: store.rulesModel.listViewParser.map((element) {
+                return const ListTile();
+              }).toList(),
+            ),
+            CupertinoListTile(
+              title: const Text('添加'),
+              leading: const Icon(Icons.add),
+              onTap: () => addRulesParser(context),
+            ),
+          ],
+        );
+      },
     );
   }
 
   Future<void> addRulesParser(BuildContext context) async {
-    final selection = await showSelectDialog<ParserType>(
+    final selection = await showCupertinoSelectDialog<ParserType>(
       context: context,
-      displayRadio: false,
+      title: '规则类型',
+      cancelText: '取消',
       items: const [
         SelectTileItem(title: '列表解析器', value: ParserType.list),
         SelectTileItem(title: '详情解析器', value: ParserType.gallery),
       ],
-      selectedValue: ParserType.list,
-      title: '规则类型',
     );
     if (selection != null) {
       Navigator.of(context).push(MaterialPageRoute(

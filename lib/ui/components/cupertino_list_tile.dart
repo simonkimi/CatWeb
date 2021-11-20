@@ -15,6 +15,7 @@ class CupertinoListTile extends HookWidget {
     this.subtitle,
     this.selectedColor,
     this.onTrailingTap,
+    this.padding = const EdgeInsets.symmetric(vertical: 5),
   })  : assert(onTrailingTap == null || trailing != null),
         super(key: key);
 
@@ -27,6 +28,7 @@ class CupertinoListTile extends HookWidget {
   final Widget? subtitle;
   final Color? selectedColor;
   final VoidCallback? onTrailingTap;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
@@ -71,58 +73,61 @@ class CupertinoListTile extends HookWidget {
         }
       },
       onTapCancel: () => _onTapUp(),
-      child: FadeTransition(
-        opacity: _opacityAnimation,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: bgColor,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15),
-            child: Row(
-              children: [
-                if (leading != null)
-                  SizedBox(
-                    width: 50,
-                    child: _buildIcon(context, leading!, textColor),
-                  ),
-                Padding(
-                  padding: leading == null
-                      ? const EdgeInsets.only(left: 15)
-                      : EdgeInsets.zero,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (title != null)
-                        _buildText(
-                          context,
-                          title!,
-                          TextStyle(color: textColor, fontSize: 15),
-                        ),
-                      if (subtitle != null)
-                        _buildText(
-                          context,
-                          subtitle!,
-                          TextStyle(color: textColor, fontSize: 12),
-                        ),
-                    ],
-                  ),
-                ),
-                const Expanded(child: SizedBox()),
-                if (trailing != null)
-                  SizedBox(
-                    width: 50,
-                    child: GestureDetector(
-                      onTapDown: (_) => {},
-                      onTapUp: (_) => {},
-                      onTap: onTrailingTap,
-                      child: _buildIcon(context, trailing!, textColor),
+      child: Padding(
+        padding: padding,
+        child: FadeTransition(
+          opacity: _opacityAnimation,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: bgColor,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: Row(
+                children: [
+                  if (leading != null)
+                    SizedBox(
+                      width: 50,
+                      child: _buildIcon(context, leading!, textColor),
+                    ),
+                  Padding(
+                    padding: leading == null
+                        ? const EdgeInsets.only(left: 15)
+                        : EdgeInsets.zero,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (title != null)
+                          _buildText(
+                            context,
+                            title!,
+                            TextStyle(color: textColor, fontSize: 15),
+                          ),
+                        if (subtitle != null)
+                          _buildText(
+                            context,
+                            subtitle!,
+                            TextStyle(color: textColor, fontSize: 12),
+                          ),
+                      ],
                     ),
                   ),
-              ],
+                  const Expanded(child: SizedBox()),
+                  if (trailing != null)
+                    SizedBox(
+                      width: 50,
+                      child: GestureDetector(
+                        onTapDown: (_) => {},
+                        onTapUp: (_) => {},
+                        onTap: onTrailingTap,
+                        child: _buildIcon(context, trailing!, textColor),
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
         ),
