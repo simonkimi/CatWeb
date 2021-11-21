@@ -123,7 +123,9 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
       final line = reg.allMatches(text).toList();
 
       final lineCode = text.substring(
-          line.length == 1 ? 0 : line[line.length - 1].start, line.last.start);
+        line.length == 1 ? 0 : line[line.length - 1].start,
+        line.last.start,
+      );
 
       final spaceReg = RegExp(r'^(\s*)').firstMatch(lineCode);
       if (spaceReg != null && spaceReg.group(0) != null) {
