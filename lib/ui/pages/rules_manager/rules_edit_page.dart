@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../i18n.dart';
+import '../../../themes.dart';
 
 class RulesEditPage extends StatelessWidget {
   RulesEditPage({Key? key}) : super(key: key);
@@ -63,20 +64,22 @@ class RulesEditPage extends StatelessWidget {
         labelColor: CupertinoColors.systemBlue,
         indicator: const GreyUnderlineTabIndicator(),
         tabs: [
-          buildTab(text: I.of(context).basic_setting),
-          buildTab(text: I.of(context).page_manager),
-          buildTab(text: I.of(context).parser),
-          buildTab(text: I.of(context).action),
+          buildTab(context: context, text: I.of(context).basic_setting),
+          buildTab(context: context, text: I.of(context).page_manager),
+          buildTab(context: context, text: I.of(context).parser),
+          buildTab(context: context, text: I.of(context).action),
         ],
       ),
     );
   }
 
-  Tab buildTab({required String text}) {
+  Tab buildTab({required BuildContext context, required String text}) {
     return Tab(
       child: Text(
         text,
-        style: const TextStyle(fontSize: 12),
+        style: const TextStyle(
+          fontSize: 12,
+        ),
       ),
       height: 30,
     );

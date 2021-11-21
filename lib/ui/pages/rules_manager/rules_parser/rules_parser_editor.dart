@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../../themes.dart';
 import 'editor_store.dart';
 
 class RulesParserEditor extends StatelessWidget {
@@ -109,19 +110,27 @@ class RulesParserEditor extends StatelessWidget {
         overlayColor: MaterialStateProperty.all(Colors.blue),
         indicator: const GreyUnderlineTabIndicator(),
         tabs: [
-          buildTab(text: '预览'),
-          buildTab(text: '基础规则'),
-          buildTab(text: '附加字段'),
+          buildTab(context: context, text: '预览'),
+          buildTab(context: context, text: '基础规则'),
+          buildTab(context: context, text: '附加字段'),
         ],
       ),
     );
   }
 
-  Tab buildTab({required String text}) {
+  Tab buildTab({
+    required BuildContext context,
+    required String text,
+  }) {
     return Tab(
       child: Text(
         text,
-        style: const TextStyle(fontSize: 12),
+        style: TextStyle(
+          fontSize: 12,
+          color: isDarkMode(context)
+              ? CupertinoColors.label.darkColor
+              : CupertinoColors.label.color,
+        ),
       ),
       height: 30,
     );
