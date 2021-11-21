@@ -24,19 +24,23 @@ class CheckBoxTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              height: 18,
-              width: 18,
-              child: Checkbox(
-                value: value,
-                onChanged: onChanged,
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              height: 16,
+              width: 16,
+              child: Material(
+                child: Checkbox(
+                  value: value,
+                  onChanged: onChanged,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
               ),
             ),
             const SizedBox(width: 5),
             Text(
               text,
-              style:
-                  TextStyle(color: textColor ?? Theme.of(context).primaryColor),
+              style: TextStyle(
+                color: textColor ?? Theme.of(context).primaryColor,
+                fontSize: 12
+              ),
             ),
           ],
         ),

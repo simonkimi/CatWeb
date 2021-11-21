@@ -7,7 +7,6 @@ import 'package:catweb/ui/fragments/parser/list_parser.dart';
 import 'package:catweb/ui/fragments/parser/list_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../themes.dart';
 import 'editor_store.dart';
@@ -56,7 +55,7 @@ class RulesParserEditor extends StatelessWidget {
                   children: [
                     buildPreview(context),
                     buildBody(context),
-                    buildExtra(),
+                    ExtraParser(model: store.parserBase),
                   ],
                 ),
               )
@@ -87,19 +86,6 @@ class RulesParserEditor extends StatelessWidget {
       return ListParserFragment(model: store.parserBase as ListViewParserModel);
     }
     throw UnimplementedError('UnSupport');
-  }
-
-  Widget buildExtra() {
-    return Observer(
-      builder: (context) {
-        return ListView(
-          padding: const EdgeInsets.all(5),
-          children: [
-            ExtraParser(model: store.parserBase),
-          ],
-        );
-      },
-    );
   }
 
   Widget buildTabBar(BuildContext context) {

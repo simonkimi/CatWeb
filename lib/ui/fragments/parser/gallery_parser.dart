@@ -15,7 +15,7 @@ class GalleryParserFragment extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        buildBaseList(),
+        buildBaseList(context),
         buildInfoList(),
         buildCoverList(),
         buildTagList(),
@@ -27,12 +27,16 @@ class GalleryParserFragment extends StatelessWidget {
     );
   }
 
-  SliverList buildBaseList() {
+  SliverList buildBaseList(BuildContext context) {
     return SliverList(
       delegate: SliverChildListDelegate([
-        RulesCard(
-            title: '基础信息',
-            children: [buildCupertinoInput(label: '名称', value: model.name)]),
+        RulesCard(title: '基础信息', children: [
+          buildCupertinoInput(
+            context: context,
+            label: '名称',
+            value: model.name,
+          )
+        ]),
       ]),
     );
   }

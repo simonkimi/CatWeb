@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../themes.dart';
+
 class RulesCard extends StatelessWidget {
   const RulesCard({
     Key? key,
@@ -18,7 +20,9 @@ class RulesCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Container(
         decoration: BoxDecoration(
-          color: CupertinoColors.systemGrey6,
+          color: isDarkMode(context)
+              ? CupertinoColors.systemGrey6.darkColor
+              : CupertinoColors.systemGrey6,
           borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
@@ -27,15 +31,21 @@ class RulesCard extends StatelessWidget {
               padding: const EdgeInsets.only(top: 5),
               child: Text(
                 title,
-                style:
-                    const TextStyle(color: CupertinoColors.label, fontSize: 12),
+                style: TextStyle(
+                  color: isDarkMode(context)
+                      ? CupertinoColors.label.darkColor
+                      : CupertinoColors.label,
+                  fontSize: 12,
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(5),
               child: Container(
                 decoration: BoxDecoration(
-                  color: CupertinoColors.systemBackground,
+                  color: isDarkMode(context)
+                      ? CupertinoColors.systemBackground.darkColor
+                      : CupertinoColors.systemBackground,
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Column(

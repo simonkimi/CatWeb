@@ -4,7 +4,6 @@ import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_editor.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 
 class RulesParserManager extends StatelessWidget {
   const RulesParserManager({
@@ -16,25 +15,21 @@ class RulesParserManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        return ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: store.rulesModel.listViewParser.map((element) {
-                return const ListTile();
-              }).toList(),
-            ),
-            CupertinoListTile(
-              title: const Text('添加'),
-              leading: const Icon(Icons.add),
-              onTap: () => addRulesParser(context),
-            ),
-          ],
-        );
-      },
+    return ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      children: [
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: store.rulesModel.listViewParser.map((element) {
+            return const ListTile();
+          }).toList(),
+        ),
+        CupertinoListTile(
+          title: const Text('添加'),
+          leading: const Icon(Icons.add),
+          onTap: () => addRulesParser(context),
+        ),
+      ],
     );
   }
 

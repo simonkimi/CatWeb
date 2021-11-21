@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/themes.dart';
 import 'package:catweb/ui/components/form.dart';
 import 'package:catweb/ui/components/rules_card.dart';
 import 'package:catweb/utils/widget.dart';
@@ -30,7 +31,7 @@ class ListParserFragment extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: CustomScrollView(
         slivers: [
-          buildBaseList(labelWidth),
+          buildBaseList(context, labelWidth),
           buildInfoList(),
           buildCoverList(),
           buildTagList(),
@@ -153,18 +154,32 @@ class ListParserFragment extends StatelessWidget {
     );
   }
 
-  SliverList buildBaseList(double labelWidth) {
+  SliverList buildBaseList(BuildContext context, double labelWidth) {
     return SliverList(
         delegate: SliverChildListDelegate([
       RulesCard(title: '基础信息', children: [
         buildCupertinoInput(
-            label: '解析器名称', value: model.name, width: labelWidth),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 3),
-          child: Divider(height: 1, thickness: 0.3),
+          context: context,
+          label: '解析器名称',
+          value: model.name,
+          width: labelWidth,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 3),
+          child: Divider(
+            height: 1,
+            thickness: 0.3,
+            color: isDarkMode(context)
+                ? CupertinoColors.systemGrey6.darkColor
+                : CupertinoColors.systemGrey6,
+          ),
         ),
         buildCupertinoInput(
-            label: '项目选择器', value: model.itemSelector, width: labelWidth),
+          context: context,
+          label: '项目选择器',
+          value: model.itemSelector,
+          width: labelWidth,
+        ),
       ]),
     ]));
   }
