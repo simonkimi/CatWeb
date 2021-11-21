@@ -1,7 +1,10 @@
-import 'package:catweb/data/constant.dart';
 import 'package:catweb/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+import '../../themes.dart';
+import 'dark_image.dart';
 
 class CardTag {
   CardTag({
@@ -41,36 +44,51 @@ class SimpleCard extends StatelessWidget {
   const SimpleCard({
     Key? key,
     required this.model,
+    this.useCard = true,
   }) : super(key: key);
 
   final CardModel model;
+  final bool useCard;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusDirectional.circular(5),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: () {},
-        child: Column(
-          children: [
-            buildImage(context),
-            if (model.title != null) Text(model.title!),
-            if (model.subtitle != null)
-              Text(
-                model.subtitle!,
-                style: TextStyle(
-                  fontSize: 12.5,
-                  color: Theme.of(context).textTheme.headline1!.color,
-                ),
-              ),
-            if (model.tagList != null) buildTagList()
-          ],
-        ),
-      ),
+    final child = Column(
+      children: [
+        buildImage(context),
+        if (model.title != null)
+          Text(
+            model.title!,
+            style: TextStyle(
+              color: labelColor(context),
+            ),
+          ),
+        if (model.subtitle != null)
+          Text(
+            model.subtitle!,
+            style: TextStyle(
+              fontSize: 12.5,
+              color: secondaryLabelColor(context),
+            ),
+          ),
+        if (model.tagList != null) buildTagList()
+      ],
     );
+
+    return useCard
+        ? Card(
+            clipBehavior: Clip.antiAlias,
+            color: isDarkMode(context)
+                ? CupertinoColors.systemGrey6.darkColor
+                : CupertinoColors.systemBackground,
+            child: child,
+          )
+        : Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5),
+            child: Material(
+              color: systemBackground(context),
+              child: child,
+            ),
+          );
   }
 
   SizedBox buildTagList() {
@@ -131,40 +149,39 @@ class SimpleCard extends StatelessWidget {
     );
   }
 
-  AspectRatio buildImage(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 0.75,
-      child: Stack(
-        children: [
-          const ColoredBox(
-            color: kLightGrey,
-            child: Center(
-              child: Text('Preview'),
-            ),
+  Widget buildImage(BuildContext context) {
+    return Stack(
+      children: [
+        DarkWidget(
+          child: Image.asset(
+            'assets/images/simple2.jpg',
+            fit: BoxFit.fill,
           ),
-          if (model.badge != null)
-            Positioned(
-              left: 0,
-              bottom: 0,
-              child: buildBadge(),
-            ),
-          if (model.category != null)
-            Positioned(
-              right: 0,
-              child: buildCategory(context),
-            ),
-        ],
-      ),
+        ),
+        if (model.badge != null)
+          Positioned(
+            left: 0,
+            bottom: 0,
+            child: buildBadge(context),
+          ),
+        if (model.category != null)
+          Positioned(
+            right: 0,
+            child: buildCategory(context),
+          ),
+      ],
     );
   }
 
-  Padding buildBadge() {
+  Padding buildBadge(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(3),
       child: Container(
         padding: const EdgeInsets.all(1),
         decoration: BoxDecoration(
-            color: Colors.black38, borderRadius: BorderRadius.circular(2)),
+          color: isDarkMode(context) ? Colors.black38 : Colors.black38,
+          borderRadius: BorderRadius.circular(2),
+        ),
         child: Text(
           model.badge!,
           style: const TextStyle(color: Colors.white, fontSize: 12),
@@ -178,24 +195,36 @@ class ExtendedCard extends StatelessWidget {
   const ExtendedCard({
     Key? key,
     required this.model,
+    this.useCard = true,
   }) : super(key: key);
 
   final CardModel model;
+  final bool useCard;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusDirectional.circular(5),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: () {},
-        child: IntrinsicHeight(
-          child: buildBody(context),
-        ),
+    final child = InkWell(
+      onTap: () {},
+      child: IntrinsicHeight(
+        child: buildBody(context),
       ),
     );
+
+    return useCard
+        ? Card(
+            clipBehavior: Clip.antiAlias,
+            color: isDarkMode(context)
+                ? CupertinoColors.systemGrey6.darkColor
+                : CupertinoColors.systemBackground,
+            child: child,
+          )
+        : Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5),
+            child: Material(
+              color: systemBackground(context),
+              child: child,
+            ),
+          );
   }
 
   Row buildBody(BuildContext context) {
@@ -241,15 +270,14 @@ class ExtendedCard extends StatelessWidget {
               Text(
                 '${model.page}P',
                 style: TextStyle(
-                    fontSize: 12.5,
-                    color: Theme.of(context).textTheme.subtitle2!.color),
+                    fontSize: 12.5, color: secondaryLabelColor(context)),
               ),
             if (model.uploadTime != null)
               Text(
                 '${model.uploadTime}',
                 style: TextStyle(
                   fontSize: 12.5,
-                  color: Theme.of(context).textTheme.subtitle2!.color,
+                  color: secondaryLabelColor(context),
                 ),
               ),
           ],
@@ -299,8 +327,9 @@ class ExtendedCard extends StatelessWidget {
         Text(
           model.star!.toString(),
           style: TextStyle(
-              fontSize: 12,
-              color: Theme.of(context).textTheme.subtitle2!.color),
+            fontSize: 12,
+            color: labelColor(context),
+          ),
         ),
       ],
     );
@@ -318,12 +347,13 @@ class ExtendedCard extends StatelessWidget {
             maxLines: 2,
             softWrap: true,
             overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: labelColor(context)),
           ),
         if (model.subtitle != null)
           Text(
             model.subtitle!,
             style: TextStyle(
-              color: Theme.of(context).textTheme.headline1!.color,
+              color: secondaryLabelColor(context),
               fontSize: 14,
             ),
           ),
@@ -339,10 +369,11 @@ class ExtendedCard extends StatelessWidget {
       height: 135,
       child: Stack(
         children: [
-          const ColoredBox(
-            color: kLightGrey,
-            child: Center(
-              child: Text('Preview'),
+          DarkWidget(
+            child: Image.asset(
+              'assets/images/simple2.jpg',
+              fit: BoxFit.fitHeight,
+              height: 135,
             ),
           ),
           if (model.badge != null)

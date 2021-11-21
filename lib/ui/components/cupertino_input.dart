@@ -31,9 +31,7 @@ class CupertinoInput extends StatelessWidget {
           Text(
             labelText,
             style: TextStyle(
-                color: isDarkMode(context)
-                    ? CupertinoColors.label.darkColor
-                    : CupertinoColors.label.color,
+                color: labelColor(context),
                 fontSize: 12),
           ),
           const SizedBox(height: 3),

@@ -32,9 +32,7 @@ class RulesCard extends StatelessWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  color: isDarkMode(context)
-                      ? CupertinoColors.label.darkColor
-                      : CupertinoColors.label,
+                  color: labelColor(context),
                   fontSize: 12,
                 ),
               ),

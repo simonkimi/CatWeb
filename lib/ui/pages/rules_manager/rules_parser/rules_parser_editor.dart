@@ -150,9 +150,7 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
         text,
         style: TextStyle(
           fontSize: 12,
-          color: isDarkMode(context)
-              ? CupertinoColors.label.darkColor
-              : CupertinoColors.label.color,
+          color: labelColor(context),
         ),
       ),
       height: 30,

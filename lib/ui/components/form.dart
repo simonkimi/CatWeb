@@ -89,9 +89,7 @@ Widget buildCupertinoInput({
               child: Text(
                 label,
                 style: TextStyle(
-                  color: isDarkMode(context)
-                      ? CupertinoColors.label.darkColor
-                      : CupertinoColors.label,
+                  color: labelColor(context),
                   fontSize: 12,
                 ),
               ),
@@ -126,8 +124,8 @@ class RulesForm extends StatelessWidget {
         .map((e) => boundingTextSize(
             context: context,
             text: e,
-            style: const TextStyle(
-              color: CupertinoColors.label,
+            style: TextStyle(
+              color: labelColor(context),
               fontSize: 12,
             )).width)
         .reduce(max);
@@ -149,9 +147,7 @@ class RulesForm extends StatelessWidget {
                 child: Text(
                   title!,
                   style: TextStyle(
-                    color: isDarkMode(context)
-                        ? CupertinoColors.label.darkColor
-                        : CupertinoColors.label,
+                    color: labelColor(context),
                     fontSize: 12,
                   ),
                 ),
