@@ -33,10 +33,21 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: buildAppbar(context),
-      child: SafeArea(
-        child: isEdit ? buildInput(context) : buildHighlightView(),
+    return WillPopScope(
+      onWillPop: () async {
+        if (isEdit) {
+          setState(() {
+            isEdit = false;
+          });
+          return false;
+        }
+        return true;
+      },
+      child: CupertinoPageScaffold(
+        navigationBar: buildAppbar(context),
+        child: SafeArea(
+          child: isEdit ? buildInput(context) : buildHighlightView(),
+        ),
       ),
     );
   }
@@ -159,7 +170,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
                   buildInputHint(
                     context: context,
                     child: const Icon(CupertinoIcons.layers),
-                    input: 'function hook(group) {\n    \n}',
+                    input: 'function hook(group) {\n    return group;\n}',
                     position: -2,
                   ),
                   buildInputHint(
