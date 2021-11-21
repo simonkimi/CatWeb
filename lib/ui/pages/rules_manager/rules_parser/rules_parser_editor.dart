@@ -11,19 +11,30 @@ import 'package:flutter/material.dart';
 import '../../../../themes.dart';
 import 'editor_store.dart';
 
-class RulesParserEditor extends StatelessWidget {
-  RulesParserEditor({
+class RulesParserEditor extends StatefulWidget {
+  const RulesParserEditor({
     Key? key,
     required this.type,
-    dynamic model,
-  })  : store = EditorStore(type: type, model: model),
-        super(key: key);
+    this.model,
+  }) : super(key: key);
 
   static String routeName = 'rules_parser_editor';
 
   final ParserType type;
+  final ParserBaseModel? model;
 
-  final EditorStore store;
+  @override
+  _RulesParserEditorState createState() => _RulesParserEditorState();
+}
+
+class _RulesParserEditorState extends State<RulesParserEditor> {
+  late final EditorStore store;
+
+  @override
+  void initState() {
+    store = EditorStore(type: widget.type, model: widget.model);
+    super.initState();
+  }
 
   CupertinoNavigationBar buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(

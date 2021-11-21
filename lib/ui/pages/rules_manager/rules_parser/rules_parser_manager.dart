@@ -3,6 +3,7 @@ import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_editor.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RulesParserManager extends StatelessWidget {
@@ -44,7 +45,7 @@ class RulesParserManager extends StatelessWidget {
       ],
     );
     if (selection != null) {
-      Navigator.of(context).push(MaterialPageRoute(
+      Navigator.of(context).push(CupertinoPageRoute(
           builder: (context) => RulesParserEditor(
                 type: selection,
               )));
