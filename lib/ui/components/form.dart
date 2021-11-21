@@ -271,7 +271,7 @@ class RulesForm extends StatelessWidget {
                 label: 'Js脚本',
                 value: selectorModel.js.isNotEmpty,
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                  Navigator.of(context).push(CupertinoPageRoute(
                       builder: (context) => JavaScriptEditor(
                             js: selectorModel.js,
                           )));
