@@ -72,6 +72,37 @@ Future<bool?> showConfirmDialog({
   );
 }
 
+Future<bool?> showCupertinoConfirmDialog({
+  required BuildContext context,
+  String? title,
+  String? content,
+}) {
+  return showCupertinoDialog(
+    context: context,
+    barrierDismissible: true,
+    builder: (context) {
+      return CupertinoAlertDialog(
+        title: title != null ? Text(title) : null,
+        content: content != null ? Text(content) : null,
+        actions: [
+          CupertinoDialogAction(
+            child: const Text('取消'),
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+          ),
+          CupertinoDialogAction(
+            child: const Text('确认'),
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
 Future<T?> showSelectDialog<T>({
   required BuildContext context,
   required List<SelectTileItem<T>> items,

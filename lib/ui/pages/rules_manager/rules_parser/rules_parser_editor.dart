@@ -1,4 +1,5 @@
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/components/grey_tab_indicator.dart';
 import 'package:catweb/ui/fragments/parser/extra_parser.dart';
 import 'package:catweb/ui/fragments/parser/gallery_parser.dart';
@@ -40,37 +41,62 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
     return CupertinoNavigationBar(
       leading: CupertinoButton(
         onPressed: () {
-          Navigator.of(context).pop();
+          showCupertinoConfirmDialog(
+            context: context,
+            title: '退出',
+            content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
+          ).then((value) {
+            if (value == true) {
+              Navigator.of(context).pop();
+            }
+          });
         },
         child: const Icon(CupertinoIcons.back),
         padding: EdgeInsets.zero,
         minSize: 0,
       ),
       middle: const Text('规则'),
+      trailing: CupertinoButton(
+        onPressed: () {
+        },
+        child: const Icon(Icons.save_outlined),
+        padding: EdgeInsets.zero,
+        minSize: 0,
+      ),
       border: const Border(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: CupertinoPageScaffold(
-        navigationBar: buildAppbar(context),
-        child: SafeArea(
-          child: Column(
-            children: [
-              buildTabBar(context),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    buildPreview(context),
-                    buildBody(context),
-                    ExtraParser(model: store.parserBase),
-                  ],
-                ),
-              )
-            ],
+    return WillPopScope(
+      onWillPop: () async {
+        final result = await showCupertinoConfirmDialog(
+          context: context,
+          title: '退出',
+          content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
+        );
+        return result == true;
+      },
+      child: DefaultTabController(
+        length: 3,
+        child: CupertinoPageScaffold(
+          navigationBar: buildAppbar(context),
+          child: SafeArea(
+            child: Column(
+              children: [
+                buildTabBar(context),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      buildPreview(context),
+                      buildBody(context),
+                      ExtraParser(model: store.parserBase),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

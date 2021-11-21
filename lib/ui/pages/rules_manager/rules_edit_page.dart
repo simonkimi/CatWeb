@@ -1,3 +1,4 @@
+import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/components/grey_tab_indicator.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_basic/rules_basic.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_manager.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../i18n.dart';
-import '../../../themes.dart';
 
 class RulesEditPage extends StatelessWidget {
   RulesEditPage({Key? key}) : super(key: key);
@@ -19,7 +19,15 @@ class RulesEditPage extends StatelessWidget {
     return CupertinoNavigationBar(
       leading: CupertinoButton(
         onPressed: () {
-          Navigator.of(context).pop();
+          showCupertinoConfirmDialog(
+            context: context,
+            title: '退出',
+            content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
+          ).then((value) {
+            if (value == true) {
+              Navigator.of(context).pop();
+            }
+          });
         },
         child: const Icon(CupertinoIcons.back),
         padding: EdgeInsets.zero,
@@ -32,7 +40,16 @@ class RulesEditPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return WillPopScope(
+      onWillPop: () async {
+        final result = await showCupertinoConfirmDialog(
+          context: context,
+          title: '退出',
+          content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
+        );
+        return result == true;
+      },
+      child: DefaultTabController(
         length: 4,
         child: CupertinoPageScaffold(
           navigationBar: buildAppbar(context),
@@ -53,7 +70,9 @@ class RulesEditPage extends StatelessWidget {
               ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget buildTabBar(BuildContext context) {
