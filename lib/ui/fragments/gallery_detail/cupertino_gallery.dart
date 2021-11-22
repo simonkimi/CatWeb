@@ -1,9 +1,11 @@
 import 'package:catweb/themes.dart';
 import 'package:catweb/ui/components/comment_item.dart';
+import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_info_item.dart';
 import 'package:catweb/ui/components/icon_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 
 class GalleryDetailModel {
   GalleryDetailModel({
@@ -19,6 +21,7 @@ class GalleryDetailModel {
     this.tagList,
     this.commentList,
     this.prePageImageCount,
+    this.description,
   });
 
   final String? title;
@@ -32,6 +35,7 @@ class GalleryDetailModel {
   final String? uploadTime;
   final List<TagModel>? tagList;
   final int? prePageImageCount;
+  final String? description;
 
   final List<CommentItemModel>? commentList;
 }
@@ -53,11 +57,165 @@ class CupertinoGallery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Padding(
+      padding: const EdgeInsets.only(right: 10, left: 10, top: 10),
+      child: ListView(
+        children: [
+          buildHeader(context),
+          const CupertinoDivider(),
+          buildControllerPanel(context),
+          const CupertinoDivider(),
+          buildDescription(context),
+          const CupertinoDivider(),
+        ],
+      ),
+    );
+  }
+
+  Widget buildDescription(BuildContext context) {
+    final text = model.description!.replaceAll(RegExp(r'\n{2,}'), '\n');
+    final textStyle = TextStyle(
+      fontSize: 14,
+      color: labelColor(context),
+    );
+
+    final overflow = (TextPainter(
+      maxLines: 5,
+      textDirection: TextDirection.ltr,
+      text: TextSpan(
+        text: text,
+        style: textStyle,
+      ),
+    )..layout(maxWidth: MediaQuery.of(context).size.width - 20))
+        .didExceedMaxLines;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        buildHeader(context),
-        const Divider(),
+        const SizedBox(height: 5),
+        Stack(
+          children: [
+            Linkify(
+              text: text,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 5,
+              style: TextStyle(
+                fontSize: 14,
+                color: labelColor(context),
+              ),
+            ),
+            if (overflow)
+              Positioned(
+                right: 1,
+                bottom: 1,
+                child: Stack(
+                  children: [
+                    ShaderMask(
+                      shaderCallback: (bounds) {
+                        return LinearGradient(colors: [
+                          systemBackground(context).withOpacity(0),
+                          systemBackground(context),
+                          systemBackground(context),
+                        ], stops: const [
+                          0,
+                          0.65,
+                          1
+                        ]).createShader(bounds);
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 20,
+                        color: systemBackground(context),
+                      ),
+                    ),
+                    const Positioned(
+                      right: 1,
+                      child: Text(
+                        '更多',
+                        style: TextStyle(
+                          color: CupertinoColors.activeBlue,
+                          fontSize: 14,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+          ],
+        ),
+        const SizedBox(height: 10),
+        Text(
+          model.subtitle!,
+          style: const TextStyle(
+            color: CupertinoColors.activeBlue,
+            fontSize: 15,
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              '上传者',
+              style:
+                  TextStyle(color: secondaryLabelColor(context), fontSize: 12),
+            ),
+            Text(
+              model.uploadTime!,
+              style: TextStyle(
+                color: secondaryLabelColor(context),
+                fontSize: 12,
+              ),
+            )
+          ],
+        ),
+        const SizedBox(height: 5),
       ],
+    );
+  }
+
+  Widget buildControllerPanel(BuildContext context) {
+    return Row(
+      children: [
+        buildControllerItem(
+          context: context,
+          icon: CupertinoIcons.cloud_download,
+          text: '下载',
+        ),
+        buildControllerItem(
+          context: context,
+          icon: CupertinoIcons.star,
+          text: '评分',
+        ),
+        buildControllerItem(
+          context: context,
+          icon: CupertinoIcons.heart,
+          text: '收藏',
+        ),
+      ],
+    );
+  }
+
+  Widget buildControllerItem({
+    required BuildContext context,
+    required IconData icon,
+    required String text,
+  }) {
+    return Expanded(
+      child: Column(
+        children: [
+          Icon(
+            icon,
+            color: secondaryLabelColor(context),
+          ),
+          Text(
+            text,
+            style: TextStyle(
+              color: secondaryLabelColor(context),
+              fontSize: 12,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -86,26 +244,23 @@ class CupertinoGallery extends StatelessWidget {
   }
 
   Widget buildHeader(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 150),
-            child: IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  buildLeftImage(),
-                  const SizedBox(width: 8),
-                  buildRightInfo(context),
-                ],
-              ),
+    return Column(
+      children: [
+        ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 150),
+          child: IntrinsicHeight(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                buildLeftImage(),
+                const SizedBox(width: 8),
+                buildRightInfo(context),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -135,8 +290,7 @@ class CupertinoGallery extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.black38,
-                    borderRadius: BorderRadius.circular(3)
-                ),
+                    borderRadius: BorderRadius.circular(3)),
                 child: Padding(
                   padding: const EdgeInsets.all(1),
                   child: IconText(
@@ -144,10 +298,7 @@ class CupertinoGallery extends StatelessWidget {
                     iconColor: Colors.white,
                     space: 0,
                     text: '${model.imageCount!}',
-                    style: const TextStyle(
-                        fontSize: 9,
-                        color: Colors.white
-                    ),
+                    style: const TextStyle(fontSize: 9, color: Colors.white),
                   ),
                 ),
               ),

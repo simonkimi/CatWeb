@@ -28,6 +28,23 @@ class GalleryPreview extends StatelessWidget {
           TagModel(category: 'p3', text: 'hm'),
           TagModel(category: 'p2', text: '789'),
         ],
+        description: '''RAW：https://e-hentai.org/s/9acab29be6/1870894-153
+
+感谢金主 匿名绅士 出资汉化，喜欢该作的绅士们请购买原版来支持作者
+
+其他已汉化的章节
+[oo君個人漢化](C93) [サークルフィオレ (えかきびと)] おつかれさまですししょー (りゅうおうのおしごと!)
+https://e-hentai.org/g/1166395/b70765ec75/
+[靴下汉化组](C93) [サークルフィオレ (えかきびと)] おつかれさまですししょー (りゅうおうのおしごと!)
+https://e-hentai.org/g/1165459/22b2d20e19/
+[無邪気漢化組](COMIC1☆13) [サークルフィオレ (えかきびと)] 姉弟子の一番長い日 (りゅうおうのおしごと!)
+https://e-hentai.org/g/1228259/4190225563/
+[oo君x赤蜘蛛聯合漢化](C94) [サークルフィオレ (えかきびと)] りゅうおうのきゅうじつ・表 (りゅうおうのおしごと!)
+https://e-hentai.org/g/1275854/ba1ce82ecb/
+[脸肿汉化组](C94) [サークルフィオレ (えかきびと)] りゅうおうのきゅうじつ・裏 (りゅうおうのおしごと!)
+https://e-hentai.org/g/1274243/d634efbccd/
+[oo君x赤蜘蛛聯合漢化](C94) [サークルフィオレ (えかきびと)] りゅうおうのきゅうじつ・裏 (りゅうおうのおしごと!)
+https://e-hentai.org/g/1275855/d8c63069e4/''',
         commentList: <CommentItemModel>[
           CommentItemModel(username: 'user1', comment: '爽啊', score: 4),
           CommentItemModel(
