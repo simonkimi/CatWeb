@@ -57,8 +57,7 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
       ),
       middle: const Text('规则'),
       trailing: CupertinoButton(
-        onPressed: () {
-        },
+        onPressed: () {},
         child: const Icon(Icons.save_outlined),
         padding: EdgeInsets.zero,
         minSize: 0,
@@ -104,20 +103,17 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
   }
 
   Widget buildPreview(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(5),
-      children: [
-        if (store.parserBase is GalleryParserModel) const GalleryPreview(),
-        const SizedBox(),
-        if (store.parserBase is ListViewParserModel) const ListParserPreview(),
-      ],
-    );
+    if (store.parserBase is GalleryParserModel) return const GalleryPreview();
+    if (store.parserBase is ListViewParserModel)
+      return const ListParserPreview();
+    throw UnsupportedError('UnSupported');
   }
 
   Widget buildBody(BuildContext context) {
     if (store.parserBase is GalleryParserModel) {
       return GalleryParserFragment(
-          model: store.parserBase as GalleryParserModel);
+        model: store.parserBase as GalleryParserModel,
+      );
     }
     if (store.parserBase is ListViewParserModel) {
       return ListParserFragment(model: store.parserBase as ListViewParserModel);

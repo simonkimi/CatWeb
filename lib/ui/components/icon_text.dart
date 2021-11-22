@@ -21,6 +21,8 @@ class IconText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Icon(
           icon,
@@ -28,9 +30,12 @@ class IconText extends StatelessWidget {
           size: (style?.fontSize ?? 15) + 3,
         ),
         SizedBox(width: space ?? 3),
-        Text(
-          text,
-          style: style ?? const TextStyle(fontSize: 15),
+        Padding(
+          padding: const EdgeInsets.only(top: 2),
+          child: Text(
+            text,
+            style: style ?? const TextStyle(fontSize: 15),
+          ),
         )
       ],
     );

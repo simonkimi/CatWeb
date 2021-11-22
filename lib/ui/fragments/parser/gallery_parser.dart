@@ -59,6 +59,11 @@ class GalleryParserFragment extends StatelessWidget {
       title: '徽章',
       children: [
         RulesForm(
+          title: '徽章项目',
+          field: '#badgeItem',
+          selectorModel: model.badgeItem,
+        ),
+        RulesForm(
           title: '徽章内容',
           field: '#badgeText',
           selectorModel: model.badgeText,
@@ -79,6 +84,11 @@ class GalleryParserFragment extends StatelessWidget {
 
   StickyClassifyList buildCommentList() {
     return StickyClassifyList(title: '评论', children: [
+      RulesForm(
+        title: '评论项目',
+        field: '#commentItem',
+        selectorModel: model.commentItem,
+      ),
       RulesForm(
         title: '评论内容',
         field: '#comment',
@@ -119,6 +129,11 @@ class GalleryParserFragment extends StatelessWidget {
 
   StickyClassifyList buildThumbnailList() {
     return StickyClassifyList(title: '缩略图', children: [
+      RulesForm(
+        title: '缩略图项目',
+        field: '#thumbnailUrl',
+        selectorModel: model.thumbnailItem,
+      ),
       RulesForm(
         title: '缩略图地址',
         field: '#thumbnailUrl',
@@ -211,11 +226,6 @@ class GalleryParserFragment extends StatelessWidget {
         title: '语言',
         field: '#language',
         selectorModel: model.language,
-      ),
-      RulesForm(
-        title: '收藏次数',
-        field: '#favoriteCount',
-        selectorModel: model.favoriteCount,
       ),
       RulesForm(
         title: '描述',

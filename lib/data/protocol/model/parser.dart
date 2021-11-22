@@ -29,15 +29,17 @@ class GalleryParserModel extends ParserBaseModel {
         star = SelectorModel(pb?.star, true),
         imgCount = SelectorModel(pb?.imgCount, true),
         prePageImg = SelectorModel(pb?.prePageImg, true),
-        favoriteCount = SelectorModel(pb?.favoriteCount),
         language = SelectorModel(pb?.language),
         coverImg = ImageSelectorModel(pb?.coverImg),
+        thumbnailItem = SelectorModel(pb?.thumbnailItem),
         description = SelectorModel(pb?.description),
         thumbnail = ImageSelectorModel(pb?.thumbnail),
         thumbnailUrl = SelectorModel(pb?.thumbnailUrl),
+        commentItem = SelectorModel(pb?.commentItem),
         comments = CommentSelectorModel(pb?.comments),
         tag = SelectorModel(pb?.tag),
         tagColor = SelectorModel(pb?.tagColor),
+        badgeItem = SelectorModel(pb?.badgeItem),
         badgeText = SelectorModel(pb?.badgeText),
         badgeColor = SelectorModel(pb?.badgeColor),
         badgeType = SelectorModel(pb?.badgeType),
@@ -52,19 +54,21 @@ class GalleryParserModel extends ParserBaseModel {
   final SelectorModel star;
   final SelectorModel imgCount;
   final SelectorModel prePageImg;
-  final SelectorModel favoriteCount;
   final SelectorModel language;
   final ImageSelectorModel coverImg;
   final SelectorModel description;
 
+  final SelectorModel thumbnailItem;
   final ImageSelectorModel thumbnail;
   final SelectorModel thumbnailUrl;
 
+  final SelectorModel commentItem;
   final CommentSelectorModel comments;
 
   final SelectorModel tag;
   final SelectorModel tagColor;
 
+  final SelectorModel badgeItem;
   final SelectorModel badgeText;
   final SelectorModel badgeColor;
   final SelectorModel badgeType;
@@ -80,7 +84,6 @@ class GalleryParserModel extends ParserBaseModel {
         star: star.toPb(),
         imgCount: imgCount.toPb(),
         prePageImg: prePageImg.toPb(),
-        favoriteCount: favoriteCount.toPb(),
         language: language.toPb(),
         coverImg: coverImg.toPb(),
         description: description.toPb(),
@@ -98,25 +101,27 @@ class GalleryParserModel extends ParserBaseModel {
 
   @override
   Map<String, SelectorModel> get combine => {
-    'title': title,
-    'subtitle': subTitle,
-    'uploadTime': uploadTime,
-    'star': star,
-    'imgCount': imgCount,
-    'prePageImg': prePageImg,
-    'favoriteCount': favoriteCount,
-    'language': language,
-    ...coverImg.combine,
-    'description': description,
-    ...thumbnail.combine,
-    'thumbnailUrl': thumbnailUrl,
-    ...comments.combine,
-    'tag': tag,
-    'tagColor': tagColor,
-    'badgeText': badgeText,
-    'badgeType': badgeType,
-    'nextPage': nextPage,
-  };
+        'title': title,
+        'subtitle': subTitle,
+        'uploadTime': uploadTime,
+        'star': star,
+        'imgCount': imgCount,
+        'prePageImg': prePageImg,
+        'language': language,
+        ...coverImg.combine,
+        'description': description,
+        'thumbnailItem': thumbnailItem,
+        ...thumbnail.combine,
+        'thumbnailUrl': thumbnailUrl,
+        'commentItem': commentItem,
+        ...comments.combine,
+        'tag': tag,
+        'tagColor': tagColor,
+        'badgeItem': badgeItem,
+        'badgeText': badgeText,
+        'badgeType': badgeType,
+        'nextPage': nextPage,
+      };
 }
 
 class ListViewParserModel extends ParserBaseModel {
@@ -182,15 +187,15 @@ class ListViewParserModel extends ParserBaseModel {
 
   @override
   Map<String, SelectorModel> get combine => {
-    'title': title,
-    'subtitle': subtitle,
-    'uploadTime': uploadTime,
-    'star': star,
-    'imgCount': imgCount,
-    ...previewImg.combine,
-    'tag': tag,
-    'tagColor': tagColor,
-    'badgeText': badgeText,
-    'nextPage': nextPage
-  };
+        'title': title,
+        'subtitle': subtitle,
+        'uploadTime': uploadTime,
+        'star': star,
+        'imgCount': imgCount,
+        ...previewImg.combine,
+        'tag': tag,
+        'tagColor': tagColor,
+        'badgeText': badgeText,
+        'nextPage': nextPage
+      };
 }

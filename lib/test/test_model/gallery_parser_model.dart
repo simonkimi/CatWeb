@@ -17,13 +17,10 @@ final galleryParserModel = GalleryParserModel(GalleryParser(
   language: Selector(
       selector: '#gdd tr:nth-child(4) .gdt2', function: SelectorFunction.text),
   imgCount: Selector(
-      selector: '#gdd tr:nth-child(6) .gdt2',
-      function: SelectorFunction.text,
-      regex: r'\d+'),
-  favoriteCount: Selector(
-      selector: '#gdd tr:nth-child(7) .gdt2',
-      function: SelectorFunction.text,
-      regex: r'\d+'),
+    selector: '#gdd tr:nth-child(6) .gdt2',
+    function: SelectorFunction.text,
+    regex: r'\d+',
+  ),
   star: Selector(
       selector: '#rating_label',
       function: SelectorFunction.text,
@@ -124,9 +121,5 @@ final galleryParserModel = GalleryParserModel(GalleryParser(
     replace: r'$1|$2',
     js: 'function hook(a){const b=a.split("|");return rows=4,-1!==b[0].indexOf("40 rows")?rows=40:-1!==b[0].indexOf("20 rows")?rows=20:-1!==b[0].indexOf("10 rows")&&(rows=10),column=10,-1!==b[1].indexOf("Large")&&(column=5),rows*column}',
   ),
-  extraSelector: [
-    ExtraSelector(
-
-    )
-  ],
+  extraSelector: [ExtraSelector()],
 ));

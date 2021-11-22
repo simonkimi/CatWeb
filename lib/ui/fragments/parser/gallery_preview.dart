@@ -1,5 +1,5 @@
 import 'package:catweb/ui/components/comment_item.dart';
-import 'package:catweb/ui/fragments/gallery_detail/gallery_detail.dart';
+import 'package:catweb/ui/fragments/gallery_detail/cupertino_gallery.dart';
 import 'package:flutter/material.dart';
 
 class GalleryPreview extends StatelessWidget {
@@ -8,8 +8,8 @@ class GalleryPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = GalleryDetailModel(
-        title: '标题',
-        subtitle: '副标题',
+        title: '(C97) [Circle-FIORE (Ekakibit)] Kaki Oroshi (Ryuuou no Matome Bon) (Ryuuou no Oshigoto!) [Chinese] [转尾巴猫汉化]',
+        subtitle: 'qq3870990',
         category: '分类',
         categoryColor: Colors.blue,
         favoriteCount: 100,
@@ -39,6 +39,6 @@ class GalleryPreview extends StatelessWidget {
             score: -9,
           ),
         ]);
-    return GalleryDetail(model: model);
+    return CupertinoGallery(model: model);
   }
 }

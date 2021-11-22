@@ -15,6 +15,7 @@ message ListViewParser {
   Selector tag = 9;
   Selector tagColor = 10;
 
+  Selector badgeItem = 11;
   Selector badgeText = 12;
   Selector badgeColor = 13;
 
@@ -34,29 +35,31 @@ message GalleryParser {
   Selector star = 5;
   Selector imgCount = 6;  // 有多少面
   Selector prePageImg = 7;  // 一面有多少图片
-  Selector favoriteCount = 8;  // 收藏次数
-  Selector language = 9;  // 语言
-  ImageSelector coverImg = 10;  // 封面图
-  Selector description = 11;  // 描述
+  Selector language = 8;  // 语言
+  ImageSelector coverImg = 9;  // 封面图
+  Selector description = 10;  // 描述
 
   // 缩略图
-  ImageSelector thumbnail = 13;
-  Selector thumbnailUrl = 14;
+  Selector thumbnailItem = 11;
+  ImageSelector thumbnail = 12;
+  Selector thumbnailUrl = 13;
 
   // 评论
-  CommentSelector comments = 16;
+  Selector commentItem = 14;
+  CommentSelector comments = 15;
 
   // 分类
-  Selector tag = 17;
-  Selector tagColor = 18;
+  Selector tag = 16;
+  Selector tagColor = 17;
 
   // 徽章
-  Selector badgeText = 20;
-  Selector badgeColor = 21;
-  Selector badgeType = 22;
+  Selector badgeItem = 18;
+  Selector badgeText = 19;
+  Selector badgeColor = 20;
+  Selector badgeType = 21;
 
   // 下一面
-  Selector nextPage = 23;
+  Selector nextPage = 22;
 
   repeated ExtraSelector extraSelector = 99;
 }

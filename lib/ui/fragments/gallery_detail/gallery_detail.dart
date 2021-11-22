@@ -55,13 +55,15 @@ class GalleryDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        buildPreviewTitle(context),
-        const Divider(),
-        buildNeedLoading(context),
-      ],
+    return Material(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          buildPreviewTitle(context),
+          const Divider(),
+          buildNeedLoading(context),
+        ],
+      ),
     );
   }
 
