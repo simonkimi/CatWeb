@@ -19,7 +19,7 @@ class CupertinoDivider extends StatelessWidget {
       padding: padding,
       child: Divider(
         height: height,
-        thickness: isDarkMode(context) ? 0.6: 0.2,
+        thickness: isDarkMode(context) ? 0.6: 0.4,
         color: isDarkMode(context)
             ? CupertinoColors.separator.darkColor
             : CupertinoColors.separator.color,

@@ -283,8 +283,10 @@ class RulesForm extends StatelessWidget {
               size: 18,
             ),
             onPressed: () async {
-              final result =
-                  await showConfirmDialog(context: context, text: '确认删除此字段?');
+              final result = await showCupertinoConfirmDialog(
+                context: context,
+                content: '确认删除此字段?',
+              );
               if (result == true) {
                 onDelete?.call();
               }

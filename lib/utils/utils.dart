@@ -37,9 +37,6 @@ extension ListHelper<T> on List<T> {
   }
 }
 
-extension ColorHelper on Color {
-  bool get isDark => red * 0.299 + green * 0.578 + blue * 0.114 <= 192;
-}
 
 extension AnimationControllerHelper on AnimationController {
   void byValue(bool display) {

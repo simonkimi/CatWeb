@@ -1,4 +1,5 @@
 import 'package:catweb/themes.dart';
+import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/comment_item.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_info_item.dart';
@@ -6,6 +7,7 @@ import 'package:catweb/ui/components/icon_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class GalleryDetailModel {
   GalleryDetailModel({
@@ -22,6 +24,7 @@ class GalleryDetailModel {
     this.commentList,
     this.prePageImageCount,
     this.description,
+    this.star,
   });
 
   final String? title;
@@ -36,6 +39,7 @@ class GalleryDetailModel {
   final List<TagModel>? tagList;
   final int? prePageImageCount;
   final String? description;
+  final double? star;
 
   final List<CommentItemModel>? commentList;
 }
@@ -62,13 +66,161 @@ class CupertinoGallery extends StatelessWidget {
       child: ListView(
         children: [
           buildHeader(context),
-          const CupertinoDivider(),
-          buildControllerPanel(context),
-          const CupertinoDivider(),
           buildDescription(context),
-          const CupertinoDivider(),
+          // buildControllerPanel(context),
+          buildTagList(context),
+          buildCommentList(context),
         ],
       ),
+    );
+  }
+
+  Widget buildCommentList(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              '评论和评分',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+            Row(
+              children: [
+                RatingBar.builder(
+                  initialRating: model.star!,
+                  itemSize: 13,
+                  maxRating: 5,
+                  allowHalfRating: true,
+                  itemBuilder: (context, _) => const Icon(
+                    CupertinoIcons.star_fill,
+                    color: CupertinoColors.systemYellow,
+                  ),
+                  unratedColor: systemGrey6(context),
+                  onRatingUpdate: (value) {},
+                ),
+                const SizedBox(width: 5),
+                const Text(
+                  '4.5',
+                  style: TextStyle(fontSize: 12),
+                ),
+              ],
+            )
+          ],
+        ),
+        const SizedBox(height: 5),
+        Column(
+          children: model.commentList!.take(2).map((e) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: systemGrey6(context),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          e.username!,
+                          style: const TextStyle(
+                              color: CupertinoColors.activeBlue,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15),
+                        ),
+                        const Expanded(child: SizedBox()),
+                        Text(
+                          '${e.score! >= 0 ? '+' : '-'}${e.score!.abs()}',
+                          style: const TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Linkify(
+                      text: e.comment!,
+                      style: const TextStyle(fontSize: 15),
+                      onOpen: (value) {},
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      e.commentTime!,
+                      style: const TextStyle(
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }).toList(),
+        )
+      ],
+    );
+  }
+
+  Widget buildTagList(BuildContext context) {
+    final tagMaps = <String, List<String>>{};
+
+    for (final tag in model.tagList ?? <TagModel>[]) {
+      if (!tagMaps.containsKey(tag.category)) {
+        tagMaps[tag.category] = [];
+      }
+      tagMaps[tag.category]!.add(tag.text);
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Tag',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+            Badge(
+              text: model.category!,
+              color: model.categoryColor,
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        ...tagMaps.entries.map((e) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (e.key != '_')
+                  Badge(
+                    text: e.key,
+                    color: cupertinoLightColors[
+                            tagMaps.keys.toList().indexOf(e.key) %
+                                cupertinoLightColors.length]
+                        .withOpacity(0.5),
+                  ),
+                if (e.key != '_') const SizedBox(width: 10),
+                Expanded(
+                  child: Wrap(
+                    spacing: 5,
+                    runSpacing: 5,
+                    children: e.value.map((e) {
+                      return Badge(text: e);
+                    }).toList(),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }),
+        const CupertinoDivider(),
+      ],
     );
   }
 
@@ -92,6 +244,10 @@ class CupertinoGallery extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const Text(
+          '描述',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+        ),
         const SizedBox(height: 5),
         Stack(
           children: [
@@ -169,28 +325,37 @@ class CupertinoGallery extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 5),
+        const CupertinoDivider(),
       ],
     );
   }
 
   Widget buildControllerPanel(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        buildControllerItem(
-          context: context,
-          icon: CupertinoIcons.cloud_download,
-          text: '下载',
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          child: Row(
+            children: [
+              buildControllerItem(
+                context: context,
+                icon: CupertinoIcons.cloud_download,
+                text: '下载',
+              ),
+              buildControllerItem(
+                context: context,
+                icon: CupertinoIcons.star,
+                text: '评分',
+              ),
+              buildControllerItem(
+                context: context,
+                icon: CupertinoIcons.heart,
+                text: '收藏',
+              ),
+            ],
+          ),
         ),
-        buildControllerItem(
-          context: context,
-          icon: CupertinoIcons.star,
-          text: '评分',
-        ),
-        buildControllerItem(
-          context: context,
-          icon: CupertinoIcons.heart,
-          text: '收藏',
-        ),
+        const CupertinoDivider(),
       ],
     );
   }
@@ -260,6 +425,8 @@ class CupertinoGallery extends StatelessWidget {
             ),
           ),
         ),
+        const SizedBox(height: 10),
+        const CupertinoDivider(),
       ],
     );
   }
@@ -323,7 +490,6 @@ class CupertinoGallery extends StatelessWidget {
               const SizedBox(height: 5),
               buildUploader(context),
               const SizedBox(height: 5),
-              buildUploadTime(context),
             ],
           ),
           Row(
