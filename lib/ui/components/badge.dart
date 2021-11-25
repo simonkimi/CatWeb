@@ -7,12 +7,14 @@ class Badge extends StatelessWidget {
     Key? key,
     required this.text,
     this.color,
-    this.padding = const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-    this.borderRadius = 5,
+    this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+    this.borderRadius = 8,
     this.fontSize = 15,
+    this.textColor,
   }) : super(key: key);
 
   final Color? color;
+  final Color? textColor;
   final String text;
   final EdgeInsets padding;
   final double borderRadius;
@@ -20,7 +22,7 @@ class Badge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final defaultColor = color ?? CupertinoColors.systemGrey6.resolveFrom(context);
+    final defaultColor = color ?? FixColor.badge.resolveFrom(context);
 
     return Container(
       padding: padding,
@@ -32,9 +34,12 @@ class Badge extends StatelessWidget {
         text,
         style: TextStyle(
           fontSize: fontSize,
-          color: defaultColor.isDark
-              ? Colors.white
-              : Colors.black,
+          color: textColor ??
+              (defaultColor.isDark
+                  ? isDarkMode(context)
+                      ? Colors.white.withOpacity(0.87)
+                      : Colors.white
+                  : Colors.grey[900]),
         ),
       ),
     );

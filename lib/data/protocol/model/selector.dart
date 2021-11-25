@@ -8,7 +8,6 @@ abstract class CombineSelector {
   Map<String, SelectorModel> get combine;
 }
 
-
 class SelectorModel implements PbAble {
   SelectorModel([Selector? pb, bool computed = false])
       : selector = sobs(pb?.selector),
@@ -86,12 +85,12 @@ class ImageSelectorModel implements PbAble, CombineSelector {
 
   @override
   Map<String, SelectorModel> get combine => {
-    'imgUrl': imgUrl,
-    'imgWidth': imgWidth,
-    'imgHeight': imgHeight,
-    'imgX': imgX,
-    'imgY': imgY,
-  };
+        'imgUrl': imgUrl,
+        'imgWidth': imgWidth,
+        'imgHeight': imgHeight,
+        'imgX': imgX,
+        'imgY': imgY,
+      };
 }
 
 class CommentSelectorModel implements PbAble, CombineSelector {
@@ -106,7 +105,6 @@ class CommentSelectorModel implements PbAble, CombineSelector {
   final SelectorModel vote;
   final SelectorModel content;
 
-
   @override
   CommentSelector toPb() => CommentSelector(
         username: username.toPb(),
@@ -117,11 +115,11 @@ class CommentSelectorModel implements PbAble, CombineSelector {
 
   @override
   Map<String, SelectorModel> get combine => {
-    'username': username,
-    'postTime': postTime,
-    'vote': vote,
-    'content': content,
-  };
+        'username': username,
+        'postTime': postTime,
+        'vote': vote,
+        'content': content,
+      };
 }
 
 extension SelectorFunctionE on SelectorFunction {

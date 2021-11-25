@@ -58,7 +58,7 @@ class SimpleCard extends StatelessWidget {
           Text(
             model.title!,
             style: TextStyle(
-              color: CupertinoColors.label.resolveFrom(context),
+              color: FixColor.title.resolveFrom(context),
             ),
           ),
         if (model.subtitle != null)
@@ -66,7 +66,7 @@ class SimpleCard extends StatelessWidget {
             model.subtitle!,
             style: TextStyle(
               fontSize: 12.5,
-              color: CupertinoColors.label.resolveFrom(context),
+              color: FixColor.title.resolveFrom(context),
             ),
           ),
         if (model.tagList != null) buildTagList()
@@ -269,7 +269,8 @@ class ExtendedCard extends StatelessWidget {
               Text(
                 '${model.page}P',
                 style: TextStyle(
-                    fontSize: 12.5, color: CupertinoColors.secondaryLabel.resolveFrom(context)),
+                    fontSize: 12.5,
+                    color: CupertinoColors.secondaryLabel.resolveFrom(context)),
               ),
             if (model.uploadTime != null)
               Text(
@@ -327,7 +328,7 @@ class ExtendedCard extends StatelessWidget {
           model.star!.toString(),
           style: TextStyle(
             fontSize: 12,
-            color: CupertinoColors.label.resolveFrom(context),
+            color: FixColor.title.resolveFrom(context),
           ),
         ),
       ],
@@ -346,7 +347,7 @@ class ExtendedCard extends StatelessWidget {
             maxLines: 2,
             softWrap: true,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
+            style: TextStyle(color: FixColor.title.resolveFrom(context)),
           ),
         if (model.subtitle != null)
           Text(

@@ -36,7 +36,6 @@ extension ListHelper<T> on List<T> {
   }
 }
 
-
 extension AnimationControllerHelper on AnimationController {
   void byValue(bool display) {
     if (display && atEnd) reverse();

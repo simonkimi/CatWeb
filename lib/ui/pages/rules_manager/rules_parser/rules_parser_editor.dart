@@ -9,6 +9,7 @@ import 'package:catweb/ui/fragments/parser/list_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../themes.dart';
 import 'editor_store.dart';
 
 class RulesParserEditor extends StatefulWidget {
@@ -146,7 +147,7 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
         text,
         style: TextStyle(
           fontSize: 12,
-          color: CupertinoColors.label.resolveFrom(context),
+          color: FixColor.title.resolveFrom(context),
         ),
       ),
       height: 30,

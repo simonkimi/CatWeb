@@ -32,7 +32,7 @@ class RulesCard extends StatelessWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  color: CupertinoColors.label.resolveFrom(context),
+                  color: FixColor.title.resolveFrom(context),
                   fontSize: 12,
                 ),
               ),

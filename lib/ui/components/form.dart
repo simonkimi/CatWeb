@@ -89,7 +89,7 @@ Widget buildCupertinoInput({
               child: Text(
                 label,
                 style: TextStyle(
-                  color: CupertinoColors.label.resolveFrom(context),
+                  color: FixColor.title.resolveFrom(context),
                   fontSize: 12,
                 ),
               ),
@@ -125,7 +125,7 @@ class RulesForm extends StatelessWidget {
             context: context,
             text: e,
             style: TextStyle(
-              color: CupertinoColors.label.resolveFrom(context),
+              color: FixColor.title.resolveFrom(context),
               fontSize: 12,
             )).width)
         .reduce(max);
@@ -147,7 +147,7 @@ class RulesForm extends StatelessWidget {
                 child: Text(
                   title!,
                   style: TextStyle(
-                    color: CupertinoColors.label.resolveFrom(context),
+                    color: FixColor.title.resolveFrom(context),
                     fontSize: 12,
                   ),
                 ),
@@ -279,7 +279,7 @@ class RulesForm extends StatelessWidget {
             padding: EdgeInsets.zero,
             child: const Icon(
               Icons.delete,
-              color: CupertinoColors.label,
+              color: FixColor.title,
               size: 18,
             ),
             onPressed: () async {
@@ -375,9 +375,7 @@ class RulesForm extends StatelessWidget {
             child: Text(
               '函数',
               style: TextStyle(
-                color: isDarkMode()
-                    ? CupertinoColors.label.darkColor
-                    : CupertinoColors.label,
+                color: isDarkMode() ? FixColor.title.darkColor : FixColor.title,
                 fontSize: 12,
               ),
             ),

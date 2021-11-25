@@ -22,7 +22,7 @@ class ListParserFragment extends StatelessWidget {
             context: context,
             text: e,
             style: const TextStyle(
-              color: CupertinoColors.label,
+              color: FixColor.title,
               fontSize: 12,
             )).width)
         .reduce(max);

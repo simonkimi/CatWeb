@@ -5,12 +5,11 @@ extension WidgetWrap on Widget {
       Padding(padding: padding, child: this);
 }
 
-Size boundingTextSize({
-  required BuildContext context,
-  required String text,
-  required TextStyle style,
-  double maxWidth = 100
-}) {
+Size boundingTextSize(
+    {required BuildContext context,
+    required String text,
+    required TextStyle style,
+    double maxWidth = 100}) {
   if (text.isEmpty) {
     return Size.zero;
   }

@@ -1,3 +1,4 @@
+import 'package:catweb/themes.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/components/grey_tab_indicator.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_basic/rules_basic.dart';
@@ -80,7 +81,7 @@ class RulesEditPage extends StatelessWidget {
       color: CupertinoTheme.of(context).barBackgroundColor,
       child: TabBar(
         padding: EdgeInsets.zero,
-        labelColor: CupertinoColors.systemBlue,
+        labelColor: FixColor.title.resolveFrom(context),
         indicator: const GreyUnderlineTabIndicator(),
         tabs: [
           buildTab(context: context, text: I.of(context).basic_setting),
