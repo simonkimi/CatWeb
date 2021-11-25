@@ -89,7 +89,7 @@ Widget buildCupertinoInput({
               child: Text(
                 label,
                 style: TextStyle(
-                  color: labelColor(context),
+                  color: CupertinoColors.label.resolveFrom(context),
                   fontSize: 12,
                 ),
               ),
@@ -125,7 +125,7 @@ class RulesForm extends StatelessWidget {
             context: context,
             text: e,
             style: TextStyle(
-              color: labelColor(context),
+              color: CupertinoColors.label.resolveFrom(context),
               fontSize: 12,
             )).width)
         .reduce(max);
@@ -147,7 +147,7 @@ class RulesForm extends StatelessWidget {
                 child: Text(
                   title!,
                   style: TextStyle(
-                    color: labelColor(context),
+                    color: CupertinoColors.label.resolveFrom(context),
                     fontSize: 12,
                   ),
                 ),

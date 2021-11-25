@@ -1,4 +1,3 @@
-import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -59,7 +58,7 @@ class SimpleCard extends StatelessWidget {
           Text(
             model.title!,
             style: TextStyle(
-              color: labelColor(context),
+              color: CupertinoColors.label.resolveFrom(context),
             ),
           ),
         if (model.subtitle != null)
@@ -67,7 +66,7 @@ class SimpleCard extends StatelessWidget {
             model.subtitle!,
             style: TextStyle(
               fontSize: 12.5,
-              color: secondaryLabelColor(context),
+              color: CupertinoColors.label.resolveFrom(context),
             ),
           ),
         if (model.tagList != null) buildTagList()
@@ -85,7 +84,7 @@ class SimpleCard extends StatelessWidget {
         : Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
             child: Material(
-              color: systemBackground(context),
+              color: CupertinoColors.systemBackground.resolveFrom(context),
               child: child,
             ),
           );
@@ -221,7 +220,7 @@ class ExtendedCard extends StatelessWidget {
         : Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
             child: Material(
-              color: systemBackground(context),
+              color: CupertinoColors.systemBackground.resolveFrom(context),
               child: child,
             ),
           );
@@ -270,14 +269,14 @@ class ExtendedCard extends StatelessWidget {
               Text(
                 '${model.page}P',
                 style: TextStyle(
-                    fontSize: 12.5, color: secondaryLabelColor(context)),
+                    fontSize: 12.5, color: CupertinoColors.secondaryLabel.resolveFrom(context)),
               ),
             if (model.uploadTime != null)
               Text(
                 '${model.uploadTime}',
                 style: TextStyle(
                   fontSize: 12.5,
-                  color: secondaryLabelColor(context),
+                  color: CupertinoColors.secondaryLabel.resolveFrom(context),
                 ),
               ),
           ],
@@ -328,7 +327,7 @@ class ExtendedCard extends StatelessWidget {
           model.star!.toString(),
           style: TextStyle(
             fontSize: 12,
-            color: labelColor(context),
+            color: CupertinoColors.label.resolveFrom(context),
           ),
         ),
       ],
@@ -347,13 +346,13 @@ class ExtendedCard extends StatelessWidget {
             maxLines: 2,
             softWrap: true,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: labelColor(context)),
+            style: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
           ),
         if (model.subtitle != null)
           Text(
             model.subtitle!,
             style: TextStyle(
-              color: secondaryLabelColor(context),
+              color: CupertinoColors.secondaryLabel.resolveFrom(context),
               fontSize: 14,
             ),
           ),

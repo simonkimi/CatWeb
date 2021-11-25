@@ -5,30 +5,30 @@ import 'package:catweb/i18n.dart';
 bool isDarkMode([BuildContext? context]) =>
     MediaQuery.of(context ?? I.context).platformBrightness == Brightness.dark;
 
-Color labelColor(BuildContext context) => isDarkMode(context)
-    ? CupertinoColors.label.darkColor
+Color contextColor(BuildContext context) => isDarkMode(context)
+    ? Colors.white.withOpacity(0.6)
     : CupertinoColors.label.color;
 
-Color secondaryLabelColor(BuildContext context) => isDarkMode(context)
-    ? CupertinoColors.secondaryLabel.darkColor
-    : CupertinoColors.secondaryLabel.color;
-
-Color systemGrey6(BuildContext context) => isDarkMode(context)
-    ? CupertinoColors.systemGrey6.darkColor
-    : CupertinoColors.systemGrey6.color;
-
-Color systemBackground(BuildContext context) => isDarkMode(context)
-    ? CupertinoColors.systemBackground.darkColor
-    : CupertinoColors.systemBackground.color;
+extension MoreCupertinoColor on CupertinoColors {}
 
 extension ColorHelper on Color {
   bool get isDark => red * 0.299 + green * 0.578 + blue * 0.114 <= 192;
 }
 
-final cupertinoLightColors = <Color>[
-  Colors.green[50]!,
-  Colors.red[50]!,
-  Colors.cyan[50]!,
-  Colors.blue[50]!,
-  Colors.orange[50]!,
-];
+Color cupertinoLightColors(BuildContext context, int index) {
+  final shade = isDarkMode(context) ? 900 : 50;
+  final list = <Color>[
+    Colors.green[shade]!,
+    Colors.red[shade]!,
+    Colors.cyan[shade]!,
+    Colors.blue[shade]!,
+    Colors.orange[shade]!,
+  ];
+  return list[index % list.length];
+}
+
+CupertinoThemeData defaultTheme() => const CupertinoThemeData(
+      primaryColor: CupertinoColors.systemBlue,
+      primaryContrastingColor: CupertinoColors.white,
+      scaffoldBackgroundColor: CupertinoColors.systemGroupedBackground,
+    );

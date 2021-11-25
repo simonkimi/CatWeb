@@ -81,9 +81,13 @@ class CupertinoGallery extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
+            Text(
               '评论和评分',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+                color: CupertinoColors.label.resolveFrom(context),
+              ),
             ),
             Row(
               children: [
@@ -96,7 +100,7 @@ class CupertinoGallery extends StatelessWidget {
                     CupertinoIcons.star_fill,
                     color: CupertinoColors.systemYellow,
                   ),
-                  unratedColor: systemGrey6(context),
+                  unratedColor: CupertinoColors.systemGrey6.resolveFrom(context),
                   onRatingUpdate: (value) {},
                 ),
                 const SizedBox(width: 5),
@@ -115,7 +119,7 @@ class CupertinoGallery extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Container(
                 decoration: BoxDecoration(
-                  color: systemGrey6(context),
+                  color: CupertinoColors.systemGrey6.resolveFrom(context),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 padding: const EdgeInsets.all(10),
@@ -134,8 +138,9 @@ class CupertinoGallery extends StatelessWidget {
                         const Expanded(child: SizedBox()),
                         Text(
                           '${e.score! >= 0 ? '+' : '-'}${e.score!.abs()}',
-                          style: const TextStyle(
-                            fontSize: 15,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: CupertinoColors.secondaryLabel.resolveFrom(context),
                           ),
                         ),
                       ],
@@ -143,14 +148,18 @@ class CupertinoGallery extends StatelessWidget {
                     const SizedBox(height: 5),
                     Linkify(
                       text: e.comment!,
-                      style: const TextStyle(fontSize: 15),
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: CupertinoColors.label.resolveFrom(context),
+                      ),
                       onOpen: (value) {},
                     ),
                     const SizedBox(height: 5),
                     Text(
                       e.commentTime!,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12,
+                        color: CupertinoColors.secondaryLabel.resolveFrom(context),
                       ),
                     ),
                   ],
@@ -179,9 +188,13 @@ class CupertinoGallery extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
+            Text(
               'Tag',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+                color: CupertinoColors.label.resolveFrom(context),
+              ),
             ),
             Badge(
               text: model.category!,
@@ -200,9 +213,7 @@ class CupertinoGallery extends StatelessWidget {
                 if (e.key != '_')
                   Badge(
                     text: e.key,
-                    color: cupertinoLightColors[
-                            tagMaps.keys.toList().indexOf(e.key) %
-                                cupertinoLightColors.length]
+                    color: cupertinoLightColors(context, tagMaps.keys.toList().indexOf(e.key))
                         .withOpacity(0.5),
                   ),
                 if (e.key != '_') const SizedBox(width: 10),
@@ -228,7 +239,7 @@ class CupertinoGallery extends StatelessWidget {
     final text = model.description!.replaceAll(RegExp(r'\n{2,}'), '\n');
     final textStyle = TextStyle(
       fontSize: 14,
-      color: labelColor(context),
+      color: CupertinoColors.label.resolveFrom(context),
     );
 
     final overflow = (TextPainter(
@@ -257,7 +268,7 @@ class CupertinoGallery extends StatelessWidget {
               maxLines: 5,
               style: TextStyle(
                 fontSize: 14,
-                color: labelColor(context),
+                color: CupertinoColors.label.resolveFrom(context),
               ),
             ),
             if (overflow)
@@ -269,9 +280,9 @@ class CupertinoGallery extends StatelessWidget {
                     ShaderMask(
                       shaderCallback: (bounds) {
                         return LinearGradient(colors: [
-                          systemBackground(context).withOpacity(0),
-                          systemBackground(context),
-                          systemBackground(context),
+                          CupertinoColors.systemBackground.resolveFrom(context).withOpacity(0),
+                          CupertinoColors.systemBackground.resolveFrom(context),
+                          CupertinoColors.systemBackground.resolveFrom(context),
                         ], stops: const [
                           0,
                           0.65,
@@ -281,7 +292,7 @@ class CupertinoGallery extends StatelessWidget {
                       child: Container(
                         width: 100,
                         height: 20,
-                        color: systemBackground(context),
+                        color: CupertinoColors.systemBackground.resolveFrom(context),
                       ),
                     ),
                     const Positioned(
@@ -313,12 +324,12 @@ class CupertinoGallery extends StatelessWidget {
             Text(
               '上传者',
               style:
-                  TextStyle(color: secondaryLabelColor(context), fontSize: 12),
+                  TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context), fontSize: 12),
             ),
             Text(
               model.uploadTime!,
               style: TextStyle(
-                color: secondaryLabelColor(context),
+                color: CupertinoColors.secondaryLabel.resolveFrom(context),
                 fontSize: 12,
               ),
             )
@@ -370,12 +381,12 @@ class CupertinoGallery extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: secondaryLabelColor(context),
+            color: CupertinoColors.secondaryLabel.resolveFrom(context),
           ),
           Text(
             text,
             style: TextStyle(
-              color: secondaryLabelColor(context),
+              color: CupertinoColors.secondaryLabel.resolveFrom(context),
               fontSize: 12,
             ),
           ),
@@ -501,7 +512,7 @@ class CupertinoGallery extends StatelessWidget {
                   model.language!,
                   style: TextStyle(
                     fontSize: 10,
-                    color: secondaryLabelColor(context),
+                    color: CupertinoColors.secondaryLabel.resolveFrom(context),
                   ),
                 )
             ],
@@ -531,7 +542,7 @@ class CupertinoGallery extends StatelessWidget {
       model.title!,
       style: TextStyle(
         fontWeight: FontWeight.w600,
-        color: labelColor(context),
+        color: CupertinoColors.label.resolveFrom(context),
       ),
     );
   }
@@ -542,7 +553,7 @@ class CupertinoGallery extends StatelessWidget {
       model.subtitle!,
       style: TextStyle(
         fontSize: 13,
-        color: secondaryLabelColor(context),
+        color: CupertinoColors.secondaryLabel.resolveFrom(context),
       ),
     );
   }
@@ -553,7 +564,7 @@ class CupertinoGallery extends StatelessWidget {
       model.uploadTime!,
       style: TextStyle(
         fontSize: 12,
-        color: secondaryLabelColor(context),
+        color: CupertinoColors.secondaryLabel.resolveFrom(context),
       ),
     );
   }

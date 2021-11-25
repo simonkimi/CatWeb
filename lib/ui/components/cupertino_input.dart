@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../themes.dart';
 
 class CupertinoInput extends StatelessWidget {
   const CupertinoInput({
@@ -31,7 +30,7 @@ class CupertinoInput extends StatelessWidget {
           Text(
             labelText,
             style: TextStyle(
-                color: labelColor(context),
+                color: CupertinoColors.label.resolveFrom(context),
                 fontSize: 12),
           ),
           const SizedBox(height: 3),

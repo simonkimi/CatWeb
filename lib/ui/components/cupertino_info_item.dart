@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:catweb/themes.dart';
 
 class CupertinoInfoItem extends StatelessWidget {
   const CupertinoInfoItem({
@@ -46,7 +45,7 @@ class CupertinoInfoItem extends StatelessWidget {
         child.data!,
         style: TextStyle(
           fontSize: size,
-          color: secondaryLabelColor(context),
+          color: CupertinoColors.secondaryLabel.resolveFrom(context),
           fontWeight: bold == null ? null : FontWeight.bold,
         ),
       );

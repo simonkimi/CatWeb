@@ -9,7 +9,6 @@ import 'package:catweb/ui/fragments/parser/list_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../themes.dart';
 import 'editor_store.dart';
 
 class RulesParserEditor extends StatefulWidget {
@@ -104,8 +103,9 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
 
   Widget buildPreview(BuildContext context) {
     if (store.parserBase is GalleryParserModel) return const GalleryPreview();
-    if (store.parserBase is ListViewParserModel)
+    if (store.parserBase is ListViewParserModel) {
       return const ListParserPreview();
+    }
     throw UnsupportedError('UnSupported');
   }
 
@@ -146,7 +146,7 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
         text,
         style: TextStyle(
           fontSize: 12,
-          color: labelColor(context),
+          color: CupertinoColors.label.resolveFrom(context),
         ),
       ),
       height: 30,

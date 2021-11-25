@@ -20,7 +20,7 @@ class Badge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final defaultColor = color ?? systemGrey6(context);
+    final defaultColor = color ?? CupertinoColors.systemGrey6.resolveFrom(context);
 
     return Container(
       padding: padding,
