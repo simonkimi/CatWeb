@@ -45,10 +45,10 @@ class GalleryDetailModel {
 }
 
 class TagModel {
-  TagModel({required this.text, required this.category});
+  TagModel({required this.text, this.category});
 
   final String text;
-  final String category;
+  final String? category;
 }
 
 class CupertinoGallery extends StatelessWidget {
@@ -69,48 +69,52 @@ class CupertinoGallery extends StatelessWidget {
           buildDescription(context),
           buildTagList(context),
           buildCommentList(context),
+          // TODO 预览图
         ],
       ),
     );
   }
 
+  Widget buildHeader(BuildContext context) {
+    return Column(
+      children: [
+        ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 150),
+          child: IntrinsicHeight(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                buildLeftImage(),
+                const SizedBox(width: 15),
+                buildRightInfo(context),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        const CupertinoDivider(),
+      ],
+    );
+  }
+
   Widget buildCommentList(BuildContext context) {
+    if (model.commentList == null) return const SizedBox();
+
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '评论和评分',
+              model.star != null ? '评论和评分' : '评论',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
                 color: FixColor.title.resolveFrom(context),
               ),
             ),
-            Row(
-              children: [
-                RatingBar.builder(
-                  initialRating: model.star!,
-                  itemSize: 13,
-                  maxRating: 5,
-                  allowHalfRating: true,
-                  itemBuilder: (context, _) => Icon(
-                    CupertinoIcons.star_fill,
-                    color: CupertinoColors.systemYellow.resolveFrom(context),
-                  ),
-                  unratedColor:
-                      CupertinoColors.systemGrey6.resolveFrom(context),
-                  onRatingUpdate: (value) {},
-                ),
-                const SizedBox(width: 5),
-                Text(
-                  '4.5',
-                  style: TextStyle(
-                      fontSize: 12, color: FixColor.text.resolveFrom(context)),
-                ),
-              ],
-            )
+            buildStarBar(context)
           ],
         ),
         const SizedBox(height: 5),
@@ -176,13 +180,14 @@ class CupertinoGallery extends StatelessWidget {
   }
 
   Widget buildTagList(BuildContext context) {
-    final tagMaps = <String, List<String>>{};
+    if (model.tagList == null) return const SizedBox();
+    final tagMaps = <String, List<String>>{'_': []};
 
     for (final tag in model.tagList ?? <TagModel>[]) {
-      if (!tagMaps.containsKey(tag.category)) {
-        tagMaps[tag.category] = [];
+      if (tag.category != null && !tagMaps.containsKey(tag.category)) {
+        tagMaps[tag.category!] = [];
       }
-      tagMaps[tag.category]!.add(tag.text);
+      tagMaps[tag.category ?? '_']!.add(tag.text);
     }
 
     return Column(
@@ -199,10 +204,7 @@ class CupertinoGallery extends StatelessWidget {
                 color: FixColor.title.resolveFrom(context),
               ),
             ),
-            Badge(
-              text: model.category!,
-              color: model.categoryColor,
-            ),
+            buildCategory(context),
           ],
         ),
         const SizedBox(height: 10),
@@ -239,6 +241,7 @@ class CupertinoGallery extends StatelessWidget {
   }
 
   Widget buildDescription(BuildContext context) {
+    if (model.description == null) return const SizedBox();
     final text = model.description!.replaceAll(RegExp(r'\n{2,}'), '\n');
     final textStyle = TextStyle(
       fontSize: 14,
@@ -400,29 +403,6 @@ class CupertinoGallery extends StatelessWidget {
     );
   }
 
-  Widget buildHeader(BuildContext context) {
-    return Column(
-      children: [
-        ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: 150),
-          child: IntrinsicHeight(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                buildLeftImage(),
-                const SizedBox(width: 15),
-                buildRightInfo(context),
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(height: 10),
-        const CupertinoDivider(),
-      ],
-    );
-  }
-
   Widget buildLeftImage() {
     return Container(
       width: 140,
@@ -482,24 +462,60 @@ class CupertinoGallery extends StatelessWidget {
               const SizedBox(height: 5),
               buildUploader(context),
               const SizedBox(height: 5),
+              if (model.star != null && model.commentList == null)
+                buildStarBar(context),
+              if (model.star != null && model.commentList == null)
+                const SizedBox(height: 5),
+              if (model.category != null && model.tagList == null)
+                buildCategory(context),
+              if (model.category != null && model.tagList == null)
+                const SizedBox(height: 5),
             ],
           ),
           Row(
             children: [
               buildReadButton(),
               const SizedBox(width: 10),
-              if (model.language != null)
-                Text(
-                  model.language!,
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: CupertinoColors.secondaryLabel.resolveFrom(context),
-                  ),
-                )
+              if (model.language != null) buildLanguage(context)
             ],
           ),
         ],
       ),
+    );
+  }
+
+  Text buildLanguage(BuildContext context) {
+    return Text(
+      model.language!,
+      style: TextStyle(
+        fontSize: 10,
+        color: CupertinoColors.secondaryLabel.resolveFrom(context),
+      ),
+    );
+  }
+
+  Row buildStarBar(BuildContext context) {
+    return Row(
+      children: [
+        RatingBar.builder(
+          initialRating: model.star!,
+          itemSize: 13,
+          maxRating: 5,
+          allowHalfRating: true,
+          itemBuilder: (context, _) => Icon(
+            CupertinoIcons.star_fill,
+            color: CupertinoColors.systemYellow.resolveFrom(context),
+          ),
+          unratedColor: CupertinoColors.systemGrey5.resolveFrom(context),
+          onRatingUpdate: (value) {},
+        ),
+        const SizedBox(width: 5),
+        Text(
+          model.star!.toString(),
+          style: TextStyle(
+              fontSize: 12, color: FixColor.text.resolveFrom(context)),
+        ),
+      ],
     );
   }
 
@@ -550,30 +566,11 @@ class CupertinoGallery extends StatelessWidget {
     );
   }
 
-  Widget buildTypeTag(BuildContext context) {
+  Widget buildCategory(BuildContext context) {
     if (model.category == null) return const SizedBox();
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minWidth: 50),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 1),
-        decoration: BoxDecoration(
-          color: model.categoryColor ?? Colors.red,
-          borderRadius: BorderRadius.circular(3),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              '分类',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 13,
-              ),
-            )
-          ],
-        ),
-      ),
+    return Badge(
+      text: model.category!,
+      color: model.categoryColor,
     );
   }
 }
