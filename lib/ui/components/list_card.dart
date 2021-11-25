@@ -1,3 +1,4 @@
+import 'package:catweb/ui/components/badge.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -406,31 +407,12 @@ class ExtendedCard extends StatelessWidget {
       spacing: 2,
       runSpacing: 2,
       children: model.tagList!.map((e) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: e.color ??
-                (isDarkMode(context)
-                    ? const Color(0xFF312F32)
-                    : const Color(0xFFEFEEF1)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(3),
-            child: Text(
-              e.text,
-              style: TextStyle(
-                height: 1,
-                fontSize: 11,
-                color: e.color == null
-                    ? isDarkMode(context)
-                        ? Colors.white
-                        : Colors.black
-                    : e.color!.isDark
-                        ? Colors.white
-                        : Colors.black,
-              ),
-            ),
-          ),
+        return Badge(
+          color: e.color,
+          text: e.text,
+          fontSize: 11,
+          padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+          borderRadius: 5,
         );
       }).toList(),
     );
