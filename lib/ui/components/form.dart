@@ -209,10 +209,7 @@ class RulesForm extends StatelessWidget {
                       width: labelWidth,
                     ),
                     if (extraSelectorModel != null) ...[
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 3),
-                        child: Divider(height: 1, thickness: 0.3),
-                      ),
+                      buildDivider(context),
                       buildExtraController(context),
                     ],
                   ],
@@ -230,10 +227,8 @@ class RulesForm extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 3),
       child: Divider(
         height: 1,
-        thickness: 0.3,
-        color: isDarkMode(context)
-            ? CupertinoColors.systemGrey6.darkColor
-            : CupertinoColors.systemGrey6,
+        thickness: 0.5,
+        color: CupertinoColors.systemGrey6.resolveFrom(context),
       ),
     );
   }
@@ -246,6 +241,7 @@ class RulesForm extends StatelessWidget {
         children: [
           Obx(
             () => buildCheckButton(
+              context: context,
               label: '计算',
               value: selectorModel.computed.value,
               onPressed: () {
@@ -255,6 +251,7 @@ class RulesForm extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Obx(() => buildCheckButton(
+                context: context,
                 label: '全局',
                 value: extraSelectorModel!.global.value,
                 onPressed: () {
@@ -264,6 +261,7 @@ class RulesForm extends StatelessWidget {
               )),
           const SizedBox(width: 10),
           Obx(() => buildCheckButton(
+                context: context,
                 label: 'Js脚本',
                 value: selectorModel.js.isNotEmpty,
                 onPressed: () {
@@ -277,9 +275,9 @@ class RulesForm extends StatelessWidget {
           CupertinoButton(
             minSize: 0,
             padding: EdgeInsets.zero,
-            child: const Icon(
+            child: Icon(
               Icons.delete,
-              color: FixColor.title,
+              color: FixColor.title.resolveFrom(context),
               size: 18,
             ),
             onPressed: () async {
@@ -298,12 +296,15 @@ class RulesForm extends StatelessWidget {
   }
 
   Widget buildCheckButton({
+    required BuildContext context,
     required String label,
     required bool value,
     required VoidCallback onPressed,
   }) {
     return CupertinoButton(
-      color: value ? CupertinoColors.activeBlue : CupertinoColors.inactiveGray,
+      color: value
+          ? CupertinoColors.activeBlue.resolveFrom(context)
+          : CupertinoColors.inactiveGray.resolveFrom(context),
       minSize: 0,
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
       child: Row(

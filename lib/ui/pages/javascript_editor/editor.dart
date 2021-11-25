@@ -114,35 +114,52 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
   void onTextChange(String _) {
     final selection = inputController.selection;
     final offset = selection.baseOffset;
-    final text = inputController.text.substring(0, offset);
 
-    if (text.isNotEmpty &&
-        text.codeUnits.last == 10 &&
+    final preText = inputController.text.substring(0, offset);
+    final nextText = inputController.text.substring(offset);
+
+    if (preText.isNotEmpty &&
+        preText.codeUnits.last == 10 &&
         inputController.text.length > lastInput.length) {
       final reg = RegExp(r'\n|\r');
-      final line = reg.allMatches(text).toList();
+      final preLines = reg.allMatches(preText).toList();
+      final nextLines = reg.allMatches(nextText).toList();
 
-      final lineCode = text.substring(
-        line.length == 1 ? 0 : line[line.length - 1].start,
-        line.last.start,
+      // 当前输入行的上一行
+      var lineCode = preText.substring(
+        preLines.length == 1 ? 0 : preLines[preLines.length - 2].start,
+        preLines.last.start,
       );
 
-      final spaceReg = RegExp(r'^(\s*)').firstMatch(lineCode);
-      if (spaceReg != null && spaceReg.group(0) != null) {
-        final space = spaceReg.group(0)!.length;
-        final isChar = '{('.codeUnits.contains(text.trim().codeUnits.last);
+      // 去除换行符
+      if (lineCode.codeUnitAt(0) == 10) lineCode = lineCode.substring(1);
 
-        var insert = ' ' * space;
-        if (isChar) {
-          insert += ' ' * 4 + '\n' + ' ' * space;
-        }
-        final raw = inputController.text;
-        inputController.text =
-            raw.substring(0, offset) + insert + raw.substring(offset);
-        inputController.selection = TextSelection.collapsed(
-          offset: offset + (isChar ? space + 4 : space),
-        );
+      // 上一行空格数
+      final space = lineCode.codeUnits.indexWhere((element) => element != 32);
+
+      // 是否以{(开头, 如果是的话, 再加4个空格
+      final isChar = '{('.codeUnits.contains(preText.trim().codeUnits.last);
+
+      // 是否以})结尾, 如果是, 加一个换行符
+      final nextLineCode = nextText
+          .substring(0, nextLines.isNotEmpty ? nextLines.first.end : 0)
+          .trim();
+      final useNewLine =
+          nextLineCode.endsWith('}') || nextLineCode.endsWith(')');
+
+      // 生成补全
+      var insert = ' ' * space;
+      if (isChar) {
+        insert += ' ' * 4 + (useNewLine ? '\n' : '') + ' ' * space;
       }
+
+      // 设置文本
+      final raw = inputController.text;
+      inputController.text =
+          raw.substring(0, offset) + insert + raw.substring(offset);
+      inputController.selection = TextSelection.collapsed(
+        offset: offset + (isChar ? space + 4 : space),
+      );
     }
 
     lastInput = inputController.text;
@@ -159,54 +176,58 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
           keyboardType: TextInputType.multiline,
           onChanged: onTextChange,
         ),
-        Positioned(
-          bottom: 1,
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: 40,
-            child: ColoredBox(
-              color: CupertinoColors.systemGrey6,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  buildInputHint(
-                    context: context,
-                    child: const Icon(CupertinoIcons.layers),
-                    input: 'function hook(group) {\n    return group;\n}',
-                    position: -2,
-                  ),
-                  buildInputHint(
-                    context: context,
-                    child: const Icon(CupertinoIcons.function),
-                    input: 'function () {}',
-                    position: 0 - '() {}'.length,
-                  ),
-                  buildInputHint(
-                    context: context,
-                    child: const Icon(CupertinoIcons.arrow_turn_down_left),
-                    input: '\n',
-                  ),
-                  buildInputHint(
-                    context: context,
-                    child: const Icon(CupertinoIcons.arrow_right_to_line_alt),
-                    input: '    ',
-                  ),
-                  buildInputHint(context: context, display: '('),
-                  buildInputHint(context: context, display: ')'),
-                  buildInputHint(context: context, display: '{'),
-                  buildInputHint(context: context, display: '}'),
-                  buildInputHint(context: context, display: '['),
-                  buildInputHint(context: context, display: ']'),
-                  buildInputHint(context: context, display: '\''),
-                  buildInputHint(context: context, display: '"'),
-                  buildInputHint(context: context, display: ';'),
-                  buildInputHint(context: context, display: '!'),
-                ],
+        buildToolBar(context),
+      ],
+    );
+  }
+
+  Positioned buildToolBar(BuildContext context) {
+    return Positioned(
+      bottom: 1,
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: 40,
+        child: ColoredBox(
+          color: CupertinoColors.systemGrey6.resolveFrom(context),
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              buildInputHint(
+                context: context,
+                child: const Icon(CupertinoIcons.layers),
+                input: 'function hook(group) {\n    return group;\n}',
+                position: -2,
               ),
-            ),
+              buildInputHint(
+                context: context,
+                child: const Icon(CupertinoIcons.function),
+                input: 'function () {}',
+                position: 0 - '() {}'.length,
+              ),
+              buildInputHint(
+                context: context,
+                child: const Icon(CupertinoIcons.arrow_turn_down_left),
+                input: '\n',
+              ),
+              buildInputHint(
+                context: context,
+                child: const Icon(CupertinoIcons.arrow_right_to_line_alt),
+                input: '    ',
+              ),
+              buildInputHint(context: context, display: '('),
+              buildInputHint(context: context, display: ')'),
+              buildInputHint(context: context, display: '{'),
+              buildInputHint(context: context, display: '}'),
+              buildInputHint(context: context, display: '['),
+              buildInputHint(context: context, display: ']'),
+              buildInputHint(context: context, display: '\''),
+              buildInputHint(context: context, display: '"'),
+              buildInputHint(context: context, display: ';'),
+              buildInputHint(context: context, display: '!'),
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
 
