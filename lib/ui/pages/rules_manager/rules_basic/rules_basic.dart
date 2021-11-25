@@ -1,3 +1,4 @@
+import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +24,7 @@ class RulesBasic extends StatelessWidget {
           labelText: '基础Url',
           value: store.rulesModel.baseUrl,
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 5),
-          child: Divider(),
-        ),
+        const CupertinoDivider(height: 30),
         CupertinoInput(
           labelText: '登录Url',
           value: store.rulesModel.loginUrl,

@@ -1,6 +1,7 @@
 import 'package:catweb/themes.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/components/grey_tab_indicator.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_advance/reles_advance.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_basic/rules_basic.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_manager.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
@@ -51,7 +52,7 @@ class RulesEditPage extends StatelessWidget {
         return result == true;
       },
       child: DefaultTabController(
-        length: 4,
+        length: 5,
         child: CupertinoPageScaffold(
           navigationBar: buildAppbar(context),
           child: SafeArea(
@@ -65,6 +66,7 @@ class RulesEditPage extends StatelessWidget {
                       Container(),
                       RulesParserManager(store: store),
                       Container(),
+                      const RulesAdvance(),
                     ],
                   ),
                 ),
@@ -88,6 +90,7 @@ class RulesEditPage extends StatelessWidget {
           buildTab(context: context, text: I.of(context).page_manager),
           buildTab(context: context, text: I.of(context).parser),
           buildTab(context: context, text: I.of(context).action),
+          buildTab(context: context, text: '高级'),
         ],
       ),
     );
