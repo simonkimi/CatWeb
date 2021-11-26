@@ -66,7 +66,7 @@ class RulesEditPage extends StatelessWidget {
                       Container(),
                       RulesParserManager(store: store),
                       Container(),
-                      const RulesAdvance(),
+                      RulesAdvance(model: store.rulesModel),
                     ],
                   ),
                 ),
