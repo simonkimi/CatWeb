@@ -35,6 +35,7 @@ class CupertinoInput extends StatelessWidget {
           ),
           const SizedBox(height: 3),
           CupertinoTextField(
+            controller: TextEditingController(text: value.value),
             decoration: BoxDecoration(
               border: const Border(),
               color: CupertinoColors.systemGrey6,
@@ -42,6 +43,9 @@ class CupertinoInput extends StatelessWidget {
             ),
             minLines: minLine,
             maxLines: minLine,
+            onChanged: (text) {
+              value.value = text;
+            },
           ),
         ],
       ),

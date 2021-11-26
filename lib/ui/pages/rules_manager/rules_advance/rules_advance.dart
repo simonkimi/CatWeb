@@ -1,5 +1,6 @@
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_action_cell/core/cell.dart';
@@ -38,15 +39,15 @@ class RulesAdvance extends StatelessWidget {
               children: [
                 Obx(() => Column(
                       children: model.headers.asMap().entries.map((e) {
-                        return buildDeletableItem(
-                          index: e.key,
-                          context: context,
-                          controller: headerController,
-                          text: '${e.value.reg}: ${e.value.value}',
-                          onDelete: (index) {
-                            model.headers.removeAt(index);
-                          },
-                        );
+                        return Obx(() => buildDeletableItem(
+                            index: e.key,
+                            context: context,
+                            controller: headerController,
+                            text: '${e.value.reg}: ${e.value.value}',
+                            onDelete: (index) {
+                              model.headers.removeAt(index);
+                            },
+                            onTap: () => editRegField(context, e.value)));
                       }).toList(),
                     )),
                 buildAddItem(
@@ -75,22 +76,23 @@ class RulesAdvance extends StatelessWidget {
               children: [
                 Obx(() => Column(
                       children: model.cookies.asMap().entries.map((e) {
-                        return buildDeletableItem(
-                          index: e.key,
-                          context: context,
-                          controller: cookieController,
-                          text: '${e.value.reg}: ${e.value.value}',
-                          onDelete: (index) {
-                            model.cookies.removeAt(index);
-                          },
-                        );
+                        return Obx(() => buildDeletableItem(
+                            index: e.key,
+                            context: context,
+                            controller: cookieController,
+                            text:
+                                '${e.value.reg.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
+                            onDelete: (index) {
+                              model.cookies.removeAt(index);
+                            },
+                            onTap: () => editRegField(context, e.value)));
                       }).toList(),
                     )),
                 buildAddItem(
                   context: context,
                   onTap: () {
                     model.cookies.add(
-                      RegFieldModel(RegField(reg: '*', value: '')),
+                      RegFieldModel(RegField(reg: '', value: '')),
                     );
                   },
                 ),
@@ -100,6 +102,34 @@ class RulesAdvance extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> editRegField(BuildContext context, RegFieldModel field) async {
+    await showCupertinoDialog(
+        barrierDismissible: true,
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            actions: [
+              CupertinoButton(
+                child: const Text('确定'),
+                onPressed: () => Navigator.of(context).pop(),
+              )
+            ],
+            content: Column(
+              children: [
+                CupertinoInput(
+                  labelText: '正则',
+                  value: field.reg,
+                ),
+                CupertinoInput(
+                  labelText: '内容',
+                  value: field.value,
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   Widget buildSubTitle(BuildContext context, String text) {
@@ -155,9 +185,10 @@ class RulesAdvance extends StatelessWidget {
     required int index,
     required String text,
     required ValueChanged<int> onDelete,
+    required VoidCallback onTap,
   }) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15),
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           border: Border(
@@ -172,7 +203,7 @@ class RulesAdvance extends StatelessWidget {
           controller: controller,
           index: index,
           child: buildListBody(
-            padding: 0,
+            padding: 15,
             icon: CupertinoButton(
               padding: EdgeInsets.zero,
               minSize: 0,
