@@ -12,13 +12,14 @@ import 'dart:typed_data' as $typed_data;
 const SitePageType$json = const {
   '1': 'SitePageType',
   '2': const [
-    const {'1': 'list', '2': 0},
-    const {'1': 'gallery', '2': 1},
+    const {'1': 'imageList', '2': 0},
+    const {'1': 'imageWaterfall', '2': 1},
+    const {'1': 'detail', '2': 2},
   ],
 };
 
 /// Descriptor for `SitePageType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List sitePageTypeDescriptor = $convert.base64Decode('CgxTaXRlUGFnZVR5cGUSCAoEbGlzdBAAEgsKB2dhbGxlcnkQAQ==');
+final $typed_data.Uint8List sitePageTypeDescriptor = $convert.base64Decode('CgxTaXRlUGFnZVR5cGUSDQoJaW1hZ2VMaXN0EAASEgoOaW1hZ2VXYXRlcmZhbGwQARIKCgZkZXRhaWwQAg==');
 @$core.Deprecated('Use sitePageDescriptor instead')
 const SitePage$json = const {
   '1': 'SitePage',

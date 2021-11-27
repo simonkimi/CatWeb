@@ -19,6 +19,7 @@ class DioBuilder {
     dio.interceptors.add(HeaderCookieInterceptor(model));
     dio.transformer = EncodeTransformer();
 
+    // TODO 添加忽略证书错误开关
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (client) => client..badCertificateCallback = (cert, host, port) => true;
 

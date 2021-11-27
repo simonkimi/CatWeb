@@ -10,12 +10,14 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class SitePageType extends $pb.ProtobufEnum {
-  static const SitePageType list = SitePageType._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'list');
-  static const SitePageType gallery = SitePageType._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'gallery');
+  static const SitePageType imageList = SitePageType._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'imageList');
+  static const SitePageType imageWaterfall = SitePageType._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'imageWaterfall');
+  static const SitePageType detail = SitePageType._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'detail');
 
   static const $core.List<SitePageType> values = <SitePageType> [
-    list,
-    gallery,
+    imageList,
+    imageWaterfall,
+    detail,
   ];
 
   static final $core.Map<$core.int, SitePageType> _byValue = $pb.ProtobufEnum.initByValue(values);

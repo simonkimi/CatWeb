@@ -46,8 +46,7 @@ class HtmlXmlSelectorExec {
         selectResult = result.elements
             .map((e) => _callFunction(e))
             .whereType<String>()
-            .toList()
-            .cast();
+            .toList();
       }
 
       // 正则处理
@@ -69,8 +68,7 @@ class HtmlXmlSelectorExec {
         selectResult = result
             .map((e) => _callFunction(HtmlElementTree(e)))
             .whereType<String>()
-            .toList()
-            .cast();
+            .toList();
       }
 
       // 正则处理

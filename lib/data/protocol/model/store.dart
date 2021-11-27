@@ -1,5 +1,7 @@
+import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/actions.pbserver.dart';
+import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/gen/protobuf/parser.pbserver.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/utils/utils.dart';
@@ -38,8 +40,11 @@ class RulesProtocolModel implements PbAble {
           pb?.listViewParser,
           (ListViewParser e) => ListViewParserModel(e),
         ),
-        actionList =
-            lobs(pb?.actionList, (ActionCombine e) => ActionCombineModel(e));
+        actionList = lobs(
+          pb?.actionList,
+          (ActionCombine e) => ActionCombineModel(e),
+        ),
+        pageList = lobs(pb?.pageList, (SitePage e) => SitePageModel(e));
 
   final RxString name;
   final RxString baseUrl;
@@ -52,6 +57,7 @@ class RulesProtocolModel implements PbAble {
   final RxList<GalleryParserModel> galleryParsers;
   final RxList<ListViewParserModel> listViewParser;
   final RxList<ActionCombineModel> actionList;
+  final RxList<SitePageModel> pageList;
 
   @override
   RulesProtocol toPb() => RulesProtocol(
@@ -65,5 +71,6 @@ class RulesProtocolModel implements PbAble {
         galleryParsers: galleryParsers.map((e) => e.toPb()),
         listViewParser: listViewParser.map((e) => e.toPb()),
         actionList: actionList.map((e) => e.toPb()),
+        pageList: pageList.map((e) => e.toPb()),
       );
 }

@@ -1,6 +1,7 @@
 syntax = 'proto3';
 import 'parser.proto';
 import 'actions.proto';
+import 'page.proto';
 
 
 message RegField {
@@ -22,4 +23,5 @@ message RulesProtocol {
   repeated GalleryParser galleryParsers = 10;
   repeated ListViewParser listViewParser = 11;
   repeated ActionCombine actionList = 12;
+  repeated SitePage pageList = 13;
 }

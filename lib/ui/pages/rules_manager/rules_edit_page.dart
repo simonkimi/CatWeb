@@ -3,6 +3,7 @@ import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/components/grey_tab_indicator.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_advance/rules_advance.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_basic/rules_basic.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_page/rules_page_manager.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_manager.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
 import 'package:flutter/cupertino.dart';
@@ -63,7 +64,7 @@ class RulesEditPage extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       RulesBasic(store: store),
-                      Container(),
+                      RulesPageManager(store: store),
                       RulesParserManager(store: store),
                       Container(),
                       RulesAdvance(model: store.rulesModel),
