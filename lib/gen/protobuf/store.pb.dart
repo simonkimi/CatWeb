@@ -13,22 +13,11 @@ import 'parser.pb.dart' as $0;
 import 'actions.pb.dart' as $1;
 
 class RegField extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'RegField',
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'reg')
-    ..aOS(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value')
-    ..hasRequiredFields = false;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RegField', createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'reg')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'value')
+    ..hasRequiredFields = false
+  ;
 
   RegField._() : super();
   factory RegField({
@@ -44,39 +33,31 @@ class RegField extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory RegField.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory RegField.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
+  factory RegField.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RegField.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
   RegField clone() => RegField()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
-  RegField copyWith(void Function(RegField) updates) =>
-      super.copyWith((message) => updates(message as RegField))
-          as RegField; // ignore: deprecated_member_use
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RegField copyWith(void Function(RegField) updates) => super.copyWith((message) => updates(message as RegField)) as RegField; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static RegField create() => RegField._();
   RegField createEmptyInstance() => create();
   static $pb.PbList<RegField> createRepeated() => $pb.PbList<RegField>();
   @$core.pragma('dart2js:noInline')
-  static RegField getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RegField>(create);
+  static RegField getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RegField>(create);
   static RegField? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get reg => $_getSZ(0);
   @$pb.TagNumber(1)
-  set reg($core.String v) {
-    $_setString(0, v);
-  }
-
+  set reg($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
   $core.bool hasReg() => $_has(0);
   @$pb.TagNumber(1)
@@ -85,10 +66,7 @@ class RegField extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get value => $_getSZ(1);
   @$pb.TagNumber(2)
-  set value($core.String v) {
-    $_setString(1, v);
-  }
-
+  set value($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasValue() => $_has(1);
   @$pb.TagNumber(2)
@@ -96,95 +74,29 @@ class RegField extends $pb.GeneratedMessage {
 }
 
 class RulesProtocol extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'RulesProtocol',
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'name')
-    ..aOS(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'baseUrl',
-        protoName: 'baseUrl')
-    ..aOS(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'extraCookies',
-        protoName: 'extraCookies')
-    ..aOS(
-        4,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'loginUrl',
-        protoName: 'loginUrl')
-    ..aOS(
-        5,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'loginCookieReg',
-        protoName: 'loginCookieReg')
-    ..pc<RegField>(
-        6,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'headers',
-        $pb.PbFieldType.PM,
-        subBuilder: RegField.create)
-    ..pc<RegField>(
-        7,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'cookies',
-        $pb.PbFieldType.PM,
-        subBuilder: RegField.create)
-    ..aOS(
-        8,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'version')
-    ..pc<$0.GalleryParser>(
-        10,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'galleryParsers',
-        $pb.PbFieldType.PM,
-        protoName: 'galleryParsers',
-        subBuilder: $0.GalleryParser.create)
-    ..pc<$0.ListViewParser>(
-        11,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'listViewParser',
-        $pb.PbFieldType.PM,
-        protoName: 'listViewParser',
-        subBuilder: $0.ListViewParser.create)
-    ..pc<$1.ActionCombine>(
-        12,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'actionList',
-        $pb.PbFieldType.PM,
-        protoName: 'actionList',
-        subBuilder: $1.ActionCombine.create)
-    ..hasRequiredFields = false;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RulesProtocol', createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'baseUrl', protoName: 'baseUrl')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'loginUrl', protoName: 'loginUrl')
+    ..aOM<RegField>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'loginCookie', protoName: 'loginCookie', subBuilder: RegField.create)
+    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'version')
+    ..pc<RegField>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'headers', $pb.PbFieldType.PM, subBuilder: RegField.create)
+    ..pc<RegField>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cookies', $pb.PbFieldType.PM, subBuilder: RegField.create)
+    ..pc<$0.GalleryParser>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'galleryParsers', $pb.PbFieldType.PM, protoName: 'galleryParsers', subBuilder: $0.GalleryParser.create)
+    ..pc<$0.ListViewParser>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'listViewParser', $pb.PbFieldType.PM, protoName: 'listViewParser', subBuilder: $0.ListViewParser.create)
+    ..pc<$1.ActionCombine>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'actionList', $pb.PbFieldType.PM, protoName: 'actionList', subBuilder: $1.ActionCombine.create)
+    ..hasRequiredFields = false
+  ;
 
   RulesProtocol._() : super();
   factory RulesProtocol({
     $core.String? name,
     $core.String? baseUrl,
-    $core.String? extraCookies,
     $core.String? loginUrl,
-    $core.String? loginCookieReg,
+    RegField? loginCookie,
+    $core.String? version,
     $core.Iterable<RegField>? headers,
     $core.Iterable<RegField>? cookies,
-    $core.String? version,
     $core.Iterable<$0.GalleryParser>? galleryParsers,
     $core.Iterable<$0.ListViewParser>? listViewParser,
     $core.Iterable<$1.ActionCombine>? actionList,
@@ -196,23 +108,20 @@ class RulesProtocol extends $pb.GeneratedMessage {
     if (baseUrl != null) {
       _result.baseUrl = baseUrl;
     }
-    if (extraCookies != null) {
-      _result.extraCookies = extraCookies;
-    }
     if (loginUrl != null) {
       _result.loginUrl = loginUrl;
     }
-    if (loginCookieReg != null) {
-      _result.loginCookieReg = loginCookieReg;
+    if (loginCookie != null) {
+      _result.loginCookie = loginCookie;
+    }
+    if (version != null) {
+      _result.version = version;
     }
     if (headers != null) {
       _result.headers.addAll(headers);
     }
     if (cookies != null) {
       _result.cookies.addAll(cookies);
-    }
-    if (version != null) {
-      _result.version = version;
     }
     if (galleryParsers != null) {
       _result.galleryParsers.addAll(galleryParsers);
@@ -225,40 +134,31 @@ class RulesProtocol extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory RulesProtocol.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory RulesProtocol.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
+  factory RulesProtocol.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RulesProtocol.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
   RulesProtocol clone() => RulesProtocol()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
-  RulesProtocol copyWith(void Function(RulesProtocol) updates) =>
-      super.copyWith((message) => updates(message as RulesProtocol))
-          as RulesProtocol; // ignore: deprecated_member_use
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RulesProtocol copyWith(void Function(RulesProtocol) updates) => super.copyWith((message) => updates(message as RulesProtocol)) as RulesProtocol; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static RulesProtocol create() => RulesProtocol._();
   RulesProtocol createEmptyInstance() => create();
-  static $pb.PbList<RulesProtocol> createRepeated() =>
-      $pb.PbList<RulesProtocol>();
+  static $pb.PbList<RulesProtocol> createRepeated() => $pb.PbList<RulesProtocol>();
   @$core.pragma('dart2js:noInline')
-  static RulesProtocol getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<RulesProtocol>(create);
+  static RulesProtocol getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RulesProtocol>(create);
   static RulesProtocol? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
-  set name($core.String v) {
-    $_setString(0, v);
-  }
-
+  set name($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
   @$pb.TagNumber(1)
@@ -267,50 +167,40 @@ class RulesProtocol extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get baseUrl => $_getSZ(1);
   @$pb.TagNumber(2)
-  set baseUrl($core.String v) {
-    $_setString(1, v);
-  }
-
+  set baseUrl($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasBaseUrl() => $_has(1);
   @$pb.TagNumber(2)
   void clearBaseUrl() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get extraCookies => $_getSZ(2);
+  $core.String get loginUrl => $_getSZ(2);
   @$pb.TagNumber(3)
-  set extraCookies($core.String v) {
-    $_setString(2, v);
-  }
-
+  set loginUrl($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
-  $core.bool hasExtraCookies() => $_has(2);
+  $core.bool hasLoginUrl() => $_has(2);
   @$pb.TagNumber(3)
-  void clearExtraCookies() => clearField(3);
+  void clearLoginUrl() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get loginUrl => $_getSZ(3);
+  RegField get loginCookie => $_getN(3);
   @$pb.TagNumber(4)
-  set loginUrl($core.String v) {
-    $_setString(3, v);
-  }
-
+  set loginCookie(RegField v) { setField(4, v); }
   @$pb.TagNumber(4)
-  $core.bool hasLoginUrl() => $_has(3);
+  $core.bool hasLoginCookie() => $_has(3);
   @$pb.TagNumber(4)
-  void clearLoginUrl() => clearField(4);
-
-  @$pb.TagNumber(5)
-  $core.String get loginCookieReg => $_getSZ(4);
-  @$pb.TagNumber(5)
-  set loginCookieReg($core.String v) {
-    $_setString(4, v);
-  }
+  void clearLoginCookie() => clearField(4);
+  @$pb.TagNumber(4)
+  RegField ensureLoginCookie() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  $core.bool hasLoginCookieReg() => $_has(4);
+  $core.String get version => $_getSZ(4);
   @$pb.TagNumber(5)
-  void clearLoginCookieReg() => clearField(5);
+  set version($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasVersion() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearVersion() => clearField(5);
 
   @$pb.TagNumber(6)
   $core.List<RegField> get headers => $_getList(5);
@@ -318,24 +208,13 @@ class RulesProtocol extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   $core.List<RegField> get cookies => $_getList(6);
 
-  @$pb.TagNumber(8)
-  $core.String get version => $_getSZ(7);
-  @$pb.TagNumber(8)
-  set version($core.String v) {
-    $_setString(7, v);
-  }
-
-  @$pb.TagNumber(8)
-  $core.bool hasVersion() => $_has(7);
-  @$pb.TagNumber(8)
-  void clearVersion() => clearField(8);
-
   @$pb.TagNumber(10)
-  $core.List<$0.GalleryParser> get galleryParsers => $_getList(8);
+  $core.List<$0.GalleryParser> get galleryParsers => $_getList(7);
 
   @$pb.TagNumber(11)
-  $core.List<$0.ListViewParser> get listViewParser => $_getList(9);
+  $core.List<$0.ListViewParser> get listViewParser => $_getList(8);
 
   @$pb.TagNumber(12)
-  $core.List<$1.ActionCombine> get actionList => $_getList(10);
+  $core.List<$1.ActionCombine> get actionList => $_getList(9);
 }
+

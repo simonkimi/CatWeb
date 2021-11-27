@@ -31,12 +31,12 @@ class RulesBasic extends StatelessWidget {
         ),
         CupertinoInput(
           labelText: '登录Cookie作用域',
-          value: store.rulesModel.loginCookieReg,
+          value: store.rulesModel.loginCookie.reg,
           hintText: '.*',
         ),
         CupertinoInput(
           labelText: 'Cookies',
-          value: store.rulesModel.extraCookies,
+          value: store.rulesModel.loginCookie.value,
           minLine: 3,
         ),
       ],

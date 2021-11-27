@@ -84,7 +84,12 @@ class HtmlXmlSelectorExec {
     if (element is! XPathElement) return null;
     switch (selector.function.value) {
       case SelectorFunction.attr:
-        return element.attributes[selector.param.value] ?? '';
+        for (final p in selector.param.value.split(';')) {
+          if (element.attributes.containsKey(p)) {
+            return element.attributes[p];
+          }
+        }
+        return null;
       case SelectorFunction.raw:
         return element is HtmlElementTree
             ? (element).element.innerHtml

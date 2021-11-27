@@ -24,8 +24,16 @@ dependencies:
   flutter_highlight: ^0.7.0
   cupertino_icons: ^1.0.4
   flutter_sticky_header: ^0.6.0
-  flutter_swipe_action_cell:
-    git: https://github.com/simonkimi/flutter_swipe_action_cell
+  flutter_swipe_action_cell: ^2.1.4
+
+  # network
+  brotli: ^0.5.0
+  dio: ^4.0.4
+  universal_html: ^2.0.8
+  json_path: ^0.3.0
+  xpath_selector:
+    git: https://github.com/simonkimi/xpath_selector
+
 
   # state
   get: ^4.3.8
@@ -41,11 +49,7 @@ dependencies:
   # tools
   protobuf: ^2.0.0
   intl: ^0.17.0
-  universal_html: ^2.0.8
   flutter_js: ^0.5.0+3
-  json_path: ^0.3.0
-  xpath_selector:
-    git: https://github.com/simonkimi/xpath_selector
 
 
 dev_dependencies:

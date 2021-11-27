@@ -28,10 +28,9 @@ class RulesProtocolModel implements PbAble {
       : name = sobs(pb?.name),
         baseUrl = sobs(pb?.baseUrl),
         cookies = lobs(pb?.cookies, (RegField e) => RegFieldModel(e)),
-        extraCookies = sobs(pb?.extraCookies),
         headers = lobs(pb?.headers, (RegField e) => RegFieldModel(e)),
         loginUrl = sobs(pb?.loginUrl),
-        loginCookieReg = sobs(pb?.loginCookieReg),
+        loginCookie = RegFieldModel(pb?.loginCookie),
         version = sobs(pb?.version),
         galleryParsers = lobs(
             pb?.galleryParsers, (GalleryParser e) => GalleryParserModel(e)),
@@ -44,9 +43,8 @@ class RulesProtocolModel implements PbAble {
 
   final RxString name;
   final RxString baseUrl;
-  final RxString extraCookies;
   final RxString loginUrl;
-  final RxString loginCookieReg;
+  final RegFieldModel loginCookie;
   final RxString version;
 
   final RxList<RegFieldModel> cookies;
@@ -60,10 +58,9 @@ class RulesProtocolModel implements PbAble {
         name: name.value,
         baseUrl: baseUrl.value,
         cookies: cookies.map((e) => e.toPb()),
-        extraCookies: extraCookies.value,
         headers: headers.map((e) => e.toPb()),
         loginUrl: loginUrl.value,
-        loginCookieReg: loginCookieReg.value,
+        loginCookie: loginCookie.toPb(),
         version: version.value,
         galleryParsers: galleryParsers.map((e) => e.toPb()),
         listViewParser: listViewParser.map((e) => e.toPb()),
