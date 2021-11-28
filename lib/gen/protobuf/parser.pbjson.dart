@@ -15,11 +15,12 @@ const ImageParser$json = const {
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'image', '3': 2, '4': 1, '5': 11, '6': '.ImageSelector', '10': 'image'},
     const {'1': 'rawImage', '3': 3, '4': 1, '5': 9, '10': 'rawImage'},
+    const {'1': 'extraSelector', '3': 99, '4': 3, '5': 11, '6': '.ExtraSelector', '10': 'extraSelector'},
   ],
 };
 
 /// Descriptor for `ImageParser`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List imageParserDescriptor = $convert.base64Decode('CgtJbWFnZVBhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEiQKBWltYWdlGAIgASgLMg4uSW1hZ2VTZWxlY3RvclIFaW1hZ2USGgoIcmF3SW1hZ2UYAyABKAlSCHJhd0ltYWdl');
+final $typed_data.Uint8List imageParserDescriptor = $convert.base64Decode('CgtJbWFnZVBhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEiQKBWltYWdlGAIgASgLMg4uSW1hZ2VTZWxlY3RvclIFaW1hZ2USGgoIcmF3SW1hZ2UYAyABKAlSCHJhd0ltYWdlEjQKDWV4dHJhU2VsZWN0b3IYYyADKAsyDi5FeHRyYVNlbGVjdG9yUg1leHRyYVNlbGVjdG9y');
 @$core.Deprecated('Use listViewParserDescriptor instead')
 const ListViewParser$json = const {
   '1': 'ListViewParser',

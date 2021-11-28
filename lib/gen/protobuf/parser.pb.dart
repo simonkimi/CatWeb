@@ -16,6 +16,7 @@ class ImageParser extends $pb.GeneratedMessage {
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..aOM<$0.ImageSelector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'image', subBuilder: $0.ImageSelector.create)
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rawImage', protoName: 'rawImage')
+    ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, protoName: 'extraSelector', subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false
   ;
 
@@ -24,6 +25,7 @@ class ImageParser extends $pb.GeneratedMessage {
     $core.String? name,
     $0.ImageSelector? image,
     $core.String? rawImage,
+    $core.Iterable<$0.ExtraSelector>? extraSelector,
   }) {
     final _result = create();
     if (name != null) {
@@ -34,6 +36,9 @@ class ImageParser extends $pb.GeneratedMessage {
     }
     if (rawImage != null) {
       _result.rawImage = rawImage;
+    }
+    if (extraSelector != null) {
+      _result.extraSelector.addAll(extraSelector);
     }
     return _result;
   }
@@ -86,6 +91,9 @@ class ImageParser extends $pb.GeneratedMessage {
   $core.bool hasRawImage() => $_has(2);
   @$pb.TagNumber(3)
   void clearRawImage() => clearField(3);
+
+  @$pb.TagNumber(99)
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(3);
 }
 
 class ListViewParser extends $pb.GeneratedMessage {

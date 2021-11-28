@@ -8,27 +8,54 @@ import 'package:get/get.dart';
 import 'interface.dart';
 
 enum ParserType {
-  list,
-  gallery,
+  listParser,
+  galleryParser,
+  imageParser,
 }
 
 abstract class ParserBaseModel implements PbAble, CombineSelector {
-  ParserBaseModel(Iterable<ExtraSelector>? pb)
+  ParserBaseModel({required this.name, Iterable<ExtraSelector>? extra})
       : extraSelectorModel =
-            lobs(pb, (ExtraSelector e) => ExtraSelectorModel(e));
+            lobs(extra, (ExtraSelector e) => ExtraSelectorModel(e));
+
+  final RxString name;
 
   // 额外信息
   final RxList<ExtraSelectorModel> extraSelectorModel;
 
-  String get displayName;
-
   String displayType(BuildContext context);
+}
+
+class ImageParserModel extends ParserBaseModel {
+  ImageParserModel([ImageParser? pb])
+      : image = ImageSelectorModel(pb?.image),
+        rawImage = sobs(pb?.rawImage),
+        super(
+          name: sobs(pb?.name),
+          extra: pb?.extraSelector,
+        );
+
+  final ImageSelectorModel image;
+  final RxString rawImage;
+
+  @override
+  String displayType(BuildContext context) => '图片查看';
+
+  @override
+  Map<String, SelectorModel> get combine => {};
+
+  @override
+  ImageParser toPb() => ImageParser(
+        name: name.value,
+        image: image.toPb(),
+        rawImage: rawImage.value,
+        extraSelector: extraSelectorModel.map((e) => e.toPb()),
+      );
 }
 
 class GalleryParserModel extends ParserBaseModel {
   GalleryParserModel([GalleryParser? pb])
-      : name = sobs(pb?.name),
-        title = SelectorModel(pb?.title),
+      : title = SelectorModel(pb?.title),
         subTitle = SelectorModel(pb?.subtitle),
         uploadTime = SelectorModel(pb?.uploadTime),
         star = SelectorModel(pb?.star, true),
@@ -53,9 +80,10 @@ class GalleryParserModel extends ParserBaseModel {
         chapterSubtitle = SelectorModel(pb?.chapterSubtitle),
         chapterCover = ImageSelectorModel(pb?.chapterCover),
         nextPage = SelectorModel(pb?.nextPage),
-        super(pb?.extraSelector);
-
-  final RxString name;
+        super(
+          name: sobs(pb?.name),
+          extra: pb?.extraSelector,
+        );
 
   final SelectorModel title;
   final SelectorModel subTitle;
@@ -161,16 +189,12 @@ class GalleryParserModel extends ParserBaseModel {
       };
 
   @override
-  String get displayName => name.value;
-
-  @override
   String displayType(BuildContext context) => '画廊解析器';
 }
 
 class ListViewParserModel extends ParserBaseModel {
   ListViewParserModel([ListViewParser? pb])
-      : name = sobs(pb?.name),
-        itemSelector = sobs(pb?.itemSelector),
+      : itemSelector = sobs(pb?.itemSelector),
         title = SelectorModel(pb?.title),
         subtitle = SelectorModel(pb?.subtitle),
         uploadTime = SelectorModel(pb?.uploadTime),
@@ -182,9 +206,10 @@ class ListViewParserModel extends ParserBaseModel {
         badgeText = SelectorModel(pb?.badgeText),
         badgeColor = SelectorModel(pb?.badgeColor),
         nextPage = SelectorModel(pb?.nextPage),
-        super(pb?.extraSelector);
-
-  final RxString name;
+        super(
+          name: sobs(pb?.name),
+          extra: pb?.extraSelector,
+        );
 
   // 列表选择器
   final RxString itemSelector;
@@ -230,9 +255,6 @@ class ListViewParserModel extends ParserBaseModel {
 
   @override
   Map<String, SelectorModel> get combine => {};
-
-  @override
-  String get displayName => name.value;
 
   @override
   String displayType(BuildContext context) => '列表解析器';

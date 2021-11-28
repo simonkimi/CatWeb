@@ -6,6 +6,8 @@ message ImageParser {
   string name = 1;
   ImageSelector image = 2;
   string rawImage = 3;
+
+  repeated ExtraSelector extraSelector = 99;
 }
 
 message ListViewParser {

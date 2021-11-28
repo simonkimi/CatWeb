@@ -92,11 +92,13 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
   }
 
   Widget buildPreview(BuildContext context) {
-    if (store.parserBase is GalleryParserModel) return const GalleryPreview();
+    if (store.parserBase is GalleryParserModel) {
+      return const GalleryPreview();
+    }
     if (store.parserBase is ListViewParserModel) {
       return const ListParserPreview();
     }
-    throw UnsupportedError('UnSupported');
+    return const SizedBox();
   }
 
   Widget buildBody(BuildContext context) {
@@ -108,7 +110,7 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
     if (store.parserBase is ListViewParserModel) {
       return ListParserFragment(model: store.parserBase as ListViewParserModel);
     }
-    throw UnimplementedError('UnSupport');
+    return const SizedBox();
   }
 
   Widget buildTabBar(BuildContext context) {

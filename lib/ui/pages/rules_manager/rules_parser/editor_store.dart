@@ -10,10 +10,12 @@ abstract class EditorStoreBase with Store {
   EditorStoreBase({required ParserType type, required dynamic model})
       : parserBase = (() {
           switch (type) {
-            case ParserType.list:
+            case ParserType.listParser:
               return ListViewParserModel(model as ListViewParser?);
-            case ParserType.gallery:
+            case ParserType.galleryParser:
               return GalleryParserModel(model as GalleryParser?);
+            case ParserType.imageParser:
+              return ImageParserModel(model as ImageParser?);
           }
         })();
 

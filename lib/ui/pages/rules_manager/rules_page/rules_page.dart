@@ -104,8 +104,7 @@ class RulesPageEdit extends StatelessWidget {
         ...store.rulesModel.listViewParser,
         ...store.rulesModel.galleryParsers,
       ]
-          .map(
-              (e) => SelectTileItem(title: e.displayName, value: e.displayName))
+          .map((e) => SelectTileItem(title: e.name.value, value: e.name.value))
           .toList(),
       cancelText: '取消',
     );

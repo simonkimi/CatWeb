@@ -26,15 +26,13 @@ class RulesParserManager extends StatelessWidget {
             ...store.rulesModel.galleryParsers,
           ].map((e) {
             return CupertinoListTile(
-              title: Text(e.displayName),
+              title: Text(e.name.value),
               subtitle: Text(e.displayType(context)),
               trailing: CupertinoButton(
                 padding: EdgeInsets.zero,
                 minSize: 10,
                 child: const Icon(Icons.more_horiz_outlined),
-                onPressed: () {
-
-                },
+                onPressed: () {},
               ),
             );
           }).toList(),
@@ -54,8 +52,9 @@ class RulesParserManager extends StatelessWidget {
       title: '规则类型',
       cancelText: '取消',
       items: const [
-        SelectTileItem(title: '列表解析器', value: ParserType.list),
-        SelectTileItem(title: '详情解析器', value: ParserType.gallery),
+        SelectTileItem(title: '列表解析器', value: ParserType.listParser),
+        SelectTileItem(title: '详情解析器', value: ParserType.galleryParser),
+        SelectTileItem(title: '图片解析器', value: ParserType.imageParser),
       ],
     );
     if (selection != null) {
