@@ -1,8 +1,7 @@
-import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/parser.pbserver.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 
-final galleryParserModel = GalleryParserModel(GalleryParser(
+final galleryParser = GalleryParser(
   name: '画廊',
   title: Selector(
     selector: '#gn',
@@ -122,4 +121,4 @@ final galleryParserModel = GalleryParserModel(GalleryParser(
     js: 'function hook(a){const b=a.split("|");return rows=4,-1!==b[0].indexOf("40 rows")?rows=40:-1!==b[0].indexOf("20 rows")?rows=20:-1!==b[0].indexOf("10 rows")&&(rows=10),column=10,-1!==b[1].indexOf("Large")&&(column=5),rows*column}',
   ),
   extraSelector: [ExtraSelector()],
-));
+);

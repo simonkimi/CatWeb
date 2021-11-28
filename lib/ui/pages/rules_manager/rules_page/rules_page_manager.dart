@@ -1,4 +1,6 @@
+import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_page/rules_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +28,11 @@ class RulesPageManager extends StatelessWidget {
         CupertinoListTile(
           title: const Text('添加'),
           leading: const Icon(Icons.add),
+          onTap: () {
+            Navigator.of(context).push(CupertinoPageRoute(
+              builder: (context) => RulesPageEdit(model: SitePageModel()),
+            ));
+          },
         ),
       ],
     );

@@ -2,6 +2,7 @@ import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/parser.pbserver.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:catweb/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import 'interface.dart';
@@ -18,6 +19,10 @@ abstract class ParserBaseModel implements PbAble, CombineSelector {
 
   // 额外信息
   final RxList<ExtraSelectorModel> extraSelectorModel;
+
+  String get displayName;
+
+  String displayType(BuildContext context);
 }
 
 class GalleryParserModel extends ParserBaseModel {
@@ -122,6 +127,12 @@ class GalleryParserModel extends ParserBaseModel {
         'badgeType': badgeType,
         'nextPage': nextPage,
       };
+
+  @override
+  String get displayName => name.value;
+
+  @override
+  String displayType(BuildContext context) => '画廊解析器';
 }
 
 class ListViewParserModel extends ParserBaseModel {
@@ -198,4 +209,10 @@ class ListViewParserModel extends ParserBaseModel {
         'badgeText': badgeText,
         'nextPage': nextPage
       };
+
+  @override
+  String get displayName => name.value;
+
+  @override
+  String displayType(BuildContext context) => '列表解析器';
 }

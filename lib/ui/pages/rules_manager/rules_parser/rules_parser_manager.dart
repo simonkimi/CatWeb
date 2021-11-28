@@ -21,8 +21,22 @@ class RulesParserManager extends StatelessWidget {
       children: [
         Column(
           mainAxisSize: MainAxisSize.min,
-          children: store.rulesModel.listViewParser.map((element) {
-            return const ListTile();
+          children: <ParserBaseModel>[
+            ...store.rulesModel.listViewParser,
+            ...store.rulesModel.galleryParsers,
+          ].map((e) {
+            return CupertinoListTile(
+              title: Text(e.displayName),
+              subtitle: Text(e.displayType(context)),
+              trailing: CupertinoButton(
+                padding: EdgeInsets.zero,
+                minSize: 10,
+                child: const Icon(Icons.more_horiz_outlined),
+                onPressed: () {
+
+                },
+              ),
+            );
           }).toList(),
         ),
         CupertinoListTile(

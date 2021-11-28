@@ -1,17 +1,14 @@
 syntax = 'proto3';
 
-enum SitePageType {
+enum PageTemplate {
   imageList = 0;
   imageWaterfall = 1;
   detail = 2;
 }
 
-
-
 message SitePage {
   string name = 1;
   string url = 2;
-  SitePageType type = 3;
-
-  string rule = 4;
+  PageTemplate type = 3;
+  string parser = 4;
 }

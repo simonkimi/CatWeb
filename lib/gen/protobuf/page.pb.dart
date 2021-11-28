@@ -17,8 +17,8 @@ class SitePage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SitePage', createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'url')
-    ..e<SitePageType>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: SitePageType.imageList, valueOf: SitePageType.valueOf, enumValues: SitePageType.values)
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rule')
+    ..e<PageTemplate>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: PageTemplate.imageList, valueOf: PageTemplate.valueOf, enumValues: PageTemplate.values)
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'parser')
     ..hasRequiredFields = false
   ;
 
@@ -26,8 +26,8 @@ class SitePage extends $pb.GeneratedMessage {
   factory SitePage({
     $core.String? name,
     $core.String? url,
-    SitePageType? type,
-    $core.String? rule,
+    PageTemplate? type,
+    $core.String? parser,
   }) {
     final _result = create();
     if (name != null) {
@@ -39,8 +39,8 @@ class SitePage extends $pb.GeneratedMessage {
     if (type != null) {
       _result.type = type;
     }
-    if (rule != null) {
-      _result.rule = rule;
+    if (parser != null) {
+      _result.parser = parser;
     }
     return _result;
   }
@@ -84,21 +84,21 @@ class SitePage extends $pb.GeneratedMessage {
   void clearUrl() => clearField(2);
 
   @$pb.TagNumber(3)
-  SitePageType get type => $_getN(2);
+  PageTemplate get type => $_getN(2);
   @$pb.TagNumber(3)
-  set type(SitePageType v) { setField(3, v); }
+  set type(PageTemplate v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasType() => $_has(2);
   @$pb.TagNumber(3)
   void clearType() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get rule => $_getSZ(3);
+  $core.String get parser => $_getSZ(3);
   @$pb.TagNumber(4)
-  set rule($core.String v) { $_setString(3, v); }
+  set parser($core.String v) { $_setString(3, v); }
   @$pb.TagNumber(4)
-  $core.bool hasRule() => $_has(3);
+  $core.bool hasParser() => $_has(3);
   @$pb.TagNumber(4)
-  void clearRule() => clearField(4);
+  void clearParser() => clearField(4);
 }
 

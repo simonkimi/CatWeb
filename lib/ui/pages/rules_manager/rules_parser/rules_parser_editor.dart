@@ -41,11 +41,7 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
     return CupertinoNavigationBar(
       leading: CupertinoButton(
         onPressed: () {
-          showCupertinoConfirmDialog(
-            context: context,
-            title: '退出',
-            content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
-          ).then((value) {
+          showExitConferDialog(context).then((value) {
             if (value == true) {
               Navigator.of(context).pop();
             }
@@ -69,14 +65,7 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
-        final result = await showCupertinoConfirmDialog(
-          context: context,
-          title: '退出',
-          content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
-        );
-        return result == true;
-      },
+      onWillPop: () => showExitConferDialog(context),
       child: DefaultTabController(
         length: 3,
         child: CupertinoPageScaffold(

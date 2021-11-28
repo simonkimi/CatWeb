@@ -1,8 +1,7 @@
-import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/parser.pbserver.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 
-final listViewParserModel = ListViewParserModel(ListViewParser(
+final ehIndexParser = ListViewParser(
   name: '主页',
   itemSelector: '.itg tr:not(:nth-child(1))',
   title: Selector(
@@ -68,4 +67,4 @@ final listViewParserModel = ListViewParserModel(ListViewParser(
       regex: r'height:(\d+)',
     ),
   ),
-));
+);
