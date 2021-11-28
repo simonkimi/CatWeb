@@ -60,7 +60,7 @@ class ExtraSelectorModel implements PbAble {
       );
 }
 
-class ImageSelectorModel implements PbAble, CombineSelector {
+class ImageSelectorModel implements PbAble {
   ImageSelectorModel([ImageSelector? pb])
       : imgUrl = SelectorModel(pb?.imgUrl),
         imgWidth = SelectorModel(pb?.imgWidth, true),
@@ -83,13 +83,12 @@ class ImageSelectorModel implements PbAble, CombineSelector {
         imgY: imgY.toPb(),
       );
 
-  @override
-  Map<String, SelectorModel> get combine => {
-        'imgUrl': imgUrl,
-        'imgWidth': imgWidth,
-        'imgHeight': imgHeight,
-        'imgX': imgX,
-        'imgY': imgY,
+  Map<String, SelectorModel> combine({String prefix = ''}) => {
+        '${prefix}ImgUrl': imgUrl,
+        '${prefix}ImgWidth': imgWidth,
+        '${prefix}ImgHeight': imgHeight,
+        '${prefix}ImgX': imgX,
+        '${prefix}ImgY': imgY,
       };
 }
 

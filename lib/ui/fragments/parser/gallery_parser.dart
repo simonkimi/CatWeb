@@ -22,6 +22,7 @@ class GalleryParserFragment extends StatelessWidget {
         buildThumbnailList(),
         buildBadgeList(),
         buildCommentList(),
+        buildChapterList(),
         buildIndexList(),
       ],
     );
@@ -61,7 +62,7 @@ class GalleryParserFragment extends StatelessWidget {
         RulesForm(
           title: '徽章项目',
           field: '#badgeItem',
-          selectorModel: model.badgeItem,
+          selectorModel: model.badgeSelector,
         ),
         RulesForm(
           title: '徽章内容',
@@ -87,7 +88,7 @@ class GalleryParserFragment extends StatelessWidget {
       RulesForm(
         title: '评论项目',
         field: '#commentItem',
-        selectorModel: model.commentItem,
+        selectorModel: model.commentSelector,
       ),
       RulesForm(
         title: '评论内容',
@@ -127,12 +128,57 @@ class GalleryParserFragment extends StatelessWidget {
     ]);
   }
 
+  StickyClassifyList buildChapterList() {
+    return StickyClassifyList(title: '章节', children: [
+      RulesForm(
+        title: '章节选择器',
+        field: '#chapterSelector',
+        selectorModel: model.tag,
+      ),
+      RulesForm(
+        title: '章节标题',
+        field: '#chapterTitle',
+        selectorModel: model.tagColor,
+      ),
+      RulesForm(
+        title: '章节副标题',
+        field: '#chapterSubtilte',
+        selectorModel: model.tagColor,
+      ),
+      RulesForm(
+        title: '章节封面',
+        field: '#chapterCover',
+        selectorModel: model.thumbnail.imgUrl,
+      ),
+      RulesForm(
+        title: '章节图宽度',
+        field: '#chapterWidth',
+        selectorModel: model.thumbnail.imgWidth,
+      ),
+      RulesForm(
+        title: '章节图高度',
+        field: '#chapterHeight',
+        selectorModel: model.thumbnail.imgHeight,
+      ),
+      RulesForm(
+        title: '章节图X偏移',
+        field: '#chapterX',
+        selectorModel: model.thumbnail.imgX,
+      ),
+      RulesForm(
+        title: '章节图Y偏移',
+        field: '#chapterY',
+        selectorModel: model.thumbnail.imgY,
+      ),
+    ]);
+  }
+
   StickyClassifyList buildThumbnailList() {
     return StickyClassifyList(title: '缩略图', children: [
       RulesForm(
         title: '缩略图项目',
         field: '#thumbnailUrl',
-        selectorModel: model.thumbnailItem,
+        selectorModel: model.thumbnailSelector,
       ),
       RulesForm(
         title: '缩略图地址',

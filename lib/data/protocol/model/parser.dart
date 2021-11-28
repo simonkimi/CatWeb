@@ -36,18 +36,22 @@ class GalleryParserModel extends ParserBaseModel {
         prePageImg = SelectorModel(pb?.prePageImg, true),
         language = SelectorModel(pb?.language),
         coverImg = ImageSelectorModel(pb?.coverImg),
-        thumbnailItem = SelectorModel(pb?.thumbnailItem),
+        thumbnailSelector = SelectorModel(pb?.thumbnailSelector),
         description = SelectorModel(pb?.description),
         thumbnail = ImageSelectorModel(pb?.thumbnail),
         thumbnailUrl = SelectorModel(pb?.thumbnailUrl),
-        commentItem = SelectorModel(pb?.commentItem),
+        commentSelector = SelectorModel(pb?.commentSelector),
         comments = CommentSelectorModel(pb?.comments),
         tag = SelectorModel(pb?.tag),
         tagColor = SelectorModel(pb?.tagColor),
-        badgeItem = SelectorModel(pb?.badgeItem),
+        badgeSelector = SelectorModel(pb?.badgeSelector),
         badgeText = SelectorModel(pb?.badgeText),
         badgeColor = SelectorModel(pb?.badgeColor),
         badgeType = SelectorModel(pb?.badgeType),
+        chapterSelector = SelectorModel(pb?.chapterSelector),
+        chapterTitle = SelectorModel(pb?.chapterTitle),
+        chapterSubtitle = SelectorModel(pb?.chapterSubtitle),
+        chapterCover = ImageSelectorModel(pb?.chapterCover),
         nextPage = SelectorModel(pb?.nextPage),
         super(pb?.extraSelector);
 
@@ -63,20 +67,30 @@ class GalleryParserModel extends ParserBaseModel {
   final ImageSelectorModel coverImg;
   final SelectorModel description;
 
-  final SelectorModel thumbnailItem;
+  // 缩略图
+  final SelectorModel thumbnailSelector;
   final ImageSelectorModel thumbnail;
   final SelectorModel thumbnailUrl;
 
-  final SelectorModel commentItem;
+  // 评论
+  final SelectorModel commentSelector;
   final CommentSelectorModel comments;
 
+  // Tag
   final SelectorModel tag;
   final SelectorModel tagColor;
 
-  final SelectorModel badgeItem;
+  // 徽章
+  final SelectorModel badgeSelector;
   final SelectorModel badgeText;
   final SelectorModel badgeColor;
   final SelectorModel badgeType;
+
+  // 章节
+  final SelectorModel chapterSelector;
+  final SelectorModel chapterTitle;
+  final SelectorModel chapterSubtitle;
+  final ImageSelectorModel chapterCover;
 
   final SelectorModel nextPage;
 
@@ -92,14 +106,32 @@ class GalleryParserModel extends ParserBaseModel {
         language: language.toPb(),
         coverImg: coverImg.toPb(),
         description: description.toPb(),
+
+        // 缩略图
+        thumbnailSelector: thumbnailSelector.toPb(),
         thumbnail: thumbnail.toPb(),
         thumbnailUrl: thumbnailUrl.toPb(),
+
+        // 评论
+        commentSelector: commentSelector.toPb(),
         comments: comments.toPb(),
+
+        // Tag
         tag: tag.toPb(),
         tagColor: tagColor.toPb(),
+
+        // 徽章
+        badgeSelector: badgeSelector.toPb(),
         badgeText: badgeText.toPb(),
         badgeColor: badgeColor.toPb(),
         badgeType: badgeType.toPb(),
+
+        // 章节
+        chapterSelector: chapterSelector.toPb(),
+        chapterTitle: chapterTitle.toPb(),
+        chapterSubtitle: chapterSubtitle.toPb(),
+        chapterCover: chapterCover.toPb(),
+
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
         nextPage: nextPage.toPb(),
       );
@@ -113,16 +145,16 @@ class GalleryParserModel extends ParserBaseModel {
         'imgCount': imgCount,
         'prePageImg': prePageImg,
         'language': language,
-        ...coverImg.combine,
+        ...coverImg.combine(prefix: 'cover'),
         'description': description,
-        'thumbnailItem': thumbnailItem,
-        ...thumbnail.combine,
+        'thumbnailSelector': thumbnailSelector,
+        ...thumbnail.combine(prefix: 'thumbnail'),
         'thumbnailUrl': thumbnailUrl,
-        'commentItem': commentItem,
+        'commentSelector': commentSelector,
         ...comments.combine,
         'tag': tag,
         'tagColor': tagColor,
-        'badgeItem': badgeItem,
+        'badgeSelector': badgeSelector,
         'badgeText': badgeText,
         'badgeType': badgeType,
         'nextPage': nextPage,
@@ -197,18 +229,7 @@ class ListViewParserModel extends ParserBaseModel {
       );
 
   @override
-  Map<String, SelectorModel> get combine => {
-        'title': title,
-        'subtitle': subtitle,
-        'uploadTime': uploadTime,
-        'star': star,
-        'imgCount': imgCount,
-        ...previewImg.combine,
-        'tag': tag,
-        'tagColor': tagColor,
-        'badgeText': badgeText,
-        'nextPage': nextPage
-      };
+  Map<String, SelectorModel> get combine => {};
 
   @override
   String get displayName => name.value;
