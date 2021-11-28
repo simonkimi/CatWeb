@@ -30,7 +30,10 @@ class RulesPageManager extends StatelessWidget {
           leading: const Icon(Icons.add),
           onTap: () {
             Navigator.of(context).push(CupertinoPageRoute(
-              builder: (context) => RulesPageEdit(model: SitePageModel()),
+              builder: (context) => RulesPageEdit(
+                model: SitePageModel(),
+                store: store,
+              ),
             ));
           },
         ),

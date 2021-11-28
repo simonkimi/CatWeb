@@ -1,4 +1,6 @@
 import 'package:catweb/data/protocol/model/page.dart';
+import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/components/dialog.dart';
@@ -6,14 +8,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
+import '../rules_store.dart';
+
 class RulesPageEdit extends StatelessWidget {
   const RulesPageEdit({
     Key? key,
     required this.model,
+    required this.store,
   }) : super(key: key);
 
+  final RulesStore store;
   final SitePageModel model;
-
 
   CupertinoNavigationBar buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
@@ -29,7 +34,7 @@ class RulesPageEdit extends StatelessWidget {
         padding: EdgeInsets.zero,
         minSize: 0,
       ),
-      middle: const Text('规则'),
+      middle: const Text('页面'),
       trailing: CupertinoButton(
         onPressed: () {},
         child: const Icon(Icons.save_outlined),
@@ -61,17 +66,51 @@ class RulesPageEdit extends StatelessWidget {
               ),
               const CupertinoDivider(height: 20),
               Obx(() => CupertinoReadOnlyInput(
-                labelText: '模板',
-                value: model.type.value.string(context),
-              )),
+                    labelText: '模板',
+                    value: model.type.value.string(context),
+                    onTap: () => onTemplateTap(context),
+                  )),
               Obx(() => CupertinoReadOnlyInput(
-                labelText: '解析器',
-                value: model.parser.value,
-              )),
+                    labelText: '解析器',
+                    value: model.parser.value,
+                    onTap: () => onParserTap(context),
+                  )),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future<void> onTemplateTap(BuildContext context) async {
+    final result = await showCupertinoSelectDialog<PageTemplate>(
+      title: '请选择页面模板',
+      context: context,
+      items: PageTemplate.values
+          .map((e) => SelectTileItem(title: e.string(context), value: e))
+          .toList(),
+      cancelText: '取消',
+    );
+    if (result != null) {
+      model.type.value = result;
+    }
+  }
+
+  Future<void> onParserTap(BuildContext context) async {
+    final result = await showCupertinoSelectDialog<String>(
+      title: '请选择解析器',
+      context: context,
+      items: <ParserBaseModel>[
+        ...store.rulesModel.listViewParser,
+        ...store.rulesModel.galleryParsers,
+      ]
+          .map(
+              (e) => SelectTileItem(title: e.displayName, value: e.displayName))
+          .toList(),
+      cancelText: '取消',
+    );
+    if (result != null) {
+      model.parser.value = result;
+    }
   }
 }
