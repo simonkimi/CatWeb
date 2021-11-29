@@ -59,16 +59,31 @@ class RulesParserManager extends StatelessWidget {
       title: '规则类型',
       cancelText: '取消',
       items: const [
-        SelectTileItem(title: '列表解析器', value: ParserType.listParser),
-        SelectTileItem(title: '详情解析器', value: ParserType.galleryParser),
-        SelectTileItem(title: '图片解析器', value: ParserType.imageParser),
+        SelectTileItem(title: '列表页', value: ParserType.listParser),
+        SelectTileItem(title: '详情页', value: ParserType.galleryParser),
+        SelectTileItem(title: '图片页', value: ParserType.imageParser),
       ],
     );
     if (selection != null) {
-      // Navigator.of(context).push(CupertinoPageRoute(
-      //     builder: (context) => RulesParserEditor(
-      //           type: selection,
-      //         )));
+      late final ParserBaseModel model;
+      switch (selection) {
+        case ParserType.listParser:
+          model = ListViewParserModel();
+          break;
+        case ParserType.galleryParser:
+          model = GalleryParserModel();
+          break;
+        case ParserType.imageParser:
+          model = ImageParserModel();
+          break;
+      }
+      await Navigator.of(context).push(CupertinoPageRoute(
+          builder: (context) => RulesParserEditor(
+                model: model,
+              )));
+      if (model.name.value.isEmpty) {
+        print('空的');
+      }
     }
   }
 

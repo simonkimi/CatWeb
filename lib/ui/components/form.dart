@@ -74,7 +74,11 @@ Widget buildCupertinoInput({
   BoxDecoration? decoration,
 }) {
   return CupertinoTextField(
-    controller: TextEditingController(text: value.value),
+    controller: TextEditingController(text: value.value)
+      ..selection = TextSelection(
+        baseOffset: value.value.length,
+        extentOffset: value.value.length,
+      ),
     decoration: decoration ??
         const BoxDecoration(
           border: Border(),

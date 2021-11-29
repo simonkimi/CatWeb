@@ -12,17 +12,30 @@ import 'package:flutter/material.dart';
 import '../../../../themes.dart';
 
 class RulesParserEditor extends StatelessWidget {
-  const RulesParserEditor({Key? key, required this.model}) : super(key: key);
-
-  static String routeName = 'rules_parser_editor';
+  const RulesParserEditor({
+    Key? key,
+    required this.model,
+  }) : super(key: key);
 
   final ParserBaseModel model;
+
+  Future<bool> showExitConfine(BuildContext context) async {
+    if (model.name.value.isEmpty) {
+      return (await showCupertinoConfirmDialog(
+            context: context,
+            title: '返回',
+            content: '没有设定名称, 将不会保存\n确定不保存直接退出吗?',
+          ) ==
+          true);
+    }
+    return true;
+  }
 
   CupertinoNavigationBar buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
       leading: CupertinoButton(
         onPressed: () {
-          showExitConferDialog(context).then((value) {
+          showExitConfine(context).then((value) {
             if (value == true) {
               Navigator.of(context).pop();
             }
@@ -46,7 +59,7 @@ class RulesParserEditor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => showExitConferDialog(context),
+      onWillPop: () => showExitConfine(context),
       child: DefaultTabController(
         length: 3,
         child: CupertinoPageScaffold(
