@@ -64,19 +64,30 @@ class RulesProtocolModel implements PbAble {
   final RxList<ActionCombineModel> actionList;
   final RxList<SitePageModel> pageList;
 
-  void removeParser(ParserBaseModel model) {
+  RxList<ParserBaseModel> _selectParser(ParserBaseModel model) {
     switch (model.type) {
       case ParserType.listParser:
-        listViewParser.remove(model);
-        break;
+        return listViewParser;
       case ParserType.galleryParser:
-        galleryParsers.remove(model);
-        break;
+        return galleryParsers;
       case ParserType.imageParser:
-        imageParser.remove(model);
-        break;
+        return imageParser;
     }
   }
+
+  void removeParser(ParserBaseModel model) {
+    _selectParser(model).remove(model);
+  }
+
+  void addParser(ParserBaseModel model) {
+    _selectParser(model).add(model);
+  }
+
+  RxList<ParserBaseModel> get parsers => RxList.from([
+        ...listViewParser,
+        ...galleryParsers,
+        ...imageParser,
+      ]);
 
   @override
   RulesProtocol toPb() => RulesProtocol(

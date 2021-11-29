@@ -1,19 +1,17 @@
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_action_cell/core/cell.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
 
-class RulesAdvance extends StatelessWidget {
+class RulesAdvance extends GetWidget<RulesEditController> {
   RulesAdvance({
     Key? key,
-    required this.model,
   }) : super(key: key);
-
-  final RulesProtocolModel model;
 
   final headerController = SwipeActionController();
   final cookieController = SwipeActionController();
@@ -38,14 +36,17 @@ class RulesAdvance extends StatelessWidget {
             child: Column(
               children: [
                 Obx(() => Column(
-                      children: model.headers.asMap().entries.map((e) {
+                      children: controller.rulesModel.headers
+                          .asMap()
+                          .entries
+                          .map((e) {
                         return Obx(() => buildDeletableItem(
                             index: e.key,
                             context: context,
                             controller: headerController,
                             text: '${e.value.reg}: ${e.value.value}',
                             onDelete: (index) {
-                              model.headers.removeAt(index);
+                              controller.rulesModel.headers.removeAt(index);
                             },
                             onTap: () => editRegField(context, e.value)));
                       }).toList(),
@@ -53,7 +54,7 @@ class RulesAdvance extends StatelessWidget {
                 buildAddItem(
                   context: context,
                   onTap: () {
-                    model.headers.add(
+                    controller.rulesModel.headers.add(
                       RegFieldModel(RegField(reg: '*', value: '')),
                     );
                   },
@@ -75,7 +76,10 @@ class RulesAdvance extends StatelessWidget {
             child: Column(
               children: [
                 Obx(() => Column(
-                      children: model.cookies.asMap().entries.map((e) {
+                      children: controller.rulesModel.cookies
+                          .asMap()
+                          .entries
+                          .map((e) {
                         return Obx(() => buildDeletableItem(
                             index: e.key,
                             context: context,
@@ -83,7 +87,7 @@ class RulesAdvance extends StatelessWidget {
                             text:
                                 '${e.value.reg.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
                             onDelete: (index) {
-                              model.cookies.removeAt(index);
+                              controller.rulesModel.cookies.removeAt(index);
                             },
                             onTap: () => editRegField(context, e.value)));
                       }).toList(),
@@ -91,7 +95,7 @@ class RulesAdvance extends StatelessWidget {
                 buildAddItem(
                   context: context,
                   onTap: () {
-                    model.cookies.add(
+                    controller.rulesModel.cookies.add(
                       RegFieldModel(RegField(reg: '', value: '')),
                     );
                   },

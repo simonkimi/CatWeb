@@ -1,15 +1,14 @@
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class RulesBasic extends StatelessWidget {
+import '../rules_edit_page.dart';
+
+class RulesBasic extends GetWidget<RulesEditController> {
   const RulesBasic({
     Key? key,
-    required this.store,
   }) : super(key: key);
-
-  final RulesStore store;
 
   @override
   Widget build(BuildContext context) {
@@ -18,25 +17,25 @@ class RulesBasic extends StatelessWidget {
       children: [
         CupertinoInput(
           labelText: '名称',
-          value: store.rulesModel.name,
+          value: controller.rulesModel.name,
         ),
         CupertinoInput(
           labelText: '基础Url',
-          value: store.rulesModel.baseUrl,
+          value: controller.rulesModel.baseUrl,
         ),
         const CupertinoDivider(height: 30),
         CupertinoInput(
           labelText: '登录Url',
-          value: store.rulesModel.loginUrl,
+          value: controller.rulesModel.loginUrl,
         ),
         CupertinoInput(
           labelText: '登录Cookie作用域',
-          value: store.rulesModel.loginCookie.reg,
+          value: controller.rulesModel.loginCookie.reg,
           hintText: '.*',
         ),
         CupertinoInput(
           labelText: 'Cookies',
-          value: store.rulesModel.loginCookie.value,
+          value: controller.rulesModel.loginCookie.value,
           minLine: 3,
         ),
       ],

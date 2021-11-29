@@ -1,3 +1,5 @@
+import 'package:catweb/data/protocol/model/store.dart';
+import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/themes.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/components/grey_tab_indicator.dart';
@@ -5,18 +7,65 @@ import 'package:catweb/ui/pages/rules_manager/rules_advance/rules_advance.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_basic/rules_basic.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_page/rules_page_manager.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_manager.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../i18n.dart';
 
+class RulesEditController extends GetxController {
+  RulesEditController({RulesProtocol? pb})
+      : rulesModel = RulesProtocolModel(pb);
+
+  final RulesProtocolModel rulesModel;
+}
+
 class RulesEditPage extends StatelessWidget {
-  RulesEditPage({Key? key}) : super(key: key);
+  const RulesEditPage({Key? key, this.pb}) : super(key: key);
 
   static const routeName = 'RulesEditPage';
 
-  final store = RulesStore();
+  final RulesProtocol? pb;
+
+  @override
+  Widget build(BuildContext context) {
+    Get.put(RulesEditController(pb: pb));
+
+    return WillPopScope(
+      onWillPop: () async {
+        final result = await showCupertinoConfirmDialog(
+          context: context,
+          title: '退出',
+          content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
+        );
+        return result == true;
+      },
+      child: DefaultTabController(
+        length: 5,
+        child: CupertinoPageScaffold(
+          navigationBar: buildAppbar(context),
+          child: SafeArea(
+            child: Column(
+              children: [
+                buildTabBar(context),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      const RulesBasic(),
+                      const RulesPageManager(),
+                      const RulesParserManager(),
+                      Container(),
+                      RulesAdvance(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   CupertinoNavigationBar buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
@@ -38,44 +87,6 @@ class RulesEditPage extends StatelessWidget {
       ),
       middle: const Text('规则编辑'),
       border: const Border(),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        final result = await showCupertinoConfirmDialog(
-          context: context,
-          title: '退出',
-          content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
-        );
-        return result == true;
-      },
-      child: DefaultTabController(
-        length: 5,
-        child: CupertinoPageScaffold(
-          navigationBar: buildAppbar(context),
-          child: SafeArea(
-            child: Column(
-              children: [
-                buildTabBar(context),
-                Expanded(
-                  child: TabBarView(
-                    children: [
-                      RulesBasic(store: store),
-                      RulesPageManager(store: store),
-                      RulesParserManager(store: store),
-                      Container(),
-                      RulesAdvance(model: store.rulesModel),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
     );
   }
 

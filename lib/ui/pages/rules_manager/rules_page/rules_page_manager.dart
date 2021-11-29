@@ -3,16 +3,14 @@ import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_page/rules_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../rules_store.dart';
+import '../rules_edit_page.dart';
 
-class RulesPageManager extends StatelessWidget {
+class RulesPageManager extends GetWidget<RulesEditController> {
   const RulesPageManager({
     Key? key,
-    required this.store,
   }) : super(key: key);
-
-  final RulesStore store;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class RulesPageManager extends StatelessWidget {
       children: [
         Column(
           mainAxisSize: MainAxisSize.min,
-          children: store.rulesModel.pageList.map((element) {
+          children: controller.rulesModel.pageList.map((element) {
             return const ListTile();
           }).toList(),
         ),
@@ -32,7 +30,6 @@ class RulesPageManager extends StatelessWidget {
             Navigator.of(context).push(CupertinoPageRoute(
               builder: (context) => RulesPageEdit(
                 model: SitePageModel(),
-                store: store,
               ),
             ));
           },

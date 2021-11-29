@@ -2,6 +2,7 @@ import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:catweb/test/test_model/eh_rules.dart' as eh;
 
 class SiteManager extends StatelessWidget {
   const SiteManager({Key? key}) : super(key: key);
@@ -32,8 +33,11 @@ class SiteManager extends StatelessWidget {
                   title: const Text('编写一个规则'),
                   trailing: const Icon(CupertinoIcons.forward),
                   onTap: () {
+                    // TODO 删除测试数据
                     Navigator.of(context).push(CupertinoPageRoute(
-                        builder: (context) => RulesEditPage()));
+                        builder: (context) => RulesEditPage(
+                              pb: eh.rulesModel,
+                            )));
                   },
                 ),
                 const SizedBox(height: 5),

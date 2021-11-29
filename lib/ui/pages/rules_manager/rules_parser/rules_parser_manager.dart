@@ -1,10 +1,11 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_editor.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 enum _MenuSelect {
@@ -12,13 +13,10 @@ enum _MenuSelect {
   delete,
 }
 
-class RulesParserManager extends StatelessWidget {
+class RulesParserManager extends GetWidget<RulesEditController> {
   const RulesParserManager({
     Key? key,
-    required this.store,
   }) : super(key: key);
-
-  final RulesStore store;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +25,7 @@ class RulesParserManager extends StatelessWidget {
       children: [
         Obx(() => Column(
               mainAxisSize: MainAxisSize.min,
-              children: <ParserBaseModel>[
-                ...store.rulesModel.listViewParser,
-                ...store.rulesModel.galleryParsers,
-                ...store.rulesModel.imageParser,
-              ].map((e) {
+              children: controller.rulesModel.parsers.map((e) {
                 return CupertinoListTile(
                   title: Text(e.name.value),
                   subtitle: Text(e.displayType(context)),
@@ -41,6 +35,7 @@ class RulesParserManager extends StatelessWidget {
                     child: const Icon(Icons.more_horiz_outlined),
                     onPressed: () => onTrailingTap(context, e),
                   ),
+                  onTap: () => editRules(context, e),
                 );
               }).toList(),
             )),
@@ -81,8 +76,8 @@ class RulesParserManager extends StatelessWidget {
           builder: (context) => RulesParserEditor(
                 model: model,
               )));
-      if (model.name.value.isEmpty) {
-        print('空的');
+      if (model.name.value.isNotEmpty) {
+        controller.rulesModel.addParser(model);
       }
     }
   }
@@ -107,11 +102,7 @@ class RulesParserManager extends StatelessWidget {
       case null:
         break;
       case _MenuSelect.edit:
-        Navigator.of(context).push(CupertinoPageRoute(
-          builder: (context) => RulesParserEditor(
-            model: model,
-          ),
-        ));
+        await editRules(context, model);
         break;
       case _MenuSelect.delete:
         if (await showCupertinoConfirmDialog(
@@ -120,9 +111,20 @@ class RulesParserManager extends StatelessWidget {
               title: '取消',
             ) ==
             true) {
-          store.rulesModel.removeParser(model);
+          controller.rulesModel.removeParser(model);
         }
         break;
+    }
+  }
+
+  Future<void> editRules(BuildContext context, ParserBaseModel model) async {
+    await Navigator.of(context).push(CupertinoPageRoute(
+      builder: (context) => RulesParserEditor(
+        model: model,
+      ),
+    ));
+    if (model.name.value.isEmpty) {
+      controller.rulesModel.removeParser(model);
     }
   }
 }

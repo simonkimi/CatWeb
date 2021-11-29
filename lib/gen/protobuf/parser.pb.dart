@@ -12,13 +12,37 @@ import 'package:protobuf/protobuf.dart' as $pb;
 import 'selector.pb.dart' as $0;
 
 class ImageParser extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ImageParser', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOM<$0.ImageSelector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'image', subBuilder: $0.ImageSelector.create)
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rawImage', protoName: 'rawImage')
-    ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, protoName: 'extraSelector', subBuilder: $0.ExtraSelector.create)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ImageParser',
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'name')
+    ..aOM<$0.ImageSelector>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'image',
+        subBuilder: $0.ImageSelector.create)
+    ..aOS(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'rawImage',
+        protoName: 'rawImage')
+    ..pc<$0.ExtraSelector>(
+        99,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'extraSelector',
+        $pb.PbFieldType.PM,
+        protoName: 'extraSelector',
+        subBuilder: $0.ExtraSelector.create)
+    ..hasRequiredFields = false;
 
   ImageParser._() : super();
   factory ImageParser({
@@ -42,31 +66,39 @@ class ImageParser extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory ImageParser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ImageParser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory ImageParser.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ImageParser.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   ImageParser clone() => ImageParser()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ImageParser copyWith(void Function(ImageParser) updates) => super.copyWith((message) => updates(message as ImageParser)) as ImageParser; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ImageParser copyWith(void Function(ImageParser) updates) =>
+      super.copyWith((message) => updates(message as ImageParser))
+          as ImageParser; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ImageParser create() => ImageParser._();
   ImageParser createEmptyInstance() => create();
   static $pb.PbList<ImageParser> createRepeated() => $pb.PbList<ImageParser>();
   @$core.pragma('dart2js:noInline')
-  static ImageParser getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ImageParser>(create);
+  static ImageParser getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ImageParser>(create);
   static ImageParser? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
-  set name($core.String v) { $_setString(0, v); }
+  set name($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
   @$pb.TagNumber(1)
@@ -75,7 +107,10 @@ class ImageParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $0.ImageSelector get image => $_getN(1);
   @$pb.TagNumber(2)
-  set image($0.ImageSelector v) { setField(2, v); }
+  set image($0.ImageSelector v) {
+    setField(2, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasImage() => $_has(1);
   @$pb.TagNumber(2)
@@ -86,7 +121,10 @@ class ImageParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.String get rawImage => $_getSZ(2);
   @$pb.TagNumber(3)
-  set rawImage($core.String v) { $_setString(2, v); }
+  set rawImage($core.String v) {
+    $_setString(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasRawImage() => $_has(2);
   @$pb.TagNumber(3)
@@ -97,24 +135,111 @@ class ImageParser extends $pb.GeneratedMessage {
 }
 
 class ListViewParser extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ListViewParser', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'itemSelector', protoName: 'itemSelector')
-    ..aOM<$0.Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'title', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subtitle', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTime', protoName: 'uploadTime', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'star', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgCount', protoName: 'imgCount', subBuilder: $0.Selector.create)
-    ..aOM<$0.ImageSelector>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'previewImg', protoName: 'previewImg', subBuilder: $0.ImageSelector.create)
-    ..aOM<$0.Selector>(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tag', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tagColor', protoName: 'tagColor', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeSelector', protoName: 'badgeSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeText', protoName: 'badgeText', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeColor', protoName: 'badgeColor', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage', protoName: 'nextPage', subBuilder: $0.Selector.create)
-    ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, protoName: 'extraSelector', subBuilder: $0.ExtraSelector.create)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ListViewParser',
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'name')
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'itemSelector',
+        protoName: 'itemSelector')
+    ..aOM<$0.Selector>(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'title',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'subtitle',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'uploadTime',
+        protoName: 'uploadTime',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        6,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'star',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        7,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'imgCount',
+        protoName: 'imgCount',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.ImageSelector>(
+        8,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'previewImg',
+        protoName: 'previewImg',
+        subBuilder: $0.ImageSelector.create)
+    ..aOM<$0.Selector>(
+        9,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'tag',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        10,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'tagColor',
+        protoName: 'tagColor',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        11,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'badgeSelector',
+        protoName: 'badgeSelector',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        12,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'badgeText',
+        protoName: 'badgeText',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        13,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'badgeColor',
+        protoName: 'badgeColor',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        14,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'nextPage',
+        protoName: 'nextPage',
+        subBuilder: $0.Selector.create)
+    ..pc<$0.ExtraSelector>(
+        99,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'extraSelector',
+        $pb.PbFieldType.PM,
+        protoName: 'extraSelector',
+        subBuilder: $0.ExtraSelector.create)
+    ..hasRequiredFields = false;
 
   ListViewParser._() : super();
   factory ListViewParser({
@@ -182,31 +307,40 @@ class ListViewParser extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory ListViewParser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ListViewParser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory ListViewParser.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ListViewParser.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   ListViewParser clone() => ListViewParser()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ListViewParser copyWith(void Function(ListViewParser) updates) => super.copyWith((message) => updates(message as ListViewParser)) as ListViewParser; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ListViewParser copyWith(void Function(ListViewParser) updates) =>
+      super.copyWith((message) => updates(message as ListViewParser))
+          as ListViewParser; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ListViewParser create() => ListViewParser._();
   ListViewParser createEmptyInstance() => create();
-  static $pb.PbList<ListViewParser> createRepeated() => $pb.PbList<ListViewParser>();
+  static $pb.PbList<ListViewParser> createRepeated() =>
+      $pb.PbList<ListViewParser>();
   @$core.pragma('dart2js:noInline')
-  static ListViewParser getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListViewParser>(create);
+  static ListViewParser getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ListViewParser>(create);
   static ListViewParser? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
-  set name($core.String v) { $_setString(0, v); }
+  set name($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
   @$pb.TagNumber(1)
@@ -215,7 +349,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get itemSelector => $_getSZ(1);
   @$pb.TagNumber(2)
-  set itemSelector($core.String v) { $_setString(1, v); }
+  set itemSelector($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasItemSelector() => $_has(1);
   @$pb.TagNumber(2)
@@ -224,7 +361,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $0.Selector get title => $_getN(2);
   @$pb.TagNumber(3)
-  set title($0.Selector v) { setField(3, v); }
+  set title($0.Selector v) {
+    setField(3, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasTitle() => $_has(2);
   @$pb.TagNumber(3)
@@ -235,7 +375,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $0.Selector get subtitle => $_getN(3);
   @$pb.TagNumber(4)
-  set subtitle($0.Selector v) { setField(4, v); }
+  set subtitle($0.Selector v) {
+    setField(4, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasSubtitle() => $_has(3);
   @$pb.TagNumber(4)
@@ -246,7 +389,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   $0.Selector get uploadTime => $_getN(4);
   @$pb.TagNumber(5)
-  set uploadTime($0.Selector v) { setField(5, v); }
+  set uploadTime($0.Selector v) {
+    setField(5, v);
+  }
+
   @$pb.TagNumber(5)
   $core.bool hasUploadTime() => $_has(4);
   @$pb.TagNumber(5)
@@ -257,7 +403,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   $0.Selector get star => $_getN(5);
   @$pb.TagNumber(6)
-  set star($0.Selector v) { setField(6, v); }
+  set star($0.Selector v) {
+    setField(6, v);
+  }
+
   @$pb.TagNumber(6)
   $core.bool hasStar() => $_has(5);
   @$pb.TagNumber(6)
@@ -268,7 +417,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   $0.Selector get imgCount => $_getN(6);
   @$pb.TagNumber(7)
-  set imgCount($0.Selector v) { setField(7, v); }
+  set imgCount($0.Selector v) {
+    setField(7, v);
+  }
+
   @$pb.TagNumber(7)
   $core.bool hasImgCount() => $_has(6);
   @$pb.TagNumber(7)
@@ -279,7 +431,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   $0.ImageSelector get previewImg => $_getN(7);
   @$pb.TagNumber(8)
-  set previewImg($0.ImageSelector v) { setField(8, v); }
+  set previewImg($0.ImageSelector v) {
+    setField(8, v);
+  }
+
   @$pb.TagNumber(8)
   $core.bool hasPreviewImg() => $_has(7);
   @$pb.TagNumber(8)
@@ -290,7 +445,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(9)
   $0.Selector get tag => $_getN(8);
   @$pb.TagNumber(9)
-  set tag($0.Selector v) { setField(9, v); }
+  set tag($0.Selector v) {
+    setField(9, v);
+  }
+
   @$pb.TagNumber(9)
   $core.bool hasTag() => $_has(8);
   @$pb.TagNumber(9)
@@ -301,7 +459,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(10)
   $0.Selector get tagColor => $_getN(9);
   @$pb.TagNumber(10)
-  set tagColor($0.Selector v) { setField(10, v); }
+  set tagColor($0.Selector v) {
+    setField(10, v);
+  }
+
   @$pb.TagNumber(10)
   $core.bool hasTagColor() => $_has(9);
   @$pb.TagNumber(10)
@@ -312,7 +473,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(11)
   $0.Selector get badgeSelector => $_getN(10);
   @$pb.TagNumber(11)
-  set badgeSelector($0.Selector v) { setField(11, v); }
+  set badgeSelector($0.Selector v) {
+    setField(11, v);
+  }
+
   @$pb.TagNumber(11)
   $core.bool hasBadgeSelector() => $_has(10);
   @$pb.TagNumber(11)
@@ -323,7 +487,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(12)
   $0.Selector get badgeText => $_getN(11);
   @$pb.TagNumber(12)
-  set badgeText($0.Selector v) { setField(12, v); }
+  set badgeText($0.Selector v) {
+    setField(12, v);
+  }
+
   @$pb.TagNumber(12)
   $core.bool hasBadgeText() => $_has(11);
   @$pb.TagNumber(12)
@@ -334,7 +501,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(13)
   $0.Selector get badgeColor => $_getN(12);
   @$pb.TagNumber(13)
-  set badgeColor($0.Selector v) { setField(13, v); }
+  set badgeColor($0.Selector v) {
+    setField(13, v);
+  }
+
   @$pb.TagNumber(13)
   $core.bool hasBadgeColor() => $_has(12);
   @$pb.TagNumber(13)
@@ -345,7 +515,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(14)
   $0.Selector get nextPage => $_getN(13);
   @$pb.TagNumber(14)
-  set nextPage($0.Selector v) { setField(14, v); }
+  set nextPage($0.Selector v) {
+    setField(14, v);
+  }
+
   @$pb.TagNumber(14)
   $core.bool hasNextPage() => $_has(13);
   @$pb.TagNumber(14)
@@ -358,36 +531,192 @@ class ListViewParser extends $pb.GeneratedMessage {
 }
 
 class GalleryParser extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GalleryParser', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOM<$0.Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'title', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subtitle', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTime', protoName: 'uploadTime', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'star', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgCount', protoName: 'imgCount', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'prePageImg', protoName: 'prePageImg', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'language', subBuilder: $0.Selector.create)
-    ..aOM<$0.ImageSelector>(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'coverImg', protoName: 'coverImg', subBuilder: $0.ImageSelector.create)
-    ..aOM<$0.Selector>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'description', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'thumbnailSelector', protoName: 'thumbnailSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.ImageSelector>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'thumbnail', subBuilder: $0.ImageSelector.create)
-    ..aOM<$0.Selector>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'thumbnailUrl', protoName: 'thumbnailUrl', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'commentSelector', protoName: 'commentSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.CommentSelector>(15, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'comments', subBuilder: $0.CommentSelector.create)
-    ..aOM<$0.Selector>(16, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tag', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(17, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tagColor', protoName: 'tagColor', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(18, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeSelector', protoName: 'badgeSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(19, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeText', protoName: 'badgeText', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeColor', protoName: 'badgeColor', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeType', protoName: 'badgeType', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage', protoName: 'nextPage', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(23, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chapterSelector', protoName: 'chapterSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(24, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chapterTitle', protoName: 'chapterTitle', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(25, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chapterSubtitle', protoName: 'chapterSubtitle', subBuilder: $0.Selector.create)
-    ..aOM<$0.ImageSelector>(26, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chapterCover', protoName: 'chapterCover', subBuilder: $0.ImageSelector.create)
-    ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, protoName: 'extraSelector', subBuilder: $0.ExtraSelector.create)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'GalleryParser',
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'name')
+    ..aOM<$0.Selector>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'title',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'subtitle',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'uploadTime',
+        protoName: 'uploadTime',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'star',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        6,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'imgCount',
+        protoName: 'imgCount',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        7,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'prePageImg',
+        protoName: 'prePageImg',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        8,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'language',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.ImageSelector>(
+        9,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'coverImg',
+        protoName: 'coverImg',
+        subBuilder: $0.ImageSelector.create)
+    ..aOM<$0.Selector>(
+        10,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'description',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        11,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'thumbnailSelector',
+        protoName: 'thumbnailSelector',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.ImageSelector>(
+        12,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'thumbnail',
+        subBuilder: $0.ImageSelector.create)
+    ..aOM<$0.Selector>(
+        13,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'thumbnailUrl',
+        protoName: 'thumbnailUrl',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        14,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'commentSelector',
+        protoName: 'commentSelector',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.CommentSelector>(
+        15,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'comments',
+        subBuilder: $0.CommentSelector.create)
+    ..aOM<$0.Selector>(
+        16,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'tag',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        17,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'tagColor',
+        protoName: 'tagColor',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        18,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'badgeSelector',
+        protoName: 'badgeSelector',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        19,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'badgeText',
+        protoName: 'badgeText',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        20,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'badgeColor',
+        protoName: 'badgeColor',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        21,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'badgeType',
+        protoName: 'badgeType',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        22,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'nextPage',
+        protoName: 'nextPage',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        23,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'chapterSelector',
+        protoName: 'chapterSelector',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        24,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'chapterTitle',
+        protoName: 'chapterTitle',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        25,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'chapterSubtitle',
+        protoName: 'chapterSubtitle',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.ImageSelector>(
+        26,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'chapterCover',
+        protoName: 'chapterCover',
+        subBuilder: $0.ImageSelector.create)
+    ..pc<$0.ExtraSelector>(
+        99,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'extraSelector',
+        $pb.PbFieldType.PM,
+        protoName: 'extraSelector',
+        subBuilder: $0.ExtraSelector.create)
+    ..hasRequiredFields = false;
 
   GalleryParser._() : super();
   factory GalleryParser({
@@ -503,31 +832,40 @@ class GalleryParser extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory GalleryParser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GalleryParser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory GalleryParser.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory GalleryParser.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   GalleryParser clone() => GalleryParser()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  GalleryParser copyWith(void Function(GalleryParser) updates) => super.copyWith((message) => updates(message as GalleryParser)) as GalleryParser; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  GalleryParser copyWith(void Function(GalleryParser) updates) =>
+      super.copyWith((message) => updates(message as GalleryParser))
+          as GalleryParser; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static GalleryParser create() => GalleryParser._();
   GalleryParser createEmptyInstance() => create();
-  static $pb.PbList<GalleryParser> createRepeated() => $pb.PbList<GalleryParser>();
+  static $pb.PbList<GalleryParser> createRepeated() =>
+      $pb.PbList<GalleryParser>();
   @$core.pragma('dart2js:noInline')
-  static GalleryParser getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GalleryParser>(create);
+  static GalleryParser getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GalleryParser>(create);
   static GalleryParser? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
-  set name($core.String v) { $_setString(0, v); }
+  set name($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
   @$pb.TagNumber(1)
@@ -536,7 +874,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $0.Selector get title => $_getN(1);
   @$pb.TagNumber(2)
-  set title($0.Selector v) { setField(2, v); }
+  set title($0.Selector v) {
+    setField(2, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasTitle() => $_has(1);
   @$pb.TagNumber(2)
@@ -547,7 +888,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $0.Selector get subtitle => $_getN(2);
   @$pb.TagNumber(3)
-  set subtitle($0.Selector v) { setField(3, v); }
+  set subtitle($0.Selector v) {
+    setField(3, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasSubtitle() => $_has(2);
   @$pb.TagNumber(3)
@@ -558,7 +902,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $0.Selector get uploadTime => $_getN(3);
   @$pb.TagNumber(4)
-  set uploadTime($0.Selector v) { setField(4, v); }
+  set uploadTime($0.Selector v) {
+    setField(4, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasUploadTime() => $_has(3);
   @$pb.TagNumber(4)
@@ -569,7 +916,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   $0.Selector get star => $_getN(4);
   @$pb.TagNumber(5)
-  set star($0.Selector v) { setField(5, v); }
+  set star($0.Selector v) {
+    setField(5, v);
+  }
+
   @$pb.TagNumber(5)
   $core.bool hasStar() => $_has(4);
   @$pb.TagNumber(5)
@@ -580,7 +930,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   $0.Selector get imgCount => $_getN(5);
   @$pb.TagNumber(6)
-  set imgCount($0.Selector v) { setField(6, v); }
+  set imgCount($0.Selector v) {
+    setField(6, v);
+  }
+
   @$pb.TagNumber(6)
   $core.bool hasImgCount() => $_has(5);
   @$pb.TagNumber(6)
@@ -591,7 +944,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   $0.Selector get prePageImg => $_getN(6);
   @$pb.TagNumber(7)
-  set prePageImg($0.Selector v) { setField(7, v); }
+  set prePageImg($0.Selector v) {
+    setField(7, v);
+  }
+
   @$pb.TagNumber(7)
   $core.bool hasPrePageImg() => $_has(6);
   @$pb.TagNumber(7)
@@ -602,7 +958,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   $0.Selector get language => $_getN(7);
   @$pb.TagNumber(8)
-  set language($0.Selector v) { setField(8, v); }
+  set language($0.Selector v) {
+    setField(8, v);
+  }
+
   @$pb.TagNumber(8)
   $core.bool hasLanguage() => $_has(7);
   @$pb.TagNumber(8)
@@ -613,7 +972,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(9)
   $0.ImageSelector get coverImg => $_getN(8);
   @$pb.TagNumber(9)
-  set coverImg($0.ImageSelector v) { setField(9, v); }
+  set coverImg($0.ImageSelector v) {
+    setField(9, v);
+  }
+
   @$pb.TagNumber(9)
   $core.bool hasCoverImg() => $_has(8);
   @$pb.TagNumber(9)
@@ -624,7 +986,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(10)
   $0.Selector get description => $_getN(9);
   @$pb.TagNumber(10)
-  set description($0.Selector v) { setField(10, v); }
+  set description($0.Selector v) {
+    setField(10, v);
+  }
+
   @$pb.TagNumber(10)
   $core.bool hasDescription() => $_has(9);
   @$pb.TagNumber(10)
@@ -635,7 +1000,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(11)
   $0.Selector get thumbnailSelector => $_getN(10);
   @$pb.TagNumber(11)
-  set thumbnailSelector($0.Selector v) { setField(11, v); }
+  set thumbnailSelector($0.Selector v) {
+    setField(11, v);
+  }
+
   @$pb.TagNumber(11)
   $core.bool hasThumbnailSelector() => $_has(10);
   @$pb.TagNumber(11)
@@ -646,7 +1014,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(12)
   $0.ImageSelector get thumbnail => $_getN(11);
   @$pb.TagNumber(12)
-  set thumbnail($0.ImageSelector v) { setField(12, v); }
+  set thumbnail($0.ImageSelector v) {
+    setField(12, v);
+  }
+
   @$pb.TagNumber(12)
   $core.bool hasThumbnail() => $_has(11);
   @$pb.TagNumber(12)
@@ -657,7 +1028,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(13)
   $0.Selector get thumbnailUrl => $_getN(12);
   @$pb.TagNumber(13)
-  set thumbnailUrl($0.Selector v) { setField(13, v); }
+  set thumbnailUrl($0.Selector v) {
+    setField(13, v);
+  }
+
   @$pb.TagNumber(13)
   $core.bool hasThumbnailUrl() => $_has(12);
   @$pb.TagNumber(13)
@@ -668,7 +1042,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(14)
   $0.Selector get commentSelector => $_getN(13);
   @$pb.TagNumber(14)
-  set commentSelector($0.Selector v) { setField(14, v); }
+  set commentSelector($0.Selector v) {
+    setField(14, v);
+  }
+
   @$pb.TagNumber(14)
   $core.bool hasCommentSelector() => $_has(13);
   @$pb.TagNumber(14)
@@ -679,7 +1056,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(15)
   $0.CommentSelector get comments => $_getN(14);
   @$pb.TagNumber(15)
-  set comments($0.CommentSelector v) { setField(15, v); }
+  set comments($0.CommentSelector v) {
+    setField(15, v);
+  }
+
   @$pb.TagNumber(15)
   $core.bool hasComments() => $_has(14);
   @$pb.TagNumber(15)
@@ -690,7 +1070,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(16)
   $0.Selector get tag => $_getN(15);
   @$pb.TagNumber(16)
-  set tag($0.Selector v) { setField(16, v); }
+  set tag($0.Selector v) {
+    setField(16, v);
+  }
+
   @$pb.TagNumber(16)
   $core.bool hasTag() => $_has(15);
   @$pb.TagNumber(16)
@@ -701,7 +1084,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(17)
   $0.Selector get tagColor => $_getN(16);
   @$pb.TagNumber(17)
-  set tagColor($0.Selector v) { setField(17, v); }
+  set tagColor($0.Selector v) {
+    setField(17, v);
+  }
+
   @$pb.TagNumber(17)
   $core.bool hasTagColor() => $_has(16);
   @$pb.TagNumber(17)
@@ -712,7 +1098,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(18)
   $0.Selector get badgeSelector => $_getN(17);
   @$pb.TagNumber(18)
-  set badgeSelector($0.Selector v) { setField(18, v); }
+  set badgeSelector($0.Selector v) {
+    setField(18, v);
+  }
+
   @$pb.TagNumber(18)
   $core.bool hasBadgeSelector() => $_has(17);
   @$pb.TagNumber(18)
@@ -723,7 +1112,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(19)
   $0.Selector get badgeText => $_getN(18);
   @$pb.TagNumber(19)
-  set badgeText($0.Selector v) { setField(19, v); }
+  set badgeText($0.Selector v) {
+    setField(19, v);
+  }
+
   @$pb.TagNumber(19)
   $core.bool hasBadgeText() => $_has(18);
   @$pb.TagNumber(19)
@@ -734,7 +1126,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(20)
   $0.Selector get badgeColor => $_getN(19);
   @$pb.TagNumber(20)
-  set badgeColor($0.Selector v) { setField(20, v); }
+  set badgeColor($0.Selector v) {
+    setField(20, v);
+  }
+
   @$pb.TagNumber(20)
   $core.bool hasBadgeColor() => $_has(19);
   @$pb.TagNumber(20)
@@ -745,7 +1140,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(21)
   $0.Selector get badgeType => $_getN(20);
   @$pb.TagNumber(21)
-  set badgeType($0.Selector v) { setField(21, v); }
+  set badgeType($0.Selector v) {
+    setField(21, v);
+  }
+
   @$pb.TagNumber(21)
   $core.bool hasBadgeType() => $_has(20);
   @$pb.TagNumber(21)
@@ -756,7 +1154,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(22)
   $0.Selector get nextPage => $_getN(21);
   @$pb.TagNumber(22)
-  set nextPage($0.Selector v) { setField(22, v); }
+  set nextPage($0.Selector v) {
+    setField(22, v);
+  }
+
   @$pb.TagNumber(22)
   $core.bool hasNextPage() => $_has(21);
   @$pb.TagNumber(22)
@@ -767,7 +1168,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(23)
   $0.Selector get chapterSelector => $_getN(22);
   @$pb.TagNumber(23)
-  set chapterSelector($0.Selector v) { setField(23, v); }
+  set chapterSelector($0.Selector v) {
+    setField(23, v);
+  }
+
   @$pb.TagNumber(23)
   $core.bool hasChapterSelector() => $_has(22);
   @$pb.TagNumber(23)
@@ -778,7 +1182,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(24)
   $0.Selector get chapterTitle => $_getN(23);
   @$pb.TagNumber(24)
-  set chapterTitle($0.Selector v) { setField(24, v); }
+  set chapterTitle($0.Selector v) {
+    setField(24, v);
+  }
+
   @$pb.TagNumber(24)
   $core.bool hasChapterTitle() => $_has(23);
   @$pb.TagNumber(24)
@@ -789,7 +1196,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(25)
   $0.Selector get chapterSubtitle => $_getN(24);
   @$pb.TagNumber(25)
-  set chapterSubtitle($0.Selector v) { setField(25, v); }
+  set chapterSubtitle($0.Selector v) {
+    setField(25, v);
+  }
+
   @$pb.TagNumber(25)
   $core.bool hasChapterSubtitle() => $_has(24);
   @$pb.TagNumber(25)
@@ -800,7 +1210,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(26)
   $0.ImageSelector get chapterCover => $_getN(25);
   @$pb.TagNumber(26)
-  set chapterCover($0.ImageSelector v) { setField(26, v); }
+  set chapterCover($0.ImageSelector v) {
+    setField(26, v);
+  }
+
   @$pb.TagNumber(26)
   $core.bool hasChapterCover() => $_has(25);
   @$pb.TagNumber(26)
@@ -811,4 +1224,3 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(99)
   $core.List<$0.ExtraSelector> get extraSelector => $_getList(26);
 }
-

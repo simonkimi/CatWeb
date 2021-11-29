@@ -1,16 +1,15 @@
+import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/ui/components/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../rules_store.dart';
-
 class RulesActions extends StatelessWidget {
   const RulesActions({
     Key? key,
-    required this.store,
+    required this.rulesModel,
   }) : super(key: key);
 
-  final RulesStore store;
+  final RulesProtocolModel rulesModel;
 
   @override
   Widget build(BuildContext context) {

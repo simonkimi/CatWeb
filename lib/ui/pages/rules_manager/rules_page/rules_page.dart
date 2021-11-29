@@ -1,23 +1,20 @@
 import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/components/dialog.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-import '../rules_store.dart';
-
-class RulesPageEdit extends StatelessWidget {
+class RulesPageEdit extends GetWidget<RulesEditController> {
   const RulesPageEdit({
     Key? key,
     required this.model,
-    required this.store,
   }) : super(key: key);
 
-  final RulesStore store;
   final SitePageModel model;
 
   CupertinoNavigationBar buildAppbar(BuildContext context) {
@@ -100,10 +97,7 @@ class RulesPageEdit extends StatelessWidget {
     final result = await showCupertinoSelectDialog<String>(
       title: '请选择解析器',
       context: context,
-      items: <ParserBaseModel>[
-        ...store.rulesModel.listViewParser,
-        ...store.rulesModel.galleryParsers,
-      ]
+      items: controller.rulesModel.parsers
           .map((e) => SelectTileItem(title: e.name.value, value: e.name.value))
           .toList(),
       cancelText: '取消',

@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       routes: {
         MainPage.routeName: (_) => const MainPage(),
         SiteManager.routeName: (_) => const SiteManager(),
-        RulesEditPage.routeName: (_) => RulesEditPage(),
+        RulesEditPage.routeName: (_) => const RulesEditPage(),
       },
     );
   }
