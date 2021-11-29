@@ -8,7 +8,7 @@ import 'package:flutter_swipe_action_cell/core/cell.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
 
-class RulesAdvance extends GetWidget<RulesEditController> {
+class RulesAdvance extends GetView<RulesEditController> {
   RulesAdvance({
     Key? key,
   }) : super(key: key);

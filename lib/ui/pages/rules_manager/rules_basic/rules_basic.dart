@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../rules_edit_page.dart';
 
-class RulesBasic extends GetWidget<RulesEditController> {
+class RulesBasic extends GetView<RulesEditController> {
   const RulesBasic({
     Key? key,
   }) : super(key: key);

@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 import '../rules_edit_page.dart';
 
-class RulesPageManager extends GetWidget<RulesEditController> {
+class RulesPageManager extends GetView<RulesEditController> {
   const RulesPageManager({
     Key? key,
   }) : super(key: key);

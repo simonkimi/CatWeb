@@ -13,7 +13,7 @@ enum _MenuSelect {
   delete,
 }
 
-class RulesParserManager extends GetWidget<RulesEditController> {
+class RulesParserManager extends GetView<RulesEditController> {
   const RulesParserManager({
     Key? key,
   }) : super(key: key);
