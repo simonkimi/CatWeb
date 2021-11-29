@@ -2,10 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SelectTileItem<T> {
-  const SelectTileItem({required this.title, required this.value});
+  const SelectTileItem({
+    required this.title,
+    required this.value,
+    this.destructive = false,
+  });
 
   final String title;
   final T value;
+  final bool destructive;
 }
 
 Future<T?> showCupertinoSelectDialog<T>({
@@ -26,6 +31,7 @@ Future<T?> showCupertinoSelectDialog<T>({
           return CupertinoActionSheetAction(
             child: Text(item.title),
             isDefaultAction: item.value == selectedValue,
+            isDestructiveAction: item.destructive,
             onPressed: () {
               Navigator.pop(context, item.value);
             },

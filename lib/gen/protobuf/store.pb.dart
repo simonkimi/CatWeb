@@ -87,6 +87,7 @@ class RulesProtocol extends $pb.GeneratedMessage {
     ..pc<$0.ListViewParser>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'listViewParser', $pb.PbFieldType.PM, protoName: 'listViewParser', subBuilder: $0.ListViewParser.create)
     ..pc<$1.ActionCombine>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'actionList', $pb.PbFieldType.PM, protoName: 'actionList', subBuilder: $1.ActionCombine.create)
     ..pc<$2.SitePage>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'pageList', $pb.PbFieldType.PM, protoName: 'pageList', subBuilder: $2.SitePage.create)
+    ..pc<$0.ImageParser>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imageParsers', $pb.PbFieldType.PM, protoName: 'imageParsers', subBuilder: $0.ImageParser.create)
     ..hasRequiredFields = false
   ;
 
@@ -103,6 +104,7 @@ class RulesProtocol extends $pb.GeneratedMessage {
     $core.Iterable<$0.ListViewParser>? listViewParser,
     $core.Iterable<$1.ActionCombine>? actionList,
     $core.Iterable<$2.SitePage>? pageList,
+    $core.Iterable<$0.ImageParser>? imageParsers,
   }) {
     final _result = create();
     if (name != null) {
@@ -137,6 +139,9 @@ class RulesProtocol extends $pb.GeneratedMessage {
     }
     if (pageList != null) {
       _result.pageList.addAll(pageList);
+    }
+    if (imageParsers != null) {
+      _result.imageParsers.addAll(imageParsers);
     }
     return _result;
   }
@@ -225,5 +230,8 @@ class RulesProtocol extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(13)
   $core.List<$2.SitePage> get pageList => $_getList(10);
+
+  @$pb.TagNumber(14)
+  $core.List<$0.ImageParser> get imageParsers => $_getList(11);
 }
 

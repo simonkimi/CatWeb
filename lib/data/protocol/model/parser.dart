@@ -24,6 +24,10 @@ abstract class ParserBaseModel implements PbAble, CombineSelector {
   final RxList<ExtraSelectorModel> extraSelectorModel;
 
   String displayType(BuildContext context);
+
+  ParserBaseModel copy();
+
+  ParserType get type;
 }
 
 class ImageParserModel extends ParserBaseModel {
@@ -51,6 +55,12 @@ class ImageParserModel extends ParserBaseModel {
         rawImage: rawImage.value,
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
       );
+
+  @override
+  ImageParserModel copy() => ImageParserModel(toPb());
+
+  @override
+  ParserType get type => ParserType.imageParser;
 }
 
 class GalleryParserModel extends ParserBaseModel {
@@ -189,7 +199,13 @@ class GalleryParserModel extends ParserBaseModel {
       };
 
   @override
+  ParserBaseModel copy() => GalleryParserModel(toPb());
+
+  @override
   String displayType(BuildContext context) => '画廊解析器';
+
+  @override
+  ParserType get type => ParserType.galleryParser;
 }
 
 class ListViewParserModel extends ParserBaseModel {
@@ -258,4 +274,10 @@ class ListViewParserModel extends ParserBaseModel {
 
   @override
   String displayType(BuildContext context) => '列表解析器';
+
+  @override
+  ListViewParserModel copy() => ListViewParserModel(toPb());
+
+  @override
+  ParserType get type => ParserType.listParser;
 }

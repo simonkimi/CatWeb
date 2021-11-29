@@ -40,6 +40,10 @@ class RulesProtocolModel implements PbAble {
           pb?.listViewParser,
           (ListViewParser e) => ListViewParserModel(e),
         ),
+        imageParser = lobs(
+          pb?.imageParsers,
+          (ImageParser e) => ImageParserModel(e),
+        ),
         actionList = lobs(
           pb?.actionList,
           (ActionCombine e) => ActionCombineModel(e),
@@ -56,8 +60,23 @@ class RulesProtocolModel implements PbAble {
   final RxList<RegFieldModel> headers;
   final RxList<GalleryParserModel> galleryParsers;
   final RxList<ListViewParserModel> listViewParser;
+  final RxList<ImageParserModel> imageParser;
   final RxList<ActionCombineModel> actionList;
   final RxList<SitePageModel> pageList;
+
+  void removeParser(ParserBaseModel model) {
+    switch (model.type) {
+      case ParserType.listParser:
+        listViewParser.remove(model);
+        break;
+      case ParserType.galleryParser:
+        galleryParsers.remove(model);
+        break;
+      case ParserType.imageParser:
+        imageParser.remove(model);
+        break;
+    }
+  }
 
   @override
   RulesProtocol toPb() => RulesProtocol(

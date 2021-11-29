@@ -10,32 +10,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../themes.dart';
-import 'editor_store.dart';
 
 class RulesParserEditor extends StatefulWidget {
   const RulesParserEditor({
     Key? key,
-    required this.type,
-    this.model,
+    required this.model,
   }) : super(key: key);
 
   static String routeName = 'rules_parser_editor';
 
-  final ParserType type;
-  final ParserBaseModel? model;
+  final ParserBaseModel model;
 
   @override
   _RulesParserEditorState createState() => _RulesParserEditorState();
 }
 
 class _RulesParserEditorState extends State<RulesParserEditor> {
-  late final EditorStore store;
-
-  @override
-  void initState() {
-    store = EditorStore(type: widget.type, model: widget.model);
-    super.initState();
-  }
+  late final ParserBaseModel model = widget.model;
 
   CupertinoNavigationBar buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
@@ -79,7 +70,7 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
                     children: [
                       buildPreview(context),
                       buildBody(context),
-                      ExtraParser(model: store.parserBase),
+                      ExtraParser(model: model),
                     ],
                   ),
                 )
@@ -92,25 +83,25 @@ class _RulesParserEditorState extends State<RulesParserEditor> {
   }
 
   Widget buildPreview(BuildContext context) {
-    if (store.parserBase is GalleryParserModel) {
-      return const GalleryPreview();
+    switch (model.type) {
+      case ParserType.galleryParser:
+        return const GalleryPreview();
+      case ParserType.listParser:
+        return const ListParserPreview();
+      default:
+        return const SizedBox();
     }
-    if (store.parserBase is ListViewParserModel) {
-      return const ListParserPreview();
-    }
-    return const SizedBox();
   }
 
   Widget buildBody(BuildContext context) {
-    if (store.parserBase is GalleryParserModel) {
-      return GalleryParserFragment(
-        model: store.parserBase as GalleryParserModel,
-      );
+    switch (model.type) {
+      case ParserType.galleryParser:
+        return GalleryParserFragment(model: model as GalleryParserModel);
+      case ParserType.listParser:
+        return ListParserFragment(model: model as ListViewParserModel);
+      default:
+        return const SizedBox();
     }
-    if (store.parserBase is ListViewParserModel) {
-      return ListParserFragment(model: store.parserBase as ListViewParserModel);
-    }
-    return const SizedBox();
   }
 
   Widget buildTabBar(BuildContext context) {

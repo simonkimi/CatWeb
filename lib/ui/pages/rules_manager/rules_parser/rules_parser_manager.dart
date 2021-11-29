@@ -5,6 +5,12 @@ import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_editor.d
 import 'package:catweb/ui/pages/rules_manager/rules_store.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+
+enum _MenuSelect {
+  edit,
+  delete,
+}
 
 class RulesParserManager extends StatelessWidget {
   const RulesParserManager({
@@ -19,24 +25,25 @@ class RulesParserManager extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <ParserBaseModel>[
-            ...store.rulesModel.listViewParser,
-            ...store.rulesModel.galleryParsers,
-          ].map((e) {
-            return CupertinoListTile(
-              title: Text(e.name.value),
-              subtitle: Text(e.displayType(context)),
-              trailing: CupertinoButton(
-                padding: EdgeInsets.zero,
-                minSize: 10,
-                child: const Icon(Icons.more_horiz_outlined),
-                onPressed: () {},
-              ),
-            );
-          }).toList(),
-        ),
+        Obx(() => Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <ParserBaseModel>[
+                ...store.rulesModel.listViewParser,
+                ...store.rulesModel.galleryParsers,
+                ...store.rulesModel.imageParser,
+              ].map((e) {
+                return CupertinoListTile(
+                  title: Text(e.name.value),
+                  subtitle: Text(e.displayType(context)),
+                  trailing: CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    minSize: 10,
+                    child: const Icon(Icons.more_horiz_outlined),
+                    onPressed: () => onTrailingTap(context, e),
+                  ),
+                );
+              }).toList(),
+            )),
         CupertinoListTile(
           title: const Text('添加'),
           leading: const Icon(Icons.add),
@@ -58,10 +65,49 @@ class RulesParserManager extends StatelessWidget {
       ],
     );
     if (selection != null) {
-      Navigator.of(context).push(CupertinoPageRoute(
+      // Navigator.of(context).push(CupertinoPageRoute(
+      //     builder: (context) => RulesParserEditor(
+      //           type: selection,
+      //         )));
+    }
+  }
+
+  Future<void> onTrailingTap(
+    BuildContext context,
+    ParserBaseModel model,
+  ) async {
+    final result = await showCupertinoSelectDialog<_MenuSelect>(
+      cancelText: '取消',
+      context: context,
+      items: const [
+        SelectTileItem(title: '编辑', value: _MenuSelect.edit),
+        SelectTileItem(
+          title: '删除',
+          value: _MenuSelect.delete,
+          destructive: true,
+        ),
+      ],
+    );
+    switch (result) {
+      case null:
+        break;
+      case _MenuSelect.edit:
+        Navigator.of(context).push(CupertinoPageRoute(
           builder: (context) => RulesParserEditor(
-                type: selection,
-              )));
+            model: model,
+          ),
+        ));
+        break;
+      case _MenuSelect.delete:
+        if (await showCupertinoConfirmDialog(
+              context: context,
+              content: '确定要删除 ${model.name} 吗？',
+              title: '取消',
+            ) ==
+            true) {
+          store.rulesModel.removeParser(model);
+        }
+        break;
     }
   }
 }

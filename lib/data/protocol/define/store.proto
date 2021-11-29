@@ -22,6 +22,7 @@ message RulesProtocol {
 
   repeated GalleryParser galleryParsers = 10;
   repeated ListViewParser listViewParser = 11;
+  repeated ImageParser imageParsers = 14;
   repeated ActionCombine actionList = 12;
   repeated SitePage pageList = 13;
 }
