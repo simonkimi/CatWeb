@@ -8,7 +8,7 @@ import 'package:catweb/ui/fragments/parser/list_parser.dart';
 import 'package:catweb/ui/fragments/parser/list_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../../../../themes.dart';
 
 class RulesParserEditor extends StatelessWidget {
@@ -37,7 +37,7 @@ class RulesParserEditor extends StatelessWidget {
         onPressed: () {
           showExitConfine(context).then((value) {
             if (value == true) {
-              Navigator.of(context).pop();
+              Get.back();
             }
           });
         },
@@ -46,12 +46,6 @@ class RulesParserEditor extends StatelessWidget {
         minSize: 0,
       ),
       middle: const Text('规则'),
-      trailing: CupertinoButton(
-        onPressed: () {},
-        child: const Icon(Icons.save_outlined),
-        padding: EdgeInsets.zero,
-        minSize: 0,
-      ),
       border: const Border(),
     );
   }

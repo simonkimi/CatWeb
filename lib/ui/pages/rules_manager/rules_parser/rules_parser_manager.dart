@@ -72,10 +72,7 @@ class RulesParserManager extends GetView<RulesEditController> {
           model = ImageParserModel();
           break;
       }
-      await Navigator.of(context).push(CupertinoPageRoute(
-          builder: (context) => RulesParserEditor(
-                model: model,
-              )));
+      await Get.to(RulesParserEditor(model: model));
       if (model.name.value.isNotEmpty) {
         controller.rulesModel.addParser(model);
       }

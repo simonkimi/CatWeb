@@ -7,6 +7,7 @@ import 'package:catweb/ui/pages/rules_manager/rules_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
 import 'data/store/setting_store.dart';
 import 'navigator.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
+    return GetCupertinoApp(
       title: 'CatWeb',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [

@@ -3,6 +3,7 @@ import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:get/get.dart';
 
 class MainDrawer extends HookWidget {
   const MainDrawer({Key? key}) : super(key: key);
@@ -55,7 +56,7 @@ class MainDrawer extends HookWidget {
           leading: const Icon(Icons.settings_outlined),
           title: const Text('设置'),
           onTap: () {
-            Navigator.of(context).pop();
+            Get.back();
             Navigator.of(context).pushNamed(SiteManager.routeName);
           },
         )
@@ -89,7 +90,7 @@ class MainDrawer extends HookWidget {
           leading: const Icon(Icons.settings_outlined),
           title: const Text('站点管理'),
           onTap: () {
-            Navigator.of(context).pop();
+            Get.back();
             Navigator.of(context).pushNamed(SiteManager.routeName);
           },
         )

@@ -56,7 +56,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
     return CupertinoNavigationBar(
       leading: CupertinoButton(
         onPressed: () {
-          Navigator.of(context).pop();
+          Get.back();
         },
         child: const Icon(CupertinoIcons.back),
         padding: EdgeInsets.zero,

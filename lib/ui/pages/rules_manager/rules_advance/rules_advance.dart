@@ -117,7 +117,7 @@ class RulesAdvance extends GetView<RulesEditController> {
             actions: [
               CupertinoButton(
                 child: const Text('确定'),
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () => Get.back(),
               )
             ],
             content: Column(

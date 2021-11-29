@@ -3,6 +3,7 @@ import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:catweb/test/test_model/eh_rules.dart' as eh;
+import 'package:get/get.dart';
 
 class SiteManager extends StatelessWidget {
   const SiteManager({Key? key}) : super(key: key);
@@ -59,7 +60,7 @@ class SiteManager extends StatelessWidget {
     return CupertinoNavigationBar(
       leading: CupertinoButton(
         onPressed: () {
-          Navigator.of(context).pop();
+          Get.back();
         },
         child: const Icon(CupertinoIcons.back),
         padding: EdgeInsets.zero,

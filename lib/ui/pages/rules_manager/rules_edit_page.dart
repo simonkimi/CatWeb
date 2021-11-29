@@ -77,7 +77,7 @@ class RulesEditPage extends StatelessWidget {
             content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
           ).then((value) {
             if (value == true) {
-              Navigator.of(context).pop();
+              Get.back();
             }
           });
         },
