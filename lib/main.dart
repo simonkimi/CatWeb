@@ -8,13 +8,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'data/store/setting_store.dart';
-import 'navigator.dart';
 
-final settingStore = SettingStore();
+import 'data/store/setting_controller.dart';
+import 'navigator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Get.lazyPut(() => SettingController(), fenix: true);
   runApp(const MyApp());
 }
 
