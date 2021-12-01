@@ -24,6 +24,8 @@ class SitePageModel implements PbAble {
         url: url.value,
         parser: parser.value,
       );
+
+  bool isValid() => name.value.isNotEmpty && parser.value.isNotEmpty;
 }
 
 extension PageTemplateTr on PageTemplate {

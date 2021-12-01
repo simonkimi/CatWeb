@@ -6,9 +6,9 @@ import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:get/get.dart';
 
 class RulesPageEdit extends GetView<RulesEditController> {
   const RulesPageEdit({
@@ -18,35 +18,10 @@ class RulesPageEdit extends GetView<RulesEditController> {
 
   final SitePageModel model;
 
-  CupertinoNavigationBar buildAppbar(BuildContext context) {
-    return CupertinoNavigationBar(
-      leading: CupertinoButton(
-        onPressed: () {
-          showExitConferDialog(context).then((value) {
-            if (value == true) {
-              Get.back();
-            }
-          });
-        },
-        child: const Icon(CupertinoIcons.back),
-        padding: EdgeInsets.zero,
-        minSize: 0,
-      ),
-      middle: const Text('页面'),
-      trailing: CupertinoButton(
-        onPressed: () {},
-        child: const Icon(Icons.save_outlined),
-        padding: EdgeInsets.zero,
-        minSize: 0,
-      ),
-      border: const Border(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => showExitConferDialog(context),
+      onWillPop: () => showExitConfine(context),
       child: CupertinoPageScaffold(
         navigationBar: buildAppbar(context),
         child: SafeArea(
@@ -78,6 +53,35 @@ class RulesPageEdit extends GetView<RulesEditController> {
         ),
       ),
     );
+  }
+
+  CupertinoNavigationBar buildAppbar(BuildContext context) {
+    return CupertinoNavigationBar(
+      leading: CupertinoButton(
+        onPressed: () {
+          showExitConfine(context).then((value) {
+            if (value) Get.back();
+          });
+        },
+        child: const Icon(CupertinoIcons.back),
+        padding: EdgeInsets.zero,
+        minSize: 0,
+      ),
+      middle: const Text('页面'),
+      border: const Border(),
+    );
+  }
+
+  Future<bool> showExitConfine(BuildContext context) async {
+    if (!model.isValid()) {
+      return (await showCupertinoConfirmDialog(
+            context: context,
+            title: '返回',
+            content: '没有设定名称或解析器, 将不会保存\n确定不保存直接退出吗?',
+          ) ==
+          true);
+    }
+    return true;
   }
 
   Future<void> onTemplateTap(BuildContext context) async {
