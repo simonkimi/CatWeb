@@ -16,7 +16,7 @@ enum ParserType {
 abstract class ParserBaseModel implements PbAble, CombineSelector {
   ParserBaseModel({required this.name, Iterable<ExtraSelector>? extra})
       : extraSelectorModel =
-            lobs(extra, (ExtraSelector e) => ExtraSelectorModel(e));
+             lobs(extra, (ExtraSelector e) => ExtraSelectorModel(e));
 
   final RxString name;
 
@@ -70,7 +70,7 @@ class GalleryParserModel extends ParserBaseModel {
         uploadTime = SelectorModel(pb?.uploadTime),
         star = SelectorModel(pb?.star, true),
         imgCount = SelectorModel(pb?.imgCount, true),
-        prePageImg = SelectorModel(pb?.prePageImg, true),
+        pageCount = SelectorModel(pb?.pageCount, true),
         language = SelectorModel(pb?.language),
         coverImg = ImageSelectorModel(pb?.coverImg),
         thumbnailSelector = SelectorModel(pb?.thumbnailSelector),
@@ -100,7 +100,7 @@ class GalleryParserModel extends ParserBaseModel {
   final SelectorModel uploadTime;
   final SelectorModel star;
   final SelectorModel imgCount;
-  final SelectorModel prePageImg;
+  final SelectorModel pageCount;
   final SelectorModel language;
   final ImageSelectorModel coverImg;
   final SelectorModel description;
@@ -140,9 +140,9 @@ class GalleryParserModel extends ParserBaseModel {
         uploadTime: uploadTime.toPb(),
         star: star.toPb(),
         imgCount: imgCount.toPb(),
-        prePageImg: prePageImg.toPb(),
         language: language.toPb(),
         coverImg: coverImg.toPb(),
+        pageCount: pageCount.toPb(),
         description: description.toPb(),
 
         // 缩略图
@@ -181,7 +181,6 @@ class GalleryParserModel extends ParserBaseModel {
         'uploadTime': uploadTime,
         'star': star,
         'imgCount': imgCount,
-        'prePageImg': prePageImg,
         'language': language,
         ...coverImg.combine(prefix: 'cover'),
         'description': description,

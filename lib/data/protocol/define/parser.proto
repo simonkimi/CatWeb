@@ -42,8 +42,8 @@ message GalleryParser {
   Selector subtitle = 3;
   Selector uploadTime = 4;
   Selector star = 5;
-  Selector imgCount = 6;  // 有多少面
-  Selector prePageImg = 7;  // 一面有多少图片
+  Selector imgCount = 6;  // 有多少图
+  Selector pageCount = 7;  // 有多少面
   Selector language = 8;  // 语言
   ImageSelector coverImg = 9;  // 封面图
   Selector description = 10;  // 描述

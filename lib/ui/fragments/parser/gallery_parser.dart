@@ -284,9 +284,9 @@ class GalleryParserFragment extends StatelessWidget {
         selectorModel: model.imgCount,
       ),
       RulesForm(
-        title: '每面图片数',
-        field: '#pageImageCount',
-        selectorModel: model.prePageImg,
+        title: '总页数',
+        field: '#pageCount',
+        selectorModel: model.pageCount,
       ),
     ]);
   }

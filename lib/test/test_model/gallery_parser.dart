@@ -113,12 +113,5 @@ final galleryParser = GalleryParser(
       regex: r'height:(\d+)px',
     ),
   ),
-  prePageImg: Selector(
-    selector: '#gdo',
-    function: SelectorFunction.raw,
-    regex: 'l">(.+?)<',
-    replace: r'$1|$2',
-    js: 'function hook(a){const b=a.split("|");return rows=4,-1!==b[0].indexOf("40 rows")?rows=40:-1!==b[0].indexOf("20 rows")?rows=20:-1!==b[0].indexOf("10 rows")&&(rows=10),column=10,-1!==b[1].indexOf("Large")&&(column=5),rows*column}',
-  ),
   extraSelector: [ExtraSelector()],
 );
