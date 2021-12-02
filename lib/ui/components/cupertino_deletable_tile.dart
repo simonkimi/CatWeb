@@ -1,3 +1,4 @@
+import 'package:catweb/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swipe_action_cell/core/cell.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
@@ -6,13 +7,13 @@ class CupertinoClassicalListTile extends StatelessWidget {
   const CupertinoClassicalListTile({
     Key? key,
     required this.icon,
-    required this.body,
+    required this.text,
     this.padding = 15,
     this.onTap,
   }) : super(key: key);
 
   final Widget icon;
-  final Widget body;
+  final String text;
   final double padding;
   final VoidCallback? onTap;
 
@@ -27,7 +28,14 @@ class CupertinoClassicalListTile extends StatelessWidget {
             SizedBox(width: padding),
             icon,
             const SizedBox(width: 10),
-            Expanded(child: body),
+            Expanded(
+                child: Text(
+              text,
+              style: TextStyle(
+                fontSize: 15,
+                color: FixColor.title.resolveFrom(context),
+              ),
+            )),
           ],
         ),
       ),
@@ -68,6 +76,7 @@ class CupertinoDeletableTile extends StatelessWidget {
           key: UniqueKey(),
           controller: controller,
           index: index,
+          backgroundColor: CupertinoColors.systemBackground.resolveFrom(context),
           child: buildListBody(
             padding: 15,
             icon: CupertinoButton(
@@ -86,7 +95,10 @@ class CupertinoDeletableTile extends StatelessWidget {
             ),
             body: Text(
               text,
-              style: const TextStyle(fontSize: 15),
+              style: TextStyle(
+                fontSize: 15,
+                color: FixColor.title.resolveFrom(context),
+              ),
             ),
           ),
           trailingActions: <SwipeAction>[

@@ -53,9 +53,9 @@ class RulesAdvance extends GetView<RulesEditController> {
                 CupertinoClassicalListTile(
                   icon: Icon(
                     CupertinoIcons.add_circled_solid,
-                    color: CupertinoColors.activeGreen.resolveFrom(context),
+                    color: CupertinoColors.systemGreen.resolveFrom(context),
                   ),
-                  body: const Text('添加'),
+                  text: '添加',
                   onTap: () {
                     controller.rulesModel.headers.add(
                       RegFieldModel(RegField(reg: '*', value: '')),
@@ -97,9 +97,9 @@ class RulesAdvance extends GetView<RulesEditController> {
                 CupertinoClassicalListTile(
                   icon: Icon(
                     CupertinoIcons.add_circled_solid,
-                    color: CupertinoColors.activeGreen.resolveFrom(context),
+                    color: CupertinoColors.systemGreen.resolveFrom(context),
                   ),
-                  body: const Text('添加'),
+                  text: '添加',
                   onTap: () {
                     controller.rulesModel.cookies.add(
                       RegFieldModel(RegField(reg: '', value: '')),

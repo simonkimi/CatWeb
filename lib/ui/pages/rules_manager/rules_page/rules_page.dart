@@ -74,9 +74,9 @@ class RulesPageEdit extends GetView<RulesEditController> {
                 CupertinoClassicalListTile(
                   icon: Icon(
                     CupertinoIcons.add_circled_solid,
-                    color: CupertinoColors.activeGreen.resolveFrom(context),
+                    color: CupertinoColors.systemGreen.resolveFrom(context),
                   ),
-                  body: const Text('添加'),
+                  text: '添加',
                   onTap: () {
                     model.subPages.add(SubPageModel(SiteSubPage()));
                   },
