@@ -92,8 +92,7 @@ class SiteTableData extends DataClass implements Insertable<SiteTableData> {
   }
 
   @override
-  int get hashCode => $mrjf($mrjc(id.hashCode,
-      $mrjc(bin.hashCode, $mrjc(favicon.hashCode, lastOpen.hashCode))));
+  int get hashCode => Object.hash(id, bin, favicon, lastOpen);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||

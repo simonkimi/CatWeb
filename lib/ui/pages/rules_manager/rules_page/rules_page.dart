@@ -3,7 +3,7 @@ import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/components/dialog.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

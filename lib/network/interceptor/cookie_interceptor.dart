@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 class HeaderCookieInterceptor extends Interceptor {
   HeaderCookieInterceptor(this.model);
 
-  final RulesProtocolModel model;
+  final SiteProtobufModel model;
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {

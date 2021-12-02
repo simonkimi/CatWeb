@@ -1,4 +1,4 @@
-import 'package:catweb/ui/pages/rules_manager/rules_manager.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_manager/rules_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -32,7 +32,7 @@ class MainPage extends StatelessWidget {
         Center(
           child: CupertinoButton(
             onPressed: () {
-              Get.to(const SiteManager());
+              Get.to(() => const SiteManager());
             },
             child: Row(
               mainAxisSize: MainAxisSize.min,

@@ -1,7 +1,7 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_editor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

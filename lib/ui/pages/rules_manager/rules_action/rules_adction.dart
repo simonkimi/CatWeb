@@ -9,7 +9,7 @@ class RulesActions extends StatelessWidget {
     required this.rulesModel,
   }) : super(key: key);
 
-  final RulesProtocolModel rulesModel;
+  final SiteProtobufModel rulesModel;
 
   @override
   Widget build(BuildContext context) {

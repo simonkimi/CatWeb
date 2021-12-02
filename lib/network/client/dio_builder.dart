@@ -5,7 +5,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 
 class DioBuilder {
-  static Dio build(RulesProtocolModel model) {
+  static Dio build(SiteProtobufModel model) {
     final dio = Dio();
 
     dio.options.connectTimeout = 10 * 1000;

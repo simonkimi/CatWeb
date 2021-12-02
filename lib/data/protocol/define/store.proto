@@ -10,7 +10,7 @@ message RegField {
 }
 
 
-message RulesProtocol {
+message SiteProtobuf {
   string name = 1;
   string baseUrl = 2;
   string loginUrl = 3;

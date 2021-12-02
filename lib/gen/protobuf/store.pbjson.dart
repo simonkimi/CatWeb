@@ -19,9 +19,9 @@ const RegField$json = const {
 
 /// Descriptor for `RegField`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List regFieldDescriptor = $convert.base64Decode('CghSZWdGaWVsZBIQCgNyZWcYASABKAlSA3JlZxIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU=');
-@$core.Deprecated('Use rulesProtocolDescriptor instead')
-const RulesProtocol$json = const {
-  '1': 'RulesProtocol',
+@$core.Deprecated('Use siteProtobufDescriptor instead')
+const SiteProtobuf$json = const {
+  '1': 'SiteProtobuf',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'baseUrl', '3': 2, '4': 1, '5': 9, '10': 'baseUrl'},
@@ -38,5 +38,5 @@ const RulesProtocol$json = const {
   ],
 };
 
-/// Descriptor for `RulesProtocol`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List rulesProtocolDescriptor = $convert.base64Decode('Cg1SdWxlc1Byb3RvY29sEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHYmFzZVVybBgCIAEoCVIHYmFzZVVybBIaCghsb2dpblVybBgDIAEoCVIIbG9naW5VcmwSKwoLbG9naW5Db29raWUYBCABKAsyCS5SZWdGaWVsZFILbG9naW5Db29raWUSGAoHdmVyc2lvbhgFIAEoCVIHdmVyc2lvbhIjCgdoZWFkZXJzGAYgAygLMgkuUmVnRmllbGRSB2hlYWRlcnMSIwoHY29va2llcxgHIAMoCzIJLlJlZ0ZpZWxkUgdjb29raWVzEjYKDmdhbGxlcnlQYXJzZXJzGAogAygLMg4uR2FsbGVyeVBhcnNlclIOZ2FsbGVyeVBhcnNlcnMSNwoObGlzdFZpZXdQYXJzZXIYCyADKAsyDy5MaXN0Vmlld1BhcnNlclIObGlzdFZpZXdQYXJzZXISMAoMaW1hZ2VQYXJzZXJzGA4gAygLMgwuSW1hZ2VQYXJzZXJSDGltYWdlUGFyc2VycxIuCgphY3Rpb25MaXN0GAwgAygLMg4uQWN0aW9uQ29tYmluZVIKYWN0aW9uTGlzdBIlCghwYWdlTGlzdBgNIAMoCzIJLlNpdGVQYWdlUghwYWdlTGlzdA==');
+/// Descriptor for `SiteProtobuf`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List siteProtobufDescriptor = $convert.base64Decode('CgxTaXRlUHJvdG9idWYSEgoEbmFtZRgBIAEoCVIEbmFtZRIYCgdiYXNlVXJsGAIgASgJUgdiYXNlVXJsEhoKCGxvZ2luVXJsGAMgASgJUghsb2dpblVybBIrCgtsb2dpbkNvb2tpZRgEIAEoCzIJLlJlZ0ZpZWxkUgtsb2dpbkNvb2tpZRIYCgd2ZXJzaW9uGAUgASgJUgd2ZXJzaW9uEiMKB2hlYWRlcnMYBiADKAsyCS5SZWdGaWVsZFIHaGVhZGVycxIjCgdjb29raWVzGAcgAygLMgkuUmVnRmllbGRSB2Nvb2tpZXMSNgoOZ2FsbGVyeVBhcnNlcnMYCiADKAsyDi5HYWxsZXJ5UGFyc2VyUg5nYWxsZXJ5UGFyc2VycxI3Cg5saXN0Vmlld1BhcnNlchgLIAMoCzIPLkxpc3RWaWV3UGFyc2VyUg5saXN0Vmlld1BhcnNlchIwCgxpbWFnZVBhcnNlcnMYDiADKAsyDC5JbWFnZVBhcnNlclIMaW1hZ2VQYXJzZXJzEi4KCmFjdGlvbkxpc3QYDCADKAsyDi5BY3Rpb25Db21iaW5lUgphY3Rpb25MaXN0EiUKCHBhZ2VMaXN0GA0gAygLMgkuU2l0ZVBhZ2VSCHBhZ2VMaXN0');

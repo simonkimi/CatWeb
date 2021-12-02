@@ -82,6 +82,7 @@ Future<bool?> showCupertinoConfirmDialog({
   required BuildContext context,
   String? title,
   String? content,
+  bool showCancel = true,
 }) {
   return showCupertinoDialog(
     context: context,
@@ -91,12 +92,13 @@ Future<bool?> showCupertinoConfirmDialog({
         title: title != null ? Text(title) : null,
         content: content != null ? Text(content) : null,
         actions: [
-          CupertinoDialogAction(
-            child: const Text('取消'),
-            onPressed: () {
-              Navigator.of(context).pop(false);
-            },
-          ),
+          if (showCancel)
+            CupertinoDialogAction(
+              child: const Text('取消'),
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
+            ),
           CupertinoDialogAction(
             child: const Text('确认'),
             onPressed: () {

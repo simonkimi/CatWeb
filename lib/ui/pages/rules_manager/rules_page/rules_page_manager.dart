@@ -1,17 +1,19 @@
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_page/rules_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../rules_edit_page.dart';
-
 enum _MenuSelect {
   edit,
   delete,
 }
+
+
+
 
 class RulesPageManager extends GetView<RulesEditController> {
   const RulesPageManager({

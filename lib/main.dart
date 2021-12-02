@@ -2,8 +2,8 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/themes.dart';
 import 'package:catweb/ui/pages/main_page/main_page.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_edit_page.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_manager.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_page.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_manager/rules_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       routes: {
         MainPage.routeName: (_) => const MainPage(),
         SiteManager.routeName: (_) => const SiteManager(),
-        RulesEditPage.routeName: (_) => const RulesEditPage(),
+        RulesEditPage.routeName: (_) => RulesEditPage(),
       },
     );
   }

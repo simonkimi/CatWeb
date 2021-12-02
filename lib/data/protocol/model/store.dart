@@ -25,8 +25,8 @@ class RegFieldModel implements PbAble {
       );
 }
 
-class RulesProtocolModel implements PbAble {
-  RulesProtocolModel([RulesProtocol? pb])
+class SiteProtobufModel implements PbAble {
+  SiteProtobufModel([SiteProtobuf? pb])
       : name = sobs(pb?.name),
         baseUrl = sobs(pb?.baseUrl),
         cookies = lobs(pb?.cookies, (RegField e) => RegFieldModel(e)),
@@ -90,7 +90,7 @@ class RulesProtocolModel implements PbAble {
       ]);
 
   @override
-  RulesProtocol toPb() => RulesProtocol(
+  SiteProtobuf toPb() => SiteProtobuf(
         name: name.value,
         baseUrl: baseUrl.value,
         cookies: cookies.map((e) => e.toPb()),
