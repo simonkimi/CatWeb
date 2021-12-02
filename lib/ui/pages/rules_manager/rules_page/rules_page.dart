@@ -1,11 +1,14 @@
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
+import 'package:catweb/ui/components/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/components/dialog.dart';
+import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
@@ -24,12 +27,109 @@ class RulesPageEdit extends GetView<RulesEditController> {
       onWillPop: () => showExitConfine(context),
       child: CupertinoPageScaffold(
         navigationBar: buildAppbar(context),
-        child: buildBody(context),
+        child: CupertinoTabBarView(
+          tabs: const [
+            CupertinoTab('基础'),
+            CupertinoTab('子页面'),
+          ],
+          children: [
+            buildBasic(context),
+            buildSubPage(context),
+          ],
+        ),
       ),
     );
   }
 
-  SafeArea buildBody(BuildContext context) {
+  Widget buildSubPage(BuildContext context) {
+    final cookieController = SwipeActionController();
+    return ColoredBox(
+      color: CupertinoColors.systemGroupedBackground.resolveFrom(context),
+      child: ListView(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: CupertinoColors.systemBackground.resolveFrom(context),
+              border: Border.symmetric(
+                  horizontal: BorderSide(
+                width: 0.4,
+                color: CupertinoColors.separator.resolveFrom(context),
+              )),
+            ),
+            child: Column(
+              children: [
+                Obx(() => Column(
+                      children: model.subPages.asMap().entries.map((e) {
+                        return Obx(() => CupertinoDeletableTile(
+                            index: e.key,
+                            controller: cookieController,
+                            text:
+                                '${e.value.name.value}: ${e.value.value.value}',
+                            onDelete: (index) {
+                              model.subPages.removeAt(index);
+                            },
+                            onTap: () => editSubPage(context, e.value)));
+                      }).toList(),
+                    )),
+                CupertinoClassicalListTile(
+                  icon: Icon(
+                    CupertinoIcons.add_circled_solid,
+                    color: CupertinoColors.activeGreen.resolveFrom(context),
+                  ),
+                  body: const Text('添加'),
+                  onTap: () {
+                    model.subPages.add(SubPageModel(SiteSubPage()));
+                  },
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Future<void> editSubPage(BuildContext context, SubPageModel field) async {
+    await showCupertinoDialog(
+        barrierDismissible: true,
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            actions: [
+              CupertinoButton(
+                child: const Text('确定'),
+                onPressed: () => Get.back(),
+              )
+            ],
+            content: Column(
+              children: [
+                CupertinoInput(
+                  labelText: '名称',
+                  value: field.name,
+                ),
+                CupertinoInput(
+                  labelText: '参数',
+                  value: field.value,
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
+  Widget buildSubTitle(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Text(
+        '子页面',
+        style: TextStyle(
+            fontSize: 14,
+            color: CupertinoColors.secondaryLabel.resolveFrom(context)),
+      ),
+    );
+  }
+
+  Widget buildBasic(BuildContext context) {
     return SafeArea(
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -40,8 +140,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
           ),
           CupertinoInput(
             labelText: '网址',
-            value: model.name,
-            description: '可以使用 {var} 替换参数',
+            value: model.url,
           ),
           const CupertinoDivider(height: 20),
           Obx(() => CupertinoReadOnlyInput(

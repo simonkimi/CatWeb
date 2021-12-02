@@ -20,6 +20,17 @@ const PageTemplate$json = const {
 
 /// Descriptor for `PageTemplate`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List pageTemplateDescriptor = $convert.base64Decode('CgxQYWdlVGVtcGxhdGUSDQoJaW1hZ2VMaXN0EAASEgoOaW1hZ2VXYXRlcmZhbGwQARIKCgZkZXRhaWwQAg==');
+@$core.Deprecated('Use siteSubPageDescriptor instead')
+const SiteSubPage$json = const {
+  '1': 'SiteSubPage',
+  '2': const [
+    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+};
+
+/// Descriptor for `SiteSubPage`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List siteSubPageDescriptor = $convert.base64Decode('CgtTaXRlU3ViUGFnZRISCgRuYW1lGAEgASgJUgRuYW1lEhQKBXZhbHVlGAIgASgJUgV2YWx1ZQ==');
 @$core.Deprecated('Use sitePageDescriptor instead')
 const SitePage$json = const {
   '1': 'SitePage',
@@ -28,8 +39,9 @@ const SitePage$json = const {
     const {'1': 'url', '3': 2, '4': 1, '5': 9, '10': 'url'},
     const {'1': 'type', '3': 3, '4': 1, '5': 14, '6': '.PageTemplate', '10': 'type'},
     const {'1': 'parser', '3': 4, '4': 1, '5': 9, '10': 'parser'},
+    const {'1': 'subPage', '3': 5, '4': 3, '5': 11, '6': '.SiteSubPage', '10': 'subPage'},
   ],
 };
 
 /// Descriptor for `SitePage`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List sitePageDescriptor = $convert.base64Decode('CghTaXRlUGFnZRISCgRuYW1lGAEgASgJUgRuYW1lEhAKA3VybBgCIAEoCVIDdXJsEiEKBHR5cGUYAyABKA4yDS5QYWdlVGVtcGxhdGVSBHR5cGUSFgoGcGFyc2VyGAQgASgJUgZwYXJzZXI=');
+final $typed_data.Uint8List sitePageDescriptor = $convert.base64Decode('CghTaXRlUGFnZRISCgRuYW1lGAEgASgJUgRuYW1lEhAKA3VybBgCIAEoCVIDdXJsEiEKBHR5cGUYAyABKA4yDS5QYWdlVGVtcGxhdGVSBHR5cGUSFgoGcGFyc2VyGAQgASgJUgZwYXJzZXISJgoHc3ViUGFnZRgFIAMoCzIMLlNpdGVTdWJQYWdlUgdzdWJQYWdl');

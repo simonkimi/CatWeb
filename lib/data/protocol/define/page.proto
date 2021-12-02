@@ -6,9 +6,16 @@ enum PageTemplate {
   detail = 2;
 }
 
+message SiteSubPage {
+  string name = 1;
+  string value = 2;
+}
+
+
 message SitePage {
   string name = 1;
   string url = 2;
   PageTemplate type = 3;
   string parser = 4;
+  repeated SiteSubPage subPage = 5;
 }

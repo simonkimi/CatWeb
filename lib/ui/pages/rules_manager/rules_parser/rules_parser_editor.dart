@@ -1,6 +1,6 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/ui/components/dialog.dart';
-import 'package:catweb/ui/components/grey_tab_indicator.dart';
+import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/fragments/parser/extra_parser.dart';
 import 'package:catweb/ui/fragments/parser/gallery_parser.dart';
 import 'package:catweb/ui/fragments/parser/gallery_preview.dart';
@@ -9,7 +9,6 @@ import 'package:catweb/ui/fragments/parser/list_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../themes.dart';
 
 class RulesParserEditor extends StatelessWidget {
   const RulesParserEditor({
@@ -33,22 +32,18 @@ class RulesParserEditor extends StatelessWidget {
     );
   }
 
-  SafeArea buildBody(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          buildTabBar(context),
-          Expanded(
-            child: TabBarView(
-              children: [
-                buildPreview(context),
-                buildEditor(context),
-                ExtraParser(model: model),
-              ],
-            ),
-          )
-        ],
-      ),
+  Widget buildBody(BuildContext context) {
+    return CupertinoTabBarView(
+      children: [
+        buildPreview(context),
+        buildEditor(context),
+        ExtraParser(model: model),
+      ],
+      tabs: const [
+        CupertinoTab('预览'),
+        CupertinoTab('基础规则'),
+        CupertinoTab('附加字段'),
+      ],
     );
   }
 
@@ -103,37 +98,5 @@ class RulesParserEditor extends StatelessWidget {
       default:
         return const SizedBox();
     }
-  }
-
-  Widget buildTabBar(BuildContext context) {
-    return Material(
-      color: CupertinoTheme.of(context).barBackgroundColor,
-      child: TabBar(
-        padding: EdgeInsets.zero,
-        overlayColor: MaterialStateProperty.all(Colors.blue),
-        indicator: const GreyUnderlineTabIndicator(),
-        tabs: [
-          buildTab(context: context, text: '预览'),
-          buildTab(context: context, text: '基础规则'),
-          buildTab(context: context, text: '附加字段'),
-        ],
-      ),
-    );
-  }
-
-  Tab buildTab({
-    required BuildContext context,
-    required String text,
-  }) {
-    return Tab(
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 12,
-          color: FixColor.title.resolveFrom(context),
-        ),
-      ),
-      height: 30,
-    );
   }
 }

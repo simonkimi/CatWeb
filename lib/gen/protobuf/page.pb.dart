@@ -13,12 +13,74 @@ import 'page.pbenum.dart';
 
 export 'page.pbenum.dart';
 
+class SiteSubPage extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SiteSubPage', createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'value')
+    ..hasRequiredFields = false
+  ;
+
+  SiteSubPage._() : super();
+  factory SiteSubPage({
+    $core.String? name,
+    $core.String? value,
+  }) {
+    final _result = create();
+    if (name != null) {
+      _result.name = name;
+    }
+    if (value != null) {
+      _result.value = value;
+    }
+    return _result;
+  }
+  factory SiteSubPage.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SiteSubPage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  SiteSubPage clone() => SiteSubPage()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  SiteSubPage copyWith(void Function(SiteSubPage) updates) => super.copyWith((message) => updates(message as SiteSubPage)) as SiteSubPage; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SiteSubPage create() => SiteSubPage._();
+  SiteSubPage createEmptyInstance() => create();
+  static $pb.PbList<SiteSubPage> createRepeated() => $pb.PbList<SiteSubPage>();
+  @$core.pragma('dart2js:noInline')
+  static SiteSubPage getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SiteSubPage>(create);
+  static SiteSubPage? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get value => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set value($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasValue() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearValue() => clearField(2);
+}
+
 class SitePage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SitePage', createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'url')
     ..e<PageTemplate>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: PageTemplate.imageList, valueOf: PageTemplate.valueOf, enumValues: PageTemplate.values)
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'parser')
+    ..pc<SiteSubPage>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subPage', $pb.PbFieldType.PM, protoName: 'subPage', subBuilder: SiteSubPage.create)
     ..hasRequiredFields = false
   ;
 
@@ -28,6 +90,7 @@ class SitePage extends $pb.GeneratedMessage {
     $core.String? url,
     PageTemplate? type,
     $core.String? parser,
+    $core.Iterable<SiteSubPage>? subPage,
   }) {
     final _result = create();
     if (name != null) {
@@ -41,6 +104,9 @@ class SitePage extends $pb.GeneratedMessage {
     }
     if (parser != null) {
       _result.parser = parser;
+    }
+    if (subPage != null) {
+      _result.subPage.addAll(subPage);
     }
     return _result;
   }
@@ -100,5 +166,8 @@ class SitePage extends $pb.GeneratedMessage {
   $core.bool hasParser() => $_has(3);
   @$pb.TagNumber(4)
   void clearParser() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.List<SiteSubPage> get subPage => $_getList(4);
 }
 

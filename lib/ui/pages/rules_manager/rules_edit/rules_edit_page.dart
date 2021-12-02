@@ -1,7 +1,6 @@
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
-import 'package:catweb/themes.dart';
 import 'package:catweb/ui/components/dialog.dart';
-import 'package:catweb/ui/components/grey_tab_indicator.dart';
+import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_advance/rules_advance.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_basic/rules_basic.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
@@ -27,33 +26,24 @@ class RulesEditPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () => showExitConfine(context),
-      child: DefaultTabController(
-        length: 5,
-        child: CupertinoPageScaffold(
-          navigationBar: buildAppbar(context),
-          child: SafeArea(
-            child: Column(
-              children: [
-                buildTabBar(context),
-                buildBody(),
-              ],
-            ),
-          ),
+      child: CupertinoPageScaffold(
+        navigationBar: buildAppbar(context),
+        child: CupertinoTabBarView(
+          tabs: [
+            CupertinoTab(I.of(context).basic_setting),
+            CupertinoTab(I.of(context).page_manager),
+            CupertinoTab(I.of(context).parser),
+            CupertinoTab(I.of(context).action),
+            const CupertinoTab('高级'),
+          ],
+          children: [
+            const RulesBasic(),
+            const RulesPageManager(),
+            const RulesParserManager(),
+            Container(),
+            RulesAdvance(),
+          ],
         ),
-      ),
-    );
-  }
-
-  Expanded buildBody() {
-    return Expanded(
-      child: TabBarView(
-        children: [
-          const RulesBasic(),
-          const RulesPageManager(),
-          const RulesParserManager(),
-          Container(),
-          RulesAdvance(),
-        ],
       ),
     );
   }
@@ -78,43 +68,6 @@ class RulesEditPage extends StatelessWidget {
         minSize: 0,
       ),
       border: const Border(),
-    );
-  }
-
-  Widget buildTabBar(BuildContext context) {
-    return Material(
-      color: CupertinoTheme.of(context).barBackgroundColor,
-      child: TabBar(
-        padding: EdgeInsets.zero,
-        labelColor: FixColor.title.resolveFrom(context),
-        indicator: const GreyUnderlineTabIndicator(),
-        tabs: [
-          buildTab(
-            context: context,
-            text: I.of(context).basic_setting,
-          ),
-          buildTab(
-            context: context,
-            text: I.of(context).page_manager,
-          ),
-          buildTab(
-            context: context,
-            text: I.of(context).parser,
-          ),
-          buildTab(
-            context: context,
-            text: I.of(context).action,
-          ),
-          buildTab(context: context, text: '高级'),
-        ],
-      ),
-    );
-  }
-
-  Widget buildTab({required BuildContext context, required String text}) {
-    return Tab(
-      child: Text(text, style: const TextStyle(fontSize: 12)),
-      height: 30,
     );
   }
 
