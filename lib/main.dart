@@ -15,8 +15,8 @@ import 'navigator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Get.lazyPut(() => SettingController(), fenix: true);
-  Get.lazyPut(() => SiteController(), fenix: true);
+  Get.put(SettingController(), permanent: true);
+  Get.put(SiteController(), permanent: true);
   runApp(const MyApp());
 }
 

@@ -20,7 +20,7 @@ class SiteController extends GetxController {
         config: SiteProtobufModel(SiteProtobuf.fromBuffer(db.bin)),
       );
     } else {
-      await autoSelectNewSite();
+      site.value = null;
     }
   }
 

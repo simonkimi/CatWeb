@@ -35,39 +35,53 @@ class SiteManager extends StatelessWidget {
               initialData: const [],
               stream: DB().siteDao.getAllStream(),
               builder: (context, snapshot) {
-                return ListView(
-                  children: [
-                    ...snapshot.data!.map((e) {
-                      final pb = SiteProtobuf.fromBuffer(e.bin);
-                      return Obx(() => CupertinoListTile(
-                            selected: siteController.id == e.id,
-                            title: Text(pb.name),
-                            subtitle: Text(pb.baseUrl),
-                            trailing: const Icon(Icons.more_horiz),
-                            onTrailingTap: () => onTrailingTap(context, e, pb),
-                          ));
-                    }),
-                    if (snapshot.data!.isNotEmpty) const SizedBox(height: 50),
-                    CupertinoListTile(
-                      leading: const Icon(CupertinoIcons.add_circled_solid),
-                      title: const Text('编写一个规则'),
-                      trailing: const Icon(CupertinoIcons.forward),
-                      onTap: () => toEditPage(),
-                    ),
-                    const SizedBox(height: 5),
-                    CupertinoListTile(
-                      leading: const Icon(CupertinoIcons.qrcode_viewfinder),
-                      title: const Text('扫码获取规则'),
-                      trailing: const Icon(CupertinoIcons.forward),
-                      onTap: () {},
-                    ),
-                  ],
-                );
+                return buildListView(snapshot, siteController, context);
               },
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildSiteItem(BuildContext context, SiteTableData e) {
+    final siteController = Get.find<SiteController>();
+    final pb = SiteProtobuf.fromBuffer(e.bin);
+    return Obx(() => CupertinoListTile(
+          selected: siteController.id == e.id,
+          title: Text(pb.name),
+          subtitle: Text(pb.baseUrl),
+          trailing: const Icon(Icons.more_horiz),
+          onTrailingTap: () => onTrailingTap(context, e, pb),
+          onTap: () => siteController.setNewSite(
+            siteController.id == e.id ? null : e,
+          ),
+        ));
+  }
+
+  ListView buildListView(
+    AsyncSnapshot<List<SiteTableData>> snapshot,
+    SiteController siteController,
+    BuildContext context,
+  ) {
+    return ListView(
+      children: [
+        ...snapshot.data!.map((e) => buildSiteItem(context, e)),
+        if (snapshot.data!.isNotEmpty) const SizedBox(height: 50),
+        CupertinoListTile(
+          leading: const Icon(CupertinoIcons.add_circled_solid),
+          title: const Text('编写一个规则'),
+          trailing: const Icon(CupertinoIcons.forward),
+          onTap: () => toEditPage(),
+        ),
+        const SizedBox(height: 5),
+        CupertinoListTile(
+          leading: const Icon(CupertinoIcons.qrcode_viewfinder),
+          title: const Text('扫码获取规则'),
+          trailing: const Icon(CupertinoIcons.forward),
+          onTap: () {},
+        ),
+      ],
     );
   }
 
