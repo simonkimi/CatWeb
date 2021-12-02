@@ -24,33 +24,37 @@ class RulesPageEdit extends GetView<RulesEditController> {
       onWillPop: () => showExitConfine(context),
       child: CupertinoPageScaffold(
         navigationBar: buildAppbar(context),
-        child: SafeArea(
-          child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            children: [
-              CupertinoInput(
-                labelText: '名称',
-                value: model.name,
-              ),
-              CupertinoInput(
-                labelText: '网址',
-                value: model.name,
-                description: '可以使用 {var} 替换参数',
-              ),
-              const CupertinoDivider(height: 20),
-              Obx(() => CupertinoReadOnlyInput(
-                    labelText: '模板',
-                    value: model.type.value.string(context),
-                    onTap: () => onTemplateTap(context),
-                  )),
-              Obx(() => CupertinoReadOnlyInput(
-                    labelText: '解析器',
-                    value: model.parser.value,
-                    onTap: () => onParserTap(context),
-                  )),
-            ],
+        child: buildBody(context),
+      ),
+    );
+  }
+
+  SafeArea buildBody(BuildContext context) {
+    return SafeArea(
+      child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        children: [
+          CupertinoInput(
+            labelText: '名称',
+            value: model.name,
           ),
-        ),
+          CupertinoInput(
+            labelText: '网址',
+            value: model.name,
+            description: '可以使用 {var} 替换参数',
+          ),
+          const CupertinoDivider(height: 20),
+          Obx(() => CupertinoReadOnlyInput(
+                labelText: '模板',
+                value: model.type.value.string(context),
+                onTap: () => onTemplateTap(context),
+              )),
+          Obx(() => CupertinoReadOnlyInput(
+                labelText: '解析器',
+                value: model.parser.value,
+                onTap: () => onParserTap(context),
+              )),
+        ],
       ),
     );
   }

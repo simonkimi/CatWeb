@@ -19,6 +19,8 @@ class SiteController extends GetxController {
         dbEntity: db,
         config: SiteProtobufModel(SiteProtobuf.fromBuffer(db.bin)),
       );
+      final setting = Get.find<SettingController>();
+      setting.defaultSite.value = db.id;
     } else {
       site.value = null;
     }
@@ -41,6 +43,7 @@ class SiteController extends GetxController {
 
   @override
   void onInit() {
+    setDefaultSite();
     siteDbChangeListener = DB().siteDao.getAllStream().listen((event) {
       if (site.value != null &&
           event.get((element) => element.id == id) == null) {

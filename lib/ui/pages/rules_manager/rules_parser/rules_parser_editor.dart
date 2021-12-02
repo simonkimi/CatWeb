@@ -19,16 +19,37 @@ class RulesParserEditor extends StatelessWidget {
 
   final ParserBaseModel model;
 
-  Future<bool> showExitConfine(BuildContext context) async {
-    if (model.name.value.isEmpty) {
-      return (await showCupertinoConfirmDialog(
-            context: context,
-            title: '返回',
-            content: '没有设定名称, 将不会保存\n确定不保存直接退出吗?',
-          ) ==
-          true);
-    }
-    return true;
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () => showExitConfine(context),
+      child: DefaultTabController(
+        length: 3,
+        child: CupertinoPageScaffold(
+          navigationBar: buildAppbar(context),
+          child: buildBody(context),
+        ),
+      ),
+    );
+  }
+
+  SafeArea buildBody(BuildContext context) {
+    return SafeArea(
+      child: Column(
+        children: [
+          buildTabBar(context),
+          Expanded(
+            child: TabBarView(
+              children: [
+                buildPreview(context),
+                buildEditor(context),
+                ExtraParser(model: model),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   CupertinoNavigationBar buildAppbar(BuildContext context) {
@@ -50,33 +71,16 @@ class RulesParserEditor extends StatelessWidget {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => showExitConfine(context),
-      child: DefaultTabController(
-        length: 3,
-        child: CupertinoPageScaffold(
-          navigationBar: buildAppbar(context),
-          child: SafeArea(
-            child: Column(
-              children: [
-                buildTabBar(context),
-                Expanded(
-                  child: TabBarView(
-                    children: [
-                      buildPreview(context),
-                      buildBody(context),
-                      ExtraParser(model: model),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+  Future<bool> showExitConfine(BuildContext context) async {
+    if (model.name.value.isEmpty) {
+      return (await showCupertinoConfirmDialog(
+            context: context,
+            title: '返回',
+            content: '没有设定名称, 将不会保存\n确定不保存直接退出吗?',
+          ) ==
+          true);
+    }
+    return true;
   }
 
   Widget buildPreview(BuildContext context) {
@@ -90,7 +94,7 @@ class RulesParserEditor extends StatelessWidget {
     }
   }
 
-  Widget buildBody(BuildContext context) {
+  Widget buildEditor(BuildContext context) {
     switch (model.type) {
       case ParserType.galleryParser:
         return GalleryParserFragment(model: model as GalleryParserModel);
