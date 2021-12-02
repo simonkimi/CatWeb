@@ -44,10 +44,12 @@ extension _RxWatcher<T> on Rx<T> {
 
 class SettingController extends GetxController {
   final cardSize = CardSize.middle.obs;
+  final RxInt defaultSite = (-1).obs;
 
   @override
   Future<void> onInit() async {
     cardSize.watch('cardSize', CardSize.middle);
+    defaultSite.watch('defaultSite', -1);
     super.onInit();
   }
 }

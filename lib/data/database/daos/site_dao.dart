@@ -10,6 +10,8 @@ class SiteDao extends DatabaseAccessor<AppDataBase> with _$SiteDaoMixin {
 
   Stream<List<SiteTableData>> getAllStream() => select(siteTable).watch();
 
+  Future<List<SiteTableData>> getAll() => select(siteTable).get();
+
   Future<void> insert(SiteTableCompanion entity) =>
       into(siteTable).insert(entity);
 

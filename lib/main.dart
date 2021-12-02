@@ -1,4 +1,5 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/themes.dart';
 import 'package:catweb/ui/pages/main_page/main_page.dart';
@@ -9,12 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
-import 'data/store/setting_controller.dart';
+import 'data/controller/setting_controller.dart';
 import 'navigator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Get.lazyPut(() => SettingController(), fenix: true);
+  Get.lazyPut(() => SiteController(), fenix: true);
   runApp(const MyApp());
 }
 

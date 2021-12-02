@@ -1,3 +1,4 @@
+import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
@@ -22,6 +23,7 @@ class SiteManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final siteController = Get.find<SiteController>();
     return CupertinoPageScaffold(
       navigationBar: buildAppbar(context),
       child: SafeArea(
@@ -37,14 +39,13 @@ class SiteManager extends StatelessWidget {
                   children: [
                     ...snapshot.data!.map((e) {
                       final pb = SiteProtobuf.fromBuffer(e.bin);
-                      return CupertinoListTile(
-                        selected: true,
-                        title: Text(pb.name),
-                        subtitle: Text(pb.baseUrl),
-                        trailing: const Icon(Icons.more_horiz),
-                        onTrailingTap: () => onTrailingTap(context, e, pb),
-                        onTap: () => toEditPage(pb, e),
-                      );
+                      return Obx(() => CupertinoListTile(
+                            selected: siteController.id == e.id,
+                            title: Text(pb.name),
+                            subtitle: Text(pb.baseUrl),
+                            trailing: const Icon(Icons.more_horiz),
+                            onTrailingTap: () => onTrailingTap(context, e, pb),
+                          ));
                     }),
                     if (snapshot.data!.isNotEmpty) const SizedBox(height: 50),
                     CupertinoListTile(
