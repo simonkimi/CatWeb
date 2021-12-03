@@ -1,4 +1,5 @@
 import 'package:catweb/ui/components/list_card.dart';
+import 'package:catweb/ui/pages/view_page/viewer_list/viewer_list_model.dart';
 import 'package:flutter/material.dart';
 
 class ListParserPreview extends StatelessWidget {
@@ -6,7 +7,7 @@ class ListParserPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = CardModel(
+    final model = ViewerListModel(
         title: 'Title',
         subtitle: 'SubTitle',
         star: 4.5,
@@ -22,12 +23,12 @@ class ListParserPreview extends StatelessWidget {
               .asMap()
               .map((key, value) => MapEntry(
                   key,
-                  CardTag(
+              ListTag(
                     text: 'Tag ${key + 1}',
                     color: value,
                   )))
               .values,
-          CardTag(
+          ListTag(
             text: 'Tag 10',
           )
         ]);

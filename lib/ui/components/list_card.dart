@@ -1,4 +1,5 @@
 import 'package:catweb/ui/components/badge.dart';
+import 'package:catweb/ui/pages/view_page/viewer_list/viewer_list_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -6,39 +7,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../themes.dart';
 import 'dark_image.dart';
 
-class CardTag {
-  CardTag({
-    this.color,
-    required this.text,
-  });
 
-  final Color? color;
-  final String text;
-}
 
-class CardModel {
-  CardModel({
-    this.title,
-    this.subtitle,
-    this.tagList,
-    this.star,
-    this.category,
-    this.categoryColor,
-    this.page,
-    this.uploadTime,
-    this.badge,
-  });
-
-  final String? title;
-  final String? subtitle;
-  final List<CardTag>? tagList;
-  final double? star;
-  final String? category;
-  final Color? categoryColor;
-  final int? page;
-  final String? uploadTime;
-  final String? badge;
-}
 
 class SimpleCard extends StatelessWidget {
   const SimpleCard({
@@ -47,7 +17,7 @@ class SimpleCard extends StatelessWidget {
     this.useCard = true,
   }) : super(key: key);
 
-  final CardModel model;
+  final ViewerListModel model;
   final bool useCard;
 
   @override
@@ -198,7 +168,7 @@ class ExtendedCard extends StatelessWidget {
     this.useCard = true,
   }) : super(key: key);
 
-  final CardModel model;
+  final ViewerListModel model;
   final bool useCard;
 
   @override
