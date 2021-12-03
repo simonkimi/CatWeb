@@ -31,7 +31,7 @@ dependencies:
   dio: ^4.0.4
   universal_html: ^2.0.8
   json_path: ^0.3.0
-  xpath_selector: ^ 1.0.4
+  xpath_selector: ^1.0.4
 
 
   # state

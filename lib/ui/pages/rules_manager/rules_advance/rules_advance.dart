@@ -9,16 +9,15 @@ import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
 
 class RulesAdvance extends GetView<RulesEditController> {
-  RulesAdvance({
+  const RulesAdvance({
     Key? key,
   }) : super(key: key);
 
-  final headerController = SwipeActionController();
-  final cookieController = SwipeActionController();
-
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final headerController = SwipeActionController();
+    final cookieController = SwipeActionController();
+    return ColoredBox(
       color: CupertinoColors.systemGroupedBackground.resolveFrom(context),
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 10),
