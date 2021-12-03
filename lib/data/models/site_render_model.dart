@@ -1,7 +1,6 @@
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/protocol/model/store.dart';
-import 'package:catweb/network/client/dio_builder.dart';
-import 'package:dio/dio.dart';
+import 'package:catweb/network/client/cilent.dart';
 import 'package:moor/moor.dart';
 import 'package:get/get.dart';
 
@@ -9,12 +8,12 @@ class SiteRenderConfigModel {
   SiteRenderConfigModel({
     required this.config,
     required this.dbEntity,
-  })  : net = DioBuilder.build(config),
+  })  : client = NetClient(config),
         favicon = dbEntity.favicon.isNotEmpty ? dbEntity.favicon.obs : Rx(null);
 
   final SiteProtobufModel config;
   final SiteTableData dbEntity;
-  final Dio net;
+  final NetClient client;
 
   final Rx<Uint8List?> favicon;
 

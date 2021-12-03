@@ -41,7 +41,7 @@ class RulesEditPage extends StatelessWidget {
             const RulesPageManager(),
             const RulesParserManager(),
             Container(),
-            RulesAdvance(),
+            const RulesAdvance(),
           ],
         ),
       ),
