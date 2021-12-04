@@ -39,4 +39,5 @@ message CommentSelector {
   Selector postTime = 2;
   Selector vote = 3;
   Selector content = 4;
+  ImageSelector avatar = 5;
 }

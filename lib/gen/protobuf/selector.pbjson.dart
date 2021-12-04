@@ -72,8 +72,9 @@ const CommentSelector$json = const {
     const {'1': 'postTime', '3': 2, '4': 1, '5': 11, '6': '.Selector', '10': 'postTime'},
     const {'1': 'vote', '3': 3, '4': 1, '5': 11, '6': '.Selector', '10': 'vote'},
     const {'1': 'content', '3': 4, '4': 1, '5': 11, '6': '.Selector', '10': 'content'},
+    const {'1': 'avatar', '3': 5, '4': 1, '5': 11, '6': '.ImageSelector', '10': 'avatar'},
   ],
 };
 
 /// Descriptor for `CommentSelector`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List commentSelectorDescriptor = $convert.base64Decode('Cg9Db21tZW50U2VsZWN0b3ISJQoIdXNlcm5hbWUYASABKAsyCS5TZWxlY3RvclIIdXNlcm5hbWUSJQoIcG9zdFRpbWUYAiABKAsyCS5TZWxlY3RvclIIcG9zdFRpbWUSHQoEdm90ZRgDIAEoCzIJLlNlbGVjdG9yUgR2b3RlEiMKB2NvbnRlbnQYBCABKAsyCS5TZWxlY3RvclIHY29udGVudA==');
+final $typed_data.Uint8List commentSelectorDescriptor = $convert.base64Decode('Cg9Db21tZW50U2VsZWN0b3ISJQoIdXNlcm5hbWUYASABKAsyCS5TZWxlY3RvclIIdXNlcm5hbWUSJQoIcG9zdFRpbWUYAiABKAsyCS5TZWxlY3RvclIIcG9zdFRpbWUSHQoEdm90ZRgDIAEoCzIJLlNlbGVjdG9yUgR2b3RlEiMKB2NvbnRlbnQYBCABKAsyCS5TZWxlY3RvclIHY29udGVudBImCgZhdmF0YXIYBSABKAsyDi5JbWFnZVNlbGVjdG9yUgZhdmF0YXI=');

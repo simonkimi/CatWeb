@@ -4,8 +4,16 @@ import 'selector.proto';
 
 message ImageParser {
   string name = 1;
-  ImageSelector image = 2;
-  string rawImage = 3;
+
+  Selector id = 2;
+  ImageSelector image = 3;
+  Selector largerImage = 4;
+  Selector rawImage = 5;
+  Selector uploadTime = 6;
+  Selector source = 7;
+  Selector rating = 8;
+  Selector score = 9;
+  ImageSelector uploaderAvatar = 10;
 
   repeated ExtraSelector extraSelector = 99;
 }

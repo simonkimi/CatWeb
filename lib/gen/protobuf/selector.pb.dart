@@ -354,6 +354,7 @@ class CommentSelector extends $pb.GeneratedMessage {
     ..aOM<Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'postTime', protoName: 'postTime', subBuilder: Selector.create)
     ..aOM<Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'vote', subBuilder: Selector.create)
     ..aOM<Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content', subBuilder: Selector.create)
+    ..aOM<ImageSelector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'avatar', subBuilder: ImageSelector.create)
     ..hasRequiredFields = false
   ;
 
@@ -363,6 +364,7 @@ class CommentSelector extends $pb.GeneratedMessage {
     Selector? postTime,
     Selector? vote,
     Selector? content,
+    ImageSelector? avatar,
   }) {
     final _result = create();
     if (username != null) {
@@ -376,6 +378,9 @@ class CommentSelector extends $pb.GeneratedMessage {
     }
     if (content != null) {
       _result.content = content;
+    }
+    if (avatar != null) {
+      _result.avatar = avatar;
     }
     return _result;
   }
@@ -443,5 +448,16 @@ class CommentSelector extends $pb.GeneratedMessage {
   void clearContent() => clearField(4);
   @$pb.TagNumber(4)
   Selector ensureContent() => $_ensure(3);
+
+  @$pb.TagNumber(5)
+  ImageSelector get avatar => $_getN(4);
+  @$pb.TagNumber(5)
+  set avatar(ImageSelector v) { setField(5, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasAvatar() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearAvatar() => clearField(5);
+  @$pb.TagNumber(5)
+  ImageSelector ensureAvatar() => $_ensure(4);
 }
 

@@ -14,8 +14,15 @@ import 'selector.pb.dart' as $0;
 class ImageParser extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ImageParser', createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOM<$0.ImageSelector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'image', subBuilder: $0.ImageSelector.create)
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rawImage', protoName: 'rawImage')
+    ..aOM<$0.Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id', subBuilder: $0.Selector.create)
+    ..aOM<$0.ImageSelector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'image', subBuilder: $0.ImageSelector.create)
+    ..aOM<$0.Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'largerImage', protoName: 'largerImage', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rawImage', protoName: 'rawImage', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTime', protoName: 'uploadTime', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'source', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rating', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'score', subBuilder: $0.Selector.create)
+    ..aOM<$0.ImageSelector>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploaderAvatar', protoName: 'uploaderAvatar', subBuilder: $0.ImageSelector.create)
     ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, protoName: 'extraSelector', subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false
   ;
@@ -23,19 +30,47 @@ class ImageParser extends $pb.GeneratedMessage {
   ImageParser._() : super();
   factory ImageParser({
     $core.String? name,
+    $0.Selector? id,
     $0.ImageSelector? image,
-    $core.String? rawImage,
+    $0.Selector? largerImage,
+    $0.Selector? rawImage,
+    $0.Selector? uploadTime,
+    $0.Selector? source,
+    $0.Selector? rating,
+    $0.Selector? score,
+    $0.ImageSelector? uploaderAvatar,
     $core.Iterable<$0.ExtraSelector>? extraSelector,
   }) {
     final _result = create();
     if (name != null) {
       _result.name = name;
     }
+    if (id != null) {
+      _result.id = id;
+    }
     if (image != null) {
       _result.image = image;
     }
+    if (largerImage != null) {
+      _result.largerImage = largerImage;
+    }
     if (rawImage != null) {
       _result.rawImage = rawImage;
+    }
+    if (uploadTime != null) {
+      _result.uploadTime = uploadTime;
+    }
+    if (source != null) {
+      _result.source = source;
+    }
+    if (rating != null) {
+      _result.rating = rating;
+    }
+    if (score != null) {
+      _result.score = score;
+    }
+    if (uploaderAvatar != null) {
+      _result.uploaderAvatar = uploaderAvatar;
     }
     if (extraSelector != null) {
       _result.extraSelector.addAll(extraSelector);
@@ -73,27 +108,106 @@ class ImageParser extends $pb.GeneratedMessage {
   void clearName() => clearField(1);
 
   @$pb.TagNumber(2)
-  $0.ImageSelector get image => $_getN(1);
+  $0.Selector get id => $_getN(1);
   @$pb.TagNumber(2)
-  set image($0.ImageSelector v) { setField(2, v); }
+  set id($0.Selector v) { setField(2, v); }
   @$pb.TagNumber(2)
-  $core.bool hasImage() => $_has(1);
+  $core.bool hasId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearImage() => clearField(2);
+  void clearId() => clearField(2);
   @$pb.TagNumber(2)
-  $0.ImageSelector ensureImage() => $_ensure(1);
+  $0.Selector ensureId() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $core.String get rawImage => $_getSZ(2);
+  $0.ImageSelector get image => $_getN(2);
   @$pb.TagNumber(3)
-  set rawImage($core.String v) { $_setString(2, v); }
+  set image($0.ImageSelector v) { setField(3, v); }
   @$pb.TagNumber(3)
-  $core.bool hasRawImage() => $_has(2);
+  $core.bool hasImage() => $_has(2);
   @$pb.TagNumber(3)
-  void clearRawImage() => clearField(3);
+  void clearImage() => clearField(3);
+  @$pb.TagNumber(3)
+  $0.ImageSelector ensureImage() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  $0.Selector get largerImage => $_getN(3);
+  @$pb.TagNumber(4)
+  set largerImage($0.Selector v) { setField(4, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasLargerImage() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearLargerImage() => clearField(4);
+  @$pb.TagNumber(4)
+  $0.Selector ensureLargerImage() => $_ensure(3);
+
+  @$pb.TagNumber(5)
+  $0.Selector get rawImage => $_getN(4);
+  @$pb.TagNumber(5)
+  set rawImage($0.Selector v) { setField(5, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasRawImage() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearRawImage() => clearField(5);
+  @$pb.TagNumber(5)
+  $0.Selector ensureRawImage() => $_ensure(4);
+
+  @$pb.TagNumber(6)
+  $0.Selector get uploadTime => $_getN(5);
+  @$pb.TagNumber(6)
+  set uploadTime($0.Selector v) { setField(6, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasUploadTime() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearUploadTime() => clearField(6);
+  @$pb.TagNumber(6)
+  $0.Selector ensureUploadTime() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  $0.Selector get source => $_getN(6);
+  @$pb.TagNumber(7)
+  set source($0.Selector v) { setField(7, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasSource() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearSource() => clearField(7);
+  @$pb.TagNumber(7)
+  $0.Selector ensureSource() => $_ensure(6);
+
+  @$pb.TagNumber(8)
+  $0.Selector get rating => $_getN(7);
+  @$pb.TagNumber(8)
+  set rating($0.Selector v) { setField(8, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasRating() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearRating() => clearField(8);
+  @$pb.TagNumber(8)
+  $0.Selector ensureRating() => $_ensure(7);
+
+  @$pb.TagNumber(9)
+  $0.Selector get score => $_getN(8);
+  @$pb.TagNumber(9)
+  set score($0.Selector v) { setField(9, v); }
+  @$pb.TagNumber(9)
+  $core.bool hasScore() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearScore() => clearField(9);
+  @$pb.TagNumber(9)
+  $0.Selector ensureScore() => $_ensure(8);
+
+  @$pb.TagNumber(10)
+  $0.ImageSelector get uploaderAvatar => $_getN(9);
+  @$pb.TagNumber(10)
+  set uploaderAvatar($0.ImageSelector v) { setField(10, v); }
+  @$pb.TagNumber(10)
+  $core.bool hasUploaderAvatar() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearUploaderAvatar() => clearField(10);
+  @$pb.TagNumber(10)
+  $0.ImageSelector ensureUploaderAvatar() => $_ensure(9);
 
   @$pb.TagNumber(99)
-  $core.List<$0.ExtraSelector> get extraSelector => $_getList(3);
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(10);
 }
 
 class ListViewParser extends $pb.GeneratedMessage {

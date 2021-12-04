@@ -16,7 +16,7 @@ enum ParserType {
 abstract class ParserBaseModel implements PbAble, CombineSelector {
   ParserBaseModel({required this.name, Iterable<ExtraSelector>? extra})
       : extraSelectorModel =
-             lobs(extra, (ExtraSelector e) => ExtraSelectorModel(e));
+            lobs(extra, (ExtraSelector e) => ExtraSelectorModel(e));
 
   final RxString name;
 
@@ -33,14 +33,28 @@ abstract class ParserBaseModel implements PbAble, CombineSelector {
 class ImageParserModel extends ParserBaseModel {
   ImageParserModel([ImageParser? pb])
       : image = ImageSelectorModel(pb?.image),
-        rawImage = sobs(pb?.rawImage),
+        rawImage = SelectorModel(pb?.rawImage),
+        largerImage = SelectorModel(pb?.largerImage),
+        rating = SelectorModel(pb?.rating),
+        score = SelectorModel(pb?.score),
+        source = SelectorModel(pb?.source),
+        uploadTime = SelectorModel(pb?.uploadTime),
+        uploaderAvatar = ImageSelectorModel(pb?.uploaderAvatar),
+        id = SelectorModel(pb?.id),
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
         );
 
+  final SelectorModel id;
   final ImageSelectorModel image;
-  final RxString rawImage;
+  final SelectorModel largerImage;
+  final SelectorModel rawImage;
+  final SelectorModel rating;
+  final SelectorModel score;
+  final SelectorModel source;
+  final SelectorModel uploadTime;
+  final ImageSelectorModel uploaderAvatar;
 
   @override
   String displayType(BuildContext context) => '图片查看';
@@ -51,8 +65,15 @@ class ImageParserModel extends ParserBaseModel {
   @override
   ImageParser toPb() => ImageParser(
         name: name.value,
+        id: id.toPb(),
         image: image.toPb(),
-        rawImage: rawImage.value,
+        rawImage: rawImage.toPb(),
+        largerImage: largerImage.toPb(),
+        rating: rating.toPb(),
+        score: score.toPb(),
+        source: source.toPb(),
+        uploadTime: uploadTime.toPb(),
+        uploaderAvatar: uploaderAvatar.toPb(),
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
       );
 

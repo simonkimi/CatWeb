@@ -96,13 +96,15 @@ class CommentSelectorModel implements PbAble, CombineSelector {
   CommentSelectorModel([CommentSelector? pb])
       : username = SelectorModel(pb?.username),
         postTime = SelectorModel(pb?.postTime),
-        vote = SelectorModel(pb?.vote, true),
-        content = SelectorModel(pb?.content);
+        vote = SelectorModel(pb?.vote),
+        content = SelectorModel(pb?.content),
+        avatar = ImageSelectorModel(pb?.avatar);
 
   final SelectorModel username;
   final SelectorModel postTime;
   final SelectorModel vote;
   final SelectorModel content;
+  final ImageSelectorModel avatar;
 
   @override
   CommentSelector toPb() => CommentSelector(
@@ -110,6 +112,7 @@ class CommentSelectorModel implements PbAble, CombineSelector {
         postTime: postTime.toPb(),
         vote: vote.toPb(),
         content: content.toPb(),
+        avatar: avatar.toPb(),
       );
 
   @override

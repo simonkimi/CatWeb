@@ -13,14 +13,21 @@ const ImageParser$json = const {
   '1': 'ImageParser',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {'1': 'image', '3': 2, '4': 1, '5': 11, '6': '.ImageSelector', '10': 'image'},
-    const {'1': 'rawImage', '3': 3, '4': 1, '5': 9, '10': 'rawImage'},
+    const {'1': 'id', '3': 2, '4': 1, '5': 11, '6': '.Selector', '10': 'id'},
+    const {'1': 'image', '3': 3, '4': 1, '5': 11, '6': '.ImageSelector', '10': 'image'},
+    const {'1': 'largerImage', '3': 4, '4': 1, '5': 11, '6': '.Selector', '10': 'largerImage'},
+    const {'1': 'rawImage', '3': 5, '4': 1, '5': 11, '6': '.Selector', '10': 'rawImage'},
+    const {'1': 'uploadTime', '3': 6, '4': 1, '5': 11, '6': '.Selector', '10': 'uploadTime'},
+    const {'1': 'source', '3': 7, '4': 1, '5': 11, '6': '.Selector', '10': 'source'},
+    const {'1': 'rating', '3': 8, '4': 1, '5': 11, '6': '.Selector', '10': 'rating'},
+    const {'1': 'score', '3': 9, '4': 1, '5': 11, '6': '.Selector', '10': 'score'},
+    const {'1': 'uploaderAvatar', '3': 10, '4': 1, '5': 11, '6': '.ImageSelector', '10': 'uploaderAvatar'},
     const {'1': 'extraSelector', '3': 99, '4': 3, '5': 11, '6': '.ExtraSelector', '10': 'extraSelector'},
   ],
 };
 
 /// Descriptor for `ImageParser`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List imageParserDescriptor = $convert.base64Decode('CgtJbWFnZVBhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEiQKBWltYWdlGAIgASgLMg4uSW1hZ2VTZWxlY3RvclIFaW1hZ2USGgoIcmF3SW1hZ2UYAyABKAlSCHJhd0ltYWdlEjQKDWV4dHJhU2VsZWN0b3IYYyADKAsyDi5FeHRyYVNlbGVjdG9yUg1leHRyYVNlbGVjdG9y');
+final $typed_data.Uint8List imageParserDescriptor = $convert.base64Decode('CgtJbWFnZVBhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEhkKAmlkGAIgASgLMgkuU2VsZWN0b3JSAmlkEiQKBWltYWdlGAMgASgLMg4uSW1hZ2VTZWxlY3RvclIFaW1hZ2USKwoLbGFyZ2VySW1hZ2UYBCABKAsyCS5TZWxlY3RvclILbGFyZ2VySW1hZ2USJQoIcmF3SW1hZ2UYBSABKAsyCS5TZWxlY3RvclIIcmF3SW1hZ2USKQoKdXBsb2FkVGltZRgGIAEoCzIJLlNlbGVjdG9yUgp1cGxvYWRUaW1lEiEKBnNvdXJjZRgHIAEoCzIJLlNlbGVjdG9yUgZzb3VyY2USIQoGcmF0aW5nGAggASgLMgkuU2VsZWN0b3JSBnJhdGluZxIfCgVzY29yZRgJIAEoCzIJLlNlbGVjdG9yUgVzY29yZRI2Cg51cGxvYWRlckF2YXRhchgKIAEoCzIOLkltYWdlU2VsZWN0b3JSDnVwbG9hZGVyQXZhdGFyEjQKDWV4dHJhU2VsZWN0b3IYYyADKAsyDi5FeHRyYVNlbGVjdG9yUg1leHRyYVNlbGVjdG9y');
 @$core.Deprecated('Use listViewParserDescriptor instead')
 const ListViewParser$json = const {
   '1': 'ListViewParser',
