@@ -36,10 +36,12 @@ message ListViewParser {
   Selector badgeText = 12;
   Selector badgeColor = 13;
 
-  repeated ExtraSelector extraSelector = 99;
+  Selector paper = 14;
 
   // 下一面
-  Selector nextPage = 14;
+  Selector nextPage = 98;
+
+  repeated ExtraSelector extraSelector = 99;
 }
 
 message GalleryParser {

@@ -242,6 +242,7 @@ class ListViewParserModel extends ParserBaseModel {
         badgeText = SelectorModel(pb?.badgeText),
         badgeColor = SelectorModel(pb?.badgeColor),
         nextPage = SelectorModel(pb?.nextPage),
+        paper = SelectorModel(pb?.paper),
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
@@ -268,6 +269,8 @@ class ListViewParserModel extends ParserBaseModel {
   final SelectorModel badgeText;
   final SelectorModel badgeColor;
 
+  final SelectorModel paper;
+
   // 下一页
   final SelectorModel nextPage;
 
@@ -287,6 +290,7 @@ class ListViewParserModel extends ParserBaseModel {
         badgeColor: badgeColor.toPb(),
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
         nextPage: nextPage.toPb(),
+        paper: paper.toPb(),
       );
 
   @override

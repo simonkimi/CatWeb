@@ -4,30 +4,30 @@ class ViewerListModel {
   ViewerListModel({
     this.title,
     this.subtitle,
-    this.tagList,
+    this.paper,
     this.star,
     this.category,
     this.categoryColor,
     this.page,
     this.uploadTime,
-    this.badge,
+    this.badgeList,
   });
 
   final String? title;
   final String? subtitle;
-  final List<ListTag>? tagList;
+  final List<BadgeList>? badgeList;
   final double? star;
   final String? category;
   final Color? categoryColor;
   final int? page;
   final String? uploadTime;
-  final String? badge;
+  final String? paper;
 }
 
-class ListTag {
-  ListTag({
-    this.color,
+class BadgeList {
+  BadgeList({
     required this.text,
+    this.color,
   });
 
   final Color? color;

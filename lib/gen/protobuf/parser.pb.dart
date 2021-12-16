@@ -225,7 +225,8 @@ class ListViewParser extends $pb.GeneratedMessage {
     ..aOM<$0.Selector>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeSelector', protoName: 'badgeSelector', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeText', protoName: 'badgeText', subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeColor', protoName: 'badgeColor', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage', protoName: 'nextPage', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'paper', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(98, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage', protoName: 'nextPage', subBuilder: $0.Selector.create)
     ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, protoName: 'extraSelector', subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false
   ;
@@ -245,6 +246,7 @@ class ListViewParser extends $pb.GeneratedMessage {
     $0.Selector? badgeSelector,
     $0.Selector? badgeText,
     $0.Selector? badgeColor,
+    $0.Selector? paper,
     $0.Selector? nextPage,
     $core.Iterable<$0.ExtraSelector>? extraSelector,
   }) {
@@ -287,6 +289,9 @@ class ListViewParser extends $pb.GeneratedMessage {
     }
     if (badgeColor != null) {
       _result.badgeColor = badgeColor;
+    }
+    if (paper != null) {
+      _result.paper = paper;
     }
     if (nextPage != null) {
       _result.nextPage = nextPage;
@@ -457,18 +462,29 @@ class ListViewParser extends $pb.GeneratedMessage {
   $0.Selector ensureBadgeColor() => $_ensure(12);
 
   @$pb.TagNumber(14)
-  $0.Selector get nextPage => $_getN(13);
+  $0.Selector get paper => $_getN(13);
   @$pb.TagNumber(14)
-  set nextPage($0.Selector v) { setField(14, v); }
+  set paper($0.Selector v) { setField(14, v); }
   @$pb.TagNumber(14)
-  $core.bool hasNextPage() => $_has(13);
+  $core.bool hasPaper() => $_has(13);
   @$pb.TagNumber(14)
-  void clearNextPage() => clearField(14);
+  void clearPaper() => clearField(14);
   @$pb.TagNumber(14)
-  $0.Selector ensureNextPage() => $_ensure(13);
+  $0.Selector ensurePaper() => $_ensure(13);
+
+  @$pb.TagNumber(98)
+  $0.Selector get nextPage => $_getN(14);
+  @$pb.TagNumber(98)
+  set nextPage($0.Selector v) { setField(98, v); }
+  @$pb.TagNumber(98)
+  $core.bool hasNextPage() => $_has(14);
+  @$pb.TagNumber(98)
+  void clearNextPage() => clearField(98);
+  @$pb.TagNumber(98)
+  $0.Selector ensureNextPage() => $_ensure(14);
 
   @$pb.TagNumber(99)
-  $core.List<$0.ExtraSelector> get extraSelector => $_getList(14);
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(15);
 }
 
 class GalleryParser extends $pb.GeneratedMessage {

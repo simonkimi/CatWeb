@@ -1,49 +1,39 @@
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
+import 'package:xml/xml.dart';
 import 'package:xpath_selector/xpath_selector.dart';
+import 'package:html/dom.dart';
 
-class HtmlXmlSelectorExec {
-  HtmlXmlSelectorExec({
-    required this.selector,
-    required this.root,
-  }) : path = selector.selector.value;
 
-  final SelectorModel selector;
-  final XPathElement root;
-  final String path;
-
-  List<String> exec() {
+extension SelectorExec<T> on SelectorModel {
+  List<String> resolve(final XPathNode<T> root) {
+    final path = selector.value;
     // 默认值
     if (path.isEmpty) {
-      if (selector.defaultValue.value.isNotEmpty) {
-        return [selector.defaultValue.value];
+      if (defaultValue.value.isNotEmpty) {
+        return [defaultValue.value];
       }
       return [];
     }
 
     // xpath选择器
     if (path.startsWith('/')) {
-      late XPathResult result;
-      if (root is HtmlElementTree) {
-        result = (root as HtmlElementTree).queryXPath(path);
-      } else {
-        result = (root as XmlElementTree).queryXPath(path);
-      }
+      XPathResult<T> result = root.queryXPath(path);
 
       // 如果是自动模式
       List<String> selectResult;
-      if (selector.function.value == SelectorFunction.auto) {
+      if (function.value == SelectorFunction.auto) {
         // 如果有attr值则选择attr值
         if (result.attr != null) {
           selectResult = result.attrs.whereType<String>().toList();
         } else {
           // 没有attr返回text
           selectResult =
-              result.elements.map((e) => e.text).whereType<String>().toList();
+              result.nodes.map((e) => e.text).whereType<String>().toList();
         }
       } else {
         // 非自动模式, 按照给定计算
-        selectResult = result.elements
+        selectResult = result.nodes
             .map((e) => _callFunction(e))
             .whereType<String>()
             .toList();
@@ -54,19 +44,17 @@ class HtmlXmlSelectorExec {
     }
 
     // css选择器, 只对html起效
-    if (root is HtmlElementTree) {
-      final result = (root as HtmlElementTree)
-          .element
-          .querySelectorAll(selector.selector.value);
+    if (root.node is Element) {
+      final result = (root.node as Element).querySelectorAll(selector.value);
 
       // 如果是自动模式, 选取text
       List<String> selectResult;
-      if (selector.function.value == SelectorFunction.auto) {
+      if (function.value == SelectorFunction.auto) {
         selectResult = result.map((e) => e.text).whereType<String>().toList();
       } else {
         // 非自动模式
         selectResult = result
-            .map((e) => _callFunction(HtmlElementTree(e)))
+            .map((e) => _callFunction(HtmlNodeTree(e) as XPathNode<T>))
             .whereType<String>()
             .toList();
       }
@@ -78,20 +66,20 @@ class HtmlXmlSelectorExec {
     }
   }
 
-  String? _callFunction(XPathNode element) {
-    if (element is! XPathElement) return null;
-    switch (selector.function.value) {
+  String? _callFunction(XPathNode<T> element) {
+    if (!element.isElement) return null;
+    switch (function.value) {
       case SelectorFunction.attr:
-        for (final p in selector.param.value.split(';')) {
+        for (final p in param.value.split(';')) {
           if (element.attributes.containsKey(p)) {
             return element.attributes[p];
           }
         }
         return null;
       case SelectorFunction.raw:
-        return element is HtmlElementTree
-            ? (element).element.innerHtml
-            : (element as XmlElementTree).element.innerXml;
+        return element.node is Element
+            ? (element.node as Element).innerHtml
+            : (element.node as XmlElement).innerXml;
       case SelectorFunction.text:
         return element.text;
       case SelectorFunction.auto:
@@ -100,15 +88,15 @@ class HtmlXmlSelectorExec {
   }
 
   String? _callReg(String input) {
-    if (selector.regex.value.isNotEmpty) {
-      final RegExp reg = RegExp(selector.regex.value);
+    if (regex.value.isNotEmpty) {
+      final RegExp reg = RegExp(regex.value);
       final match = reg.allMatches(input).toList();
       if (match.isEmpty) return null;
-      if (selector.replace.value.isEmpty) {
+      if (replace.value.isEmpty) {
         final m = match[0];
         return m.group(m.groupCount)!;
       } else {
-        var rep = selector.replace.value;
+        var rep = replace.value;
         for (var i = match.length; i >= 1; i--) {
           rep = rep.replaceAll('\$$i', match[i - 1][1]!);
         }
@@ -120,17 +108,17 @@ class HtmlXmlSelectorExec {
   }
 }
 
-String? selectJson({
-  required SelectorModel selector,
-  required Map<String, dynamic> json,
-}) {
-  final path = selector.selector.value;
-
-  // 默认值
-  if (path.isEmpty) {
-    if (selector.defaultValue.value.isNotEmpty) {
-      return selector.defaultValue.value;
-    }
-    return null;
-  }
-}
+// String? selectJson({
+//   required SelectorModel selector,
+//   required Map<String, dynamic> json,
+// }) {
+//   final path = selector.selector.value;
+//
+//   // 默认值
+//   if (path.isEmpty) {
+//     if (selector.defaultValue.value.isNotEmpty) {
+//       return selector.defaultValue.value;
+//     }
+//     return null;
+//   }
+// }

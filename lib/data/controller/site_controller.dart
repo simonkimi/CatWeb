@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/database/database.dart';
+import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
@@ -13,12 +14,15 @@ class SiteController extends GetxController {
 
   final site = Rx<SiteRenderConfigModel?>(null);
 
+  final globalEnv = SiteEnvModel(<String, String>{});
+
   Future<void> setNewSite([SiteTableData? db]) async {
     if (db != null) {
       site.value = SiteRenderConfigModel(
         dbEntity: db,
         config: SiteProtobufModel(SiteProtobuf.fromBuffer(db.bin)),
       );
+      globalEnv.clear();
       final setting = Get.find<SettingController>();
       setting.defaultSite.value = db.id;
     } else {

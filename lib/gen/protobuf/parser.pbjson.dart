@@ -45,13 +45,14 @@ const ListViewParser$json = const {
     const {'1': 'badgeSelector', '3': 11, '4': 1, '5': 11, '6': '.Selector', '10': 'badgeSelector'},
     const {'1': 'badgeText', '3': 12, '4': 1, '5': 11, '6': '.Selector', '10': 'badgeText'},
     const {'1': 'badgeColor', '3': 13, '4': 1, '5': 11, '6': '.Selector', '10': 'badgeColor'},
+    const {'1': 'paper', '3': 14, '4': 1, '5': 11, '6': '.Selector', '10': 'paper'},
+    const {'1': 'nextPage', '3': 98, '4': 1, '5': 11, '6': '.Selector', '10': 'nextPage'},
     const {'1': 'extraSelector', '3': 99, '4': 3, '5': 11, '6': '.ExtraSelector', '10': 'extraSelector'},
-    const {'1': 'nextPage', '3': 14, '4': 1, '5': 11, '6': '.Selector', '10': 'nextPage'},
   ],
 };
 
 /// Descriptor for `ListViewParser`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List listViewParserDescriptor = $convert.base64Decode('Cg5MaXN0Vmlld1BhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEiIKDGl0ZW1TZWxlY3RvchgCIAEoCVIMaXRlbVNlbGVjdG9yEh8KBXRpdGxlGAMgASgLMgkuU2VsZWN0b3JSBXRpdGxlEiUKCHN1YnRpdGxlGAQgASgLMgkuU2VsZWN0b3JSCHN1YnRpdGxlEikKCnVwbG9hZFRpbWUYBSABKAsyCS5TZWxlY3RvclIKdXBsb2FkVGltZRIdCgRzdGFyGAYgASgLMgkuU2VsZWN0b3JSBHN0YXISJQoIaW1nQ291bnQYByABKAsyCS5TZWxlY3RvclIIaW1nQ291bnQSLgoKcHJldmlld0ltZxgIIAEoCzIOLkltYWdlU2VsZWN0b3JSCnByZXZpZXdJbWcSGwoDdGFnGAkgASgLMgkuU2VsZWN0b3JSA3RhZxIlCgh0YWdDb2xvchgKIAEoCzIJLlNlbGVjdG9yUgh0YWdDb2xvchIvCg1iYWRnZVNlbGVjdG9yGAsgASgLMgkuU2VsZWN0b3JSDWJhZGdlU2VsZWN0b3ISJwoJYmFkZ2VUZXh0GAwgASgLMgkuU2VsZWN0b3JSCWJhZGdlVGV4dBIpCgpiYWRnZUNvbG9yGA0gASgLMgkuU2VsZWN0b3JSCmJhZGdlQ29sb3ISNAoNZXh0cmFTZWxlY3RvchhjIAMoCzIOLkV4dHJhU2VsZWN0b3JSDWV4dHJhU2VsZWN0b3ISJQoIbmV4dFBhZ2UYDiABKAsyCS5TZWxlY3RvclIIbmV4dFBhZ2U=');
+final $typed_data.Uint8List listViewParserDescriptor = $convert.base64Decode('Cg5MaXN0Vmlld1BhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEiIKDGl0ZW1TZWxlY3RvchgCIAEoCVIMaXRlbVNlbGVjdG9yEh8KBXRpdGxlGAMgASgLMgkuU2VsZWN0b3JSBXRpdGxlEiUKCHN1YnRpdGxlGAQgASgLMgkuU2VsZWN0b3JSCHN1YnRpdGxlEikKCnVwbG9hZFRpbWUYBSABKAsyCS5TZWxlY3RvclIKdXBsb2FkVGltZRIdCgRzdGFyGAYgASgLMgkuU2VsZWN0b3JSBHN0YXISJQoIaW1nQ291bnQYByABKAsyCS5TZWxlY3RvclIIaW1nQ291bnQSLgoKcHJldmlld0ltZxgIIAEoCzIOLkltYWdlU2VsZWN0b3JSCnByZXZpZXdJbWcSGwoDdGFnGAkgASgLMgkuU2VsZWN0b3JSA3RhZxIlCgh0YWdDb2xvchgKIAEoCzIJLlNlbGVjdG9yUgh0YWdDb2xvchIvCg1iYWRnZVNlbGVjdG9yGAsgASgLMgkuU2VsZWN0b3JSDWJhZGdlU2VsZWN0b3ISJwoJYmFkZ2VUZXh0GAwgASgLMgkuU2VsZWN0b3JSCWJhZGdlVGV4dBIpCgpiYWRnZUNvbG9yGA0gASgLMgkuU2VsZWN0b3JSCmJhZGdlQ29sb3ISHwoFcGFwZXIYDiABKAsyCS5TZWxlY3RvclIFcGFwZXISJQoIbmV4dFBhZ2UYYiABKAsyCS5TZWxlY3RvclIIbmV4dFBhZ2USNAoNZXh0cmFTZWxlY3RvchhjIAMoCzIOLkV4dHJhU2VsZWN0b3JSDWV4dHJhU2VsZWN0b3I=');
 @$core.Deprecated('Use galleryParserDescriptor instead')
 const GalleryParser$json = const {
   '1': 'GalleryParser',

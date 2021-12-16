@@ -7,11 +7,8 @@ import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class RulesPageEdit extends GetView<RulesEditController> {
   const RulesPageEdit({

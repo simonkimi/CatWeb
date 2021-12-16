@@ -1,10 +1,11 @@
+import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/interface.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class SubPageModel implements PbAble {
+class SubPageModel implements PbAble, EnvMargeAble {
   SubPageModel([SiteSubPage? pb])
       : name = sobs(pb?.name),
         value = sobs(pb?.value);
@@ -17,6 +18,9 @@ class SubPageModel implements PbAble {
         name: name.value,
         value: value.value,
       );
+
+  @override
+  Map<String, String> get env => <String, String>{name.value: value.value};
 }
 
 class SitePageModel implements PbAble {

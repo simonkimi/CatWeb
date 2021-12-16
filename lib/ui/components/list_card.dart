@@ -40,7 +40,7 @@ class SimpleCard extends StatelessWidget {
               color: FixColor.title.resolveFrom(context),
             ),
           ),
-        if (model.tagList != null) buildTagList()
+        if (model.badgeList != null) buildTagList()
       ],
     );
 
@@ -70,7 +70,7 @@ class SimpleCard extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: 2,
           itemBuilder: (context, index) {
-            final e = model.tagList![index];
+            final e = model.badgeList![index];
             return Center(
               child: Container(
                 decoration: BoxDecoration(
@@ -128,11 +128,11 @@ class SimpleCard extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        if (model.badge != null)
+        if (model.paper != null)
           Positioned(
             left: 0,
             bottom: 0,
-            child: buildBadge(context),
+            child: buildPaper(context),
           ),
         if (model.category != null)
           Positioned(
@@ -143,7 +143,7 @@ class SimpleCard extends StatelessWidget {
     );
   }
 
-  Padding buildBadge(BuildContext context) {
+  Padding buildPaper(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(3),
       child: Container(
@@ -153,7 +153,7 @@ class SimpleCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(2),
         ),
         child: Text(
-          model.badge!,
+          model.paper!,
           style: const TextStyle(color: Colors.white, fontSize: 12),
         ),
       ),
@@ -329,7 +329,7 @@ class ExtendedCard extends StatelessWidget {
             ),
           ),
         const SizedBox(height: 3),
-        if (model.tagList != null) buildTagWrap(context),
+        if (model.badgeList != null) buildTagWrap(context),
       ],
     );
   }
@@ -347,7 +347,7 @@ class ExtendedCard extends StatelessWidget {
               height: 135,
             ),
           ),
-          if (model.badge != null)
+          if (model.paper != null)
             Positioned(
               right: 0,
               child: buildBadge(),
@@ -365,7 +365,7 @@ class ExtendedCard extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.black38, borderRadius: BorderRadius.circular(2)),
         child: Text(
-          model.badge!,
+          model.paper!,
           style: const TextStyle(color: Colors.white, fontSize: 12),
         ),
       ),
@@ -376,7 +376,7 @@ class ExtendedCard extends StatelessWidget {
     return Wrap(
       spacing: 2,
       runSpacing: 2,
-      children: model.tagList!.map((e) {
+      children: model.badgeList!.map((e) {
         return Badge(
           color: e.color,
           text: e.text,

@@ -1,15 +1,41 @@
+import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
+import 'package:catweb/network/parser_exec/list_parser_exec.dart';
+import 'package:catweb/ui/pages/view_page/viewer_list/viewer_list_model.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+
+class NetResult {}
 
 class NetClient {
   NetClient(SiteProtobufModel model) : dio = buildDio(model);
 
   final Dio dio;
 
+  Future<List<ViewerListModel>> getList({
+    required SitePageModel model,
+    required SubPageModel subPageModel,
+    required SiteEnvModel localEnv,
+  }) async {
+    final site = Get.find<SiteController>();
+    final env = site.globalEnv.create(localEnv);
+    final url = env.resolve(model.url.value)!;
+    final rsp = await dio.get<String>(url);
 
+    final data = rsp.data;
+
+    if (rsp.data == null) {
+      // TODO 处理为空的错误
+      throw Exception('data is null');
+    }
+
+    return ListParserExec(model: model, source: data!, env: env).exec();
+  }
 }
 
 Dio buildDio(SiteProtobufModel model) {

@@ -7,7 +7,6 @@ import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.d
 import 'package:catweb/ui/pages/rules_manager/rules_page/rules_page_manager.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_manager.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
