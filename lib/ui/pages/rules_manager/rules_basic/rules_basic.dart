@@ -37,6 +37,11 @@ class RulesBasic extends GetView<RulesEditController> {
           value: controller.rulesModel.loginCookie.value,
           minLine: 3,
         ),
+        const CupertinoDivider(height: 30),
+        CupertinoInput(
+          labelText: '更新Url',
+          value: controller.rulesModel.upgradeUrl,
+        ),
       ],
     );
   }

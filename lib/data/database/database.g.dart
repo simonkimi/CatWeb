@@ -183,25 +183,29 @@ class $SiteTableTable extends SiteTable
   final String? _alias;
   $SiteTableTable(this._db, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
   late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
       'id', aliasedName, false,
-      typeName: 'INTEGER',
+      type: const IntType(),
       requiredDuringInsert: false,
       defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
   final VerificationMeta _binMeta = const VerificationMeta('bin');
+  @override
   late final GeneratedColumn<Uint8List?> bin = GeneratedColumn<Uint8List?>(
       'bin', aliasedName, false,
-      typeName: 'BLOB', requiredDuringInsert: true);
+      type: const BlobType(), requiredDuringInsert: true);
   final VerificationMeta _faviconMeta = const VerificationMeta('favicon');
+  @override
   late final GeneratedColumn<Uint8List?> favicon = GeneratedColumn<Uint8List?>(
       'favicon', aliasedName, false,
-      typeName: 'BLOB',
+      type: const BlobType(),
       requiredDuringInsert: false,
       clientDefault: () => Uint8List.fromList([]));
   final VerificationMeta _lastOpenMeta = const VerificationMeta('lastOpen');
+  @override
   late final GeneratedColumn<int?> lastOpen = GeneratedColumn<int?>(
       'last_open', aliasedName, false,
-      typeName: 'INTEGER',
+      type: const IntType(),
       requiredDuringInsert: false,
       clientDefault: () => DateTime.now().millisecond);
   @override

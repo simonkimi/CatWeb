@@ -83,6 +83,7 @@ class SiteProtobuf extends $pb.GeneratedMessage {
     ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'version')
     ..pc<RegField>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'headers', $pb.PbFieldType.PM, subBuilder: RegField.create)
     ..pc<RegField>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cookies', $pb.PbFieldType.PM, subBuilder: RegField.create)
+    ..aOS(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'upgradeUrl', protoName: 'upgradeUrl')
     ..pc<$0.GalleryParser>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'galleryParsers', $pb.PbFieldType.PM, protoName: 'galleryParsers', subBuilder: $0.GalleryParser.create)
     ..pc<$0.ListViewParser>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'listViewParser', $pb.PbFieldType.PM, protoName: 'listViewParser', subBuilder: $0.ListViewParser.create)
     ..pc<$1.ActionCombine>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'actionList', $pb.PbFieldType.PM, protoName: 'actionList', subBuilder: $1.ActionCombine.create)
@@ -100,6 +101,7 @@ class SiteProtobuf extends $pb.GeneratedMessage {
     $core.String? version,
     $core.Iterable<RegField>? headers,
     $core.Iterable<RegField>? cookies,
+    $core.String? upgradeUrl,
     $core.Iterable<$0.GalleryParser>? galleryParsers,
     $core.Iterable<$0.ListViewParser>? listViewParser,
     $core.Iterable<$1.ActionCombine>? actionList,
@@ -127,6 +129,9 @@ class SiteProtobuf extends $pb.GeneratedMessage {
     }
     if (cookies != null) {
       _result.cookies.addAll(cookies);
+    }
+    if (upgradeUrl != null) {
+      _result.upgradeUrl = upgradeUrl;
     }
     if (galleryParsers != null) {
       _result.galleryParsers.addAll(galleryParsers);
@@ -219,19 +224,28 @@ class SiteProtobuf extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   $core.List<RegField> get cookies => $_getList(6);
 
+  @$pb.TagNumber(8)
+  $core.String get upgradeUrl => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set upgradeUrl($core.String v) { $_setString(7, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasUpgradeUrl() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearUpgradeUrl() => clearField(8);
+
   @$pb.TagNumber(10)
-  $core.List<$0.GalleryParser> get galleryParsers => $_getList(7);
+  $core.List<$0.GalleryParser> get galleryParsers => $_getList(8);
 
   @$pb.TagNumber(11)
-  $core.List<$0.ListViewParser> get listViewParser => $_getList(8);
+  $core.List<$0.ListViewParser> get listViewParser => $_getList(9);
 
   @$pb.TagNumber(12)
-  $core.List<$1.ActionCombine> get actionList => $_getList(9);
+  $core.List<$1.ActionCombine> get actionList => $_getList(10);
 
   @$pb.TagNumber(13)
-  $core.List<$2.SitePage> get pageList => $_getList(10);
+  $core.List<$2.SitePage> get pageList => $_getList(11);
 
   @$pb.TagNumber(14)
-  $core.List<$0.ImageParser> get imageParsers => $_getList(11);
+  $core.List<$0.ImageParser> get imageParsers => $_getList(12);
 }
 

@@ -34,6 +34,7 @@ class SiteProtobufModel implements PbAble {
         loginUrl = sobs(pb?.loginUrl),
         loginCookie = RegFieldModel(pb?.loginCookie),
         version = sobs(pb?.version),
+        upgradeUrl = sobs(pb?.upgradeUrl),
         galleryParsers = lobs(
             pb?.galleryParsers, (GalleryParser e) => GalleryParserModel(e)),
         listViewParser = lobs(
@@ -55,6 +56,7 @@ class SiteProtobufModel implements PbAble {
   final RxString loginUrl;
   final RegFieldModel loginCookie;
   final RxString version;
+  final RxString upgradeUrl;
 
   final RxList<RegFieldModel> cookies;
   final RxList<RegFieldModel> headers;
@@ -98,6 +100,7 @@ class SiteProtobufModel implements PbAble {
         loginUrl: loginUrl.value,
         loginCookie: loginCookie.toPb(),
         version: version.value,
+        upgradeUrl: upgradeUrl.value,
         galleryParsers: galleryParsers.map((e) => e.toPb()),
         listViewParser: listViewParser.map((e) => e.toPb()),
         actionList: actionList.map((e) => e.toPb()),

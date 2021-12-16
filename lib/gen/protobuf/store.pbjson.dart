@@ -28,6 +28,7 @@ const SiteProtobuf$json = const {
     const {'1': 'loginUrl', '3': 3, '4': 1, '5': 9, '10': 'loginUrl'},
     const {'1': 'loginCookie', '3': 4, '4': 1, '5': 11, '6': '.RegField', '10': 'loginCookie'},
     const {'1': 'version', '3': 5, '4': 1, '5': 9, '10': 'version'},
+    const {'1': 'upgradeUrl', '3': 8, '4': 1, '5': 9, '10': 'upgradeUrl'},
     const {'1': 'headers', '3': 6, '4': 3, '5': 11, '6': '.RegField', '10': 'headers'},
     const {'1': 'cookies', '3': 7, '4': 3, '5': 11, '6': '.RegField', '10': 'cookies'},
     const {'1': 'galleryParsers', '3': 10, '4': 3, '5': 11, '6': '.GalleryParser', '10': 'galleryParsers'},
@@ -39,4 +40,4 @@ const SiteProtobuf$json = const {
 };
 
 /// Descriptor for `SiteProtobuf`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List siteProtobufDescriptor = $convert.base64Decode('CgxTaXRlUHJvdG9idWYSEgoEbmFtZRgBIAEoCVIEbmFtZRIYCgdiYXNlVXJsGAIgASgJUgdiYXNlVXJsEhoKCGxvZ2luVXJsGAMgASgJUghsb2dpblVybBIrCgtsb2dpbkNvb2tpZRgEIAEoCzIJLlJlZ0ZpZWxkUgtsb2dpbkNvb2tpZRIYCgd2ZXJzaW9uGAUgASgJUgd2ZXJzaW9uEiMKB2hlYWRlcnMYBiADKAsyCS5SZWdGaWVsZFIHaGVhZGVycxIjCgdjb29raWVzGAcgAygLMgkuUmVnRmllbGRSB2Nvb2tpZXMSNgoOZ2FsbGVyeVBhcnNlcnMYCiADKAsyDi5HYWxsZXJ5UGFyc2VyUg5nYWxsZXJ5UGFyc2VycxI3Cg5saXN0Vmlld1BhcnNlchgLIAMoCzIPLkxpc3RWaWV3UGFyc2VyUg5saXN0Vmlld1BhcnNlchIwCgxpbWFnZVBhcnNlcnMYDiADKAsyDC5JbWFnZVBhcnNlclIMaW1hZ2VQYXJzZXJzEi4KCmFjdGlvbkxpc3QYDCADKAsyDi5BY3Rpb25Db21iaW5lUgphY3Rpb25MaXN0EiUKCHBhZ2VMaXN0GA0gAygLMgkuU2l0ZVBhZ2VSCHBhZ2VMaXN0');
+final $typed_data.Uint8List siteProtobufDescriptor = $convert.base64Decode('CgxTaXRlUHJvdG9idWYSEgoEbmFtZRgBIAEoCVIEbmFtZRIYCgdiYXNlVXJsGAIgASgJUgdiYXNlVXJsEhoKCGxvZ2luVXJsGAMgASgJUghsb2dpblVybBIrCgtsb2dpbkNvb2tpZRgEIAEoCzIJLlJlZ0ZpZWxkUgtsb2dpbkNvb2tpZRIYCgd2ZXJzaW9uGAUgASgJUgd2ZXJzaW9uEh4KCnVwZ3JhZGVVcmwYCCABKAlSCnVwZ3JhZGVVcmwSIwoHaGVhZGVycxgGIAMoCzIJLlJlZ0ZpZWxkUgdoZWFkZXJzEiMKB2Nvb2tpZXMYByADKAsyCS5SZWdGaWVsZFIHY29va2llcxI2Cg5nYWxsZXJ5UGFyc2VycxgKIAMoCzIOLkdhbGxlcnlQYXJzZXJSDmdhbGxlcnlQYXJzZXJzEjcKDmxpc3RWaWV3UGFyc2VyGAsgAygLMg8uTGlzdFZpZXdQYXJzZXJSDmxpc3RWaWV3UGFyc2VyEjAKDGltYWdlUGFyc2VycxgOIAMoCzIMLkltYWdlUGFyc2VyUgxpbWFnZVBhcnNlcnMSLgoKYWN0aW9uTGlzdBgMIAMoCzIOLkFjdGlvbkNvbWJpbmVSCmFjdGlvbkxpc3QSJQoIcGFnZUxpc3QYDSADKAsyCS5TaXRlUGFnZVIIcGFnZUxpc3Q=');
