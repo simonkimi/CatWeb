@@ -1,5 +1,7 @@
+import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SelectTileItem<T> {
   const SelectTileItem({
@@ -169,4 +171,62 @@ Future<bool> showExitConferDialog(BuildContext context) async {
         content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
       )) ==
       true;
+}
+
+Future<String?> showCupertinoIconDialog(BuildContext context) async {
+  var filter = '';
+  return showCupertinoDialog(
+    barrierDismissible: true,
+    context: context,
+    builder: (context) {
+      return CupertinoAlertDialog(
+        title: const Text('图标'),
+        content: StatefulBuilder(
+          builder: (context, setState) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(height: 5),
+                CupertinoTextField(
+                  prefix: Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Icon(
+                      CupertinoIcons.search,
+                      color: CupertinoColors.inactiveGray.resolveFrom(context),
+                      size: 15,
+                    ),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      filter = value;
+                    });
+                  },
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.6,
+                  child: GridView.extent(
+                    maxCrossAxisExtent: 50,
+                    padding: EdgeInsets.zero,
+                    children: cupertinoIcons.entries
+                        .where((e) => filter.isEmpty || e.key.contains(filter))
+                        .map((e) => AspectRatio(
+                              aspectRatio: 1,
+                              child: CupertinoButton(
+                                padding: EdgeInsets.zero,
+                                child: Icon(e.value),
+                                onPressed: () {
+                                  Get.back(result: e.key);
+                                },
+                              ),
+                            ))
+                        .toList(),
+                  ),
+                )
+              ],
+            );
+          },
+        ),
+      );
+    },
+  );
 }

@@ -81,6 +81,8 @@ class SitePage extends $pb.GeneratedMessage {
     ..e<PageTemplate>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: PageTemplate.imageList, valueOf: PageTemplate.valueOf, enumValues: PageTemplate.values)
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'parser')
     ..pc<SiteSubPage>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subPage', $pb.PbFieldType.PM, protoName: 'subPage', subBuilder: SiteSubPage.create)
+    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'icon')
+    ..e<SiteDisplayType>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'display', $pb.PbFieldType.OE, defaultOrMaker: SiteDisplayType.show, valueOf: SiteDisplayType.valueOf, enumValues: SiteDisplayType.values)
     ..hasRequiredFields = false
   ;
 
@@ -91,6 +93,8 @@ class SitePage extends $pb.GeneratedMessage {
     PageTemplate? type,
     $core.String? parser,
     $core.Iterable<SiteSubPage>? subPage,
+    $core.String? icon,
+    SiteDisplayType? display,
   }) {
     final _result = create();
     if (name != null) {
@@ -107,6 +111,12 @@ class SitePage extends $pb.GeneratedMessage {
     }
     if (subPage != null) {
       _result.subPage.addAll(subPage);
+    }
+    if (icon != null) {
+      _result.icon = icon;
+    }
+    if (display != null) {
+      _result.display = display;
     }
     return _result;
   }
@@ -169,5 +179,23 @@ class SitePage extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   $core.List<SiteSubPage> get subPage => $_getList(4);
+
+  @$pb.TagNumber(6)
+  $core.String get icon => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set icon($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasIcon() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearIcon() => clearField(6);
+
+  @$pb.TagNumber(7)
+  SiteDisplayType get display => $_getN(6);
+  @$pb.TagNumber(7)
+  set display(SiteDisplayType v) { setField(7, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasDisplay() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearDisplay() => clearField(7);
 }
 

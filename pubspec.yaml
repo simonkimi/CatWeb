@@ -16,7 +16,6 @@ dependencies:
     sdk: flutter
 
   # ui
-  font_awesome_flutter: ^9.2.0
   flutter_speed_dial: ^4.5.0
   flutter_rating_bar: ^4.0.0
   flutter_linkify: ^5.0.2

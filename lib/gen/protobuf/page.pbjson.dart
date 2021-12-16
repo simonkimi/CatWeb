@@ -20,6 +20,19 @@ const PageTemplate$json = const {
 
 /// Descriptor for `PageTemplate`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List pageTemplateDescriptor = $convert.base64Decode('CgxQYWdlVGVtcGxhdGUSDQoJaW1hZ2VMaXN0EAASEgoOaW1hZ2VXYXRlcmZhbGwQARIKCgZkZXRhaWwQAg==');
+@$core.Deprecated('Use siteDisplayTypeDescriptor instead')
+const SiteDisplayType$json = const {
+  '1': 'SiteDisplayType',
+  '2': const [
+    const {'1': 'show', '2': 0},
+    const {'1': 'shrink', '2': 1},
+    const {'1': 'showWhenPossible', '2': 2},
+    const {'1': 'hide', '2': 3},
+  ],
+};
+
+/// Descriptor for `SiteDisplayType`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List siteDisplayTypeDescriptor = $convert.base64Decode('Cg9TaXRlRGlzcGxheVR5cGUSCAoEc2hvdxAAEgoKBnNocmluaxABEhQKEHNob3dXaGVuUG9zc2libGUQAhIICgRoaWRlEAM=');
 @$core.Deprecated('Use siteSubPageDescriptor instead')
 const SiteSubPage$json = const {
   '1': 'SiteSubPage',
@@ -40,8 +53,10 @@ const SitePage$json = const {
     const {'1': 'type', '3': 3, '4': 1, '5': 14, '6': '.PageTemplate', '10': 'type'},
     const {'1': 'parser', '3': 4, '4': 1, '5': 9, '10': 'parser'},
     const {'1': 'subPage', '3': 5, '4': 3, '5': 11, '6': '.SiteSubPage', '10': 'subPage'},
+    const {'1': 'icon', '3': 6, '4': 1, '5': 9, '10': 'icon'},
+    const {'1': 'display', '3': 7, '4': 1, '5': 14, '6': '.SiteDisplayType', '10': 'display'},
   ],
 };
 
 /// Descriptor for `SitePage`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List sitePageDescriptor = $convert.base64Decode('CghTaXRlUGFnZRISCgRuYW1lGAEgASgJUgRuYW1lEhAKA3VybBgCIAEoCVIDdXJsEiEKBHR5cGUYAyABKA4yDS5QYWdlVGVtcGxhdGVSBHR5cGUSFgoGcGFyc2VyGAQgASgJUgZwYXJzZXISJgoHc3ViUGFnZRgFIAMoCzIMLlNpdGVTdWJQYWdlUgdzdWJQYWdl');
+final $typed_data.Uint8List sitePageDescriptor = $convert.base64Decode('CghTaXRlUGFnZRISCgRuYW1lGAEgASgJUgRuYW1lEhAKA3VybBgCIAEoCVIDdXJsEiEKBHR5cGUYAyABKA4yDS5QYWdlVGVtcGxhdGVSBHR5cGUSFgoGcGFyc2VyGAQgASgJUgZwYXJzZXISJgoHc3ViUGFnZRgFIAMoCzIMLlNpdGVTdWJQYWdlUgdzdWJQYWdlEhIKBGljb24YBiABKAlSBGljb24SKgoHZGlzcGxheRgHIAEoDjIQLlNpdGVEaXNwbGF5VHlwZVIHZGlzcGxheQ==');

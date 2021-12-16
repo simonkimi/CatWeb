@@ -7,7 +7,6 @@ import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.d
 import 'package:catweb/ui/pages/rules_manager/rules_page/rules_page_manager.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_manager.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../../../../i18n.dart';
@@ -62,7 +61,7 @@ class RulesEditPage extends StatelessWidget {
       middle: const Text('规则编辑'),
       trailing: CupertinoButton(
         onPressed: () => save(context),
-        child: const Icon(FontAwesomeIcons.save, size: 20),
+        child: const Text('保存', style: TextStyle(fontSize: 15)),
         padding: EdgeInsets.zero,
         minSize: 0,
       ),

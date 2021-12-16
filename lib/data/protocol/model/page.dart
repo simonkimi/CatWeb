@@ -29,13 +29,17 @@ class SitePageModel implements PbAble {
         url = sobs(pb?.url),
         type = pb?.type.obs ?? PageTemplate.imageList.obs,
         parser = sobs(pb?.parser),
-        subPages = lobs(pb?.subPage, (SiteSubPage pb) => SubPageModel(pb));
+        subPages = lobs(pb?.subPage, (SiteSubPage pb) => SubPageModel(pb)),
+        icon = sobs(pb?.icon),
+        display = pb?.display.obs ?? SiteDisplayType.show.obs;
 
   final RxString name;
   final RxString url;
   final Rx<PageTemplate> type;
   final RxString parser;
   final RxList<SubPageModel> subPages;
+  final RxString icon;
+  final Rx<SiteDisplayType> display;
 
   @override
   SitePage toPb() => SitePage(
@@ -44,6 +48,8 @@ class SitePageModel implements PbAble {
         url: url.value,
         parser: parser.value,
         subPage: subPages.map((SubPageModel p) => p.toPb()).toList(),
+        icon: icon.value,
+        display: display.value,
       );
 
   bool isValid() => name.value.isNotEmpty && parser.value.isNotEmpty;
@@ -59,6 +65,22 @@ extension PageTemplateTr on PageTemplate {
       case PageTemplate.imageWaterfall:
       default:
         return '图片瀑布流';
+    }
+  }
+}
+
+extension SiteDisplayTypeTr on SiteDisplayType {
+  String string(BuildContext context) {
+    switch (this) {
+      case SiteDisplayType.show:
+        return '总是显示';
+      case SiteDisplayType.shrink:
+        return '总是折叠';
+      case SiteDisplayType.hide:
+        return '隐藏';
+      case SiteDisplayType.showWhenPossible:
+      default:
+        return '有空间则显示';
     }
   }
 }

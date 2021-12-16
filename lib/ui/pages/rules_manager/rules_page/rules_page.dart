@@ -6,9 +6,12 @@ import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
+import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
+
+import '../../../../themes.dart';
 
 class RulesPageEdit extends GetView<RulesEditController> {
   const RulesPageEdit({
@@ -150,6 +153,49 @@ class RulesPageEdit extends GetView<RulesEditController> {
                 value: model.parser.value,
                 onTap: () => onParserTap(context),
               )),
+          const CupertinoDivider(height: 20),
+          Obx(() => CupertinoReadOnlyInput(
+                labelText: '显示方式',
+                value: model.display.value.string(context),
+                onTap: () => onDisplayTap(context),
+              )),
+          buildIcon(context),
+        ],
+      ),
+    );
+  }
+
+  Widget buildIcon(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '图标',
+            style: TextStyle(
+                color: FixColor.title.resolveFrom(context), fontSize: 13),
+          ),
+          const SizedBox(height: 3),
+          Row(
+            children: [
+              CupertinoButton(
+                color: CupertinoColors.systemGroupedBackground
+                    .resolveFrom(context),
+                padding: EdgeInsets.zero,
+                child: Obx(() => Icon(
+                  cupertinoIcons[model.icon.value] ?? CupertinoIcons.question,
+                  color: CupertinoColors.systemBlue.resolveFrom(context),
+                )),
+                onPressed: () async {
+                  final result = await showCupertinoIconDialog(context);
+                  if (result != null && result.isNotEmpty) {
+                    model.icon.value = result;
+                  }
+                },
+              )
+            ],
+          )
         ],
       ),
     );
@@ -209,6 +255,22 @@ class RulesPageEdit extends GetView<RulesEditController> {
     );
     if (result != null) {
       model.parser.value = result;
+    }
+  }
+
+  Future<void> onDisplayTap(BuildContext context) async {
+    final result = await showCupertinoSelectDialog<SiteDisplayType>(
+      title: '显示方式',
+      context: context,
+      items: SiteDisplayType.values
+          .map((e) => SelectTileItem<SiteDisplayType>(
+              title: e.string(context), value: e))
+          .toList(),
+      cancelText: '取消',
+    );
+
+    if (result != null) {
+      model.display.value = result;
     }
   }
 }
