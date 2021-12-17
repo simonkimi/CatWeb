@@ -7,23 +7,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:xpath_selector/xpath_selector.dart';
 
-import 'eh_sample.dart';
+import 'list_sample.dart';
 
 void main() {
   test('parser', () async {
     final jsRuntime = JsRuntime(dio: Dio());
     final root = XPath.html(sampleHtml);
 
-    final title = SelectorModel(Selector(
-      selector: '#gn',
-      function: SelectorFunction.text,
+    final star = SelectorModel(Selector(
+      selector: 'div .ir',
+      function: SelectorFunction.attr,
+      param: 'style',
+      regex: r'background-position:-?(\d+)px -?(\d+)px',
+      replace: r'5-$1/16-($2-1)/40',
+      computed: true,
     ));
 
-    final subtitle = SelectorModel(Selector(
-      selector: "//div[@id='gdn']/a/text()",
-    ));
-
-    final exec = DomSelectorExec<Node>(jsRuntime: jsRuntime, selector: subtitle);
+    final exec = DomSelectorExec<Node>(jsRuntime: jsRuntime, selector: star);
 
     final result = await exec.find(root.root);
 

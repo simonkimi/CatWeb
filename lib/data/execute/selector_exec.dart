@@ -1,6 +1,7 @@
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:catweb/utils/utils.dart';
+import 'package:expressions/expressions.dart';
 import 'package:xml/xml.dart';
 import 'package:xpath_selector/xpath_selector.dart';
 import 'package:html/dom.dart';
@@ -44,7 +45,6 @@ class DomSelectorExec<T> {
       // xpath选择器
       functionResult = [_callFunction(root.queryXPath(path))];
     } else if (root.node is Element) {
-      print((root.node as Element).querySelectorAll(selector.selector.value));
       final Element? query = (root.node as Element)
           .querySelectorAll(selector.selector.value)
           .index(0);
@@ -52,21 +52,31 @@ class DomSelectorExec<T> {
         functionResult = [];
       } else {
         functionResult = [
-          _callFunction(XPathResult<Node>(
-              [HtmlNodeTree(query)], []))
+          _callFunction(XPathResult<Node>([HtmlNodeTree(query)], []))
         ];
       }
     } else {
       throw UnsupportedError('Xml只能使用XPath选择器, 且必须以\'/\'开头');
     }
 
-    return (await Future.wait(functionResult
-            .whereType<String>()
-            .map(_callReg)
-            .whereType<String>()
-            .map(_callJs)))
+    return (await Future.wait(
+            functionResult.map(_callReg).map(_callComputed).map(_callJs)))
         .whereType<String>()
         .toList();
+  }
+
+  String? _callComputed(String? input) {
+    if (input == null) return null;
+    if (selector.computed.value) {
+      try {
+        final result =
+            const ExpressionEvaluator().eval(Expression.parse(input), {});
+        return result.toString();
+      } on Exception {
+        return null;
+      }
+    }
+    return input;
   }
 
   String? _callFunction<E>(XPathResult<E> result) {
@@ -105,18 +115,18 @@ class DomSelectorExec<T> {
     }
   }
 
-  String? _callReg(String input) {
+  String? _callReg(String? input) {
+    if (input == null) return null;
     if (selector.regex.value.isNotEmpty) {
       final RegExp reg = RegExp(selector.regex.value);
-      final match = reg.allMatches(input).toList();
-      if (match.isEmpty) return null;
+      final match = reg.firstMatch(input);
+      if (match == null) return null;
       if (selector.replace.value.isEmpty) {
-        final m = match[0];
-        return m.group(m.groupCount)!;
+        return match.group(0);
       } else {
         var rep = selector.replace.value;
-        for (var i = match.length; i >= 1; i--) {
-          rep = rep.replaceAll('\$$i', match[i - 1][1]!);
+        for (var i = match.groupCount; i >= 1; i--) {
+          rep = rep.replaceAll('\$$i', match.group(i)!);
         }
         return rep;
       }
@@ -125,7 +135,8 @@ class DomSelectorExec<T> {
     }
   }
 
-  Future<String?> _callJs(String input) async {
+  Future<String?> _callJs(String? input) async {
+    if (input == null) return null;
     if (selector.js.value.isNotEmpty) {
       return await jsRuntime.exec(selector.js.value, input);
     } else {

@@ -52,6 +52,7 @@ dependencies:
   flutter_js: ^0.5.0+3
   synchronized: ^3.0.0
   flutter_qjs: ^0.3.6
+  expressions: ^0.2.3
 
 
 dev_dependencies:
