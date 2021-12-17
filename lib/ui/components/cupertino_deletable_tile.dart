@@ -76,7 +76,8 @@ class CupertinoDeletableTile extends StatelessWidget {
           key: UniqueKey(),
           controller: controller,
           index: index,
-          backgroundColor: CupertinoColors.systemBackground.resolveFrom(context),
+          backgroundColor:
+              CupertinoColors.systemBackground.resolveFrom(context),
           child: buildListBody(
             padding: 15,
             icon: CupertinoButton(

@@ -184,9 +184,10 @@ class RulesPageEdit extends GetView<RulesEditController> {
                     .resolveFrom(context),
                 padding: EdgeInsets.zero,
                 child: Obx(() => Icon(
-                  cupertinoIcons[model.icon.value] ?? CupertinoIcons.question,
-                  color: CupertinoColors.systemBlue.resolveFrom(context),
-                )),
+                      cupertinoIcons[model.icon.value] ??
+                          CupertinoIcons.question,
+                      color: CupertinoColors.systemBlue.resolveFrom(context),
+                    )),
                 onPressed: () async {
                   final result = await showCupertinoIconDialog(context);
                   if (result != null && result.isNotEmpty) {

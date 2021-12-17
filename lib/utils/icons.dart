@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -159,7 +157,8 @@ const cupertinoIcons = <String, IconData>{
   'archivebox_fill': CupertinoIcons.archivebox_fill,
   'arrow_2_circlepath': CupertinoIcons.arrow_2_circlepath,
   'arrow_2_circlepath_circle': CupertinoIcons.arrow_2_circlepath_circle,
-  'arrow_2_circlepath_circle_fill': CupertinoIcons.arrow_2_circlepath_circle_fill,
+  'arrow_2_circlepath_circle_fill':
+      CupertinoIcons.arrow_2_circlepath_circle_fill,
   'arrow_2_squarepath': CupertinoIcons.arrow_2_squarepath,
   'arrow_3_trianglepath': CupertinoIcons.arrow_3_trianglepath,
   'arrow_branch': CupertinoIcons.arrow_branch,
@@ -168,7 +167,8 @@ const cupertinoIcons = <String, IconData>{
   'arrow_clockwise_circle_fill': CupertinoIcons.arrow_clockwise_circle_fill,
   'arrow_counterclockwise': CupertinoIcons.arrow_counterclockwise,
   'arrow_counterclockwise_circle': CupertinoIcons.arrow_counterclockwise_circle,
-  'arrow_counterclockwise_circle_fill': CupertinoIcons.arrow_counterclockwise_circle_fill,
+  'arrow_counterclockwise_circle_fill':
+      CupertinoIcons.arrow_counterclockwise_circle_fill,
   'arrow_down': CupertinoIcons.arrow_down,
   'arrow_down_circle': CupertinoIcons.arrow_down_circle,
   'arrow_down_circle_fill': CupertinoIcons.arrow_down_circle_fill,
@@ -180,7 +180,8 @@ const cupertinoIcons = <String, IconData>{
   'arrow_down_left_square': CupertinoIcons.arrow_down_left_square,
   'arrow_down_left_square_fill': CupertinoIcons.arrow_down_left_square_fill,
   'arrow_down_right': CupertinoIcons.arrow_down_right,
-  'arrow_down_right_arrow_up_left': CupertinoIcons.arrow_down_right_arrow_up_left,
+  'arrow_down_right_arrow_up_left':
+      CupertinoIcons.arrow_down_right_arrow_up_left,
   'arrow_down_right_circle': CupertinoIcons.arrow_down_right_circle,
   'arrow_down_right_circle_fill': CupertinoIcons.arrow_down_right_circle_fill,
   'arrow_down_right_square': CupertinoIcons.arrow_down_right_square,
@@ -205,9 +206,11 @@ const cupertinoIcons = <String, IconData>{
   'arrow_right': CupertinoIcons.arrow_right,
   'arrow_right_arrow_left': CupertinoIcons.arrow_right_arrow_left,
   'arrow_right_arrow_left_circle': CupertinoIcons.arrow_right_arrow_left_circle,
-  'arrow_right_arrow_left_circle_fill': CupertinoIcons.arrow_right_arrow_left_circle_fill,
+  'arrow_right_arrow_left_circle_fill':
+      CupertinoIcons.arrow_right_arrow_left_circle_fill,
   'arrow_right_arrow_left_square': CupertinoIcons.arrow_right_arrow_left_square,
-  'arrow_right_arrow_left_square_fill': CupertinoIcons.arrow_right_arrow_left_square_fill,
+  'arrow_right_arrow_left_square_fill':
+      CupertinoIcons.arrow_right_arrow_left_square_fill,
   'arrow_right_circle': CupertinoIcons.arrow_right_circle,
   'arrow_right_circle_fill': CupertinoIcons.arrow_right_circle_fill,
   'arrow_right_square': CupertinoIcons.arrow_right_square,
@@ -226,9 +229,11 @@ const cupertinoIcons = <String, IconData>{
   'arrow_up': CupertinoIcons.arrow_up,
   'arrow_up_arrow_down': CupertinoIcons.arrow_up_arrow_down,
   'arrow_up_arrow_down_circle': CupertinoIcons.arrow_up_arrow_down_circle,
-  'arrow_up_arrow_down_circle_fill': CupertinoIcons.arrow_up_arrow_down_circle_fill,
+  'arrow_up_arrow_down_circle_fill':
+      CupertinoIcons.arrow_up_arrow_down_circle_fill,
   'arrow_up_arrow_down_square': CupertinoIcons.arrow_up_arrow_down_square,
-  'arrow_up_arrow_down_square_fill': CupertinoIcons.arrow_up_arrow_down_square_fill,
+  'arrow_up_arrow_down_square_fill':
+      CupertinoIcons.arrow_up_arrow_down_square_fill,
   'arrow_up_bin': CupertinoIcons.arrow_up_bin,
   'arrow_up_bin_fill': CupertinoIcons.arrow_up_bin_fill,
   'arrow_up_circle': CupertinoIcons.arrow_up_circle,
@@ -241,7 +246,8 @@ const cupertinoIcons = <String, IconData>{
   'arrow_up_down_square': CupertinoIcons.arrow_up_down_square,
   'arrow_up_down_square_fill': CupertinoIcons.arrow_up_down_square_fill,
   'arrow_up_left': CupertinoIcons.arrow_up_left,
-  'arrow_up_left_arrow_down_right': CupertinoIcons.arrow_up_left_arrow_down_right,
+  'arrow_up_left_arrow_down_right':
+      CupertinoIcons.arrow_up_left_arrow_down_right,
   'arrow_up_left_circle': CupertinoIcons.arrow_up_left_circle,
   'arrow_up_left_circle_fill': CupertinoIcons.arrow_up_left_circle_fill,
   'arrow_up_left_square': CupertinoIcons.arrow_up_left_square,
@@ -279,32 +285,43 @@ const cupertinoIcons = <String, IconData>{
   'arrow_uturn_up_square_fill': CupertinoIcons.arrow_uturn_up_square_fill,
   'arrowshape_turn_up_left': CupertinoIcons.arrowshape_turn_up_left,
   'arrowshape_turn_up_left_2': CupertinoIcons.arrowshape_turn_up_left_2,
-  'arrowshape_turn_up_left_2_fill': CupertinoIcons.arrowshape_turn_up_left_2_fill,
-  'arrowshape_turn_up_left_circle': CupertinoIcons.arrowshape_turn_up_left_circle,
-  'arrowshape_turn_up_left_circle_fill': CupertinoIcons.arrowshape_turn_up_left_circle_fill,
+  'arrowshape_turn_up_left_2_fill':
+      CupertinoIcons.arrowshape_turn_up_left_2_fill,
+  'arrowshape_turn_up_left_circle':
+      CupertinoIcons.arrowshape_turn_up_left_circle,
+  'arrowshape_turn_up_left_circle_fill':
+      CupertinoIcons.arrowshape_turn_up_left_circle_fill,
   'arrowshape_turn_up_left_fill': CupertinoIcons.arrowshape_turn_up_left_fill,
   'arrowshape_turn_up_right': CupertinoIcons.arrowshape_turn_up_right,
-  'arrowshape_turn_up_right_circle': CupertinoIcons.arrowshape_turn_up_right_circle,
-  'arrowshape_turn_up_right_circle_fill': CupertinoIcons.arrowshape_turn_up_right_circle_fill,
+  'arrowshape_turn_up_right_circle':
+      CupertinoIcons.arrowshape_turn_up_right_circle,
+  'arrowshape_turn_up_right_circle_fill':
+      CupertinoIcons.arrowshape_turn_up_right_circle_fill,
   'arrowshape_turn_up_right_fill': CupertinoIcons.arrowshape_turn_up_right_fill,
   'arrowtriangle_down': CupertinoIcons.arrowtriangle_down,
   'arrowtriangle_down_circle': CupertinoIcons.arrowtriangle_down_circle,
-  'arrowtriangle_down_circle_fill': CupertinoIcons.arrowtriangle_down_circle_fill,
+  'arrowtriangle_down_circle_fill':
+      CupertinoIcons.arrowtriangle_down_circle_fill,
   'arrowtriangle_down_fill': CupertinoIcons.arrowtriangle_down_fill,
   'arrowtriangle_down_square': CupertinoIcons.arrowtriangle_down_square,
-  'arrowtriangle_down_square_fill': CupertinoIcons.arrowtriangle_down_square_fill,
+  'arrowtriangle_down_square_fill':
+      CupertinoIcons.arrowtriangle_down_square_fill,
   'arrowtriangle_left': CupertinoIcons.arrowtriangle_left,
   'arrowtriangle_left_circle': CupertinoIcons.arrowtriangle_left_circle,
-  'arrowtriangle_left_circle_fill': CupertinoIcons.arrowtriangle_left_circle_fill,
+  'arrowtriangle_left_circle_fill':
+      CupertinoIcons.arrowtriangle_left_circle_fill,
   'arrowtriangle_left_fill': CupertinoIcons.arrowtriangle_left_fill,
   'arrowtriangle_left_square': CupertinoIcons.arrowtriangle_left_square,
-  'arrowtriangle_left_square_fill': CupertinoIcons.arrowtriangle_left_square_fill,
+  'arrowtriangle_left_square_fill':
+      CupertinoIcons.arrowtriangle_left_square_fill,
   'arrowtriangle_right': CupertinoIcons.arrowtriangle_right,
   'arrowtriangle_right_circle': CupertinoIcons.arrowtriangle_right_circle,
-  'arrowtriangle_right_circle_fill': CupertinoIcons.arrowtriangle_right_circle_fill,
+  'arrowtriangle_right_circle_fill':
+      CupertinoIcons.arrowtriangle_right_circle_fill,
   'arrowtriangle_right_fill': CupertinoIcons.arrowtriangle_right_fill,
   'arrowtriangle_right_square': CupertinoIcons.arrowtriangle_right_square,
-  'arrowtriangle_right_square_fill': CupertinoIcons.arrowtriangle_right_square_fill,
+  'arrowtriangle_right_square_fill':
+      CupertinoIcons.arrowtriangle_right_square_fill,
   'arrowtriangle_up': CupertinoIcons.arrowtriangle_up,
   'arrowtriangle_up_circle': CupertinoIcons.arrowtriangle_up_circle,
   'arrowtriangle_up_circle_fill': CupertinoIcons.arrowtriangle_up_circle_fill,
@@ -458,7 +475,8 @@ const cupertinoIcons = <String, IconData>{
   'chevron_left_2': CupertinoIcons.chevron_left_2,
   'chevron_left_circle': CupertinoIcons.chevron_left_circle,
   'chevron_left_circle_fill': CupertinoIcons.chevron_left_circle_fill,
-  'chevron_left_slash_chevron_right': CupertinoIcons.chevron_left_slash_chevron_right,
+  'chevron_left_slash_chevron_right':
+      CupertinoIcons.chevron_left_slash_chevron_right,
   'chevron_left_square': CupertinoIcons.chevron_left_square,
   'chevron_left_square_fill': CupertinoIcons.chevron_left_square_fill,
   'chevron_right': CupertinoIcons.chevron_right,
@@ -769,8 +787,10 @@ const cupertinoIcons = <String, IconData>{
   'lightbulb_slash_fill': CupertinoIcons.lightbulb_slash_fill,
   'line_horizontal_3': CupertinoIcons.line_horizontal_3,
   'line_horizontal_3_decrease': CupertinoIcons.line_horizontal_3_decrease,
-  'line_horizontal_3_decrease_circle': CupertinoIcons.line_horizontal_3_decrease_circle,
-  'line_horizontal_3_decrease_circle_fill': CupertinoIcons.line_horizontal_3_decrease_circle_fill,
+  'line_horizontal_3_decrease_circle':
+      CupertinoIcons.line_horizontal_3_decrease_circle,
+  'line_horizontal_3_decrease_circle_fill':
+      CupertinoIcons.line_horizontal_3_decrease_circle_fill,
   'link': CupertinoIcons.link,
   'link_circle': CupertinoIcons.link_circle,
   'link_circle_fill': CupertinoIcons.link_circle_fill,
@@ -903,17 +923,26 @@ const cupertinoIcons = <String, IconData>{
   'person_circle': CupertinoIcons.person_circle,
   'person_circle_fill': CupertinoIcons.person_circle_fill,
   'person_crop_circle': CupertinoIcons.person_crop_circle,
-  'person_crop_circle_badge_checkmark': CupertinoIcons.person_crop_circle_badge_checkmark,
-  'person_crop_circle_badge_exclam': CupertinoIcons.person_crop_circle_badge_exclam,
-  'person_crop_circle_badge_minus': CupertinoIcons.person_crop_circle_badge_minus,
+  'person_crop_circle_badge_checkmark':
+      CupertinoIcons.person_crop_circle_badge_checkmark,
+  'person_crop_circle_badge_exclam':
+      CupertinoIcons.person_crop_circle_badge_exclam,
+  'person_crop_circle_badge_minus':
+      CupertinoIcons.person_crop_circle_badge_minus,
   'person_crop_circle_badge_plus': CupertinoIcons.person_crop_circle_badge_plus,
-  'person_crop_circle_badge_xmark': CupertinoIcons.person_crop_circle_badge_xmark,
+  'person_crop_circle_badge_xmark':
+      CupertinoIcons.person_crop_circle_badge_xmark,
   'person_crop_circle_fill': CupertinoIcons.person_crop_circle_fill,
-  'person_crop_circle_fill_badge_checkmark': CupertinoIcons.person_crop_circle_fill_badge_checkmark,
-  'person_crop_circle_fill_badge_exclam': CupertinoIcons.person_crop_circle_fill_badge_exclam,
-  'person_crop_circle_fill_badge_minus': CupertinoIcons.person_crop_circle_fill_badge_minus,
-  'person_crop_circle_fill_badge_plus': CupertinoIcons.person_crop_circle_fill_badge_plus,
-  'person_crop_circle_fill_badge_xmark': CupertinoIcons.person_crop_circle_fill_badge_xmark,
+  'person_crop_circle_fill_badge_checkmark':
+      CupertinoIcons.person_crop_circle_fill_badge_checkmark,
+  'person_crop_circle_fill_badge_exclam':
+      CupertinoIcons.person_crop_circle_fill_badge_exclam,
+  'person_crop_circle_fill_badge_minus':
+      CupertinoIcons.person_crop_circle_fill_badge_minus,
+  'person_crop_circle_fill_badge_plus':
+      CupertinoIcons.person_crop_circle_fill_badge_plus,
+  'person_crop_circle_fill_badge_xmark':
+      CupertinoIcons.person_crop_circle_fill_badge_xmark,
   'person_crop_rectangle': CupertinoIcons.person_crop_rectangle,
   'person_crop_rectangle_fill': CupertinoIcons.person_crop_rectangle_fill,
   'person_crop_square': CupertinoIcons.person_crop_square,
@@ -964,12 +993,14 @@ const cupertinoIcons = <String, IconData>{
   'plus_circle_fill': CupertinoIcons.plus_circle_fill,
   'plus_rectangle': CupertinoIcons.plus_rectangle,
   'plus_rectangle_fill': CupertinoIcons.plus_rectangle_fill,
-  'plus_rectangle_fill_on_rectangle_fill': CupertinoIcons.plus_rectangle_fill_on_rectangle_fill,
+  'plus_rectangle_fill_on_rectangle_fill':
+      CupertinoIcons.plus_rectangle_fill_on_rectangle_fill,
   'plus_rectangle_on_rectangle': CupertinoIcons.plus_rectangle_on_rectangle,
   'plus_slash_minus': CupertinoIcons.plus_slash_minus,
   'plus_square': CupertinoIcons.plus_square,
   'plus_square_fill': CupertinoIcons.plus_square_fill,
-  'plus_square_fill_on_square_fill': CupertinoIcons.plus_square_fill_on_square_fill,
+  'plus_square_fill_on_square_fill':
+      CupertinoIcons.plus_square_fill_on_square_fill,
   'plus_square_on_square': CupertinoIcons.plus_square_on_square,
   'plusminus': CupertinoIcons.plusminus,
   'plusminus_circle': CupertinoIcons.plusminus_circle,
@@ -999,18 +1030,23 @@ const cupertinoIcons = <String, IconData>{
   'rectangle': CupertinoIcons.rectangle,
   'rectangle_3_offgrid': CupertinoIcons.rectangle_3_offgrid,
   'rectangle_3_offgrid_fill': CupertinoIcons.rectangle_3_offgrid_fill,
-  'rectangle_arrow_up_right_arrow_down_left': CupertinoIcons.rectangle_arrow_up_right_arrow_down_left,
-  'rectangle_arrow_up_right_arrow_down_left_slash': CupertinoIcons.rectangle_arrow_up_right_arrow_down_left_slash,
+  'rectangle_arrow_up_right_arrow_down_left':
+      CupertinoIcons.rectangle_arrow_up_right_arrow_down_left,
+  'rectangle_arrow_up_right_arrow_down_left_slash':
+      CupertinoIcons.rectangle_arrow_up_right_arrow_down_left_slash,
   'rectangle_badge_checkmark': CupertinoIcons.rectangle_badge_checkmark,
   'rectangle_badge_xmark': CupertinoIcons.rectangle_badge_xmark,
   'rectangle_compress_vertical': CupertinoIcons.rectangle_compress_vertical,
   'rectangle_dock': CupertinoIcons.rectangle_dock,
   'rectangle_expand_vertical': CupertinoIcons.rectangle_expand_vertical,
   'rectangle_fill': CupertinoIcons.rectangle_fill,
-  'rectangle_fill_badge_checkmark': CupertinoIcons.rectangle_fill_badge_checkmark,
+  'rectangle_fill_badge_checkmark':
+      CupertinoIcons.rectangle_fill_badge_checkmark,
   'rectangle_fill_badge_xmark': CupertinoIcons.rectangle_fill_badge_xmark,
-  'rectangle_fill_on_rectangle_angled_fill': CupertinoIcons.rectangle_fill_on_rectangle_angled_fill,
-  'rectangle_fill_on_rectangle_fill': CupertinoIcons.rectangle_fill_on_rectangle_fill,
+  'rectangle_fill_on_rectangle_angled_fill':
+      CupertinoIcons.rectangle_fill_on_rectangle_angled_fill,
+  'rectangle_fill_on_rectangle_fill':
+      CupertinoIcons.rectangle_fill_on_rectangle_fill,
   'rectangle_grid_1x2': CupertinoIcons.rectangle_grid_1x2,
   'rectangle_grid_1x2_fill': CupertinoIcons.rectangle_grid_1x2_fill,
   'rectangle_grid_2x2': CupertinoIcons.rectangle_grid_2x2,
@@ -1026,14 +1062,19 @@ const cupertinoIcons = <String, IconData>{
   'rectangle_split_3x3_fill': CupertinoIcons.rectangle_split_3x3_fill,
   'rectangle_stack': CupertinoIcons.rectangle_stack,
   'rectangle_stack_badge_minus': CupertinoIcons.rectangle_stack_badge_minus,
-  'rectangle_stack_badge_person_crop': CupertinoIcons.rectangle_stack_badge_person_crop,
+  'rectangle_stack_badge_person_crop':
+      CupertinoIcons.rectangle_stack_badge_person_crop,
   'rectangle_stack_badge_plus': CupertinoIcons.rectangle_stack_badge_plus,
   'rectangle_stack_fill': CupertinoIcons.rectangle_stack_fill,
-  'rectangle_stack_fill_badge_minus': CupertinoIcons.rectangle_stack_fill_badge_minus,
-  'rectangle_stack_fill_badge_person_crop': CupertinoIcons.rectangle_stack_fill_badge_person_crop,
-  'rectangle_stack_fill_badge_plus': CupertinoIcons.rectangle_stack_fill_badge_plus,
+  'rectangle_stack_fill_badge_minus':
+      CupertinoIcons.rectangle_stack_fill_badge_minus,
+  'rectangle_stack_fill_badge_person_crop':
+      CupertinoIcons.rectangle_stack_fill_badge_person_crop,
+  'rectangle_stack_fill_badge_plus':
+      CupertinoIcons.rectangle_stack_fill_badge_plus,
   'rectangle_stack_person_crop': CupertinoIcons.rectangle_stack_person_crop,
-  'rectangle_stack_person_crop_fill': CupertinoIcons.rectangle_stack_person_crop_fill,
+  'rectangle_stack_person_crop_fill':
+      CupertinoIcons.rectangle_stack_person_crop_fill,
   'repeat': CupertinoIcons.repeat,
   'repeat_1': CupertinoIcons.repeat_1,
   'resize': CupertinoIcons.resize,
@@ -1070,7 +1111,8 @@ const cupertinoIcons = <String, IconData>{
   'slash_circle': CupertinoIcons.slash_circle,
   'slash_circle_fill': CupertinoIcons.slash_circle_fill,
   'slider_horizontal_3': CupertinoIcons.slider_horizontal_3,
-  'slider_horizontal_below_rectangle': CupertinoIcons.slider_horizontal_below_rectangle,
+  'slider_horizontal_below_rectangle':
+      CupertinoIcons.slider_horizontal_below_rectangle,
   'slowmo': CupertinoIcons.slowmo,
   'smallcircle_circle': CupertinoIcons.smallcircle_circle,
   'smallcircle_circle_fill': CupertinoIcons.smallcircle_circle_fill,
@@ -1111,7 +1153,8 @@ const cupertinoIcons = <String, IconData>{
   'square_arrow_down': CupertinoIcons.square_arrow_down,
   'square_arrow_down_fill': CupertinoIcons.square_arrow_down_fill,
   'square_arrow_down_on_square': CupertinoIcons.square_arrow_down_on_square,
-  'square_arrow_down_on_square_fill': CupertinoIcons.square_arrow_down_on_square_fill,
+  'square_arrow_down_on_square_fill':
+      CupertinoIcons.square_arrow_down_on_square_fill,
   'square_arrow_left': CupertinoIcons.square_arrow_left,
   'square_arrow_left_fill': CupertinoIcons.square_arrow_left_fill,
   'square_arrow_right': CupertinoIcons.square_arrow_right,
@@ -1119,14 +1162,17 @@ const cupertinoIcons = <String, IconData>{
   'square_arrow_up': CupertinoIcons.square_arrow_up,
   'square_arrow_up_fill': CupertinoIcons.square_arrow_up_fill,
   'square_arrow_up_on_square': CupertinoIcons.square_arrow_up_on_square,
-  'square_arrow_up_on_square_fill': CupertinoIcons.square_arrow_up_on_square_fill,
+  'square_arrow_up_on_square_fill':
+      CupertinoIcons.square_arrow_up_on_square_fill,
   'square_favorites': CupertinoIcons.square_favorites,
   'square_favorites_alt': CupertinoIcons.square_favorites_alt,
   'square_favorites_alt_fill': CupertinoIcons.square_favorites_alt_fill,
   'square_favorites_fill': CupertinoIcons.square_favorites_fill,
   'square_fill': CupertinoIcons.square_fill,
-  'square_fill_line_vertical_square': CupertinoIcons.square_fill_line_vertical_square,
-  'square_fill_line_vertical_square_fill': CupertinoIcons.square_fill_line_vertical_square_fill,
+  'square_fill_line_vertical_square':
+      CupertinoIcons.square_fill_line_vertical_square,
+  'square_fill_line_vertical_square_fill':
+      CupertinoIcons.square_fill_line_vertical_square_fill,
   'square_fill_on_circle_fill': CupertinoIcons.square_fill_on_circle_fill,
   'square_fill_on_square_fill': CupertinoIcons.square_fill_on_square_fill,
   'square_grid_2x2': CupertinoIcons.square_grid_2x2,
@@ -1136,7 +1182,8 @@ const cupertinoIcons = <String, IconData>{
   'square_grid_4x3_fill': CupertinoIcons.square_grid_4x3_fill,
   'square_lefthalf_fill': CupertinoIcons.square_lefthalf_fill,
   'square_line_vertical_square': CupertinoIcons.square_line_vertical_square,
-  'square_line_vertical_square_fill': CupertinoIcons.square_line_vertical_square_fill,
+  'square_line_vertical_square_fill':
+      CupertinoIcons.square_line_vertical_square_fill,
   'square_list': CupertinoIcons.square_list,
   'square_list_fill': CupertinoIcons.square_list_fill,
   'square_on_circle': CupertinoIcons.square_on_circle,
@@ -1151,9 +1198,11 @@ const cupertinoIcons = <String, IconData>{
   'square_split_2x2': CupertinoIcons.square_split_2x2,
   'square_split_2x2_fill': CupertinoIcons.square_split_2x2_fill,
   'square_stack': CupertinoIcons.square_stack,
-  'square_stack_3d_down_dottedline': CupertinoIcons.square_stack_3d_down_dottedline,
+  'square_stack_3d_down_dottedline':
+      CupertinoIcons.square_stack_3d_down_dottedline,
   'square_stack_3d_down_right': CupertinoIcons.square_stack_3d_down_right,
-  'square_stack_3d_down_right_fill': CupertinoIcons.square_stack_3d_down_right_fill,
+  'square_stack_3d_down_right_fill':
+      CupertinoIcons.square_stack_3d_down_right_fill,
   'square_stack_3d_up': CupertinoIcons.square_stack_3d_up,
   'square_stack_3d_up_fill': CupertinoIcons.square_stack_3d_up_fill,
   'square_stack_3d_up_slash': CupertinoIcons.square_stack_3d_up_slash,
@@ -1227,7 +1276,8 @@ const cupertinoIcons = <String, IconData>{
   'textformat': CupertinoIcons.textformat,
   'textformat_123': CupertinoIcons.textformat_123,
   'textformat_abc': CupertinoIcons.textformat_abc,
-  'textformat_abc_dottedunderline': CupertinoIcons.textformat_abc_dottedunderline,
+  'textformat_abc_dottedunderline':
+      CupertinoIcons.textformat_abc_dottedunderline,
   'textformat_alt': CupertinoIcons.textformat_alt,
   'textformat_size': CupertinoIcons.textformat_size,
   'textformat_subscript': CupertinoIcons.textformat_subscript,

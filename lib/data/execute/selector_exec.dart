@@ -1,5 +1,6 @@
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:xml/xml.dart';
 import 'package:xpath_selector/xpath_selector.dart';
 import 'package:html/dom.dart';
@@ -17,72 +18,62 @@ class DomSelectorExec<T> {
 
   Future<List<String>> find(final XPathNode<T> root) async {
     final path = selector.selector.value;
-    // 默认值
     if (path.isEmpty) {
-      if (selector.defaultValue.value.isNotEmpty) {
-        return [selector.defaultValue.value];
-      }
-      return [];
-    }
-
-    // xpath选择器
-    if (path.startsWith('/')) {
-      XPathResult<T> result = root.queryXPath(path);
-
-      // 如果是自动模式
-      List<String> selectResult;
-      if (selector.function.value == SelectorFunction.auto) {
-        // 如果有attr值则选择attr值
-        if (result.attr != null) {
-          selectResult = result.attrs.whereType<String>().toList();
+      if (!(selector.function.value != SelectorFunction.auto ||
+          selector.param.value.isNotEmpty ||
+          selector.regex.value.isNotEmpty ||
+          selector.replace.value.isNotEmpty ||
+          selector.js.value.isNotEmpty)) {
+        // 默认值
+        if (selector.defaultValue.value.isNotEmpty) {
+          return [selector.defaultValue.value];
         } else {
-          // 没有attr返回text
-          selectResult =
-              result.nodes.map((e) => e.text).whereType<String>().toList();
+          return [];
         }
-      } else {
-        // 非自动模式, 按照给定计算
-        selectResult = result.nodes
-            .map((e) => _callFunction(e))
-            .whereType<String>()
-            .toList();
       }
-
-      // 正则处理
-      final regList = selectResult.map(_callReg).whereType<String>();
-      // javascript
-      final jsResult = await Future.wait(regList.map(_callJs));
-      return jsResult.whereType<String>().toList();
     }
 
-    // css选择器, 只对html起效
-    if (root.node is Element) {
-      final result =
-          (root.node as Element).querySelectorAll(selector.selector.value);
+    late List<String?> functionResult;
 
-      // 如果是自动模式, 选取text
-      List<String> selectResult;
-      if (selector.function.value == SelectorFunction.auto) {
-        selectResult = result.map((e) => e.text).whereType<String>().toList();
+    if (path.isEmpty) {
+      // 空选择器，直接进入function
+      functionResult = [
+        _callFunction(XPathResult([root], []))
+      ];
+    } else if (path.startsWith('/')) {
+      // xpath选择器
+      functionResult = [_callFunction(root.queryXPath(path))];
+    } else if (root.node is Element) {
+      final Element? query = (root.node as Element)
+          .querySelectorAll(selector.selector.value)
+          .index(0);
+      if (query == null) {
+        functionResult = [];
       } else {
-        // 非自动模式
-        selectResult = result
-            .map((e) => _callFunction(HtmlNodeTree(e) as XPathNode<T>))
-            .whereType<String>()
-            .toList();
+        functionResult = [
+          _callFunction(XPathResult<Element>(
+              [HtmlNodeTree(query) as XPathNode<Element>], []))
+        ];
       }
-
-      // 正则处理
-      return selectResult.map(_callReg).whereType<String>().toList();
     } else {
-      throw UnsupportedError('Xml只能使用XPath选择器');
+      throw UnsupportedError('Xml只能使用XPath选择器, 且必须以\'/\'开头');
     }
+
+    return (await Future.wait(functionResult
+            .whereType<String>()
+            .map(_callReg)
+            .whereType<String>()
+            .map(_callJs)))
+        .whereType<String>()
+        .toList();
   }
 
-  String? _callFunction(XPathNode<T> element) {
-    if (!element.isElement) return null;
+  String? _callFunction<E>(XPathResult<E> result) {
+    final element = result.nodes.where((e) => e.isElement).toList().index(0);
+    if (element == null) return null;
     switch (selector.function.value) {
       case SelectorFunction.attr:
+        // 属性选择
         for (final p in selector.param.value.split(';')) {
           if (element.attributes.containsKey(p)) {
             return element.attributes[p];
@@ -90,13 +81,26 @@ class DomSelectorExec<T> {
         }
         return null;
       case SelectorFunction.raw:
+        // 原生内容
         return element.node is Element
             ? (element.node as Element).innerHtml
             : (element.node as XmlElement).innerXml;
       case SelectorFunction.text:
+        // 内容
         return element.text;
       case SelectorFunction.auto:
-        break;
+        // 自动
+        // 如果有attr值则选择attr值
+        if (result.attr != null) {
+          return result.attrs.whereType<String>().toList().index(0);
+        } else {
+          // 没有attr返回text
+          return result.nodes
+              .map((e) => e.text)
+              .whereType<String>()
+              .toList()
+              .index(0);
+        }
     }
   }
 
@@ -128,18 +132,3 @@ class DomSelectorExec<T> {
     }
   }
 }
-
-// String? selectJson({
-//   required SelectorModel selector,
-//   required Map<String, dynamic> json,
-// }) {
-//   final path = selector.selector.value;
-//
-//   // 默认值
-//   if (path.isEmpty) {
-//     if (selector.defaultValue.value.isNotEmpty) {
-//       return selector.defaultValue.value;
-//     }
-//     return null;
-//   }
-// }

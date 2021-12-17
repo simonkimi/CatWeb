@@ -12,9 +12,6 @@ enum _MenuSelect {
   delete,
 }
 
-
-
-
 class RulesPageManager extends GetView<RulesEditController> {
   const RulesPageManager({
     Key? key,

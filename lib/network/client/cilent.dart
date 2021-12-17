@@ -10,8 +10,6 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-
-
 class NetClient {
   NetClient(SiteProtobufModel model) : dio = buildDio(model);
 

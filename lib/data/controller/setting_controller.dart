@@ -22,7 +22,6 @@ class CardSize {
   }
 }
 
-
 class SettingController extends GetxController {
   final cardSize = CardSize.middle.obs;
   final RxInt defaultSite = (-1).obs;

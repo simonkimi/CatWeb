@@ -14,11 +14,22 @@ import 'actions.pb.dart' as $1;
 import 'page.pb.dart' as $2;
 
 class RegField extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RegField', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'reg')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'value')
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'RegField',
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'reg')
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'value')
+    ..hasRequiredFields = false;
 
   RegField._() : super();
   factory RegField({
@@ -34,31 +45,39 @@ class RegField extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory RegField.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory RegField.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory RegField.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory RegField.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   RegField clone() => RegField()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  RegField copyWith(void Function(RegField) updates) => super.copyWith((message) => updates(message as RegField)) as RegField; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  RegField copyWith(void Function(RegField) updates) =>
+      super.copyWith((message) => updates(message as RegField))
+          as RegField; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static RegField create() => RegField._();
   RegField createEmptyInstance() => create();
   static $pb.PbList<RegField> createRepeated() => $pb.PbList<RegField>();
   @$core.pragma('dart2js:noInline')
-  static RegField getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RegField>(create);
+  static RegField getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RegField>(create);
   static RegField? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get reg => $_getSZ(0);
   @$pb.TagNumber(1)
-  set reg($core.String v) { $_setString(0, v); }
+  set reg($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasReg() => $_has(0);
   @$pb.TagNumber(1)
@@ -67,7 +86,10 @@ class RegField extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get value => $_getSZ(1);
   @$pb.TagNumber(2)
-  set value($core.String v) { $_setString(1, v); }
+  set value($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasValue() => $_has(1);
   @$pb.TagNumber(2)
@@ -75,22 +97,101 @@ class RegField extends $pb.GeneratedMessage {
 }
 
 class SiteProtobuf extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SiteProtobuf', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'baseUrl', protoName: 'baseUrl')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'loginUrl', protoName: 'loginUrl')
-    ..aOM<RegField>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'loginCookie', protoName: 'loginCookie', subBuilder: RegField.create)
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'version')
-    ..pc<RegField>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'headers', $pb.PbFieldType.PM, subBuilder: RegField.create)
-    ..pc<RegField>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cookies', $pb.PbFieldType.PM, subBuilder: RegField.create)
-    ..aOS(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'upgradeUrl', protoName: 'upgradeUrl')
-    ..pc<$0.GalleryParser>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'galleryParsers', $pb.PbFieldType.PM, protoName: 'galleryParsers', subBuilder: $0.GalleryParser.create)
-    ..pc<$0.ListViewParser>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'listViewParser', $pb.PbFieldType.PM, protoName: 'listViewParser', subBuilder: $0.ListViewParser.create)
-    ..pc<$1.ActionCombine>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'actionList', $pb.PbFieldType.PM, protoName: 'actionList', subBuilder: $1.ActionCombine.create)
-    ..pc<$2.SitePage>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'pageList', $pb.PbFieldType.PM, protoName: 'pageList', subBuilder: $2.SitePage.create)
-    ..pc<$0.ImageParser>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imageParsers', $pb.PbFieldType.PM, protoName: 'imageParsers', subBuilder: $0.ImageParser.create)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'SiteProtobuf',
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'name')
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'baseUrl',
+        protoName: 'baseUrl')
+    ..aOS(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'loginUrl',
+        protoName: 'loginUrl')
+    ..aOM<RegField>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'loginCookie',
+        protoName: 'loginCookie',
+        subBuilder: RegField.create)
+    ..aOS(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'version')
+    ..pc<RegField>(
+        6,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'headers',
+        $pb.PbFieldType.PM,
+        subBuilder: RegField.create)
+    ..pc<RegField>(
+        7,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'cookies',
+        $pb.PbFieldType.PM,
+        subBuilder: RegField.create)
+    ..aOS(
+        8,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'upgradeUrl',
+        protoName: 'upgradeUrl')
+    ..pc<$0.GalleryParser>(
+        10,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'galleryParsers',
+        $pb.PbFieldType.PM,
+        protoName: 'galleryParsers',
+        subBuilder: $0.GalleryParser.create)
+    ..pc<$0.ListViewParser>(
+        11,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'listViewParser',
+        $pb.PbFieldType.PM,
+        protoName: 'listViewParser',
+        subBuilder: $0.ListViewParser.create)
+    ..pc<$1.ActionCombine>(
+        12,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'actionList',
+        $pb.PbFieldType.PM,
+        protoName: 'actionList',
+        subBuilder: $1.ActionCombine.create)
+    ..pc<$2.SitePage>(
+        13,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'pageList',
+        $pb.PbFieldType.PM,
+        protoName: 'pageList',
+        subBuilder: $2.SitePage.create)
+    ..pc<$0.ImageParser>(
+        14,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'imageParsers',
+        $pb.PbFieldType.PM,
+        protoName: 'imageParsers',
+        subBuilder: $0.ImageParser.create)
+    ..hasRequiredFields = false;
 
   SiteProtobuf._() : super();
   factory SiteProtobuf({
@@ -150,31 +251,40 @@ class SiteProtobuf extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory SiteProtobuf.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory SiteProtobuf.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory SiteProtobuf.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory SiteProtobuf.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   SiteProtobuf clone() => SiteProtobuf()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  SiteProtobuf copyWith(void Function(SiteProtobuf) updates) => super.copyWith((message) => updates(message as SiteProtobuf)) as SiteProtobuf; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  SiteProtobuf copyWith(void Function(SiteProtobuf) updates) =>
+      super.copyWith((message) => updates(message as SiteProtobuf))
+          as SiteProtobuf; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static SiteProtobuf create() => SiteProtobuf._();
   SiteProtobuf createEmptyInstance() => create();
-  static $pb.PbList<SiteProtobuf> createRepeated() => $pb.PbList<SiteProtobuf>();
+  static $pb.PbList<SiteProtobuf> createRepeated() =>
+      $pb.PbList<SiteProtobuf>();
   @$core.pragma('dart2js:noInline')
-  static SiteProtobuf getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SiteProtobuf>(create);
+  static SiteProtobuf getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SiteProtobuf>(create);
   static SiteProtobuf? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
-  set name($core.String v) { $_setString(0, v); }
+  set name($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
   @$pb.TagNumber(1)
@@ -183,7 +293,10 @@ class SiteProtobuf extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get baseUrl => $_getSZ(1);
   @$pb.TagNumber(2)
-  set baseUrl($core.String v) { $_setString(1, v); }
+  set baseUrl($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasBaseUrl() => $_has(1);
   @$pb.TagNumber(2)
@@ -192,7 +305,10 @@ class SiteProtobuf extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.String get loginUrl => $_getSZ(2);
   @$pb.TagNumber(3)
-  set loginUrl($core.String v) { $_setString(2, v); }
+  set loginUrl($core.String v) {
+    $_setString(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasLoginUrl() => $_has(2);
   @$pb.TagNumber(3)
@@ -201,7 +317,10 @@ class SiteProtobuf extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   RegField get loginCookie => $_getN(3);
   @$pb.TagNumber(4)
-  set loginCookie(RegField v) { setField(4, v); }
+  set loginCookie(RegField v) {
+    setField(4, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasLoginCookie() => $_has(3);
   @$pb.TagNumber(4)
@@ -212,7 +331,10 @@ class SiteProtobuf extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   $core.String get version => $_getSZ(4);
   @$pb.TagNumber(5)
-  set version($core.String v) { $_setString(4, v); }
+  set version($core.String v) {
+    $_setString(4, v);
+  }
+
   @$pb.TagNumber(5)
   $core.bool hasVersion() => $_has(4);
   @$pb.TagNumber(5)
@@ -227,7 +349,10 @@ class SiteProtobuf extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   $core.String get upgradeUrl => $_getSZ(7);
   @$pb.TagNumber(8)
-  set upgradeUrl($core.String v) { $_setString(7, v); }
+  set upgradeUrl($core.String v) {
+    $_setString(7, v);
+  }
+
   @$pb.TagNumber(8)
   $core.bool hasUpgradeUrl() => $_has(7);
   @$pb.TagNumber(8)
@@ -248,4 +373,3 @@ class SiteProtobuf extends $pb.GeneratedMessage {
   @$pb.TagNumber(14)
   $core.List<$0.ImageParser> get imageParsers => $_getList(12);
 }
-
