@@ -7,9 +7,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../themes.dart';
 import 'dark_image.dart';
 
-
-
-
 class SimpleCard extends StatelessWidget {
   const SimpleCard({
     Key? key,
@@ -134,7 +131,7 @@ class SimpleCard extends StatelessWidget {
             bottom: 0,
             child: buildPaper(context),
           ),
-        if (model.category != null)
+        if (model.tag != null)
           Positioned(
             right: 0,
             child: buildCategory(context),
@@ -229,7 +226,7 @@ class ExtendedCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (model.star != null) buildStar(context),
-            if (model.category != null) buildCategory(context),
+            if (model.tag != null) buildCategory(context),
           ],
         ),
         Column(
@@ -263,12 +260,13 @@ class ExtendedCard extends StatelessWidget {
       child: Container(
           padding: const EdgeInsets.all(1),
           decoration: BoxDecoration(
-            color: Colors.red,
+            color: model.tagColor ??
+                CupertinoColors.systemRed.resolveFrom(context),
             borderRadius: BorderRadius.circular(3),
           ),
           child: Center(
             child: Text(
-              model.category!,
+              model.tag!,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 11,

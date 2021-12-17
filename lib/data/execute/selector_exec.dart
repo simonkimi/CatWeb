@@ -4,14 +4,23 @@ import 'package:xml/xml.dart';
 import 'package:xpath_selector/xpath_selector.dart';
 import 'package:html/dom.dart';
 
+import 'js_runtime.dart';
 
-extension SelectorExec<T> on SelectorModel {
-  List<String> resolve(final XPathNode<T> root) {
-    final path = selector.value;
+class DomSelectorExec<T> {
+  DomSelectorExec({
+    required this.jsRuntime,
+    required this.selector,
+  });
+
+  final JsRuntime jsRuntime;
+  final SelectorModel selector;
+
+  Future<List<String>> find(final XPathNode<T> root) async {
+    final path = selector.selector.value;
     // 默认值
     if (path.isEmpty) {
-      if (defaultValue.value.isNotEmpty) {
-        return [defaultValue.value];
+      if (selector.defaultValue.value.isNotEmpty) {
+        return [selector.defaultValue.value];
       }
       return [];
     }
@@ -22,7 +31,7 @@ extension SelectorExec<T> on SelectorModel {
 
       // 如果是自动模式
       List<String> selectResult;
-      if (function.value == SelectorFunction.auto) {
+      if (selector.function.value == SelectorFunction.auto) {
         // 如果有attr值则选择attr值
         if (result.attr != null) {
           selectResult = result.attrs.whereType<String>().toList();
@@ -40,16 +49,20 @@ extension SelectorExec<T> on SelectorModel {
       }
 
       // 正则处理
-      return selectResult.map(_callReg).whereType<String>().toList();
+      final regList = selectResult.map(_callReg).whereType<String>();
+      // javascript
+      final jsResult = await Future.wait(regList.map(_callJs));
+      return jsResult.whereType<String>().toList();
     }
 
     // css选择器, 只对html起效
     if (root.node is Element) {
-      final result = (root.node as Element).querySelectorAll(selector.value);
+      final result =
+          (root.node as Element).querySelectorAll(selector.selector.value);
 
       // 如果是自动模式, 选取text
       List<String> selectResult;
-      if (function.value == SelectorFunction.auto) {
+      if (selector.function.value == SelectorFunction.auto) {
         selectResult = result.map((e) => e.text).whereType<String>().toList();
       } else {
         // 非自动模式
@@ -68,9 +81,9 @@ extension SelectorExec<T> on SelectorModel {
 
   String? _callFunction(XPathNode<T> element) {
     if (!element.isElement) return null;
-    switch (function.value) {
+    switch (selector.function.value) {
       case SelectorFunction.attr:
-        for (final p in param.value.split(';')) {
+        for (final p in selector.param.value.split(';')) {
           if (element.attributes.containsKey(p)) {
             return element.attributes[p];
           }
@@ -88,20 +101,28 @@ extension SelectorExec<T> on SelectorModel {
   }
 
   String? _callReg(String input) {
-    if (regex.value.isNotEmpty) {
-      final RegExp reg = RegExp(regex.value);
+    if (selector.regex.value.isNotEmpty) {
+      final RegExp reg = RegExp(selector.regex.value);
       final match = reg.allMatches(input).toList();
       if (match.isEmpty) return null;
-      if (replace.value.isEmpty) {
+      if (selector.replace.value.isEmpty) {
         final m = match[0];
         return m.group(m.groupCount)!;
       } else {
-        var rep = replace.value;
+        var rep = selector.replace.value;
         for (var i = match.length; i >= 1; i--) {
           rep = rep.replaceAll('\$$i', match[i - 1][1]!);
         }
         return rep;
       }
+    } else {
+      return input;
+    }
+  }
+
+  Future<String?> _callJs(String input) async {
+    if (selector.js.value.isNotEmpty) {
+      return await jsRuntime.exec(selector.js.value, input);
     } else {
       return input;
     }

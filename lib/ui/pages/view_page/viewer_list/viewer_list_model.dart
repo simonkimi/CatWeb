@@ -6,8 +6,8 @@ class ViewerListModel {
     this.subtitle,
     this.paper,
     this.star,
-    this.category,
-    this.categoryColor,
+    this.tag,
+    this.tagColor,
     this.page,
     this.uploadTime,
     this.badgeList,
@@ -17,8 +17,8 @@ class ViewerListModel {
   final String? subtitle;
   final List<BadgeList>? badgeList;
   final double? star;
-  final String? category;
-  final Color? categoryColor;
+  final String? tag;
+  final Color? tagColor;
   final int? page;
   final String? uploadTime;
   final String? paper;

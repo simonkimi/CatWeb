@@ -2,35 +2,38 @@ import 'package:dio/dio.dart';
 import 'package:flutter_qjs/flutter_qjs.dart';
 
 class JsRuntime {
-  JsRuntime({required this.dio});
+  JsRuntime({required Dio dio}) : _dio = dio;
 
-  final engine = FlutterQjs(stackSize: 1024 * 1024);
-  late final JSInvokable setToGlobalObject;
-  final Dio dio;
+  final _engine = FlutterQjs(stackSize: 1024 * 1024);
+  late final JSInvokable _setToGlobalObject;
+  final Dio _dio;
 
   Future<void> init() async {
-    setToGlobalObject =
-        await engine.evaluate('(key, val) => { this[key] = val; }');
-    await setToGlobalObject.invoke(
-        ['get', (String url) => dio.get(url).then((value) => value.data)]);
-    await setToGlobalObject.invoke([
+    _setToGlobalObject =
+        await _engine.evaluate('(key, val) => { this[key] = val; }');
+    await _setToGlobalObject.invoke(
+        ['get', (String url) => _dio.get(url).then((value) => value.data)]);
+    await _setToGlobalObject.invoke([
       'post',
       (String url, String data) =>
-          dio.post(url, data: data).then((value) => value.data)
+          _dio.post(url, data: data).then((value) => value.data)
     ]);
     // TODO 本地数据获取
   }
 
-  Future<String?> exec(String js, List<String> args) async {
-    await engine.evaluate(js);
-    final result = engine.evaluate('hook(${args.join(',')})');
-    // TODO 处理js运行错误
-    return result;
+  Future<String?> exec(String js, String args) async {
+    try {
+      await _engine.evaluate(js);
+      final result = _engine.evaluate('hook($args)');
+      return result;
+    } on Exception {
+      return null;
+    }
   }
 
   Future<void> dispose() async {
-    setToGlobalObject.free();
-    engine.port.close();
-    engine.close();
+    _setToGlobalObject.free();
+    _engine.port.close();
+    _engine.close();
   }
 }

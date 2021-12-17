@@ -11,8 +11,8 @@ class ListParserPreview extends StatelessWidget {
         title: 'Title',
         subtitle: 'SubTitle',
         star: 4.5,
-        category: 'Category',
-        categoryColor: Colors.blue,
+        tag: 'Category',
+        tagColor: Colors.blue,
         page: 100,
         uploadTime: DateTime.now().toString().split('.')[0],
         paper: 'paper',
@@ -23,7 +23,7 @@ class ListParserPreview extends StatelessWidget {
               .asMap()
               .map((key, value) => MapEntry(
                   key,
-              BadgeList(
+                  BadgeList(
                     text: 'Tag ${key + 1}',
                     color: value,
                   )))
