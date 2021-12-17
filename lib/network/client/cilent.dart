@@ -10,7 +10,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-class NetResult {}
+
 
 class NetClient {
   NetClient(SiteProtobufModel model) : dio = buildDio(model);
@@ -34,7 +34,12 @@ class NetClient {
       throw Exception('data is null');
     }
 
-    return ListParserExec(model: model, source: data!, env: env).exec();
+    return ListParserExec(
+      model: model,
+      source: data!,
+      env: env,
+      dio: dio,
+    ).exec();
   }
 }
 

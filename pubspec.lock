@@ -305,6 +305,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
+  flutter_qjs:
+    dependency: "direct main"
+    description:
+      name: flutter_qjs
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.6"
   flutter_rating_bar:
     dependency: "direct main"
     description:

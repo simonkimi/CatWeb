@@ -5,6 +5,7 @@ import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/network/parser_exec/parser_exec.dart';
 import 'package:catweb/ui/pages/view_page/viewer_list/viewer_list_model.dart';
 import 'package:catweb/utils/utils.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:xpath_selector/xpath_selector.dart';
 
@@ -13,10 +14,12 @@ class ListParserExec extends ParserExec {
     required SitePageModel model,
     required String source,
     required SiteEnvModel env,
+    required Dio dio,
   }) : super(
           model: model,
           source: source,
           env: env,
+          dio: dio,
         );
 
   List<ViewerListModel> exec() {

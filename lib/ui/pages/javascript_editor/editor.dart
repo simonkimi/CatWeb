@@ -220,7 +220,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
               buildInputHint(context: context, display: '}'),
               buildInputHint(context: context, display: '['),
               buildInputHint(context: context, display: ']'),
-              buildInputHint(context: context, display: '\''),
+              buildInputHint(context: context, display: "'"),
               buildInputHint(context: context, display: '"'),
               buildInputHint(context: context, display: ';'),
               buildInputHint(context: context, display: '!'),

@@ -1,8 +1,10 @@
+import 'package:catweb/data/execute/js_runtime.dart';
 import 'package:catweb/data/execute/selector_exec.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/utils/utils.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:xpath_selector/xpath_selector.dart';
 
@@ -11,11 +13,15 @@ abstract class ParserExec {
     required this.model,
     required this.source,
     required this.env,
-  });
+    required this.dio,
+  }) : jsRuntime = JsRuntime(dio: dio);
 
   final SitePageModel model;
   final String source;
   final SiteEnvModel env;
+  final Dio dio;
+
+  final JsRuntime jsRuntime;
 
   @protected
   String? singleString(SelectorModel model, XPathNode parent) {
@@ -36,6 +42,7 @@ abstract class ParserExec {
     return int.tryParse(result);
   }
 
+  @protected
   Color? singleColor(SelectorModel model, XPathNode parent) {
     final result = model.resolve(parent).index(0)?.trim().toLowerCase();
     if (result == null) return null;
@@ -66,6 +73,7 @@ abstract class ParserExec {
     return null;
   }
 
+  @protected
   int _getColorInt(String input) {
     if (input.endsWith('%')) {
       return (255 * (int.parse(input.substring(0, input.length - 1)) / 100))
