@@ -20,7 +20,7 @@ extension ListHelper<T> on List<T> {
   }
 
   T? index(int index) {
-    if (length < index && index >= 0) {
+    if (length > index && index >= 0) {
       return this[index]!;
     }
     return null;

@@ -44,6 +44,7 @@ class DomSelectorExec<T> {
       // xpath选择器
       functionResult = [_callFunction(root.queryXPath(path))];
     } else if (root.node is Element) {
+      print((root.node as Element).querySelectorAll(selector.selector.value));
       final Element? query = (root.node as Element)
           .querySelectorAll(selector.selector.value)
           .index(0);
@@ -51,8 +52,8 @@ class DomSelectorExec<T> {
         functionResult = [];
       } else {
         functionResult = [
-          _callFunction(XPathResult<Element>(
-              [HtmlNodeTree(query) as XPathNode<Element>], []))
+          _callFunction(XPathResult<Node>(
+              [HtmlNodeTree(query)], []))
         ];
       }
     } else {
