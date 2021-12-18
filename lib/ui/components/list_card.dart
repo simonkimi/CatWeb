@@ -59,15 +59,16 @@ class SimpleCard extends StatelessWidget {
   }
 
   SizedBox buildTagList() {
+    final tags = model.badgeList!.where((e) => e.text != null).toList();
     return SizedBox(
       height: 20,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 2),
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
-          itemCount: 2,
+          itemCount: tags.length,
           itemBuilder: (context, index) {
-            final e = model.badgeList![index];
+            final e = tags[index];
             return Center(
               child: Container(
                 decoration: BoxDecoration(
@@ -80,7 +81,7 @@ class SimpleCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(3),
                   child: Text(
-                    e.text,
+                    e.text!,
                     style: TextStyle(
                       height: 1,
                       fontSize: 11,
@@ -374,10 +375,10 @@ class ExtendedCard extends StatelessWidget {
     return Wrap(
       spacing: 2,
       runSpacing: 2,
-      children: model.badgeList!.map((e) {
+      children: model.badgeList!.where((e) => e.text != null).map((e) {
         return Badge(
           color: e.color,
-          text: e.text,
+          text: e.text!,
           fontSize: 11,
           padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
           borderRadius: 5,

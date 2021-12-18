@@ -18,6 +18,11 @@ class DomParserExec<T> {
 
   final JsRuntime jsRuntime;
 
+  List<XPathNode<T>> nodes(SelectorModel model, XPathNode<T> parent) {
+    final exec = DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime);
+    return exec.findElements(parent);
+  }
+
   Future<String?> singleString(SelectorModel model, XPathNode<T> parent) async {
     final exec = DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime);
     final find = await exec.find(parent);
@@ -46,9 +51,9 @@ class DomParserExec<T> {
     final result = find.index(0)?.trim().toLowerCase();
     if (result == null) return null;
     if (result.startsWith('0x')) {
-      return Color(int.parse(result.substring(2), radix: 16));
+      return Color(int.parse(result.substring(2), radix: 16) | 0xff000000);
     } else if (result.startsWith('#')) {
-      return Color(int.parse(result.substring(1), radix: 16));
+      return Color(int.parse(result.substring(1), radix: 16) | 0xff000000);
     }
 
     final rgb = RegExp(r'[\.\d]+%?');

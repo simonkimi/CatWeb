@@ -17,6 +17,20 @@ class DomSelectorExec<T> {
   final JsRuntime jsRuntime;
   final SelectorModel selector;
 
+  List<XPathNode<T>> findElements(XPathNode<T> root) {
+    final path = selector.selector.value;
+    if (path.isEmpty) return root.children;
+    if (path.startsWith('/')) {
+      return root.queryXPath(path).nodes;
+    } else if (root.node is Element) {
+      final elements =
+          (root.node as Element).querySelectorAll(selector.selector.value);
+      return elements.map((e) => HtmlNodeTree(e) as XPathNode<T>).toList();
+    } else {
+      throw UnsupportedError('Xml只能使用XPath选择器, 且必须以"/"开头');
+    }
+  }
+
   Future<List<String>> find(final XPathNode<T> root) async {
     final path = selector.selector.value;
     if (path.isEmpty) {

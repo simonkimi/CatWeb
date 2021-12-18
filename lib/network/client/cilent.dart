@@ -6,6 +6,7 @@ import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
 import 'package:catweb/network/parser_exec/list_parser_exec.dart';
 import 'package:catweb/ui/pages/view_page/viewer_list/viewer_list_model.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
@@ -32,8 +33,14 @@ class NetClient {
       throw Exception('data is null');
     }
 
+    final global = Get.find<SiteController>();
+    final parser = global.site.value!.config.listViewParser
+        .get((e) => e.name.value == model.parser.value);
+
+    if (parser == null) throw Exception('parser is null');
+
     return ListParserExec(
-      model: model,
+      parser: parser,
       source: data!,
       env: env,
       dio: dio,

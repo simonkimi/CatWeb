@@ -3,7 +3,7 @@ import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 
 final ehIndexParser = ListViewParser(
   name: '主页',
-  itemSelector: '.itg tr:not(:nth-child(1))',
+  itemSelector: Selector(selector: '.itg tr:not(:nth-child(1))'),
   title: Selector(
     selector: '.glname',
     function: SelectorFunction.text,
@@ -35,7 +35,7 @@ final ehIndexParser = ListViewParser(
     selector: '.cn',
     function: SelectorFunction.attr,
     param: 'class',
-    js: "function hook(msg){const classes=['ct2','ct3','ct4','ct5','cta','ct9','ct6','ct7','ct8','ct1'];const colors=['f66158','f09e19','d2d303','0fa911','2fd92c','0bbfd3','4f5ce6','9030df','f38af2','8a8a8a'];for(let i=0;i<classes.length;i++){if(msg.indexOf(classes[i])!==-1){return colors[i]}}return null}",
+    js: r"function hook(t){return{ct2:'#f66158',ct3:'#f09e19',ct4:'#d2d303',ct5:'#0fa911',cta:'#2fd92c',ct9:'#0bbfd3',ct6:'#4f5ce6',ct7:'#9030df',ct8:'#f38af2',ct1:'#8a8a8a'}[t]}",
   ),
   star: Selector(
     selector: 'div .ir',

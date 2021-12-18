@@ -230,26 +230,27 @@ class GalleryParserModel extends ParserBaseModel {
 
 class ListViewParserModel extends ParserBaseModel {
   ListViewParserModel([ListViewParser? pb])
-      : itemSelector = sobs(pb?.itemSelector),
+      : itemSelector = SelectorModel(pb?.itemSelector),
         title = SelectorModel(pb?.title),
         subtitle = SelectorModel(pb?.subtitle),
         uploadTime = SelectorModel(pb?.uploadTime),
         star = SelectorModel(pb?.star, true),
         imgCount = SelectorModel(pb?.imgCount, true),
         previewImg = ImageSelectorModel(pb?.previewImg),
-        tag = SelectorModel(pb?.imgCount),
-        tagColor = SelectorModel(pb?.imgCount),
+        tag = SelectorModel(pb?.tag),
+        tagColor = SelectorModel(pb?.tagColor),
         badgeText = SelectorModel(pb?.badgeText),
         badgeColor = SelectorModel(pb?.badgeColor),
         nextPage = SelectorModel(pb?.nextPage),
         paper = SelectorModel(pb?.paper),
+        badgeSelector = SelectorModel(pb?.badgeSelector),
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
         );
 
   // 列表选择器
-  final RxString itemSelector;
+  final SelectorModel itemSelector;
 
   // 基础信息
   final SelectorModel title;
@@ -266,6 +267,7 @@ class ListViewParserModel extends ParserBaseModel {
   final SelectorModel tagColor;
 
   // 小徽章
+  final SelectorModel badgeSelector;
   final SelectorModel badgeText;
   final SelectorModel badgeColor;
 
@@ -277,7 +279,7 @@ class ListViewParserModel extends ParserBaseModel {
   @override
   ListViewParser toPb() => ListViewParser(
         name: name.value,
-        itemSelector: itemSelector.value,
+        itemSelector: itemSelector.toPb(),
         title: title.toPb(),
         subtitle: subtitle.toPb(),
         uploadTime: uploadTime.toPb(),
@@ -291,6 +293,7 @@ class ListViewParserModel extends ParserBaseModel {
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
         nextPage: nextPage.toPb(),
         paper: paper.toPb(),
+        badgeSelector: badgeSelector.toPb(),
       );
 
   @override

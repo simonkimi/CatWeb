@@ -21,7 +21,7 @@ message ImageParser {
 message ListViewParser {
   string name = 1;
 
-  string itemSelector = 2; // 选取整个列表
+  Selector itemSelector = 2; // 选取整个列表
   Selector title = 3;
   Selector subtitle = 4;
   Selector uploadTime = 5;

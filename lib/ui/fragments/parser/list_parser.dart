@@ -177,7 +177,7 @@ class ListParserFragment extends StatelessWidget {
         buildCupertinoInput(
           context: context,
           label: '项目选择器',
-          value: model.itemSelector,
+          value: model.itemSelector.selector,
           width: labelWidth,
         ),
       ]),

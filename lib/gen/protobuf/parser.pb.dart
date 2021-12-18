@@ -319,12 +319,13 @@ class ListViewParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'name')
-    ..aOS(
+    ..aOM<$0.Selector>(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'itemSelector',
-        protoName: 'itemSelector')
+        protoName: 'itemSelector',
+        subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -424,7 +425,7 @@ class ListViewParser extends $pb.GeneratedMessage {
   ListViewParser._() : super();
   factory ListViewParser({
     $core.String? name,
-    $core.String? itemSelector,
+    $0.Selector? itemSelector,
     $0.Selector? title,
     $0.Selector? subtitle,
     $0.Selector? uploadTime,
@@ -531,16 +532,18 @@ class ListViewParser extends $pb.GeneratedMessage {
   void clearName() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get itemSelector => $_getSZ(1);
+  $0.Selector get itemSelector => $_getN(1);
   @$pb.TagNumber(2)
-  set itemSelector($core.String v) {
-    $_setString(1, v);
+  set itemSelector($0.Selector v) {
+    setField(2, v);
   }
 
   @$pb.TagNumber(2)
   $core.bool hasItemSelector() => $_has(1);
   @$pb.TagNumber(2)
   void clearItemSelector() => clearField(2);
+  @$pb.TagNumber(2)
+  $0.Selector ensureItemSelector() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $0.Selector get title => $_getN(2);

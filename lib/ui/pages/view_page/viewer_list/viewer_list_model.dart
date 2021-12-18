@@ -22,14 +22,28 @@ class ViewerListModel {
   final int? page;
   final String? uploadTime;
   final String? paper;
+
+  @override
+  String toString() => 'title: $title,\n'
+      'subtitle: $subtitle,\n'
+      'badgeList: $badgeList,\n'
+      'star: $star,\n'
+      'tag: $tag,\n'
+      'tagColor: $tagColor,\n'
+      'page: $page,\n'
+      'uploadTime: $uploadTime,\n'
+      'paper: $paper';
 }
 
 class BadgeList {
   BadgeList({
-    required this.text,
+    this.text,
     this.color,
   });
 
   final Color? color;
-  final String text;
+  final String? text;
+
+  @override
+  String toString() => text ?? '<Null>';
 }
