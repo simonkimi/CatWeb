@@ -24,7 +24,7 @@ class JsRuntime {
   Future<String?> exec(String js, String args) async {
     try {
       await _engine.evaluate(js);
-      final result = _engine.evaluate('hook($args)');
+      final result = _engine.evaluate('hook("$args")');
       return result;
     } on Exception {
       return null;

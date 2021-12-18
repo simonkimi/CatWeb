@@ -7,20 +7,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:xpath_selector/xpath_selector.dart';
 
-import 'list_sample.dart';
+import 'sample/eh_sample.dart';
+
+
 
 void main() {
-  test('parser', () async {
+  test('Js runtime test', () async {
+
     final jsRuntime = JsRuntime(dio: Dio());
     final root = XPath.html(sampleHtml);
-
     final star = SelectorModel(Selector(
-      selector: 'div .ir',
+      selector: '.cs',
       function: SelectorFunction.attr,
-      param: 'style',
-      regex: r'background-position:-?(\d+)px -?(\d+)px',
-      replace: r'5-$1/16-($2-1)/40',
-      computed: true,
+      param: 'class',
+      regex: r'ct\d',
+      js: r"function hook(t){return{ct2:'#f66158',ct3:'#f09e19',ct4:'#d2d303',ct5:'#0fa911',cta:'#2fd92c',ct9:'#0bbfd3',ct6:'#4f5ce6',ct7:'#9030df',ct8:'#f38af2',ct1:'#8a8a8a'}[t]}",
     ));
 
     final exec = DomSelectorExec<Node>(jsRuntime: jsRuntime, selector: star);

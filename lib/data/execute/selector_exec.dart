@@ -45,18 +45,19 @@ class DomSelectorExec<T> {
       // xpath选择器
       functionResult = [_callFunction(root.queryXPath(path))];
     } else if (root.node is Element) {
+      // css选择器
       final Element? query = (root.node as Element)
           .querySelectorAll(selector.selector.value)
           .index(0);
       if (query == null) {
-        functionResult = [];
+        return [];
       } else {
         functionResult = [
           _callFunction(XPathResult<Node>([HtmlNodeTree(query)], []))
         ];
       }
     } else {
-      throw UnsupportedError('Xml只能使用XPath选择器, 且必须以\'/\'开头');
+      throw UnsupportedError('Xml只能使用XPath选择器, 且必须以"/"开头');
     }
 
     return (await Future.wait(
