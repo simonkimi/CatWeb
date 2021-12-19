@@ -1,12 +1,6 @@
 ///
-//  Generated code. Do not modify.
-//  source: store.proto
-//
-// @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields,deprecated_member_use_from_same_package
-
-import 'dart:core' as $core;
 import 'dart:convert' as $convert;
+import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
 @$core.Deprecated('Use regFieldDescriptor instead')
@@ -21,9 +15,9 @@ const RegField$json = const {
 /// Descriptor for `RegField`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List regFieldDescriptor = $convert.base64Decode(
     'CghSZWdGaWVsZBIQCgNyZWcYASABKAlSA3JlZxIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU=');
-@$core.Deprecated('Use siteProtobufDescriptor instead')
-const SiteProtobuf$json = const {
-  '1': 'SiteProtobuf',
+@$core.Deprecated('Use siteConfigDescriptor instead')
+const SiteConfig$json = const {
+  '1': 'SiteConfig',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'baseUrl', '3': 2, '4': 1, '5': 9, '10': 'baseUrl'},
@@ -97,6 +91,6 @@ const SiteProtobuf$json = const {
   ],
 };
 
-/// Descriptor for `SiteProtobuf`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List siteProtobufDescriptor = $convert.base64Decode(
-    'CgxTaXRlUHJvdG9idWYSEgoEbmFtZRgBIAEoCVIEbmFtZRIYCgdiYXNlVXJsGAIgASgJUgdiYXNlVXJsEhoKCGxvZ2luVXJsGAMgASgJUghsb2dpblVybBIrCgtsb2dpbkNvb2tpZRgEIAEoCzIJLlJlZ0ZpZWxkUgtsb2dpbkNvb2tpZRIYCgd2ZXJzaW9uGAUgASgJUgd2ZXJzaW9uEh4KCnVwZ3JhZGVVcmwYCCABKAlSCnVwZ3JhZGVVcmwSIwoHaGVhZGVycxgGIAMoCzIJLlJlZ0ZpZWxkUgdoZWFkZXJzEiMKB2Nvb2tpZXMYByADKAsyCS5SZWdGaWVsZFIHY29va2llcxI2Cg5nYWxsZXJ5UGFyc2VycxgKIAMoCzIOLkdhbGxlcnlQYXJzZXJSDmdhbGxlcnlQYXJzZXJzEjcKDmxpc3RWaWV3UGFyc2VyGAsgAygLMg8uTGlzdFZpZXdQYXJzZXJSDmxpc3RWaWV3UGFyc2VyEjAKDGltYWdlUGFyc2VycxgOIAMoCzIMLkltYWdlUGFyc2VyUgxpbWFnZVBhcnNlcnMSLgoKYWN0aW9uTGlzdBgMIAMoCzIOLkFjdGlvbkNvbWJpbmVSCmFjdGlvbkxpc3QSJQoIcGFnZUxpc3QYDSADKAsyCS5TaXRlUGFnZVIIcGFnZUxpc3Q=');
+/// Descriptor for `SiteConfig`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List siteConfigDescriptor = $convert.base64Decode(
+    'CgpTaXRlQ29uZmlnEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHYmFzZVVybBgCIAEoCVIHYmFzZVVybBIaCghsb2dpblVybBgDIAEoCVIIbG9naW5VcmwSKwoLbG9naW5Db29raWUYBCABKAsyCS5SZWdGaWVsZFILbG9naW5Db29raWUSGAoHdmVyc2lvbhgFIAEoCVIHdmVyc2lvbhIeCgp1cGdyYWRlVXJsGAggASgJUgp1cGdyYWRlVXJsEiMKB2hlYWRlcnMYBiADKAsyCS5SZWdGaWVsZFIHaGVhZGVycxIjCgdjb29raWVzGAcgAygLMgkuUmVnRmllbGRSB2Nvb2tpZXMSNgoOZ2FsbGVyeVBhcnNlcnMYCiADKAsyDi5HYWxsZXJ5UGFyc2VyUg5nYWxsZXJ5UGFyc2VycxI3Cg5saXN0Vmlld1BhcnNlchgLIAMoCzIPLkxpc3RWaWV3UGFyc2VyUg5saXN0Vmlld1BhcnNlchIwCgxpbWFnZVBhcnNlcnMYDiADKAsyDC5JbWFnZVBhcnNlclIMaW1hZ2VQYXJzZXJzEi4KCmFjdGlvbkxpc3QYDCADKAsyDi5BY3Rpb25Db21iaW5lUgphY3Rpb25MaXN0EiUKCHBhZ2VMaXN0GA0gAygLMgkuU2l0ZVBhZ2VSCHBhZ2VMaXN0');

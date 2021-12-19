@@ -1,6 +1,6 @@
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
+import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,31 +16,31 @@ class RulesBasic extends GetView<RulesEditController> {
       children: [
         CupertinoInput(
           labelText: '名称',
-          value: controller.rulesModel.name,
+          value: controller.siteConfigModel.name,
         ),
         CupertinoInput(
           labelText: '基础Url',
-          value: controller.rulesModel.baseUrl,
+          value: controller.siteConfigModel.baseUrl,
         ),
         const CupertinoDivider(height: 30),
         CupertinoInput(
           labelText: '登录Url',
-          value: controller.rulesModel.loginUrl,
+          value: controller.siteConfigModel.loginUrl,
         ),
         CupertinoInput(
           labelText: '登录Cookie作用域',
-          value: controller.rulesModel.loginCookie.reg,
+          value: controller.siteConfigModel.loginCookie.reg,
           hintText: '.*',
         ),
         CupertinoInput(
           labelText: 'Cookies',
-          value: controller.rulesModel.loginCookie.value,
+          value: controller.siteConfigModel.loginCookie.value,
           minLine: 3,
         ),
         const CupertinoDivider(height: 30),
         CupertinoInput(
           labelText: '更新Url',
-          value: controller.rulesModel.upgradeUrl,
+          value: controller.siteConfigModel.upgradeUrl,
         ),
       ],
     );

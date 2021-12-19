@@ -1,4 +1,3 @@
-import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/store.dart';
@@ -6,49 +5,38 @@ import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
 import 'package:catweb/network/parser_exec/list_parser_exec.dart';
 import 'package:catweb/ui/pages/view_page/viewer_list/viewer_list_model.dart';
-import 'package:catweb/utils/utils.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 
 class NetClient {
-  NetClient(SiteProtobufModel model) : dio = buildDio(model);
+  NetClient(this.configModel, this.env) : dio = buildDio(configModel);
 
   final Dio dio;
+  final SiteEnvModel env;
+  final SiteConfigModel configModel;
 
   Future<List<ViewerListModel>> getList({
     required SitePageModel model,
     required SubPageModel subPageModel,
     required SiteEnvModel localEnv,
   }) async {
-    final site = Get.find<SiteController>();
-    final env = site.globalEnv.create(localEnv);
-    final url = env.resolve(model.url.value)!;
-    final rsp = await dio.get<String>(url);
-
-    final data = rsp.data;
+    final rsp = await dio.get<String>(env.replace(model.url.value));
 
     if (rsp.data == null) {
       // TODO 处理为空的错误
       throw Exception('data is null');
     }
 
-    final global = Get.find<SiteController>();
-    final parser = global.site.value!.config.listViewParser
-        .get((e) => e.name.value == model.parser.value);
-
-    if (parser == null) throw Exception('parser is null');
-
     return ListParserExec(
-      parser: parser,
-      source: data!,
-      env: env,
+      parser: configModel.getListParser(model.parser.value),
+      source: rsp.data!,
+      env: env.create(localEnv),
       dio: dio,
     ).exec();
   }
 }
 
-Dio buildDio(SiteProtobufModel model) {
+Dio buildDio(SiteConfigModel model) {
   final dio = Dio();
 
   dio.options.connectTimeout = 10 * 1000;

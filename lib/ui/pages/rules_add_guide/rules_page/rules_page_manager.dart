@@ -1,8 +1,8 @@
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_page/rules_page.dart';
+import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +24,7 @@ class RulesPageManager extends GetView<RulesEditController> {
       children: [
         Obx(() => Column(
               mainAxisSize: MainAxisSize.min,
-              children: controller.rulesModel.pageList.map((e) {
+          children: controller.siteConfigModel.pageList.map((e) {
                 return CupertinoListTile(
                   title: Text(e.name.value),
                   subtitle: Text(e.type.value.string(context)),
@@ -78,7 +78,7 @@ class RulesPageManager extends GetView<RulesEditController> {
               title: '取消',
             ) ==
             true) {
-          controller.rulesModel.pageList.remove(model);
+          controller.siteConfigModel.pageList.remove(model);
         }
         break;
     }
@@ -88,9 +88,9 @@ class RulesPageManager extends GetView<RulesEditController> {
     final input = model ?? SitePageModel();
     await Get.to(() => RulesPageEdit(model: input));
     if (model == null && input.name.value.isNotEmpty) {
-      controller.rulesModel.pageList.add(input);
+      controller.siteConfigModel.pageList.add(input);
     } else if (input.name.value.isEmpty) {
-      controller.rulesModel.pageList.remove(model);
+      controller.siteConfigModel.pageList.remove(model);
     }
   }
 }

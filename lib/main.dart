@@ -3,7 +3,6 @@ import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/themes.dart';
 import 'package:catweb/ui/pages/main_page/main_page.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_page.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_manager/rules_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +42,6 @@ class MyApp extends StatelessWidget {
       routes: {
         MainPage.routeName: (_) => const MainPage(),
         SiteManager.routeName: (_) => const SiteManager(),
-        RulesEditPage.routeName: (_) => RulesEditPage(),
       },
     );
   }

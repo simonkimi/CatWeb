@@ -1,13 +1,12 @@
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/test/test_model.dart' as eh;
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_page.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:catweb/test/test_model/eh_rules.dart' as eh;
 import 'package:get/get.dart';
 
 enum _MenuSelect {
@@ -46,7 +45,7 @@ class SiteManager extends StatelessWidget {
 
   Widget buildSiteItem(BuildContext context, SiteTableData e) {
     final siteController = Get.find<SiteController>();
-    final pb = SiteProtobuf.fromBuffer(e.bin);
+    final pb = SiteConfig.fromBuffer(e.bin);
     return Obx(() => CupertinoListTile(
           selected: siteController.id == e.id,
           title: Text(pb.name),
@@ -102,7 +101,7 @@ class SiteManager extends StatelessWidget {
   Future<void> onTrailingTap(
     BuildContext context,
     SiteTableData entity,
-    SiteProtobuf pb,
+    SiteConfig pb,
   ) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: '取消',
@@ -138,15 +137,7 @@ class SiteManager extends StatelessWidget {
     }
   }
 
-  Future<void> toEditPage([SiteProtobuf? pb, SiteTableData? db]) async {
-    final result = await Get.to(() => RulesEditPage(pb: pb ?? eh.rulesModel));
-    if (result is SiteProtobufModel) {
-      if (db == null) {
-        DB().siteDao.insert(
-            SiteTableCompanion.insert(bin: result.toPb().writeToBuffer()));
-      } else {
-        DB().siteDao.replace(db.copyWith(bin: result.toPb().writeToBuffer()));
-      }
-    }
+  Future<void> toEditPage([SiteConfig? pb, SiteTableData? db]) async {
+    await Get.to(() => RulesEditPage(pb: pb ?? eh.ehTestSite, db: db));
   }
 }

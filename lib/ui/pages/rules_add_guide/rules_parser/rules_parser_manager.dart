@@ -1,8 +1,8 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_editor.dart';
+import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_editor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +24,7 @@ class RulesParserManager extends GetView<RulesEditController> {
       children: [
         Obx(() => Column(
               mainAxisSize: MainAxisSize.min,
-              children: controller.rulesModel.parsers.map((e) {
+          children: controller.siteConfigModel.parsers.map((e) {
                 return CupertinoListTile(
                   title: Text(e.name.value),
                   subtitle: Text(e.displayType(context)),
@@ -73,7 +73,7 @@ class RulesParserManager extends GetView<RulesEditController> {
       }
       await Get.to(RulesParserEditor(model: model));
       if (model.name.value.isNotEmpty) {
-        controller.rulesModel.addParser(model);
+        controller.siteConfigModel.addParser(model);
       }
     }
   }
@@ -107,7 +107,7 @@ class RulesParserManager extends GetView<RulesEditController> {
               title: '取消',
             ) ==
             true) {
-          controller.rulesModel.removeParser(model);
+          controller.siteConfigModel.removeParser(model);
         }
         break;
     }
@@ -120,7 +120,7 @@ class RulesParserManager extends GetView<RulesEditController> {
       ),
     ));
     if (model.name.value.isEmpty) {
-      controller.rulesModel.removeParser(model);
+      controller.siteConfigModel.removeParser(model);
     }
   }
 }

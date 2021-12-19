@@ -1,17 +1,11 @@
 ///
-//  Generated code. Do not modify.
-//  source: store.proto
-//
-// @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
-
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'parser.pb.dart' as $0;
 import 'actions.pb.dart' as $1;
 import 'page.pb.dart' as $2;
+import 'parser.pb.dart' as $0;
 
 class RegField extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
@@ -96,11 +90,11 @@ class RegField extends $pb.GeneratedMessage {
   void clearValue() => clearField(2);
 }
 
-class SiteProtobuf extends $pb.GeneratedMessage {
+class SiteConfig extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
-          : 'SiteProtobuf',
+          : 'SiteConfig',
       createEmptyInstance: create)
     ..aOS(
         1,
@@ -182,8 +176,7 @@ class SiteProtobuf extends $pb.GeneratedMessage {
             : 'pageList',
         $pb.PbFieldType.PM,
         protoName: 'pageList',
-        subBuilder: $2.SitePage.create)
-    ..pc<$0.ImageParser>(
+        subBuilder: $2.SitePage.create)..pc<$0.ImageParser>(
         14,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
@@ -193,8 +186,9 @@ class SiteProtobuf extends $pb.GeneratedMessage {
         subBuilder: $0.ImageParser.create)
     ..hasRequiredFields = false;
 
-  SiteProtobuf._() : super();
-  factory SiteProtobuf({
+  SiteConfig._() : super();
+
+  factory SiteConfig({
     $core.String? name,
     $core.String? baseUrl,
     $core.String? loginUrl,
@@ -251,35 +245,43 @@ class SiteProtobuf extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory SiteProtobuf.fromBuffer($core.List<$core.int> i,
+
+  factory SiteConfig.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SiteProtobuf.fromJson($core.String i,
+
+  factory SiteConfig.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  SiteProtobuf clone() => SiteProtobuf()..mergeFromMessage(this);
+  SiteConfig clone() => SiteConfig()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  SiteProtobuf copyWith(void Function(SiteProtobuf) updates) =>
-      super.copyWith((message) => updates(message as SiteProtobuf))
-          as SiteProtobuf; // ignore: deprecated_member_use
+  SiteConfig copyWith(void Function(SiteConfig) updates) =>
+      super.copyWith((message) => updates(message as SiteConfig))
+          as SiteConfig; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
-  static SiteProtobuf create() => SiteProtobuf._();
-  SiteProtobuf createEmptyInstance() => create();
-  static $pb.PbList<SiteProtobuf> createRepeated() =>
-      $pb.PbList<SiteProtobuf>();
+  static SiteConfig create() => SiteConfig._();
+
+  SiteConfig createEmptyInstance() => create();
+
+  static $pb.PbList<SiteConfig> createRepeated() => $pb.PbList<SiteConfig>();
+
   @$core.pragma('dart2js:noInline')
-  static SiteProtobuf getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SiteProtobuf>(create);
-  static SiteProtobuf? _defaultInstance;
+  static SiteConfig getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SiteConfig>(create);
+  static SiteConfig? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
+
   @$pb.TagNumber(1)
   set name($core.String v) {
     $_setString(0, v);

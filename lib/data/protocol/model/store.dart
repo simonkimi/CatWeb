@@ -25,8 +25,8 @@ class RegFieldModel implements PbAble {
       );
 }
 
-class SiteProtobufModel implements PbAble {
-  SiteProtobufModel([SiteProtobuf? pb])
+class SiteConfigModel implements PbAble {
+  SiteConfigModel([SiteConfig? pb])
       : name = sobs(pb?.name),
         baseUrl = sobs(pb?.baseUrl),
         cookies = lobs(pb?.cookies, (RegField e) => RegFieldModel(e)),
@@ -50,6 +50,9 @@ class SiteProtobufModel implements PbAble {
           (ActionCombine e) => ActionCombineModel(e),
         ),
         pageList = lobs(pb?.pageList, (SitePage e) => SitePageModel(e));
+
+  factory SiteConfigModel.fromBuffer(List<int> buffer) =>
+      SiteConfigModel(SiteConfig.fromBuffer(buffer));
 
   final RxString name;
   final RxString baseUrl;
@@ -91,8 +94,26 @@ class SiteProtobufModel implements PbAble {
         ...imageParser,
       ]);
 
+  ListViewParserModel getListParser(String name) {
+    final result = listViewParser.get((e) => e.name.value == name);
+    if (result == null) throw Exception('Parser $name not exist');
+    return result;
+  }
+
+  GalleryParserModel? getGalleryParser(String name) {
+    final result = galleryParsers.get((e) => e.name.value == name);
+    if (result == null) throw Exception('Parser $name not exist');
+    return result;
+  }
+
+  ImageParserModel? getImageParser(String name) {
+    final result = imageParser.get((e) => e.name.value == name);
+    if (result == null) throw Exception('Parser $name not exist');
+    return result;
+  }
+
   @override
-  SiteProtobuf toPb() => SiteProtobuf(
+  SiteConfig toPb() => SiteConfig(
         name: name.value,
         baseUrl: baseUrl.value,
         cookies: cookies.map((e) => e.toPb()),

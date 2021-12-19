@@ -1,7 +1,7 @@
 import 'package:catweb/gen/protobuf/parser.pbserver.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 
-final galleryParser = GalleryParser(
+final ehGalleryParser = GalleryParser(
   name: '画廊',
   title: Selector(
     selector: '#gn',

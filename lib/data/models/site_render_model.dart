@@ -1,23 +1,31 @@
 import 'package:catweb/data/database/database.dart';
+import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/network/client/cilent.dart';
-import 'package:moor/moor.dart';
 import 'package:get/get.dart';
+import 'package:moor/moor.dart';
 
+/// 渲染时所创建的模型
 class SiteRenderConfigModel {
   SiteRenderConfigModel({
-    required this.config,
+    required this.configModel,
     required this.dbEntity,
-  })  : client = NetClient(config),
-        favicon = dbEntity.favicon.isNotEmpty ? dbEntity.favicon.obs : Rx(null);
+  })  : globalEnv = SiteEnvModel({}),
+        favicon =
+            dbEntity.favicon.isNotEmpty ? dbEntity.favicon.obs : Rx(null) {
+    client = NetClient(configModel, globalEnv);
+  }
 
-  final SiteProtobufModel config;
+  // 需求字段
   final SiteTableData dbEntity;
-  final NetClient client;
+  late final NetClient client;
 
+  // 储存字段
+  final SiteEnvModel globalEnv;
+  final SiteConfigModel configModel;
   final Rx<Uint8List?> favicon;
 
-  String get name => config.name.value;
+  String get name => configModel.name.value;
 
   int get id => dbEntity.id;
 

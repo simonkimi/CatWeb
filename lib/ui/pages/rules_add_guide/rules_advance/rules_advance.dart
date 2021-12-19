@@ -2,7 +2,7 @@ import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/ui/components/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
+import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
@@ -34,7 +34,7 @@ class RulesAdvance extends GetView<RulesEditController> {
             child: Column(
               children: [
                 Obx(() => Column(
-                      children: controller.rulesModel.headers
+                  children: controller.siteConfigModel.headers
                           .asMap()
                           .entries
                           .map((e) {
@@ -43,7 +43,8 @@ class RulesAdvance extends GetView<RulesEditController> {
                             controller: headerController,
                             text: '${e.value.reg}: ${e.value.value}',
                             onDelete: (index) {
-                              controller.rulesModel.headers.removeAt(index);
+                              controller.siteConfigModel.headers
+                                  .removeAt(index);
                             },
                             onTap: () => editRegField(context, e.value)));
                       }).toList(),
@@ -55,7 +56,7 @@ class RulesAdvance extends GetView<RulesEditController> {
                   ),
                   text: '添加',
                   onTap: () {
-                    controller.rulesModel.headers.add(
+                    controller.siteConfigModel.headers.add(
                       RegFieldModel(RegField(reg: '*', value: '')),
                     );
                   },
@@ -77,7 +78,7 @@ class RulesAdvance extends GetView<RulesEditController> {
             child: Column(
               children: [
                 Obx(() => Column(
-                      children: controller.rulesModel.cookies
+                  children: controller.siteConfigModel.cookies
                           .asMap()
                           .entries
                           .map((e) {
@@ -87,7 +88,8 @@ class RulesAdvance extends GetView<RulesEditController> {
                             text:
                                 '${e.value.reg.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
                             onDelete: (index) {
-                              controller.rulesModel.cookies.removeAt(index);
+                              controller.siteConfigModel.cookies
+                                  .removeAt(index);
                             },
                             onTap: () => editRegField(context, e.value)));
                       }).toList(),
@@ -99,7 +101,7 @@ class RulesAdvance extends GetView<RulesEditController> {
                   ),
                   text: '添加',
                   onTap: () {
-                    controller.rulesModel.cookies.add(
+                    controller.siteConfigModel.cookies.add(
                       RegFieldModel(RegField(reg: '', value: '')),
                     );
                   },

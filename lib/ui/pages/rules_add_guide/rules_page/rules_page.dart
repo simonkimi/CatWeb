@@ -5,7 +5,7 @@ import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
+import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
@@ -249,7 +249,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
     final result = await showCupertinoSelectDialog<String>(
       title: '请选择解析器',
       context: context,
-      items: controller.rulesModel.parsers
+      items: controller.siteConfigModel.parsers
           .map((e) => SelectTileItem(title: e.name.value, value: e.name.value))
           .toList(),
       cancelText: '取消',

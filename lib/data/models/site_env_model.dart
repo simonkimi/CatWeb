@@ -26,5 +26,12 @@ class SiteEnvModel implements EnvMargeAble {
     return input;
   }
 
+  String replace(String input) {
+    for (final entity in _env.entries) {
+      input = input.replaceAll('\${${entity.key}', entity.value);
+    }
+    return input;
+  }
+
   void clear() => _env.clear();
 }

@@ -1,23 +1,22 @@
+import 'package:catweb/data/database/database.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_advance/rules_advance.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_basic/rules_basic.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_edit/rules_edit_controller.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_page/rules_page_manager.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_parser/rules_parser_manager.dart';
+import 'package:catweb/ui/pages/rules_add_guide//rules_advance/rules_advance.dart';
+import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_basic/rules_basic.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page_manager.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../../i18n.dart';
+import '../../../i18n.dart';
 
 class RulesEditPage extends StatelessWidget {
-  RulesEditPage({Key? key, this.pb})
+  RulesEditPage({Key? key, SiteConfig? pb, SiteTableData? db})
       : controller = Get.put(RulesEditController(pb: pb)),
         super(key: key);
 
-  static const routeName = 'RulesEditPage';
-  final SiteProtobuf? pb;
   final RulesEditController controller;
 
   @override
@@ -71,15 +70,15 @@ class RulesEditPage extends StatelessWidget {
 
   Future<bool> showExitConfine(BuildContext context) async {
     return (await showCupertinoConfirmDialog(
-          context: context,
-          title: '退出',
-          content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
-        )) ==
+      context: context,
+      title: '退出',
+      content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
+    )) ==
         true;
   }
 
   Future<void> save(BuildContext context) async {
-    if (controller.rulesModel.name.isEmpty) {
+    if (controller.siteConfigModel.name.isEmpty) {
       showCupertinoConfirmDialog(
         context: context,
         title: '标题',
@@ -88,7 +87,7 @@ class RulesEditPage extends StatelessWidget {
       );
       return;
     }
-    if (controller.rulesModel.baseUrl.isEmpty) {
+    if (controller.siteConfigModel.baseUrl.isEmpty) {
       showCupertinoConfirmDialog(
         context: context,
         title: '网站',
@@ -97,6 +96,6 @@ class RulesEditPage extends StatelessWidget {
       );
       return;
     }
-    Get.back(result: controller.rulesModel);
+    Get.back(result: controller.siteConfigModel);
   }
 }
