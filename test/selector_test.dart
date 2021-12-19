@@ -13,7 +13,7 @@ import 'package:xpath_selector/xpath_selector.dart';
 
 void main() {
   test('Children selector test', () async {
-    final root = XPath.html(File('test/html/index.htm').readAsStringSync());
+    final root = XPath.html(File('test/html/minimal.htm').readAsStringSync());
 
     final domSelector = DomParserExec<Node>(dio: Dio(), env: SiteEnvModel({}));
     final itemList = domSelector.nodes(parser.itemSelector, root.root);
@@ -45,7 +45,8 @@ void main() {
 final parser = ListViewParserModel(ListViewParser(
   name: '主页',
   itemSelector: Selector(
-    selector: "//table[starts-with(@class,'itg')]/tbody/tr[position()>1]",
+    selector:
+        "//table[starts-with(@class,'itg')]/tbody/tr[position()>1]|//div[@class='gl1t']",
   ),
   title: Selector(
     selector: '.glink',
@@ -73,11 +74,11 @@ final parser = ListViewParserModel(ListViewParser(
     regex: r'#[0-9a-fA-F]{6}',
   ),
   tag: Selector(
-    selector: '.cn',
+    selector: '.cn, .cs',
     function: SelectorFunction.text,
   ),
   tagColor: Selector(
-    selector: '.cn',
+    selector: '.cn, .cs',
     function: SelectorFunction.attr,
     param: 'class',
     regex: 'ct.',
