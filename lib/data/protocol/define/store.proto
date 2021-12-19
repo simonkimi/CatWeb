@@ -27,3 +27,7 @@ message SiteConfig {
   repeated ActionCombine actionList = 12;
   repeated SitePage pageList = 13;
 }
+
+message EnvStore {
+  map<string, string> env = 1;
+}

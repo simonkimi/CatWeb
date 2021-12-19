@@ -26,6 +26,7 @@ class RegField extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   RegField._() : super();
+
   factory RegField({
     $core.String? reg,
     $core.String? value,
@@ -39,16 +40,20 @@ class RegField extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory RegField.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory RegField.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   RegField clone() => RegField()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -56,10 +61,14 @@ class RegField extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as RegField))
           as RegField; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static RegField create() => RegField._();
+
   RegField createEmptyInstance() => create();
+
   static $pb.PbList<RegField> createRepeated() => $pb.PbList<RegField>();
+
   @$core.pragma('dart2js:noInline')
   static RegField getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RegField>(create);
@@ -67,6 +76,7 @@ class RegField extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get reg => $_getSZ(0);
+
   @$pb.TagNumber(1)
   set reg($core.String v) {
     $_setString(0, v);
@@ -79,6 +89,7 @@ class RegField extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.String get value => $_getSZ(1);
+
   @$pb.TagNumber(2)
   set value($core.String v) {
     $_setString(1, v);
@@ -176,7 +187,8 @@ class SiteConfig extends $pb.GeneratedMessage {
             : 'pageList',
         $pb.PbFieldType.PM,
         protoName: 'pageList',
-        subBuilder: $2.SitePage.create)..pc<$0.ImageParser>(
+        subBuilder: $2.SitePage.create)
+    ..pc<$0.ImageParser>(
         14,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
@@ -294,6 +306,7 @@ class SiteConfig extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.String get baseUrl => $_getSZ(1);
+
   @$pb.TagNumber(2)
   set baseUrl($core.String v) {
     $_setString(1, v);
@@ -306,6 +319,7 @@ class SiteConfig extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   $core.String get loginUrl => $_getSZ(2);
+
   @$pb.TagNumber(3)
   set loginUrl($core.String v) {
     $_setString(2, v);
@@ -318,6 +332,7 @@ class SiteConfig extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(4)
   RegField get loginCookie => $_getN(3);
+
   @$pb.TagNumber(4)
   set loginCookie(RegField v) {
     setField(4, v);
@@ -332,6 +347,7 @@ class SiteConfig extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   $core.String get version => $_getSZ(4);
+
   @$pb.TagNumber(5)
   set version($core.String v) {
     $_setString(4, v);
@@ -350,6 +366,7 @@ class SiteConfig extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(8)
   $core.String get upgradeUrl => $_getSZ(7);
+
   @$pb.TagNumber(8)
   set upgradeUrl($core.String v) {
     $_setString(7, v);
@@ -374,4 +391,69 @@ class SiteConfig extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(14)
   $core.List<$0.ImageParser> get imageParsers => $_getList(12);
+}
+
+class EnvStore extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'EnvStore',
+      createEmptyInstance: create)
+    ..m<$core.String, $core.String>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'env',
+        entryClassName: 'EnvStore.EnvEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OS)
+    ..hasRequiredFields = false;
+
+  EnvStore._() : super();
+
+  factory EnvStore({
+    $core.Map<$core.String, $core.String>? env,
+  }) {
+    final _result = create();
+    if (env != null) {
+      _result.env.addAll(env);
+    }
+    return _result;
+  }
+
+  factory EnvStore.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+
+  factory EnvStore.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  EnvStore clone() => EnvStore()..mergeFromMessage(this);
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  EnvStore copyWith(void Function(EnvStore) updates) =>
+      super.copyWith((message) => updates(message as EnvStore))
+          as EnvStore; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static EnvStore create() => EnvStore._();
+
+  EnvStore createEmptyInstance() => create();
+
+  static $pb.PbList<EnvStore> createRepeated() => $pb.PbList<EnvStore>();
+
+  @$core.pragma('dart2js:noInline')
+  static EnvStore getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<EnvStore>(create);
+  static EnvStore? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.Map<$core.String, $core.String> get env => $_getMap(0);
 }

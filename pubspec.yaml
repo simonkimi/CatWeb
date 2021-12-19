@@ -1,7 +1,6 @@
 name: catweb
 description: A new Flutter project.
 
-
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -32,7 +31,7 @@ dependencies:
   html: ^0.15.0
   json_path: ^0.3.0
   xpath_selector: ^2.1.0
-  xml: any
+  xml: ^5.3.1
 
   # state
   get: ^4.3.8
@@ -53,6 +52,7 @@ dependencies:
   synchronized: ^3.0.0
   flutter_qjs: ^0.3.6
   expressions: ^0.2.3
+  uuid: ^3.0.5
 
 
 dev_dependencies:

@@ -1,12 +1,6 @@
 ///
-//  Generated code. Do not modify.
-//  source: page.proto
-//
-// @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
-
-// ignore_for_file: UNDEFINED_SHOWN_NAME
 import 'dart:core' as $core;
+
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class PageTemplate extends $pb.ProtobufEnum {
@@ -34,6 +28,7 @@ class PageTemplate extends $pb.ProtobufEnum {
 
   static final $core.Map<$core.int, PageTemplate> _byValue =
       $pb.ProtobufEnum.initByValue(values);
+
   static PageTemplate? valueOf($core.int value) => _byValue[value];
 
   const PageTemplate._($core.int v, $core.String n) : super(v, n);
@@ -70,7 +65,9 @@ class SiteDisplayType extends $pb.ProtobufEnum {
 
   static final $core.Map<$core.int, SiteDisplayType> _byValue =
       $pb.ProtobufEnum.initByValue(values);
+
   static SiteDisplayType? valueOf($core.int value) => _byValue[value];
 
   const SiteDisplayType._($core.int v, $core.String n) : super(v, n);
 }
+

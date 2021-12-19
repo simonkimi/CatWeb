@@ -2,7 +2,6 @@
 import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
-
 @$core.Deprecated('Use regFieldDescriptor instead')
 const RegField$json = const {
   '1': 'RegField',
@@ -94,3 +93,32 @@ const SiteConfig$json = const {
 /// Descriptor for `SiteConfig`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List siteConfigDescriptor = $convert.base64Decode(
     'CgpTaXRlQ29uZmlnEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHYmFzZVVybBgCIAEoCVIHYmFzZVVybBIaCghsb2dpblVybBgDIAEoCVIIbG9naW5VcmwSKwoLbG9naW5Db29raWUYBCABKAsyCS5SZWdGaWVsZFILbG9naW5Db29raWUSGAoHdmVyc2lvbhgFIAEoCVIHdmVyc2lvbhIeCgp1cGdyYWRlVXJsGAggASgJUgp1cGdyYWRlVXJsEiMKB2hlYWRlcnMYBiADKAsyCS5SZWdGaWVsZFIHaGVhZGVycxIjCgdjb29raWVzGAcgAygLMgkuUmVnRmllbGRSB2Nvb2tpZXMSNgoOZ2FsbGVyeVBhcnNlcnMYCiADKAsyDi5HYWxsZXJ5UGFyc2VyUg5nYWxsZXJ5UGFyc2VycxI3Cg5saXN0Vmlld1BhcnNlchgLIAMoCzIPLkxpc3RWaWV3UGFyc2VyUg5saXN0Vmlld1BhcnNlchIwCgxpbWFnZVBhcnNlcnMYDiADKAsyDC5JbWFnZVBhcnNlclIMaW1hZ2VQYXJzZXJzEi4KCmFjdGlvbkxpc3QYDCADKAsyDi5BY3Rpb25Db21iaW5lUgphY3Rpb25MaXN0EiUKCHBhZ2VMaXN0GA0gAygLMgkuU2l0ZVBhZ2VSCHBhZ2VMaXN0');
+@$core.Deprecated('Use envStoreDescriptor instead')
+const EnvStore$json = const {
+  '1': 'EnvStore',
+  '2': const [
+    const {
+      '1': 'env',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.EnvStore.EnvEntry',
+      '10': 'env'
+    },
+  ],
+  '3': const [EnvStore_EnvEntry$json],
+};
+
+@$core.Deprecated('Use envStoreDescriptor instead')
+const EnvStore_EnvEntry$json = const {
+  '1': 'EnvEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
+};
+
+/// Descriptor for `EnvStore`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List envStoreDescriptor = $convert.base64Decode(
+    'CghFbnZTdG9yZRIkCgNlbnYYASADKAsyEi5FbnZTdG9yZS5FbnZFbnRyeVIDZW52GjYKCEVudkVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAE=');

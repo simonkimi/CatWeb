@@ -10,7 +10,7 @@ class SiteRenderConfigModel {
   SiteRenderConfigModel({
     required this.configModel,
     required this.dbEntity,
-  })  : globalEnv = SiteEnvModel({}),
+  })  : globalEnv = SiteEnvModel.fromBuffer(dbEntity.env),
         favicon =
             dbEntity.favicon.isNotEmpty ? dbEntity.favicon.obs : Rx(null) {
     client = NetClient(configModel, globalEnv);

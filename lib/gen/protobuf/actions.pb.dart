@@ -1,10 +1,4 @@
 ///
-//  Generated code. Do not modify.
-//  source: actions.proto
-//
-// @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
-
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
@@ -46,6 +40,7 @@ class InputAction extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   InputAction._() : super();
+
   factory InputAction({
     $core.String? name,
     $core.String? id,
@@ -67,16 +62,20 @@ class InputAction extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory InputAction.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory InputAction.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   InputAction clone() => InputAction()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -84,10 +83,14 @@ class InputAction extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as InputAction))
           as InputAction; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static InputAction create() => InputAction._();
+
   InputAction createEmptyInstance() => create();
+
   static $pb.PbList<InputAction> createRepeated() => $pb.PbList<InputAction>();
+
   @$core.pragma('dart2js:noInline')
   static InputAction getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<InputAction>(create);
@@ -95,6 +98,7 @@ class InputAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
+
   @$pb.TagNumber(1)
   set name($core.String v) {
     $_setString(0, v);
@@ -107,6 +111,7 @@ class InputAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.String get id => $_getSZ(1);
+
   @$pb.TagNumber(2)
   set id($core.String v) {
     $_setString(1, v);
@@ -119,6 +124,7 @@ class InputAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   InputActionType get type => $_getN(2);
+
   @$pb.TagNumber(3)
   set type(InputActionType v) {
     setField(3, v);
@@ -131,6 +137,7 @@ class InputAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(4)
   $core.bool get global => $_getBF(3);
+
   @$pb.TagNumber(4)
   set global($core.bool v) {
     $_setBool(3, v);
@@ -175,6 +182,7 @@ class NetWorkAction extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   NetWorkAction._() : super();
+
   factory NetWorkAction({
     $core.String? name,
     NetWorkActionType? type,
@@ -196,16 +204,20 @@ class NetWorkAction extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory NetWorkAction.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory NetWorkAction.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   NetWorkAction clone() => NetWorkAction()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -213,11 +225,15 @@ class NetWorkAction extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as NetWorkAction))
           as NetWorkAction; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static NetWorkAction create() => NetWorkAction._();
+
   NetWorkAction createEmptyInstance() => create();
+
   static $pb.PbList<NetWorkAction> createRepeated() =>
       $pb.PbList<NetWorkAction>();
+
   @$core.pragma('dart2js:noInline')
   static NetWorkAction getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<NetWorkAction>(create);
@@ -225,6 +241,7 @@ class NetWorkAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
+
   @$pb.TagNumber(1)
   set name($core.String v) {
     $_setString(0, v);
@@ -237,6 +254,7 @@ class NetWorkAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   NetWorkActionType get type => $_getN(1);
+
   @$pb.TagNumber(2)
   set type(NetWorkActionType v) {
     setField(2, v);
@@ -249,6 +267,7 @@ class NetWorkAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   $core.String get url => $_getSZ(2);
+
   @$pb.TagNumber(3)
   set url($core.String v) {
     $_setString(2, v);
@@ -261,6 +280,7 @@ class NetWorkAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(4)
   $core.String get data => $_getSZ(3);
+
   @$pb.TagNumber(4)
   set data($core.String v) {
     $_setString(3, v);
@@ -306,6 +326,7 @@ class SetIdAction extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   SetIdAction._() : super();
+
   factory SetIdAction({
     $core.String? name,
     $core.String? id,
@@ -331,16 +352,20 @@ class SetIdAction extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory SetIdAction.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory SetIdAction.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   SetIdAction clone() => SetIdAction()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -348,10 +373,14 @@ class SetIdAction extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as SetIdAction))
           as SetIdAction; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static SetIdAction create() => SetIdAction._();
+
   SetIdAction createEmptyInstance() => create();
+
   static $pb.PbList<SetIdAction> createRepeated() => $pb.PbList<SetIdAction>();
+
   @$core.pragma('dart2js:noInline')
   static SetIdAction getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<SetIdAction>(create);
@@ -359,6 +388,7 @@ class SetIdAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
+
   @$pb.TagNumber(1)
   set name($core.String v) {
     $_setString(0, v);
@@ -371,6 +401,7 @@ class SetIdAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.String get id => $_getSZ(1);
+
   @$pb.TagNumber(2)
   set id($core.String v) {
     $_setString(1, v);
@@ -383,6 +414,7 @@ class SetIdAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   $core.String get reg => $_getSZ(2);
+
   @$pb.TagNumber(3)
   set reg($core.String v) {
     $_setString(2, v);
@@ -395,6 +427,7 @@ class SetIdAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(4)
   $core.String get replace => $_getSZ(3);
+
   @$pb.TagNumber(4)
   set replace($core.String v) {
     $_setString(3, v);
@@ -407,6 +440,7 @@ class SetIdAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   $core.bool get global => $_getBF(4);
+
   @$pb.TagNumber(5)
   set global($core.bool v) {
     $_setBool(4, v);
@@ -437,6 +471,7 @@ class OpenPageAction extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   OpenPageAction._() : super();
+
   factory OpenPageAction({
     $core.String? name,
     $core.String? target,
@@ -450,16 +485,20 @@ class OpenPageAction extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory OpenPageAction.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory OpenPageAction.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   OpenPageAction clone() => OpenPageAction()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -467,11 +506,15 @@ class OpenPageAction extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as OpenPageAction))
           as OpenPageAction; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static OpenPageAction create() => OpenPageAction._();
+
   OpenPageAction createEmptyInstance() => create();
+
   static $pb.PbList<OpenPageAction> createRepeated() =>
       $pb.PbList<OpenPageAction>();
+
   @$core.pragma('dart2js:noInline')
   static OpenPageAction getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<OpenPageAction>(create);
@@ -479,6 +522,7 @@ class OpenPageAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
+
   @$pb.TagNumber(1)
   set name($core.String v) {
     $_setString(0, v);
@@ -491,6 +535,7 @@ class OpenPageAction extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.String get target => $_getSZ(1);
+
   @$pb.TagNumber(2)
   set target($core.String v) {
     $_setString(1, v);
@@ -526,6 +571,7 @@ class ActionCombine extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   ActionCombine._() : super();
+
   factory ActionCombine({
     $core.String? name,
     $core.Iterable<$core.String>? actions,
@@ -543,16 +589,20 @@ class ActionCombine extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory ActionCombine.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory ActionCombine.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   ActionCombine clone() => ActionCombine()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -560,11 +610,15 @@ class ActionCombine extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as ActionCombine))
           as ActionCombine; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ActionCombine create() => ActionCombine._();
+
   ActionCombine createEmptyInstance() => create();
+
   static $pb.PbList<ActionCombine> createRepeated() =>
       $pb.PbList<ActionCombine>();
+
   @$core.pragma('dart2js:noInline')
   static ActionCombine getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ActionCombine>(create);
@@ -572,6 +626,7 @@ class ActionCombine extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
+
   @$pb.TagNumber(1)
   set name($core.String v) {
     $_setString(0, v);
@@ -587,6 +642,7 @@ class ActionCombine extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   $core.String get icon => $_getSZ(2);
+
   @$pb.TagNumber(5)
   set icon($core.String v) {
     $_setString(2, v);
@@ -597,3 +653,4 @@ class ActionCombine extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   void clearIcon() => clearField(5);
 }
+

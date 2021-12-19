@@ -1,10 +1,4 @@
 ///
-//  Generated code. Do not modify.
-//  source: selector.proto
-//
-// @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
-
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
@@ -67,6 +61,7 @@ class Selector extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   Selector._() : super();
+
   factory Selector({
     $core.String? selector,
     SelectorFunction? function,
@@ -104,16 +99,20 @@ class Selector extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory Selector.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory Selector.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   Selector clone() => Selector()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -121,10 +120,14 @@ class Selector extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as Selector))
           as Selector; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Selector create() => Selector._();
+
   Selector createEmptyInstance() => create();
+
   static $pb.PbList<Selector> createRepeated() => $pb.PbList<Selector>();
+
   @$core.pragma('dart2js:noInline')
   static Selector getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Selector>(create);
@@ -132,6 +135,7 @@ class Selector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get selector => $_getSZ(0);
+
   @$pb.TagNumber(1)
   set selector($core.String v) {
     $_setString(0, v);
@@ -144,6 +148,7 @@ class Selector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   SelectorFunction get function => $_getN(1);
+
   @$pb.TagNumber(2)
   set function(SelectorFunction v) {
     setField(2, v);
@@ -156,6 +161,7 @@ class Selector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   $core.String get param => $_getSZ(2);
+
   @$pb.TagNumber(3)
   set param($core.String v) {
     $_setString(2, v);
@@ -168,6 +174,7 @@ class Selector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(4)
   $core.String get regex => $_getSZ(3);
+
   @$pb.TagNumber(4)
   set regex($core.String v) {
     $_setString(3, v);
@@ -180,6 +187,7 @@ class Selector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   $core.String get replace => $_getSZ(4);
+
   @$pb.TagNumber(5)
   set replace($core.String v) {
     $_setString(4, v);
@@ -192,6 +200,7 @@ class Selector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(6)
   $core.String get js => $_getSZ(5);
+
   @$pb.TagNumber(6)
   set js($core.String v) {
     $_setString(5, v);
@@ -204,6 +213,7 @@ class Selector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(7)
   $core.bool get computed => $_getBF(6);
+
   @$pb.TagNumber(7)
   set computed($core.bool v) {
     $_setBool(6, v);
@@ -216,6 +226,7 @@ class Selector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(8)
   $core.String get defaultValue => $_getSZ(7);
+
   @$pb.TagNumber(8)
   set defaultValue($core.String v) {
     $_setString(7, v);
@@ -252,6 +263,7 @@ class ExtraSelector extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   ExtraSelector._() : super();
+
   factory ExtraSelector({
     $core.String? id,
     Selector? selector,
@@ -269,16 +281,20 @@ class ExtraSelector extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory ExtraSelector.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory ExtraSelector.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   ExtraSelector clone() => ExtraSelector()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -286,11 +302,15 @@ class ExtraSelector extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as ExtraSelector))
           as ExtraSelector; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ExtraSelector create() => ExtraSelector._();
+
   ExtraSelector createEmptyInstance() => create();
+
   static $pb.PbList<ExtraSelector> createRepeated() =>
       $pb.PbList<ExtraSelector>();
+
   @$core.pragma('dart2js:noInline')
   static ExtraSelector getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ExtraSelector>(create);
@@ -298,6 +318,7 @@ class ExtraSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get id => $_getSZ(0);
+
   @$pb.TagNumber(1)
   set id($core.String v) {
     $_setString(0, v);
@@ -310,6 +331,7 @@ class ExtraSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   Selector get selector => $_getN(1);
+
   @$pb.TagNumber(2)
   set selector(Selector v) {
     setField(2, v);
@@ -324,6 +346,7 @@ class ExtraSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   $core.bool get global => $_getBF(2);
+
   @$pb.TagNumber(3)
   set global($core.bool v) {
     $_setBool(2, v);
@@ -379,6 +402,7 @@ class ImageSelector extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   ImageSelector._() : super();
+
   factory ImageSelector({
     Selector? imgUrl,
     Selector? imgWidth,
@@ -404,16 +428,20 @@ class ImageSelector extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory ImageSelector.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory ImageSelector.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   ImageSelector clone() => ImageSelector()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -421,11 +449,15 @@ class ImageSelector extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as ImageSelector))
           as ImageSelector; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ImageSelector create() => ImageSelector._();
+
   ImageSelector createEmptyInstance() => create();
+
   static $pb.PbList<ImageSelector> createRepeated() =>
       $pb.PbList<ImageSelector>();
+
   @$core.pragma('dart2js:noInline')
   static ImageSelector getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ImageSelector>(create);
@@ -433,6 +465,7 @@ class ImageSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   Selector get imgUrl => $_getN(0);
+
   @$pb.TagNumber(1)
   set imgUrl(Selector v) {
     setField(1, v);
@@ -447,6 +480,7 @@ class ImageSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   Selector get imgWidth => $_getN(1);
+
   @$pb.TagNumber(2)
   set imgWidth(Selector v) {
     setField(2, v);
@@ -461,6 +495,7 @@ class ImageSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   Selector get imgHeight => $_getN(2);
+
   @$pb.TagNumber(3)
   set imgHeight(Selector v) {
     setField(3, v);
@@ -475,6 +510,7 @@ class ImageSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(4)
   Selector get imgX => $_getN(3);
+
   @$pb.TagNumber(4)
   set imgX(Selector v) {
     setField(4, v);
@@ -489,6 +525,7 @@ class ImageSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   Selector get imgY => $_getN(4);
+
   @$pb.TagNumber(5)
   set imgY(Selector v) {
     setField(5, v);
@@ -542,6 +579,7 @@ class CommentSelector extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   CommentSelector._() : super();
+
   factory CommentSelector({
     Selector? username,
     Selector? postTime,
@@ -567,16 +605,20 @@ class CommentSelector extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory CommentSelector.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory CommentSelector.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   CommentSelector clone() => CommentSelector()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -584,11 +626,15 @@ class CommentSelector extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as CommentSelector))
           as CommentSelector; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static CommentSelector create() => CommentSelector._();
+
   CommentSelector createEmptyInstance() => create();
+
   static $pb.PbList<CommentSelector> createRepeated() =>
       $pb.PbList<CommentSelector>();
+
   @$core.pragma('dart2js:noInline')
   static CommentSelector getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<CommentSelector>(create);
@@ -596,6 +642,7 @@ class CommentSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   Selector get username => $_getN(0);
+
   @$pb.TagNumber(1)
   set username(Selector v) {
     setField(1, v);
@@ -610,6 +657,7 @@ class CommentSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   Selector get postTime => $_getN(1);
+
   @$pb.TagNumber(2)
   set postTime(Selector v) {
     setField(2, v);
@@ -624,6 +672,7 @@ class CommentSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   Selector get vote => $_getN(2);
+
   @$pb.TagNumber(3)
   set vote(Selector v) {
     setField(3, v);
@@ -638,6 +687,7 @@ class CommentSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(4)
   Selector get content => $_getN(3);
+
   @$pb.TagNumber(4)
   set content(Selector v) {
     setField(4, v);
@@ -652,6 +702,7 @@ class CommentSelector extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   ImageSelector get avatar => $_getN(4);
+
   @$pb.TagNumber(5)
   set avatar(ImageSelector v) {
     setField(5, v);
@@ -664,3 +715,4 @@ class CommentSelector extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   ImageSelector ensureAvatar() => $_ensure(4);
 }
+

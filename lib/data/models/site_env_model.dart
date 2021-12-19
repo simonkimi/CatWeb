@@ -1,3 +1,5 @@
+import 'package:catweb/gen/protobuf/store.pbserver.dart';
+
 abstract class EnvMargeAble {
   Map<String, String> get env;
 }
@@ -5,6 +7,9 @@ abstract class EnvMargeAble {
 class SiteEnvModel implements EnvMargeAble {
   SiteEnvModel(Map<String, String> env) : _env = env;
   final Map<String, String> _env;
+
+  factory SiteEnvModel.fromBuffer(List<int> buffer) =>
+      SiteEnvModel(EnvStore.fromBuffer(buffer).env);
 
   @override
   Map<String, String> get env => _env;

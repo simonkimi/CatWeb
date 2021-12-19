@@ -1,10 +1,4 @@
 ///
-//  Generated code. Do not modify.
-//  source: parser.proto
-//
-// @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
-
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
@@ -91,6 +85,7 @@ class ImageParser extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   ImageParser._() : super();
+
   factory ImageParser({
     $core.String? name,
     $0.Selector? id,
@@ -140,16 +135,20 @@ class ImageParser extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory ImageParser.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory ImageParser.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   ImageParser clone() => ImageParser()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -157,10 +156,14 @@ class ImageParser extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as ImageParser))
           as ImageParser; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ImageParser create() => ImageParser._();
+
   ImageParser createEmptyInstance() => create();
+
   static $pb.PbList<ImageParser> createRepeated() => $pb.PbList<ImageParser>();
+
   @$core.pragma('dart2js:noInline')
   static ImageParser getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ImageParser>(create);
@@ -168,6 +171,7 @@ class ImageParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
+
   @$pb.TagNumber(1)
   set name($core.String v) {
     $_setString(0, v);
@@ -180,6 +184,7 @@ class ImageParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $0.Selector get id => $_getN(1);
+
   @$pb.TagNumber(2)
   set id($0.Selector v) {
     setField(2, v);
@@ -194,6 +199,7 @@ class ImageParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   $0.ImageSelector get image => $_getN(2);
+
   @$pb.TagNumber(3)
   set image($0.ImageSelector v) {
     setField(3, v);
@@ -208,6 +214,7 @@ class ImageParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(4)
   $0.Selector get largerImage => $_getN(3);
+
   @$pb.TagNumber(4)
   set largerImage($0.Selector v) {
     setField(4, v);
@@ -222,6 +229,7 @@ class ImageParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   $0.Selector get rawImage => $_getN(4);
+
   @$pb.TagNumber(5)
   set rawImage($0.Selector v) {
     setField(5, v);
@@ -236,6 +244,7 @@ class ImageParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(6)
   $0.Selector get uploadTime => $_getN(5);
+
   @$pb.TagNumber(6)
   set uploadTime($0.Selector v) {
     setField(6, v);
@@ -250,6 +259,7 @@ class ImageParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(7)
   $0.Selector get source => $_getN(6);
+
   @$pb.TagNumber(7)
   set source($0.Selector v) {
     setField(7, v);
@@ -264,6 +274,7 @@ class ImageParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(8)
   $0.Selector get rating => $_getN(7);
+
   @$pb.TagNumber(8)
   set rating($0.Selector v) {
     setField(8, v);
@@ -278,6 +289,7 @@ class ImageParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(9)
   $0.Selector get score => $_getN(8);
+
   @$pb.TagNumber(9)
   set score($0.Selector v) {
     setField(9, v);
@@ -292,6 +304,7 @@ class ImageParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(10)
   $0.ImageSelector get uploaderAvatar => $_getN(9);
+
   @$pb.TagNumber(10)
   set uploaderAvatar($0.ImageSelector v) {
     setField(10, v);
@@ -423,6 +436,7 @@ class ListViewParser extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   ListViewParser._() : super();
+
   factory ListViewParser({
     $core.String? name,
     $0.Selector? itemSelector,
@@ -492,16 +506,20 @@ class ListViewParser extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory ListViewParser.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory ListViewParser.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   ListViewParser clone() => ListViewParser()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -509,11 +527,15 @@ class ListViewParser extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as ListViewParser))
           as ListViewParser; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ListViewParser create() => ListViewParser._();
+
   ListViewParser createEmptyInstance() => create();
+
   static $pb.PbList<ListViewParser> createRepeated() =>
       $pb.PbList<ListViewParser>();
+
   @$core.pragma('dart2js:noInline')
   static ListViewParser getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ListViewParser>(create);
@@ -521,6 +543,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
+
   @$pb.TagNumber(1)
   set name($core.String v) {
     $_setString(0, v);
@@ -533,6 +556,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $0.Selector get itemSelector => $_getN(1);
+
   @$pb.TagNumber(2)
   set itemSelector($0.Selector v) {
     setField(2, v);
@@ -547,6 +571,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   $0.Selector get title => $_getN(2);
+
   @$pb.TagNumber(3)
   set title($0.Selector v) {
     setField(3, v);
@@ -561,6 +586,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(4)
   $0.Selector get subtitle => $_getN(3);
+
   @$pb.TagNumber(4)
   set subtitle($0.Selector v) {
     setField(4, v);
@@ -575,6 +601,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   $0.Selector get uploadTime => $_getN(4);
+
   @$pb.TagNumber(5)
   set uploadTime($0.Selector v) {
     setField(5, v);
@@ -589,6 +616,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(6)
   $0.Selector get star => $_getN(5);
+
   @$pb.TagNumber(6)
   set star($0.Selector v) {
     setField(6, v);
@@ -603,6 +631,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(7)
   $0.Selector get imgCount => $_getN(6);
+
   @$pb.TagNumber(7)
   set imgCount($0.Selector v) {
     setField(7, v);
@@ -617,6 +646,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(8)
   $0.ImageSelector get previewImg => $_getN(7);
+
   @$pb.TagNumber(8)
   set previewImg($0.ImageSelector v) {
     setField(8, v);
@@ -631,6 +661,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(9)
   $0.Selector get tag => $_getN(8);
+
   @$pb.TagNumber(9)
   set tag($0.Selector v) {
     setField(9, v);
@@ -645,6 +676,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(10)
   $0.Selector get tagColor => $_getN(9);
+
   @$pb.TagNumber(10)
   set tagColor($0.Selector v) {
     setField(10, v);
@@ -659,6 +691,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(11)
   $0.Selector get badgeSelector => $_getN(10);
+
   @$pb.TagNumber(11)
   set badgeSelector($0.Selector v) {
     setField(11, v);
@@ -673,6 +706,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(12)
   $0.Selector get badgeText => $_getN(11);
+
   @$pb.TagNumber(12)
   set badgeText($0.Selector v) {
     setField(12, v);
@@ -687,6 +721,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(13)
   $0.Selector get badgeColor => $_getN(12);
+
   @$pb.TagNumber(13)
   set badgeColor($0.Selector v) {
     setField(13, v);
@@ -701,6 +736,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(14)
   $0.Selector get paper => $_getN(13);
+
   @$pb.TagNumber(14)
   set paper($0.Selector v) {
     setField(14, v);
@@ -715,6 +751,7 @@ class ListViewParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(98)
   $0.Selector get nextPage => $_getN(14);
+
   @$pb.TagNumber(98)
   set nextPage($0.Selector v) {
     setField(98, v);
@@ -920,6 +957,7 @@ class GalleryParser extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   GalleryParser._() : super();
+
   factory GalleryParser({
     $core.String? name,
     $0.Selector? title,
@@ -1033,16 +1071,20 @@ class GalleryParser extends $pb.GeneratedMessage {
     }
     return _result;
   }
+
   factory GalleryParser.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
+
   factory GalleryParser.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
   GalleryParser clone() => GalleryParser()..mergeFromMessage(this);
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
@@ -1050,11 +1092,15 @@ class GalleryParser extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(message as GalleryParser))
           as GalleryParser; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static GalleryParser create() => GalleryParser._();
+
   GalleryParser createEmptyInstance() => create();
+
   static $pb.PbList<GalleryParser> createRepeated() =>
       $pb.PbList<GalleryParser>();
+
   @$core.pragma('dart2js:noInline')
   static GalleryParser getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<GalleryParser>(create);
@@ -1062,6 +1108,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
+
   @$pb.TagNumber(1)
   set name($core.String v) {
     $_setString(0, v);
@@ -1074,6 +1121,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $0.Selector get title => $_getN(1);
+
   @$pb.TagNumber(2)
   set title($0.Selector v) {
     setField(2, v);
@@ -1088,6 +1136,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   $0.Selector get subtitle => $_getN(2);
+
   @$pb.TagNumber(3)
   set subtitle($0.Selector v) {
     setField(3, v);
@@ -1102,6 +1151,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(4)
   $0.Selector get uploadTime => $_getN(3);
+
   @$pb.TagNumber(4)
   set uploadTime($0.Selector v) {
     setField(4, v);
@@ -1116,6 +1166,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   $0.Selector get star => $_getN(4);
+
   @$pb.TagNumber(5)
   set star($0.Selector v) {
     setField(5, v);
@@ -1130,6 +1181,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(6)
   $0.Selector get imgCount => $_getN(5);
+
   @$pb.TagNumber(6)
   set imgCount($0.Selector v) {
     setField(6, v);
@@ -1144,6 +1196,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(7)
   $0.Selector get pageCount => $_getN(6);
+
   @$pb.TagNumber(7)
   set pageCount($0.Selector v) {
     setField(7, v);
@@ -1158,6 +1211,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(8)
   $0.Selector get language => $_getN(7);
+
   @$pb.TagNumber(8)
   set language($0.Selector v) {
     setField(8, v);
@@ -1172,6 +1226,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(9)
   $0.ImageSelector get coverImg => $_getN(8);
+
   @$pb.TagNumber(9)
   set coverImg($0.ImageSelector v) {
     setField(9, v);
@@ -1186,6 +1241,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(10)
   $0.Selector get description => $_getN(9);
+
   @$pb.TagNumber(10)
   set description($0.Selector v) {
     setField(10, v);
@@ -1200,6 +1256,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(11)
   $0.Selector get thumbnailSelector => $_getN(10);
+
   @$pb.TagNumber(11)
   set thumbnailSelector($0.Selector v) {
     setField(11, v);
@@ -1214,6 +1271,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(12)
   $0.ImageSelector get thumbnail => $_getN(11);
+
   @$pb.TagNumber(12)
   set thumbnail($0.ImageSelector v) {
     setField(12, v);
@@ -1228,6 +1286,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(13)
   $0.Selector get thumbnailUrl => $_getN(12);
+
   @$pb.TagNumber(13)
   set thumbnailUrl($0.Selector v) {
     setField(13, v);
@@ -1242,6 +1301,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(14)
   $0.Selector get commentSelector => $_getN(13);
+
   @$pb.TagNumber(14)
   set commentSelector($0.Selector v) {
     setField(14, v);
@@ -1256,6 +1316,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(15)
   $0.CommentSelector get comments => $_getN(14);
+
   @$pb.TagNumber(15)
   set comments($0.CommentSelector v) {
     setField(15, v);
@@ -1270,6 +1331,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(16)
   $0.Selector get tag => $_getN(15);
+
   @$pb.TagNumber(16)
   set tag($0.Selector v) {
     setField(16, v);
@@ -1284,6 +1346,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(17)
   $0.Selector get tagColor => $_getN(16);
+
   @$pb.TagNumber(17)
   set tagColor($0.Selector v) {
     setField(17, v);
@@ -1298,6 +1361,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(18)
   $0.Selector get badgeSelector => $_getN(17);
+
   @$pb.TagNumber(18)
   set badgeSelector($0.Selector v) {
     setField(18, v);
@@ -1312,6 +1376,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(19)
   $0.Selector get badgeText => $_getN(18);
+
   @$pb.TagNumber(19)
   set badgeText($0.Selector v) {
     setField(19, v);
@@ -1326,6 +1391,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(20)
   $0.Selector get badgeColor => $_getN(19);
+
   @$pb.TagNumber(20)
   set badgeColor($0.Selector v) {
     setField(20, v);
@@ -1340,6 +1406,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(21)
   $0.Selector get badgeType => $_getN(20);
+
   @$pb.TagNumber(21)
   set badgeType($0.Selector v) {
     setField(21, v);
@@ -1354,6 +1421,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(22)
   $0.Selector get nextPage => $_getN(21);
+
   @$pb.TagNumber(22)
   set nextPage($0.Selector v) {
     setField(22, v);
@@ -1368,6 +1436,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(23)
   $0.Selector get chapterSelector => $_getN(22);
+
   @$pb.TagNumber(23)
   set chapterSelector($0.Selector v) {
     setField(23, v);
@@ -1382,6 +1451,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(24)
   $0.Selector get chapterTitle => $_getN(23);
+
   @$pb.TagNumber(24)
   set chapterTitle($0.Selector v) {
     setField(24, v);
@@ -1396,6 +1466,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(25)
   $0.Selector get chapterSubtitle => $_getN(24);
+
   @$pb.TagNumber(25)
   set chapterSubtitle($0.Selector v) {
     setField(25, v);
@@ -1410,6 +1481,7 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(26)
   $0.ImageSelector get chapterCover => $_getN(25);
+
   @$pb.TagNumber(26)
   set chapterCover($0.ImageSelector v) {
     setField(26, v);
@@ -1425,3 +1497,4 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(99)
   $core.List<$0.ExtraSelector> get extraSelector => $_getList(26);
 }
+

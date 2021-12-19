@@ -15,7 +15,9 @@ class RulesEditController extends GetxController {
   Future<void> save() async {
     if (db == null) {
       DB().siteDao.insert(SiteTableCompanion.insert(
-          bin: siteConfigModel.toPb().writeToBuffer()));
+            bin: siteConfigModel.toPb().writeToBuffer(),
+            env: EnvStore().writeToBuffer(),
+          ));
     } else {
       DB()
           .siteDao
