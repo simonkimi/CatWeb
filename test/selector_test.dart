@@ -45,7 +45,7 @@ void main() {
 final parser = ListViewParserModel(ListViewParser(
   name: '主页',
   itemSelector: Selector(
-      selector: "//table[starts-with(@class, 'itg')]/tbody/tr[position()>1]"),
+      selector: "//table[starts-with(@class,'itg')]/tbody/tr[position()>1]"),
   title: Selector(
     selector: '.glink',
     function: SelectorFunction.text,

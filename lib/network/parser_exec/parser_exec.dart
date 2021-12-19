@@ -4,6 +4,7 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:dio/dio.dart';
+import 'package:expressions/expressions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:xpath_selector/xpath_selector.dart';
 
@@ -29,23 +30,28 @@ class DomParserExec<T> {
     return env.resolve(find.index(0));
   }
 
-  Future<double?> singleDouble(SelectorModel model, XPathNode<T> parent) async {
+  Future<double?> singleDouble(SelectorModel model, XPathNode<T> parent,
+      {bool computed = false}) async {
     final exec = DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime);
     final find = await exec.find(parent);
-    final result = find.index(0);
+    var result = find.index(0);
+    if (computed) result = _compute(result);
     if (result == null) return null;
     return double.tryParse(result);
   }
 
-  Future<int?> singleInt(SelectorModel model, XPathNode<T> parent) async {
+  Future<int?> singleInt(SelectorModel model, XPathNode<T> parent,
+      {bool computed = false}) async {
     final exec = DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime);
     final find = await exec.find(parent);
-    final result = find.index(0);
+    var result = find.index(0);
+    if (computed) result = _compute(result);
     if (result == null) return null;
     return int.tryParse(result);
   }
 
-  Future<Color?> singleColor(SelectorModel model, XPathNode<T> parent) async {
+  Future<Color?> singleColor(SelectorModel model, XPathNode<T> parent,
+      {bool computed = false}) async {
     final exec = DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime);
     final find = await exec.find(parent);
     final result = find.index(0)?.trim().toLowerCase();
@@ -83,6 +89,17 @@ class DomParserExec<T> {
           .floor();
     } else {
       return double.parse(input).floor();
+    }
+  }
+
+  String? _compute(String? input) {
+    if (input == null) return null;
+    try {
+      final result =
+          const ExpressionEvaluator().eval(Expression.parse(input), {});
+      return result.toString();
+    } on Exception {
+      return null;
     }
   }
 }

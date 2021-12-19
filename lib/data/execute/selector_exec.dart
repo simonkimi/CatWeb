@@ -31,7 +31,8 @@ class DomSelectorExec<T> {
     }
   }
 
-  Future<List<String>> find(final XPathNode<T> root) async {
+  Future<List<String>> find(final XPathNode<T> root,
+      {bool computed = false}) async {
     final path = selector.selector.value;
     if (path.isEmpty) {
       if (!(selector.function.value != SelectorFunction.auto ||
@@ -74,15 +75,17 @@ class DomSelectorExec<T> {
       throw UnsupportedError('Xml只能使用XPath选择器, 且必须以"/"开头');
     }
 
-    return (await Future.wait(
-            functionResult.map(_callReg).map(_callComputed).map(_callJs)))
+    return (await Future.wait(functionResult
+            .map(_callReg)
+            .map((e) => _callComputed(e, computed))
+            .map(_callJs)))
         .whereType<String>()
         .toList();
   }
 
-  String? _callComputed(String? input) {
+  String? _callComputed(String? input, bool computed) {
     if (input == null) return null;
-    if (selector.computed.value) {
+    if (selector.computed.value || computed) {
       try {
         final result =
             const ExpressionEvaluator().eval(Expression.parse(input), {});
