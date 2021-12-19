@@ -30,15 +30,14 @@ class DomParserExec<T> {
     return env.resolve(find.index(0));
   }
 
-  Future<double?> singleDouble(SelectorModel model, XPathNode<T> parent,
-      {bool computed = false}) async {
+  Future<double?> singleDouble(SelectorModel model, XPathNode<T> parent) async {
     final exec = DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime);
     final find = await exec.find(parent);
     var result = find.index(0);
 
     if (result == null) return null;
     final currentDouble = double.tryParse(result);
-    if (currentDouble == null && computed) {
+    if (currentDouble == null) {
       result = _compute(result);
     }
 
@@ -46,15 +45,14 @@ class DomParserExec<T> {
     return double.tryParse(result);
   }
 
-  Future<int?> singleInt(SelectorModel model, XPathNode<T> parent,
-      {bool computed = false}) async {
+  Future<int?> singleInt(SelectorModel model, XPathNode<T> parent) async {
     final exec = DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime);
     final find = await exec.find(parent);
     String? result = find.index(0);
 
     if (result == null) return null;
     final currentInt = int.tryParse(result);
-    if (currentInt == null && computed) {
+    if (currentInt == null) {
       result = _compute(result);
     }
     if (result == null) return null;

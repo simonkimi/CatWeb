@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/parser.pbserver.dart';
@@ -9,16 +11,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:xpath_selector/xpath_selector.dart';
 
-import 'sample/list_sample.dart';
-
 void main() {
   test('Children selector test', () async {
-    final root = XPath.html(listHtml);
+    final root = XPath.html(File('test/html/index.htm').readAsStringSync());
 
     final domSelector = DomParserExec<Node>(dio: Dio(), env: SiteEnvModel({}));
     final itemList = domSelector.nodes(parser.itemSelector, root.root);
 
-    final e = itemList.first;
+    final e = itemList[4];
 
     final model = ViewerListModel(
       title: await domSelector.singleString(parser.title, e),
@@ -45,7 +45,8 @@ void main() {
 final parser = ListViewParserModel(ListViewParser(
   name: '主页',
   itemSelector: Selector(
-      selector: "//table[starts-with(@class,'itg')]/tbody/tr[position()>1]"),
+    selector: "//table[starts-with(@class,'itg')]/tbody/tr[position()>1]",
+  ),
   title: Selector(
     selector: '.glink',
     function: SelectorFunction.text,
@@ -88,7 +89,6 @@ final parser = ListViewParserModel(ListViewParser(
     param: 'style',
     regex: r'background-position:-?(\d+)px -?(\d+)px',
     replace: r'5-$1/16-($2-1)/40',
-    computed: true,
   ),
   uploadTime: Selector(
     selector: '.glnew,.glfc',

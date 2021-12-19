@@ -45,5 +45,5 @@ class BadgeList {
   final String? text;
 
   @override
-  String toString() => text ?? '<Null>';
+  String toString() => '<${color ?? ''}$text>';
 }

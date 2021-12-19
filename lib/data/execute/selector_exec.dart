@@ -2,9 +2,9 @@ import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:expressions/expressions.dart';
+import 'package:html/dom.dart';
 import 'package:xml/xml.dart';
 import 'package:xpath_selector/xpath_selector.dart';
-import 'package:html/dom.dart';
 
 import 'js_runtime.dart';
 
@@ -85,7 +85,7 @@ class DomSelectorExec<T> {
 
   String? _callComputed(String? input, bool computed) {
     if (input == null) return null;
-    if (selector.computed.value || computed) {
+    if (selector.computed.value) {
       try {
         final result =
             const ExpressionEvaluator().eval(Expression.parse(input), {});
@@ -103,9 +103,10 @@ class DomSelectorExec<T> {
     switch (selector.function.value) {
       case SelectorFunction.attr:
         // 属性选择
-        for (final p in selector.param.value.split(';')) {
-          if (element.attributes.containsKey(p)) {
-            return element.attributes[p];
+        for (final p in selector.param.value.split(',')) {
+          final key = p.trim();
+          if (element.attributes.containsKey(key)) {
+            return element.attributes[key];
           }
         }
         return null;
@@ -140,7 +141,7 @@ class DomSelectorExec<T> {
       final match = reg.firstMatch(input);
       if (match == null) return null;
       if (selector.replace.value.isEmpty) {
-        return match.group(0);
+        return match.group(match.groupCount);
       } else {
         var rep = selector.replace.value;
         for (var i = match.groupCount; i >= 1; i--) {
