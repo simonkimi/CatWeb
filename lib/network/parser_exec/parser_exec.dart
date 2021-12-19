@@ -20,19 +20,23 @@ class DomParserExec<T> {
   final JsRuntime jsRuntime;
 
   List<XPathNode<T>> nodes(SelectorModel model, XPathNode<T> parent) {
-    final exec = DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime);
-    return exec.findElements(parent);
+    return DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime)
+        .findElements(parent);
   }
 
   Future<String?> singleString(SelectorModel model, XPathNode<T> parent) async {
-    final exec = DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime);
-    final find = await exec.find(parent);
+    final find = await DomSelectorExec<T>(
+      selector: model,
+      jsRuntime: jsRuntime,
+    ).find(parent);
     return env.resolve(find.index(0));
   }
 
   Future<double?> singleDouble(SelectorModel model, XPathNode<T> parent) async {
-    final exec = DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime);
-    final find = await exec.find(parent);
+    final find = await DomSelectorExec<T>(
+      selector: model,
+      jsRuntime: jsRuntime,
+    ).find(parent);
     var result = find.index(0);
 
     if (result == null) return null;
@@ -46,8 +50,10 @@ class DomParserExec<T> {
   }
 
   Future<int?> singleInt(SelectorModel model, XPathNode<T> parent) async {
-    final exec = DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime);
-    final find = await exec.find(parent);
+    final find = await DomSelectorExec<T>(
+      selector: model,
+      jsRuntime: jsRuntime,
+    ).find(parent);
     String? result = find.index(0);
 
     if (result == null) return null;
@@ -62,8 +68,10 @@ class DomParserExec<T> {
 
   Future<Color?> singleColor(SelectorModel model, XPathNode<T> parent,
       {bool computed = false}) async {
-    final exec = DomSelectorExec<T>(selector: model, jsRuntime: jsRuntime);
-    final find = await exec.find(parent);
+    final find = await DomSelectorExec<T>(
+      selector: model,
+      jsRuntime: jsRuntime,
+    ).find(parent);
     final result = find.index(0)?.trim().toLowerCase();
     if (result == null) return null;
     if (result.startsWith('0x')) {

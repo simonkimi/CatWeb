@@ -1,3 +1,4 @@
+import 'package:catweb/ui/model/image_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class ViewerListModel {
@@ -11,6 +12,7 @@ class ViewerListModel {
     this.page,
     this.uploadTime,
     this.badgeList,
+    this.previewImage,
   });
 
   final String? title;
@@ -22,6 +24,7 @@ class ViewerListModel {
   final int? page;
   final String? uploadTime;
   final String? paper;
+  final ImageModel? previewImage;
 
   @override
   String toString() => 'title: $title,\n'
@@ -32,7 +35,8 @@ class ViewerListModel {
       'tagColor: $tagColor,\n'
       'page: $page,\n'
       'uploadTime: $uploadTime,\n'
-      'paper: $paper';
+      'paper: $paper\n'
+      'img: $previewImage';
 }
 
 class BadgeList {

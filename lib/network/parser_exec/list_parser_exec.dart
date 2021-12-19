@@ -1,11 +1,12 @@
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/network/parser_exec/parser_exec.dart';
+import 'package:catweb/ui/model/image_model.dart';
 import 'package:catweb/ui/pages/view_page/viewer_list/viewer_list_model.dart';
 import 'package:dio/dio.dart';
+import 'package:html/dom.dart';
 import 'package:xml/xml.dart';
 import 'package:xpath_selector/xpath_selector.dart';
-import 'package:html/dom.dart';
 
 class ListParserExec {
   ListParserExec({
@@ -39,7 +40,7 @@ class ListParserExec {
       itemList = domSelector.nodes(parser.itemSelector, root.root);
     }
 
-    return Future.wait(itemList.map((e) async {
+    return await Future.wait(itemList.map((e) async {
       return ViewerListModel(
         title: await domSelector.singleString(parser.title, e),
         subtitle: await domSelector.singleString(parser.subtitle, e),
@@ -50,12 +51,21 @@ class ListParserExec {
         tag: await domSelector.singleString(parser.tag, e),
         tagColor: await domSelector.singleColor(parser.tagColor, e),
         badgeList: await Future.wait(
-            domSelector.nodes(parser.badgeSelector, e).map((e) async {
-          return BadgeList(
-            text: await domSelector.singleString(parser.badgeText, e),
-            color: await domSelector.singleColor(parser.badgeColor, e),
-          );
-        })),
+          domSelector.nodes(parser.badgeSelector, e).map((e) async {
+            return BadgeList(
+              text: await domSelector.singleString(parser.badgeText, e),
+              color: await domSelector.singleColor(parser.badgeColor, e),
+            );
+          }),
+        ),
+        previewImage: ImageModel(
+          url: await domSelector.singleString(parser.previewImg.imgUrl, e),
+          width: await domSelector.singleDouble(parser.previewImg.imgHeight, e),
+          height:
+              await domSelector.singleDouble(parser.previewImg.imgHeight, e),
+          imgX: await domSelector.singleInt(parser.previewImg.imgX, e),
+          imgY: await domSelector.singleInt(parser.previewImg.imgY, e),
+        ),
       );
     }));
   }
