@@ -16,6 +16,7 @@ class TestController extends LoadMoreModel<Color> {
   @override
   Future<List<Color>> loadPage(int page) async {
     await 3.seconds.delay();
+    if (items.length > 50) throw Exception('没联网？');
     return Colors.primaries;
   }
 }
