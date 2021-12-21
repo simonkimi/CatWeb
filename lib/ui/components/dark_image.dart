@@ -1,9 +1,10 @@
+import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get/get.dart';
 
 import '../../themes.dart';
 
-class DarkImage extends StatelessWidget {
+class DarkImage extends GetView<SettingController> {
   const DarkImage({
     Key? key,
     required this.image,
@@ -16,25 +17,24 @@ class DarkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-        builder: (context) => isDarkMode(context)
-            ? Stack(
-                children: [
-                  Image(
-                    image: image,
-                    fit: fit,
-                    loadingBuilder: loadingBuilder,
-                  ),
-                  Container(
-                    color: Colors.black26,
-                  ),
-                ],
-              )
-            : Image(
+    return Obx(() => isDarkMode(context)
+        ? Stack(
+            children: [
+              Image(
                 image: image,
                 fit: fit,
                 loadingBuilder: loadingBuilder,
-              ));
+              ),
+              Container(
+                color: Colors.black26,
+              ),
+            ],
+          )
+        : Image(
+            image: image,
+            fit: fit,
+            loadingBuilder: loadingBuilder,
+          ));
   }
 }
 

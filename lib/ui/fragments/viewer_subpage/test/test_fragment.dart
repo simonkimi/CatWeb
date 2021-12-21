@@ -11,16 +11,8 @@ import 'package:get/get.dart';
 const kNavigatorBarHeight = 40.0;
 const kTabBarHeight = 30.0;
 
-
-
-// class TestHeaders extends RenderSliverFloatingPersistentHeader {
-//
-// }
-
-
-
-class TestDelegate extends SliverPersistentHeaderDelegate {
-  TestDelegate({
+class FooSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
+  FooSliverPersistentHeaderDelegate({
     required this.builder,
     required this.maxHeight,
     required this.minHeight,
@@ -90,6 +82,7 @@ class TestFragment extends GetWidget<TestController> {
       child: CupertinoPageScaffold(
         child: NestedScrollView(
           key: globalKey,
+          floatHeaderSlivers: true,
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [_buildAppbar(context)];
           },
@@ -128,9 +121,14 @@ class TestFragment extends GetWidget<TestController> {
     return SliverPersistentHeader(
       floating: true,
       pinned: true,
-      delegate: TestDelegate(
-        builder: (context, offset, _) =>
-            _buildNavigationBar(context, offset, 100),
+      delegate: FooSliverPersistentHeaderDelegate(
+        builder: (context, offset, _) => _buildNavigationBar(
+          context,
+          offset,
+          kTabBarHeight +
+              kNavigatorBarHeight +
+              MediaQuery.of(context).padding.top,
+        ),
         minHeight: MediaQuery.of(context).padding.top + kTabBarHeight,
         maxHeight:
             kTabBarHeight + context.mediaQueryPadding.top + kNavigatorBarHeight,
