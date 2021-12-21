@@ -8,14 +8,17 @@ import 'package:get/get.dart';
 class SubPageModel implements PbAble, EnvMargeAble {
   SubPageModel([SiteSubPage? pb])
       : name = sobs(pb?.name),
+        key = sobs(pb?.key),
         value = sobs(pb?.value);
 
   final RxString name;
+  final RxString key;
   final RxString value;
 
   @override
   SiteSubPage toPb() => SiteSubPage(
         name: name.value,
+        key: key.value,
         value: value.value,
       );
 
@@ -27,7 +30,7 @@ class SitePageModel implements PbAble {
   SitePageModel([SitePage? pb])
       : name = sobs(pb?.name),
         url = sobs(pb?.url),
-        type = pb?.type.obs ?? PageTemplate.imageList.obs,
+        template = pb?.template.obs ?? PageTemplate.imageList.obs,
         parser = sobs(pb?.parser),
         subPages = lobs(pb?.subPage, (SiteSubPage pb) => SubPageModel(pb)),
         icon = sobs(pb?.icon),
@@ -35,7 +38,7 @@ class SitePageModel implements PbAble {
 
   final RxString name;
   final RxString url;
-  final Rx<PageTemplate> type;
+  final Rx<PageTemplate> template;
   final RxString parser;
   final RxList<SubPageModel> subPages;
   final RxString icon;
@@ -44,7 +47,7 @@ class SitePageModel implements PbAble {
   @override
   SitePage toPb() => SitePage(
         name: name.value,
-        type: type.value,
+        template: template.value,
         url: url.value,
         parser: parser.value,
         subPage: subPages.map((SubPageModel p) => p.toPb()).toList(),

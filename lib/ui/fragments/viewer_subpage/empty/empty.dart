@@ -2,8 +2,9 @@ import 'package:catweb/ui/pages/rules_manager/rules_manager/rules_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+
+class EmptyFragment extends StatelessWidget {
+  const EmptyFragment({Key? key}) : super(key: key);
 
   static const routeName = 'MainPage';
 

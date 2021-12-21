@@ -1,58 +1,17 @@
 import 'package:catweb/themes.dart';
 import 'package:catweb/ui/components/badge.dart';
-import 'package:catweb/ui/components/comment_item.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_info_item.dart';
 import 'package:catweb/ui/components/icon_text.dart';
+import 'package:catweb/ui/model/detail_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class GalleryDetailModel {
-  GalleryDetailModel({
-    this.title,
-    this.subtitle,
-    this.category,
-    this.categoryColor,
-    this.language,
-    this.imageCount,
-    this.size,
-    this.favoriteCount,
-    this.uploadTime,
-    this.tagList,
-    this.commentList,
-    this.prePageImageCount,
-    this.description,
-    this.star,
-  });
 
-  final String? title;
-  final String? subtitle;
-  final String? category;
-  final Color? categoryColor;
-  final String? language;
-  final int? imageCount;
-  final String? size;
-  final int? favoriteCount;
-  final String? uploadTime;
-  final List<TagModel>? tagList;
-  final int? prePageImageCount;
-  final String? description;
-  final double? star;
-
-  final List<CommentItemModel>? commentList;
-}
-
-class TagModel {
-  TagModel({required this.text, this.category});
-
-  final String text;
-  final String? category;
-}
-
-class CupertinoGallery extends StatelessWidget {
-  const CupertinoGallery({
+class GalleryDetail extends StatelessWidget {
+  const GalleryDetail({
     Key? key,
     required this.model,
   }) : super(key: key);
@@ -166,7 +125,7 @@ class CupertinoGallery extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 12,
                         color:
-                            CupertinoColors.secondaryLabel.resolveFrom(context),
+                        CupertinoColors.secondaryLabel.resolveFrom(context),
                       ),
                     ),
                   ],
@@ -218,7 +177,7 @@ class CupertinoGallery extends StatelessWidget {
                   Badge(
                     text: e.key,
                     color: cupertinoLightColors(
-                            context, tagMaps.keys.toList().indexOf(e.key))
+                        context, tagMaps.keys.toList().indexOf(e.key))
                         .withOpacity(0.5),
                   ),
                 if (e.key != '_') const SizedBox(width: 10),
@@ -255,7 +214,11 @@ class CupertinoGallery extends StatelessWidget {
         text: text,
         style: textStyle,
       ),
-    )..layout(maxWidth: MediaQuery.of(context).size.width - 20))
+    )
+      ..layout(maxWidth: MediaQuery
+          .of(context)
+          .size
+          .width - 20))
         .didExceedMaxLines;
 
     return Column(
@@ -502,10 +465,11 @@ class CupertinoGallery extends StatelessWidget {
           itemSize: 13,
           maxRating: 5,
           allowHalfRating: true,
-          itemBuilder: (context, _) => Icon(
-            CupertinoIcons.star_fill,
-            color: CupertinoColors.systemYellow.resolveFrom(context),
-          ),
+          itemBuilder: (context, _) =>
+              Icon(
+                CupertinoIcons.star_fill,
+                color: CupertinoColors.systemYellow.resolveFrom(context),
+              ),
           unratedColor: CupertinoColors.systemGrey5.resolveFrom(context),
           onRatingUpdate: (value) {},
         ),

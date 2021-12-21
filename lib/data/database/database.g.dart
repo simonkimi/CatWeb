@@ -14,7 +14,6 @@ class SiteTableData extends DataClass implements Insertable<SiteTableData> {
   final Uint8List env;
   final Uint8List favicon;
   final int lastOpen;
-
   SiteTableData(
       {required this.id,
       required this.uuid,
@@ -22,7 +21,6 @@ class SiteTableData extends DataClass implements Insertable<SiteTableData> {
       required this.env,
       required this.favicon,
       required this.lastOpen});
-
   factory SiteTableData.fromData(
       Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
@@ -105,11 +103,10 @@ class SiteTableData extends DataClass implements Insertable<SiteTableData> {
         favicon: favicon ?? this.favicon,
         lastOpen: lastOpen ?? this.lastOpen,
       );
-
   @override
   String toString() {
     return (StringBuffer('SiteTableData(')
-      ..write('id: $id, ')
+          ..write('id: $id, ')
           ..write('uuid: $uuid, ')
           ..write('bin: $bin, ')
           ..write('env: $env, ')
@@ -140,7 +137,6 @@ class SiteTableCompanion extends UpdateCompanion<SiteTableData> {
   final Value<Uint8List> env;
   final Value<Uint8List> favicon;
   final Value<int> lastOpen;
-
   const SiteTableCompanion({
     this.id = const Value.absent(),
     this.uuid = const Value.absent(),
@@ -149,7 +145,6 @@ class SiteTableCompanion extends UpdateCompanion<SiteTableData> {
     this.favicon = const Value.absent(),
     this.lastOpen = const Value.absent(),
   });
-
   SiteTableCompanion.insert({
     this.id = const Value.absent(),
     this.uuid = const Value.absent(),
@@ -221,7 +216,7 @@ class SiteTableCompanion extends UpdateCompanion<SiteTableData> {
   @override
   String toString() {
     return (StringBuffer('SiteTableCompanion(')
-      ..write('id: $id, ')
+          ..write('id: $id, ')
           ..write('uuid: $uuid, ')
           ..write('bin: $bin, ')
           ..write('env: $env, ')
@@ -236,9 +231,7 @@ class $SiteTableTable extends SiteTable
     with TableInfo<$SiteTableTable, SiteTableData> {
   final GeneratedDatabase _db;
   final String? _alias;
-
   $SiteTableTable(this._db, [this._alias]);
-
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
@@ -252,7 +245,7 @@ class $SiteTableTable extends SiteTable
       'uuid', aliasedName, false,
       type: const StringType(),
       requiredDuringInsert: false,
-      clientDefault: () => const u.Uuid().v4().toString());
+      clientDefault: () => const Uuid().v4().toString());
   final VerificationMeta _binMeta = const VerificationMeta('bin');
   @override
   late final GeneratedColumn<Uint8List?> bin = GeneratedColumn<Uint8List?>(
@@ -277,10 +270,8 @@ class $SiteTableTable extends SiteTable
       type: const IntType(),
       requiredDuringInsert: false,
       clientDefault: () => DateTime.now().millisecond);
-
   @override
   List<GeneratedColumn> get $columns => [id, uuid, bin, env, favicon, lastOpen];
-
   @override
   String get aliasedName => _alias ?? 'site_table';
   @override

@@ -4,7 +4,7 @@ import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
 import 'package:catweb/network/parser_exec/list_parser_exec.dart';
-import 'package:catweb/ui/pages/view_page/viewer_list/viewer_list_model.dart';
+import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 
@@ -17,7 +17,6 @@ class NetClient {
 
   Future<List<ViewerListModel>> getList({
     required SitePageModel model,
-    required SubPageModel subPageModel,
     required SiteEnvModel localEnv,
   }) async {
     final rsp = await dio.get<String>(env.replace(model.url.value));

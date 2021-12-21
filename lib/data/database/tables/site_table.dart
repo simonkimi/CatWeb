@@ -1,11 +1,11 @@
 import 'package:moor/moor.dart';
-import 'package:uuid/uuid.dart' as u;
+import 'package:uuid/uuid.dart';
 
 class SiteTable extends Table {
   IntColumn get id => integer().autoIncrement()();
 
   TextColumn get uuid =>
-      text().clientDefault(() => const u.Uuid().v4().toString())();
+      text().clientDefault(() => const Uuid().v4().toString())();
 
   BlobColumn get bin => blob()();
 

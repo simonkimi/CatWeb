@@ -1,18 +1,16 @@
 import 'package:dio/dio.dart' hide Lock;
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:synchronized/synchronized.dart';
 
+enum LoadMoreState {
+  idle, // 待命
+  loading, // 加载中
+  noMoreData, // 没有其他数据了
+  refreshing, // 刷新中
+}
+
 abstract class LoadMoreModel<T> extends GetxController {
-  final refreshController = RefreshController();
-  final listScrollController = ScrollController();
-
-  final RxBool _isLoading = false.obs;
-
   final lock = Lock();
-
-  RxBool get isLoading => _isLoading;
 
   final RxList<T> _items = <T>[].obs;
 
@@ -26,7 +24,24 @@ abstract class LoadMoreModel<T> extends GetxController {
 
   RxInt get pageTail => _pageTail;
 
-  final Rx<Exception?> lastException = Rx(null);
+  final Rx<Exception?> _lastException = Rx(null);
+
+  final Rx<LoadMoreState> _state = LoadMoreState.idle.obs;
+
+  LoadMoreState get state => _state.value;
+
+  bool get isLoading =>
+      state == LoadMoreState.loading || state == LoadMoreState.refreshing;
+
+  String? get errorMessage {
+    if (_lastException.value == null) return null;
+
+    if (_lastException.value is DioError) {
+      return (_lastException.value as DioError).message;
+    }
+
+    return _lastException.value.toString();
+  }
 
   Future<List<T>> loadPage(int page);
 
@@ -35,80 +50,69 @@ abstract class LoadMoreModel<T> extends GetxController {
   bool get isRefresh => _pageTail.value < 1;
 
   Future<void> onRefresh() async {
-    _page.value = 0;
-    _items.clear();
-    await _loadNextPage();
+    if (state == LoadMoreState.idle) {
+      if (isRefresh) {
+        _page.value = 0;
+        _items.clear();
+        await _loadNextPage();
+      } else {
+        await _loadPreviousPage();
+      }
+    }
   }
 
   Future<void> onLoadMore() async {
-    if (refreshController.isRefresh || lock.locked) return;
-    await _loadNextPage();
-  }
-
-  Future<void> onLoadPrevious() async {
-    if (isRefresh) return;
-    await _loadPreviousPage();
+    if (state == LoadMoreState.idle) await _loadNextPage();
   }
 
   Future<void> _loadNextPage() async {
     try {
-      lastException.value = null;
       await lock.synchronized(() async {
-        _isLoading.value = true;
+        _lastException.value = null;
+        _state.value = LoadMoreState.loading;
         final page = _page.value + 1;
         final items =
             (await loadPage(page)).where((e) => isItemExist(e) == false);
         if (items.isEmpty) {
-          refreshController.loadNoData();
+          _state.value = LoadMoreState.noMoreData;
         } else {
           _page.value = page;
           _items.addAll(items);
+          _state.value = LoadMoreState.idle;
         }
       });
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) return;
-      refreshController.loadFailed();
-      refreshController.refreshFailed();
-      lastException.value = e;
+      _lastException.value = e;
+      _state.value = LoadMoreState.idle;
     } on Exception catch (e) {
-      refreshController.loadFailed();
-      lastException.value = e;
-      rethrow;
-    } finally {
-      refreshController.loadComplete();
-      refreshController.refreshCompleted();
-      _isLoading.value = false;
+      _lastException.value = e;
+      _state.value = LoadMoreState.idle;
     }
   }
 
   Future<void> _loadPreviousPage() async {
     try {
-      lastException.value = null;
+      _lastException.value = null;
       await lock.synchronized(() async {
-        _isLoading.value = true;
+        _state.value = LoadMoreState.refreshing;
         final page = _pageTail.value - 1;
         final items =
             (await loadPage(page)).where((e) => isItemExist(e) == false);
-        if (items.isEmpty) {
-          refreshController.loadNoData();
-        } else {
+        if (items.isNotEmpty) {
           _page.value = page;
           _items.insertAll(0, items);
         }
+        _state.value = LoadMoreState.idle;
       });
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) return;
-      refreshController.refreshFailed();
-      refreshController.loadFailed();
-      lastException.value = e;
+      _state.value = LoadMoreState.refreshing;
+      _lastException.value = e;
     } on Exception catch (e) {
-      refreshController.loadFailed();
-      lastException.value = e;
+      _state.value = LoadMoreState.refreshing;
+      _lastException.value = e;
       rethrow;
-    } finally {
-      refreshController.loadComplete();
-      refreshController.refreshCompleted();
-      _isLoading.value = false;
     }
   }
 }

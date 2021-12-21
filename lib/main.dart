@@ -2,8 +2,8 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/themes.dart';
-import 'package:catweb/ui/pages/main_page/main_page.dart';
-import 'package:catweb/ui/pages/rules_manager/rules_manager/rules_manager.dart';
+import 'package:catweb/ui/fragments/viewer_subpage/test/test_controller.dart';
+import 'package:catweb/ui/pages/view_page/viewer_main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -16,6 +16,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Get.put(SettingController(), permanent: true);
   Get.put(SiteController(), permanent: true);
+  Get.create(() => TestController());
   runApp(const MyApp());
 }
 
@@ -35,14 +36,10 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: I.supportedLocales,
       navigatorKey: AppNavigator().key,
-      initialRoute: MainPage.routeName,
       navigatorObservers: [BotToastNavigatorObserver()],
       builder: BotToastInit(),
       theme: defaultTheme(),
-      routes: {
-        MainPage.routeName: (_) => const MainPage(),
-        SiteManager.routeName: (_) => const SiteManager(),
-      },
+      home: const ViewerMain(),
     );
   }
 }

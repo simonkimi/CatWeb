@@ -8,7 +8,8 @@ enum PageTemplate {
 
 message SiteSubPage {
   string name = 1;
-  string value = 2;
+  string key = 2;
+  string value = 3;
 }
 
 
@@ -23,7 +24,7 @@ enum SiteDisplayType {
 message SitePage {
   string name = 1;
   string url = 2;
-  PageTemplate type = 3;
+  PageTemplate template = 3;
   string parser = 4;
   repeated SiteSubPage subPage = 5;
   string icon = 6;

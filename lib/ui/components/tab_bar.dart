@@ -31,6 +31,7 @@ class CupertinoTabBarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (tabs.length == 1) return children.first;
     return DefaultTabController(
       length: tabs.length,
       child: SafeArea(

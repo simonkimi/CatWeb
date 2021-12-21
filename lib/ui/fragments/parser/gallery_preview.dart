@@ -1,5 +1,5 @@
-import 'package:catweb/ui/components/comment_item.dart';
-import 'package:catweb/ui/fragments/gallery_detail/cupertino_gallery.dart';
+import 'package:catweb/ui/fragments/viewer_subpage/detail/detail.dart';
+import 'package:catweb/ui/model/detail_model.dart';
 import 'package:flutter/material.dart';
 
 class GalleryPreview extends StatelessWidget {
@@ -77,6 +77,6 @@ https://e-hentai.org/g/1275855/d8c63069e4/''',
         ),
       ],
     );
-    return CupertinoGallery(model: model);
+    return GalleryDetail(model: model);
   }
 }

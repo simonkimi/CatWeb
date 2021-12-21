@@ -13,6 +13,11 @@ class SiteController extends GetxController {
 
   final site = Rx<SiteRenderConfigModel?>(null);
 
+  SiteRenderConfigModel get website {
+    assert(site.value != null);
+    return site.value!;
+  }
+
   Future<void> setNewSite([SiteTableData? db]) async {
     if (db != null) {
       site.value = SiteRenderConfigModel(

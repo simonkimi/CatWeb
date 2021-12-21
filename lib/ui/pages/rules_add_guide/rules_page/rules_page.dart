@@ -108,7 +108,11 @@ class RulesPageEdit extends GetView<RulesEditController> {
                   value: field.name,
                 ),
                 CupertinoInput(
-                  labelText: '参数',
+                  labelText: '键',
+                  value: field.name,
+                ),
+                CupertinoInput(
+                  labelText: '值',
                   value: field.value,
                 ),
               ],
@@ -145,7 +149,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
           const CupertinoDivider(height: 20),
           Obx(() => CupertinoReadOnlyInput(
                 labelText: '模板',
-                value: model.type.value.string(context),
+                value: model.template.value.string(context),
                 onTap: () => onTemplateTap(context),
               )),
           Obx(() => CupertinoReadOnlyInput(
@@ -241,7 +245,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
       cancelText: '取消',
     );
     if (result != null) {
-      model.type.value = result;
+      model.template.value = result;
     }
   }
 

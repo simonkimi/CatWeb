@@ -27,7 +27,7 @@ class RulesPageManager extends GetView<RulesEditController> {
           children: controller.siteConfigModel.pageList.map((e) {
                 return CupertinoListTile(
                   title: Text(e.name.value),
-                  subtitle: Text(e.type.value.string(context)),
+                  subtitle: Text(e.template.value.string(context)),
                   trailing: CupertinoButton(
                     padding: EdgeInsets.zero,
                     minSize: 10,

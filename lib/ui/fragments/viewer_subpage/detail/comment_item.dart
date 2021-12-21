@@ -1,19 +1,8 @@
+import 'package:catweb/ui/model/detail_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 
-class CommentItemModel {
-  CommentItemModel({
-    this.username,
-    this.comment,
-    this.commentTime,
-    this.score,
-  });
 
-  final String? username;
-  final String? comment;
-  final String? commentTime;
-  final int? score;
-}
 
 class CommentItem extends StatelessWidget {
   const CommentItem({

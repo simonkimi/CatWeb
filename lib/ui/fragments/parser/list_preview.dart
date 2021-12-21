@@ -1,5 +1,5 @@
 import 'package:catweb/ui/components/list_card.dart';
-import 'package:catweb/ui/pages/view_page/viewer_list/viewer_list_model.dart';
+import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:flutter/material.dart';
 
 class ListParserPreview extends StatelessWidget {
