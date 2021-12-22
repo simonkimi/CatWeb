@@ -63,13 +63,18 @@ class ViewerListFragment extends StatelessWidget {
   Widget _buildMultiViewer(BuildContext context) {
     return DefaultTabController(
       length: model.subPages.length,
-      child: TabBarView(
-        children: model.subPages
-            .map((e) => SubPageListFragment(
-                  model: model,
-                  subPageModel: e,
-                ))
-            .toList(),
+      child: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [_buildAppbar(context)];
+        },
+        body: TabBarView(
+          children: model.subPages
+              .map((e) => SubPageListFragment(
+            model: model,
+            subPageModel: e,
+          ))
+              .toList(),
+        ),
       ),
     );
   }
@@ -102,7 +107,7 @@ class ViewerListFragment extends StatelessWidget {
               leading: CupertinoButton(
                 minSize: 0,
                 padding: EdgeInsets.zero,
-                child: const Icon(CupertinoIcons.square_grid_2x2),
+                child: const Icon(Icons.menu),
                 onPressed: () => Get.to(const SiteManager()),
               ),
             ),
