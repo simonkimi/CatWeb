@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart' hide Lock;
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:synchronized/synchronized.dart';
 
 enum LoadMoreState {
@@ -12,6 +13,9 @@ enum LoadMoreState {
 
 abstract class LoadMoreModel<T> extends GetxController {
   final lock = Lock();
+
+  final refreshController = RefreshController();
+
   final RxList<T> _items = <T>[].obs;
 
   RxList<T> get items => _items;
@@ -26,9 +30,9 @@ abstract class LoadMoreModel<T> extends GetxController {
 
   final Rx<Exception?> _lastException = Rx(null);
 
-  final Rx<LoadMoreState> _state = LoadMoreState.idle.obs;
+  final Rx<LoadMoreState> rxState = LoadMoreState.idle.obs;
 
-  LoadMoreState get state => _state.value;
+  LoadMoreState get state => rxState.value;
 
   bool get isLoading =>
       state == LoadMoreState.loading || state == LoadMoreState.refreshing;
@@ -50,6 +54,27 @@ abstract class LoadMoreModel<T> extends GetxController {
     return _lastException.value.toString();
   }
 
+  @override
+  void onInit() {
+    super.onInit();
+    ever<LoadMoreState>(rxState, (state) {
+      switch (state) {
+        case LoadMoreState.idle:
+          refreshController.loadComplete();
+          break;
+        case LoadMoreState.noMoreData:
+          refreshController.loadNoData();
+          break;
+        case LoadMoreState.loadError:
+          refreshController.loadFailed();
+          break;
+        case LoadMoreState.refreshing:
+        case LoadMoreState.loading:
+          break;
+      }
+    });
+  }
+
   Future<List<T>> loadPage(int page);
 
   bool isItemExist(T item);
@@ -61,7 +86,7 @@ abstract class LoadMoreModel<T> extends GetxController {
       if (isRefresh) {
         _page.value = 0;
         _items.clear();
-        _state.value = LoadMoreState.refreshing;
+        rxState.value = LoadMoreState.refreshing;
         await _loadNextPage();
       } else {
         await _loadPreviousPage();
@@ -71,8 +96,10 @@ abstract class LoadMoreModel<T> extends GetxController {
 
   Future<void> onLoadMore() async {
     if (canLoadMore) {
-      _state.value = LoadMoreState.loading;
+      rxState.value = LoadMoreState.loading;
       await _loadNextPage();
+    } else {
+      refreshController.loadComplete();
     }
   }
 
@@ -84,20 +111,20 @@ abstract class LoadMoreModel<T> extends GetxController {
         final items =
             (await loadPage(page)).where((e) => isItemExist(e) == false);
         if (items.isEmpty) {
-          _state.value = LoadMoreState.noMoreData;
+          rxState.value = LoadMoreState.noMoreData;
         } else {
           _page.value = page;
           _items.addAll(items);
-          _state.value = LoadMoreState.idle;
+          rxState.value = LoadMoreState.idle;
         }
       });
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) return;
       _lastException.value = e;
-      _state.value = LoadMoreState.loadError;
+      rxState.value = LoadMoreState.loadError;
     } on Exception catch (e) {
       _lastException.value = e;
-      _state.value = LoadMoreState.loadError;
+      rxState.value = LoadMoreState.loadError;
     }
   }
 
@@ -105,7 +132,7 @@ abstract class LoadMoreModel<T> extends GetxController {
     try {
       _lastException.value = null;
       await lock.synchronized(() async {
-        _state.value = LoadMoreState.refreshing;
+        rxState.value = LoadMoreState.refreshing;
         final page = _pageTail.value - 1;
         final items =
             (await loadPage(page)).where((e) => isItemExist(e) == false);
@@ -113,14 +140,14 @@ abstract class LoadMoreModel<T> extends GetxController {
           _page.value = page;
           _items.insertAll(0, items);
         }
-        _state.value = LoadMoreState.idle;
+        rxState.value = LoadMoreState.idle;
       });
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) return;
-      _state.value = LoadMoreState.loadError;
+      rxState.value = LoadMoreState.loadError;
       _lastException.value = e;
     } on Exception catch (e) {
-      _state.value = LoadMoreState.loadError;
+      rxState.value = LoadMoreState.loadError;
       _lastException.value = e;
       rethrow;
     }

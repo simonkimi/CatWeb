@@ -2,9 +2,11 @@ import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/ui/components/grey_tab_indicator.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
+import 'package:catweb/ui/fragments/viewer_subpage/list/subpage_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:catweb/utils/utils.dart';
 
 class FooSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   FooSliverPersistentHeaderDelegate({
@@ -45,28 +47,43 @@ class ViewerListFragment extends StatelessWidget {
 
   final SitePageModel model;
 
+  bool get useSingleWidget =>
+      model.subPages.isEmpty || model.subPages.length == 1;
+
   @override
   Widget build(BuildContext context) {
-    final widget = DefaultTabController(
-      length: 3,
-      child: CupertinoPageScaffold(
-        child: NestedScrollView(
-          floatHeaderSlivers: true,
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return [_buildAppbar(context)];
-          },
-          body: TabBarView(
-            children: [
-              Container(),
-              Container(),
-              Container(),
-            ],
-          ),
-        ),
+    return CupertinoPageScaffold(
+      child: useSingleWidget
+          ? _buildSingleViewer(context)
+          : _buildMultiViewer(context),
+    );
+  }
+
+  Widget _buildMultiViewer(BuildContext context) {
+    return DefaultTabController(
+      length: model.subPages.length,
+      child: TabBarView(
+        children: model.subPages
+            .map((e) => SubPageListFragment(
+                  model: model,
+                  subPageModel: e,
+                ))
+            .toList(),
       ),
     );
+  }
 
-    return widget;
+  Widget _buildSingleViewer(BuildContext context) {
+    return NestedScrollView(
+      floatHeaderSlivers: true,
+      headerSliverBuilder: (context, innerBoxIsScrolled) {
+        return [_buildAppbar(context)];
+      },
+      body: SubPageListFragment(
+        model: model,
+        subPageModel: model.subPages.index(0),
+      ),
+    );
   }
 
   Widget _buildNavigationBar(
@@ -75,29 +92,29 @@ class ViewerListFragment extends StatelessWidget {
       height: maxExtent,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children: [
           Expanded(
             child: CupertinoNavigationBar(
-              middle: Text('测试'),
-              border: Border(),
+              middle: Text(model.name.string),
+              border: const Border(),
             ),
           ),
-          Material(
-            child: TabBar(
-              indicator: GreyUnderlineTabIndicator(),
-              tabs: [
-                CupertinoTab('测试1'),
-                CupertinoTab('测试2'),
-                CupertinoTab('测试3'),
-              ],
-            ),
-          )
+          if (!useSingleWidget)
+            Material(
+              child: TabBar(
+                indicator: const GreyUnderlineTabIndicator(),
+                tabs: model.subPages
+                    .map((e) => CupertinoTab(e.name.string))
+                    .toList(),
+              ),
+            )
         ],
       ),
     );
   }
 
   Widget _buildAppbar(BuildContext context) {
+    final tabBarHeight = useSingleWidget ? 0.0 : kTabBarHeight;
     return SliverPersistentHeader(
       floating: true,
       pinned: true,
@@ -105,13 +122,13 @@ class ViewerListFragment extends StatelessWidget {
         builder: (context, offset, _) => _buildNavigationBar(
           context,
           offset,
-          kTabBarHeight +
+          tabBarHeight +
               kNavigatorBarHeight +
               MediaQuery.of(context).padding.top,
         ),
-        minHeight: MediaQuery.of(context).padding.top + kTabBarHeight,
+        minHeight: MediaQuery.of(context).padding.top + tabBarHeight,
         maxHeight:
-            kTabBarHeight + context.mediaQueryPadding.top + kNavigatorBarHeight,
+            tabBarHeight + context.mediaQueryPadding.top + kNavigatorBarHeight,
       ),
     );
   }
