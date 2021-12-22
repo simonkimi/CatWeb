@@ -14,7 +14,7 @@ import '../../../i18n.dart';
 
 class RulesEditPage extends StatelessWidget {
   RulesEditPage({Key? key, SiteConfig? pb, SiteTableData? db})
-      : controller = Get.put(RulesEditController(pb: pb)),
+      : controller = Get.put(RulesEditController(pb: pb, db: db)),
         super(key: key);
 
   final RulesEditController controller;

@@ -12,6 +12,9 @@ class SiteDao extends DatabaseAccessor<AppDataBase> with _$SiteDaoMixin {
 
   Future<List<SiteTableData>> getAll() => select(siteTable).get();
 
+  Future<SiteTableData?> get(int id) =>
+      (select(siteTable)..where((tbl) => tbl.id.equals(id))).getSingleOrNull();
+
   Future<void> insert(SiteTableCompanion entity) =>
       into(siteTable).insert(entity);
 

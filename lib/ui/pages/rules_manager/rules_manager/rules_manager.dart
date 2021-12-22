@@ -71,7 +71,7 @@ class SiteManager extends StatelessWidget {
           leading: const Icon(CupertinoIcons.add_circled_solid),
           title: const Text('编写一个规则'),
           trailing: const Icon(CupertinoIcons.forward),
-          onTap: () => toEditPage(),
+          onTap: () => toEditPage(null, null),
         ),
         const SizedBox(height: 5),
         CupertinoListTile(
@@ -99,7 +99,7 @@ class SiteManager extends StatelessWidget {
 
   Future<void> onTrailingTap(
     BuildContext context,
-    SiteTableData entity,
+    SiteTableData db,
     SiteConfig pb,
   ) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
@@ -121,7 +121,7 @@ class SiteManager extends StatelessWidget {
         // TODO 分享功能
         break;
       case _MenuSelect.edit:
-        await toEditPage(pb);
+        await toEditPage(pb, db);
         break;
       case _MenuSelect.delete:
         if (await showCupertinoConfirmDialog(
@@ -130,13 +130,13 @@ class SiteManager extends StatelessWidget {
               title: '取消',
             ) ==
             true) {
-          DB().siteDao.remove(entity);
+          DB().siteDao.remove(db);
         }
         break;
     }
   }
 
-  Future<void> toEditPage([SiteConfig? pb, SiteTableData? db]) async {
+  Future<void> toEditPage(SiteConfig? pb, SiteTableData? db) async {
     await Get.to(() => RulesEditPage(pb: pb ?? eh.ehTestSite, db: db));
   }
 }

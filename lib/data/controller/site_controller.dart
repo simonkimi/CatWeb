@@ -31,6 +31,7 @@ class SiteController extends GetxController {
     }
   }
 
+
   Future<void> setDefaultSite() async {
     final setting = Get.find<SettingController>();
     final df = (await DB().siteDao.getAll())

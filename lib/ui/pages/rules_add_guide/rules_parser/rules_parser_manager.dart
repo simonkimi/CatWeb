@@ -71,7 +71,7 @@ class RulesParserManager extends GetView<RulesEditController> {
           model = ImageParserModel();
           break;
       }
-      await Get.to(RulesParserEditor(model: model));
+      await Get.to(() => RulesParserEditor(model: model));
       if (model.name.value.isNotEmpty) {
         controller.siteConfigModel.addParser(model);
       }

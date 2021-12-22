@@ -1,3 +1,4 @@
+import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
@@ -14,14 +15,18 @@ class RulesEditController extends GetxController {
 
   Future<void> save() async {
     if (db == null) {
-      DB().siteDao.insert(SiteTableCompanion.insert(
+      await DB().siteDao.insert(SiteTableCompanion.insert(
             bin: siteConfigModel.toPb().writeToBuffer(),
             env: EnvStore().writeToBuffer(),
           ));
     } else {
-      DB()
-          .siteDao
-          .replace(db!.copyWith(bin: siteConfigModel.toPb().writeToBuffer()));
+      final newDb = db!.copyWith(bin: siteConfigModel.toPb().writeToBuffer());
+      await DB().siteDao.replace(newDb);
+      // 检测是否为当前配置
+      final controller = Get.find<SiteController>();
+      if (controller.site.value?.id == db!.id) {
+        controller.setNewSite(newDb);
+      }
     }
   }
 }
