@@ -42,29 +42,26 @@ class ListParserExec {
 
     return await Future.wait(itemList.map((e) async {
       return ViewerListModel(
-        title: await domSelector.singleString(parser.title, e),
-        subtitle: await domSelector.singleString(parser.subtitle, e),
-        page: await domSelector.singleInt(parser.imgCount, e),
-        paper: await domSelector.singleString(parser.paper, e),
-        star: await domSelector.singleDouble(parser.star, e),
-        uploadTime: await domSelector.singleString(parser.uploadTime, e),
-        tag: await domSelector.singleString(parser.tag, e),
-        tagColor: await domSelector.singleColor(parser.tagColor, e),
-        badgeList: await Future.wait(
-          domSelector.nodes(parser.badgeSelector, e).map((e) async {
-            return BadgeList(
-              text: await domSelector.singleString(parser.badgeText, e),
-              color: await domSelector.singleColor(parser.badgeColor, e),
-            );
-          }),
-        ),
+        title: domSelector.singleString(parser.title, e),
+        subtitle: domSelector.singleString(parser.subtitle, e),
+        page: domSelector.singleInt(parser.imgCount, e),
+        paper: domSelector.singleString(parser.paper, e),
+        star: domSelector.singleDouble(parser.star, e),
+        uploadTime: domSelector.singleString(parser.uploadTime, e),
+        tag: domSelector.singleString(parser.tag, e),
+        tagColor: domSelector.singleColor(parser.tagColor, e),
+        badgeList: domSelector.nodes(parser.badgeSelector, e).map((e) {
+          return BadgeList(
+            text: domSelector.singleString(parser.badgeText, e),
+            color: domSelector.singleColor(parser.badgeColor, e),
+          );
+        }).toList(),
         previewImage: ImageModel(
-          url: await domSelector.singleString(parser.previewImg.imgUrl, e),
-          width: await domSelector.singleDouble(parser.previewImg.imgHeight, e),
-          height:
-              await domSelector.singleDouble(parser.previewImg.imgHeight, e),
-          imgX: await domSelector.singleInt(parser.previewImg.imgX, e),
-          imgY: await domSelector.singleInt(parser.previewImg.imgY, e),
+          url: domSelector.singleString(parser.previewImg.imgUrl, e),
+          width: domSelector.singleDouble(parser.previewImg.imgHeight, e),
+          height: domSelector.singleDouble(parser.previewImg.imgHeight, e),
+          imgX: domSelector.singleInt(parser.previewImg.imgX, e),
+          imgY: domSelector.singleInt(parser.previewImg.imgY, e),
         ),
       );
     }));

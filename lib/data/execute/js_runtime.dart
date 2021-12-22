@@ -21,10 +21,11 @@ class JsRuntime {
     // TODO 本地数据获取
   }
 
-  Future<String?> exec(String js, String args) async {
+  String? exec(String js, String args) {
     try {
-      await _engine.evaluate(js);
+      _engine.evaluate(js);
       final result = _engine.evaluate('hook("$args")');
+      if (result is Future) throw Exception('Future is not allowed here');
       return result;
     } on Exception {
       return null;

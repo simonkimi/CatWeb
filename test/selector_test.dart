@@ -26,21 +26,20 @@ void main() {
     final e = itemList[4];
 
     final model = ViewerListModel(
-      title: await domSelector.singleString(parser.title, e),
-      subtitle: await domSelector.singleString(parser.subtitle, e),
-      page: await domSelector.singleInt(parser.imgCount, e),
-      paper: await domSelector.singleString(parser.paper, e),
-      star: await domSelector.singleDouble(parser.star, e),
-      uploadTime: await domSelector.singleString(parser.uploadTime, e),
-      tag: await domSelector.singleString(parser.tag, e),
-      tagColor: await domSelector.singleColor(parser.tagColor, e),
-      badgeList: await Future.wait(
-          domSelector.nodes(parser.badgeSelector, e).map((e) async {
+      title: domSelector.singleString(parser.title, e),
+      subtitle: domSelector.singleString(parser.subtitle, e),
+      page: domSelector.singleInt(parser.imgCount, e),
+      paper: domSelector.singleString(parser.paper, e),
+      star: domSelector.singleDouble(parser.star, e),
+      uploadTime: domSelector.singleString(parser.uploadTime, e),
+      tag: domSelector.singleString(parser.tag, e),
+      tagColor: domSelector.singleColor(parser.tagColor, e),
+      badgeList: domSelector.nodes(parser.badgeSelector, e).map((e) {
         return BadgeList(
-          text: await domSelector.singleString(parser.badgeText, e),
-          color: await domSelector.singleColor(parser.badgeColor, e),
+          text: domSelector.singleString(parser.badgeText, e),
+          color: domSelector.singleColor(parser.badgeColor, e),
         );
-      })),
+      }).toList(),
     );
 
     print(model);

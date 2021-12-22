@@ -31,8 +31,7 @@ class DomSelectorExec<T> {
     }
   }
 
-  Future<List<String>> find(final XPathNode<T> root,
-      {bool computed = false}) async {
+  List<String> find(final XPathNode<T> root, {bool computed = false}) {
     final path = selector.selector.value;
     if (path.isEmpty) {
       if (!(selector.function.value != SelectorFunction.auto ||
@@ -75,10 +74,10 @@ class DomSelectorExec<T> {
       throw UnsupportedError('Xml只能使用XPath选择器, 且必须以"/"开头');
     }
 
-    return (await Future.wait(functionResult
-            .map(_callReg)
-            .map((e) => _callComputed(e, computed))
-            .map(_callJs)))
+    return functionResult
+        .map(_callReg)
+        .map((e) => _callComputed(e, computed))
+        .map(_callJs)
         .whereType<String>()
         .toList();
   }
@@ -154,10 +153,10 @@ class DomSelectorExec<T> {
     }
   }
 
-  Future<String?> _callJs(String? input) async {
+  String? _callJs(String? input) {
     if (input == null) return null;
     if (selector.js.value.isNotEmpty) {
-      return await jsRuntime.exec(selector.js.value, input);
+      return jsRuntime.exec(selector.js.value, input);
     } else {
       return input;
     }

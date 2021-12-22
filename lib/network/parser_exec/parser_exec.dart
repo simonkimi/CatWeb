@@ -24,16 +24,16 @@ class DomParserExec<T> {
         .findElements(parent);
   }
 
-  Future<String?> singleString(SelectorModel model, XPathNode<T> parent) async {
-    final find = await DomSelectorExec<T>(
+  String? singleString(SelectorModel model, XPathNode<T> parent) {
+    final find = DomSelectorExec<T>(
       selector: model,
       jsRuntime: jsRuntime,
     ).find(parent);
     return env.resolve(find.index(0));
   }
 
-  Future<double?> singleDouble(SelectorModel model, XPathNode<T> parent) async {
-    final find = await DomSelectorExec<T>(
+  double? singleDouble(SelectorModel model, XPathNode<T> parent) {
+    final find = DomSelectorExec<T>(
       selector: model,
       jsRuntime: jsRuntime,
     ).find(parent);
@@ -49,8 +49,8 @@ class DomParserExec<T> {
     return double.tryParse(result);
   }
 
-  Future<int?> singleInt(SelectorModel model, XPathNode<T> parent) async {
-    final find = await DomSelectorExec<T>(
+  int? singleInt(SelectorModel model, XPathNode<T> parent) {
+    final find = DomSelectorExec<T>(
       selector: model,
       jsRuntime: jsRuntime,
     ).find(parent);
@@ -66,9 +66,9 @@ class DomParserExec<T> {
     return int.tryParse(result);
   }
 
-  Future<Color?> singleColor(SelectorModel model, XPathNode<T> parent,
-      {bool computed = false}) async {
-    final find = await DomSelectorExec<T>(
+  Color? singleColor(SelectorModel model, XPathNode<T> parent,
+      {bool computed = false}) {
+    final find = DomSelectorExec<T>(
       selector: model,
       jsRuntime: jsRuntime,
     ).find(parent);

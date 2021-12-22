@@ -24,8 +24,8 @@ void main() {
     final itemList = domSelector.nodes(parser.itemSelector, root.root);
 
     final item = itemList[0];
-    print(await domSelector.singleString(parser.previewImg.imgUrl, item));
-    print(await domSelector.singleInt(parser.previewImg.imgWidth, item));
-    print(await domSelector.singleInt(parser.previewImg.imgHeight, item));
+    print(domSelector.singleString(parser.previewImg.imgUrl, item));
+    print(domSelector.singleInt(parser.previewImg.imgWidth, item));
+    print(domSelector.singleInt(parser.previewImg.imgHeight, item));
   });
 }

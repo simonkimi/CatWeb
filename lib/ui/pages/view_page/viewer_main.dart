@@ -14,6 +14,10 @@ class ViewerMain extends GetView<SiteController> {
 
   @override
   Widget build(BuildContext context) {
+    return Obx(() => _buildBody(context));
+  }
+
+  Widget _buildBody(BuildContext context) {
     if (controller.site.value == null) {
       return const EmptyFragment();
     }
@@ -25,12 +29,18 @@ class ViewerMain extends GetView<SiteController> {
     return CupertinoTabScaffold(
       resizeToAvoidBottomInset: true,
       tabBar: CupertinoTabBar(
-        items: controller.website.displayPage.map((e) {
-          return BottomNavigationBarItem(
-            icon: Icon(cupertinoIcons[e.icon.value] ?? CupertinoIcons.circle),
-            label: e.name.value,
-          );
-        }).toList(),
+        items: [
+          ...controller.website.displayPage.map((e) {
+            return BottomNavigationBarItem(
+              icon: Icon(
+                cupertinoIcons[e.icon.value] ?? CupertinoIcons.circle,
+                size: 22,
+              ),
+              label: e.name.value,
+            );
+          }),
+
+        ],
       ),
       tabBuilder: (BuildContext context, int index) {
         return _buildSitePage(context, controller.website.displayPage[index]);
