@@ -6,7 +6,7 @@ import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:get/get.dart';
 
 class SubListController extends LoadMoreModel<ViewerListModel> {
-  SubListController(this.model, this.subPageModel);
+  SubListController({required this.model, required this.subPageModel});
 
   final SitePageModel model;
   final SubPageModel? subPageModel;
