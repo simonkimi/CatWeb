@@ -14,8 +14,15 @@ class SiteEnvModel implements EnvMargeAble {
   @override
   Map<String, String> get env => _env;
 
+  SiteEnvModel copy() => SiteEnvModel({..._env});
+
   SiteEnvModel merge(EnvMargeAble envModel) {
     _env.addAll(envModel.env);
+    return this;
+  }
+
+  SiteEnvModel mergeMap(Map<String, String> map) {
+    _env.addAll(map);
     return this;
   }
 
@@ -26,14 +33,14 @@ class SiteEnvModel implements EnvMargeAble {
   String? resolve(String? input) {
     if (input == null) return null;
     for (final entity in _env.entries) {
-      input = input!.replaceAll('\${${entity.key}', entity.value);
+      input = input!.replaceAll('{${entity.key}}', entity.value);
     }
     return input;
   }
 
   String replace(String input) {
     for (final entity in _env.entries) {
-      input = input.replaceAll('\${${entity.key}', entity.value);
+      input = input.replaceAll('{${entity.key}}', entity.value);
     }
     return input;
   }

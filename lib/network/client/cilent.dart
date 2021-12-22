@@ -16,10 +16,11 @@ class NetClient {
   final SiteConfigModel configModel;
 
   Future<List<ViewerListModel>> getList({
+    required String url,
     required SitePageModel model,
     required SiteEnvModel localEnv,
   }) async {
-    final rsp = await dio.get<String>(env.replace(model.url.value));
+    final rsp = await dio.get<String>(url);
 
     if (rsp.data == null) {
       // TODO 处理为空的错误

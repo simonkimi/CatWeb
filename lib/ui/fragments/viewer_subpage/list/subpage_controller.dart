@@ -18,13 +18,13 @@ class SubListController extends LoadMoreModel<ViewerListModel> {
 
   @override
   Future<List<ViewerListModel>> loadPage(int page) async {
+    final localEnv = SiteEnvModel({}).copy(); // TODO 真实env
+
     var baseUrl = model.url.value;
 
     // 页数匹配
     final pageReg = RegExp(r'\{page:(?<start>\d+):?(?<step>\d*)\}');
-
     final match = pageReg.firstMatch(baseUrl);
-
     if (match != null) {
       final start = int.tryParse(match.namedGroup('start') ?? '') ?? 0;
       final step = int.tryParse(match.namedGroup('step') ?? '') ?? 1;
@@ -32,7 +32,29 @@ class SubListController extends LoadMoreModel<ViewerListModel> {
           baseUrl.replaceAll(match.group(0)!, '${start + (page - 1) * step}');
     }
 
+    // 变量替换
+    if (subPageModel != null && subPageModel!.key.value.isNotEmpty) {
+      localEnv.mergeMap({
+        subPageModel!.key.value: subPageModel!.value.value,
+      });
+    }
+    baseUrl = localEnv.replace(baseUrl);
+
+    // 表达式替换
+    final exp = RegExp(r'\$\{(?<var>\w+):(?<context>.+)\}');
+    final matches = exp.allMatches(baseUrl);
+    for (final match in matches) {
+      final varName = match.namedGroup('var')!;
+      final context = match.namedGroup('context')!;
+      if (localEnv.env.containsKey(varName)) {
+        baseUrl = baseUrl.replaceAll(match.group(0)!, context);
+      } else {
+        baseUrl = baseUrl.replaceAll(match.group(0)!, '');
+      }
+    }
+
     return site.website.client.getList(
+      url: baseUrl,
       model: model,
       localEnv: SiteEnvModel({}),
     );
