@@ -20,20 +20,15 @@ final ehTestSite = SiteConfig(
     ),
     SitePage(
       name: '收藏',
-      url: 'https://e-hentai.org/favorites.php',
+      url: 'https://e-hentai.org/favorites.php?{favcat:favcat={favcat}}',
       parser: 'commonList',
       display: SiteDisplayType.show,
       template: PageTemplate.imageList,
       icon: 'home',
       subPage: [
-        SiteSubPage(
-          name: '全部',
-        ),
-        SiteSubPage(
-          name: 'Favourite 0',
-          key: 'favcat',
-          value: '0',
-        ),
+        SiteSubPage(name: '全部'),
+        SiteSubPage(name: 'Favourite 0', key: 'favcat', value: '0'),
+        SiteSubPage(name: 'Favourite 1', key: 'favcat', value: '1'),
       ],
     ),
   ],

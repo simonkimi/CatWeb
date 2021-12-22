@@ -64,7 +64,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
                             index: e.key,
                             controller: cookieController,
                             text:
-                                '${e.value.name.value}: ${e.value.value.value}',
+                                '${e.value.name.value} - { ${e.value.key.value}: ${e.value.value.value} }',
                             onDelete: (index) {
                               model.subPages.removeAt(index);
                             },
@@ -109,7 +109,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
                 ),
                 CupertinoInput(
                   labelText: '键',
-                  value: field.name,
+                  value: field.key,
                 ),
                 CupertinoInput(
                   labelText: '值',

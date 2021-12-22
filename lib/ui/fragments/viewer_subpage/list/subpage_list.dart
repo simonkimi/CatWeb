@@ -1,7 +1,7 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
-import 'package:catweb/ui/components/sliver/simple_sliver.dart';
+import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/fragments/viewer_subpage/list/subpage_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';

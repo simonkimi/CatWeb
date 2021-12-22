@@ -70,10 +70,10 @@ class RulesEditPage extends StatelessWidget {
 
   Future<bool> showExitConfine(BuildContext context) async {
     return (await showCupertinoConfirmDialog(
-      context: context,
-      title: '退出',
-      content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
-    )) ==
+          context: context,
+          title: '退出',
+          content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
+        )) ==
         true;
   }
 
@@ -96,6 +96,8 @@ class RulesEditPage extends StatelessWidget {
       );
       return;
     }
-    Get.back(result: controller.siteConfigModel);
+
+    await controller.save();
+    Get.back();
   }
 }

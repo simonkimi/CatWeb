@@ -32,26 +32,14 @@ class SubListController extends LoadMoreModel<ViewerListModel> {
           baseUrl.replaceAll(match.group(0)!, '${start + (page - 1) * step}');
     }
 
-    // 变量替换
+    // 添加缓存
     if (subPageModel != null && subPageModel!.key.value.isNotEmpty) {
       localEnv.mergeMap({
         subPageModel!.key.value: subPageModel!.value.value,
       });
     }
-    baseUrl = localEnv.replace(baseUrl);
 
-    // 表达式替换
-    final exp = RegExp(r'\$\{(?<var>\w+):(?<context>.+)\}');
-    final matches = exp.allMatches(baseUrl);
-    for (final match in matches) {
-      final varName = match.namedGroup('var')!;
-      final context = match.namedGroup('context')!;
-      if (localEnv.env.containsKey(varName)) {
-        baseUrl = baseUrl.replaceAll(match.group(0)!, context);
-      } else {
-        baseUrl = baseUrl.replaceAll(match.group(0)!, '');
-      }
-    }
+    baseUrl = localEnv.replace(baseUrl);
 
     return site.website.client.getList(
       url: baseUrl,

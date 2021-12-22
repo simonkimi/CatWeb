@@ -5,7 +5,7 @@ abstract class EnvMargeAble {
 }
 
 class SiteEnvModel implements EnvMargeAble {
-  SiteEnvModel(Map<String, String> env) : _env = env;
+  SiteEnvModel(Map<String, String>? env) : _env = env ?? {};
   final Map<String, String> _env;
 
   factory SiteEnvModel.fromBuffer(List<int> buffer) =>
@@ -32,15 +32,28 @@ class SiteEnvModel implements EnvMargeAble {
 
   String? resolve(String? input) {
     if (input == null) return null;
-    for (final entity in _env.entries) {
-      input = input!.replaceAll('{${entity.key}}', entity.value);
-    }
-    return input;
+    return replace(input);
   }
 
   String replace(String input) {
     for (final entity in _env.entries) {
       input = input.replaceAll('{${entity.key}}', entity.value);
+    }
+    final exp = RegExp(r'\$\{(?<var>\w+):(?<context>[^:]*):?(?<default>.*)\}');
+    final matches = exp.allMatches(input);
+    for (final match in matches) {
+      final varName = match.namedGroup('var')!;
+      final context = match.namedGroup('context')!;
+      final defaultValue = match.namedGroup('default');
+      if (_env.containsKey(varName)) {
+        input = input.replaceAll(match.group(0)!, context);
+      } else {
+        if (defaultValue != null) {
+          input = input.replaceAll(match.group(0)!, '');
+        } else {
+          input = input.replaceAll(match.group(0)!, defaultValue!);
+        }
+      }
     }
     return input;
   }
