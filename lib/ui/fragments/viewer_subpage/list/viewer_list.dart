@@ -3,6 +3,7 @@ import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/ui/components/grey_tab_indicator.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/fragments/viewer_subpage/list/subpage_list.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_manager/rules_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -95,8 +96,15 @@ class ViewerListFragment extends StatelessWidget {
         children: [
           Expanded(
             child: CupertinoNavigationBar(
+              padding: const EdgeInsetsDirectional.only(start: 10),
               middle: Text(model.name.string),
               border: const Border(),
+              leading: CupertinoButton(
+                minSize: 0,
+                padding: EdgeInsets.zero,
+                child: const Icon(CupertinoIcons.square_grid_2x2),
+                onPressed: () => Get.to(const SiteManager()),
+              ),
             ),
           ),
           if (!useSingleWidget)

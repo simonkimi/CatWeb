@@ -47,6 +47,7 @@ class RulesEditPage extends StatelessWidget {
 
   CupertinoNavigationBar buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
+      padding: const EdgeInsetsDirectional.only(start: 10, end: 10),
       leading: CupertinoButton(
         onPressed: () {
           showExitConfine(context).then((value) {

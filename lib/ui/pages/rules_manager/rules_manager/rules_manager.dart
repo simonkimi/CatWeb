@@ -86,10 +86,9 @@ class SiteManager extends StatelessWidget {
 
   CupertinoNavigationBar buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
+      padding: const EdgeInsetsDirectional.only(start: 10),
       leading: CupertinoButton(
-        onPressed: () {
-          Get.back();
-        },
+        onPressed: () => Get.back(),
         child: const Icon(CupertinoIcons.back),
         padding: EdgeInsets.zero,
         minSize: 0,
