@@ -70,11 +70,12 @@ final ehGalleryParser = GalleryParser(
   ),
   thumbnail: ImageSelector(
     imgWidth: Selector(
-        selector: '.gdtm img, .gdtl img',
-        function: SelectorFunction.attr,
-        param: 'style',
-        regex: r'width:(\d+)px',
-        defaultValue: '200'),
+      selector: '.gdtm img, .gdtl img',
+      function: SelectorFunction.attr,
+      param: 'style',
+      regex: r'width:(\d+)px',
+      defaultValue: '200',
+    ),
     imgHeight: Selector(
       selector: '.gdtm img, .gdtl img',
       function: SelectorFunction.attr,

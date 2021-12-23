@@ -59,6 +59,8 @@ final ehListParser = ListViewParser(
       selector: '.gl2c img,.glthumb img,.gl1e img,.gl3t img',
       function: SelectorFunction.attr,
       param: 'data-src,src',
+      regex: r'https:\/\/exhentai\.org\/(.+)',
+      replace: r'https://ehgt.org/$1'
     ),
     imgWidth: Selector(
       selector: '.gl2c img,.glthumb img,.gl1e img,.gl3t img',

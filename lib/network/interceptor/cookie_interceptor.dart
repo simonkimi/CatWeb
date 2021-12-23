@@ -14,7 +14,8 @@ class HeaderCookieInterceptor extends Interceptor {
 
     // Cookies
     for (final regField in model.cookies) {
-      if (RegExp(regField.reg.value).hasMatch(uri)) {
+      if (regField.reg.value.isEmpty ||
+          RegExp(regField.reg.value).hasMatch(uri)) {
         cookie.addEntries(parseCookies(regField.value.value).entries);
       }
     }

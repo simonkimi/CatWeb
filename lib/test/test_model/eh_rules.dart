@@ -1,18 +1,24 @@
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/test/test_model/cookies.dart';
 
 import 'gallery_parser.dart';
 import 'list_parser.dart';
 
 final ehTestSite = SiteConfig(
-  name: 'EHentai',
+  name: 'E-Hentai',
   baseUrl: 'https://e-hentai.org/',
   listViewParser: [ehListParser],
   galleryParsers: [ehGalleryParser],
+  cookies: [
+    RegField(value: 'ipb_member_id=$ipbMemberId'),
+    RegField(value: 'ipb_pass_hash=$ipbPassHash'),
+    RegField(value: 'igneous=$igneous'),
+  ],
   pageList: [
     SitePage(
       name: '主页',
-      url: 'https://e-hentai.org/',
+      url: '',
       parser: 'commonList',
       display: SiteDisplayType.show,
       template: PageTemplate.imageList,
@@ -20,7 +26,7 @@ final ehTestSite = SiteConfig(
     ),
     SitePage(
       name: '收藏',
-      url: 'https://e-hentai.org/favorites.php?{favcat:favcat={favcat}}',
+      url: r'favorites.php?${favcat:favcat={favcat}}',
       parser: 'commonList',
       display: SiteDisplayType.show,
       template: PageTemplate.imageList,

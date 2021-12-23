@@ -59,4 +59,7 @@ class SiteEnvModel implements EnvMargeAble {
   }
 
   void clear() => _env.clear();
+
+  @override
+  String toString() => '<Env> $_env';
 }
