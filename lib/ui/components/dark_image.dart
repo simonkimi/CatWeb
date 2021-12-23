@@ -17,7 +17,7 @@ class DarkImage extends GetView<SettingController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => isDarkMode(context)
+    return Obx(() => controller.imageMaskInDarkMode.value && isDarkMode(context)
         ? Stack(
             children: [
               Image(

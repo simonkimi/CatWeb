@@ -1,11 +1,14 @@
+import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 
 import '../../themes.dart';
 import 'dark_image.dart';
+import 'dio_image.dart';
 
 class SimpleCard extends StatelessWidget {
   const SimpleCard({
@@ -200,7 +203,7 @@ class ExtendedCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        buildImage(context),
+        if (model.previewImage?.url != null) buildImage(context),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(5.0),
@@ -339,24 +342,34 @@ class ExtendedCard extends StatelessWidget {
       height: 135,
       child: Stack(
         children: [
-          DarkWidget(
-            child: Image.asset(
-              'assets/images/simple2.jpg',
-              fit: BoxFit.fitHeight,
-              height: 135,
-            ),
+          DioImage(
+            dio: Get.find<SiteController>().website.client.dio,
+            url: model.previewImage?.url,
+            imageBuilder: (context, bytes) {
+              return DarkWidget(
+                child: Hero(
+                  tag: model.previewImage!.url!,
+                  child: Image.memory(
+                    bytes,
+                    width: 90,
+                    height: 135,
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
+              );
+            },
           ),
           if (model.paper != null)
             Positioned(
               right: 0,
-              child: buildBadge(),
+              child: buildPaper(),
             ),
         ],
       ),
     );
   }
 
-  Padding buildBadge() {
+  Padding buildPaper() {
     return Padding(
       padding: const EdgeInsets.all(3),
       child: Container(

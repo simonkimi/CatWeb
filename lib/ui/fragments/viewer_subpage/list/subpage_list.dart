@@ -1,6 +1,6 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/ui/components/cupertino_list_tile.dart';
+import 'package:catweb/ui/components/list_card.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/fragments/viewer_subpage/list/subpage_controller.dart';
 import 'package:flutter/cupertino.dart';
@@ -61,11 +61,7 @@ class SubPageListFragment extends StatelessWidget {
     return Obx(() {
       return SliverList(
         delegate: SliverChildBuilderDelegate((context, index) {
-          return CupertinoListTile(
-            selected: true,
-            // selectedColor: controller.items[index],
-            title: Text(controller.items[index].toString()),
-          );
+          return ExtendedCard(model: controller.items[index]);
         }, childCount: controller.items.length),
       );
     });

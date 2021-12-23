@@ -25,11 +25,13 @@ class CardSize {
 class SettingController extends GetxController {
   final cardSize = CardSize.middle.obs;
   final RxInt defaultSite = (-1).obs;
+  final RxBool imageMaskInDarkMode = true.obs;
 
   @override
   Future<void> onInit() async {
     cardSize.watch('cardSize', CardSize.middle);
     defaultSite.watch('defaultSite', -1);
+    imageMaskInDarkMode.watch('imageMaskInDarkMode', true);
     super.onInit();
   }
 }
