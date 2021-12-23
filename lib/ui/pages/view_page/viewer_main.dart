@@ -23,7 +23,6 @@ class ViewerMain extends GetView<SiteController> {
     if (controller.website.displayPage.length == 1) {
       return _buildSitePage(context, controller.website.displayPage.first);
     }
-
     return CupertinoTabScaffold(
       resizeToAvoidBottomInset: true,
       tabBar: CupertinoTabBar(

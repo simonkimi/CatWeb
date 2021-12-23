@@ -7,7 +7,6 @@ import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
 import 'package:catweb/network/parser_exec/list_parser_exec.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
-import 'package:catweb/utils/timer.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';

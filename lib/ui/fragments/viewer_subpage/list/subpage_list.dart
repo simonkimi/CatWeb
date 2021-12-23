@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class SubPageListFragment extends StatelessWidget {
+class SubPageListFragment extends StatefulWidget {
   SubPageListFragment({
     Key? key,
     required SitePageModel model,
@@ -19,6 +19,13 @@ class SubPageListFragment extends StatelessWidget {
         super(key: key);
 
   final SubListController controller;
+
+  @override
+  _SubPageListFragmentState createState() => _SubPageListFragmentState();
+}
+
+class _SubPageListFragmentState extends State<SubPageListFragment> {
+  late final controller = widget.controller;
 
   @override
   Widget build(BuildContext context) {

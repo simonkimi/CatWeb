@@ -41,7 +41,7 @@ class FooSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-class ViewerListFragment extends StatelessWidget {
+class ViewerListFragment extends StatefulWidget {
   const ViewerListFragment({
     Key? key,
     required this.model,
@@ -49,11 +49,20 @@ class ViewerListFragment extends StatelessWidget {
 
   final SitePageModel model;
 
+  @override
+  _ViewerListFragmentState createState() => _ViewerListFragmentState();
+}
+
+class _ViewerListFragmentState extends State<ViewerListFragment>
+    with AutomaticKeepAliveClientMixin {
+  late final model = widget.model;
+
   bool get useSingleWidget =>
       model.subPages.isEmpty || model.subPages.length == 1;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return CupertinoPageScaffold(
       child: useSingleWidget
           ? _buildSingleViewer(context)
@@ -65,6 +74,7 @@ class ViewerListFragment extends StatelessWidget {
     return DefaultTabController(
       length: model.subPages.length,
       child: NestedScrollView(
+        floatHeaderSlivers: true,
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [_buildAppbar(context)];
         },
@@ -109,7 +119,7 @@ class ViewerListFragment extends StatelessWidget {
                 minSize: 0,
                 padding: EdgeInsets.zero,
                 child: const Icon(Icons.menu),
-                onPressed: () => Get.to(const SiteManager()),
+                onPressed: () => Get.to(() => const SiteManager()),
               ),
             ),
           ),
@@ -147,4 +157,7 @@ class ViewerListFragment extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

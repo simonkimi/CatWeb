@@ -16,10 +16,11 @@ message SiteConfig {
   string loginUrl = 3;
   RegField loginCookie = 4;
   string version = 5;
-  string upgradeUrl = 8;
+  string upgradeUrl = 6;
+  string flag = 7;
 
-  repeated RegField headers = 6;
-  repeated RegField cookies = 7;
+  repeated RegField headers = 8;
+  repeated RegField cookies = 9;
 
   repeated GalleryParser galleryParsers = 10;
   repeated ListViewParser listViewParser = 11;
