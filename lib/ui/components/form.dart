@@ -214,6 +214,8 @@ class RulesForm extends StatelessWidget {
                       value: selectorModel.replace,
                       width: labelWidth,
                     ),
+                    buildDivider(context),
+                    buildJs(context, labelWidth),
                     if (extraSelectorModel != null) ...[
                       buildDivider(context),
                       buildExtraController(context),
@@ -263,18 +265,6 @@ class RulesForm extends StatelessWidget {
                 onPressed: () {
                   extraSelectorModel!.global.value =
                       !extraSelectorModel!.global.value;
-                },
-              )),
-          const SizedBox(width: 10),
-          Obx(() => buildCheckButton(
-                context: context,
-                label: 'Js脚本',
-                value: selectorModel.js.isNotEmpty,
-                onPressed: () {
-                  Navigator.of(context).push(CupertinoPageRoute(
-                      builder: (context) => JavaScriptEditor(
-                            js: selectorModel.js,
-                          )));
                 },
               )),
           const Expanded(child: SizedBox()),
@@ -332,18 +322,43 @@ class RulesForm extends StatelessWidget {
     );
   }
 
+  Widget buildJs(BuildContext context, double width) {
+    return Obx(() => CupertinoTextField(
+          controller: TextEditingController(text: selectorModel.js.value),
+          decoration: const BoxDecoration(border: Border()),
+          style: const TextStyle(fontSize: 14),
+          readOnly: true,
+          prefix: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: SizedBox(
+              width: width,
+              child: Text(
+                'Js脚本',
+                style: TextStyle(
+                  color:
+                      isDarkMode() ? FixColor.title.darkColor : FixColor.title,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ),
+          onTap: () {
+            Get.to(() => JavaScriptEditor(
+                  js: selectorModel.js,
+                ));
+          },
+        ));
+  }
+
   Widget buildFunction({
     required BuildContext context,
     required double width,
   }) {
     return Obx(() {
       return CupertinoTextField(
-        controller: TextEditingController(
-          text: selectorModel.function.value.string,
-        ),
-        decoration: const BoxDecoration(
-          border: Border(),
-        ),
+        controller:
+            TextEditingController(text: selectorModel.function.value.string),
+        decoration: const BoxDecoration(border: Border()),
         style: const TextStyle(fontSize: 14),
         readOnly: true,
         onTap: () {

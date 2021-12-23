@@ -16,7 +16,7 @@ class SiteRenderConfigModel {
   })  : globalEnv = SiteEnvModel.fromBuffer(dbEntity.env),
         favicon =
             dbEntity.favicon.isNotEmpty ? dbEntity.favicon.obs : Rx(null) {
-    client = NetClient(configModel, globalEnv);
+    client = NetClient(configModel);
   }
 
   // 需求字段
@@ -40,4 +40,10 @@ class SiteRenderConfigModel {
   List<SitePageModel> get displayPage => configModel.pageList
       .where((p0) => p0.display.value == SiteDisplayType.show)
       .toList();
+
+  Future<void> updateGlobalEnv() async {
+    await DB()
+        .webDao
+        .replace(dbEntity.copyWith(env: globalEnv.writeToBuffer()));
+  }
 }

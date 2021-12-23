@@ -12,10 +12,9 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:get/get.dart';
 
 class NetClient {
-  NetClient(this.configModel, this.env) : dio = buildDio(configModel);
+  NetClient(this.configModel) : dio = buildDio(configModel);
 
   final Dio dio;
-  final SiteEnvModel env;
   final SiteConfigModel configModel;
 
   Future<List<ViewerListModel>> getList({
@@ -33,7 +32,7 @@ class NetClient {
     return ListParserExec(
       parser: configModel.getListParser(model.parser.value),
       source: rsp.data!,
-      env: env.create(localEnv),
+      env: localEnv,
       dio: dio,
     ).exec();
   }

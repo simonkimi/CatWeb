@@ -1,12 +1,16 @@
+import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/network/parser_exec/parser_exec.dart';
 import 'package:catweb/ui/model/image_model.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:dio/dio.dart';
+import 'package:get/get.dart' hide Node;
 import 'package:html/dom.dart';
 import 'package:xml/xml.dart';
 import 'package:xpath_selector/xpath_selector.dart';
+
+import 'extra_parser.dart';
 
 class ListParserExec {
   ListParserExec({
@@ -21,26 +25,41 @@ class ListParserExec {
   final SiteEnvModel env;
   final Dio dio;
 
-  Future<List<ViewerListModel>> exec() async {
+  List<ViewerListModel> exec() {
     // TODO Json parser
-    return await _xmlHtml(parser);
+    return _xmlHtml(parser);
   }
 
-  Future<List<ViewerListModel>> _xmlHtml(ListViewParserModel parser) async {
+  List<ViewerListModel> _xmlHtml(ListViewParserModel parser) {
     late List<XPathNode> itemList;
     late DomParserExec domSelector;
 
+    final website = Get.find<SiteController>().website;
+    final combineEnv = website.globalEnv.create(env);
+
+    late XPath root;
     if (source.substring(10).contains('xml')) {
-      final root = XPath.html(source);
-      domSelector = DomParserExec<Node>(dio: dio, env: env);
+      root = XPath.html(source);
+      domSelector = DomParserExec<Node>(dio: dio, env: combineEnv);
       itemList = domSelector.nodes(parser.itemSelector, root.root);
     } else {
-      final root = XPath.xml(source);
-      domSelector = DomParserExec<XmlNode>(dio: dio, env: env);
+      root = XPath.xml(source);
+      domSelector = DomParserExec<XmlNode>(dio: dio, env: combineEnv);
       itemList = domSelector.nodes(parser.itemSelector, root.root);
     }
 
-    return await Future.wait(itemList.map((e) async {
+    if (xmlHtmlExtra(
+        domSelector: domSelector,
+        extras: parser.extraSelectorModel,
+        root: root,
+        onEnvWrite: (key, value) {
+          combineEnv.set(key, value);
+          env.set(key, value);
+        })) {
+      website.updateGlobalEnv();
+    }
+
+    return itemList.map((e) {
       return ViewerListModel(
         title: domSelector.singleString(parser.title, e),
         subtitle: domSelector.singleString(parser.subtitle, e),
@@ -64,6 +83,6 @@ class ListParserExec {
           imgY: domSelector.singleInt(parser.previewImg.imgY, e),
         ),
       );
-    }));
+    }).toList();
   }
 }

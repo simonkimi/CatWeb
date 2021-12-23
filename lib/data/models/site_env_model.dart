@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 
 abstract class EnvMargeAble {
@@ -10,6 +12,8 @@ class SiteEnvModel implements EnvMargeAble {
 
   factory SiteEnvModel.fromBuffer(List<int> buffer) =>
       SiteEnvModel(EnvStore.fromBuffer(buffer).env);
+
+  Uint8List writeToBuffer() => EnvStore(env: _env).writeToBuffer();
 
   @override
   Map<String, String> get env => _env;
@@ -57,6 +61,8 @@ class SiteEnvModel implements EnvMargeAble {
     }
     return input;
   }
+
+  void set(String key, String value) => _env[key] = value;
 
   void clear() => _env.clear();
 
