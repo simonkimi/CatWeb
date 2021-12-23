@@ -10,16 +10,17 @@ class SubListController extends LoadMoreModel<ViewerListModel> {
 
   final SitePageModel model;
   final SubPageModel? subPageModel;
+  final SiteEnvModel localEnv = SiteEnvModel();
 
   final site = Get.find<SiteController>();
+
+  SiteEnvModel get env => site.website.globalEnv.create(localEnv);
 
   @override
   bool isItemExist(ViewerListModel item) => items.contains(item);
 
   @override
   Future<List<ViewerListModel>> loadPage(int page) async {
-    final localEnv = SiteEnvModel({}).copy(); // TODO 真实env
-
     var baseUrl = model.url.value;
 
     // 页数匹配
@@ -44,7 +45,7 @@ class SubListController extends LoadMoreModel<ViewerListModel> {
     return site.website.client.getList(
       url: baseUrl,
       model: model,
-      localEnv: SiteEnvModel({}),
+      localEnv: env,
     );
   }
 }

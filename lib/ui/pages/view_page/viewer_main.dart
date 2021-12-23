@@ -7,8 +7,6 @@ import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-abstract class SubViewer {}
-
 class ViewerMain extends GetView<SiteController> {
   const ViewerMain({Key? key}) : super(key: key);
 

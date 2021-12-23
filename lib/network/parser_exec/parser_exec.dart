@@ -3,7 +3,6 @@ import 'package:catweb/data/execute/selector_exec.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/utils/utils.dart';
-import 'package:dio/dio.dart';
 import 'package:expressions/expressions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:xpath_selector/xpath_selector.dart';
@@ -11,11 +10,9 @@ import 'package:xpath_selector/xpath_selector.dart';
 class DomParserExec<T> {
   DomParserExec({
     required this.env,
-    required this.dio,
-  }) : jsRuntime = JsRuntime(dio: dio);
+  }) : jsRuntime = JsRuntime();
 
   final SiteEnvModel env;
-  final Dio dio;
 
   final JsRuntime jsRuntime;
 

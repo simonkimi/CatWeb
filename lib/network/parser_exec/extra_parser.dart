@@ -20,6 +20,7 @@ bool xmlHtmlExtra({
             .website
             .globalEnv
             .set(extraParser.id.value, value);
+        onEnvWrite(extraParser.id.value, value);
         globalChange = true;
       } else {
         onEnvWrite(extraParser.id.value, value);

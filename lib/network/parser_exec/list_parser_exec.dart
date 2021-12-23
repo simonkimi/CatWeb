@@ -40,11 +40,11 @@ class ListParserExec {
     late XPath root;
     if (source.substring(10).contains('xml')) {
       root = XPath.html(source);
-      domSelector = DomParserExec<Node>(dio: dio, env: combineEnv);
+      domSelector = DomParserExec<Node>(env: combineEnv);
       itemList = domSelector.nodes(parser.itemSelector, root.root);
     } else {
       root = XPath.xml(source);
-      domSelector = DomParserExec<XmlNode>(dio: dio, env: combineEnv);
+      domSelector = DomParserExec<XmlNode>(env: combineEnv);
       itemList = domSelector.nodes(parser.itemSelector, root.root);
     }
 

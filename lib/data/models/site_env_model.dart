@@ -1,13 +1,15 @@
 import 'dart:typed_data';
 
+import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:get/get.dart';
 
 abstract class EnvMargeAble {
   Map<String, String> get env;
 }
 
 class SiteEnvModel implements EnvMargeAble {
-  SiteEnvModel(Map<String, String>? env) : _env = env ?? {};
+  SiteEnvModel([Map<String, String>? env]) : _env = env ?? {};
   final Map<String, String> _env;
 
   factory SiteEnvModel.fromBuffer(List<int> buffer) =>
@@ -53,9 +55,9 @@ class SiteEnvModel implements EnvMargeAble {
         input = input.replaceAll(match.group(0)!, context);
       } else {
         if (defaultValue != null) {
-          input = input.replaceAll(match.group(0)!, '');
+          input = input.replaceAll(match.group(0)!, defaultValue);
         } else {
-          input = input.replaceAll(match.group(0)!, defaultValue!);
+          input = input.replaceAll(match.group(0)!, '');
         }
       }
     }
@@ -68,4 +70,10 @@ class SiteEnvModel implements EnvMargeAble {
 
   @override
   String toString() => '<Env> $_env';
+}
+
+extension EnvString on String {
+  String env(SiteEnvModel env) => env.replace(this);
+
+  String globalEnv() => Get.find<SiteController>().website.globalEnv.replace(this);
 }

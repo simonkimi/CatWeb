@@ -50,6 +50,7 @@ class DomSelectorExec<T> {
 
     late List<String?> functionResult;
 
+
     if (path.isEmpty) {
       // 空选择器，直接进入function
       functionResult = [
@@ -61,8 +62,7 @@ class DomSelectorExec<T> {
     } else if (root.node is Element) {
       // css选择器
       final Element? query = (root.node as Element)
-          .querySelectorAll(selector.selector.value)
-          .index(0);
+          .querySelector(selector.selector.value);
       if (query == null) {
         return [];
       } else {

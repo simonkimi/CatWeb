@@ -6,7 +6,6 @@ import 'package:catweb/network/parser_exec/parser_exec.dart';
 import 'package:catweb/test/test_model/eh_rules.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:catweb/utils/utils.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:xpath_selector/xpath_selector.dart';
@@ -20,7 +19,7 @@ void main() {
     final parser =
         site.listViewParser.get((e) => e.name.value == 'commonList')!;
 
-    final domSelector = DomParserExec<Node>(dio: Dio(), env: SiteEnvModel({}));
+    final domSelector = DomParserExec<Node>(env: SiteEnvModel({}));
     final itemList = domSelector.nodes(parser.itemSelector, root.root);
 
     final e = itemList[4];

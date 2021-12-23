@@ -12,11 +12,14 @@ class CupertinoTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tab(
-      child: Text(text,
-          style: TextStyle(
-            fontSize: 12,
-            color: CupertinoColors.label.resolveFrom(context),
-          )),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 12,
+          color: CupertinoColors.label.resolveFrom(context),
+        ),
+        maxLines: 1,
+      ),
       height: 30,
     );
   }

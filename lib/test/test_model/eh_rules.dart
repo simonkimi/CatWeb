@@ -33,8 +33,8 @@ final ehTestSite = SiteConfig(
       icon: 'home',
       subPage: [
         SiteSubPage(name: '全部'),
-        SiteSubPage(name: 'Favourite 0', key: 'favcat', value: '0'),
-        SiteSubPage(name: 'Favourite 1', key: 'favcat', value: '1'),
+        SiteSubPage(name: r'${fav1Tag:{fav1Tag}:Favourite 1}', key: 'favcat', value: '0'),
+        SiteSubPage(name: r'${fav2Tag:{fav2Tag}:Favourite 2}', key: 'favcat', value: '1'),
       ],
     ),
   ],
