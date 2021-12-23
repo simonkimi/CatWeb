@@ -1,9 +1,9 @@
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/test/test_model/cookies.dart';
+import 'package:catweb/test/test_model/parser/list_parser.dart';
 
-import 'gallery_parser.dart';
-import 'list_parser.dart';
+import 'parser/gallery_parser.dart';
 
 final ehTestSite = SiteConfig(
   name: 'E-Hentai',
