@@ -259,52 +259,58 @@ class ExtendedCard extends StatelessWidget {
   }
 
   Widget buildCategory(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minWidth: 50),
-      child: Container(
-          padding: const EdgeInsets.all(1),
-          decoration: BoxDecoration(
-            color: model.tagColor ??
-                CupertinoColors.systemRed.resolveFrom(context),
-            borderRadius: BorderRadius.circular(3),
-          ),
-          child: Center(
-            child: Text(
-              model.tag!,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 11,
-              ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 2),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minWidth: 50),
+        child: Container(
+            padding: const EdgeInsets.all(1),
+            decoration: BoxDecoration(
+              color: model.tagColor ??
+                  CupertinoColors.systemRed.resolveFrom(context),
+              borderRadius: BorderRadius.circular(3),
             ),
-          )),
+            child: Center(
+              child: Text(
+                model.tag!,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 11,
+                ),
+              ),
+            )),
+      ),
     );
   }
 
   Widget buildStar(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        RatingBar.builder(
-          itemSize: 16,
-          ignoreGestures: true,
-          initialRating: model.star!,
-          onRatingUpdate: (value) {},
-          itemBuilder: (BuildContext context, int index) {
-            return const Icon(
-              Icons.star,
-              color: Colors.amber,
-            );
-          },
-        ),
-        const SizedBox(width: 5),
-        Text(
-          model.star!.toString(),
-          style: TextStyle(
-            fontSize: 12,
-            color: FixColor.title.resolveFrom(context),
+    return Padding(
+      padding: const EdgeInsets.only(top: 2),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          RatingBar.builder(
+            itemSize: 16,
+            ignoreGestures: true,
+            initialRating: model.star!,
+            onRatingUpdate: (value) {},
+            itemBuilder: (BuildContext context, int index) {
+              return const Icon(
+                Icons.star,
+                color: Colors.amber,
+              );
+            },
           ),
-        ),
-      ],
+          const SizedBox(width: 5),
+          Text(
+            model.star!.toString(),
+            style: TextStyle(
+              fontSize: 12,
+              color: FixColor.title.resolveFrom(context),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
