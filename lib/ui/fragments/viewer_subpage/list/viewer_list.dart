@@ -116,6 +116,7 @@ class ViewerListFragment extends StatelessWidget {
           if (!useSingleWidget)
             Material(
               child: TabBar(
+                isScrollable: true,
                 indicator: const GreyUnderlineTabIndicator(),
                 tabs: model.subPages
                     .map((e) => CupertinoTab(e.name.string.globalEnv()))
