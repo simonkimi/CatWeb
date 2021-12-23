@@ -41,7 +41,7 @@ class SubListController extends LoadMoreModel<ViewerListModel> {
     }
 
     baseUrl = localEnv.replace(baseUrl);
-
+    print('加载网址: $baseUrl');
     return site.website.client.getList(
       url: baseUrl,
       model: model,

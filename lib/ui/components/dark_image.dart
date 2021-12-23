@@ -2,7 +2,7 @@ import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../themes.dart';
+import 'package:catweb/theme/colors.dart';
 
 class DarkImage extends GetView<SettingController> {
   const DarkImage({

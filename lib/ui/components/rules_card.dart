@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../themes.dart';
+import 'package:catweb/theme/colors.dart';
 
 class RulesCard extends StatelessWidget {
   const RulesCard({

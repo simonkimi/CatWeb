@@ -6,7 +6,7 @@ import 'package:flutter_highlight/themes/a11y-dark.dart';
 import 'package:flutter_highlight/themes/a11y-light.dart';
 import 'package:get/get.dart';
 
-import '../../../themes.dart';
+import 'package:catweb/theme/colors.dart';
 
 class JavaScriptEditor extends StatefulWidget {
   const JavaScriptEditor({

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../themes.dart';
+import 'package:catweb/theme/colors.dart';
 
 class CupertinoReadOnlyInput extends StatelessWidget {
   final String labelText;

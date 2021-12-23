@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../themes.dart';
+import 'package:catweb/theme/colors.dart';
 import 'grey_tab_indicator.dart';
 
 class CupertinoTab extends StatelessWidget {

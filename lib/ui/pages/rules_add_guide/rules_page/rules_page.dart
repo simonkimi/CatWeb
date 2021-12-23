@@ -11,7 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
 
-import '../../../../themes.dart';
+import 'package:catweb/theme/colors.dart';
 
 class RulesPageEdit extends GetView<RulesEditController> {
   const RulesPageEdit({

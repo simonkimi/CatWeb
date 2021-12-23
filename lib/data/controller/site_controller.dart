@@ -42,6 +42,8 @@ class SiteController extends GetxController {
     if (sitesList.isNotEmpty) {
       final site = sitesList.first;
       await setNewSite(site);
+    } else {
+      await setNewSite();
     }
   }
 

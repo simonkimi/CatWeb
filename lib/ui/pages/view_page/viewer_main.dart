@@ -48,7 +48,10 @@ class ViewerMain extends GetView<SiteController> {
         // TODO: Handle this case.
         break;
       case PageTemplate.imageList:
-        return ViewerListFragment(model: model);
+        return ViewerListFragment(
+          model: model,
+          hasTabBar: controller.website.displayPage.length > 1,
+        );
       case PageTemplate.imageWaterfall:
         // TODO: Handle this case.
         break;

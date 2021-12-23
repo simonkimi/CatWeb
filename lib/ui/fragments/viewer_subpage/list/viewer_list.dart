@@ -45,9 +45,11 @@ class ViewerListFragment extends StatefulWidget {
   const ViewerListFragment({
     Key? key,
     required this.model,
+    this.hasTabBar = false,
   }) : super(key: key);
 
   final SitePageModel model;
+  final bool hasTabBar;
 
   @override
   _ViewerListFragmentState createState() => _ViewerListFragmentState();
@@ -83,6 +85,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
               .map((e) => SubPageListFragment(
                     model: model,
                     subPageModel: e,
+                    hasTabBar: widget.hasTabBar,
                   ))
               .toList(),
         ),
@@ -99,6 +102,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
       body: SubPageListFragment(
         model: model,
         subPageModel: model.subPages.index(0),
+        hasTabBar: widget.hasTabBar,
       ),
     );
   }

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
-import '../../themes.dart';
+import 'package:catweb/theme/colors.dart';
 import 'dark_image.dart';
 import 'dio_image.dart';
 

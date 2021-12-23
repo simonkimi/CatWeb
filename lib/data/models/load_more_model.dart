@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart' hide Lock;
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -12,7 +14,28 @@ enum LoadMoreState {
 }
 
 abstract class LoadMoreModel<T> extends GetxController {
-  final lock = Lock();
+  LoadMoreModel() {
+    _stateListener = rxState.listen((state) {
+      switch (state) {
+        case LoadMoreState.idle:
+          refreshController.loadComplete();
+          break;
+        case LoadMoreState.noMoreData:
+          refreshController.loadNoData();
+          break;
+        case LoadMoreState.loadError:
+          refreshController.loadFailed();
+          break;
+        case LoadMoreState.refreshing:
+        case LoadMoreState.loading:
+          break;
+      }
+    });
+  }
+
+  late final StreamSubscription<LoadMoreState> _stateListener;
+
+  final _lock = Lock();
 
   final refreshController = RefreshController();
 
@@ -54,27 +77,6 @@ abstract class LoadMoreModel<T> extends GetxController {
     return _lastException.value.toString();
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-    ever<LoadMoreState>(rxState, (state) {
-      switch (state) {
-        case LoadMoreState.idle:
-          refreshController.loadComplete();
-          break;
-        case LoadMoreState.noMoreData:
-          refreshController.loadNoData();
-          break;
-        case LoadMoreState.loadError:
-          refreshController.loadFailed();
-          break;
-        case LoadMoreState.refreshing:
-        case LoadMoreState.loading:
-          break;
-      }
-    });
-  }
-
   Future<List<T>> loadPage(int page);
 
   bool isItemExist(T item);
@@ -105,7 +107,7 @@ abstract class LoadMoreModel<T> extends GetxController {
 
   Future<void> _loadNextPage() async {
     try {
-      await lock.synchronized(() async {
+      await _lock.synchronized(() async {
         _lastException.value = null;
         final page = _page.value + 1;
         final items =
@@ -131,7 +133,7 @@ abstract class LoadMoreModel<T> extends GetxController {
   Future<void> _loadPreviousPage() async {
     try {
       _lastException.value = null;
-      await lock.synchronized(() async {
+      await _lock.synchronized(() async {
         rxState.value = LoadMoreState.refreshing;
         final page = _pageTail.value - 1;
         final items =
@@ -151,5 +153,11 @@ abstract class LoadMoreModel<T> extends GetxController {
       _lastException.value = e;
       rethrow;
     }
+  }
+
+  @override
+  void dispose() {
+    _stateListener.cancel();
+    super.dispose();
   }
 }

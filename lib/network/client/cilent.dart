@@ -42,7 +42,7 @@ class NetClient {
     localEnv.mergeMap(result.localEnv);
     final site = Get.find<SiteController>().website;
     if (result.globalEnv.isNotEmpty) {
-      print('Global Eev: ${result.globalEnv}');
+      print('Global Env: ${result.globalEnv}');
       site.globalEnv.mergeMap(result.globalEnv);
       site.updateGlobalEnv();
     }

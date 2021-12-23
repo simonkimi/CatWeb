@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:catweb/data/protocol/model/parser.dart';
-import 'package:catweb/themes.dart';
+import 'package:catweb/theme/colors.dart';
 import 'package:catweb/ui/components/form.dart';
 import 'package:catweb/ui/components/rules_card.dart';
 import 'package:catweb/utils/widget.dart';

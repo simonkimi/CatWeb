@@ -12,6 +12,7 @@ class SubPageListFragment extends StatefulWidget {
     Key? key,
     required SitePageModel model,
     SubPageModel? subPageModel,
+    required this.hasTabBar,
   })  : controller = SubListController(
           model: model,
           subPageModel: subPageModel,
@@ -19,6 +20,7 @@ class SubPageListFragment extends StatefulWidget {
         super(key: key);
 
   final SubListController controller;
+  final bool hasTabBar;
 
   @override
   _SubPageListFragmentState createState() => _SubPageListFragmentState();
@@ -29,16 +31,22 @@ class _SubPageListFragmentState extends State<SubPageListFragment> {
 
   @override
   Widget build(BuildContext context) {
-    return SmartRefresher(
-      controller: controller.refreshController,
-      enablePullDown: false,
-      enablePullUp: true,
-      footer: _buildIndicator(context),
-      child: CustomScrollView(
-        slivers: [
-          _buildPullRefresh(context),
-          _buildBody(context),
-        ],
+    return Padding(
+      padding: widget.hasTabBar
+          ? const EdgeInsets.only(bottom: 40)
+          : EdgeInsets.zero,
+      child: SmartRefresher(
+        controller: controller.refreshController,
+        enablePullDown: false,
+        enablePullUp: true,
+        onLoading: () => controller.onLoadMore(),
+        footer: _buildIndicator(context),
+        child: CustomScrollView(
+          slivers: [
+            _buildPullRefresh(context),
+            _buildBody(context),
+          ],
+        ),
       ),
     );
   }
@@ -76,52 +84,65 @@ class _SubPageListFragmentState extends State<SubPageListFragment> {
 
   Widget _buildIndicator(BuildContext context) {
     return CustomFooter(builder: (context, state) {
-      switch (state) {
-        case null:
-        case LoadStatus.canLoading:
-        case LoadStatus.idle:
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                CupertinoIcons.arrow_down,
-                size: 18,
-                color: CupertinoColors.label.resolveFrom(context),
-              ),
-              const SizedBox(width: 10),
-              const Text('不要停下来啊!', style: TextStyle(fontSize: 15)),
-            ],
-          );
-        case LoadStatus.loading:
-          return SizedBox(
-            height: kNavigatorBarHeight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-                CupertinoActivityIndicator(),
-                SizedBox(width: 10),
-                Text('努力加载中...', style: TextStyle(fontSize: 15)),
-              ],
-            ),
-          );
-        case LoadStatus.noMore:
-          return const SizedBox(
-            height: kNavigatorBarHeight,
-            child: Center(
-              child: Text('真的一点也没有了...', style: TextStyle(fontSize: 15)),
-            ),
-          );
-        case LoadStatus.failed:
-          return SizedBox(
-            height: kNavigatorBarHeight,
-            child: Center(
-              child: Text(controller.errorMessage ?? '',
-                  style: const TextStyle(fontSize: 15)),
-            ),
-          );
-      }
+      return Padding(
+        padding: widget.hasTabBar
+            ? const EdgeInsets.only(bottom: 50)
+            : EdgeInsets.zero,
+        child: () {
+          switch (state) {
+            case null:
+            case LoadStatus.canLoading:
+            case LoadStatus.idle:
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    CupertinoIcons.arrow_down,
+                    size: 18,
+                    color: CupertinoColors.label.resolveFrom(context),
+                  ),
+                  const SizedBox(width: 10),
+                  const Text('不要停下来啊!', style: TextStyle(fontSize: 15)),
+                ],
+              );
+            case LoadStatus.loading:
+              return SizedBox(
+                height: kNavigatorBarHeight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    CupertinoActivityIndicator(),
+                    SizedBox(width: 10),
+                    Text('努力加载中...', style: TextStyle(fontSize: 15)),
+                  ],
+                ),
+              );
+            case LoadStatus.noMore:
+              return const SizedBox(
+                height: kNavigatorBarHeight,
+                child: Center(
+                  child: Text('真的一点也没有了...', style: TextStyle(fontSize: 15)),
+                ),
+              );
+            case LoadStatus.failed:
+              return SizedBox(
+                height: kNavigatorBarHeight,
+                child: Center(
+                  child: Text(controller.errorMessage ?? '',
+                      style: const TextStyle(fontSize: 15)),
+                ),
+              );
+          }
+        }(),
+      );
     });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

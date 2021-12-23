@@ -26,11 +26,11 @@ final ehTestSite = SiteConfig(
     ),
     SitePage(
       name: '收藏',
-      url: r'favorites.php?{page:0}${favcat:&favcat={favcat}}',
+      url: r'favorites.php?page={page:0}${favcat:&favcat={favcat}}',
       parser: 'commonList',
       display: SiteDisplayType.show,
       template: PageTemplate.imageList,
-      icon: 'home',
+      icon: 'heart',
       subPage: [
         SiteSubPage(name: '全部'),
         SiteSubPage(name: r'${fav2Tag:{fav0Tag}:Favourite 0}', key: 'favcat', value: '0'),
