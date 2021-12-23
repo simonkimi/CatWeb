@@ -24,7 +24,7 @@ class RulesPageManager extends GetView<RulesEditController> {
       children: [
         Obx(() => Column(
               mainAxisSize: MainAxisSize.min,
-          children: controller.siteConfigModel.pageList.map((e) {
+              children: controller.siteConfigModel.pageList.map((e) {
                 return CupertinoListTile(
                   title: Text(e.name.value),
                   subtitle: Text(e.template.value.string(context)),

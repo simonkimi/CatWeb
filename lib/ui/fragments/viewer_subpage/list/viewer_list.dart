@@ -70,9 +70,9 @@ class ViewerListFragment extends StatelessWidget {
         body: TabBarView(
           children: model.subPages
               .map((e) => SubPageListFragment(
-            model: model,
-            subPageModel: e,
-          ))
+                    model: model,
+                    subPageModel: e,
+                  ))
               .toList(),
         ),
       ),

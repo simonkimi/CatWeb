@@ -2,8 +2,6 @@ import 'package:catweb/ui/model/detail_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 
-
-
 class CommentItem extends StatelessWidget {
   const CommentItem({
     Key? key,

@@ -1,3 +1,4 @@
+import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/store.dart';
@@ -7,6 +8,8 @@ import 'package:catweb/network/parser_exec/list_parser_exec.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:get/get.dart';
 
 class NetClient {
   NetClient(this.configModel, this.env) : dio = buildDio(configModel);
@@ -48,6 +51,8 @@ Dio buildDio(SiteConfigModel model) {
   }
 
   dio.interceptors.add(HeaderCookieInterceptor(model));
+  dio.interceptors.add(DioCacheInterceptor(
+      options: Get.find<SettingController>().dioCacheOptions));
   dio.transformer = EncodeTransformer();
 
   // TODO 添加忽略证书错误开关

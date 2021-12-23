@@ -1,11 +1,11 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'site_dao.dart';
+part of 'web_dao.dart';
 
 // **************************************************************************
 // DaoGenerator
 // **************************************************************************
 
-mixin _$SiteDaoMixin on DatabaseAccessor<AppDataBase> {
-  $SiteTableTable get siteTable => attachedDatabase.siteTable;
+mixin _$WebDaoMixin on DatabaseAccessor<AppDataBase> {
+  $WebTableTable get webTable => attachedDatabase.webTable;
 }

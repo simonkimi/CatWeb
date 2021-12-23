@@ -12,13 +12,13 @@ import 'data/controller/setting_controller.dart';
 import 'navigator.dart';
 
 Future<void> initGetX() async {
-  Get.put(SettingController(), permanent: true);
+  await Get.put(SettingController(), permanent: true).init();
   Get.put(SiteController(), permanent: true);
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initGetX();
+  await initGetX();
   runApp(const MyApp());
 }
 

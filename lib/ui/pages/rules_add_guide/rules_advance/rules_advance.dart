@@ -34,7 +34,7 @@ class RulesAdvance extends GetView<RulesEditController> {
             child: Column(
               children: [
                 Obx(() => Column(
-                  children: controller.siteConfigModel.headers
+                      children: controller.siteConfigModel.headers
                           .asMap()
                           .entries
                           .map((e) {
@@ -78,7 +78,7 @@ class RulesAdvance extends GetView<RulesEditController> {
             child: Column(
               children: [
                 Obx(() => Column(
-                  children: controller.siteConfigModel.cookies
+                      children: controller.siteConfigModel.cookies
                           .asMap()
                           .entries
                           .map((e) {

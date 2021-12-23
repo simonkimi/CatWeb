@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
@@ -5,7 +7,6 @@ import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/network/client/cilent.dart';
 import 'package:get/get.dart';
-import 'package:moor/moor.dart';
 
 /// 渲染时所创建的模型
 class SiteRenderConfigModel {
@@ -19,7 +20,7 @@ class SiteRenderConfigModel {
   }
 
   // 需求字段
-  final SiteTableData dbEntity;
+  final WebTableData dbEntity;
   late final NetClient client;
 
   // 储存字段
@@ -33,7 +34,7 @@ class SiteRenderConfigModel {
 
   Future<void> setFavicon(Uint8List bin) async {
     favicon.value = bin;
-    await DB().siteDao.replace(dbEntity.copyWith(favicon: bin));
+    await DB().webDao.replace(dbEntity.copyWith(favicon: bin));
   }
 
   List<SitePageModel> get displayPage => configModel.pageList

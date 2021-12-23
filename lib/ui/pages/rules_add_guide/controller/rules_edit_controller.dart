@@ -11,17 +11,17 @@ class RulesEditController extends GetxController {
   }) : siteConfigModel = SiteConfigModel(pb);
 
   final SiteConfigModel siteConfigModel;
-  final SiteTableData? db;
+  final WebTableData? db;
 
   Future<void> save() async {
     if (db == null) {
-      await DB().siteDao.insert(SiteTableCompanion.insert(
+      await DB().webDao.insert(WebTableCompanion.insert(
             bin: siteConfigModel.toPb().writeToBuffer(),
             env: EnvStore().writeToBuffer(),
           ));
     } else {
       final newDb = db!.copyWith(bin: siteConfigModel.toPb().writeToBuffer());
-      await DB().siteDao.replace(newDb);
+      await DB().webDao.replace(newDb);
       // 检测是否为当前配置
       final controller = Get.find<SiteController>();
       if (controller.site.value?.id == db!.id) {

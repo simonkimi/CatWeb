@@ -1,7 +1,7 @@
-import 'package:moor/moor.dart';
+import 'package:drift/drift.dart';
 import 'package:uuid/uuid.dart';
 
-class SiteTable extends Table {
+class WebTable extends Table {
   IntColumn get id => integer().autoIncrement()();
 
   TextColumn get uuid =>

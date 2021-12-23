@@ -24,7 +24,7 @@ class RulesParserManager extends GetView<RulesEditController> {
       children: [
         Obx(() => Column(
               mainAxisSize: MainAxisSize.min,
-          children: controller.siteConfigModel.parsers.map((e) {
+              children: controller.siteConfigModel.parsers.map((e) {
                 return CupertinoListTile(
                   title: Text(e.name.value),
                   subtitle: Text(e.displayType(context)),

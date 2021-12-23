@@ -1,14 +1,13 @@
 import 'dart:ffi';
 import 'dart:io';
 
-import 'package:catweb/data/database/tables/site_table.dart';
-import 'package:moor/ffi.dart';
-import 'package:moor/moor.dart';
+import 'package:catweb/data/database/tables/web_table.dart';
+import 'package:drift/drift.dart';
+import 'package:drift/native.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
-
-import 'daos/site_dao.dart';
+import 'daos/web_dao.dart';
 
 part 'database.g.dart';
 
@@ -27,11 +26,11 @@ LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final file = File(
         p.join((await getApplicationDocumentsDirectory()).path, 'db.sqlite'));
-    return VmDatabase(file);
+    return NativeDatabase(file);
   });
 }
 
-@UseMoor(tables: [SiteTable], daos: [SiteDao])
+@DriftDatabase(tables: [WebTable], daos: [WebDao])
 class AppDataBase extends _$AppDataBase {
   AppDataBase() : super(_openConnection());
 
@@ -47,5 +46,5 @@ class DB {
   static final DB _db = DB._();
   final AppDataBase _database = AppDataBase();
 
-  SiteDao get siteDao => _database.siteDao;
+  WebDao get webDao => _database.webDao;
 }

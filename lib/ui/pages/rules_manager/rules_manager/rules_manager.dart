@@ -30,9 +30,9 @@ class SiteManager extends StatelessWidget {
           width: double.infinity,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: StreamBuilder<List<SiteTableData>>(
+            child: StreamBuilder<List<WebTableData>>(
               initialData: const [],
-              stream: DB().siteDao.getAllStream(),
+              stream: DB().webDao.getAllStream(),
               builder: (context, snapshot) {
                 return buildListView(snapshot, siteController, context);
               },
@@ -43,7 +43,7 @@ class SiteManager extends StatelessWidget {
     );
   }
 
-  Widget buildSiteItem(BuildContext context, SiteTableData e) {
+  Widget buildSiteItem(BuildContext context, WebTableData e) {
     final siteController = Get.find<SiteController>();
     final pb = SiteConfig.fromBuffer(e.bin);
     return Obx(() => CupertinoListTile(
@@ -59,7 +59,7 @@ class SiteManager extends StatelessWidget {
   }
 
   ListView buildListView(
-    AsyncSnapshot<List<SiteTableData>> snapshot,
+    AsyncSnapshot<List<WebTableData>> snapshot,
     SiteController siteController,
     BuildContext context,
   ) {
@@ -99,7 +99,7 @@ class SiteManager extends StatelessWidget {
 
   Future<void> onTrailingTap(
     BuildContext context,
-    SiteTableData db,
+    WebTableData db,
     SiteConfig pb,
   ) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
@@ -130,13 +130,13 @@ class SiteManager extends StatelessWidget {
               title: '取消',
             ) ==
             true) {
-          DB().siteDao.remove(db);
+          DB().webDao.remove(db);
         }
         break;
     }
   }
 
-  Future<void> toEditPage(SiteConfig? pb, SiteTableData? db) async {
+  Future<void> toEditPage(SiteConfig? pb, WebTableData? db) async {
     await Get.to(() => RulesEditPage(pb: pb ?? eh.ehTestSite, db: db));
   }
 }

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_render_model.dart';
@@ -9,7 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 class SiteController extends GetxController {
-  late final StreamSubscription<List<SiteTableData>> siteDbChangeListener;
+  late final StreamSubscription<List<WebTableData>> siteDbChangeListener;
 
   final site = Rx<SiteRenderConfigModel?>(null);
 
@@ -18,7 +17,7 @@ class SiteController extends GetxController {
     return site.value!;
   }
 
-  Future<void> setNewSite([SiteTableData? db]) async {
+  Future<void> setNewSite([WebTableData? db]) async {
     if (db != null) {
       site.value = SiteRenderConfigModel(
         dbEntity: db,
@@ -31,16 +30,15 @@ class SiteController extends GetxController {
     }
   }
 
-
   Future<void> setDefaultSite() async {
     final setting = Get.find<SettingController>();
-    final df = (await DB().siteDao.getAll())
+    final df = (await DB().webDao.getAll())
         .get((e) => e.id == setting.defaultSite.value);
     await setNewSite(df);
   }
 
   Future<void> autoSelectNewSite() async {
-    final sitesList = await DB().siteDao.getAll();
+    final sitesList = await DB().webDao.getAll();
     if (sitesList.isNotEmpty) {
       final site = sitesList.first;
       await setNewSite(site);
@@ -50,7 +48,7 @@ class SiteController extends GetxController {
   @override
   void onInit() {
     setDefaultSite();
-    siteDbChangeListener = DB().siteDao.getAllStream().listen((event) {
+    siteDbChangeListener = DB().webDao.getAllStream().listen((event) {
       if (site.value != null &&
           event.get((element) => element.id == id) == null) {
         autoSelectNewSite();

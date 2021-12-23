@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-
 class GalleryDetail extends StatelessWidget {
   const GalleryDetail({
     Key? key,
@@ -125,7 +124,7 @@ class GalleryDetail extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 12,
                         color:
-                        CupertinoColors.secondaryLabel.resolveFrom(context),
+                            CupertinoColors.secondaryLabel.resolveFrom(context),
                       ),
                     ),
                   ],
@@ -177,7 +176,7 @@ class GalleryDetail extends StatelessWidget {
                   Badge(
                     text: e.key,
                     color: cupertinoLightColors(
-                        context, tagMaps.keys.toList().indexOf(e.key))
+                            context, tagMaps.keys.toList().indexOf(e.key))
                         .withOpacity(0.5),
                   ),
                 if (e.key != '_') const SizedBox(width: 10),
@@ -214,11 +213,7 @@ class GalleryDetail extends StatelessWidget {
         text: text,
         style: textStyle,
       ),
-    )
-      ..layout(maxWidth: MediaQuery
-          .of(context)
-          .size
-          .width - 20))
+    )..layout(maxWidth: MediaQuery.of(context).size.width - 20))
         .didExceedMaxLines;
 
     return Column(
@@ -465,11 +460,10 @@ class GalleryDetail extends StatelessWidget {
           itemSize: 13,
           maxRating: 5,
           allowHalfRating: true,
-          itemBuilder: (context, _) =>
-              Icon(
-                CupertinoIcons.star_fill,
-                color: CupertinoColors.systemYellow.resolveFrom(context),
-              ),
+          itemBuilder: (context, _) => Icon(
+            CupertinoIcons.star_fill,
+            color: CupertinoColors.systemYellow.resolveFrom(context),
+          ),
           unratedColor: CupertinoColors.systemGrey5.resolveFrom(context),
           onRatingUpdate: (value) {},
         ),

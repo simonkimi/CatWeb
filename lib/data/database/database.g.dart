@@ -7,25 +7,23 @@ part of 'database.dart';
 // **************************************************************************
 
 // ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
-class SiteTableData extends DataClass implements Insertable<SiteTableData> {
+class WebTableData extends DataClass implements Insertable<WebTableData> {
   final int id;
   final String uuid;
   final Uint8List bin;
   final Uint8List env;
   final Uint8List favicon;
   final int lastOpen;
-  SiteTableData(
+  WebTableData(
       {required this.id,
       required this.uuid,
       required this.bin,
       required this.env,
       required this.favicon,
       required this.lastOpen});
-  factory SiteTableData.fromData(
-      Map<String, dynamic> data, GeneratedDatabase db,
-      {String? prefix}) {
+  factory WebTableData.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
-    return SiteTableData(
+    return WebTableData(
       id: const IntType()
           .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
       uuid: const StringType()
@@ -52,8 +50,8 @@ class SiteTableData extends DataClass implements Insertable<SiteTableData> {
     return map;
   }
 
-  SiteTableCompanion toCompanion(bool nullToAbsent) {
-    return SiteTableCompanion(
+  WebTableCompanion toCompanion(bool nullToAbsent) {
+    return WebTableCompanion(
       id: Value(id),
       uuid: Value(uuid),
       bin: Value(bin),
@@ -63,10 +61,10 @@ class SiteTableData extends DataClass implements Insertable<SiteTableData> {
     );
   }
 
-  factory SiteTableData.fromJson(Map<String, dynamic> json,
+  factory WebTableData.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
-    return SiteTableData(
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return WebTableData(
       id: serializer.fromJson<int>(json['id']),
       uuid: serializer.fromJson<String>(json['uuid']),
       bin: serializer.fromJson<Uint8List>(json['bin']),
@@ -77,7 +75,7 @@ class SiteTableData extends DataClass implements Insertable<SiteTableData> {
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'uuid': serializer.toJson<String>(uuid),
@@ -88,14 +86,14 @@ class SiteTableData extends DataClass implements Insertable<SiteTableData> {
     };
   }
 
-  SiteTableData copyWith(
+  WebTableData copyWith(
           {int? id,
           String? uuid,
           Uint8List? bin,
           Uint8List? env,
           Uint8List? favicon,
           int? lastOpen}) =>
-      SiteTableData(
+      WebTableData(
         id: id ?? this.id,
         uuid: uuid ?? this.uuid,
         bin: bin ?? this.bin,
@@ -105,7 +103,7 @@ class SiteTableData extends DataClass implements Insertable<SiteTableData> {
       );
   @override
   String toString() {
-    return (StringBuffer('SiteTableData(')
+    return (StringBuffer('WebTableData(')
           ..write('id: $id, ')
           ..write('uuid: $uuid, ')
           ..write('bin: $bin, ')
@@ -121,7 +119,7 @@ class SiteTableData extends DataClass implements Insertable<SiteTableData> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is SiteTableData &&
+      (other is WebTableData &&
           other.id == this.id &&
           other.uuid == this.uuid &&
           other.bin == this.bin &&
@@ -130,14 +128,14 @@ class SiteTableData extends DataClass implements Insertable<SiteTableData> {
           other.lastOpen == this.lastOpen);
 }
 
-class SiteTableCompanion extends UpdateCompanion<SiteTableData> {
+class WebTableCompanion extends UpdateCompanion<WebTableData> {
   final Value<int> id;
   final Value<String> uuid;
   final Value<Uint8List> bin;
   final Value<Uint8List> env;
   final Value<Uint8List> favicon;
   final Value<int> lastOpen;
-  const SiteTableCompanion({
+  const WebTableCompanion({
     this.id = const Value.absent(),
     this.uuid = const Value.absent(),
     this.bin = const Value.absent(),
@@ -145,7 +143,7 @@ class SiteTableCompanion extends UpdateCompanion<SiteTableData> {
     this.favicon = const Value.absent(),
     this.lastOpen = const Value.absent(),
   });
-  SiteTableCompanion.insert({
+  WebTableCompanion.insert({
     this.id = const Value.absent(),
     this.uuid = const Value.absent(),
     required Uint8List bin,
@@ -154,7 +152,7 @@ class SiteTableCompanion extends UpdateCompanion<SiteTableData> {
     this.lastOpen = const Value.absent(),
   })  : bin = Value(bin),
         env = Value(env);
-  static Insertable<SiteTableData> custom({
+  static Insertable<WebTableData> custom({
     Expression<int>? id,
     Expression<String>? uuid,
     Expression<Uint8List>? bin,
@@ -172,14 +170,14 @@ class SiteTableCompanion extends UpdateCompanion<SiteTableData> {
     });
   }
 
-  SiteTableCompanion copyWith(
+  WebTableCompanion copyWith(
       {Value<int>? id,
       Value<String>? uuid,
       Value<Uint8List>? bin,
       Value<Uint8List>? env,
       Value<Uint8List>? favicon,
       Value<int>? lastOpen}) {
-    return SiteTableCompanion(
+    return WebTableCompanion(
       id: id ?? this.id,
       uuid: uuid ?? this.uuid,
       bin: bin ?? this.bin,
@@ -215,7 +213,7 @@ class SiteTableCompanion extends UpdateCompanion<SiteTableData> {
 
   @override
   String toString() {
-    return (StringBuffer('SiteTableCompanion(')
+    return (StringBuffer('WebTableCompanion(')
           ..write('id: $id, ')
           ..write('uuid: $uuid, ')
           ..write('bin: $bin, ')
@@ -227,11 +225,11 @@ class SiteTableCompanion extends UpdateCompanion<SiteTableData> {
   }
 }
 
-class $SiteTableTable extends SiteTable
-    with TableInfo<$SiteTableTable, SiteTableData> {
+class $WebTableTable extends WebTable
+    with TableInfo<$WebTableTable, WebTableData> {
   final GeneratedDatabase _db;
   final String? _alias;
-  $SiteTableTable(this._db, [this._alias]);
+  $WebTableTable(this._db, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
@@ -273,11 +271,11 @@ class $SiteTableTable extends SiteTable
   @override
   List<GeneratedColumn> get $columns => [id, uuid, bin, env, favicon, lastOpen];
   @override
-  String get aliasedName => _alias ?? 'site_table';
+  String get aliasedName => _alias ?? 'web_table';
   @override
-  String get actualTableName => 'site_table';
+  String get actualTableName => 'web_table';
   @override
-  VerificationContext validateIntegrity(Insertable<SiteTableData> instance,
+  VerificationContext validateIntegrity(Insertable<WebTableData> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -314,23 +312,23 @@ class $SiteTableTable extends SiteTable
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  SiteTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return SiteTableData.fromData(data, _db,
+  WebTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return WebTableData.fromData(data,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
-  $SiteTableTable createAlias(String alias) {
-    return $SiteTableTable(_db, alias);
+  $WebTableTable createAlias(String alias) {
+    return $WebTableTable(_db, alias);
   }
 }
 
 abstract class _$AppDataBase extends GeneratedDatabase {
   _$AppDataBase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
-  late final $SiteTableTable siteTable = $SiteTableTable(this);
-  late final SiteDao siteDao = SiteDao(this as AppDataBase);
+  late final $WebTableTable webTable = $WebTableTable(this);
+  late final WebDao webDao = WebDao(this as AppDataBase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [siteTable];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [webTable];
 }

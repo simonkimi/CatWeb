@@ -1,7 +1,10 @@
 import 'dart:typed_data';
 
+import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
 import 'dark_image.dart';
@@ -143,14 +146,14 @@ class _DioImageState extends State<DioImage> {
 
       final rsp = await dio.get<List<int>>(imgUrl ?? widget.url!,
           cancelToken: cancelToken,
-          // options: settingStore.dioCacheOptions
-          //     .copyWith(
-          //       policy: CachePolicy.request,
-          //       keyBuilder: (req) => key,
-          //     )
-          //     .toOptions()
-          //     .copyWith(responseType: ResponseType.bytes),
-          options: Options(responseType: ResponseType.bytes),
+          options: Get.find<SettingController>()
+              .dioCacheOptions
+              .copyWith(
+                policy: CachePolicy.request,
+                keyBuilder: (req) => key,
+              )
+              .toOptions()
+              .copyWith(responseType: ResponseType.bytes),
           onReceiveProgress: (received, total) {
         if (mounted) {
           setState(() {
