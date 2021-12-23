@@ -42,7 +42,7 @@ class SiteRenderConfigModel {
       .toList();
 
   Future<void> updateGlobalEnv() async {
-    print('GlobalEnv: $globalEnv');
+    print('GlobalEnv: ${globalEnv.env}');
     await DB()
         .webDao
         .replace(dbEntity.copyWith(env: globalEnv.writeToBuffer()));

@@ -1,4 +1,3 @@
-import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/network/parser_exec/parser_exec.dart';
 import 'package:xpath_selector/xpath_selector.dart';
@@ -8,7 +7,8 @@ bool xmlHtmlExtra({
   required DomParserExec domSelector,
   required List<ExtraSelectorModel> extras,
   required XPath root,
-  required Function(String key, String value) onEnvWrite,
+  required Function(String key, String value) onLocalEnv,
+  required Function(String key, String value) onGlobalEnv,
 }) {
   var globalChange = false;
   // 额外的解析
@@ -16,14 +16,10 @@ bool xmlHtmlExtra({
     final value = domSelector.singleString(extraParser.selector, root.root);
     if (value != null && extraParser.id.isNotEmpty) {
       if (extraParser.global.value == true) {
-        Get.find<SiteController>()
-            .website
-            .globalEnv
-            .set(extraParser.id.value, value);
-        onEnvWrite(extraParser.id.value, value);
+        onGlobalEnv(extraParser.id.value, value);
         globalChange = true;
       } else {
-        onEnvWrite(extraParser.id.value, value);
+        onLocalEnv(extraParser.id.value, value);
       }
     }
   }

@@ -1,65 +1,67 @@
-import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/network/parser_exec/parser_exec.dart';
 import 'package:catweb/ui/model/image_model.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
-import 'package:dio/dio.dart';
-import 'package:get/get.dart' hide Node;
 import 'package:html/dom.dart';
 import 'package:xml/xml.dart';
 import 'package:xpath_selector/xpath_selector.dart';
 
 import 'extra_parser.dart';
 
-class ListParserExec {
-  ListParserExec({
+class ListParserResult {
+  ListParserResult({
+    required this.result,
+    required this.globalEnv,
+    required this.localEnv,
+  });
+
+  final List<ViewerListModel> result;
+  final Map<String, String> globalEnv;
+  final Map<String, String> localEnv;
+}
+
+class ListParserParam {
+  ListParserParam({
     required this.parser,
     required this.source,
-    required this.env,
-    required this.dio,
+    required this.globalEnv,
   });
 
   final ListViewParserModel parser;
   final String source;
-  final SiteEnvModel env;
-  final Dio dio;
+  final SiteEnvModel globalEnv;
+}
 
-  List<ViewerListModel> exec() {
-    // TODO Json parser
-    return _xmlHtml(parser);
-  }
-
-  List<ViewerListModel> _xmlHtml(ListViewParserModel parser) {
+ListParserResult listParserExec(ListParserParam param) {
+  ListParserResult _xmlHtml() {
+    final parser = param.parser;
     late List<XPathNode> itemList;
     late DomParserExec domSelector;
 
-    final website = Get.find<SiteController>().website;
-    final combineEnv = website.globalEnv.create(env);
-
     late XPath root;
-    if (source.substring(10).contains('xml')) {
-      root = XPath.html(source);
-      domSelector = DomParserExec<Node>(env: combineEnv);
+    if (param.source.substring(10).contains('xml')) {
+      root = XPath.html(param.source);
+      domSelector = DomParserExec<Node>(env: param.globalEnv);
       itemList = domSelector.nodes(parser.itemSelector, root.root);
     } else {
-      root = XPath.xml(source);
-      domSelector = DomParserExec<XmlNode>(env: combineEnv);
+      root = XPath.xml(param.source);
+      domSelector = DomParserExec<XmlNode>(env: param.globalEnv);
       itemList = domSelector.nodes(parser.itemSelector, root.root);
     }
 
-    if (xmlHtmlExtra(
-        domSelector: domSelector,
-        extras: parser.extraSelectorModel,
-        root: root,
-        onEnvWrite: (key, value) {
-          combineEnv.set(key, value);
-          env.set(key, value);
-        })) {
-      website.updateGlobalEnv();
-    }
+    final global = <String, String>{};
+    final local = <String, String>{};
 
-    return itemList.map((e) {
+    xmlHtmlExtra(
+      domSelector: domSelector,
+      extras: parser.extraSelectorModel,
+      root: root,
+      onGlobalEnv: (key, value) => global[key] = value,
+      onLocalEnv: (key, value) => local[key] = value,
+    );
+
+    final result = itemList.map((e) {
       return ViewerListModel(
         title: domSelector.singleString(parser.title, e),
         subtitle: domSelector.singleString(parser.subtitle, e),
@@ -84,5 +86,13 @@ class ListParserExec {
         ),
       );
     }).toList();
+
+    return ListParserResult(
+      result: result,
+      globalEnv: global,
+      localEnv: local,
+    );
   }
+
+  return _xmlHtml();
 }

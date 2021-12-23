@@ -45,7 +45,7 @@ class SubListController extends LoadMoreModel<ViewerListModel> {
     return site.website.client.getList(
       url: baseUrl,
       model: model,
-      localEnv: env,
+      localEnv: localEnv,
     );
   }
 }

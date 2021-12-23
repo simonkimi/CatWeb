@@ -1,4 +1,5 @@
 import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/store.dart';
@@ -9,6 +10,7 @@ import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class NetClient {
@@ -29,12 +31,21 @@ class NetClient {
       throw Exception('data is null');
     }
 
-    return ListParserExec(
+    final param = ListParserParam(
       parser: configModel.getListParser(model.parser.value),
       source: rsp.data!,
-      env: localEnv,
-      dio: dio,
-    ).exec();
+      globalEnv: Get.find<SiteController>().website.globalEnv,
+    );
+
+    final result = await compute(listParserExec, param);
+
+    localEnv.mergeMap(result.localEnv);
+    final site = Get.find<SiteController>().website;
+    if (result.globalEnv.isNotEmpty) {
+      site.globalEnv.mergeMap(result.globalEnv);
+      site.updateGlobalEnv();
+    }
+    return result.result;
   }
 }
 
