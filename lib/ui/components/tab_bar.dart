@@ -45,7 +45,7 @@ class CupertinoTabBarView extends StatelessWidget {
         child: Column(
           children: [
             Material(
-              color: CupertinoTheme.of(context).barBackgroundColor,
+              color: FixColor.navigationBarBackground.resolveFrom(context),
               child: TabBar(
                 padding: EdgeInsets.zero,
                 labelColor: FixColor.title.resolveFrom(context),

@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
+import 'package:catweb/theme/colors.dart';
 import 'package:catweb/ui/components/grey_tab_indicator.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/fragments/viewer_subpage/list/subpage_list.dart';
@@ -117,8 +120,17 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
           Expanded(
             child: CupertinoNavigationBar(
               padding: const EdgeInsetsDirectional.only(start: 10),
+              backgroundColor:
+                  FixColor.navigationBarBackground.resolveFrom(context),
               middle: Text(model.name.string),
-              border: const Border(),
+              border: useSingleWidget
+                  ? const Border(
+                      bottom: BorderSide(
+                        color: Color(0x4D000000),
+                        width: 0.0, // 0.0 means one physical pixel
+                      ),
+                    )
+                  : null,
               leading: CupertinoButton(
                 minSize: 0,
                 padding: EdgeInsets.zero,
@@ -128,15 +140,24 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
             ),
           ),
           if (!useSingleWidget)
-            Material(
-              child: TabBar(
-                isScrollable: true,
-                indicator: const GreyUnderlineTabIndicator(),
-                tabs: model.subPages
-                    .map((e) => CupertinoTab(e.name.string.globalEnv()))
-                    .toList(),
+            ClipRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 5.0,
+                  sigmaY: 5.0,
+                ),
+                child: Material(
+                  color: FixColor.navigationBarBackground.resolveFrom(context),
+                  child: TabBar(
+                    isScrollable: true,
+                    indicator: const GreyUnderlineTabIndicator(),
+                    tabs: model.subPages
+                        .map((e) => CupertinoTab(e.name.string.globalEnv()))
+                        .toList(),
+                  ),
+                ),
               ),
-            )
+            ),
         ],
       ),
     );

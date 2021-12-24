@@ -31,22 +31,17 @@ class _SubPageListFragmentState extends State<SubPageListFragment> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: widget.hasTabBar
-          ? const EdgeInsets.only(bottom: 40)
-          : EdgeInsets.zero,
-      child: SmartRefresher(
-        controller: controller.refreshController,
-        enablePullDown: false,
-        enablePullUp: true,
-        onLoading: () => controller.onLoadMore(),
-        footer: _buildIndicator(context),
-        child: CustomScrollView(
-          slivers: [
-            _buildPullRefresh(context),
-            _buildBody(context),
-          ],
-        ),
+    return SmartRefresher(
+      controller: controller.refreshController,
+      enablePullDown: false,
+      enablePullUp: true,
+      onLoading: () => controller.onLoadMore(),
+      footer: _buildIndicator(context),
+      child: CustomScrollView(
+        slivers: [
+          _buildPullRefresh(context),
+          _buildBody(context),
+        ],
       ),
     );
   }
