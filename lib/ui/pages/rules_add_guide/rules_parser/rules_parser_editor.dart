@@ -25,18 +25,18 @@ class RulesParserEditor extends StatelessWidget {
       child: DefaultTabController(
         length: 3,
         child: CupertinoPageScaffold(
-          navigationBar: buildAppbar(context),
-          child: buildBody(context),
+          navigationBar: _buildAppbar(context),
+          child: _buildBody(context),
         ),
       ),
     );
   }
 
-  Widget buildBody(BuildContext context) {
+  Widget _buildBody(BuildContext context) {
     return CupertinoTabBarView(
       children: [
-        buildPreview(context),
-        buildEditor(context),
+        _buildPreview(context),
+        _buildEditor(context),
         ExtraParser(model: model),
       ],
       tabs: const [
@@ -47,7 +47,7 @@ class RulesParserEditor extends StatelessWidget {
     );
   }
 
-  CupertinoNavigationBar buildAppbar(BuildContext context) {
+  CupertinoNavigationBar _buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
       leading: CupertinoButton(
         onPressed: () {
@@ -78,7 +78,7 @@ class RulesParserEditor extends StatelessWidget {
     return true;
   }
 
-  Widget buildPreview(BuildContext context) {
+  Widget _buildPreview(BuildContext context) {
     switch (model.type) {
       case ParserType.galleryParser:
         return const GalleryPreview();
@@ -89,7 +89,7 @@ class RulesParserEditor extends StatelessWidget {
     }
   }
 
-  Widget buildEditor(BuildContext context) {
+  Widget _buildEditor(BuildContext context) {
     switch (model.type) {
       case ParserType.galleryParser:
         return GalleryParserFragment(model: model as GalleryParserModel);

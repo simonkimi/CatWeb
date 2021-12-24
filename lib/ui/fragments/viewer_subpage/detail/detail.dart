@@ -2,7 +2,6 @@ import 'package:catweb/theme/colors.dart';
 import 'package:catweb/theme/themes.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
-import 'package:catweb/ui/components/cupertino_info_item.dart';
 import 'package:catweb/ui/components/icon_text.dart';
 import 'package:catweb/ui/model/detail_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,17 +23,17 @@ class GalleryDetail extends StatelessWidget {
       padding: const EdgeInsets.only(right: 10, left: 10, top: 10),
       child: ListView(
         children: [
-          buildHeader(context),
-          buildDescription(context),
-          buildTagList(context),
-          buildCommentList(context),
+          _buildHeader(context),
+          _buildDescription(context),
+          _buildTagList(context),
+          _buildCommentList(context),
           // TODO 预览图
         ],
       ),
     );
   }
 
-  Widget buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context) {
     return Column(
       children: [
         ConstrainedBox(
@@ -44,9 +43,9 @@ class GalleryDetail extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                buildLeftImage(),
+                _buildLeftImage(),
                 const SizedBox(width: 15),
-                buildRightInfo(context),
+                _buildRightInfo(context),
               ],
             ),
           ),
@@ -57,7 +56,7 @@ class GalleryDetail extends StatelessWidget {
     );
   }
 
-  Widget buildCommentList(BuildContext context) {
+  Widget _buildCommentList(BuildContext context) {
     if (model.commentList == null) return const SizedBox();
 
     return Column(
@@ -73,7 +72,7 @@ class GalleryDetail extends StatelessWidget {
                 color: FixColor.title.resolveFrom(context),
               ),
             ),
-            buildStarBar(context)
+            _buildStarBar(context)
           ],
         ),
         const SizedBox(height: 5),
@@ -138,7 +137,7 @@ class GalleryDetail extends StatelessWidget {
     );
   }
 
-  Widget buildTagList(BuildContext context) {
+  Widget _buildTagList(BuildContext context) {
     if (model.tagList == null) return const SizedBox();
     final tagMaps = <String, List<String>>{'_': []};
 
@@ -163,7 +162,7 @@ class GalleryDetail extends StatelessWidget {
                 color: FixColor.title.resolveFrom(context),
               ),
             ),
-            buildCategory(context),
+            _buildCategory(context),
           ],
         ),
         const SizedBox(height: 10),
@@ -199,7 +198,7 @@ class GalleryDetail extends StatelessWidget {
     );
   }
 
-  Widget buildDescription(BuildContext context) {
+  Widget _buildDescription(BuildContext context) {
     if (model.description == null) return const SizedBox();
     final text = model.description!.replaceAll(RegExp(r'\n{2,}'), '\n');
     final textStyle = TextStyle(
@@ -314,55 +313,7 @@ class GalleryDetail extends StatelessWidget {
     );
   }
 
-  Widget buildControllerItem({
-    required BuildContext context,
-    required IconData icon,
-    required String text,
-  }) {
-    return Expanded(
-      child: Column(
-        children: [
-          Icon(
-            icon,
-            color: CupertinoColors.secondaryLabel.resolveFrom(context),
-          ),
-          Text(
-            text,
-            style: TextStyle(
-              color: CupertinoColors.secondaryLabel.resolveFrom(context),
-              fontSize: 12,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildSized() {
-    final reg = RegExp(r'\d+.?\d*');
-    final sizeFloat = reg.firstMatch(model.size!);
-    if (sizeFloat == null) {
-      return Expanded(
-        child: CupertinoInfoItem(
-          top: const Text('大小'),
-          middle: Text(model.size!),
-          bottom: const Icon(Icons.download),
-        ),
-      );
-    }
-
-    final unit = model.size!.replaceAll(sizeFloat[0]!, '').trim();
-
-    return Expanded(
-      child: CupertinoInfoItem(
-        top: const Text('大小'),
-        middle: Text(sizeFloat[0]!),
-        bottom: Text(unit),
-      ),
-    );
-  }
-
-  Widget buildLeftImage() {
+  Widget _buildLeftImage() {
     return Container(
       width: 140,
       clipBehavior: Clip.antiAlias,
@@ -407,7 +358,7 @@ class GalleryDetail extends StatelessWidget {
     );
   }
 
-  Widget buildRightInfo(BuildContext context) {
+  Widget _buildRightInfo(BuildContext context) {
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -417,16 +368,16 @@ class GalleryDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              buildTitle(context),
+              _buildTitle(context),
               const SizedBox(height: 5),
-              buildUploader(context),
+              _buildUploader(context),
               const SizedBox(height: 5),
               if (model.star != null && model.commentList == null)
-                buildStarBar(context),
+                _buildStarBar(context),
               if (model.star != null && model.commentList == null)
                 const SizedBox(height: 5),
               if (model.category != null && model.tagList == null)
-                buildCategory(context),
+                _buildCategory(context),
               if (model.category != null && model.tagList == null)
                 const SizedBox(height: 5),
             ],
@@ -435,7 +386,7 @@ class GalleryDetail extends StatelessWidget {
             children: [
               buildReadButton(),
               const SizedBox(width: 10),
-              if (model.language != null) buildLanguage(context)
+              if (model.language != null) _buildLanguage(context)
             ],
           ),
         ],
@@ -443,7 +394,7 @@ class GalleryDetail extends StatelessWidget {
     );
   }
 
-  Text buildLanguage(BuildContext context) {
+  Text _buildLanguage(BuildContext context) {
     return Text(
       model.language!,
       style: TextStyle(
@@ -453,7 +404,7 @@ class GalleryDetail extends StatelessWidget {
     );
   }
 
-  Row buildStarBar(BuildContext context) {
+  Row _buildStarBar(BuildContext context) {
     return Row(
       children: [
         RatingBar.builder(
@@ -492,7 +443,7 @@ class GalleryDetail extends StatelessWidget {
     );
   }
 
-  Widget buildTitle(BuildContext context) {
+  Widget _buildTitle(BuildContext context) {
     if (model.title == null) return const SizedBox();
     return Text(
       model.title!,
@@ -503,7 +454,7 @@ class GalleryDetail extends StatelessWidget {
     );
   }
 
-  Widget buildUploader(BuildContext context) {
+  Widget _buildUploader(BuildContext context) {
     if (model.subtitle == null) return const SizedBox();
     return Text(
       model.subtitle!,
@@ -514,18 +465,18 @@ class GalleryDetail extends StatelessWidget {
     );
   }
 
-  Widget buildUploadTime(BuildContext context) {
-    if (model.uploadTime == null) return const SizedBox();
-    return Text(
-      model.uploadTime!,
-      style: TextStyle(
-        fontSize: 12,
-        color: CupertinoColors.secondaryLabel.resolveFrom(context),
-      ),
-    );
-  }
+  // Widget _buildUploadTime(BuildContext context) {
+  //   if (model.uploadTime == null) return const SizedBox();
+  //   return Text(
+  //     model.uploadTime!,
+  //     style: TextStyle(
+  //       fontSize: 12,
+  //       color: CupertinoColors.secondaryLabel.resolveFrom(context),
+  //     ),
+  //   );
+  // }
 
-  Widget buildCategory(BuildContext context) {
+  Widget _buildCategory(BuildContext context) {
     if (model.category == null) return const SizedBox();
     return Badge(
       text: model.category!,

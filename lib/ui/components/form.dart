@@ -68,41 +68,51 @@ class StickyClassifyList extends StatelessWidget {
   }
 }
 
-Widget buildCupertinoInput({
-  required BuildContext context,
-  String? label,
-  required RxString value,
-  double? width,
-  BoxDecoration? decoration,
-}) {
-  return CupertinoTextField(
-    controller: TextEditingController(text: value.value)
-      ..selection = TextSelection(
-        baseOffset: value.value.length,
-        extentOffset: value.value.length,
-      ),
-    decoration: decoration ??
-        const BoxDecoration(
-          border: Border(),
+class CupertinoInput extends StatelessWidget {
+  const CupertinoInput({
+    Key? key,
+    this.label,
+    required this.value,
+    this.width,
+    this.decoration,
+  }) : super(key: key);
+
+  final BoxDecoration? decoration;
+  final double? width;
+  final RxString value;
+  final String? label;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTextField(
+      controller: TextEditingController(text: value.value)
+        ..selection = TextSelection(
+          baseOffset: value.value.length,
+          extentOffset: value.value.length,
         ),
-    onChanged: (v) => value.value = v,
-    style: const TextStyle(fontSize: 14),
-    prefix: label != null
-        ? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: SizedBox(
-              width: width,
-              child: Text(
-                label,
-                style: TextStyle(
-                  color: FixColor.title.resolveFrom(context),
-                  fontSize: 12,
+      decoration: decoration ??
+          const BoxDecoration(
+            border: Border(),
+          ),
+      onChanged: (v) => value.value = v,
+      style: const TextStyle(fontSize: 14),
+      prefix: label != null
+          ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: SizedBox(
+                width: width,
+                child: Text(
+                  label!,
+                  style: TextStyle(
+                    color: FixColor.title.resolveFrom(context),
+                    fontSize: 12,
+                  ),
                 ),
               ),
-            ),
-          )
-        : null,
-  );
+            )
+          : null,
+    );
+  }
 }
 
 class RulesForm extends StatelessWidget {
@@ -161,8 +171,7 @@ class RulesForm extends StatelessWidget {
             if (extraSelectorModel != null)
               Padding(
                 padding: const EdgeInsets.only(top: 5, right: 100, left: 100),
-                child: buildCupertinoInput(
-                  context: context,
+                child: CupertinoInput(
                   label: 'id',
                   value: extraSelectorModel!.id,
                   decoration: BoxDecoration(
@@ -182,43 +191,39 @@ class RulesForm extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    buildCupertinoInput(
-                      context: context,
+                    CupertinoInput(
                       label: '选择器',
                       value: selectorModel.selector,
                       width: labelWidth,
                     ),
-                    buildDivider(context),
-                    buildFunction(
+                    _buildDivider(context),
+                    _buildFunction(
                       context: context,
                       width: labelWidth,
                     ),
-                    buildDivider(context),
-                    buildCupertinoInput(
-                      context: context,
+                    _buildDivider(context),
+                    CupertinoInput(
                       label: '参数',
                       value: selectorModel.param,
                       width: labelWidth,
                     ),
-                    buildDivider(context),
-                    buildCupertinoInput(
-                      context: context,
+                    _buildDivider(context),
+                    CupertinoInput(
                       label: '正则',
                       value: selectorModel.regex,
                       width: labelWidth,
                     ),
-                    buildDivider(context),
-                    buildCupertinoInput(
-                      context: context,
+                    _buildDivider(context),
+                    CupertinoInput(
                       label: '替换',
                       value: selectorModel.replace,
                       width: labelWidth,
                     ),
-                    buildDivider(context),
-                    buildJs(context, labelWidth),
+                    _buildDivider(context),
+                    _buildJs(context, labelWidth),
                     if (extraSelectorModel != null) ...[
-                      buildDivider(context),
-                      buildExtraController(context),
+                      _buildDivider(context),
+                      _buildExtraController(context),
                     ],
                   ],
                 ),
@@ -230,7 +235,7 @@ class RulesForm extends StatelessWidget {
     );
   }
 
-  Widget buildDivider(BuildContext context) {
+  Widget _buildDivider(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 3),
       child: Divider(
@@ -241,14 +246,14 @@ class RulesForm extends StatelessWidget {
     );
   }
 
-  Widget buildExtraController(BuildContext context) {
+  Widget _buildExtraController(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Obx(
-            () => buildCheckButton(
+            () => _buildCheckButton(
               context: context,
               label: '计算',
               value: selectorModel.computed.value,
@@ -258,7 +263,7 @@ class RulesForm extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          Obx(() => buildCheckButton(
+          Obx(() => _buildCheckButton(
                 context: context,
                 label: '全局',
                 value: extraSelectorModel!.global.value,
@@ -291,7 +296,7 @@ class RulesForm extends StatelessWidget {
     );
   }
 
-  Widget buildCheckButton({
+  Widget _buildCheckButton({
     required BuildContext context,
     required String label,
     required bool value,
@@ -322,7 +327,7 @@ class RulesForm extends StatelessWidget {
     );
   }
 
-  Widget buildJs(BuildContext context, double width) {
+  Widget _buildJs(BuildContext context, double width) {
     return Obx(() => CupertinoTextField(
           controller: TextEditingController(text: selectorModel.js.value),
           decoration: const BoxDecoration(border: Border()),
@@ -350,7 +355,7 @@ class RulesForm extends StatelessWidget {
         ));
   }
 
-  Widget buildFunction({
+  Widget _buildFunction({
     required BuildContext context,
     required double width,
   }) {

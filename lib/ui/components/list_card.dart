@@ -24,7 +24,7 @@ class SimpleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final child = Column(
       children: [
-        buildImage(context),
+        _buildImage(context),
         if (model.title != null)
           Text(
             model.title!,
@@ -40,7 +40,7 @@ class SimpleCard extends StatelessWidget {
               color: FixColor.title.resolveFrom(context),
             ),
           ),
-        if (model.badgeList != null) buildTagList()
+        if (model.badgeList != null) _buildTagList()
       ],
     );
 
@@ -61,7 +61,7 @@ class SimpleCard extends StatelessWidget {
           );
   }
 
-  SizedBox buildTagList() {
+  SizedBox _buildTagList() {
     final tags = model.badgeList!.where((e) => e.text != null).toList();
     return SizedBox(
       height: 20,
@@ -107,7 +107,7 @@ class SimpleCard extends StatelessWidget {
     );
   }
 
-  Widget buildCategory(BuildContext context) {
+  Widget _buildCategory(BuildContext context) {
     return ClipPath(
       clipper: _RightAngledTriangleClipper(),
       child: const SizedBox(
@@ -120,7 +120,7 @@ class SimpleCard extends StatelessWidget {
     );
   }
 
-  Widget buildImage(BuildContext context) {
+  Widget _buildImage(BuildContext context) {
     return Stack(
       children: [
         DarkWidget(
@@ -133,18 +133,18 @@ class SimpleCard extends StatelessWidget {
           Positioned(
             left: 0,
             bottom: 0,
-            child: buildPaper(context),
+            child: _buildPaper(context),
           ),
         if (model.tag != null)
           Positioned(
             right: 0,
-            child: buildCategory(context),
+            child: _buildCategory(context),
           ),
       ],
     );
   }
 
-  Padding buildPaper(BuildContext context) {
+  Padding _buildPaper(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(3),
       child: Container(
@@ -177,7 +177,7 @@ class ExtendedCard extends StatelessWidget {
     final child = InkWell(
       onTap: () {},
       child: IntrinsicHeight(
-        child: buildBody(context),
+        child: _buildBody(context),
       ),
     );
 
@@ -198,21 +198,21 @@ class ExtendedCard extends StatelessWidget {
           );
   }
 
-  Row buildBody(BuildContext context) {
+  Row _buildBody(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        if (model.previewImage?.url != null) buildImage(context),
+        if (model.previewImage?.url != null) _buildImage(context),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(5.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                buildHeader(context),
+                _buildHeader(context),
                 const Expanded(child: SizedBox()),
-                buildTile(context),
+                _buildTile(context),
               ],
             ),
           ),
@@ -221,7 +221,7 @@ class ExtendedCard extends StatelessWidget {
     );
   }
 
-  Row buildTile(BuildContext context) {
+  Row _buildTile(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -229,8 +229,8 @@ class ExtendedCard extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (model.star != null) buildStar(context),
-            if (model.tag != null) buildCategory(context),
+            if (model.star != null) _buildStar(context),
+            if (model.tag != null) _buildCategory(context),
           ],
         ),
         Column(
@@ -258,7 +258,7 @@ class ExtendedCard extends StatelessWidget {
     );
   }
 
-  Widget buildCategory(BuildContext context) {
+  Widget _buildCategory(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 2),
       child: ConstrainedBox(
@@ -283,7 +283,7 @@ class ExtendedCard extends StatelessWidget {
     );
   }
 
-  Widget buildStar(BuildContext context) {
+  Widget _buildStar(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 2),
       child: Row(
@@ -314,7 +314,7 @@ class ExtendedCard extends StatelessWidget {
     );
   }
 
-  Column buildHeader(BuildContext context) {
+  Column _buildHeader(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -337,12 +337,12 @@ class ExtendedCard extends StatelessWidget {
             ),
           ),
         const SizedBox(height: 3),
-        if (model.badgeList != null) buildTagWrap(context),
+        if (model.badgeList != null) _buildTagWrap(context),
       ],
     );
   }
 
-  Widget buildImage(BuildContext context) {
+  Widget _buildImage(BuildContext context) {
     return SizedBox(
       width: 90,
       height: 135,
@@ -390,7 +390,7 @@ class ExtendedCard extends StatelessWidget {
     );
   }
 
-  Wrap buildTagWrap(BuildContext context) {
+  Wrap _buildTagWrap(BuildContext context) {
     return Wrap(
       spacing: 2,
       runSpacing: 2,

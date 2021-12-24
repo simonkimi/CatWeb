@@ -2,7 +2,6 @@ import 'package:catweb/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 class CupertinoDivider extends StatelessWidget {
   const CupertinoDivider({
     Key? key,

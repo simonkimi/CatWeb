@@ -12,7 +12,8 @@ import 'package:universal_html/html.dart' hide File;
 
 void main() {
   test('Children selector test', () async {
-    final root = UniversalHtmlTree.parse(File('test/html/minimal.htm').readAsStringSync());
+    final root = UniversalHtmlTree.parse(
+        File('test/html/minimal.htm').readAsStringSync());
 
     final site = SiteConfigModel(ehTestSite);
 

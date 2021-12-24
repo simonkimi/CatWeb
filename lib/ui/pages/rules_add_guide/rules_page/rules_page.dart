@@ -26,22 +26,22 @@ class RulesPageEdit extends GetView<RulesEditController> {
     return WillPopScope(
       onWillPop: () => showExitConfine(context),
       child: CupertinoPageScaffold(
-        navigationBar: buildAppbar(context),
+        navigationBar: _buildAppbar(context),
         child: CupertinoTabBarView(
           tabs: const [
             CupertinoTab('基础'),
             CupertinoTab('子页面'),
           ],
           children: [
-            buildBasic(context),
-            buildSubPage(context),
+            _buildBasic(context),
+            _buildSubPage(context),
           ],
         ),
       ),
     );
   }
 
-  Widget buildSubPage(BuildContext context) {
+  Widget _buildSubPage(BuildContext context) {
     final cookieController = SwipeActionController();
     return ColoredBox(
       color: CupertinoColors.systemGroupedBackground.resolveFrom(context),
@@ -121,19 +121,19 @@ class RulesPageEdit extends GetView<RulesEditController> {
         });
   }
 
-  Widget buildSubTitle(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Text(
-        '子页面',
-        style: TextStyle(
-            fontSize: 14,
-            color: CupertinoColors.secondaryLabel.resolveFrom(context)),
-      ),
-    );
-  }
+  // Widget _buildSubTitle(BuildContext context) {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(horizontal: 10),
+  //     child: Text(
+  //       '子页面',
+  //       style: TextStyle(
+  //           fontSize: 14,
+  //           color: CupertinoColors.secondaryLabel.resolveFrom(context)),
+  //     ),
+  //   );
+  // }
 
-  Widget buildBasic(BuildContext context) {
+  Widget _buildBasic(BuildContext context) {
     return SafeArea(
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -163,13 +163,13 @@ class RulesPageEdit extends GetView<RulesEditController> {
                 value: model.display.value.string(context),
                 onTap: () => onDisplayTap(context),
               )),
-          buildIcon(context),
+          _buildIcon(context),
         ],
       ),
     );
   }
 
-  Widget buildIcon(BuildContext context) {
+  Widget _buildIcon(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
@@ -206,7 +206,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
     );
   }
 
-  CupertinoNavigationBar buildAppbar(BuildContext context) {
+  CupertinoNavigationBar _buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
       leading: CupertinoButton(
         onPressed: () {

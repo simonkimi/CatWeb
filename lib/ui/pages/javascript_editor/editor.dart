@@ -44,15 +44,15 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
         return true;
       },
       child: CupertinoPageScaffold(
-        navigationBar: buildAppbar(context),
+        navigationBar: _buildAppbar(context),
         child: SafeArea(
-          child: isEdit ? buildInput(context) : buildHighlightView(),
+          child: isEdit ? _buildInput(context) : _buildHighlightView(),
         ),
       ),
     );
   }
 
-  CupertinoNavigationBar buildAppbar(BuildContext context) {
+  CupertinoNavigationBar _buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
       leading: CupertinoButton(
         onPressed: () {
@@ -99,7 +99,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
     );
   }
 
-  Widget buildHighlightView() {
+  Widget _buildHighlightView() {
     return Obx(() => SizedBox(
           width: double.infinity,
           child: HighlightView(
@@ -166,7 +166,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
     widget.js.value = inputController.text;
   }
 
-  Widget buildInput(BuildContext context) {
+  Widget _buildInput(BuildContext context) {
     return Stack(
       children: [
         CupertinoTextField(
@@ -176,12 +176,12 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
           keyboardType: TextInputType.multiline,
           onChanged: onTextChange,
         ),
-        buildToolBar(context),
+        _buildToolBar(context),
       ],
     );
   }
 
-  Positioned buildToolBar(BuildContext context) {
+  Positioned _buildToolBar(BuildContext context) {
     return Positioned(
       bottom: 1,
       child: SizedBox(
@@ -192,38 +192,38 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
-              buildInputHint(
+              _buildInputHint(
                 context: context,
                 child: const Icon(CupertinoIcons.layers),
                 input: 'function hook(group) {\n    return group;\n}',
                 position: -2,
               ),
-              buildInputHint(
+              _buildInputHint(
                 context: context,
                 child: const Icon(CupertinoIcons.function),
                 input: 'function () {}',
                 position: 0 - '() {}'.length,
               ),
-              buildInputHint(
+              _buildInputHint(
                 context: context,
                 child: const Icon(CupertinoIcons.arrow_turn_down_left),
                 input: '\n',
               ),
-              buildInputHint(
+              _buildInputHint(
                 context: context,
                 child: const Icon(CupertinoIcons.arrow_right_to_line_alt),
                 input: '    ',
               ),
-              buildInputHint(context: context, display: '('),
-              buildInputHint(context: context, display: ')'),
-              buildInputHint(context: context, display: '{'),
-              buildInputHint(context: context, display: '}'),
-              buildInputHint(context: context, display: '['),
-              buildInputHint(context: context, display: ']'),
-              buildInputHint(context: context, display: "'"),
-              buildInputHint(context: context, display: '"'),
-              buildInputHint(context: context, display: ';'),
-              buildInputHint(context: context, display: '!'),
+              _buildInputHint(context: context, display: '('),
+              _buildInputHint(context: context, display: ')'),
+              _buildInputHint(context: context, display: '{'),
+              _buildInputHint(context: context, display: '}'),
+              _buildInputHint(context: context, display: '['),
+              _buildInputHint(context: context, display: ']'),
+              _buildInputHint(context: context, display: "'"),
+              _buildInputHint(context: context, display: '"'),
+              _buildInputHint(context: context, display: ';'),
+              _buildInputHint(context: context, display: '!'),
             ],
           ),
         ),
@@ -231,7 +231,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
     );
   }
 
-  Widget buildInputHint({
+  Widget _buildInputHint({
     required BuildContext context,
     String? display,
     String? input,

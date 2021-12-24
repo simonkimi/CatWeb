@@ -24,7 +24,7 @@ class RulesEditPage extends StatelessWidget {
     return WillPopScope(
       onWillPop: () => showExitConfine(context),
       child: CupertinoPageScaffold(
-        navigationBar: buildAppbar(context),
+        navigationBar: _buildAppbar(context),
         child: CupertinoTabBarView(
           tabs: [
             CupertinoTab(I.of(context).basic_setting),
@@ -45,7 +45,7 @@ class RulesEditPage extends StatelessWidget {
     );
   }
 
-  CupertinoNavigationBar buildAppbar(BuildContext context) {
+  CupertinoNavigationBar _buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
       padding: const EdgeInsetsDirectional.only(start: 10, end: 10),
       leading: CupertinoButton(

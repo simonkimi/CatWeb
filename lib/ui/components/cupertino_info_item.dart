@@ -14,9 +14,9 @@ class CupertinoInfoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _top = buildSize(context, top, 14);
-    final _middle = buildSize(context, middle, 20, true);
-    final _bottom = buildSize(context, bottom, 14);
+    final _top = _buildSize(context, top, 14);
+    final _middle = _buildSize(context, middle, 20, true);
+    final _bottom = _buildSize(context, bottom, 14);
 
     return Column(
       children: [
@@ -38,7 +38,7 @@ class CupertinoInfoItem extends StatelessWidget {
     );
   }
 
-  Widget buildSize(BuildContext context, Widget child, double size,
+  Widget _buildSize(BuildContext context, Widget child, double size,
       [bool? bold]) {
     if (child is Text) {
       return Text(

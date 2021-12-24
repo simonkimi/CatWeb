@@ -24,7 +24,7 @@ class SiteManager extends StatelessWidget {
   Widget build(BuildContext context) {
     final siteController = Get.find<SiteController>();
     return CupertinoPageScaffold(
-      navigationBar: buildAppbar(context),
+      navigationBar: _buildAppbar(context),
       child: SafeArea(
         child: SizedBox(
           width: double.infinity,
@@ -43,7 +43,7 @@ class SiteManager extends StatelessWidget {
     );
   }
 
-  Widget buildSiteItem(BuildContext context, WebTableData e) {
+  Widget _buildSiteItem(BuildContext context, WebTableData e) {
     final siteController = Get.find<SiteController>();
     final pb = SiteConfig.fromBuffer(e.bin);
     return Obx(() => CupertinoListTile(
@@ -65,7 +65,7 @@ class SiteManager extends StatelessWidget {
   ) {
     return ListView(
       children: [
-        ...snapshot.data!.map((e) => buildSiteItem(context, e)),
+        ...snapshot.data!.map((e) => _buildSiteItem(context, e)),
         if (snapshot.data!.isNotEmpty) const SizedBox(height: 50),
         CupertinoListTile(
           leading: const Icon(CupertinoIcons.add_circled_solid),
@@ -84,7 +84,7 @@ class SiteManager extends StatelessWidget {
     );
   }
 
-  CupertinoNavigationBar buildAppbar(BuildContext context) {
+  CupertinoNavigationBar _buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
       padding: const EdgeInsetsDirectional.only(start: 10),
       leading: CupertinoButton(

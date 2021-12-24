@@ -78,7 +78,7 @@ class CupertinoDeletableTile extends StatelessWidget {
           index: index,
           backgroundColor:
               CupertinoColors.systemBackground.resolveFrom(context),
-          child: buildListBody(
+          child: _buildListBody(
             padding: 15,
             icon: CupertinoButton(
               padding: EdgeInsets.zero,
@@ -124,7 +124,7 @@ class CupertinoDeletableTile extends StatelessWidget {
     );
   }
 
-  Widget buildListBody({
+  Widget _buildListBody({
     required Widget icon,
     required Widget body,
     double? padding,

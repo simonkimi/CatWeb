@@ -9,10 +9,9 @@ void main() {
   final file = File('test/html/favourite.htm').readAsStringSync();
 
   final param = ListParserParam(
-    source: file,
-    globalEnv: SiteEnvModel(),
-    parser: ListViewParserModel(ehListParser)
-  );
+      source: file,
+      globalEnv: SiteEnvModel(),
+      parser: ListViewParserModel(ehListParser));
 
   final exec = listParserExec(param);
 

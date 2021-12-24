@@ -21,7 +21,7 @@ class RulesAdvance extends GetView<RulesEditController> {
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 10),
         children: [
-          buildSubTitle(context, 'Headers'),
+          _buildSubTitle(context, 'Headers'),
           Container(
             decoration: BoxDecoration(
               color: CupertinoColors.systemBackground.resolveFrom(context),
@@ -65,7 +65,7 @@ class RulesAdvance extends GetView<RulesEditController> {
             ),
           ),
           const SizedBox(height: 20),
-          buildSubTitle(context, 'Cookies'),
+          _buildSubTitle(context, 'Cookies'),
           Container(
             decoration: BoxDecoration(
               color: CupertinoColors.systemBackground.resolveFrom(context),
@@ -142,7 +142,7 @@ class RulesAdvance extends GetView<RulesEditController> {
         });
   }
 
-  Widget buildSubTitle(BuildContext context, String text) {
+  Widget _buildSubTitle(BuildContext context, String text) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Text(

@@ -189,7 +189,7 @@ class _DioImageState extends State<DioImage> {
     }
   }
 
-  Widget buildBody(BuildContext context) {
+  Widget _buildBody(BuildContext context) {
     if (_loadingType == LoadingType.done) {
       return InkWell(
         child: imageBuilder(context, imageData!),
@@ -206,7 +206,7 @@ class _DioImageState extends State<DioImage> {
     return Material(
       child: AnimatedSwitcher(
         duration: widget.duration ?? const Duration(milliseconds: 500),
-        child: buildBody(context),
+        child: _buildBody(context),
       ),
     );
   }

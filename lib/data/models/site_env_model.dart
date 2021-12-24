@@ -75,5 +75,6 @@ class SiteEnvModel implements EnvMargeAble {
 extension EnvString on String {
   String env(SiteEnvModel env) => env.replace(this);
 
-  String globalEnv() => Get.find<SiteController>().website.globalEnv.replace(this);
+  String globalEnv() =>
+      Get.find<SiteController>().website.globalEnv.replace(this);
 }

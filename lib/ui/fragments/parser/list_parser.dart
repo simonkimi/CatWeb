@@ -31,18 +31,18 @@ class ListParserFragment extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: CustomScrollView(
         slivers: [
-          buildBaseList(context, labelWidth),
-          buildInfoList(),
-          buildCoverList(),
-          buildTagList(),
-          buildBadgeList(),
-          buildIndexList(),
+          _buildBaseList(context, labelWidth),
+          _buildInfoList(),
+          _buildCoverList(),
+          _buildTagList(),
+          _buildBadgeList(),
+          _buildIndexList(),
         ],
       ),
     );
   }
 
-  StickyClassifyList buildIndexList() {
+  StickyClassifyList _buildIndexList() {
     return StickyClassifyList(
       title: '索引',
       children: [
@@ -55,7 +55,7 @@ class ListParserFragment extends StatelessWidget {
     );
   }
 
-  StickyClassifyList buildBadgeList() {
+  StickyClassifyList _buildBadgeList() {
     return StickyClassifyList(
       title: '徽章',
       children: [
@@ -73,7 +73,7 @@ class ListParserFragment extends StatelessWidget {
     );
   }
 
-  StickyClassifyList buildTagList() {
+  StickyClassifyList _buildTagList() {
     return StickyClassifyList(title: '分类', children: [
       RulesForm(
         title: '分类',
@@ -88,7 +88,7 @@ class ListParserFragment extends StatelessWidget {
     ]);
   }
 
-  StickyClassifyList buildCoverList() {
+  StickyClassifyList _buildCoverList() {
     return StickyClassifyList(
       title: '封面设置',
       children: [
@@ -121,7 +121,7 @@ class ListParserFragment extends StatelessWidget {
     );
   }
 
-  StickyClassifyList buildInfoList() {
+  StickyClassifyList _buildInfoList() {
     return StickyClassifyList(
       title: '信息设置',
       children: [
@@ -154,12 +154,11 @@ class ListParserFragment extends StatelessWidget {
     );
   }
 
-  SliverList buildBaseList(BuildContext context, double labelWidth) {
+  SliverList _buildBaseList(BuildContext context, double labelWidth) {
     return SliverList(
         delegate: SliverChildListDelegate([
       RulesCard(title: '基础信息', children: [
-        buildCupertinoInput(
-          context: context,
+        CupertinoInput(
           label: '解析器名称',
           value: model.name,
           width: labelWidth,
@@ -174,8 +173,7 @@ class ListParserFragment extends StatelessWidget {
                 : CupertinoColors.systemGrey6,
           ),
         ),
-        buildCupertinoInput(
-          context: context,
+        CupertinoInput(
           label: '项目选择器',
           value: model.itemSelector.selector,
           width: labelWidth,
