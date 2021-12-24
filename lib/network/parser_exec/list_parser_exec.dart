@@ -49,6 +49,7 @@ ListParserResult listParserExec(ListParserParam param) {
       root = XPath.xml(param.source);
       domSelector = DomParserExec<XmlNode>(env: param.globalEnv);
       itemList = domSelector.nodes(parser.itemSelector, root.root);
+      print('xml');
     }
 
     final global = <String, String>{};

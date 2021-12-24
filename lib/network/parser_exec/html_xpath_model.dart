@@ -44,4 +44,15 @@ class UniversalHtmlTree extends XPathNode<Node> {
 
   @override
   String? get text => node.text;
+
+  @override
+  String toString() => node.toString();
+
+  @override
+  int get hashCode => node.hashCode;
+
+  @override
+  bool operator ==(Object other) {
+    return other is UniversalHtmlTree && other.node == node;
+  }
 }

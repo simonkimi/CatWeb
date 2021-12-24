@@ -6,7 +6,7 @@ import 'package:catweb/network/parser_exec/list_parser_exec.dart';
 import 'package:catweb/test/test_model/parser/list_parser.dart';
 
 void main() {
-  final file = File('test/html/favourite.htm').readAsStringSync();
+  final file = File('test/html/compact.htm').readAsStringSync();
 
   final param = ListParserParam(
       source: file,
@@ -15,5 +15,5 @@ void main() {
 
   final exec = listParserExec(param);
 
-  print(exec.globalEnv);
+  print(exec.result[7]);
 }

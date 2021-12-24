@@ -14,6 +14,7 @@ final ehTestSite = SiteConfig(
     RegField(value: 'ipb_member_id=$ipbMemberId'),
     RegField(value: 'ipb_pass_hash=$ipbPassHash'),
     RegField(value: 'igneous=$igneous'),
+    RegField(value: 'sk=$sk'),
   ],
   pageList: [
     SitePage(
@@ -25,6 +26,22 @@ final ehTestSite = SiteConfig(
       icon: 'home',
     ),
     SitePage(
+      name: '热门',
+      url: 'popular?page={page:0}',
+      parser: 'commonList',
+      display: SiteDisplayType.show,
+      template: PageTemplate.imageList,
+      icon: 'whatshot',
+    ),
+    SitePage(
+      name: '关注',
+      url: 'watched?page={page:0}',
+      parser: 'commonList',
+      display: SiteDisplayType.show,
+      template: PageTemplate.imageList,
+      icon: 'eye',
+    ),
+    SitePage(
       name: '收藏',
       url: r'favorites.php?page={page:0}${favcat:&favcat={favcat}}',
       parser: 'commonList',
@@ -34,7 +51,7 @@ final ehTestSite = SiteConfig(
       subPage: [
         SiteSubPage(name: '全部'),
         SiteSubPage(
-            name: r'${fav2Tag:{fav0Tag}:Favourite 0}',
+            name: r'${fav0Tag:{fav0Tag}:Favourite 0}',
             key: 'favcat',
             value: '0'),
         SiteSubPage(
@@ -46,31 +63,31 @@ final ehTestSite = SiteConfig(
             key: 'favcat',
             value: '2'),
         SiteSubPage(
-            name: r'${fav2Tag:{fav3Tag}:Favourite 3}',
+            name: r'${fav3Tag:{fav3Tag}:Favourite 3}',
             key: 'favcat',
             value: '3'),
         SiteSubPage(
-            name: r'${fav2Tag:{fav4Tag}:Favourite 4}',
+            name: r'${fav4Tag:{fav4Tag}:Favourite 4}',
             key: 'favcat',
             value: '4'),
         SiteSubPage(
-            name: r'${fav2Tag:{fav5Tag}:Favourite 5}',
+            name: r'${fav5Tag:{fav5Tag}:Favourite 5}',
             key: 'favcat',
             value: '5'),
         SiteSubPage(
-            name: r'${fav2Tag:{fav6Tag}:Favourite 6}',
+            name: r'${fav6Tag:{fav6Tag}:Favourite 6}',
             key: 'favcat',
             value: '6'),
         SiteSubPage(
-            name: r'${fav2Tag:{fav7Tag}:Favourite 7}',
+            name: r'${fav7Tag:{fav7Tag}:Favourite 7}',
             key: 'favcat',
             value: '7'),
         SiteSubPage(
-            name: r'${fav2Tag:{fav8Tag}:Favourite 8}',
+            name: r'${fav8Tag:{fav8Tag}:Favourite 8}',
             key: 'favcat',
             value: '8'),
         SiteSubPage(
-            name: r'${fav2Tag:{fav9Tag}:Favourite 9}',
+            name: r'${fav9Tag:{fav9Tag}:Favourite 9}',
             key: 'favcat',
             value: '9'),
       ],

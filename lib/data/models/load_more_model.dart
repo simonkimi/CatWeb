@@ -110,8 +110,8 @@ abstract class LoadMoreModel<T> extends GetxController {
       await _lock.synchronized(() async {
         _lastException.value = null;
         final page = _page.value + 1;
-        final items =
-            (await loadPage(page)).where((e) => isItemExist(e) == false);
+        final loadItems = await loadPage(page);
+        final items = loadItems.where((e) => isItemExist(e) == false);
         if (items.isEmpty) {
           rxState.value = LoadMoreState.noMoreData;
         } else {

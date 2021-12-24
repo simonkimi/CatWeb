@@ -29,7 +29,7 @@ final ehListParser = ListViewParser(
     badgeColor: Selector(
       function: SelectorFunction.attr,
       param: 'style',
-      regex: r'#[0-9a-fA-F]{6}',
+      regex: r'(#[0-9a-fA-F]{6})\)',
     ),
     tag: Selector(
       selector: '.cn, .cs',
@@ -150,7 +150,7 @@ final ehListParser = ListViewParser(
         global: true,
         id: 'fav9Tag',
         selector: Selector(
-          selector: '.fp:nth-child(10) div:nth-child(3)',
+          selector: '.fp:nth-child(10)>div:nth-child(3)',
           function: SelectorFunction.text,
         ),
       ),
