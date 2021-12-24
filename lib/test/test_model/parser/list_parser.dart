@@ -150,7 +150,7 @@ final ehListParser = ListViewParser(
         global: true,
         id: 'fav9Tag',
         selector: Selector(
-          selector: '.fp:nth-child(10)>div:nth-child(3)',
+          selector: '.fp:nth-child(10) div:nth-child(3)',
           function: SelectorFunction.text,
         ),
       ),

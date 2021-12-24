@@ -22,10 +22,12 @@ class DomSelectorExec<T> {
     final path = selector.selector.value;
     if (path.isEmpty) return root.children;
     if (path.startsWith('/')) {
-      return root.queryXPath(path).nodes;
+      return root
+          .queryXPath(path)
+          .nodes;
     } else if (root.node is Element) {
       final elements =
-          (root.node as Element).querySelectorAll(selector.selector.value);
+      (root.node as Element).querySelectorAll(selector.selector.value);
       return elements.map((e) => UniversalHtmlTree(e) as XPathNode<T>).toList();
     } else {
       throw UnsupportedError('Xml只能使用XPath选择器, 且必须以"/"开头');
@@ -88,7 +90,7 @@ class DomSelectorExec<T> {
     if (selector.computed.value) {
       try {
         final result =
-            const ExpressionEvaluator().eval(Expression.parse(input), {});
+        const ExpressionEvaluator().eval(Expression.parse(input), {});
         return result.toString();
       } on Exception {
         return null;
@@ -102,7 +104,7 @@ class DomSelectorExec<T> {
     if (element == null) return null;
     switch (selector.function.value) {
       case SelectorFunction.attr:
-        // 属性选择
+      // 属性选择
         for (final p in selector.param.value.split(',')) {
           final key = p.trim();
           if (element.attributes.containsKey(key)) {
@@ -111,16 +113,16 @@ class DomSelectorExec<T> {
         }
         return null;
       case SelectorFunction.raw:
-        // 原生内容
+      // 原生内容
         return element.node is Element
             ? (element.node as Element).innerHtml
             : (element.node as XmlElement).innerXml;
       case SelectorFunction.text:
-        // 内容
+      // 内容
         return element.text;
       case SelectorFunction.auto:
-        // 自动
-        // 如果有attr值则选择attr值
+      // 自动
+      // 如果有attr值则选择attr值
         if (result.attr != null) {
           return result.attrs.whereType<String>().toList().index(0);
         } else {

@@ -22,80 +22,98 @@ class DomParserExec<T> {
   }
 
   String? singleString(SelectorModel model, XPathNode<T> parent) {
-    final find = DomSelectorExec<T>(
-      selector: model,
-      jsRuntime: jsRuntime,
-    ).find(parent);
-    return env.resolve(find.index(0));
+    try {
+      final find = DomSelectorExec<T>(
+        selector: model,
+        jsRuntime: jsRuntime,
+      ).find(parent);
+      return env.resolve(find.index(0));
+    } on Error {
+      return 'Error';
+    }
   }
 
   double? singleDouble(SelectorModel model, XPathNode<T> parent) {
-    final find = DomSelectorExec<T>(
-      selector: model,
-      jsRuntime: jsRuntime,
-    ).find(parent);
-    var result = find.index(0);
+    try {
+      final find = DomSelectorExec<T>(
+        selector: model,
+        jsRuntime: jsRuntime,
+      ).find(parent);
+      var result = find.index(0);
 
-    if (result == null) return null;
-    final currentDouble = double.tryParse(result);
-    if (currentDouble == null) {
-      result = _compute(result);
+      if (result == null) return null;
+      final currentDouble = double.tryParse(result);
+      if (currentDouble == null) {
+        result = _compute(result);
+      }
+
+      if (result == null) return null;
+      return double.tryParse(result);
+    } on Error {
+      return 0.0;
     }
-
-    if (result == null) return null;
-    return double.tryParse(result);
   }
 
   int? singleInt(SelectorModel model, XPathNode<T> parent) {
-    final find = DomSelectorExec<T>(
-      selector: model,
-      jsRuntime: jsRuntime,
-    ).find(parent);
-    String? result = find.index(0);
+    try {
+      final find = DomSelectorExec<T>(
+        selector: model,
+        jsRuntime: jsRuntime,
+      ).find(parent);
+      String? result = find.index(0);
 
-    if (result == null) return null;
-    final currentInt = int.tryParse(result);
-    if (currentInt == null) {
-      result = _compute(result);
+      if (result == null) return null;
+      final currentInt = int.tryParse(result);
+      if (currentInt == null) {
+        result = _compute(result);
+      }
+      if (result == null) return null;
+
+      return int.tryParse(result);
+    } on Error {
+      return -1;
     }
-    if (result == null) return null;
-
-    return int.tryParse(result);
   }
 
-  Color? singleColor(SelectorModel model, XPathNode<T> parent,
-      {bool computed = false}) {
-    final find = DomSelectorExec<T>(
-      selector: model,
-      jsRuntime: jsRuntime,
-    ).find(parent);
-    final result = find.index(0)?.trim().toLowerCase();
-    if (result == null) return null;
-    if (result.startsWith('0x')) {
-      return Color(int.parse(result.substring(2), radix: 16) | 0xff000000);
-    } else if (result.startsWith('#')) {
-      return Color(int.parse(result.substring(1), radix: 16) | 0xff000000);
-    }
+  Color? singleColor(
+    SelectorModel model,
+    XPathNode<T> parent, {
+    bool computed = false,
+  }) {
+    try {
+      final find = DomSelectorExec<T>(
+        selector: model,
+        jsRuntime: jsRuntime,
+      ).find(parent);
+      final result = find.index(0)?.trim().toLowerCase();
+      if (result == null) return null;
+      if (result.startsWith('0x')) {
+        return Color(int.parse(result.substring(2), radix: 16) | 0xff000000);
+      } else if (result.startsWith('#')) {
+        return Color(int.parse(result.substring(1), radix: 16) | 0xff000000);
+      }
 
-    final rgb = RegExp(r'[\.\d]+%?');
-    final match = rgb.allMatches(result).toList();
-    if (match.length == 3) {
-      return Color.fromARGB(
-        0xFF,
-        _getColorInt(match[0][0]!),
-        _getColorInt(match[1][0]!),
-        _getColorInt(match[2][0]!),
-      );
+      final rgb = RegExp(r'[\.\d]+%?');
+      final match = rgb.allMatches(result).toList();
+      if (match.length == 3) {
+        return Color.fromARGB(
+          0xFF,
+          _getColorInt(match[0][0]!),
+          _getColorInt(match[1][0]!),
+          _getColorInt(match[2][0]!),
+        );
+      }
+      if (match.length == 4) {
+        return Color.fromARGB(
+          ((double.tryParse(match[3][0]!) ?? 1) * 255).floor(),
+          _getColorInt(match[0][0]!),
+          _getColorInt(match[1][0]!),
+          _getColorInt(match[2][0]!),
+        );
+      }
+    } on Error {
+      return null;
     }
-    if (match.length == 4) {
-      return Color.fromARGB(
-        ((double.tryParse(match[3][0]!) ?? 1) * 255).floor(),
-        _getColorInt(match[0][0]!),
-        _getColorInt(match[1][0]!),
-        _getColorInt(match[2][0]!),
-      );
-    }
-    return null;
   }
 
   int _getColorInt(String input) {
