@@ -3,11 +3,12 @@ import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/network/parser_exec/parser_exec.dart';
 import 'package:catweb/ui/model/image_model.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
-import 'package:html/dom.dart';
 import 'package:xml/xml.dart';
+import 'package:universal_html/html.dart';
 import 'package:xpath_selector/xpath_selector.dart';
 
 import 'extra_parser.dart';
+import 'html_xpath_model.dart';
 
 class ListParserResult {
   ListParserResult({
@@ -41,7 +42,7 @@ ListParserResult listParserExec(ListParserParam param) {
 
     late XPath root;
     if (param.source.substring(10).contains('xml')) {
-      root = XPath.html(param.source);
+      root = UniversalHtmlTree.parse(param.source);
       domSelector = DomParserExec<Node>(env: param.globalEnv);
       itemList = domSelector.nodes(parser.itemSelector, root.root);
     } else {

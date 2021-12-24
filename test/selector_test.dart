@@ -2,17 +2,17 @@ import 'dart:io';
 
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/store.dart';
+import 'package:catweb/network/parser_exec/html_xpath_model.dart';
 import 'package:catweb/network/parser_exec/parser_exec.dart';
 import 'package:catweb/test/test_model/eh_rules.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:html/dom.dart';
-import 'package:xpath_selector/xpath_selector.dart';
+import 'package:universal_html/html.dart' hide File;
 
 void main() {
   test('Children selector test', () async {
-    final root = XPath.html(File('test/html/minimal.htm').readAsStringSync());
+    final root = UniversalHtmlTree.parse(File('test/html/minimal.htm').readAsStringSync());
 
     final site = SiteConfigModel(ehTestSite);
 

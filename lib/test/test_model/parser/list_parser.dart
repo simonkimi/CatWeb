@@ -4,8 +4,7 @@ import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 final ehListParser = ListViewParser(
     name: 'commonList',
     itemSelector: Selector(
-      selector:
-          "//table[starts-with(@class,'itg')]/tbody/tr[position()>1]|//div[@class='gl1t']",
+      selector: '.itg tr:not(:nth-child(1)),.gl1t',
     ),
     title: Selector(
       selector: '.glink',
@@ -79,70 +78,80 @@ final ehListParser = ListViewParser(
         global: true,
         id: 'fav0Tag',
         selector: Selector(
-          selector: '/body/div[@class="ido"]/div[@class="nosel"]/div[1]/div[3]/text()',
+          selector: '.fp:nth-child(1)>div:nth-child(3)',
+          function: SelectorFunction.text,
         ),
       ),
       ExtraSelector(
         global: true,
         id: 'fav1Tag',
         selector: Selector(
-          selector: '/body/div[@class="ido"]/div[@class="nosel"]/div[2]/div[3]/text()',
+          selector: '.fp:nth-child(2)>div:nth-child(3)',
+          function: SelectorFunction.text,
         ),
       ),
       ExtraSelector(
         global: true,
         id: 'fav2Tag',
         selector: Selector(
-          selector: '/body/div[@class="ido"]/div[@class="nosel"]/div[3]/div[3]/text()',
+          selector: '.fp:nth-child(3)>div:nth-child(3)',
+          function: SelectorFunction.text,
         ),
       ),
       ExtraSelector(
         global: true,
         id: 'fav3Tag',
         selector: Selector(
-          selector: '/body/div[@class="ido"]/div[@class="nosel"]/div[4]/div[3]/text()',
+          selector: '.fp:nth-child(4)>div:nth-child(3)',
+          function: SelectorFunction.text,
         ),
       ),
       ExtraSelector(
         global: true,
         id: 'fav4Tag',
         selector: Selector(
-          selector: '/body/div[@class="ido"]/div[@class="nosel"]/div[5]/div[3]/text()',
+          selector: '.fp:nth-child(5)>div:nth-child(3)',
+          function: SelectorFunction.text,
         ),
       ),
       ExtraSelector(
         global: true,
         id: 'fav5Tag',
         selector: Selector(
-          selector: '/body/div[@class="ido"]/div[@class="nosel"]/div[6]/div[3]/text()',
+          selector: '.fp:nth-child(6)>div:nth-child(3)',
+          function: SelectorFunction.text,
         ),
       ),
       ExtraSelector(
         global: true,
         id: 'fav6Tag',
         selector: Selector(
-          selector: '/body/div[@class="ido"]/div[@class="nosel"]/div[7]/div[3]/text()',
+          selector: '.fp:nth-child(7)>div:nth-child(3)',
+          function: SelectorFunction.text,
         ),
       ),
       ExtraSelector(
         global: true,
         id: 'fav7Tag',
         selector: Selector(
-          selector: '/body/div[@class="ido"]/div[@class="nosel"]/div[8]/div[3]/text()',
+          selector: '.fp:nth-child(8)>div:nth-child(3)',
+          function: SelectorFunction.text,
         ),
       ),
       ExtraSelector(
         global: true,
         id: 'fav8Tag',
         selector: Selector(
-          selector: '/body/div[@class="ido"]/div[@class="nosel"]/div[9]/div[3]/text()',
+          selector: '.fp:nth-child(9)>div:nth-child(3)',
+          function: SelectorFunction.text,
         ),
       ),
       ExtraSelector(
         global: true,
         id: 'fav9Tag',
         selector: Selector(
-          selector: '/body/div[@class="ido"]/div[@class="nosel"]/div[10]/div[3]/text()',
+          selector: '.fp:nth-child(10)>div:nth-child(3)',
+          function: SelectorFunction.text,
         ),
       ),
     ]);

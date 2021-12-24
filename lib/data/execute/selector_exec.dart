@@ -1,10 +1,11 @@
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
+import 'package:catweb/network/parser_exec/html_xpath_model.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:expressions/expressions.dart';
-import 'package:html/dom.dart';
 import 'package:xml/xml.dart';
 import 'package:xpath_selector/xpath_selector.dart';
+import 'package:universal_html/html.dart';
 
 import 'js_runtime.dart';
 
@@ -25,7 +26,7 @@ class DomSelectorExec<T> {
     } else if (root.node is Element) {
       final elements =
           (root.node as Element).querySelectorAll(selector.selector.value);
-      return elements.map((e) => HtmlNodeTree(e) as XPathNode<T>).toList();
+      return elements.map((e) => UniversalHtmlTree(e) as XPathNode<T>).toList();
     } else {
       throw UnsupportedError('Xml只能使用XPath选择器, 且必须以"/"开头');
     }
@@ -67,7 +68,7 @@ class DomSelectorExec<T> {
         return [];
       } else {
         functionResult = [
-          _callFunction(XPathResult<Node>([HtmlNodeTree(query)], []))
+          _callFunction(XPathResult<Node>([UniversalHtmlTree(query)], []))
         ];
       }
     } else {
