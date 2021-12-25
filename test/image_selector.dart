@@ -25,7 +25,7 @@ void main() {
     final item = itemList[7];
     final bg = domSelector.nodes(parser.badgeSelector, item).first;
 
-    final cl = domSelector.singleColor(parser.badgeColor, bg);
+    final cl = domSelector.color(parser.badgeColor, bg);
     print(cl);
   });
 }

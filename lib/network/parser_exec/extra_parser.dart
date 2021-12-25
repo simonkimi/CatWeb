@@ -13,7 +13,7 @@ bool xmlHtmlExtra({
   var globalChange = false;
   // 额外的解析
   for (final extraParser in extras) {
-    final value = domSelector.singleString(extraParser.selector, root.root);
+    final value = domSelector.string(extraParser.selector, root.root);
     if (value != null && extraParser.id.isNotEmpty) {
       if (extraParser.global.value == true) {
         onGlobalEnv(extraParser.id.value, value);

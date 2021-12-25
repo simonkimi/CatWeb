@@ -138,14 +138,14 @@ class GalleryDetail extends StatelessWidget {
   }
 
   Widget _buildTagList(BuildContext context) {
-    if (model.tagList == null) return const SizedBox();
+    if (model.badgeList.isEmpty) return const SizedBox();
     final tagMaps = <String, List<String>>{'_': []};
 
-    for (final tag in model.tagList ?? <TagModel>[]) {
+    for (final tag in model.badgeList) {
       if (tag.category != null && !tagMaps.containsKey(tag.category)) {
         tagMaps[tag.category!] = [];
       }
-      tagMaps[tag.category ?? '_']!.add(tag.text);
+      tagMaps[tag.category ?? '_']!.add(tag.text!);
     }
 
     return Column(
@@ -376,9 +376,9 @@ class GalleryDetail extends StatelessWidget {
                 _buildStarBar(context),
               if (model.star != null && model.commentList == null)
                 const SizedBox(height: 5),
-              if (model.category != null && model.tagList == null)
+              if (model.tag != null && model.badgeList.isEmpty)
                 _buildCategory(context),
-              if (model.category != null && model.tagList == null)
+              if (model.tag != null && model.badgeList.isEmpty)
                 const SizedBox(height: 5),
             ],
           ),
@@ -465,22 +465,11 @@ class GalleryDetail extends StatelessWidget {
     );
   }
 
-  // Widget _buildUploadTime(BuildContext context) {
-  //   if (model.uploadTime == null) return const SizedBox();
-  //   return Text(
-  //     model.uploadTime!,
-  //     style: TextStyle(
-  //       fontSize: 12,
-  //       color: CupertinoColors.secondaryLabel.resolveFrom(context),
-  //     ),
-  //   );
-  // }
-
   Widget _buildCategory(BuildContext context) {
-    if (model.category == null) return const SizedBox();
+    if (model.tag == null) return const SizedBox();
     return Badge(
-      text: model.category!,
-      color: model.categoryColor,
+      text: model.tag!,
+      color: model.tagColor,
     );
   }
 }

@@ -5,7 +5,6 @@ import 'package:catweb/ui/fragments/viewer_subpage/list/viewer_list.dart';
 import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 
-
 class ViewerScaffold extends StatelessWidget {
   const ViewerScaffold({Key? key, required this.website}) : super(key: key);
 

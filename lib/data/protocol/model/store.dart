@@ -102,7 +102,7 @@ class SiteConfigModel implements PbAble {
     return result;
   }
 
-  GalleryParserModel? getGalleryParser(String name) {
+  GalleryParserModel getGalleryParser(String name) {
     final result = galleryParsers.get((e) => e.name.value == name);
     if (result == null) throw Exception('Parser $name not exist');
     return result;

@@ -5,7 +5,10 @@ import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
+import 'package:catweb/network/parser_exec/gallery_parser_exec.dart';
 import 'package:catweb/network/parser_exec/list_parser_exec.dart';
+import 'package:catweb/network/parser_exec/parser_exec.dart';
+import 'package:catweb/ui/model/detail_model.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
@@ -27,11 +30,10 @@ class NetClient {
     final rsp = await dio.get<String>(url);
 
     if (rsp.data == null) {
-      // TODO 处理为空的错误
       throw Exception('data is null');
     }
 
-    final param = ListParserParam(
+    final param = ParserParam(
       parser: configModel.getListParser(model.parser.value),
       source: rsp.data!,
       globalEnv: Get.find<SiteController>().website.globalEnv,
@@ -39,6 +41,36 @@ class NetClient {
 
     // final result = listParserExec(param);
     final result = await compute(listParserExec, param);
+
+    localEnv.mergeMap(result.localEnv);
+    final site = Get.find<SiteController>().website;
+    if (result.globalEnv.isNotEmpty) {
+      print('Global Env: ${result.globalEnv}');
+      site.globalEnv.mergeMap(result.globalEnv);
+      site.updateGlobalEnv();
+    }
+    return result.result;
+  }
+
+  Future<GalleryDetailModel> getGallery({
+    required String url,
+    required SitePageModel model,
+    required SiteEnvModel localEnv,
+  }) async {
+    final rsp = await dio.get<String>(url);
+
+    if (rsp.data == null) {
+      throw Exception('data is null');
+    }
+
+    final param = ParserParam(
+      parser: configModel.getGalleryParser(model.parser.value),
+      source: rsp.data!,
+      globalEnv: Get.find<SiteController>().website.globalEnv,
+    );
+
+    final ParserResult<GalleryDetailModel> result =
+        await compute(galleryParserExec, param);
 
     localEnv.mergeMap(result.localEnv);
     final site = Get.find<SiteController>().website;

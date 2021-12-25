@@ -4,14 +4,12 @@ class GalleryDetailModel {
   GalleryDetailModel({
     this.title,
     this.subtitle,
-    this.category,
-    this.categoryColor,
+    this.tag,
+    this.tagColor,
     this.language,
     this.imageCount,
-    this.size,
-    this.favoriteCount,
     this.uploadTime,
-    this.tagList,
+    required this.badgeList,
     this.commentList,
     this.prePageImageCount,
     this.description,
@@ -20,14 +18,12 @@ class GalleryDetailModel {
 
   final String? title;
   final String? subtitle;
-  final String? category;
-  final Color? categoryColor;
+  final String? tag;
+  final Color? tagColor;
   final String? language;
   final int? imageCount;
-  final String? size;
-  final int? favoriteCount;
   final String? uploadTime;
-  final List<TagModel>? tagList;
+  final List<BadgeModel> badgeList;
   final int? prePageImageCount;
   final String? description;
   final double? star;
@@ -35,10 +31,10 @@ class GalleryDetailModel {
   final List<CommentItemModel>? commentList;
 }
 
-class TagModel {
-  TagModel({required this.text, this.category});
+class BadgeModel {
+  BadgeModel({this.text, this.category});
 
-  final String text;
+  final String? text;
   final String? category;
 }
 
