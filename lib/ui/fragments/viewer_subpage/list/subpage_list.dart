@@ -1,5 +1,4 @@
 import 'package:catweb/data/constant.dart';
-import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/ui/components/list_card.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/fragments/viewer_subpage/list/subpage_controller.dart';
@@ -8,16 +7,11 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class SubPageListFragment extends StatefulWidget {
-  SubPageListFragment({
+  const SubPageListFragment({
     Key? key,
-    required SitePageModel model,
-    SubPageModel? subPageModel,
+    required this.controller,
     required this.hasTabBar,
-  })  : controller = SubListController(
-          model: model,
-          subPageModel: subPageModel,
-        ),
-        super(key: key);
+  }) : super(key: key);
 
   final SubListController controller;
   final bool hasTabBar;
@@ -26,11 +20,13 @@ class SubPageListFragment extends StatefulWidget {
   _SubPageListFragmentState createState() => _SubPageListFragmentState();
 }
 
-class _SubPageListFragmentState extends State<SubPageListFragment> {
+class _SubPageListFragmentState extends State<SubPageListFragment>
+    with AutomaticKeepAliveClientMixin {
   late final controller = widget.controller;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SmartRefresher(
       controller: controller.refreshController,
       enablePullDown: false,
@@ -138,4 +134,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment> {
     controller.dispose();
     super.dispose();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

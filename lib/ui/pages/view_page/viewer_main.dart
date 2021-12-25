@@ -23,6 +23,7 @@ class ViewerMain extends GetView<SiteController> {
     if (controller.website.displayPage.length == 1) {
       return _buildSitePage(context, controller.website.displayPage.first);
     }
+
     return CupertinoTabScaffold(
       resizeToAvoidBottomInset: true,
       tabBar: CupertinoTabBar(
@@ -47,14 +48,12 @@ class ViewerMain extends GetView<SiteController> {
       case PageTemplate.detail:
         // TODO: Handle this case.
         break;
+      case PageTemplate.imageWaterfall:
       case PageTemplate.imageList:
         return ViewerListFragment(
           model: model,
           hasTabBar: controller.website.displayPage.length > 1,
         );
-      case PageTemplate.imageWaterfall:
-        // TODO: Handle this case.
-        break;
     }
     throw UnimplementedError('TODO!');
   }

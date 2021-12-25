@@ -83,6 +83,12 @@ abstract class LoadMoreModel<T> extends GetxController {
 
   bool get isRefresh => _pageTail.value < 1;
 
+  Future<void> requestFirstLoad() async {
+    if (state == LoadMoreState.idle && _lastException.value == null && items.isEmpty) {
+      await onRefresh();
+    }
+  }
+
   Future<void> onRefresh() async {
     if (!isLoading) {
       if (isRefresh) {
