@@ -60,7 +60,7 @@ class FooSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) =>
+          BuildContext context, double shrinkOffset, bool overlapsContent) =>
       builder(context, shrinkOffset, overlapsContent);
 
   @override

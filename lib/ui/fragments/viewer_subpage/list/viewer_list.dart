@@ -15,8 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:catweb/utils/utils.dart';
 
-
-
 class ViewerListFragment extends StatefulWidget {
   const ViewerListFragment({
     Key? key,
@@ -42,14 +40,26 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
 
   late final TabController tabController;
 
-
   @override
   void initState() {
     super.initState();
+    print('ViewerListFragment<${model.name.string}> 初始化');
     tabController = TabController(length: model.subPages.length, vsync: this);
+
+    if (useSingleWidget) {
+      subListController = [
+        SubListController(model: model, subPageModel: model.subPages.index(0))
+      ];
+    } else {
+      subListController = model.subPages
+          .map((e) => SubListController(model: model, subPageModel: e))
+          .toList();
+    }
+
     tabController.addListener(() {
       subListController[tabController.index].requestFirstLoad();
     });
+    subListController.first.requestFirstLoad();
   }
 
   @override
@@ -63,10 +73,6 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
   }
 
   Widget _buildMultiViewer(BuildContext context) {
-    subListController = model.subPages
-        .map((e) => SubListController(model: model, subPageModel: e))
-        .toList();
-    subListController.first.requestFirstLoad();
     return NestedScrollView(
       floatHeaderSlivers: true,
       headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -85,10 +91,6 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
   }
 
   Widget _buildSingleViewer(BuildContext context) {
-    subListController = [
-      SubListController(model: model, subPageModel: model.subPages.index(0))
-    ];
-    subListController.first.requestFirstLoad();
     return NestedScrollView(
       floatHeaderSlivers: true,
       headerSliverBuilder: (context, innerBoxIsScrolled) {

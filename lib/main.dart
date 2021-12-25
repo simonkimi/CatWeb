@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       navigatorObservers: [BotToastNavigatorObserver()],
       builder: BotToastInit(),
       theme: defaultTheme(),
-      home: ViewerMain(),
+      home: const ViewerMain(),
     );
   }
 }
