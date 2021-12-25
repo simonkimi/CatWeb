@@ -12,6 +12,7 @@ class ViewerMain extends GetView<SiteController> {
 
   @override
   Widget build(BuildContext context) {
+    print('构建总框架');
     return Obx(() => _buildBody(context));
   }
 
@@ -24,6 +25,7 @@ class ViewerMain extends GetView<SiteController> {
       return _buildSitePage(context, controller.website.displayPage.first);
     }
 
+    print('构建网站');
     return CupertinoTabScaffold(
       resizeToAvoidBottomInset: true,
       tabBar: CupertinoTabBar(
@@ -38,6 +40,7 @@ class ViewerMain extends GetView<SiteController> {
         }).toList(),
       ),
       tabBuilder: (BuildContext context, int index) {
+        print('_buildSitePage $index');
         return _buildSitePage(context, controller.website.displayPage[index]);
       },
     );

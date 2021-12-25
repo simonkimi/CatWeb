@@ -20,7 +20,7 @@ final ehTestSite = SiteConfig(
   pageList: [
     SitePage(
       name: '主页',
-      url: '',
+      url: '?page={page:0}',
       parser: 'commonList',
       display: SiteDisplayType.show,
       template: PageTemplate.imageList,

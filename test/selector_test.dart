@@ -12,16 +12,8 @@ import 'package:universal_html/html.dart' hide File;
 void main() {
   test('Children selector test', () async {
     final root = UniversalHtmlTree.parse(
-        File('test/html/watched.htm').readAsStringSync());
+        File('test/html/favourite.htm').readAsStringSync());
 
-    final site = SiteConfigModel(ehTestSite);
-
-    final parser =
-        site.listViewParser.get((e) => e.name.value == 'commonList')!;
-
-    final domSelector = DomParserExec<Node>(env: SiteEnvModel({}));
-    final itemList = domSelector.nodes(parser.itemSelector, root.root);
-
-    print(itemList);
+    print((root.query(r"//*[contains(@class, 'glname')]/..").node!.node as Element).innerHtml);
   });
 }

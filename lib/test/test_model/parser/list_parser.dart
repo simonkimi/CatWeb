@@ -4,7 +4,7 @@ import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 final ehListParser = ListViewParser(
     name: 'commonList',
     itemSelector: Selector(
-      selector: '.itg tr:not(:nth-child(1)),.gl1t',
+      selector: "//div[@class='gl1t'] | //*[starts-with(@class, 'gl2')]/..",
     ),
     title: Selector(
       selector: '.glink',
@@ -21,7 +21,7 @@ final ehListParser = ListViewParser(
       regex: r'\d+',
     ),
     badgeSelector: Selector(
-      selector: '.gt',
+      selector: '.gt,gtl',
     ),
     badgeText: Selector(
       function: SelectorFunction.text,

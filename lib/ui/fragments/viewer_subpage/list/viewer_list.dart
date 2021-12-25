@@ -4,45 +4,18 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/theme/colors.dart';
 import 'package:catweb/ui/components/grey_tab_indicator.dart';
+import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/fragments/viewer_subpage/list/subpage_controller.dart';
 import 'package:catweb/ui/fragments/viewer_subpage/list/subpage_list.dart';
 import 'package:catweb/ui/pages/rules_manager/rules_manager/rules_manager.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:catweb/utils/utils.dart';
 
-class FooSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
-  FooSliverPersistentHeaderDelegate({
-    required this.builder,
-    required this.maxHeight,
-    required this.minHeight,
-  });
 
-  final double minHeight;
-  final double maxHeight;
-
-  final Function(
-      BuildContext context, double shrinkOffset, bool overlapsContent) builder;
-
-  @override
-  Widget build(
-          BuildContext context, double shrinkOffset, bool overlapsContent) =>
-      builder(context, shrinkOffset, overlapsContent);
-
-  @override
-  double get maxExtent => maxHeight;
-
-  @override
-  double get minExtent => minHeight;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return minHeight != oldDelegate.minExtent ||
-        maxHeight != oldDelegate.maxExtent;
-  }
-}
 
 class ViewerListFragment extends StatefulWidget {
   const ViewerListFragment({
@@ -69,7 +42,6 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
 
   late final TabController tabController;
 
-  // final
 
   @override
   void initState() {
@@ -169,6 +141,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
                   color: FixColor.navigationBarBackground.resolveFrom(context),
                   child: TabBar(
                     controller: tabController,
+                    dragStartBehavior: DragStartBehavior.start,
                     isScrollable: true,
                     indicator: const GreyUnderlineTabIndicator(),
                     tabs: model.subPages
