@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 class EmptyFragment extends StatelessWidget {
   const EmptyFragment({Key? key}) : super(key: key);
 
-  static const routeName = 'MainPage';
 
   @override
   Widget build(BuildContext context) {
