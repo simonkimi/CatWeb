@@ -18,15 +18,16 @@ message SiteConfig {
   string version = 5;
   string upgradeUrl = 6;
   string flag = 7;
+  string readme = 8;
 
-  repeated RegField headers = 8;
-  repeated RegField cookies = 9;
+  repeated RegField headers = 15;
+  repeated RegField cookies = 16;
 
-  repeated GalleryParser galleryParsers = 10;
-  repeated ListViewParser listViewParser = 11;
-  repeated ImageParser imageParsers = 14;
-  repeated ActionCombine actionList = 12;
-  repeated SitePage pageList = 13;
+  repeated GalleryParser galleryParsers = 20;
+  repeated ListViewParser listViewParser = 21;
+  repeated ImageParser imageParsers = 22;
+  repeated ActionCombine actionList = 23;
+  repeated SitePage pageList = 24;
 }
 
 message EnvStore {
