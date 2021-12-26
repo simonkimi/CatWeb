@@ -12,7 +12,7 @@ class ViewerScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (website.displayPage.length == 1) {
+    if (website.displayPage.length <= 1) {
       return _buildSitePage(context, website.displayPage.first);
     }
 

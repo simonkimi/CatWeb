@@ -1,4 +1,5 @@
 import 'package:catweb/data/constant.dart';
+import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/list_card.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/fragments/viewer_subpage/list/subpage_controller.dart';
@@ -11,10 +12,12 @@ class SubPageListFragment extends StatefulWidget {
     Key? key,
     required this.controller,
     required this.hasTabBar,
+    required this.hasToolBar,
   }) : super(key: key);
 
   final SubListController controller;
   final bool hasTabBar;
+  final bool hasToolBar;
 
   @override
   _SubPageListFragmentState createState() => _SubPageListFragmentState();
@@ -43,11 +46,17 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
   }
 
   Widget _buildPullRefresh(BuildContext context) {
-    return CupertinoSliverRefreshControl(
-      refreshIndicatorExtent: 50,
-      onRefresh: () async {
-        controller.onRefresh();
-      },
+    return SliverPadding(
+      padding: EdgeInsets.only(
+          top: MediaQuery.of(context).padding.top +
+              kCupertinoNavigatorBar +
+              (widget.hasTabBar ? kCupertinoTabBarHeight : 0.0)),
+      sliver: CupertinoSliverRefreshControl(
+        refreshIndicatorExtent: 50,
+        onRefresh: () async {
+          controller.onRefresh();
+        },
+      ),
     );
   }
 
@@ -75,7 +84,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
 
   Widget _buildIndicator(BuildContext context) {
     return CustomFooter(
-      height: 50 + (widget.hasTabBar ? kBottomBarHeight : 0),
+      height: 50 + (widget.hasToolBar ? kBottomBarHeight : 0),
       builder: _buildFootState,
     );
   }
