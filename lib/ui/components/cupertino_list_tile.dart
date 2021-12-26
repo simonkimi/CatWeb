@@ -1,4 +1,4 @@
-import 'package:catweb/theme/colors.dart';
+import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 

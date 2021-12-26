@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:catweb/theme/colors.dart';
+import 'package:catweb/ui/theme/colors.dart';
 
 Color cupertinoLightColors(BuildContext context, int index) {
   final shade = isDarkMode(context) ? 700 : 100;

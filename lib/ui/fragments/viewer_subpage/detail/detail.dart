@@ -1,5 +1,5 @@
-import 'package:catweb/theme/colors.dart';
-import 'package:catweb/theme/themes.dart';
+import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/icon_text.dart';

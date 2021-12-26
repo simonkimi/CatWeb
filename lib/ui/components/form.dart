@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:get/get.dart';
 
-import 'package:catweb/theme/colors.dart';
+import 'package:catweb/ui/theme/colors.dart';
 import 'dialog.dart';
 
 Widget buildCardList(
@@ -340,8 +340,9 @@ class RulesForm extends StatelessWidget {
               child: Text(
                 'Js脚本',
                 style: TextStyle(
-                  color:
-                      isDarkMode() ? FixColor.title.darkColor : FixColor.title,
+                  color: isDarkMode(context)
+                      ? FixColor.title.darkColor
+                      : FixColor.title,
                   fontSize: 12,
                 ),
               ),
@@ -402,7 +403,9 @@ class RulesForm extends StatelessWidget {
             child: Text(
               '函数',
               style: TextStyle(
-                color: isDarkMode() ? FixColor.title.darkColor : FixColor.title,
+                color: isDarkMode(context)
+                    ? FixColor.title.darkColor
+                    : FixColor.title,
                 fontSize: 12,
               ),
             ),

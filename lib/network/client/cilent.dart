@@ -17,7 +17,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class NetClient {
-  NetClient(this.configModel) : dio = buildDio(configModel);
+  NetClient(this.configModel) : dio = _buildDio(configModel);
 
   final Dio dio;
   final SiteConfigModel configModel;
@@ -83,7 +83,7 @@ class NetClient {
   }
 }
 
-Dio buildDio(SiteConfigModel model) {
+Dio _buildDio(SiteConfigModel model) {
   final dio = Dio();
 
   dio.options.connectTimeout = 10 * 1000;

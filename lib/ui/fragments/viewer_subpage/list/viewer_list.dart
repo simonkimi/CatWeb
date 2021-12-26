@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/theme/colors.dart';
+import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/components/grey_tab_indicator.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
