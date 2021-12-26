@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'grey_tab_indicator.dart';
@@ -65,14 +66,18 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
     return Stack(
       children: [
         _buildChild(context),
-        SlideTransition(
-          position: Tween(
-            begin: Offset.zero,
-            end: const Offset(0.0, -1.0),
-          ).animate(_translateAnimation),
-          child: _buildNavigationBar(context),
-        ),
+        _buildAppBar(context),
       ],
+    );
+  }
+
+  SlideTransition _buildAppBar(BuildContext context) {
+    return SlideTransition(
+      position: Tween(
+        begin: Offset.zero,
+        end: const Offset(0.0, -1.0),
+      ).animate(_translateAnimation),
+      child: _buildNavigationBar(context),
     );
   }
 
@@ -115,10 +120,7 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
   Widget _buildNavigationBar(BuildContext context) {
     return ClipRect(
       child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaX: 5.0,
-          sigmaY: 5.0,
-        ),
+        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
         child: Container(
           decoration: BoxDecoration(
             border: const Border(
@@ -128,70 +130,77 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
               ),
             ),
             color: widget.backgroundColor ??
-                FixColor.navigationBarBackground.resolveFrom(context),
+                CupertinoTheme.of(context).barBackgroundColor,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(height: MediaQuery.of(context).padding.top),
-              SizedBox(
-                height: kCupertinoNavigatorBar,
-                child: Padding(
-                  padding: widget.padding,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            if (widget.leading != null) widget.leading!
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              widget.title,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: widget.actions ?? <Widget>[],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              _buildNavigatorBar(context),
               if (widget.tabs != null && widget.tabs!.length > 1)
-                SizedBox(
-                  height: kCupertinoTabBarHeight,
-                  child: Material(
-                    color: const Color(0x00000000),
-                    child: TabBar(
-                      isScrollable: true,
-                      controller: widget.tabController,
-                      indicator: const GreyUnderlineTabIndicator(),
-                      tabs: widget.tabs!,
-                    ),
-                  ),
-                ),
+                _buildTabBar(),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  SizedBox _buildTabBar() {
+    return SizedBox(
+      height: kCupertinoTabBarHeight,
+      child: Material(
+        color: const Color(0x00000000),
+        child: TabBar(
+          isScrollable: true,
+          controller: widget.tabController,
+          indicator: const GreyUnderlineTabIndicator(),
+          tabs: widget.tabs!,
+        ),
+      ),
+    );
+  }
+
+  SizedBox _buildNavigatorBar(BuildContext context) {
+    return SizedBox(
+      height: kCupertinoNavigatorBar,
+      child: Padding(
+        padding: widget.padding,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [if (widget.leading != null) widget.leading!],
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    widget.title,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: FixColor.title.resolveFrom(context),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: widget.actions ?? <Widget>[],
+              ),
+            ),
+          ],
         ),
       ),
     );
