@@ -52,8 +52,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
       padding: EdgeInsets.only(
           top: MediaQuery.of(context).padding.top +
               kCupertinoNavigatorBar +
-              (widget.hasTabBar ? kCupertinoTabBarHeight : 0.0) +
-              5),
+              (widget.hasTabBar ? kCupertinoTabBarHeight : 0.0)),
       sliver: CupertinoSliverRefreshControl(
         refreshIndicatorExtent: 50,
         onRefresh: () async {

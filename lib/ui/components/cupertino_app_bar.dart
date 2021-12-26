@@ -39,7 +39,7 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
     with TickerProviderStateMixin {
   late final _translateController = AnimationController(
     vsync: this,
-    duration: const Duration(milliseconds: 800),
+    duration: const Duration(seconds: 1),
   );
 
   late final _translateAnimation = CurvedAnimation(
