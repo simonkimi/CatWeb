@@ -30,17 +30,19 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return SmartRefresher(
-      controller: controller.refreshController,
-      enablePullDown: false,
-      enablePullUp: true,
-      onLoading: () => controller.onLoadMore(),
-      footer: _buildIndicator(context),
-      child: CustomScrollView(
-        slivers: [
-          _buildPullRefresh(context),
-          _buildBody(context),
-        ],
+    return AppBarScrollNotifier(
+      child: SmartRefresher(
+        controller: controller.refreshController,
+        enablePullDown: false,
+        enablePullUp: true,
+        onLoading: () => controller.onLoadMore(),
+        footer: _buildIndicator(context),
+        child: CustomScrollView(
+          slivers: [
+            _buildPullRefresh(context),
+            _buildBody(context),
+          ],
+        ),
       ),
     );
   }
@@ -50,7 +52,8 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
       padding: EdgeInsets.only(
           top: MediaQuery.of(context).padding.top +
               kCupertinoNavigatorBar +
-              (widget.hasTabBar ? kCupertinoTabBarHeight : 0.0)),
+              (widget.hasTabBar ? kCupertinoTabBarHeight : 0.0) +
+              5),
       sliver: CupertinoSliverRefreshControl(
         refreshIndicatorExtent: 50,
         onRefresh: () async {

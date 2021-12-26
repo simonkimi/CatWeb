@@ -15,15 +15,14 @@ ParserResult<List<ViewerListModel>> listParserExec(
     final parser = param.parser;
     late List<XPathNode> itemList;
     late DomParserExec dom;
-
     late XPath root;
-    if (param.source.substring(10).contains('xml')) {
-      root = UniversalHtmlTree.parse(param.source);
-      dom = DomParserExec<Node>(env: param.globalEnv);
-      itemList = dom.nodes(parser.itemSelector, root.root);
-    } else {
+    if (param.source.substring(0, 20).contains('xml')) {
       root = XPath.xml(param.source);
       dom = DomParserExec<XmlNode>(env: param.globalEnv);
+      itemList = dom.nodes(parser.itemSelector, root.root);
+    } else {
+      root = UniversalHtmlTree.parse(param.source);
+      dom = DomParserExec<Node>(env: param.globalEnv);
       itemList = dom.nodes(parser.itemSelector, root.root);
     }
 

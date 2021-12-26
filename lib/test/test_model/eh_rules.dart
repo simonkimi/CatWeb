@@ -15,7 +15,7 @@ final ehTestSite = SiteConfig(
     RegField(reg: r'e[-x]hentai', value: 'ipb_pass_hash=$ipbPassHash'),
     RegField(reg: r'e[-x]hentai', value: 'igneous=$igneous'),
     RegField(reg: r'e[-x]hentai', value: 'sk=$sk'),
-    RegField(reg: r'e[-x]hentai', value: 'nw=1'),
+    RegField(reg: r'e[-x]hentai', value: 'star=$star'),
   ],
   pageList: [
     SitePage(

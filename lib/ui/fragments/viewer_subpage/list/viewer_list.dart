@@ -4,19 +4,21 @@ import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/fragments/viewer_subpage/list/subpage_controller.dart';
 import 'package:catweb/ui/fragments/viewer_subpage/list/subpage_list.dart';
+import 'package:catweb/ui/pages/rules_manager/rules_manager/rules_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:catweb/utils/utils.dart';
+import 'package:get/get.dart';
 
 class ViewerListFragment extends StatefulWidget {
   const ViewerListFragment({
     Key? key,
     required this.model,
-    this.hasTabBar = false,
+    this.hasToolBar = false,
   }) : super(key: key);
 
   final SitePageModel model;
-  final bool hasTabBar;
+  final bool hasToolBar;
 
   @override
   _ViewerListFragmentState createState() => _ViewerListFragmentState();
@@ -72,13 +74,14 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
           .map((e) => CupertinoTab(e.name.string.globalEnv()))
           .toList(),
       tabController: tabController,
+      leading: _buildLeading(context),
       child: TabBarView(
         controller: tabController,
         children: subListController.map((e) {
           return SubPageListFragment(
             controller: e,
-            hasTabBar: widget.hasTabBar,
-            hasToolBar: !useSingleWidget,
+            hasTabBar: !useSingleWidget,
+            hasToolBar: widget.hasToolBar,
           );
         }).toList(),
       ),
@@ -88,14 +91,23 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
   Widget _buildSingleViewer(BuildContext context) {
     return CupertinoAppBar(
       title: model.name.string,
-      tabs: model.subPages
-          .map((e) => CupertinoTab(e.name.string.globalEnv()))
-          .toList(),
+      leading: _buildLeading(context),
       child: SubPageListFragment(
         controller: subListController.first,
-        hasTabBar: widget.hasTabBar,
-        hasToolBar: !useSingleWidget,
+        hasTabBar: !useSingleWidget,
+        hasToolBar: widget.hasToolBar,
       ),
+    );
+  }
+
+  Widget _buildLeading(BuildContext context) {
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      minSize: 0,
+      child: const Icon(Icons.menu),
+      onPressed: () {
+        Get.to(() => const SiteManager());
+      },
     );
   }
 

@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/theme/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'grey_tab_indicator.dart';
@@ -20,6 +19,7 @@ class CupertinoAppBar extends StatefulWidget {
     this.backgroundColor,
     this.tabs,
     this.tabController,
+    this.padding = const EdgeInsets.symmetric(horizontal: 10),
   }) : super(key: key);
 
   final String title;
@@ -29,6 +29,7 @@ class CupertinoAppBar extends StatefulWidget {
   final List<CupertinoTab>? tabs;
   final Widget child;
   final TabController? tabController;
+  final EdgeInsets padding;
 
   @override
   _CupertinoAppBarState createState() => _CupertinoAppBarState();
@@ -76,8 +77,8 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
   }
 
   Widget _buildChild(BuildContext context) {
-    return NotificationListener(
-      onNotification: (AppBarScrollNotification notification) {
+    return NotificationListener<AppBarScrollNotification>(
+      onNotification: (notification) {
         final pixel = notification.metrics.pixels;
         final didReleasePointer = pixel == _lastPixel;
 
@@ -92,7 +93,7 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
           final delta = pixel - _lastPixel;
           _translateController.value += delta /
               (kCupertinoNavigatorBar +
-                  kCupertinoTabBarHeight +
+                  (widget.tabs != null ? kCupertinoTabBarHeight : 0.0) +
                   MediaQuery.of(context).padding.top);
           _lastPixel = pixel;
         }
@@ -102,7 +103,7 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
       },
       child: NotificationListener<ScrollNotification>(
         onNotification: (notification) {
-          if (notification is AppBarScrollNotification) return true;
+          if (notification is AppBarScrollNotification) return false;
           _fastReverse();
           return false;
         },
@@ -122,7 +123,7 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
           decoration: BoxDecoration(
             border: const Border(
               bottom: BorderSide(
-                color: CupertinoColors.lightBackgroundGray,
+                color: Color(0x4D000000),
                 width: 0.0,
               ),
             ),
@@ -135,40 +136,45 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
               SizedBox(height: MediaQuery.of(context).padding.top),
               SizedBox(
                 height: kCupertinoNavigatorBar,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [if (widget.leading != null) widget.leading!],
+                child: Padding(
+                  padding: widget.padding,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            if (widget.leading != null) widget.leading!
+                          ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            widget.title,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              widget.title,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: widget.actions ?? <Widget>[],
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: widget.actions ?? <Widget>[],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               if (widget.tabs != null && widget.tabs!.length > 1)
@@ -188,6 +194,38 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
           ),
         ),
       ),
+    );
+  }
+}
+
+class AppBarScrollNotifier extends StatelessWidget {
+  const AppBarScrollNotifier({Key? key, required this.child}) : super(key: key);
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return NotificationListener<ScrollNotification>(
+      child: child,
+      onNotification: (notification) {
+        var metrics = notification.metrics;
+        assert(metrics.axis == Axis.vertical);
+
+        if (metrics.pixels < 0 || metrics.pixels > metrics.maxScrollExtent) {
+          metrics = FixedScrollMetrics(
+            pixels: metrics.pixels < 0 ? 0 : metrics.maxScrollExtent,
+            axisDirection: metrics.axisDirection,
+            maxScrollExtent: metrics.maxScrollExtent,
+            minScrollExtent: metrics.minScrollExtent,
+            viewportDimension: metrics.viewportDimension,
+          );
+        }
+
+        AppBarScrollNotification(metrics: metrics, context: context)
+            .dispatch(context);
+
+        return true;
+      },
     );
   }
 }

@@ -44,7 +44,7 @@ class ViewerScaffold extends StatelessWidget {
       case PageTemplate.imageList:
         return ViewerListFragment(
           model: model,
-          hasTabBar: website.displayPage.length > 1,
+          hasToolBar: website.displayPage.length > 1,
         );
     }
     throw UnimplementedError('TODO!');
