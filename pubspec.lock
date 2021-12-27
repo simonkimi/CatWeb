@@ -210,16 +210,21 @@ packages:
       name: dio_cache_interceptor
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.3"
+    version: "3.1.0"
   dio_cache_interceptor_db_store:
     dependency: "direct main"
     description:
-      path: dio_cache_interceptor_db_store
-      ref: HEAD
-      resolved-ref: "41386d48b7977a070700d5d99a1b6f7736750421"
-      url: "https://github.com/simonkimi/dio_cache_interceptor"
-    source: git
+      name: dio_cache_interceptor_db_store
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "4.0.0"
+  dio_http_formatter:
+    dependency: "direct main"
+    description:
+      name: dio_http_formatter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   drift:
     dependency: "direct main"
     description:
@@ -478,6 +483,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   logging:
     dependency: transitive
     description:

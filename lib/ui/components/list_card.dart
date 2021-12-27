@@ -349,7 +349,7 @@ class ExtendedCard extends StatelessWidget {
       child: Stack(
         children: [
           DioImage(
-            dio: Get.find<SiteController>().website.client.dio,
+            dio: Get.find<SiteController>().website.client.imageDio,
             url: model.previewImage?.url,
             imageBuilder: (context, bytes) {
               return DarkWidget(

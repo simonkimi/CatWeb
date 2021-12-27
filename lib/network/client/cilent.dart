@@ -13,13 +13,18 @@ import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:dio_http_formatter/dio_http_formatter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class NetClient {
-  NetClient(this.configModel) : dio = _buildDio(configModel);
+  NetClient(this.configModel)
+      : dio = _buildDio(configModel, true),
+        imageDio = _buildDio(configModel);
 
   final Dio dio;
+  final Dio imageDio;
+
   final SiteConfigModel configModel;
 
   Future<List<ViewerListModel>> getList({
@@ -81,7 +86,7 @@ class NetClient {
   }
 }
 
-Dio _buildDio(SiteConfigModel model) {
+Dio _buildDio(SiteConfigModel model, [bool log = false]) {
   final dio = Dio();
 
   dio.options.connectTimeout = 10 * 1000;
@@ -96,6 +101,11 @@ Dio _buildDio(SiteConfigModel model) {
   dio.interceptors.add(DioCacheInterceptor(
       options: Get.find<SettingController>().dioCacheOptions));
   dio.transformer = EncodeTransformer();
+  if (log) {
+    dio.interceptors.add(HttpFormatter(
+      includeResponseBody: false,
+    ));
+  }
 
   // TODO 添加忽略证书错误开关
   (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
