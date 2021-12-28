@@ -406,6 +406,13 @@ class ListViewParser extends $pb.GeneratedMessage {
             : 'paper',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
+        97,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'idCode',
+        protoName: 'idCode',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
         98,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
@@ -438,6 +445,7 @@ class ListViewParser extends $pb.GeneratedMessage {
     $0.Selector? badgeText,
     $0.Selector? badgeColor,
     $0.Selector? paper,
+    $0.Selector? idCode,
     $0.Selector? nextPage,
     $core.Iterable<$0.ExtraSelector>? extraSelector,
   }) {
@@ -483,6 +491,9 @@ class ListViewParser extends $pb.GeneratedMessage {
     }
     if (paper != null) {
       _result.paper = paper;
+    }
+    if (idCode != null) {
+      _result.idCode = idCode;
     }
     if (nextPage != null) {
       _result.nextPage = nextPage;
@@ -713,22 +724,36 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(14)
   $0.Selector ensurePaper() => $_ensure(13);
 
+  @$pb.TagNumber(97)
+  $0.Selector get idCode => $_getN(14);
+  @$pb.TagNumber(97)
+  set idCode($0.Selector v) {
+    setField(97, v);
+  }
+
+  @$pb.TagNumber(97)
+  $core.bool hasIdCode() => $_has(14);
+  @$pb.TagNumber(97)
+  void clearIdCode() => clearField(97);
+  @$pb.TagNumber(97)
+  $0.Selector ensureIdCode() => $_ensure(14);
+
   @$pb.TagNumber(98)
-  $0.Selector get nextPage => $_getN(14);
+  $0.Selector get nextPage => $_getN(15);
   @$pb.TagNumber(98)
   set nextPage($0.Selector v) {
     setField(98, v);
   }
 
   @$pb.TagNumber(98)
-  $core.bool hasNextPage() => $_has(14);
+  $core.bool hasNextPage() => $_has(15);
   @$pb.TagNumber(98)
   void clearNextPage() => clearField(98);
   @$pb.TagNumber(98)
-  $0.Selector ensureNextPage() => $_ensure(14);
+  $0.Selector ensureNextPage() => $_ensure(15);
 
   @$pb.TagNumber(99)
-  $core.List<$0.ExtraSelector> get extraSelector => $_getList(15);
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(16);
 }
 
 class GalleryParser extends $pb.GeneratedMessage {
@@ -909,6 +934,13 @@ class GalleryParser extends $pb.GeneratedMessage {
             : 'chapterCover',
         protoName: 'chapterCover',
         subBuilder: $0.ImageSelector.create)
+    ..aOM<$0.Selector>(
+        27,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'prePageImageCount',
+        protoName: 'prePageImageCount',
+        subBuilder: $0.Selector.create)
     ..pc<$0.ExtraSelector>(
         99,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -947,6 +979,7 @@ class GalleryParser extends $pb.GeneratedMessage {
     $0.Selector? chapterTitle,
     $0.Selector? chapterSubtitle,
     $0.ImageSelector? chapterCover,
+    $0.Selector? prePageImageCount,
     $core.Iterable<$0.ExtraSelector>? extraSelector,
   }) {
     final _result = create();
@@ -1027,6 +1060,9 @@ class GalleryParser extends $pb.GeneratedMessage {
     }
     if (chapterCover != null) {
       _result.chapterCover = chapterCover;
+    }
+    if (prePageImageCount != null) {
+      _result.prePageImageCount = prePageImageCount;
     }
     if (extraSelector != null) {
       _result.extraSelector.addAll(extraSelector);
@@ -1422,6 +1458,20 @@ class GalleryParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(26)
   $0.ImageSelector ensureChapterCover() => $_ensure(25);
 
+  @$pb.TagNumber(27)
+  $0.Selector get prePageImageCount => $_getN(26);
+  @$pb.TagNumber(27)
+  set prePageImageCount($0.Selector v) {
+    setField(27, v);
+  }
+
+  @$pb.TagNumber(27)
+  $core.bool hasPrePageImageCount() => $_has(26);
+  @$pb.TagNumber(27)
+  void clearPrePageImageCount() => clearField(27);
+  @$pb.TagNumber(27)
+  $0.Selector ensurePrePageImageCount() => $_ensure(26);
+
   @$pb.TagNumber(99)
-  $core.List<$0.ExtraSelector> get extraSelector => $_getList(26);
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(27);
 }

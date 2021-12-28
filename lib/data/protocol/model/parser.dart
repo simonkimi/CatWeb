@@ -59,7 +59,6 @@ class ImageParserModel extends ParserBaseModel {
   @override
   String displayType(BuildContext context) => '图片查看';
 
-
   @override
   ImageParser toPb() => ImageParser(
         name: name.value,
@@ -196,7 +195,6 @@ class GalleryParserModel extends ParserBaseModel {
         nextPage: nextPage.toPb(),
       );
 
-
   @override
   ParserBaseModel copy() => GalleryParserModel(toPb());
 
@@ -223,6 +221,7 @@ class ListViewParserModel extends ParserBaseModel {
         nextPage = SelectorModel(pb?.nextPage),
         paper = SelectorModel(pb?.paper),
         badgeSelector = SelectorModel(pb?.badgeSelector),
+        idCode = SelectorModel(pb?.idCode),
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
@@ -253,6 +252,7 @@ class ListViewParserModel extends ParserBaseModel {
   final SelectorModel paper;
 
   // 下一页
+  final SelectorModel idCode;
   final SelectorModel nextPage;
 
   @override
@@ -273,8 +273,8 @@ class ListViewParserModel extends ParserBaseModel {
         nextPage: nextPage.toPb(),
         paper: paper.toPb(),
         badgeSelector: badgeSelector.toPb(),
+        idCode: idCode.toPb(),
       );
-
 
   @override
   String displayType(BuildContext context) => '列表解析器';

@@ -52,7 +52,8 @@ class BadgeModel {
   final String? category;
 
   @override
-  String toString() => '<BadgeModel> ${category!= null ? '$category: ': ''} $text';
+  String toString() =>
+      '<BadgeModel> ${category != null ? '$category: ' : ''} $text';
 }
 
 class CommentItemModel {

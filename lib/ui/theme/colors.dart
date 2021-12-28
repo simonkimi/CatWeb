@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-
-
 class FixColor {
   FixColor._();
 

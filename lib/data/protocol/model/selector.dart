@@ -110,7 +110,6 @@ class CommentSelectorModel implements PbAble {
         content: content.toPb(),
         avatar: avatar.toPb(),
       );
-
 }
 
 extension SelectorFunctionE on SelectorFunction {

@@ -13,6 +13,7 @@ class ViewerListModel {
     this.uploadTime,
     this.badgeList,
     this.previewImage,
+    this.idCode,
   });
 
   final String? title;
@@ -25,9 +26,11 @@ class ViewerListModel {
   final String? uploadTime;
   final String? paper;
   final ImageModel? previewImage;
+  final String? idCode;
 
   @override
-  String toString() => 'title: $title,\n'
+  String toString() => 'idCode: $idCode\n'
+      'title: $title,\n'
       'subtitle: $subtitle,\n'
       'badgeList: $badgeList,\n'
       'star: $star,\n'

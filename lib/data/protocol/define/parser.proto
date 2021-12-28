@@ -41,6 +41,7 @@ message ListViewParser {
   // 下一面
   Selector nextPage = 98;
 
+  Selector idCode = 97;
   repeated ExtraSelector extraSelector = 99;
 }
 
@@ -86,7 +87,6 @@ message GalleryParser {
   Selector chapterTitle = 24;
   Selector chapterSubtitle = 25;
   ImageSelector chapterCover = 26;
-
 
   repeated ExtraSelector extraSelector = 99;
 }

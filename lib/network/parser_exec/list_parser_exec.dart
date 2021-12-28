@@ -39,6 +39,7 @@ ParserResult<List<ViewerListModel>> listParserExec(
 
     final result = itemList.map((e) {
       return ViewerListModel(
+        idCode: dom.string(parser.idCode, e),
         title: dom.string(parser.title, e),
         subtitle: dom.string(parser.subtitle, e),
         page: dom.int(parser.imgCount, e),
