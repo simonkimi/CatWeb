@@ -35,6 +35,7 @@ class SettingController extends GetxController {
   final RxString documentDir = ''.obs;
 
   late CacheOptions dioCacheOptions;
+  late DbCacheStore dbCacheStore;
 
   Future<void> init() async {
     cardSize.watch('cardSize', CardSize.middle);
@@ -46,8 +47,11 @@ class SettingController extends GetxController {
       documentDir.value = await getDocumentDir();
     }
 
+    dbCacheStore =
+        DbCacheStore(databasePath: p.join(documentDir.value, 'cache'));
+
     dioCacheOptions = CacheOptions(
-      store: DbCacheStore(databasePath: p.join(documentDir.value, 'cache')),
+      store: dbCacheStore,
       policy: CachePolicy.noCache,
       hitCacheOnErrorExcept: [401, 403],
       priority: CachePriority.normal,
