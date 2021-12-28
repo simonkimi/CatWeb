@@ -9,7 +9,7 @@ class JsRuntime {
       _engine.evaluate(js);
       final result = _engine.evaluate('hook("$args")');
       if (result is Future) throw Exception('Future is not allowed here');
-      return result;
+      return result.toString();
     } on Exception {
       return null;
     }

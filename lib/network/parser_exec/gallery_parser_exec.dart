@@ -36,7 +36,7 @@ ParserResult<GalleryDetailModel> galleryParserExec(
 
     final result = GalleryDetailModel(
         title: dom.string(parser.title, root.root),
-        subtitle: dom.string(parser.subTitle, root.root),
+        subtitle: dom.string(parser.subtitle, root.root),
         tag: dom.string(parser.tag, root.root),
         tagColor: dom.color(parser.tagColor, root.root),
         star: dom.double(parser.star, root.root),

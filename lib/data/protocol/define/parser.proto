@@ -79,6 +79,7 @@ message GalleryParser {
 
   // 下一面
   Selector nextPage = 22;
+  Selector prePageImageCount = 27;  // 一页多少面, 用于跳页
 
   // 章节
   Selector chapterSelector = 23;

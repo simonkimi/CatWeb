@@ -255,7 +255,7 @@ class GalleryParserFragment extends StatelessWidget {
       RulesForm(
         title: '副标题',
         field: '#subtitle',
-        selectorModel: model.subTitle,
+        selectorModel: model.subtitle,
       ),
       RulesForm(
         title: '上传时间',
@@ -286,6 +286,11 @@ class GalleryParserFragment extends StatelessWidget {
         title: '总页数',
         field: '#pageCount',
         selectorModel: model.pageCount,
+      ),
+      RulesForm(
+        title: '每页图片数',
+        field: '#pageCount',
+        selectorModel: model.prePageImageCount,
       ),
     ]);
   }

@@ -43,6 +43,7 @@ class DomParserExec<T> {
   final JsRuntime jsRuntime;
 
   List<XPathNode<T>> nodes(SelectorModel parser, XPathNode<T> parent) {
+    if (parser.selector.value.isEmpty) return [];
     return DomSelectorExec<T>(selector: parser, jsRuntime: jsRuntime)
         .findElements(parent);
   }

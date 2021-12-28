@@ -29,6 +29,20 @@ class GalleryDetailModel {
   final double? star;
 
   final List<CommentItemModel>? commentList;
+
+  @override
+  String toString() => 'title: $title\n'
+      'subtitle: $subtitle\n'
+      'tag: $tag\n'
+      'tagColor: $tagColor\n'
+      'language: $language\n'
+      'imageCount: $imageCount\n'
+      'uploadTime: $uploadTime\n'
+      'badgeList: $badgeList\n'
+      'prePageImageCount: $prePageImageCount\n'
+      'description: $description\n'
+      'star: $star\n'
+      'commentList: $commentList\n';
 }
 
 class BadgeModel {
@@ -36,6 +50,9 @@ class BadgeModel {
 
   final String? text;
   final String? category;
+
+  @override
+  String toString() => '<BadgeModel> ${category!= null ? '$category: ': ''} $text';
 }
 
 class CommentItemModel {
@@ -50,4 +67,7 @@ class CommentItemModel {
   final String? comment;
   final String? commentTime;
   final int? score;
+
+  @override
+  String toString() => '<Comment> $username $comment $score';
 }

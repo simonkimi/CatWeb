@@ -4,10 +4,6 @@ import 'package:get/get.dart';
 
 import 'interface.dart';
 
-abstract class CombineSelector {
-  Map<String, SelectorModel> get combine;
-}
-
 class SelectorModel implements PbAble {
   SelectorModel([Selector? pb, bool computed = false])
       : selector = sobs(pb?.selector),
@@ -92,7 +88,7 @@ class ImageSelectorModel implements PbAble {
       };
 }
 
-class CommentSelectorModel implements PbAble, CombineSelector {
+class CommentSelectorModel implements PbAble {
   CommentSelectorModel([CommentSelector? pb])
       : username = SelectorModel(pb?.username),
         postTime = SelectorModel(pb?.postTime),
@@ -115,13 +111,6 @@ class CommentSelectorModel implements PbAble, CombineSelector {
         avatar: avatar.toPb(),
       );
 
-  @override
-  Map<String, SelectorModel> get combine => {
-        'username': username,
-        'postTime': postTime,
-        'vote': vote,
-        'content': content,
-      };
 }
 
 extension SelectorFunctionE on SelectorFunction {

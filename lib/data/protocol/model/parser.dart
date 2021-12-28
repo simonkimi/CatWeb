@@ -13,7 +13,7 @@ enum ParserType {
   imageParser,
 }
 
-abstract class ParserBaseModel implements PbAble, CombineSelector {
+abstract class ParserBaseModel implements PbAble {
   ParserBaseModel({required this.name, Iterable<ExtraSelector>? extra})
       : extraSelectorModel =
             lobs(extra, (ExtraSelector e) => ExtraSelectorModel(e));
@@ -59,8 +59,6 @@ class ImageParserModel extends ParserBaseModel {
   @override
   String displayType(BuildContext context) => '图片查看';
 
-  @override
-  Map<String, SelectorModel> get combine => {};
 
   @override
   ImageParser toPb() => ImageParser(
@@ -87,7 +85,7 @@ class ImageParserModel extends ParserBaseModel {
 class GalleryParserModel extends ParserBaseModel {
   GalleryParserModel([GalleryParser? pb])
       : title = SelectorModel(pb?.title),
-        subTitle = SelectorModel(pb?.subtitle),
+        subtitle = SelectorModel(pb?.subtitle),
         uploadTime = SelectorModel(pb?.uploadTime),
         star = SelectorModel(pb?.star, true),
         imgCount = SelectorModel(pb?.imgCount, true),
@@ -111,13 +109,14 @@ class GalleryParserModel extends ParserBaseModel {
         chapterSubtitle = SelectorModel(pb?.chapterSubtitle),
         chapterCover = ImageSelectorModel(pb?.chapterCover),
         nextPage = SelectorModel(pb?.nextPage),
+        prePageImageCount = SelectorModel(pb?.prePageImageCount),
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
         );
 
   final SelectorModel title;
-  final SelectorModel subTitle;
+  final SelectorModel subtitle;
   final SelectorModel uploadTime;
   final SelectorModel star;
   final SelectorModel imgCount;
@@ -152,12 +151,13 @@ class GalleryParserModel extends ParserBaseModel {
   final ImageSelectorModel chapterCover;
 
   final SelectorModel nextPage;
+  final SelectorModel prePageImageCount;
 
   @override
   GalleryParser toPb() => GalleryParser(
         name: name.value,
         title: title.toPb(),
-        subtitle: subTitle.toPb(),
+        subtitle: subtitle.toPb(),
         uploadTime: uploadTime.toPb(),
         star: star.toPb(),
         imgCount: imgCount.toPb(),
@@ -192,31 +192,10 @@ class GalleryParserModel extends ParserBaseModel {
         chapterCover: chapterCover.toPb(),
 
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
+        prePageImageCount: prePageImageCount.toPb(),
         nextPage: nextPage.toPb(),
       );
 
-  @override
-  Map<String, SelectorModel> get combine => {
-        'title': title,
-        'subtitle': subTitle,
-        'uploadTime': uploadTime,
-        'star': star,
-        'imgCount': imgCount,
-        'language': language,
-        ...coverImg.combine(prefix: 'cover'),
-        'description': description,
-        'thumbnailSelector': thumbnailSelector,
-        ...thumbnail.combine(prefix: 'thumbnail'),
-        'thumbnailUrl': thumbnailUrl,
-        'commentSelector': commentSelector,
-        ...comments.combine,
-        'tag': tag,
-        'tagColor': tagColor,
-        'badgeSelector': badgeSelector,
-        'badgeText': badgeText,
-        'badgeType': badgeType,
-        'nextPage': nextPage,
-      };
 
   @override
   ParserBaseModel copy() => GalleryParserModel(toPb());
@@ -296,8 +275,6 @@ class ListViewParserModel extends ParserBaseModel {
         badgeSelector: badgeSelector.toPb(),
       );
 
-  @override
-  Map<String, SelectorModel> get combine => {};
 
   @override
   String displayType(BuildContext context) => '列表解析器';
