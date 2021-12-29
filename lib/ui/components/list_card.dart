@@ -354,7 +354,7 @@ class ExtendedCard extends StatelessWidget {
             imageBuilder: (context, bytes) {
               return DarkWidget(
                 child: Hero(
-                  tag: model.previewImage!.url!,
+                  tag: model.previewImage!.url,
                   child: Image.memory(
                     bytes,
                     width: 90,

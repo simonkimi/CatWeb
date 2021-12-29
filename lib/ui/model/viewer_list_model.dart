@@ -1,4 +1,4 @@
-import 'package:catweb/ui/model/image_model.dart';
+import 'package:catweb/network/client/image_loader.dart';
 import 'package:flutter/cupertino.dart';
 
 class ViewerListModel {

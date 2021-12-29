@@ -1,6 +1,6 @@
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/network/parser_exec/parser_exec.dart';
-import 'package:catweb/ui/model/image_model.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:xml/xml.dart';
 import 'package:universal_html/html.dart';
@@ -38,6 +38,8 @@ ParserResult<List<ViewerListModel>> listParserExec(
     );
 
     final result = itemList.map((e) {
+      final imgUrl = dom.string(parser.previewImg.imgUrl, e);
+
       return ViewerListModel(
         idCode: dom.string(parser.idCode, e),
         title: dom.string(parser.title, e),
@@ -54,13 +56,15 @@ ParserResult<List<ViewerListModel>> listParserExec(
             color: dom.color(parser.badgeColor, e),
           );
         }).toList(),
-        previewImage: ImageModel(
-          url: dom.string(parser.previewImg.imgUrl, e),
-          width: dom.double(parser.previewImg.imgHeight, e),
-          height: dom.double(parser.previewImg.imgHeight, e),
-          imgX: dom.int(parser.previewImg.imgX, e),
-          imgY: dom.int(parser.previewImg.imgY, e),
-        ),
+        previewImage: imgUrl != null
+            ? ImageModel(
+                url: imgUrl,
+                width: dom.double(parser.previewImg.imgHeight, e),
+                height: dom.double(parser.previewImg.imgHeight, e),
+                imgX: dom.int(parser.previewImg.imgX, e),
+                imgY: dom.int(parser.previewImg.imgY, e),
+              )
+            : null,
       );
     }).toList();
 
