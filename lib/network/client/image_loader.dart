@@ -34,6 +34,7 @@ class ImageModel {
 }
 
 enum ImageLoadState {
+  init,
   cached,
   waiting,
   loading,
@@ -53,7 +54,7 @@ class ImageLoadModel {
   final Rx<ImageLoadState> _state = ImageLoadState.waiting.obs;
   final RxDouble _progress = 0.0.obs;
   final RxInt _handleWidget = 1.obs;
-  final Rx<Exception?> _lastException = Rx(null);
+  final Rx<Exception?> lastException = Rx(null);
 
   Uint8List? _data;
 
@@ -64,7 +65,11 @@ class ImageLoadModel {
   String get key => model.key;
 
   bool get needLoad =>
-      _state.value == ImageLoadState.waiting && _handleWidget.value > 0;
+      (_state.value == ImageLoadState.waiting ||
+          _state.value == ImageLoadState.init) &&
+      _handleWidget.value > 0;
+
+  ImageLoadState get state => _state.value;
 
   Future<void> debugLoad() async {
     print('开始加载 ${model.url}');
@@ -75,10 +80,17 @@ class ImageLoadModel {
   }
 
   Future<void> loadCache() async {
-    if (_state.value == ImageLoadState.cached) {
+    if (_state.value == ImageLoadState.cached ||
+        _state.value == ImageLoadState.init) {
       final db = Get.find<SettingController>().dbCacheStore;
       final cache = await db.get(key);
-      if (cache != null) await load();
+      if (cache != null) {
+        await load();
+      } else {
+        if (_state.value == ImageLoadState.init) {
+          _state.value = ImageLoadState.waiting;
+        }
+      }
     }
   }
 
@@ -103,7 +115,7 @@ class ImageLoadModel {
       _data = rsp.data;
       _state.value = ImageLoadState.finish;
     } on Exception catch (e) {
-      _lastException.value = e;
+      lastException.value = e;
       await onDisplayError();
       rethrow;
     }
@@ -117,7 +129,11 @@ class ImageLoadModel {
   void dispose() {
     _handleWidget.value -= 1;
     if (_handleWidget.value == 0) {
-      _state.value = ImageLoadState.waiting;
+      if (_state.value == ImageLoadState.finish) {
+        _state.value = ImageLoadState.cached;
+      } else {
+        _state.value = ImageLoadState.waiting;
+      }
       _progress.value = 0.0;
     }
   }
@@ -146,27 +162,20 @@ class ImageConcurrency {
 
   ImageLoadModel create(ImageModel model) {
     if (_loadCompleteImages.containsKey(model.key)) {
-      final exist = _loadCompleteImages[model.key]!
-        ..handle()
-        ..loadCache();
-
-      _trigger();
+      final exist = _loadCompleteImages[model.key]!..handle();
+      exist.loadCache().whenComplete(() => _trigger());
       return exist;
     }
 
     if (_waitLoadImages.containsKey(model.key)) {
-      final exist = _waitLoadImages[model.key]!
-        ..handle()
-        ..loadCache();
-      _trigger();
+      final exist = _waitLoadImages[model.key]!..handle();
+      exist.loadCache().whenComplete(() => _trigger());
       return exist;
     }
 
     if (_loadingImages.containsKey(model.key)) {
-      final exist = _loadingImages[model.key]!
-        ..handle()
-        ..loadCache();
-      _trigger();
+      final exist = _loadingImages[model.key]!..handle();
+      exist.loadCache().whenComplete(() => _trigger());
       return exist;
     }
 
