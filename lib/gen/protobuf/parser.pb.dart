@@ -406,18 +406,18 @@ class ListViewParser extends $pb.GeneratedMessage {
             : 'paper',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
+        96,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'nextPage',
+        protoName: 'nextPage',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
         97,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'idCode',
         protoName: 'idCode',
-        subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(
-        98,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'nextPage',
-        protoName: 'nextPage',
         subBuilder: $0.Selector.create)
     ..pc<$0.ExtraSelector>(
         99,
@@ -445,8 +445,8 @@ class ListViewParser extends $pb.GeneratedMessage {
     $0.Selector? badgeText,
     $0.Selector? badgeColor,
     $0.Selector? paper,
-    $0.Selector? idCode,
     $0.Selector? nextPage,
+    $0.Selector? idCode,
     $core.Iterable<$0.ExtraSelector>? extraSelector,
   }) {
     final _result = create();
@@ -492,11 +492,11 @@ class ListViewParser extends $pb.GeneratedMessage {
     if (paper != null) {
       _result.paper = paper;
     }
-    if (idCode != null) {
-      _result.idCode = idCode;
-    }
     if (nextPage != null) {
       _result.nextPage = nextPage;
+    }
+    if (idCode != null) {
+      _result.idCode = idCode;
     }
     if (extraSelector != null) {
       _result.extraSelector.addAll(extraSelector);
@@ -724,33 +724,33 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(14)
   $0.Selector ensurePaper() => $_ensure(13);
 
+  @$pb.TagNumber(96)
+  $0.Selector get nextPage => $_getN(14);
+  @$pb.TagNumber(96)
+  set nextPage($0.Selector v) {
+    setField(96, v);
+  }
+
+  @$pb.TagNumber(96)
+  $core.bool hasNextPage() => $_has(14);
+  @$pb.TagNumber(96)
+  void clearNextPage() => clearField(96);
+  @$pb.TagNumber(96)
+  $0.Selector ensureNextPage() => $_ensure(14);
+
   @$pb.TagNumber(97)
-  $0.Selector get idCode => $_getN(14);
+  $0.Selector get idCode => $_getN(15);
   @$pb.TagNumber(97)
   set idCode($0.Selector v) {
     setField(97, v);
   }
 
   @$pb.TagNumber(97)
-  $core.bool hasIdCode() => $_has(14);
+  $core.bool hasIdCode() => $_has(15);
   @$pb.TagNumber(97)
   void clearIdCode() => clearField(97);
   @$pb.TagNumber(97)
-  $0.Selector ensureIdCode() => $_ensure(14);
-
-  @$pb.TagNumber(98)
-  $0.Selector get nextPage => $_getN(15);
-  @$pb.TagNumber(98)
-  set nextPage($0.Selector v) {
-    setField(98, v);
-  }
-
-  @$pb.TagNumber(98)
-  $core.bool hasNextPage() => $_has(15);
-  @$pb.TagNumber(98)
-  void clearNextPage() => clearField(98);
-  @$pb.TagNumber(98)
-  $0.Selector ensureNextPage() => $_ensure(15);
+  $0.Selector ensureIdCode() => $_ensure(15);
 
   @$pb.TagNumber(99)
   $core.List<$0.ExtraSelector> get extraSelector => $_getList(16);

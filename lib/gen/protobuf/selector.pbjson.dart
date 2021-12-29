@@ -23,6 +23,22 @@ const SelectorFunction$json = const {
 /// Descriptor for `SelectorFunction`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List selectorFunctionDescriptor = $convert.base64Decode(
     'ChBTZWxlY3RvckZ1bmN0aW9uEggKBGF1dG8QABIICgR0ZXh0EAESCAoEYXR0chACEgcKA3JhdxAD');
+@$core.Deprecated('Use extraSelectorTypeDescriptor instead')
+const ExtraSelectorType$json = const {
+  '1': 'ExtraSelectorType',
+  '2': const [
+    const {'1': 'none', '2': 0},
+    const {'1': 'listItem', '2': 1},
+    const {'1': 'galleryThumbnail', '2': 2},
+    const {'1': 'galleryComment', '2': 3},
+    const {'1': 'galleryBadge', '2': 4},
+    const {'1': 'galleryChapter', '2': 5},
+  ],
+};
+
+/// Descriptor for `ExtraSelectorType`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List extraSelectorTypeDescriptor = $convert.base64Decode(
+    'ChFFeHRyYVNlbGVjdG9yVHlwZRIICgRub25lEAASDAoIbGlzdEl0ZW0QARIUChBnYWxsZXJ5VGh1bWJuYWlsEAISEgoOZ2FsbGVyeUNvbW1lbnQQAxIQCgxnYWxsZXJ5QmFkZ2UQBBISCg5nYWxsZXJ5Q2hhcHRlchAF');
 @$core.Deprecated('Use selectorDescriptor instead')
 const Selector$json = const {
   '1': 'Selector',
@@ -62,12 +78,20 @@ const ExtraSelector$json = const {
       '10': 'selector'
     },
     const {'1': 'global', '3': 3, '4': 1, '5': 8, '10': 'global'},
+    const {
+      '1': 'type',
+      '3': 4,
+      '4': 1,
+      '5': 14,
+      '6': '.ExtraSelectorType',
+      '10': 'type'
+    },
   ],
 };
 
 /// Descriptor for `ExtraSelector`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List extraSelectorDescriptor = $convert.base64Decode(
-    'Cg1FeHRyYVNlbGVjdG9yEg4KAmlkGAEgASgJUgJpZBIlCghzZWxlY3RvchgCIAEoCzIJLlNlbGVjdG9yUghzZWxlY3RvchIWCgZnbG9iYWwYAyABKAhSBmdsb2JhbA==');
+    'Cg1FeHRyYVNlbGVjdG9yEg4KAmlkGAEgASgJUgJpZBIlCghzZWxlY3RvchgCIAEoCzIJLlNlbGVjdG9yUghzZWxlY3RvchIWCgZnbG9iYWwYAyABKAhSBmdsb2JhbBImCgR0eXBlGAQgASgOMhIuRXh0cmFTZWxlY3RvclR5cGVSBHR5cGU=');
 @$core.Deprecated('Use imageSelectorDescriptor instead')
 const ImageSelector$json = const {
   '1': 'ImageSelector',

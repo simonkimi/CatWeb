@@ -249,6 +249,15 @@ class ExtraSelector extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'global')
+    ..e<ExtraSelectorType>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'type',
+        $pb.PbFieldType.OE,
+        defaultOrMaker: ExtraSelectorType.none,
+        valueOf: ExtraSelectorType.valueOf,
+        enumValues: ExtraSelectorType.values)
     ..hasRequiredFields = false;
 
   ExtraSelector._() : super();
@@ -256,6 +265,7 @@ class ExtraSelector extends $pb.GeneratedMessage {
     $core.String? id,
     Selector? selector,
     $core.bool? global,
+    ExtraSelectorType? type,
   }) {
     final _result = create();
     if (id != null) {
@@ -266,6 +276,9 @@ class ExtraSelector extends $pb.GeneratedMessage {
     }
     if (global != null) {
       _result.global = global;
+    }
+    if (type != null) {
+      _result.type = type;
     }
     return _result;
   }
@@ -333,6 +346,18 @@ class ExtraSelector extends $pb.GeneratedMessage {
   $core.bool hasGlobal() => $_has(2);
   @$pb.TagNumber(3)
   void clearGlobal() => clearField(3);
+
+  @$pb.TagNumber(4)
+  ExtraSelectorType get type => $_getN(3);
+  @$pb.TagNumber(4)
+  set type(ExtraSelectorType v) {
+    setField(4, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasType() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearType() => clearField(4);
 }
 
 class ImageSelector extends $pb.GeneratedMessage {

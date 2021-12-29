@@ -44,3 +44,51 @@ class SelectorFunction extends $pb.ProtobufEnum {
 
   const SelectorFunction._($core.int v, $core.String n) : super(v, n);
 }
+
+class ExtraSelectorType extends $pb.ProtobufEnum {
+  static const ExtraSelectorType none = ExtraSelectorType._(
+      0,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'none');
+  static const ExtraSelectorType listItem = ExtraSelectorType._(
+      1,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'listItem');
+  static const ExtraSelectorType galleryThumbnail = ExtraSelectorType._(
+      2,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'galleryThumbnail');
+  static const ExtraSelectorType galleryComment = ExtraSelectorType._(
+      3,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'galleryComment');
+  static const ExtraSelectorType galleryBadge = ExtraSelectorType._(
+      4,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'galleryBadge');
+  static const ExtraSelectorType galleryChapter = ExtraSelectorType._(
+      5,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'galleryChapter');
+
+  static const $core.List<ExtraSelectorType> values = <ExtraSelectorType>[
+    none,
+    listItem,
+    galleryThumbnail,
+    galleryComment,
+    galleryBadge,
+    galleryChapter,
+  ];
+
+  static final $core.Map<$core.int, ExtraSelectorType> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
+  static ExtraSelectorType? valueOf($core.int value) => _byValue[value];
+
+  const ExtraSelectorType._($core.int v, $core.String n) : super(v, n);
+}

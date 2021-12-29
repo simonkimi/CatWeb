@@ -39,9 +39,9 @@ message ListViewParser {
   Selector paper = 14;
 
   // 下一面
-  Selector nextPage = 98;
-
+  Selector nextPage = 96;
   Selector idCode = 97;
+
   repeated ExtraSelector extraSelector = 99;
 }
 

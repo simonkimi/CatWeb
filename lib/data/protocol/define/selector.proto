@@ -7,6 +7,7 @@ enum SelectorFunction {
   raw = 3;
 }
 
+
 // 基础选择器
 message Selector {
   string selector = 1;
@@ -19,10 +20,20 @@ message Selector {
   string defaultValue = 8;
 }
 
+enum ExtraSelectorType {
+  none = 0;
+  listItem = 1;
+  galleryThumbnail = 2;
+  galleryComment = 3;
+  galleryBadge = 4;
+  galleryChapter = 5;
+}
+
 message ExtraSelector {
   string id = 1;
   Selector selector = 2;
   bool global = 3;
+  ExtraSelectorType type = 4;
 }
 
 

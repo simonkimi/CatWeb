@@ -42,17 +42,20 @@ class ExtraSelectorModel implements PbAble {
   ExtraSelectorModel([ExtraSelector? pb])
       : id = sobs(pb?.id),
         selector = SelectorModel(pb?.selector),
-        global = pb?.global.obs ?? false.obs;
+        global = pb?.global.obs ?? false.obs,
+        type = pb?.type.obs ?? ExtraSelectorType.none.obs;
 
   final RxString id;
   final SelectorModel selector;
   final RxBool global;
+  final Rx<ExtraSelectorType> type;
 
   @override
   ExtraSelector toPb() => ExtraSelector(
         selector: selector.toPb(),
         global: global.value,
         id: id.value,
+        type: type.value,
       );
 }
 
