@@ -1,5 +1,6 @@
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:catweb/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import 'interface.dart';
@@ -39,11 +40,11 @@ class SelectorModel implements PbAble {
 }
 
 class ExtraSelectorModel implements PbAble {
-  ExtraSelectorModel([ExtraSelector? pb])
+  ExtraSelectorModel([ExtraSelector? pb, ExtraSelectorType? type])
       : id = sobs(pb?.id),
         selector = SelectorModel(pb?.selector),
         global = pb?.global.obs ?? false.obs,
-        type = pb?.type.obs ?? ExtraSelectorType.none.obs;
+        type = type?.obs ?? pb?.type.obs ?? ExtraSelectorType.none.obs;
 
   final RxString id;
   final SelectorModel selector;
@@ -126,6 +127,26 @@ extension SelectorFunctionE on SelectorFunction {
         return 'text';
       case SelectorFunction.auto:
         return '';
+    }
+    return '';
+  }
+}
+
+extension ExtraSelectorTypeTr on ExtraSelectorType {
+  String string(BuildContext context) {
+    switch (this) {
+      case ExtraSelectorType.galleryBadge:
+        return '徽章';
+      case ExtraSelectorType.galleryChapter:
+        return '章节';
+      case ExtraSelectorType.galleryComment:
+        return '评论';
+      case ExtraSelectorType.galleryThumbnail:
+        return '缩略图';
+      case ExtraSelectorType.listItem:
+        return '项目';
+      case ExtraSelectorType.none:
+        return '页面';
     }
     return '';
   }

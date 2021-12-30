@@ -69,7 +69,6 @@ class StickyClassifyList extends StatelessWidget {
   }
 }
 
-
 class RulesForm extends StatelessWidget {
   const RulesForm({
     Key? key,
@@ -127,7 +126,7 @@ class RulesForm extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 5, right: 100, left: 100),
                 child: CupertinoFormInput(
-                  label: 'id',
+                  label: '${extraSelectorModel!.type.value.string(context)} id',
                   value: extraSelectorModel!.id,
                   decoration: BoxDecoration(
                       border: const Border(),
