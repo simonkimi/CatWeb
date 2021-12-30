@@ -8,6 +8,11 @@ abstract class EnvMargeAble {
   Map<String, String> get env;
 }
 
+
+abstract class HasEnv {
+  SiteEnvModel get envModel;
+}
+
 class SiteEnvModel implements EnvMargeAble {
   SiteEnvModel([Map<String, String>? env]) : _env = env ?? {};
   final Map<String, String> _env;

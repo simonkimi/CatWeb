@@ -1,3 +1,4 @@
+import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/ui/components/list_card.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ class ListParserPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = ViewerListModel(
+        envModel: SiteEnvModel(),
         title: 'Title',
         subtitle: 'SubTitle',
         star: 4.5,

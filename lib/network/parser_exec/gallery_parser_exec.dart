@@ -1,4 +1,5 @@
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:catweb/network/parser_exec/parser_exec.dart';
 import 'package:catweb/ui/model/detail_model.dart';
 import 'package:xpath_selector/xpath_selector.dart';
@@ -28,7 +29,8 @@ ParserResult<GalleryDetailModel> galleryParserExec(
 
     xmlHtmlExtra(
       domSelector: dom,
-      extras: parser.extraSelectorModel,
+      extras: parser.extraSelectorModel
+          .where((p0) => p0.type.value == ExtraSelectorType.none),
       root: root,
       onGlobalEnv: (key, value) => global[key] = value,
       onLocalEnv: (key, value) => local[key] = value,

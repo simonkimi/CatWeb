@@ -1,8 +1,10 @@
+import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:flutter/cupertino.dart';
 
-class ViewerListModel {
+class ViewerListModel implements HasEnv {
   ViewerListModel({
+    required this.envModel,
     this.title,
     this.subtitle,
     this.paper,
@@ -27,6 +29,9 @@ class ViewerListModel {
   final String? paper;
   final ImageModel? previewImage;
   final String? idCode;
+
+  @override
+  final SiteEnvModel envModel;
 
   @override
   String toString() => 'idCode: $idCode\n'

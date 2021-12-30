@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/components/form.dart';
 import 'package:catweb/ui/components/rules_card.dart';
@@ -143,7 +144,7 @@ class ListParserFragment extends StatelessWidget {
     return SliverList(
         delegate: SliverChildListDelegate([
       RulesCard(title: '基础信息', children: [
-        CupertinoInput(
+        CupertinoFormInput(
           label: '解析器名称',
           value: model.name,
           width: labelWidth,
@@ -158,7 +159,7 @@ class ListParserFragment extends StatelessWidget {
                 : CupertinoColors.systemGrey6,
           ),
         ),
-        CupertinoInput(
+        CupertinoFormInput(
           label: '项目选择器',
           value: model.itemSelector.selector,
           width: labelWidth,

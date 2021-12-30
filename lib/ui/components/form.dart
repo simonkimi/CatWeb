@@ -10,6 +10,7 @@ import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:get/get.dart';
 
 import 'package:catweb/ui/theme/colors.dart';
+import 'cupertino_input.dart';
 import 'dialog.dart';
 
 Widget buildCardList(
@@ -68,52 +69,6 @@ class StickyClassifyList extends StatelessWidget {
   }
 }
 
-class CupertinoInput extends StatelessWidget {
-  const CupertinoInput({
-    Key? key,
-    this.label,
-    required this.value,
-    this.width,
-    this.decoration,
-  }) : super(key: key);
-
-  final BoxDecoration? decoration;
-  final double? width;
-  final RxString value;
-  final String? label;
-
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoTextField(
-      controller: TextEditingController(text: value.value)
-        ..selection = TextSelection(
-          baseOffset: value.value.length,
-          extentOffset: value.value.length,
-        ),
-      decoration: decoration ??
-          const BoxDecoration(
-            border: Border(),
-          ),
-      onChanged: (v) => value.value = v,
-      style: const TextStyle(fontSize: 14),
-      prefix: label != null
-          ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: SizedBox(
-                width: width,
-                child: Text(
-                  label!,
-                  style: TextStyle(
-                    color: FixColor.title.resolveFrom(context),
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            )
-          : null,
-    );
-  }
-}
 
 class RulesForm extends StatelessWidget {
   const RulesForm({
@@ -171,7 +126,7 @@ class RulesForm extends StatelessWidget {
             if (extraSelectorModel != null)
               Padding(
                 padding: const EdgeInsets.only(top: 5, right: 100, left: 100),
-                child: CupertinoInput(
+                child: CupertinoFormInput(
                   label: 'id',
                   value: extraSelectorModel!.id,
                   decoration: BoxDecoration(
@@ -191,7 +146,7 @@ class RulesForm extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    CupertinoInput(
+                    CupertinoFormInput(
                       label: '选择器',
                       value: selectorModel.selector,
                       width: labelWidth,
@@ -202,19 +157,19 @@ class RulesForm extends StatelessWidget {
                       width: labelWidth,
                     ),
                     _buildDivider(context),
-                    CupertinoInput(
+                    CupertinoFormInput(
                       label: '参数',
                       value: selectorModel.param,
                       width: labelWidth,
                     ),
                     _buildDivider(context),
-                    CupertinoInput(
+                    CupertinoFormInput(
                       label: '正则',
                       value: selectorModel.regex,
                       width: labelWidth,
                     ),
                     _buildDivider(context),
-                    CupertinoInput(
+                    CupertinoFormInput(
                       label: '替换',
                       value: selectorModel.replace,
                       width: labelWidth,
@@ -252,16 +207,14 @@ class RulesForm extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Obx(
-            () => _buildCheckButton(
-              context: context,
-              label: '计算',
-              value: selectorModel.computed.value,
-              onPressed: () {
-                selectorModel.computed.value = !selectorModel.computed.value;
-              },
-            ),
-          ),
+          Obx(() => _buildCheckButton(
+                context: context,
+                label: '计算',
+                value: selectorModel.computed.value,
+                onPressed: () {
+                  selectorModel.computed.value = !selectorModel.computed.value;
+                },
+              )),
           const SizedBox(width: 10),
           Obx(() => _buildCheckButton(
                 context: context,

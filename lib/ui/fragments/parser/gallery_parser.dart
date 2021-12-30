@@ -1,4 +1,5 @@
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/components/form.dart';
 import 'package:catweb/ui/components/rules_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,7 +33,7 @@ class GalleryParserFragment extends StatelessWidget {
     return SliverList(
       delegate: SliverChildListDelegate([
         RulesCard(title: '基础信息', children: [
-          CupertinoInput(
+          CupertinoFormInput(
             label: '名称',
             value: model.name,
           )

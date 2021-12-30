@@ -130,3 +130,50 @@ class CupertinoInput extends StatelessWidget {
     );
   }
 }
+
+class CupertinoFormInput extends StatelessWidget {
+  const CupertinoFormInput({
+    Key? key,
+    this.label,
+    required this.value,
+    this.width,
+    this.decoration,
+  }) : super(key: key);
+
+  final BoxDecoration? decoration;
+  final double? width;
+  final RxString value;
+  final String? label;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTextField(
+      controller: TextEditingController(text: value.value)
+        ..selection = TextSelection(
+          baseOffset: value.value.length,
+          extentOffset: value.value.length,
+        ),
+      decoration: decoration ??
+          const BoxDecoration(
+            border: Border(),
+          ),
+      onChanged: (v) => value.value = v,
+      style: const TextStyle(fontSize: 14),
+      prefix: label != null
+          ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: SizedBox(
+                width: width,
+                child: Text(
+                  label!,
+                  style: TextStyle(
+                    color: FixColor.title.resolveFrom(context),
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            )
+          : null,
+    );
+  }
+}

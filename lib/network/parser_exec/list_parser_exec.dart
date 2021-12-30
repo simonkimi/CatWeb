@@ -1,4 +1,5 @@
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/network/parser_exec/parser_exec.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
@@ -31,7 +32,8 @@ ParserResult<List<ViewerListModel>> listParserExec(
 
     xmlHtmlExtra(
       domSelector: dom,
-      extras: parser.extraSelectorModel,
+      extras: parser.extraSelectorModel
+          .where((p0) => p0.type.value == ExtraSelectorType.none),
       root: root,
       onGlobalEnv: (key, value) => global[key] = value,
       onLocalEnv: (key, value) => local[key] = value,
@@ -41,6 +43,12 @@ ParserResult<List<ViewerListModel>> listParserExec(
       final imgUrl = dom.string(parser.previewImg.imgUrl, e);
 
       return ViewerListModel(
+        envModel: xmlHtmlLocalExtra(
+          root: e,
+          domSelector: dom,
+          extras: parser.extraSelectorModel,
+          filter: ExtraSelectorType.listItem,
+        ),
         idCode: dom.string(parser.idCode, e),
         title: dom.string(parser.title, e),
         subtitle: dom.string(parser.subtitle, e),
