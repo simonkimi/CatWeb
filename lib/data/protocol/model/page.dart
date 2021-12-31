@@ -5,6 +5,21 @@ import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+class OpenPageModel implements PbAble {
+  OpenPageModel([OpenPage? pb])
+      : target = sobs(pb?.target),
+        inherit = pb?.inherit.obs ?? false.obs;
+
+  final RxString target;
+  final RxBool inherit;
+
+  @override
+  OpenPage toPb() => OpenPage(
+        inherit: inherit.value,
+        target: target.value,
+      );
+}
+
 class SubPageModel implements PbAble, EnvMargeAble {
   SubPageModel([SiteSubPage? pb])
       : name = sobs(pb?.name),
@@ -34,7 +49,8 @@ class SitePageModel implements PbAble {
         parser = sobs(pb?.parser),
         subPages = lobs(pb?.subPage, (SiteSubPage pb) => SubPageModel(pb)),
         icon = sobs(pb?.icon),
-        display = pb?.display.obs ?? SiteDisplayType.show.obs;
+        display = pb?.display.obs ?? SiteDisplayType.show.obs,
+        openPages = lobs(pb?.openPage, (OpenPage e) => OpenPageModel(e));
 
   final RxString name;
   final RxString url;
@@ -43,6 +59,8 @@ class SitePageModel implements PbAble {
   final RxList<SubPageModel> subPages;
   final RxString icon;
   final Rx<SiteDisplayType> display;
+
+  final RxList<OpenPageModel> openPages;
 
   @override
   SitePage toPb() => SitePage(
@@ -53,9 +71,23 @@ class SitePageModel implements PbAble {
         subPage: subPages.map((SubPageModel p) => p.toPb()).toList(),
         icon: icon.value,
         display: display.value,
+        openPage: openPages.map((OpenPageModel p) => p.toPb()).toList(),
       );
 
   bool isValid() => name.value.isNotEmpty && parser.value.isNotEmpty;
+
+  OpenPageModel _genOpenPageList(int len, int index) {
+    if (openPages.length < len) {
+      openPages.addAll(List.filled(len - openPages.length, OpenPageModel()));
+    } else if (openPages.length > len) {
+      openPages.removeRange(len, openPages.length);
+    }
+    return openPages[index];
+  }
+
+  OpenPageModel get listItemTarget => _genOpenPageList(1, 0);
+
+  OpenPageModel get badgeTarget => _genOpenPageList(1, 0);
 }
 
 extension PageTemplateTr on PageTemplate {
@@ -81,7 +113,6 @@ extension SiteDisplayTypeTr on SiteDisplayType {
         return '总是折叠';
       case SiteDisplayType.hide:
         return '隐藏';
-      case SiteDisplayType.showWhenPossible:
       default:
         return '有空间则显示';
     }

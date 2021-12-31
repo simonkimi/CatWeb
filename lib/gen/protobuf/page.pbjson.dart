@@ -28,14 +28,13 @@ const SiteDisplayType$json = const {
   '2': const [
     const {'1': 'show', '2': 0},
     const {'1': 'shrink', '2': 1},
-    const {'1': 'showWhenPossible', '2': 2},
-    const {'1': 'hide', '2': 3},
+    const {'1': 'hide', '2': 2},
   ],
 };
 
 /// Descriptor for `SiteDisplayType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List siteDisplayTypeDescriptor = $convert.base64Decode(
-    'Cg9TaXRlRGlzcGxheVR5cGUSCAoEc2hvdxAAEgoKBnNocmluaxABEhQKEHNob3dXaGVuUG9zc2libGUQAhIICgRoaWRlEAM=');
+    'Cg9TaXRlRGlzcGxheVR5cGUSCAoEc2hvdxAAEgoKBnNocmluaxABEggKBGhpZGUQAg==');
 @$core.Deprecated('Use siteSubPageDescriptor instead')
 const SiteSubPage$json = const {
   '1': 'SiteSubPage',
@@ -81,9 +80,29 @@ const SitePage$json = const {
       '6': '.SiteDisplayType',
       '10': 'display'
     },
+    const {
+      '1': 'openPage',
+      '3': 8,
+      '4': 3,
+      '5': 11,
+      '6': '.OpenPage',
+      '10': 'openPage'
+    },
   ],
 };
 
 /// Descriptor for `SitePage`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List sitePageDescriptor = $convert.base64Decode(
-    'CghTaXRlUGFnZRISCgRuYW1lGAEgASgJUgRuYW1lEhAKA3VybBgCIAEoCVIDdXJsEikKCHRlbXBsYXRlGAMgASgOMg0uUGFnZVRlbXBsYXRlUgh0ZW1wbGF0ZRIWCgZwYXJzZXIYBCABKAlSBnBhcnNlchImCgdzdWJQYWdlGAUgAygLMgwuU2l0ZVN1YlBhZ2VSB3N1YlBhZ2USEgoEaWNvbhgGIAEoCVIEaWNvbhIqCgdkaXNwbGF5GAcgASgOMhAuU2l0ZURpc3BsYXlUeXBlUgdkaXNwbGF5');
+    'CghTaXRlUGFnZRISCgRuYW1lGAEgASgJUgRuYW1lEhAKA3VybBgCIAEoCVIDdXJsEikKCHRlbXBsYXRlGAMgASgOMg0uUGFnZVRlbXBsYXRlUgh0ZW1wbGF0ZRIWCgZwYXJzZXIYBCABKAlSBnBhcnNlchImCgdzdWJQYWdlGAUgAygLMgwuU2l0ZVN1YlBhZ2VSB3N1YlBhZ2USEgoEaWNvbhgGIAEoCVIEaWNvbhIqCgdkaXNwbGF5GAcgASgOMhAuU2l0ZURpc3BsYXlUeXBlUgdkaXNwbGF5EiUKCG9wZW5QYWdlGAggAygLMgkuT3BlblBhZ2VSCG9wZW5QYWdl');
+@$core.Deprecated('Use openPageDescriptor instead')
+const OpenPage$json = const {
+  '1': 'OpenPage',
+  '2': const [
+    const {'1': 'target', '3': 1, '4': 1, '5': 9, '10': 'target'},
+    const {'1': 'inherit', '3': 2, '4': 1, '5': 8, '10': 'inherit'},
+  ],
+};
+
+/// Descriptor for `OpenPage`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List openPageDescriptor = $convert.base64Decode(
+    'CghPcGVuUGFnZRIWCgZ0YXJnZXQYASABKAlSBnRhcmdldBIYCgdpbmhlcml0GAIgASgIUgdpbmhlcml0');

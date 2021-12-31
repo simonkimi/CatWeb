@@ -121,18 +121,6 @@ class RulesPageEdit extends GetView<RulesEditController> {
         });
   }
 
-  // Widget _buildSubTitle(BuildContext context) {
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(horizontal: 10),
-  //     child: Text(
-  //       '子页面',
-  //       style: TextStyle(
-  //           fontSize: 14,
-  //           color: CupertinoColors.secondaryLabel.resolveFrom(context)),
-  //     ),
-  //   );
-  // }
-
   Widget _buildBasic(BuildContext context) {
     return SafeArea(
       child: ListView(
@@ -164,8 +152,21 @@ class RulesPageEdit extends GetView<RulesEditController> {
                 onTap: () => onDisplayTap(context),
               )),
           _buildIcon(context),
+          _buildOpenNewPage(context),
         ],
       ),
+    );
+  }
+
+  Widget _buildOpenNewPage(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Obx(() {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [],
+        );
+      }),
     );
   }
 
@@ -244,6 +245,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
           .toList(),
       cancelText: '取消',
     );
+
     if (result != null) {
       model.template.value = result;
     }

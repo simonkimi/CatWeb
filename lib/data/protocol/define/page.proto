@@ -16,8 +16,7 @@ message SiteSubPage {
 enum SiteDisplayType {
   show = 0;
   shrink = 1;
-  showWhenPossible = 2;
-  hide = 3;
+  hide = 2;
 }
 
 
@@ -29,4 +28,11 @@ message SitePage {
   repeated SiteSubPage subPage = 5;
   string icon = 6;
   SiteDisplayType display = 7;
+
+  repeated OpenPage openPage = 8;
+}
+
+message OpenPage {
+  string target = 1;
+  bool inherit = 2;
 }

@@ -169,6 +169,14 @@ class SitePage extends $pb.GeneratedMessage {
         defaultOrMaker: SiteDisplayType.show,
         valueOf: SiteDisplayType.valueOf,
         enumValues: SiteDisplayType.values)
+    ..pc<OpenPage>(
+        8,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'openPage',
+        $pb.PbFieldType.PM,
+        protoName: 'openPage',
+        subBuilder: OpenPage.create)
     ..hasRequiredFields = false;
 
   SitePage._() : super();
@@ -180,6 +188,7 @@ class SitePage extends $pb.GeneratedMessage {
     $core.Iterable<SiteSubPage>? subPage,
     $core.String? icon,
     SiteDisplayType? display,
+    $core.Iterable<OpenPage>? openPage,
   }) {
     final _result = create();
     if (name != null) {
@@ -202,6 +211,9 @@ class SitePage extends $pb.GeneratedMessage {
     }
     if (display != null) {
       _result.display = display;
+    }
+    if (openPage != null) {
+      _result.openPage.addAll(openPage);
     }
     return _result;
   }
@@ -305,4 +317,90 @@ class SitePage extends $pb.GeneratedMessage {
   $core.bool hasDisplay() => $_has(6);
   @$pb.TagNumber(7)
   void clearDisplay() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.List<OpenPage> get openPage => $_getList(7);
+}
+
+class OpenPage extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'OpenPage',
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'target')
+    ..aOB(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'inherit')
+    ..hasRequiredFields = false;
+
+  OpenPage._() : super();
+  factory OpenPage({
+    $core.String? target,
+    $core.bool? inherit,
+  }) {
+    final _result = create();
+    if (target != null) {
+      _result.target = target;
+    }
+    if (inherit != null) {
+      _result.inherit = inherit;
+    }
+    return _result;
+  }
+  factory OpenPage.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory OpenPage.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  OpenPage clone() => OpenPage()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  OpenPage copyWith(void Function(OpenPage) updates) =>
+      super.copyWith((message) => updates(message as OpenPage))
+          as OpenPage; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static OpenPage create() => OpenPage._();
+  OpenPage createEmptyInstance() => create();
+  static $pb.PbList<OpenPage> createRepeated() => $pb.PbList<OpenPage>();
+  @$core.pragma('dart2js:noInline')
+  static OpenPage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OpenPage>(create);
+  static OpenPage? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get target => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set target($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasTarget() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTarget() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.bool get inherit => $_getBF(1);
+  @$pb.TagNumber(2)
+  set inherit($core.bool v) {
+    $_setBool(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasInherit() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearInherit() => clearField(2);
 }

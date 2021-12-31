@@ -50,13 +50,8 @@ class SiteDisplayType extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'shrink');
-  static const SiteDisplayType showWhenPossible = SiteDisplayType._(
-      2,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'showWhenPossible');
   static const SiteDisplayType hide = SiteDisplayType._(
-      3,
+      2,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'hide');
@@ -64,7 +59,6 @@ class SiteDisplayType extends $pb.ProtobufEnum {
   static const $core.List<SiteDisplayType> values = <SiteDisplayType>[
     show,
     shrink,
-    showWhenPossible,
     hide,
   ];
 
