@@ -161,12 +161,12 @@ class RulesPageEdit extends GetView<RulesEditController> {
   Widget _buildOpenNewPage(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Obx(() {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [],
-        );
-      }),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+        ],
+      ),
     );
   }
 

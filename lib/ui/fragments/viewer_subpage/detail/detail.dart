@@ -330,7 +330,7 @@ class GalleryDetail extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Image.asset('assets/images/simple2.jpg'),
+          Image.asset('assets/images/sample2.jpg'),
           Positioned(
             right: 1,
             bottom: 1,

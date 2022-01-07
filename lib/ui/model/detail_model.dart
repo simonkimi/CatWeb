@@ -1,3 +1,4 @@
+import 'package:catweb/data/models/site_env_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class GalleryDetailModel {
@@ -45,29 +46,40 @@ class GalleryDetailModel {
       'commentList: $commentList\n';
 }
 
-class BadgeModel {
-  BadgeModel({this.text, this.category});
+class BadgeModel implements HasEnv {
+  BadgeModel({
+    this.text,
+    this.category,
+    SiteEnvModel? env,
+  }) : envModel = env ?? SiteEnvModel();
 
   final String? text;
   final String? category;
+
+  @override
+  final SiteEnvModel envModel;
 
   @override
   String toString() =>
       '<BadgeModel> ${category != null ? '$category: ' : ''} $text';
 }
 
-class CommentItemModel {
+class CommentItemModel implements HasEnv {
   CommentItemModel({
+    SiteEnvModel? env,
     this.username,
     this.comment,
     this.commentTime,
     this.score,
-  });
+  }) : envModel = env ?? SiteEnvModel();
 
   final String? username;
   final String? comment;
   final String? commentTime;
   final int? score;
+
+  @override
+  final SiteEnvModel envModel;
 
   @override
   String toString() => '<Comment> $username $comment $score';

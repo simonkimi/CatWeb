@@ -125,7 +125,7 @@ class SimpleCard extends StatelessWidget {
       children: [
         DarkWidget(
           child: Image.asset(
-            'assets/images/simple2.jpg',
+            'assets/images/sample2.jpg',
             fit: BoxFit.fill,
           ),
         ),

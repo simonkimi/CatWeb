@@ -37,32 +37,46 @@ ParserResult<GalleryDetailModel> galleryParserExec(
     );
 
     final result = GalleryDetailModel(
-        title: dom.string(parser.title, root.root),
-        subtitle: dom.string(parser.subtitle, root.root),
-        tag: dom.string(parser.tag, root.root),
-        tagColor: dom.color(parser.tagColor, root.root),
-        star: dom.double(parser.star, root.root),
-        description: dom.string(parser.description, root.root),
-        imageCount: dom.int(parser.imgCount, root.root),
-        language: dom.string(parser.language, root.root),
-        uploadTime: dom.string(parser.uploadTime, root.root),
-        badgeList: dom
-            .nodes(parser.badgeSelector, root.root)
-            .map((e) {
-              return BadgeModel(
-                  text: dom.string(parser.badgeText, e),
-                  category: dom.string(parser.badgeType, e));
-            })
-            .where((e) => e.text != null)
-            .toList(),
-        commentList: dom.nodes(parser.commentSelector, root.root).map((e) {
-          return CommentItemModel(
-            comment: dom.string(parser.comments.content, e),
-            commentTime: dom.string(parser.comments.postTime, e),
-            score: dom.int(parser.comments.vote, e),
-            username: dom.string(parser.comments.username, e),
-          );
-        }).toList());
+      title: dom.string(parser.title, root.root),
+      subtitle: dom.string(parser.subtitle, root.root),
+      tag: dom.string(parser.tag, root.root),
+      tagColor: dom.color(parser.tagColor, root.root),
+      star: dom.double(parser.star, root.root),
+      description: dom.string(parser.description, root.root),
+      imageCount: dom.int(parser.imgCount, root.root),
+      language: dom.string(parser.language, root.root),
+      uploadTime: dom.string(parser.uploadTime, root.root),
+      badgeList: dom
+          .nodes(parser.badgeSelector, root.root)
+          .map((e) {
+            return BadgeModel(
+              env: xmlHtmlLocalExtra(
+                domSelector: dom,
+                extras: parser.extraSelectorModel,
+                root: root.root,
+                filter: ExtraSelectorType.galleryBadge,
+              ),
+              text: dom.string(parser.badgeText, e),
+              category: dom.string(parser.badgeType, e),
+            );
+          })
+          .where((e) => e.text != null)
+          .toList(),
+      commentList: dom.nodes(parser.commentSelector, root.root).map((e) {
+        return CommentItemModel(
+          env: xmlHtmlLocalExtra(
+            domSelector: dom,
+            extras: parser.extraSelectorModel,
+            root: root.root,
+            filter: ExtraSelectorType.galleryComment,
+          ),
+          comment: dom.string(parser.comments.content, e),
+          commentTime: dom.string(parser.comments.postTime, e),
+          score: dom.int(parser.comments.vote, e),
+          username: dom.string(parser.comments.username, e),
+        );
+      }).toList(),
+    );
 
     return ParserResult<GalleryDetailModel>(
       result: result,
