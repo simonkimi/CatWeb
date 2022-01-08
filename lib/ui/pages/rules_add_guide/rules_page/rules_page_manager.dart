@@ -4,6 +4,7 @@ import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,12 @@ import 'package:get/get.dart';
 enum _MenuSelect {
   edit,
   delete,
+}
+
+enum _Valid {
+  edit,
+  delete,
+  save,
 }
 
 class RulesPageManager extends GetView<RulesEditController> {
@@ -43,7 +50,7 @@ class RulesPageManager extends GetView<RulesEditController> {
           title: const Text('添加'),
           leading: const Icon(Icons.add),
           onTap: () {
-            _addRule(context);
+            _toRulesPageEdit(context);
           },
         ),
       ],
@@ -85,37 +92,53 @@ class RulesPageManager extends GetView<RulesEditController> {
     }
   }
 
-  Future<void> _toRulesPageEdit(
-    BuildContext context,
-    SitePageModel model,
-  ) async {
+  Future<_Valid> _checkValid(BuildContext context, SitePageModel model) async {
+    if (!model.isValid()) {
+      final result = await showCupertinoConfirmDialog(
+        context: context,
+        title: '空',
+        content: '名称或解析器为空, 将不会保存',
+        confineText: '确认',
+        cancelText: '编辑',
+        showCancel: true,
+      );
+      if (result == true) return _Valid.delete;
+      return _Valid.edit;
+    }
+    if (controller.siteConfigModel.pageList
+        .any((e) => e != model && e.name == model.name)) {
+      await showCupertinoConfirmDialog(
+        context: context,
+        title: '重复',
+        content: '名称重复, 请重新修改',
+      );
+      return _Valid.edit;
+    }
+    return _Valid.save;
+  }
+
+  Future<void> _toRulesPageEdit(BuildContext context,
+      [SitePageModel? model]) async {
+    final input = model ?? await _genRules(context);
+    if (input == null) return;
+    outer:
     while (true) {
-      await Get.to(() => RulesPageEdit(model: model));
-      if (!model.isValid()) {
-        final result = await showCupertinoConfirmDialog(
-          context: context,
-          title: '错误',
-          content: '没有设定名称或解析器, 将删除此配置',
-          confineText: '确认删除',
-        );
-        if (result == true) {
-          controller.siteConfigModel.pageList.remove(model);
-          break;
-        }
+      await Get.to(() => RulesPageEdit(model: input));
+      final valid = await _checkValid(context, input);
+      switch (valid) {
+        case _Valid.edit:
+          continue outer;
+        case _Valid.delete:
+          controller.siteConfigModel.pageList.remove(input);
+          break outer;
+        case _Valid.save:
+          controller.siteConfigModel.pageList.addIfNotExist([input]);
+          break outer;
       }
-      if (controller.siteConfigModel.pageList
-          .any((e) => e != model && e.name == model.name)) {
-        await showCupertinoConfirmDialog(
-          context: context,
-          title: '重复',
-          content: '名称重复, 请重新修改',
-        );
-      }
-      break;
     }
   }
 
-  Future<void> _addRule(BuildContext context) async {
+  Future<SitePageModel?> _genRules(BuildContext context) async {
     final select = await showCupertinoSelectDialog<PageTemplate>(
       title: '选择模板',
       context: context,
@@ -135,33 +158,7 @@ class RulesPageManager extends GetView<RulesEditController> {
       ],
     );
     if (select != null) {
-      final input = SitePageModel()..template.value = select;
-      while (true) {
-        await Get.to(() => RulesPageEdit(model: input));
-        if (input.isValid()) {
-          if (controller.siteConfigModel.pageList
-              .any((e) => e.name.value == input.name.value)) {
-            await showCupertinoConfirmDialog(
-              context: context,
-              title: '重复',
-              content: '名称重复, 请重新修改',
-            );
-            continue;
-          }
-          controller.siteConfigModel.pageList.add(input);
-          break;
-        } else {
-          final result = await showCupertinoConfirmDialog(
-            context: context,
-            title: '错误',
-            content: '没有设定名称或解析器, 将不会保存',
-            confineText: '不保存',
-          );
-          if (result == true) {
-            break;
-          }
-        }
-      }
+      return SitePageModel()..template.value = select;
     }
   }
 }

@@ -221,7 +221,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
         minSize: 0,
       ),
       middle: const Text('页面'),
-      border: model.isMultiPage? const Border(): kDefaultNavBarBorder,
+      border: model.isMultiPage ? const Border() : kDefaultNavBarBorder,
     );
   }
 

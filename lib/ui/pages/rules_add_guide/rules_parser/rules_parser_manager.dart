@@ -12,6 +12,12 @@ enum _MenuSelect {
   delete,
 }
 
+enum _Valid {
+  edit,
+  delete,
+  save,
+}
+
 class RulesParserManager extends GetView<RulesEditController> {
   const RulesParserManager({
     Key? key,
@@ -34,48 +40,17 @@ class RulesParserManager extends GetView<RulesEditController> {
                     child: const Icon(Icons.more_horiz_outlined),
                     onPressed: () => _onTrailingTap(context, e),
                   ),
-                  onTap: () => editRules(context, e),
+                  onTap: () => _editRules(context, e),
                 );
               }).toList(),
             )),
         CupertinoListTile(
           title: const Text('添加'),
           leading: const Icon(Icons.add),
-          onTap: () => addRulesParser(context),
+          onTap: () => _editRules(context),
         ),
       ],
     );
-  }
-
-  Future<void> addRulesParser(BuildContext context) async {
-    final selection = await showCupertinoSelectDialog<ParserType>(
-      context: context,
-      title: '规则类型',
-      cancelText: '取消',
-      items: const [
-        SelectTileItem(title: '列表页', value: ParserType.listParser),
-        SelectTileItem(title: '详情页', value: ParserType.galleryParser),
-        SelectTileItem(title: '图片页', value: ParserType.imageParser),
-      ],
-    );
-    if (selection != null) {
-      late final ParserBaseModel model;
-      switch (selection) {
-        case ParserType.listParser:
-          model = ListViewParserModel();
-          break;
-        case ParserType.galleryParser:
-          model = GalleryParserModel();
-          break;
-        case ParserType.imageParser:
-          model = ImageParserModel();
-          break;
-      }
-      await Get.to(() => RulesParserEditor(model: model));
-      if (model.name.value.isNotEmpty) {
-        controller.siteConfigModel.addParser(model);
-      }
-    }
   }
 
   Future<void> _onTrailingTap(
@@ -98,7 +73,7 @@ class RulesParserManager extends GetView<RulesEditController> {
       case null:
         break;
       case _MenuSelect.edit:
-        await editRules(context, model);
+        await _editRules(context, model);
         break;
       case _MenuSelect.delete:
         if (await showCupertinoConfirmDialog(
@@ -113,14 +88,73 @@ class RulesParserManager extends GetView<RulesEditController> {
     }
   }
 
-  Future<void> editRules(BuildContext context, ParserBaseModel model) async {
-    await Navigator.of(context).push(CupertinoPageRoute(
-      builder: (context) => RulesParserEditor(
-        model: model,
-      ),
-    ));
-    if (model.name.value.isEmpty) {
-      controller.siteConfigModel.removeParser(model);
+  Future<_Valid> _checkValid(
+      BuildContext context, ParserBaseModel model) async {
+    if (model.name.isEmpty) {
+      final result = await showCupertinoConfirmDialog(
+        context: context,
+        title: '空',
+        content: '名称为空, 将不会保存',
+        confineText: '不保存',
+        cancelText: '编辑',
+        showCancel: true,
+      );
+      if (result == true) return _Valid.delete;
+      return _Valid.edit;
+    }
+    if (controller.siteConfigModel.parsers
+        .any((e) => e != model && e.name == model.name)) {
+      await showCupertinoConfirmDialog(
+        context: context,
+        title: '重复',
+        content: '名称重复, 请重新修改',
+      );
+      return _Valid.edit;
+    }
+    return _Valid.save;
+  }
+
+  Future<ParserBaseModel?> _genParser(BuildContext context) async {
+    final selection = await showCupertinoSelectDialog<ParserType>(
+      context: context,
+      title: '规则类型',
+      cancelText: '取消',
+      items: const [
+        SelectTileItem(title: '列表页', value: ParserType.listParser),
+        SelectTileItem(title: '详情页', value: ParserType.galleryParser),
+        SelectTileItem(title: '图片页', value: ParserType.imageParser),
+      ],
+    );
+    if (selection != null) {
+      switch (selection) {
+        case ParserType.listParser:
+          return ListViewParserModel();
+        case ParserType.galleryParser:
+          return GalleryParserModel();
+        case ParserType.imageParser:
+          return ImageParserModel();
+      }
+    }
+  }
+
+  Future<void> _editRules(BuildContext context,
+      [ParserBaseModel? model]) async {
+    final input = model ?? await _genParser(context);
+    if (input == null) return;
+    outer:
+    while (true) {
+      await Get.to(() => RulesParserEditor(model: input));
+      final valid = await _checkValid(context, input);
+      switch (valid) {
+        case _Valid.edit:
+          continue outer;
+        case _Valid.delete:
+          controller.siteConfigModel.removeParser(input);
+          break outer;
+        case _Valid.save:
+          controller.siteConfigModel.addParser(input);
+          break outer;
+      }
     }
   }
 }
