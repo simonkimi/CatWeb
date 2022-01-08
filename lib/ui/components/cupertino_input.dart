@@ -102,7 +102,10 @@ class CupertinoInput extends StatelessWidget {
           ),
           const SizedBox(height: 3),
           CupertinoTextField(
-            controller: TextEditingController(text: value.value),
+            controller: TextEditingController(text: value.value)
+              ..selection = TextSelection.collapsed(
+                offset: value.value.length,
+              ),
             decoration: BoxDecoration(
               border: const Border(),
               color: CupertinoColors.systemGrey6,
