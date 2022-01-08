@@ -1,5 +1,6 @@
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/interface.dart';
+import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -88,6 +89,9 @@ class SitePageModel implements PbAble {
   OpenPageModel get listItemTarget => _genOpenPageList(1, 0);
 
   OpenPageModel get badgeTarget => _genOpenPageList(1, 0);
+
+  bool get isMultiPage => [PageTemplate.imageList, PageTemplate.imageWaterfall]
+      .contains(template.value);
 }
 
 extension PageTemplateTr on PageTemplate {
@@ -100,6 +104,30 @@ extension PageTemplateTr on PageTemplate {
       case PageTemplate.imageWaterfall:
       default:
         return '图片瀑布流';
+    }
+  }
+
+  List<PageTemplate> get brother {
+    final data = <List<PageTemplate>>[
+      [PageTemplate.imageWaterfall, PageTemplate.imageList],
+      [PageTemplate.detail]
+    ];
+    for (final parent in data) {
+      for (final my in parent) {
+        if (my == this) return parent;
+      }
+    }
+    throw UnimplementedError('Not define brother ${this}');
+  }
+
+  Iterable<ParserBaseModel> parser(List<ParserBaseModel> input) {
+    switch (this) {
+      case PageTemplate.detail:
+        return input.whereType<GalleryParserModel>();
+      case PageTemplate.imageList:
+      case PageTemplate.imageWaterfall:
+      default:
+        return input.whereType<ListViewParserModel>();
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/ui/components/cupertino_deletable_tile.dart';
@@ -23,9 +24,8 @@ class RulesPageEdit extends GetView<RulesEditController> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => showExitConfine(context),
-      child: CupertinoPageScaffold(
+    if (model.isMultiPage) {
+      return CupertinoPageScaffold(
         navigationBar: _buildAppbar(context),
         child: CupertinoTabBarView(
           tabs: const [
@@ -37,7 +37,11 @@ class RulesPageEdit extends GetView<RulesEditController> {
             _buildSubPage(context),
           ],
         ),
-      ),
+      );
+    }
+    return CupertinoPageScaffold(
+      navigationBar: _buildAppbar(context),
+      child: _buildBasic(context),
     );
   }
 
@@ -138,18 +142,18 @@ class RulesPageEdit extends GetView<RulesEditController> {
           Obx(() => CupertinoReadOnlyInput(
                 labelText: '模板',
                 value: model.template.value.string(context),
-                onTap: () => onTemplateTap(context),
+                onTap: () => _onTemplateTap(context),
               )),
           Obx(() => CupertinoReadOnlyInput(
                 labelText: '解析器',
                 value: model.parser.value,
-                onTap: () => onParserTap(context),
+                onTap: () => _onParserTap(context),
               )),
           const CupertinoDivider(height: 20),
           Obx(() => CupertinoReadOnlyInput(
                 labelText: '显示方式',
                 value: model.display.value.string(context),
-                onTap: () => onDisplayTap(context),
+                onTap: () => _onDisplayTap(context),
               )),
           _buildIcon(context),
           _buildOpenNewPage(context),
@@ -163,9 +167,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-
-        ],
+        children: [],
       ),
     );
   }
@@ -209,38 +211,25 @@ class RulesPageEdit extends GetView<RulesEditController> {
 
   CupertinoNavigationBar _buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
+      padding: kAppbarPadding,
       leading: CupertinoButton(
         onPressed: () {
-          showExitConfine(context).then((value) {
-            if (value) Get.back();
-          });
+          Get.back();
         },
         child: const Icon(CupertinoIcons.back),
         padding: EdgeInsets.zero,
         minSize: 0,
       ),
       middle: const Text('页面'),
-      border: const Border(),
+      border: model.isMultiPage? const Border(): kDefaultNavBarBorder,
     );
   }
 
-  Future<bool> showExitConfine(BuildContext context) async {
-    if (!model.isValid()) {
-      return (await showCupertinoConfirmDialog(
-            context: context,
-            title: '返回',
-            content: '没有设定名称或解析器, 将不会保存\n确定不保存直接退出吗?',
-          ) ==
-          true);
-    }
-    return true;
-  }
-
-  Future<void> onTemplateTap(BuildContext context) async {
+  Future<void> _onTemplateTap(BuildContext context) async {
     final result = await showCupertinoSelectDialog<PageTemplate>(
       title: '请选择页面模板',
       context: context,
-      items: PageTemplate.values
+      items: model.template.value.brother
           .map((e) => SelectTileItem(title: e.string(context), value: e))
           .toList(),
       cancelText: '取消',
@@ -251,11 +240,12 @@ class RulesPageEdit extends GetView<RulesEditController> {
     }
   }
 
-  Future<void> onParserTap(BuildContext context) async {
+  Future<void> _onParserTap(BuildContext context) async {
     final result = await showCupertinoSelectDialog<String>(
       title: '请选择解析器',
       context: context,
-      items: controller.siteConfigModel.parsers
+      items: model.template.value
+          .parser(controller.siteConfigModel.parsers)
           .map((e) => SelectTileItem(title: e.name.value, value: e.name.value))
           .toList(),
       cancelText: '取消',
@@ -265,7 +255,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
     }
   }
 
-  Future<void> onDisplayTap(BuildContext context) async {
+  Future<void> _onDisplayTap(BuildContext context) async {
     final result = await showCupertinoSelectDialog<SiteDisplayType>(
       title: '显示方式',
       context: context,

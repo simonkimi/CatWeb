@@ -32,7 +32,7 @@ class RulesParserManager extends GetView<RulesEditController> {
                     padding: EdgeInsets.zero,
                     minSize: 10,
                     child: const Icon(Icons.more_horiz_outlined),
-                    onPressed: () => onTrailingTap(context, e),
+                    onPressed: () => _onTrailingTap(context, e),
                   ),
                   onTap: () => editRules(context, e),
                 );
@@ -78,7 +78,7 @@ class RulesParserManager extends GetView<RulesEditController> {
     }
   }
 
-  Future<void> onTrailingTap(
+  Future<void> _onTrailingTap(
     BuildContext context,
     ParserBaseModel model,
   ) async {

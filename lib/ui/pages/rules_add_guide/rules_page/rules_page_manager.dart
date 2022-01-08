@@ -1,4 +1,5 @@
 import 'package:catweb/data/protocol/model/page.dart';
+import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
@@ -32,9 +33,9 @@ class RulesPageManager extends GetView<RulesEditController> {
                     padding: EdgeInsets.zero,
                     minSize: 10,
                     child: const Icon(Icons.more_horiz_outlined),
-                    onPressed: () => onTrailingTap(context, e),
+                    onPressed: () => _onTrailingTap(context, e),
                   ),
-                  onTap: () => toRulesPageEdit(e),
+                  onTap: () => _toRulesPageEdit(context, e),
                 );
               }).toList(),
             )),
@@ -42,14 +43,14 @@ class RulesPageManager extends GetView<RulesEditController> {
           title: const Text('添加'),
           leading: const Icon(Icons.add),
           onTap: () {
-            toRulesPageEdit();
+            _addRule(context);
           },
         ),
       ],
     );
   }
 
-  Future<void> onTrailingTap(
+  Future<void> _onTrailingTap(
     BuildContext context,
     SitePageModel model,
   ) async {
@@ -69,7 +70,7 @@ class RulesPageManager extends GetView<RulesEditController> {
       case null:
         break;
       case _MenuSelect.edit:
-        await toRulesPageEdit(model);
+        await _toRulesPageEdit(context, model);
         break;
       case _MenuSelect.delete:
         if (await showCupertinoConfirmDialog(
@@ -84,13 +85,83 @@ class RulesPageManager extends GetView<RulesEditController> {
     }
   }
 
-  Future<void> toRulesPageEdit([SitePageModel? model]) async {
-    final input = model ?? SitePageModel();
-    await Get.to(() => RulesPageEdit(model: input));
-    if (model == null && input.name.value.isNotEmpty) {
-      controller.siteConfigModel.pageList.add(input);
-    } else if (input.name.value.isEmpty) {
-      controller.siteConfigModel.pageList.remove(model);
+  Future<void> _toRulesPageEdit(
+    BuildContext context,
+    SitePageModel model,
+  ) async {
+    while (true) {
+      await Get.to(() => RulesPageEdit(model: model));
+      if (!model.isValid()) {
+        final result = await showCupertinoConfirmDialog(
+          context: context,
+          title: '错误',
+          content: '没有设定名称或解析器, 将删除此配置',
+          confineText: '确认删除',
+        );
+        if (result == true) {
+          controller.siteConfigModel.pageList.remove(model);
+          break;
+        }
+      }
+      if (controller.siteConfigModel.pageList
+          .any((e) => e != model && e.name == model.name)) {
+        await showCupertinoConfirmDialog(
+          context: context,
+          title: '重复',
+          content: '名称重复, 请重新修改',
+        );
+      }
+      break;
+    }
+  }
+
+  Future<void> _addRule(BuildContext context) async {
+    final select = await showCupertinoSelectDialog<PageTemplate>(
+      title: '选择模板',
+      context: context,
+      items: [
+        SelectTileItem(
+          title: PageTemplate.imageList.string(context),
+          value: PageTemplate.imageList,
+        ),
+        SelectTileItem(
+          title: PageTemplate.imageWaterfall.string(context),
+          value: PageTemplate.imageWaterfall,
+        ),
+        SelectTileItem(
+          title: PageTemplate.detail.string(context),
+          value: PageTemplate.detail,
+        ),
+      ],
+    );
+    if (select != null) {
+      final input = SitePageModel()..template.value = select;
+      while (true) {
+        await Get.to(() => RulesPageEdit(model: input));
+        if (input.isValid()) {
+          if (controller.siteConfigModel.pageList
+              .any((e) => e.name.value == input.name.value)) {
+            await showCupertinoConfirmDialog(
+              context: context,
+              title: '重复',
+              content: '名称重复, 请重新修改',
+            );
+            continue;
+          }
+          controller.siteConfigModel.pageList.add(input);
+          break;
+        } else {
+          final result = await showCupertinoConfirmDialog(
+            context: context,
+            title: '错误',
+            content: '没有设定名称或解析器, 将不会保存',
+            confineText: '不保存',
+          );
+          if (result == true) {
+            break;
+          }
+        }
+      }
     }
   }
 }

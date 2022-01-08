@@ -116,7 +116,7 @@ class ImageLoadModel {
       _state.value = ImageLoadState.finish;
     } on Exception catch (e) {
       lastException.value = e;
-      await onDisplayError();
+      await _onDisplayError();
       rethrow;
     }
     return this;
@@ -138,7 +138,7 @@ class ImageLoadModel {
     }
   }
 
-  Future<void> onDisplayError() async {
+  Future<void> _onDisplayError() async {
     _state.value = ImageLoadState.error;
     _progress.value = 0.0;
     _data = null;

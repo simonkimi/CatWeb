@@ -51,7 +51,7 @@ class SiteManager extends StatelessWidget {
           title: Text(pb.name),
           subtitle: Text(pb.baseUrl),
           trailing: const Icon(Icons.more_horiz),
-          onTrailingTap: () => onTrailingTap(context, e, pb),
+          onTrailingTap: () => _onTrailingTap(context, e, pb),
           onTap: () => siteController.setNewSite(
             siteController.id == e.id ? null : e,
           ),
@@ -97,7 +97,7 @@ class SiteManager extends StatelessWidget {
     );
   }
 
-  Future<void> onTrailingTap(
+  Future<void> _onTrailingTap(
     BuildContext context,
     WebTableData db,
     SiteConfig pb,
