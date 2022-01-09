@@ -2,7 +2,8 @@ import 'package:catweb/data/constant.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/list_card.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
-import 'package:catweb/ui/fragments/viewer_subpage/list/subpage_controller.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/list/subpage_controller.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';

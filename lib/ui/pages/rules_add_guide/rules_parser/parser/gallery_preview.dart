@@ -1,5 +1,5 @@
-import 'package:catweb/ui/fragments/viewer_subpage/detail/detail.dart';
 import 'package:catweb/ui/model/detail_model.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/detail/detail.dart';
 import 'package:flutter/material.dart';
 
 class GalleryPreview extends StatelessWidget {

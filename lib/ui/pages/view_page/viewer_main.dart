@@ -1,6 +1,7 @@
 import 'package:catweb/data/controller/site_controller.dart';
-import 'package:catweb/ui/fragments/viewer_subpage/empty/empty.dart';
+
 import 'package:catweb/ui/pages/view_page/viewer_scaffold.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/empty/empty.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

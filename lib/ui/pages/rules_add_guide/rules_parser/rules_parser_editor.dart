@@ -1,10 +1,11 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
-import 'package:catweb/ui/fragments/parser/extra_parser.dart';
-import 'package:catweb/ui/fragments/parser/gallery_parser.dart';
-import 'package:catweb/ui/fragments/parser/gallery_preview.dart';
-import 'package:catweb/ui/fragments/parser/list_parser.dart';
-import 'package:catweb/ui/fragments/parser/list_preview.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/extra_parser.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/gallery_parser.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/gallery_preview.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/list_parser.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/list_preview.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

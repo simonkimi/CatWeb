@@ -219,7 +219,6 @@ class AppBarScrollNotifier extends StatelessWidget {
       onNotification: (notification) {
         var metrics = notification.metrics;
         assert(metrics.axis == Axis.vertical);
-
         if (metrics.pixels < 0 || metrics.pixels > metrics.maxScrollExtent) {
           metrics = FixedScrollMetrics(
             pixels: metrics.pixels < 0 ? 0 : metrics.maxScrollExtent,
@@ -229,10 +228,10 @@ class AppBarScrollNotifier extends StatelessWidget {
             viewportDimension: metrics.viewportDimension,
           );
         }
-
-        AppBarScrollNotification(metrics: metrics, context: context)
-            .dispatch(context);
-
+        AppBarScrollNotification(
+          metrics: metrics,
+          context: context,
+        ).dispatch(context);
         return true;
       },
     );

@@ -137,8 +137,10 @@ class RulesParserManager extends GetView<RulesEditController> {
     }
   }
 
-  Future<void> _editRules(BuildContext context,
-      [ParserBaseModel? model]) async {
+  Future<void> _editRules(
+    BuildContext context, [
+    ParserBaseModel? model,
+  ]) async {
     final input = model ?? await _genParser(context);
     if (input == null) return;
     outer:
