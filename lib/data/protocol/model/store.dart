@@ -96,11 +96,13 @@ class SiteConfigModel implements PbAble {
         ...imageParser,
       ]);
 
-  String getParserName(String uuid) =>
-      parsers.get((p0) => p0.uuid == uuid)?.name.value ?? 'No parser';
+  String getParserName(String uuid) => uuid.isEmpty
+      ? ''
+      : parsers.get((p0) => p0.uuid == uuid)?.name.value ?? 'No parser';
 
-  String getPageName(String uuid) =>
-      pageList.get((p0) => p0.uuid == uuid)?.name.value ?? 'No page';
+  String getPageName(String uuid) => uuid.isEmpty
+      ? ''
+      : pageList.get((p0) => p0.uuid == uuid)?.name.value ?? 'No page';
 
   ListViewParserModel getListParser(String uuid) {
     final result = listViewParser.get((e) => e.uuid == uuid);

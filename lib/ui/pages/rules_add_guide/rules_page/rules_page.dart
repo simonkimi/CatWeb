@@ -172,7 +172,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
           Obx(() => CupertinoReadOnlyInput(
                 labelText: '徽章跳转',
                 value: controller.siteConfigModel
-                    .getParserName(model.badgeTarget.target.value),
+                    .getPageName(model.badgeTarget.target.value),
                 onTap: () => _onOpenNewPageClick(context, model.badgeTarget),
               )),
         ];
@@ -183,7 +183,8 @@ class RulesPageEdit extends GetView<RulesEditController> {
           // 项目被点击
           Obx(() => CupertinoReadOnlyInput(
                 labelText: '项目跳转',
-                value: model.listItemTarget.target.value,
+                value: controller.siteConfigModel
+                    .getPageName(model.badgeTarget.target.value),
                 onTap: () => _onOpenNewPageClick(context, model.listItemTarget),
               )),
         ];

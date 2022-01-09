@@ -73,15 +73,32 @@ class RulesPageManager extends GetView<RulesEditController> {
         await _toRulesPageEdit(context, model);
         break;
       case _MenuSelect.delete:
-        if (await showCupertinoConfirmDialog(
-              context: context,
-              content: '确定要删除 ${model.name} 吗？',
-              title: '取消',
-            ) ==
-            true) {
+        _onPageDelete(context, model);
+        break;
+    }
+  }
+
+  void _onPageDelete(BuildContext context, SitePageModel model) {
+    final using = controller.siteConfigModel.pageList
+        .where((p0) =>
+            p0.openPages.any((element) => element.target.value == model.uuid))
+        .map((e) => e.name.value)
+        .toList();
+    if (using.isNotEmpty) {
+      showCupertinoConfirmDialog(
+          context: context,
+          content: '无法删除, 因下列页面会跳转到此页面:\n ${using.join(' ')}');
+    } else {
+      showCupertinoConfirmDialog(
+        context: context,
+        content: '确定要删除 ${model.name} 吗？',
+        title: '取消',
+        showCancel: true,
+      ).then((value) {
+        if (value == true) {
           controller.siteConfigModel.pageList.remove(model);
         }
-        break;
+      });
     }
   }
 

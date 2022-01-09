@@ -70,15 +70,31 @@ class RulesParserManager extends GetView<RulesEditController> {
         await _editRules(context, model);
         break;
       case _MenuSelect.delete:
-        if (await showCupertinoConfirmDialog(
-              context: context,
-              content: '确定要删除 ${model.name} 吗？',
-              title: '取消',
-            ) ==
-            true) {
+        _onParserDelete(context, model);
+        break;
+    }
+  }
+
+  void _onParserDelete(BuildContext context, ParserBaseModel model) {
+    final using = controller.siteConfigModel.pageList
+        .where((p0) => p0.parser.value == model.uuid)
+        .map((e) => e.name.value)
+        .toList();
+    if (using.isNotEmpty) {
+      showCupertinoConfirmDialog(
+          context: context,
+          content: '无法删除, 因下列页面正在使用此解析器:\n ${using.join(' ')}');
+    } else {
+      showCupertinoConfirmDialog(
+        context: context,
+        content: '确定要删除 ${model.name} 吗？',
+        title: '取消',
+        showCancel: true,
+      ).then((value) {
+        if (value == true) {
           controller.siteConfigModel.removeParser(model);
         }
-        break;
+      });
     }
   }
 
