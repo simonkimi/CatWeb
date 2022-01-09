@@ -12,12 +12,6 @@ enum _MenuSelect {
   delete,
 }
 
-enum _Valid {
-  edit,
-  delete,
-  save,
-}
-
 class RulesParserManager extends GetView<RulesEditController> {
   const RulesParserManager({
     Key? key,
@@ -88,32 +82,6 @@ class RulesParserManager extends GetView<RulesEditController> {
     }
   }
 
-  Future<_Valid> _checkValid(
-      BuildContext context, ParserBaseModel model) async {
-    if (model.name.isEmpty) {
-      final result = await showCupertinoConfirmDialog(
-        context: context,
-        title: '空',
-        content: '名称为空, 将不会保存',
-        confineText: '不保存',
-        cancelText: '编辑',
-        showCancel: true,
-      );
-      if (result == true) return _Valid.delete;
-      return _Valid.edit;
-    }
-    if (controller.siteConfigModel.parsers
-        .any((e) => e != model && e.name == model.name)) {
-      await showCupertinoConfirmDialog(
-        context: context,
-        title: '重复',
-        content: '名称重复, 请重新修改',
-      );
-      return _Valid.edit;
-    }
-    return _Valid.save;
-  }
-
   Future<ParserBaseModel?> _genParser(BuildContext context) async {
     final selection = await showCupertinoSelectDialog<ParserType>(
       context: context,
@@ -143,20 +111,7 @@ class RulesParserManager extends GetView<RulesEditController> {
   ]) async {
     final input = model ?? await _genParser(context);
     if (input == null) return;
-    outer:
-    while (true) {
-      await Get.to(() => RulesParserEditor(model: input));
-      final valid = await _checkValid(context, input);
-      switch (valid) {
-        case _Valid.edit:
-          continue outer;
-        case _Valid.delete:
-          controller.siteConfigModel.removeParser(input);
-          break outer;
-        case _Valid.save:
-          if (model == null) controller.siteConfigModel.addParser(input);
-          break outer;
-      }
-    }
+    await Get.to(() => RulesParserEditor(model: input));
+    if (model == null) controller.siteConfigModel.addParser(input);
   }
 }

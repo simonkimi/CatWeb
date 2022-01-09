@@ -146,7 +146,8 @@ class RulesPageEdit extends GetView<RulesEditController> {
               )),
           Obx(() => CupertinoReadOnlyInput(
                 labelText: '解析器',
-                value: model.parser.value,
+                value: controller.siteConfigModel
+                    .getParserName(model.parser.value),
                 onTap: () => _onParserTap(context),
               )),
           const CupertinoDivider(height: 20),
@@ -170,7 +171,8 @@ class RulesPageEdit extends GetView<RulesEditController> {
         body = [
           Obx(() => CupertinoReadOnlyInput(
                 labelText: '徽章跳转',
-                value: model.badgeTarget.target.value,
+                value: controller.siteConfigModel
+                    .getParserName(model.badgeTarget.target.value),
                 onTap: () => _onOpenNewPageClick(context, model.badgeTarget),
               )),
         ];
@@ -210,7 +212,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
             items: controller.siteConfigModel.pageList
                 .map((e) => SelectTileItem(
                       title: e.name.string,
-                      value: e.name.string,
+                      value: e.uuid,
                     ))
                 .toList())
         .then((value) {
@@ -296,7 +298,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
       context: context,
       items: model.template.value
           .parser(controller.siteConfigModel.parsers)
-          .map((e) => SelectTileItem(title: e.name.value, value: e.name.value))
+          .map((e) => SelectTileItem(title: e.name.value, value: e.uuid))
           .toList(),
       cancelText: '取消',
     );

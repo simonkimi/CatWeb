@@ -23,14 +23,16 @@ enum SiteDisplayType {
 
 message SitePage {
   string name = 1;
-  string url = 2;
-  PageTemplate template = 3;
-  string parser = 4;
-  repeated SiteSubPage subPage = 5;
-  string icon = 6;
-  SiteDisplayType display = 7;
+  string uuid = 2;
 
-  repeated OpenPage openPage = 8;
+  string url = 3;
+  PageTemplate template = 4;
+  string parser = 5;
+  repeated SiteSubPage subPage = 6;
+  string icon = 7;
+  SiteDisplayType display = 8;
+
+  repeated OpenPage openPage = 9;
 }
 
 message OpenPage {

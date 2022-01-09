@@ -4,7 +4,6 @@ import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page.dart';
-import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,12 +11,6 @@ import 'package:get/get.dart';
 enum _MenuSelect {
   edit,
   delete,
-}
-
-enum _Valid {
-  edit,
-  delete,
-  save,
 }
 
 class RulesPageManager extends GetView<RulesEditController> {
@@ -92,49 +85,13 @@ class RulesPageManager extends GetView<RulesEditController> {
     }
   }
 
-  Future<_Valid> _checkValid(BuildContext context, SitePageModel model) async {
-    if (!model.isValid()) {
-      final result = await showCupertinoConfirmDialog(
-        context: context,
-        title: '空',
-        content: '名称或解析器为空, 将不会保存',
-        confineText: '确认',
-        cancelText: '编辑',
-        showCancel: true,
-      );
-      if (result == true) return _Valid.delete;
-      return _Valid.edit;
-    }
-    if (controller.siteConfigModel.pageList
-        .any((e) => e != model && e.name == model.name)) {
-      await showCupertinoConfirmDialog(
-        context: context,
-        title: '重复',
-        content: '名称重复, 请重新修改',
-      );
-      return _Valid.edit;
-    }
-    return _Valid.save;
-  }
-
   Future<void> _toRulesPageEdit(BuildContext context,
       [SitePageModel? model]) async {
     final input = model ?? await _genRules(context);
     if (input == null) return;
-    outer:
-    while (true) {
-      await Get.to(() => RulesPageEdit(model: input));
-      final valid = await _checkValid(context, input);
-      switch (valid) {
-        case _Valid.edit:
-          continue outer;
-        case _Valid.delete:
-          controller.siteConfigModel.pageList.remove(input);
-          break outer;
-        case _Valid.save:
-          controller.siteConfigModel.pageList.addIfNotExist([input]);
-          break outer;
-      }
+    await Get.to(() => RulesPageEdit(model: input));
+    if (model == null) {
+      controller.siteConfigModel.pageList.add(input);
     }
   }
 
@@ -142,10 +99,9 @@ class RulesPageManager extends GetView<RulesEditController> {
     final select = await showCupertinoSelectDialog<PageTemplate>(
       title: '选择模板',
       context: context,
-      items: PageTemplate.values.map((e) => SelectTileItem(
-          title: e.string(context),
-          value: e
-      )).toList(),
+      items: PageTemplate.values
+          .map((e) => SelectTileItem(title: e.string(context), value: e))
+          .toList(),
     );
     if (select != null) {
       return SitePageModel()..template.value = select;

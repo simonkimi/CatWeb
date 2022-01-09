@@ -4,6 +4,7 @@ import 'selector.proto';
 
 message ImageParser {
   string name = 1;
+  string uuid = 999;
 
   Selector id = 2;
   ImageSelector image = 3;
@@ -20,6 +21,7 @@ message ImageParser {
 
 message ListViewParser {
   string name = 1;
+  string uuid = 999;
 
   Selector itemSelector = 2; // 选取整个列表
   Selector title = 3;
@@ -47,6 +49,7 @@ message ListViewParser {
 
 message GalleryParser {
   string name = 1;
+  string uuid = 999;
 
   // 基础
   Selector title = 2;

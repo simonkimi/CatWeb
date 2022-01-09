@@ -1,3 +1,4 @@
+import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/parser.pbserver.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
@@ -14,11 +15,13 @@ enum ParserType {
 }
 
 abstract class ParserBaseModel implements PbAble {
-  ParserBaseModel({required this.name, Iterable<ExtraSelector>? extra})
+  ParserBaseModel(
+      {required this.name, required this.uuid, Iterable<ExtraSelector>? extra})
       : extraSelectorModel =
             lobs(extra, (ExtraSelector e) => ExtraSelectorModel(e));
 
   final RxString name;
+  final String uuid;
 
   // 额外信息
   final RxList<ExtraSelectorModel> extraSelectorModel;
@@ -44,6 +47,7 @@ class ImageParserModel extends ParserBaseModel {
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
+          uuid: genUuid(pb?.uuid),
         );
 
   final SelectorModel id;
@@ -63,6 +67,7 @@ class ImageParserModel extends ParserBaseModel {
   ImageParser toPb() => ImageParser(
         name: name.value,
         id: id.toPb(),
+        uuid: uuid,
         image: image.toPb(),
         rawImage: rawImage.toPb(),
         largerImage: largerImage.toPb(),
@@ -112,6 +117,7 @@ class GalleryParserModel extends ParserBaseModel {
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
+          uuid: genUuid(pb?.uuid),
         );
 
   final SelectorModel title;
@@ -225,6 +231,7 @@ class ListViewParserModel extends ParserBaseModel {
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
+          uuid: genUuid(pb?.uuid),
         );
 
   // 列表选择器

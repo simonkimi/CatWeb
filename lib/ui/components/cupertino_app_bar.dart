@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 
 import 'grey_tab_indicator.dart';
 
-
-
 class CupertinoAppBar extends StatefulWidget {
   const CupertinoAppBar({
     Key? key,

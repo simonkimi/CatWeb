@@ -28,9 +28,7 @@ class FixColor {
 
   static const CupertinoDynamicColor groupedColor =
       CupertinoDynamicColor.withBrightness(
-    color: Color(0xfff5f5f7),
-    darkColor: Color(0xff333336)
-  );
+          color: Color(0xfff5f5f7), darkColor: Color(0xff333336));
 }
 
 bool isDarkMode(BuildContext context) =>

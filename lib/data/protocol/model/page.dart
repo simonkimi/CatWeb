@@ -5,6 +5,7 @@ import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
 class OpenPageModel implements PbAble {
   OpenPageModel([OpenPage? pb])
@@ -45,6 +46,7 @@ class SubPageModel implements PbAble, EnvMargeAble {
 class SitePageModel implements PbAble {
   SitePageModel([SitePage? pb])
       : name = sobs(pb?.name),
+        uuid = genUuid(pb?.uuid),
         url = sobs(pb?.url),
         template = pb?.template.obs ?? PageTemplate.imageList.obs,
         parser = sobs(pb?.parser),
@@ -54,6 +56,7 @@ class SitePageModel implements PbAble {
         openPages = lobs(pb?.openPage, (OpenPage e) => OpenPageModel(e));
 
   final RxString name;
+  final String uuid;
   final RxString url;
   final Rx<PageTemplate> template;
   final RxString parser;
@@ -149,3 +152,6 @@ extension SiteDisplayTypeTr on SiteDisplayType {
     throw UnimplementedError('TODO! $this');
   }
 }
+
+String genUuid(String? input) =>
+    input != null && input.isNotEmpty ? input : const Uuid().v4().toString();

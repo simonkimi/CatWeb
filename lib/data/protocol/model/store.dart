@@ -96,21 +96,27 @@ class SiteConfigModel implements PbAble {
         ...imageParser,
       ]);
 
-  ListViewParserModel getListParser(String name) {
-    final result = listViewParser.get((e) => e.name.value == name);
-    if (result == null) throw Exception('Parser $name not exist');
+  String getParserName(String uuid) =>
+      parsers.get((p0) => p0.uuid == uuid)?.name.value ?? 'No parser';
+
+  String getPageName(String uuid) =>
+      pageList.get((p0) => p0.uuid == uuid)?.name.value ?? 'No page';
+
+  ListViewParserModel getListParser(String uuid) {
+    final result = listViewParser.get((e) => e.uuid == uuid);
+    if (result == null) throw Exception('Parser $uuid not exist');
     return result;
   }
 
-  GalleryParserModel getGalleryParser(String name) {
-    final result = galleryParsers.get((e) => e.name.value == name);
-    if (result == null) throw Exception('Parser $name not exist');
+  GalleryParserModel getGalleryParser(String uuid) {
+    final result = galleryParsers.get((e) => e.uuid == uuid);
+    if (result == null) throw Exception('Parser $uuid not exist');
     return result;
   }
 
-  ImageParserModel? getImageParser(String name) {
-    final result = imageParser.get((e) => e.name.value == name);
-    if (result == null) throw Exception('Parser $name not exist');
+  ImageParserModel? getImageParser(String uuid) {
+    final result = imageParser.get((e) => e.uuid == uuid);
+    if (result == null) throw Exception('Parser $uuid not exist');
     return result;
   }
 
