@@ -22,8 +22,10 @@ Future<T?> showCupertinoSelectDialog<T>({
   String? title,
   String? message,
   String? cancelText,
+  bool barrierDismissible = true,
 }) {
   return showCupertinoModalPopup(
+    barrierDismissible: barrierDismissible,
     context: context,
     builder: (context) {
       return CupertinoActionSheet(

@@ -150,11 +150,12 @@ class RulesPageEdit extends GetView<RulesEditController> {
                 onTap: () => _onParserTap(context),
               )),
           const CupertinoDivider(height: 20),
-          Obx(() => CupertinoReadOnlyInput(
-                labelText: '显示方式',
-                value: model.display.value.string(context),
-                onTap: () => _onDisplayTap(context),
-              )),
+          if (model.template.value != PageTemplate.imageViewer)
+            Obx(() => CupertinoReadOnlyInput(
+                  labelText: '显示方式',
+                  value: model.display.value.string(context),
+                  onTap: () => _onDisplayTap(context),
+                )),
           _buildIcon(context),
           _buildOpenNewPage(context),
         ],
@@ -163,13 +164,62 @@ class RulesPageEdit extends GetView<RulesEditController> {
   }
 
   Widget _buildOpenNewPage(BuildContext context) {
+    late final List<Widget> body;
+    switch (model.template.value) {
+      case PageTemplate.detail:
+        body = [
+          Obx(() => CupertinoReadOnlyInput(
+                labelText: '徽章跳转',
+                value: model.badgeTarget.target.value,
+                onTap: () => _onOpenNewPageClick(context, model.badgeTarget),
+              )),
+        ];
+        break;
+      case PageTemplate.imageList:
+      case PageTemplate.imageWaterfall:
+        body = [
+          // 项目被点击
+          Obx(() => CupertinoReadOnlyInput(
+                labelText: '项目跳转',
+                value: model.listItemTarget.target.value,
+                onTap: () => _onOpenNewPageClick(context, model.listItemTarget),
+              )),
+        ];
+        break;
+      case PageTemplate.imageViewer:
+        body = [];
+        break;
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [],
+        children: [
+          ...body,
+        ],
       ),
     );
+  }
+
+  void _onOpenNewPageClick(BuildContext context, OpenPageModel model) {
+    showCupertinoSelectDialog(
+            context: context,
+            cancelText: '无',
+            barrierDismissible: false,
+            items: controller.siteConfigModel.pageList
+                .map((e) => SelectTileItem(
+                      title: e.name.string,
+                      value: e.name.string,
+                    ))
+                .toList())
+        .then((value) {
+      if (value != null) {
+        model.target.value = value;
+      } else {
+        model.target.value = '';
+      }
+    });
   }
 
   Widget _buildIcon(BuildContext context) {

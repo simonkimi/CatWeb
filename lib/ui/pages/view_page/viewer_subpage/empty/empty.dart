@@ -1,4 +1,4 @@
-import 'package:catweb/ui/pages/rules_manager/rules_manager/rules_manager.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

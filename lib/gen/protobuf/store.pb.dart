@@ -14,22 +14,11 @@ import 'actions.pb.dart' as $1;
 import 'page.pb.dart' as $2;
 
 class RegField extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'RegField',
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'reg')
-    ..aOS(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value')
-    ..hasRequiredFields = false;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RegField', createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'reg')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'value')
+    ..hasRequiredFields = false
+  ;
 
   RegField._() : super();
   factory RegField({
@@ -45,39 +34,31 @@ class RegField extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory RegField.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory RegField.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
+  factory RegField.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RegField.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
   RegField clone() => RegField()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
-  RegField copyWith(void Function(RegField) updates) =>
-      super.copyWith((message) => updates(message as RegField))
-          as RegField; // ignore: deprecated_member_use
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RegField copyWith(void Function(RegField) updates) => super.copyWith((message) => updates(message as RegField)) as RegField; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static RegField create() => RegField._();
   RegField createEmptyInstance() => create();
   static $pb.PbList<RegField> createRepeated() => $pb.PbList<RegField>();
   @$core.pragma('dart2js:noInline')
-  static RegField getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RegField>(create);
+  static RegField getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RegField>(create);
   static RegField? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get reg => $_getSZ(0);
   @$pb.TagNumber(1)
-  set reg($core.String v) {
-    $_setString(0, v);
-  }
-
+  set reg($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
   $core.bool hasReg() => $_has(0);
   @$pb.TagNumber(1)
@@ -86,10 +67,7 @@ class RegField extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get value => $_getSZ(1);
   @$pb.TagNumber(2)
-  set value($core.String v) {
-    $_setString(1, v);
-  }
-
+  set value($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasValue() => $_has(1);
   @$pb.TagNumber(2)
@@ -97,111 +75,24 @@ class RegField extends $pb.GeneratedMessage {
 }
 
 class SiteConfig extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'SiteConfig',
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'name')
-    ..aOS(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'baseUrl',
-        protoName: 'baseUrl')
-    ..aOS(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'loginUrl',
-        protoName: 'loginUrl')
-    ..aOM<RegField>(
-        4,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'loginCookie',
-        protoName: 'loginCookie',
-        subBuilder: RegField.create)
-    ..aOS(
-        5,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'version')
-    ..aOS(
-        6,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'upgradeUrl',
-        protoName: 'upgradeUrl')
-    ..aOS(
-        7,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'flag')
-    ..aOS(
-        8,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'readme')
-    ..pc<RegField>(
-        15,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'headers',
-        $pb.PbFieldType.PM,
-        subBuilder: RegField.create)
-    ..pc<RegField>(
-        16,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'cookies',
-        $pb.PbFieldType.PM,
-        subBuilder: RegField.create)
-    ..pc<$0.GalleryParser>(
-        20,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'galleryParsers',
-        $pb.PbFieldType.PM,
-        protoName: 'galleryParsers',
-        subBuilder: $0.GalleryParser.create)
-    ..pc<$0.ListViewParser>(
-        21,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'listViewParser',
-        $pb.PbFieldType.PM,
-        protoName: 'listViewParser',
-        subBuilder: $0.ListViewParser.create)
-    ..pc<$0.ImageParser>(
-        22,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'imageParsers',
-        $pb.PbFieldType.PM,
-        protoName: 'imageParsers',
-        subBuilder: $0.ImageParser.create)
-    ..pc<$1.ActionCombine>(
-        23,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'actionList',
-        $pb.PbFieldType.PM,
-        protoName: 'actionList',
-        subBuilder: $1.ActionCombine.create)
-    ..pc<$2.SitePage>(
-        24,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'pageList',
-        $pb.PbFieldType.PM,
-        protoName: 'pageList',
-        subBuilder: $2.SitePage.create)
-    ..hasRequiredFields = false;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SiteConfig', createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'baseUrl', protoName: 'baseUrl')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'loginUrl', protoName: 'loginUrl')
+    ..aOM<RegField>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'loginCookie', protoName: 'loginCookie', subBuilder: RegField.create)
+    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'version')
+    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'upgradeUrl', protoName: 'upgradeUrl')
+    ..aOS(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'flag')
+    ..aOS(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'readme')
+    ..pc<RegField>(15, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'headers', $pb.PbFieldType.PM, subBuilder: RegField.create)
+    ..pc<RegField>(16, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cookies', $pb.PbFieldType.PM, subBuilder: RegField.create)
+    ..pc<$0.GalleryParser>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'galleryParsers', $pb.PbFieldType.PM, protoName: 'galleryParsers', subBuilder: $0.GalleryParser.create)
+    ..pc<$0.ListViewParser>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'listViewParser', $pb.PbFieldType.PM, protoName: 'listViewParser', subBuilder: $0.ListViewParser.create)
+    ..pc<$0.ImageParser>(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imageParsers', $pb.PbFieldType.PM, protoName: 'imageParsers', subBuilder: $0.ImageParser.create)
+    ..pc<$1.ActionCombine>(23, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'actionList', $pb.PbFieldType.PM, protoName: 'actionList', subBuilder: $1.ActionCombine.create)
+    ..pc<$2.SitePage>(24, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'pageList', $pb.PbFieldType.PM, protoName: 'pageList', subBuilder: $2.SitePage.create)
+    ..hasRequiredFields = false
+  ;
 
   SiteConfig._() : super();
   factory SiteConfig({
@@ -269,39 +160,31 @@ class SiteConfig extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory SiteConfig.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory SiteConfig.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
+  factory SiteConfig.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SiteConfig.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
   SiteConfig clone() => SiteConfig()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
-  SiteConfig copyWith(void Function(SiteConfig) updates) =>
-      super.copyWith((message) => updates(message as SiteConfig))
-          as SiteConfig; // ignore: deprecated_member_use
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  SiteConfig copyWith(void Function(SiteConfig) updates) => super.copyWith((message) => updates(message as SiteConfig)) as SiteConfig; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static SiteConfig create() => SiteConfig._();
   SiteConfig createEmptyInstance() => create();
   static $pb.PbList<SiteConfig> createRepeated() => $pb.PbList<SiteConfig>();
   @$core.pragma('dart2js:noInline')
-  static SiteConfig getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SiteConfig>(create);
+  static SiteConfig getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SiteConfig>(create);
   static SiteConfig? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
-  set name($core.String v) {
-    $_setString(0, v);
-  }
-
+  set name($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
   @$pb.TagNumber(1)
@@ -310,10 +193,7 @@ class SiteConfig extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get baseUrl => $_getSZ(1);
   @$pb.TagNumber(2)
-  set baseUrl($core.String v) {
-    $_setString(1, v);
-  }
-
+  set baseUrl($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasBaseUrl() => $_has(1);
   @$pb.TagNumber(2)
@@ -322,10 +202,7 @@ class SiteConfig extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.String get loginUrl => $_getSZ(2);
   @$pb.TagNumber(3)
-  set loginUrl($core.String v) {
-    $_setString(2, v);
-  }
-
+  set loginUrl($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
   $core.bool hasLoginUrl() => $_has(2);
   @$pb.TagNumber(3)
@@ -334,10 +211,7 @@ class SiteConfig extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   RegField get loginCookie => $_getN(3);
   @$pb.TagNumber(4)
-  set loginCookie(RegField v) {
-    setField(4, v);
-  }
-
+  set loginCookie(RegField v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasLoginCookie() => $_has(3);
   @$pb.TagNumber(4)
@@ -348,10 +222,7 @@ class SiteConfig extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   $core.String get version => $_getSZ(4);
   @$pb.TagNumber(5)
-  set version($core.String v) {
-    $_setString(4, v);
-  }
-
+  set version($core.String v) { $_setString(4, v); }
   @$pb.TagNumber(5)
   $core.bool hasVersion() => $_has(4);
   @$pb.TagNumber(5)
@@ -360,10 +231,7 @@ class SiteConfig extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   $core.String get upgradeUrl => $_getSZ(5);
   @$pb.TagNumber(6)
-  set upgradeUrl($core.String v) {
-    $_setString(5, v);
-  }
-
+  set upgradeUrl($core.String v) { $_setString(5, v); }
   @$pb.TagNumber(6)
   $core.bool hasUpgradeUrl() => $_has(5);
   @$pb.TagNumber(6)
@@ -372,10 +240,7 @@ class SiteConfig extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   $core.String get flag => $_getSZ(6);
   @$pb.TagNumber(7)
-  set flag($core.String v) {
-    $_setString(6, v);
-  }
-
+  set flag($core.String v) { $_setString(6, v); }
   @$pb.TagNumber(7)
   $core.bool hasFlag() => $_has(6);
   @$pb.TagNumber(7)
@@ -384,10 +249,7 @@ class SiteConfig extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   $core.String get readme => $_getSZ(7);
   @$pb.TagNumber(8)
-  set readme($core.String v) {
-    $_setString(7, v);
-  }
-
+  set readme($core.String v) { $_setString(7, v); }
   @$pb.TagNumber(8)
   $core.bool hasReadme() => $_has(7);
   @$pb.TagNumber(8)
@@ -416,20 +278,10 @@ class SiteConfig extends $pb.GeneratedMessage {
 }
 
 class EnvStore extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'EnvStore',
-      createEmptyInstance: create)
-    ..m<$core.String, $core.String>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'env',
-        entryClassName: 'EnvStore.EnvEntry',
-        keyFieldType: $pb.PbFieldType.OS,
-        valueFieldType: $pb.PbFieldType.OS)
-    ..hasRequiredFields = false;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'EnvStore', createEmptyInstance: create)
+    ..m<$core.String, $core.String>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'env', entryClassName: 'EnvStore.EnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..hasRequiredFields = false
+  ;
 
   EnvStore._() : super();
   factory EnvStore({
@@ -441,32 +293,28 @@ class EnvStore extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory EnvStore.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory EnvStore.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
+  factory EnvStore.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory EnvStore.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
   EnvStore clone() => EnvStore()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
-  EnvStore copyWith(void Function(EnvStore) updates) =>
-      super.copyWith((message) => updates(message as EnvStore))
-          as EnvStore; // ignore: deprecated_member_use
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  EnvStore copyWith(void Function(EnvStore) updates) => super.copyWith((message) => updates(message as EnvStore)) as EnvStore; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static EnvStore create() => EnvStore._();
   EnvStore createEmptyInstance() => create();
   static $pb.PbList<EnvStore> createRepeated() => $pb.PbList<EnvStore>();
   @$core.pragma('dart2js:noInline')
-  static EnvStore getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<EnvStore>(create);
+  static EnvStore getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<EnvStore>(create);
   static EnvStore? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.Map<$core.String, $core.String> get env => $_getMap(0);
 }
+

@@ -4,6 +4,7 @@ enum PageTemplate {
   imageList = 0;
   imageWaterfall = 1;
   detail = 2;
+  imageViewer = 3;
 }
 
 message SiteSubPage {

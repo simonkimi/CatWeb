@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:catweb/data/constant.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,8 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'grey_tab_indicator.dart';
 
-const kCupertinoNavigatorBar = 40.0;
-const kCupertinoTabBarHeight = 30.0;
+
 
 class CupertinoAppBar extends StatefulWidget {
   const CupertinoAppBar({

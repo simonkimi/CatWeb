@@ -142,20 +142,10 @@ class RulesPageManager extends GetView<RulesEditController> {
     final select = await showCupertinoSelectDialog<PageTemplate>(
       title: '选择模板',
       context: context,
-      items: [
-        SelectTileItem(
-          title: PageTemplate.imageList.string(context),
-          value: PageTemplate.imageList,
-        ),
-        SelectTileItem(
-          title: PageTemplate.imageWaterfall.string(context),
-          value: PageTemplate.imageWaterfall,
-        ),
-        SelectTileItem(
-          title: PageTemplate.detail.string(context),
-          value: PageTemplate.detail,
-        ),
-      ],
+      items: PageTemplate.values.map((e) => SelectTileItem(
+          title: e.string(context),
+          value: e
+      )).toList(),
     );
     if (select != null) {
       return SitePageModel()..template.value = select;

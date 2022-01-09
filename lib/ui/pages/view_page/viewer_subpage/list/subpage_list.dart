@@ -112,7 +112,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
         );
       case LoadStatus.loading:
         return SizedBox(
-          height: kNavigatorBarHeight,
+          height: kToolBarHeight,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -125,14 +125,14 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
         );
       case LoadStatus.noMore:
         return const SizedBox(
-          height: kNavigatorBarHeight,
+          height: kToolBarHeight,
           child: Center(
             child: Text('真的一点也没有了...', style: TextStyle(fontSize: 15)),
           ),
         );
       case LoadStatus.failed:
         return SizedBox(
-          height: kNavigatorBarHeight,
+          height: kToolBarHeight,
           child: Center(
             child: Text(controller.errorMessage ?? '',
                 style: const TextStyle(fontSize: 15)),

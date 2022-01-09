@@ -102,9 +102,11 @@ extension PageTemplateTr on PageTemplate {
       case PageTemplate.imageList:
         return '列表';
       case PageTemplate.imageWaterfall:
-      default:
-        return '图片瀑布流';
+        return '瀑布流';
+      case PageTemplate.imageViewer:
+        return '图片查看器';
     }
+    throw UnimplementedError('TODO! $this');
   }
 
   List<PageTemplate> get brother {
