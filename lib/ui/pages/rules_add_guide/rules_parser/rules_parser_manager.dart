@@ -154,7 +154,7 @@ class RulesParserManager extends GetView<RulesEditController> {
           controller.siteConfigModel.removeParser(input);
           break outer;
         case _Valid.save:
-          controller.siteConfigModel.addParser(input);
+          if (model == null) controller.siteConfigModel.addParser(input);
           break outer;
       }
     }
