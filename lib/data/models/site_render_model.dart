@@ -39,6 +39,8 @@ class SiteRenderConfigModel {
 
   List<SitePageModel> get displayPage => configModel.pageList
       .where((p0) => p0.display.value == SiteDisplayType.show)
+      .where((e) => [PageTemplate.imageList, PageTemplate.imageWaterfall]
+          .contains(e.template.value))
       .toList();
 
   Future<void> updateGlobalEnv() async {

@@ -128,9 +128,11 @@ extension PageTemplateTr on PageTemplate {
         return input.whereType<GalleryParserModel>();
       case PageTemplate.imageList:
       case PageTemplate.imageWaterfall:
-      default:
         return input.whereType<ListViewParserModel>();
+      case PageTemplate.imageViewer:
+        return input.whereType<ImageParserModel>();
     }
+    throw UnimplementedError('TODO! $this');
   }
 }
 
@@ -143,8 +145,7 @@ extension SiteDisplayTypeTr on SiteDisplayType {
         return '总是折叠';
       case SiteDisplayType.hide:
         return '隐藏';
-      default:
-        return '有空间则显示';
     }
+    throw UnimplementedError('TODO! $this');
   }
 }

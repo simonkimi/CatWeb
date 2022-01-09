@@ -22,9 +22,9 @@ class CardSize {
       case large:
         return 200;
       case huge:
-      default:
         return 250;
     }
+    throw UnimplementedError('TODO! $value');
   }
 }
 

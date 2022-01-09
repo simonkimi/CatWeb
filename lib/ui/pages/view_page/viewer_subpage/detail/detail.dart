@@ -58,7 +58,6 @@ class GalleryDetail extends StatelessWidget {
 
   Widget _buildCommentList(BuildContext context) {
     if (model.commentList == null) return const SizedBox();
-
     return Column(
       children: [
         Row(
@@ -82,7 +81,7 @@ class GalleryDetail extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Container(
                 decoration: BoxDecoration(
-                  color: CupertinoColors.systemGrey6.resolveFrom(context),
+                  color: FixColor.groupedColor.resolveFrom(context),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 padding: const EdgeInsets.all(10),

@@ -38,15 +38,15 @@ class ViewerScaffold extends StatelessWidget {
 
   Widget _buildSitePage(BuildContext context, SitePageModel model) {
     switch (model.template.value) {
-      case PageTemplate.detail:
-        // TODO: Handle this case.
-        break;
       case PageTemplate.imageWaterfall:
       case PageTemplate.imageList:
         return ViewerListFragment(
           model: model,
           hasToolBar: website.displayPage.length > 1,
         );
+      case PageTemplate.detail:
+      case PageTemplate.imageViewer:
+        throw UnimplementedError('ViewerScaffold 不能承载${model.template.value}');
     }
     throw UnimplementedError('TODO!');
   }

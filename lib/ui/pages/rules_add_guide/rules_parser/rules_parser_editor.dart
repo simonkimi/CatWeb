@@ -32,14 +32,14 @@ class RulesParserEditor extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return CupertinoTabBarView(
       children: [
-        _buildPreview(context),
+        if (model.type != ParserType.imageParser) _buildPreview(context),
         _buildEditor(context),
         ExtraParser(model: model),
       ],
-      tabs: const [
-        CupertinoTab('预览'),
-        CupertinoTab('基础规则'),
-        CupertinoTab('附加字段'),
+      tabs: [
+        if (model.type != ParserType.imageParser) const CupertinoTab('预览'),
+        const CupertinoTab('基础规则'),
+        const CupertinoTab('附加字段'),
       ],
     );
   }
@@ -63,7 +63,7 @@ class RulesParserEditor extends StatelessWidget {
         return const GalleryPreview();
       case ParserType.listParser:
         return const ListParserPreview();
-      default:
+      case ParserType.imageParser:
         return const SizedBox();
     }
   }

@@ -49,9 +49,7 @@ class CupertinoListTile extends HookWidget {
 
     final bgColor = selected
         ? selectedColor ?? CupertinoColors.activeBlue
-        : isDarkMode(context)
-            ? const Color(0xff1c1c1e)
-            : CupertinoColors.systemGroupedBackground;
+        : FixColor.groupedColor.resolveFrom(context);
 
     final textColor = selected
         ? bgColor.isDark
