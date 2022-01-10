@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 extension IterableUtils<T> on Iterable<T> {
   T? get(bool Function(T e) test) {

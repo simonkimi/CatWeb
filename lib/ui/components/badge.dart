@@ -33,6 +33,7 @@ class Badge extends StatelessWidget {
         text,
         style: TextStyle(
           fontSize: fontSize,
+          // TODO ??????
           color: textColor ??
               (defaultColor.isDark
                   ? isDarkMode(context)

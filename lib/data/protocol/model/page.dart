@@ -69,6 +69,7 @@ class SitePageModel implements PbAble {
   @override
   SitePage toPb() => SitePage(
         name: name.value,
+        uuid: uuid,
         template: template.value,
         url: url.value,
         parser: parser.value,
@@ -153,5 +154,9 @@ extension SiteDisplayTypeTr on SiteDisplayType {
   }
 }
 
-String genUuid(String? input) =>
-    input != null && input.isNotEmpty ? input : const Uuid().v4().toString();
+String genUuid(String? input) {
+  print('input: $input');
+  return (input != null && input.isNotEmpty)
+      ? input
+      : const Uuid().v4().toString();
+}

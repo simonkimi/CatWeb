@@ -4,92 +4,93 @@ import 'selector.proto';
 
 message ImageParser {
   string name = 1;
-  string uuid = 999;
+  string uuid = 2;
 
-  Selector id = 2;
-  ImageSelector image = 3;
-  Selector largerImage = 4;
-  Selector rawImage = 5;
-  Selector uploadTime = 6;
-  Selector source = 7;
-  Selector rating = 8;
-  Selector score = 9;
-  ImageSelector uploaderAvatar = 10;
+  Selector id = 3;
+  ImageSelector image = 4;
+  Selector largerImage = 5;
+  Selector rawImage = 6;
+  Selector uploadTime = 7;
+  Selector source = 8;
+  Selector rating = 9;
+  Selector score = 10;
+  ImageSelector uploaderAvatar = 11;
 
   repeated ExtraSelector extraSelector = 99;
 }
 
 message ListViewParser {
   string name = 1;
-  string uuid = 999;
+  string uuid = 2;
 
-  Selector itemSelector = 2; // 选取整个列表
-  Selector title = 3;
-  Selector subtitle = 4;
-  Selector uploadTime = 5;
-  Selector star = 6;
-  Selector imgCount = 7;
-  ImageSelector previewImg = 8;
+  Selector itemSelector = 10; // 选取整个列表
+  Selector title = 11;
+  Selector subtitle = 12;
+  Selector uploadTime = 13;
+  Selector star = 14;
+  Selector imgCount = 15;
+  ImageSelector previewImg = 16;
 
-  Selector tag = 9;
-  Selector tagColor = 10;
+  Selector tag = 20;
+  Selector tagColor = 21;
 
-  Selector badgeSelector = 11;
-  Selector badgeText = 12;
-  Selector badgeColor = 13;
+  Selector badgeSelector = 22;
+  Selector badgeText = 23;
+  Selector badgeColor = 24;
 
-  Selector paper = 14;
+  Selector paper = 25;
 
   // 下一面
-  Selector nextPage = 96;
-  Selector idCode = 97;
+  Selector nextPage = 30;
+  Selector idCode = 31;
 
   repeated ExtraSelector extraSelector = 99;
 }
 
 message GalleryParser {
   string name = 1;
-  string uuid = 999;
+  string uuid = 2;
 
   // 基础
-  Selector title = 2;
-  Selector subtitle = 3;
-  Selector uploadTime = 4;
-  Selector star = 5;
-  Selector imgCount = 6;  // 有多少图
-  Selector pageCount = 7;  // 有多少面
-  Selector language = 8;  // 语言
-  ImageSelector coverImg = 9;  // 封面图
-  Selector description = 10;  // 描述
+  Selector title = 3;
+  Selector subtitle = 4;
+  Selector uploadTime = 5;
+  Selector star = 6;
+  Selector imgCount = 7;  // 有多少图
+  Selector pageCount = 8;  // 有多少面
+  Selector language = 9;  // 语言
+  ImageSelector coverImg = 10;  // 封面图
+  Selector description = 11;  // 描述
 
   // 缩略图
-  Selector thumbnailSelector = 11;
-  ImageSelector thumbnail = 12;
-  Selector thumbnailUrl = 13;
+  Selector thumbnailSelector = 20;
+  ImageSelector thumbnail = 21;
+  Selector thumbnailUrl = 22;
 
   // 评论
-  Selector commentSelector = 14;
-  CommentSelector comments = 15;
+  Selector commentSelector = 30;
+  CommentSelector comments = 31;
 
   // 分类
-  Selector tag = 16;
-  Selector tagColor = 17;
+  Selector tag = 40;
+  Selector tagColor = 41;
 
   // 徽章
-  Selector badgeSelector = 18;
-  Selector badgeText = 19;
-  Selector badgeColor = 20;
-  Selector badgeType = 21;
+  Selector badgeSelector = 50;
+  Selector badgeText = 51;
+  Selector badgeColor = 52;
+  Selector badgeType = 53;
 
-  // 下一面
-  Selector nextPage = 22;
-  Selector prePageImageCount = 27;  // 一页多少面, 用于跳页
 
   // 章节
-  Selector chapterSelector = 23;
-  Selector chapterTitle = 24;
-  Selector chapterSubtitle = 25;
-  ImageSelector chapterCover = 26;
+  Selector chapterSelector = 60;
+  Selector chapterTitle = 61;
+  Selector chapterSubtitle = 62;
+  ImageSelector chapterCover = 63;
+
+  // 下一面
+  Selector nextPage = 70;
+  Selector prePageImageCount = 71;  // 一页多少面, 用于跳页
 
   repeated ExtraSelector extraSelector = 99;
 }

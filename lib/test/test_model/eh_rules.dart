@@ -21,7 +21,7 @@ final ehTestSite = SiteConfig(
     SitePage(
       name: '主页',
       url: '?page={page:0}',
-      parser: 'commonList',
+      parser: commonListUuid,
       display: SiteDisplayType.show,
       template: PageTemplate.imageList,
       icon: 'home',
@@ -29,7 +29,7 @@ final ehTestSite = SiteConfig(
     SitePage(
       name: '热门',
       url: 'popular?page={page:0}',
-      parser: 'commonList',
+      parser: commonListUuid,
       display: SiteDisplayType.show,
       template: PageTemplate.imageList,
       icon: 'whatshot',
@@ -37,7 +37,7 @@ final ehTestSite = SiteConfig(
     SitePage(
       name: '关注',
       url: 'watched?page={page:0}',
-      parser: 'commonList',
+      parser: commonListUuid,
       display: SiteDisplayType.show,
       template: PageTemplate.imageList,
       icon: 'eye',
@@ -45,7 +45,7 @@ final ehTestSite = SiteConfig(
     SitePage(
       name: '收藏',
       url: r'favorites.php?page={page:0}${favcat:&favcat={favcat}}',
-      parser: 'commonList',
+      parser: commonListUuid,
       display: SiteDisplayType.show,
       template: PageTemplate.imageList,
       icon: 'heart',

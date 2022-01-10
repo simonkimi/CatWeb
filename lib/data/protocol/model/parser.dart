@@ -161,6 +161,7 @@ class GalleryParserModel extends ParserBaseModel {
   @override
   GalleryParser toPb() => GalleryParser(
         name: name.value,
+        uuid: uuid,
         title: title.toPb(),
         subtitle: subtitle.toPb(),
         uploadTime: uploadTime.toPb(),
@@ -265,6 +266,7 @@ class ListViewParserModel extends ParserBaseModel {
   @override
   ListViewParser toPb() => ListViewParser(
         name: name.value,
+        uuid: uuid,
         itemSelector: itemSelector.toPb(),
         title: title.toPb(),
         subtitle: subtitle.toPb(),
