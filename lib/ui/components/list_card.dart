@@ -409,17 +409,12 @@ class ExtendedCard extends StatelessWidget {
 
 class _RightAngledTriangleClipper extends CustomClipper<Path> {
   @override
-  Path getClip(Size size) {
-    var path = Path();
-    path.moveTo(0, 0);
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
+  Path getClip(Size size) => Path()
+    ..moveTo(0, 0)
+    ..lineTo(size.width, size.height)
+    ..lineTo(size.width, 0)
+    ..close();
 
   @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return true;
-  }
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

@@ -4,7 +4,6 @@ import 'dart:math' as math;
 import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 
 extension IterableUtils<T> on Iterable<T> {
   T? get(bool Function(T e) test) {
@@ -39,8 +38,8 @@ extension ListHelper<T> on List<T> {
 
 extension AnimationControllerHelper on AnimationController {
   void byValue(bool display) {
-    if (display && atEnd) reverse();
-    if (!display && atStart) forward();
+    if (display && isEnd) reverse();
+    if (!display && isStart) forward();
   }
 
   void play(bool isForward) {
@@ -51,9 +50,9 @@ extension AnimationControllerHelper on AnimationController {
     }
   }
 
-  bool get atStart => value == 0.0;
+  bool get isStart => value == 0.0;
 
-  bool get atEnd => value == 1.0;
+  bool get isEnd => value == 1.0;
 }
 
 T df<T>(T? value, T defaultValue, bool Function()? has) =>

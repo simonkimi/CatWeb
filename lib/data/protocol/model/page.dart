@@ -155,7 +155,6 @@ extension SiteDisplayTypeTr on SiteDisplayType {
 }
 
 String genUuid(String? input) {
-  print('input: $input');
   return (input != null && input.isNotEmpty)
       ? input
       : const Uuid().v4().toString();

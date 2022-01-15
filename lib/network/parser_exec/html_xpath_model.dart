@@ -11,14 +11,13 @@ class UniversalHtmlTree extends XPathNode<Node> {
     return XPath<Node>(UniversalHtmlTree(dom));
   }
 
-  static UniversalHtmlTree? from(Node? node) {
+  static UniversalHtmlTree? create(Node? node) {
     if (node == null) return null;
     return UniversalHtmlTree(node);
   }
 
   @override
-  Map<String, String> get attributes =>
-      isElement ? (node as Element).attributes : {};
+  Map<String, String> get attributes => isElement ? element.attributes : {};
 
   @override
   List<XPathNode<Node>> get children =>
@@ -29,18 +28,18 @@ class UniversalHtmlTree extends XPathNode<Node> {
 
   @override
   NodeTagName? get name =>
-      isElement ? NodeTagName(localName: (node as Element).localName) : null;
+      isElement ? NodeTagName(localName: element.localName) : null;
 
   @override
   XPathNode<Node>? get nextSibling =>
-      isElement ? from((node as Element).nextElementSibling) : null;
+      isElement ? create(element.nextElementSibling) : null;
 
   @override
-  XPathNode<Node>? get parent => from(node.parentNode);
+  XPathNode<Node>? get parent => create(node.parentNode);
 
   @override
   XPathNode<Node>? get previousSibling =>
-      isElement ? from((node as Element).previousElementSibling) : null;
+      isElement ? create(element.previousElementSibling) : null;
 
   @override
   String? get text => node.text;
@@ -52,7 +51,11 @@ class UniversalHtmlTree extends XPathNode<Node> {
   int get hashCode => node.hashCode;
 
   @override
-  bool operator ==(Object other) {
-    return other is UniversalHtmlTree && other.node == node;
+  bool operator ==(Object other) =>
+      other is UniversalHtmlTree && other.node == node;
+
+  Element get element {
+    if (node is! Element) throw Exception('$node is not element');
+    return node as Element;
   }
 }

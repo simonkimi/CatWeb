@@ -1,6 +1,7 @@
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/ui/components/list_card.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/list/list_extended_card.dart';
 import 'package:flutter/material.dart';
 
 class ListParserPreview extends StatelessWidget {
@@ -38,7 +39,10 @@ class ListParserPreview extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        const SizedBox(height: 5),
         ExtendedCard(model: model),
+        const SizedBox(height: 5),
+        ListExtendedCard(model: model),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -78,9 +78,12 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
     // TODO 瀑布流支持
     return Obx(() {
       return SliverList(
-        delegate: SliverChildBuilderDelegate((context, index) {
-          return ExtendedCard(model: controller.items[index]);
-        }, childCount: controller.items.length),
+        delegate: SliverChildBuilderDelegate(
+          (context, index) => ExtendedCard(
+            model: controller.items[index],
+          ),
+          childCount: controller.items.length,
+        ),
       );
     });
   }

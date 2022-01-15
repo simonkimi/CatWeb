@@ -1,6 +1,5 @@
 import 'package:catweb/gen/protobuf/parser.pbserver.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
-import 'package:catweb/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 
 final galleryUuid = const Uuid().v4().toString();
