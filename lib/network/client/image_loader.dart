@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
@@ -71,14 +69,6 @@ class ImageLoadModel {
 
   ImageLoadState get state => _state.value;
 
-  Future<void> debugLoad() async {
-    print('开始加载 ${model.url}');
-    final rnd = Random().nextInt(10);
-    await Future.delayed(Duration(seconds: rnd));
-    _state.value = ImageLoadState.finish;
-    print('加载 ${model.url} 耗时 $rnd 秒');
-  }
-
   Future<void> loadCache() async {
     if (_state.value == ImageLoadState.cached ||
         _state.value == ImageLoadState.init) {
@@ -106,7 +96,8 @@ class ImageLoadModel {
               policy: CachePolicy.request,
               keyBuilder: (req) => key,
             )
-            .toOptions(),
+            .toOptions()
+            .copyWith(responseType: ResponseType.bytes),
       );
       if (rsp.data == null || rsp.data!.isEmpty) {
         throw StateError(
@@ -195,7 +186,7 @@ class ImageConcurrency {
       final item = activeImage[0];
       _waitLoadImages.remove(item.key);
       _loadingImages[item.key] = item;
-      item.debugLoad().then((value) {
+      item.load().then((value) {
         _loadCompleteImages[item.key] = item;
       }).catchError((err) {
         _waitLoadImages[item.key] = item;

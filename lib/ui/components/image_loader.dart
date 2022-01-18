@@ -5,8 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'dark_image.dart';
-
 typedef ImageWidgetBuilder = Widget Function(
   BuildContext context,
   Uint8List imgData,
@@ -44,16 +42,22 @@ class ImageLoader extends StatefulWidget {
 }
 
 class _ImageLoaderState extends State<ImageLoader> {
-  late final _imageLoadModel = widget.concurrency.create(widget.model);
+  late final ImageLoadModel _imageLoadModel;
 
-  late final ErrorBuilder errorBuilder =
-      widget.errorBuilder ?? _defaultErrorBuilder;
+  late final ErrorBuilder errorBuilder;
 
-  late final LoadingWidgetBuilder loadingBuilder =
-      widget.loadingBuilder ?? _defaultLoadingBuilder;
+  late final LoadingWidgetBuilder loadingBuilder;
 
-  late final ImageWidgetBuilder imageBuilder =
-      widget.imageBuilder ?? _defaultImageBuilder;
+  late final ImageWidgetBuilder imageBuilder;
+
+  @override
+  void initState() {
+    loadingBuilder = widget.loadingBuilder ?? _defaultLoadingBuilder;
+    imageBuilder = widget.imageBuilder ?? _defaultImageBuilder;
+    errorBuilder = widget.errorBuilder ?? _defaultErrorBuilder;
+    _imageLoadModel = widget.concurrency.create(widget.model);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,10 +85,7 @@ class _ImageLoaderState extends State<ImageLoader> {
   }
 
   Widget _defaultImageBuilder(BuildContext context, Uint8List imgData) {
-    return DarkImage(
-      image: MemoryImage(imgData),
-      fit: BoxFit.fill,
-    );
+    return Image.memory(imgData);
   }
 
   Widget _defaultLoadingBuilder(BuildContext context, double progress) {
@@ -98,8 +99,11 @@ class _ImageLoaderState extends State<ImageLoader> {
   }
 
   Widget _defaultErrorBuilder(
-      BuildContext context, Object? err, VoidCallback reload) {
-    return InkWell(
+    BuildContext context,
+    Object? err,
+    VoidCallback reload,
+  ) {
+    return GestureDetector(
       onTap: () => reload(),
       child: const Center(
         child: Icon(Icons.info),

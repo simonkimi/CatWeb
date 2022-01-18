@@ -67,7 +67,7 @@ ParserResult<List<ViewerListModel>> listParserExec(
         previewImage: imgUrl != null
             ? ImageModel(
                 url: imgUrl,
-                width: dom.double(parser.previewImg.imgHeight, e),
+                width: dom.double(parser.previewImg.imgWidth, e),
                 height: dom.double(parser.previewImg.imgHeight, e),
                 imgX: dom.int(parser.previewImg.imgX, e),
                 imgY: dom.int(parser.previewImg.imgY, e),

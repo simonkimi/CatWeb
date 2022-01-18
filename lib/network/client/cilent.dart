@@ -17,15 +17,21 @@ import 'package:dio_http_formatter/dio_http_formatter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
+import 'image_loader.dart';
+
 class NetClient {
   NetClient(this.configModel)
       : dio = _buildDio(configModel, true),
-        imageDio = _buildDio(configModel);
+        imageConcurrency = ImageConcurrency(
+          dio: _buildDio(configModel),
+          concurrency: 5,
+        );
 
   final Dio dio;
-  final Dio imageDio;
 
   final SiteConfigModel configModel;
+
+  final ImageConcurrency imageConcurrency;
 
   Future<List<ViewerListModel>> getList({
     required String url,

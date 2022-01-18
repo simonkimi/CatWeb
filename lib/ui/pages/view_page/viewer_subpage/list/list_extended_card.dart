@@ -1,10 +1,13 @@
+import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/dark_image.dart';
+import 'package:catweb/ui/components/image_loader.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 
 class ListExtendedCard extends StatelessWidget {
   const ListExtendedCard({
@@ -17,7 +20,7 @@ class ListExtendedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
@@ -37,7 +40,7 @@ class ListExtendedCard extends StatelessWidget {
           child: IntrinsicHeight(
             child: Row(
               children: [
-                _buildLeftImage(),
+                if (model.previewImage != null) _buildLeftImage(),
                 _buildRightInfo(context),
               ],
             ),
@@ -77,14 +80,15 @@ class ListExtendedCard extends StatelessWidget {
             maxLines: 2,
             softWrap: true,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: FixColor.title.resolveFrom(context)),
+            style: TextStyle(
+                color: FixColor.title.resolveFrom(context), fontSize: 15),
           ),
         if (model.subtitle != null)
           Text(
             model.subtitle!,
             style: TextStyle(
               color: CupertinoColors.secondaryLabel.resolveFrom(context),
-              fontSize: 14,
+              fontSize: 13,
             ),
           ),
         const SizedBox(height: 3),
@@ -94,19 +98,25 @@ class ListExtendedCard extends StatelessWidget {
   }
 
   Widget _buildLeftImage() {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxHeight: 200,
-        minHeight: 140
+    final child = DarkWidget(
+      child: ImageLoader(
+        model: model.previewImage!,
+        concurrency: Get.find<SiteController>().website.client.imageConcurrency,
       ),
+    );
+
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxHeight: 160, minHeight: 140),
       child: SizedBox(
         width: 110,
-        child: DarkWidget(
-          child: Image.asset(
-            'assets/images/sample1.png',
-            fit: BoxFit.contain,
-          ),
-        ),
+        child: model.previewImage!.width != null &&
+                model.previewImage!.height != null
+            ? AspectRatio(
+                aspectRatio:
+                    model.previewImage!.width! / model.previewImage!.height!,
+                child: child,
+              )
+            : child,
       ),
     );
   }

@@ -1,12 +1,13 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
-import 'package:catweb/ui/components/list_card.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/subpage_controller.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import 'list_extended_card.dart';
 
 class SubPageListFragment extends StatefulWidget {
   const SubPageListFragment({
@@ -79,7 +80,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
     return Obx(() {
       return SliverList(
         delegate: SliverChildBuilderDelegate(
-          (context, index) => ExtendedCard(
+          (context, index) => ListExtendedCard(
             model: controller.items[index],
           ),
           childCount: controller.items.length,
