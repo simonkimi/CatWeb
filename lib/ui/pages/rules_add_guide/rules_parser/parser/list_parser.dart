@@ -117,6 +117,10 @@ class ListParserFragment extends StatelessWidget {
       title: '信息设置',
       children: [
         RulesForm(
+          title: 'idCode',
+          selectorModel: model.idCode,
+        ),
+        RulesForm(
           title: '标题',
           selectorModel: model.title,
         ),
@@ -163,10 +167,6 @@ class ListParserFragment extends StatelessWidget {
           label: '项目选择器',
           value: model.itemSelector.selector,
           width: labelWidth,
-        ),
-        RulesForm(
-          title: 'idCode',
-          selectorModel: model.imgCount,
         ),
       ]),
     ]));

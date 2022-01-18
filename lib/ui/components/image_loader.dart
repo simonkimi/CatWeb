@@ -100,9 +100,7 @@ class _ImageLoaderState extends State<ImageLoader> {
   Widget _defaultErrorBuilder(
       BuildContext context, Object? err, VoidCallback reload) {
     return InkWell(
-      onTap: () {
-        reload();
-      },
+      onTap: () => reload(),
       child: const Center(
         child: Icon(Icons.info),
       ),

@@ -1,4 +1,5 @@
 import 'package:catweb/ui/components/badge.dart';
+import 'package:catweb/ui/components/dark_image.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -92,10 +93,21 @@ class ListExtendedCard extends StatelessWidget {
     );
   }
 
-  SizedBox _buildLeftImage() {
-    return SizedBox(
-      width: 110,
-      child: Image.asset('assets/images/sample2.jpg'),
+  Widget _buildLeftImage() {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        maxHeight: 200,
+        minHeight: 140
+      ),
+      child: SizedBox(
+        width: 110,
+        child: DarkWidget(
+          child: Image.asset(
+            'assets/images/sample1.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+      ),
     );
   }
 

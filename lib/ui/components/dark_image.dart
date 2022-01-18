@@ -18,17 +18,16 @@ class DarkImage extends GetView<SettingController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => controller.imageMaskInDarkMode.value && isDarkMode(context)
-        ? Stack(
-            children: [
-              Image(
-                image: image,
-                fit: fit,
-                loadingBuilder: loadingBuilder,
-              ),
-              Container(
-                color: Colors.black26,
-              ),
-            ],
+        ? ColorFiltered(
+            colorFilter: const ColorFilter.mode(
+              Colors.black26,
+              BlendMode.dstOut,
+            ),
+            child: Image(
+              image: image,
+              fit: fit,
+              loadingBuilder: loadingBuilder,
+            ),
           )
         : Image(
             image: image,
@@ -53,17 +52,12 @@ class DarkWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isDarkMode(context)
-        ? Stack(
-            children: [
-              Center(
-                child: child,
-              ),
-              Container(
-                color: Colors.black26,
-                width: width,
-                height: height,
-              ),
-            ],
+        ? ColorFiltered(
+            colorFilter: const ColorFilter.mode(
+              Colors.black26,
+              BlendMode.dstOut,
+            ),
+            child: child,
           )
         : child;
   }
