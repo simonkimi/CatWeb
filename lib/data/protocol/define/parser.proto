@@ -8,43 +8,43 @@ message ImageParser {
 
   Selector id = 3;
   ImageSelector image = 4;
-  Selector largerImage = 5;
-  Selector rawImage = 6;
-  Selector uploadTime = 7;
+  Selector larger_image = 5;
+  Selector raw_image = 6;
+  Selector upload_time = 7;
   Selector source = 8;
   Selector rating = 9;
   Selector score = 10;
-  ImageSelector uploaderAvatar = 11;
+  ImageSelector uploader_avatar = 11;
 
-  repeated ExtraSelector extraSelector = 99;
+  repeated ExtraSelector extra_selector = 99;
 }
 
 message ListViewParser {
   string name = 1;
   string uuid = 2;
 
-  Selector itemSelector = 10; // 选取整个列表
+  Selector item_selector = 10; // 选取整个列表
   Selector title = 11;
   Selector subtitle = 12;
-  Selector uploadTime = 13;
+  Selector upload_time = 13;
   Selector star = 14;
-  Selector imgCount = 15;
-  ImageSelector previewImg = 16;
+  Selector img_count = 15;
+  ImageSelector preview_img = 16;
 
   Selector tag = 20;
-  Selector tagColor = 21;
+  Selector tag_color = 21;
 
-  Selector badgeSelector = 22;
-  Selector badgeText = 23;
-  Selector badgeColor = 24;
+  Selector badge_selector = 22;
+  Selector badge_text = 23;
+  Selector badge_color = 24;
 
   Selector paper = 25;
 
   // 下一面
-  Selector nextPage = 30;
-  Selector idCode = 31;
+  Selector next_page = 30;
+  Selector id_code = 31;
 
-  repeated ExtraSelector extraSelector = 99;
+  repeated ExtraSelector extra_selector = 99;
 }
 
 message GalleryParser {
@@ -54,43 +54,47 @@ message GalleryParser {
   // 基础
   Selector title = 3;
   Selector subtitle = 4;
-  Selector uploadTime = 5;
+  Selector upload_time = 5;
   Selector star = 6;
-  Selector imgCount = 7;  // 有多少图
-  Selector pageCount = 8;  // 有多少面
+  Selector img_count = 7;  // 有多少图
+  Selector page_count = 8;  // 有多少面
   Selector language = 9;  // 语言
-  ImageSelector coverImg = 10;  // 封面图
+  ImageSelector cover_img = 10;  // 封面图
   Selector description = 11;  // 描述
 
   // 缩略图
-  Selector thumbnailSelector = 20;
+  Selector thumbnail_selector = 20;
   ImageSelector thumbnail = 21;
-  Selector thumbnailUrl = 22;
+  Selector thumbnail_url = 22;
 
   // 评论
-  Selector commentSelector = 30;
-  CommentSelector comments = 31;
+  Selector comment_selector = 30;
+  CommentSelector comment = 31;
 
   // 分类
   Selector tag = 40;
-  Selector tagColor = 41;
+  Selector tag_color = 41;
 
   // 徽章
-  Selector badgeSelector = 50;
-  Selector badgeText = 51;
-  Selector badgeColor = 52;
-  Selector badgeType = 53;
+  Selector badge_selector = 50;
+  Selector badge_text = 51;
+  Selector badge_color = 52;
+  Selector badge_type = 53;
 
 
   // 章节
-  Selector chapterSelector = 60;
-  Selector chapterTitle = 61;
-  Selector chapterSubtitle = 62;
-  ImageSelector chapterCover = 63;
+  Selector chapter_selector = 60;
+  Selector chapter_title = 61;
+  Selector chapter_subtitle = 62;
+  ImageSelector chapter_cover = 63;
 
   // 下一面
-  Selector nextPage = 70;
-  Selector prePageImageCount = 71;  // 一页多少面, 用于跳页
+  Selector next_page = 70;
+  Selector pre_page_image_count = 71;  // 一页多少面, 用于跳页
 
-  repeated ExtraSelector extraSelector = 99;
+  repeated ExtraSelector extra_selector = 99;
+}
+
+message AutoCompleteParser {
+  
 }

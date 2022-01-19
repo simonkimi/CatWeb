@@ -325,19 +325,19 @@ class RulesForm extends StatelessWidget {
             items: [
               const SelectTileItem(
                 title: 'auto',
-                value: SelectorFunction.auto,
+                value: SelectorFunction.SELECTOR_FUNCTION_AUTO,
               ),
               SelectTileItem(
-                title: SelectorFunction.raw.string,
-                value: SelectorFunction.raw,
+                title: SelectorFunction.SELECTOR_FUNCTION_RAW.string,
+                value: SelectorFunction.SELECTOR_FUNCTION_RAW,
               ),
               SelectTileItem(
-                title: SelectorFunction.text.string,
-                value: SelectorFunction.text,
+                title: SelectorFunction.SELECTOR_FUNCTION_TEXT.string,
+                value: SelectorFunction.SELECTOR_FUNCTION_TEXT,
               ),
               SelectTileItem(
-                title: SelectorFunction.attr.string,
-                value: SelectorFunction.attr,
+                title: SelectorFunction.SELECTOR_FUNCTION_ATTR.string,
+                value: SelectorFunction.SELECTOR_FUNCTION_ATTR,
               ),
             ],
             selectedValue: selectorModel.function.value,

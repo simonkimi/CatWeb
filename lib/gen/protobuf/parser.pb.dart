@@ -44,21 +44,18 @@ class ImageParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'largerImage',
-        protoName: 'largerImage',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         6,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'rawImage',
-        protoName: 'rawImage',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         7,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'uploadTime',
-        protoName: 'uploadTime',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         8,
@@ -83,7 +80,6 @@ class ImageParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'uploaderAvatar',
-        protoName: 'uploaderAvatar',
         subBuilder: $0.ImageSelector.create)
     ..pc<$0.ExtraSelector>(
         99,
@@ -91,7 +87,6 @@ class ImageParser extends $pb.GeneratedMessage {
             ? ''
             : 'extraSelector',
         $pb.PbFieldType.PM,
-        protoName: 'extraSelector',
         subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false;
 
@@ -350,7 +345,6 @@ class ListViewParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'itemSelector',
-        protoName: 'itemSelector',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         11,
@@ -369,7 +363,6 @@ class ListViewParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'uploadTime',
-        protoName: 'uploadTime',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         14,
@@ -382,14 +375,12 @@ class ListViewParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'imgCount',
-        protoName: 'imgCount',
         subBuilder: $0.Selector.create)
     ..aOM<$0.ImageSelector>(
         16,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'previewImg',
-        protoName: 'previewImg',
         subBuilder: $0.ImageSelector.create)
     ..aOM<$0.Selector>(
         20,
@@ -402,28 +393,24 @@ class ListViewParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'tagColor',
-        protoName: 'tagColor',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         22,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'badgeSelector',
-        protoName: 'badgeSelector',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         23,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'badgeText',
-        protoName: 'badgeText',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         24,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'badgeColor',
-        protoName: 'badgeColor',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         25,
@@ -436,14 +423,12 @@ class ListViewParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'nextPage',
-        protoName: 'nextPage',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         31,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'idCode',
-        protoName: 'idCode',
         subBuilder: $0.Selector.create)
     ..pc<$0.ExtraSelector>(
         99,
@@ -451,7 +436,6 @@ class ListViewParser extends $pb.GeneratedMessage {
             ? ''
             : 'extraSelector',
         $pb.PbFieldType.PM,
-        protoName: 'extraSelector',
         subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false;
 
@@ -831,7 +815,6 @@ class GalleryParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'uploadTime',
-        protoName: 'uploadTime',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         6,
@@ -844,14 +827,12 @@ class GalleryParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'imgCount',
-        protoName: 'imgCount',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         8,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pageCount',
-        protoName: 'pageCount',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         9,
@@ -864,7 +845,6 @@ class GalleryParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'coverImg',
-        protoName: 'coverImg',
         subBuilder: $0.ImageSelector.create)
     ..aOM<$0.Selector>(
         11,
@@ -877,7 +857,6 @@ class GalleryParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'thumbnailSelector',
-        protoName: 'thumbnailSelector',
         subBuilder: $0.Selector.create)
     ..aOM<$0.ImageSelector>(
         21,
@@ -890,20 +869,18 @@ class GalleryParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'thumbnailUrl',
-        protoName: 'thumbnailUrl',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         30,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'commentSelector',
-        protoName: 'commentSelector',
         subBuilder: $0.Selector.create)
     ..aOM<$0.CommentSelector>(
         31,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'comments',
+            : 'comment',
         subBuilder: $0.CommentSelector.create)
     ..aOM<$0.Selector>(
         40,
@@ -916,77 +893,66 @@ class GalleryParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'tagColor',
-        protoName: 'tagColor',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         50,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'badgeSelector',
-        protoName: 'badgeSelector',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         51,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'badgeText',
-        protoName: 'badgeText',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         52,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'badgeColor',
-        protoName: 'badgeColor',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         53,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'badgeType',
-        protoName: 'badgeType',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         60,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'chapterSelector',
-        protoName: 'chapterSelector',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         61,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'chapterTitle',
-        protoName: 'chapterTitle',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         62,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'chapterSubtitle',
-        protoName: 'chapterSubtitle',
         subBuilder: $0.Selector.create)
     ..aOM<$0.ImageSelector>(
         63,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'chapterCover',
-        protoName: 'chapterCover',
         subBuilder: $0.ImageSelector.create)
     ..aOM<$0.Selector>(
         70,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'nextPage',
-        protoName: 'nextPage',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         71,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'prePageImageCount',
-        protoName: 'prePageImageCount',
         subBuilder: $0.Selector.create)
     ..pc<$0.ExtraSelector>(
         99,
@@ -994,7 +960,6 @@ class GalleryParser extends $pb.GeneratedMessage {
             ? ''
             : 'extraSelector',
         $pb.PbFieldType.PM,
-        protoName: 'extraSelector',
         subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false;
 
@@ -1015,7 +980,7 @@ class GalleryParser extends $pb.GeneratedMessage {
     $0.ImageSelector? thumbnail,
     $0.Selector? thumbnailUrl,
     $0.Selector? commentSelector,
-    $0.CommentSelector? comments,
+    $0.CommentSelector? comment,
     $0.Selector? tag,
     $0.Selector? tagColor,
     $0.Selector? badgeSelector,
@@ -1076,8 +1041,8 @@ class GalleryParser extends $pb.GeneratedMessage {
     if (commentSelector != null) {
       _result.commentSelector = commentSelector;
     }
-    if (comments != null) {
-      _result.comments = comments;
+    if (comment != null) {
+      _result.comment = comment;
     }
     if (tag != null) {
       _result.tag = tag;
@@ -1354,18 +1319,18 @@ class GalleryParser extends $pb.GeneratedMessage {
   $0.Selector ensureCommentSelector() => $_ensure(14);
 
   @$pb.TagNumber(31)
-  $0.CommentSelector get comments => $_getN(15);
+  $0.CommentSelector get comment => $_getN(15);
   @$pb.TagNumber(31)
-  set comments($0.CommentSelector v) {
+  set comment($0.CommentSelector v) {
     setField(31, v);
   }
 
   @$pb.TagNumber(31)
-  $core.bool hasComments() => $_has(15);
+  $core.bool hasComment() => $_has(15);
   @$pb.TagNumber(31)
-  void clearComments() => clearField(31);
+  void clearComment() => clearField(31);
   @$pb.TagNumber(31)
-  $0.CommentSelector ensureComments() => $_ensure(15);
+  $0.CommentSelector ensureComment() => $_ensure(15);
 
   @$pb.TagNumber(40)
   $0.Selector get tag => $_getN(16);
@@ -1537,4 +1502,42 @@ class GalleryParser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(99)
   $core.List<$0.ExtraSelector> get extraSelector => $_getList(28);
+}
+
+class AutoCompleteParser extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'AutoCompleteParser',
+      createEmptyInstance: create)
+    ..hasRequiredFields = false;
+
+  AutoCompleteParser._() : super();
+  factory AutoCompleteParser() => create();
+  factory AutoCompleteParser.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory AutoCompleteParser.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  AutoCompleteParser clone() => AutoCompleteParser()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  AutoCompleteParser copyWith(void Function(AutoCompleteParser) updates) =>
+      super.copyWith((message) => updates(message as AutoCompleteParser))
+          as AutoCompleteParser; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static AutoCompleteParser create() => AutoCompleteParser._();
+  AutoCompleteParser createEmptyInstance() => create();
+  static $pb.PbList<AutoCompleteParser> createRepeated() =>
+      $pb.PbList<AutoCompleteParser>();
+  @$core.pragma('dart2js:noInline')
+  static AutoCompleteParser getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<AutoCompleteParser>(create);
+  static AutoCompleteParser? _defaultInstance;
 }

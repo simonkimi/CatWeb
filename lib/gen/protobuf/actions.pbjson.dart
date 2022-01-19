@@ -9,32 +9,32 @@ import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
 
-@$core.Deprecated('Use netWorkActionTypeDescriptor instead')
-const NetWorkActionType$json = const {
-  '1': 'NetWorkActionType',
+@$core.Deprecated('Use netActionTypeDescriptor instead')
+const NetActionType$json = const {
+  '1': 'NetActionType',
   '2': const [
-    const {'1': 'get', '2': 0},
-    const {'1': 'post', '2': 1},
-    const {'1': 'put', '2': 2},
-    const {'1': 'delete', '2': 3},
+    const {'1': 'NET_ACTION_TYPE_GET', '2': 0},
+    const {'1': 'NET_ACTION_TYPE_POST', '2': 1},
+    const {'1': 'NET_ACTION_TYPE_PUT', '2': 2},
+    const {'1': 'NET_ACTION_TYPE_DELETE', '2': 3},
   ],
 };
 
-/// Descriptor for `NetWorkActionType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List netWorkActionTypeDescriptor = $convert.base64Decode(
-    'ChFOZXRXb3JrQWN0aW9uVHlwZRIHCgNnZXQQABIICgRwb3N0EAESBwoDcHV0EAISCgoGZGVsZXRlEAM=');
+/// Descriptor for `NetActionType`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List netActionTypeDescriptor = $convert.base64Decode(
+    'Cg1OZXRBY3Rpb25UeXBlEhcKE05FVF9BQ1RJT05fVFlQRV9HRVQQABIYChRORVRfQUNUSU9OX1RZUEVfUE9TVBABEhcKE05FVF9BQ1RJT05fVFlQRV9QVVQQAhIaChZORVRfQUNUSU9OX1RZUEVfREVMRVRFEAM=');
 @$core.Deprecated('Use inputActionTypeDescriptor instead')
 const InputActionType$json = const {
   '1': 'InputActionType',
   '2': const [
-    const {'1': 'string', '2': 0},
-    const {'1': 'num', '2': 1},
+    const {'1': 'INPUT_ACTION_TYPE_STRING', '2': 0},
+    const {'1': 'INPUT_ACTION_TYPE_NUM', '2': 1},
   ],
 };
 
 /// Descriptor for `InputActionType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List inputActionTypeDescriptor = $convert
-    .base64Decode('Cg9JbnB1dEFjdGlvblR5cGUSCgoGc3RyaW5nEAASBwoDbnVtEAE=');
+final $typed_data.Uint8List inputActionTypeDescriptor = $convert.base64Decode(
+    'Cg9JbnB1dEFjdGlvblR5cGUSHAoYSU5QVVRfQUNUSU9OX1RZUEVfU1RSSU5HEAASGQoVSU5QVVRfQUNUSU9OX1RZUEVfTlVNEAE=');
 @$core.Deprecated('Use inputActionDescriptor instead')
 const InputAction$json = const {
   '1': 'InputAction',
@@ -56,9 +56,9 @@ const InputAction$json = const {
 /// Descriptor for `InputAction`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List inputActionDescriptor = $convert.base64Decode(
     'CgtJbnB1dEFjdGlvbhISCgRuYW1lGAEgASgJUgRuYW1lEg4KAmlkGAIgASgJUgJpZBIkCgR0eXBlGAMgASgOMhAuSW5wdXRBY3Rpb25UeXBlUgR0eXBlEhYKBmdsb2JhbBgEIAEoCFIGZ2xvYmFs');
-@$core.Deprecated('Use netWorkActionDescriptor instead')
-const NetWorkAction$json = const {
-  '1': 'NetWorkAction',
+@$core.Deprecated('Use netActionDescriptor instead')
+const NetAction$json = const {
+  '1': 'NetAction',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {
@@ -66,7 +66,7 @@ const NetWorkAction$json = const {
       '3': 2,
       '4': 1,
       '5': 14,
-      '6': '.NetWorkActionType',
+      '6': '.NetActionType',
       '10': 'type'
     },
     const {'1': 'url', '3': 3, '4': 1, '5': 9, '10': 'url'},
@@ -74,9 +74,9 @@ const NetWorkAction$json = const {
   ],
 };
 
-/// Descriptor for `NetWorkAction`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List netWorkActionDescriptor = $convert.base64Decode(
-    'Cg1OZXRXb3JrQWN0aW9uEhIKBG5hbWUYASABKAlSBG5hbWUSJgoEdHlwZRgCIAEoDjISLk5ldFdvcmtBY3Rpb25UeXBlUgR0eXBlEhAKA3VybBgDIAEoCVIDdXJsEhIKBGRhdGEYBCABKAlSBGRhdGE=');
+/// Descriptor for `NetAction`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List netActionDescriptor = $convert.base64Decode(
+    'CglOZXRBY3Rpb24SEgoEbmFtZRgBIAEoCVIEbmFtZRIiCgR0eXBlGAIgASgOMg4uTmV0QWN0aW9uVHlwZVIEdHlwZRIQCgN1cmwYAyABKAlSA3VybBISCgRkYXRhGAQgASgJUgRkYXRh');
 @$core.Deprecated('Use setIdActionDescriptor instead')
 const SetIdAction$json = const {
   '1': 'SetIdAction',

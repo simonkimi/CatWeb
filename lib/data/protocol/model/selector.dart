@@ -8,7 +8,9 @@ import 'interface.dart';
 class SelectorModel implements PbAble {
   SelectorModel([Selector? pb, bool computed = false])
       : selector = sobs(pb?.selector),
-        function = df(pb?.function, SelectorFunction.auto, pb?.hasFunction).obs,
+        function = df(pb?.function, SelectorFunction.SELECTOR_FUNCTION_AUTO,
+                pb?.hasFunction)
+            .obs,
         param = sobs(pb?.param),
         regex = sobs(pb?.regex),
         replace = sobs(pb?.replace),
@@ -44,7 +46,9 @@ class ExtraSelectorModel implements PbAble {
       : id = sobs(pb?.id),
         selector = SelectorModel(pb?.selector),
         global = pb?.global.obs ?? false.obs,
-        type = type?.obs ?? pb?.type.obs ?? ExtraSelectorType.none.obs;
+        type = type?.obs ??
+            pb?.type.obs ??
+            ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE.obs;
 
   final RxString id;
   final SelectorModel selector;
@@ -119,13 +123,13 @@ class CommentSelectorModel implements PbAble {
 extension SelectorFunctionE on SelectorFunction {
   String get string {
     switch (this) {
-      case SelectorFunction.attr:
+      case SelectorFunction.SELECTOR_FUNCTION_ATTR:
         return 'attr';
-      case SelectorFunction.raw:
+      case SelectorFunction.SELECTOR_FUNCTION_RAW:
         return 'raw';
-      case SelectorFunction.text:
+      case SelectorFunction.SELECTOR_FUNCTION_TEXT:
         return 'text';
-      case SelectorFunction.auto:
+      case SelectorFunction.SELECTOR_FUNCTION_AUTO:
         return '';
     }
     return '';
@@ -135,17 +139,17 @@ extension SelectorFunctionE on SelectorFunction {
 extension ExtraSelectorTypeTr on ExtraSelectorType {
   String string(BuildContext context) {
     switch (this) {
-      case ExtraSelectorType.galleryBadge:
+      case ExtraSelectorType.EXTRA_SELECTOR_TYPE_GALLERY_BADGE:
         return '徽章';
-      case ExtraSelectorType.galleryChapter:
+      case ExtraSelectorType.EXTRA_SELECTOR_TYPE_GALLERY_CHAPTER:
         return '章节';
-      case ExtraSelectorType.galleryComment:
+      case ExtraSelectorType.EXTRA_SELECTOR_TYPE_GALLERY_COMMENT:
         return '评论';
-      case ExtraSelectorType.galleryThumbnail:
+      case ExtraSelectorType.EXTRA_SELECTOR_TYPE_GALLERY_THUMBNAIL:
         return '缩略图';
-      case ExtraSelectorType.listItem:
+      case ExtraSelectorType.EXTRA_SELECTOR_TYPE_LIST_ITEM:
         return '项目';
-      case ExtraSelectorType.none:
+      case ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE:
         return '页面';
     }
     return '';

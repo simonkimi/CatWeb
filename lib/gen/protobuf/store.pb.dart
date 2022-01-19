@@ -111,20 +111,17 @@ class SiteConfig extends $pb.GeneratedMessage {
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'baseUrl',
-        protoName: 'baseUrl')
+            : 'baseUrl')
     ..aOS(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'loginUrl',
-        protoName: 'loginUrl')
+            : 'loginUrl')
     ..aOM<RegField>(
         4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'loginCookie',
-        protoName: 'loginCookie',
         subBuilder: RegField.create)
     ..aOS(
         5,
@@ -135,8 +132,7 @@ class SiteConfig extends $pb.GeneratedMessage {
         6,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'upgradeUrl',
-        protoName: 'upgradeUrl')
+            : 'upgradeUrl')
     ..aOS(
         7,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -167,15 +163,13 @@ class SiteConfig extends $pb.GeneratedMessage {
             ? ''
             : 'galleryParsers',
         $pb.PbFieldType.PM,
-        protoName: 'galleryParsers',
         subBuilder: $0.GalleryParser.create)
     ..pc<$0.ListViewParser>(
         21,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'listViewParser',
+            : 'listViewParsers',
         $pb.PbFieldType.PM,
-        protoName: 'listViewParser',
         subBuilder: $0.ListViewParser.create)
     ..pc<$0.ImageParser>(
         22,
@@ -183,23 +177,20 @@ class SiteConfig extends $pb.GeneratedMessage {
             ? ''
             : 'imageParsers',
         $pb.PbFieldType.PM,
-        protoName: 'imageParsers',
         subBuilder: $0.ImageParser.create)
     ..pc<$1.ActionCombine>(
         23,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'actionList',
+            : 'actions',
         $pb.PbFieldType.PM,
-        protoName: 'actionList',
         subBuilder: $1.ActionCombine.create)
     ..pc<$2.SitePage>(
         24,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'pageList',
+            : 'pages',
         $pb.PbFieldType.PM,
-        protoName: 'pageList',
         subBuilder: $2.SitePage.create)
     ..hasRequiredFields = false;
 
@@ -216,10 +207,10 @@ class SiteConfig extends $pb.GeneratedMessage {
     $core.Iterable<RegField>? headers,
     $core.Iterable<RegField>? cookies,
     $core.Iterable<$0.GalleryParser>? galleryParsers,
-    $core.Iterable<$0.ListViewParser>? listViewParser,
+    $core.Iterable<$0.ListViewParser>? listViewParsers,
     $core.Iterable<$0.ImageParser>? imageParsers,
-    $core.Iterable<$1.ActionCombine>? actionList,
-    $core.Iterable<$2.SitePage>? pageList,
+    $core.Iterable<$1.ActionCombine>? actions,
+    $core.Iterable<$2.SitePage>? pages,
   }) {
     final _result = create();
     if (name != null) {
@@ -255,17 +246,17 @@ class SiteConfig extends $pb.GeneratedMessage {
     if (galleryParsers != null) {
       _result.galleryParsers.addAll(galleryParsers);
     }
-    if (listViewParser != null) {
-      _result.listViewParser.addAll(listViewParser);
+    if (listViewParsers != null) {
+      _result.listViewParsers.addAll(listViewParsers);
     }
     if (imageParsers != null) {
       _result.imageParsers.addAll(imageParsers);
     }
-    if (actionList != null) {
-      _result.actionList.addAll(actionList);
+    if (actions != null) {
+      _result.actions.addAll(actions);
     }
-    if (pageList != null) {
-      _result.pageList.addAll(pageList);
+    if (pages != null) {
+      _result.pages.addAll(pages);
     }
     return _result;
   }
@@ -403,16 +394,16 @@ class SiteConfig extends $pb.GeneratedMessage {
   $core.List<$0.GalleryParser> get galleryParsers => $_getList(10);
 
   @$pb.TagNumber(21)
-  $core.List<$0.ListViewParser> get listViewParser => $_getList(11);
+  $core.List<$0.ListViewParser> get listViewParsers => $_getList(11);
 
   @$pb.TagNumber(22)
   $core.List<$0.ImageParser> get imageParsers => $_getList(12);
 
   @$pb.TagNumber(23)
-  $core.List<$1.ActionCombine> get actionList => $_getList(13);
+  $core.List<$1.ActionCombine> get actions => $_getList(13);
 
   @$pb.TagNumber(24)
-  $core.List<$2.SitePage> get pageList => $_getList(14);
+  $core.List<$2.SitePage> get pages => $_getList(14);
 }
 
 class EnvStore extends $pb.GeneratedMessage {

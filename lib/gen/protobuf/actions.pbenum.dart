@@ -9,57 +9,57 @@
 import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class NetWorkActionType extends $pb.ProtobufEnum {
-  static const NetWorkActionType get = NetWorkActionType._(
+class NetActionType extends $pb.ProtobufEnum {
+  static const NetActionType NET_ACTION_TYPE_GET = NetActionType._(
       0,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'get');
-  static const NetWorkActionType post = NetWorkActionType._(
+          : 'NET_ACTION_TYPE_GET');
+  static const NetActionType NET_ACTION_TYPE_POST = NetActionType._(
       1,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'post');
-  static const NetWorkActionType put = NetWorkActionType._(
+          : 'NET_ACTION_TYPE_POST');
+  static const NetActionType NET_ACTION_TYPE_PUT = NetActionType._(
       2,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'put');
-  static const NetWorkActionType delete = NetWorkActionType._(
+          : 'NET_ACTION_TYPE_PUT');
+  static const NetActionType NET_ACTION_TYPE_DELETE = NetActionType._(
       3,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'delete');
+          : 'NET_ACTION_TYPE_DELETE');
 
-  static const $core.List<NetWorkActionType> values = <NetWorkActionType>[
-    get,
-    post,
-    put,
-    delete,
+  static const $core.List<NetActionType> values = <NetActionType>[
+    NET_ACTION_TYPE_GET,
+    NET_ACTION_TYPE_POST,
+    NET_ACTION_TYPE_PUT,
+    NET_ACTION_TYPE_DELETE,
   ];
 
-  static final $core.Map<$core.int, NetWorkActionType> _byValue =
+  static final $core.Map<$core.int, NetActionType> _byValue =
       $pb.ProtobufEnum.initByValue(values);
-  static NetWorkActionType? valueOf($core.int value) => _byValue[value];
+  static NetActionType? valueOf($core.int value) => _byValue[value];
 
-  const NetWorkActionType._($core.int v, $core.String n) : super(v, n);
+  const NetActionType._($core.int v, $core.String n) : super(v, n);
 }
 
 class InputActionType extends $pb.ProtobufEnum {
-  static const InputActionType string = InputActionType._(
+  static const InputActionType INPUT_ACTION_TYPE_STRING = InputActionType._(
       0,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'string');
-  static const InputActionType num = InputActionType._(
+          : 'INPUT_ACTION_TYPE_STRING');
+  static const InputActionType INPUT_ACTION_TYPE_NUM = InputActionType._(
       1,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'num');
+          : 'INPUT_ACTION_TYPE_NUM');
 
   static const $core.List<InputActionType> values = <InputActionType>[
-    string,
-    num,
+    INPUT_ACTION_TYPE_STRING,
+    INPUT_ACTION_TYPE_NUM,
   ];
 
   static final $core.Map<$core.int, InputActionType> _byValue =

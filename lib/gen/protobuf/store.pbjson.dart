@@ -26,10 +26,10 @@ const SiteConfig$json = const {
   '1': 'SiteConfig',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {'1': 'baseUrl', '3': 2, '4': 1, '5': 9, '10': 'baseUrl'},
-    const {'1': 'loginUrl', '3': 3, '4': 1, '5': 9, '10': 'loginUrl'},
+    const {'1': 'base_url', '3': 2, '4': 1, '5': 9, '10': 'baseUrl'},
+    const {'1': 'login_url', '3': 3, '4': 1, '5': 9, '10': 'loginUrl'},
     const {
-      '1': 'loginCookie',
+      '1': 'login_cookie',
       '3': 4,
       '4': 1,
       '5': 11,
@@ -37,7 +37,7 @@ const SiteConfig$json = const {
       '10': 'loginCookie'
     },
     const {'1': 'version', '3': 5, '4': 1, '5': 9, '10': 'version'},
-    const {'1': 'upgradeUrl', '3': 6, '4': 1, '5': 9, '10': 'upgradeUrl'},
+    const {'1': 'upgrade_url', '3': 6, '4': 1, '5': 9, '10': 'upgradeUrl'},
     const {'1': 'flag', '3': 7, '4': 1, '5': 9, '10': 'flag'},
     const {'1': 'readme', '3': 8, '4': 1, '5': 9, '10': 'readme'},
     const {
@@ -57,7 +57,7 @@ const SiteConfig$json = const {
       '10': 'cookies'
     },
     const {
-      '1': 'galleryParsers',
+      '1': 'gallery_parsers',
       '3': 20,
       '4': 3,
       '5': 11,
@@ -65,15 +65,15 @@ const SiteConfig$json = const {
       '10': 'galleryParsers'
     },
     const {
-      '1': 'listViewParser',
+      '1': 'list_view_parsers',
       '3': 21,
       '4': 3,
       '5': 11,
       '6': '.ListViewParser',
-      '10': 'listViewParser'
+      '10': 'listViewParsers'
     },
     const {
-      '1': 'imageParsers',
+      '1': 'image_parsers',
       '3': 22,
       '4': 3,
       '5': 11,
@@ -81,27 +81,27 @@ const SiteConfig$json = const {
       '10': 'imageParsers'
     },
     const {
-      '1': 'actionList',
+      '1': 'actions',
       '3': 23,
       '4': 3,
       '5': 11,
       '6': '.ActionCombine',
-      '10': 'actionList'
+      '10': 'actions'
     },
     const {
-      '1': 'pageList',
+      '1': 'pages',
       '3': 24,
       '4': 3,
       '5': 11,
       '6': '.SitePage',
-      '10': 'pageList'
+      '10': 'pages'
     },
   ],
 };
 
 /// Descriptor for `SiteConfig`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List siteConfigDescriptor = $convert.base64Decode(
-    'CgpTaXRlQ29uZmlnEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHYmFzZVVybBgCIAEoCVIHYmFzZVVybBIaCghsb2dpblVybBgDIAEoCVIIbG9naW5VcmwSKwoLbG9naW5Db29raWUYBCABKAsyCS5SZWdGaWVsZFILbG9naW5Db29raWUSGAoHdmVyc2lvbhgFIAEoCVIHdmVyc2lvbhIeCgp1cGdyYWRlVXJsGAYgASgJUgp1cGdyYWRlVXJsEhIKBGZsYWcYByABKAlSBGZsYWcSFgoGcmVhZG1lGAggASgJUgZyZWFkbWUSIwoHaGVhZGVycxgPIAMoCzIJLlJlZ0ZpZWxkUgdoZWFkZXJzEiMKB2Nvb2tpZXMYECADKAsyCS5SZWdGaWVsZFIHY29va2llcxI2Cg5nYWxsZXJ5UGFyc2VycxgUIAMoCzIOLkdhbGxlcnlQYXJzZXJSDmdhbGxlcnlQYXJzZXJzEjcKDmxpc3RWaWV3UGFyc2VyGBUgAygLMg8uTGlzdFZpZXdQYXJzZXJSDmxpc3RWaWV3UGFyc2VyEjAKDGltYWdlUGFyc2VycxgWIAMoCzIMLkltYWdlUGFyc2VyUgxpbWFnZVBhcnNlcnMSLgoKYWN0aW9uTGlzdBgXIAMoCzIOLkFjdGlvbkNvbWJpbmVSCmFjdGlvbkxpc3QSJQoIcGFnZUxpc3QYGCADKAsyCS5TaXRlUGFnZVIIcGFnZUxpc3Q=');
+    'CgpTaXRlQ29uZmlnEhIKBG5hbWUYASABKAlSBG5hbWUSGQoIYmFzZV91cmwYAiABKAlSB2Jhc2VVcmwSGwoJbG9naW5fdXJsGAMgASgJUghsb2dpblVybBIsCgxsb2dpbl9jb29raWUYBCABKAsyCS5SZWdGaWVsZFILbG9naW5Db29raWUSGAoHdmVyc2lvbhgFIAEoCVIHdmVyc2lvbhIfCgt1cGdyYWRlX3VybBgGIAEoCVIKdXBncmFkZVVybBISCgRmbGFnGAcgASgJUgRmbGFnEhYKBnJlYWRtZRgIIAEoCVIGcmVhZG1lEiMKB2hlYWRlcnMYDyADKAsyCS5SZWdGaWVsZFIHaGVhZGVycxIjCgdjb29raWVzGBAgAygLMgkuUmVnRmllbGRSB2Nvb2tpZXMSNwoPZ2FsbGVyeV9wYXJzZXJzGBQgAygLMg4uR2FsbGVyeVBhcnNlclIOZ2FsbGVyeVBhcnNlcnMSOwoRbGlzdF92aWV3X3BhcnNlcnMYFSADKAsyDy5MaXN0Vmlld1BhcnNlclIPbGlzdFZpZXdQYXJzZXJzEjEKDWltYWdlX3BhcnNlcnMYFiADKAsyDC5JbWFnZVBhcnNlclIMaW1hZ2VQYXJzZXJzEigKB2FjdGlvbnMYFyADKAsyDi5BY3Rpb25Db21iaW5lUgdhY3Rpb25zEh8KBXBhZ2VzGBggAygLMgkuU2l0ZVBhZ2VSBXBhZ2Vz');
 @$core.Deprecated('Use envStoreDescriptor instead')
 const EnvStore$json = const {
   '1': 'EnvStore',

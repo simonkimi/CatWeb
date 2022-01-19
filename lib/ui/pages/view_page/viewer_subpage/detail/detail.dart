@@ -141,9 +141,7 @@ class GalleryDetail extends StatelessWidget {
     final tagMaps = <String, List<String>>{'_': []};
 
     for (final tag in model.badgeList) {
-      if (tag.category != null && !tagMaps.containsKey(tag.category)) {
-        tagMaps[tag.category!] = [];
-      }
+      tagMaps[tag.category ?? '_'] ??= [];
       tagMaps[tag.category ?? '_']!.add(tag.text!);
     }
 

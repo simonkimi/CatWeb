@@ -35,7 +35,8 @@ class DomSelectorExec<T> {
   List<String> find(final XPathNode<T> root, {bool computed = false}) {
     final path = selector.selector.value;
     if (path.isEmpty) {
-      if (!(selector.function.value != SelectorFunction.auto ||
+      if (!(selector.function.value !=
+              SelectorFunction.SELECTOR_FUNCTION_AUTO ||
           selector.param.value.isNotEmpty ||
           selector.regex.value.isNotEmpty ||
           selector.replace.value.isNotEmpty ||
@@ -100,7 +101,7 @@ class DomSelectorExec<T> {
     final element = result.nodes.where((e) => e.isElement).toList().index(0);
     if (element == null) return null;
     switch (selector.function.value) {
-      case SelectorFunction.attr:
+      case SelectorFunction.SELECTOR_FUNCTION_ATTR:
         // 属性选择
         for (final p in selector.param.value.split(',')) {
           final key = p.trim();
@@ -109,15 +110,15 @@ class DomSelectorExec<T> {
           }
         }
         return null;
-      case SelectorFunction.raw:
+      case SelectorFunction.SELECTOR_FUNCTION_RAW:
         // 原生内容
         return element.node is Element
             ? (element.node as Element).innerHtml
             : (element.node as XmlElement).innerXml;
-      case SelectorFunction.text:
+      case SelectorFunction.SELECTOR_FUNCTION_TEXT:
         // 内容
         return element.text;
-      case SelectorFunction.auto:
+      case SelectorFunction.SELECTOR_FUNCTION_AUTO:
         // 自动
         // 如果有attr值则选择attr值
         if (result.attr != null) {

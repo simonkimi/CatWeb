@@ -151,7 +151,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
                 onTap: () => _onParserTap(context),
               )),
           const CupertinoDivider(height: 20),
-          if (model.template.value != PageTemplate.imageViewer)
+          if (model.template.value != Template.TEMPLATE_IMAGE_VIEWER)
             Obx(() => CupertinoReadOnlyInput(
                   labelText: '显示方式',
                   value: model.display.value.string(context),
@@ -167,7 +167,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
   Widget _buildOpenNewPage(BuildContext context) {
     late final List<Widget> body;
     switch (model.template.value) {
-      case PageTemplate.detail:
+      case Template.TEMPLATE_DETAIL:
         body = [
           Obx(() => CupertinoReadOnlyInput(
                 labelText: '徽章跳转',
@@ -177,8 +177,8 @@ class RulesPageEdit extends GetView<RulesEditController> {
               )),
         ];
         break;
-      case PageTemplate.imageList:
-      case PageTemplate.imageWaterfall:
+      case Template.TEMPLATE_IMAGE_LIST:
+      case Template.TEMPLATE_IMAGE_WATERFALL:
         body = [
           // 项目被点击
           Obx(() => CupertinoReadOnlyInput(
@@ -189,7 +189,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
               )),
         ];
         break;
-      case PageTemplate.imageViewer:
+      case Template.TEMPLATE_IMAGE_VIEWER:
         body = [];
         break;
     }
@@ -279,7 +279,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
   }
 
   Future<void> _onTemplateTap(BuildContext context) async {
-    final result = await showCupertinoSelectDialog<PageTemplate>(
+    final result = await showCupertinoSelectDialog<Template>(
       title: '请选择页面模板',
       context: context,
       items: model.template.value.brother

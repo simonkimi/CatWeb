@@ -40,30 +40,40 @@ class ExtraParser extends StatelessWidget {
                     cancelText: '取消',
                     items: [
                       SelectTileItem(
-                          title: ExtraSelectorType.none.string(context),
-                          value: ExtraSelectorType.none),
+                          title: ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE
+                              .string(context),
+                          value: ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE),
                       if (model.type == ParserType.listParser)
                         SelectTileItem(
-                            title: ExtraSelectorType.listItem.string(context),
-                            value: ExtraSelectorType.listItem),
+                            title: ExtraSelectorType
+                                .EXTRA_SELECTOR_TYPE_LIST_ITEM
+                                .string(context),
+                            value: ExtraSelectorType
+                                .EXTRA_SELECTOR_TYPE_LIST_ITEM),
                       if (model.type == ParserType.galleryParser)
                         SelectTileItem(
-                            title:
-                                ExtraSelectorType.galleryBadge.string(context),
-                            value: ExtraSelectorType.galleryBadge),
+                            title: ExtraSelectorType
+                                .EXTRA_SELECTOR_TYPE_GALLERY_BADGE
+                                .string(context),
+                            value: ExtraSelectorType
+                                .EXTRA_SELECTOR_TYPE_GALLERY_BADGE),
                       // if (model.type == ParserType.galleryParser)
                       //   SelectTileItem(title: ExtraSelectorType.galleryChapter.string(
                       //       context), value: ExtraSelectorType.galleryChapter),
                       if (model.type == ParserType.galleryParser)
                         SelectTileItem(
-                            title: ExtraSelectorType.galleryComment
+                            title: ExtraSelectorType
+                                .EXTRA_SELECTOR_TYPE_GALLERY_COMMENT
                                 .string(context),
-                            value: ExtraSelectorType.galleryComment),
+                            value: ExtraSelectorType
+                                .EXTRA_SELECTOR_TYPE_GALLERY_COMMENT),
                       if (model.type == ParserType.galleryParser)
                         SelectTileItem(
-                            title: ExtraSelectorType.galleryThumbnail
+                            title: ExtraSelectorType
+                                .EXTRA_SELECTOR_TYPE_GALLERY_THUMBNAIL
                                 .string(context),
-                            value: ExtraSelectorType.galleryThumbnail),
+                            value: ExtraSelectorType
+                                .EXTRA_SELECTOR_TYPE_GALLERY_THUMBNAIL),
                     ],
                   );
                   if (result != null) {

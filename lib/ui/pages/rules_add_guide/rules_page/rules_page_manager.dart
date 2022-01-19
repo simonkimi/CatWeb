@@ -113,10 +113,10 @@ class RulesPageManager extends GetView<RulesEditController> {
   }
 
   Future<SitePageModel?> _genRules(BuildContext context) async {
-    final select = await showCupertinoSelectDialog<PageTemplate>(
+    final select = await showCupertinoSelectDialog<Template>(
       title: '选择模板',
       context: context,
-      items: PageTemplate.values
+      items: Template.values
           .map((e) => SelectTileItem(title: e.string(context), value: e))
           .toList(),
     );

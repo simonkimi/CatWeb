@@ -138,15 +138,15 @@ class SitePage extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'url')
-    ..e<PageTemplate>(
+    ..e<Template>(
         4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'template',
         $pb.PbFieldType.OE,
-        defaultOrMaker: PageTemplate.imageList,
-        valueOf: PageTemplate.valueOf,
-        enumValues: PageTemplate.values)
+        defaultOrMaker: Template.TEMPLATE_IMAGE_LIST,
+        valueOf: Template.valueOf,
+        enumValues: Template.values)
     ..aOS(
         5,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -158,7 +158,6 @@ class SitePage extends $pb.GeneratedMessage {
             ? ''
             : 'subPage',
         $pb.PbFieldType.PM,
-        protoName: 'subPage',
         subBuilder: SiteSubPage.create)
     ..aOS(
         7,
@@ -180,7 +179,6 @@ class SitePage extends $pb.GeneratedMessage {
             ? ''
             : 'openPage',
         $pb.PbFieldType.PM,
-        protoName: 'openPage',
         subBuilder: OpenPage.create)
     ..hasRequiredFields = false;
 
@@ -189,7 +187,7 @@ class SitePage extends $pb.GeneratedMessage {
     $core.String? name,
     $core.String? uuid,
     $core.String? url,
-    PageTemplate? template,
+    Template? template,
     $core.String? parser,
     $core.Iterable<SiteSubPage>? subPage,
     $core.String? icon,
@@ -289,9 +287,9 @@ class SitePage extends $pb.GeneratedMessage {
   void clearUrl() => clearField(3);
 
   @$pb.TagNumber(4)
-  PageTemplate get template => $_getN(3);
+  Template get template => $_getN(3);
   @$pb.TagNumber(4)
-  set template(PageTemplate v) {
+  set template(Template v) {
     setField(4, v);
   }
 

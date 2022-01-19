@@ -48,7 +48,7 @@ class SitePageModel implements PbAble {
       : name = sobs(pb?.name),
         uuid = genUuid(pb?.uuid),
         url = sobs(pb?.url),
-        template = pb?.template.obs ?? PageTemplate.imageList.obs,
+        template = pb?.template.obs ?? Template.TEMPLATE_IMAGE_LIST.obs,
         parser = sobs(pb?.parser),
         subPages = lobs(pb?.subPage, (SiteSubPage pb) => SubPageModel(pb)),
         icon = sobs(pb?.icon),
@@ -58,7 +58,7 @@ class SitePageModel implements PbAble {
   final RxString name;
   final String uuid;
   final RxString url;
-  final Rx<PageTemplate> template;
+  final Rx<Template> template;
   final RxString parser;
   final RxList<SubPageModel> subPages;
   final RxString icon;
@@ -94,29 +94,31 @@ class SitePageModel implements PbAble {
 
   OpenPageModel get badgeTarget => _genOpenPageList(1, 0);
 
-  bool get isMultiPage => [PageTemplate.imageList, PageTemplate.imageWaterfall]
-      .contains(template.value);
+  bool get isMultiPage => [
+        Template.TEMPLATE_IMAGE_LIST,
+        Template.TEMPLATE_IMAGE_WATERFALL
+      ].contains(template.value);
 }
 
-extension PageTemplateTr on PageTemplate {
+extension PageTemplateTr on Template {
   String string(BuildContext context) {
     switch (this) {
-      case PageTemplate.detail:
+      case Template.TEMPLATE_DETAIL:
         return '详情';
-      case PageTemplate.imageList:
+      case Template.TEMPLATE_IMAGE_LIST:
         return '列表';
-      case PageTemplate.imageWaterfall:
+      case Template.TEMPLATE_IMAGE_WATERFALL:
         return '瀑布流';
-      case PageTemplate.imageViewer:
+      case Template.TEMPLATE_IMAGE_VIEWER:
         return '图片查看器';
     }
     throw UnimplementedError('TODO! $this');
   }
 
-  List<PageTemplate> get brother {
-    final data = <List<PageTemplate>>[
-      [PageTemplate.imageWaterfall, PageTemplate.imageList],
-      [PageTemplate.detail]
+  List<Template> get brother {
+    final data = <List<Template>>[
+      [Template.TEMPLATE_IMAGE_WATERFALL, Template.TEMPLATE_IMAGE_LIST],
+      [Template.TEMPLATE_DETAIL]
     ];
     for (final parent in data) {
       for (final my in parent) {
@@ -128,12 +130,12 @@ extension PageTemplateTr on PageTemplate {
 
   Iterable<ParserBaseModel> parser(List<ParserBaseModel> input) {
     switch (this) {
-      case PageTemplate.detail:
+      case Template.TEMPLATE_DETAIL:
         return input.whereType<GalleryParserModel>();
-      case PageTemplate.imageList:
-      case PageTemplate.imageWaterfall:
+      case Template.TEMPLATE_IMAGE_LIST:
+      case Template.TEMPLATE_IMAGE_WATERFALL:
         return input.whereType<ListViewParserModel>();
-      case PageTemplate.imageViewer:
+      case Template.TEMPLATE_IMAGE_VIEWER:
         return input.whereType<ImageParserModel>();
     }
     throw UnimplementedError('TODO! $this');

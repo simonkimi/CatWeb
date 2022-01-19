@@ -1,10 +1,10 @@
 syntax = 'proto3';
 
-enum PageTemplate {
-  imageList = 0;
-  imageWaterfall = 1;
-  detail = 2;
-  imageViewer = 3;
+enum Template {
+  TEMPLATE_IMAGE_LIST = 0;
+  TEMPLATE_IMAGE_WATERFALL = 1;
+  TEMPLATE_DETAIL = 2;
+  TEMPLATE_IMAGE_VIEWER = 3;
 }
 
 message SiteSubPage {
@@ -26,13 +26,13 @@ message SitePage {
   string uuid = 2;
 
   string url = 3;
-  PageTemplate template = 4;
+  Template template = 4;
   string parser = 5;
-  repeated SiteSubPage subPage = 6;
+  repeated SiteSubPage sub_page = 6;
   string icon = 7;
   SiteDisplayType display = 8;
 
-  repeated OpenPage openPage = 9;
+  repeated OpenPage open_page = 9;
 }
 
 message OpenPage {

@@ -30,7 +30,7 @@ class Selector extends $pb.GeneratedMessage {
             ? ''
             : 'function',
         $pb.PbFieldType.OE,
-        defaultOrMaker: SelectorFunction.auto,
+        defaultOrMaker: SelectorFunction.SELECTOR_FUNCTION_AUTO,
         valueOf: SelectorFunction.valueOf,
         enumValues: SelectorFunction.values)
     ..aOS(
@@ -62,8 +62,7 @@ class Selector extends $pb.GeneratedMessage {
         8,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'defaultValue',
-        protoName: 'defaultValue')
+            : 'defaultValue')
     ..hasRequiredFields = false;
 
   Selector._() : super();
@@ -255,7 +254,7 @@ class ExtraSelector extends $pb.GeneratedMessage {
             ? ''
             : 'type',
         $pb.PbFieldType.OE,
-        defaultOrMaker: ExtraSelectorType.none,
+        defaultOrMaker: ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE,
         valueOf: ExtraSelectorType.valueOf,
         enumValues: ExtraSelectorType.values)
     ..hasRequiredFields = false;
@@ -371,35 +370,30 @@ class ImageSelector extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'imgUrl',
-        protoName: 'imgUrl',
         subBuilder: Selector.create)
     ..aOM<Selector>(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'imgWidth',
-        protoName: 'imgWidth',
         subBuilder: Selector.create)
     ..aOM<Selector>(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'imgHeight',
-        protoName: 'imgHeight',
         subBuilder: Selector.create)
     ..aOM<Selector>(
         4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'imgX',
-        protoName: 'imgX',
         subBuilder: Selector.create)
     ..aOM<Selector>(
         5,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'imgY',
-        protoName: 'imgY',
         subBuilder: Selector.create)
     ..hasRequiredFields = false;
 
@@ -544,7 +538,6 @@ class CommentSelector extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'postTime',
-        protoName: 'postTime',
         subBuilder: Selector.create)
     ..aOM<Selector>(
         3,

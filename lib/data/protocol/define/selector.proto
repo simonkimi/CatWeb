@@ -1,10 +1,10 @@
 syntax = 'proto3';
 
 enum SelectorFunction {
-  auto = 0;
-  text = 1;
-  attr = 2;
-  raw = 3;
+  SELECTOR_FUNCTION_AUTO = 0;
+  SELECTOR_FUNCTION_TEXT = 1;
+  SELECTOR_FUNCTION_ATTR = 2;
+  SELECTOR_FUNCTION_RAW = 3;
 }
 
 
@@ -17,16 +17,16 @@ message Selector {
   string replace = 5;
   string js = 6;
   bool computed = 7;
-  string defaultValue = 8;
+  string default_value = 8;
 }
 
 enum ExtraSelectorType {
-  none = 0;
-  listItem = 1;
-  galleryThumbnail = 2;
-  galleryComment = 3;
-  galleryBadge = 4;
-  galleryChapter = 5;
+  EXTRA_SELECTOR_TYPE_NONE = 0;
+  EXTRA_SELECTOR_TYPE_LIST_ITEM = 1;
+  EXTRA_SELECTOR_TYPE_GALLERY_THUMBNAIL = 2;
+  EXTRA_SELECTOR_TYPE_GALLERY_COMMENT = 3;
+  EXTRA_SELECTOR_TYPE_GALLERY_BADGE = 4;
+  EXTRA_SELECTOR_TYPE_GALLERY_CHAPTER = 5;
 }
 
 message ExtraSelector {
@@ -38,16 +38,16 @@ message ExtraSelector {
 
 
 message ImageSelector {
-  Selector imgUrl = 1;
-  Selector imgWidth = 2;
-  Selector imgHeight = 3;
-  Selector imgX = 4;
-  Selector imgY = 5;
+  Selector img_url = 1;
+  Selector img_width = 2;
+  Selector img_height = 3;
+  Selector img_x = 4;
+  Selector img_y = 5;
 }
 
 message CommentSelector {
   Selector username = 1;
-  Selector postTime = 2;
+  Selector post_time = 2;
   Selector vote = 3;
   Selector content = 4;
   ImageSelector avatar = 5;

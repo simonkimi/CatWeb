@@ -29,8 +29,8 @@ ParserResult<GalleryDetailModel> galleryParserExec(
 
     xmlHtmlExtra(
       domSelector: dom,
-      extras: parser.extraSelectorModel
-          .where((p0) => p0.type.value == ExtraSelectorType.none),
+      extras: parser.extraSelectorModel.where(
+          (p0) => p0.type.value == ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE),
       root: root,
       onGlobalEnv: (key, value) => global[key] = value,
       onLocalEnv: (key, value) => local[key] = value,
@@ -54,7 +54,7 @@ ParserResult<GalleryDetailModel> galleryParserExec(
                 domSelector: dom,
                 extras: parser.extraSelectorModel,
                 root: root.root,
-                filter: ExtraSelectorType.galleryBadge,
+                filter: ExtraSelectorType.EXTRA_SELECTOR_TYPE_GALLERY_BADGE,
               ),
               text: dom.string(parser.badgeText, e),
               category: dom.string(parser.badgeType, e),
@@ -68,7 +68,7 @@ ParserResult<GalleryDetailModel> galleryParserExec(
             domSelector: dom,
             extras: parser.extraSelectorModel,
             root: root.root,
-            filter: ExtraSelectorType.galleryComment,
+            filter: ExtraSelectorType.EXTRA_SELECTOR_TYPE_GALLERY_COMMENT,
           ),
           comment: dom.string(parser.comments.content, e),
           commentTime: dom.string(parser.comments.postTime, e),

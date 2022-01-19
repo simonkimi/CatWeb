@@ -101,7 +101,7 @@ class GalleryParserModel extends ParserBaseModel {
         thumbnail = ImageSelectorModel(pb?.thumbnail),
         thumbnailUrl = SelectorModel(pb?.thumbnailUrl),
         commentSelector = SelectorModel(pb?.commentSelector),
-        comments = CommentSelectorModel(pb?.comments),
+        comments = CommentSelectorModel(pb?.comment),
         tag = SelectorModel(pb?.tag),
         tagColor = SelectorModel(pb?.tagColor),
         badgeSelector = SelectorModel(pb?.badgeSelector),
@@ -179,7 +179,7 @@ class GalleryParserModel extends ParserBaseModel {
 
         // 评论
         commentSelector: commentSelector.toPb(),
-        comments: comments.toPb(),
+        comment: comments.toPb(),
 
         // Tag
         tag: tag.toPb(),

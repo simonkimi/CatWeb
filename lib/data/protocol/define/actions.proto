@@ -1,15 +1,15 @@
 syntax = 'proto3';
 
-enum NetWorkActionType {
-  get = 0;
-  post = 1;
-  put = 2;
-  delete = 3;
+enum NetActionType {
+  NET_ACTION_TYPE_GET = 0;
+  NET_ACTION_TYPE_POST = 1;
+  NET_ACTION_TYPE_PUT = 2;
+  NET_ACTION_TYPE_DELETE = 3;
 }
 
 enum InputActionType {
-  string = 0;
-  num = 1;
+  INPUT_ACTION_TYPE_STRING = 0;
+  INPUT_ACTION_TYPE_NUM = 1;
 }
 
 // 动作: 输入
@@ -22,9 +22,9 @@ message InputAction {
 
 
 // 动作: 网络
-message NetWorkAction {
+message NetAction {
   string name = 1;
-  NetWorkActionType type = 2;
+  NetActionType type = 2;
   string url = 3;
   string data = 4;
 }

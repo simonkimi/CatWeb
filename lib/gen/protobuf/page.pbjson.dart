@@ -9,20 +9,20 @@ import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
 
-@$core.Deprecated('Use pageTemplateDescriptor instead')
-const PageTemplate$json = const {
-  '1': 'PageTemplate',
+@$core.Deprecated('Use templateDescriptor instead')
+const Template$json = const {
+  '1': 'Template',
   '2': const [
-    const {'1': 'imageList', '2': 0},
-    const {'1': 'imageWaterfall', '2': 1},
-    const {'1': 'detail', '2': 2},
-    const {'1': 'imageViewer', '2': 3},
+    const {'1': 'TEMPLATE_IMAGE_LIST', '2': 0},
+    const {'1': 'TEMPLATE_IMAGE_WATERFALL', '2': 1},
+    const {'1': 'TEMPLATE_DETAIL', '2': 2},
+    const {'1': 'TEMPLATE_IMAGE_VIEWER', '2': 3},
   ],
 };
 
-/// Descriptor for `PageTemplate`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List pageTemplateDescriptor = $convert.base64Decode(
-    'CgxQYWdlVGVtcGxhdGUSDQoJaW1hZ2VMaXN0EAASEgoOaW1hZ2VXYXRlcmZhbGwQARIKCgZkZXRhaWwQAhIPCgtpbWFnZVZpZXdlchAD');
+/// Descriptor for `Template`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List templateDescriptor = $convert.base64Decode(
+    'CghUZW1wbGF0ZRIXChNURU1QTEFURV9JTUFHRV9MSVNUEAASHAoYVEVNUExBVEVfSU1BR0VfV0FURVJGQUxMEAESEwoPVEVNUExBVEVfREVUQUlMEAISGQoVVEVNUExBVEVfSU1BR0VfVklFV0VSEAM=');
 @$core.Deprecated('Use siteDisplayTypeDescriptor instead')
 const SiteDisplayType$json = const {
   '1': 'SiteDisplayType',
@@ -61,12 +61,12 @@ const SitePage$json = const {
       '3': 4,
       '4': 1,
       '5': 14,
-      '6': '.PageTemplate',
+      '6': '.Template',
       '10': 'template'
     },
     const {'1': 'parser', '3': 5, '4': 1, '5': 9, '10': 'parser'},
     const {
-      '1': 'subPage',
+      '1': 'sub_page',
       '3': 6,
       '4': 3,
       '5': 11,
@@ -83,7 +83,7 @@ const SitePage$json = const {
       '10': 'display'
     },
     const {
-      '1': 'openPage',
+      '1': 'open_page',
       '3': 9,
       '4': 3,
       '5': 11,
@@ -95,7 +95,7 @@ const SitePage$json = const {
 
 /// Descriptor for `SitePage`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List sitePageDescriptor = $convert.base64Decode(
-    'CghTaXRlUGFnZRISCgRuYW1lGAEgASgJUgRuYW1lEhIKBHV1aWQYAiABKAlSBHV1aWQSEAoDdXJsGAMgASgJUgN1cmwSKQoIdGVtcGxhdGUYBCABKA4yDS5QYWdlVGVtcGxhdGVSCHRlbXBsYXRlEhYKBnBhcnNlchgFIAEoCVIGcGFyc2VyEiYKB3N1YlBhZ2UYBiADKAsyDC5TaXRlU3ViUGFnZVIHc3ViUGFnZRISCgRpY29uGAcgASgJUgRpY29uEioKB2Rpc3BsYXkYCCABKA4yEC5TaXRlRGlzcGxheVR5cGVSB2Rpc3BsYXkSJQoIb3BlblBhZ2UYCSADKAsyCS5PcGVuUGFnZVIIb3BlblBhZ2U=');
+    'CghTaXRlUGFnZRISCgRuYW1lGAEgASgJUgRuYW1lEhIKBHV1aWQYAiABKAlSBHV1aWQSEAoDdXJsGAMgASgJUgN1cmwSJQoIdGVtcGxhdGUYBCABKA4yCS5UZW1wbGF0ZVIIdGVtcGxhdGUSFgoGcGFyc2VyGAUgASgJUgZwYXJzZXISJwoIc3ViX3BhZ2UYBiADKAsyDC5TaXRlU3ViUGFnZVIHc3ViUGFnZRISCgRpY29uGAcgASgJUgRpY29uEioKB2Rpc3BsYXkYCCABKA4yEC5TaXRlRGlzcGxheVR5cGVSB2Rpc3BsYXkSJgoJb3Blbl9wYWdlGAkgAygLMgkuT3BlblBhZ2VSCG9wZW5QYWdl');
 @$core.Deprecated('Use openPageDescriptor instead')
 const OpenPage$json = const {
   '1': 'OpenPage',

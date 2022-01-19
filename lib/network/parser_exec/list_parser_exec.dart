@@ -32,8 +32,8 @@ ParserResult<List<ViewerListModel>> listParserExec(
 
     xmlHtmlExtra(
       domSelector: dom,
-      extras: parser.extraSelectorModel
-          .where((p0) => p0.type.value == ExtraSelectorType.none),
+      extras: parser.extraSelectorModel.where(
+          (p0) => p0.type.value == ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE),
       root: root,
       onGlobalEnv: (key, value) => global[key] = value,
       onLocalEnv: (key, value) => local[key] = value,
@@ -47,7 +47,7 @@ ParserResult<List<ViewerListModel>> listParserExec(
           root: e,
           domSelector: dom,
           extras: parser.extraSelectorModel,
-          filter: ExtraSelectorType.listItem,
+          filter: ExtraSelectorType.EXTRA_SELECTOR_TYPE_LIST_ITEM,
         ),
         idCode: dom.string(parser.idCode, e),
         title: dom.string(parser.title, e),

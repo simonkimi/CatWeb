@@ -13,32 +13,32 @@ import 'dart:typed_data' as $typed_data;
 const SelectorFunction$json = const {
   '1': 'SelectorFunction',
   '2': const [
-    const {'1': 'auto', '2': 0},
-    const {'1': 'text', '2': 1},
-    const {'1': 'attr', '2': 2},
-    const {'1': 'raw', '2': 3},
+    const {'1': 'SELECTOR_FUNCTION_AUTO', '2': 0},
+    const {'1': 'SELECTOR_FUNCTION_TEXT', '2': 1},
+    const {'1': 'SELECTOR_FUNCTION_ATTR', '2': 2},
+    const {'1': 'SELECTOR_FUNCTION_RAW', '2': 3},
   ],
 };
 
 /// Descriptor for `SelectorFunction`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List selectorFunctionDescriptor = $convert.base64Decode(
-    'ChBTZWxlY3RvckZ1bmN0aW9uEggKBGF1dG8QABIICgR0ZXh0EAESCAoEYXR0chACEgcKA3JhdxAD');
+    'ChBTZWxlY3RvckZ1bmN0aW9uEhoKFlNFTEVDVE9SX0ZVTkNUSU9OX0FVVE8QABIaChZTRUxFQ1RPUl9GVU5DVElPTl9URVhUEAESGgoWU0VMRUNUT1JfRlVOQ1RJT05fQVRUUhACEhkKFVNFTEVDVE9SX0ZVTkNUSU9OX1JBVxAD');
 @$core.Deprecated('Use extraSelectorTypeDescriptor instead')
 const ExtraSelectorType$json = const {
   '1': 'ExtraSelectorType',
   '2': const [
-    const {'1': 'none', '2': 0},
-    const {'1': 'listItem', '2': 1},
-    const {'1': 'galleryThumbnail', '2': 2},
-    const {'1': 'galleryComment', '2': 3},
-    const {'1': 'galleryBadge', '2': 4},
-    const {'1': 'galleryChapter', '2': 5},
+    const {'1': 'EXTRA_SELECTOR_TYPE_NONE', '2': 0},
+    const {'1': 'EXTRA_SELECTOR_TYPE_LIST_ITEM', '2': 1},
+    const {'1': 'EXTRA_SELECTOR_TYPE_GALLERY_THUMBNAIL', '2': 2},
+    const {'1': 'EXTRA_SELECTOR_TYPE_GALLERY_COMMENT', '2': 3},
+    const {'1': 'EXTRA_SELECTOR_TYPE_GALLERY_BADGE', '2': 4},
+    const {'1': 'EXTRA_SELECTOR_TYPE_GALLERY_CHAPTER', '2': 5},
   ],
 };
 
 /// Descriptor for `ExtraSelectorType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List extraSelectorTypeDescriptor = $convert.base64Decode(
-    'ChFFeHRyYVNlbGVjdG9yVHlwZRIICgRub25lEAASDAoIbGlzdEl0ZW0QARIUChBnYWxsZXJ5VGh1bWJuYWlsEAISEgoOZ2FsbGVyeUNvbW1lbnQQAxIQCgxnYWxsZXJ5QmFkZ2UQBBISCg5nYWxsZXJ5Q2hhcHRlchAF');
+    'ChFFeHRyYVNlbGVjdG9yVHlwZRIcChhFWFRSQV9TRUxFQ1RPUl9UWVBFX05PTkUQABIhCh1FWFRSQV9TRUxFQ1RPUl9UWVBFX0xJU1RfSVRFTRABEikKJUVYVFJBX1NFTEVDVE9SX1RZUEVfR0FMTEVSWV9USFVNQk5BSUwQAhInCiNFWFRSQV9TRUxFQ1RPUl9UWVBFX0dBTExFUllfQ09NTUVOVBADEiUKIUVYVFJBX1NFTEVDVE9SX1RZUEVfR0FMTEVSWV9CQURHRRAEEicKI0VYVFJBX1NFTEVDVE9SX1RZUEVfR0FMTEVSWV9DSEFQVEVSEAU=');
 @$core.Deprecated('Use selectorDescriptor instead')
 const Selector$json = const {
   '1': 'Selector',
@@ -57,13 +57,13 @@ const Selector$json = const {
     const {'1': 'replace', '3': 5, '4': 1, '5': 9, '10': 'replace'},
     const {'1': 'js', '3': 6, '4': 1, '5': 9, '10': 'js'},
     const {'1': 'computed', '3': 7, '4': 1, '5': 8, '10': 'computed'},
-    const {'1': 'defaultValue', '3': 8, '4': 1, '5': 9, '10': 'defaultValue'},
+    const {'1': 'default_value', '3': 8, '4': 1, '5': 9, '10': 'defaultValue'},
   ],
 };
 
 /// Descriptor for `Selector`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List selectorDescriptor = $convert.base64Decode(
-    'CghTZWxlY3RvchIaCghzZWxlY3RvchgBIAEoCVIIc2VsZWN0b3ISLQoIZnVuY3Rpb24YAiABKA4yES5TZWxlY3RvckZ1bmN0aW9uUghmdW5jdGlvbhIUCgVwYXJhbRgDIAEoCVIFcGFyYW0SFAoFcmVnZXgYBCABKAlSBXJlZ2V4EhgKB3JlcGxhY2UYBSABKAlSB3JlcGxhY2USDgoCanMYBiABKAlSAmpzEhoKCGNvbXB1dGVkGAcgASgIUghjb21wdXRlZBIiCgxkZWZhdWx0VmFsdWUYCCABKAlSDGRlZmF1bHRWYWx1ZQ==');
+    'CghTZWxlY3RvchIaCghzZWxlY3RvchgBIAEoCVIIc2VsZWN0b3ISLQoIZnVuY3Rpb24YAiABKA4yES5TZWxlY3RvckZ1bmN0aW9uUghmdW5jdGlvbhIUCgVwYXJhbRgDIAEoCVIFcGFyYW0SFAoFcmVnZXgYBCABKAlSBXJlZ2V4EhgKB3JlcGxhY2UYBSABKAlSB3JlcGxhY2USDgoCanMYBiABKAlSAmpzEhoKCGNvbXB1dGVkGAcgASgIUghjb21wdXRlZBIjCg1kZWZhdWx0X3ZhbHVlGAggASgJUgxkZWZhdWx0VmFsdWU=');
 @$core.Deprecated('Use extraSelectorDescriptor instead')
 const ExtraSelector$json = const {
   '1': 'ExtraSelector',
@@ -97,7 +97,7 @@ const ImageSelector$json = const {
   '1': 'ImageSelector',
   '2': const [
     const {
-      '1': 'imgUrl',
+      '1': 'img_url',
       '3': 1,
       '4': 1,
       '5': 11,
@@ -105,7 +105,7 @@ const ImageSelector$json = const {
       '10': 'imgUrl'
     },
     const {
-      '1': 'imgWidth',
+      '1': 'img_width',
       '3': 2,
       '4': 1,
       '5': 11,
@@ -113,7 +113,7 @@ const ImageSelector$json = const {
       '10': 'imgWidth'
     },
     const {
-      '1': 'imgHeight',
+      '1': 'img_height',
       '3': 3,
       '4': 1,
       '5': 11,
@@ -121,7 +121,7 @@ const ImageSelector$json = const {
       '10': 'imgHeight'
     },
     const {
-      '1': 'imgX',
+      '1': 'img_x',
       '3': 4,
       '4': 1,
       '5': 11,
@@ -129,7 +129,7 @@ const ImageSelector$json = const {
       '10': 'imgX'
     },
     const {
-      '1': 'imgY',
+      '1': 'img_y',
       '3': 5,
       '4': 1,
       '5': 11,
@@ -141,7 +141,7 @@ const ImageSelector$json = const {
 
 /// Descriptor for `ImageSelector`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List imageSelectorDescriptor = $convert.base64Decode(
-    'Cg1JbWFnZVNlbGVjdG9yEiEKBmltZ1VybBgBIAEoCzIJLlNlbGVjdG9yUgZpbWdVcmwSJQoIaW1nV2lkdGgYAiABKAsyCS5TZWxlY3RvclIIaW1nV2lkdGgSJwoJaW1nSGVpZ2h0GAMgASgLMgkuU2VsZWN0b3JSCWltZ0hlaWdodBIdCgRpbWdYGAQgASgLMgkuU2VsZWN0b3JSBGltZ1gSHQoEaW1nWRgFIAEoCzIJLlNlbGVjdG9yUgRpbWdZ');
+    'Cg1JbWFnZVNlbGVjdG9yEiIKB2ltZ191cmwYASABKAsyCS5TZWxlY3RvclIGaW1nVXJsEiYKCWltZ193aWR0aBgCIAEoCzIJLlNlbGVjdG9yUghpbWdXaWR0aBIoCgppbWdfaGVpZ2h0GAMgASgLMgkuU2VsZWN0b3JSCWltZ0hlaWdodBIeCgVpbWdfeBgEIAEoCzIJLlNlbGVjdG9yUgRpbWdYEh4KBWltZ195GAUgASgLMgkuU2VsZWN0b3JSBGltZ1k=');
 @$core.Deprecated('Use commentSelectorDescriptor instead')
 const CommentSelector$json = const {
   '1': 'CommentSelector',
@@ -155,7 +155,7 @@ const CommentSelector$json = const {
       '10': 'username'
     },
     const {
-      '1': 'postTime',
+      '1': 'post_time',
       '3': 2,
       '4': 1,
       '5': 11,
@@ -191,4 +191,4 @@ const CommentSelector$json = const {
 
 /// Descriptor for `CommentSelector`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List commentSelectorDescriptor = $convert.base64Decode(
-    'Cg9Db21tZW50U2VsZWN0b3ISJQoIdXNlcm5hbWUYASABKAsyCS5TZWxlY3RvclIIdXNlcm5hbWUSJQoIcG9zdFRpbWUYAiABKAsyCS5TZWxlY3RvclIIcG9zdFRpbWUSHQoEdm90ZRgDIAEoCzIJLlNlbGVjdG9yUgR2b3RlEiMKB2NvbnRlbnQYBCABKAsyCS5TZWxlY3RvclIHY29udGVudBImCgZhdmF0YXIYBSABKAsyDi5JbWFnZVNlbGVjdG9yUgZhdmF0YXI=');
+    'Cg9Db21tZW50U2VsZWN0b3ISJQoIdXNlcm5hbWUYASABKAsyCS5TZWxlY3RvclIIdXNlcm5hbWUSJgoJcG9zdF90aW1lGAIgASgLMgkuU2VsZWN0b3JSCHBvc3RUaW1lEh0KBHZvdGUYAyABKAsyCS5TZWxlY3RvclIEdm90ZRIjCgdjb250ZW50GAQgASgLMgkuU2VsZWN0b3JSB2NvbnRlbnQSJgoGYXZhdGFyGAUgASgLMg4uSW1hZ2VTZWxlY3RvclIGYXZhdGFy');

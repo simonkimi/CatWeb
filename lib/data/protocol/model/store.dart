@@ -39,7 +39,7 @@ class SiteConfigModel implements PbAble {
         galleryParsers = lobs(
             pb?.galleryParsers, (GalleryParser e) => GalleryParserModel(e)),
         listViewParser = lobs(
-          pb?.listViewParser,
+          pb?.listViewParsers,
           (ListViewParser e) => ListViewParserModel(e),
         ),
         imageParser = lobs(
@@ -47,10 +47,10 @@ class SiteConfigModel implements PbAble {
           (ImageParser e) => ImageParserModel(e),
         ),
         actionList = lobs(
-          pb?.actionList,
+          pb?.actions,
           (ActionCombine e) => ActionCombineModel(e),
         ),
-        pageList = lobs(pb?.pageList, (SitePage e) => SitePageModel(e));
+        pageList = lobs(pb?.pages, (SitePage e) => SitePageModel(e));
 
   factory SiteConfigModel.fromBuffer(List<int> buffer) =>
       SiteConfigModel(SiteConfig.fromBuffer(buffer));
@@ -134,8 +134,8 @@ class SiteConfigModel implements PbAble {
         upgradeUrl: upgradeUrl.value,
         flag: flag.value,
         galleryParsers: galleryParsers.map((e) => e.toPb()),
-        listViewParser: listViewParser.map((e) => e.toPb()),
-        actionList: actionList.map((e) => e.toPb()),
-        pageList: pageList.map((e) => e.toPb()),
+        listViewParsers: listViewParser.map((e) => e.toPb()),
+        actions: actionList.map((e) => e.toPb()),
+        pages: pageList.map((e) => e.toPb()),
       );
 }

@@ -4,19 +4,19 @@ import 'package:catweb/utils/utils.dart';
 import 'package:get/get.dart';
 
 class NetWorkActionModel implements PbAble {
-  NetWorkActionModel([NetWorkAction? pb])
+  NetWorkActionModel([NetAction? pb])
       : name = sobs(pb?.name),
         url = sobs(pb?.url),
         data = sobs(pb?.data),
-        type = pb?.type.obs ?? NetWorkActionType.get.obs;
+        type = pb?.type.obs ?? NetActionType.NET_ACTION_TYPE_GET.obs;
 
   final RxString name;
   final RxString url;
   final RxString data;
-  final Rx<NetWorkActionType> type;
+  final Rx<NetActionType> type;
 
   @override
-  NetWorkAction toPb() => NetWorkAction(
+  NetAction toPb() => NetAction(
         name: name.value,
         data: data.value,
         url: url.value,
@@ -28,7 +28,7 @@ class InputActionModel implements PbAble {
       : name = sobs(pb?.name),
         id = sobs(pb?.id),
         global = bobs(pb?.global),
-        type = pb?.type.obs ?? InputActionType.string.obs;
+        type = pb?.type.obs ?? InputActionType.INPUT_ACTION_TYPE_STRING.obs;
 
   final RxString name;
   final RxString id;

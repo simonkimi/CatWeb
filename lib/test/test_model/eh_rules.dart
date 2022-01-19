@@ -8,7 +8,7 @@ import 'parser/gallery_parser.dart';
 final ehTestSite = SiteConfig(
   name: 'E-Hentai',
   baseUrl: 'https://e-hentai.org/',
-  listViewParser: [ehListParser],
+  listViewParsers: [ehListParser],
   galleryParsers: [ehGalleryParser],
   cookies: [
     RegField(reg: r'e[-x]hentai', value: 'ipb_member_id=$ipbMemberId'),
@@ -17,13 +17,13 @@ final ehTestSite = SiteConfig(
     RegField(reg: r'e[-x]hentai', value: 'sk=$sk'),
     RegField(reg: r'e[-x]hentai', value: 'star=$star'),
   ],
-  pageList: [
+  pages: [
     SitePage(
       name: '主页',
       url: '?page={page:0}',
       parser: commonListUuid,
       display: SiteDisplayType.show,
-      template: PageTemplate.imageList,
+      template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'home',
     ),
     SitePage(
@@ -31,7 +31,7 @@ final ehTestSite = SiteConfig(
       url: 'popular?page={page:0}',
       parser: commonListUuid,
       display: SiteDisplayType.show,
-      template: PageTemplate.imageList,
+      template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'whatshot',
     ),
     SitePage(
@@ -39,7 +39,7 @@ final ehTestSite = SiteConfig(
       url: 'watched?page={page:0}',
       parser: commonListUuid,
       display: SiteDisplayType.show,
-      template: PageTemplate.imageList,
+      template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'eye',
     ),
     SitePage(
@@ -47,7 +47,7 @@ final ehTestSite = SiteConfig(
       url: r'favorites.php?page={page:0}${favcat:&favcat={favcat}}',
       parser: commonListUuid,
       display: SiteDisplayType.show,
-      template: PageTemplate.imageList,
+      template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'heart',
       subPage: [
         SiteSubPage(name: '全部'),

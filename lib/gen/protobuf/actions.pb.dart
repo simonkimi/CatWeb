@@ -35,7 +35,7 @@ class InputAction extends $pb.GeneratedMessage {
             ? ''
             : 'type',
         $pb.PbFieldType.OE,
-        defaultOrMaker: InputActionType.string,
+        defaultOrMaker: InputActionType.INPUT_ACTION_TYPE_STRING,
         valueOf: InputActionType.valueOf,
         enumValues: InputActionType.values)
     ..aOB(
@@ -142,26 +142,26 @@ class InputAction extends $pb.GeneratedMessage {
   void clearGlobal() => clearField(4);
 }
 
-class NetWorkAction extends $pb.GeneratedMessage {
+class NetAction extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
-          : 'NetWorkAction',
+          : 'NetAction',
       createEmptyInstance: create)
     ..aOS(
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'name')
-    ..e<NetWorkActionType>(
+    ..e<NetActionType>(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'type',
         $pb.PbFieldType.OE,
-        defaultOrMaker: NetWorkActionType.get,
-        valueOf: NetWorkActionType.valueOf,
-        enumValues: NetWorkActionType.values)
+        defaultOrMaker: NetActionType.NET_ACTION_TYPE_GET,
+        valueOf: NetActionType.valueOf,
+        enumValues: NetActionType.values)
     ..aOS(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -174,10 +174,10 @@ class NetWorkAction extends $pb.GeneratedMessage {
             : 'data')
     ..hasRequiredFields = false;
 
-  NetWorkAction._() : super();
-  factory NetWorkAction({
+  NetAction._() : super();
+  factory NetAction({
     $core.String? name,
-    NetWorkActionType? type,
+    NetActionType? type,
     $core.String? url,
     $core.String? data,
   }) {
@@ -196,32 +196,31 @@ class NetWorkAction extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory NetWorkAction.fromBuffer($core.List<$core.int> i,
+  factory NetAction.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory NetWorkAction.fromJson($core.String i,
+  factory NetAction.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  NetWorkAction clone() => NetWorkAction()..mergeFromMessage(this);
+  NetAction clone() => NetAction()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  NetWorkAction copyWith(void Function(NetWorkAction) updates) =>
-      super.copyWith((message) => updates(message as NetWorkAction))
-          as NetWorkAction; // ignore: deprecated_member_use
+  NetAction copyWith(void Function(NetAction) updates) =>
+      super.copyWith((message) => updates(message as NetAction))
+          as NetAction; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static NetWorkAction create() => NetWorkAction._();
-  NetWorkAction createEmptyInstance() => create();
-  static $pb.PbList<NetWorkAction> createRepeated() =>
-      $pb.PbList<NetWorkAction>();
+  static NetAction create() => NetAction._();
+  NetAction createEmptyInstance() => create();
+  static $pb.PbList<NetAction> createRepeated() => $pb.PbList<NetAction>();
   @$core.pragma('dart2js:noInline')
-  static NetWorkAction getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<NetWorkAction>(create);
-  static NetWorkAction? _defaultInstance;
+  static NetAction getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<NetAction>(create);
+  static NetAction? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
@@ -236,9 +235,9 @@ class NetWorkAction extends $pb.GeneratedMessage {
   void clearName() => clearField(1);
 
   @$pb.TagNumber(2)
-  NetWorkActionType get type => $_getN(1);
+  NetActionType get type => $_getN(1);
   @$pb.TagNumber(2)
-  set type(NetWorkActionType v) {
+  set type(NetActionType v) {
     setField(2, v);
   }
 
