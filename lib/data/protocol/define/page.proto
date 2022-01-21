@@ -1,10 +1,11 @@
 syntax = 'proto3';
 
 enum Template {
-  TEMPLATE_IMAGE_LIST = 0;
-  TEMPLATE_IMAGE_WATERFALL = 1;
-  TEMPLATE_DETAIL = 2;
-  TEMPLATE_IMAGE_VIEWER = 3;
+  TEMPLATE_IMAGE_LIST = 0;  // 常规列表
+  TEMPLATE_IMAGE_WATERFALL = 1;  // 瀑布流
+  TEMPLATE_DETAIL = 2;  // 详情页
+  TEMPLATE_IMAGE_VIEWER = 3;  // 图片预览页
+  TEMPLATE_AUTO_COMPLETE = 4;   // 自动补全页
 }
 
 message SiteSubPage {

@@ -30,12 +30,18 @@ class Template extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'TEMPLATE_IMAGE_VIEWER');
+  static const Template TEMPLATE_AUTO_COMPLETE = Template._(
+      4,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'TEMPLATE_AUTO_COMPLETE');
 
   static const $core.List<Template> values = <Template>[
     TEMPLATE_IMAGE_LIST,
     TEMPLATE_IMAGE_WATERFALL,
     TEMPLATE_DETAIL,
     TEMPLATE_IMAGE_VIEWER,
+    TEMPLATE_AUTO_COMPLETE,
   ];
 
   static final $core.Map<$core.int, Template> _byValue =

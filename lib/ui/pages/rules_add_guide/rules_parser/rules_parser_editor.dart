@@ -65,6 +65,8 @@ class RulesParserEditor extends StatelessWidget {
         return const ListParserPreview();
       case ParserType.imageParser:
         return const SizedBox();
+      case ParserType.searchAutoComplete:
+        return const SizedBox();
     }
   }
 

@@ -1510,10 +1510,92 @@ class AutoCompleteParser extends $pb.GeneratedMessage {
           ? ''
           : 'AutoCompleteParser',
       createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'name')
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'uuid')
+    ..aOS(
+        10,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'split')
+    ..aOM<$0.Selector>(
+        11,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'itemSelector',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        12,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'itemComplete',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        13,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'itemSubtitle',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        14,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'itemTitle',
+        subBuilder: $0.Selector.create)
+    ..pc<$0.ExtraSelector>(
+        99,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'extraSelector',
+        $pb.PbFieldType.PM,
+        subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false;
 
   AutoCompleteParser._() : super();
-  factory AutoCompleteParser() => create();
+  factory AutoCompleteParser({
+    $core.String? name,
+    $core.String? uuid,
+    $core.String? split,
+    $0.Selector? itemSelector,
+    $0.Selector? itemComplete,
+    $0.Selector? itemSubtitle,
+    $0.Selector? itemTitle,
+    $core.Iterable<$0.ExtraSelector>? extraSelector,
+  }) {
+    final _result = create();
+    if (name != null) {
+      _result.name = name;
+    }
+    if (uuid != null) {
+      _result.uuid = uuid;
+    }
+    if (split != null) {
+      _result.split = split;
+    }
+    if (itemSelector != null) {
+      _result.itemSelector = itemSelector;
+    }
+    if (itemComplete != null) {
+      _result.itemComplete = itemComplete;
+    }
+    if (itemSubtitle != null) {
+      _result.itemSubtitle = itemSubtitle;
+    }
+    if (itemTitle != null) {
+      _result.itemTitle = itemTitle;
+    }
+    if (extraSelector != null) {
+      _result.extraSelector.addAll(extraSelector);
+    }
+    return _result;
+  }
   factory AutoCompleteParser.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
@@ -1540,4 +1622,99 @@ class AutoCompleteParser extends $pb.GeneratedMessage {
   static AutoCompleteParser getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<AutoCompleteParser>(create);
   static AutoCompleteParser? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get uuid => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set uuid($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasUuid() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearUuid() => clearField(2);
+
+  @$pb.TagNumber(10)
+  $core.String get split => $_getSZ(2);
+  @$pb.TagNumber(10)
+  set split($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(10)
+  $core.bool hasSplit() => $_has(2);
+  @$pb.TagNumber(10)
+  void clearSplit() => clearField(10);
+
+  @$pb.TagNumber(11)
+  $0.Selector get itemSelector => $_getN(3);
+  @$pb.TagNumber(11)
+  set itemSelector($0.Selector v) {
+    setField(11, v);
+  }
+
+  @$pb.TagNumber(11)
+  $core.bool hasItemSelector() => $_has(3);
+  @$pb.TagNumber(11)
+  void clearItemSelector() => clearField(11);
+  @$pb.TagNumber(11)
+  $0.Selector ensureItemSelector() => $_ensure(3);
+
+  @$pb.TagNumber(12)
+  $0.Selector get itemComplete => $_getN(4);
+  @$pb.TagNumber(12)
+  set itemComplete($0.Selector v) {
+    setField(12, v);
+  }
+
+  @$pb.TagNumber(12)
+  $core.bool hasItemComplete() => $_has(4);
+  @$pb.TagNumber(12)
+  void clearItemComplete() => clearField(12);
+  @$pb.TagNumber(12)
+  $0.Selector ensureItemComplete() => $_ensure(4);
+
+  @$pb.TagNumber(13)
+  $0.Selector get itemSubtitle => $_getN(5);
+  @$pb.TagNumber(13)
+  set itemSubtitle($0.Selector v) {
+    setField(13, v);
+  }
+
+  @$pb.TagNumber(13)
+  $core.bool hasItemSubtitle() => $_has(5);
+  @$pb.TagNumber(13)
+  void clearItemSubtitle() => clearField(13);
+  @$pb.TagNumber(13)
+  $0.Selector ensureItemSubtitle() => $_ensure(5);
+
+  @$pb.TagNumber(14)
+  $0.Selector get itemTitle => $_getN(6);
+  @$pb.TagNumber(14)
+  set itemTitle($0.Selector v) {
+    setField(14, v);
+  }
+
+  @$pb.TagNumber(14)
+  $core.bool hasItemTitle() => $_has(6);
+  @$pb.TagNumber(14)
+  void clearItemTitle() => clearField(14);
+  @$pb.TagNumber(14)
+  $0.Selector ensureItemTitle() => $_ensure(6);
+
+  @$pb.TagNumber(99)
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(7);
 }

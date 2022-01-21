@@ -44,10 +44,9 @@ class ViewerScaffold extends StatelessWidget {
           model: model,
           hasToolBar: website.displayPage.length > 1,
         );
-      case Template.TEMPLATE_DETAIL:
-      case Template.TEMPLATE_IMAGE_VIEWER:
-        throw UnimplementedError('ViewerScaffold 不能承载${model.template.value}');
+      default:
+        throw UnimplementedError(
+            'ViewerScaffold can not handle ${model.template.value}');
     }
-    throw UnimplementedError('TODO!');
   }
 }

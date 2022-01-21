@@ -38,13 +38,17 @@ class SiteConfigModel implements PbAble {
         flag = sobs(pb?.flag),
         galleryParsers = lobs(
             pb?.galleryParsers, (GalleryParser e) => GalleryParserModel(e)),
-        listViewParser = lobs(
+        listViewParsers = lobs(
           pb?.listViewParsers,
           (ListViewParser e) => ListViewParserModel(e),
         ),
-        imageParser = lobs(
+        imageParsers = lobs(
           pb?.imageParsers,
           (ImageParser e) => ImageParserModel(e),
+        ),
+        autoCompleteParsers = lobs(
+          pb?.autoCompleteParsers,
+          (AutoCompleteParser e) => AutoCompleteParserModel(e),
         ),
         actionList = lobs(
           pb?.actions,
@@ -66,19 +70,22 @@ class SiteConfigModel implements PbAble {
   final RxList<RegFieldModel> cookies;
   final RxList<RegFieldModel> headers;
   final RxList<GalleryParserModel> galleryParsers;
-  final RxList<ListViewParserModel> listViewParser;
-  final RxList<ImageParserModel> imageParser;
+  final RxList<ListViewParserModel> listViewParsers;
+  final RxList<ImageParserModel> imageParsers;
+  final RxList<AutoCompleteParserModel> autoCompleteParsers;
   final RxList<ActionCombineModel> actionList;
   final RxList<SitePageModel> pageList;
 
   RxList<ParserBaseModel> _selectParser(ParserBaseModel model) {
     switch (model.type) {
       case ParserType.listParser:
-        return listViewParser;
+        return listViewParsers;
       case ParserType.galleryParser:
         return galleryParsers;
       case ParserType.imageParser:
-        return imageParser;
+        return imageParsers;
+      case ParserType.searchAutoComplete:
+        return autoCompleteParsers;
     }
   }
 
@@ -91,9 +98,9 @@ class SiteConfigModel implements PbAble {
   }
 
   RxList<ParserBaseModel> get parsers => RxList.from([
-        ...listViewParser,
+        ...listViewParsers,
         ...galleryParsers,
-        ...imageParser,
+        ...imageParsers,
       ]);
 
   String getParserName(String uuid) => uuid.isEmpty
@@ -105,7 +112,7 @@ class SiteConfigModel implements PbAble {
       : pageList.get((p0) => p0.uuid == uuid)?.name.value ?? 'No page';
 
   ListViewParserModel getListParser(String uuid) {
-    final result = listViewParser.get((e) => e.uuid == uuid);
+    final result = listViewParsers.get((e) => e.uuid == uuid);
     if (result == null) throw Exception('Parser $uuid not exist');
     return result;
   }
@@ -117,7 +124,7 @@ class SiteConfigModel implements PbAble {
   }
 
   ImageParserModel? getImageParser(String uuid) {
-    final result = imageParser.get((e) => e.uuid == uuid);
+    final result = imageParsers.get((e) => e.uuid == uuid);
     if (result == null) throw Exception('Parser $uuid not exist');
     return result;
   }
@@ -134,7 +141,7 @@ class SiteConfigModel implements PbAble {
         upgradeUrl: upgradeUrl.value,
         flag: flag.value,
         galleryParsers: galleryParsers.map((e) => e.toPb()),
-        listViewParsers: listViewParser.map((e) => e.toPb()),
+        listViewParsers: listViewParsers.map((e) => e.toPb()),
         actions: actionList.map((e) => e.toPb()),
         pages: pageList.map((e) => e.toPb()),
       );

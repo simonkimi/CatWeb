@@ -17,12 +17,13 @@ const Template$json = const {
     const {'1': 'TEMPLATE_IMAGE_WATERFALL', '2': 1},
     const {'1': 'TEMPLATE_DETAIL', '2': 2},
     const {'1': 'TEMPLATE_IMAGE_VIEWER', '2': 3},
+    const {'1': 'TEMPLATE_AUTO_COMPLETE', '2': 4},
   ],
 };
 
 /// Descriptor for `Template`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List templateDescriptor = $convert.base64Decode(
-    'CghUZW1wbGF0ZRIXChNURU1QTEFURV9JTUFHRV9MSVNUEAASHAoYVEVNUExBVEVfSU1BR0VfV0FURVJGQUxMEAESEwoPVEVNUExBVEVfREVUQUlMEAISGQoVVEVNUExBVEVfSU1BR0VfVklFV0VSEAM=');
+    'CghUZW1wbGF0ZRIXChNURU1QTEFURV9JTUFHRV9MSVNUEAASHAoYVEVNUExBVEVfSU1BR0VfV0FURVJGQUxMEAESEwoPVEVNUExBVEVfREVUQUlMEAISGQoVVEVNUExBVEVfSU1BR0VfVklFV0VSEAMSGgoWVEVNUExBVEVfQVVUT19DT01QTEVURRAE');
 @$core.Deprecated('Use siteDisplayTypeDescriptor instead')
 const SiteDisplayType$json = const {
   '1': 'SiteDisplayType',

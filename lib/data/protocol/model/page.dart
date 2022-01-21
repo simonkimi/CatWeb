@@ -111,6 +111,8 @@ extension PageTemplateTr on Template {
         return '瀑布流';
       case Template.TEMPLATE_IMAGE_VIEWER:
         return '图片查看器';
+      case Template.TEMPLATE_AUTO_COMPLETE:
+        return '搜索自动补全';
     }
     throw UnimplementedError('TODO! $this');
   }

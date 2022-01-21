@@ -18,7 +18,7 @@ void main() {
     final site = SiteConfigModel(ehTestSite);
 
     final parser =
-        site.listViewParser.get((e) => e.name.value == 'commonList')!;
+        site.listViewParsers.get((e) => e.name.value == 'commonList')!;
 
     final itemList = domSelector.nodes(parser.itemSelector, root.root);
 

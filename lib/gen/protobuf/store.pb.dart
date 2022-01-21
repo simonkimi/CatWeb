@@ -178,15 +178,22 @@ class SiteConfig extends $pb.GeneratedMessage {
             : 'imageParsers',
         $pb.PbFieldType.PM,
         subBuilder: $0.ImageParser.create)
-    ..pc<$1.ActionCombine>(
+    ..pc<$0.AutoCompleteParser>(
         23,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'autoCompleteParsers',
+        $pb.PbFieldType.PM,
+        subBuilder: $0.AutoCompleteParser.create)
+    ..pc<$1.ActionCombine>(
+        30,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'actions',
         $pb.PbFieldType.PM,
         subBuilder: $1.ActionCombine.create)
     ..pc<$2.SitePage>(
-        24,
+        31,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pages',
@@ -209,6 +216,7 @@ class SiteConfig extends $pb.GeneratedMessage {
     $core.Iterable<$0.GalleryParser>? galleryParsers,
     $core.Iterable<$0.ListViewParser>? listViewParsers,
     $core.Iterable<$0.ImageParser>? imageParsers,
+    $core.Iterable<$0.AutoCompleteParser>? autoCompleteParsers,
     $core.Iterable<$1.ActionCombine>? actions,
     $core.Iterable<$2.SitePage>? pages,
   }) {
@@ -251,6 +259,9 @@ class SiteConfig extends $pb.GeneratedMessage {
     }
     if (imageParsers != null) {
       _result.imageParsers.addAll(imageParsers);
+    }
+    if (autoCompleteParsers != null) {
+      _result.autoCompleteParsers.addAll(autoCompleteParsers);
     }
     if (actions != null) {
       _result.actions.addAll(actions);
@@ -400,10 +411,13 @@ class SiteConfig extends $pb.GeneratedMessage {
   $core.List<$0.ImageParser> get imageParsers => $_getList(12);
 
   @$pb.TagNumber(23)
-  $core.List<$1.ActionCombine> get actions => $_getList(13);
+  $core.List<$0.AutoCompleteParser> get autoCompleteParsers => $_getList(13);
 
-  @$pb.TagNumber(24)
-  $core.List<$2.SitePage> get pages => $_getList(14);
+  @$pb.TagNumber(30)
+  $core.List<$1.ActionCombine> get actions => $_getList(14);
+
+  @$pb.TagNumber(31)
+  $core.List<$2.SitePage> get pages => $_getList(15);
 }
 
 class EnvStore extends $pb.GeneratedMessage {

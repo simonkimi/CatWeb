@@ -12,6 +12,7 @@ enum ParserType {
   listParser,
   galleryParser,
   imageParser,
+  searchAutoComplete,
 }
 
 abstract class ParserBaseModel implements PbAble {
@@ -293,4 +294,46 @@ class ListViewParserModel extends ParserBaseModel {
 
   @override
   ParserType get type => ParserType.listParser;
+}
+
+class AutoCompleteParserModel extends ParserBaseModel implements PbAble {
+  AutoCompleteParserModel([AutoCompleteParser? pb])
+      : split = sobs(pb?.split),
+        itemSelector = SelectorModel(pb?.itemSelector),
+        itemTitle = SelectorModel(pb?.itemTitle),
+        itemComplete = SelectorModel(pb?.itemComplete),
+        itemSubtitle = SelectorModel(pb?.itemSubtitle),
+        super(
+          name: sobs(pb?.name),
+          extra: pb?.extraSelector,
+          uuid: genUuid(pb?.uuid),
+        );
+
+  final RxString split; // 分隔符, 默认为空格
+
+  final SelectorModel itemSelector;
+  final SelectorModel itemComplete;
+  final SelectorModel itemTitle;
+  final SelectorModel itemSubtitle;
+
+  @override
+  AutoCompleteParser toPb() => AutoCompleteParser(
+        uuid: uuid,
+        name: name.value,
+        extraSelector: extraSelectorModel.map((e) => e.toPb()),
+        itemComplete: itemComplete.toPb(),
+        itemSelector: itemSelector.toPb(),
+        itemSubtitle: itemSubtitle.toPb(),
+        itemTitle: itemTitle.toPb(),
+        split: split.value,
+      );
+
+  @override
+  AutoCompleteParserModel copy() => AutoCompleteParserModel(toPb());
+
+  @override
+  String displayType(BuildContext context) => '搜索';
+
+  @override
+  ParserType get type => throw UnimplementedError();
 }
