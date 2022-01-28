@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

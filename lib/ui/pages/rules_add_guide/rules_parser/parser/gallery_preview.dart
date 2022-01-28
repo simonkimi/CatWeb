@@ -75,6 +75,6 @@ https://e-hentai.org/g/1275855/d8c63069e4/''',
         ),
       ],
     );
-    return GalleryDetail(model: model);
+    return ViewerDetail(model: model);
   }
 }

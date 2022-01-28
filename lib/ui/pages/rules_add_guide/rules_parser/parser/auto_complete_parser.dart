@@ -50,6 +50,10 @@ class SearchAutoCompleteParser extends StatelessWidget {
         selectorModel: model.itemComplete,
       ),
       RulesForm(
+        title: '标题',
+        selectorModel: model.itemTitle,
+      ),
+      RulesForm(
         title: '副标题',
         selectorModel: model.itemSubtitle,
       ),

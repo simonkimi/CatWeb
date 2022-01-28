@@ -1,35 +1,9 @@
 import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/protocol/model/model.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:drift/drift.dart';
 import 'package:get/get.dart';
-import 'package:uuid/uuid.dart';
-
-class ImageModel {
-  ImageModel({
-    required this.url,
-    this.cacheKey,
-    this.width,
-    this.height,
-    this.imgX,
-    this.imgY,
-  });
-
-  final String url;
-  final String? cacheKey;
-  final double? width;
-  final double? height;
-  final int? imgX;
-  final int? imgY;
-
-  String get key => cacheKey ?? const Uuid().v5(Uuid.NAMESPACE_URL, url);
-
-  bool get repeatImage => imgY != null || imgX != null;
-
-  @override
-  String toString() =>
-      '<img url="$url" ${width != null ? 'width: $width' : ''} ${height != null ? 'width: $height' : ''}>';
-}
 
 enum ImageLoadState {
   init,

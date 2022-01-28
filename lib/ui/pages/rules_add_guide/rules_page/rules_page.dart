@@ -164,32 +164,43 @@ class RulesPageEdit extends GetView<RulesEditController> {
     );
   }
 
+  Widget _buildOpenWidget(
+    BuildContext context, {
+    required String labelText,
+    required OpenPageModel model,
+  }) {
+    return Obx(() => CupertinoReadOnlyInput(
+          labelText: '徽章跳转',
+          value: controller.siteConfigModel.getPageName(model.target.value),
+          onTap: () => _onOpenNewPageClick(context, model),
+        ));
+  }
+
   Widget _buildOpenNewPage(BuildContext context) {
     late final List<Widget> body;
     switch (model.template.value) {
       case Template.TEMPLATE_DETAIL:
         body = [
-          Obx(() => CupertinoReadOnlyInput(
-                labelText: '徽章跳转',
-                value: controller.siteConfigModel
-                    .getPageName(model.badgeTarget.target.value),
-                onTap: () => _onOpenNewPageClick(context, model.badgeTarget),
-              )),
+          _buildOpenWidget(
+            context,
+            labelText: '徽章跳转',
+            model: model.badgeTarget,
+          ),
         ];
         break;
       case Template.TEMPLATE_IMAGE_LIST:
       case Template.TEMPLATE_IMAGE_WATERFALL:
         body = [
           // 项目被点击
-          Obx(() => CupertinoReadOnlyInput(
-                labelText: '项目跳转',
-                value: controller.siteConfigModel
-                    .getPageName(model.badgeTarget.target.value),
-                onTap: () => _onOpenNewPageClick(context, model.listItemTarget),
-              )),
+          _buildOpenWidget(
+            context,
+            labelText: '项目跳转',
+            model: model.listItemTarget,
+          ),
         ];
         break;
       case Template.TEMPLATE_IMAGE_VIEWER:
+      case Template.TEMPLATE_AUTO_COMPLETE:
         body = [];
         break;
     }

@@ -13,36 +13,41 @@ class ListExtendedCard extends StatelessWidget {
   const ListExtendedCard({
     Key? key,
     required this.model,
+    required this.onTap,
   }) : super(key: key);
 
   final ViewerListModel model;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              offset: Offset(0.5, 0.5),
-              blurRadius: 1,
-            ),
-          ],
-        ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
         child: Container(
-          color: isDarkMode(context)
-              ? CupertinoColors.systemGrey6.darkColor
-              : CupertinoColors.systemBackground,
-          child: IntrinsicHeight(
-            child: Row(
-              children: [
-                if (model.previewImage != null) _buildLeftImage(),
-                _buildRightInfo(context),
-              ],
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                offset: Offset(0.5, 0.5),
+                blurRadius: 1,
+              ),
+            ],
+          ),
+          child: Container(
+            color: isDarkMode(context)
+                ? CupertinoColors.systemGrey6.darkColor
+                : CupertinoColors.systemBackground,
+            child: IntrinsicHeight(
+              child: Row(
+                children: [
+                  if (model.previewImage != null) _buildLeftImage(),
+                  _buildRightInfo(context),
+                ],
+              ),
             ),
           ),
         ),

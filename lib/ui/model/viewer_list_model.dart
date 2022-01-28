@@ -1,5 +1,5 @@
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/network/client/image_loader.dart';
+import 'package:catweb/data/protocol/model/model.dart';
 import 'package:flutter/cupertino.dart';
 
 class ViewerListModel implements HasEnv {

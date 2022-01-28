@@ -1,6 +1,6 @@
+import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
-import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/network/parser_exec/parser_exec.dart';
 import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:xml/xml.dart';
@@ -69,8 +69,8 @@ ParserResult<List<ViewerListModel>> listParserExec(
                 url: imgUrl,
                 width: dom.double(parser.previewImg.imgWidth, e),
                 height: dom.double(parser.previewImg.imgHeight, e),
-                imgX: dom.int(parser.previewImg.imgX, e),
-                imgY: dom.int(parser.previewImg.imgY, e),
+                imgX: dom.double(parser.previewImg.imgX, e),
+                imgY: dom.double(parser.previewImg.imgY, e),
               )
             : null,
       );

@@ -9,8 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class GalleryDetail extends StatelessWidget {
-  const GalleryDetail({
+
+class ViewerDetail extends StatelessWidget {
+  const ViewerDetail({
     Key? key,
     required this.model,
   }) : super(key: key);

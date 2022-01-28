@@ -40,7 +40,7 @@ class ListParserPreview extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 5),
-        ListExtendedCard(model: model),
+        ListExtendedCard(model: model, onTap: () {},),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

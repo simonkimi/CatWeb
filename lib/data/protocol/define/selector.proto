@@ -1,5 +1,9 @@
 syntax = 'proto3';
 
+
+option go_package = "./proto";
+
+
 enum SelectorFunction {
   SELECTOR_FUNCTION_AUTO = 0;
   SELECTOR_FUNCTION_TEXT = 1;

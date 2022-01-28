@@ -1,3 +1,4 @@
+import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:dio/dio.dart';
 

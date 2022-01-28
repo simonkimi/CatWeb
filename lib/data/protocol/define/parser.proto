@@ -1,6 +1,7 @@
 syntax = 'proto3';
 import 'selector.proto';
 
+option go_package = "./proto";
 
 message ImageParser {
   string name = 1;

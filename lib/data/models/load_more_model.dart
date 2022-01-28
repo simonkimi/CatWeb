@@ -10,10 +10,10 @@ enum LoadMoreState {
   loading, // 加载中
   noMoreData, // 没有其他数据了
   refreshing, // 刷新中
-  loadError, // 加载更多除错
+  loadError, // 加载更多出错
 }
 
-abstract class LoadMoreModel<T> extends GetxController {
+abstract class LoadMoreModel<T> {
   LoadMoreModel() {
     _stateListener = rxState.listen((state) {
       switch (state) {
@@ -163,9 +163,7 @@ abstract class LoadMoreModel<T> extends GetxController {
     }
   }
 
-  @override
   void dispose() {
     _stateListener.cancel();
-    super.dispose();
   }
 }

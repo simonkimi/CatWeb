@@ -1,4 +1,5 @@
 import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/data/protocol/model/model.dart';
 import 'package:flutter/cupertino.dart';
 
 class GalleryDetailModel {
@@ -15,6 +16,7 @@ class GalleryDetailModel {
     this.prePageImageCount,
     this.description,
     this.star,
+    this.previewList,
   });
 
   final String? title;
@@ -30,6 +32,7 @@ class GalleryDetailModel {
   final double? star;
 
   final List<CommentItemModel>? commentList;
+  final List<ImageModel>? previewList;
 
   @override
   String toString() => 'title: $title\n'
@@ -43,7 +46,8 @@ class GalleryDetailModel {
       'prePageImageCount: $prePageImageCount\n'
       'description: $description\n'
       'star: $star\n'
-      'commentList: $commentList\n';
+      'commentList: $commentList\n'
+      'previewList: $previewList\n';
 }
 
 class BadgeModel implements HasEnv {

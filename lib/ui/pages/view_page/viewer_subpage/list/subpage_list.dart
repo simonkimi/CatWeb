@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../../viewer_main.dart';
 import 'list_extended_card.dart';
 
 class SubPageListFragment extends StatefulWidget {
@@ -80,11 +81,21 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
     return Obx(() {
       return SliverList(
         delegate: SliverChildBuilderDelegate(
-          (context, index) => ListExtendedCard(
-            model: controller.items[index],
-          ),
+          (context, index) {
+            final model = controller.items[index];
+            return ListExtendedCard(
+              model: model,
+              onTap: () {
+                pushNewPage(
+                  to: controller.model.listItemTarget,
+                  envModel: model.envModel,
+                  model: model,
+                );
+              },
+            );
+          },
           childCount: controller.items.length,
-        ),
+         ),
       );
     });
   }
