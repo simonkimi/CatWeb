@@ -58,11 +58,7 @@ class SiteEnvModel implements EnvMargeAble {
       if (_env.containsKey(varName) && _env[varName]!.isNotEmpty) {
         input = input.replaceAll(match.group(0)!, context);
       } else {
-        if (defaultValue != null) {
-          input = input.replaceAll(match.group(0)!, defaultValue);
-        } else {
-          input = input.replaceAll(match.group(0)!, '');
-        }
+        input = input.replaceAll(match.group(0)!, defaultValue ?? '');
       }
     }
     return input;

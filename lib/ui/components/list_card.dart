@@ -1,4 +1,5 @@
-import 'package:catweb/ui/model/viewer_list_model.dart';
+import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:catweb/ui/theme/colors.dart';
@@ -11,7 +12,7 @@ class SimpleCard extends StatelessWidget {
     this.useCard = true,
   }) : super(key: key);
 
-  final ViewerListModel model;
+  final ListRpcModel_Item model;
   final bool useCard;
 
   @override
@@ -19,22 +20,22 @@ class SimpleCard extends StatelessWidget {
     final child = Column(
       children: [
         _buildImage(context),
-        if (model.title != null)
+        if (model.hasTitle())
           Text(
-            model.title!,
+            model.title,
             style: TextStyle(
               color: FixColor.title.resolveFrom(context),
             ),
           ),
-        if (model.subtitle != null)
+        if (model.hasSubtitle())
           Text(
-            model.subtitle!,
+            model.subtitle,
             style: TextStyle(
               fontSize: 12.5,
               color: FixColor.title.resolveFrom(context),
             ),
           ),
-        if (model.badgeList != null) _buildTagList()
+        if (model.badges.isNotEmpty) _buildTagList()
       ],
     );
 
@@ -56,7 +57,7 @@ class SimpleCard extends StatelessWidget {
   }
 
   SizedBox _buildTagList() {
-    final tags = model.badgeList!.where((e) => e.text != null).toList();
+    final tags = model.badges.where((e) => e.hasText()).toList();
     return SizedBox(
       height: 20,
       child: Padding(
@@ -70,23 +71,24 @@ class SimpleCard extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: e.color ??
-                      (isDarkMode(context)
+                  color: e.hasColor()
+                      ? e.color.color
+                      : (isDarkMode(context)
                           ? const Color(0xFF312F32)
                           : const Color(0xFFEFEEF1)),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(3),
                   child: Text(
-                    e.text!,
+                    e.text,
                     style: TextStyle(
                       height: 1,
                       fontSize: 11,
-                      color: e.color == null
+                      color: e.hasColor()
                           ? isDarkMode(context)
                               ? Colors.white
                               : Colors.black
-                          : e.color!.isDark
+                          : e.color.color.isDark
                               ? Colors.white
                               : Colors.black,
                     ),
@@ -123,13 +125,13 @@ class SimpleCard extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        if (model.paper != null)
+        if (model.hasPaper())
           Positioned(
             left: 0,
             bottom: 0,
             child: _buildPaper(context),
           ),
-        if (model.tag != null)
+        if (model.hasTag())
           Positioned(
             right: 0,
             child: _buildCategory(context),
@@ -148,7 +150,7 @@ class SimpleCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(2),
         ),
         child: Text(
-          model.paper!,
+          model.paper,
           style: const TextStyle(color: Colors.white, fontSize: 12),
         ),
       ),

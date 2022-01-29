@@ -4,7 +4,7 @@ import 'package:catweb/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 
 class ImageModel implements PbAble {
-  ImageModel.fromPb(ImagePb pb)
+  ImageModel.fromPb(ImageRpcModel pb)
       : url = pb.url,
         cacheKey = has(pb.cacheKey, pb.hasCacheKey),
         width = has(pb.width, pb.hasWidth),
@@ -40,7 +40,7 @@ class ImageModel implements PbAble {
       '<img url="$url" ${width != null ? 'width: $width' : ''} ${height != null ? 'width: $height' : ''}>';
 
   @override
-  ImagePb toPb() => ImagePb(
+  ImageRpcModel toPb() => ImageRpcModel(
         url: url,
         cacheKey: cacheKey,
         height: height,

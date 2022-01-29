@@ -1,0 +1,84 @@
+syntax = 'proto3';
+
+option go_package = "./gen/protobuf";
+
+message ImageRpcModel {
+  string url = 1;
+  string cacheKey = 2;
+  double width = 3;
+  double height = 4;
+  double imgX = 5;
+  double imgY = 6;
+  string target = 7;
+}
+
+
+message ColorRpcModel {
+  int32 a = 1;
+  int32 r = 2;
+  int32 g = 3;
+  int32 b = 4;
+}
+
+message ListRpcModel {
+  message Tag {
+    string text = 1;
+    ColorRpcModel color = 2;
+    map<string, string> env = 3;
+  }
+
+  message Item {
+    string title = 1;
+    string subtitle = 2;
+    string upload_time = 3;
+    double star = 4;
+    int32 img_count = 5;
+    ImageRpcModel preview_img = 6;
+
+    Tag tag = 10;
+    repeated Tag badges = 11;
+
+    string paper = 12;
+
+    string next_page = 20;
+    string id_code = 21;
+
+    map<string, string> env = 30;
+  }
+
+  repeated Item items = 1;
+  map<string, string> env = 10;
+}
+
+message DetailRpcModel {
+  message Tag {
+    string text = 1;
+    ColorRpcModel color = 2;
+    map<string, string> env = 3;
+  }
+
+  message Badge {
+    string text = 1;
+    string category = 2;
+  }
+
+  message Comment {
+    string username = 1;
+    string content = 2;
+    string time = 3;
+    string score = 4;
+  }
+
+  string title = 1;
+  string subtitle = 2;
+  string language = 3;
+  int32 image_count = 4;
+  string upload_time = 5;
+  int32 count_pre_page = 6;
+  string description = 7;
+  double star = 8;
+
+  Tag tag = 20;
+  repeated Badge badges = 21;
+  repeated Comment comments = 22;
+}

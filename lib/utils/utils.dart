@@ -1,6 +1,7 @@
 import 'dart:core' as core;
 import 'dart:core';
 import 'dart:math' as math;
+import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';
@@ -66,3 +67,7 @@ RxBool bobs(bool? pb) => pb?.obs ?? false.obs;
 
 RxList<T> lobs<T, E>(core.Iterable<E>? pb, T Function(E e) func) =>
     pb?.map((E e) => func(e)).toList().obs ?? <T>[].obs;
+
+extension ColorHelper on ColorRpcModel {
+  Color get color => Color.fromARGB(a, r, g, b);
+}

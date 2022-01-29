@@ -3,13 +3,10 @@ import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/store.dart';
+import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
-import 'package:catweb/network/parser_exec/gallery_parser_exec.dart';
-import 'package:catweb/network/parser_exec/list_parser_exec.dart';
-import 'package:catweb/network/parser_exec/parser_exec.dart';
 import 'package:catweb/ui/model/detail_model.dart';
-import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
@@ -33,7 +30,7 @@ class NetClient {
 
   final ImageConcurrency imageConcurrency;
 
-  Future<List<ViewerListModel>> getList({
+  Future<ListRpcModel> getList({
     required String url,
     required SitePageModel model,
     required SiteEnvModel localEnv,

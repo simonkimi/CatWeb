@@ -1,9 +1,11 @@
 import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/protocol/model/model.dart';
+import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/dark_image.dart';
 import 'package:catweb/ui/components/image_loader.dart';
-import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -16,7 +18,7 @@ class ListExtendedCard extends StatelessWidget {
     required this.onTap,
   }) : super(key: key);
 
-  final ViewerListModel model;
+  final ListRpcModel_Item model;
   final VoidCallback onTap;
 
   @override
@@ -44,7 +46,7 @@ class ListExtendedCard extends StatelessWidget {
             child: IntrinsicHeight(
               child: Row(
                 children: [
-                  if (model.previewImage != null) _buildLeftImage(),
+                  if (model.hasPreviewImg()) _buildLeftImage(),
                   _buildRightInfo(context),
                 ],
               ),
@@ -79,25 +81,25 @@ class ListExtendedCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (model.title != null)
+        if (model.hasTitle())
           Text(
-            model.title!,
+            model.title,
             maxLines: 2,
             softWrap: true,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 color: FixColor.title.resolveFrom(context), fontSize: 15),
           ),
-        if (model.subtitle != null)
+        if (model.hasSubtitle())
           Text(
-            model.subtitle!,
+            model.subtitle,
             style: TextStyle(
               color: CupertinoColors.secondaryLabel.resolveFrom(context),
               fontSize: 13,
             ),
           ),
         const SizedBox(height: 3),
-        if (model.badgeList != null) _buildTagWrap(context),
+        if (model.badges.isNotEmpty) _buildTagWrap(context),
       ],
     );
   }
@@ -105,7 +107,7 @@ class ListExtendedCard extends StatelessWidget {
   Widget _buildLeftImage() {
     final child = DarkWidget(
       child: ImageLoader(
-        model: model.previewImage!,
+        model: ImageModel.fromPb(model.previewImg),
         concurrency: Get.find<SiteController>().website.client.imageConcurrency,
       ),
     );
@@ -114,11 +116,9 @@ class ListExtendedCard extends StatelessWidget {
       constraints: const BoxConstraints(maxHeight: 160, minHeight: 140),
       child: SizedBox(
         width: 110,
-        child: model.previewImage!.width != null &&
-                model.previewImage!.height != null
+        child: model.previewImg.hasWidth() && model.previewImg.hasHeight()
             ? AspectRatio(
-                aspectRatio:
-                    model.previewImage!.width! / model.previewImage!.height!,
+                aspectRatio: model.previewImg.width / model.previewImg.height,
                 child: child,
               )
             : child,
@@ -130,10 +130,10 @@ class ListExtendedCard extends StatelessWidget {
     return Wrap(
       spacing: 2,
       runSpacing: 2,
-      children: model.badgeList!.where((e) => e.text != null).map((e) {
+      children: model.badges.where((e) => e.hasText()).map((e) {
         return Badge(
-          color: e.color,
-          text: e.text!,
+          color: e.color.color,
+          text: e.text,
           fontSize: 11,
           padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
           borderRadius: 5,
@@ -150,24 +150,24 @@ class ListExtendedCard extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (model.star != null) _buildStar(context),
-            if (model.tag != null) _buildCategory(context),
+            if (model.hasStar()) _buildStar(context),
+            if (model.hasTag()) _buildCategory(context),
           ],
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            if (model.page != null)
+            if (model.hasPaper())
               Text(
-                '${model.page}P',
+                '${model.imgCount}P',
                 style: TextStyle(
                     fontSize: 12.5,
                     color: CupertinoColors.secondaryLabel.resolveFrom(context)),
               ),
-            if (model.uploadTime != null)
+            if (model.hasUploadTime())
               Text(
-                '${model.uploadTime}',
+                model.uploadTime,
                 style: TextStyle(
                   fontSize: 12.5,
                   color: CupertinoColors.secondaryLabel.resolveFrom(context),
@@ -188,7 +188,7 @@ class ListExtendedCard extends StatelessWidget {
           RatingBar.builder(
             itemSize: 16,
             ignoreGestures: true,
-            initialRating: model.star!,
+            initialRating: model.star,
             onRatingUpdate: (value) {},
             itemBuilder: (BuildContext context, int index) {
               return const Icon(
@@ -199,7 +199,7 @@ class ListExtendedCard extends StatelessWidget {
           ),
           const SizedBox(width: 5),
           Text(
-            model.star!.toString(),
+            model.star.toString(),
             style: TextStyle(
               fontSize: 12,
               color: FixColor.title.resolveFrom(context),
@@ -218,13 +218,14 @@ class ListExtendedCard extends StatelessWidget {
         child: Container(
             padding: const EdgeInsets.all(1),
             decoration: BoxDecoration(
-              color: model.tagColor ??
-                  CupertinoColors.systemRed.resolveFrom(context),
+              color: model.tag.hasColor()
+                  ? model.tag.color.color
+                  : CupertinoColors.systemRed.resolveFrom(context),
               borderRadius: BorderRadius.circular(3),
             ),
             child: Center(
               child: Text(
-                model.tag!,
+                model.tag.text,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 11,

@@ -2,11 +2,11 @@ import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/ui/model/viewer_list_model.dart';
+import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:get/get.dart';
 
-class SubListController extends LoadMoreModel<ViewerListModel> {
+class SubListController extends LoadMoreModel<ListRpcModel_Item> {
   SubListController({required this.model, required this.subPageModel});
 
   final SitePageModel model;
@@ -18,10 +18,10 @@ class SubListController extends LoadMoreModel<ViewerListModel> {
   SiteEnvModel get env => site.website.globalEnv.create(localEnv);
 
   @override
-  bool isItemExist(ViewerListModel item) => items.contains(item);
+  bool isItemExist(ListRpcModel_Item item) => items.contains(item);
 
   @override
-  Future<List<ViewerListModel>> loadPage(int page) async {
+  Future<List<ListRpcModel_Item>> loadPage(int page) async {
     var baseUrl = model.url.value;
 
     // 页数匹配
@@ -36,10 +36,12 @@ class SubListController extends LoadMoreModel<ViewerListModel> {
 
     baseUrl = localEnv.replace(baseUrl);
     print('加载网址: $baseUrl');
-    return site.website.client.getList(
+    final data = await site.website.client.getList(
       url: baseUrl,
       model: model,
       localEnv: localEnv,
     );
+
+    return data.items;
   }
 }

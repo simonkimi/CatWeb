@@ -1,4 +1,5 @@
 import 'package:catweb/data/constant.dart';
+import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/subpage_controller.dart';
@@ -88,14 +89,14 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
               onTap: () {
                 pushNewPage(
                   to: controller.model.listItemTarget,
-                  envModel: model.envModel,
+                  envModel: SiteEnvModel(model.env),
                   model: model,
                 );
               },
             );
           },
           childCount: controller.items.length,
-         ),
+        ),
       );
     });
   }

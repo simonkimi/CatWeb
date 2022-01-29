@@ -1,0 +1,16 @@
+syntax = 'proto3';
+
+option go_package = "./gen/protobuf";
+
+enum RpcType {
+  RPC_TYPE_IMAGE_PARSER = 0;
+  RPC_TYPE_LIST_VIEW_PARSER = 1;
+  RPC_TYPE_GALLERY_PARSER = 2;
+}
+
+message RpcRequest {
+  RpcType type = 1;
+  string data = 2;
+  bytes parser_data = 3;
+}
+

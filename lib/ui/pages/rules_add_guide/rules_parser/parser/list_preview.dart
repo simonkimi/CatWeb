@@ -1,6 +1,5 @@
-import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/ui/components/list_card.dart';
-import 'package:catweb/ui/model/viewer_list_model.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/list_extended_card.dart';
 import 'package:flutter/material.dart';
 
@@ -9,29 +8,32 @@ class ListParserPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = ViewerListModel(
-        envModel: SiteEnvModel(),
+    final model = ListRpcModel_Item(
+        env: {},
         title: 'Title',
         subtitle: 'SubTitle',
         star: 4.5,
-        tag: 'Category',
-        tagColor: Colors.blue,
-        page: 100,
+        tag: ListRpcModel_Tag(text: 'Category', color: ColorRpcModel()),
+        imgCount: 100,
         uploadTime: DateTime.now().toString().split('.')[0],
         paper: 'paper',
-        badgeList: [
+        badges: [
           ...Colors.primaries
               .take(9)
               .toList()
               .asMap()
               .map((key, value) => MapEntry(
                   key,
-                  BadgeList(
+                  ListRpcModel_Tag(
                     text: 'Tag ${key + 1}',
-                    color: value,
+                    color: ColorRpcModel(
+                        a: value.alpha,
+                        r: value.red,
+                        g: value.green,
+                        b: value.blue),
                   )))
               .values,
-          BadgeList(
+          ListRpcModel_Tag(
             text: 'Tag 10',
           )
         ]);
@@ -40,7 +42,10 @@ class ListParserPreview extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 5),
-        ListExtendedCard(model: model, onTap: () {},),
+        ListExtendedCard(
+          model: model,
+          onTap: () {},
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
