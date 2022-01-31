@@ -78,11 +78,6 @@ final ehGalleryParser = DetailParser(
       regex: r'-?\d+',
     ),
   ),
-  thumbnailUrl: Selector(
-    selector: '.gdtm a, .gdtl a',
-    function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
-    param: 'href',
-  ),
   thumbnail: ImageSelector(
     imgWidth: Selector(
       selector: '.gdtm img, .gdtl img',
@@ -107,6 +102,11 @@ final ehGalleryParser = DetailParser(
       selector: '.gdtm img, .gdtl img',
       function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
       param: 'src',
+    ),
+    target: Selector(
+      selector: '.gdtm a, .gdtl a',
+      function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
+      param: 'href',
     ),
   ),
   coverImg: ImageSelector(

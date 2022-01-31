@@ -177,7 +177,7 @@ class GalleryParserFragment extends StatelessWidget {
       ),
       RulesForm(
         title: '缩略图目标',
-        selectorModel: model.thumbnailUrl,
+        selectorModel: model.thumbnail.target,
       ),
     ]);
   }

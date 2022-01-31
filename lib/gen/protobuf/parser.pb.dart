@@ -865,12 +865,6 @@ class DetailParser extends $pb.GeneratedMessage {
             : 'thumbnail',
         subBuilder: $0.ImageSelector.create)
     ..aOM<$0.Selector>(
-        22,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'thumbnailUrl',
-        subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(
         30,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
@@ -972,7 +966,6 @@ class DetailParser extends $pb.GeneratedMessage {
     $0.Selector? description,
     $0.Selector? thumbnailSelector,
     $0.ImageSelector? thumbnail,
-    $0.Selector? thumbnailUrl,
     $0.Selector? commentSelector,
     $0.CommentSelector? comment,
     $0.Selector? tag,
@@ -1027,9 +1020,6 @@ class DetailParser extends $pb.GeneratedMessage {
     }
     if (thumbnail != null) {
       _result.thumbnail = thumbnail;
-    }
-    if (thumbnailUrl != null) {
-      _result.thumbnailUrl = thumbnailUrl;
     }
     if (commentSelector != null) {
       _result.commentSelector = commentSelector;
@@ -1280,204 +1270,190 @@ class DetailParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(21)
   $0.ImageSelector ensureThumbnail() => $_ensure(12);
 
-  @$pb.TagNumber(22)
-  $0.Selector get thumbnailUrl => $_getN(13);
-  @$pb.TagNumber(22)
-  set thumbnailUrl($0.Selector v) {
-    setField(22, v);
-  }
-
-  @$pb.TagNumber(22)
-  $core.bool hasThumbnailUrl() => $_has(13);
-  @$pb.TagNumber(22)
-  void clearThumbnailUrl() => clearField(22);
-  @$pb.TagNumber(22)
-  $0.Selector ensureThumbnailUrl() => $_ensure(13);
-
   @$pb.TagNumber(30)
-  $0.Selector get commentSelector => $_getN(14);
+  $0.Selector get commentSelector => $_getN(13);
   @$pb.TagNumber(30)
   set commentSelector($0.Selector v) {
     setField(30, v);
   }
 
   @$pb.TagNumber(30)
-  $core.bool hasCommentSelector() => $_has(14);
+  $core.bool hasCommentSelector() => $_has(13);
   @$pb.TagNumber(30)
   void clearCommentSelector() => clearField(30);
   @$pb.TagNumber(30)
-  $0.Selector ensureCommentSelector() => $_ensure(14);
+  $0.Selector ensureCommentSelector() => $_ensure(13);
 
   @$pb.TagNumber(31)
-  $0.CommentSelector get comment => $_getN(15);
+  $0.CommentSelector get comment => $_getN(14);
   @$pb.TagNumber(31)
   set comment($0.CommentSelector v) {
     setField(31, v);
   }
 
   @$pb.TagNumber(31)
-  $core.bool hasComment() => $_has(15);
+  $core.bool hasComment() => $_has(14);
   @$pb.TagNumber(31)
   void clearComment() => clearField(31);
   @$pb.TagNumber(31)
-  $0.CommentSelector ensureComment() => $_ensure(15);
+  $0.CommentSelector ensureComment() => $_ensure(14);
 
   @$pb.TagNumber(40)
-  $0.Selector get tag => $_getN(16);
+  $0.Selector get tag => $_getN(15);
   @$pb.TagNumber(40)
   set tag($0.Selector v) {
     setField(40, v);
   }
 
   @$pb.TagNumber(40)
-  $core.bool hasTag() => $_has(16);
+  $core.bool hasTag() => $_has(15);
   @$pb.TagNumber(40)
   void clearTag() => clearField(40);
   @$pb.TagNumber(40)
-  $0.Selector ensureTag() => $_ensure(16);
+  $0.Selector ensureTag() => $_ensure(15);
 
   @$pb.TagNumber(41)
-  $0.Selector get tagColor => $_getN(17);
+  $0.Selector get tagColor => $_getN(16);
   @$pb.TagNumber(41)
   set tagColor($0.Selector v) {
     setField(41, v);
   }
 
   @$pb.TagNumber(41)
-  $core.bool hasTagColor() => $_has(17);
+  $core.bool hasTagColor() => $_has(16);
   @$pb.TagNumber(41)
   void clearTagColor() => clearField(41);
   @$pb.TagNumber(41)
-  $0.Selector ensureTagColor() => $_ensure(17);
+  $0.Selector ensureTagColor() => $_ensure(16);
 
   @$pb.TagNumber(50)
-  $0.Selector get badgeSelector => $_getN(18);
+  $0.Selector get badgeSelector => $_getN(17);
   @$pb.TagNumber(50)
   set badgeSelector($0.Selector v) {
     setField(50, v);
   }
 
   @$pb.TagNumber(50)
-  $core.bool hasBadgeSelector() => $_has(18);
+  $core.bool hasBadgeSelector() => $_has(17);
   @$pb.TagNumber(50)
   void clearBadgeSelector() => clearField(50);
   @$pb.TagNumber(50)
-  $0.Selector ensureBadgeSelector() => $_ensure(18);
+  $0.Selector ensureBadgeSelector() => $_ensure(17);
 
   @$pb.TagNumber(51)
-  $0.Selector get badgeText => $_getN(19);
+  $0.Selector get badgeText => $_getN(18);
   @$pb.TagNumber(51)
   set badgeText($0.Selector v) {
     setField(51, v);
   }
 
   @$pb.TagNumber(51)
-  $core.bool hasBadgeText() => $_has(19);
+  $core.bool hasBadgeText() => $_has(18);
   @$pb.TagNumber(51)
   void clearBadgeText() => clearField(51);
   @$pb.TagNumber(51)
-  $0.Selector ensureBadgeText() => $_ensure(19);
+  $0.Selector ensureBadgeText() => $_ensure(18);
 
   @$pb.TagNumber(52)
-  $0.Selector get badgeCategory => $_getN(20);
+  $0.Selector get badgeCategory => $_getN(19);
   @$pb.TagNumber(52)
   set badgeCategory($0.Selector v) {
     setField(52, v);
   }
 
   @$pb.TagNumber(52)
-  $core.bool hasBadgeCategory() => $_has(20);
+  $core.bool hasBadgeCategory() => $_has(19);
   @$pb.TagNumber(52)
   void clearBadgeCategory() => clearField(52);
   @$pb.TagNumber(52)
-  $0.Selector ensureBadgeCategory() => $_ensure(20);
+  $0.Selector ensureBadgeCategory() => $_ensure(19);
 
   @$pb.TagNumber(60)
-  $0.Selector get chapterSelector => $_getN(21);
+  $0.Selector get chapterSelector => $_getN(20);
   @$pb.TagNumber(60)
   set chapterSelector($0.Selector v) {
     setField(60, v);
   }
 
   @$pb.TagNumber(60)
-  $core.bool hasChapterSelector() => $_has(21);
+  $core.bool hasChapterSelector() => $_has(20);
   @$pb.TagNumber(60)
   void clearChapterSelector() => clearField(60);
   @$pb.TagNumber(60)
-  $0.Selector ensureChapterSelector() => $_ensure(21);
+  $0.Selector ensureChapterSelector() => $_ensure(20);
 
   @$pb.TagNumber(61)
-  $0.Selector get chapterTitle => $_getN(22);
+  $0.Selector get chapterTitle => $_getN(21);
   @$pb.TagNumber(61)
   set chapterTitle($0.Selector v) {
     setField(61, v);
   }
 
   @$pb.TagNumber(61)
-  $core.bool hasChapterTitle() => $_has(22);
+  $core.bool hasChapterTitle() => $_has(21);
   @$pb.TagNumber(61)
   void clearChapterTitle() => clearField(61);
   @$pb.TagNumber(61)
-  $0.Selector ensureChapterTitle() => $_ensure(22);
+  $0.Selector ensureChapterTitle() => $_ensure(21);
 
   @$pb.TagNumber(62)
-  $0.Selector get chapterSubtitle => $_getN(23);
+  $0.Selector get chapterSubtitle => $_getN(22);
   @$pb.TagNumber(62)
   set chapterSubtitle($0.Selector v) {
     setField(62, v);
   }
 
   @$pb.TagNumber(62)
-  $core.bool hasChapterSubtitle() => $_has(23);
+  $core.bool hasChapterSubtitle() => $_has(22);
   @$pb.TagNumber(62)
   void clearChapterSubtitle() => clearField(62);
   @$pb.TagNumber(62)
-  $0.Selector ensureChapterSubtitle() => $_ensure(23);
+  $0.Selector ensureChapterSubtitle() => $_ensure(22);
 
   @$pb.TagNumber(63)
-  $0.ImageSelector get chapterCover => $_getN(24);
+  $0.ImageSelector get chapterCover => $_getN(23);
   @$pb.TagNumber(63)
   set chapterCover($0.ImageSelector v) {
     setField(63, v);
   }
 
   @$pb.TagNumber(63)
-  $core.bool hasChapterCover() => $_has(24);
+  $core.bool hasChapterCover() => $_has(23);
   @$pb.TagNumber(63)
   void clearChapterCover() => clearField(63);
   @$pb.TagNumber(63)
-  $0.ImageSelector ensureChapterCover() => $_ensure(24);
+  $0.ImageSelector ensureChapterCover() => $_ensure(23);
 
   @$pb.TagNumber(70)
-  $0.Selector get nextPage => $_getN(25);
+  $0.Selector get nextPage => $_getN(24);
   @$pb.TagNumber(70)
   set nextPage($0.Selector v) {
     setField(70, v);
   }
 
   @$pb.TagNumber(70)
-  $core.bool hasNextPage() => $_has(25);
+  $core.bool hasNextPage() => $_has(24);
   @$pb.TagNumber(70)
   void clearNextPage() => clearField(70);
   @$pb.TagNumber(70)
-  $0.Selector ensureNextPage() => $_ensure(25);
+  $0.Selector ensureNextPage() => $_ensure(24);
 
   @$pb.TagNumber(71)
-  $0.Selector get countPrePage => $_getN(26);
+  $0.Selector get countPrePage => $_getN(25);
   @$pb.TagNumber(71)
   set countPrePage($0.Selector v) {
     setField(71, v);
   }
 
   @$pb.TagNumber(71)
-  $core.bool hasCountPrePage() => $_has(26);
+  $core.bool hasCountPrePage() => $_has(25);
   @$pb.TagNumber(71)
   void clearCountPrePage() => clearField(71);
   @$pb.TagNumber(71)
-  $0.Selector ensureCountPrePage() => $_ensure(26);
+  $0.Selector ensureCountPrePage() => $_ensure(25);
 
   @$pb.TagNumber(99)
-  $core.List<$0.ExtraSelector> get extraSelector => $_getList(27);
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(26);
 }
 
 class AutoCompleteParser extends $pb.GeneratedMessage {

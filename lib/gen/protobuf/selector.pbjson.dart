@@ -136,12 +136,20 @@ const ImageSelector$json = const {
       '6': '.Selector',
       '10': 'imgY'
     },
+    const {
+      '1': 'target',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.Selector',
+      '10': 'target'
+    },
   ],
 };
 
 /// Descriptor for `ImageSelector`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List imageSelectorDescriptor = $convert.base64Decode(
-    'Cg1JbWFnZVNlbGVjdG9yEiIKB2ltZ191cmwYASABKAsyCS5TZWxlY3RvclIGaW1nVXJsEiYKCWltZ193aWR0aBgCIAEoCzIJLlNlbGVjdG9yUghpbWdXaWR0aBIoCgppbWdfaGVpZ2h0GAMgASgLMgkuU2VsZWN0b3JSCWltZ0hlaWdodBIeCgVpbWdfeBgEIAEoCzIJLlNlbGVjdG9yUgRpbWdYEh4KBWltZ195GAUgASgLMgkuU2VsZWN0b3JSBGltZ1k=');
+    'Cg1JbWFnZVNlbGVjdG9yEiIKB2ltZ191cmwYASABKAsyCS5TZWxlY3RvclIGaW1nVXJsEiYKCWltZ193aWR0aBgCIAEoCzIJLlNlbGVjdG9yUghpbWdXaWR0aBIoCgppbWdfaGVpZ2h0GAMgASgLMgkuU2VsZWN0b3JSCWltZ0hlaWdodBIeCgVpbWdfeBgEIAEoCzIJLlNlbGVjdG9yUgRpbWdYEh4KBWltZ195GAUgASgLMgkuU2VsZWN0b3JSBGltZ1kSIQoGdGFyZ2V0GAYgASgLMgkuU2VsZWN0b3JSBnRhcmdldA==');
 @$core.Deprecated('Use commentSelectorDescriptor instead')
 const CommentSelector$json = const {
   '1': 'CommentSelector',

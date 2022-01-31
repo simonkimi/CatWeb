@@ -70,13 +70,15 @@ class ImageSelectorModel implements PbAble {
         imgWidth = SelectorModel(pb?.imgWidth, true),
         imgHeight = SelectorModel(pb?.imgHeight, true),
         imgX = SelectorModel(pb?.imgX, true),
-        imgY = SelectorModel(pb?.imgY, true);
+        imgY = SelectorModel(pb?.imgY, true),
+        target = SelectorModel(pb?.target);
 
   final SelectorModel imgUrl;
   final SelectorModel imgWidth;
   final SelectorModel imgHeight;
   final SelectorModel imgX;
   final SelectorModel imgY;
+  final SelectorModel target;
 
   @override
   ImageSelector toPb() => ImageSelector(
@@ -85,6 +87,7 @@ class ImageSelectorModel implements PbAble {
         imgWidth: imgWidth.toPb(),
         imgX: imgX.toPb(),
         imgY: imgY.toPb(),
+        target: target.toPb(),
       );
 
   Map<String, SelectorModel> combine({String prefix = ''}) => {

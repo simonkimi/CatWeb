@@ -100,7 +100,6 @@ class DetailParserModel extends ParserBaseModel {
         thumbnailSelector = SelectorModel(pb?.thumbnailSelector),
         description = SelectorModel(pb?.description),
         thumbnail = ImageSelectorModel(pb?.thumbnail),
-        thumbnailUrl = SelectorModel(pb?.thumbnailUrl),
         commentSelector = SelectorModel(pb?.commentSelector),
         comments = CommentSelectorModel(pb?.comment),
         tag = SelectorModel(pb?.tag),
@@ -133,7 +132,6 @@ class DetailParserModel extends ParserBaseModel {
   // 缩略图
   final SelectorModel thumbnailSelector;
   final ImageSelectorModel thumbnail;
-  final SelectorModel thumbnailUrl;
 
   // 评论
   final SelectorModel commentSelector;
@@ -174,7 +172,6 @@ class DetailParserModel extends ParserBaseModel {
         // 缩略图
         thumbnailSelector: thumbnailSelector.toPb(),
         thumbnail: thumbnail.toPb(),
-        thumbnailUrl: thumbnailUrl.toPb(),
 
         // 评论
         commentSelector: commentSelector.toPb(),
