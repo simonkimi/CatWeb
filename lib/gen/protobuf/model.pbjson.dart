@@ -81,26 +81,7 @@ const ListRpcModel_Tag$json = const {
       '6': '.ColorRpcModel',
       '10': 'color'
     },
-    const {
-      '1': 'env',
-      '3': 3,
-      '4': 3,
-      '5': 11,
-      '6': '.ListRpcModel.Tag.EnvEntry',
-      '10': 'env'
-    },
   ],
-  '3': const [ListRpcModel_Tag_EnvEntry$json],
-};
-
-@$core.Deprecated('Use listRpcModelDescriptor instead')
-const ListRpcModel_Tag_EnvEntry$json = const {
-  '1': 'EnvEntry',
-  '2': const [
-    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
-    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
-  ],
-  '7': const {'7': true},
 };
 
 @$core.Deprecated('Use listRpcModelDescriptor instead')
@@ -173,7 +154,7 @@ const ListRpcModel_EnvEntry$json = const {
 
 /// Descriptor for `ListRpcModel`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listRpcModelDescriptor = $convert.base64Decode(
-    'CgxMaXN0UnBjTW9kZWwSKAoFaXRlbXMYASADKAsyEi5MaXN0UnBjTW9kZWwuSXRlbVIFaXRlbXMSKAoDZW52GAogAygLMhYuTGlzdFJwY01vZGVsLkVudkVudHJ5UgNlbnYapQEKA1RhZxISCgR0ZXh0GAEgASgJUgR0ZXh0EiQKBWNvbG9yGAIgASgLMg4uQ29sb3JScGNNb2RlbFIFY29sb3ISLAoDZW52GAMgAygLMhouTGlzdFJwY01vZGVsLlRhZy5FbnZFbnRyeVIDZW52GjYKCEVudkVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAEavgMKBEl0ZW0SFAoFdGl0bGUYASABKAlSBXRpdGxlEhoKCHN1YnRpdGxlGAIgASgJUghzdWJ0aXRsZRIfCgt1cGxvYWRfdGltZRgDIAEoCVIKdXBsb2FkVGltZRISCgRzdGFyGAQgASgBUgRzdGFyEhsKCWltZ19jb3VudBgFIAEoBVIIaW1nQ291bnQSLwoLcHJldmlld19pbWcYBiABKAsyDi5JbWFnZVJwY01vZGVsUgpwcmV2aWV3SW1nEiMKA3RhZxgKIAEoCzIRLkxpc3RScGNNb2RlbC5UYWdSA3RhZxIpCgZiYWRnZXMYCyADKAsyES5MaXN0UnBjTW9kZWwuVGFnUgZiYWRnZXMSFAoFcGFwZXIYDCABKAlSBXBhcGVyEhsKCW5leHRfcGFnZRgUIAEoCVIIbmV4dFBhZ2USFwoHaWRfY29kZRgVIAEoCVIGaWRDb2RlEi0KA2VudhgeIAMoCzIbLkxpc3RScGNNb2RlbC5JdGVtLkVudkVudHJ5UgNlbnYaNgoIRW52RW50cnkSEAoDa2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4ARo2CghFbnZFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgB');
+    'CgxMaXN0UnBjTW9kZWwSKAoFaXRlbXMYASADKAsyEi5MaXN0UnBjTW9kZWwuSXRlbVIFaXRlbXMSKAoDZW52GAogAygLMhYuTGlzdFJwY01vZGVsLkVudkVudHJ5UgNlbnYaPwoDVGFnEhIKBHRleHQYASABKAlSBHRleHQSJAoFY29sb3IYAiABKAsyDi5Db2xvclJwY01vZGVsUgVjb2xvchq+AwoESXRlbRIUCgV0aXRsZRgBIAEoCVIFdGl0bGUSGgoIc3VidGl0bGUYAiABKAlSCHN1YnRpdGxlEh8KC3VwbG9hZF90aW1lGAMgASgJUgp1cGxvYWRUaW1lEhIKBHN0YXIYBCABKAFSBHN0YXISGwoJaW1nX2NvdW50GAUgASgFUghpbWdDb3VudBIvCgtwcmV2aWV3X2ltZxgGIAEoCzIOLkltYWdlUnBjTW9kZWxSCnByZXZpZXdJbWcSIwoDdGFnGAogASgLMhEuTGlzdFJwY01vZGVsLlRhZ1IDdGFnEikKBmJhZGdlcxgLIAMoCzIRLkxpc3RScGNNb2RlbC5UYWdSBmJhZGdlcxIUCgVwYXBlchgMIAEoCVIFcGFwZXISGwoJbmV4dF9wYWdlGBQgASgJUghuZXh0UGFnZRIXCgdpZF9jb2RlGBUgASgJUgZpZENvZGUSLQoDZW52GB4gAygLMhsuTGlzdFJwY01vZGVsLkl0ZW0uRW52RW50cnlSA2Vudho2CghFbnZFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgBGjYKCEVudkVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAE=');
 @$core.Deprecated('Use detailRpcModelDescriptor instead')
 const DetailRpcModel$json = const {
   '1': 'DetailRpcModel',

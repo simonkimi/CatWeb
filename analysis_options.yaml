@@ -6,6 +6,7 @@ analyzer:
     - '**/*.pb.dart'
     - '**/*.pbenum.dart'
     - '**/*.pbjson.dart'
+    - '**/*.h.dart'
     - 'lib/gen/*.dart'
     - '**/*.mocks.dart'
 

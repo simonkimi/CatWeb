@@ -54,3 +54,15 @@ const RpcRequest_EnvEntry$json = const {
 /// Descriptor for `RpcRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List rpcRequestDescriptor = $convert.base64Decode(
     'CgpScGNSZXF1ZXN0EhwKBHR5cGUYASABKA4yCC5ScGNUeXBlUgR0eXBlEhIKBGRhdGEYAiABKAlSBGRhdGESHwoLcGFyc2VyX2RhdGEYAyABKAxSCnBhcnNlckRhdGESJgoDZW52GAQgAygLMhQuUnBjUmVxdWVzdC5FbnZFbnRyeVIDZW52GjYKCEVudkVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAE=');
+@$core.Deprecated('Use rpcResponseDescriptor instead')
+const RpcResponse$json = const {
+  '1': 'RpcResponse',
+  '2': const [
+    const {'1': 'data', '3': 1, '4': 1, '5': 12, '10': 'data'},
+    const {'1': 'error', '3': 2, '4': 1, '5': 9, '10': 'error'},
+  ],
+};
+
+/// Descriptor for `RpcResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List rpcResponseDescriptor = $convert.base64Decode(
+    'CgtScGNSZXNwb25zZRISCgRkYXRhGAEgASgMUgRkYXRhEhQKBWVycm9yGAIgASgJUgVlcnJvcg==');

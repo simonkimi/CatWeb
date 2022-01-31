@@ -136,3 +136,87 @@ class RpcRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $core.Map<$core.String, $core.String> get env => $_getMap(3);
 }
+
+class RpcResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'RpcResponse',
+      createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'data',
+        $pb.PbFieldType.OY)
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'error')
+    ..hasRequiredFields = false;
+
+  RpcResponse._() : super();
+  factory RpcResponse({
+    $core.List<$core.int>? data,
+    $core.String? error,
+  }) {
+    final _result = create();
+    if (data != null) {
+      _result.data = data;
+    }
+    if (error != null) {
+      _result.error = error;
+    }
+    return _result;
+  }
+  factory RpcResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory RpcResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  RpcResponse clone() => RpcResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  RpcResponse copyWith(void Function(RpcResponse) updates) =>
+      super.copyWith((message) => updates(message as RpcResponse))
+          as RpcResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static RpcResponse create() => RpcResponse._();
+  RpcResponse createEmptyInstance() => create();
+  static $pb.PbList<RpcResponse> createRepeated() => $pb.PbList<RpcResponse>();
+  @$core.pragma('dart2js:noInline')
+  static RpcResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<RpcResponse>(create);
+  static RpcResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get data => $_getN(0);
+  @$pb.TagNumber(1)
+  set data($core.List<$core.int> v) {
+    $_setBytes(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasData() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearData() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get error => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set error($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasError() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearError() => clearField(2);
+}

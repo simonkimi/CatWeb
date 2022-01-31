@@ -57,6 +57,7 @@ dependencies:
   flutter_qjs: ^0.3.6
   expressions: ^0.2.3
   uuid: ^3.0.5
+  ffi: ^1.1.2
 
 
 dev_dependencies:
@@ -66,6 +67,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   build_runner: ^2.1.7
   drift_dev: ^1.1.0
+  ffigen: ^4.1.2
 
 flutter:
   uses-material-design: true
@@ -74,3 +76,9 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
+
+ffigen:
+  output: 'lib/ffi/libgo.h.dart'
+  headers:
+    entry-points:
+      - 'lib/ffi/libgo.h'

@@ -352,21 +352,12 @@ class ListRpcModel_Tag extends $pb.GeneratedMessage {
             ? ''
             : 'color',
         subBuilder: ColorRpcModel.create)
-    ..m<$core.String, $core.String>(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'env',
-        entryClassName: 'ListRpcModel.Tag.EnvEntry',
-        keyFieldType: $pb.PbFieldType.OS,
-        valueFieldType: $pb.PbFieldType.OS)
     ..hasRequiredFields = false;
 
   ListRpcModel_Tag._() : super();
   factory ListRpcModel_Tag({
     $core.String? text,
     ColorRpcModel? color,
-    $core.Map<$core.String, $core.String>? env,
   }) {
     final _result = create();
     if (text != null) {
@@ -374,9 +365,6 @@ class ListRpcModel_Tag extends $pb.GeneratedMessage {
     }
     if (color != null) {
       _result.color = color;
-    }
-    if (env != null) {
-      _result.env.addAll(env);
     }
     return _result;
   }
@@ -432,9 +420,6 @@ class ListRpcModel_Tag extends $pb.GeneratedMessage {
   void clearColor() => clearField(2);
   @$pb.TagNumber(2)
   ColorRpcModel ensureColor() => $_ensure(1);
-
-  @$pb.TagNumber(3)
-  $core.Map<$core.String, $core.String> get env => $_getMap(2);
 }
 
 class ListRpcModel_Item extends $pb.GeneratedMessage {
