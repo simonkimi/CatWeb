@@ -39,6 +39,14 @@ class RpcRequest extends $pb.GeneratedMessage {
             ? ''
             : 'parserData',
         $pb.PbFieldType.OY)
+    ..m<$core.String, $core.String>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'env',
+        entryClassName: 'RpcRequest.EnvEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OS)
     ..hasRequiredFields = false;
 
   RpcRequest._() : super();
@@ -46,6 +54,7 @@ class RpcRequest extends $pb.GeneratedMessage {
     RpcType? type,
     $core.String? data,
     $core.List<$core.int>? parserData,
+    $core.Map<$core.String, $core.String>? env,
   }) {
     final _result = create();
     if (type != null) {
@@ -56,6 +65,9 @@ class RpcRequest extends $pb.GeneratedMessage {
     }
     if (parserData != null) {
       _result.parserData = parserData;
+    }
+    if (env != null) {
+      _result.env.addAll(env);
     }
     return _result;
   }
@@ -120,4 +132,7 @@ class RpcRequest extends $pb.GeneratedMessage {
   $core.bool hasParserData() => $_has(2);
   @$pb.TagNumber(3)
   void clearParserData() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.Map<$core.String, $core.String> get env => $_getMap(3);
 }

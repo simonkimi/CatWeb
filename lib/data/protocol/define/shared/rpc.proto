@@ -12,5 +12,10 @@ message RpcRequest {
   RpcType type = 1;
   string data = 2;
   bytes parser_data = 3;
+  map<string, string> env = 4;
 }
 
+message RpcResponse {
+  bytes data = 1;
+  string error = 2;
+}

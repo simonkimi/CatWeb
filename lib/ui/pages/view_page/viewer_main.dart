@@ -51,10 +51,10 @@ class ViewerPage extends StatelessWidget {
           hasToolBar: false,
         );
       case Template.TEMPLATE_DETAIL:
-        // return ViewerDetail(
-        //   model: target,
-        // );
-        // TODO 详情页面加载
+      // return ViewerDetail(
+      //   model: target,
+      // );
+      // TODO 详情页面加载
       default:
         throw UnimplementedError(
             'ViewerPage can not handle ${model.template.value}');

@@ -24,7 +24,6 @@ message ListRpcModel {
   message Tag {
     string text = 1;
     ColorRpcModel color = 2;
-    map<string, string> env = 3;
   }
 
   message Item {
