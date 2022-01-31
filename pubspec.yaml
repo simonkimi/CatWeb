@@ -29,14 +29,9 @@ dependencies:
   # network
   brotli: ^0.5.0
   dio: ^4.0.4
-  universal_html: ^2.0.8
-  json_path: ^0.3.1
-  xpath_selector: ^2.2.2
-  xml: ^5.3.1
   dio_cache_interceptor: ^3.0.3
   dio_http_formatter: ^2.1.0
   dio_cache_interceptor_db_store: ^4.0.0
-
 
   # state
   get: ^4.3.8
@@ -52,10 +47,7 @@ dependencies:
   # tools
   protobuf: ^2.0.0
   intl: ^0.17.0
-  flutter_js: ^0.5.0+3
   synchronized: ^3.0.0
-  flutter_qjs: ^0.3.6
-  expressions: ^0.2.3
   uuid: ^3.0.5
   ffi: ^1.1.2
 

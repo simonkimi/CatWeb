@@ -4,8 +4,10 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
+import 'package:catweb/network/parser/parser.dart';
 import 'package:catweb/ui/model/detail_model.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
@@ -36,27 +38,20 @@ class NetClient {
     required SiteEnvModel localEnv,
   }) async {
     final rsp = await dio.get<String>(url);
-
     if (rsp.data == null) {
       throw Exception('data is null');
     }
 
-    final param = ParserParam(
-      parser: configModel.getListParser(model.parser.value),
-      source: rsp.data!,
-      globalEnv: Get.find<SiteController>().website.globalEnv,
-    );
-
-    // final result = listParserExec(param);
-    final result = await compute(listParserExec, param);
-
+    final result = ListRpcModel.fromBuffer(await ParserFFi(
+            parser: configModel.getListParser(model.parser.value).toPb(),
+            source: rsp.data!,
+            env: Get.find<SiteController>().website.globalEnv,
+            type: RpcType.RPC_TYPE_LIST_VIEW_PARSER)
+        .send());
     localEnv.mergeMap(result.localEnv);
-    final site = Get.find<SiteController>().website;
-    if (result.globalEnv.isNotEmpty) {
-      site.globalEnv.mergeMap(result.globalEnv);
-      site.updateGlobalEnv();
-    }
-    return result.result;
+    Get.find<SiteController>().website.updateGlobalEnv(result.globalEnv);
+
+    return result;
   }
 
   Future<GalleryDetailModel> getGallery({

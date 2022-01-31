@@ -45,9 +45,19 @@ class SiteRenderConfigModel {
           ].contains(e.template.value))
       .toList();
 
-  Future<void> updateGlobalEnv() async {
-    await DB()
-        .webDao
-        .replace(dbEntity.copyWith(env: globalEnv.writeToBuffer()));
+  void updateGlobalEnv(Map<String, String> env) async {
+    var didUpdate = false;
+    for (final entity in env.entries) {
+      if (!globalEnv.env.containsKey(entity.key) ||
+          globalEnv.env[entity.key] != entity.value) {
+        didUpdate = true;
+        globalEnv.env[entity.key] = entity.value;
+      }
+    }
+    if (didUpdate) {
+      await DB()
+          .webDao
+          .replace(dbEntity.copyWith(env: globalEnv.writeToBuffer()));
+    }
   }
 }

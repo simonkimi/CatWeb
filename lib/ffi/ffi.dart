@@ -1,45 +1,30 @@
-import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
 import 'package:ffi/ffi.dart' as ffi;
 import 'dart:ffi';
 import 'libgo.h.dart';
+import 'dart:io';
 
-class FFi {
-  FFi._();
+List<int> ffiParse(RpcRequest msg) {
+  final _native = NativeLibrary(Platform.isAndroid
+      ? DynamicLibrary.open('libgo.so')
+      : Platform.isWindows
+          ? DynamicLibrary.open('libgo.dll')
+          : DynamicLibrary.process());
 
-  final _native = NativeLibrary(DynamicLibrary.open('libgo.so'));
+  final raw = msg.writeToBuffer();
+  final buffer = ffi.malloc.allocate<Int8>(raw.length + 1);
+  buffer.asTypedList(raw.length + 1)
+    ..setAll(0, raw)
+    ..[raw.length] = 0;
 
-  static final FFi _instant = FFi._();
+  final result = _native.ParseData(buffer, raw.length);
+  final rsp = RpcResponse.fromBuffer(result.data.asTypedList(result.len));
 
-  factory FFi() => _instant;
+  ffi.malloc.free(buffer);
+  _native.FreeResult(result);
 
-  List<int> parse({
-    required String html,
-    required List<int> selectorPb,
-    required SiteEnvModel env,
-    required RpcType type,
-  }) {
-    final raw = RpcRequest(
-      data: html,
-      parserData: selectorPb,
-      env: env.env,
-      type: type,
-    ).writeToBuffer();
-
-    final buffer = ffi.malloc.allocate<Int8>(raw.length + 1);
-    buffer.asTypedList(raw.length + 1)
-      ..setAll(0, raw)
-      ..[raw.length] = 0;
-
-    final result = _native.ParseData(buffer, raw.length);
-    final rsp = RpcResponse.fromBuffer(result.data.asTypedList(result.len));
-
-    ffi.malloc.free(buffer);
-    _native.FreeResult(result);
-
-    if (rsp.hasError() && rsp.error.isNotEmpty) {
-      throw Exception(rsp.error);
-    }
-    return rsp.data;
+  if (rsp.hasError() && rsp.error.isNotEmpty) {
+    throw Exception(rsp.error);
   }
+  return rsp.data;
 }

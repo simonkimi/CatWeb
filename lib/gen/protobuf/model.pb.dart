@@ -728,8 +728,18 @@ class ListRpcModel extends $pb.GeneratedMessage {
         10,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'env',
-        entryClassName: 'ListRpcModel.EnvEntry',
+            : 'localEnv',
+        protoName: 'localEnv',
+        entryClassName: 'ListRpcModel.LocalEnvEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OS)
+    ..m<$core.String, $core.String>(
+        11,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'globalEnv',
+        protoName: 'globalEnv',
+        entryClassName: 'ListRpcModel.GlobalEnvEntry',
         keyFieldType: $pb.PbFieldType.OS,
         valueFieldType: $pb.PbFieldType.OS)
     ..hasRequiredFields = false;
@@ -737,14 +747,18 @@ class ListRpcModel extends $pb.GeneratedMessage {
   ListRpcModel._() : super();
   factory ListRpcModel({
     $core.Iterable<ListRpcModel_Item>? items,
-    $core.Map<$core.String, $core.String>? env,
+    $core.Map<$core.String, $core.String>? localEnv,
+    $core.Map<$core.String, $core.String>? globalEnv,
   }) {
     final _result = create();
     if (items != null) {
       _result.items.addAll(items);
     }
-    if (env != null) {
-      _result.env.addAll(env);
+    if (localEnv != null) {
+      _result.localEnv.addAll(localEnv);
+    }
+    if (globalEnv != null) {
+      _result.globalEnv.addAll(globalEnv);
     }
     return _result;
   }
@@ -779,7 +793,10 @@ class ListRpcModel extends $pb.GeneratedMessage {
   $core.List<ListRpcModel_Item> get items => $_getList(0);
 
   @$pb.TagNumber(10)
-  $core.Map<$core.String, $core.String> get env => $_getMap(1);
+  $core.Map<$core.String, $core.String> get localEnv => $_getMap(1);
+
+  @$pb.TagNumber(11)
+  $core.Map<$core.String, $core.String> get globalEnv => $_getMap(2);
 }
 
 class DetailRpcModel_Tag extends $pb.GeneratedMessage {

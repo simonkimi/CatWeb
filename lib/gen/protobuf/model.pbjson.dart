@@ -53,18 +53,27 @@ const ListRpcModel$json = const {
       '10': 'items'
     },
     const {
-      '1': 'env',
+      '1': 'localEnv',
       '3': 10,
       '4': 3,
       '5': 11,
-      '6': '.ListRpcModel.EnvEntry',
-      '10': 'env'
+      '6': '.ListRpcModel.LocalEnvEntry',
+      '10': 'localEnv'
+    },
+    const {
+      '1': 'globalEnv',
+      '3': 11,
+      '4': 3,
+      '5': 11,
+      '6': '.ListRpcModel.GlobalEnvEntry',
+      '10': 'globalEnv'
     },
   ],
   '3': const [
     ListRpcModel_Tag$json,
     ListRpcModel_Item$json,
-    ListRpcModel_EnvEntry$json
+    ListRpcModel_LocalEnvEntry$json,
+    ListRpcModel_GlobalEnvEntry$json
   ],
 };
 
@@ -143,8 +152,18 @@ const ListRpcModel_Item_EnvEntry$json = const {
 };
 
 @$core.Deprecated('Use listRpcModelDescriptor instead')
-const ListRpcModel_EnvEntry$json = const {
-  '1': 'EnvEntry',
+const ListRpcModel_LocalEnvEntry$json = const {
+  '1': 'LocalEnvEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
+};
+
+@$core.Deprecated('Use listRpcModelDescriptor instead')
+const ListRpcModel_GlobalEnvEntry$json = const {
+  '1': 'GlobalEnvEntry',
   '2': const [
     const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
     const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
@@ -154,7 +173,7 @@ const ListRpcModel_EnvEntry$json = const {
 
 /// Descriptor for `ListRpcModel`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listRpcModelDescriptor = $convert.base64Decode(
-    'CgxMaXN0UnBjTW9kZWwSKAoFaXRlbXMYASADKAsyEi5MaXN0UnBjTW9kZWwuSXRlbVIFaXRlbXMSKAoDZW52GAogAygLMhYuTGlzdFJwY01vZGVsLkVudkVudHJ5UgNlbnYaPwoDVGFnEhIKBHRleHQYASABKAlSBHRleHQSJAoFY29sb3IYAiABKAsyDi5Db2xvclJwY01vZGVsUgVjb2xvchq+AwoESXRlbRIUCgV0aXRsZRgBIAEoCVIFdGl0bGUSGgoIc3VidGl0bGUYAiABKAlSCHN1YnRpdGxlEh8KC3VwbG9hZF90aW1lGAMgASgJUgp1cGxvYWRUaW1lEhIKBHN0YXIYBCABKAFSBHN0YXISGwoJaW1nX2NvdW50GAUgASgFUghpbWdDb3VudBIvCgtwcmV2aWV3X2ltZxgGIAEoCzIOLkltYWdlUnBjTW9kZWxSCnByZXZpZXdJbWcSIwoDdGFnGAogASgLMhEuTGlzdFJwY01vZGVsLlRhZ1IDdGFnEikKBmJhZGdlcxgLIAMoCzIRLkxpc3RScGNNb2RlbC5UYWdSBmJhZGdlcxIUCgVwYXBlchgMIAEoCVIFcGFwZXISGwoJbmV4dF9wYWdlGBQgASgJUghuZXh0UGFnZRIXCgdpZF9jb2RlGBUgASgJUgZpZENvZGUSLQoDZW52GB4gAygLMhsuTGlzdFJwY01vZGVsLkl0ZW0uRW52RW50cnlSA2Vudho2CghFbnZFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgBGjYKCEVudkVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAE=');
+    'CgxMaXN0UnBjTW9kZWwSKAoFaXRlbXMYASADKAsyEi5MaXN0UnBjTW9kZWwuSXRlbVIFaXRlbXMSNwoIbG9jYWxFbnYYCiADKAsyGy5MaXN0UnBjTW9kZWwuTG9jYWxFbnZFbnRyeVIIbG9jYWxFbnYSOgoJZ2xvYmFsRW52GAsgAygLMhwuTGlzdFJwY01vZGVsLkdsb2JhbEVudkVudHJ5UglnbG9iYWxFbnYaPwoDVGFnEhIKBHRleHQYASABKAlSBHRleHQSJAoFY29sb3IYAiABKAsyDi5Db2xvclJwY01vZGVsUgVjb2xvchq+AwoESXRlbRIUCgV0aXRsZRgBIAEoCVIFdGl0bGUSGgoIc3VidGl0bGUYAiABKAlSCHN1YnRpdGxlEh8KC3VwbG9hZF90aW1lGAMgASgJUgp1cGxvYWRUaW1lEhIKBHN0YXIYBCABKAFSBHN0YXISGwoJaW1nX2NvdW50GAUgASgFUghpbWdDb3VudBIvCgtwcmV2aWV3X2ltZxgGIAEoCzIOLkltYWdlUnBjTW9kZWxSCnByZXZpZXdJbWcSIwoDdGFnGAogASgLMhEuTGlzdFJwY01vZGVsLlRhZ1IDdGFnEikKBmJhZGdlcxgLIAMoCzIRLkxpc3RScGNNb2RlbC5UYWdSBmJhZGdlcxIUCgVwYXBlchgMIAEoCVIFcGFwZXISGwoJbmV4dF9wYWdlGBQgASgJUghuZXh0UGFnZRIXCgdpZF9jb2RlGBUgASgJUgZpZENvZGUSLQoDZW52GB4gAygLMhsuTGlzdFJwY01vZGVsLkl0ZW0uRW52RW50cnlSA2Vudho2CghFbnZFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgBGjsKDUxvY2FsRW52RW50cnkSEAoDa2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4ARo8Cg5HbG9iYWxFbnZFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgB');
 @$core.Deprecated('Use detailRpcModelDescriptor instead')
 const DetailRpcModel$json = const {
   '1': 'DetailRpcModel',
