@@ -4,7 +4,7 @@ import 'package:uuid/uuid.dart';
 
 final galleryUuid = const Uuid().v4().toString();
 
-final ehGalleryParser = GalleryParser(
+final ehGalleryParser = DetailParser(
   name: '画廊',
   uuid: galleryUuid,
   title: Selector(
@@ -47,7 +47,7 @@ final ehGalleryParser = GalleryParser(
   badgeText: Selector(
     function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
   ),
-  badgeType: Selector(
+  badgeCategory: Selector(
     function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
     param: 'id',
     regex: 'td_(.+?):',
@@ -67,12 +67,12 @@ final ehGalleryParser = GalleryParser(
       selector: '#cdiv .c3 a',
       function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
     ),
-    postTime: Selector(
+    time: Selector(
       selector: '#cdiv .c3',
       function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       regex: r'on(.+)\sby',
     ),
-    vote: Selector(
+    score: Selector(
       selector: '#cdiv .c5',
       function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       regex: r'-?\d+',
@@ -129,7 +129,7 @@ final ehGalleryParser = GalleryParser(
       regex: r'height:(\d+)px',
     ),
   ),
-  prePageImageCount: Selector(
+  countPrePage: Selector(
     selector: '#gdo',
     function: SelectorFunction.SELECTOR_FUNCTION_RAW,
     regex: r'<div class="ths nosel">(\d+) rows.+sel">(\w)',

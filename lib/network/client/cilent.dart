@@ -8,12 +8,10 @@ import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
 import 'package:catweb/network/parser/parser.dart';
-import 'package:catweb/ui/model/detail_model.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_http_formatter/dio_http_formatter.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import 'image_loader.dart';
@@ -48,13 +46,14 @@ class NetClient {
             env: Get.find<SiteController>().website.globalEnv,
             type: RpcType.RPC_TYPE_LIST_VIEW_PARSER)
         .send());
+
     localEnv.mergeMap(result.localEnv);
     Get.find<SiteController>().website.updateGlobalEnv(result.globalEnv);
 
     return result;
   }
 
-  Future<GalleryDetailModel> getGallery({
+  Future<DetailRpcModel> getGallery({
     required String url,
     required SitePageModel model,
     required SiteEnvModel localEnv,
@@ -65,22 +64,17 @@ class NetClient {
       throw Exception('data is null');
     }
 
-    final param = ParserParam(
-      parser: configModel.getGalleryParser(model.parser.value),
-      source: rsp.data!,
-      globalEnv: Get.find<SiteController>().website.globalEnv,
-    );
-
-    final ParserResult<GalleryDetailModel> result =
-        await compute(galleryParserExec, param);
+    final result = DetailRpcModel.fromBuffer(await ParserFFi(
+            parser: configModel.getListParser(model.parser.value).toPb(),
+            source: rsp.data!,
+            env: Get.find<SiteController>().website.globalEnv,
+            type: RpcType.RPC_TYPE_LIST_VIEW_PARSER)
+        .send());
 
     localEnv.mergeMap(result.localEnv);
-    final site = Get.find<SiteController>().website;
-    if (result.globalEnv.isNotEmpty) {
-      site.globalEnv.mergeMap(result.globalEnv);
-      site.updateGlobalEnv();
-    }
-    return result.result;
+    Get.find<SiteController>().website.updateGlobalEnv(result.globalEnv);
+
+    return result;
   }
 }
 

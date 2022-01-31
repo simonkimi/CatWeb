@@ -1,9 +1,10 @@
+import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/icon_text.dart';
-import 'package:catweb/ui/model/detail_model.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -15,7 +16,7 @@ class ViewerDetail extends StatelessWidget {
     required this.model,
   }) : super(key: key);
 
-  final GalleryDetailModel model;
+  final DetailRpcModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -57,14 +58,14 @@ class ViewerDetail extends StatelessWidget {
   }
 
   Widget _buildCommentList(BuildContext context) {
-    if (model.commentList == null) return const SizedBox();
+    if (model.comments.isNotEmpty) return const SizedBox();
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              model.star != null ? '评论和评分' : '评论',
+              model.hasStar() ? '评论和评分' : '评论',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
@@ -76,7 +77,7 @@ class ViewerDetail extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         Column(
-          children: model.commentList!.take(2).map((e) {
+          children: model.comments.take(2).map((e) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Container(
@@ -91,7 +92,7 @@ class ViewerDetail extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          e.username!,
+                          e.username,
                           style: const TextStyle(
                               color: CupertinoColors.activeBlue,
                               fontWeight: FontWeight.bold,
@@ -99,7 +100,7 @@ class ViewerDetail extends StatelessWidget {
                         ),
                         const Expanded(child: SizedBox()),
                         Text(
-                          '${e.score! >= 0 ? '+' : '-'}${e.score!.abs()}',
+                          e.score,
                           style: TextStyle(
                             fontSize: 12,
                             color: CupertinoColors.secondaryLabel
@@ -110,7 +111,7 @@ class ViewerDetail extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Linkify(
-                      text: e.comment!,
+                      text: e.content,
                       style: TextStyle(
                         fontSize: 15,
                         color: FixColor.title.resolveFrom(context),
@@ -119,7 +120,7 @@ class ViewerDetail extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      e.commentTime!,
+                      e.time,
                       style: TextStyle(
                         fontSize: 12,
                         color:
@@ -137,12 +138,12 @@ class ViewerDetail extends StatelessWidget {
   }
 
   Widget _buildTagList(BuildContext context) {
-    if (model.badgeList.isEmpty) return const SizedBox();
+    if (model.badges.isEmpty) return const SizedBox();
     final tagMaps = <String, List<String>>{'_': []};
 
-    for (final tag in model.badgeList) {
-      tagMaps[tag.category ?? '_'] ??= [];
-      tagMaps[tag.category ?? '_']!.add(tag.text!);
+    for (final tag in model.badges) {
+      tagMaps[tag.category.isEmpty ? '_' : tag.category] ??= [];
+      tagMaps[tag.category.isEmpty ? '_' : tag.category]!.add(tag.text);
     }
 
     return Column(
@@ -196,8 +197,8 @@ class ViewerDetail extends StatelessWidget {
   }
 
   Widget _buildDescription(BuildContext context) {
-    if (model.description == null) return const SizedBox();
-    final text = model.description!.replaceAll(RegExp(r'\n{2,}'), '\n');
+    if (model.hasDescription()) return const SizedBox();
+    final text = model.description.replaceAll(RegExp(r'\n{2,}'), '\n');
     final textStyle = TextStyle(
       fontSize: 14,
       color: FixColor.text.resolveFrom(context),
@@ -280,7 +281,7 @@ class ViewerDetail extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Text(
-          model.subtitle!,
+          model.subtitle,
           style: const TextStyle(
             color: CupertinoColors.activeBlue,
             fontSize: 15,
@@ -296,7 +297,7 @@ class ViewerDetail extends StatelessWidget {
                   fontSize: 12),
             ),
             Text(
-              model.uploadTime!,
+              model.uploadTime,
               style: TextStyle(
                 color: CupertinoColors.secondaryLabel.resolveFrom(context),
                 fontSize: 12,
@@ -343,7 +344,7 @@ class ViewerDetail extends StatelessWidget {
                     icon: Icons.image_outlined,
                     iconColor: Colors.white,
                     space: 0,
-                    text: '${model.imageCount!}',
+                    text: '${model.imageCount}',
                     style: const TextStyle(fontSize: 9, color: Colors.white),
                   ),
                 ),
@@ -369,13 +370,13 @@ class ViewerDetail extends StatelessWidget {
               const SizedBox(height: 5),
               _buildUploader(context),
               const SizedBox(height: 5),
-              if (model.star != null && model.commentList == null)
+              if (model.hasStar() && model.comments.isEmpty)
                 _buildStarBar(context),
-              if (model.star != null && model.commentList == null)
+              if (model.hasStar() && model.comments.isEmpty)
                 const SizedBox(height: 5),
-              if (model.tag != null && model.badgeList.isEmpty)
+              if (model.hasStar() && model.badges.isEmpty)
                 _buildCategory(context),
-              if (model.tag != null && model.badgeList.isEmpty)
+              if (model.hasStar() && model.badges.isEmpty)
                 const SizedBox(height: 5),
             ],
           ),
@@ -383,7 +384,7 @@ class ViewerDetail extends StatelessWidget {
             children: [
               buildReadButton(),
               const SizedBox(width: 10),
-              if (model.language != null) _buildLanguage(context)
+              if (model.hasLanguage()) _buildLanguage(context)
             ],
           ),
         ],
@@ -393,7 +394,7 @@ class ViewerDetail extends StatelessWidget {
 
   Text _buildLanguage(BuildContext context) {
     return Text(
-      model.language!,
+      model.language,
       style: TextStyle(
         fontSize: 10,
         color: CupertinoColors.secondaryLabel.resolveFrom(context),
@@ -405,7 +406,7 @@ class ViewerDetail extends StatelessWidget {
     return Row(
       children: [
         RatingBar.builder(
-          initialRating: model.star!,
+          initialRating: model.star,
           itemSize: 13,
           maxRating: 5,
           allowHalfRating: true,
@@ -418,7 +419,7 @@ class ViewerDetail extends StatelessWidget {
         ),
         const SizedBox(width: 5),
         Text(
-          model.star!.toString(),
+          model.star.toString(),
           style: TextStyle(
               fontSize: 12, color: FixColor.text.resolveFrom(context)),
         ),
@@ -441,9 +442,9 @@ class ViewerDetail extends StatelessWidget {
   }
 
   Widget _buildTitle(BuildContext context) {
-    if (model.title == null) return const SizedBox();
+    if (model.hasTitle()) return const SizedBox();
     return Text(
-      model.title!,
+      model.title,
       style: TextStyle(
         fontWeight: FontWeight.w600,
         color: FixColor.title.resolveFrom(context),
@@ -452,9 +453,9 @@ class ViewerDetail extends StatelessWidget {
   }
 
   Widget _buildUploader(BuildContext context) {
-    if (model.subtitle == null) return const SizedBox();
+    if (model.hasSubtitle()) return const SizedBox();
     return Text(
-      model.subtitle!,
+      model.subtitle,
       style: TextStyle(
         fontSize: 13,
         color: CupertinoColors.secondaryLabel.resolveFrom(context),
@@ -463,10 +464,10 @@ class ViewerDetail extends StatelessWidget {
   }
 
   Widget _buildCategory(BuildContext context) {
-    if (model.tag == null) return const SizedBox();
+    if (model.hasTag()) return const SizedBox();
     return Badge(
-      text: model.tag!,
-      color: model.tagColor,
+      text: model.tag.text,
+      color: model.tag.color.color,
     );
   }
 }

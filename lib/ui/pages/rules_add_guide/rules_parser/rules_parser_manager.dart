@@ -114,7 +114,7 @@ class RulesParserManager extends GetView<RulesEditController> {
         case ParserType.listParser:
           return ListViewParserModel();
         case ParserType.galleryParser:
-          return GalleryParserModel();
+          return DetailParserModel();
         case ParserType.imageParser:
           return ImageParserModel();
         case ParserType.searchAutoComplete:

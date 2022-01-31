@@ -537,13 +537,13 @@ class CommentSelector extends $pb.GeneratedMessage {
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'postTime',
+            : 'time',
         subBuilder: Selector.create)
     ..aOM<Selector>(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'vote',
+            : 'score',
         subBuilder: Selector.create)
     ..aOM<Selector>(
         4,
@@ -562,8 +562,8 @@ class CommentSelector extends $pb.GeneratedMessage {
   CommentSelector._() : super();
   factory CommentSelector({
     Selector? username,
-    Selector? postTime,
-    Selector? vote,
+    Selector? time,
+    Selector? score,
     Selector? content,
     ImageSelector? avatar,
   }) {
@@ -571,11 +571,11 @@ class CommentSelector extends $pb.GeneratedMessage {
     if (username != null) {
       _result.username = username;
     }
-    if (postTime != null) {
-      _result.postTime = postTime;
+    if (time != null) {
+      _result.time = time;
     }
-    if (vote != null) {
-      _result.vote = vote;
+    if (score != null) {
+      _result.score = score;
     }
     if (content != null) {
       _result.content = content;
@@ -627,32 +627,32 @@ class CommentSelector extends $pb.GeneratedMessage {
   Selector ensureUsername() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  Selector get postTime => $_getN(1);
+  Selector get time => $_getN(1);
   @$pb.TagNumber(2)
-  set postTime(Selector v) {
+  set time(Selector v) {
     setField(2, v);
   }
 
   @$pb.TagNumber(2)
-  $core.bool hasPostTime() => $_has(1);
+  $core.bool hasTime() => $_has(1);
   @$pb.TagNumber(2)
-  void clearPostTime() => clearField(2);
+  void clearTime() => clearField(2);
   @$pb.TagNumber(2)
-  Selector ensurePostTime() => $_ensure(1);
+  Selector ensureTime() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  Selector get vote => $_getN(2);
+  Selector get score => $_getN(2);
   @$pb.TagNumber(3)
-  set vote(Selector v) {
+  set score(Selector v) {
     setField(3, v);
   }
 
   @$pb.TagNumber(3)
-  $core.bool hasVote() => $_has(2);
+  $core.bool hasScore() => $_has(2);
   @$pb.TagNumber(3)
-  void clearVote() => clearField(3);
+  void clearScore() => clearField(3);
   @$pb.TagNumber(3)
-  Selector ensureVote() => $_ensure(2);
+  Selector ensureScore() => $_ensure(2);
 
   @$pb.TagNumber(4)
   Selector get content => $_getN(3);

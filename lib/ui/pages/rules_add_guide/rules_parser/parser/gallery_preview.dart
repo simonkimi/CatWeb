@@ -1,4 +1,4 @@
-import 'package:catweb/ui/model/detail_model.dart';
+import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/detail/detail.dart';
 import 'package:flutter/material.dart';
 
@@ -7,29 +7,28 @@ class GalleryPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = GalleryDetailModel(
+    final model = DetailRpcModel(
       title:
           '(C97) [Circle-FIORE (Ekakibit)] Kaki Oroshi (Ryuuou no Matome Bon) (Ryuuou no Oshigoto!) [Chinese] [转尾巴猫汉化]',
       subtitle: 'qq3870990',
-      tag: 'Doujinshi',
-      tagColor: Colors.red,
-      imageCount: 100,
+      tag: DetailRpcModel_Tag(text: 'Doujinshi', color: ColorRpcModel()),
+      countPrePage: 100,
       language: '中文',
       uploadTime: DateTime.now().toString().split('.').first,
       star: 4,
-      badgeList: <BadgeModel>[
-        BadgeModel(category: 'parody', text: 'azur lane'),
-        BadgeModel(category: 'character', text: 'laffey'),
-        BadgeModel(category: 'group', text: 'suwateria'),
-        BadgeModel(category: 'artist', text: 'ooba nii'),
-        BadgeModel(category: 'male', text: 'sole male'),
-        BadgeModel(category: 'female', text: 'big breasts'),
-        BadgeModel(category: 'female', text: 'lactation'),
-        BadgeModel(category: 'female', text: 'paizuri'),
-        BadgeModel(category: 'female', text: 'shimapan'),
-        BadgeModel(category: 'female', text: 'stockings'),
-        BadgeModel(category: 'female', text: 'twintails'),
-        BadgeModel(category: 'misc', text: 'mosaic censorship'),
+      badges: <DetailRpcModel_Badge>[
+        DetailRpcModel_Badge(category: 'parody', text: 'azur lane'),
+        DetailRpcModel_Badge(category: 'character', text: 'laffey'),
+        DetailRpcModel_Badge(category: 'group', text: 'suwateria'),
+        DetailRpcModel_Badge(category: 'artist', text: 'ooba nii'),
+        DetailRpcModel_Badge(category: 'male', text: 'sole male'),
+        DetailRpcModel_Badge(category: 'female', text: 'big breasts'),
+        DetailRpcModel_Badge(category: 'female', text: 'lactation'),
+        DetailRpcModel_Badge(category: 'female', text: 'paizuri'),
+        DetailRpcModel_Badge(category: 'female', text: 'shimapan'),
+        DetailRpcModel_Badge(category: 'female', text: 'stockings'),
+        DetailRpcModel_Badge(category: 'female', text: 'twintails'),
+        DetailRpcModel_Badge(category: 'misc', text: 'mosaic censorship'),
       ],
       description: '''RAW：https://e-hentai.org/s/9acab29be6/1870894-153
 
@@ -48,30 +47,30 @@ https://e-hentai.org/g/1275854/ba1ce82ecb/
 https://e-hentai.org/g/1274243/d634efbccd/
 [oo君x赤蜘蛛聯合漢化](C94) [サークルフィオレ (えかきびと)] りゅうおうのきゅうじつ・裏 (りゅうおうのおしごと!)
 https://e-hentai.org/g/1275855/d8c63069e4/''',
-      commentList: <CommentItemModel>[
-        CommentItemModel(
+      comments: <DetailRpcModel_Comment>[
+        DetailRpcModel_Comment(
           username: 'user1',
-          comment: '爽啊',
-          score: 4,
-          commentTime: DateTime.now().toString().split('.').first,
+          content: '爽啊',
+          score: '4',
+          time: DateTime.now().toString().split('.').first,
         ),
-        CommentItemModel(
+        DetailRpcModel_Comment(
           username: 'simonkimi',
-          comment: '大就是好',
-          score: 114514,
-          commentTime: DateTime.now().toString().split('.').first,
+          content: '大就是好',
+          score: '114514',
+          time: DateTime.now().toString().split('.').first,
         ),
-        CommentItemModel(
+        DetailRpcModel_Comment(
           username: 'user2',
-          comment: 'awsl',
-          score: 4,
-          commentTime: DateTime.now().toString().split('.').first,
+          content: 'awsl',
+          score: '4',
+          time: DateTime.now().toString().split('.').first,
         ),
-        CommentItemModel(
+        DetailRpcModel_Comment(
           username: 'user1',
-          comment: '建议百度https://www.baidu.com',
-          score: -9,
-          commentTime: DateTime.now().toString().split('.').first,
+          content: '建议百度https://www.baidu.com',
+          score: '-9',
+          time: DateTime.now().toString().split('.').first,
         ),
       ],
     );

@@ -10,7 +10,7 @@ class GalleryParserFragment extends StatelessWidget {
     required this.model,
   }) : super(key: key);
 
-  final GalleryParserModel model;
+  final DetailParserModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +67,8 @@ class GalleryParserFragment extends StatelessWidget {
           selectorModel: model.badgeText,
         ),
         RulesForm(
-          title: '徽章颜色',
-          selectorModel: model.badgeColor,
-        ),
-        RulesForm(
           title: '徽章类型',
-          selectorModel: model.badgeType,
+          selectorModel: model.badgeCategory,
         ),
       ],
     );
@@ -94,11 +90,11 @@ class GalleryParserFragment extends StatelessWidget {
       ),
       RulesForm(
         title: '评论时间',
-        selectorModel: model.comments.postTime,
+        selectorModel: model.comments.time,
       ),
       RulesForm(
         title: '评论评分',
-        selectorModel: model.comments.vote,
+        selectorModel: model.comments.score,
       ),
     ]);
   }
@@ -250,7 +246,7 @@ class GalleryParserFragment extends StatelessWidget {
       ),
       RulesForm(
         title: '每页图片数',
-        selectorModel: model.prePageImageCount,
+        selectorModel: model.countPrePage,
       ),
     ]);
   }

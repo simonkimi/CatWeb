@@ -9,7 +9,7 @@ final ehTestSite = SiteConfig(
   name: 'E-Hentai',
   baseUrl: 'https://e-hentai.org/',
   listViewParsers: [ehListParser],
-  galleryParsers: [ehGalleryParser],
+  detailParsers: [ehGalleryParser],
   cookies: [
     RegField(reg: r'e[-x]hentai', value: 'ipb_member_id=$ipbMemberId'),
     RegField(reg: r'e[-x]hentai', value: 'ipb_pass_hash=$ipbPassHash'),

@@ -51,8 +51,8 @@ message ImageSelector {
 
 message CommentSelector {
   Selector username = 1;
-  Selector post_time = 2;
-  Selector vote = 3;
+  Selector time = 2;
+  Selector score = 3;
   Selector content = 4;
   ImageSelector avatar = 5;
 }

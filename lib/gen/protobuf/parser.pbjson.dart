@@ -227,9 +227,9 @@ const ListViewParser$json = const {
 /// Descriptor for `ListViewParser`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listViewParserDescriptor = $convert.base64Decode(
     'Cg5MaXN0Vmlld1BhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEhIKBHV1aWQYAiABKAlSBHV1aWQSLgoNaXRlbV9zZWxlY3RvchgKIAEoCzIJLlNlbGVjdG9yUgxpdGVtU2VsZWN0b3ISHwoFdGl0bGUYCyABKAsyCS5TZWxlY3RvclIFdGl0bGUSJQoIc3VidGl0bGUYDCABKAsyCS5TZWxlY3RvclIIc3VidGl0bGUSKgoLdXBsb2FkX3RpbWUYDSABKAsyCS5TZWxlY3RvclIKdXBsb2FkVGltZRIdCgRzdGFyGA4gASgLMgkuU2VsZWN0b3JSBHN0YXISJgoJaW1nX2NvdW50GA8gASgLMgkuU2VsZWN0b3JSCGltZ0NvdW50Ei8KC3ByZXZpZXdfaW1nGBAgASgLMg4uSW1hZ2VTZWxlY3RvclIKcHJldmlld0ltZxIbCgN0YWcYFCABKAsyCS5TZWxlY3RvclIDdGFnEiYKCXRhZ19jb2xvchgVIAEoCzIJLlNlbGVjdG9yUgh0YWdDb2xvchIwCg5iYWRnZV9zZWxlY3RvchgWIAEoCzIJLlNlbGVjdG9yUg1iYWRnZVNlbGVjdG9yEigKCmJhZGdlX3RleHQYFyABKAsyCS5TZWxlY3RvclIJYmFkZ2VUZXh0EioKC2JhZGdlX2NvbG9yGBggASgLMgkuU2VsZWN0b3JSCmJhZGdlQ29sb3ISHwoFcGFwZXIYGSABKAsyCS5TZWxlY3RvclIFcGFwZXISJgoJbmV4dF9wYWdlGB4gASgLMgkuU2VsZWN0b3JSCG5leHRQYWdlEiIKB2lkX2NvZGUYHyABKAsyCS5TZWxlY3RvclIGaWRDb2RlEjUKDmV4dHJhX3NlbGVjdG9yGGMgAygLMg4uRXh0cmFTZWxlY3RvclINZXh0cmFTZWxlY3Rvcg==');
-@$core.Deprecated('Use galleryParserDescriptor instead')
-const GalleryParser$json = const {
-  '1': 'GalleryParser',
+@$core.Deprecated('Use detailParserDescriptor instead')
+const DetailParser$json = const {
+  '1': 'DetailParser',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'uuid', '3': 2, '4': 1, '5': 9, '10': 'uuid'},
@@ -371,20 +371,12 @@ const GalleryParser$json = const {
       '10': 'badgeText'
     },
     const {
-      '1': 'badge_color',
+      '1': 'badge_category',
       '3': 52,
       '4': 1,
       '5': 11,
       '6': '.Selector',
-      '10': 'badgeColor'
-    },
-    const {
-      '1': 'badge_type',
-      '3': 53,
-      '4': 1,
-      '5': 11,
-      '6': '.Selector',
-      '10': 'badgeType'
+      '10': 'badgeCategory'
     },
     const {
       '1': 'chapter_selector',
@@ -427,12 +419,12 @@ const GalleryParser$json = const {
       '10': 'nextPage'
     },
     const {
-      '1': 'pre_page_image_count',
+      '1': 'count_pre_page',
       '3': 71,
       '4': 1,
       '5': 11,
       '6': '.Selector',
-      '10': 'prePageImageCount'
+      '10': 'countPrePage'
     },
     const {
       '1': 'extra_selector',
@@ -445,9 +437,9 @@ const GalleryParser$json = const {
   ],
 };
 
-/// Descriptor for `GalleryParser`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List galleryParserDescriptor = $convert.base64Decode(
-    'Cg1HYWxsZXJ5UGFyc2VyEhIKBG5hbWUYASABKAlSBG5hbWUSEgoEdXVpZBgCIAEoCVIEdXVpZBIfCgV0aXRsZRgDIAEoCzIJLlNlbGVjdG9yUgV0aXRsZRIlCghzdWJ0aXRsZRgEIAEoCzIJLlNlbGVjdG9yUghzdWJ0aXRsZRIqCgt1cGxvYWRfdGltZRgFIAEoCzIJLlNlbGVjdG9yUgp1cGxvYWRUaW1lEh0KBHN0YXIYBiABKAsyCS5TZWxlY3RvclIEc3RhchImCglpbWdfY291bnQYByABKAsyCS5TZWxlY3RvclIIaW1nQ291bnQSKAoKcGFnZV9jb3VudBgIIAEoCzIJLlNlbGVjdG9yUglwYWdlQ291bnQSJQoIbGFuZ3VhZ2UYCSABKAsyCS5TZWxlY3RvclIIbGFuZ3VhZ2USKwoJY292ZXJfaW1nGAogASgLMg4uSW1hZ2VTZWxlY3RvclIIY292ZXJJbWcSKwoLZGVzY3JpcHRpb24YCyABKAsyCS5TZWxlY3RvclILZGVzY3JpcHRpb24SOAoSdGh1bWJuYWlsX3NlbGVjdG9yGBQgASgLMgkuU2VsZWN0b3JSEXRodW1ibmFpbFNlbGVjdG9yEiwKCXRodW1ibmFpbBgVIAEoCzIOLkltYWdlU2VsZWN0b3JSCXRodW1ibmFpbBIuCg10aHVtYm5haWxfdXJsGBYgASgLMgkuU2VsZWN0b3JSDHRodW1ibmFpbFVybBI0ChBjb21tZW50X3NlbGVjdG9yGB4gASgLMgkuU2VsZWN0b3JSD2NvbW1lbnRTZWxlY3RvchIqCgdjb21tZW50GB8gASgLMhAuQ29tbWVudFNlbGVjdG9yUgdjb21tZW50EhsKA3RhZxgoIAEoCzIJLlNlbGVjdG9yUgN0YWcSJgoJdGFnX2NvbG9yGCkgASgLMgkuU2VsZWN0b3JSCHRhZ0NvbG9yEjAKDmJhZGdlX3NlbGVjdG9yGDIgASgLMgkuU2VsZWN0b3JSDWJhZGdlU2VsZWN0b3ISKAoKYmFkZ2VfdGV4dBgzIAEoCzIJLlNlbGVjdG9yUgliYWRnZVRleHQSKgoLYmFkZ2VfY29sb3IYNCABKAsyCS5TZWxlY3RvclIKYmFkZ2VDb2xvchIoCgpiYWRnZV90eXBlGDUgASgLMgkuU2VsZWN0b3JSCWJhZGdlVHlwZRI0ChBjaGFwdGVyX3NlbGVjdG9yGDwgASgLMgkuU2VsZWN0b3JSD2NoYXB0ZXJTZWxlY3RvchIuCg1jaGFwdGVyX3RpdGxlGD0gASgLMgkuU2VsZWN0b3JSDGNoYXB0ZXJUaXRsZRI0ChBjaGFwdGVyX3N1YnRpdGxlGD4gASgLMgkuU2VsZWN0b3JSD2NoYXB0ZXJTdWJ0aXRsZRIzCg1jaGFwdGVyX2NvdmVyGD8gASgLMg4uSW1hZ2VTZWxlY3RvclIMY2hhcHRlckNvdmVyEiYKCW5leHRfcGFnZRhGIAEoCzIJLlNlbGVjdG9yUghuZXh0UGFnZRI6ChRwcmVfcGFnZV9pbWFnZV9jb3VudBhHIAEoCzIJLlNlbGVjdG9yUhFwcmVQYWdlSW1hZ2VDb3VudBI1Cg5leHRyYV9zZWxlY3RvchhjIAMoCzIOLkV4dHJhU2VsZWN0b3JSDWV4dHJhU2VsZWN0b3I=');
+/// Descriptor for `DetailParser`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List detailParserDescriptor = $convert.base64Decode(
+    'CgxEZXRhaWxQYXJzZXISEgoEbmFtZRgBIAEoCVIEbmFtZRISCgR1dWlkGAIgASgJUgR1dWlkEh8KBXRpdGxlGAMgASgLMgkuU2VsZWN0b3JSBXRpdGxlEiUKCHN1YnRpdGxlGAQgASgLMgkuU2VsZWN0b3JSCHN1YnRpdGxlEioKC3VwbG9hZF90aW1lGAUgASgLMgkuU2VsZWN0b3JSCnVwbG9hZFRpbWUSHQoEc3RhchgGIAEoCzIJLlNlbGVjdG9yUgRzdGFyEiYKCWltZ19jb3VudBgHIAEoCzIJLlNlbGVjdG9yUghpbWdDb3VudBIoCgpwYWdlX2NvdW50GAggASgLMgkuU2VsZWN0b3JSCXBhZ2VDb3VudBIlCghsYW5ndWFnZRgJIAEoCzIJLlNlbGVjdG9yUghsYW5ndWFnZRIrCgljb3Zlcl9pbWcYCiABKAsyDi5JbWFnZVNlbGVjdG9yUghjb3ZlckltZxIrCgtkZXNjcmlwdGlvbhgLIAEoCzIJLlNlbGVjdG9yUgtkZXNjcmlwdGlvbhI4ChJ0aHVtYm5haWxfc2VsZWN0b3IYFCABKAsyCS5TZWxlY3RvclIRdGh1bWJuYWlsU2VsZWN0b3ISLAoJdGh1bWJuYWlsGBUgASgLMg4uSW1hZ2VTZWxlY3RvclIJdGh1bWJuYWlsEi4KDXRodW1ibmFpbF91cmwYFiABKAsyCS5TZWxlY3RvclIMdGh1bWJuYWlsVXJsEjQKEGNvbW1lbnRfc2VsZWN0b3IYHiABKAsyCS5TZWxlY3RvclIPY29tbWVudFNlbGVjdG9yEioKB2NvbW1lbnQYHyABKAsyEC5Db21tZW50U2VsZWN0b3JSB2NvbW1lbnQSGwoDdGFnGCggASgLMgkuU2VsZWN0b3JSA3RhZxImCgl0YWdfY29sb3IYKSABKAsyCS5TZWxlY3RvclIIdGFnQ29sb3ISMAoOYmFkZ2Vfc2VsZWN0b3IYMiABKAsyCS5TZWxlY3RvclINYmFkZ2VTZWxlY3RvchIoCgpiYWRnZV90ZXh0GDMgASgLMgkuU2VsZWN0b3JSCWJhZGdlVGV4dBIwCg5iYWRnZV9jYXRlZ29yeRg0IAEoCzIJLlNlbGVjdG9yUg1iYWRnZUNhdGVnb3J5EjQKEGNoYXB0ZXJfc2VsZWN0b3IYPCABKAsyCS5TZWxlY3RvclIPY2hhcHRlclNlbGVjdG9yEi4KDWNoYXB0ZXJfdGl0bGUYPSABKAsyCS5TZWxlY3RvclIMY2hhcHRlclRpdGxlEjQKEGNoYXB0ZXJfc3VidGl0bGUYPiABKAsyCS5TZWxlY3RvclIPY2hhcHRlclN1YnRpdGxlEjMKDWNoYXB0ZXJfY292ZXIYPyABKAsyDi5JbWFnZVNlbGVjdG9yUgxjaGFwdGVyQ292ZXISJgoJbmV4dF9wYWdlGEYgASgLMgkuU2VsZWN0b3JSCG5leHRQYWdlEi8KDmNvdW50X3ByZV9wYWdlGEcgASgLMgkuU2VsZWN0b3JSDGNvdW50UHJlUGFnZRI1Cg5leHRyYV9zZWxlY3RvchhjIAMoCzIOLkV4dHJhU2VsZWN0b3JSDWV4dHJhU2VsZWN0b3I=');
 @$core.Deprecated('Use autoCompleteParserDescriptor instead')
 const AutoCompleteParser$json = const {
   '1': 'AutoCompleteParser',

@@ -782,11 +782,11 @@ class ListViewParser extends $pb.GeneratedMessage {
   $core.List<$0.ExtraSelector> get extraSelector => $_getList(17);
 }
 
-class GalleryParser extends $pb.GeneratedMessage {
+class DetailParser extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
-          : 'GalleryParser',
+          : 'DetailParser',
       createEmptyInstance: create)
     ..aOS(
         1,
@@ -910,13 +910,7 @@ class GalleryParser extends $pb.GeneratedMessage {
         52,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'badgeColor',
-        subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(
-        53,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'badgeType',
+            : 'badgeCategory',
         subBuilder: $0.Selector.create)
     ..aOM<$0.Selector>(
         60,
@@ -952,7 +946,7 @@ class GalleryParser extends $pb.GeneratedMessage {
         71,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'prePageImageCount',
+            : 'countPrePage',
         subBuilder: $0.Selector.create)
     ..pc<$0.ExtraSelector>(
         99,
@@ -963,8 +957,8 @@ class GalleryParser extends $pb.GeneratedMessage {
         subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false;
 
-  GalleryParser._() : super();
-  factory GalleryParser({
+  DetailParser._() : super();
+  factory DetailParser({
     $core.String? name,
     $core.String? uuid,
     $0.Selector? title,
@@ -985,14 +979,13 @@ class GalleryParser extends $pb.GeneratedMessage {
     $0.Selector? tagColor,
     $0.Selector? badgeSelector,
     $0.Selector? badgeText,
-    $0.Selector? badgeColor,
-    $0.Selector? badgeType,
+    $0.Selector? badgeCategory,
     $0.Selector? chapterSelector,
     $0.Selector? chapterTitle,
     $0.Selector? chapterSubtitle,
     $0.ImageSelector? chapterCover,
     $0.Selector? nextPage,
-    $0.Selector? prePageImageCount,
+    $0.Selector? countPrePage,
     $core.Iterable<$0.ExtraSelector>? extraSelector,
   }) {
     final _result = create();
@@ -1056,11 +1049,8 @@ class GalleryParser extends $pb.GeneratedMessage {
     if (badgeText != null) {
       _result.badgeText = badgeText;
     }
-    if (badgeColor != null) {
-      _result.badgeColor = badgeColor;
-    }
-    if (badgeType != null) {
-      _result.badgeType = badgeType;
+    if (badgeCategory != null) {
+      _result.badgeCategory = badgeCategory;
     }
     if (chapterSelector != null) {
       _result.chapterSelector = chapterSelector;
@@ -1077,40 +1067,40 @@ class GalleryParser extends $pb.GeneratedMessage {
     if (nextPage != null) {
       _result.nextPage = nextPage;
     }
-    if (prePageImageCount != null) {
-      _result.prePageImageCount = prePageImageCount;
+    if (countPrePage != null) {
+      _result.countPrePage = countPrePage;
     }
     if (extraSelector != null) {
       _result.extraSelector.addAll(extraSelector);
     }
     return _result;
   }
-  factory GalleryParser.fromBuffer($core.List<$core.int> i,
+  factory DetailParser.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory GalleryParser.fromJson($core.String i,
+  factory DetailParser.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  GalleryParser clone() => GalleryParser()..mergeFromMessage(this);
+  DetailParser clone() => DetailParser()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  GalleryParser copyWith(void Function(GalleryParser) updates) =>
-      super.copyWith((message) => updates(message as GalleryParser))
-          as GalleryParser; // ignore: deprecated_member_use
+  DetailParser copyWith(void Function(DetailParser) updates) =>
+      super.copyWith((message) => updates(message as DetailParser))
+          as DetailParser; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GalleryParser create() => GalleryParser._();
-  GalleryParser createEmptyInstance() => create();
-  static $pb.PbList<GalleryParser> createRepeated() =>
-      $pb.PbList<GalleryParser>();
+  static DetailParser create() => DetailParser._();
+  DetailParser createEmptyInstance() => create();
+  static $pb.PbList<DetailParser> createRepeated() =>
+      $pb.PbList<DetailParser>();
   @$core.pragma('dart2js:noInline')
-  static GalleryParser getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<GalleryParser>(create);
-  static GalleryParser? _defaultInstance;
+  static DetailParser getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<DetailParser>(create);
+  static DetailParser? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
@@ -1389,119 +1379,105 @@ class GalleryParser extends $pb.GeneratedMessage {
   $0.Selector ensureBadgeText() => $_ensure(19);
 
   @$pb.TagNumber(52)
-  $0.Selector get badgeColor => $_getN(20);
+  $0.Selector get badgeCategory => $_getN(20);
   @$pb.TagNumber(52)
-  set badgeColor($0.Selector v) {
+  set badgeCategory($0.Selector v) {
     setField(52, v);
   }
 
   @$pb.TagNumber(52)
-  $core.bool hasBadgeColor() => $_has(20);
+  $core.bool hasBadgeCategory() => $_has(20);
   @$pb.TagNumber(52)
-  void clearBadgeColor() => clearField(52);
+  void clearBadgeCategory() => clearField(52);
   @$pb.TagNumber(52)
-  $0.Selector ensureBadgeColor() => $_ensure(20);
-
-  @$pb.TagNumber(53)
-  $0.Selector get badgeType => $_getN(21);
-  @$pb.TagNumber(53)
-  set badgeType($0.Selector v) {
-    setField(53, v);
-  }
-
-  @$pb.TagNumber(53)
-  $core.bool hasBadgeType() => $_has(21);
-  @$pb.TagNumber(53)
-  void clearBadgeType() => clearField(53);
-  @$pb.TagNumber(53)
-  $0.Selector ensureBadgeType() => $_ensure(21);
+  $0.Selector ensureBadgeCategory() => $_ensure(20);
 
   @$pb.TagNumber(60)
-  $0.Selector get chapterSelector => $_getN(22);
+  $0.Selector get chapterSelector => $_getN(21);
   @$pb.TagNumber(60)
   set chapterSelector($0.Selector v) {
     setField(60, v);
   }
 
   @$pb.TagNumber(60)
-  $core.bool hasChapterSelector() => $_has(22);
+  $core.bool hasChapterSelector() => $_has(21);
   @$pb.TagNumber(60)
   void clearChapterSelector() => clearField(60);
   @$pb.TagNumber(60)
-  $0.Selector ensureChapterSelector() => $_ensure(22);
+  $0.Selector ensureChapterSelector() => $_ensure(21);
 
   @$pb.TagNumber(61)
-  $0.Selector get chapterTitle => $_getN(23);
+  $0.Selector get chapterTitle => $_getN(22);
   @$pb.TagNumber(61)
   set chapterTitle($0.Selector v) {
     setField(61, v);
   }
 
   @$pb.TagNumber(61)
-  $core.bool hasChapterTitle() => $_has(23);
+  $core.bool hasChapterTitle() => $_has(22);
   @$pb.TagNumber(61)
   void clearChapterTitle() => clearField(61);
   @$pb.TagNumber(61)
-  $0.Selector ensureChapterTitle() => $_ensure(23);
+  $0.Selector ensureChapterTitle() => $_ensure(22);
 
   @$pb.TagNumber(62)
-  $0.Selector get chapterSubtitle => $_getN(24);
+  $0.Selector get chapterSubtitle => $_getN(23);
   @$pb.TagNumber(62)
   set chapterSubtitle($0.Selector v) {
     setField(62, v);
   }
 
   @$pb.TagNumber(62)
-  $core.bool hasChapterSubtitle() => $_has(24);
+  $core.bool hasChapterSubtitle() => $_has(23);
   @$pb.TagNumber(62)
   void clearChapterSubtitle() => clearField(62);
   @$pb.TagNumber(62)
-  $0.Selector ensureChapterSubtitle() => $_ensure(24);
+  $0.Selector ensureChapterSubtitle() => $_ensure(23);
 
   @$pb.TagNumber(63)
-  $0.ImageSelector get chapterCover => $_getN(25);
+  $0.ImageSelector get chapterCover => $_getN(24);
   @$pb.TagNumber(63)
   set chapterCover($0.ImageSelector v) {
     setField(63, v);
   }
 
   @$pb.TagNumber(63)
-  $core.bool hasChapterCover() => $_has(25);
+  $core.bool hasChapterCover() => $_has(24);
   @$pb.TagNumber(63)
   void clearChapterCover() => clearField(63);
   @$pb.TagNumber(63)
-  $0.ImageSelector ensureChapterCover() => $_ensure(25);
+  $0.ImageSelector ensureChapterCover() => $_ensure(24);
 
   @$pb.TagNumber(70)
-  $0.Selector get nextPage => $_getN(26);
+  $0.Selector get nextPage => $_getN(25);
   @$pb.TagNumber(70)
   set nextPage($0.Selector v) {
     setField(70, v);
   }
 
   @$pb.TagNumber(70)
-  $core.bool hasNextPage() => $_has(26);
+  $core.bool hasNextPage() => $_has(25);
   @$pb.TagNumber(70)
   void clearNextPage() => clearField(70);
   @$pb.TagNumber(70)
-  $0.Selector ensureNextPage() => $_ensure(26);
+  $0.Selector ensureNextPage() => $_ensure(25);
 
   @$pb.TagNumber(71)
-  $0.Selector get prePageImageCount => $_getN(27);
+  $0.Selector get countPrePage => $_getN(26);
   @$pb.TagNumber(71)
-  set prePageImageCount($0.Selector v) {
+  set countPrePage($0.Selector v) {
     setField(71, v);
   }
 
   @$pb.TagNumber(71)
-  $core.bool hasPrePageImageCount() => $_has(27);
+  $core.bool hasCountPrePage() => $_has(26);
   @$pb.TagNumber(71)
-  void clearPrePageImageCount() => clearField(71);
+  void clearCountPrePage() => clearField(71);
   @$pb.TagNumber(71)
-  $0.Selector ensurePrePageImageCount() => $_ensure(27);
+  $0.Selector ensureCountPrePage() => $_ensure(26);
 
   @$pb.TagNumber(99)
-  $core.List<$0.ExtraSelector> get extraSelector => $_getList(28);
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(27);
 }
 
 class AutoCompleteParser extends $pb.GeneratedMessage {

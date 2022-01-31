@@ -133,12 +133,15 @@ extension PageTemplateTr on Template {
   Iterable<ParserBaseModel> parser(List<ParserBaseModel> input) {
     switch (this) {
       case Template.TEMPLATE_DETAIL:
-        return input.whereType<GalleryParserModel>();
+        return input.whereType<DetailParserModel>();
       case Template.TEMPLATE_IMAGE_LIST:
       case Template.TEMPLATE_IMAGE_WATERFALL:
         return input.whereType<ListViewParserModel>();
       case Template.TEMPLATE_IMAGE_VIEWER:
         return input.whereType<ImageParserModel>();
+      case Template.TEMPLATE_AUTO_COMPLETE:
+        // TODO: Handle this case.
+        break;
     }
     throw UnimplementedError('TODO! $this');
   }

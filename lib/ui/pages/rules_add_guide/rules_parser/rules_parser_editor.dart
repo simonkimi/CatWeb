@@ -73,7 +73,7 @@ class RulesParserEditor extends StatelessWidget {
   Widget _buildEditor(BuildContext context) {
     switch (model.type) {
       case ParserType.galleryParser:
-        return GalleryParserFragment(model: model as GalleryParserModel);
+        return GalleryParserFragment(model: model as DetailParserModel);
       case ParserType.listParser:
         return ListParserFragment(model: model as ListViewParserModel);
       default:

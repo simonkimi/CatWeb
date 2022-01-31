@@ -3,7 +3,7 @@ import 'package:catweb/data/models/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/ui/model/detail_model.dart';
+import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +13,7 @@ class DetailPreviewController extends LoadMoreModel<ImageModel> {
 
   final SitePageModel model;
 
-  GalleryDetailModel? detailModel;
+  DetailRpcModel? detailModel;
 
   final SiteEnvModel localEnv;
 
@@ -34,6 +34,6 @@ class DetailPreviewController extends LoadMoreModel<ImageModel> {
       localEnv: localEnv,
     );
 
-    return gallery.previewList ?? [];
+    return gallery.previewImg.map((e) => ImageModel.fromPb(e)).toList();
   }
 }

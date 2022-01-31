@@ -36,8 +36,8 @@ class SiteConfigModel implements PbAble {
         version = sobs(pb?.version),
         upgradeUrl = sobs(pb?.upgradeUrl),
         flag = sobs(pb?.flag),
-        galleryParsers = lobs(
-            pb?.galleryParsers, (GalleryParser e) => GalleryParserModel(e)),
+        detailParsers =
+            lobs(pb?.detailParsers, (DetailParser e) => DetailParserModel(e)),
         listViewParsers = lobs(
           pb?.listViewParsers,
           (ListViewParser e) => ListViewParserModel(e),
@@ -69,7 +69,7 @@ class SiteConfigModel implements PbAble {
 
   final RxList<RegFieldModel> cookies;
   final RxList<RegFieldModel> headers;
-  final RxList<GalleryParserModel> galleryParsers;
+  final RxList<DetailParserModel> detailParsers;
   final RxList<ListViewParserModel> listViewParsers;
   final RxList<ImageParserModel> imageParsers;
   final RxList<AutoCompleteParserModel> autoCompleteParsers;
@@ -81,7 +81,7 @@ class SiteConfigModel implements PbAble {
       case ParserType.listParser:
         return listViewParsers;
       case ParserType.galleryParser:
-        return galleryParsers;
+        return detailParsers;
       case ParserType.imageParser:
         return imageParsers;
       case ParserType.searchAutoComplete:
@@ -99,7 +99,7 @@ class SiteConfigModel implements PbAble {
 
   RxList<ParserBaseModel> get parsers => RxList.from([
         ...listViewParsers,
-        ...galleryParsers,
+        ...detailParsers,
         ...imageParsers,
       ]);
 
@@ -117,8 +117,8 @@ class SiteConfigModel implements PbAble {
     return result;
   }
 
-  GalleryParserModel getGalleryParser(String uuid) {
-    final result = galleryParsers.get((e) => e.uuid == uuid);
+  DetailParserModel getGalleryParser(String uuid) {
+    final result = detailParsers.get((e) => e.uuid == uuid);
     if (result == null) throw Exception('Parser $uuid not exist');
     return result;
   }
@@ -140,7 +140,7 @@ class SiteConfigModel implements PbAble {
         version: version.value,
         upgradeUrl: upgradeUrl.value,
         flag: flag.value,
-        galleryParsers: galleryParsers.map((e) => e.toPb()),
+        detailParsers: detailParsers.map((e) => e.toPb()),
         listViewParsers: listViewParsers.map((e) => e.toPb()),
         actions: actionList.map((e) => e.toPb()),
         pages: pageList.map((e) => e.toPb()),

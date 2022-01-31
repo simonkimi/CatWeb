@@ -46,6 +46,7 @@ message ListRpcModel {
   }
 
   repeated Item items = 1;
+  string next_page = 2;
   map<string, string> localEnv = 10;
   map<string, string> globalEnv = 11;
 }
@@ -67,6 +68,7 @@ message DetailRpcModel {
     string content = 2;
     string time = 3;
     string score = 4;
+    ImageRpcModel avatar = 5;
   }
 
   string title = 1;
@@ -77,8 +79,12 @@ message DetailRpcModel {
   int32 count_pre_page = 6;
   string description = 7;
   double star = 8;
+  repeated ImageRpcModel preview_img= 9;
 
   Tag tag = 20;
   repeated Badge badges = 21;
   repeated Comment comments = 22;
+
+  map<string, string> localEnv = 30;
+  map<string, string> globalEnv = 31;
 }

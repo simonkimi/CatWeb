@@ -48,7 +48,7 @@ message ListViewParser {
   repeated ExtraSelector extra_selector = 99;
 }
 
-message GalleryParser {
+message DetailParser {
   string name = 1;
   string uuid = 2;
 
@@ -79,8 +79,7 @@ message GalleryParser {
   // 徽章
   Selector badge_selector = 50;
   Selector badge_text = 51;
-  Selector badge_color = 52;
-  Selector badge_type = 53;
+  Selector badge_category = 52;
 
 
   // 章节
@@ -91,7 +90,7 @@ message GalleryParser {
 
   // 下一面
   Selector next_page = 70;
-  Selector pre_page_image_count = 71;  // 一页多少面, 用于跳页
+  Selector count_pre_page = 71;  // 一页多少面, 用于跳页
 
   repeated ExtraSelector extra_selector = 99;
 }

@@ -87,8 +87,8 @@ class ImageParserModel extends ParserBaseModel {
   ParserType get type => ParserType.imageParser;
 }
 
-class GalleryParserModel extends ParserBaseModel {
-  GalleryParserModel([GalleryParser? pb])
+class DetailParserModel extends ParserBaseModel {
+  DetailParserModel([DetailParser? pb])
       : title = SelectorModel(pb?.title),
         subtitle = SelectorModel(pb?.subtitle),
         uploadTime = SelectorModel(pb?.uploadTime),
@@ -107,14 +107,13 @@ class GalleryParserModel extends ParserBaseModel {
         tagColor = SelectorModel(pb?.tagColor),
         badgeSelector = SelectorModel(pb?.badgeSelector),
         badgeText = SelectorModel(pb?.badgeText),
-        badgeColor = SelectorModel(pb?.badgeColor),
-        badgeType = SelectorModel(pb?.badgeType),
+        badgeCategory = SelectorModel(pb?.badgeCategory),
         chapterSelector = SelectorModel(pb?.chapterSelector),
         chapterTitle = SelectorModel(pb?.chapterTitle),
         chapterSubtitle = SelectorModel(pb?.chapterSubtitle),
         chapterCover = ImageSelectorModel(pb?.chapterCover),
         nextPage = SelectorModel(pb?.nextPage),
-        prePageImageCount = SelectorModel(pb?.prePageImageCount),
+        countPrePage = SelectorModel(pb?.countPrePage),
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
@@ -147,8 +146,7 @@ class GalleryParserModel extends ParserBaseModel {
   // 徽章
   final SelectorModel badgeSelector;
   final SelectorModel badgeText;
-  final SelectorModel badgeColor;
-  final SelectorModel badgeType;
+  final SelectorModel badgeCategory;
 
   // 章节
   final SelectorModel chapterSelector;
@@ -157,10 +155,10 @@ class GalleryParserModel extends ParserBaseModel {
   final ImageSelectorModel chapterCover;
 
   final SelectorModel nextPage;
-  final SelectorModel prePageImageCount;
+  final SelectorModel countPrePage;
 
   @override
-  GalleryParser toPb() => GalleryParser(
+  DetailParser toPb() => DetailParser(
         name: name.value,
         uuid: uuid,
         title: title.toPb(),
@@ -189,8 +187,7 @@ class GalleryParserModel extends ParserBaseModel {
         // 徽章
         badgeSelector: badgeSelector.toPb(),
         badgeText: badgeText.toPb(),
-        badgeColor: badgeColor.toPb(),
-        badgeType: badgeType.toPb(),
+        badgeCategory: badgeCategory.toPb(),
 
         // 章节
         chapterSelector: chapterSelector.toPb(),
@@ -199,12 +196,12 @@ class GalleryParserModel extends ParserBaseModel {
         chapterCover: chapterCover.toPb(),
 
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
-        prePageImageCount: prePageImageCount.toPb(),
+        countPrePage: countPrePage.toPb(),
         nextPage: nextPage.toPb(),
       );
 
   @override
-  ParserBaseModel copy() => GalleryParserModel(toPb());
+  ParserBaseModel copy() => DetailParserModel(toPb());
 
   @override
   String displayType(BuildContext context) => '画廊解析器';

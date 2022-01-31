@@ -99,22 +99,22 @@ class ImageSelectorModel implements PbAble {
 class CommentSelectorModel implements PbAble {
   CommentSelectorModel([CommentSelector? pb])
       : username = SelectorModel(pb?.username),
-        postTime = SelectorModel(pb?.postTime),
-        vote = SelectorModel(pb?.vote),
+        time = SelectorModel(pb?.time),
+        score = SelectorModel(pb?.score),
         content = SelectorModel(pb?.content),
         avatar = ImageSelectorModel(pb?.avatar);
 
   final SelectorModel username;
-  final SelectorModel postTime;
-  final SelectorModel vote;
+  final SelectorModel time;
+  final SelectorModel score;
   final SelectorModel content;
   final ImageSelectorModel avatar;
 
   @override
   CommentSelector toPb() => CommentSelector(
         username: username.toPb(),
-        postTime: postTime.toPb(),
-        vote: vote.toPb(),
+        time: time.toPb(),
+        score: score.toPb(),
         content: content.toPb(),
         avatar: avatar.toPb(),
       );

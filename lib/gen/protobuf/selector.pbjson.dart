@@ -155,20 +155,20 @@ const CommentSelector$json = const {
       '10': 'username'
     },
     const {
-      '1': 'post_time',
+      '1': 'time',
       '3': 2,
       '4': 1,
       '5': 11,
       '6': '.Selector',
-      '10': 'postTime'
+      '10': 'time'
     },
     const {
-      '1': 'vote',
+      '1': 'score',
       '3': 3,
       '4': 1,
       '5': 11,
       '6': '.Selector',
-      '10': 'vote'
+      '10': 'score'
     },
     const {
       '1': 'content',
@@ -191,4 +191,4 @@ const CommentSelector$json = const {
 
 /// Descriptor for `CommentSelector`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List commentSelectorDescriptor = $convert.base64Decode(
-    'Cg9Db21tZW50U2VsZWN0b3ISJQoIdXNlcm5hbWUYASABKAsyCS5TZWxlY3RvclIIdXNlcm5hbWUSJgoJcG9zdF90aW1lGAIgASgLMgkuU2VsZWN0b3JSCHBvc3RUaW1lEh0KBHZvdGUYAyABKAsyCS5TZWxlY3RvclIEdm90ZRIjCgdjb250ZW50GAQgASgLMgkuU2VsZWN0b3JSB2NvbnRlbnQSJgoGYXZhdGFyGAUgASgLMg4uSW1hZ2VTZWxlY3RvclIGYXZhdGFy');
+    'Cg9Db21tZW50U2VsZWN0b3ISJQoIdXNlcm5hbWUYASABKAsyCS5TZWxlY3RvclIIdXNlcm5hbWUSHQoEdGltZRgCIAEoCzIJLlNlbGVjdG9yUgR0aW1lEh8KBXNjb3JlGAMgASgLMgkuU2VsZWN0b3JSBXNjb3JlEiMKB2NvbnRlbnQYBCABKAsyCS5TZWxlY3RvclIHY29udGVudBImCgZhdmF0YXIYBSABKAsyDi5JbWFnZVNlbGVjdG9yUgZhdmF0YXI=');

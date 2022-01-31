@@ -724,6 +724,11 @@ class ListRpcModel extends $pb.GeneratedMessage {
             : 'items',
         $pb.PbFieldType.PM,
         subBuilder: ListRpcModel_Item.create)
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'nextPage')
     ..m<$core.String, $core.String>(
         10,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -747,12 +752,16 @@ class ListRpcModel extends $pb.GeneratedMessage {
   ListRpcModel._() : super();
   factory ListRpcModel({
     $core.Iterable<ListRpcModel_Item>? items,
+    $core.String? nextPage,
     $core.Map<$core.String, $core.String>? localEnv,
     $core.Map<$core.String, $core.String>? globalEnv,
   }) {
     final _result = create();
     if (items != null) {
       _result.items.addAll(items);
+    }
+    if (nextPage != null) {
+      _result.nextPage = nextPage;
     }
     if (localEnv != null) {
       _result.localEnv.addAll(localEnv);
@@ -792,11 +801,23 @@ class ListRpcModel extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.List<ListRpcModel_Item> get items => $_getList(0);
 
+  @$pb.TagNumber(2)
+  $core.String get nextPage => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set nextPage($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasNextPage() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearNextPage() => clearField(2);
+
   @$pb.TagNumber(10)
-  $core.Map<$core.String, $core.String> get localEnv => $_getMap(1);
+  $core.Map<$core.String, $core.String> get localEnv => $_getMap(2);
 
   @$pb.TagNumber(11)
-  $core.Map<$core.String, $core.String> get globalEnv => $_getMap(2);
+  $core.Map<$core.String, $core.String> get globalEnv => $_getMap(3);
 }
 
 class DetailRpcModel_Tag extends $pb.GeneratedMessage {
@@ -1012,6 +1033,12 @@ class DetailRpcModel_Comment extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'score')
+    ..aOM<ImageRpcModel>(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'avatar',
+        subBuilder: ImageRpcModel.create)
     ..hasRequiredFields = false;
 
   DetailRpcModel_Comment._() : super();
@@ -1020,6 +1047,7 @@ class DetailRpcModel_Comment extends $pb.GeneratedMessage {
     $core.String? content,
     $core.String? time,
     $core.String? score,
+    ImageRpcModel? avatar,
   }) {
     final _result = create();
     if (username != null) {
@@ -1033,6 +1061,9 @@ class DetailRpcModel_Comment extends $pb.GeneratedMessage {
     }
     if (score != null) {
       _result.score = score;
+    }
+    if (avatar != null) {
+      _result.avatar = avatar;
     }
     return _result;
   }
@@ -1112,6 +1143,20 @@ class DetailRpcModel_Comment extends $pb.GeneratedMessage {
   $core.bool hasScore() => $_has(3);
   @$pb.TagNumber(4)
   void clearScore() => clearField(4);
+
+  @$pb.TagNumber(5)
+  ImageRpcModel get avatar => $_getN(4);
+  @$pb.TagNumber(5)
+  set avatar(ImageRpcModel v) {
+    setField(5, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasAvatar() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearAvatar() => clearField(5);
+  @$pb.TagNumber(5)
+  ImageRpcModel ensureAvatar() => $_ensure(4);
 }
 
 class DetailRpcModel extends $pb.GeneratedMessage {
@@ -1163,6 +1208,13 @@ class DetailRpcModel extends $pb.GeneratedMessage {
             ? ''
             : 'star',
         $pb.PbFieldType.OD)
+    ..pc<ImageRpcModel>(
+        9,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'previewImg',
+        $pb.PbFieldType.PM,
+        subBuilder: ImageRpcModel.create)
     ..aOM<DetailRpcModel_Tag>(
         20,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -1183,6 +1235,24 @@ class DetailRpcModel extends $pb.GeneratedMessage {
             : 'comments',
         $pb.PbFieldType.PM,
         subBuilder: DetailRpcModel_Comment.create)
+    ..m<$core.String, $core.String>(
+        30,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'localEnv',
+        protoName: 'localEnv',
+        entryClassName: 'DetailRpcModel.LocalEnvEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OS)
+    ..m<$core.String, $core.String>(
+        31,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'globalEnv',
+        protoName: 'globalEnv',
+        entryClassName: 'DetailRpcModel.GlobalEnvEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OS)
     ..hasRequiredFields = false;
 
   DetailRpcModel._() : super();
@@ -1195,9 +1265,12 @@ class DetailRpcModel extends $pb.GeneratedMessage {
     $core.int? countPrePage,
     $core.String? description,
     $core.double? star,
+    $core.Iterable<ImageRpcModel>? previewImg,
     DetailRpcModel_Tag? tag,
     $core.Iterable<DetailRpcModel_Badge>? badges,
     $core.Iterable<DetailRpcModel_Comment>? comments,
+    $core.Map<$core.String, $core.String>? localEnv,
+    $core.Map<$core.String, $core.String>? globalEnv,
   }) {
     final _result = create();
     if (title != null) {
@@ -1224,6 +1297,9 @@ class DetailRpcModel extends $pb.GeneratedMessage {
     if (star != null) {
       _result.star = star;
     }
+    if (previewImg != null) {
+      _result.previewImg.addAll(previewImg);
+    }
     if (tag != null) {
       _result.tag = tag;
     }
@@ -1232,6 +1308,12 @@ class DetailRpcModel extends $pb.GeneratedMessage {
     }
     if (comments != null) {
       _result.comments.addAll(comments);
+    }
+    if (localEnv != null) {
+      _result.localEnv.addAll(localEnv);
+    }
+    if (globalEnv != null) {
+      _result.globalEnv.addAll(globalEnv);
     }
     return _result;
   }
@@ -1358,23 +1440,32 @@ class DetailRpcModel extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   void clearStar() => clearField(8);
 
+  @$pb.TagNumber(9)
+  $core.List<ImageRpcModel> get previewImg => $_getList(8);
+
   @$pb.TagNumber(20)
-  DetailRpcModel_Tag get tag => $_getN(8);
+  DetailRpcModel_Tag get tag => $_getN(9);
   @$pb.TagNumber(20)
   set tag(DetailRpcModel_Tag v) {
     setField(20, v);
   }
 
   @$pb.TagNumber(20)
-  $core.bool hasTag() => $_has(8);
+  $core.bool hasTag() => $_has(9);
   @$pb.TagNumber(20)
   void clearTag() => clearField(20);
   @$pb.TagNumber(20)
-  DetailRpcModel_Tag ensureTag() => $_ensure(8);
+  DetailRpcModel_Tag ensureTag() => $_ensure(9);
 
   @$pb.TagNumber(21)
-  $core.List<DetailRpcModel_Badge> get badges => $_getList(9);
+  $core.List<DetailRpcModel_Badge> get badges => $_getList(10);
 
   @$pb.TagNumber(22)
-  $core.List<DetailRpcModel_Comment> get comments => $_getList(10);
+  $core.List<DetailRpcModel_Comment> get comments => $_getList(11);
+
+  @$pb.TagNumber(30)
+  $core.Map<$core.String, $core.String> get localEnv => $_getMap(12);
+
+  @$pb.TagNumber(31)
+  $core.Map<$core.String, $core.String> get globalEnv => $_getMap(13);
 }

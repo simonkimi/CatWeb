@@ -23,7 +23,7 @@ message SiteConfig {
   repeated RegField headers = 15;
   repeated RegField cookies = 16;
 
-  repeated GalleryParser gallery_parsers = 20;
+  repeated DetailParser detail_parsers = 20;
   repeated ListViewParser list_view_parsers = 21;
   repeated ImageParser image_parsers = 22;
   repeated AutoCompleteParser auto_complete_parsers = 23;
