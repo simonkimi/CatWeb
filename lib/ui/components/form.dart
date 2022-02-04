@@ -215,15 +215,17 @@ class RulesForm extends StatelessWidget {
                 },
               )),
           const SizedBox(width: 10),
-          Obx(() => _buildCheckButton(
-                context: context,
-                label: '全局',
-                value: extraSelectorModel!.global.value,
-                onPressed: () {
-                  extraSelectorModel!.global.value =
-                      !extraSelectorModel!.global.value;
-                },
-              )),
+          if (extraSelectorModel!.type.value ==
+              ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE)
+            Obx(() => _buildCheckButton(
+                  context: context,
+                  label: '全局',
+                  value: extraSelectorModel!.global.value,
+                  onPressed: () {
+                    extraSelectorModel!.global.value =
+                        !extraSelectorModel!.global.value;
+                  },
+                )),
           const Expanded(child: SizedBox()),
           CupertinoButton(
             minSize: 0,
