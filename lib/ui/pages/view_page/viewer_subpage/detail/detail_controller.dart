@@ -25,15 +25,14 @@ class DetailPreviewController extends LoadMoreModel<ImageModel> {
   @override
   Future<List<ImageModel>> loadPage(int page) async {
     var baseUrl = model.url.value;
-    baseUrl = pageReplace(baseUrl, page);
-    baseUrl = localEnv.replace(baseUrl);
+    baseUrl = localEnv.replace(pageReplace(baseUrl, page));
 
-    final gallery = await site.website.client.getGallery(
+    final detail = await site.website.client.getDetail(
       url: baseUrl,
       model: model,
       localEnv: localEnv,
     );
 
-    return gallery.previewImg.map((e) => ImageModel.fromPb(e)).toList();
+    return detail.previewImg.map((e) => ImageModel.fromPb(e)).toList();
   }
 }

@@ -80,8 +80,8 @@ class RulesPageManager extends GetView<RulesEditController> {
 
   void _onPageDelete(BuildContext context, SitePageModel model) {
     final using = controller.siteConfigModel.pageList
-        .where((p0) =>
-            p0.openPages.any((element) => element.target.value == model.uuid))
+        .where(
+            (p0) => p0.openPages.any((element) => element.value == model.uuid))
         .map((e) => e.name.value)
         .toList();
     if (using.isNotEmpty) {

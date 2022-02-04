@@ -167,12 +167,12 @@ class RulesPageEdit extends GetView<RulesEditController> {
   Widget _buildOpenWidget(
     BuildContext context, {
     required String labelText,
-    required OpenPageModel model,
+    required RxString target,
   }) {
     return Obx(() => CupertinoReadOnlyInput(
           labelText: '徽章跳转',
-          value: controller.siteConfigModel.getPageName(model.target.value),
-          onTap: () => _onOpenNewPageClick(context, model),
+          value: controller.siteConfigModel.getPageName(target.value),
+          onTap: () => _onOpenNewPageClick(context, target),
         ));
   }
 
@@ -184,7 +184,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
           _buildOpenWidget(
             context,
             labelText: '徽章跳转',
-            model: model.badgeTarget,
+            target: model.badgeTarget,
           ),
         ];
         break;
@@ -195,7 +195,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
           _buildOpenWidget(
             context,
             labelText: '项目跳转',
-            model: model.listItemTarget,
+            target: model.listItemTarget,
           ),
         ];
         break;
@@ -216,7 +216,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
     );
   }
 
-  void _onOpenNewPageClick(BuildContext context, OpenPageModel model) {
+  void _onOpenNewPageClick(BuildContext context, RxString target) {
     showCupertinoSelectDialog(
             context: context,
             cancelText: '无',
@@ -229,9 +229,9 @@ class RulesPageEdit extends GetView<RulesEditController> {
                 .toList())
         .then((value) {
       if (value != null) {
-        model.target.value = value;
+        target.value = value;
       } else {
-        model.target.value = '';
+        target.value = '';
       }
     });
   }

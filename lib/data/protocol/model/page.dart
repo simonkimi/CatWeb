@@ -7,21 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
-class OpenPageModel implements PbAble {
-  OpenPageModel([OpenPage? pb])
-      : target = sobs(pb?.target),
-        inherit = pb?.inherit.obs ?? false.obs;
-
-  final RxString target;
-  final RxBool inherit;
-
-  @override
-  OpenPage toPb() => OpenPage(
-        inherit: inherit.value,
-        target: target.value,
-      );
-}
-
 class SubPageModel implements PbAble, EnvMargeAble {
   SubPageModel([SiteSubPage? pb])
       : name = sobs(pb?.name),
@@ -53,7 +38,7 @@ class SitePageModel implements PbAble {
         subPages = lobs(pb?.subPage, (SiteSubPage pb) => SubPageModel(pb)),
         icon = sobs(pb?.icon),
         display = pb?.display.obs ?? SiteDisplayType.show.obs,
-        openPages = lobs(pb?.openPage, (OpenPage e) => OpenPageModel(e));
+        openPages = lobs(pb?.openPage, (String e) => e.obs);
 
   final RxString name;
   final String uuid;
@@ -64,7 +49,7 @@ class SitePageModel implements PbAble {
   final RxString icon;
   final Rx<SiteDisplayType> display;
 
-  final RxList<OpenPageModel> openPages;
+  final RxList<RxString> openPages;
 
   @override
   SitePage toPb() => SitePage(
@@ -76,23 +61,23 @@ class SitePageModel implements PbAble {
         subPage: subPages.map((SubPageModel p) => p.toPb()).toList(),
         icon: icon.value,
         display: display.value,
-        openPage: openPages.map((OpenPageModel p) => p.toPb()).toList(),
+        openPage: openPages.map((e) => e.value).toList(),
       );
 
   bool isValid() => name.value.isNotEmpty && parser.value.isNotEmpty;
 
-  OpenPageModel _genOpenPageList(int len, int index) {
+  RxString _genOpenPageList(int len, int index) {
     if (openPages.length < len) {
-      openPages.addAll(List.filled(len - openPages.length, OpenPageModel()));
+      openPages.addAll(List.filled(len - openPages.length, ''.obs));
     } else if (openPages.length > len) {
       openPages.removeRange(len, openPages.length);
     }
     return openPages[index];
   }
 
-  OpenPageModel get listItemTarget => _genOpenPageList(1, 0);
+  RxString get listItemTarget => _genOpenPageList(1, 0);
 
-  OpenPageModel get badgeTarget => _genOpenPageList(1, 0);
+  RxString get badgeTarget => _genOpenPageList(1, 0);
 
   bool get isMultiPage => [
         Template.TEMPLATE_IMAGE_LIST,

@@ -53,7 +53,7 @@ class NetClient {
     return result;
   }
 
-  Future<DetailRpcModel> getGallery({
+  Future<DetailRpcModel> getDetail({
     required String url,
     required SitePageModel model,
     required SiteEnvModel localEnv,

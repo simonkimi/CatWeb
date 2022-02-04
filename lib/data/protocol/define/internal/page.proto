@@ -26,17 +26,13 @@ message SitePage {
   string name = 1;
   string uuid = 2;
 
-  string url = 3;
-  Template template = 4;
-  string parser = 5;
-  repeated SiteSubPage sub_page = 6;
-  string icon = 7;
-  SiteDisplayType display = 8;
+  string url = 10;
+  Template template = 11;
+  string parser = 12;
+  repeated SiteSubPage sub_page = 13;
+  string icon = 14;
+  SiteDisplayType display = 15;
+  string flag = 16;
 
-  repeated OpenPage open_page = 9;
-}
-
-message OpenPage {
-  string target = 1;
-  bool inherit = 2;
+  repeated string open_page = 20;
 }

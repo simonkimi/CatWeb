@@ -14,11 +14,11 @@ import 'package:get/get.dart';
 class ViewerListFragment extends StatefulWidget {
   const ViewerListFragment({
     Key? key,
-    required this.model,
+    required this.target,
     this.hasToolBar = false,
   }) : super(key: key);
 
-  final SitePageModel model;
+  final SitePageModel target;
   final bool hasToolBar;
 
   @override
@@ -27,10 +27,10 @@ class ViewerListFragment extends StatefulWidget {
 
 class _ViewerListFragmentState extends State<ViewerListFragment>
     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
-  late final model = widget.model;
+  late final target = widget.target;
 
   bool get useSingleWidget =>
-      model.subPages.isEmpty || model.subPages.length == 1;
+      target.subPages.isEmpty || target.subPages.length == 1;
 
   late List<SubListController> subListController;
 
@@ -39,16 +39,16 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
   @override
   void initState() {
     super.initState();
-    print('ViewerListFragment<${model.name.string}> 初始化');
-    tabController = TabController(length: model.subPages.length, vsync: this);
+    print('ViewerListFragment<${target.name.string}> 初始化');
+    tabController = TabController(length: target.subPages.length, vsync: this);
 
     if (useSingleWidget) {
       subListController = [
-        SubListController(model: model, subPageModel: model.subPages.index(0))
+        SubListController(model: target, subPageModel: target.subPages.index(0))
       ];
     } else {
-      subListController = model.subPages
-          .map((e) => SubListController(model: model, subPageModel: e))
+      subListController = target.subPages
+          .map((e) => SubListController(model: target, subPageModel: e))
           .toList();
     }
 
@@ -70,8 +70,8 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
 
   Widget _buildMultiViewer(BuildContext context) {
     return CupertinoAppBar(
-      title: model.name.string,
-      tabs: model.subPages
+      title: target.name.string,
+      tabs: target.subPages
           .map((e) => CupertinoTab(e.name.string.globalEnv()))
           .toList(),
       tabController: tabController,
@@ -91,7 +91,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
 
   Widget _buildSingleViewer(BuildContext context) {
     return CupertinoAppBar(
-      title: model.name.string,
+      title: target.name.string,
       leading: _buildLeading(context),
       child: SubPageListFragment(
         controller: subListController.first,

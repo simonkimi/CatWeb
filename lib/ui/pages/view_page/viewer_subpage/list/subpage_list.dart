@@ -88,7 +88,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
               model: model,
               onTap: () {
                 pushNewPage(
-                  to: controller.model.listItemTarget,
+                  to: controller.model.listItemTarget.value,
                   envModel: SiteEnvModel(model.env),
                   model: model,
                 );

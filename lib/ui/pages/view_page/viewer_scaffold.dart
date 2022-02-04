@@ -36,17 +36,17 @@ class ViewerScaffold extends StatelessWidget {
     );
   }
 
-  Widget _buildSitePage(BuildContext context, SitePageModel model) {
-    switch (model.template.value) {
+  Widget _buildSitePage(BuildContext context, SitePageModel target) {
+    switch (target.template.value) {
       case Template.TEMPLATE_IMAGE_WATERFALL:
       case Template.TEMPLATE_IMAGE_LIST:
         return ViewerListFragment(
-          model: model,
+          target: target,
           hasToolBar: website.displayPage.length > 1,
         );
       default:
         throw UnimplementedError(
-            'ViewerScaffold can not handle ${model.template.value}');
+            'ViewerScaffold can not handle ${target.template.value}');
     }
   }
 }
