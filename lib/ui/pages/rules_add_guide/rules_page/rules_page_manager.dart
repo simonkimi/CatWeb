@@ -123,5 +123,6 @@ class RulesPageManager extends GetView<RulesEditController> {
     if (select != null) {
       return SitePageModel()..template.value = select;
     }
+    return null;
   }
 }

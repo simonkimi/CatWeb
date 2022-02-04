@@ -99,7 +99,7 @@ class ListExtendedCard extends StatelessWidget {
             ),
           ),
         const SizedBox(height: 3),
-        if (model.badges.isNotEmpty) _buildTagWrap(context),
+        if (model.badges.isNotEmpty) _buildBadgesWrap(context),
       ],
     );
   }
@@ -126,7 +126,7 @@ class ListExtendedCard extends StatelessWidget {
     );
   }
 
-  Wrap _buildTagWrap(BuildContext context) {
+  Wrap _buildBadgesWrap(BuildContext context) {
     return Wrap(
       spacing: 2,
       runSpacing: 2,
@@ -151,7 +151,7 @@ class ListExtendedCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (model.hasStar()) _buildStar(context),
-            if (model.hasTag()) _buildCategory(context),
+            if (model.hasTag()) _buildTag(context),
           ],
         ),
         Column(
@@ -210,28 +210,15 @@ class ListExtendedCard extends StatelessWidget {
     );
   }
 
-  Widget _buildCategory(BuildContext context) {
+  Widget _buildTag(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 2),
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(minWidth: 50),
-        child: Container(
-            padding: const EdgeInsets.all(1),
-            decoration: BoxDecoration(
-              color: model.tag.hasColor()
-                  ? model.tag.color.color
-                  : CupertinoColors.systemRed.resolveFrom(context),
-              borderRadius: BorderRadius.circular(3),
-            ),
-            child: Center(
-              child: Text(
-                model.tag.text,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 11,
-                ),
-              ),
-            )),
+      child: Badge(
+        color: model.tag.color.color,
+        text: model.tag.text,
+        fontSize: 11,
+        padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+        borderRadius: 5,
       ),
     );
   }

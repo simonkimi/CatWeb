@@ -68,6 +68,11 @@ RxBool bobs(bool? pb) => pb?.obs ?? false.obs;
 RxList<T> lobs<T, E>(core.Iterable<E>? pb, T Function(E e) func) =>
     pb?.map((E e) => func(e)).toList().obs ?? <T>[].obs;
 
-extension ColorHelper on ColorRpcModel {
-  Color get color => Color.fromARGB(a, r, g, b);
+extension RpcColor on ColorRpcModel {
+  Color? get color {
+    if (hasA() && hasB() && hasR() && hasG()) {
+      return Color.fromARGB(a, r, g, b);
+    }
+    return null;
+  }
 }

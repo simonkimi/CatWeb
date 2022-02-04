@@ -21,12 +21,12 @@ class Badge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final defaultColor = color ?? FixColor.badge.resolveFrom(context);
+    final background = color ?? FixColor.badge.resolveFrom(context);
 
     return Container(
       padding: padding,
       decoration: BoxDecoration(
-        color: defaultColor,
+        color: background,
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: Text(
@@ -35,11 +35,9 @@ class Badge extends StatelessWidget {
           fontSize: fontSize,
           // TODO ??????
           color: textColor ??
-              (defaultColor.isDark
-                  ? isDarkMode(context)
-                      ? Colors.white.withOpacity(0.87)
-                      : Colors.white
-                  : Colors.grey[900]),
+              (background.isDark
+                  ? Colors.white.withOpacity(0.9)
+                  : FixColor.text.color),
         ),
       ),
     );

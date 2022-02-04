@@ -84,11 +84,11 @@ class SimpleCard extends StatelessWidget {
                     style: TextStyle(
                       height: 1,
                       fontSize: 11,
-                      color: e.hasColor()
-                          ? isDarkMode(context)
+                      color: e.hasColor() && e.color.color != null
+                          ? e.color.color!.isDark
                               ? Colors.white
                               : Colors.black
-                          : e.color.color.isDark
+                          : isDarkMode(context)
                               ? Colors.white
                               : Colors.black,
                     ),

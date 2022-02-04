@@ -1,3 +1,4 @@
+import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:flutter/cupertino.dart';
 
 class FixColor {
@@ -36,4 +37,6 @@ bool isDarkMode(BuildContext context) =>
 
 extension ColorHelper on Color {
   bool get isDark => red * 0.299 + green * 0.578 + blue * 0.114 <= 192;
+
+  ColorRpcModel get rpc => ColorRpcModel(a: alpha, b: blue, g: green, r: red);
 }

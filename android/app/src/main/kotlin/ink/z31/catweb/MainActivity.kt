@@ -1,4 +1,4 @@
-package com.example.catweb
+package ink.z31.catweb
 
 import io.flutter.embedding.android.FlutterActivity
 

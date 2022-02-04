@@ -75,7 +75,7 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
         begin: Offset.zero,
         end: const Offset(0.0, -1.0),
       ).animate(_translateAnimation),
-      child: _buildNavigationBar(context),
+      child: _buildBarGroup(context),
     );
   }
 
@@ -115,7 +115,7 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
     );
   }
 
-  Widget _buildNavigationBar(BuildContext context) {
+  Widget _buildBarGroup(BuildContext context) {
     return ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),

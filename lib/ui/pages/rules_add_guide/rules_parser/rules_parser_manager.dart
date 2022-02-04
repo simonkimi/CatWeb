@@ -121,6 +121,7 @@ class RulesParserManager extends GetView<RulesEditController> {
           return AutoCompleteParserModel();
       }
     }
+    return null;
   }
 
   Future<void> _editRules(
