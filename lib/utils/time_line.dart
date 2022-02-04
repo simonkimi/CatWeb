@@ -1,7 +1,7 @@
 class TimeLine {
   final _timerMap = <String, int>{'_': DateTime.now().millisecondsSinceEpoch};
 
-  void startTimer(String? tag) =>
+  void startTimer([String? tag]) =>
       _timerMap[tag ?? '_'] = DateTime.now().millisecondsSinceEpoch;
 
   void getRunTime({String tag = '_', String msg = '计时'}) {

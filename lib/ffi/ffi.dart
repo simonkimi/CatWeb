@@ -1,14 +1,15 @@
+import 'package:brotli/brotli.dart';
 import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
 import 'package:ffi/ffi.dart' as ffi;
 import 'dart:ffi';
 import 'libgo.h.dart';
 import 'dart:io';
 
-List<int> ffiParse(RpcRequest msg) {
+RpcResponse ffiParse(RpcRequest msg) {
   final _native = NativeLibrary(Platform.isAndroid
       ? DynamicLibrary.open('libgo.so')
       : Platform.isWindows
-          ? DynamicLibrary.open('libgo.dll')
+          ? DynamicLibrary.open('./lib/libs/libgo.dll')
           : DynamicLibrary.process());
 
   final raw = msg.writeToBuffer();
@@ -22,9 +23,5 @@ List<int> ffiParse(RpcRequest msg) {
 
   ffi.malloc.free(buffer);
   _native.FreeResult(result);
-
-  if (rsp.hasError() && rsp.error.isNotEmpty) {
-    throw Exception(rsp.error);
-  }
-  return rsp.data;
+  return rsp;
 }

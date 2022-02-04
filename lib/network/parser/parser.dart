@@ -26,8 +26,10 @@ class ParserFFi {
     );
 
     final result = await compute(ffiParse, req);
-    final model = RpcResponse.fromBuffer(result);
-    if (model.error.isNotEmpty) throw Exception(model.error);
-    return model.data;
+
+    if (result.hasError() && result.error.isNotEmpty) {
+      throw Exception(result.error);
+    }
+    return result.data;
   }
 }

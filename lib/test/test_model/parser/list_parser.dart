@@ -66,11 +66,12 @@ final ehListParser = ListViewParser(
   ),
   previewImg: ImageSelector(
     imgUrl: Selector(
-        selector: '.gl2c img,.glthumb img,.gl1e img,.gl3t img',
-        function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
-        param: 'data-src,src',
-        regex: r'https:\/\/\w+?\.\w+\/(.+)',
-        replace: r'https://ehgt.org/$1'),
+      selector: '.gl2c img,.glthumb img,.gl1e img,.gl3t img',
+      function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
+      param: 'data-src,src',
+      regex: r'https:\/\/\w+?\.\w+\/(.+)',
+      replace: r'https://ehgt.org/$1',
+    ),
     imgWidth: Selector(
       selector: '.gl2c img,.glthumb img,.gl1e img,.gl3t img',
       function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
@@ -89,7 +90,7 @@ final ehListParser = ListViewParser(
       global: true,
       id: 'fav0Tag',
       selector: Selector(
-        selector: '.fp:nth-child(1)>div:nth-child(3)',
+        selector: '.fp:nth-child(1) div:nth-child(3)',
         function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       ),
     ),
@@ -97,7 +98,7 @@ final ehListParser = ListViewParser(
       global: true,
       id: 'fav1Tag',
       selector: Selector(
-        selector: '.fp:nth-child(2)>div:nth-child(3)',
+        selector: '.fp:nth-child(2) div:nth-child(3)',
         function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       ),
     ),
@@ -105,7 +106,7 @@ final ehListParser = ListViewParser(
       global: true,
       id: 'fav2Tag',
       selector: Selector(
-        selector: '.fp:nth-child(3)>div:nth-child(3)',
+        selector: '.fp:nth-child(3) div:nth-child(3)',
         function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       ),
     ),
@@ -113,7 +114,7 @@ final ehListParser = ListViewParser(
       global: true,
       id: 'fav3Tag',
       selector: Selector(
-        selector: '.fp:nth-child(4)>div:nth-child(3)',
+        selector: '.fp:nth-child(4) div:nth-child(3)',
         function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       ),
     ),
@@ -121,7 +122,7 @@ final ehListParser = ListViewParser(
       global: true,
       id: 'fav4Tag',
       selector: Selector(
-        selector: '.fp:nth-child(5)>div:nth-child(3)',
+        selector: '.fp:nth-child(5) div:nth-child(3)',
         function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       ),
     ),
@@ -129,7 +130,7 @@ final ehListParser = ListViewParser(
       global: true,
       id: 'fav5Tag',
       selector: Selector(
-        selector: '.fp:nth-child(6)>div:nth-child(3)',
+        selector: '.fp:nth-child(6) div:nth-child(3)',
         function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       ),
     ),
@@ -137,7 +138,7 @@ final ehListParser = ListViewParser(
       global: true,
       id: 'fav6Tag',
       selector: Selector(
-        selector: '.fp:nth-child(7)>div:nth-child(3)',
+        selector: '.fp:nth-child(7) div:nth-child(3)',
         function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       ),
     ),
@@ -145,7 +146,7 @@ final ehListParser = ListViewParser(
       global: true,
       id: 'fav7Tag',
       selector: Selector(
-        selector: '.fp:nth-child(8)>div:nth-child(3)',
+        selector: '.fp:nth-child(8) div:nth-child(3)',
         function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       ),
     ),
@@ -153,7 +154,7 @@ final ehListParser = ListViewParser(
       global: true,
       id: 'fav8Tag',
       selector: Selector(
-        selector: '.fp:nth-child(9)>div:nth-child(3)',
+        selector: '.fp:nth-child(9) div:nth-child(3)',
         function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       ),
     ),
@@ -161,7 +162,7 @@ final ehListParser = ListViewParser(
       global: true,
       id: 'fav9Tag',
       selector: Selector(
-        selector: '.fp:nth-child(10)>div:nth-child(3)',
+        selector: '.fp:nth-child(10) div:nth-child(3)',
         function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       ),
     ),

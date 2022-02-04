@@ -13,7 +13,7 @@ part 'database.g.dart';
 
 DynamicLibrary openOnWindows() {
   final exeDir = File(Platform.resolvedExecutable).parent;
-  final libraryNextToExe = File(p.join(exeDir.path, 'sqlite3.dll'));
+  final libraryNextToExe = File(p.join(exeDir.path, 'libs','sqlite3.dll'));
   if (libraryNextToExe.existsSync()) {
     return DynamicLibrary.open(libraryNextToExe.path);
   }

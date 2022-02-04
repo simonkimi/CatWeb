@@ -1,7 +1,7 @@
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
-import 'package:catweb/test/test_model.dart' as eh;
+import 'package:catweb/test/test_model/eh_rules.dart' as eh;
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
