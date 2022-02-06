@@ -1,5 +1,6 @@
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/protocol/model/model.dart';
+import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:drift/drift.dart';
@@ -20,7 +21,7 @@ class ImageLoadModel {
     required this.dio,
   });
 
-  final ImageModel model;
+  final ImageRpcModel model;
   final Dio dio;
 
   final Rx<ImageLoadState> _state = ImageLoadState.waiting.obs;
@@ -125,7 +126,7 @@ class ImageConcurrency {
   List<ImageLoadModel> get activeImage =>
       _waitLoadImages.values.where((e) => e.needLoad).toList();
 
-  ImageLoadModel create(ImageModel model) {
+  ImageLoadModel create(ImageRpcModel model) {
     if (_loadCompleteImages.containsKey(model.key)) {
       final exist = _loadCompleteImages[model.key]!..handle();
       exist.loadCache().whenComplete(() => _trigger());

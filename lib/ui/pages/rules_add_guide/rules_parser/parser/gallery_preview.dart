@@ -11,7 +11,7 @@ class GalleryPreview extends StatelessWidget {
       title:
           '(C97) [Circle-FIORE (Ekakibit)] Kaki Oroshi (Ryuuou no Matome Bon) (Ryuuou no Oshigoto!) [Chinese] [转尾巴猫汉化]',
       subtitle: 'qq3870990',
-      tag: DetailRpcModel_Tag(text: 'Doujinshi', color: ColorRpcModel()),
+      tag: TagRpcModel(text: 'Doujinshi', color: ColorRpcModel()),
       countPrePage: 100,
       language: '中文',
       uploadTime: DateTime.now().toString().split('.').first,

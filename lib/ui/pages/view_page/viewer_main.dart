@@ -40,7 +40,7 @@ class ViewerPage extends StatelessWidget {
   final SitePageModel target;
   final String to;
   final SiteEnvModel env;
-  final dynamic model;
+  final Object? model;
 
   @override
   Widget build(BuildContext context) {
@@ -55,18 +55,19 @@ class ViewerPage extends StatelessWidget {
         return ViewerDetailFragment(
           target: target,
           model: model,
+          env: env,
         );
       default:
         throw UnimplementedError(
-            'ViewerPage can not handle ${model.template.value}');
+            'ViewerPage can not handle ${target.template.value}');
     }
   }
 }
 
-Future<dynamic> pushNewPage({
+Future<void> pushNewPage({
   required String to,
   required SiteEnvModel envModel,
-  dynamic model,
+  Object? model,
 }) async {
   final controller = Get.find<SiteController>();
   final target =

@@ -15,6 +15,7 @@
 *.iws
 
 *.so
+*.dll
 .idea/
 
 # The .vscode folder contains launch configuration and tasks you configure in

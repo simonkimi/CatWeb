@@ -13,7 +13,7 @@ class ListParserPreview extends StatelessWidget {
         title: 'Title',
         subtitle: 'SubTitle',
         star: 4.5,
-        tag: ListRpcModel_Tag(text: 'Category', color: ColorRpcModel()),
+        tag: TagRpcModel(text: 'Category', color: ColorRpcModel()),
         imgCount: 100,
         uploadTime: DateTime.now().toString().split('.')[0],
         paper: 'paper',
@@ -24,7 +24,7 @@ class ListParserPreview extends StatelessWidget {
               .asMap()
               .map((key, value) => MapEntry(
                   key,
-                  ListRpcModel_Tag(
+                  TagRpcModel(
                     text: 'Tag ${key + 1}',
                     color: ColorRpcModel(
                         a: value.alpha,
@@ -33,7 +33,7 @@ class ListParserPreview extends StatelessWidget {
                         b: value.blue),
                   )))
               .values,
-          ListRpcModel_Tag(
+          TagRpcModel(
             text: 'Tag 10',
           )
         ]);

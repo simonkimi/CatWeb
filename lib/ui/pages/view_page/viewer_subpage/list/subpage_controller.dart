@@ -23,9 +23,7 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
   @override
   Future<List<ListRpcModel_Item>> loadPage(int page) async {
     var baseUrl = model.url.value;
-
-    // 页数匹配
-    baseUrl = pageReplace(baseUrl, page);
+    baseUrl = localEnv.replace(pageReplace(baseUrl, page));
 
     // 添加缓存
     if (subPageModel != null && subPageModel!.key.value.isNotEmpty) {
@@ -34,14 +32,12 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
       });
     }
 
-    baseUrl = localEnv.replace(baseUrl);
     print('加载网址: $baseUrl');
     final data = await site.website.client.getList(
       url: baseUrl,
       model: model,
       localEnv: localEnv,
     );
-
     return data.items;
   }
 }

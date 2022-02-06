@@ -1,5 +1,4 @@
 import 'package:catweb/data/controller/site_controller.dart';
-import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/dark_image.dart';
@@ -107,7 +106,7 @@ class ListExtendedCard extends StatelessWidget {
   Widget _buildLeftImage() {
     final child = DarkWidget(
       child: ImageLoader(
-        model: ImageModel.fromPb(model.previewImg),
+        model: model.previewImg,
         concurrency: Get.find<SiteController>().website.client.imageConcurrency,
       ),
     );

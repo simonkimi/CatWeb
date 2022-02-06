@@ -38,6 +38,7 @@ class SitePageModel implements PbAble {
         subPages = lobs(pb?.subPage, (SiteSubPage pb) => SubPageModel(pb)),
         icon = sobs(pb?.icon),
         display = pb?.display.obs ?? SiteDisplayType.show.obs,
+        flag = sobs(pb?.flag),
         openPages = lobs(pb?.openPage, (String e) => e.obs);
 
   final RxString name;
@@ -48,6 +49,7 @@ class SitePageModel implements PbAble {
   final RxList<SubPageModel> subPages;
   final RxString icon;
   final Rx<SiteDisplayType> display;
+  final RxString flag;
 
   final RxList<RxString> openPages;
 
@@ -62,9 +64,13 @@ class SitePageModel implements PbAble {
         icon: icon.value,
         display: display.value,
         openPage: openPages.map((e) => e.value).toList(),
+        flag: flag.value,
       );
 
   bool isValid() => name.value.isNotEmpty && parser.value.isNotEmpty;
+
+  bool containsFlag(String flag) =>
+      this.flag.value.split('|').map((e) => e.trim()).contains(flag);
 
   RxString _genOpenPageList(int len, int index) {
     if (openPages.length < len) {

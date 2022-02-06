@@ -76,3 +76,7 @@ extension RpcColor on ColorRpcModel {
     return null;
   }
 }
+
+extension THas<T> on T {
+  T? has(bool Function()? has) => (has?.call() ?? false) ? this : null;
+}

@@ -1,52 +1,42 @@
-import 'package:catweb/data/protocol/model/interface.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
-import 'package:catweb/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 
-class ImageModel implements PbAble {
-  ImageModel.fromPb(ImageRpcModel pb)
-      : url = pb.url,
-        cacheKey = has(pb.cacheKey, pb.hasCacheKey),
-        width = has(pb.width, pb.hasWidth),
-        height = has(pb.height, pb.hasHeight),
-        imgX = has(pb.imgX, pb.hasImgX),
-        imgY = has(pb.imgY, pb.hasImgY),
-        target = has(pb.target, pb.hasTarget);
+extension GetDetail on DetailRpcModel {
+  String? get getTitle => hasTitle() ? title : null;
 
-  ImageModel({
-    required this.url,
-    this.cacheKey,
-    this.width,
-    this.height,
-    this.imgX,
-    this.imgY,
-    this.target,
-  });
+  String? get getSubTitle => hasSubtitle() ? subtitle : null;
 
-  final String url;
-  final String? cacheKey;
-  final double? width;
-  final double? height;
-  final double? imgX;
-  final double? imgY;
-  final String? target;
+  String? get safaLanguage => hasLanguage() ? language : null;
 
-  String get key => cacheKey ?? const Uuid().v5(Uuid.NAMESPACE_URL, url);
+  int? get getImageCount => hasImageCount() ? imageCount : null;
 
-  bool get repeatImage => imgY != null || imgX != null;
+  String? get getUploadTime => hasUploadTime() ? uploadTime : null;
 
-  @override
-  String toString() =>
-      '<img url="$url" ${width != null ? 'width: $width' : ''} ${height != null ? 'width: $height' : ''}>';
+  int? get getCountPrePage => hasCountPrePage() ? countPrePage : null;
 
-  @override
-  ImageRpcModel toPb() => ImageRpcModel(
-        url: url,
-        cacheKey: cacheKey,
-        height: height,
-        imgX: imgX,
-        imgY: imgY,
-        target: target,
-        width: width,
-      );
+  String? get getDescription => hasDescription() ? description : null;
+
+  double? get getStar => hasStar() ? star : null;
+
+  ImageRpcModel? get getCoverImg => hasCoverImg() ? coverImg : ImageRpcModel();
+}
+
+extension GetImageRpcModel on ImageRpcModel {
+  String? get getUrl => hasUrl() ? url : null;
+
+  String? get getCacheKey => hasCacheKey() ? cacheKey : null;
+
+  double? get getWidth => hasWidth() ? width : null;
+
+  double? get getHeight => hasHeight() ? height : null;
+
+  double? get getImgX => hasImgX() ? imgX : null;
+
+  double? get getImgY => hasImgY() ? imgY : null;
+
+  String? get getTarget => hasTarget() ? target : null;
+
+  String get key => getCacheKey ?? const Uuid().v5(Uuid.NAMESPACE_URL, url);
+
+  bool get repeatImage => hasImgX() && hasImgY();
 }

@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:catweb/data/protocol/model/model.dart';
+import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class ImageLoader extends StatefulWidget {
   }) : super(key: key);
 
   final ImageConcurrency concurrency;
-  final ImageModel model;
+  final ImageRpcModel model;
   final ImageWidgetBuilder? imageBuilder;
   final LoadingWidgetBuilder? loadingBuilder;
   final ErrorBuilder? errorBuilder;

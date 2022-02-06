@@ -20,12 +20,14 @@ message ColorRpcModel {
   int32 b = 4;
 }
 
-message ListRpcModel {
-  message Tag {
-    string text = 1;
-    ColorRpcModel color = 2;
-  }
 
+message TagRpcModel {
+  string text = 1;
+  ColorRpcModel color = 2;
+  map<string, string> env = 3;
+}
+
+message ListRpcModel {
   message Item {
     string title = 1;
     string subtitle = 2;
@@ -34,8 +36,8 @@ message ListRpcModel {
     int32 img_count = 5;
     ImageRpcModel preview_img = 6;
 
-    Tag tag = 10;
-    repeated Tag badges = 11;
+    TagRpcModel tag = 10;
+    repeated TagRpcModel badges = 11;
 
     string paper = 12;
 
@@ -52,12 +54,6 @@ message ListRpcModel {
 }
 
 message DetailRpcModel {
-  message Tag {
-    string text = 1;
-    ColorRpcModel color = 2;
-    map<string, string> env = 3;
-  }
-
   message Badge {
     string text = 1;
     string category = 2;
@@ -79,9 +75,10 @@ message DetailRpcModel {
   int32 count_pre_page = 6;
   string description = 7;
   double star = 8;
-  repeated ImageRpcModel preview_img= 9;
+  repeated ImageRpcModel preview_img = 9;
+  ImageRpcModel cover_img = 10;
 
-  Tag tag = 20;
+  TagRpcModel tag = 20;
   repeated Badge badges = 21;
   repeated Comment comments = 22;
 

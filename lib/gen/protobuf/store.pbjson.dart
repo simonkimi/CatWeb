@@ -8,7 +8,6 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
-
 @$core.Deprecated('Use regFieldDescriptor instead')
 const RegField$json = const {
   '1': 'RegField',
@@ -19,8 +18,7 @@ const RegField$json = const {
 };
 
 /// Descriptor for `RegField`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List regFieldDescriptor = $convert.base64Decode(
-    'CghSZWdGaWVsZBIQCgNyZWcYASABKAlSA3JlZxIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU=');
+final $typed_data.Uint8List regFieldDescriptor = $convert.base64Decode('CghSZWdGaWVsZBIQCgNyZWcYASABKAlSA3JlZxIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU=');
 @$core.Deprecated('Use siteConfigDescriptor instead')
 const SiteConfig$json = const {
   '1': 'SiteConfig',
@@ -28,100 +26,29 @@ const SiteConfig$json = const {
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'base_url', '3': 2, '4': 1, '5': 9, '10': 'baseUrl'},
     const {'1': 'login_url', '3': 3, '4': 1, '5': 9, '10': 'loginUrl'},
-    const {
-      '1': 'login_cookie',
-      '3': 4,
-      '4': 1,
-      '5': 11,
-      '6': '.RegField',
-      '10': 'loginCookie'
-    },
+    const {'1': 'login_cookie', '3': 4, '4': 1, '5': 11, '6': '.RegField', '10': 'loginCookie'},
     const {'1': 'version', '3': 5, '4': 1, '5': 9, '10': 'version'},
     const {'1': 'upgrade_url', '3': 6, '4': 1, '5': 9, '10': 'upgradeUrl'},
     const {'1': 'flag', '3': 7, '4': 1, '5': 9, '10': 'flag'},
     const {'1': 'readme', '3': 8, '4': 1, '5': 9, '10': 'readme'},
-    const {
-      '1': 'headers',
-      '3': 15,
-      '4': 3,
-      '5': 11,
-      '6': '.RegField',
-      '10': 'headers'
-    },
-    const {
-      '1': 'cookies',
-      '3': 16,
-      '4': 3,
-      '5': 11,
-      '6': '.RegField',
-      '10': 'cookies'
-    },
-    const {
-      '1': 'detail_parsers',
-      '3': 20,
-      '4': 3,
-      '5': 11,
-      '6': '.DetailParser',
-      '10': 'detailParsers'
-    },
-    const {
-      '1': 'list_view_parsers',
-      '3': 21,
-      '4': 3,
-      '5': 11,
-      '6': '.ListViewParser',
-      '10': 'listViewParsers'
-    },
-    const {
-      '1': 'image_parsers',
-      '3': 22,
-      '4': 3,
-      '5': 11,
-      '6': '.ImageParser',
-      '10': 'imageParsers'
-    },
-    const {
-      '1': 'auto_complete_parsers',
-      '3': 23,
-      '4': 3,
-      '5': 11,
-      '6': '.AutoCompleteParser',
-      '10': 'autoCompleteParsers'
-    },
-    const {
-      '1': 'actions',
-      '3': 30,
-      '4': 3,
-      '5': 11,
-      '6': '.ActionCombine',
-      '10': 'actions'
-    },
-    const {
-      '1': 'pages',
-      '3': 31,
-      '4': 3,
-      '5': 11,
-      '6': '.SitePage',
-      '10': 'pages'
-    },
+    const {'1': 'headers', '3': 15, '4': 3, '5': 11, '6': '.RegField', '10': 'headers'},
+    const {'1': 'cookies', '3': 16, '4': 3, '5': 11, '6': '.RegField', '10': 'cookies'},
+    const {'1': 'detail_parsers', '3': 20, '4': 3, '5': 11, '6': '.DetailParser', '10': 'detailParsers'},
+    const {'1': 'list_view_parsers', '3': 21, '4': 3, '5': 11, '6': '.ListViewParser', '10': 'listViewParsers'},
+    const {'1': 'image_parsers', '3': 22, '4': 3, '5': 11, '6': '.ImageParser', '10': 'imageParsers'},
+    const {'1': 'auto_complete_parsers', '3': 23, '4': 3, '5': 11, '6': '.AutoCompleteParser', '10': 'autoCompleteParsers'},
+    const {'1': 'actions', '3': 30, '4': 3, '5': 11, '6': '.ActionCombine', '10': 'actions'},
+    const {'1': 'pages', '3': 31, '4': 3, '5': 11, '6': '.SitePage', '10': 'pages'},
   ],
 };
 
 /// Descriptor for `SiteConfig`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List siteConfigDescriptor = $convert.base64Decode(
-    'CgpTaXRlQ29uZmlnEhIKBG5hbWUYASABKAlSBG5hbWUSGQoIYmFzZV91cmwYAiABKAlSB2Jhc2VVcmwSGwoJbG9naW5fdXJsGAMgASgJUghsb2dpblVybBIsCgxsb2dpbl9jb29raWUYBCABKAsyCS5SZWdGaWVsZFILbG9naW5Db29raWUSGAoHdmVyc2lvbhgFIAEoCVIHdmVyc2lvbhIfCgt1cGdyYWRlX3VybBgGIAEoCVIKdXBncmFkZVVybBISCgRmbGFnGAcgASgJUgRmbGFnEhYKBnJlYWRtZRgIIAEoCVIGcmVhZG1lEiMKB2hlYWRlcnMYDyADKAsyCS5SZWdGaWVsZFIHaGVhZGVycxIjCgdjb29raWVzGBAgAygLMgkuUmVnRmllbGRSB2Nvb2tpZXMSNAoOZGV0YWlsX3BhcnNlcnMYFCADKAsyDS5EZXRhaWxQYXJzZXJSDWRldGFpbFBhcnNlcnMSOwoRbGlzdF92aWV3X3BhcnNlcnMYFSADKAsyDy5MaXN0Vmlld1BhcnNlclIPbGlzdFZpZXdQYXJzZXJzEjEKDWltYWdlX3BhcnNlcnMYFiADKAsyDC5JbWFnZVBhcnNlclIMaW1hZ2VQYXJzZXJzEkcKFWF1dG9fY29tcGxldGVfcGFyc2VycxgXIAMoCzITLkF1dG9Db21wbGV0ZVBhcnNlclITYXV0b0NvbXBsZXRlUGFyc2VycxIoCgdhY3Rpb25zGB4gAygLMg4uQWN0aW9uQ29tYmluZVIHYWN0aW9ucxIfCgVwYWdlcxgfIAMoCzIJLlNpdGVQYWdlUgVwYWdlcw==');
+final $typed_data.Uint8List siteConfigDescriptor = $convert.base64Decode('CgpTaXRlQ29uZmlnEhIKBG5hbWUYASABKAlSBG5hbWUSGQoIYmFzZV91cmwYAiABKAlSB2Jhc2VVcmwSGwoJbG9naW5fdXJsGAMgASgJUghsb2dpblVybBIsCgxsb2dpbl9jb29raWUYBCABKAsyCS5SZWdGaWVsZFILbG9naW5Db29raWUSGAoHdmVyc2lvbhgFIAEoCVIHdmVyc2lvbhIfCgt1cGdyYWRlX3VybBgGIAEoCVIKdXBncmFkZVVybBISCgRmbGFnGAcgASgJUgRmbGFnEhYKBnJlYWRtZRgIIAEoCVIGcmVhZG1lEiMKB2hlYWRlcnMYDyADKAsyCS5SZWdGaWVsZFIHaGVhZGVycxIjCgdjb29raWVzGBAgAygLMgkuUmVnRmllbGRSB2Nvb2tpZXMSNAoOZGV0YWlsX3BhcnNlcnMYFCADKAsyDS5EZXRhaWxQYXJzZXJSDWRldGFpbFBhcnNlcnMSOwoRbGlzdF92aWV3X3BhcnNlcnMYFSADKAsyDy5MaXN0Vmlld1BhcnNlclIPbGlzdFZpZXdQYXJzZXJzEjEKDWltYWdlX3BhcnNlcnMYFiADKAsyDC5JbWFnZVBhcnNlclIMaW1hZ2VQYXJzZXJzEkcKFWF1dG9fY29tcGxldGVfcGFyc2VycxgXIAMoCzITLkF1dG9Db21wbGV0ZVBhcnNlclITYXV0b0NvbXBsZXRlUGFyc2VycxIoCgdhY3Rpb25zGB4gAygLMg4uQWN0aW9uQ29tYmluZVIHYWN0aW9ucxIfCgVwYWdlcxgfIAMoCzIJLlNpdGVQYWdlUgVwYWdlcw==');
 @$core.Deprecated('Use envStoreDescriptor instead')
 const EnvStore$json = const {
   '1': 'EnvStore',
   '2': const [
-    const {
-      '1': 'env',
-      '3': 1,
-      '4': 3,
-      '5': 11,
-      '6': '.EnvStore.EnvEntry',
-      '10': 'env'
-    },
+    const {'1': 'env', '3': 1, '4': 3, '5': 11, '6': '.EnvStore.EnvEntry', '10': 'env'},
   ],
   '3': const [EnvStore_EnvEntry$json],
 };
@@ -137,5 +64,4 @@ const EnvStore_EnvEntry$json = const {
 };
 
 /// Descriptor for `EnvStore`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List envStoreDescriptor = $convert.base64Decode(
-    'CghFbnZTdG9yZRIkCgNlbnYYASADKAsyEi5FbnZTdG9yZS5FbnZFbnRyeVIDZW52GjYKCEVudkVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAE=');
+final $typed_data.Uint8List envStoreDescriptor = $convert.base64Decode('CghFbnZTdG9yZRIkCgNlbnYYASADKAsyEi5FbnZTdG9yZS5FbnZFbnRyeVIDZW52GjYKCEVudkVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAE=');
