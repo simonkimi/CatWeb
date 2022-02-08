@@ -65,15 +65,13 @@ class DetailPreviewController extends LoadMoreModel<ImageRpcModel> {
   }
 
   static DetailBaseData? fromModel(Object? model) {
-    if (model != null) {
-      if (model is ListRpcModel_Item) {
-        return DetailBaseData(
-          title: model.title,
-          subtitle: model.subtitle,
-          tag: model.tag,
-          image: model.previewImg,
-        );
-      }
+    if (model != null && model is ListRpcModel_Item) {
+      return DetailBaseData(
+        title: model.title,
+        subtitle: model.subtitle,
+        tag: model.tag,
+        image: model.previewImg,
+      );
     }
     return null;
   }

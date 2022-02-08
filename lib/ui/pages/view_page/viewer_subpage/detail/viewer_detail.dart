@@ -1,16 +1,17 @@
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/ui/components/badge.dart';
+import 'package:catweb/ui/components/cupertino_divider.dart';
+import 'package:catweb/ui/components/icon_text.dart';
+import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:catweb/data/protocol/model/model.dart';
 
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
-import '../../../../components/cupertino_divider.dart';
-import '../../../../components/icon_text.dart';
-import '../../../../theme/colors.dart';
 import 'detail_controller.dart';
+import 'package:get/get.dart';
 
 class ViewerDetailFragment extends StatelessWidget {
   ViewerDetailFragment({
@@ -29,13 +30,26 @@ class ViewerDetailFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (c.isInitialling) {
-      // TODO 全局加载页面
-    } else if (c.isLoadingDetail) {
-      // TODO 加载页面, 上面是头部, 下面是全局加载
-    } else if (c.detailModel != null) {
-      // TODO 加载完毕页面, 上下都正常显示
-    }
+    return Obx(() {
+      if (c.isInitialling) {
+        return const Center(
+          child: CupertinoActivityIndicator(),
+        );
+      }
+      return _buildBody(context);
+    });
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: _buildHeader(context),
+        ),
+        if (c.isLoadingDetail) _buildLoading(context),
+        if (c.detailModel != null) _buildRightInfo(context),
+      ],
+    );
   }
 
   Widget _buildHeader(BuildContext context) {
@@ -149,7 +163,7 @@ class ViewerDetailFragment extends StatelessWidget {
   }
 
   Widget _buildLanguage(BuildContext context) {
-    final language = c.baseData?.language ?? c.detailModel?.language;
+    final language = c.baseData?.language ?? c.detailModel?.getLanguage();
     if (language == null) return const SizedBox();
     return Text(
       language,
@@ -161,7 +175,7 @@ class ViewerDetailFragment extends StatelessWidget {
   }
 
   Widget _buildStarBar(BuildContext context) {
-    final star = c.baseData?.star ?? c.detailModel?.star.has(c.detailModel?.hasStar);
+    final star = c.baseData?.star ?? c.detailModel?.getStar();
     if (star == null) return const SizedBox();
     return Padding(
       padding: const EdgeInsets.only(top: 5),
@@ -205,7 +219,7 @@ class ViewerDetailFragment extends StatelessWidget {
   }
 
   Widget _buildTitle(BuildContext context) {
-    final title = c.baseData?.title ?? c.detailModel?.title;
+    final title = c.baseData?.title ?? c.detailModel?.getTitle();
     if (title == null) return const SizedBox();
     return Text(
       title,
@@ -217,7 +231,7 @@ class ViewerDetailFragment extends StatelessWidget {
   }
 
   Widget _buildSubtitle(BuildContext context) {
-    final subtitle = c.baseData?.subtitle ?? c.detailModel?.subtitle;
+    final subtitle = c.baseData?.subtitle ?? c.detailModel?.getSubTitle();
     if (subtitle == null) return const SizedBox();
     return Text(
       subtitle,
@@ -229,7 +243,7 @@ class ViewerDetailFragment extends StatelessWidget {
   }
 
   Widget _buildCategory(BuildContext context) {
-    if (c.baseData?.tag != null || c.detailModel?.tag != null) {
+    if (c.baseData?.tag != null || c.detailModel?.getTag() != null) {
       return Badge(
         text: c.baseData?.tag?.text ?? c.model.tag.text,
         color: c.baseData?.tag?.color.color ?? c.model.tag.color.color,

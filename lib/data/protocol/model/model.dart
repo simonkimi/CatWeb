@@ -1,42 +1,53 @@
+import 'dart:ui';
+
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 
 extension GetDetail on DetailRpcModel {
-  String? get getTitle => hasTitle() ? title : null;
+  String? getTitle() => hasTitle() ? title : null;
 
-  String? get getSubTitle => hasSubtitle() ? subtitle : null;
+  String? getSubTitle() => hasSubtitle() ? subtitle : null;
 
-  String? get safaLanguage => hasLanguage() ? language : null;
+  String? getLanguage() => hasLanguage() ? language : null;
 
-  int? get getImageCount => hasImageCount() ? imageCount : null;
+  int? getImageCount() => hasImageCount() ? imageCount : null;
 
-  String? get getUploadTime => hasUploadTime() ? uploadTime : null;
+  String? getUploadTime() => hasUploadTime() ? uploadTime : null;
 
-  int? get getCountPrePage => hasCountPrePage() ? countPrePage : null;
+  int? getCountPrePage() => hasCountPrePage() ? countPrePage : null;
 
-  String? get getDescription => hasDescription() ? description : null;
+  String? getDescription() => hasDescription() ? description : null;
 
-  double? get getStar => hasStar() ? star : null;
+  double? getStar() => hasStar() ? star : null;
 
-  ImageRpcModel? get getCoverImg => hasCoverImg() ? coverImg : ImageRpcModel();
+  ImageRpcModel? getCoverImg() => hasCoverImg() ? coverImg : ImageRpcModel();
+
+  TagRpcModel? getTag() => hasTag() ? tag : TagRpcModel();
 }
 
 extension GetImageRpcModel on ImageRpcModel {
-  String? get getUrl => hasUrl() ? url : null;
+  String? getUrl() => hasUrl() ? url : null;
 
-  String? get getCacheKey => hasCacheKey() ? cacheKey : null;
+  String? getCacheKey() => hasCacheKey() ? cacheKey : null;
 
-  double? get getWidth => hasWidth() ? width : null;
+  double? getWidth() => hasWidth() ? width : null;
 
-  double? get getHeight => hasHeight() ? height : null;
+  double? getHeight() => hasHeight() ? height : null;
 
-  double? get getImgX => hasImgX() ? imgX : null;
+  double? getImgX() => hasImgX() ? imgX : null;
 
-  double? get getImgY => hasImgY() ? imgY : null;
+  double? getImgY() => hasImgY() ? imgY : null;
 
-  String? get getTarget => hasTarget() ? target : null;
+  String? getTarget() => hasTarget() ? target : null;
 
-  String get key => getCacheKey ?? const Uuid().v5(Uuid.NAMESPACE_URL, url);
+  String get key => getCacheKey() ?? const Uuid().v5(Uuid.NAMESPACE_URL, url);
 
-  bool get repeatImage => hasImgX() && hasImgY();
+  bool repeatImage() => hasImgX() && hasImgY();
+}
+
+extension GetTagRpcModel on TagRpcModel {
+  String? getText() => hasText() ? text : null;
+
+  Color? getColor() => hasColor() ? color.color : null;
 }
