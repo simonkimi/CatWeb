@@ -144,7 +144,7 @@ class ViewerDetailFragment extends StatelessWidget {
           ),
           Row(
             children: [
-              buildReadButton(),
+              _buildReadButton(),
               const SizedBox(width: 10),
               _buildLanguage(context)
             ],
@@ -204,7 +204,7 @@ class ViewerDetailFragment extends StatelessWidget {
     );
   }
 
-  CupertinoButton buildReadButton() {
+  CupertinoButton _buildReadButton() {
     return CupertinoButton(
       child: const Text(
         '阅读',

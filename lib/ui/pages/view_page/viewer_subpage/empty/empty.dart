@@ -19,12 +19,12 @@ class EmptyFragment extends StatelessWidget {
         ),
       ),
       child: SafeArea(
-        child: emptyWidget(context),
+        child: _emptyWidget(context),
       ),
     );
   }
 
-  Stack emptyWidget(BuildContext context) {
+  Stack _emptyWidget(BuildContext context) {
     return Stack(
       children: [
         Center(

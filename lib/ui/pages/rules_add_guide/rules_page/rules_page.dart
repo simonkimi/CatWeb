@@ -72,7 +72,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
                             onDelete: (index) {
                               model.subPages.removeAt(index);
                             },
-                            onTap: () => editSubPage(context, e.value)));
+                            onTap: () => _editSubPage(context, e.value)));
                       }).toList(),
                     )),
                 CupertinoClassicalListTile(
@@ -93,7 +93,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
     );
   }
 
-  Future<void> editSubPage(BuildContext context, SubPageModel field) async {
+  Future<void> _editSubPage(BuildContext context, SubPageModel field) async {
     await showCupertinoDialog(
         barrierDismissible: true,
         context: context,

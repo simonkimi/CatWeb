@@ -46,7 +46,7 @@ class RulesAdvance extends GetView<RulesEditController> {
                               controller.siteConfigModel.headers
                                   .removeAt(index);
                             },
-                            onTap: () => editRegField(context, e.value)));
+                            onTap: () => _editRegField(context, e.value)));
                       }).toList(),
                     )),
                 CupertinoClassicalListTile(
@@ -91,7 +91,7 @@ class RulesAdvance extends GetView<RulesEditController> {
                               controller.siteConfigModel.cookies
                                   .removeAt(index);
                             },
-                            onTap: () => editRegField(context, e.value)));
+                            onTap: () => _editRegField(context, e.value)));
                       }).toList(),
                     )),
                 CupertinoClassicalListTile(
@@ -114,7 +114,7 @@ class RulesAdvance extends GetView<RulesEditController> {
     );
   }
 
-  Future<void> editRegField(BuildContext context, RegFieldModel field) async {
+  Future<void> _editRegField(BuildContext context, RegFieldModel field) async {
     await showCupertinoDialog(
         barrierDismissible: true,
         context: context,

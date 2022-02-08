@@ -34,7 +34,7 @@ class SiteManager extends StatelessWidget {
               initialData: const [],
               stream: DB().webDao.getAllStream(),
               builder: (context, snapshot) {
-                return buildListView(snapshot, siteController, context);
+                return _buildListView(snapshot, siteController, context);
               },
             ),
           ),
@@ -58,7 +58,7 @@ class SiteManager extends StatelessWidget {
         ));
   }
 
-  ListView buildListView(
+  ListView _buildListView(
     AsyncSnapshot<List<WebTableData>> snapshot,
     SiteController siteController,
     BuildContext context,
@@ -71,7 +71,7 @@ class SiteManager extends StatelessWidget {
           leading: const Icon(CupertinoIcons.add_circled_solid),
           title: const Text('编写一个规则'),
           trailing: const Icon(CupertinoIcons.forward),
-          onTap: () => toEditPage(null, null),
+          onTap: () => _toEditPage(null, null),
         ),
         const SizedBox(height: 5),
         CupertinoListTile(
@@ -121,7 +121,7 @@ class SiteManager extends StatelessWidget {
         // TODO 分享功能
         break;
       case _MenuSelect.edit:
-        await toEditPage(pb, db);
+        await _toEditPage(pb, db);
         break;
       case _MenuSelect.delete:
         if (await showCupertinoConfirmDialog(
@@ -136,7 +136,7 @@ class SiteManager extends StatelessWidget {
     }
   }
 
-  Future<void> toEditPage(SiteConfig? pb, WebTableData? db) async {
+  Future<void> _toEditPage(SiteConfig? pb, WebTableData? db) async {
     await Get.to(() => RulesEditPage(pb: pb ?? eh.ehTestSite, db: db));
   }
 }

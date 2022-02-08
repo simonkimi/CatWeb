@@ -22,7 +22,7 @@ class RulesEditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => showExitConfine(context),
+      onWillPop: () => _showExitConfine(context),
       child: CupertinoPageScaffold(
         navigationBar: _buildAppbar(context),
         child: CupertinoTabBarView(
@@ -50,7 +50,7 @@ class RulesEditPage extends StatelessWidget {
       padding: const EdgeInsetsDirectional.only(start: 10, end: 10),
       leading: CupertinoButton(
         onPressed: () {
-          showExitConfine(context).then((value) {
+          _showExitConfine(context).then((value) {
             if (value) Get.back();
           });
         },
@@ -60,7 +60,7 @@ class RulesEditPage extends StatelessWidget {
       ),
       middle: const Text('规则编辑'),
       trailing: CupertinoButton(
-        onPressed: () => save(context),
+        onPressed: () => _save(context),
         child: const Text('保存', style: TextStyle(fontSize: 15)),
         padding: EdgeInsets.zero,
         minSize: 0,
@@ -69,7 +69,7 @@ class RulesEditPage extends StatelessWidget {
     );
   }
 
-  Future<bool> showExitConfine(BuildContext context) async {
+  Future<bool> _showExitConfine(BuildContext context) async {
     return (await showCupertinoConfirmDialog(
           context: context,
           title: '退出',
@@ -78,7 +78,7 @@ class RulesEditPage extends StatelessWidget {
         true;
   }
 
-  Future<void> save(BuildContext context) async {
+  Future<void> _save(BuildContext context) async {
     if (controller.siteConfigModel.name.isEmpty) {
       showCupertinoConfirmDialog(
         context: context,

@@ -382,7 +382,7 @@ class ViewerDetail extends StatelessWidget {
           ),
           Row(
             children: [
-              buildReadButton(),
+              _buildReadButton(),
               const SizedBox(width: 10),
               if (model.hasLanguage()) _buildLanguage(context)
             ],
@@ -427,7 +427,7 @@ class ViewerDetail extends StatelessWidget {
     );
   }
 
-  CupertinoButton buildReadButton() {
+  CupertinoButton _buildReadButton() {
     return CupertinoButton(
       child: const Text(
         '阅读',

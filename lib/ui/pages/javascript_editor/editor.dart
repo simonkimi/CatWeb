@@ -111,7 +111,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
         ));
   }
 
-  void onTextChange(String _) {
+  void _onTextChange(String _) {
     final selection = inputController.selection;
     final offset = selection.baseOffset;
 
@@ -174,7 +174,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
           minLines: 99999,
           maxLines: 99999,
           keyboardType: TextInputType.multiline,
-          onChanged: onTextChange,
+          onChanged: _onTextChange,
         ),
         _buildToolBar(context),
       ],
@@ -256,7 +256,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
         inputController.selection = TextSelection.collapsed(
             offset:
                 offset + (input?.length ?? display!.length) + (position ?? 0));
-        onTextChange('');
+        _onTextChange('');
       },
     );
   }
