@@ -1,7 +1,7 @@
+import 'package:catweb/gen/h/libgo.h.dart';
 import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
 import 'package:ffi/ffi.dart' as ffi;
 import 'dart:ffi';
-import 'libgo.h.dart';
 import 'dart:io';
 
 RpcResponse ffiParse(RpcRequest msg) {

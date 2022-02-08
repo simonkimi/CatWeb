@@ -70,7 +70,7 @@ flutter:
     - assets/svgs/
 
 ffigen:
-  output: 'lib/ffi/libgo.h.dart'
+  output: 'lib/gen/h/libgo.h.dart'
   headers:
     entry-points:
-      - 'lib/ffi/libgo.h'
+      - 'lib/libs/libgo.h'
