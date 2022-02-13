@@ -7,12 +7,11 @@ import 'package:drift/drift.dart';
 import 'package:get/get.dart';
 
 enum ImageLoadState {
-  init,
-  cached,
-  waiting,
-  loading,
-  finish,
-  error,
+  cached, // 已缓存
+  waiting, // 等待加载
+  loading, // 加载中
+  finish, // 加载完成
+  error, // 加载失败
 }
 
 class ImageLoadModel {
@@ -38,23 +37,24 @@ class ImageLoadModel {
   String get key => model.key;
 
   bool get needLoad =>
-      (_state.value == ImageLoadState.waiting ||
-          _state.value == ImageLoadState.init) &&
-      _handleWidget.value > 0;
+      _state.value == ImageLoadState.waiting && _handleWidget.value > 0;
 
   ImageLoadState get state => _state.value;
 
+  void reset() {
+    _state.value = ImageLoadState.waiting;
+    _progress.value = 0.0;
+    _data = null;
+  }
+
   Future<void> loadCache() async {
-    if (_state.value == ImageLoadState.cached ||
-        _state.value == ImageLoadState.init) {
+    if (_state.value == ImageLoadState.cached) {
       final db = Get.find<SettingController>().dbCacheStore;
       final cache = await db.get(key);
       if (cache != null) {
         await load();
       } else {
-        if (_state.value == ImageLoadState.init) {
-          _state.value = ImageLoadState.waiting;
-        }
+        _state.value = ImageLoadState.waiting;
       }
     }
   }
@@ -127,28 +127,31 @@ class ImageConcurrency {
       _waitLoadImages.values.where((e) => e.needLoad).toList();
 
   ImageLoadModel create(ImageRpcModel model) {
+    late ImageLoadModel exist;
     if (_loadCompleteImages.containsKey(model.key)) {
-      final exist = _loadCompleteImages[model.key]!..handle();
-      exist.loadCache().whenComplete(() => _trigger());
-      return exist;
+      exist = _loadCompleteImages[model.key]!..handle();
+    } else if (_waitLoadImages.containsKey(model.key)) {
+      exist = _waitLoadImages[model.key]!..handle();
+    } else if (_loadingImages.containsKey(model.key)) {
+      exist = _loadingImages[model.key]!..handle();
+    } else {
+      exist = ImageLoadModel(model: model, dio: dio);
+      _waitLoadImages[model.key] = exist;
     }
 
-    if (_waitLoadImages.containsKey(model.key)) {
-      final exist = _waitLoadImages[model.key]!..handle();
-      exist.loadCache().whenComplete(() => _trigger());
-      return exist;
-    }
-
-    if (_loadingImages.containsKey(model.key)) {
-      final exist = _loadingImages[model.key]!..handle();
-      exist.loadCache().whenComplete(() => _trigger());
-      return exist;
-    }
-
-    final loadModel = ImageLoadModel(model: model, dio: dio);
-    _waitLoadImages[model.key] = loadModel;
     _trigger();
-    return loadModel;
+    exist.loadCache().whenComplete(() => _trigger());
+    return exist;
+  }
+
+  void reload(ImageLoadModel model) {
+    _loadCompleteImages.remove(model.key);
+    _loadingImages.remove(model.key);
+    if (!_waitLoadImages.containsKey(model.key)) {
+      _waitLoadImages[model.key] = model;
+    }
+    model.reset();
+    _trigger();
   }
 
   void dispose() {

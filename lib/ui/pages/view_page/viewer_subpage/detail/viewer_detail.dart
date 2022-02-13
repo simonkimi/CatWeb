@@ -52,6 +52,17 @@ class ViewerDetailFragment extends StatelessWidget {
     );
   }
 
+  Widget _buildError(BuildContext context) {
+    if (c.errorMessage != null) {
+      return const SliverFillRemaining(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+    return SliverToBoxAdapter(child: const SizedBox());
+  }
+
   Widget _buildHeader(BuildContext context) {
     return Column(
       children: [

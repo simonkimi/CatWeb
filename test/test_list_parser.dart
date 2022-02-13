@@ -21,8 +21,8 @@ void main() async {
   final buffer = await req.send();
 
   final model = ListRpcModel.fromBuffer(buffer);
-  for (final m in model.globalEnv.entries) {
-    print(m);
+  for (final m in model.items) {
+    print(m.tag);
   }
   line.getRunTime();
 }

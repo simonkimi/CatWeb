@@ -12,6 +12,9 @@ RpcResponse ffiParse(RpcRequest msg) {
           : DynamicLibrary.process());
 
   final raw = msg.writeToBuffer();
+  // test
+  File('./test/buffer.tmp').writeAsBytesSync(raw);
+
   final buffer = ffi.malloc.allocate<Int8>(raw.length + 1);
   buffer.asTypedList(raw.length + 1)
     ..setAll(0, raw)

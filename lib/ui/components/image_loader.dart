@@ -64,7 +64,6 @@ class _ImageLoaderState extends State<ImageLoader> {
   Widget build(BuildContext context) {
     return Obx(() {
       switch (_imageLoadModel.state) {
-        case ImageLoadState.init:
         case ImageLoadState.cached:
         case ImageLoadState.waiting:
           return loadingBuilder(context, 0);
@@ -74,9 +73,13 @@ class _ImageLoaderState extends State<ImageLoader> {
           return imageBuilder(context, _imageLoadModel.data!);
         case ImageLoadState.error:
           return errorBuilder(
-              context, _imageLoadModel.lastException.value!, () {});
+              context, _imageLoadModel.lastException.value!, _onReload);
       }
     });
+  }
+
+  void _onReload() {
+    widget.concurrency.reload(_imageLoadModel);
   }
 
   @override
@@ -106,8 +109,21 @@ class _ImageLoaderState extends State<ImageLoader> {
   ) {
     return GestureDetector(
       onTap: () => reload(),
-      child: const Center(
-        child: Icon(Icons.info),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.info),
+          Padding(
+            padding: const EdgeInsets.only(right: 5, left: 5, top: 5),
+            child: Text(
+              err?.toString() ?? '',
+              maxLines: 5,
+              style: const TextStyle(
+                fontSize: 12,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -19,6 +19,12 @@ final ehTestSite = SiteConfig(
   ],
   pages: [
     SitePage(
+      name: 'Test',
+      template: Template.TEMPLATE_DETAIL,
+      parser: galleryUuid,
+      url: 'g/{idCode}/?p={page:0}'
+    ),
+    SitePage(
       name: '主页',
       url: '?page={page:0}',
       parser: commonListUuid,
