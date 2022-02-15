@@ -1,6 +1,8 @@
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/components/list_card.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/list_extended_card.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class ListParserPreview extends StatelessWidget {
@@ -43,6 +45,7 @@ class ListParserPreview extends StatelessWidget {
       children: [
         const SizedBox(height: 5),
         ListExtendedCard(
+          concurrency: ImageConcurrency(dio: Dio()),
           model: model,
           onTap: () {},
         ),

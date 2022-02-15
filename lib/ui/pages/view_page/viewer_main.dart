@@ -1,13 +1,8 @@
 import 'package:catweb/data/controller/site_controller.dart';
-import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/gen/protobuf/page.pbserver.dart';
-
-import 'package:catweb/ui/pages/view_page/viewer_scaffold.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/detail/viewer_detail.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/empty/empty.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/list/viewer_list.dart';
-import 'package:catweb/utils/utils.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/viewer_subpage_scaffold.dart';
+import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -24,59 +19,35 @@ class ViewerMain extends GetView<SiteController> {
       return const EmptyFragment();
     }
 
-    return ViewerScaffold(website: controller.website);
-  }
-}
+    final website = controller.website;
 
-class ViewerPage extends StatelessWidget {
-  const ViewerPage({
-    Key? key,
-    required this.target,
-    required this.model,
-    required this.env,
-    required this.to,
-  }) : super(key: key);
-
-  final SitePageModel target;
-  final String to;
-  final SiteEnvModel env;
-  final Object? model;
-
-  @override
-  Widget build(BuildContext context) {
-    switch (target.template.value) {
-      case Template.TEMPLATE_IMAGE_WATERFALL:
-      case Template.TEMPLATE_IMAGE_LIST:
-        return ViewerListFragment(
-          target: target,
-          hasToolBar: false,
-        );
-      case Template.TEMPLATE_DETAIL:
-        return ViewerDetailFragment(
-          target: target,
-          model: model,
-          env: env,
-        );
-      default:
-        throw UnimplementedError(
-            'ViewerPage can not handle ${target.template.value}');
+    if (website.displayPage.length <= 1) {
+      return _buildSitePage(context, website.displayPage.first);
     }
-  }
-}
 
-Future<void> pushNewPage({
-  required String to,
-  required SiteEnvModel envModel,
-  Object? model,
-}) async {
-  final controller = Get.find<SiteController>();
-  final target =
-      controller.website.configModel.pageList.get((e) => e.uuid == to);
-  if (target == null) throw Exception('$to not exist');
-  Get.to(() => ViewerPage(
-        model: model,
-        env: envModel,
-        target: target,
-        to: to,
-      ));
+    return CupertinoTabScaffold(
+      resizeToAvoidBottomInset: true,
+      tabBar: CupertinoTabBar(
+        items: website.displayPage.map((e) {
+          return BottomNavigationBarItem(
+            icon: Icon(
+              cupertinoIcons[e.icon.value] ?? CupertinoIcons.circle,
+              size: 22,
+            ),
+            label: e.name.value,
+          );
+        }).toList(),
+      ),
+      tabBuilder: (BuildContext context, int index) {
+        return _buildSitePage(context, website.displayPage[index]);
+      },
+    );
+  }
+
+  Widget _buildSitePage(BuildContext context, SitePageModel target) {
+    return ViewerPage(
+      target: target,
+      model: controller.website.displayPage.length > 1 ? Object() : null,
+    );
+  }
 }

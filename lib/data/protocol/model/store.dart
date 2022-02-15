@@ -129,6 +129,14 @@ class SiteConfigModel implements PbAble {
     return result;
   }
 
+  bool containsFlag(String flag) => this
+      .flag
+      .value
+      .toLowerCase()
+      .split('|')
+      .map((e) => e.trim())
+      .contains(flag.toLowerCase().trim());
+
   @override
   SiteConfig toPb() => SiteConfig(
         name: name.value,

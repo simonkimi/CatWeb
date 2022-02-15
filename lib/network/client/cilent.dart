@@ -1,3 +1,4 @@
+import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
@@ -14,21 +15,15 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_http_formatter/dio_http_formatter.dart';
 import 'package:get/get.dart';
 
-import 'image_loader.dart';
-
 class NetClient {
   NetClient(this.configModel)
       : dio = _buildDio(configModel, true),
-        imageConcurrency = ImageConcurrency(
-          dio: _buildDio(configModel),
-          concurrency: 5,
-        );
+        imageDio = _buildDio(configModel, true);
 
   final Dio dio;
+  final Dio imageDio;
 
   final SiteConfigModel configModel;
-
-  final ImageConcurrency imageConcurrency;
 
   Future<ListRpcModel> getList({
     required String url,
@@ -99,9 +94,10 @@ Dio _buildDio(SiteConfigModel model, [bool log = false]) {
     ));
   }
 
-  // TODO 添加忽略证书错误开关
-  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-      (client) => client..badCertificateCallback = (cert, host, port) => true;
+  if (model.containsFlag(ignoreCertificate)) {
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (client) => client..badCertificateCallback = (cert, host, port) => true;
+  }
 
   return dio;
 }

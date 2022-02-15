@@ -227,9 +227,10 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
 
 class $WebTableTable extends WebTable
     with TableInfo<$WebTableTable, WebTableData> {
-  final GeneratedDatabase _db;
+  @override
+  final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $WebTableTable(this._db, [this._alias]);
+  $WebTableTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
@@ -319,7 +320,7 @@ class $WebTableTable extends WebTable
 
   @override
   $WebTableTable createAlias(String alias) {
-    return $WebTableTable(_db, alias);
+    return $WebTableTable(attachedDatabase, alias);
   }
 }
 

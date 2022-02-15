@@ -13,6 +13,7 @@ class DetailBaseData {
   final double? star;
   final TagRpcModel? tag;
   final ImageRpcModel? image;
+  final int? imageCount;
 
   DetailBaseData({
     this.title,
@@ -21,6 +22,7 @@ class DetailBaseData {
     this.image,
     this.language,
     this.star,
+    this.imageCount,
   });
 }
 

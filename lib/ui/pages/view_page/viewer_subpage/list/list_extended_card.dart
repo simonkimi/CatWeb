@@ -1,5 +1,5 @@
-import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/dark_image.dart';
 import 'package:catweb/ui/components/image_loader.dart';
@@ -8,17 +8,18 @@ import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:get/get.dart';
 
 class ListExtendedCard extends StatelessWidget {
   const ListExtendedCard({
     Key? key,
     required this.model,
     required this.onTap,
+    required this.concurrency,
   }) : super(key: key);
 
   final ListRpcModel_Item model;
   final VoidCallback onTap;
+  final ImageConcurrency concurrency;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +108,7 @@ class ListExtendedCard extends StatelessWidget {
     final child = DarkWidget(
       child: ImageLoader(
         model: model.previewImg,
-        concurrency: Get.find<SiteController>().website.client.imageConcurrency,
+        concurrency: concurrency,
       ),
     );
 

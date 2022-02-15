@@ -1,9 +1,12 @@
+import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/test/test_model/cookies.dart';
 import 'package:catweb/test/test_model/parser/list_parser.dart';
 
 import 'parser/gallery_parser.dart';
+
+final detailUuid = genUuid();
 
 final ehTestSite = SiteConfig(
   name: 'E-Hentai',
@@ -19,19 +22,20 @@ final ehTestSite = SiteConfig(
   ],
   pages: [
     SitePage(
-      name: 'Test',
+      name: '详情',
+      uuid: detailUuid,
       template: Template.TEMPLATE_DETAIL,
       parser: galleryUuid,
-      url: 'g/{idCode}/?p={page:0}'
+      url: 'g/{idCode}/?p={page:0}',
     ),
     SitePage(
-      name: '主页',
-      url: '?page={page:0}',
-      parser: commonListUuid,
-      display: SiteDisplayType.show,
-      template: Template.TEMPLATE_IMAGE_LIST,
-      icon: 'home',
-    ),
+        name: '主页',
+        url: '?page={page:0}',
+        parser: commonListUuid,
+        display: SiteDisplayType.show,
+        template: Template.TEMPLATE_IMAGE_LIST,
+        icon: 'home',
+        openPage: [detailUuid]),
     SitePage(
       name: '热门',
       url: 'popular?page={page:0}',
@@ -39,6 +43,7 @@ final ehTestSite = SiteConfig(
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'whatshot',
+      openPage: [detailUuid],
     ),
     SitePage(
       name: '关注',
@@ -47,6 +52,7 @@ final ehTestSite = SiteConfig(
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'eye',
+      openPage: [detailUuid],
     ),
     SitePage(
       name: '收藏',
@@ -55,6 +61,7 @@ final ehTestSite = SiteConfig(
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'heart',
+      openPage: [detailUuid],
       subPage: [
         SiteSubPage(name: '全部'),
         SiteSubPage(

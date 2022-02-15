@@ -170,7 +170,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
     required RxString target,
   }) {
     return Obx(() => CupertinoReadOnlyInput(
-          labelText: '徽章跳转',
+          labelText: labelText,
           value: controller.siteConfigModel.getPageName(target.value),
           onTap: () => _onOpenNewPageClick(context, target),
         ));

@@ -1,5 +1,7 @@
+import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/ui/components/badge.dart';
+import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/icon_text.dart';
 import 'package:catweb/ui/theme/colors.dart';
@@ -30,60 +32,73 @@ class ViewerDetailFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      if (c.isInitialling) {
-        return const Center(
-          child: CupertinoActivityIndicator(),
-        );
-      }
-      return _buildBody(context);
-    });
+    return CupertinoAppBar(
+      title: 'Test',
+      child: _buildBody(context),
+    );
+  }
+
+  Widget _buildSafeArea(BuildContext context) {
+    return SliverPadding(
+      padding: EdgeInsets.only(
+          top: MediaQuery.of(context).padding.top + kCupertinoNavigatorBar + 5),
+      sliver: const SliverToBoxAdapter(child: SizedBox()),
+    );
   }
 
   Widget _buildBody(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: _buildHeader(context),
-        ),
-        if (c.isLoadingDetail) _buildLoading(context),
-        if (c.detailModel != null) _buildRightInfo(context),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Obx(() => CustomScrollView(
+            slivers: [
+              // 上方内容
+              _buildSafeArea(context),
+              _buildHeader(context),
+
+              // 加载内容, 不一定会展现
+              if (c.errorMessage != null) _buildError(context),
+              if (c.isLoadingDetail) _buildLoading(context),
+
+              // 下方内容, 有信息才会展现
+            ],
+          )),
     );
   }
 
   Widget _buildError(BuildContext context) {
-    if (c.errorMessage != null) {
-      return const SliverFillRemaining(
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-    return SliverToBoxAdapter(child: const SizedBox());
+    return SliverFillRemaining(
+      child: Center(
+        child: Text(c.errorMessage!),
+      ),
+    );
   }
 
   Widget _buildHeader(BuildContext context) {
-    return Column(
-      children: [
-        ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: 150),
-          child: IntrinsicHeight(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _buildLeftImage(),
-                const SizedBox(width: 15),
-                _buildRightInfo(context),
-              ],
+    if (c.baseData != null || c.detailModel != null) {
+      return SliverToBoxAdapter(
+        child: Column(
+          children: [
+            ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 150),
+              child: IntrinsicHeight(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    _buildLeftImage(),
+                    const SizedBox(width: 15),
+                    _buildRightInfo(context),
+                  ],
+                ),
+              ),
             ),
-          ),
+            const SizedBox(height: 10),
+            const CupertinoDivider(),
+          ],
         ),
-        const SizedBox(height: 10),
-        const CupertinoDivider(),
-      ],
-    );
+      );
+    }
+    return const SliverToBoxAdapter(child: SizedBox());
   }
 
   Widget _buildLeftImage() {
@@ -119,7 +134,8 @@ class ViewerDetailFragment extends StatelessWidget {
                     icon: Icons.image_outlined,
                     iconColor: Colors.white,
                     space: 0,
-                    text: '${c.detailModel!.imageCount}',
+                    text:
+                        '${c.baseData?.imageCount ?? c.detailModel?.imageCount}',
                     style: const TextStyle(fontSize: 9, color: Colors.white),
                   ),
                 ),

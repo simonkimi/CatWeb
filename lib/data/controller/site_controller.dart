@@ -3,8 +3,8 @@ import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/data/protocol/model/store.dart';
+import 'package:catweb/network/client/cilent.dart';
 import 'package:catweb/utils/utils.dart';
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 class SiteController extends GetxController {
@@ -67,5 +67,5 @@ class SiteController extends GetxController {
 
   int? get id => site.value?.id;
 
-  Dio? get client => site.value?.client.dio;
+  NetClient? get client => site.value?.client;
 }

@@ -1,14 +1,14 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/subpage_controller.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/viewer_subpage_scaffold.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
-import '../../viewer_main.dart';
 import 'list_extended_card.dart';
 
 class SubPageListFragment extends StatefulWidget {
@@ -30,6 +30,11 @@ class SubPageListFragment extends StatefulWidget {
 class _SubPageListFragmentState extends State<SubPageListFragment>
     with AutomaticKeepAliveClientMixin {
   late final controller = widget.controller;
+
+  late final concurrency = ImageConcurrency(
+    dio: widget.controller.site.client!.imageDio,
+    concurrency: 5,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +91,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
             final model = controller.items[index];
             return ListExtendedCard(
               model: model,
+              concurrency: concurrency,
               onTap: () {
                 pushNewPage(
                   to: controller.model.listItemTarget.value,
