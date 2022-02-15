@@ -11,7 +11,6 @@ import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_manage
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-
 class RulesEditPage extends StatelessWidget {
   RulesEditPage({Key? key, SiteConfig? pb, WebTableData? db})
       : controller = Get.put(RulesEditController(pb: pb, db: db)),

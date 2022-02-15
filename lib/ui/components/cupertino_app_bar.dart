@@ -16,7 +16,6 @@ class CupertinoAppBar extends StatefulWidget {
     this.leading,
     this.actions,
     this.backgroundColor,
-
     this.tabs,
     this.tabController,
     this.padding = const EdgeInsets.symmetric(horizontal: 10),

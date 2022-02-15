@@ -32,7 +32,7 @@ final ehListParser = ListViewParser(
     regex: r'\d+',
   ),
   badgeSelector: Selector(
-    selector: '.gt,gtl',
+    selector: '.gt, .gtl',
   ),
   badgeText: Selector(
     function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
