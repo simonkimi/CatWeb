@@ -15,5 +15,6 @@ const kDefaultNavBarBorder = Border(
 
 const kAppbarPadding = EdgeInsetsDirectional.only(start: 10, end: 10);
 
-
-const ignoreCertificate = 'ignoreCertificate';
+class Flag {
+  static const ignoreCertificate = 'ignoreCertificate';
+}

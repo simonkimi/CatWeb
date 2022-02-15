@@ -89,7 +89,7 @@ class _ImageLoaderState extends State<ImageLoader> {
   }
 
   Widget _defaultImageBuilder(BuildContext context, Uint8List imgData) {
-    return Image.memory(imgData);
+    return Hero(tag: widget.model.url, child: Image.memory(imgData));
   }
 
   Widget _defaultLoadingBuilder(BuildContext context, double progress) {

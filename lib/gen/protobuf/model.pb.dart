@@ -475,6 +475,11 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
             ? ''
             : 'previewImg',
         subBuilder: ImageRpcModel.create)
+    ..aOS(
+        7,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'language')
     ..aOM<TagRpcModel>(
         10,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -521,6 +526,7 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
     $core.double? star,
     $core.int? imgCount,
     ImageRpcModel? previewImg,
+    $core.String? language,
     TagRpcModel? tag,
     $core.Iterable<TagRpcModel>? badges,
     $core.String? paper,
@@ -546,6 +552,9 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
     }
     if (previewImg != null) {
       _result.previewImg = previewImg;
+    }
+    if (language != null) {
+      _result.language = language;
     }
     if (tag != null) {
       _result.tag = tag;
@@ -668,61 +677,73 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   ImageRpcModel ensurePreviewImg() => $_ensure(5);
 
+  @$pb.TagNumber(7)
+  $core.String get language => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set language($core.String v) {
+    $_setString(6, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasLanguage() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearLanguage() => clearField(7);
+
   @$pb.TagNumber(10)
-  TagRpcModel get tag => $_getN(6);
+  TagRpcModel get tag => $_getN(7);
   @$pb.TagNumber(10)
   set tag(TagRpcModel v) {
     setField(10, v);
   }
 
   @$pb.TagNumber(10)
-  $core.bool hasTag() => $_has(6);
+  $core.bool hasTag() => $_has(7);
   @$pb.TagNumber(10)
   void clearTag() => clearField(10);
   @$pb.TagNumber(10)
-  TagRpcModel ensureTag() => $_ensure(6);
+  TagRpcModel ensureTag() => $_ensure(7);
 
   @$pb.TagNumber(11)
-  $core.List<TagRpcModel> get badges => $_getList(7);
+  $core.List<TagRpcModel> get badges => $_getList(8);
 
   @$pb.TagNumber(12)
-  $core.String get paper => $_getSZ(8);
+  $core.String get paper => $_getSZ(9);
   @$pb.TagNumber(12)
   set paper($core.String v) {
-    $_setString(8, v);
+    $_setString(9, v);
   }
 
   @$pb.TagNumber(12)
-  $core.bool hasPaper() => $_has(8);
+  $core.bool hasPaper() => $_has(9);
   @$pb.TagNumber(12)
   void clearPaper() => clearField(12);
 
   @$pb.TagNumber(20)
-  $core.String get nextPage => $_getSZ(9);
+  $core.String get nextPage => $_getSZ(10);
   @$pb.TagNumber(20)
   set nextPage($core.String v) {
-    $_setString(9, v);
+    $_setString(10, v);
   }
 
   @$pb.TagNumber(20)
-  $core.bool hasNextPage() => $_has(9);
+  $core.bool hasNextPage() => $_has(10);
   @$pb.TagNumber(20)
   void clearNextPage() => clearField(20);
 
   @$pb.TagNumber(21)
-  $core.String get idCode => $_getSZ(10);
+  $core.String get idCode => $_getSZ(11);
   @$pb.TagNumber(21)
   set idCode($core.String v) {
-    $_setString(10, v);
+    $_setString(11, v);
   }
 
   @$pb.TagNumber(21)
-  $core.bool hasIdCode() => $_has(10);
+  $core.bool hasIdCode() => $_has(11);
   @$pb.TagNumber(21)
   void clearIdCode() => clearField(21);
 
   @$pb.TagNumber(30)
-  $core.Map<$core.String, $core.String> get env => $_getMap(11);
+  $core.Map<$core.String, $core.String> get env => $_getMap(12);
 }
 
 class ListRpcModel extends $pb.GeneratedMessage {

@@ -22,7 +22,7 @@ class SiteManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final siteController = Get.find<SiteController>();
+    final siteController = Get.find<GlobalController>();
     return CupertinoPageScaffold(
       navigationBar: _buildAppbar(context),
       child: SafeArea(
@@ -44,7 +44,7 @@ class SiteManager extends StatelessWidget {
   }
 
   Widget _buildSiteItem(BuildContext context, WebTableData e) {
-    final siteController = Get.find<SiteController>();
+    final siteController = Get.find<GlobalController>();
     final pb = SiteConfig.fromBuffer(e.bin);
     return Obx(() => CupertinoListTile(
           selected: siteController.id == e.id,
@@ -60,7 +60,7 @@ class SiteManager extends StatelessWidget {
 
   ListView _buildListView(
     AsyncSnapshot<List<WebTableData>> snapshot,
-    SiteController siteController,
+    GlobalController globalController,
     BuildContext context,
   ) {
     return ListView(

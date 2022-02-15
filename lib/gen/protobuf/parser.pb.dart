@@ -383,6 +383,12 @@ class ListViewParser extends $pb.GeneratedMessage {
             : 'previewImg',
         subBuilder: $0.ImageSelector.create)
     ..aOM<$0.Selector>(
+        17,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'language',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
         20,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
@@ -450,6 +456,7 @@ class ListViewParser extends $pb.GeneratedMessage {
     $0.Selector? star,
     $0.Selector? imgCount,
     $0.ImageSelector? previewImg,
+    $0.Selector? language,
     $0.Selector? tag,
     $0.Selector? tagColor,
     $0.Selector? badgeSelector,
@@ -487,6 +494,9 @@ class ListViewParser extends $pb.GeneratedMessage {
     }
     if (previewImg != null) {
       _result.previewImg = previewImg;
+    }
+    if (language != null) {
+      _result.language = language;
     }
     if (tag != null) {
       _result.tag = tag;
@@ -666,120 +676,134 @@ class ListViewParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(16)
   $0.ImageSelector ensurePreviewImg() => $_ensure(8);
 
+  @$pb.TagNumber(17)
+  $0.Selector get language => $_getN(9);
+  @$pb.TagNumber(17)
+  set language($0.Selector v) {
+    setField(17, v);
+  }
+
+  @$pb.TagNumber(17)
+  $core.bool hasLanguage() => $_has(9);
+  @$pb.TagNumber(17)
+  void clearLanguage() => clearField(17);
+  @$pb.TagNumber(17)
+  $0.Selector ensureLanguage() => $_ensure(9);
+
   @$pb.TagNumber(20)
-  $0.Selector get tag => $_getN(9);
+  $0.Selector get tag => $_getN(10);
   @$pb.TagNumber(20)
   set tag($0.Selector v) {
     setField(20, v);
   }
 
   @$pb.TagNumber(20)
-  $core.bool hasTag() => $_has(9);
+  $core.bool hasTag() => $_has(10);
   @$pb.TagNumber(20)
   void clearTag() => clearField(20);
   @$pb.TagNumber(20)
-  $0.Selector ensureTag() => $_ensure(9);
+  $0.Selector ensureTag() => $_ensure(10);
 
   @$pb.TagNumber(21)
-  $0.Selector get tagColor => $_getN(10);
+  $0.Selector get tagColor => $_getN(11);
   @$pb.TagNumber(21)
   set tagColor($0.Selector v) {
     setField(21, v);
   }
 
   @$pb.TagNumber(21)
-  $core.bool hasTagColor() => $_has(10);
+  $core.bool hasTagColor() => $_has(11);
   @$pb.TagNumber(21)
   void clearTagColor() => clearField(21);
   @$pb.TagNumber(21)
-  $0.Selector ensureTagColor() => $_ensure(10);
+  $0.Selector ensureTagColor() => $_ensure(11);
 
   @$pb.TagNumber(22)
-  $0.Selector get badgeSelector => $_getN(11);
+  $0.Selector get badgeSelector => $_getN(12);
   @$pb.TagNumber(22)
   set badgeSelector($0.Selector v) {
     setField(22, v);
   }
 
   @$pb.TagNumber(22)
-  $core.bool hasBadgeSelector() => $_has(11);
+  $core.bool hasBadgeSelector() => $_has(12);
   @$pb.TagNumber(22)
   void clearBadgeSelector() => clearField(22);
   @$pb.TagNumber(22)
-  $0.Selector ensureBadgeSelector() => $_ensure(11);
+  $0.Selector ensureBadgeSelector() => $_ensure(12);
 
   @$pb.TagNumber(23)
-  $0.Selector get badgeText => $_getN(12);
+  $0.Selector get badgeText => $_getN(13);
   @$pb.TagNumber(23)
   set badgeText($0.Selector v) {
     setField(23, v);
   }
 
   @$pb.TagNumber(23)
-  $core.bool hasBadgeText() => $_has(12);
+  $core.bool hasBadgeText() => $_has(13);
   @$pb.TagNumber(23)
   void clearBadgeText() => clearField(23);
   @$pb.TagNumber(23)
-  $0.Selector ensureBadgeText() => $_ensure(12);
+  $0.Selector ensureBadgeText() => $_ensure(13);
 
   @$pb.TagNumber(24)
-  $0.Selector get badgeColor => $_getN(13);
+  $0.Selector get badgeColor => $_getN(14);
   @$pb.TagNumber(24)
   set badgeColor($0.Selector v) {
     setField(24, v);
   }
 
   @$pb.TagNumber(24)
-  $core.bool hasBadgeColor() => $_has(13);
+  $core.bool hasBadgeColor() => $_has(14);
   @$pb.TagNumber(24)
   void clearBadgeColor() => clearField(24);
   @$pb.TagNumber(24)
-  $0.Selector ensureBadgeColor() => $_ensure(13);
+  $0.Selector ensureBadgeColor() => $_ensure(14);
 
   @$pb.TagNumber(25)
-  $0.Selector get paper => $_getN(14);
+  $0.Selector get paper => $_getN(15);
   @$pb.TagNumber(25)
   set paper($0.Selector v) {
     setField(25, v);
   }
 
   @$pb.TagNumber(25)
-  $core.bool hasPaper() => $_has(14);
+  $core.bool hasPaper() => $_has(15);
   @$pb.TagNumber(25)
   void clearPaper() => clearField(25);
   @$pb.TagNumber(25)
-  $0.Selector ensurePaper() => $_ensure(14);
+  $0.Selector ensurePaper() => $_ensure(15);
 
   @$pb.TagNumber(30)
-  $0.Selector get nextPage => $_getN(15);
+  $0.Selector get nextPage => $_getN(16);
   @$pb.TagNumber(30)
   set nextPage($0.Selector v) {
     setField(30, v);
   }
 
   @$pb.TagNumber(30)
-  $core.bool hasNextPage() => $_has(15);
+  $core.bool hasNextPage() => $_has(16);
   @$pb.TagNumber(30)
   void clearNextPage() => clearField(30);
   @$pb.TagNumber(30)
-  $0.Selector ensureNextPage() => $_ensure(15);
+  $0.Selector ensureNextPage() => $_ensure(16);
 
   @$pb.TagNumber(31)
-  $0.Selector get idCode => $_getN(16);
+  $0.Selector get idCode => $_getN(17);
   @$pb.TagNumber(31)
   set idCode($0.Selector v) {
     setField(31, v);
   }
 
   @$pb.TagNumber(31)
-  $core.bool hasIdCode() => $_has(16);
+  $core.bool hasIdCode() => $_has(17);
   @$pb.TagNumber(31)
   void clearIdCode() => clearField(31);
   @$pb.TagNumber(31)
-  $0.Selector ensureIdCode() => $_ensure(16);
+  $0.Selector ensureIdCode() => $_ensure(17);
 
   @$pb.TagNumber(99)
-  $core.List<$0.ExtraSelector> get extraSelector => $_getList(17);
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(18);
 }
 
 class DetailParser extends $pb.GeneratedMessage {

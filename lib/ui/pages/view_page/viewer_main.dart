@@ -6,7 +6,7 @@ import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class ViewerMain extends GetView<SiteController> {
+class ViewerMain extends GetView<GlobalController> {
   const ViewerMain({Key? key}) : super(key: key);
 
   @override

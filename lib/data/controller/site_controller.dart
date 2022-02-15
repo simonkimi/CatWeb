@@ -7,7 +7,7 @@ import 'package:catweb/network/client/cilent.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:get/get.dart';
 
-class SiteController extends GetxController {
+class GlobalController extends GetxController {
   late final StreamSubscription<List<WebTableData>> siteDbChangeListener;
 
   final site = Rx<SiteRenderConfigModel?>(null);
@@ -53,6 +53,8 @@ class SiteController extends GetxController {
     siteDbChangeListener = DB().webDao.getAllStream().listen((event) {
       if (site.value != null &&
           event.get((element) => element.id == id) == null) {
+        autoSelectNewSite();
+      } else if (site.value == null && event.isNotEmpty) {
         autoSelectNewSite();
       }
     });

@@ -32,8 +32,8 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
   late final controller = widget.controller;
 
   late final concurrency = ImageConcurrency(
-    dio: widget.controller.site.client!.imageDio,
-    concurrency: 5,
+    dio: widget.controller.global.client!.imageDio,
+    concurrency: 2,
   );
 
   @override

@@ -51,7 +51,7 @@ Future<void> pushNewPage({
   required SiteEnvModel envModel,
   Object? model,
 }) async {
-  final controller = Get.find<SiteController>();
+  final controller = Get.find<GlobalController>();
   final target =
       controller.website.configModel.pageList.get((e) => e.uuid == to);
   if (target == null) throw Exception('$to not exist');

@@ -156,6 +156,14 @@ const ListViewParser$json = const {
       '6': '.ImageSelector',
       '10': 'previewImg'
     },
+    const {
+      '1': 'language',
+      '3': 17,
+      '4': 1,
+      '5': 11,
+      '6': '.Selector',
+      '10': 'language'
+    },
     const {'1': 'tag', '3': 20, '4': 1, '5': 11, '6': '.Selector', '10': 'tag'},
     const {
       '1': 'tag_color',
@@ -226,7 +234,7 @@ const ListViewParser$json = const {
 
 /// Descriptor for `ListViewParser`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listViewParserDescriptor = $convert.base64Decode(
-    'Cg5MaXN0Vmlld1BhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEhIKBHV1aWQYAiABKAlSBHV1aWQSLgoNaXRlbV9zZWxlY3RvchgKIAEoCzIJLlNlbGVjdG9yUgxpdGVtU2VsZWN0b3ISHwoFdGl0bGUYCyABKAsyCS5TZWxlY3RvclIFdGl0bGUSJQoIc3VidGl0bGUYDCABKAsyCS5TZWxlY3RvclIIc3VidGl0bGUSKgoLdXBsb2FkX3RpbWUYDSABKAsyCS5TZWxlY3RvclIKdXBsb2FkVGltZRIdCgRzdGFyGA4gASgLMgkuU2VsZWN0b3JSBHN0YXISJgoJaW1nX2NvdW50GA8gASgLMgkuU2VsZWN0b3JSCGltZ0NvdW50Ei8KC3ByZXZpZXdfaW1nGBAgASgLMg4uSW1hZ2VTZWxlY3RvclIKcHJldmlld0ltZxIbCgN0YWcYFCABKAsyCS5TZWxlY3RvclIDdGFnEiYKCXRhZ19jb2xvchgVIAEoCzIJLlNlbGVjdG9yUgh0YWdDb2xvchIwCg5iYWRnZV9zZWxlY3RvchgWIAEoCzIJLlNlbGVjdG9yUg1iYWRnZVNlbGVjdG9yEigKCmJhZGdlX3RleHQYFyABKAsyCS5TZWxlY3RvclIJYmFkZ2VUZXh0EioKC2JhZGdlX2NvbG9yGBggASgLMgkuU2VsZWN0b3JSCmJhZGdlQ29sb3ISHwoFcGFwZXIYGSABKAsyCS5TZWxlY3RvclIFcGFwZXISJgoJbmV4dF9wYWdlGB4gASgLMgkuU2VsZWN0b3JSCG5leHRQYWdlEiIKB2lkX2NvZGUYHyABKAsyCS5TZWxlY3RvclIGaWRDb2RlEjUKDmV4dHJhX3NlbGVjdG9yGGMgAygLMg4uRXh0cmFTZWxlY3RvclINZXh0cmFTZWxlY3Rvcg==');
+    'Cg5MaXN0Vmlld1BhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEhIKBHV1aWQYAiABKAlSBHV1aWQSLgoNaXRlbV9zZWxlY3RvchgKIAEoCzIJLlNlbGVjdG9yUgxpdGVtU2VsZWN0b3ISHwoFdGl0bGUYCyABKAsyCS5TZWxlY3RvclIFdGl0bGUSJQoIc3VidGl0bGUYDCABKAsyCS5TZWxlY3RvclIIc3VidGl0bGUSKgoLdXBsb2FkX3RpbWUYDSABKAsyCS5TZWxlY3RvclIKdXBsb2FkVGltZRIdCgRzdGFyGA4gASgLMgkuU2VsZWN0b3JSBHN0YXISJgoJaW1nX2NvdW50GA8gASgLMgkuU2VsZWN0b3JSCGltZ0NvdW50Ei8KC3ByZXZpZXdfaW1nGBAgASgLMg4uSW1hZ2VTZWxlY3RvclIKcHJldmlld0ltZxIlCghsYW5ndWFnZRgRIAEoCzIJLlNlbGVjdG9yUghsYW5ndWFnZRIbCgN0YWcYFCABKAsyCS5TZWxlY3RvclIDdGFnEiYKCXRhZ19jb2xvchgVIAEoCzIJLlNlbGVjdG9yUgh0YWdDb2xvchIwCg5iYWRnZV9zZWxlY3RvchgWIAEoCzIJLlNlbGVjdG9yUg1iYWRnZVNlbGVjdG9yEigKCmJhZGdlX3RleHQYFyABKAsyCS5TZWxlY3RvclIJYmFkZ2VUZXh0EioKC2JhZGdlX2NvbG9yGBggASgLMgkuU2VsZWN0b3JSCmJhZGdlQ29sb3ISHwoFcGFwZXIYGSABKAsyCS5TZWxlY3RvclIFcGFwZXISJgoJbmV4dF9wYWdlGB4gASgLMgkuU2VsZWN0b3JSCG5leHRQYWdlEiIKB2lkX2NvZGUYHyABKAsyCS5TZWxlY3RvclIGaWRDb2RlEjUKDmV4dHJhX3NlbGVjdG9yGGMgAygLMg4uRXh0cmFTZWxlY3RvclINZXh0cmFTZWxlY3Rvcg==');
 @$core.Deprecated('Use detailParserDescriptor instead')
 const DetailParser$json = const {
   '1': 'DetailParser',

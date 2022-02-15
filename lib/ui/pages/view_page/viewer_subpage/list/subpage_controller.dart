@@ -13,9 +13,9 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
   final SubPageModel? subPageModel;
   final SiteEnvModel localEnv = SiteEnvModel();
 
-  final site = Get.find<SiteController>();
+  final global = Get.find<GlobalController>();
 
-  SiteEnvModel get env => site.website.globalEnv.create(localEnv);
+  SiteEnvModel get env => global.website.globalEnv.create(localEnv);
 
   @override
   bool isItemExist(ListRpcModel_Item item) => items.contains(item);
@@ -33,7 +33,7 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
     }
 
     print('加载网址: $baseUrl');
-    final data = await site.website.client.getList(
+    final data = await global.website.client.getList(
       url: baseUrl,
       model: model,
       localEnv: localEnv,

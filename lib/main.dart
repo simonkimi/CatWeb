@@ -13,7 +13,7 @@ import 'navigator.dart';
 
 Future<void> initGetX() async {
   await Get.put(SettingController(), permanent: true).init();
-  Get.put(SiteController(), permanent: true);
+  Get.put(GlobalController(), permanent: true);
 }
 
 Future<void> main() async {

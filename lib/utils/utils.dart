@@ -70,8 +70,8 @@ RxList<T> lobs<T, E>(core.Iterable<E>? pb, T Function(E e) func) =>
 
 extension RpcColor on ColorRpcModel {
   Color? get color {
-    if (hasA() && hasB() && hasR() && hasG()) {
-      return Color.fromARGB(a, r, g, b);
+    if (hasR() && hasG() && hasB()) {
+      return Color.fromARGB(hasA() ? a : 0xFF, r, g, b);
     }
     return null;
   }

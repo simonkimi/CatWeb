@@ -18,7 +18,7 @@ import 'package:get/get.dart';
 class NetClient {
   NetClient(this.configModel)
       : dio = _buildDio(configModel, true),
-        imageDio = _buildDio(configModel, true);
+        imageDio = _buildDio(configModel);
 
   final Dio dio;
   final Dio imageDio;
@@ -38,12 +38,12 @@ class NetClient {
     final result = ListRpcModel.fromBuffer(await ParserFFi(
             parser: configModel.getListParser(model.parser.value).toPb(),
             source: rsp.data!,
-            env: Get.find<SiteController>().website.globalEnv,
+            env: Get.find<GlobalController>().website.globalEnv,
             type: RpcType.RPC_TYPE_LIST_VIEW_PARSER)
         .send());
 
     localEnv.mergeMap(result.localEnv);
-    Get.find<SiteController>().website.updateGlobalEnv(result.globalEnv);
+    Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
 
     return result;
   }
@@ -62,12 +62,12 @@ class NetClient {
     final result = DetailRpcModel.fromBuffer(await ParserFFi(
             parser: configModel.getListParser(model.parser.value).toPb(),
             source: rsp.data!,
-            env: Get.find<SiteController>().website.globalEnv,
+            env: Get.find<GlobalController>().website.globalEnv,
             type: RpcType.RPC_TYPE_LIST_VIEW_PARSER)
         .send());
 
     localEnv.mergeMap(result.localEnv);
-    Get.find<SiteController>().website.updateGlobalEnv(result.globalEnv);
+    Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
 
     return result;
   }
@@ -94,7 +94,7 @@ Dio _buildDio(SiteConfigModel model, [bool log = false]) {
     ));
   }
 
-  if (model.containsFlag(ignoreCertificate)) {
+  if (model.containsFlag(Flag.ignoreCertificate)) {
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (client) => client..badCertificateCallback = (cert, host, port) => true;
   }

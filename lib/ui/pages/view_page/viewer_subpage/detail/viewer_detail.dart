@@ -1,9 +1,11 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/icon_text.dart';
+import 'package:catweb/ui/components/image_loader.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -85,8 +87,7 @@ class ViewerDetailFragment extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildLeftImage(),
-                    const SizedBox(width: 15),
+                    Obx(() => _buildLeftImage()),
                     _buildRightInfo(context),
                   ],
                 ),
@@ -102,47 +103,58 @@ class ViewerDetailFragment extends StatelessWidget {
   }
 
   Widget _buildLeftImage() {
-    return Container(
-      width: 140,
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        boxShadow: [
-          BoxShadow(
-            color: CupertinoColors.opaqueSeparator.withOpacity(0.2),
-            offset: const Offset(2, 2),
-            blurRadius: 2,
-            spreadRadius: 0,
-          )
-        ],
-      ),
-      child: Stack(
-        children: [
-          Image.asset('assets/images/sample2.jpg'),
-          Positioned(
-            right: 1,
-            bottom: 1,
-            child: Padding(
-              padding: const EdgeInsets.all(2),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.black38,
-                    borderRadius: BorderRadius.circular(3)),
-                child: Padding(
-                  padding: const EdgeInsets.all(1),
-                  child: IconText(
-                    icon: Icons.image_outlined,
-                    iconColor: Colors.white,
-                    space: 0,
-                    text:
-                        '${c.baseData?.imageCount ?? c.detailModel?.imageCount}',
-                    style: const TextStyle(fontSize: 9, color: Colors.white),
+    if (c.baseData?.image == null && c.detailModel?.coverImg == null)
+      return const SizedBox();
+
+    return Padding(
+      padding: const EdgeInsets.only(right: 15),
+      child: Container(
+        width: 140,
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          boxShadow: [
+            BoxShadow(
+              color: CupertinoColors.opaqueSeparator.withOpacity(0.2),
+              offset: const Offset(2, 2),
+              blurRadius: 2,
+              spreadRadius: 0,
+            )
+          ],
+        ),
+        child: Stack(
+          children: [
+            ImageLoader(
+              concurrency: ImageConcurrency(
+                dio: c.global.website.client.imageDio,
+              ),
+              model: (c.baseData?.image ?? c.detailModel?.coverImg)!,
+            ),
+            Positioned(
+              right: 1,
+              bottom: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(2),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black38,
+                      borderRadius: BorderRadius.circular(3)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(1),
+                    child: IconText(
+                      icon: Icons.image_outlined,
+                      iconColor: Colors.white,
+                      space: 0,
+                      text:
+                          '${c.baseData?.imageCount ?? c.detailModel?.imageCount}',
+                      style: const TextStyle(fontSize: 9, color: Colors.white),
+                    ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -272,8 +284,8 @@ class ViewerDetailFragment extends StatelessWidget {
   Widget _buildCategory(BuildContext context) {
     if (c.baseData?.tag != null || c.detailModel?.getTag() != null) {
       return Badge(
-        text: c.baseData?.tag?.text ?? c.model.tag.text,
-        color: c.baseData?.tag?.color.color ?? c.model.tag.color.color,
+        text: (c.baseData?.tag?.text ?? c.detailModel?.tag.text)!,
+        color: c.baseData?.tag?.color.color ?? c.detailModel?.tag.color.color,
       );
     }
     return const SizedBox();

@@ -31,6 +31,7 @@ message ListViewParser {
   Selector star = 14;
   Selector img_count = 15;
   ImageSelector preview_img = 16;
+  Selector language = 17;
 
   Selector tag = 20;
   Selector tag_color = 21;

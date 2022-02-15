@@ -23,7 +23,7 @@ class RulesEditController extends GetxController {
       final newDb = db!.copyWith(bin: siteConfigModel.toPb().writeToBuffer());
       await DB().webDao.replace(newDb);
       // 检测是否为当前配置
-      final controller = Get.find<SiteController>();
+      final controller = Get.find<GlobalController>();
       if (controller.site.value?.id == db!.id) {
         controller.setNewSite(newDb);
       }

@@ -35,6 +35,7 @@ message ListRpcModel {
     double star = 4;
     int32 img_count = 5;
     ImageRpcModel preview_img = 6;
+    string language = 7;
 
     TagRpcModel tag = 10;
     repeated TagRpcModel badges = 11;
