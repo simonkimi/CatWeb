@@ -52,31 +52,24 @@ class ViewerDetailFragment extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: CustomScrollView(
-        slivers: [
-          // 上方内容
-          _buildSafeArea(context),
-          _buildHeader(context),
+      child: Obx(() => CustomScrollView(
+            slivers: [
+              // 上方内容
+              _buildSafeArea(context),
+              _buildHeader(context),
 
-          // 加载内容, 不一定会展现
-          if (c.errorMessage != null) _buildError(context),
-          if (c.isLoadingDetail) _buildLoading(context),
+              // 下方内容, 有信息才会展现
+              if (c.detailModel != null) ...[
+                // 描述
+                SliverToBoxAdapter(
+                  child: Obx(() => _buildDescription(context)),
+                ),
+              ],
 
-          // 下方内容, 有信息才会展现
-          // 描述
-          SliverToBoxAdapter(
-            child: Obx(() => _buildDescription(context)),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _buildError(BuildContext context) {
-    return SliverFillRemaining(
-      child: Center(
-        child: Text(c.errorMessage!),
-      ),
+              // 加载内容, 不一定会展现
+              if (c.fillRemaining) _buildRemaining(context),
+            ],
+          )),
     );
   }
 
@@ -199,10 +192,12 @@ class ViewerDetailFragment extends StatelessWidget {
     );
   }
 
-  Widget _buildLoading(BuildContext context) {
-    return const SliverFillRemaining(
+  Widget _buildRemaining(BuildContext context) {
+    return SliverFillRemaining(
       child: Center(
-        child: CupertinoActivityIndicator(),
+        child: c.errorMessage != null
+            ? Text(c.errorMessage!)
+            : const CupertinoActivityIndicator(),
       ),
     );
   }
@@ -302,6 +297,8 @@ class ViewerDetailFragment extends StatelessWidget {
 
     final description = c.detailModel!.description;
     final text = description.replaceAll(RegExp(r'\n{2,}'), '\n');
+    print(text);
+
     final textStyle = TextStyle(
       fontSize: 14,
       color: FixColor.text.resolveFrom(context),
@@ -316,6 +313,8 @@ class ViewerDetailFragment extends StatelessWidget {
       ),
     )..layout(maxWidth: MediaQuery.of(context).size.width - 20))
         .didExceedMaxLines;
+
+    print(overflow);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -383,31 +382,32 @@ class ViewerDetailFragment extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 10),
-        // Text(
-        //   model.subtitle,
-        //   style: const TextStyle(
-        //     color: CupertinoColors.activeBlue,
-        //     fontSize: 15,
-        //   ),
-        // ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     Text(
-        //       '上传者',
-        //       style: TextStyle(
-        //           color: CupertinoColors.secondaryLabel.resolveFrom(context),
-        //           fontSize: 12),
-        //     ),
-        //     Text(
-        //       model.uploadTime,
-        //       style: TextStyle(
-        //         color: CupertinoColors.secondaryLabel.resolveFrom(context),
-        //         fontSize: 12,
-        //       ),
-        //     )
-        //   ],
-        // ),
+        Text(
+          c.detailModel?.subtitle ?? c.baseData?.subtitle ?? '',
+          style: const TextStyle(
+            color: CupertinoColors.activeBlue,
+            fontSize: 15,
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              '上传者',
+              style: TextStyle(
+                  color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                  fontSize: 12),
+            ),
+            if (c.detailModel?.uploadTime != null)
+              Text(
+                c.detailModel!.uploadTime,
+                style: TextStyle(
+                  color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                  fontSize: 12,
+                ),
+              )
+          ],
+        ),
         const SizedBox(height: 5),
         const CupertinoDivider(),
       ],

@@ -1,9 +1,10 @@
+import 'dart:io';
+
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/ffi/ffi.dart';
 import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
 import 'package:flutter/foundation.dart';
 import 'package:protobuf/protobuf.dart';
-import 'dart:io';
 
 class ParserFFi {
   ParserFFi({

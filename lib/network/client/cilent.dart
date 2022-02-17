@@ -35,12 +35,14 @@ class NetClient {
       throw Exception('data is null');
     }
 
-    final result = ListRpcModel.fromBuffer(await ParserFFi(
-            parser: configModel.getListParser(model.parser.value).toPb(),
-            source: rsp.data!,
-            env: Get.find<GlobalController>().website.globalEnv,
-            type: RpcType.RPC_TYPE_LIST_VIEW_PARSER)
-        .send());
+    final buffer = await ParserFFi(
+      parser: configModel.getListParser(model.parser.value).toPb(),
+      source: rsp.data!,
+      env: Get.find<GlobalController>().website.globalEnv,
+      type: RpcType.RPC_TYPE_LIST_VIEW_PARSER,
+    ).send();
+
+    final result = ListRpcModel.fromBuffer(buffer);
 
     localEnv.mergeMap(result.localEnv);
     Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
@@ -54,23 +56,19 @@ class NetClient {
     required SiteEnvModel localEnv,
   }) async {
     final rsp = await dio.get<String>(url);
-
     if (rsp.data == null) {
       throw Exception('data is null');
     }
 
-    final result = DetailRpcModel.fromBuffer(
-      await ParserFFi(
-        parser: configModel.getGalleryParser(model.parser.value).toPb(),
-        source: rsp.data!,
-        env: Get.find<GlobalController>().website.globalEnv,
-        type: RpcType.RPC_TYPE_GALLERY_PARSER,
-      ).send(),
-    );
-
+    final buffer = await ParserFFi(
+      parser: configModel.getGalleryParser(model.parser.value).toPb(),
+      source: rsp.data!,
+      env: Get.find<GlobalController>().website.globalEnv,
+      type: RpcType.RPC_TYPE_GALLERY_PARSER,
+    ).send();
+    final result = DetailRpcModel.fromBuffer(buffer);
     localEnv.mergeMap(result.localEnv);
     Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
-
     return result;
   }
 }

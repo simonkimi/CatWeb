@@ -21,6 +21,6 @@ void main() async {
   final buffer = await req.send();
 
   final model = DetailRpcModel.fromBuffer(buffer);
-  print(model.title);
+  print(model.description);
   line.getRunTime();
 }

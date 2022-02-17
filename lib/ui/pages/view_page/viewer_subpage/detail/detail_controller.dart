@@ -61,7 +61,7 @@ class DetailPreviewController extends LoadMoreModel<ImageRpcModel> {
       model: target,
       localEnv: localEnv,
     );
-
+    _detailModel.value = detail;
     return detail.previewImg;
   }
 
@@ -79,14 +79,6 @@ class DetailPreviewController extends LoadMoreModel<ImageRpcModel> {
     return null;
   }
 
-  bool get isInitialling =>
-      detailModel == null &&
-      baseData == null &&
-      items.isEmpty &&
-      (state == LoadMoreState.loading || state == LoadMoreState.refreshing);
-
-  bool get isLoadingDetail =>
-      baseData != null &&
-      detailModel == null &&
-      (state == LoadMoreState.loading || state == LoadMoreState.refreshing);
+  bool get fillRemaining =>
+      state == LoadMoreState.loading || errorMessage != null;
 }

@@ -15,7 +15,8 @@ enum LoadMoreState {
 
 abstract class LoadMoreModel<T> {
   LoadMoreModel() {
-    _stateListener = rxState.listen((state) {
+    _stateListener = _rxState.listen((state) {
+      print('Loading State: $state');
       switch (state) {
         case LoadMoreState.idle:
           refreshController.loadComplete();
@@ -53,9 +54,9 @@ abstract class LoadMoreModel<T> {
 
   final Rx<Exception?> _lastException = Rx(null);
 
-  final Rx<LoadMoreState> rxState = LoadMoreState.idle.obs;
+  final Rx<LoadMoreState> _rxState = LoadMoreState.idle.obs;
 
-  LoadMoreState get state => rxState.value;
+  LoadMoreState get state => _rxState.value;
 
   bool get isLoading =>
       state == LoadMoreState.loading || state == LoadMoreState.refreshing;
@@ -96,7 +97,7 @@ abstract class LoadMoreModel<T> {
       if (isRefresh) {
         _page.value = 0;
         _items.clear();
-        rxState.value = LoadMoreState.refreshing;
+        _rxState.value = LoadMoreState.refreshing;
         await _loadNextPage();
       } else {
         await _loadPreviousPage();
@@ -106,7 +107,7 @@ abstract class LoadMoreModel<T> {
 
   Future<void> onLoadMore() async {
     if (canLoadMore) {
-      rxState.value = LoadMoreState.loading;
+      _rxState.value = LoadMoreState.loading;
       await _loadNextPage();
     } else {
       refreshController.loadComplete();
@@ -119,22 +120,22 @@ abstract class LoadMoreModel<T> {
         _lastException.value = null;
         final page = _page.value + 1;
         final loadItems = await loadPage(page);
-        final items = loadItems.where((e) => isItemExist(e) == false);
+        final items = loadItems.where((e) => !isItemExist(e));
         if (items.isEmpty) {
-          rxState.value = LoadMoreState.noMoreData;
+          _rxState.value = LoadMoreState.noMoreData;
         } else {
           _page.value = page;
           _items.addAll(items);
-          rxState.value = LoadMoreState.idle;
+          _rxState.value = LoadMoreState.idle;
         }
       });
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) return;
       _lastException.value = e;
-      rxState.value = LoadMoreState.loadError;
+      _rxState.value = LoadMoreState.loadError;
     } on Exception catch (e) {
       _lastException.value = e;
-      rxState.value = LoadMoreState.loadError;
+      _rxState.value = LoadMoreState.loadError;
     }
   }
 
@@ -142,7 +143,7 @@ abstract class LoadMoreModel<T> {
     try {
       _lastException.value = null;
       await _lock.synchronized(() async {
-        rxState.value = LoadMoreState.refreshing;
+        _rxState.value = LoadMoreState.refreshing;
         final page = _pageTail.value - 1;
         final items =
             (await loadPage(page)).where((e) => isItemExist(e) == false);
@@ -150,14 +151,14 @@ abstract class LoadMoreModel<T> {
           _page.value = page;
           _items.insertAll(0, items);
         }
-        rxState.value = LoadMoreState.idle;
+        _rxState.value = LoadMoreState.idle;
       });
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) return;
-      rxState.value = LoadMoreState.loadError;
+      _rxState.value = LoadMoreState.loadError;
       _lastException.value = e;
     } on Exception catch (e) {
-      rxState.value = LoadMoreState.loadError;
+      _rxState.value = LoadMoreState.loadError;
       _lastException.value = e;
       rethrow;
     }
