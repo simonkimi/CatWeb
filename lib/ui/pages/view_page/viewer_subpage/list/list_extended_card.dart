@@ -165,6 +165,13 @@ class ListExtendedCard extends StatelessWidget {
                     fontSize: 12.5,
                     color: CupertinoColors.secondaryLabel.resolveFrom(context)),
               ),
+            if (model.hasLanguage())
+              Text(
+                model.language,
+                style: TextStyle(
+                    fontSize: 12.5,
+                    color: CupertinoColors.secondaryLabel.resolveFrom(context)),
+              ),
             if (model.hasUploadTime())
               Text(
                 model.uploadTime,

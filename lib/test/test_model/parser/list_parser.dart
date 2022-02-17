@@ -25,6 +25,11 @@ final ehListParser = ListViewParser(
     selector: '.gl5m a, .gl4c a, .gl3e a',
     function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
   ),
+  language: Selector(
+    selector: '.gt[title^=language]',
+    function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
+    js: 'function hook(n){var e={chinese:"汉语",english:"英语",french:"法语",german:"德语",japanese:"日语",korean:"韩语",russian:"俄语",spanish:"西班牙语",speechless:"无字",italian:"意大利语"};return null==e[n]?n:e[n]}',
+  ),
   imgCount: Selector(
     selector:
         "//div[@class='glthumb']/*[2]/*[2]|//div[@class='gl3e']/*[5]|//div[@class='gl5t']/*[2]/*[2]",
@@ -163,6 +168,13 @@ final ehListParser = ListViewParser(
       id: 'fav9Tag',
       selector: Selector(
         selector: '.fp:nth-child(10) div:nth-child(3)',
+        function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
+      ),
+    ),
+    ExtraSelector(
+      id: '#dialog',
+      selector: Selector(
+        selector: '#eventpane',
         function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
       ),
     ),

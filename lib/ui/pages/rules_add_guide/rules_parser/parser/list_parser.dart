@@ -140,6 +140,10 @@ class ListParserFragment extends StatelessWidget {
           title: '面数',
           selectorModel: model.imgCount,
         ),
+        RulesForm(
+          title: '语言',
+          selectorModel: model.language,
+        ),
       ],
     );
   }

@@ -8,7 +8,7 @@ final ehGalleryParser = DetailParser(
   name: '画廊',
   uuid: galleryUuid,
   title: Selector(
-    selector: '#gn',
+    selector: '#gj, #gn',
     function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
   ),
   subtitle: Selector(

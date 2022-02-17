@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'interface.dart';
 
 class SelectorModel implements PbAble {
-  SelectorModel([Selector? pb, bool computed = false])
+  SelectorModel([Selector? pb])
       : selector = sobs(pb?.selector),
         function = df(pb?.function, SelectorFunction.SELECTOR_FUNCTION_AUTO,
                 pb?.hasFunction)
@@ -15,7 +15,7 @@ class SelectorModel implements PbAble {
         regex = sobs(pb?.regex),
         replace = sobs(pb?.replace),
         js = sobs(pb?.js),
-        computed = pb?.computed.obs ?? computed.obs,
+        computed = pb?.computed.obs ?? false.obs,
         defaultValue = sobs(pb?.defaultValue);
 
   final RxString selector;
@@ -67,10 +67,10 @@ class ExtraSelectorModel implements PbAble {
 class ImageSelectorModel implements PbAble {
   ImageSelectorModel([ImageSelector? pb])
       : imgUrl = SelectorModel(pb?.imgUrl),
-        imgWidth = SelectorModel(pb?.imgWidth, true),
-        imgHeight = SelectorModel(pb?.imgHeight, true),
-        imgX = SelectorModel(pb?.imgX, true),
-        imgY = SelectorModel(pb?.imgY, true),
+        imgWidth = SelectorModel(pb?.imgWidth),
+        imgHeight = SelectorModel(pb?.imgHeight),
+        imgX = SelectorModel(pb?.imgX),
+        imgY = SelectorModel(pb?.imgY),
         target = SelectorModel(pb?.target);
 
   final SelectorModel imgUrl;

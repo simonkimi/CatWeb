@@ -92,9 +92,9 @@ class DetailParserModel extends ParserBaseModel {
       : title = SelectorModel(pb?.title),
         subtitle = SelectorModel(pb?.subtitle),
         uploadTime = SelectorModel(pb?.uploadTime),
-        star = SelectorModel(pb?.star, true),
-        imgCount = SelectorModel(pb?.imgCount, true),
-        pageCount = SelectorModel(pb?.pageCount, true),
+        star = SelectorModel(pb?.star),
+        imgCount = SelectorModel(pb?.imgCount),
+        pageCount = SelectorModel(pb?.pageCount),
         language = SelectorModel(pb?.language),
         coverImg = ImageSelectorModel(pb?.coverImg),
         thumbnailSelector = SelectorModel(pb?.thumbnailSelector),
@@ -213,8 +213,9 @@ class ListViewParserModel extends ParserBaseModel {
         title = SelectorModel(pb?.title),
         subtitle = SelectorModel(pb?.subtitle),
         uploadTime = SelectorModel(pb?.uploadTime),
-        star = SelectorModel(pb?.star, true),
-        imgCount = SelectorModel(pb?.imgCount, true),
+        star = SelectorModel(pb?.star),
+        imgCount = SelectorModel(pb?.imgCount),
+        language = SelectorModel(pb?.language),
         previewImg = ImageSelectorModel(pb?.previewImg),
         tag = SelectorModel(pb?.tag),
         tagColor = SelectorModel(pb?.tagColor),
@@ -239,6 +240,7 @@ class ListViewParserModel extends ParserBaseModel {
   final SelectorModel uploadTime;
   final SelectorModel star;
   final SelectorModel imgCount;
+  final SelectorModel language;
 
   // 预览图片
   final ImageSelectorModel previewImg;
@@ -268,6 +270,7 @@ class ListViewParserModel extends ParserBaseModel {
         uploadTime: uploadTime.toPb(),
         star: star.toPb(),
         imgCount: imgCount.toPb(),
+        language: language.toPb(),
         previewImg: previewImg.toPb(),
         tag: tag.toPb(),
         tagColor: tagColor.toPb(),
