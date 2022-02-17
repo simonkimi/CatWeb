@@ -34,7 +34,10 @@ class DetailPreviewController extends LoadMoreModel<ImageRpcModel> {
     DetailRpcModel? detailModel,
   })  : localEnv = SiteEnvModel(outerEnv?.env),
         baseData = DetailPreviewController.fromModel(base),
-        _detailModel = Rx(detailModel);
+        _detailModel = Rx(detailModel) {
+    onLoadMore();
+  }
+
   final global = Get.find<GlobalController>();
   final SitePageModel target;
   final SiteEnvModel localEnv;

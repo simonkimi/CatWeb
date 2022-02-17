@@ -43,7 +43,6 @@ message ListRpcModel {
     string paper = 12;
 
     string next_page = 20;
-    string id_code = 21;
 
     map<string, string> env = 30;
   }

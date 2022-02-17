@@ -2,9 +2,7 @@ import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/extra_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/gallery_parser.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/gallery_preview.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/list_parser.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/list_preview.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,14 +30,12 @@ class RulesParserEditor extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return CupertinoTabBarView(
       children: [
-        if (model.type != ParserType.imageParser) _buildPreview(context),
         _buildEditor(context),
         ExtraParser(model: model),
       ],
-      tabs: [
-        if (model.type != ParserType.imageParser) const CupertinoTab('预览'),
-        const CupertinoTab('基础规则'),
-        const CupertinoTab('附加字段'),
+      tabs: const [
+        CupertinoTab('基础规则'),
+        CupertinoTab('附加字段'),
       ],
     );
   }
@@ -55,19 +51,6 @@ class RulesParserEditor extends StatelessWidget {
       middle: const Text('规则'),
       border: const Border(),
     );
-  }
-
-  Widget _buildPreview(BuildContext context) {
-    switch (model.type) {
-      case ParserType.galleryParser:
-        return const GalleryPreview();
-      case ParserType.listParser:
-        return const ListParserPreview();
-      case ParserType.imageParser:
-        return const SizedBox();
-      case ParserType.searchAutoComplete:
-        return const SizedBox();
-    }
   }
 
   Widget _buildEditor(BuildContext context) {

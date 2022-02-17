@@ -13,6 +13,7 @@ import 'package:catweb/data/protocol/model/model.dart';
 
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'detail_controller.dart';
 import 'package:get/get.dart';
@@ -51,19 +52,23 @@ class ViewerDetailFragment extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: Obx(() => CustomScrollView(
-            slivers: [
-              // 上方内容
-              _buildSafeArea(context),
-              _buildHeader(context),
+      child: CustomScrollView(
+        slivers: [
+          // 上方内容
+          _buildSafeArea(context),
+          _buildHeader(context),
 
-              // 加载内容, 不一定会展现
-              if (c.errorMessage != null) _buildError(context),
-              if (c.isLoadingDetail) _buildLoading(context),
+          // 加载内容, 不一定会展现
+          if (c.errorMessage != null) _buildError(context),
+          if (c.isLoadingDetail) _buildLoading(context),
 
-              // 下方内容, 有信息才会展现
-            ],
-          )),
+          // 下方内容, 有信息才会展现
+          // 描述
+          SliverToBoxAdapter(
+            child: Obx(() => _buildDescription(context)),
+          )
+        ],
+      ),
     );
   }
 
@@ -197,7 +202,7 @@ class ViewerDetailFragment extends StatelessWidget {
   Widget _buildLoading(BuildContext context) {
     return const SliverFillRemaining(
       child: Center(
-        child: CircularProgressIndicator(),
+        child: CupertinoActivityIndicator(),
       ),
     );
   }
@@ -259,7 +264,7 @@ class ViewerDetailFragment extends StatelessWidget {
   }
 
   Widget _buildTitle(BuildContext context) {
-    final title = c.baseData?.title ?? c.detailModel?.getTitle();
+    final title = c.detailModel?.getTitle() ?? c.baseData?.title;
     if (title == null) return const SizedBox();
     return Text(
       title,
@@ -271,7 +276,7 @@ class ViewerDetailFragment extends StatelessWidget {
   }
 
   Widget _buildSubtitle(BuildContext context) {
-    final subtitle = c.baseData?.subtitle ?? c.detailModel?.getSubTitle();
+    final subtitle = c.detailModel?.getSubTitle() ?? c.baseData?.subtitle;
     if (subtitle == null) return const SizedBox();
     return Text(
       subtitle,
@@ -290,5 +295,122 @@ class ViewerDetailFragment extends StatelessWidget {
       );
     }
     return const SizedBox();
+  }
+
+  Widget _buildDescription(BuildContext context) {
+    if (!(c.detailModel?.hasDescription() ?? false)) return const SizedBox();
+
+    final description = c.detailModel!.description;
+    final text = description.replaceAll(RegExp(r'\n{2,}'), '\n');
+    final textStyle = TextStyle(
+      fontSize: 14,
+      color: FixColor.text.resolveFrom(context),
+    );
+
+    final overflow = (TextPainter(
+      maxLines: 5,
+      textDirection: TextDirection.ltr,
+      text: TextSpan(
+        text: text,
+        style: textStyle,
+      ),
+    )..layout(maxWidth: MediaQuery.of(context).size.width - 20))
+        .didExceedMaxLines;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '描述',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+            color: FixColor.title.resolveFrom(context),
+          ),
+        ),
+        const SizedBox(height: 5),
+        Stack(
+          children: [
+            Linkify(
+              text: text,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 5,
+              style: TextStyle(
+                fontSize: 14,
+                color: FixColor.title.resolveFrom(context),
+              ),
+            ),
+            if (overflow)
+              Positioned(
+                right: 1,
+                bottom: 1,
+                child: Stack(
+                  children: [
+                    ShaderMask(
+                      shaderCallback: (bounds) {
+                        return LinearGradient(colors: [
+                          CupertinoColors.systemBackground
+                              .resolveFrom(context)
+                              .withOpacity(0),
+                          CupertinoColors.systemBackground.resolveFrom(context),
+                          CupertinoColors.systemBackground.resolveFrom(context),
+                        ], stops: const [
+                          0,
+                          0.65,
+                          1
+                        ]).createShader(bounds);
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 20,
+                        color: CupertinoColors.systemBackground
+                            .resolveFrom(context),
+                      ),
+                    ),
+                    const Positioned(
+                      right: 1,
+                      child: Text(
+                        '更多',
+                        style: TextStyle(
+                          color: CupertinoColors.activeBlue,
+                          fontSize: 14,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+          ],
+        ),
+        const SizedBox(height: 10),
+        // Text(
+        //   model.subtitle,
+        //   style: const TextStyle(
+        //     color: CupertinoColors.activeBlue,
+        //     fontSize: 15,
+        //   ),
+        // ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     Text(
+        //       '上传者',
+        //       style: TextStyle(
+        //           color: CupertinoColors.secondaryLabel.resolveFrom(context),
+        //           fontSize: 12),
+        //     ),
+        //     Text(
+        //       model.uploadTime,
+        //       style: TextStyle(
+        //         color: CupertinoColors.secondaryLabel.resolveFrom(context),
+        //         fontSize: 12,
+        //       ),
+        //     )
+        //   ],
+        // ),
+        const SizedBox(height: 5),
+        const CupertinoDivider(),
+      ],
+    );
   }
 }

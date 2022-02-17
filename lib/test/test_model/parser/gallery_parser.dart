@@ -56,7 +56,7 @@ final ehGalleryParser = DetailParser(
       selector:
           '//a[@name="ulcomment"]/ancestor::div[@class="c1"]//div[@id="comment_0"]/text()'),
   commentSelector: Selector(
-    selector: "//div[@class^='c5']/../..",
+    selector: "//div[starts-with(@class, 'c5')]/../..",
   ),
   comment: CommentSelector(
     content: Selector(

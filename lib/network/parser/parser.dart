@@ -3,6 +3,7 @@ import 'package:catweb/ffi/ffi.dart';
 import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
 import 'package:flutter/foundation.dart';
 import 'package:protobuf/protobuf.dart';
+import 'dart:io';
 
 class ParserFFi {
   ParserFFi({
@@ -24,6 +25,8 @@ class ParserFFi {
       data: source,
       parserData: parser.writeToBuffer(),
     );
+
+    File('buffer.tmp').writeAsBytesSync(req.writeToBuffer());
 
     final result = await compute(ffiParse, req);
 

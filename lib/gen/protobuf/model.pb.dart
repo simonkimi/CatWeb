@@ -503,11 +503,6 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'nextPage')
-    ..aOS(
-        21,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'idCode')
     ..m<$core.String, $core.String>(
         30,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -531,7 +526,6 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
     $core.Iterable<TagRpcModel>? badges,
     $core.String? paper,
     $core.String? nextPage,
-    $core.String? idCode,
     $core.Map<$core.String, $core.String>? env,
   }) {
     final _result = create();
@@ -567,9 +561,6 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
     }
     if (nextPage != null) {
       _result.nextPage = nextPage;
-    }
-    if (idCode != null) {
-      _result.idCode = idCode;
     }
     if (env != null) {
       _result.env.addAll(env);
@@ -730,20 +721,8 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
   @$pb.TagNumber(20)
   void clearNextPage() => clearField(20);
 
-  @$pb.TagNumber(21)
-  $core.String get idCode => $_getSZ(11);
-  @$pb.TagNumber(21)
-  set idCode($core.String v) {
-    $_setString(11, v);
-  }
-
-  @$pb.TagNumber(21)
-  $core.bool hasIdCode() => $_has(11);
-  @$pb.TagNumber(21)
-  void clearIdCode() => clearField(21);
-
   @$pb.TagNumber(30)
-  $core.Map<$core.String, $core.String> get env => $_getMap(12);
+  $core.Map<$core.String, $core.String> get env => $_getMap(11);
 }
 
 class ListRpcModel extends $pb.GeneratedMessage {

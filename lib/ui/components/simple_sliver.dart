@@ -15,17 +15,20 @@ class ExceptionSliver extends StatelessWidget {
     return SliverFillRemaining(
       child: GestureDetector(
         onTap: onRetry,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
-              child: Icon(CupertinoIcons.cloud_snow, size: 40),
-            ),
-            if (errMsg != null) Text(errMsg!),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: Icon(CupertinoIcons.cloud_snow, size: 40),
+              ),
+              if (errMsg != null) Text(errMsg!),
+            ],
+          ),
         ),
       ),
     );

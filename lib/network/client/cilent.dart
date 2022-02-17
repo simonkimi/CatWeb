@@ -59,12 +59,14 @@ class NetClient {
       throw Exception('data is null');
     }
 
-    final result = DetailRpcModel.fromBuffer(await ParserFFi(
-            parser: configModel.getListParser(model.parser.value).toPb(),
-            source: rsp.data!,
-            env: Get.find<GlobalController>().website.globalEnv,
-            type: RpcType.RPC_TYPE_LIST_VIEW_PARSER)
-        .send());
+    final result = DetailRpcModel.fromBuffer(
+      await ParserFFi(
+        parser: configModel.getGalleryParser(model.parser.value).toPb(),
+        source: rsp.data!,
+        env: Get.find<GlobalController>().website.globalEnv,
+        type: RpcType.RPC_TYPE_GALLERY_PARSER,
+      ).send(),
+    );
 
     localEnv.mergeMap(result.localEnv);
     Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
