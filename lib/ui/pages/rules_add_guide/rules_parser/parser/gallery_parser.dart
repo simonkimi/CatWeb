@@ -116,35 +116,35 @@ class GalleryParserFragment extends StatelessWidget {
     return StickyClassifyList(title: '章节', children: [
       RulesForm(
         title: '章节选择器',
-        selectorModel: model.tag,
+        selectorModel: model.chapterSelector,
       ),
       RulesForm(
         title: '章节标题',
-        selectorModel: model.tagColor,
+        selectorModel: model.chapterTitle,
       ),
       RulesForm(
         title: '章节副标题',
-        selectorModel: model.tagColor,
+        selectorModel: model.chapterSubtitle,
       ),
       RulesForm(
         title: '章节封面',
-        selectorModel: model.thumbnail.imgUrl,
+        selectorModel: model.chapterCover.imgUrl,
       ),
       RulesForm(
         title: '章节图宽度',
-        selectorModel: model.thumbnail.imgWidth,
+        selectorModel: model.chapterCover.imgWidth,
       ),
       RulesForm(
         title: '章节图高度',
-        selectorModel: model.thumbnail.imgHeight,
+        selectorModel: model.chapterCover.imgHeight,
       ),
       RulesForm(
         title: '章节图X偏移',
-        selectorModel: model.thumbnail.imgX,
+        selectorModel: model.chapterCover.imgX,
       ),
       RulesForm(
         title: '章节图Y偏移',
-        selectorModel: model.thumbnail.imgY,
+        selectorModel: model.chapterCover.imgY,
       ),
     ]);
   }
