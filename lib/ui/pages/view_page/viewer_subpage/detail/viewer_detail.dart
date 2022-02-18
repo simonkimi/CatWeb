@@ -7,6 +7,7 @@ import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/icon_text.dart';
 import 'package:catweb/ui/components/image_loader.dart';
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:catweb/data/protocol/model/model.dart';
@@ -51,7 +52,7 @@ class ViewerDetailFragment extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Obx(() => CustomScrollView(
             slivers: [
               // 上方内容
@@ -63,6 +64,9 @@ class ViewerDetailFragment extends StatelessWidget {
                 // 描述
                 SliverToBoxAdapter(
                   child: Obx(() => _buildDescription(context)),
+                ),
+                SliverToBoxAdapter(
+                  child: Obx(() => _buildTagList(context)),
                 ),
               ],
 
@@ -98,6 +102,50 @@ class ViewerDetailFragment extends StatelessWidget {
       );
     }
     return const SliverToBoxAdapter(child: SizedBox());
+  }
+
+  Widget _buildTagList(BuildContext context) {
+    if (c.detailModel?.badges.isEmpty ?? true) return const SizedBox();
+    final tagMaps = <String, List<String>>{'_': []};
+
+    for (final tag in c.detailModel!.badges) {
+      tagMaps[tag.category.isEmpty ? '_' : tag.category] ??= [];
+      tagMaps[tag.category.isEmpty ? '_' : tag.category]!.add(tag.text);
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ...tagMaps.entries.map((e) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (e.key != '_')
+                  Badge(
+                    text: e.key,
+                    color: cupertinoLightColors(
+                            context, tagMaps.keys.toList().indexOf(e.key))
+                        .withOpacity(0.5),
+                  ),
+                if (e.key != '_') const SizedBox(width: 10),
+                Expanded(
+                  child: Wrap(
+                    spacing: 5,
+                    runSpacing: 5,
+                    children: e.value.map((e) {
+                      return Badge(text: e);
+                    }).toList(),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }),
+        const CupertinoDivider(),
+      ],
+    );
   }
 
   Widget _buildLeftImage() {
@@ -297,7 +345,6 @@ class ViewerDetailFragment extends StatelessWidget {
 
     final description = c.detailModel!.description;
     final text = description.replaceAll(RegExp(r'\n{2,}'), '\n');
-    print(text);
 
     final textStyle = TextStyle(
       fontSize: 14,
@@ -314,103 +361,98 @@ class ViewerDetailFragment extends StatelessWidget {
     )..layout(maxWidth: MediaQuery.of(context).size.width - 20))
         .didExceedMaxLines;
 
-    print(overflow);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          '描述',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
-            color: FixColor.title.resolveFrom(context),
-          ),
-        ),
-        const SizedBox(height: 5),
-        Stack(
-          children: [
-            Linkify(
-              text: text,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 5,
-              style: TextStyle(
-                fontSize: 14,
-                color: FixColor.title.resolveFrom(context),
+    return Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              Linkify(
+                text: text,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 5,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: FixColor.title.resolveFrom(context),
+                ),
               ),
-            ),
-            if (overflow)
-              Positioned(
-                right: 1,
-                bottom: 1,
-                child: Stack(
-                  children: [
-                    ShaderMask(
-                      shaderCallback: (bounds) {
-                        return LinearGradient(colors: [
-                          CupertinoColors.systemBackground
-                              .resolveFrom(context)
-                              .withOpacity(0),
-                          CupertinoColors.systemBackground.resolveFrom(context),
-                          CupertinoColors.systemBackground.resolveFrom(context),
-                        ], stops: const [
-                          0,
-                          0.65,
-                          1
-                        ]).createShader(bounds);
-                      },
-                      child: Container(
-                        width: 100,
-                        height: 20,
-                        color: CupertinoColors.systemBackground
-                            .resolveFrom(context),
-                      ),
-                    ),
-                    const Positioned(
-                      right: 1,
-                      child: Text(
-                        '更多',
-                        style: TextStyle(
-                          color: CupertinoColors.activeBlue,
-                          fontSize: 14,
+              if (overflow)
+                Positioned(
+                  right: 1,
+                  bottom: 1,
+                  child: Stack(
+                    children: [
+                      ShaderMask(
+                        shaderCallback: (bounds) {
+                          return LinearGradient(colors: [
+                            CupertinoColors.systemBackground
+                                .resolveFrom(context)
+                                .withOpacity(0),
+                            CupertinoColors.systemBackground
+                                .resolveFrom(context),
+                            CupertinoColors.systemBackground
+                                .resolveFrom(context),
+                          ], stops: const [
+                            0,
+                            0.65,
+                            1
+                          ]).createShader(bounds);
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 20,
+                          color: CupertinoColors.systemBackground
+                              .resolveFrom(context),
                         ),
                       ),
-                    )
-                  ],
-                ),
-              )
-          ],
-        ),
-        const SizedBox(height: 10),
-        Text(
-          c.detailModel?.subtitle ?? c.baseData?.subtitle ?? '',
-          style: const TextStyle(
-            color: CupertinoColors.activeBlue,
-            fontSize: 15,
+                      const Positioned(
+                        right: 1,
+                        child: Text(
+                          '更多',
+                          style: TextStyle(
+                            color: CupertinoColors.activeBlue,
+                            fontSize: 14,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+            ],
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              '上传者',
-              style: TextStyle(
-                  color: CupertinoColors.secondaryLabel.resolveFrom(context),
-                  fontSize: 12),
+          const SizedBox(height: 15),
+          Text(
+            c.detailModel?.subtitle ?? c.baseData?.subtitle ?? '',
+            style: const TextStyle(
+              color: CupertinoColors.activeBlue,
+              fontSize: 13,
             ),
-            if (c.detailModel?.uploadTime != null)
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
               Text(
-                c.detailModel!.uploadTime,
+                '上传者',
                 style: TextStyle(
                   color: CupertinoColors.secondaryLabel.resolveFrom(context),
                   fontSize: 12,
                 ),
-              )
-          ],
-        ),
-        const SizedBox(height: 5),
-        const CupertinoDivider(),
-      ],
+              ),
+              if (c.detailModel?.uploadTime != null)
+                Text(
+                  c.detailModel!.uploadTime,
+                  style: TextStyle(
+                    color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                    fontSize: 12,
+                  ),
+                )
+            ],
+          ),
+          const SizedBox(height: 10),
+          const CupertinoDivider(),
+        ],
+      ),
     );
   }
 }

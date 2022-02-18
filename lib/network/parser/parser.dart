@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/ffi/ffi.dart';
 import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
@@ -26,8 +24,6 @@ class ParserFFi {
       data: source,
       parserData: parser.writeToBuffer(),
     );
-
-    File('buffer.tmp').writeAsBytesSync(req.writeToBuffer());
 
     final result = await compute(ffiParse, req);
 
