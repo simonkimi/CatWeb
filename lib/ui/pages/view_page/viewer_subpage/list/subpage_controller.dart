@@ -7,11 +7,21 @@ import 'package:catweb/utils/replace_utils.dart';
 import 'package:get/get.dart';
 
 class SubListController extends LoadMoreModel<ListRpcModel_Item> {
-  SubListController({required this.model, required this.subPageModel});
+  SubListController({
+    required this.model,
+    required this.subPageModel,
+  }) : localEnv =
+            SiteEnvModel(subPageModel != null && subPageModel.value.isNotEmpty
+                ? {
+                    subPageModel.key.value.isNotEmpty
+                        ? subPageModel.key.value
+                        : 'subKey': subPageModel.value.value,
+                  }
+                : null);
 
   final SitePageModel model;
   final SubPageModel? subPageModel;
-  final SiteEnvModel localEnv = SiteEnvModel();
+  final SiteEnvModel localEnv;
 
   final global = Get.find<GlobalController>();
 

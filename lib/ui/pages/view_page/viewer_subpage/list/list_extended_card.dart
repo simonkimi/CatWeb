@@ -25,31 +25,28 @@ class ListExtendedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(1, 1),
+              blurRadius: 2,
+            ),
+          ],
+        ),
         child: Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black12,
-                offset: Offset(0.5, 0.5),
-                blurRadius: 1,
-              ),
-            ],
-          ),
-          child: Container(
-            color: isDarkMode(context)
-                ? CupertinoColors.systemGrey6.darkColor
-                : CupertinoColors.systemBackground,
-            child: IntrinsicHeight(
-              child: Row(
-                children: [
-                  if (model.hasPreviewImg()) _buildLeftImage(),
-                  _buildRightInfo(context),
-                ],
-              ),
+          color: isDarkMode(context)
+              ? FixColor.groupedColor.resolveFrom(context)
+              : CupertinoColors.systemBackground,
+          child: IntrinsicHeight(
+            child: Row(
+              children: [
+                if (model.hasPreviewImg()) _buildLeftImage(),
+                _buildRightInfo(context),
+              ],
             ),
           ),
         ),

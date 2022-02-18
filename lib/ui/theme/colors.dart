@@ -24,12 +24,20 @@ class FixColor {
   static const CupertinoDynamicColor navigationBarBackground =
       CupertinoDynamicColor.withBrightness(
     color: Color.fromARGB(200, 255, 255, 255),
-    darkColor: Color.fromARGB(180, 20, 20, 20),
+    darkColor: Color.fromARGB(180, 30, 30, 30),
   );
 
   static const CupertinoDynamicColor groupedColor =
       CupertinoDynamicColor.withBrightness(
-          color: Color(0xfff5f5f7), darkColor: Color(0xff333336));
+    color: Color(0xffeeeeee),
+    darkColor: Color(0xff171717),
+  );
+
+  static const CupertinoDynamicColor scaffoldBackgroundColor =
+      CupertinoDynamicColor.withBrightness(
+    color: Color(0xfff9f9f9),
+    darkColor: Color(0xff0d0d0d),
+  );
 }
 
 bool isDarkMode(BuildContext context) =>

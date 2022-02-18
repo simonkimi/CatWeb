@@ -18,6 +18,6 @@ Color cupertinoLightColors(BuildContext context, int index) {
 CupertinoThemeData defaultTheme() => const CupertinoThemeData(
       primaryColor: CupertinoColors.systemBlue,
       primaryContrastingColor: CupertinoColors.white,
-      scaffoldBackgroundColor: CupertinoColors.systemBackground,
+      scaffoldBackgroundColor: FixColor.scaffoldBackgroundColor,
       barBackgroundColor: FixColor.navigationBarBackground,
     );

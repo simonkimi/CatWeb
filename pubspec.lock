@@ -207,12 +207,10 @@ packages:
   dio_cache_interceptor_db_store:
     dependency: "direct main"
     description:
-      path: dio_cache_interceptor_db_store
-      ref: HEAD
-      resolved-ref: afbd36b035423061622ed5e08601845438abbd79
-      url: "https://github.com/simonkimi/dio_cache_interceptor"
-    source: git
-    version: "4.1.0"
+      name: dio_cache_interceptor_db_store
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.1.1"
   dio_http_formatter:
     dependency: "direct main"
     description:

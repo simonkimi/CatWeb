@@ -31,7 +31,7 @@ class ViewerPage extends StatelessWidget {
       case Template.TEMPLATE_IMAGE_LIST:
         return ViewerListFragment(
           target: target,
-          hasToolBar: model == false,
+          hasToolBar: model != null,
         );
       case Template.TEMPLATE_DETAIL:
         return ViewerDetailFragment(

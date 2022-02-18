@@ -16,101 +16,98 @@ class RulesAdvance extends GetView<RulesEditController> {
   Widget build(BuildContext context) {
     final headerController = SwipeActionController();
     final cookieController = SwipeActionController();
-    return ColoredBox(
-      color: CupertinoColors.systemGroupedBackground.resolveFrom(context),
-      child: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        children: [
-          _buildSubTitle(context, 'Headers'),
-          Container(
-            decoration: BoxDecoration(
-              color: CupertinoColors.systemBackground.resolveFrom(context),
-              border: Border.symmetric(
-                  horizontal: BorderSide(
-                width: 0.4,
-                color: CupertinoColors.separator.resolveFrom(context),
-              )),
-            ),
-            child: Column(
-              children: [
-                Obx(() => Column(
-                      children: controller.siteConfigModel.headers
-                          .asMap()
-                          .entries
-                          .map((e) {
-                        return Obx(() => CupertinoDeletableTile(
-                            index: e.key,
-                            controller: headerController,
-                            text: '${e.value.reg}: ${e.value.value}',
-                            onDelete: (index) {
-                              controller.siteConfigModel.headers
-                                  .removeAt(index);
-                            },
-                            onTap: () => _editRegField(context, e.value)));
-                      }).toList(),
-                    )),
-                CupertinoClassicalListTile(
-                  icon: Icon(
-                    CupertinoIcons.add_circled_solid,
-                    color: CupertinoColors.systemGreen.resolveFrom(context),
-                  ),
-                  text: '添加',
-                  onTap: () {
-                    controller.siteConfigModel.headers.add(
-                      RegFieldModel(RegField(reg: '*', value: '')),
-                    );
-                  },
-                ),
-              ],
-            ),
+    return ListView(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      children: [
+        _buildSubTitle(context, 'Headers'),
+        Container(
+          decoration: BoxDecoration(
+            color: CupertinoColors.systemBackground.resolveFrom(context),
+            border: Border.symmetric(
+                horizontal: BorderSide(
+                  width: 0.4,
+                  color: CupertinoColors.separator.resolveFrom(context),
+                )),
           ),
-          const SizedBox(height: 20),
-          _buildSubTitle(context, 'Cookies'),
-          Container(
-            decoration: BoxDecoration(
-              color: CupertinoColors.systemBackground.resolveFrom(context),
-              border: Border.symmetric(
-                  horizontal: BorderSide(
-                width: 0.4,
-                color: CupertinoColors.separator.resolveFrom(context),
+          child: Column(
+            children: [
+              Obx(() => Column(
+                children: controller.siteConfigModel.headers
+                    .asMap()
+                    .entries
+                    .map((e) {
+                  return Obx(() => CupertinoDeletableTile(
+                      index: e.key,
+                      controller: headerController,
+                      text: '${e.value.reg}: ${e.value.value}',
+                      onDelete: (index) {
+                        controller.siteConfigModel.headers
+                            .removeAt(index);
+                      },
+                      onTap: () => _editRegField(context, e.value)));
+                }).toList(),
               )),
-            ),
-            child: Column(
-              children: [
-                Obx(() => Column(
-                      children: controller.siteConfigModel.cookies
-                          .asMap()
-                          .entries
-                          .map((e) {
-                        return Obx(() => CupertinoDeletableTile(
-                            index: e.key,
-                            controller: cookieController,
-                            text:
-                                '${e.value.reg.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
-                            onDelete: (index) {
-                              controller.siteConfigModel.cookies
-                                  .removeAt(index);
-                            },
-                            onTap: () => _editRegField(context, e.value)));
-                      }).toList(),
-                    )),
-                CupertinoClassicalListTile(
-                  icon: Icon(
-                    CupertinoIcons.add_circled_solid,
-                    color: CupertinoColors.systemGreen.resolveFrom(context),
-                  ),
-                  text: '添加',
-                  onTap: () {
-                    controller.siteConfigModel.cookies.add(
-                      RegFieldModel(RegField(reg: '', value: '')),
-                    );
-                  },
+              CupertinoClassicalListTile(
+                icon: Icon(
+                  CupertinoIcons.add_circled_solid,
+                  color: CupertinoColors.systemGreen.resolveFrom(context),
                 ),
-              ],
-            ),
+                text: '添加',
+                onTap: () {
+                  controller.siteConfigModel.headers.add(
+                    RegFieldModel(RegField(reg: '*', value: '')),
+                  );
+                },
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 20),
+        _buildSubTitle(context, 'Cookies'),
+        Container(
+          decoration: BoxDecoration(
+            color: CupertinoColors.systemBackground.resolveFrom(context),
+            border: Border.symmetric(
+                horizontal: BorderSide(
+                  width: 0.4,
+                  color: CupertinoColors.separator.resolveFrom(context),
+                )),
+          ),
+          child: Column(
+            children: [
+              Obx(() => Column(
+                children: controller.siteConfigModel.cookies
+                    .asMap()
+                    .entries
+                    .map((e) {
+                  return Obx(() => CupertinoDeletableTile(
+                      index: e.key,
+                      controller: cookieController,
+                      text:
+                      '${e.value.reg.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
+                      onDelete: (index) {
+                        controller.siteConfigModel.cookies
+                            .removeAt(index);
+                      },
+                      onTap: () => _editRegField(context, e.value)));
+                }).toList(),
+              )),
+              CupertinoClassicalListTile(
+                icon: Icon(
+                  CupertinoIcons.add_circled_solid,
+                  color: CupertinoColors.systemGreen.resolveFrom(context),
+                ),
+                text: '添加',
+                onTap: () {
+                  controller.siteConfigModel.cookies.add(
+                    RegFieldModel(RegField(reg: '', value: '')),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 

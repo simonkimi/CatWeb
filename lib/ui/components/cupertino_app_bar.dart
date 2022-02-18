@@ -121,10 +121,12 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
         filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
         child: Container(
           decoration: BoxDecoration(
-            border: const Border(
+            border: Border(
               bottom: BorderSide(
-                color: Color(0x4D000000),
-                width: 0.0,
+                color: isDarkMode(context)
+                    ? const Color(0xff2b2b2b)
+                    : const Color(0x4d000000),
+                width: 0.3,
               ),
             ),
             color: widget.backgroundColor ??

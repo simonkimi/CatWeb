@@ -40,17 +40,22 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
   Widget build(BuildContext context) {
     super.build(context);
     return AppBarScrollNotifier(
-      child: SmartRefresher(
-        controller: controller.refreshController,
-        enablePullDown: false,
-        enablePullUp: true,
-        onLoading: () => controller.onLoadMore(),
-        footer: _buildIndicator(context),
-        child: CustomScrollView(
-          slivers: [
-            _buildPullRefresh(context),
-            _buildBody(context),
-          ],
+      child: CupertinoScrollbar(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: SmartRefresher(
+            controller: controller.refreshController,
+            enablePullDown: false,
+            enablePullUp: true,
+            onLoading: () => controller.onLoadMore(),
+            footer: _buildIndicator(context),
+            child: CustomScrollView(
+              slivers: [
+                _buildPullRefresh(context),
+                _buildBody(context),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -89,16 +94,19 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
         delegate: SliverChildBuilderDelegate(
           (context, index) {
             final model = controller.items[index];
-            return ListExtendedCard(
-              model: model,
-              concurrency: concurrency,
-              onTap: () {
-                pushNewPage(
-                  to: controller.model.listItemTarget.value,
-                  envModel: SiteEnvModel(model.env),
-                  model: model,
-                );
-              },
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 2.5),
+              child: ListExtendedCard(
+                model: model,
+                concurrency: concurrency,
+                onTap: () {
+                  pushNewPage(
+                    to: controller.model.listItemTarget.value,
+                    envModel: SiteEnvModel(model.env),
+                    model: model,
+                  );
+                },
+              ),
             );
           },
           childCount: controller.items.length,
@@ -110,57 +118,55 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
   Widget _buildIndicator(BuildContext context) {
     return CustomFooter(
       height: 50 + (widget.hasToolBar ? kBottomBarHeight : 0),
-      builder: _buildFootState,
+      builder: (BuildContext context, LoadStatus? state) {
+        switch (state) {
+          case null:
+          case LoadStatus.canLoading:
+          case LoadStatus.idle:
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  CupertinoIcons.arrow_down,
+                  size: 18,
+                  color: CupertinoColors.label.resolveFrom(context),
+                ),
+                const SizedBox(width: 10),
+                const Text('不要停下来啊!', style: TextStyle(fontSize: 15)),
+              ],
+            );
+          case LoadStatus.loading:
+            return SizedBox(
+              height: kBottomBarHeight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  CupertinoActivityIndicator(),
+                  SizedBox(width: 10),
+                  Text('努力加载中...', style: TextStyle(fontSize: 15)),
+                ],
+              ),
+            );
+          case LoadStatus.noMore:
+            return const SizedBox(
+              height: kBottomBarHeight,
+              child: Center(
+                child: Text('真的一点也没有了...', style: TextStyle(fontSize: 15)),
+              ),
+            );
+          case LoadStatus.failed:
+            return SizedBox(
+              height: kBottomBarHeight,
+              child: Center(
+                child: Text(controller.errorMessage ?? '',
+                    style: const TextStyle(fontSize: 15)),
+              ),
+            );
+        }
+      },
     );
-  }
-
-  Widget _buildFootState(BuildContext context, LoadStatus? state) {
-    switch (state) {
-      case null:
-      case LoadStatus.canLoading:
-      case LoadStatus.idle:
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              CupertinoIcons.arrow_down,
-              size: 18,
-              color: CupertinoColors.label.resolveFrom(context),
-            ),
-            const SizedBox(width: 10),
-            const Text('不要停下来啊!', style: TextStyle(fontSize: 15)),
-          ],
-        );
-      case LoadStatus.loading:
-        return SizedBox(
-          height: kBottomBarHeight,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              CupertinoActivityIndicator(),
-              SizedBox(width: 10),
-              Text('努力加载中...', style: TextStyle(fontSize: 15)),
-            ],
-          ),
-        );
-      case LoadStatus.noMore:
-        return const SizedBox(
-          height: kBottomBarHeight,
-          child: Center(
-            child: Text('真的一点也没有了...', style: TextStyle(fontSize: 15)),
-          ),
-        );
-      case LoadStatus.failed:
-        return SizedBox(
-          height: kBottomBarHeight,
-          child: Center(
-            child: Text(controller.errorMessage ?? '',
-                style: const TextStyle(fontSize: 15)),
-          ),
-        );
-    }
   }
 
   @override
