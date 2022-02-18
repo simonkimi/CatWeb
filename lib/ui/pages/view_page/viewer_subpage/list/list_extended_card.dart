@@ -155,20 +155,37 @@ class ListExtendedCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            if (model.hasPaper())
-              Text(
-                '${model.imgCount}P',
-                style: TextStyle(
-                    fontSize: 12.5,
-                    color: CupertinoColors.secondaryLabel.resolveFrom(context)),
-              ),
-            if (model.hasLanguage())
-              Text(
-                model.language,
-                style: TextStyle(
-                    fontSize: 12.5,
-                    color: CupertinoColors.secondaryLabel.resolveFrom(context)),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (model.hasLanguage())
+                  Text(
+                    model.language,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      height: 1.1,
+                      color:
+                          CupertinoColors.secondaryLabel.resolveFrom(context),
+                    ),
+                  ),
+                if (model.hasImgCount())
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      '${model.imgCount}P',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12.5,
+                        color:
+                            CupertinoColors.secondaryLabel.resolveFrom(context),
+                        height: 1.1,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
             if (model.hasUploadTime())
               Text(
                 model.uploadTime,
