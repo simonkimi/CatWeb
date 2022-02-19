@@ -17,15 +17,15 @@ class ParserFFi {
   final RpcType type;
   final SiteEnvModel env;
 
-  Future<List<int>> send() async {
-    final req = RpcRequest(
-      type: type,
-      env: env.env,
-      data: source,
-      parserData: parser.writeToBuffer(),
-    );
+  RpcRequest get request => RpcRequest(
+        type: type,
+        env: env.env,
+        data: source,
+        parserData: parser.writeToBuffer(),
+      );
 
-    final result = await compute(ffiParse, req);
+  Future<List<int>> send() async {
+    final result = await compute(ffiParse, request);
 
     if (result.hasError() && result.error.isNotEmpty) {
       throw Exception(result.error);

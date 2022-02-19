@@ -18,9 +18,11 @@ void main() async {
     type: RpcType.RPC_TYPE_GALLERY_PARSER,
   );
 
+  File('./test/buffer.tmp').writeAsBytesSync(req.request.writeToBuffer());
+
   final buffer = await req.send();
 
   final model = DetailRpcModel.fromBuffer(buffer);
-  print(model.description);
+  print(model.title);
   line.getRunTime();
 }
