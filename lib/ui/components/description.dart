@@ -50,7 +50,11 @@ class DescriptionWidget extends StatelessWidget {
       text: _text,
       overflow: TextOverflow.ellipsis,
       maxLines: 3,
+      options: const LinkifyOptions(
+        looseUrl: true,
+      ),
       style: TextStyle(
+        height: 1.1,
         fontSize: 14,
         color: FixColor.title.resolveFrom(context),
       ),
@@ -75,12 +79,13 @@ class DescriptionWidget extends StatelessWidget {
           },
           child: Container(
             width: 100,
-            height: 14,
+            height: 15,
             color: CupertinoTheme.of(context).scaffoldBackgroundColor,
           ),
         ),
         const Positioned(
-          right: 1,
+          right: 0,
+          bottom: 0,
           child: Text(
             '更多',
             style: TextStyle(

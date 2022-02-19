@@ -9,7 +9,7 @@ import 'package:catweb/utils/time_line.dart';
 void main() async {
   final line = TimeLine();
   line.startTimer();
-  final file = File('./test/html/favourite.htm').readAsStringSync();
+  final file = File('./test/html/list.html').readAsStringSync();
 
   final req = ParserFFi(
     source: file,
@@ -22,7 +22,7 @@ void main() async {
 
   final model = ListRpcModel.fromBuffer(buffer);
   for (final m in model.items) {
-    print(m.tag);
+    print('${m.hasStar()} ${m.star}');
   }
   line.getRunTime();
 }

@@ -296,7 +296,10 @@ class ViewerDetailFragment extends StatelessWidget {
     return CupertinoButton(
       child: const Text(
         '阅读',
-        style: TextStyle(fontSize: 13),
+        style: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       color: CupertinoColors.systemBlue,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),

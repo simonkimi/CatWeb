@@ -139,95 +139,96 @@ class ListExtendedCard extends StatelessWidget {
     );
   }
 
-  Row _buildTile(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (model.hasStar()) _buildStar(context),
-            if (model.hasTag()) _buildTag(context),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                if (model.hasLanguage())
-                  Text(
-                    model.language,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12.5,
-                      height: 1.1,
-                      color:
-                          CupertinoColors.secondaryLabel.resolveFrom(context),
-                    ),
-                  ),
-                if (model.hasImgCount())
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5),
-                    child: Text(
-                      '${model.imgCount}P',
+  Widget _buildTile(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 3),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (model.hasStar()) _buildStar(context),
+              if (model.hasTag()) _buildTag(context),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  if (model.hasLanguage())
+                    Text(
+                      model.language,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 12.5,
+                        height: 1.1,
                         color:
                             CupertinoColors.secondaryLabel.resolveFrom(context),
-                        height: 1.1,
                       ),
                     ),
-                  ),
-              ],
-            ),
-            if (model.hasUploadTime())
-              Text(
-                model.uploadTime,
-                style: TextStyle(
-                  fontSize: 12.5,
-                  color: CupertinoColors.secondaryLabel.resolveFrom(context),
-                ),
+                  if (model.hasImgCount())
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Text(
+                        '${model.imgCount}P',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12.5,
+                          color: CupertinoColors.secondaryLabel
+                              .resolveFrom(context),
+                          height: 1.1,
+                        ),
+                      ),
+                    ),
+                ],
               ),
-          ],
-        )
-      ],
+              if (model.hasUploadTime())
+                Text(
+                  model.uploadTime,
+                  style: TextStyle(
+                    fontSize: 12.5,
+                    color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                  ),
+                ),
+            ],
+          )
+        ],
+      ),
     );
   }
 
   Widget _buildStar(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 2),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          RatingBar.builder(
-            itemSize: 16,
-            ignoreGestures: true,
-            initialRating: model.star,
-            onRatingUpdate: (value) {},
-            itemBuilder: (BuildContext context, int index) {
-              return const Icon(
-                Icons.star,
-                color: Colors.amber,
-              );
-            },
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        RatingBar.builder(
+          itemSize: 16,
+          ignoreGestures: true,
+          initialRating: model.star,
+          onRatingUpdate: (value) {},
+          itemBuilder: (BuildContext context, int index) {
+            return const Icon(
+              Icons.star,
+              color: Colors.amber,
+            );
+          },
+        ),
+        const SizedBox(width: 5),
+        Text(
+          model.star.toString(),
+          style: TextStyle(
+            fontSize: 12,
+            color: FixColor.title.resolveFrom(context),
           ),
-          const SizedBox(width: 5),
-          Text(
-            model.star.toString(),
-            style: TextStyle(
-              fontSize: 12,
-              color: FixColor.title.resolveFrom(context),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

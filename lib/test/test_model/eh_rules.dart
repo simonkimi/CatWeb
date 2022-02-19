@@ -56,7 +56,7 @@ final ehTestSite = SiteConfig(
     ),
     SitePage(
       name: '收藏',
-      url: r'favorites.php?page={page:0}${favcat:favcat={favcat}}',
+      url: r'favorites.php?page={page:0}${favcat:&favcat={favcat}}',
       parser: commonListUuid,
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,

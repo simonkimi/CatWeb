@@ -16,9 +16,9 @@ class FixColor {
     darkColor: Color(0xdeffffff),
   );
 
-  static CupertinoDynamicColor badge = CupertinoDynamicColor.withBrightness(
-    color: CupertinoColors.systemGrey6.color,
-    darkColor: CupertinoColors.systemGrey4.darkColor,
+  static CupertinoDynamicColor badge = const CupertinoDynamicColor.withBrightness(
+    color: Color(0xfff2f1f6),
+    darkColor: Color(0xff1c1c1e),
   );
 
   static const CupertinoDynamicColor navigationBarBackground =
