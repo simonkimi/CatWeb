@@ -168,15 +168,6 @@ Future<T?> showSelectDialog<T>({
       });
 }
 
-Future<bool> showExitConferDialog(BuildContext context) async {
-  return (await showCupertinoConfirmDialog(
-        context: context,
-        title: '退出',
-        content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
-      )) ==
-      true;
-}
-
 Future<String?> showCupertinoIconDialog(BuildContext context) async {
   var filter = '';
   return showCupertinoDialog(

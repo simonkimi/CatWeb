@@ -4,6 +4,7 @@ import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
+import 'package:catweb/ui/components/description.dart';
 import 'package:catweb/ui/components/icon_text.dart';
 import 'package:catweb/ui/components/image_loader.dart';
 import 'package:catweb/ui/theme/colors.dart';
@@ -14,7 +15,6 @@ import 'package:catweb/data/protocol/model/model.dart';
 
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'detail_controller.dart';
 import 'package:get/get.dart';
@@ -344,83 +344,13 @@ class ViewerDetailFragment extends StatelessWidget {
     if (!(c.detailModel?.hasDescription() ?? false)) return const SizedBox();
 
     final description = c.detailModel!.description;
-    final text = description.replaceAll(RegExp(r'\n{2,}'), '\n');
-
-    final textStyle = TextStyle(
-      fontSize: 14,
-      color: FixColor.text.resolveFrom(context),
-    );
-
-    final overflow = (TextPainter(
-      maxLines: 5,
-      textDirection: TextDirection.ltr,
-      text: TextSpan(
-        text: text,
-        style: textStyle,
-      ),
-    )..layout(maxWidth: MediaQuery.of(context).size.width - 20))
-        .didExceedMaxLines;
 
     return Padding(
       padding: const EdgeInsets.only(top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              Linkify(
-                text: text,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 5,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: FixColor.title.resolveFrom(context),
-                ),
-              ),
-              if (overflow)
-                Positioned(
-                  right: 1,
-                  bottom: 1,
-                  child: Stack(
-                    children: [
-                      ShaderMask(
-                        shaderCallback: (bounds) {
-                          return LinearGradient(colors: [
-                            CupertinoColors.systemBackground
-                                .resolveFrom(context)
-                                .withOpacity(0),
-                            CupertinoColors.systemBackground
-                                .resolveFrom(context),
-                            CupertinoColors.systemBackground
-                                .resolveFrom(context),
-                          ], stops: const [
-                            0,
-                            0.65,
-                            1
-                          ]).createShader(bounds);
-                        },
-                        child: Container(
-                          width: 100,
-                          height: 20,
-                          color: CupertinoColors.systemBackground
-                              .resolveFrom(context),
-                        ),
-                      ),
-                      const Positioned(
-                        right: 1,
-                        child: Text(
-                          '更多',
-                          style: TextStyle(
-                            color: CupertinoColors.activeBlue,
-                            fontSize: 14,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-            ],
-          ),
+          DescriptionWidget(text: description),
           const SizedBox(height: 15),
           Text(
             c.detailModel?.subtitle ?? c.baseData?.subtitle ?? '',

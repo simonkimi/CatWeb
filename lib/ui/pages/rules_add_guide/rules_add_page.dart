@@ -71,6 +71,7 @@ class RulesEditPage extends StatelessWidget {
           context: context,
           title: '退出',
           content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
+          showCancel: true,
         )) ==
         true;
   }
