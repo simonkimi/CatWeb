@@ -7,6 +7,7 @@ import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/description.dart';
 import 'package:catweb/ui/components/icon_text.dart';
 import 'package:catweb/ui/components/image_loader.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/detail/comment_item.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/utils/utils.dart';
@@ -15,7 +16,6 @@ import 'package:catweb/data/protocol/model/model.dart';
 
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'detail_controller.dart';
 import 'package:get/get.dart';
@@ -126,14 +126,15 @@ class ViewerDetailFragment extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (e.key != '_')
+                if (e.key != '_') ...[
                   Badge(
                     text: e.key,
                     color: cupertinoLightColors(
                             context, tagMaps.keys.toList().indexOf(e.key))
                         .withOpacity(0.5),
                   ),
-                if (e.key != '_') const SizedBox(width: 10),
+                  const SizedBox(width: 10),
+                ],
                 Expanded(
                   child: Wrap(
                     spacing: 5,
@@ -401,56 +402,7 @@ class ViewerDetailFragment extends StatelessWidget {
           children: c.detailModel!.comments.map((e) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: FixColor.groupedColor.resolveFrom(context),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          e.username,
-                          style: const TextStyle(
-                              color: CupertinoColors.activeBlue,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
-                        ),
-                        const Expanded(child: SizedBox()),
-                        Text(
-                          e.score,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: CupertinoColors.secondaryLabel
-                                .resolveFrom(context),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 5),
-                    Linkify(
-                      text: e.content,
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: FixColor.title.resolveFrom(context),
-                      ),
-                      onOpen: (value) {},
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      e.time,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color:
-                            CupertinoColors.secondaryLabel.resolveFrom(context),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              child: CommentItem(model: e),
             );
           }).toList(),
         )
