@@ -62,7 +62,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
         padding: EdgeInsets.zero,
         minSize: 0,
       ),
-      middle: const Text('Javascript脚本'),
+      middle: const Text('脚本'),
       border: const Border(),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,

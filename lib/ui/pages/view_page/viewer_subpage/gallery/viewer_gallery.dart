@@ -85,18 +85,33 @@ class ViewerGalleryFragment extends StatelessWidget {
   }
 
   Widget _buildPreviewList(BuildContext context) {
-    return SizedBox(
-      height: 150,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: c.items.length,
-        itemBuilder: (context, index) {
-          return Container(
-            color: Colors.red,
-            width: 100,
-          );
-        },
-      ),
+    return Column(
+      children: [
+        SizedBox(
+          height: 150,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: c.items.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 3),
+                child: AspectRatio(
+                  aspectRatio: 200 / 282,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: ImageLoader(
+                      concurrency: c.concurrency,
+                      model: c.items[index],
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 10),
+        const CupertinoDivider(),
+      ],
     );
   }
 

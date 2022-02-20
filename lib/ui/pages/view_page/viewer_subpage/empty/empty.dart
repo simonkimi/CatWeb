@@ -1,4 +1,5 @@
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
+import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -50,7 +51,7 @@ class EmptyFragment extends StatelessWidget {
                 )
               ],
             ),
-            color: CupertinoColors.systemGrey6,
+            color: FixColor.groupedColor,
           ),
         ),
         Center(

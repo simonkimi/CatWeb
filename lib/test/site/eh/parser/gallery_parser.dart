@@ -144,5 +144,4 @@ final ehGalleryParser = GalleryParser(
     script:
         "function hook(t){var row=t.split('|')[0];var column=t.split('|')[1];return parseInt(row)*{'L':5,'N':10}[column]}",
   ),
-  extraSelector: [],
 );

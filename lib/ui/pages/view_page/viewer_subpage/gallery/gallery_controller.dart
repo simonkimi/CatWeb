@@ -3,6 +3,7 @@ import 'package:catweb/data/models/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:get/get.dart';
 
@@ -38,13 +39,17 @@ class GalleryPreviewController extends LoadMoreModel<ImageRpcModel> {
     onLoadMore();
   }
 
-  final global = Get.find<GlobalController>();
   final SitePageModel target;
   final SiteEnvModel localEnv;
 
   // 信息
   final Rx<GalleryRpcModel?> _detailModel;
   GalleryBaseData? baseData;
+
+  final global = Get.find<GlobalController>();
+  late final ImageConcurrency concurrency = ImageConcurrency(
+    dio: global.website.client.imageDio,
+  );
 
   @override
   bool isItemExist(ImageRpcModel item) => false;

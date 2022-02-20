@@ -2,6 +2,8 @@ import 'dart:typed_data';
 
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_loader.dart';
+import 'package:catweb/utils/utils.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -89,7 +91,61 @@ class _ImageLoaderState extends State<ImageLoader> {
   }
 
   Widget _defaultImageBuilder(BuildContext context, Uint8List imgData) {
-    return Hero(tag: widget.model.url, child: Image.memory(imgData));
+    final model = widget.model;
+
+    late Widget child;
+
+    if ((!model.imgX.isNaN || !model.imgY.isNaN) &&
+        model.hasWidth() &&
+        model.hasHeight()) {
+      child = ExtendedImage(
+        width: model.width.nan2null,
+        height: model.height.nan2null,
+        image: MemoryImage(imgData),
+        loadStateChanged: (state) {
+          if (state.extendedImageLoadState == LoadState.completed) {
+            final img = ExtendedRawImage(
+              image: state.extendedImageInfo?.image,
+              width: model.width,
+              height: model.height,
+              fit: BoxFit.fill,
+              sourceRect: Rect.fromLTWH(
+                model.imgX.nan2zero,
+                model.imgY.nan2zero,
+                model.width,
+                model.height,
+              ),
+              scale: 0.2,
+            );
+
+            if (!model.width.isNaN && !model.height.isNaN) {
+              return AspectRatio(
+                aspectRatio: model.width / model.height,
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: img,
+                ),
+              );
+            }
+            return img;
+          }
+          return null;
+        },
+      );
+    } else {
+      child = Hero(
+        tag: widget.model.url,
+        child: Image.memory(imgData),
+      );
+    }
+
+    // if (model.hasWidth() && model.hasHeight()) {
+    //   return AspectRatio(
+    //     aspectRatio: model.width / model.height,
+    //     child: child,
+    //   );
+    // }
+    return child;
   }
 
   Widget _defaultLoadingBuilder(BuildContext context, double progress) {

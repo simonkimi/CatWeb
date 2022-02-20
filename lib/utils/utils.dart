@@ -80,3 +80,9 @@ extension RpcColor on ColorRpcModel {
 extension THas<T> on T {
   T? has(bool Function()? has) => (has?.call() ?? false) ? this : null;
 }
+
+extension UnWrap on core.double {
+  double get nan2zero => isNaN ? 0 : this;
+
+  double? get nan2null => isNaN ? 0 : this;
+}

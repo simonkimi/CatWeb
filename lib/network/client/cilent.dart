@@ -76,9 +76,9 @@ class NetClient {
 Dio _buildDio(SiteConfigModel model, [bool log = false]) {
   final dio = Dio();
 
-  dio.options.connectTimeout = 10 * 1000;
+  dio.options.connectTimeout = 60 * 1000;
   dio.options.receiveTimeout = 60 * 1000;
-  dio.options.sendTimeout = 10 * 1000;
+  dio.options.sendTimeout = 60 * 1000;
 
   if (model.baseUrl.value.isNotEmpty) {
     dio.options.baseUrl = model.baseUrl.value;
