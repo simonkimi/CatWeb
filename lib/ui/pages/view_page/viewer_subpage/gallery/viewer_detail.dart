@@ -7,7 +7,6 @@ import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/description.dart';
 import 'package:catweb/ui/components/icon_text.dart';
 import 'package:catweb/ui/components/image_loader.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/detail/comment_item.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/utils/utils.dart';
@@ -17,6 +16,7 @@ import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'comment_item.dart';
 import 'detail_controller.dart';
 import 'package:get/get.dart';
 

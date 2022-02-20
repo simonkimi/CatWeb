@@ -53,7 +53,7 @@ message ListRpcModel {
   map<string, string> globalEnv = 11;
 }
 
-message DetailRpcModel {
+message GalleryRpcModel {
   message Badge {
     string text = 1;
     string category = 2;

@@ -6,7 +6,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 class CommentItem extends StatelessWidget {
   const CommentItem({Key? key, required this.model}) : super(key: key);
 
-  final DetailRpcModel_Comment model;
+  final GalleryRpcModel_Comment model;
 
   @override
   Widget build(BuildContext context) {

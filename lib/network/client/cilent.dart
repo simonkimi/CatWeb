@@ -50,7 +50,7 @@ class NetClient {
     return result;
   }
 
-  Future<DetailRpcModel> getDetail({
+  Future<GalleryRpcModel> getGallery({
     required String url,
     required SitePageModel model,
     required SiteEnvModel localEnv,
@@ -66,7 +66,7 @@ class NetClient {
       env: Get.find<GlobalController>().website.globalEnv,
       type: RpcType.RPC_TYPE_GALLERY_PARSER,
     ).send();
-    final result = DetailRpcModel.fromBuffer(buffer);
+    final result = GalleryRpcModel.fromBuffer(buffer);
     localEnv.mergeMap(result.localEnv);
     Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
     return result;

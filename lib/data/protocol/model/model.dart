@@ -4,7 +4,7 @@ import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 
-extension GetDetail on DetailRpcModel {
+extension GetDetail on GalleryRpcModel {
   String? getTitle() => hasTitle() ? title : null;
 
   String? getSubTitle() => hasSubtitle() ? subtitle : null;

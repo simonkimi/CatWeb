@@ -196,9 +196,9 @@ const ListRpcModel_GlobalEnvEntry$json = const {
 /// Descriptor for `ListRpcModel`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listRpcModelDescriptor = $convert.base64Decode(
     'CgxMaXN0UnBjTW9kZWwSKAoFaXRlbXMYASADKAsyEi5MaXN0UnBjTW9kZWwuSXRlbVIFaXRlbXMSGwoJbmV4dF9wYWdlGAIgASgJUghuZXh0UGFnZRI3Cghsb2NhbEVudhgKIAMoCzIbLkxpc3RScGNNb2RlbC5Mb2NhbEVudkVudHJ5Ughsb2NhbEVudhI6CglnbG9iYWxFbnYYCyADKAsyHC5MaXN0UnBjTW9kZWwuR2xvYmFsRW52RW50cnlSCWdsb2JhbEVudhq3AwoESXRlbRIUCgV0aXRsZRgBIAEoCVIFdGl0bGUSGgoIc3VidGl0bGUYAiABKAlSCHN1YnRpdGxlEh8KC3VwbG9hZF90aW1lGAMgASgJUgp1cGxvYWRUaW1lEhIKBHN0YXIYBCABKAFSBHN0YXISGwoJaW1nX2NvdW50GAUgASgFUghpbWdDb3VudBIvCgtwcmV2aWV3X2ltZxgGIAEoCzIOLkltYWdlUnBjTW9kZWxSCnByZXZpZXdJbWcSGgoIbGFuZ3VhZ2UYByABKAlSCGxhbmd1YWdlEh4KA3RhZxgKIAEoCzIMLlRhZ1JwY01vZGVsUgN0YWcSJAoGYmFkZ2VzGAsgAygLMgwuVGFnUnBjTW9kZWxSBmJhZGdlcxIUCgVwYXBlchgMIAEoCVIFcGFwZXISGwoJbmV4dF9wYWdlGBQgASgJUghuZXh0UGFnZRItCgNlbnYYHiADKAsyGy5MaXN0UnBjTW9kZWwuSXRlbS5FbnZFbnRyeVIDZW52GjYKCEVudkVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAEaOwoNTG9jYWxFbnZFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgBGjwKDkdsb2JhbEVudkVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAE=');
-@$core.Deprecated('Use detailRpcModelDescriptor instead')
-const DetailRpcModel$json = const {
-  '1': 'DetailRpcModel',
+@$core.Deprecated('Use galleryRpcModelDescriptor instead')
+const GalleryRpcModel$json = const {
+  '1': 'GalleryRpcModel',
   '2': const [
     const {'1': 'title', '3': 1, '4': 1, '5': 9, '10': 'title'},
     const {'1': 'subtitle', '3': 2, '4': 1, '5': 9, '10': 'subtitle'},
@@ -237,7 +237,7 @@ const DetailRpcModel$json = const {
       '3': 21,
       '4': 3,
       '5': 11,
-      '6': '.DetailRpcModel.Badge',
+      '6': '.GalleryRpcModel.Badge',
       '10': 'badges'
     },
     const {
@@ -245,7 +245,7 @@ const DetailRpcModel$json = const {
       '3': 22,
       '4': 3,
       '5': 11,
-      '6': '.DetailRpcModel.Comment',
+      '6': '.GalleryRpcModel.Comment',
       '10': 'comments'
     },
     const {
@@ -253,7 +253,7 @@ const DetailRpcModel$json = const {
       '3': 30,
       '4': 3,
       '5': 11,
-      '6': '.DetailRpcModel.LocalEnvEntry',
+      '6': '.GalleryRpcModel.LocalEnvEntry',
       '10': 'localEnv'
     },
     const {
@@ -261,20 +261,20 @@ const DetailRpcModel$json = const {
       '3': 31,
       '4': 3,
       '5': 11,
-      '6': '.DetailRpcModel.GlobalEnvEntry',
+      '6': '.GalleryRpcModel.GlobalEnvEntry',
       '10': 'globalEnv'
     },
   ],
   '3': const [
-    DetailRpcModel_Badge$json,
-    DetailRpcModel_Comment$json,
-    DetailRpcModel_LocalEnvEntry$json,
-    DetailRpcModel_GlobalEnvEntry$json
+    GalleryRpcModel_Badge$json,
+    GalleryRpcModel_Comment$json,
+    GalleryRpcModel_LocalEnvEntry$json,
+    GalleryRpcModel_GlobalEnvEntry$json
   ],
 };
 
-@$core.Deprecated('Use detailRpcModelDescriptor instead')
-const DetailRpcModel_Badge$json = const {
+@$core.Deprecated('Use galleryRpcModelDescriptor instead')
+const GalleryRpcModel_Badge$json = const {
   '1': 'Badge',
   '2': const [
     const {'1': 'text', '3': 1, '4': 1, '5': 9, '10': 'text'},
@@ -282,8 +282,8 @@ const DetailRpcModel_Badge$json = const {
   ],
 };
 
-@$core.Deprecated('Use detailRpcModelDescriptor instead')
-const DetailRpcModel_Comment$json = const {
+@$core.Deprecated('Use galleryRpcModelDescriptor instead')
+const GalleryRpcModel_Comment$json = const {
   '1': 'Comment',
   '2': const [
     const {'1': 'username', '3': 1, '4': 1, '5': 9, '10': 'username'},
@@ -301,8 +301,8 @@ const DetailRpcModel_Comment$json = const {
   ],
 };
 
-@$core.Deprecated('Use detailRpcModelDescriptor instead')
-const DetailRpcModel_LocalEnvEntry$json = const {
+@$core.Deprecated('Use galleryRpcModelDescriptor instead')
+const GalleryRpcModel_LocalEnvEntry$json = const {
   '1': 'LocalEnvEntry',
   '2': const [
     const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
@@ -311,8 +311,8 @@ const DetailRpcModel_LocalEnvEntry$json = const {
   '7': const {'7': true},
 };
 
-@$core.Deprecated('Use detailRpcModelDescriptor instead')
-const DetailRpcModel_GlobalEnvEntry$json = const {
+@$core.Deprecated('Use galleryRpcModelDescriptor instead')
+const GalleryRpcModel_GlobalEnvEntry$json = const {
   '1': 'GlobalEnvEntry',
   '2': const [
     const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
@@ -321,6 +321,6 @@ const DetailRpcModel_GlobalEnvEntry$json = const {
   '7': const {'7': true},
 };
 
-/// Descriptor for `DetailRpcModel`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List detailRpcModelDescriptor = $convert.base64Decode(
-    'Cg5EZXRhaWxScGNNb2RlbBIUCgV0aXRsZRgBIAEoCVIFdGl0bGUSGgoIc3VidGl0bGUYAiABKAlSCHN1YnRpdGxlEhoKCGxhbmd1YWdlGAMgASgJUghsYW5ndWFnZRIfCgtpbWFnZV9jb3VudBgEIAEoBVIKaW1hZ2VDb3VudBIfCgt1cGxvYWRfdGltZRgFIAEoCVIKdXBsb2FkVGltZRIkCg5jb3VudF9wcmVfcGFnZRgGIAEoBVIMY291bnRQcmVQYWdlEiAKC2Rlc2NyaXB0aW9uGAcgASgJUgtkZXNjcmlwdGlvbhISCgRzdGFyGAggASgBUgRzdGFyEi8KC3ByZXZpZXdfaW1nGAkgAygLMg4uSW1hZ2VScGNNb2RlbFIKcHJldmlld0ltZxIrCgljb3Zlcl9pbWcYCiABKAsyDi5JbWFnZVJwY01vZGVsUghjb3ZlckltZxIeCgN0YWcYFCABKAsyDC5UYWdScGNNb2RlbFIDdGFnEi0KBmJhZGdlcxgVIAMoCzIVLkRldGFpbFJwY01vZGVsLkJhZGdlUgZiYWRnZXMSMwoIY29tbWVudHMYFiADKAsyFy5EZXRhaWxScGNNb2RlbC5Db21tZW50Ughjb21tZW50cxI5Cghsb2NhbEVudhgeIAMoCzIdLkRldGFpbFJwY01vZGVsLkxvY2FsRW52RW50cnlSCGxvY2FsRW52EjwKCWdsb2JhbEVudhgfIAMoCzIeLkRldGFpbFJwY01vZGVsLkdsb2JhbEVudkVudHJ5UglnbG9iYWxFbnYaNwoFQmFkZ2USEgoEdGV4dBgBIAEoCVIEdGV4dBIaCghjYXRlZ29yeRgCIAEoCVIIY2F0ZWdvcnkakQEKB0NvbW1lbnQSGgoIdXNlcm5hbWUYASABKAlSCHVzZXJuYW1lEhgKB2NvbnRlbnQYAiABKAlSB2NvbnRlbnQSEgoEdGltZRgDIAEoCVIEdGltZRIUCgVzY29yZRgEIAEoCVIFc2NvcmUSJgoGYXZhdGFyGAUgASgLMg4uSW1hZ2VScGNNb2RlbFIGYXZhdGFyGjsKDUxvY2FsRW52RW50cnkSEAoDa2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4ARo8Cg5HbG9iYWxFbnZFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgB');
+/// Descriptor for `GalleryRpcModel`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List galleryRpcModelDescriptor = $convert.base64Decode(
+    'Cg9HYWxsZXJ5UnBjTW9kZWwSFAoFdGl0bGUYASABKAlSBXRpdGxlEhoKCHN1YnRpdGxlGAIgASgJUghzdWJ0aXRsZRIaCghsYW5ndWFnZRgDIAEoCVIIbGFuZ3VhZ2USHwoLaW1hZ2VfY291bnQYBCABKAVSCmltYWdlQ291bnQSHwoLdXBsb2FkX3RpbWUYBSABKAlSCnVwbG9hZFRpbWUSJAoOY291bnRfcHJlX3BhZ2UYBiABKAVSDGNvdW50UHJlUGFnZRIgCgtkZXNjcmlwdGlvbhgHIAEoCVILZGVzY3JpcHRpb24SEgoEc3RhchgIIAEoAVIEc3RhchIvCgtwcmV2aWV3X2ltZxgJIAMoCzIOLkltYWdlUnBjTW9kZWxSCnByZXZpZXdJbWcSKwoJY292ZXJfaW1nGAogASgLMg4uSW1hZ2VScGNNb2RlbFIIY292ZXJJbWcSHgoDdGFnGBQgASgLMgwuVGFnUnBjTW9kZWxSA3RhZxIuCgZiYWRnZXMYFSADKAsyFi5HYWxsZXJ5UnBjTW9kZWwuQmFkZ2VSBmJhZGdlcxI0Cghjb21tZW50cxgWIAMoCzIYLkdhbGxlcnlScGNNb2RlbC5Db21tZW50Ughjb21tZW50cxI6Cghsb2NhbEVudhgeIAMoCzIeLkdhbGxlcnlScGNNb2RlbC5Mb2NhbEVudkVudHJ5Ughsb2NhbEVudhI9CglnbG9iYWxFbnYYHyADKAsyHy5HYWxsZXJ5UnBjTW9kZWwuR2xvYmFsRW52RW50cnlSCWdsb2JhbEVudho3CgVCYWRnZRISCgR0ZXh0GAEgASgJUgR0ZXh0EhoKCGNhdGVnb3J5GAIgASgJUghjYXRlZ29yeRqRAQoHQ29tbWVudBIaCgh1c2VybmFtZRgBIAEoCVIIdXNlcm5hbWUSGAoHY29udGVudBgCIAEoCVIHY29udGVudBISCgR0aW1lGAMgASgJUgR0aW1lEhQKBXNjb3JlGAQgASgJUgVzY29yZRImCgZhdmF0YXIYBSABKAsyDi5JbWFnZVJwY01vZGVsUgZhdmF0YXIaOwoNTG9jYWxFbnZFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgBGjwKDkdsb2JhbEVudkVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAE=');

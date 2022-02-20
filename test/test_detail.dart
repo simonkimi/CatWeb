@@ -20,7 +20,7 @@ void main() async {
 
   final buffer = await req.send();
 
-  final model = DetailRpcModel.fromBuffer(buffer);
+  final model = GalleryRpcModel.fromBuffer(buffer);
   print(model.description);
   line.getRunTime();
 }

@@ -31,7 +31,7 @@ class DetailPreviewController extends LoadMoreModel<ImageRpcModel> {
     required this.target,
     SiteEnvModel? outerEnv,
     Object? base,
-    DetailRpcModel? detailModel,
+    GalleryRpcModel? detailModel,
   })  : localEnv = SiteEnvModel(outerEnv?.env),
         baseData = DetailPreviewController.fromModel(base),
         _detailModel = Rx(detailModel) {
@@ -43,20 +43,20 @@ class DetailPreviewController extends LoadMoreModel<ImageRpcModel> {
   final SiteEnvModel localEnv;
 
   // 信息
-  final Rx<DetailRpcModel?> _detailModel;
+  final Rx<GalleryRpcModel?> _detailModel;
   DetailBaseData? baseData;
 
   @override
   bool isItemExist(ImageRpcModel item) => items.contains(item);
 
-  DetailRpcModel? get detailModel => _detailModel.value;
+  GalleryRpcModel? get detailModel => _detailModel.value;
 
   @override
   Future<List<ImageRpcModel>> loadPage(int page) async {
     var baseUrl = target.url.value;
     baseUrl = localEnv.replace(pageReplace(baseUrl, page));
 
-    final detail = await global.website.client.getDetail(
+    final detail = await global.website.client.getGallery(
       url: baseUrl,
       model: target,
       localEnv: localEnv,

@@ -834,11 +834,11 @@ class ListRpcModel extends $pb.GeneratedMessage {
   $core.Map<$core.String, $core.String> get globalEnv => $_getMap(3);
 }
 
-class DetailRpcModel_Badge extends $pb.GeneratedMessage {
+class GalleryRpcModel_Badge extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
-          : 'DetailRpcModel.Badge',
+          : 'GalleryRpcModel.Badge',
       createEmptyInstance: create)
     ..aOS(
         1,
@@ -852,8 +852,8 @@ class DetailRpcModel_Badge extends $pb.GeneratedMessage {
             : 'category')
     ..hasRequiredFields = false;
 
-  DetailRpcModel_Badge._() : super();
-  factory DetailRpcModel_Badge({
+  GalleryRpcModel_Badge._() : super();
+  factory GalleryRpcModel_Badge({
     $core.String? text,
     $core.String? category,
   }) {
@@ -866,33 +866,34 @@ class DetailRpcModel_Badge extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory DetailRpcModel_Badge.fromBuffer($core.List<$core.int> i,
+  factory GalleryRpcModel_Badge.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory DetailRpcModel_Badge.fromJson($core.String i,
+  factory GalleryRpcModel_Badge.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  DetailRpcModel_Badge clone() =>
-      DetailRpcModel_Badge()..mergeFromMessage(this);
+  GalleryRpcModel_Badge clone() =>
+      GalleryRpcModel_Badge()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  DetailRpcModel_Badge copyWith(void Function(DetailRpcModel_Badge) updates) =>
-      super.copyWith((message) => updates(message as DetailRpcModel_Badge))
-          as DetailRpcModel_Badge; // ignore: deprecated_member_use
+  GalleryRpcModel_Badge copyWith(
+          void Function(GalleryRpcModel_Badge) updates) =>
+      super.copyWith((message) => updates(message as GalleryRpcModel_Badge))
+          as GalleryRpcModel_Badge; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static DetailRpcModel_Badge create() => DetailRpcModel_Badge._();
-  DetailRpcModel_Badge createEmptyInstance() => create();
-  static $pb.PbList<DetailRpcModel_Badge> createRepeated() =>
-      $pb.PbList<DetailRpcModel_Badge>();
+  static GalleryRpcModel_Badge create() => GalleryRpcModel_Badge._();
+  GalleryRpcModel_Badge createEmptyInstance() => create();
+  static $pb.PbList<GalleryRpcModel_Badge> createRepeated() =>
+      $pb.PbList<GalleryRpcModel_Badge>();
   @$core.pragma('dart2js:noInline')
-  static DetailRpcModel_Badge getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DetailRpcModel_Badge>(create);
-  static DetailRpcModel_Badge? _defaultInstance;
+  static GalleryRpcModel_Badge getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GalleryRpcModel_Badge>(create);
+  static GalleryRpcModel_Badge? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get text => $_getSZ(0);
@@ -919,11 +920,11 @@ class DetailRpcModel_Badge extends $pb.GeneratedMessage {
   void clearCategory() => clearField(2);
 }
 
-class DetailRpcModel_Comment extends $pb.GeneratedMessage {
+class GalleryRpcModel_Comment extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
-          : 'DetailRpcModel.Comment',
+          : 'GalleryRpcModel.Comment',
       createEmptyInstance: create)
     ..aOS(
         1,
@@ -953,8 +954,8 @@ class DetailRpcModel_Comment extends $pb.GeneratedMessage {
         subBuilder: ImageRpcModel.create)
     ..hasRequiredFields = false;
 
-  DetailRpcModel_Comment._() : super();
-  factory DetailRpcModel_Comment({
+  GalleryRpcModel_Comment._() : super();
+  factory GalleryRpcModel_Comment({
     $core.String? username,
     $core.String? content,
     $core.String? time,
@@ -979,34 +980,34 @@ class DetailRpcModel_Comment extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory DetailRpcModel_Comment.fromBuffer($core.List<$core.int> i,
+  factory GalleryRpcModel_Comment.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory DetailRpcModel_Comment.fromJson($core.String i,
+  factory GalleryRpcModel_Comment.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  DetailRpcModel_Comment clone() =>
-      DetailRpcModel_Comment()..mergeFromMessage(this);
+  GalleryRpcModel_Comment clone() =>
+      GalleryRpcModel_Comment()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  DetailRpcModel_Comment copyWith(
-          void Function(DetailRpcModel_Comment) updates) =>
-      super.copyWith((message) => updates(message as DetailRpcModel_Comment))
-          as DetailRpcModel_Comment; // ignore: deprecated_member_use
+  GalleryRpcModel_Comment copyWith(
+          void Function(GalleryRpcModel_Comment) updates) =>
+      super.copyWith((message) => updates(message as GalleryRpcModel_Comment))
+          as GalleryRpcModel_Comment; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static DetailRpcModel_Comment create() => DetailRpcModel_Comment._();
-  DetailRpcModel_Comment createEmptyInstance() => create();
-  static $pb.PbList<DetailRpcModel_Comment> createRepeated() =>
-      $pb.PbList<DetailRpcModel_Comment>();
+  static GalleryRpcModel_Comment create() => GalleryRpcModel_Comment._();
+  GalleryRpcModel_Comment createEmptyInstance() => create();
+  static $pb.PbList<GalleryRpcModel_Comment> createRepeated() =>
+      $pb.PbList<GalleryRpcModel_Comment>();
   @$core.pragma('dart2js:noInline')
-  static DetailRpcModel_Comment getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DetailRpcModel_Comment>(create);
-  static DetailRpcModel_Comment? _defaultInstance;
+  static GalleryRpcModel_Comment getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GalleryRpcModel_Comment>(create);
+  static GalleryRpcModel_Comment? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get username => $_getSZ(0);
@@ -1071,11 +1072,11 @@ class DetailRpcModel_Comment extends $pb.GeneratedMessage {
   ImageRpcModel ensureAvatar() => $_ensure(4);
 }
 
-class DetailRpcModel extends $pb.GeneratedMessage {
+class GalleryRpcModel extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
-          : 'DetailRpcModel',
+          : 'GalleryRpcModel',
       createEmptyInstance: create)
     ..aOS(
         1,
@@ -1139,27 +1140,27 @@ class DetailRpcModel extends $pb.GeneratedMessage {
             ? ''
             : 'tag',
         subBuilder: TagRpcModel.create)
-    ..pc<DetailRpcModel_Badge>(
+    ..pc<GalleryRpcModel_Badge>(
         21,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'badges',
         $pb.PbFieldType.PM,
-        subBuilder: DetailRpcModel_Badge.create)
-    ..pc<DetailRpcModel_Comment>(
+        subBuilder: GalleryRpcModel_Badge.create)
+    ..pc<GalleryRpcModel_Comment>(
         22,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'comments',
         $pb.PbFieldType.PM,
-        subBuilder: DetailRpcModel_Comment.create)
+        subBuilder: GalleryRpcModel_Comment.create)
     ..m<$core.String, $core.String>(
         30,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'localEnv',
         protoName: 'localEnv',
-        entryClassName: 'DetailRpcModel.LocalEnvEntry',
+        entryClassName: 'GalleryRpcModel.LocalEnvEntry',
         keyFieldType: $pb.PbFieldType.OS,
         valueFieldType: $pb.PbFieldType.OS)
     ..m<$core.String, $core.String>(
@@ -1168,13 +1169,13 @@ class DetailRpcModel extends $pb.GeneratedMessage {
             ? ''
             : 'globalEnv',
         protoName: 'globalEnv',
-        entryClassName: 'DetailRpcModel.GlobalEnvEntry',
+        entryClassName: 'GalleryRpcModel.GlobalEnvEntry',
         keyFieldType: $pb.PbFieldType.OS,
         valueFieldType: $pb.PbFieldType.OS)
     ..hasRequiredFields = false;
 
-  DetailRpcModel._() : super();
-  factory DetailRpcModel({
+  GalleryRpcModel._() : super();
+  factory GalleryRpcModel({
     $core.String? title,
     $core.String? subtitle,
     $core.String? language,
@@ -1186,8 +1187,8 @@ class DetailRpcModel extends $pb.GeneratedMessage {
     $core.Iterable<ImageRpcModel>? previewImg,
     ImageRpcModel? coverImg,
     TagRpcModel? tag,
-    $core.Iterable<DetailRpcModel_Badge>? badges,
-    $core.Iterable<DetailRpcModel_Comment>? comments,
+    $core.Iterable<GalleryRpcModel_Badge>? badges,
+    $core.Iterable<GalleryRpcModel_Comment>? comments,
     $core.Map<$core.String, $core.String>? localEnv,
     $core.Map<$core.String, $core.String>? globalEnv,
   }) {
@@ -1239,32 +1240,32 @@ class DetailRpcModel extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory DetailRpcModel.fromBuffer($core.List<$core.int> i,
+  factory GalleryRpcModel.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory DetailRpcModel.fromJson($core.String i,
+  factory GalleryRpcModel.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  DetailRpcModel clone() => DetailRpcModel()..mergeFromMessage(this);
+  GalleryRpcModel clone() => GalleryRpcModel()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  DetailRpcModel copyWith(void Function(DetailRpcModel) updates) =>
-      super.copyWith((message) => updates(message as DetailRpcModel))
-          as DetailRpcModel; // ignore: deprecated_member_use
+  GalleryRpcModel copyWith(void Function(GalleryRpcModel) updates) =>
+      super.copyWith((message) => updates(message as GalleryRpcModel))
+          as GalleryRpcModel; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static DetailRpcModel create() => DetailRpcModel._();
-  DetailRpcModel createEmptyInstance() => create();
-  static $pb.PbList<DetailRpcModel> createRepeated() =>
-      $pb.PbList<DetailRpcModel>();
+  static GalleryRpcModel create() => GalleryRpcModel._();
+  GalleryRpcModel createEmptyInstance() => create();
+  static $pb.PbList<GalleryRpcModel> createRepeated() =>
+      $pb.PbList<GalleryRpcModel>();
   @$core.pragma('dart2js:noInline')
-  static DetailRpcModel getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DetailRpcModel>(create);
-  static DetailRpcModel? _defaultInstance;
+  static GalleryRpcModel getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GalleryRpcModel>(create);
+  static GalleryRpcModel? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get title => $_getSZ(0);
@@ -1394,10 +1395,10 @@ class DetailRpcModel extends $pb.GeneratedMessage {
   TagRpcModel ensureTag() => $_ensure(10);
 
   @$pb.TagNumber(21)
-  $core.List<DetailRpcModel_Badge> get badges => $_getList(11);
+  $core.List<GalleryRpcModel_Badge> get badges => $_getList(11);
 
   @$pb.TagNumber(22)
-  $core.List<DetailRpcModel_Comment> get comments => $_getList(12);
+  $core.List<GalleryRpcModel_Comment> get comments => $_getList(12);
 
   @$pb.TagNumber(30)
   $core.Map<$core.String, $core.String> get localEnv => $_getMap(13);
