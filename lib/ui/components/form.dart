@@ -278,7 +278,7 @@ class RulesForm extends StatelessWidget {
 
   Widget _buildJs(BuildContext context, double width) {
     return Obx(() => CupertinoTextField(
-          controller: TextEditingController(text: selectorModel.js.value),
+          controller: TextEditingController(text: selectorModel.script.value),
           decoration: const BoxDecoration(border: Border()),
           style: const TextStyle(fontSize: 14),
           readOnly: true,
@@ -299,7 +299,7 @@ class RulesForm extends StatelessWidget {
           ),
           onTap: () {
             Get.to(() => JavaScriptEditor(
-                  js: selectorModel.js,
+                  script: selectorModel.script,
                 ));
           },
         ));

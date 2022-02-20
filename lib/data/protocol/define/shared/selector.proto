@@ -19,7 +19,7 @@ message Selector {
   string param = 3;
   string regex = 4;
   string replace = 5;
-  string js = 6;
+  string script = 6;
   bool computed = 7;
   string default_value = 8;
 }

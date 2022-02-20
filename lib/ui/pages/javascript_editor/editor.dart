@@ -11,10 +11,10 @@ import 'package:catweb/ui/theme/colors.dart';
 class JavaScriptEditor extends StatefulWidget {
   const JavaScriptEditor({
     Key? key,
-    required this.js,
+    required this.script,
   }) : super(key: key);
 
-  final RxString js;
+  final RxString script;
 
   @override
   _JavaScriptEditorState createState() => _JavaScriptEditorState();
@@ -23,11 +23,11 @@ class JavaScriptEditor extends StatefulWidget {
 class _JavaScriptEditorState extends State<JavaScriptEditor> {
   var isEdit = false;
   late final TextEditingController inputController;
-  late var lastInput = widget.js.value;
+  late var lastInput = widget.script.value;
 
   @override
   void initState() {
-    inputController = TextEditingController(text: widget.js.value);
+    inputController = TextEditingController(text: widget.script.value);
     super.initState();
   }
 
@@ -74,7 +74,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
                 content: '确定清除脚本?',
               ).then((value) {
                 if (value == true) {
-                  widget.js.value = '';
+                  widget.script.value = '';
                   inputController.clear();
                 }
               });
@@ -103,7 +103,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
     return Obx(() => SizedBox(
           width: double.infinity,
           child: HighlightView(
-            widget.js.value,
+            widget.script.value,
             language: 'javascript',
             theme: isDarkMode(context) ? a11yDarkTheme : a11yLightTheme,
             tabSize: 2,
@@ -163,7 +163,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
     }
 
     lastInput = inputController.text;
-    widget.js.value = inputController.text;
+    widget.script.value = inputController.text;
   }
 
   Widget _buildInput(BuildContext context) {

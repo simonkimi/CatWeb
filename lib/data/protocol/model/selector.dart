@@ -14,7 +14,7 @@ class SelectorModel implements PbAble {
         param = sobs(pb?.param),
         regex = sobs(pb?.regex),
         replace = sobs(pb?.replace),
-        js = sobs(pb?.js),
+        script = sobs(pb?.script),
         computed = pb?.computed.obs ?? false.obs,
         defaultValue = sobs(pb?.defaultValue);
 
@@ -24,7 +24,7 @@ class SelectorModel implements PbAble {
   final RxString param;
   final RxString regex;
   final RxString replace;
-  final RxString js;
+  final RxString script;
   final RxBool computed;
   final RxString defaultValue;
 
@@ -35,7 +35,7 @@ class SelectorModel implements PbAble {
         param: param.value,
         regex: regex.value,
         replace: replace.value,
-        js: js.value,
+        script: script.value,
         computed: computed.value,
         defaultValue: defaultValue.value,
       );

@@ -25,7 +25,8 @@ final ehListParser = ListViewParser(
   language: Selector(
     selector: '.gt[title^=language]',
     function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
-    js: '{"chinese":"中文","english":"英语","french":"法语","german":"德语","japanese":"日语","korean":"韩语","russian":"俄语","spanish":"西班牙语","speechless":"无字","italian":"意大利语"}',
+    script:
+        '{"chinese":"中文","english":"英语","french":"法语","german":"德语","japanese":"日语","korean":"韩语","russian":"俄语","spanish":"西班牙语","speechless":"无字","italian":"意大利语"}',
   ),
   imgCount: Selector(
     selector:
@@ -53,7 +54,8 @@ final ehListParser = ListViewParser(
     function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
     param: 'class',
     regex: 'ct.',
-    js: r"function hook(t){return{ct2:'#f66158',ct3:'#f09e19',ct4:'#d2d303',ct5:'#0fa911',cta:'#2fd92c',ct9:'#0bbfd3',ct6:'#4f5ce6',ct7:'#9030df',ct8:'#f38af2',ct1:'#8a8a8a'}[t]}",
+    script:
+        r"function hook(t){return{ct2:'#f66158',ct3:'#f09e19',ct4:'#d2d303',ct5:'#0fa911',cta:'#2fd92c',ct9:'#0bbfd3',ct6:'#4f5ce6',ct7:'#9030df',ct8:'#f38af2',ct1:'#8a8a8a'}[t]}",
   ),
   star: Selector(
     selector: '.ir',

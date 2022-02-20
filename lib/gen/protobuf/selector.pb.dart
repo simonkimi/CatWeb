@@ -52,7 +52,7 @@ class Selector extends $pb.GeneratedMessage {
         6,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'js')
+            : 'script')
     ..aOB(
         7,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -72,7 +72,7 @@ class Selector extends $pb.GeneratedMessage {
     $core.String? param,
     $core.String? regex,
     $core.String? replace,
-    $core.String? js,
+    $core.String? script,
     $core.bool? computed,
     $core.String? defaultValue,
   }) {
@@ -92,8 +92,8 @@ class Selector extends $pb.GeneratedMessage {
     if (replace != null) {
       _result.replace = replace;
     }
-    if (js != null) {
-      _result.js = js;
+    if (script != null) {
+      _result.script = script;
     }
     if (computed != null) {
       _result.computed = computed;
@@ -190,16 +190,16 @@ class Selector extends $pb.GeneratedMessage {
   void clearReplace() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.String get js => $_getSZ(5);
+  $core.String get script => $_getSZ(5);
   @$pb.TagNumber(6)
-  set js($core.String v) {
+  set script($core.String v) {
     $_setString(5, v);
   }
 
   @$pb.TagNumber(6)
-  $core.bool hasJs() => $_has(5);
+  $core.bool hasScript() => $_has(5);
   @$pb.TagNumber(6)
-  void clearJs() => clearField(6);
+  void clearScript() => clearField(6);
 
   @$pb.TagNumber(7)
   $core.bool get computed => $_getBF(6);
