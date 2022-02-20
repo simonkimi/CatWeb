@@ -3,7 +3,7 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
 import 'package:catweb/network/parser/parser.dart';
-import 'package:catweb/test/test_model/parser/list_parser.dart';
+import 'package:catweb/test/site/eh/parser/list_parser.dart';
 import 'package:catweb/utils/time_line.dart';
 
 void main() async {

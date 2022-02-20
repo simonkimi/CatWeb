@@ -2,12 +2,9 @@ import 'package:catweb/gen/protobuf/parser.pbserver.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:uuid/uuid.dart';
 
-final commonListUuid =
-    const Uuid().v5(Uuid.NAMESPACE_URL, 'commonListUuid').toString();
-
 final ehListParser = ListViewParser(
   name: 'commonList',
-  uuid: commonListUuid,
+  uuid: const Uuid().v5(Uuid.NAMESPACE_URL, 'commonListUuid').toString(),
   itemSelector: Selector(
     selector: "//div[@class='gl1t'] | //*[starts-with(@class, 'gl2')]/..",
   ),

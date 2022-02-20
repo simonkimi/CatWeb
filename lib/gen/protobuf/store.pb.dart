@@ -157,13 +157,13 @@ class SiteConfig extends $pb.GeneratedMessage {
             : 'cookies',
         $pb.PbFieldType.PM,
         subBuilder: RegField.create)
-    ..pc<$0.DetailParser>(
+    ..pc<$0.GalleryParser>(
         20,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'detailParsers',
+            : 'galleryParsers',
         $pb.PbFieldType.PM,
-        subBuilder: $0.DetailParser.create)
+        subBuilder: $0.GalleryParser.create)
     ..pc<$0.ListViewParser>(
         21,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -213,7 +213,7 @@ class SiteConfig extends $pb.GeneratedMessage {
     $core.String? readme,
     $core.Iterable<RegField>? headers,
     $core.Iterable<RegField>? cookies,
-    $core.Iterable<$0.DetailParser>? detailParsers,
+    $core.Iterable<$0.GalleryParser>? galleryParsers,
     $core.Iterable<$0.ListViewParser>? listViewParsers,
     $core.Iterable<$0.ImageParser>? imageParsers,
     $core.Iterable<$0.AutoCompleteParser>? autoCompleteParsers,
@@ -251,8 +251,8 @@ class SiteConfig extends $pb.GeneratedMessage {
     if (cookies != null) {
       _result.cookies.addAll(cookies);
     }
-    if (detailParsers != null) {
-      _result.detailParsers.addAll(detailParsers);
+    if (galleryParsers != null) {
+      _result.galleryParsers.addAll(galleryParsers);
     }
     if (listViewParsers != null) {
       _result.listViewParsers.addAll(listViewParsers);
@@ -402,7 +402,7 @@ class SiteConfig extends $pb.GeneratedMessage {
   $core.List<RegField> get cookies => $_getList(9);
 
   @$pb.TagNumber(20)
-  $core.List<$0.DetailParser> get detailParsers => $_getList(10);
+  $core.List<$0.GalleryParser> get galleryParsers => $_getList(10);
 
   @$pb.TagNumber(21)
   $core.List<$0.ListViewParser> get listViewParsers => $_getList(11);

@@ -2,11 +2,9 @@ import 'package:catweb/gen/protobuf/parser.pbserver.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:uuid/uuid.dart';
 
-final galleryUuid = const Uuid().v4().toString();
-
-final ehGalleryParser = DetailParser(
+final ehGalleryParser = GalleryParser(
   name: '画廊',
-  uuid: galleryUuid,
+  uuid: const Uuid().v4().toString(),
   title: Selector(
     selector: '//h1[@id="gj"]/text() | //h1[@id="gn"]/text()',
     function: SelectorFunction.SELECTOR_FUNCTION_TEXT,

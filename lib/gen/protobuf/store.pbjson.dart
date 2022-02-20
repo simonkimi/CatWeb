@@ -57,12 +57,12 @@ const SiteConfig$json = const {
       '10': 'cookies'
     },
     const {
-      '1': 'detail_parsers',
+      '1': 'gallery_parsers',
       '3': 20,
       '4': 3,
       '5': 11,
-      '6': '.DetailParser',
-      '10': 'detailParsers'
+      '6': '.GalleryParser',
+      '10': 'galleryParsers'
     },
     const {
       '1': 'list_view_parsers',
@@ -109,7 +109,7 @@ const SiteConfig$json = const {
 
 /// Descriptor for `SiteConfig`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List siteConfigDescriptor = $convert.base64Decode(
-    'CgpTaXRlQ29uZmlnEhIKBG5hbWUYASABKAlSBG5hbWUSGQoIYmFzZV91cmwYAiABKAlSB2Jhc2VVcmwSGwoJbG9naW5fdXJsGAMgASgJUghsb2dpblVybBIsCgxsb2dpbl9jb29raWUYBCABKAsyCS5SZWdGaWVsZFILbG9naW5Db29raWUSGAoHdmVyc2lvbhgFIAEoCVIHdmVyc2lvbhIfCgt1cGdyYWRlX3VybBgGIAEoCVIKdXBncmFkZVVybBISCgRmbGFnGAcgASgJUgRmbGFnEhYKBnJlYWRtZRgIIAEoCVIGcmVhZG1lEiMKB2hlYWRlcnMYDyADKAsyCS5SZWdGaWVsZFIHaGVhZGVycxIjCgdjb29raWVzGBAgAygLMgkuUmVnRmllbGRSB2Nvb2tpZXMSNAoOZGV0YWlsX3BhcnNlcnMYFCADKAsyDS5EZXRhaWxQYXJzZXJSDWRldGFpbFBhcnNlcnMSOwoRbGlzdF92aWV3X3BhcnNlcnMYFSADKAsyDy5MaXN0Vmlld1BhcnNlclIPbGlzdFZpZXdQYXJzZXJzEjEKDWltYWdlX3BhcnNlcnMYFiADKAsyDC5JbWFnZVBhcnNlclIMaW1hZ2VQYXJzZXJzEkcKFWF1dG9fY29tcGxldGVfcGFyc2VycxgXIAMoCzITLkF1dG9Db21wbGV0ZVBhcnNlclITYXV0b0NvbXBsZXRlUGFyc2VycxIoCgdhY3Rpb25zGB4gAygLMg4uQWN0aW9uQ29tYmluZVIHYWN0aW9ucxIfCgVwYWdlcxgfIAMoCzIJLlNpdGVQYWdlUgVwYWdlcw==');
+    'CgpTaXRlQ29uZmlnEhIKBG5hbWUYASABKAlSBG5hbWUSGQoIYmFzZV91cmwYAiABKAlSB2Jhc2VVcmwSGwoJbG9naW5fdXJsGAMgASgJUghsb2dpblVybBIsCgxsb2dpbl9jb29raWUYBCABKAsyCS5SZWdGaWVsZFILbG9naW5Db29raWUSGAoHdmVyc2lvbhgFIAEoCVIHdmVyc2lvbhIfCgt1cGdyYWRlX3VybBgGIAEoCVIKdXBncmFkZVVybBISCgRmbGFnGAcgASgJUgRmbGFnEhYKBnJlYWRtZRgIIAEoCVIGcmVhZG1lEiMKB2hlYWRlcnMYDyADKAsyCS5SZWdGaWVsZFIHaGVhZGVycxIjCgdjb29raWVzGBAgAygLMgkuUmVnRmllbGRSB2Nvb2tpZXMSNwoPZ2FsbGVyeV9wYXJzZXJzGBQgAygLMg4uR2FsbGVyeVBhcnNlclIOZ2FsbGVyeVBhcnNlcnMSOwoRbGlzdF92aWV3X3BhcnNlcnMYFSADKAsyDy5MaXN0Vmlld1BhcnNlclIPbGlzdFZpZXdQYXJzZXJzEjEKDWltYWdlX3BhcnNlcnMYFiADKAsyDC5JbWFnZVBhcnNlclIMaW1hZ2VQYXJzZXJzEkcKFWF1dG9fY29tcGxldGVfcGFyc2VycxgXIAMoCzITLkF1dG9Db21wbGV0ZVBhcnNlclITYXV0b0NvbXBsZXRlUGFyc2VycxIoCgdhY3Rpb25zGB4gAygLMg4uQWN0aW9uQ29tYmluZVIHYWN0aW9ucxIfCgVwYWdlcxgfIAMoCzIJLlNpdGVQYWdlUgVwYWdlcw==');
 @$core.Deprecated('Use envStoreDescriptor instead')
 const EnvStore$json = const {
   '1': 'EnvStore',

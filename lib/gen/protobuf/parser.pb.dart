@@ -11,6 +11,8 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'selector.pb.dart' as $0;
 
+export 'parser.pbenum.dart';
+
 class ImageParser extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
@@ -806,11 +808,11 @@ class ListViewParser extends $pb.GeneratedMessage {
   $core.List<$0.ExtraSelector> get extraSelector => $_getList(18);
 }
 
-class DetailParser extends $pb.GeneratedMessage {
+class GalleryParser extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
-          : 'DetailParser',
+          : 'GalleryParser',
       createEmptyInstance: create)
     ..aOS(
         1,
@@ -975,8 +977,8 @@ class DetailParser extends $pb.GeneratedMessage {
         subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false;
 
-  DetailParser._() : super();
-  factory DetailParser({
+  GalleryParser._() : super();
+  factory GalleryParser({
     $core.String? name,
     $core.String? uuid,
     $0.Selector? title,
@@ -1089,32 +1091,32 @@ class DetailParser extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory DetailParser.fromBuffer($core.List<$core.int> i,
+  factory GalleryParser.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory DetailParser.fromJson($core.String i,
+  factory GalleryParser.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  DetailParser clone() => DetailParser()..mergeFromMessage(this);
+  GalleryParser clone() => GalleryParser()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  DetailParser copyWith(void Function(DetailParser) updates) =>
-      super.copyWith((message) => updates(message as DetailParser))
-          as DetailParser; // ignore: deprecated_member_use
+  GalleryParser copyWith(void Function(GalleryParser) updates) =>
+      super.copyWith((message) => updates(message as GalleryParser))
+          as GalleryParser; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static DetailParser create() => DetailParser._();
-  DetailParser createEmptyInstance() => create();
-  static $pb.PbList<DetailParser> createRepeated() =>
-      $pb.PbList<DetailParser>();
+  static GalleryParser create() => GalleryParser._();
+  GalleryParser createEmptyInstance() => create();
+  static $pb.PbList<GalleryParser> createRepeated() =>
+      $pb.PbList<GalleryParser>();
   @$core.pragma('dart2js:noInline')
-  static DetailParser getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DetailParser>(create);
-  static DetailParser? _defaultInstance;
+  static GalleryParser getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GalleryParser>(create);
+  static GalleryParser? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);

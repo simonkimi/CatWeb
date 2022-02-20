@@ -25,28 +25,27 @@ class RulesAdvance extends GetView<RulesEditController> {
             color: CupertinoColors.systemBackground.resolveFrom(context),
             border: Border.symmetric(
                 horizontal: BorderSide(
-                  width: 0.4,
-                  color: CupertinoColors.separator.resolveFrom(context),
-                )),
+              width: 0.4,
+              color: CupertinoColors.separator.resolveFrom(context),
+            )),
           ),
           child: Column(
             children: [
               Obx(() => Column(
-                children: controller.siteConfigModel.headers
-                    .asMap()
-                    .entries
-                    .map((e) {
-                  return Obx(() => CupertinoDeletableTile(
-                      index: e.key,
-                      controller: headerController,
-                      text: '${e.value.reg}: ${e.value.value}',
-                      onDelete: (index) {
-                        controller.siteConfigModel.headers
-                            .removeAt(index);
-                      },
-                      onTap: () => _editRegField(context, e.value)));
-                }).toList(),
-              )),
+                    children: controller.siteConfigModel.headers
+                        .asMap()
+                        .entries
+                        .map((e) {
+                      return Obx(() => CupertinoDeletableTile(
+                          index: e.key,
+                          controller: headerController,
+                          text: '${e.value.reg}: ${e.value.value}',
+                          onDelete: (index) {
+                            controller.siteConfigModel.headers.removeAt(index);
+                          },
+                          onTap: () => _editRegField(context, e.value)));
+                    }).toList(),
+                  )),
               CupertinoClassicalListTile(
                 icon: Icon(
                   CupertinoIcons.add_circled_solid,
@@ -69,29 +68,28 @@ class RulesAdvance extends GetView<RulesEditController> {
             color: CupertinoColors.systemBackground.resolveFrom(context),
             border: Border.symmetric(
                 horizontal: BorderSide(
-                  width: 0.4,
-                  color: CupertinoColors.separator.resolveFrom(context),
-                )),
+              width: 0.4,
+              color: CupertinoColors.separator.resolveFrom(context),
+            )),
           ),
           child: Column(
             children: [
               Obx(() => Column(
-                children: controller.siteConfigModel.cookies
-                    .asMap()
-                    .entries
-                    .map((e) {
-                  return Obx(() => CupertinoDeletableTile(
-                      index: e.key,
-                      controller: cookieController,
-                      text:
-                      '${e.value.reg.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
-                      onDelete: (index) {
-                        controller.siteConfigModel.cookies
-                            .removeAt(index);
-                      },
-                      onTap: () => _editRegField(context, e.value)));
-                }).toList(),
-              )),
+                    children: controller.siteConfigModel.cookies
+                        .asMap()
+                        .entries
+                        .map((e) {
+                      return Obx(() => CupertinoDeletableTile(
+                          index: e.key,
+                          controller: cookieController,
+                          text:
+                              '${e.value.reg.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
+                          onDelete: (index) {
+                            controller.siteConfigModel.cookies.removeAt(index);
+                          },
+                          onTap: () => _editRegField(context, e.value)));
+                    }).toList(),
+                  )),
               CupertinoClassicalListTile(
                 icon: Icon(
                   CupertinoIcons.add_circled_solid,

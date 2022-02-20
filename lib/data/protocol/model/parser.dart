@@ -8,17 +8,12 @@ import 'package:get/get.dart';
 
 import 'interface.dart';
 
-enum ParserType {
-  listParser,
-  galleryParser,
-  imageParser,
-  searchAutoComplete,
-}
-
 abstract class ParserBaseModel implements PbAble {
-  ParserBaseModel(
-      {required this.name, required this.uuid, Iterable<ExtraSelector>? extra})
-      : extraSelectorModel =
+  ParserBaseModel({
+    required this.name,
+    required this.uuid,
+    Iterable<ExtraSelector>? extra,
+  }) : extraSelectorModel =
             lobs(extra, (ExtraSelector e) => ExtraSelectorModel(e));
 
   final RxString name;
@@ -84,11 +79,11 @@ class ImageParserModel extends ParserBaseModel {
   ImageParserModel copy() => ImageParserModel(toPb());
 
   @override
-  ParserType get type => ParserType.imageParser;
+  ParserType get type => ParserType.PARSER_TYPE_IMAGE;
 }
 
-class DetailParserModel extends ParserBaseModel {
-  DetailParserModel([DetailParser? pb])
+class GalleryParserModel extends ParserBaseModel {
+  GalleryParserModel([GalleryParser? pb])
       : title = SelectorModel(pb?.title),
         subtitle = SelectorModel(pb?.subtitle),
         uploadTime = SelectorModel(pb?.uploadTime),
@@ -156,7 +151,7 @@ class DetailParserModel extends ParserBaseModel {
   final SelectorModel countPrePage;
 
   @override
-  DetailParser toPb() => DetailParser(
+  GalleryParser toPb() => GalleryParser(
         name: name.value,
         uuid: uuid,
         title: title.toPb(),
@@ -198,13 +193,13 @@ class DetailParserModel extends ParserBaseModel {
       );
 
   @override
-  ParserBaseModel copy() => DetailParserModel(toPb());
+  ParserBaseModel copy() => GalleryParserModel(toPb());
 
   @override
   String displayType(BuildContext context) => '画廊解析器';
 
   @override
-  ParserType get type => ParserType.galleryParser;
+  ParserType get type => ParserType.PARSER_TYPE_GALLERY;
 }
 
 class ListViewParserModel extends ParserBaseModel {
@@ -290,7 +285,7 @@ class ListViewParserModel extends ParserBaseModel {
   ListViewParserModel copy() => ListViewParserModel(toPb());
 
   @override
-  ParserType get type => ParserType.listParser;
+  ParserType get type => ParserType.PARSER_TYPE_LIST_VIEW;
 }
 
 class AutoCompleteParserModel extends ParserBaseModel implements PbAble {

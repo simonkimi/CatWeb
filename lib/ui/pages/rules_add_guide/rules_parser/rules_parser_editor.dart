@@ -1,4 +1,5 @@
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/extra_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/gallery_parser.dart';
@@ -55,9 +56,9 @@ class RulesParserEditor extends StatelessWidget {
 
   Widget _buildEditor(BuildContext context) {
     switch (model.type) {
-      case ParserType.galleryParser:
-        return GalleryParserFragment(model: model as DetailParserModel);
-      case ParserType.listParser:
+      case ParserType.PARSER_TYPE_GALLERY:
+        return GalleryParserFragment(model: model as GalleryParserModel);
+      case ParserType.PARSER_TYPE_LIST_VIEW:
         return ListParserFragment(model: model as ListViewParserModel);
       default:
         return const SizedBox();

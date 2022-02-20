@@ -10,7 +10,7 @@ class GalleryParserFragment extends StatelessWidget {
     required this.model,
   }) : super(key: key);
 
-  final DetailParserModel model;
+  final GalleryParserModel model;
 
   @override
   Widget build(BuildContext context) {

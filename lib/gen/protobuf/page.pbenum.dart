@@ -20,11 +20,11 @@ class Template extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'TEMPLATE_IMAGE_WATERFALL');
-  static const Template TEMPLATE_DETAIL = Template._(
+  static const Template TEMPLATE_GALLERY = Template._(
       2,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'TEMPLATE_DETAIL');
+          : 'TEMPLATE_GALLERY');
   static const Template TEMPLATE_IMAGE_VIEWER = Template._(
       3,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
@@ -39,7 +39,7 @@ class Template extends $pb.ProtobufEnum {
   static const $core.List<Template> values = <Template>[
     TEMPLATE_IMAGE_LIST,
     TEMPLATE_IMAGE_WATERFALL,
-    TEMPLATE_DETAIL,
+    TEMPLATE_GALLERY,
     TEMPLATE_IMAGE_VIEWER,
     TEMPLATE_AUTO_COMPLETE,
   ];

@@ -3,6 +3,13 @@ import 'selector.proto';
 
 option go_package = "./gen/protobuf";
 
+enum ParserType {
+  PARSER_TYPE_IMAGE = 0;
+  PARSER_TYPE_LIST_VIEW = 1;
+  PARSER_TYPE_GALLERY = 2;
+  PARSER_TYPE_AUTO_COMPLETE = 3;
+}
+
 message ImageParser {
   string name = 1;
   string uuid = 2;
@@ -49,7 +56,7 @@ message ListViewParser {
   repeated ExtraSelector extra_selector = 99;
 }
 
-message DetailParser {
+message GalleryParser {
   string name = 1;
   string uuid = 2;
 

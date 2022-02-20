@@ -1,10 +1,10 @@
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
-import 'package:catweb/test/test_model/cookies.dart';
-import 'package:catweb/test/test_model/parser/list_parser.dart';
 
+import 'cookies.dart';
 import 'parser/gallery_parser.dart';
+import 'parser/list_parser.dart';
 
 final detailUuid = genUuid();
 
@@ -12,7 +12,7 @@ final ehTestSite = SiteConfig(
   name: 'E-Hentai',
   baseUrl: 'https://e-hentai.org/',
   listViewParsers: [ehListParser],
-  detailParsers: [ehGalleryParser],
+  galleryParsers: [ehGalleryParser],
   cookies: [
     RegField(reg: r'e[-x]hentai', value: 'ipb_member_id=$ipbMemberId'),
     RegField(reg: r'e[-x]hentai', value: 'ipb_pass_hash=$ipbPassHash'),
@@ -22,16 +22,16 @@ final ehTestSite = SiteConfig(
   ],
   pages: [
     SitePage(
-      name: '详情',
+      name: '画廊',
       uuid: detailUuid,
-      template: Template.TEMPLATE_DETAIL,
-      parser: galleryUuid,
+      template: Template.TEMPLATE_GALLERY,
+      parser: ehGalleryParser.uuid,
       url: 'g/{idCode}/?p={page:0}',
     ),
     SitePage(
         name: '主页',
         url: '?page={page:0}',
-        parser: commonListUuid,
+        parser: ehListParser.uuid,
         display: SiteDisplayType.show,
         template: Template.TEMPLATE_IMAGE_LIST,
         icon: 'home',
@@ -39,7 +39,7 @@ final ehTestSite = SiteConfig(
     SitePage(
       name: '热门',
       url: 'popular?page={page:0}',
-      parser: commonListUuid,
+      parser: ehListParser.uuid,
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'whatshot',
@@ -48,7 +48,7 @@ final ehTestSite = SiteConfig(
     SitePage(
       name: '关注',
       url: 'watched?page={page:0}',
-      parser: commonListUuid,
+      parser: ehListParser.uuid,
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'eye',
@@ -57,7 +57,7 @@ final ehTestSite = SiteConfig(
     SitePage(
       name: '收藏',
       url: r'favorites.php?page={page:0}${favcat:&favcat={favcat}}',
-      parser: commonListUuid,
+      parser: ehListParser.uuid,
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'heart',

@@ -36,8 +36,8 @@ class SiteConfigModel implements PbAble {
         version = sobs(pb?.version),
         upgradeUrl = sobs(pb?.upgradeUrl),
         flag = sobs(pb?.flag),
-        detailParsers =
-            lobs(pb?.detailParsers, (DetailParser e) => DetailParserModel(e)),
+        galleryParsers = lobs(
+            pb?.galleryParsers, (GalleryParser e) => GalleryParserModel(e)),
         listViewParsers = lobs(
           pb?.listViewParsers,
           (ListViewParser e) => ListViewParserModel(e),
@@ -69,7 +69,7 @@ class SiteConfigModel implements PbAble {
 
   final RxList<RegFieldModel> cookies;
   final RxList<RegFieldModel> headers;
-  final RxList<DetailParserModel> detailParsers;
+  final RxList<GalleryParserModel> galleryParsers;
   final RxList<ListViewParserModel> listViewParsers;
   final RxList<ImageParserModel> imageParsers;
   final RxList<AutoCompleteParserModel> autoCompleteParsers;
@@ -78,15 +78,16 @@ class SiteConfigModel implements PbAble {
 
   RxList<ParserBaseModel> _selectParser(ParserBaseModel model) {
     switch (model.type) {
-      case ParserType.listParser:
+      case ParserType.PARSER_TYPE_LIST_VIEW:
         return listViewParsers;
-      case ParserType.galleryParser:
-        return detailParsers;
-      case ParserType.imageParser:
+      case ParserType.PARSER_TYPE_GALLERY:
+        return galleryParsers;
+      case ParserType.PARSER_TYPE_IMAGE:
         return imageParsers;
-      case ParserType.searchAutoComplete:
+      case ParserType.PARSER_TYPE_AUTO_COMPLETE:
         return autoCompleteParsers;
     }
+    throw UnimplementedError('Unknown parser $model');
   }
 
   void removeParser(ParserBaseModel model) {
@@ -99,7 +100,7 @@ class SiteConfigModel implements PbAble {
 
   RxList<ParserBaseModel> get parsers => RxList.from([
         ...listViewParsers,
-        ...detailParsers,
+        ...galleryParsers,
         ...imageParsers,
       ]);
 
@@ -117,8 +118,8 @@ class SiteConfigModel implements PbAble {
     return result;
   }
 
-  DetailParserModel getGalleryParser(String uuid) {
-    final result = detailParsers.get((e) => e.uuid == uuid);
+  GalleryParserModel getGalleryParser(String uuid) {
+    final result = galleryParsers.get((e) => e.uuid == uuid);
     if (result == null) throw Exception('Parser $uuid not exist');
     return result;
   }
@@ -148,7 +149,7 @@ class SiteConfigModel implements PbAble {
         version: version.value,
         upgradeUrl: upgradeUrl.value,
         flag: flag.value,
-        detailParsers: detailParsers.map((e) => e.toPb()),
+        galleryParsers: galleryParsers.map((e) => e.toPb()),
         listViewParsers: listViewParsers.map((e) => e.toPb()),
         actions: actionList.map((e) => e.toPb()),
         pages: pageList.map((e) => e.toPb()),

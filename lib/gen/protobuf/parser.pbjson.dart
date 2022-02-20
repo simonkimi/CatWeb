@@ -9,6 +9,20 @@ import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
 
+@$core.Deprecated('Use parserTypeDescriptor instead')
+const ParserType$json = const {
+  '1': 'ParserType',
+  '2': const [
+    const {'1': 'PARSER_TYPE_IMAGE', '2': 0},
+    const {'1': 'PARSER_TYPE_LIST_VIEW', '2': 1},
+    const {'1': 'PARSER_TYPE_GALLERY', '2': 2},
+    const {'1': 'PARSER_TYPE_AUTO_COMPLETE', '2': 3},
+  ],
+};
+
+/// Descriptor for `ParserType`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List parserTypeDescriptor = $convert.base64Decode(
+    'CgpQYXJzZXJUeXBlEhUKEVBBUlNFUl9UWVBFX0lNQUdFEAASGQoVUEFSU0VSX1RZUEVfTElTVF9WSUVXEAESFwoTUEFSU0VSX1RZUEVfR0FMTEVSWRACEh0KGVBBUlNFUl9UWVBFX0FVVE9fQ09NUExFVEUQAw==');
 @$core.Deprecated('Use imageParserDescriptor instead')
 const ImageParser$json = const {
   '1': 'ImageParser',
@@ -235,9 +249,9 @@ const ListViewParser$json = const {
 /// Descriptor for `ListViewParser`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listViewParserDescriptor = $convert.base64Decode(
     'Cg5MaXN0Vmlld1BhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEhIKBHV1aWQYAiABKAlSBHV1aWQSLgoNaXRlbV9zZWxlY3RvchgKIAEoCzIJLlNlbGVjdG9yUgxpdGVtU2VsZWN0b3ISHwoFdGl0bGUYCyABKAsyCS5TZWxlY3RvclIFdGl0bGUSJQoIc3VidGl0bGUYDCABKAsyCS5TZWxlY3RvclIIc3VidGl0bGUSKgoLdXBsb2FkX3RpbWUYDSABKAsyCS5TZWxlY3RvclIKdXBsb2FkVGltZRIdCgRzdGFyGA4gASgLMgkuU2VsZWN0b3JSBHN0YXISJgoJaW1nX2NvdW50GA8gASgLMgkuU2VsZWN0b3JSCGltZ0NvdW50Ei8KC3ByZXZpZXdfaW1nGBAgASgLMg4uSW1hZ2VTZWxlY3RvclIKcHJldmlld0ltZxIlCghsYW5ndWFnZRgRIAEoCzIJLlNlbGVjdG9yUghsYW5ndWFnZRIbCgN0YWcYFCABKAsyCS5TZWxlY3RvclIDdGFnEiYKCXRhZ19jb2xvchgVIAEoCzIJLlNlbGVjdG9yUgh0YWdDb2xvchIwCg5iYWRnZV9zZWxlY3RvchgWIAEoCzIJLlNlbGVjdG9yUg1iYWRnZVNlbGVjdG9yEigKCmJhZGdlX3RleHQYFyABKAsyCS5TZWxlY3RvclIJYmFkZ2VUZXh0EioKC2JhZGdlX2NvbG9yGBggASgLMgkuU2VsZWN0b3JSCmJhZGdlQ29sb3ISHwoFcGFwZXIYGSABKAsyCS5TZWxlY3RvclIFcGFwZXISJgoJbmV4dF9wYWdlGB4gASgLMgkuU2VsZWN0b3JSCG5leHRQYWdlEiIKB2lkX2NvZGUYHyABKAsyCS5TZWxlY3RvclIGaWRDb2RlEjUKDmV4dHJhX3NlbGVjdG9yGGMgAygLMg4uRXh0cmFTZWxlY3RvclINZXh0cmFTZWxlY3Rvcg==');
-@$core.Deprecated('Use detailParserDescriptor instead')
-const DetailParser$json = const {
-  '1': 'DetailParser',
+@$core.Deprecated('Use galleryParserDescriptor instead')
+const GalleryParser$json = const {
+  '1': 'GalleryParser',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'uuid', '3': 2, '4': 1, '5': 9, '10': 'uuid'},
@@ -437,9 +451,9 @@ const DetailParser$json = const {
   ],
 };
 
-/// Descriptor for `DetailParser`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List detailParserDescriptor = $convert.base64Decode(
-    'CgxEZXRhaWxQYXJzZXISEgoEbmFtZRgBIAEoCVIEbmFtZRISCgR1dWlkGAIgASgJUgR1dWlkEh8KBXRpdGxlGAMgASgLMgkuU2VsZWN0b3JSBXRpdGxlEiUKCHN1YnRpdGxlGAQgASgLMgkuU2VsZWN0b3JSCHN1YnRpdGxlEioKC3VwbG9hZF90aW1lGAUgASgLMgkuU2VsZWN0b3JSCnVwbG9hZFRpbWUSHQoEc3RhchgGIAEoCzIJLlNlbGVjdG9yUgRzdGFyEiYKCWltZ19jb3VudBgHIAEoCzIJLlNlbGVjdG9yUghpbWdDb3VudBIoCgpwYWdlX2NvdW50GAggASgLMgkuU2VsZWN0b3JSCXBhZ2VDb3VudBIlCghsYW5ndWFnZRgJIAEoCzIJLlNlbGVjdG9yUghsYW5ndWFnZRIrCgljb3Zlcl9pbWcYCiABKAsyDi5JbWFnZVNlbGVjdG9yUghjb3ZlckltZxIrCgtkZXNjcmlwdGlvbhgLIAEoCzIJLlNlbGVjdG9yUgtkZXNjcmlwdGlvbhI4ChJ0aHVtYm5haWxfc2VsZWN0b3IYFCABKAsyCS5TZWxlY3RvclIRdGh1bWJuYWlsU2VsZWN0b3ISLAoJdGh1bWJuYWlsGBUgASgLMg4uSW1hZ2VTZWxlY3RvclIJdGh1bWJuYWlsEjQKEGNvbW1lbnRfc2VsZWN0b3IYHiABKAsyCS5TZWxlY3RvclIPY29tbWVudFNlbGVjdG9yEioKB2NvbW1lbnQYHyABKAsyEC5Db21tZW50U2VsZWN0b3JSB2NvbW1lbnQSGwoDdGFnGCggASgLMgkuU2VsZWN0b3JSA3RhZxImCgl0YWdfY29sb3IYKSABKAsyCS5TZWxlY3RvclIIdGFnQ29sb3ISMAoOYmFkZ2Vfc2VsZWN0b3IYMiABKAsyCS5TZWxlY3RvclINYmFkZ2VTZWxlY3RvchIoCgpiYWRnZV90ZXh0GDMgASgLMgkuU2VsZWN0b3JSCWJhZGdlVGV4dBIwCg5iYWRnZV9jYXRlZ29yeRg0IAEoCzIJLlNlbGVjdG9yUg1iYWRnZUNhdGVnb3J5EjQKEGNoYXB0ZXJfc2VsZWN0b3IYPCABKAsyCS5TZWxlY3RvclIPY2hhcHRlclNlbGVjdG9yEi4KDWNoYXB0ZXJfdGl0bGUYPSABKAsyCS5TZWxlY3RvclIMY2hhcHRlclRpdGxlEjQKEGNoYXB0ZXJfc3VidGl0bGUYPiABKAsyCS5TZWxlY3RvclIPY2hhcHRlclN1YnRpdGxlEjMKDWNoYXB0ZXJfY292ZXIYPyABKAsyDi5JbWFnZVNlbGVjdG9yUgxjaGFwdGVyQ292ZXISJgoJbmV4dF9wYWdlGEYgASgLMgkuU2VsZWN0b3JSCG5leHRQYWdlEi8KDmNvdW50X3ByZV9wYWdlGEcgASgLMgkuU2VsZWN0b3JSDGNvdW50UHJlUGFnZRI1Cg5leHRyYV9zZWxlY3RvchhjIAMoCzIOLkV4dHJhU2VsZWN0b3JSDWV4dHJhU2VsZWN0b3I=');
+/// Descriptor for `GalleryParser`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List galleryParserDescriptor = $convert.base64Decode(
+    'Cg1HYWxsZXJ5UGFyc2VyEhIKBG5hbWUYASABKAlSBG5hbWUSEgoEdXVpZBgCIAEoCVIEdXVpZBIfCgV0aXRsZRgDIAEoCzIJLlNlbGVjdG9yUgV0aXRsZRIlCghzdWJ0aXRsZRgEIAEoCzIJLlNlbGVjdG9yUghzdWJ0aXRsZRIqCgt1cGxvYWRfdGltZRgFIAEoCzIJLlNlbGVjdG9yUgp1cGxvYWRUaW1lEh0KBHN0YXIYBiABKAsyCS5TZWxlY3RvclIEc3RhchImCglpbWdfY291bnQYByABKAsyCS5TZWxlY3RvclIIaW1nQ291bnQSKAoKcGFnZV9jb3VudBgIIAEoCzIJLlNlbGVjdG9yUglwYWdlQ291bnQSJQoIbGFuZ3VhZ2UYCSABKAsyCS5TZWxlY3RvclIIbGFuZ3VhZ2USKwoJY292ZXJfaW1nGAogASgLMg4uSW1hZ2VTZWxlY3RvclIIY292ZXJJbWcSKwoLZGVzY3JpcHRpb24YCyABKAsyCS5TZWxlY3RvclILZGVzY3JpcHRpb24SOAoSdGh1bWJuYWlsX3NlbGVjdG9yGBQgASgLMgkuU2VsZWN0b3JSEXRodW1ibmFpbFNlbGVjdG9yEiwKCXRodW1ibmFpbBgVIAEoCzIOLkltYWdlU2VsZWN0b3JSCXRodW1ibmFpbBI0ChBjb21tZW50X3NlbGVjdG9yGB4gASgLMgkuU2VsZWN0b3JSD2NvbW1lbnRTZWxlY3RvchIqCgdjb21tZW50GB8gASgLMhAuQ29tbWVudFNlbGVjdG9yUgdjb21tZW50EhsKA3RhZxgoIAEoCzIJLlNlbGVjdG9yUgN0YWcSJgoJdGFnX2NvbG9yGCkgASgLMgkuU2VsZWN0b3JSCHRhZ0NvbG9yEjAKDmJhZGdlX3NlbGVjdG9yGDIgASgLMgkuU2VsZWN0b3JSDWJhZGdlU2VsZWN0b3ISKAoKYmFkZ2VfdGV4dBgzIAEoCzIJLlNlbGVjdG9yUgliYWRnZVRleHQSMAoOYmFkZ2VfY2F0ZWdvcnkYNCABKAsyCS5TZWxlY3RvclINYmFkZ2VDYXRlZ29yeRI0ChBjaGFwdGVyX3NlbGVjdG9yGDwgASgLMgkuU2VsZWN0b3JSD2NoYXB0ZXJTZWxlY3RvchIuCg1jaGFwdGVyX3RpdGxlGD0gASgLMgkuU2VsZWN0b3JSDGNoYXB0ZXJUaXRsZRI0ChBjaGFwdGVyX3N1YnRpdGxlGD4gASgLMgkuU2VsZWN0b3JSD2NoYXB0ZXJTdWJ0aXRsZRIzCg1jaGFwdGVyX2NvdmVyGD8gASgLMg4uSW1hZ2VTZWxlY3RvclIMY2hhcHRlckNvdmVyEiYKCW5leHRfcGFnZRhGIAEoCzIJLlNlbGVjdG9yUghuZXh0UGFnZRIvCg5jb3VudF9wcmVfcGFnZRhHIAEoCzIJLlNlbGVjdG9yUgxjb3VudFByZVBhZ2USNQoOZXh0cmFfc2VsZWN0b3IYYyADKAsyDi5FeHRyYVNlbGVjdG9yUg1leHRyYVNlbGVjdG9y');
 @$core.Deprecated('Use autoCompleteParserDescriptor instead')
 const AutoCompleteParser$json = const {
   '1': 'AutoCompleteParser',

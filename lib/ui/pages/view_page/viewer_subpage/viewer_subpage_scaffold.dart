@@ -33,7 +33,7 @@ class ViewerPage extends StatelessWidget {
           target: target,
           hasToolBar: model != null,
         );
-      case Template.TEMPLATE_DETAIL:
+      case Template.TEMPLATE_GALLERY:
         return ViewerDetailFragment(
           target: target,
           model: model,

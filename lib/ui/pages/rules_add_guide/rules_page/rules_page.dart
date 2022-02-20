@@ -179,7 +179,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
   Widget _buildOpenNewPage(BuildContext context) {
     late final List<Widget> body;
     switch (model.template.value) {
-      case Template.TEMPLATE_DETAIL:
+      case Template.TEMPLATE_GALLERY:
         body = [
           _buildOpenWidget(
             context,

@@ -1,5 +1,6 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/data/protocol/model/selector.dart';
+import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
@@ -40,40 +41,14 @@ class ExtraParser extends StatelessWidget {
                     cancelText: '取消',
                     items: [
                       SelectTileItem(
-                          title: ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE
-                              .string(context),
-                          value: ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE),
-                      if (model.type == ParserType.listParser)
-                        SelectTileItem(
-                            title: ExtraSelectorType
-                                .EXTRA_SELECTOR_TYPE_LIST_ITEM
-                                .string(context),
-                            value: ExtraSelectorType
-                                .EXTRA_SELECTOR_TYPE_LIST_ITEM),
-                      if (model.type == ParserType.galleryParser)
-                        SelectTileItem(
-                            title: ExtraSelectorType
-                                .EXTRA_SELECTOR_TYPE_GALLERY_BADGE
-                                .string(context),
-                            value: ExtraSelectorType
-                                .EXTRA_SELECTOR_TYPE_GALLERY_BADGE),
-                      // if (model.type == ParserType.galleryParser)
-                      //   SelectTileItem(title: ExtraSelectorType.galleryChapter.string(
-                      //       context), value: ExtraSelectorType.galleryChapter),
-                      if (model.type == ParserType.galleryParser)
-                        SelectTileItem(
-                            title: ExtraSelectorType
-                                .EXTRA_SELECTOR_TYPE_GALLERY_COMMENT
-                                .string(context),
-                            value: ExtraSelectorType
-                                .EXTRA_SELECTOR_TYPE_GALLERY_COMMENT),
-                      if (model.type == ParserType.galleryParser)
-                        SelectTileItem(
-                            title: ExtraSelectorType
-                                .EXTRA_SELECTOR_TYPE_GALLERY_THUMBNAIL
-                                .string(context),
-                            value: ExtraSelectorType
-                                .EXTRA_SELECTOR_TYPE_GALLERY_THUMBNAIL),
+                        title: ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE
+                            .string(context),
+                        value: ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE,
+                      ),
+                      if (model.type == ParserType.PARSER_TYPE_LIST_VIEW)
+                        ..._buildList(context),
+                      if (model.type == ParserType.PARSER_TYPE_GALLERY)
+                        ..._buildGallery(context),
                     ],
                   );
                   if (result != null) {
@@ -85,5 +60,37 @@ class ExtraParser extends StatelessWidget {
             ],
           )),
     );
+  }
+
+  List<SelectTileItem<ExtraSelectorType>> _buildList(BuildContext context) {
+    return [
+      SelectTileItem(
+        title: ExtraSelectorType.EXTRA_SELECTOR_TYPE_LIST_ITEM.string(context),
+        value: ExtraSelectorType.EXTRA_SELECTOR_TYPE_LIST_ITEM,
+      ),
+    ];
+  }
+
+  List<SelectTileItem<ExtraSelectorType>> _buildGallery(BuildContext context) {
+    return [
+      SelectTileItem(
+        title:
+            ExtraSelectorType.EXTRA_SELECTOR_TYPE_GALLERY_BADGE.string(context),
+        value: ExtraSelectorType.EXTRA_SELECTOR_TYPE_GALLERY_BADGE,
+      ),
+      // if (model.type == ParserType.galleryParser)
+      //   SelectTileItem(title: ExtraSelectorType.galleryChapter.string(
+      //       context), value: ExtraSelectorType.galleryChapter),
+      SelectTileItem(
+        title: ExtraSelectorType.EXTRA_SELECTOR_TYPE_GALLERY_COMMENT
+            .string(context),
+        value: ExtraSelectorType.EXTRA_SELECTOR_TYPE_GALLERY_COMMENT,
+      ),
+      SelectTileItem(
+        title: ExtraSelectorType.EXTRA_SELECTOR_TYPE_GALLERY_THUMBNAIL
+            .string(context),
+        value: ExtraSelectorType.EXTRA_SELECTOR_TYPE_GALLERY_THUMBNAIL,
+      ),
+    ];
   }
 }

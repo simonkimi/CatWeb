@@ -94,8 +94,8 @@ class SitePageModel implements PbAble {
 extension PageTemplateTr on Template {
   String string(BuildContext context) {
     switch (this) {
-      case Template.TEMPLATE_DETAIL:
-        return '详情';
+      case Template.TEMPLATE_GALLERY:
+        return '画廊';
       case Template.TEMPLATE_IMAGE_LIST:
         return '列表';
       case Template.TEMPLATE_IMAGE_WATERFALL:
@@ -111,7 +111,7 @@ extension PageTemplateTr on Template {
   List<Template> get brother {
     final data = <List<Template>>[
       [Template.TEMPLATE_IMAGE_WATERFALL, Template.TEMPLATE_IMAGE_LIST],
-      [Template.TEMPLATE_DETAIL]
+      [Template.TEMPLATE_GALLERY]
     ];
     for (final parent in data) {
       for (final my in parent) {
@@ -123,8 +123,8 @@ extension PageTemplateTr on Template {
 
   Iterable<ParserBaseModel> parser(List<ParserBaseModel> input) {
     switch (this) {
-      case Template.TEMPLATE_DETAIL:
-        return input.whereType<DetailParserModel>();
+      case Template.TEMPLATE_GALLERY:
+        return input.whereType<GalleryParserModel>();
       case Template.TEMPLATE_IMAGE_LIST:
       case Template.TEMPLATE_IMAGE_WATERFALL:
         return input.whereType<ListViewParserModel>();

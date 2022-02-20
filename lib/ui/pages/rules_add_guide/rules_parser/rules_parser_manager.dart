@@ -1,4 +1,5 @@
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
@@ -104,20 +105,20 @@ class RulesParserManager extends GetView<RulesEditController> {
       title: '规则类型',
       cancelText: '取消',
       items: const [
-        SelectTileItem(title: '列表页', value: ParserType.listParser),
-        SelectTileItem(title: '详情页', value: ParserType.galleryParser),
-        SelectTileItem(title: '图片页', value: ParserType.imageParser),
+        SelectTileItem(title: '列表页', value: ParserType.PARSER_TYPE_LIST_VIEW),
+        SelectTileItem(title: '详情页', value: ParserType.PARSER_TYPE_GALLERY),
+        SelectTileItem(title: '图片页', value: ParserType.PARSER_TYPE_IMAGE),
       ],
     );
     if (selection != null) {
       switch (selection) {
-        case ParserType.listParser:
+        case ParserType.PARSER_TYPE_LIST_VIEW:
           return ListViewParserModel();
-        case ParserType.galleryParser:
-          return DetailParserModel();
-        case ParserType.imageParser:
+        case ParserType.PARSER_TYPE_GALLERY:
+          return GalleryParserModel();
+        case ParserType.PARSER_TYPE_IMAGE:
           return ImageParserModel();
-        case ParserType.searchAutoComplete:
+        case ParserType.PARSER_TYPE_AUTO_COMPLETE:
           return AutoCompleteParserModel();
       }
     }

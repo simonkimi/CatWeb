@@ -16,7 +16,8 @@ class FixColor {
     darkColor: Color(0xdeffffff),
   );
 
-  static CupertinoDynamicColor badge = const CupertinoDynamicColor.withBrightness(
+  static CupertinoDynamicColor badge =
+      const CupertinoDynamicColor.withBrightness(
     color: Color(0xfff2f1f6),
     darkColor: Color(0xff1c1c1e),
   );
