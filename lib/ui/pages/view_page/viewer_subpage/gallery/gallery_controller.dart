@@ -6,7 +6,7 @@ import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:get/get.dart';
 
-class DetailBaseData {
+class GalleryBaseData {
   final String? title;
   final String? subtitle;
   final String? language;
@@ -15,7 +15,7 @@ class DetailBaseData {
   final ImageRpcModel? image;
   final int? imageCount;
 
-  DetailBaseData({
+  GalleryBaseData({
     this.title,
     this.subtitle,
     this.tag,
@@ -26,14 +26,14 @@ class DetailBaseData {
   });
 }
 
-class DetailPreviewController extends LoadMoreModel<ImageRpcModel> {
-  DetailPreviewController({
+class GalleryPreviewController extends LoadMoreModel<ImageRpcModel> {
+  GalleryPreviewController({
     required this.target,
     SiteEnvModel? outerEnv,
     Object? base,
     GalleryRpcModel? detailModel,
   })  : localEnv = SiteEnvModel(outerEnv?.env),
-        baseData = DetailPreviewController.fromModel(base),
+        baseData = GalleryPreviewController.fromModel(base),
         _detailModel = Rx(detailModel) {
     onLoadMore();
   }
@@ -44,10 +44,10 @@ class DetailPreviewController extends LoadMoreModel<ImageRpcModel> {
 
   // 信息
   final Rx<GalleryRpcModel?> _detailModel;
-  DetailBaseData? baseData;
+  GalleryBaseData? baseData;
 
   @override
-  bool isItemExist(ImageRpcModel item) => items.contains(item);
+  bool isItemExist(ImageRpcModel item) => false;
 
   GalleryRpcModel? get detailModel => _detailModel.value;
 
@@ -62,12 +62,13 @@ class DetailPreviewController extends LoadMoreModel<ImageRpcModel> {
       localEnv: localEnv,
     );
     _detailModel.value = detail;
+
     return detail.previewImg;
   }
 
-  static DetailBaseData? fromModel(Object? model) {
+  static GalleryBaseData? fromModel(Object? model) {
     if (model != null && model is ListRpcModel_Item) {
-      return DetailBaseData(
+      return GalleryBaseData(
         title: model.title,
         subtitle: model.subtitle,
         tag: model.tag,

@@ -17,23 +17,23 @@ import 'package:catweb/data/protocol/model/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'comment_item.dart';
-import 'detail_controller.dart';
+import 'gallery_controller.dart';
 import 'package:get/get.dart';
 
-class ViewerDetailFragment extends StatelessWidget {
-  ViewerDetailFragment({
+class ViewerGalleryFragment extends StatelessWidget {
+  ViewerGalleryFragment({
     Key? key,
     required SitePageModel target,
     required Object? model,
     required SiteEnvModel env,
-  })  : c = DetailPreviewController(
+  })  : c = GalleryPreviewController(
           target: target,
           base: model,
           outerEnv: env,
         ),
         super(key: key);
 
-  final DetailPreviewController c;
+  final GalleryPreviewController c;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +67,9 @@ class ViewerDetailFragment extends StatelessWidget {
                   child: Obx(() => _buildDescription(context)),
                 ),
                 SliverToBoxAdapter(
+                  child: _buildPreviewList(context),
+                ),
+                SliverToBoxAdapter(
                   child: Obx(() => _buildTagList(context)),
                 ),
                 SliverToBoxAdapter(
@@ -78,6 +81,22 @@ class ViewerDetailFragment extends StatelessWidget {
               if (c.fillRemaining) _buildRemaining(context),
             ],
           )),
+    );
+  }
+
+  Widget _buildPreviewList(BuildContext context) {
+    return SizedBox(
+      height: 150,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: c.items.length,
+        itemBuilder: (context, index) {
+          return Container(
+            color: Colors.red,
+            width: 100,
+          );
+        },
+      ),
     );
   }
 

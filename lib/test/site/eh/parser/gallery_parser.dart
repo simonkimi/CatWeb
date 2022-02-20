@@ -78,33 +78,36 @@ final ehGalleryParser = GalleryParser(
       regex: r'-?\d+',
     ),
   ),
+  thumbnailSelector: Selector(selector: '.gdtm, .gdtl'),
   thumbnail: ImageSelector(
     imgWidth: Selector(
-      selector: '.gdtm img, .gdtl img',
+      selector: 'img',
       function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
       param: 'style',
       regex: r'width:(\d+)px',
       defaultValue: '200',
     ),
     imgHeight: Selector(
-      selector: '.gdtm img, .gdtl img',
+      selector: 'img',
       function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
       param: 'style',
       regex: r'height:(\d+)px',
-      defaultValue: '282',
+      defaultValue: '283',
     ),
     imgX: Selector(
-        selector: '.gdtm div',
-        function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
-        param: 'style',
-        regex: r'-(\d)px 0 no-repeat'),
-    imgUrl: Selector(
-      selector: '.gdtm img, .gdtl img',
+      selector: 'div',
       function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
-      param: 'src',
+      param: 'style',
+      regex: r'-(\d+)px 0 no-repeat',
+    ),
+    imgUrl: Selector(
+      selector: 'div, img',
+      function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
+      param: 'src,style',
+      regex: r'https:.+?\.jpg'
     ),
     target: Selector(
-      selector: '.gdtm a, .gdtl a',
+      selector: 'a',
       function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
       param: 'href',
     ),

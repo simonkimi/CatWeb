@@ -7,7 +7,7 @@ import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import 'gallery/viewer_detail.dart';
+import 'gallery/viewer_gallery.dart';
 
 class ViewerPage extends StatelessWidget {
   const ViewerPage({
@@ -35,7 +35,7 @@ class ViewerPage extends StatelessWidget {
           hasToolBar: model != null,
         );
       case Template.TEMPLATE_GALLERY:
-        return ViewerDetailFragment(
+        return ViewerGalleryFragment(
           target: target,
           model: model,
           env: env ?? SiteEnvModel(),
