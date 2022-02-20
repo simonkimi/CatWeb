@@ -150,33 +150,39 @@ class RulesForm extends StatelessWidget {
                       value: selectorModel.selector,
                       width: labelWidth,
                     ),
-                    _buildDivider(context),
+                    const ThinDivider(),
                     _buildFunction(
                       context: context,
                       width: labelWidth,
                     ),
-                    _buildDivider(context),
+                    const ThinDivider(),
                     CupertinoFormInput(
                       label: '参数',
                       value: selectorModel.param,
                       width: labelWidth,
                     ),
-                    _buildDivider(context),
+                    const ThinDivider(),
                     CupertinoFormInput(
                       label: '正则',
                       value: selectorModel.regex,
                       width: labelWidth,
                     ),
-                    _buildDivider(context),
+                    const ThinDivider(),
                     CupertinoFormInput(
                       label: '替换',
                       value: selectorModel.replace,
                       width: labelWidth,
                     ),
-                    _buildDivider(context),
+                    const ThinDivider(),
                     _buildJs(context, labelWidth),
+                    const ThinDivider(),
+                    CupertinoFormInput(
+                      label: '默认',
+                      value: selectorModel.defaultValue,
+                      width: labelWidth,
+                    ),
                     if (extraSelectorModel != null) ...[
-                      _buildDivider(context),
+                      const ThinDivider(),
                       _buildExtraController(context),
                     ],
                   ],
@@ -185,17 +191,6 @@ class RulesForm extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildDivider(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 3),
-      child: Divider(
-        height: 1,
-        thickness: 0.5,
-        color: CupertinoColors.systemGrey6.resolveFrom(context),
       ),
     );
   }
@@ -292,7 +287,7 @@ class RulesForm extends StatelessWidget {
             child: SizedBox(
               width: width,
               child: Text(
-                'Js脚本',
+                '脚本',
                 style: TextStyle(
                   color: isDarkMode(context)
                       ? FixColor.title.darkColor
@@ -367,5 +362,21 @@ class RulesForm extends StatelessWidget {
         ),
       );
     });
+  }
+}
+
+class ThinDivider extends StatelessWidget {
+  const ThinDivider({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 3),
+      child: Divider(
+        height: 1,
+        thickness: 0.5,
+        color: CupertinoColors.systemGrey6.resolveFrom(context),
+      ),
+    );
   }
 }

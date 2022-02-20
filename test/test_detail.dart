@@ -23,6 +23,6 @@ void main() async {
   final buffer = await req.send();
 
   final model = GalleryRpcModel.fromBuffer(buffer);
-  print(model.previewImg[2]);
+  print(model.language);
   line.getRunTime();
 }

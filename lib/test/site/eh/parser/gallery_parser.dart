@@ -20,6 +20,7 @@ final ehGalleryParser = GalleryParser(
   language: Selector(
     selector: '#gdd tr:nth-child(4)>.gdt2',
     function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
+    js: '{"Chinese":"中文","English":"英语","French":"法语","German":"德语","Japanese":"日语","Korean":"韩语","Russian":"俄语","Spanish":"西班牙语","Speechless":"无字","Italian":"意大利语"}',
   ),
   imgCount: Selector(
     selector: '#gdd tr:nth-child(6)>.gdt2',
@@ -27,9 +28,10 @@ final ehGalleryParser = GalleryParser(
     regex: r'\d+',
   ),
   star: Selector(
-      selector: '#rating_label',
-      function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
-      regex: r'Average: (.+)'),
+    selector: '#rating_label',
+    function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
+    regex: r'Average: (.+)',
+  ),
   tag: Selector(
     selector: '.cs',
     function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
@@ -39,7 +41,7 @@ final ehGalleryParser = GalleryParser(
     function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
     param: 'class',
     regex: 'ct.',
-    js: r"function hook(t){return{ct2:'#f66158',ct3:'#f09e19',ct4:'#d2d303',ct5:'#0fa911',cta:'#2fd92c',ct9:'#0bbfd3',ct6:'#4f5ce6',ct7:'#9030df',ct8:'#f38af2',ct1:'#8a8a8a'}[t]}",
+    js: r'{"ct1":"#8a8a8a","ct2":"#f66158","ct3":"#f09e19","ct4":"#d2d303","ct5":"#0fa911","ct6":"#4f5ce6","ct7":"#9030df","ct8":"#f38af2","ct9":"#0bbfd3","cta":"#2fd92c"}',
   ),
   badgeSelector: Selector(selector: '.gt,.gtl'),
   badgeText: Selector(
@@ -101,11 +103,10 @@ final ehGalleryParser = GalleryParser(
       regex: r'-(\d+)px 0 no-repeat',
     ),
     imgUrl: Selector(
-      selector: 'div, img',
-      function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
-      param: 'src,style',
-      regex: r'https:.+?\.jpg'
-    ),
+        selector: 'div, img',
+        function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
+        param: 'src,style',
+        regex: r'https:.+?\.jpg'),
     target: Selector(
       selector: 'a',
       function: SelectorFunction.SELECTOR_FUNCTION_ATTR,

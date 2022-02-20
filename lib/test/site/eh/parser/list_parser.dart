@@ -25,7 +25,7 @@ final ehListParser = ListViewParser(
   language: Selector(
     selector: '.gt[title^=language]',
     function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
-    js: 'function hook(n){var e={chinese:"汉语",english:"英语",french:"法语",german:"德语",japanese:"日语",korean:"韩语",russian:"俄语",spanish:"西班牙语",speechless:"无字",italian:"意大利语"};return null==e[n]?n:e[n]}',
+    js: '{"chinese":"中文","english":"英语","french":"法语","german":"德语","japanese":"日语","korean":"韩语","russian":"俄语","spanish":"西班牙语","speechless":"无字","italian":"意大利语"}',
   ),
   imgCount: Selector(
     selector:
