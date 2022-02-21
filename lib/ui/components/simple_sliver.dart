@@ -1,3 +1,4 @@
+import 'package:catweb/data/constant.dart';
 import 'package:flutter/cupertino.dart';
 
 class ExceptionSliver extends StatelessWidget {
@@ -76,5 +77,31 @@ class FooSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     return minHeight != oldDelegate.minExtent ||
         maxHeight != oldDelegate.maxExtent;
+  }
+}
+
+class SliverPullToRefresh extends StatelessWidget {
+  const SliverPullToRefresh({
+    Key? key,
+    this.onRefresh,
+  }) : super(key: key);
+
+  final RefreshCallback? onRefresh;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverPadding(
+      padding: EdgeInsets.only(
+          top: MediaQuery.of(context).padding.top + kCupertinoNavigatorBar + 5),
+      sliver: CupertinoSliverRefreshControl(
+        refreshIndicatorExtent: 50,
+        refreshTriggerPullDistance: 100,
+        onRefresh: () async {
+          if (onRefresh != null) {
+            await onRefresh!();
+          }
+        },
+      ),
+    );
   }
 }

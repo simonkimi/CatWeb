@@ -24,6 +24,11 @@ typedef ErrorBuilder = Widget Function(
   VoidCallback reload,
 );
 
+typedef WidgetBuilder = Widget Function(
+  BuildContext context,
+  Widget child,
+);
+
 class ImageLoader extends StatefulWidget {
   const ImageLoader({
     Key? key,
@@ -32,6 +37,9 @@ class ImageLoader extends StatefulWidget {
     this.imageBuilder,
     this.loadingBuilder,
     this.errorBuilder,
+    this.hasSize = false,
+    this.loadingWidgetBuilder,
+    this.imageWidgetBuilder,
   }) : super(key: key);
 
   final ImageConcurrency concurrency;
@@ -39,6 +47,10 @@ class ImageLoader extends StatefulWidget {
   final ImageWidgetBuilder? imageBuilder;
   final LoadingWidgetBuilder? loadingBuilder;
   final ErrorBuilder? errorBuilder;
+  final bool hasSize;
+
+  final WidgetBuilder? loadingWidgetBuilder;
+  final WidgetBuilder? imageWidgetBuilder;
 
   @override
   _ImageLoaderState createState() => _ImageLoaderState();
@@ -46,12 +58,11 @@ class ImageLoader extends StatefulWidget {
 
 class _ImageLoaderState extends State<ImageLoader> {
   late final ImageLoadModel _imageLoadModel;
-
   late final ErrorBuilder errorBuilder;
-
   late final LoadingWidgetBuilder loadingBuilder;
-
   late final ImageWidgetBuilder imageBuilder;
+  late final WidgetBuilder loadingWidgetBuilder;
+  late final WidgetBuilder imageWidgetBuilder;
 
   @override
   void initState() {
@@ -59,6 +70,8 @@ class _ImageLoaderState extends State<ImageLoader> {
     imageBuilder = widget.imageBuilder ?? _defaultImageBuilder;
     errorBuilder = widget.errorBuilder ?? _defaultErrorBuilder;
     _imageLoadModel = widget.concurrency.create(widget.model);
+    loadingWidgetBuilder = widget.loadingWidgetBuilder ?? _defaultWidgetBuilder;
+    imageWidgetBuilder = widget.imageWidgetBuilder ?? _defaultWidgetBuilder;
     super.initState();
   }
 
@@ -68,11 +81,13 @@ class _ImageLoaderState extends State<ImageLoader> {
       switch (_imageLoadModel.state) {
         case ImageLoadState.cached:
         case ImageLoadState.waiting:
-          return loadingBuilder(context, 0);
+          return loadingWidgetBuilder(context, loadingBuilder(context, 0));
         case ImageLoadState.loading:
-          return loadingBuilder(context, _imageLoadModel.progress);
+          return loadingWidgetBuilder(
+              context, loadingBuilder(context, _imageLoadModel.progress));
         case ImageLoadState.finish:
-          return imageBuilder(context, _imageLoadModel.data!);
+          return imageWidgetBuilder(
+              context, imageBuilder(context, _imageLoadModel.data!));
         case ImageLoadState.error:
           return errorBuilder(
               context, _imageLoadModel.lastException.value!, _onReload);
@@ -89,6 +104,8 @@ class _ImageLoaderState extends State<ImageLoader> {
     _imageLoadModel.dispose();
     super.dispose();
   }
+
+  Widget _defaultWidgetBuilder(BuildContext context, Widget widget) => widget;
 
   Widget _defaultImageBuilder(BuildContext context, Uint8List imgData) {
     final model = widget.model;
@@ -122,8 +139,11 @@ class _ImageLoaderState extends State<ImageLoader> {
               return AspectRatio(
                 aspectRatio: model.width / model.height,
                 child: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: img,
+                  fit: BoxFit.contain,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: img,
+                  ),
                 ),
               );
             }
@@ -139,12 +159,6 @@ class _ImageLoaderState extends State<ImageLoader> {
       );
     }
 
-    // if (model.hasWidth() && model.hasHeight()) {
-    //   return AspectRatio(
-    //     aspectRatio: model.width / model.height,
-    //     child: child,
-    //   );
-    // }
     return child;
   }
 

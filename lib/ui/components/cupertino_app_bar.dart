@@ -8,10 +8,29 @@ import 'package:flutter/material.dart';
 
 import 'grey_tab_indicator.dart';
 
+class CupertinoBackLeading extends StatelessWidget {
+  const CupertinoBackLeading({
+    Key? key,
+    this.title,
+  }) : super(key: key);
+
+  final String? title;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      minSize: 0,
+      child: const Icon(CupertinoIcons.back),
+      onPressed: () => Navigator.of(context).pop(),
+    );
+  }
+}
+
 class CupertinoAppBar extends StatefulWidget {
   const CupertinoAppBar({
     Key? key,
-    required this.title,
+    this.title,
     required this.child,
     this.leading,
     this.actions,
@@ -19,9 +38,10 @@ class CupertinoAppBar extends StatefulWidget {
     this.tabs,
     this.tabController,
     this.padding = const EdgeInsets.symmetric(horizontal: 10),
+    this.automaticallyImplyLeading = true,
   }) : super(key: key);
 
-  final String title;
+  final String? title;
   final Widget? leading;
   final List<Widget>? actions;
   final Color? backgroundColor;
@@ -29,6 +49,7 @@ class CupertinoAppBar extends StatefulWidget {
   final Widget child;
   final TabController? tabController;
   final EdgeInsets padding;
+  final bool automaticallyImplyLeading;
 
   @override
   _CupertinoAppBarState createState() => _CupertinoAppBarState();
@@ -162,6 +183,11 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
   }
 
   SizedBox _buildNavigatorBar(BuildContext context) {
+    var leading = widget.leading;
+    if (widget.automaticallyImplyLeading) {
+      leading ??= const CupertinoNavigationBarBackButton();
+    }
+
     return SizedBox(
       height: kCupertinoNavigatorBar,
       child: Padding(
@@ -172,22 +198,23 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [if (widget.leading != null) widget.leading!],
+              children: [if (leading != null) leading],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  widget.title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: FixColor.title.resolveFrom(context),
+            if (widget.title != null)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    widget.title!,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: FixColor.title.resolveFrom(context),
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: widget.actions ?? <Widget>[],

@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/components/badge.dart';
@@ -9,6 +8,8 @@ import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/description.dart';
 import 'package:catweb/ui/components/icon_text.dart';
 import 'package:catweb/ui/components/image_loader.dart';
+import 'package:catweb/ui/components/simple_sliver.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/gallery/viewer_gallery_images.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,28 +42,7 @@ class ViewerGalleryFragment extends StatelessWidget {
     return CupertinoAppBar(
       title: '',
       child: _buildBody(context),
-      leading: _buildLeading(context),
-    );
-  }
-
-  Widget _buildLeading(BuildContext context) {
-    return CupertinoButton(
-      padding: EdgeInsets.zero,
-      minSize: 0,
-      child: const Icon(CupertinoIcons.back),
-      onPressed: () => Get.back(),
-    );
-  }
-
-  Widget _buildPullRefresh(BuildContext context) {
-    return SliverPadding(
-      padding: EdgeInsets.only(
-          top: MediaQuery.of(context).padding.top + kCupertinoNavigatorBar + 5),
-      sliver: CupertinoSliverRefreshControl(
-        refreshIndicatorExtent: 75,
-        refreshTriggerPullDistance: 150,
-        onRefresh: () => c.refresh(),
-      ),
+      leading: const CupertinoBackLeading(),
     );
   }
 
@@ -72,7 +52,7 @@ class ViewerGalleryFragment extends StatelessWidget {
       child: Obx(() => CustomScrollView(
             slivers: [
               // 上方内容
-              _buildPullRefresh(context),
+              SliverPullToRefresh(onRefresh: c.refresh),
               _buildHeader(context),
 
               // 下方内容, 有信息才会展现
@@ -137,7 +117,9 @@ class ViewerGalleryFragment extends StatelessWidget {
                 style: const TextStyle(fontSize: 13),
               ),
             const Expanded(child: SizedBox()),
-            _buildShowMore(context, () {}),
+            _buildShowMore(context, () {
+              Get.to(() => ViewerGalleryImages(c: c));
+            }),
           ],
         ),
         const SizedBox(height: 3),
@@ -465,6 +447,13 @@ class ViewerGalleryFragment extends StatelessWidget {
             );
           }).toList(),
         ),
+        if ((c.detailModel?.comments.length ?? 0) > 2)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              _buildShowMore(context, () {}),
+            ],
+          ),
       ],
     );
   }

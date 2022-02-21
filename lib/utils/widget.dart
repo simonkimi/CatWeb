@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 extension WidgetWrap on Widget {
   Widget padding([EdgeInsets padding = EdgeInsets.zero]) =>
       Padding(padding: padding, child: this);
 
-  Widget coloredBox(Color color) => ColoredBox(color: color, child: this);
+  Widget coloredBox([Color? color]) =>
+      ColoredBox(color: color ?? Colors.blue, child: this);
 }
 
 Size boundingTextSize({
