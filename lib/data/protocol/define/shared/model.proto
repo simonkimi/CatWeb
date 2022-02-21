@@ -24,7 +24,8 @@ message ColorRpcModel {
 message TagRpcModel {
   string text = 1;
   ColorRpcModel color = 2;
-  map<string, string> env = 3;
+  string category = 3;
+  map<string, string> env = 4;
 }
 
 message ListRpcModel {
@@ -54,10 +55,6 @@ message ListRpcModel {
 }
 
 message GalleryRpcModel {
-  message Badge {
-    string text = 1;
-    string category = 2;
-  }
 
   message Comment {
     string username = 1;
@@ -79,9 +76,24 @@ message GalleryRpcModel {
   ImageRpcModel cover_img = 10;
 
   TagRpcModel tag = 20;
-  repeated Badge badges = 21;
+  repeated TagRpcModel badges = 21;
   repeated Comment comments = 22;
 
   map<string, string> localEnv = 30;
   map<string, string> globalEnv = 31;
+}
+
+message ImageReaderRpcModel {
+  ImageRpcModel image = 1;
+  string larger_image_url = 2;
+  string raw_image_url = 3;
+  string upload_time = 4;
+  string source = 5;
+  string rating = 6;
+  string score = 7;
+
+  repeated TagRpcModel badges = 10;
+
+  map<string, string> localEnv = 20;
+  map<string, string> globalEnv = 21;
 }

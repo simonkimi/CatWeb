@@ -29,8 +29,8 @@ abstract class ParserBaseModel implements PbAble {
   ParserType get type;
 }
 
-class ImageParserModel extends ParserBaseModel {
-  ImageParserModel([ImageParser? pb])
+class ImageReaderParserModel extends ParserBaseModel {
+  ImageReaderParserModel([ImageReaderParser? pb])
       : image = ImageSelectorModel(pb?.image),
         rawImage = SelectorModel(pb?.rawImage),
         largerImage = SelectorModel(pb?.largerImage),
@@ -38,7 +38,6 @@ class ImageParserModel extends ParserBaseModel {
         score = SelectorModel(pb?.score),
         source = SelectorModel(pb?.source),
         uploadTime = SelectorModel(pb?.uploadTime),
-        uploaderAvatar = ImageSelectorModel(pb?.uploaderAvatar),
         id = SelectorModel(pb?.id),
         super(
           name: sobs(pb?.name),
@@ -54,13 +53,12 @@ class ImageParserModel extends ParserBaseModel {
   final SelectorModel score;
   final SelectorModel source;
   final SelectorModel uploadTime;
-  final ImageSelectorModel uploaderAvatar;
 
   @override
   String displayType(BuildContext context) => '图片查看';
 
   @override
-  ImageParser toPb() => ImageParser(
+  ImageReaderParser toPb() => ImageReaderParser(
         name: name.value,
         id: id.toPb(),
         uuid: uuid,
@@ -71,12 +69,11 @@ class ImageParserModel extends ParserBaseModel {
         score: score.toPb(),
         source: source.toPb(),
         uploadTime: uploadTime.toPb(),
-        uploaderAvatar: uploaderAvatar.toPb(),
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
       );
 
   @override
-  ImageParserModel copy() => ImageParserModel(toPb());
+  ImageReaderParserModel copy() => ImageReaderParserModel(toPb());
 
   @override
   ParserType get type => ParserType.PARSER_TYPE_IMAGE;

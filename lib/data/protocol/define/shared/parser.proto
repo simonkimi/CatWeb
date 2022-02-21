@@ -10,7 +10,7 @@ enum ParserType {
   PARSER_TYPE_AUTO_COMPLETE = 3;
 }
 
-message ImageParser {
+message ImageReaderParser {
   string name = 1;
   string uuid = 2;
 
@@ -22,7 +22,11 @@ message ImageParser {
   Selector source = 8;
   Selector rating = 9;
   Selector score = 10;
-  ImageSelector uploader_avatar = 11;
+
+  // 徽章
+  Selector badge_selector = 20;
+  Selector badge_text = 21;
+  Selector badge_category = 22;
 
   repeated ExtraSelector extra_selector = 99;
 }

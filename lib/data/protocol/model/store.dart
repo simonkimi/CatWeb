@@ -44,7 +44,7 @@ class SiteBlueprintModel implements PbAble {
         ),
         imageParsers = lobs(
           pb?.imageParsers,
-          (ImageParser e) => ImageParserModel(e),
+          (ImageReaderParser e) => ImageReaderParserModel(e),
         ),
         autoCompleteParsers = lobs(
           pb?.autoCompleteParsers,
@@ -71,7 +71,7 @@ class SiteBlueprintModel implements PbAble {
   final RxList<RegFieldModel> headers;
   final RxList<GalleryParserModel> galleryParsers;
   final RxList<ListViewParserModel> listViewParsers;
-  final RxList<ImageParserModel> imageParsers;
+  final RxList<ImageReaderParserModel> imageParsers;
   final RxList<AutoCompleteParserModel> autoCompleteParsers;
   final RxList<ActionCombineModel> actionList;
   final RxList<SitePageModel> pageList;
@@ -124,7 +124,7 @@ class SiteBlueprintModel implements PbAble {
     return result;
   }
 
-  ImageParserModel? getImageParser(String uuid) {
+  ImageReaderParserModel? getImageParser(String uuid) {
     final result = imageParsers.get((e) => e.uuid == uuid);
     if (result == null) throw Exception('Parser $uuid not exist');
     return result;

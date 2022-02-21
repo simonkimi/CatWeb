@@ -13,11 +13,11 @@ import 'selector.pb.dart' as $0;
 
 export 'parser.pbenum.dart';
 
-class ImageParser extends $pb.GeneratedMessage {
+class ImageReaderParser extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
-          : 'ImageParser',
+          : 'ImageReaderParser',
       createEmptyInstance: create)
     ..aOS(
         1,
@@ -77,12 +77,24 @@ class ImageParser extends $pb.GeneratedMessage {
             ? ''
             : 'score',
         subBuilder: $0.Selector.create)
-    ..aOM<$0.ImageSelector>(
-        11,
+    ..aOM<$0.Selector>(
+        20,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'uploaderAvatar',
-        subBuilder: $0.ImageSelector.create)
+            : 'badgeSelector',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        21,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'badgeText',
+        subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(
+        22,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'badgeCategory',
+        subBuilder: $0.Selector.create)
     ..pc<$0.ExtraSelector>(
         99,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -92,8 +104,8 @@ class ImageParser extends $pb.GeneratedMessage {
         subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false;
 
-  ImageParser._() : super();
-  factory ImageParser({
+  ImageReaderParser._() : super();
+  factory ImageReaderParser({
     $core.String? name,
     $core.String? uuid,
     $0.Selector? id,
@@ -104,7 +116,9 @@ class ImageParser extends $pb.GeneratedMessage {
     $0.Selector? source,
     $0.Selector? rating,
     $0.Selector? score,
-    $0.ImageSelector? uploaderAvatar,
+    $0.Selector? badgeSelector,
+    $0.Selector? badgeText,
+    $0.Selector? badgeCategory,
     $core.Iterable<$0.ExtraSelector>? extraSelector,
   }) {
     final _result = create();
@@ -138,39 +152,46 @@ class ImageParser extends $pb.GeneratedMessage {
     if (score != null) {
       _result.score = score;
     }
-    if (uploaderAvatar != null) {
-      _result.uploaderAvatar = uploaderAvatar;
+    if (badgeSelector != null) {
+      _result.badgeSelector = badgeSelector;
+    }
+    if (badgeText != null) {
+      _result.badgeText = badgeText;
+    }
+    if (badgeCategory != null) {
+      _result.badgeCategory = badgeCategory;
     }
     if (extraSelector != null) {
       _result.extraSelector.addAll(extraSelector);
     }
     return _result;
   }
-  factory ImageParser.fromBuffer($core.List<$core.int> i,
+  factory ImageReaderParser.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ImageParser.fromJson($core.String i,
+  factory ImageReaderParser.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  ImageParser clone() => ImageParser()..mergeFromMessage(this);
+  ImageReaderParser clone() => ImageReaderParser()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  ImageParser copyWith(void Function(ImageParser) updates) =>
-      super.copyWith((message) => updates(message as ImageParser))
-          as ImageParser; // ignore: deprecated_member_use
+  ImageReaderParser copyWith(void Function(ImageReaderParser) updates) =>
+      super.copyWith((message) => updates(message as ImageReaderParser))
+          as ImageReaderParser; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static ImageParser create() => ImageParser._();
-  ImageParser createEmptyInstance() => create();
-  static $pb.PbList<ImageParser> createRepeated() => $pb.PbList<ImageParser>();
+  static ImageReaderParser create() => ImageReaderParser._();
+  ImageReaderParser createEmptyInstance() => create();
+  static $pb.PbList<ImageReaderParser> createRepeated() =>
+      $pb.PbList<ImageReaderParser>();
   @$core.pragma('dart2js:noInline')
-  static ImageParser getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ImageParser>(create);
-  static ImageParser? _defaultInstance;
+  static ImageReaderParser getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ImageReaderParser>(create);
+  static ImageReaderParser? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
@@ -308,22 +329,50 @@ class ImageParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(10)
   $0.Selector ensureScore() => $_ensure(9);
 
-  @$pb.TagNumber(11)
-  $0.ImageSelector get uploaderAvatar => $_getN(10);
-  @$pb.TagNumber(11)
-  set uploaderAvatar($0.ImageSelector v) {
-    setField(11, v);
+  @$pb.TagNumber(20)
+  $0.Selector get badgeSelector => $_getN(10);
+  @$pb.TagNumber(20)
+  set badgeSelector($0.Selector v) {
+    setField(20, v);
   }
 
-  @$pb.TagNumber(11)
-  $core.bool hasUploaderAvatar() => $_has(10);
-  @$pb.TagNumber(11)
-  void clearUploaderAvatar() => clearField(11);
-  @$pb.TagNumber(11)
-  $0.ImageSelector ensureUploaderAvatar() => $_ensure(10);
+  @$pb.TagNumber(20)
+  $core.bool hasBadgeSelector() => $_has(10);
+  @$pb.TagNumber(20)
+  void clearBadgeSelector() => clearField(20);
+  @$pb.TagNumber(20)
+  $0.Selector ensureBadgeSelector() => $_ensure(10);
+
+  @$pb.TagNumber(21)
+  $0.Selector get badgeText => $_getN(11);
+  @$pb.TagNumber(21)
+  set badgeText($0.Selector v) {
+    setField(21, v);
+  }
+
+  @$pb.TagNumber(21)
+  $core.bool hasBadgeText() => $_has(11);
+  @$pb.TagNumber(21)
+  void clearBadgeText() => clearField(21);
+  @$pb.TagNumber(21)
+  $0.Selector ensureBadgeText() => $_ensure(11);
+
+  @$pb.TagNumber(22)
+  $0.Selector get badgeCategory => $_getN(12);
+  @$pb.TagNumber(22)
+  set badgeCategory($0.Selector v) {
+    setField(22, v);
+  }
+
+  @$pb.TagNumber(22)
+  $core.bool hasBadgeCategory() => $_has(12);
+  @$pb.TagNumber(22)
+  void clearBadgeCategory() => clearField(22);
+  @$pb.TagNumber(22)
+  $0.Selector ensureBadgeCategory() => $_ensure(12);
 
   @$pb.TagNumber(99)
-  $core.List<$0.ExtraSelector> get extraSelector => $_getList(11);
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(13);
 }
 
 class ListViewParser extends $pb.GeneratedMessage {

@@ -77,7 +77,7 @@ const SiteBlueprint$json = const {
       '3': 22,
       '4': 3,
       '5': 11,
-      '6': '.ImageParser',
+      '6': '.ImageReaderParser',
       '10': 'imageParsers'
     },
     const {
@@ -109,7 +109,7 @@ const SiteBlueprint$json = const {
 
 /// Descriptor for `SiteBlueprint`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List siteBlueprintDescriptor = $convert.base64Decode(
-    'Cg1TaXRlQmx1ZXByaW50EhIKBG5hbWUYASABKAlSBG5hbWUSGQoIYmFzZV91cmwYAiABKAlSB2Jhc2VVcmwSGwoJbG9naW5fdXJsGAMgASgJUghsb2dpblVybBIsCgxsb2dpbl9jb29raWUYBCABKAsyCS5SZWdGaWVsZFILbG9naW5Db29raWUSGAoHdmVyc2lvbhgFIAEoCVIHdmVyc2lvbhIfCgt1cGdyYWRlX3VybBgGIAEoCVIKdXBncmFkZVVybBISCgRmbGFnGAcgASgJUgRmbGFnEhYKBnJlYWRtZRgIIAEoCVIGcmVhZG1lEiMKB2hlYWRlcnMYDyADKAsyCS5SZWdGaWVsZFIHaGVhZGVycxIjCgdjb29raWVzGBAgAygLMgkuUmVnRmllbGRSB2Nvb2tpZXMSNwoPZ2FsbGVyeV9wYXJzZXJzGBQgAygLMg4uR2FsbGVyeVBhcnNlclIOZ2FsbGVyeVBhcnNlcnMSOwoRbGlzdF92aWV3X3BhcnNlcnMYFSADKAsyDy5MaXN0Vmlld1BhcnNlclIPbGlzdFZpZXdQYXJzZXJzEjEKDWltYWdlX3BhcnNlcnMYFiADKAsyDC5JbWFnZVBhcnNlclIMaW1hZ2VQYXJzZXJzEkcKFWF1dG9fY29tcGxldGVfcGFyc2VycxgXIAMoCzITLkF1dG9Db21wbGV0ZVBhcnNlclITYXV0b0NvbXBsZXRlUGFyc2VycxIoCgdhY3Rpb25zGB4gAygLMg4uQWN0aW9uQ29tYmluZVIHYWN0aW9ucxIfCgVwYWdlcxgfIAMoCzIJLlNpdGVQYWdlUgVwYWdlcw==');
+    'Cg1TaXRlQmx1ZXByaW50EhIKBG5hbWUYASABKAlSBG5hbWUSGQoIYmFzZV91cmwYAiABKAlSB2Jhc2VVcmwSGwoJbG9naW5fdXJsGAMgASgJUghsb2dpblVybBIsCgxsb2dpbl9jb29raWUYBCABKAsyCS5SZWdGaWVsZFILbG9naW5Db29raWUSGAoHdmVyc2lvbhgFIAEoCVIHdmVyc2lvbhIfCgt1cGdyYWRlX3VybBgGIAEoCVIKdXBncmFkZVVybBISCgRmbGFnGAcgASgJUgRmbGFnEhYKBnJlYWRtZRgIIAEoCVIGcmVhZG1lEiMKB2hlYWRlcnMYDyADKAsyCS5SZWdGaWVsZFIHaGVhZGVycxIjCgdjb29raWVzGBAgAygLMgkuUmVnRmllbGRSB2Nvb2tpZXMSNwoPZ2FsbGVyeV9wYXJzZXJzGBQgAygLMg4uR2FsbGVyeVBhcnNlclIOZ2FsbGVyeVBhcnNlcnMSOwoRbGlzdF92aWV3X3BhcnNlcnMYFSADKAsyDy5MaXN0Vmlld1BhcnNlclIPbGlzdFZpZXdQYXJzZXJzEjcKDWltYWdlX3BhcnNlcnMYFiADKAsyEi5JbWFnZVJlYWRlclBhcnNlclIMaW1hZ2VQYXJzZXJzEkcKFWF1dG9fY29tcGxldGVfcGFyc2VycxgXIAMoCzITLkF1dG9Db21wbGV0ZVBhcnNlclITYXV0b0NvbXBsZXRlUGFyc2VycxIoCgdhY3Rpb25zGB4gAygLMg4uQWN0aW9uQ29tYmluZVIHYWN0aW9ucxIfCgVwYWdlcxgfIAMoCzIJLlNpdGVQYWdlUgVwYWdlcw==');
 @$core.Deprecated('Use envStoreDescriptor instead')
 const EnvStore$json = const {
   '1': 'EnvStore',

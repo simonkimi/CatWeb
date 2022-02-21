@@ -129,7 +129,7 @@ extension PageTemplateTr on Template {
       case Template.TEMPLATE_IMAGE_WATERFALL:
         return input.whereType<ListViewParserModel>();
       case Template.TEMPLATE_IMAGE_VIEWER:
-        return input.whereType<ImageParserModel>();
+        return input.whereType<ImageReaderParserModel>();
       case Template.TEMPLATE_AUTO_COMPLETE:
         // TODO: Handle this case.
         break;

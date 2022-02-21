@@ -352,8 +352,13 @@ class TagRpcModel extends $pb.GeneratedMessage {
             ? ''
             : 'color',
         subBuilder: ColorRpcModel.create)
-    ..m<$core.String, $core.String>(
+    ..aOS(
         3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'category')
+    ..m<$core.String, $core.String>(
+        4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'env',
@@ -366,6 +371,7 @@ class TagRpcModel extends $pb.GeneratedMessage {
   factory TagRpcModel({
     $core.String? text,
     ColorRpcModel? color,
+    $core.String? category,
     $core.Map<$core.String, $core.String>? env,
   }) {
     final _result = create();
@@ -374,6 +380,9 @@ class TagRpcModel extends $pb.GeneratedMessage {
     }
     if (color != null) {
       _result.color = color;
+    }
+    if (category != null) {
+      _result.category = category;
     }
     if (env != null) {
       _result.env.addAll(env);
@@ -433,7 +442,19 @@ class TagRpcModel extends $pb.GeneratedMessage {
   ColorRpcModel ensureColor() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $core.Map<$core.String, $core.String> get env => $_getMap(2);
+  $core.String get category => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set category($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(3)
+  $core.bool hasCategory() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearCategory() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.Map<$core.String, $core.String> get env => $_getMap(3);
 }
 
 class ListRpcModel_Item extends $pb.GeneratedMessage {
@@ -834,92 +855,6 @@ class ListRpcModel extends $pb.GeneratedMessage {
   $core.Map<$core.String, $core.String> get globalEnv => $_getMap(3);
 }
 
-class GalleryRpcModel_Badge extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'GalleryRpcModel.Badge',
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'text')
-    ..aOS(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'category')
-    ..hasRequiredFields = false;
-
-  GalleryRpcModel_Badge._() : super();
-  factory GalleryRpcModel_Badge({
-    $core.String? text,
-    $core.String? category,
-  }) {
-    final _result = create();
-    if (text != null) {
-      _result.text = text;
-    }
-    if (category != null) {
-      _result.category = category;
-    }
-    return _result;
-  }
-  factory GalleryRpcModel_Badge.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory GalleryRpcModel_Badge.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
-  GalleryRpcModel_Badge clone() =>
-      GalleryRpcModel_Badge()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
-  GalleryRpcModel_Badge copyWith(
-          void Function(GalleryRpcModel_Badge) updates) =>
-      super.copyWith((message) => updates(message as GalleryRpcModel_Badge))
-          as GalleryRpcModel_Badge; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static GalleryRpcModel_Badge create() => GalleryRpcModel_Badge._();
-  GalleryRpcModel_Badge createEmptyInstance() => create();
-  static $pb.PbList<GalleryRpcModel_Badge> createRepeated() =>
-      $pb.PbList<GalleryRpcModel_Badge>();
-  @$core.pragma('dart2js:noInline')
-  static GalleryRpcModel_Badge getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<GalleryRpcModel_Badge>(create);
-  static GalleryRpcModel_Badge? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get text => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set text($core.String v) {
-    $_setString(0, v);
-  }
-
-  @$pb.TagNumber(1)
-  $core.bool hasText() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearText() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get category => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set category($core.String v) {
-    $_setString(1, v);
-  }
-
-  @$pb.TagNumber(2)
-  $core.bool hasCategory() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearCategory() => clearField(2);
-}
-
 class GalleryRpcModel_Comment extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
@@ -1140,13 +1075,13 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
             ? ''
             : 'tag',
         subBuilder: TagRpcModel.create)
-    ..pc<GalleryRpcModel_Badge>(
+    ..pc<TagRpcModel>(
         21,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'badges',
         $pb.PbFieldType.PM,
-        subBuilder: GalleryRpcModel_Badge.create)
+        subBuilder: TagRpcModel.create)
     ..pc<GalleryRpcModel_Comment>(
         22,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -1187,7 +1122,7 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
     $core.Iterable<ImageRpcModel>? previewImg,
     ImageRpcModel? coverImg,
     TagRpcModel? tag,
-    $core.Iterable<GalleryRpcModel_Badge>? badges,
+    $core.Iterable<TagRpcModel>? badges,
     $core.Iterable<GalleryRpcModel_Comment>? comments,
     $core.Map<$core.String, $core.String>? localEnv,
     $core.Map<$core.String, $core.String>? globalEnv,
@@ -1395,7 +1330,7 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
   TagRpcModel ensureTag() => $_ensure(10);
 
   @$pb.TagNumber(21)
-  $core.List<GalleryRpcModel_Badge> get badges => $_getList(11);
+  $core.List<TagRpcModel> get badges => $_getList(11);
 
   @$pb.TagNumber(22)
   $core.List<GalleryRpcModel_Comment> get comments => $_getList(12);
@@ -1405,4 +1340,242 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(31)
   $core.Map<$core.String, $core.String> get globalEnv => $_getMap(14);
+}
+
+class ImageReaderRpcModel extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ImageReaderRpcModel',
+      createEmptyInstance: create)
+    ..aOM<ImageRpcModel>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'image',
+        subBuilder: ImageRpcModel.create)
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'largerImageUrl')
+    ..aOS(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'rawImageUrl')
+    ..aOS(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'uploadTime')
+    ..aOS(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'source')
+    ..aOS(
+        6,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'rating')
+    ..aOS(
+        7,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'score')
+    ..pc<TagRpcModel>(
+        10,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'badges',
+        $pb.PbFieldType.PM,
+        subBuilder: TagRpcModel.create)
+    ..m<$core.String, $core.String>(
+        20,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'localEnv',
+        protoName: 'localEnv',
+        entryClassName: 'ImageReaderRpcModel.LocalEnvEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OS)
+    ..m<$core.String, $core.String>(
+        21,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'globalEnv',
+        protoName: 'globalEnv',
+        entryClassName: 'ImageReaderRpcModel.GlobalEnvEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OS)
+    ..hasRequiredFields = false;
+
+  ImageReaderRpcModel._() : super();
+  factory ImageReaderRpcModel({
+    ImageRpcModel? image,
+    $core.String? largerImageUrl,
+    $core.String? rawImageUrl,
+    $core.String? uploadTime,
+    $core.String? source,
+    $core.String? rating,
+    $core.String? score,
+    $core.Iterable<TagRpcModel>? badges,
+    $core.Map<$core.String, $core.String>? localEnv,
+    $core.Map<$core.String, $core.String>? globalEnv,
+  }) {
+    final _result = create();
+    if (image != null) {
+      _result.image = image;
+    }
+    if (largerImageUrl != null) {
+      _result.largerImageUrl = largerImageUrl;
+    }
+    if (rawImageUrl != null) {
+      _result.rawImageUrl = rawImageUrl;
+    }
+    if (uploadTime != null) {
+      _result.uploadTime = uploadTime;
+    }
+    if (source != null) {
+      _result.source = source;
+    }
+    if (rating != null) {
+      _result.rating = rating;
+    }
+    if (score != null) {
+      _result.score = score;
+    }
+    if (badges != null) {
+      _result.badges.addAll(badges);
+    }
+    if (localEnv != null) {
+      _result.localEnv.addAll(localEnv);
+    }
+    if (globalEnv != null) {
+      _result.globalEnv.addAll(globalEnv);
+    }
+    return _result;
+  }
+  factory ImageReaderRpcModel.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ImageReaderRpcModel.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ImageReaderRpcModel clone() => ImageReaderRpcModel()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ImageReaderRpcModel copyWith(void Function(ImageReaderRpcModel) updates) =>
+      super.copyWith((message) => updates(message as ImageReaderRpcModel))
+          as ImageReaderRpcModel; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static ImageReaderRpcModel create() => ImageReaderRpcModel._();
+  ImageReaderRpcModel createEmptyInstance() => create();
+  static $pb.PbList<ImageReaderRpcModel> createRepeated() =>
+      $pb.PbList<ImageReaderRpcModel>();
+  @$core.pragma('dart2js:noInline')
+  static ImageReaderRpcModel getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ImageReaderRpcModel>(create);
+  static ImageReaderRpcModel? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  ImageRpcModel get image => $_getN(0);
+  @$pb.TagNumber(1)
+  set image(ImageRpcModel v) {
+    setField(1, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasImage() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearImage() => clearField(1);
+  @$pb.TagNumber(1)
+  ImageRpcModel ensureImage() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.String get largerImageUrl => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set largerImageUrl($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasLargerImageUrl() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearLargerImageUrl() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get rawImageUrl => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set rawImageUrl($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(3)
+  $core.bool hasRawImageUrl() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearRawImageUrl() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get uploadTime => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set uploadTime($core.String v) {
+    $_setString(3, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasUploadTime() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearUploadTime() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get source => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set source($core.String v) {
+    $_setString(4, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasSource() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearSource() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get rating => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set rating($core.String v) {
+    $_setString(5, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasRating() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearRating() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get score => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set score($core.String v) {
+    $_setString(6, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasScore() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearScore() => clearField(7);
+
+  @$pb.TagNumber(10)
+  $core.List<TagRpcModel> get badges => $_getList(7);
+
+  @$pb.TagNumber(20)
+  $core.Map<$core.String, $core.String> get localEnv => $_getMap(8);
+
+  @$pb.TagNumber(21)
+  $core.Map<$core.String, $core.String> get globalEnv => $_getMap(9);
 }

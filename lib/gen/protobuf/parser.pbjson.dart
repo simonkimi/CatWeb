@@ -23,9 +23,9 @@ const ParserType$json = const {
 /// Descriptor for `ParserType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List parserTypeDescriptor = $convert.base64Decode(
     'CgpQYXJzZXJUeXBlEhUKEVBBUlNFUl9UWVBFX0lNQUdFEAASGQoVUEFSU0VSX1RZUEVfTElTVF9WSUVXEAESFwoTUEFSU0VSX1RZUEVfR0FMTEVSWRACEh0KGVBBUlNFUl9UWVBFX0FVVE9fQ09NUExFVEUQAw==');
-@$core.Deprecated('Use imageParserDescriptor instead')
-const ImageParser$json = const {
-  '1': 'ImageParser',
+@$core.Deprecated('Use imageReaderParserDescriptor instead')
+const ImageReaderParser$json = const {
+  '1': 'ImageReaderParser',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'uuid', '3': 2, '4': 1, '5': 9, '10': 'uuid'},
@@ -87,12 +87,28 @@ const ImageParser$json = const {
       '10': 'score'
     },
     const {
-      '1': 'uploader_avatar',
-      '3': 11,
+      '1': 'badge_selector',
+      '3': 20,
       '4': 1,
       '5': 11,
-      '6': '.ImageSelector',
-      '10': 'uploaderAvatar'
+      '6': '.Selector',
+      '10': 'badgeSelector'
+    },
+    const {
+      '1': 'badge_text',
+      '3': 21,
+      '4': 1,
+      '5': 11,
+      '6': '.Selector',
+      '10': 'badgeText'
+    },
+    const {
+      '1': 'badge_category',
+      '3': 22,
+      '4': 1,
+      '5': 11,
+      '6': '.Selector',
+      '10': 'badgeCategory'
     },
     const {
       '1': 'extra_selector',
@@ -105,9 +121,9 @@ const ImageParser$json = const {
   ],
 };
 
-/// Descriptor for `ImageParser`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List imageParserDescriptor = $convert.base64Decode(
-    'CgtJbWFnZVBhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEhIKBHV1aWQYAiABKAlSBHV1aWQSGQoCaWQYAyABKAsyCS5TZWxlY3RvclICaWQSJAoFaW1hZ2UYBCABKAsyDi5JbWFnZVNlbGVjdG9yUgVpbWFnZRIsCgxsYXJnZXJfaW1hZ2UYBSABKAsyCS5TZWxlY3RvclILbGFyZ2VySW1hZ2USJgoJcmF3X2ltYWdlGAYgASgLMgkuU2VsZWN0b3JSCHJhd0ltYWdlEioKC3VwbG9hZF90aW1lGAcgASgLMgkuU2VsZWN0b3JSCnVwbG9hZFRpbWUSIQoGc291cmNlGAggASgLMgkuU2VsZWN0b3JSBnNvdXJjZRIhCgZyYXRpbmcYCSABKAsyCS5TZWxlY3RvclIGcmF0aW5nEh8KBXNjb3JlGAogASgLMgkuU2VsZWN0b3JSBXNjb3JlEjcKD3VwbG9hZGVyX2F2YXRhchgLIAEoCzIOLkltYWdlU2VsZWN0b3JSDnVwbG9hZGVyQXZhdGFyEjUKDmV4dHJhX3NlbGVjdG9yGGMgAygLMg4uRXh0cmFTZWxlY3RvclINZXh0cmFTZWxlY3Rvcg==');
+/// Descriptor for `ImageReaderParser`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List imageReaderParserDescriptor = $convert.base64Decode(
+    'ChFJbWFnZVJlYWRlclBhcnNlchISCgRuYW1lGAEgASgJUgRuYW1lEhIKBHV1aWQYAiABKAlSBHV1aWQSGQoCaWQYAyABKAsyCS5TZWxlY3RvclICaWQSJAoFaW1hZ2UYBCABKAsyDi5JbWFnZVNlbGVjdG9yUgVpbWFnZRIsCgxsYXJnZXJfaW1hZ2UYBSABKAsyCS5TZWxlY3RvclILbGFyZ2VySW1hZ2USJgoJcmF3X2ltYWdlGAYgASgLMgkuU2VsZWN0b3JSCHJhd0ltYWdlEioKC3VwbG9hZF90aW1lGAcgASgLMgkuU2VsZWN0b3JSCnVwbG9hZFRpbWUSIQoGc291cmNlGAggASgLMgkuU2VsZWN0b3JSBnNvdXJjZRIhCgZyYXRpbmcYCSABKAsyCS5TZWxlY3RvclIGcmF0aW5nEh8KBXNjb3JlGAogASgLMgkuU2VsZWN0b3JSBXNjb3JlEjAKDmJhZGdlX3NlbGVjdG9yGBQgASgLMgkuU2VsZWN0b3JSDWJhZGdlU2VsZWN0b3ISKAoKYmFkZ2VfdGV4dBgVIAEoCzIJLlNlbGVjdG9yUgliYWRnZVRleHQSMAoOYmFkZ2VfY2F0ZWdvcnkYFiABKAsyCS5TZWxlY3RvclINYmFkZ2VDYXRlZ29yeRI1Cg5leHRyYV9zZWxlY3RvchhjIAMoCzIOLkV4dHJhU2VsZWN0b3JSDWV4dHJhU2VsZWN0b3I=');
 @$core.Deprecated('Use listViewParserDescriptor instead')
 const ListViewParser$json = const {
   '1': 'ListViewParser',

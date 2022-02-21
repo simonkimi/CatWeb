@@ -171,13 +171,13 @@ class SiteBlueprint extends $pb.GeneratedMessage {
             : 'listViewParsers',
         $pb.PbFieldType.PM,
         subBuilder: $0.ListViewParser.create)
-    ..pc<$0.ImageParser>(
+    ..pc<$0.ImageReaderParser>(
         22,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'imageParsers',
         $pb.PbFieldType.PM,
-        subBuilder: $0.ImageParser.create)
+        subBuilder: $0.ImageReaderParser.create)
     ..pc<$0.AutoCompleteParser>(
         23,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -215,7 +215,7 @@ class SiteBlueprint extends $pb.GeneratedMessage {
     $core.Iterable<RegField>? cookies,
     $core.Iterable<$0.GalleryParser>? galleryParsers,
     $core.Iterable<$0.ListViewParser>? listViewParsers,
-    $core.Iterable<$0.ImageParser>? imageParsers,
+    $core.Iterable<$0.ImageReaderParser>? imageParsers,
     $core.Iterable<$0.AutoCompleteParser>? autoCompleteParsers,
     $core.Iterable<$1.ActionCombine>? actions,
     $core.Iterable<$2.SitePage>? pages,
@@ -409,7 +409,7 @@ class SiteBlueprint extends $pb.GeneratedMessage {
   $core.List<$0.ListViewParser> get listViewParsers => $_getList(11);
 
   @$pb.TagNumber(22)
-  $core.List<$0.ImageParser> get imageParsers => $_getList(12);
+  $core.List<$0.ImageReaderParser> get imageParsers => $_getList(12);
 
   @$pb.TagNumber(23)
   $core.List<$0.AutoCompleteParser> get autoCompleteParsers => $_getList(13);
