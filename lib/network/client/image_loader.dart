@@ -2,7 +2,6 @@ import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:dio/dio.dart';
-import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:drift/drift.dart';
 import 'package:get/get.dart';
 

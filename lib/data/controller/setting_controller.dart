@@ -62,8 +62,10 @@ class SettingController extends GetxController {
 
     cacheOptions = CacheOptions(
       store: MemCacheStore(),
+      policy: CachePolicy.request,
       hitCacheOnErrorExcept: [401, 403, 500, 501],
       priority: CachePriority.normal,
+      maxStale: const Duration(days: 1),
     );
 
     super.onInit();
