@@ -6,7 +6,7 @@ import '../theme/colors.dart';
 
 class DescriptionWidget extends HookWidget {
   DescriptionWidget({Key? key, required String text})
-      : _text = text.replaceAll(RegExp(r'\n{2,}'), '\n'),
+      : _text = text,
         super(key: key);
 
   final String _text;
@@ -35,18 +35,24 @@ class DescriptionWidget extends HookWidget {
       children: [
         Stack(
           children: [
-            Linkify(
-              text: _text,
-              overflow: TextOverflow.ellipsis,
-              maxLines: isExtended.value ? 100 : 3,
-              options: const LinkifyOptions(
-                looseUrl: true,
-              ),
-              style: TextStyle(
-                height: 1.1,
-                fontSize: 14,
-                color: FixColor.title.resolveFrom(context),
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: Linkify(
+                    text: _text,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: isExtended.value ? 100 : 3,
+                    options: const LinkifyOptions(
+                      looseUrl: true,
+                    ),
+                    style: TextStyle(
+                      height: 1.1,
+                      fontSize: 14,
+                      color: FixColor.title.resolveFrom(context),
+                    ),
+                  ),
+                ),
+              ],
             ),
             if (overflow && !isExtended.value)
               Positioned(
@@ -71,7 +77,9 @@ class DescriptionWidget extends HookWidget {
             blendMode: BlendMode.src,
             shaderCallback: (bounds) {
               return LinearGradient(colors: [
-                CupertinoTheme.of(context).scaffoldBackgroundColor.withOpacity(0),
+                CupertinoTheme.of(context)
+                    .scaffoldBackgroundColor
+                    .withOpacity(0),
                 CupertinoTheme.of(context).scaffoldBackgroundColor,
                 CupertinoTheme.of(context).scaffoldBackgroundColor,
               ], stops: const [

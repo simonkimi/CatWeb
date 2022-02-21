@@ -9,7 +9,7 @@ import 'package:catweb/utils/time_line.dart';
 void main() async {
   final line = TimeLine();
   line.startTimer();
-  final file = File('./test/html/large.htm').readAsStringSync();
+  final file = File('./test/html/gallery.htm').readAsStringSync();
 
   final req = ParserFFi(
     source: file,
@@ -23,6 +23,6 @@ void main() async {
   final buffer = await req.send();
 
   final model = GalleryRpcModel.fromBuffer(buffer);
-  print(model.language);
+  print(model.description);
   line.getRunTime();
 }
