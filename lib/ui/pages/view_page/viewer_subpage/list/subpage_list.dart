@@ -50,6 +50,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
             onLoading: () => controller.onLoadMore(),
             footer: _buildIndicator(context),
             child: CustomScrollView(
+              cacheExtent: 300,
               slivers: [
                 _buildPullRefresh(context),
                 _buildBody(context),
@@ -68,7 +69,8 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
               kCupertinoNavigatorBar +
               (widget.hasTabBar ? kCupertinoTabBarHeight : 0.0)),
       sliver: CupertinoSliverRefreshControl(
-        refreshIndicatorExtent: 50,
+        refreshIndicatorExtent: 75,
+        refreshTriggerPullDistance: 150,
         onRefresh: () async {
           controller.onRefresh();
         },

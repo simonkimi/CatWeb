@@ -59,8 +59,8 @@ class ViewerGalleryFragment extends StatelessWidget {
       padding: EdgeInsets.only(
           top: MediaQuery.of(context).padding.top + kCupertinoNavigatorBar + 5),
       sliver: CupertinoSliverRefreshControl(
-        refreshIndicatorExtent: 50,
-        refreshTriggerPullDistance: 100,
+        refreshIndicatorExtent: 75,
+        refreshTriggerPullDistance: 150,
         onRefresh: () => c.refresh(),
       ),
     );

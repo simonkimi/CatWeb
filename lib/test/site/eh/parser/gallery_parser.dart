@@ -79,7 +79,7 @@ final ehGalleryParser = GalleryParser(
     score: Selector(
       selector: '#cdiv .c5',
       function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
-      regex: r'-?\d+',
+      regex: r'.?\d+',
     ),
   ),
   thumbnailSelector: Selector(selector: '.gdtm, .gdtl'),
