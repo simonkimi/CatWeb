@@ -45,7 +45,7 @@ class SiteManager extends StatelessWidget {
 
   Widget _buildSiteItem(BuildContext context, WebTableData e) {
     final siteController = Get.find<GlobalController>();
-    final pb = SiteBlueprint.fromBuffer(e.bin);
+    final pb = SiteBlueprint.fromBuffer(e.blueprint);
     return Obx(() => CupertinoListTile(
           selected: siteController.id == e.id,
           title: Text(pb.name),

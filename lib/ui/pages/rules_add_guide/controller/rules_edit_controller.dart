@@ -16,11 +16,11 @@ class RulesEditController extends GetxController {
   Future<void> save() async {
     if (db == null) {
       await DB().webDao.insert(WebTableCompanion.insert(
-            bin: blueprint.toPb().writeToBuffer(),
+            blueprint: blueprint.toPb().writeToBuffer(),
             env: EnvStore().writeToBuffer(),
           ));
     } else {
-      final newDb = db!.copyWith(bin: blueprint.toPb().writeToBuffer());
+      final newDb = db!.copyWith(blueprint: blueprint.toPb().writeToBuffer());
       await DB().webDao.replace(newDb);
       // 检测是否为当前配置
       final controller = Get.find<GlobalController>();

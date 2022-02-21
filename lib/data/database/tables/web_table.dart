@@ -7,7 +7,7 @@ class WebTable extends Table {
   TextColumn get uuid =>
       text().clientDefault(() => const Uuid().v4().toString())();
 
-  BlobColumn get bin => blob()();
+  BlobColumn get blueprint => blob()();
 
   BlobColumn get env => blob()();
 
