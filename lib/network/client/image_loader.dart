@@ -66,9 +66,8 @@ class ImageLoadModel {
         model.url,
         onReceiveProgress: (r, t) => _progress.value = r / t,
         options: Get.find<SettingController>()
-            .dioCacheOptions
+            .imageCacheOption
             .copyWith(
-              policy: CachePolicy.request,
               keyBuilder: (req) => key,
             )
             .toOptions()

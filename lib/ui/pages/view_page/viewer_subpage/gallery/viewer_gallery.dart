@@ -11,7 +11,6 @@ import 'package:catweb/ui/components/icon_text.dart';
 import 'package:catweb/ui/components/image_loader.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/theme/themes.dart';
-import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 
@@ -40,8 +39,18 @@ class ViewerGalleryFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoAppBar(
-      title: 'Test',
+      title: '',
       child: _buildBody(context),
+      leading: _buildLeading(context),
+    );
+  }
+
+  Widget _buildLeading(BuildContext context) {
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      minSize: 0,
+      child: const Icon(CupertinoIcons.back),
+      onPressed: () => Get.back(),
     );
   }
 
@@ -77,6 +86,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Obx(() => _buildCommentList(context)),
                 ),
+                const SliverPadding(padding: EdgeInsets.only(bottom: 20)),
               ],
 
               // 加载内容, 不一定会展现
@@ -97,7 +107,7 @@ class ViewerGalleryFragment extends StatelessWidget {
             itemCount: min(c.items.length, 40),
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 3),
+                padding: const EdgeInsets.only(right: 5),
                 child: AspectRatio(
                   aspectRatio: 200 / 282,
                   child: ClipRRect(
@@ -112,9 +122,36 @@ class ViewerGalleryFragment extends StatelessWidget {
             },
           ),
         ),
-        const SizedBox(height: 5),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            if ((c.baseData?.imageCount ?? c.detailModel?.imageCount) != null)
+              IconText(
+                icon: Icons.image_outlined,
+                text: '${c.baseData?.imageCount ?? c.detailModel?.imageCount}',
+                iconColor: CupertinoColors.secondaryLabel.resolveFrom(context),
+                style: const TextStyle(fontSize: 13),
+              ),
+            const Expanded(child: SizedBox()),
+            _buildShowMore(context, () {}),
+          ],
+        ),
+        const SizedBox(height: 3),
         const CupertinoDivider(),
       ],
+    );
+  }
+
+  Widget _buildShowMore(BuildContext context, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: const Text(
+        '显示全部',
+        style: TextStyle(
+          color: CupertinoColors.activeBlue,
+          fontSize: 14,
+        ),
+      ),
     );
   }
 
@@ -219,29 +256,6 @@ class ViewerGalleryFragment extends StatelessWidget {
               ),
               model: (c.baseData?.image ?? c.detailModel?.coverImg)!,
             ),
-            Positioned(
-              right: 1,
-              bottom: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(2),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.black38,
-                      borderRadius: BorderRadius.circular(3)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(1),
-                    child: IconText(
-                      icon: Icons.image_outlined,
-                      iconColor: Colors.white,
-                      space: 0,
-                      text:
-                          '${c.baseData?.imageCount ?? c.detailModel?.imageCount}',
-                      style: const TextStyle(fontSize: 9, color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            )
           ],
         ),
       ),
@@ -261,13 +275,10 @@ class ViewerGalleryFragment extends StatelessWidget {
               _buildTitle(context),
               const SizedBox(height: 5),
               _buildSubtitle(context),
-              const SizedBox(height: 5),
-              if ((c.detailModel?.hasStar() ?? false) &&
-                  (c.detailModel?.comments.isEmpty ?? true))
+              if (c.detailModel?.comments.isEmpty ?? true) ...[
+                const SizedBox(height: 5),
                 _buildStarBar(context),
-              if ((c.detailModel?.hasStar() ?? false) &&
-                  (c.detailModel?.badges.isEmpty ?? true))
-                _buildCategory(context),
+              ]
             ],
           ),
           Row(
@@ -375,15 +386,15 @@ class ViewerGalleryFragment extends StatelessWidget {
     );
   }
 
-  Widget _buildCategory(BuildContext context) {
-    if (c.baseData?.tag != null || c.detailModel?.getTag() != null) {
-      return Badge(
-        text: (c.baseData?.tag?.text ?? c.detailModel?.tag.text)!,
-        color: c.baseData?.tag?.color.color ?? c.detailModel?.tag.color.color,
-      );
-    }
-    return const SizedBox();
-  }
+  // Widget _buildCategory(BuildContext context) {
+  //   if (c.baseData?.tag != null || c.detailModel?.getTag() != null) {
+  //     return Badge(
+  //       text: (c.baseData?.tag?.text ?? c.detailModel?.tag.text)!,
+  //       color: c.baseData?.tag?.color.color ?? c.detailModel?.tag.color.color,
+  //     );
+  //   }
+  //   return const SizedBox();
+  // }
 
   Widget _buildDescription(BuildContext context) {
     if (!(c.detailModel?.hasDescription() ?? false)) return const SizedBox();
@@ -436,12 +447,24 @@ class ViewerGalleryFragment extends StatelessWidget {
     return Column(
       children: [
         Column(
-          children: c.detailModel!.comments.map((e) {
+          children: c.detailModel!.comments.take(2).map((e) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: CommentItem(model: e),
             );
           }).toList(),
+        ),
+        Row(
+          children: [
+            IconText(
+              icon: Icons.message_outlined,
+              text: '${c.detailModel!.comments.length}',
+              iconColor: CupertinoColors.secondaryLabel.resolveFrom(context),
+              style: const TextStyle(fontSize: 13),
+            ),
+            const Expanded(child: SizedBox()),
+            _buildStarBar(context),
+          ],
         )
       ],
     );

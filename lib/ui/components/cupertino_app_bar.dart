@@ -167,38 +167,30 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
       child: Padding(
         padding: widget.padding,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [if (widget.leading != null) widget.leading!],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [if (widget.leading != null) widget.leading!],
             ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    widget.title,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: FixColor.title.resolveFrom(context),
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  widget.title,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: FixColor.title.resolveFrom(context),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: widget.actions ?? <Widget>[],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: widget.actions ?? <Widget>[],
             ),
           ],
         ),
