@@ -25,7 +25,7 @@ class RulesPageManager extends GetView<RulesEditController> {
       children: [
         Obx(() => Column(
               mainAxisSize: MainAxisSize.min,
-              children: controller.siteConfigModel.pageList.map((e) {
+              children: controller.blueprint.pageList.map((e) {
                 return CupertinoListTile(
                   title: Text(e.name.value),
                   subtitle: Text(e.template.value.string(context)),
@@ -79,7 +79,7 @@ class RulesPageManager extends GetView<RulesEditController> {
   }
 
   void _onPageDelete(BuildContext context, SitePageModel model) {
-    final using = controller.siteConfigModel.pageList
+    final using = controller.blueprint.pageList
         .where(
             (p0) => p0.openPages.any((element) => element.value == model.uuid))
         .map((e) => e.name.value)
@@ -96,7 +96,7 @@ class RulesPageManager extends GetView<RulesEditController> {
         showCancel: true,
       ).then((value) {
         if (value == true) {
-          controller.siteConfigModel.pageList.remove(model);
+          controller.blueprint.pageList.remove(model);
         }
       });
     }
@@ -108,7 +108,7 @@ class RulesPageManager extends GetView<RulesEditController> {
     if (input == null) return;
     await Get.to(() => RulesPageEdit(model: input));
     if (model == null) {
-      controller.siteConfigModel.pageList.add(input);
+      controller.blueprint.pageList.add(input);
     }
   }
 

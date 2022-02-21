@@ -146,8 +146,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
               )),
           Obx(() => CupertinoReadOnlyInput(
                 labelText: '解析器',
-                value: controller.siteConfigModel
-                    .getParserName(model.parser.value),
+                value: controller.blueprint.getParserName(model.parser.value),
                 onTap: () => _onParserTap(context),
               )),
           const CupertinoDivider(height: 20),
@@ -171,7 +170,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
   }) {
     return Obx(() => CupertinoReadOnlyInput(
           labelText: labelText,
-          value: controller.siteConfigModel.getPageName(target.value),
+          value: controller.blueprint.getPageName(target.value),
           onTap: () => _onOpenNewPageClick(context, target),
         ));
   }
@@ -221,7 +220,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
             context: context,
             cancelText: '无',
             barrierDismissible: false,
-            items: controller.siteConfigModel.pageList
+            items: controller.blueprint.pageList
                 .map((e) => SelectTileItem(
                       title: e.name.string,
                       value: e.uuid,
@@ -309,7 +308,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
       title: '请选择解析器',
       context: context,
       items: model.template.value
-          .parser(controller.siteConfigModel.parsers)
+          .parser(controller.blueprint.parsers)
           .map((e) => SelectTileItem(title: e.name.value, value: e.uuid))
           .toList(),
       cancelText: '取消',

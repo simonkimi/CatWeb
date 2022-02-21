@@ -6,21 +6,21 @@ import 'package:get/get.dart';
 
 class RulesEditController extends GetxController {
   RulesEditController({
-    SiteConfig? pb,
+    SiteBlueprint? pb,
     this.db,
-  }) : siteConfigModel = SiteConfigModel(pb);
+  }) : blueprint = SiteBlueprintModel(pb);
 
-  final SiteConfigModel siteConfigModel;
+  final SiteBlueprintModel blueprint;
   final WebTableData? db;
 
   Future<void> save() async {
     if (db == null) {
       await DB().webDao.insert(WebTableCompanion.insert(
-            bin: siteConfigModel.toPb().writeToBuffer(),
+            bin: blueprint.toPb().writeToBuffer(),
             env: EnvStore().writeToBuffer(),
           ));
     } else {
-      final newDb = db!.copyWith(bin: siteConfigModel.toPb().writeToBuffer());
+      final newDb = db!.copyWith(bin: blueprint.toPb().writeToBuffer());
       await DB().webDao.replace(newDb);
       // 检测是否为当前配置
       final controller = Get.find<GlobalController>();

@@ -25,7 +25,7 @@ class SiteRenderConfigModel {
 
   // 储存字段
   final SiteEnvModel globalEnv;
-  final SiteConfigModel configModel;
+  final SiteBlueprintModel configModel;
   final Rx<Uint8List?> favicon;
 
   String get name => configModel.name.value;

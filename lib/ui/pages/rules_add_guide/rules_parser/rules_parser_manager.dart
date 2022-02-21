@@ -25,7 +25,7 @@ class RulesParserManager extends GetView<RulesEditController> {
       children: [
         Obx(() => Column(
               mainAxisSize: MainAxisSize.min,
-              children: controller.siteConfigModel.parsers.map((e) {
+              children: controller.blueprint.parsers.map((e) {
                 return CupertinoListTile(
                   title: Text(e.name.value),
                   subtitle: Text(e.displayType(context)),
@@ -77,7 +77,7 @@ class RulesParserManager extends GetView<RulesEditController> {
   }
 
   void _onParserDelete(BuildContext context, ParserBaseModel model) {
-    final using = controller.siteConfigModel.pageList
+    final using = controller.blueprint.pageList
         .where((p0) => p0.parser.value == model.uuid)
         .map((e) => e.name.value)
         .toList();
@@ -93,7 +93,7 @@ class RulesParserManager extends GetView<RulesEditController> {
         showCancel: true,
       ).then((value) {
         if (value == true) {
-          controller.siteConfigModel.removeParser(model);
+          controller.blueprint.removeParser(model);
         }
       });
     }
@@ -132,6 +132,6 @@ class RulesParserManager extends GetView<RulesEditController> {
     final input = model ?? await _genParser(context);
     if (input == null) return;
     await Get.to(() => RulesParserEditor(model: input));
-    if (model == null) controller.siteConfigModel.addParser(input);
+    if (model == null) controller.blueprint.addParser(input);
   }
 }

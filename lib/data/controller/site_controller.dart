@@ -21,7 +21,7 @@ class GlobalController extends GetxController {
     if (db != null) {
       site.value = SiteRenderConfigModel(
         dbEntity: db,
-        configModel: SiteConfigModel.fromBuffer(db.bin),
+        configModel: SiteBlueprintModel.fromBuffer(db.bin),
       );
       final setting = Get.find<SettingController>();
       setting.defaultSite.value = db.id;

@@ -12,7 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class RulesEditPage extends StatelessWidget {
-  RulesEditPage({Key? key, SiteConfig? pb, WebTableData? db})
+  RulesEditPage({Key? key, SiteBlueprint? pb, WebTableData? db})
       : controller = Get.put(RulesEditController(pb: pb, db: db)),
         super(key: key);
 
@@ -77,7 +77,7 @@ class RulesEditPage extends StatelessWidget {
   }
 
   Future<void> _save(BuildContext context) async {
-    if (controller.siteConfigModel.name.isEmpty) {
+    if (controller.blueprint.name.isEmpty) {
       showCupertinoConfirmDialog(
         context: context,
         title: '标题',
@@ -86,7 +86,7 @@ class RulesEditPage extends StatelessWidget {
       );
       return;
     }
-    if (controller.siteConfigModel.baseUrl.isEmpty) {
+    if (controller.blueprint.baseUrl.isEmpty) {
       showCupertinoConfirmDialog(
         context: context,
         title: '网站',

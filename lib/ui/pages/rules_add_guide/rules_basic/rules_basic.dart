@@ -16,31 +16,31 @@ class RulesBasic extends GetView<RulesEditController> {
       children: [
         CupertinoInput(
           labelText: '名称',
-          value: controller.siteConfigModel.name,
+          value: controller.blueprint.name,
         ),
         CupertinoInput(
           labelText: '基础Url',
-          value: controller.siteConfigModel.baseUrl,
+          value: controller.blueprint.baseUrl,
         ),
         const CupertinoDivider(height: 30),
         CupertinoInput(
           labelText: '登录Url',
-          value: controller.siteConfigModel.loginUrl,
+          value: controller.blueprint.loginUrl,
         ),
         CupertinoInput(
           labelText: '登录Cookie作用域',
-          value: controller.siteConfigModel.loginCookie.reg,
+          value: controller.blueprint.loginCookie.reg,
           hintText: '.*',
         ),
         CupertinoInput(
           labelText: 'Cookies',
-          value: controller.siteConfigModel.loginCookie.value,
+          value: controller.blueprint.loginCookie.value,
           minLine: 3,
         ),
         const CupertinoDivider(height: 30),
         CupertinoInput(
           labelText: '更新Url',
-          value: controller.siteConfigModel.upgradeUrl,
+          value: controller.blueprint.upgradeUrl,
         ),
       ],
     );

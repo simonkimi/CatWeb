@@ -8,7 +8,7 @@ import 'parser/list_parser.dart';
 
 final detailUuid = genUuid();
 
-final ehTestSite = SiteConfig(
+final ehTestSite = SiteBlueprint(
   name: 'E-Hentai',
   baseUrl: 'https://e-hentai.org/',
   listViewParsers: [ehListParser],

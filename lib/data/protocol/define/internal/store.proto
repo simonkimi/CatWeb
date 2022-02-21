@@ -10,7 +10,7 @@ message RegField {
 }
 
 
-message SiteConfig {
+message SiteBlueprint {
   string name = 1;
   string base_url = 2;
   string login_url = 3;

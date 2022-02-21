@@ -96,11 +96,11 @@ class RegField extends $pb.GeneratedMessage {
   void clearValue() => clearField(2);
 }
 
-class SiteConfig extends $pb.GeneratedMessage {
+class SiteBlueprint extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
-          : 'SiteConfig',
+          : 'SiteBlueprint',
       createEmptyInstance: create)
     ..aOS(
         1,
@@ -201,8 +201,8 @@ class SiteConfig extends $pb.GeneratedMessage {
         subBuilder: $2.SitePage.create)
     ..hasRequiredFields = false;
 
-  SiteConfig._() : super();
-  factory SiteConfig({
+  SiteBlueprint._() : super();
+  factory SiteBlueprint({
     $core.String? name,
     $core.String? baseUrl,
     $core.String? loginUrl,
@@ -271,31 +271,32 @@ class SiteConfig extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory SiteConfig.fromBuffer($core.List<$core.int> i,
+  factory SiteBlueprint.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SiteConfig.fromJson($core.String i,
+  factory SiteBlueprint.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  SiteConfig clone() => SiteConfig()..mergeFromMessage(this);
+  SiteBlueprint clone() => SiteBlueprint()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  SiteConfig copyWith(void Function(SiteConfig) updates) =>
-      super.copyWith((message) => updates(message as SiteConfig))
-          as SiteConfig; // ignore: deprecated_member_use
+  SiteBlueprint copyWith(void Function(SiteBlueprint) updates) =>
+      super.copyWith((message) => updates(message as SiteBlueprint))
+          as SiteBlueprint; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static SiteConfig create() => SiteConfig._();
-  SiteConfig createEmptyInstance() => create();
-  static $pb.PbList<SiteConfig> createRepeated() => $pb.PbList<SiteConfig>();
+  static SiteBlueprint create() => SiteBlueprint._();
+  SiteBlueprint createEmptyInstance() => create();
+  static $pb.PbList<SiteBlueprint> createRepeated() =>
+      $pb.PbList<SiteBlueprint>();
   @$core.pragma('dart2js:noInline')
-  static SiteConfig getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SiteConfig>(create);
-  static SiteConfig? _defaultInstance;
+  static SiteBlueprint getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SiteBlueprint>(create);
+  static SiteBlueprint? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);

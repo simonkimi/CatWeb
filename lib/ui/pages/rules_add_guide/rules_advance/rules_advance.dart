@@ -32,16 +32,14 @@ class RulesAdvance extends GetView<RulesEditController> {
           child: Column(
             children: [
               Obx(() => Column(
-                    children: controller.siteConfigModel.headers
-                        .asMap()
-                        .entries
-                        .map((e) {
+                    children:
+                        controller.blueprint.headers.asMap().entries.map((e) {
                       return Obx(() => CupertinoDeletableTile(
                           index: e.key,
                           controller: headerController,
                           text: '${e.value.reg}: ${e.value.value}',
                           onDelete: (index) {
-                            controller.siteConfigModel.headers.removeAt(index);
+                            controller.blueprint.headers.removeAt(index);
                           },
                           onTap: () => _editRegField(context, e.value)));
                     }).toList(),
@@ -53,7 +51,7 @@ class RulesAdvance extends GetView<RulesEditController> {
                 ),
                 text: '添加',
                 onTap: () {
-                  controller.siteConfigModel.headers.add(
+                  controller.blueprint.headers.add(
                     RegFieldModel(RegField(reg: '*', value: '')),
                   );
                 },
@@ -75,17 +73,15 @@ class RulesAdvance extends GetView<RulesEditController> {
           child: Column(
             children: [
               Obx(() => Column(
-                    children: controller.siteConfigModel.cookies
-                        .asMap()
-                        .entries
-                        .map((e) {
+                    children:
+                        controller.blueprint.cookies.asMap().entries.map((e) {
                       return Obx(() => CupertinoDeletableTile(
                           index: e.key,
                           controller: cookieController,
                           text:
                               '${e.value.reg.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
                           onDelete: (index) {
-                            controller.siteConfigModel.cookies.removeAt(index);
+                            controller.blueprint.cookies.removeAt(index);
                           },
                           onTap: () => _editRegField(context, e.value)));
                     }).toList(),
@@ -97,7 +93,7 @@ class RulesAdvance extends GetView<RulesEditController> {
                 ),
                 text: '添加',
                 onTap: () {
-                  controller.siteConfigModel.cookies.add(
+                  controller.blueprint.cookies.add(
                     RegFieldModel(RegField(reg: '', value: '')),
                   );
                 },

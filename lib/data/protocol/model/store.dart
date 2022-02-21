@@ -25,8 +25,8 @@ class RegFieldModel implements PbAble {
       );
 }
 
-class SiteConfigModel implements PbAble {
-  SiteConfigModel([SiteConfig? pb])
+class SiteBlueprintModel implements PbAble {
+  SiteBlueprintModel([SiteBlueprint? pb])
       : name = sobs(pb?.name),
         baseUrl = sobs(pb?.baseUrl),
         cookies = lobs(pb?.cookies, (RegField e) => RegFieldModel(e)),
@@ -56,8 +56,8 @@ class SiteConfigModel implements PbAble {
         ),
         pageList = lobs(pb?.pages, (SitePage e) => SitePageModel(e));
 
-  factory SiteConfigModel.fromBuffer(List<int> buffer) =>
-      SiteConfigModel(SiteConfig.fromBuffer(buffer));
+  factory SiteBlueprintModel.fromBuffer(List<int> buffer) =>
+      SiteBlueprintModel(SiteBlueprint.fromBuffer(buffer));
 
   final RxString name;
   final RxString baseUrl;
@@ -139,7 +139,7 @@ class SiteConfigModel implements PbAble {
       .contains(flag.toLowerCase().trim());
 
   @override
-  SiteConfig toPb() => SiteConfig(
+  SiteBlueprint toPb() => SiteBlueprint(
         name: name.value,
         baseUrl: baseUrl.value,
         cookies: cookies.map((e) => e.toPb()),

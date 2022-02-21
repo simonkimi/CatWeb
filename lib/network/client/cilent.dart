@@ -23,7 +23,7 @@ class NetClient {
   final Dio dio;
   final Dio imageDio;
 
-  final SiteConfigModel configModel;
+  final SiteBlueprintModel configModel;
 
   Future<ListRpcModel> getList({
     required String url,
@@ -73,7 +73,7 @@ class NetClient {
   }
 }
 
-Dio _buildDio(SiteConfigModel model, [bool isImage = false]) {
+Dio _buildDio(SiteBlueprintModel model, [bool isImage = false]) {
   final dio = Dio();
 
   dio.options.connectTimeout = 60 * 1000;

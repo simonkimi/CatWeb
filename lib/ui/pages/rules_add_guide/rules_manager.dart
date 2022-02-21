@@ -45,7 +45,7 @@ class SiteManager extends StatelessWidget {
 
   Widget _buildSiteItem(BuildContext context, WebTableData e) {
     final siteController = Get.find<GlobalController>();
-    final pb = SiteConfig.fromBuffer(e.bin);
+    final pb = SiteBlueprint.fromBuffer(e.bin);
     return Obx(() => CupertinoListTile(
           selected: siteController.id == e.id,
           title: Text(pb.name),
@@ -100,7 +100,7 @@ class SiteManager extends StatelessWidget {
   Future<void> _onTrailingTap(
     BuildContext context,
     WebTableData db,
-    SiteConfig pb,
+    SiteBlueprint pb,
   ) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: '取消',
@@ -136,7 +136,7 @@ class SiteManager extends StatelessWidget {
     }
   }
 
-  Future<void> _toEditPage(SiteConfig? pb, WebTableData? db) async {
+  Future<void> _toEditPage(SiteBlueprint? pb, WebTableData? db) async {
     await Get.to(() => RulesEditPage(pb: pb ?? eh.ehTestSite, db: db));
   }
 }
