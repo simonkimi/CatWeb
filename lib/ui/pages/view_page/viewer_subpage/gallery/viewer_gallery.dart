@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/network/client/image_loader.dart';
@@ -87,11 +89,12 @@ class ViewerGalleryFragment extends StatelessWidget {
   Widget _buildPreviewList(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 5),
         SizedBox(
           height: 150,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: c.items.length,
+            itemCount: min(c.items.length, 40),
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 3),
@@ -109,7 +112,7 @@ class ViewerGalleryFragment extends StatelessWidget {
             },
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         const CupertinoDivider(),
       ],
     );

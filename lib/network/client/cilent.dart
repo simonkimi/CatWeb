@@ -17,8 +17,8 @@ import 'package:get/get.dart';
 
 class NetClient {
   NetClient(this.configModel)
-      : dio = _buildDio(configModel, true),
-        imageDio = _buildDio(configModel);
+      : dio = _buildDio(configModel),
+        imageDio = _buildDio(configModel, true);
 
   final Dio dio;
   final Dio imageDio;
@@ -73,7 +73,7 @@ class NetClient {
   }
 }
 
-Dio _buildDio(SiteConfigModel model, [bool log = false]) {
+Dio _buildDio(SiteConfigModel model, [bool isImage = false]) {
   final dio = Dio();
 
   dio.options.connectTimeout = 60 * 1000;
@@ -85,13 +85,20 @@ Dio _buildDio(SiteConfigModel model, [bool log = false]) {
   }
 
   dio.interceptors.add(HeaderCookieInterceptor(model));
-  dio.interceptors.add(DioCacheInterceptor(
-      options: Get.find<SettingController>().dioCacheOptions));
   dio.transformer = EncodeTransformer();
-  if (log) {
+  if (!isImage) {
     dio.interceptors.add(HttpFormatter(
       includeResponseBody: false,
     ));
+    dio.interceptors.add(
+      DioCacheInterceptor(options: Get.find<SettingController>().cacheOptions),
+    );
+  } else {
+    dio.interceptors.add(
+      DioCacheInterceptor(
+        options: Get.find<SettingController>().imageCacheOption,
+      ),
+    );
   }
 
   if (model.containsFlag(Flag.ignoreCertificate)) {

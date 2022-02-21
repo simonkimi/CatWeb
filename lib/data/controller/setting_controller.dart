@@ -34,7 +34,9 @@ class SettingController extends GetxController {
   final RxBool imageMaskInDarkMode = true.obs;
   final RxString documentDir = ''.obs;
 
-  late CacheOptions dioCacheOptions;
+  late CacheOptions imageCacheOption;
+  late CacheOptions cacheOptions;
+
   late DbCacheStore dbCacheStore;
 
   Future<void> init() async {
@@ -50,12 +52,18 @@ class SettingController extends GetxController {
     dbCacheStore =
         DbCacheStore(databasePath: p.join(documentDir.value, 'cache'));
 
-    dioCacheOptions = CacheOptions(
+    imageCacheOption = CacheOptions(
       store: dbCacheStore,
-      policy: CachePolicy.noCache,
-      hitCacheOnErrorExcept: [401, 403],
+      policy: CachePolicy.request,
+      hitCacheOnErrorExcept: [401, 403, 500, 501],
       priority: CachePriority.normal,
-      maxStale: const Duration(days: 30),
+      maxStale: const Duration(days: 14),
+    );
+
+    cacheOptions = CacheOptions(
+      store: MemCacheStore(),
+      hitCacheOnErrorExcept: [401, 403, 500, 501],
+      priority: CachePriority.normal,
     );
 
     super.onInit();
