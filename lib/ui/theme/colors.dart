@@ -7,7 +7,7 @@ class FixColor {
   static const CupertinoDynamicColor text =
       CupertinoDynamicColor.withBrightness(
     color: CupertinoColors.black,
-    darkColor: Color(0x99FFFFFF),
+    darkColor: Color(0xFFF0F0F0),
   );
 
   static const CupertinoDynamicColor title =

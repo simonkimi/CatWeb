@@ -5,6 +5,7 @@ import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
+import 'package:catweb/ui/components/dark_image.dart';
 import 'package:catweb/ui/components/description.dart';
 import 'package:catweb/ui/components/icon_text.dart';
 import 'package:catweb/ui/components/image_loader.dart';
@@ -96,9 +97,11 @@ class ViewerGalleryFragment extends StatelessWidget {
                   aspectRatio: 200 / 282,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(5),
-                    child: ImageLoader(
-                      concurrency: c.concurrency,
-                      model: c.items[index],
+                    child: DarkWidget(
+                      child: ImageLoader(
+                        concurrency: c.concurrency,
+                        model: c.items[index],
+                      ),
                     ),
                   ),
                 ),
@@ -114,7 +117,10 @@ class ViewerGalleryFragment extends StatelessWidget {
                 icon: Icons.image_outlined,
                 text: '${c.baseData?.imageCount ?? c.detailModel?.imageCount}',
                 iconColor: CupertinoColors.secondaryLabel.resolveFrom(context),
-                style: const TextStyle(fontSize: 13),
+                style: TextStyle(
+                  fontSize: 13,
+                  color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                ),
               ),
             const Expanded(child: SizedBox()),
             _buildShowMore(context, () {
@@ -238,15 +244,13 @@ class ViewerGalleryFragment extends StatelessWidget {
             )
           ],
         ),
-        child: Stack(
-          children: [
-            ImageLoader(
-              concurrency: ImageConcurrency(
-                dio: c.global.website.client.imageDio,
-              ),
-              model: (c.baseData?.image ?? c.detailModel?.coverImg)!,
+        child: DarkWidget(
+          child: ImageLoader(
+            concurrency: ImageConcurrency(
+              dio: c.global.website.client.imageDio,
             ),
-          ],
+            model: (c.baseData?.image ?? c.detailModel?.coverImg)!,
+          ),
         ),
       ),
     );
@@ -273,7 +277,7 @@ class ViewerGalleryFragment extends StatelessWidget {
           ),
           Row(
             children: [
-              _buildReadButton(),
+              _buildReadButton(context),
               const SizedBox(width: 10),
               _buildLanguage(context)
             ],
@@ -287,7 +291,12 @@ class ViewerGalleryFragment extends StatelessWidget {
     return SliverFillRemaining(
       child: Center(
         child: c.errorMessage != null
-            ? Text(c.errorMessage!)
+            ? Text(
+                c.errorMessage!,
+                style: TextStyle(
+                  color: FixColor.title.resolveFrom(context),
+                ),
+              )
             : const CupertinoActivityIndicator(),
       ),
     );
@@ -334,13 +343,14 @@ class ViewerGalleryFragment extends StatelessWidget {
     );
   }
 
-  CupertinoButton _buildReadButton() {
+  CupertinoButton _buildReadButton(BuildContext context) {
     return CupertinoButton(
-      child: const Text(
+      child: Text(
         '阅读',
         style: TextStyle(
           fontSize: 13,
           fontWeight: FontWeight.bold,
+          color: FixColor.text.resolveFrom(context),
         ),
       ),
       color: CupertinoColors.systemBlue,
@@ -434,7 +444,10 @@ class ViewerGalleryFragment extends StatelessWidget {
               icon: Icons.message_outlined,
               text: '${c.detailModel!.comments.length}',
               iconColor: CupertinoColors.secondaryLabel.resolveFrom(context),
-              style: const TextStyle(fontSize: 13),
+              style: TextStyle(
+                fontSize: 13,
+                color: CupertinoColors.secondaryLabel.resolveFrom(context),
+              ),
             ),
           ],
         ),
