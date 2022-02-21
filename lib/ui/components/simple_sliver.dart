@@ -1,4 +1,5 @@
 import 'package:catweb/data/constant.dart';
+import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 
 class ExceptionSliver extends StatelessWidget {
@@ -27,7 +28,13 @@ class ExceptionSliver extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 20),
                 child: Icon(CupertinoIcons.cloud_snow, size: 40),
               ),
-              if (errMsg != null) Text(errMsg!),
+              if (errMsg != null)
+                Text(
+                  errMsg!,
+                  style: TextStyle(
+                    color: FixColor.title.resolveFrom(context),
+                  ),
+                ),
             ],
           ),
         ),

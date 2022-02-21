@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_loader.dart';
+import 'package:catweb/ui/components/dark_image.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -142,7 +143,9 @@ class _ImageLoaderState extends State<ImageLoader> {
                   fit: BoxFit.contain,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(5),
-                    child: img,
+                    child: DarkWidget(
+                      child: img,
+                    ),
                   ),
                 ),
               );
