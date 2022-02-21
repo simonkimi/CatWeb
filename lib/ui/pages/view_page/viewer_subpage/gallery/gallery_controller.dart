@@ -56,6 +56,11 @@ class GalleryPreviewController extends LoadMoreModel<ImageRpcModel> {
 
   GalleryRpcModel? get detailModel => _detailModel.value;
 
+  Future<void> refresh() async {
+    _detailModel.value = null;
+    await onRefresh();
+  }
+
   @override
   Future<List<ImageRpcModel>> loadPage(int page) async {
     var baseUrl = target.url.value;

@@ -5,7 +5,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import '../theme/colors.dart';
 
 class DescriptionWidget extends HookWidget {
-  DescriptionWidget({Key? key, required String text})
+  const DescriptionWidget({Key? key, required String text})
       : _text = text,
         super(key: key);
 

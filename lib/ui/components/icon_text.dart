@@ -31,7 +31,7 @@ class IconText extends StatelessWidget {
         ),
         SizedBox(width: space ?? 3),
         Padding(
-          padding: const EdgeInsets.only(top: 2),
+          padding: const EdgeInsets.only(bottom: 1),
           child: Text(
             text,
             style: style ?? const TextStyle(fontSize: 15),
