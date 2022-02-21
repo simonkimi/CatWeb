@@ -345,12 +345,12 @@ class ViewerGalleryFragment extends StatelessWidget {
 
   CupertinoButton _buildReadButton(BuildContext context) {
     return CupertinoButton(
-      child: Text(
+      child: const Text(
         '阅读',
         style: TextStyle(
           fontSize: 13,
           fontWeight: FontWeight.bold,
-          color: FixColor.text.resolveFrom(context),
+          color: Color(0xFFF0F0F0),
         ),
       ),
       color: CupertinoColors.systemBlue,
