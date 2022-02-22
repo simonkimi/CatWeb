@@ -1,7 +1,7 @@
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/gen/protobuf/page.pb.dart';
+import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/viewer_list.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';

@@ -1,5 +1,5 @@
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/gen/protobuf/page.pb.dart';
+import 'package:catweb/gen/protobuf/template.pb.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +27,7 @@ PbAble parseTemplate({
         data.isNotEmpty ? TemplateListSearchData.fromBuffer(data) : null,
       );
   }
-  throw Exception('Unknown template type $template');
+  throw Exception('Unknown template.proto type $template');
 }
 
 class SubPageModel implements PbAble, EnvMargeAble {
@@ -70,18 +70,22 @@ class TemplateListDataModel implements PbAble {
 class SearchFilterItem implements PbAble {
   final RxString name;
   final RxString key;
-  final RxBool value;
+  final Rx<TemplateListSearchData_FilterType> type;
+  final RxString defaultValue;
 
   SearchFilterItem([TemplateListSearchData_FilterItem? pb])
       : name = sobs(pb?.name),
         key = sobs(pb?.key),
-        value = bobs(pb?.value);
+        type = pb?.type.obs ??
+            TemplateListSearchData_FilterType.FILTER_TYPE_STRING.obs,
+        defaultValue = sobs(pb?.defaultValue);
 
   @override
   TemplateListSearchData_FilterItem toPb() => TemplateListSearchData_FilterItem(
         name: name.value,
         key: key.value,
-        value: value.value,
+        type: type.value,
+        defaultValue: defaultValue.value,
       );
 }
 

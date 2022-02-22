@@ -2,6 +2,7 @@ import 'package:catweb/data/protocol/model/interface.dart';
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
+import 'package:catweb/gen/protobuf/template.pb.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';

@@ -1,0 +1,46 @@
+syntax = 'proto3';
+
+enum Template {
+  TEMPLATE_IMAGE_LIST = 0;  // 常规列表
+  TEMPLATE_IMAGE_LIST_WITH_SEARCH = 1;  // 带搜索的列表
+  TEMPLATE_IMAGE_WATERFALL = 2;  // 瀑布流
+  TEMPLATE_IMAGE_WATERFALL_WITH_SEARCH = 3;  // 瀑布流带搜索
+  TEMPLATE_GALLERY = 4;  // 画廊页
+  TEMPLATE_IMAGE_VIEWER = 5;  // 图片预览页
+  TEMPLATE_AUTO_COMPLETE = 6;   // 自动补全页
+}
+
+message TemplateListData {
+  message SubPage {
+    string name = 1;
+    string key = 2;
+    string value = 3;
+  }
+
+  repeated SubPage sub_pages = 2;
+
+  string target_item = 10;  // item点击跳转
+}
+
+message TemplateListSearchData {
+  enum FilterType {
+    FILTER_TYPE_NUMBER = 0;
+    FILTER_TYPE_STRING = 1;
+    FILTER_TYPE_BOOL = 2;
+  }
+
+  message FilterItem {
+    string name = 1;
+    string key = 2;
+    FilterType type = 3;
+    string defaultValue = 4;
+  }
+
+  repeated FilterItem filter_item = 1;
+
+  string target_item = 10;  // item点击跳转
+  string target_auto_complete = 11;  // 自动补全选择
+}
+
+
+message TemplateEmpty {}

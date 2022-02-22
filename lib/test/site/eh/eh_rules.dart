@@ -1,6 +1,7 @@
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/gen/protobuf/template.pb.dart';
 
 import 'cookies.dart';
 import 'parser/gallery_parser.dart';

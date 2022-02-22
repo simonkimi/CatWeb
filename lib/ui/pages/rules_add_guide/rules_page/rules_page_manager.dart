@@ -1,5 +1,5 @@
 import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/gen/protobuf/page.pbserver.dart';
+import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
