@@ -39,7 +39,7 @@ class GalleryPreviewController extends LoadMoreModel<ImageRpcModel> {
     onLoadMore();
   }
 
-  final SitePageModel target;
+  final PageBlueprint target;
   final SiteEnvModel localEnv;
 
   // 信息

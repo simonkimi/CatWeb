@@ -1,5 +1,6 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
@@ -103,7 +104,15 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
                 concurrency: concurrency,
                 onTap: () {
                   pushNewPage(
-                    to: controller.model.listItemTarget.value,
+                    to: controller.model.templateData is TemplateListDataModel
+                        ? (controller.model.templateData
+                                as TemplateListDataModel)
+                            .targetItem
+                            .value
+                        : (controller.model.templateData
+                                as TemplateListSearchDataModel)
+                            .targetItem
+                            .value,
                     envModel: SiteEnvModel(model.env),
                     model: model,
                   );

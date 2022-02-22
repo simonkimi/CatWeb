@@ -27,7 +27,7 @@ class NetClient {
 
   Future<ListRpcModel> getList({
     required String url,
-    required SitePageModel model,
+    required PageBlueprint model,
     required SiteEnvModel localEnv,
   }) async {
     final rsp = await dio.get<String>(url);
@@ -36,7 +36,7 @@ class NetClient {
     }
 
     final buffer = await ParserFFi(
-      parser: configModel.getListParser(model.parser.value).toPb(),
+      parser: configModel.getListParser(model.baseParser.value).toPb(),
       source: rsp.data!,
       env: Get.find<GlobalController>().website.globalEnv,
       type: RpcType.RPC_TYPE_LIST_VIEW_PARSER,
@@ -52,7 +52,7 @@ class NetClient {
 
   Future<GalleryRpcModel> getGallery({
     required String url,
-    required SitePageModel model,
+    required PageBlueprint model,
     required SiteEnvModel localEnv,
   }) async {
     final rsp = await dio.get<String>(url);
@@ -61,7 +61,7 @@ class NetClient {
     }
 
     final buffer = await ParserFFi(
-      parser: configModel.getGalleryParser(model.parser.value).toPb(),
+      parser: configModel.getGalleryParser(model.baseParser.value).toPb(),
       source: rsp.data!,
       env: Get.find<GlobalController>().website.globalEnv,
       type: RpcType.RPC_TYPE_GALLERY_PARSER,

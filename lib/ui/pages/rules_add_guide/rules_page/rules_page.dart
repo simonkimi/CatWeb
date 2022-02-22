@@ -1,5 +1,6 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/protocol/model/page.dart';
+import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/ui/components/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
@@ -20,21 +21,23 @@ class RulesPageEdit extends GetView<RulesEditController> {
     required this.model,
   }) : super(key: key);
 
-  final SitePageModel model;
+  final PageBlueprint model;
 
   @override
   Widget build(BuildContext context) {
-    if (model.isMultiPage) {
+    if (model.hasExtraData()) {
       return CupertinoPageScaffold(
         navigationBar: _buildAppbar(context),
         child: CupertinoTabBarView(
-          tabs: const [
-            CupertinoTab('基础'),
-            CupertinoTab('子页面'),
+          tabs: [
+            const CupertinoTab('基础'),
+            if (model.templateData is TemplateListDataModel)
+              const CupertinoTab('子页面'),
           ],
           children: [
             _buildBasic(context),
-            _buildSubPage(context),
+            if (model.templateData is TemplateListDataModel)
+              _buildSubPage(context),
           ],
         ),
       );
@@ -45,8 +48,43 @@ class RulesPageEdit extends GetView<RulesEditController> {
     );
   }
 
+  Widget _buildBasic(BuildContext context) {
+    return SafeArea(
+      child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        children: [
+          CupertinoInput(
+            labelText: '名称',
+            value: model.name,
+          ),
+          CupertinoInput(
+            labelText: '网址',
+            value: model.url,
+          ),
+          const CupertinoDivider(height: 20),
+          Obx(() => CupertinoReadOnlyInput(
+                labelText: '解析器',
+                value:
+                    controller.blueprint.getParserName(model.baseParser.value),
+                onTap: () => _onParserTap(context),
+              )),
+          const CupertinoDivider(height: 20),
+          if (model.template.value != Template.TEMPLATE_IMAGE_VIEWER)
+            Obx(() => CupertinoReadOnlyInput(
+                  labelText: '显示方式',
+                  value: model.display.value.string(context),
+                  onTap: () => _onDisplayTap(context),
+                )),
+          _buildIcon(context),
+          _buildOpenNewPage(context),
+        ],
+      ),
+    );
+  }
+
   Widget _buildSubPage(BuildContext context) {
     final cookieController = SwipeActionController();
+    final extra = model.templateData as TemplateListDataModel;
     return ColoredBox(
       color: CupertinoColors.systemGroupedBackground.resolveFrom(context),
       child: ListView(
@@ -63,14 +101,14 @@ class RulesPageEdit extends GetView<RulesEditController> {
             child: Column(
               children: [
                 Obx(() => Column(
-                      children: model.subPages.asMap().entries.map((e) {
+                      children: extra.subPages.asMap().entries.map((e) {
                         return Obx(() => CupertinoDeletableTile(
                             index: e.key,
                             controller: cookieController,
                             text:
                                 '${e.value.name.value} - { ${e.value.key.value}: ${e.value.value.value} }',
                             onDelete: (index) {
-                              model.subPages.removeAt(index);
+                              extra.subPages.removeAt(index);
                             },
                             onTap: () => _editSubPage(context, e.value)));
                       }).toList(),
@@ -82,7 +120,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
                   ),
                   text: '添加',
                   onTap: () {
-                    model.subPages.add(SubPageModel(SiteSubPage()));
+                    extra.subPages.add(SubPageModel());
                   },
                 ),
               ],
@@ -125,44 +163,6 @@ class RulesPageEdit extends GetView<RulesEditController> {
         });
   }
 
-  Widget _buildBasic(BuildContext context) {
-    return SafeArea(
-      child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        children: [
-          CupertinoInput(
-            labelText: '名称',
-            value: model.name,
-          ),
-          CupertinoInput(
-            labelText: '网址',
-            value: model.url,
-          ),
-          const CupertinoDivider(height: 20),
-          Obx(() => CupertinoReadOnlyInput(
-                labelText: '模板',
-                value: model.template.value.string(context),
-                onTap: () => _onTemplateTap(context),
-              )),
-          Obx(() => CupertinoReadOnlyInput(
-                labelText: '解析器',
-                value: controller.blueprint.getParserName(model.parser.value),
-                onTap: () => _onParserTap(context),
-              )),
-          const CupertinoDivider(height: 20),
-          if (model.template.value != Template.TEMPLATE_IMAGE_VIEWER)
-            Obx(() => CupertinoReadOnlyInput(
-                  labelText: '显示方式',
-                  value: model.display.value.string(context),
-                  onTap: () => _onDisplayTap(context),
-                )),
-          _buildIcon(context),
-          _buildOpenNewPage(context),
-        ],
-      ),
-    );
-  }
-
   Widget _buildOpenWidget(
     BuildContext context, {
     required String labelText,
@@ -178,29 +178,38 @@ class RulesPageEdit extends GetView<RulesEditController> {
   Widget _buildOpenNewPage(BuildContext context) {
     late final List<Widget> body;
     switch (model.template.value) {
+      case Template.TEMPLATE_AUTO_COMPLETE:
       case Template.TEMPLATE_GALLERY:
+      case Template.TEMPLATE_IMAGE_VIEWER:
+        final extra = model.templateData as TemplateListSearchDataModel;
         body = [
-          _buildOpenWidget(
-            context,
-            labelText: '徽章跳转',
-            target: model.badgeTarget,
-          ),
-        ];
-        break;
-      case Template.TEMPLATE_IMAGE_LIST:
-      case Template.TEMPLATE_IMAGE_WATERFALL:
-        body = [
-          // 项目被点击
           _buildOpenWidget(
             context,
             labelText: '项目跳转',
-            target: model.listItemTarget,
+            target: extra.targetItem,
+          ),
+          _buildOpenWidget(
+            context,
+            labelText: '自动补全设定',
+            target: extra.targetAutoComplete,
           ),
         ];
         break;
-      case Template.TEMPLATE_IMAGE_VIEWER:
-      case Template.TEMPLATE_AUTO_COMPLETE:
-        body = [];
+
+      case Template.TEMPLATE_IMAGE_LIST:
+      case Template.TEMPLATE_IMAGE_WATERFALL:
+        final extra = model.templateData as TemplateListDataModel;
+        body = [
+          _buildOpenWidget(
+            context,
+            labelText: '项目跳转',
+            target: extra.targetItem,
+          ),
+        ];
+        break;
+
+      case Template.TEMPLATE_IMAGE_LIST_WITH_SEARCH:
+      case Template.TEMPLATE_IMAGE_WATERFALL_WITH_SEARCH:
         break;
     }
 
@@ -284,23 +293,8 @@ class RulesPageEdit extends GetView<RulesEditController> {
         minSize: 0,
       ),
       middle: const Text('页面'),
-      border: model.isMultiPage ? const Border() : kDefaultNavBarBorder,
+      border: model.hasExtraData() ? const Border() : kDefaultNavBarBorder,
     );
-  }
-
-  Future<void> _onTemplateTap(BuildContext context) async {
-    final result = await showCupertinoSelectDialog<Template>(
-      title: '请选择页面模板',
-      context: context,
-      items: model.template.value.brother
-          .map((e) => SelectTileItem(title: e.string(context), value: e))
-          .toList(),
-      cancelText: '取消',
-    );
-
-    if (result != null) {
-      model.template.value = result;
-    }
   }
 
   Future<void> _onParserTap(BuildContext context) async {
@@ -314,7 +308,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
       cancelText: '取消',
     );
     if (result != null) {
-      model.parser.value = result;
+      model.baseParser.value = result;
     }
   }
 

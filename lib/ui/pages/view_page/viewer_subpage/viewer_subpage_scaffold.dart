@@ -17,7 +17,7 @@ class ViewerPage extends StatelessWidget {
     this.env,
   }) : super(key: key);
 
-  final SitePageModel target;
+  final PageBlueprint target;
   final SiteEnvModel? env;
   final Object? model;
 

@@ -44,7 +44,7 @@ class ViewerMain extends GetView<GlobalController> {
     );
   }
 
-  Widget _buildSitePage(BuildContext context, SitePageModel target) {
+  Widget _buildSitePage(BuildContext context, PageBlueprint target) {
     return ViewerPage(
       target: target,
       model: controller.website.displayPage.length > 1 ? Object() : null,

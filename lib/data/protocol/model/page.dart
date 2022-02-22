@@ -1,57 +1,40 @@
-import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/interface.dart';
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
-class SubPageModel implements PbAble, EnvMargeAble {
-  SubPageModel([SiteSubPage? pb])
-      : name = sobs(pb?.name),
-        key = sobs(pb?.key),
-        value = sobs(pb?.value);
+class PageBlueprint implements PbAble {
+  PageBlueprint(SitePage pb)
+      : name = sobs(pb.name),
+        uuid = genUuid(pb.uuid),
+        url = sobs(pb.url),
+        icon = sobs(pb.icon),
+        display = pb.display.obs,
+        flag = sobs(pb.flag),
+        baseParser = sobs(pb.baseParser),
+        template = pb.template.obs,
+        templateData = parseTemplate(
+          template: pb.template,
+          data: pb.templateData,
+        );
 
-  final RxString name;
-  final RxString key;
-  final RxString value;
-
-  @override
-  SiteSubPage toPb() => SiteSubPage(
-        name: name.value,
-        key: key.value,
-        value: value.value,
-      );
-
-  @override
-  Map<String, String> get env => <String, String>{name.value: value.value};
-}
-
-class SitePageModel implements PbAble {
-  SitePageModel([SitePage? pb])
-      : name = sobs(pb?.name),
-        uuid = genUuid(pb?.uuid),
-        url = sobs(pb?.url),
-        template = pb?.template.obs ?? Template.TEMPLATE_IMAGE_LIST.obs,
-        parser = sobs(pb?.parser),
-        subPages = lobs(pb?.subPage, (SiteSubPage pb) => SubPageModel(pb)),
-        icon = sobs(pb?.icon),
-        display = pb?.display.obs ?? SiteDisplayType.show.obs,
-        flag = sobs(pb?.flag),
-        openPages = lobs(pb?.openPage, (String e) => e.obs);
+  factory PageBlueprint.create(Template template) =>
+      PageBlueprint(SitePage(template: template));
 
   final RxString name;
   final String uuid;
   final RxString url;
-  final Rx<Template> template;
-  final RxString parser;
-  final RxList<SubPageModel> subPages;
+  final RxString baseParser;
   final RxString icon;
   final Rx<SiteDisplayType> display;
   final RxString flag;
 
-  final RxList<RxString> openPages;
+  final Rx<Template> template;
+  final PbAble templateData;
 
   @override
   SitePage toPb() => SitePage(
@@ -59,36 +42,31 @@ class SitePageModel implements PbAble {
         uuid: uuid,
         template: template.value,
         url: url.value,
-        parser: parser.value,
-        subPage: subPages.map((SubPageModel p) => p.toPb()).toList(),
         icon: icon.value,
         display: display.value,
-        openPage: openPages.map((e) => e.value).toList(),
         flag: flag.value,
+        templateData: templateData.toPb().writeToBuffer(),
+        baseParser: baseParser.value,
       );
-
-  bool isValid() => name.value.isNotEmpty && parser.value.isNotEmpty;
 
   bool containsFlag(String flag) =>
       this.flag.value.split('|').map((e) => e.trim()).contains(flag);
 
-  RxString _genOpenPageList(int len, int index) {
-    if (openPages.length < len) {
-      openPages.addAll(List.filled(len - openPages.length, ''.obs));
-    } else if (openPages.length > len) {
-      openPages.removeRange(len, openPages.length);
+  bool hasExtraData() => templateData is! TemplateEmptyModel;
+
+  List<String> getDependPage() {
+    if (templateData is TemplateListSearchData) {
+      final model = templateData as TemplateListSearchData;
+      return [model.targetItem, model.targetAutoComplete];
     }
-    return openPages[index];
+
+    if (templateData is TemplateListData) {
+      final model = templateData as TemplateListData;
+      return [model.targetItem];
+    }
+
+    return [];
   }
-
-  RxString get listItemTarget => _genOpenPageList(1, 0);
-
-  RxString get badgeTarget => _genOpenPageList(1, 0);
-
-  bool get isMultiPage => [
-        Template.TEMPLATE_IMAGE_LIST,
-        Template.TEMPLATE_IMAGE_WATERFALL
-      ].contains(template.value);
 }
 
 extension PageTemplateTr on Template {
@@ -97,13 +75,17 @@ extension PageTemplateTr on Template {
       case Template.TEMPLATE_GALLERY:
         return '画廊';
       case Template.TEMPLATE_IMAGE_LIST:
-        return '列表';
+        return '列表 - 常规';
       case Template.TEMPLATE_IMAGE_WATERFALL:
-        return '瀑布流';
+        return '瀑布流 - 常规';
       case Template.TEMPLATE_IMAGE_VIEWER:
         return '图片查看器';
       case Template.TEMPLATE_AUTO_COMPLETE:
-        return '搜索自动补全';
+        return '搜索-自动补全';
+      case Template.TEMPLATE_IMAGE_LIST_WITH_SEARCH:
+        return '列表 - 搜索';
+      case Template.TEMPLATE_IMAGE_WATERFALL_WITH_SEARCH:
+        return '瀑布流 - 搜索';
     }
     throw UnimplementedError('TODO! $this');
   }
@@ -125,14 +107,18 @@ extension PageTemplateTr on Template {
     switch (this) {
       case Template.TEMPLATE_GALLERY:
         return input.whereType<GalleryParserModel>();
+
       case Template.TEMPLATE_IMAGE_LIST:
       case Template.TEMPLATE_IMAGE_WATERFALL:
+      case Template.TEMPLATE_IMAGE_WATERFALL_WITH_SEARCH:
+      case Template.TEMPLATE_IMAGE_LIST_WITH_SEARCH:
         return input.whereType<ListViewParserModel>();
+
       case Template.TEMPLATE_IMAGE_VIEWER:
         return input.whereType<ImageReaderParserModel>();
+
       case Template.TEMPLATE_AUTO_COMPLETE:
-        // TODO: Handle this case.
-        break;
+        return input.whereType<AutoCompleteParserModel>();
     }
     throw UnimplementedError('TODO! $this');
   }

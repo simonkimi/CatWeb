@@ -78,7 +78,7 @@ class RulesParserManager extends GetView<RulesEditController> {
 
   void _onParserDelete(BuildContext context, ParserBaseModel model) {
     final using = controller.blueprint.pageList
-        .where((p0) => p0.parser.value == model.uuid)
+        .where((p0) => p0.baseParser.value == model.uuid)
         .map((e) => e.name.value)
         .toList();
     if (using.isNotEmpty) {
@@ -108,6 +108,8 @@ class RulesParserManager extends GetView<RulesEditController> {
         SelectTileItem(title: '列表页', value: ParserType.PARSER_TYPE_LIST_VIEW),
         SelectTileItem(title: '详情页', value: ParserType.PARSER_TYPE_GALLERY),
         SelectTileItem(title: '图片页', value: ParserType.PARSER_TYPE_IMAGE),
+        SelectTileItem(
+            title: '补全页', value: ParserType.PARSER_TYPE_AUTO_COMPLETE),
       ],
     );
     if (selection != null) {

@@ -24,9 +24,9 @@ message SiteBlueprint {
   repeated RegField cookies = 16;
 
   repeated GalleryParser gallery_parsers = 20;  // 画廊解析器, 画廊通常由多张图片组成
-  repeated ListViewParser list_view_parsers = 21;
-  repeated ImageReaderParser image_parsers = 22;
-  repeated AutoCompleteParser auto_complete_parsers = 23;
+  repeated ListViewParser list_view_parsers = 21;  // 列表解析器
+  repeated ImageReaderParser image_parsers = 22;  // 图片解析器
+  repeated AutoCompleteParser auto_complete_parsers = 23;  // 自动补全解析器
 
   repeated ActionCombine actions = 30;
   repeated SitePage pages = 31;
