@@ -181,19 +181,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
       case Template.TEMPLATE_AUTO_COMPLETE:
       case Template.TEMPLATE_GALLERY:
       case Template.TEMPLATE_IMAGE_VIEWER:
-        final extra = model.templateData as TemplateListSearchDataModel;
-        body = [
-          _buildOpenWidget(
-            context,
-            labelText: '项目跳转',
-            target: extra.targetItem,
-          ),
-          _buildOpenWidget(
-            context,
-            labelText: '自动补全设定',
-            target: extra.targetAutoComplete,
-          ),
-        ];
+        body = [];
         break;
 
       case Template.TEMPLATE_IMAGE_LIST:
@@ -210,6 +198,19 @@ class RulesPageEdit extends GetView<RulesEditController> {
 
       case Template.TEMPLATE_IMAGE_LIST_WITH_SEARCH:
       case Template.TEMPLATE_IMAGE_WATERFALL_WITH_SEARCH:
+        final extra = model.templateData as TemplateListSearchDataModel;
+        body = [
+          _buildOpenWidget(
+            context,
+            labelText: '项目跳转',
+            target: extra.targetItem,
+          ),
+          _buildOpenWidget(
+            context,
+            labelText: '自动补全设定',
+            target: extra.targetAutoComplete,
+          ),
+        ];
         break;
     }
 
