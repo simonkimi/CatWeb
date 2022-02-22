@@ -37,6 +37,7 @@ message TemplateListSearchData {
   }
 
   repeated FilterItem filter_item = 1;
+  string script = 2;
 
   string target_item = 10;  // item点击跳转
   string target_auto_complete = 11;  // 自动补全选择

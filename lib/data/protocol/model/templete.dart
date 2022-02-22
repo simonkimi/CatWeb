@@ -1,6 +1,7 @@
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/gen/protobuf/template.pb.dart';
 import 'package:catweb/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import 'interface.dart';
@@ -93,11 +94,13 @@ class TemplateListSearchDataModel implements PbAble {
   final RxList<SearchFilterItem> filterItem;
   final RxString targetItem;
   final RxString targetAutoComplete;
+  final RxString script;
 
   TemplateListSearchDataModel([TemplateListSearchData? pb])
       : filterItem = lobs(pb?.filterItem,
             (TemplateListSearchData_FilterItem e) => SearchFilterItem(e)),
         targetItem = sobs(pb?.targetItem),
+        script = sobs(pb?.script),
         targetAutoComplete = sobs(pb?.targetAutoComplete);
 
   @override
@@ -105,6 +108,7 @@ class TemplateListSearchDataModel implements PbAble {
         filterItem: filterItem.map((e) => e.toPb()),
         targetItem: targetItem.value,
         targetAutoComplete: targetAutoComplete.value,
+        script: script.value,
       );
 }
 
@@ -113,4 +117,18 @@ class TemplateEmptyModel implements PbAble {
 
   @override
   TemplateEmpty toPb() => TemplateEmpty();
+}
+
+extension ExtraSelectorTypeTr on TemplateListSearchData_FilterType {
+  String string(BuildContext context) {
+    switch (this) {
+      case TemplateListSearchData_FilterType.FILTER_TYPE_BOOL:
+        return '是/否';
+      case TemplateListSearchData_FilterType.FILTER_TYPE_NUMBER:
+        return '数字';
+      case TemplateListSearchData_FilterType.FILTER_TYPE_STRING:
+        return '字符串';
+    }
+    return '';
+  }
 }

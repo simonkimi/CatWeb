@@ -1,7 +1,10 @@
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
+import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/ui/components/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
+import 'package:catweb/ui/components/dialog.dart';
+import 'package:catweb/ui/pages/javascript_editor/editor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
@@ -19,22 +22,23 @@ class ListSearchEditor extends StatelessWidget {
     final filterController = SwipeActionController();
     final extra = model.templateData as TemplateListSearchDataModel;
 
-    return ColoredBox(
-      color: CupertinoColors.systemGroupedBackground.resolveFrom(context),
-      child: ListView(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: CupertinoColors.systemBackground.resolveFrom(context),
-              border: Border.symmetric(
-                  horizontal: BorderSide(
-                width: 0.4,
-                color: CupertinoColors.separator.resolveFrom(context),
-              )),
-            ),
-            child: Column(
-              children: [
-                Obx(() => Column(
+    return ListView(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: CupertinoColors.systemBackground.resolveFrom(context),
+            border: Border.symmetric(
+                horizontal: BorderSide(
+              width: 0.4,
+              color: CupertinoColors.separator.resolveFrom(context),
+            )),
+          ),
+          child: Column(
+            children: [
+              ColoredBox(
+                color: CupertinoColors.systemGroupedBackground
+                    .resolveFrom(context),
+                child: Obx(() => Column(
                       children: extra.filterItem.asMap().entries.map((e) {
                         return Obx(
                           () => CupertinoDeletableTile(
@@ -49,21 +53,39 @@ class ListSearchEditor extends StatelessWidget {
                         );
                       }).toList(),
                     )),
-                CupertinoClassicalListTile(
-                  icon: Icon(
-                    CupertinoIcons.add_circled_solid,
-                    color: CupertinoColors.systemGreen.resolveFrom(context),
-                  ),
-                  text: '添加',
-                  onTap: () {
-                    extra.filterItem.add(SearchFilterItem());
-                  },
+              ),
+              CupertinoClassicalListTile(
+                icon: Icon(
+                  CupertinoIcons.add_circled_solid,
+                  color: CupertinoColors.systemGreen.resolveFrom(context),
                 ),
-              ],
-            ),
-          )
-        ],
-      ),
+                text: '添加',
+                onTap: () {
+                  extra.filterItem.add(SearchFilterItem());
+                },
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+        Container(
+          decoration: BoxDecoration(
+            color: CupertinoColors.systemBackground.resolveFrom(context),
+            border: Border.symmetric(
+                horizontal: BorderSide(
+              width: 0.4,
+              color: CupertinoColors.separator.resolveFrom(context),
+            )),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: Obx(() => CupertinoReadOnlyInput(
+                labelText: '脚本',
+                value: extra.script.value,
+                onTap: () =>
+                    Get.to(() => JavaScriptEditor(script: extra.script)),
+              )),
+        ),
+      ],
     );
   }
 
@@ -88,6 +110,29 @@ class ListSearchEditor extends StatelessWidget {
                 CupertinoInput(
                   labelText: '键',
                   value: field.key,
+                ),
+                Obx(() => CupertinoReadOnlyInput(
+                      labelText: '类型',
+                      value: field.type.value.string(context),
+                      onTap: () => showCupertinoSelectDialog<
+                          TemplateListSearchData_FilterType>(
+                        context: context,
+                        items: TemplateListSearchData_FilterType.values
+                            .map((e) => SelectTileItem(
+                                  title: e.string(context),
+                                  value: e,
+                                ))
+                            .toList(),
+                        cancelText: '取消',
+                      ).then((value) {
+                        if (value != null) {
+                          field.type.value = value;
+                        }
+                      }),
+                    )),
+                CupertinoInput(
+                  labelText: '默认值',
+                  value: field.defaultValue,
                 ),
               ],
             ),
