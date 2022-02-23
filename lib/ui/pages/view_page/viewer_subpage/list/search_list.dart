@@ -43,7 +43,7 @@ class _SearchListState extends State<SearchList> {
           actions: _buildAction(context),
           child: SmartRefresher(
             controller: controller.refreshController,
-            child: CustomScrollView(
+            child: const CustomScrollView(
               slivers: [],
             ),
           ),

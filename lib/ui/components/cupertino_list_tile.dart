@@ -63,10 +63,16 @@ class CupertinoListTile extends HookWidget {
           _onTapDown();
         }
       },
-      onTapUp: (_) {
+      onTapUp: (details) {
         if (onTap != null) {
           _onTapUp();
-          onTap!();
+          if (context.size != null &&
+              onTrailingTap != null &&
+              details.localPosition.dx > context.size!.width / 7 * 6) {
+            onTrailingTap?.call();
+          } else {
+            onTap!();
+          }
         }
       },
       onTapCancel: () => _onTapUp(),
