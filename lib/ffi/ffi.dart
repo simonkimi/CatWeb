@@ -25,3 +25,22 @@ RpcResponse ffiParse(RpcRequest msg) {
   _native.FreeResult(result);
   return rsp;
 }
+
+String runJs(String js, String input) {
+  final _native = NativeLibrary(Platform.isAndroid
+      ? DynamicLibrary.open('libgo.so')
+      : Platform.isWindows
+          ? DynamicLibrary.open('./lib/libs/libgo.dll')
+          : DynamicLibrary.process());
+
+  final jsBuffer = js.toNativeUtf8().cast<Int8>();
+  final inputBuffer = input.toNativeUtf8().cast<Int8>();
+
+  final result = _native.RunJs(jsBuffer, inputBuffer);
+
+  final str = result.data.cast<ffi.Utf8>().toDartString(length: result.len);
+  ffi.malloc.free(jsBuffer);
+  ffi.malloc.free(inputBuffer);
+  _native.FreeResult(result);
+  return str;
+}

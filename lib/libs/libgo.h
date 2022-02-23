@@ -19,7 +19,7 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 /* Start of preamble from import "C" comments.  */
 
 
-#line 10 "main.go"
+#line 9 "main.go"
 
 #include <stdlib.h>
 struct ParseResult {
@@ -79,6 +79,7 @@ extern "C" {
 
 extern struct ParseResult ParseData(char* input, int size);
 extern void FreeResult(struct ParseResult result);
+extern struct ParseResult RunJs(char* js, char* input);
 
 #ifdef __cplusplus
 }

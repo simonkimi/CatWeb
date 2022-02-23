@@ -2,6 +2,7 @@ import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pb.dart';
+import 'package:catweb/gen/protobuf/template.pbserver.dart';
 
 import 'cookies.dart';
 import 'parser/gallery_parser.dart';
@@ -36,8 +37,100 @@ final ehTestSite = SiteBlueprint(
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'home',
-      templateData: TemplateListSearchData(
+      templateData: TemplateListData(
         targetItem: detailUuid,
+        filterItem: [
+          TemplateListData_FilterItem(
+            name: '同人志',
+            key: 'bin_doujinshi',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '漫画',
+            key: 'bin_manga',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '游戏CG',
+            key: 'bin_gamecg',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '图片集',
+            key: 'bin_imageset',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '画师CG',
+            key: 'bin_artistcg',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: 'Cosplay',
+            key: 'bin_cosplay',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '西方',
+            key: 'bin_western',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '无H',
+            key: 'bin_nonh',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '杂项',
+            key: 'bin_misc',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '搜索画廊名称',
+            key: 'f_sname',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '搜索画廊标签',
+            key: 'f_stags',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '搜索画廊种子',
+            key: 'f_storr',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '搜索低愿力标签',
+            key: 'f_sdt1',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '搜索画廊描述',
+            key: 'f_sdesc',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+          TemplateListData_FilterItem(
+            name: '显示删除的画廊',
+            key: 'f_sh',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            value: 'true',
+          ),
+        ],
       ).writeToBuffer(),
     ),
     SitePage(
@@ -47,7 +140,7 @@ final ehTestSite = SiteBlueprint(
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'whatshot',
-      templateData: TemplateListSearchData(
+      templateData: TemplateListData(
         targetItem: detailUuid,
       ).writeToBuffer(),
     ),
@@ -58,7 +151,7 @@ final ehTestSite = SiteBlueprint(
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'eye',
-      templateData: TemplateListSearchData(
+      templateData: TemplateListData(
         targetItem: detailUuid,
       ).writeToBuffer(),
     ),

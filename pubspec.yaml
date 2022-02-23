@@ -18,7 +18,6 @@ dependencies:
   flutter_speed_dial: ^5.0.0
   flutter_rating_bar: ^4.0.0
   flutter_linkify: ^5.0.2
-  bot_toast: ^4.0.1
   flutter_highlight: ^0.7.0
   cupertino_icons: ^1.0.4
   flutter_sticky_header: ^0.6.0

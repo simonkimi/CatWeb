@@ -56,14 +56,17 @@ class PageBlueprint implements PbAble {
   bool hasExtraData() => templateData is! TemplateEmptyModel;
 
   List<String> getDependPage() {
-    if (templateData is TemplateListSearchData) {
-      final model = templateData as TemplateListSearchData;
-      return [model.targetItem, model.targetAutoComplete];
-    }
-
-    if (templateData is TemplateListData) {
-      final model = templateData as TemplateListData;
-      return [model.targetItem];
+    switch (template.value) {
+      case Template.TEMPLATE_AUTO_COMPLETE:
+        break;
+      case Template.TEMPLATE_GALLERY:
+        break;
+      case Template.TEMPLATE_IMAGE_VIEWER:
+        break;
+      case Template.TEMPLATE_IMAGE_WATERFALL:
+      case Template.TEMPLATE_IMAGE_LIST:
+        final model = templateData as TemplateListData;
+        return [model.targetItem, model.targetAutoComplete];
     }
 
     return [];
@@ -82,11 +85,7 @@ extension PageTemplateTr on Template {
       case Template.TEMPLATE_IMAGE_VIEWER:
         return '图片查看器';
       case Template.TEMPLATE_AUTO_COMPLETE:
-        return '搜索-自动补全';
-      case Template.TEMPLATE_IMAGE_LIST_WITH_SEARCH:
-        return '列表 - 搜索';
-      case Template.TEMPLATE_IMAGE_WATERFALL_WITH_SEARCH:
-        return '瀑布流 - 搜索';
+        return '搜索 - 自动补全';
     }
     throw UnimplementedError('TODO! $this');
   }
@@ -111,8 +110,6 @@ extension PageTemplateTr on Template {
 
       case Template.TEMPLATE_IMAGE_LIST:
       case Template.TEMPLATE_IMAGE_WATERFALL:
-      case Template.TEMPLATE_IMAGE_WATERFALL_WITH_SEARCH:
-      case Template.TEMPLATE_IMAGE_LIST_WITH_SEARCH:
         return input.whereType<ListViewParserModel>();
 
       case Template.TEMPLATE_IMAGE_VIEWER:

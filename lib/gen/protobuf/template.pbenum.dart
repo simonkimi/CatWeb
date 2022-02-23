@@ -15,42 +15,30 @@ class Template extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'TEMPLATE_IMAGE_LIST');
-  static const Template TEMPLATE_IMAGE_LIST_WITH_SEARCH = Template._(
+  static const Template TEMPLATE_IMAGE_WATERFALL = Template._(
       1,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'TEMPLATE_IMAGE_LIST_WITH_SEARCH');
-  static const Template TEMPLATE_IMAGE_WATERFALL = Template._(
-      2,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
           : 'TEMPLATE_IMAGE_WATERFALL');
-  static const Template TEMPLATE_IMAGE_WATERFALL_WITH_SEARCH = Template._(
-      3,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'TEMPLATE_IMAGE_WATERFALL_WITH_SEARCH');
   static const Template TEMPLATE_GALLERY = Template._(
-      4,
+      2,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'TEMPLATE_GALLERY');
   static const Template TEMPLATE_IMAGE_VIEWER = Template._(
-      5,
+      3,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'TEMPLATE_IMAGE_VIEWER');
   static const Template TEMPLATE_AUTO_COMPLETE = Template._(
-      6,
+      4,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'TEMPLATE_AUTO_COMPLETE');
 
   static const $core.List<Template> values = <Template>[
     TEMPLATE_IMAGE_LIST,
-    TEMPLATE_IMAGE_LIST_WITH_SEARCH,
     TEMPLATE_IMAGE_WATERFALL,
-    TEMPLATE_IMAGE_WATERFALL_WITH_SEARCH,
     TEMPLATE_GALLERY,
     TEMPLATE_IMAGE_VIEWER,
     TEMPLATE_AUTO_COMPLETE,
@@ -63,38 +51,38 @@ class Template extends $pb.ProtobufEnum {
   const Template._($core.int v, $core.String n) : super(v, n);
 }
 
-class TemplateListSearchData_FilterType extends $pb.ProtobufEnum {
-  static const TemplateListSearchData_FilterType FILTER_TYPE_NUMBER =
-      TemplateListSearchData_FilterType._(
+class TemplateListData_FilterType extends $pb.ProtobufEnum {
+  static const TemplateListData_FilterType FILTER_TYPE_NUMBER =
+      TemplateListData_FilterType._(
           0,
           const $core.bool.fromEnvironment('protobuf.omit_enum_names')
               ? ''
               : 'FILTER_TYPE_NUMBER');
-  static const TemplateListSearchData_FilterType FILTER_TYPE_STRING =
-      TemplateListSearchData_FilterType._(
+  static const TemplateListData_FilterType FILTER_TYPE_STRING =
+      TemplateListData_FilterType._(
           1,
           const $core.bool.fromEnvironment('protobuf.omit_enum_names')
               ? ''
               : 'FILTER_TYPE_STRING');
-  static const TemplateListSearchData_FilterType FILTER_TYPE_BOOL =
-      TemplateListSearchData_FilterType._(
+  static const TemplateListData_FilterType FILTER_TYPE_BOOL =
+      TemplateListData_FilterType._(
           2,
           const $core.bool.fromEnvironment('protobuf.omit_enum_names')
               ? ''
               : 'FILTER_TYPE_BOOL');
 
-  static const $core.List<TemplateListSearchData_FilterType> values =
-      <TemplateListSearchData_FilterType>[
+  static const $core.List<TemplateListData_FilterType> values =
+      <TemplateListData_FilterType>[
     FILTER_TYPE_NUMBER,
     FILTER_TYPE_STRING,
     FILTER_TYPE_BOOL,
   ];
 
-  static final $core.Map<$core.int, TemplateListSearchData_FilterType>
-      _byValue = $pb.ProtobufEnum.initByValue(values);
-  static TemplateListSearchData_FilterType? valueOf($core.int value) =>
+  static final $core.Map<$core.int, TemplateListData_FilterType> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
+  static TemplateListData_FilterType? valueOf($core.int value) =>
       _byValue[value];
 
-  const TemplateListSearchData_FilterType._($core.int v, $core.String n)
+  const TemplateListData_FilterType._($core.int v, $core.String n)
       : super(v, n);
 }

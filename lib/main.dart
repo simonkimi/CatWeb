@@ -1,4 +1,3 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/theme/themes.dart';
@@ -38,8 +37,6 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: I.supportedLocales,
       navigatorKey: AppNavigator().key,
-      navigatorObservers: [BotToastNavigatorObserver()],
-      builder: BotToastInit(),
       theme: defaultTheme(),
       home: const ViewerMain(),
     );

@@ -20,7 +20,7 @@ class ListSearchEditor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final filterController = SwipeActionController();
-    final extra = model.templateData as TemplateListSearchDataModel;
+    final extra = model.templateData as TemplateListDataModel;
 
     return ListView(
       children: [
@@ -115,9 +115,9 @@ class ListSearchEditor extends StatelessWidget {
                       labelText: '类型',
                       value: field.type.value.string(context),
                       onTap: () => showCupertinoSelectDialog<
-                          TemplateListSearchData_FilterType>(
+                          TemplateListData_FilterType>(
                         context: context,
-                        items: TemplateListSearchData_FilterType.values
+                        items: TemplateListData_FilterType.values
                             .map((e) => SelectTileItem(
                                   title: e.string(context),
                                   value: e,
@@ -132,7 +132,7 @@ class ListSearchEditor extends StatelessWidget {
                     )),
                 CupertinoInput(
                   labelText: '默认值',
-                  value: field.defaultValue,
+                  value: field.value,
                 ),
               ],
             ),

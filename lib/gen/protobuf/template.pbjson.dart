@@ -14,33 +14,48 @@ const Template$json = const {
   '1': 'Template',
   '2': const [
     const {'1': 'TEMPLATE_IMAGE_LIST', '2': 0},
-    const {'1': 'TEMPLATE_IMAGE_LIST_WITH_SEARCH', '2': 1},
-    const {'1': 'TEMPLATE_IMAGE_WATERFALL', '2': 2},
-    const {'1': 'TEMPLATE_IMAGE_WATERFALL_WITH_SEARCH', '2': 3},
-    const {'1': 'TEMPLATE_GALLERY', '2': 4},
-    const {'1': 'TEMPLATE_IMAGE_VIEWER', '2': 5},
-    const {'1': 'TEMPLATE_AUTO_COMPLETE', '2': 6},
+    const {'1': 'TEMPLATE_IMAGE_WATERFALL', '2': 1},
+    const {'1': 'TEMPLATE_GALLERY', '2': 2},
+    const {'1': 'TEMPLATE_IMAGE_VIEWER', '2': 3},
+    const {'1': 'TEMPLATE_AUTO_COMPLETE', '2': 4},
   ],
 };
 
 /// Descriptor for `Template`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List templateDescriptor = $convert.base64Decode(
-    'CghUZW1wbGF0ZRIXChNURU1QTEFURV9JTUFHRV9MSVNUEAASIwofVEVNUExBVEVfSU1BR0VfTElTVF9XSVRIX1NFQVJDSBABEhwKGFRFTVBMQVRFX0lNQUdFX1dBVEVSRkFMTBACEigKJFRFTVBMQVRFX0lNQUdFX1dBVEVSRkFMTF9XSVRIX1NFQVJDSBADEhQKEFRFTVBMQVRFX0dBTExFUlkQBBIZChVURU1QTEFURV9JTUFHRV9WSUVXRVIQBRIaChZURU1QTEFURV9BVVRPX0NPTVBMRVRFEAY=');
+    'CghUZW1wbGF0ZRIXChNURU1QTEFURV9JTUFHRV9MSVNUEAASHAoYVEVNUExBVEVfSU1BR0VfV0FURVJGQUxMEAESFAoQVEVNUExBVEVfR0FMTEVSWRACEhkKFVRFTVBMQVRFX0lNQUdFX1ZJRVdFUhADEhoKFlRFTVBMQVRFX0FVVE9fQ09NUExFVEUQBA==');
 @$core.Deprecated('Use templateListDataDescriptor instead')
 const TemplateListData$json = const {
   '1': 'TemplateListData',
   '2': const [
     const {
       '1': 'sub_pages',
-      '3': 2,
+      '3': 1,
       '4': 3,
       '5': 11,
       '6': '.TemplateListData.SubPage',
       '10': 'subPages'
     },
+    const {
+      '1': 'filter_item',
+      '3': 22,
+      '4': 3,
+      '5': 11,
+      '6': '.TemplateListData.FilterItem',
+      '10': 'filterItem'
+    },
+    const {'1': 'script', '3': 3, '4': 1, '5': 9, '10': 'script'},
     const {'1': 'target_item', '3': 10, '4': 1, '5': 9, '10': 'targetItem'},
+    const {
+      '1': 'target_auto_complete',
+      '3': 11,
+      '4': 1,
+      '5': 9,
+      '10': 'targetAutoComplete'
+    },
   ],
-  '3': const [TemplateListData_SubPage$json],
+  '3': const [TemplateListData_SubPage$json, TemplateListData_FilterItem$json],
+  '4': const [TemplateListData_FilterType$json],
 };
 
 @$core.Deprecated('Use templateListDataDescriptor instead')
@@ -53,37 +68,8 @@ const TemplateListData_SubPage$json = const {
   ],
 };
 
-/// Descriptor for `TemplateListData`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List templateListDataDescriptor = $convert.base64Decode(
-    'ChBUZW1wbGF0ZUxpc3REYXRhEjYKCXN1Yl9wYWdlcxgCIAMoCzIZLlRlbXBsYXRlTGlzdERhdGEuU3ViUGFnZVIIc3ViUGFnZXMSHwoLdGFyZ2V0X2l0ZW0YCiABKAlSCnRhcmdldEl0ZW0aRQoHU3ViUGFnZRISCgRuYW1lGAEgASgJUgRuYW1lEhAKA2tleRgCIAEoCVIDa2V5EhQKBXZhbHVlGAMgASgJUgV2YWx1ZQ==');
-@$core.Deprecated('Use templateListSearchDataDescriptor instead')
-const TemplateListSearchData$json = const {
-  '1': 'TemplateListSearchData',
-  '2': const [
-    const {
-      '1': 'filter_item',
-      '3': 1,
-      '4': 3,
-      '5': 11,
-      '6': '.TemplateListSearchData.FilterItem',
-      '10': 'filterItem'
-    },
-    const {'1': 'script', '3': 2, '4': 1, '5': 9, '10': 'script'},
-    const {'1': 'target_item', '3': 10, '4': 1, '5': 9, '10': 'targetItem'},
-    const {
-      '1': 'target_auto_complete',
-      '3': 11,
-      '4': 1,
-      '5': 9,
-      '10': 'targetAutoComplete'
-    },
-  ],
-  '3': const [TemplateListSearchData_FilterItem$json],
-  '4': const [TemplateListSearchData_FilterType$json],
-};
-
-@$core.Deprecated('Use templateListSearchDataDescriptor instead')
-const TemplateListSearchData_FilterItem$json = const {
+@$core.Deprecated('Use templateListDataDescriptor instead')
+const TemplateListData_FilterItem$json = const {
   '1': 'FilterItem',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
@@ -93,15 +79,15 @@ const TemplateListSearchData_FilterItem$json = const {
       '3': 3,
       '4': 1,
       '5': 14,
-      '6': '.TemplateListSearchData.FilterType',
+      '6': '.TemplateListData.FilterType',
       '10': 'type'
     },
-    const {'1': 'defaultValue', '3': 4, '4': 1, '5': 9, '10': 'defaultValue'},
+    const {'1': 'value', '3': 4, '4': 1, '5': 9, '10': 'value'},
   ],
 };
 
-@$core.Deprecated('Use templateListSearchDataDescriptor instead')
-const TemplateListSearchData_FilterType$json = const {
+@$core.Deprecated('Use templateListDataDescriptor instead')
+const TemplateListData_FilterType$json = const {
   '1': 'FilterType',
   '2': const [
     const {'1': 'FILTER_TYPE_NUMBER', '2': 0},
@@ -110,10 +96,9 @@ const TemplateListSearchData_FilterType$json = const {
   ],
 };
 
-/// Descriptor for `TemplateListSearchData`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List templateListSearchDataDescriptor =
-    $convert.base64Decode(
-        'ChZUZW1wbGF0ZUxpc3RTZWFyY2hEYXRhEkMKC2ZpbHRlcl9pdGVtGAEgAygLMiIuVGVtcGxhdGVMaXN0U2VhcmNoRGF0YS5GaWx0ZXJJdGVtUgpmaWx0ZXJJdGVtEhYKBnNjcmlwdBgCIAEoCVIGc2NyaXB0Eh8KC3RhcmdldF9pdGVtGAogASgJUgp0YXJnZXRJdGVtEjAKFHRhcmdldF9hdXRvX2NvbXBsZXRlGAsgASgJUhJ0YXJnZXRBdXRvQ29tcGxldGUajgEKCkZpbHRlckl0ZW0SEgoEbmFtZRgBIAEoCVIEbmFtZRIQCgNrZXkYAiABKAlSA2tleRI2CgR0eXBlGAMgASgOMiIuVGVtcGxhdGVMaXN0U2VhcmNoRGF0YS5GaWx0ZXJUeXBlUgR0eXBlEiIKDGRlZmF1bHRWYWx1ZRgEIAEoCVIMZGVmYXVsdFZhbHVlIlIKCkZpbHRlclR5cGUSFgoSRklMVEVSX1RZUEVfTlVNQkVSEAASFgoSRklMVEVSX1RZUEVfU1RSSU5HEAESFAoQRklMVEVSX1RZUEVfQk9PTBAC');
+/// Descriptor for `TemplateListData`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List templateListDataDescriptor = $convert.base64Decode(
+    'ChBUZW1wbGF0ZUxpc3REYXRhEjYKCXN1Yl9wYWdlcxgBIAMoCzIZLlRlbXBsYXRlTGlzdERhdGEuU3ViUGFnZVIIc3ViUGFnZXMSPQoLZmlsdGVyX2l0ZW0YFiADKAsyHC5UZW1wbGF0ZUxpc3REYXRhLkZpbHRlckl0ZW1SCmZpbHRlckl0ZW0SFgoGc2NyaXB0GAMgASgJUgZzY3JpcHQSHwoLdGFyZ2V0X2l0ZW0YCiABKAlSCnRhcmdldEl0ZW0SMAoUdGFyZ2V0X2F1dG9fY29tcGxldGUYCyABKAlSEnRhcmdldEF1dG9Db21wbGV0ZRpFCgdTdWJQYWdlEhIKBG5hbWUYASABKAlSBG5hbWUSEAoDa2V5GAIgASgJUgNrZXkSFAoFdmFsdWUYAyABKAlSBXZhbHVlGnoKCkZpbHRlckl0ZW0SEgoEbmFtZRgBIAEoCVIEbmFtZRIQCgNrZXkYAiABKAlSA2tleRIwCgR0eXBlGAMgASgOMhwuVGVtcGxhdGVMaXN0RGF0YS5GaWx0ZXJUeXBlUgR0eXBlEhQKBXZhbHVlGAQgASgJUgV2YWx1ZSJSCgpGaWx0ZXJUeXBlEhYKEkZJTFRFUl9UWVBFX05VTUJFUhAAEhYKEkZJTFRFUl9UWVBFX1NUUklORxABEhQKEEZJTFRFUl9UWVBFX0JPT0wQAg==');
 @$core.Deprecated('Use templateEmptyDescriptor instead')
 const TemplateEmpty$json = const {
   '1': 'TemplateEmpty',

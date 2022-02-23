@@ -4459,6 +4459,23 @@ class NativeLibrary {
       _lookup<ffi.NativeFunction<ffi.Void Function(ParseResult)>>('FreeResult');
   late final _FreeResult =
       _FreeResultPtr.asFunction<void Function(ParseResult)>();
+
+  ParseResult RunJs(
+    ffi.Pointer<ffi.Int8> js,
+    ffi.Pointer<ffi.Int8> input,
+  ) {
+    return _RunJs(
+      js,
+      input,
+    );
+  }
+
+  late final _RunJsPtr = _lookup<
+      ffi.NativeFunction<
+          ParseResult Function(
+              ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int8>)>>('RunJs');
+  late final _RunJs = _RunJsPtr.asFunction<
+      ParseResult Function(ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int8>)>();
 }
 
 typedef va_list = ffi.Pointer<ffi.Int8>;
@@ -4628,10 +4645,6 @@ const int _HAS_CXX23 = 0;
 
 const int _HAS_NODISCARD = 1;
 
-const int _ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE = 1;
-
-const int _CRT_BUILD_DESKTOP_APP = 1;
-
 const int _UCRT_DISABLED_WARNINGS = 4324;
 
 const int _ARGMAX = 100;
@@ -4648,7 +4661,9 @@ const int _CRT_FUNCTIONS_REQUIRED = 1;
 
 const int _CRT_HAS_CXX17 = 0;
 
-const int _CRT_HAS_C11 = 0;
+const int _ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE = 1;
+
+const int _CRT_BUILD_DESKTOP_APP = 1;
 
 const int _CRT_INTERNAL_NONSTDC_NAMES = 1;
 

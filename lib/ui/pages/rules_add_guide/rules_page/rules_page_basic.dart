@@ -72,18 +72,6 @@ class RulesPageBasic extends GetView<RulesEditController> {
             labelText: '项目跳转',
             target: extra.targetItem,
           ),
-        ];
-        break;
-
-      case Template.TEMPLATE_IMAGE_LIST_WITH_SEARCH:
-      case Template.TEMPLATE_IMAGE_WATERFALL_WITH_SEARCH:
-        final extra = model.templateData as TemplateListSearchDataModel;
-        body = [
-          _buildOpenWidget(
-            context,
-            labelText: '项目跳转',
-            target: extra.targetItem,
-          ),
           _buildOpenWidget(
             context,
             labelText: '自动补全设定',
