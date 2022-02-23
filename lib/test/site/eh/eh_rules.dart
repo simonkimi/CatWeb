@@ -131,18 +131,6 @@ final ehTestSite = SiteBlueprint(
             type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
             value: 'false',
           ),
-          TemplateListData_FilterItem(
-            name: '测试字符串',
-            key: 'test_str',
-            type: TemplateListData_FilterType.FILTER_TYPE_STRING,
-            value: 'false',
-          ),
-          TemplateListData_FilterItem(
-            name: '测试数字',
-            key: 'test_num',
-            type: TemplateListData_FilterType.FILTER_TYPE_NUMBER,
-            value: 'false',
-          ),
         ],
       ).writeToBuffer(),
     ),

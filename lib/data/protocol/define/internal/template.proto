@@ -36,6 +36,11 @@ message TemplateListData {
   string target_auto_complete = 11;  // 自动补全选择
 }
 
+message TemplateAutoComplete {
+  string split_char = 1;  // 分隔符
+  int32 timeout = 2;  // 查询时间
+}
+
 
 
 message TemplateEmpty {}

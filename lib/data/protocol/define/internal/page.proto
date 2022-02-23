@@ -1,6 +1,7 @@
 syntax = 'proto3';
 
 import 'template.proto';
+import 'actions.proto';
 
 
 enum SiteDisplayType {
@@ -15,11 +16,15 @@ message SitePage {
   string uuid = 2;
 
   string url = 3;
-  string icon = 4;
-  SiteDisplayType display = 5;
-  string flag = 6;
-  string base_parser = 7;
+  NetActionType net_action = 4;
+  string form_data = 5;
 
-  Template template = 8;  // 模板
-  bytes template_data = 9;  // 模板数据
+  string icon = 10;
+  SiteDisplayType display = 11;
+  string flag = 12;
+  string base_parser = 13;
+
+
+  Template template = 20;  // 模板
+  bytes template_data = 21;  // 模板数据
 }

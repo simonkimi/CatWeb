@@ -99,6 +99,18 @@ const TemplateListData_FilterType$json = const {
 /// Descriptor for `TemplateListData`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List templateListDataDescriptor = $convert.base64Decode(
     'ChBUZW1wbGF0ZUxpc3REYXRhEjYKCXN1Yl9wYWdlcxgBIAMoCzIZLlRlbXBsYXRlTGlzdERhdGEuU3ViUGFnZVIIc3ViUGFnZXMSPQoLZmlsdGVyX2l0ZW0YFiADKAsyHC5UZW1wbGF0ZUxpc3REYXRhLkZpbHRlckl0ZW1SCmZpbHRlckl0ZW0SFgoGc2NyaXB0GAMgASgJUgZzY3JpcHQSHwoLdGFyZ2V0X2l0ZW0YCiABKAlSCnRhcmdldEl0ZW0SMAoUdGFyZ2V0X2F1dG9fY29tcGxldGUYCyABKAlSEnRhcmdldEF1dG9Db21wbGV0ZRpFCgdTdWJQYWdlEhIKBG5hbWUYASABKAlSBG5hbWUSEAoDa2V5GAIgASgJUgNrZXkSFAoFdmFsdWUYAyABKAlSBXZhbHVlGnoKCkZpbHRlckl0ZW0SEgoEbmFtZRgBIAEoCVIEbmFtZRIQCgNrZXkYAiABKAlSA2tleRIwCgR0eXBlGAMgASgOMhwuVGVtcGxhdGVMaXN0RGF0YS5GaWx0ZXJUeXBlUgR0eXBlEhQKBXZhbHVlGAQgASgJUgV2YWx1ZSJSCgpGaWx0ZXJUeXBlEhYKEkZJTFRFUl9UWVBFX05VTUJFUhAAEhYKEkZJTFRFUl9UWVBFX1NUUklORxABEhQKEEZJTFRFUl9UWVBFX0JPT0wQAg==');
+@$core.Deprecated('Use templateAutoCompleteDescriptor instead')
+const TemplateAutoComplete$json = const {
+  '1': 'TemplateAutoComplete',
+  '2': const [
+    const {'1': 'split_char', '3': 1, '4': 1, '5': 9, '10': 'splitChar'},
+    const {'1': 'timeout', '3': 2, '4': 1, '5': 5, '10': 'timeout'},
+  ],
+};
+
+/// Descriptor for `TemplateAutoComplete`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List templateAutoCompleteDescriptor = $convert.base64Decode(
+    'ChRUZW1wbGF0ZUF1dG9Db21wbGV0ZRIdCgpzcGxpdF9jaGFyGAEgASgJUglzcGxpdENoYXISGAoHdGltZW91dBgCIAEoBVIHdGltZW91dA==');
 @$core.Deprecated('Use templateEmptyDescriptor instead')
 const TemplateEmpty$json = const {
   '1': 'TemplateEmpty',

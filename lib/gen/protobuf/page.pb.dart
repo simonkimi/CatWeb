@@ -9,8 +9,9 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import 'actions.pbenum.dart' as $0;
 import 'page.pbenum.dart';
-import 'template.pbenum.dart' as $0;
+import 'template.pbenum.dart' as $1;
 
 export 'page.pbenum.dart';
 
@@ -35,13 +36,27 @@ class SitePage extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'url')
-    ..aOS(
+    ..e<$0.NetActionType>(
         4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'netAction',
+        $pb.PbFieldType.OE,
+        defaultOrMaker: $0.NetActionType.NET_ACTION_TYPE_GET,
+        valueOf: $0.NetActionType.valueOf,
+        enumValues: $0.NetActionType.values)
+    ..aOS(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'formData')
+    ..aOS(
+        10,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'icon')
     ..e<SiteDisplayType>(
-        5,
+        11,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'display',
@@ -50,26 +65,26 @@ class SitePage extends $pb.GeneratedMessage {
         valueOf: SiteDisplayType.valueOf,
         enumValues: SiteDisplayType.values)
     ..aOS(
-        6,
+        12,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'flag')
     ..aOS(
-        7,
+        13,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'baseParser')
-    ..e<$0.Template>(
-        8,
+    ..e<$1.Template>(
+        20,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'template',
         $pb.PbFieldType.OE,
-        defaultOrMaker: $0.Template.TEMPLATE_IMAGE_LIST,
-        valueOf: $0.Template.valueOf,
-        enumValues: $0.Template.values)
+        defaultOrMaker: $1.Template.TEMPLATE_IMAGE_LIST,
+        valueOf: $1.Template.valueOf,
+        enumValues: $1.Template.values)
     ..a<$core.List<$core.int>>(
-        9,
+        21,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'templateData',
@@ -81,11 +96,13 @@ class SitePage extends $pb.GeneratedMessage {
     $core.String? name,
     $core.String? uuid,
     $core.String? url,
+    $0.NetActionType? netAction,
+    $core.String? formData,
     $core.String? icon,
     SiteDisplayType? display,
     $core.String? flag,
     $core.String? baseParser,
-    $0.Template? template,
+    $1.Template? template,
     $core.List<$core.int>? templateData,
   }) {
     final _result = create();
@@ -97,6 +114,12 @@ class SitePage extends $pb.GeneratedMessage {
     }
     if (url != null) {
       _result.url = url;
+    }
+    if (netAction != null) {
+      _result.netAction = netAction;
+    }
+    if (formData != null) {
+      _result.formData = formData;
     }
     if (icon != null) {
       _result.icon = icon;
@@ -181,74 +204,98 @@ class SitePage extends $pb.GeneratedMessage {
   void clearUrl() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get icon => $_getSZ(3);
+  $0.NetActionType get netAction => $_getN(3);
   @$pb.TagNumber(4)
+  set netAction($0.NetActionType v) {
+    setField(4, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasNetAction() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearNetAction() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get formData => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set formData($core.String v) {
+    $_setString(4, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasFormData() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearFormData() => clearField(5);
+
+  @$pb.TagNumber(10)
+  $core.String get icon => $_getSZ(5);
+  @$pb.TagNumber(10)
   set icon($core.String v) {
-    $_setString(3, v);
-  }
-
-  @$pb.TagNumber(4)
-  $core.bool hasIcon() => $_has(3);
-  @$pb.TagNumber(4)
-  void clearIcon() => clearField(4);
-
-  @$pb.TagNumber(5)
-  SiteDisplayType get display => $_getN(4);
-  @$pb.TagNumber(5)
-  set display(SiteDisplayType v) {
-    setField(5, v);
-  }
-
-  @$pb.TagNumber(5)
-  $core.bool hasDisplay() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearDisplay() => clearField(5);
-
-  @$pb.TagNumber(6)
-  $core.String get flag => $_getSZ(5);
-  @$pb.TagNumber(6)
-  set flag($core.String v) {
     $_setString(5, v);
   }
 
-  @$pb.TagNumber(6)
-  $core.bool hasFlag() => $_has(5);
-  @$pb.TagNumber(6)
-  void clearFlag() => clearField(6);
+  @$pb.TagNumber(10)
+  $core.bool hasIcon() => $_has(5);
+  @$pb.TagNumber(10)
+  void clearIcon() => clearField(10);
 
-  @$pb.TagNumber(7)
-  $core.String get baseParser => $_getSZ(6);
-  @$pb.TagNumber(7)
+  @$pb.TagNumber(11)
+  SiteDisplayType get display => $_getN(6);
+  @$pb.TagNumber(11)
+  set display(SiteDisplayType v) {
+    setField(11, v);
+  }
+
+  @$pb.TagNumber(11)
+  $core.bool hasDisplay() => $_has(6);
+  @$pb.TagNumber(11)
+  void clearDisplay() => clearField(11);
+
+  @$pb.TagNumber(12)
+  $core.String get flag => $_getSZ(7);
+  @$pb.TagNumber(12)
+  set flag($core.String v) {
+    $_setString(7, v);
+  }
+
+  @$pb.TagNumber(12)
+  $core.bool hasFlag() => $_has(7);
+  @$pb.TagNumber(12)
+  void clearFlag() => clearField(12);
+
+  @$pb.TagNumber(13)
+  $core.String get baseParser => $_getSZ(8);
+  @$pb.TagNumber(13)
   set baseParser($core.String v) {
-    $_setString(6, v);
+    $_setString(8, v);
   }
 
-  @$pb.TagNumber(7)
-  $core.bool hasBaseParser() => $_has(6);
-  @$pb.TagNumber(7)
-  void clearBaseParser() => clearField(7);
+  @$pb.TagNumber(13)
+  $core.bool hasBaseParser() => $_has(8);
+  @$pb.TagNumber(13)
+  void clearBaseParser() => clearField(13);
 
-  @$pb.TagNumber(8)
-  $0.Template get template => $_getN(7);
-  @$pb.TagNumber(8)
-  set template($0.Template v) {
-    setField(8, v);
+  @$pb.TagNumber(20)
+  $1.Template get template => $_getN(9);
+  @$pb.TagNumber(20)
+  set template($1.Template v) {
+    setField(20, v);
   }
 
-  @$pb.TagNumber(8)
-  $core.bool hasTemplate() => $_has(7);
-  @$pb.TagNumber(8)
-  void clearTemplate() => clearField(8);
+  @$pb.TagNumber(20)
+  $core.bool hasTemplate() => $_has(9);
+  @$pb.TagNumber(20)
+  void clearTemplate() => clearField(20);
 
-  @$pb.TagNumber(9)
-  $core.List<$core.int> get templateData => $_getN(8);
-  @$pb.TagNumber(9)
+  @$pb.TagNumber(21)
+  $core.List<$core.int> get templateData => $_getN(10);
+  @$pb.TagNumber(21)
   set templateData($core.List<$core.int> v) {
-    $_setBytes(8, v);
+    $_setBytes(10, v);
   }
 
-  @$pb.TagNumber(9)
-  $core.bool hasTemplateData() => $_has(8);
-  @$pb.TagNumber(9)
-  void clearTemplateData() => clearField(9);
+  @$pb.TagNumber(21)
+  $core.bool hasTemplateData() => $_has(10);
+  @$pb.TagNumber(21)
+  void clearTemplateData() => clearField(21);
 }

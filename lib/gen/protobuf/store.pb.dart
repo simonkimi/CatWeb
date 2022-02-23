@@ -9,8 +9,8 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'parser.pb.dart' as $1;
-import 'actions.pb.dart' as $2;
+import 'parser.pb.dart' as $2;
+import 'actions.pb.dart' as $0;
 import 'page.pb.dart' as $3;
 
 class RegField extends $pb.GeneratedMessage {
@@ -157,41 +157,41 @@ class SiteBlueprint extends $pb.GeneratedMessage {
             : 'cookies',
         $pb.PbFieldType.PM,
         subBuilder: RegField.create)
-    ..pc<$1.GalleryParser>(
+    ..pc<$2.GalleryParser>(
         20,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'galleryParsers',
         $pb.PbFieldType.PM,
-        subBuilder: $1.GalleryParser.create)
-    ..pc<$1.ListViewParser>(
+        subBuilder: $2.GalleryParser.create)
+    ..pc<$2.ListViewParser>(
         21,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'listViewParsers',
         $pb.PbFieldType.PM,
-        subBuilder: $1.ListViewParser.create)
-    ..pc<$1.ImageReaderParser>(
+        subBuilder: $2.ListViewParser.create)
+    ..pc<$2.ImageReaderParser>(
         22,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'imageParsers',
         $pb.PbFieldType.PM,
-        subBuilder: $1.ImageReaderParser.create)
-    ..pc<$1.AutoCompleteParser>(
+        subBuilder: $2.ImageReaderParser.create)
+    ..pc<$2.AutoCompleteParser>(
         23,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'autoCompleteParsers',
         $pb.PbFieldType.PM,
-        subBuilder: $1.AutoCompleteParser.create)
-    ..pc<$2.ActionCombine>(
+        subBuilder: $2.AutoCompleteParser.create)
+    ..pc<$0.ActionCombine>(
         30,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'actions',
         $pb.PbFieldType.PM,
-        subBuilder: $2.ActionCombine.create)
+        subBuilder: $0.ActionCombine.create)
     ..pc<$3.SitePage>(
         31,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -213,11 +213,11 @@ class SiteBlueprint extends $pb.GeneratedMessage {
     $core.String? readme,
     $core.Iterable<RegField>? headers,
     $core.Iterable<RegField>? cookies,
-    $core.Iterable<$1.GalleryParser>? galleryParsers,
-    $core.Iterable<$1.ListViewParser>? listViewParsers,
-    $core.Iterable<$1.ImageReaderParser>? imageParsers,
-    $core.Iterable<$1.AutoCompleteParser>? autoCompleteParsers,
-    $core.Iterable<$2.ActionCombine>? actions,
+    $core.Iterable<$2.GalleryParser>? galleryParsers,
+    $core.Iterable<$2.ListViewParser>? listViewParsers,
+    $core.Iterable<$2.ImageReaderParser>? imageParsers,
+    $core.Iterable<$2.AutoCompleteParser>? autoCompleteParsers,
+    $core.Iterable<$0.ActionCombine>? actions,
     $core.Iterable<$3.SitePage>? pages,
   }) {
     final _result = create();
@@ -403,19 +403,19 @@ class SiteBlueprint extends $pb.GeneratedMessage {
   $core.List<RegField> get cookies => $_getList(9);
 
   @$pb.TagNumber(20)
-  $core.List<$1.GalleryParser> get galleryParsers => $_getList(10);
+  $core.List<$2.GalleryParser> get galleryParsers => $_getList(10);
 
   @$pb.TagNumber(21)
-  $core.List<$1.ListViewParser> get listViewParsers => $_getList(11);
+  $core.List<$2.ListViewParser> get listViewParsers => $_getList(11);
 
   @$pb.TagNumber(22)
-  $core.List<$1.ImageReaderParser> get imageParsers => $_getList(12);
+  $core.List<$2.ImageReaderParser> get imageParsers => $_getList(12);
 
   @$pb.TagNumber(23)
-  $core.List<$1.AutoCompleteParser> get autoCompleteParsers => $_getList(13);
+  $core.List<$2.AutoCompleteParser> get autoCompleteParsers => $_getList(13);
 
   @$pb.TagNumber(30)
-  $core.List<$2.ActionCombine> get actions => $_getList(14);
+  $core.List<$0.ActionCombine> get actions => $_getList(14);
 
   @$pb.TagNumber(31)
   $core.List<$3.SitePage> get pages => $_getList(15);

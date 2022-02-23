@@ -18,6 +18,8 @@ void main() async {
     type: RpcType.RPC_TYPE_LIST_VIEW_PARSER,
   );
 
+  File('./test/buffer.tmp').writeAsBytesSync(req.request.writeToBuffer());
+
   final buffer = await req.send();
 
   final model = ListRpcModel.fromBuffer(buffer);

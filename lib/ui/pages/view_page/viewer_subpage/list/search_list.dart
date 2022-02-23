@@ -96,10 +96,14 @@ class _SearchListState extends State<SearchList> {
           ),
           prefix: const Padding(
             padding: EdgeInsets.only(left: 10),
-            child: Icon(
-              CupertinoIcons.search,
-              color: CupertinoColors.systemGrey,
-              size: 18,
+            child: SizedBox(
+              width: 18,
+              height: 18,
+              child: Icon(
+                CupertinoIcons.search,
+                color: CupertinoColors.systemGrey,
+                size: 18,
+              ),
             ),
           ),
           onSubmitted: (value) {},
