@@ -104,7 +104,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
                 concurrency: concurrency,
                 onTap: () {
                   pushNewPage(
-                    to: (controller.model.templateData as TemplateListDataModel)
+                    to: (controller.blueprint.templateData as TemplateListDataModel)
                         .targetItem
                         .value,
                     envModel: SiteEnvModel(model.env),

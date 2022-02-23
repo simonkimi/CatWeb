@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 class SubListController extends LoadMoreModel<ListRpcModel_Item> {
   SubListController({
-    required this.model,
+    required this.blueprint,
     required this.subPageModel,
   }) : localEnv =
             SiteEnvModel(subPageModel != null && subPageModel.value.isNotEmpty
@@ -20,7 +20,7 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
                   }
                 : null);
 
-  final PageBlueprint model;
+  final PageBlueprint blueprint;
   final SubPageModel? subPageModel;
   final SiteEnvModel localEnv;
 
@@ -33,7 +33,7 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
 
   @override
   Future<List<ListRpcModel_Item>> loadPage(int page) async {
-    var baseUrl = model.url.value;
+    var baseUrl = blueprint.url.value;
     baseUrl = localEnv.replace(pageReplace(baseUrl, page));
 
     // 添加缓存
@@ -46,7 +46,7 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
     print('加载网址: $baseUrl');
     final data = await global.website.client.getList(
       url: baseUrl,
-      model: model,
+      model: blueprint,
       localEnv: localEnv,
     );
     return data.items;

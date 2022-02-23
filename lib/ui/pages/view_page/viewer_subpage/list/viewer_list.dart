@@ -15,11 +15,11 @@ import 'package:get/get.dart';
 class ViewerListFragment extends StatefulWidget {
   const ViewerListFragment({
     Key? key,
-    required this.target,
+    required this.blueprint,
     this.hasToolBar = false,
   }) : super(key: key);
 
-  final PageBlueprint target;
+  final PageBlueprint blueprint;
   final bool hasToolBar;
 
   @override
@@ -28,8 +28,8 @@ class ViewerListFragment extends StatefulWidget {
 
 class _ViewerListFragmentState extends State<ViewerListFragment>
     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
-  late final target = widget.target;
-  late final extra = widget.target.templateData as TemplateListDataModel;
+  late final blueprint = widget.blueprint;
+  late final extra = widget.blueprint.templateData as TemplateListDataModel;
 
   bool get useSingleWidget =>
       extra.subPages.isEmpty || extra.subPages.length == 1;
@@ -38,19 +38,24 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
 
   late final TabController tabController;
 
+  bool get hasSearch => widget.blueprint.url.contains('{search}');
+
+  bool get hasFilter => extra.filterItem.isNotEmpty && !hasSearch;
+
   @override
   void initState() {
     super.initState();
-    print('ViewerListFragment<${target.name.string}> 初始化');
+    print('ViewerListFragment<${blueprint.name.string}> 初始化');
     tabController = TabController(length: extra.subPages.length, vsync: this);
 
     if (useSingleWidget) {
       subListController = [
-        SubListController(model: target, subPageModel: extra.subPages.index(0))
+        SubListController(
+            blueprint: blueprint, subPageModel: extra.subPages.index(0))
       ];
     } else {
       subListController = extra.subPages
-          .map((e) => SubListController(model: target, subPageModel: e))
+          .map((e) => SubListController(blueprint: blueprint, subPageModel: e))
           .toList();
     }
 
@@ -72,12 +77,13 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
 
   Widget _buildMultiViewer(BuildContext context) {
     return CupertinoAppBar(
-      title: target.name.string,
+      title: blueprint.name.string,
       tabs: extra.subPages
           .map((e) => CupertinoTab(e.name.string.globalEnv()))
           .toList(),
       tabController: tabController,
       leading: _buildLeading(context),
+      actions: _buildActions(context),
       child: TabBarView(
         controller: tabController,
         children: subListController.map((e) {
@@ -93,8 +99,9 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
 
   Widget _buildSingleViewer(BuildContext context) {
     return CupertinoAppBar(
-      title: target.name.string,
+      title: blueprint.name.string,
       leading: _buildLeading(context),
+      actions: _buildActions(context),
       child: SubPageListFragment(
         controller: subListController.first,
         hasTabBar: !useSingleWidget,
@@ -112,6 +119,25 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
         Get.to(() => const SiteManager());
       },
     );
+  }
+
+  List<Widget> _buildActions(BuildContext context) {
+    return [
+      if (hasSearch)
+        CupertinoButton(
+          padding: EdgeInsets.zero,
+          minSize: 0,
+          child: const Icon(CupertinoIcons.search),
+          onPressed: () {},
+        ),
+      if (hasFilter)
+        CupertinoButton(
+          padding: EdgeInsets.zero,
+          minSize: 0,
+          child: const Icon(Icons.filter_alt_outlined),
+          onPressed: () {},
+        )
+    ];
   }
 
   @override

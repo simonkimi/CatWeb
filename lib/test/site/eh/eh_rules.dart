@@ -15,6 +15,7 @@ final ehTestSite = SiteBlueprint(
   baseUrl: 'https://e-hentai.org/',
   listViewParsers: [ehListParser],
   galleryParsers: [ehGalleryParser],
+  flag: 'ignoreCertificate',
   cookies: [
     RegField(reg: r'e[-x]hentai', value: 'ipb_member_id=$ipbMemberId'),
     RegField(reg: r'e[-x]hentai', value: 'ipb_pass_hash=$ipbPassHash'),
@@ -32,7 +33,7 @@ final ehTestSite = SiteBlueprint(
     ),
     SitePage(
       name: '主页',
-      url: '?page={page:0}',
+      url: '?page={page:0}{search:&f_search={search}}',
       baseParser: ehListParser.uuid,
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,

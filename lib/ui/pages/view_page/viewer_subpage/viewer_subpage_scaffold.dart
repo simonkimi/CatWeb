@@ -31,7 +31,7 @@ class ViewerPage extends StatelessWidget {
       case Template.TEMPLATE_IMAGE_WATERFALL:
       case Template.TEMPLATE_IMAGE_LIST:
         return ViewerListFragment(
-          target: target,
+          blueprint: target,
           hasToolBar: model != null,
         );
       case Template.TEMPLATE_GALLERY:
