@@ -23,10 +23,9 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
   final PageBlueprint blueprint;
   final SubPageModel? subPageModel;
   final SiteEnvModel localEnv;
-
   final global = Get.find<GlobalController>();
 
-  SiteEnvModel get env => global.website.globalEnv.create(localEnv);
+  late final filter = extra.filterItem.map((e) => e.clone()).toList().obs;
 
   @override
   bool isItemExist(ListRpcModel_Item item) => items.contains(item);
@@ -51,4 +50,15 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
     );
     return data.items;
   }
+
+  void resetFilter() {
+    for (var i = 0; i < filter.length; i++) {
+      filter[i].value.value = extra.filterItem[i].value.value;
+    }
+  }
+
+  SiteEnvModel get env => global.website.globalEnv.create(localEnv);
+
+  TemplateListDataModel get extra =>
+      blueprint.templateData as TemplateListDataModel;
 }

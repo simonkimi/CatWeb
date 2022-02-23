@@ -26,8 +26,8 @@ class RulesPageEdit extends GetView<RulesEditController> {
           tabs: [
             const CupertinoTab('基础'),
             if (model.templateData is TemplateListDataModel) ...[
-              const CupertinoTab('搜索'),
               const CupertinoTab('子页面'),
+              const CupertinoTab('搜索'),
             ],
           ],
           children: [

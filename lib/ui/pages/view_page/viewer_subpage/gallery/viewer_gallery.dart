@@ -186,8 +186,8 @@ class ViewerGalleryFragment extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ...tagMaps.entries.map((e) {
-          return Padding(
+        for (final e in tagMaps.entries)
+          Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -216,8 +216,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                 ),
               ],
             ),
-          );
-        }),
+          ),
         const CupertinoDivider(),
       ],
     );

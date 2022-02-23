@@ -91,9 +91,10 @@ class SearchFilterItem implements PbAble {
         name: name.value,
         key: key.value,
         type: type.value,
+        value: value.value,
       );
 
-  SearchFilterItem copy() => SearchFilterItem(toPb());
+  SearchFilterItem clone() => SearchFilterItem(toPb());
 }
 
 class TemplateEmptyModel implements PbAble {

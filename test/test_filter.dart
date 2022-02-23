@@ -1,7 +1,6 @@
-import 'package:catweb/ffi/ffi.dart';
+import 'dart:io';
 
-void main() {
-  final js = runJs('function hook() { return "Hello" }', '');
+import 'package:brotli/brotli.dart';
+import 'package:catweb/test/site/eh/eh_rules.dart';
 
-  print(js);
-}
+void main() {}

@@ -128,6 +128,7 @@ class SiteManager extends StatelessWidget {
               context: context,
               content: '确定要删除 ${pb.name} 吗？',
               title: '取消',
+              showCancel: true,
             ) ==
             true) {
           DB().webDao.remove(db);
