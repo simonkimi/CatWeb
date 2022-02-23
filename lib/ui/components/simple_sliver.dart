@@ -91,15 +91,21 @@ class SliverPullToRefresh extends StatelessWidget {
   const SliverPullToRefresh({
     Key? key,
     this.onRefresh,
+    this.extraHeight = 0,
   }) : super(key: key);
 
   final RefreshCallback? onRefresh;
+  final double extraHeight;
 
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
       padding: EdgeInsets.only(
-          top: MediaQuery.of(context).padding.top + kCupertinoNavigatorBar + 5),
+        top: MediaQuery.of(context).padding.top +
+            kCupertinoNavigatorBar +
+            extraHeight +
+            5,
+      ),
       sliver: CupertinoSliverRefreshControl(
         refreshIndicatorExtent: 50,
         refreshTriggerPullDistance: 100,

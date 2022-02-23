@@ -5,6 +5,7 @@ import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
 
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/list/search_list.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/subpage_controller.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/subpage_list.dart';
 import 'package:catweb/utils/utils.dart';
@@ -78,10 +79,12 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
   Widget _buildMultiViewer(BuildContext context) {
     return CupertinoAppBar(
       title: blueprint.name.string,
-      tabs: extra.subPages
-          .map((e) => CupertinoTab(e.name.string.globalEnv()))
-          .toList(),
-      tabController: tabController,
+      tabBar: CupertinoCustomTabBar(
+        tabs: extra.subPages
+            .map((e) => CupertinoTab(e.name.string.globalEnv()))
+            .toList(),
+        tabController: tabController,
+      ),
       leading: _buildLeading(context),
       actions: _buildActions(context),
       child: TabBarView(
@@ -128,7 +131,9 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
           padding: EdgeInsets.zero,
           minSize: 0,
           child: const Icon(CupertinoIcons.search),
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => SearchList(blueprint: blueprint));
+          },
         ),
       if (hasFilter)
         CupertinoButton(

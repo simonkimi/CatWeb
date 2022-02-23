@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 class SubListController extends LoadMoreModel<ListRpcModel_Item> {
   SubListController({
     required this.blueprint,
-    required this.subPageModel,
+    this.subPageModel,
   }) : localEnv =
             SiteEnvModel(subPageModel != null && subPageModel.value.isNotEmpty
                 ? {

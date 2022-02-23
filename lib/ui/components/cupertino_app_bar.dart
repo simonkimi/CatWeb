@@ -27,6 +27,33 @@ class CupertinoBackLeading extends StatelessWidget {
   }
 }
 
+class CupertinoCustomTabBar extends StatelessWidget {
+  const CupertinoCustomTabBar({
+    Key? key,
+    required this.tabController,
+    required this.tabs,
+  }) : super(key: key);
+
+  final TabController tabController;
+  final List<CupertinoTab> tabs;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: kCupertinoTabBarHeight,
+      child: Material(
+        color: const Color(0x00000000),
+        child: TabBar(
+          isScrollable: true,
+          controller: tabController,
+          indicator: const GreyUnderlineTabIndicator(),
+          tabs: tabs,
+        ),
+      ),
+    );
+  }
+}
+
 class CupertinoAppBar extends StatefulWidget {
   const CupertinoAppBar({
     Key? key,
@@ -35,21 +62,21 @@ class CupertinoAppBar extends StatefulWidget {
     this.leading,
     this.actions,
     this.backgroundColor,
-    this.tabs,
-    this.tabController,
     this.padding = const EdgeInsets.symmetric(horizontal: 10),
     this.automaticallyImplyLeading = true,
+    this.tabBar,
+    this.tabBarHeight,
   }) : super(key: key);
 
   final String? title;
   final Widget? leading;
   final List<Widget>? actions;
   final Color? backgroundColor;
-  final List<CupertinoTab>? tabs;
   final Widget child;
-  final TabController? tabController;
   final EdgeInsets padding;
   final bool automaticallyImplyLeading;
+  final Widget? tabBar;
+  final double? tabBarHeight;
 
   @override
   _CupertinoAppBarState createState() => _CupertinoAppBarState();
@@ -117,7 +144,9 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
           final delta = pixel - _lastPixel;
           _translateController.value += delta /
               (kCupertinoNavigatorBar +
-                  (widget.tabs != null ? kCupertinoTabBarHeight : 0.0) +
+                  (widget.tabBar != null
+                      ? widget.tabBarHeight ?? kCupertinoTabBarHeight
+                      : 0.0) +
                   MediaQuery.of(context).padding.top);
           _lastPixel = pixel;
         }
@@ -158,25 +187,9 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
             children: [
               SizedBox(height: MediaQuery.of(context).padding.top),
               _buildNavigatorBar(context),
-              if (widget.tabs != null && widget.tabs!.length > 1)
-                _buildTabBar(),
+              if (widget.tabBar != null) widget.tabBar!,
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  SizedBox _buildTabBar() {
-    return SizedBox(
-      height: kCupertinoTabBarHeight,
-      child: Material(
-        color: const Color(0x00000000),
-        child: TabBar(
-          isScrollable: true,
-          controller: widget.tabController,
-          indicator: const GreyUnderlineTabIndicator(),
-          tabs: widget.tabs!,
         ),
       ),
     );

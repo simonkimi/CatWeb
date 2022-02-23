@@ -53,28 +53,15 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
             child: CustomScrollView(
               cacheExtent: 300,
               slivers: [
-                _buildPullRefresh(context),
+                SliverPullToRefresh(
+                  onRefresh: () => controller.onRefresh(),
+                  extraHeight: widget.hasTabBar ? kCupertinoTabBarHeight : 0,
+                ),
                 _buildBody(context),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildPullRefresh(BuildContext context) {
-    return SliverPadding(
-      padding: EdgeInsets.only(
-          top: MediaQuery.of(context).padding.top +
-              kCupertinoNavigatorBar +
-              (widget.hasTabBar ? kCupertinoTabBarHeight : 0.0)),
-      sliver: CupertinoSliverRefreshControl(
-        refreshIndicatorExtent: 75,
-        refreshTriggerPullDistance: 150,
-        onRefresh: () async {
-          controller.onRefresh();
-        },
       ),
     );
   }
@@ -104,7 +91,8 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
                 concurrency: concurrency,
                 onTap: () {
                   pushNewPage(
-                    to: (controller.blueprint.templateData as TemplateListDataModel)
+                    to: (controller.blueprint.templateData
+                            as TemplateListDataModel)
                         .targetItem
                         .value,
                     envModel: SiteEnvModel(model.env),
