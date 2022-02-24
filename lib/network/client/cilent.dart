@@ -4,6 +4,7 @@ import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/store.dart';
+import 'package:catweb/gen/protobuf/actions.pbenum.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
@@ -13,7 +14,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_http_formatter/dio_http_formatter.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Response;
 
 class NetClient {
   NetClient(this.configModel)
@@ -25,12 +26,32 @@ class NetClient {
 
   final SiteBlueprintModel configModel;
 
+  Future<Response<String>> _buildRequest({
+    required String url,
+    required PageBlueprintModel model,
+    required SiteEnvModel localEnv,
+  }) async {
+    final form = localEnv.replace(model.formData.value);
+
+    switch (model.netAction.value) {
+      case NetActionType.NET_ACTION_TYPE_DELETE:
+        return dio.delete(url);
+      case NetActionType.NET_ACTION_TYPE_GET:
+        return await dio.get<String>(url);
+      case NetActionType.NET_ACTION_TYPE_POST:
+        return await dio.post<String>(url, data: form);
+      case NetActionType.NET_ACTION_TYPE_PUT:
+        return await dio.put<String>(url, data: form);
+    }
+    throw Exception('Unsupported net action type');
+  }
+
   Future<ListRpcModel> getList({
     required String url,
     required PageBlueprintModel model,
     required SiteEnvModel localEnv,
   }) async {
-    final rsp = await dio.get<String>(url);
+    final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
     if (rsp.data == null) {
       throw Exception('data is null');
     }
@@ -55,7 +76,7 @@ class NetClient {
     required PageBlueprintModel model,
     required SiteEnvModel localEnv,
   }) async {
-    final rsp = await dio.get<String>(url);
+    final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
     if (rsp.data == null) {
       throw Exception('data is null');
     }
@@ -66,6 +87,7 @@ class NetClient {
       env: Get.find<GlobalController>().website.globalEnv,
       type: RpcType.RPC_TYPE_GALLERY_PARSER,
     ).send();
+
     final result = GalleryRpcModel.fromBuffer(buffer);
     localEnv.mergeMap(result.localEnv);
     Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);

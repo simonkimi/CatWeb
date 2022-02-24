@@ -1579,3 +1579,199 @@ class ImageReaderRpcModel extends $pb.GeneratedMessage {
   @$pb.TagNumber(21)
   $core.Map<$core.String, $core.String> get globalEnv => $_getMap(9);
 }
+
+class AutoCompleteRpcModel_Item extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'AutoCompleteRpcModel.Item',
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'title')
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'subtitle')
+    ..aOS(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'complete')
+    ..hasRequiredFields = false;
+
+  AutoCompleteRpcModel_Item._() : super();
+  factory AutoCompleteRpcModel_Item({
+    $core.String? title,
+    $core.String? subtitle,
+    $core.String? complete,
+  }) {
+    final _result = create();
+    if (title != null) {
+      _result.title = title;
+    }
+    if (subtitle != null) {
+      _result.subtitle = subtitle;
+    }
+    if (complete != null) {
+      _result.complete = complete;
+    }
+    return _result;
+  }
+  factory AutoCompleteRpcModel_Item.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory AutoCompleteRpcModel_Item.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  AutoCompleteRpcModel_Item clone() =>
+      AutoCompleteRpcModel_Item()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  AutoCompleteRpcModel_Item copyWith(
+          void Function(AutoCompleteRpcModel_Item) updates) =>
+      super.copyWith((message) => updates(message as AutoCompleteRpcModel_Item))
+          as AutoCompleteRpcModel_Item; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static AutoCompleteRpcModel_Item create() => AutoCompleteRpcModel_Item._();
+  AutoCompleteRpcModel_Item createEmptyInstance() => create();
+  static $pb.PbList<AutoCompleteRpcModel_Item> createRepeated() =>
+      $pb.PbList<AutoCompleteRpcModel_Item>();
+  @$core.pragma('dart2js:noInline')
+  static AutoCompleteRpcModel_Item getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<AutoCompleteRpcModel_Item>(create);
+  static AutoCompleteRpcModel_Item? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get title => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set title($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasTitle() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTitle() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get subtitle => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set subtitle($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasSubtitle() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearSubtitle() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get complete => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set complete($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(3)
+  $core.bool hasComplete() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearComplete() => clearField(3);
+}
+
+class AutoCompleteRpcModel extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'AutoCompleteRpcModel',
+      createEmptyInstance: create)
+    ..pc<AutoCompleteRpcModel_Item>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'items',
+        $pb.PbFieldType.PM,
+        subBuilder: AutoCompleteRpcModel_Item.create)
+    ..m<$core.String, $core.String>(
+        10,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'localEnv',
+        protoName: 'localEnv',
+        entryClassName: 'AutoCompleteRpcModel.LocalEnvEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OS)
+    ..m<$core.String, $core.String>(
+        11,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'globalEnv',
+        protoName: 'globalEnv',
+        entryClassName: 'AutoCompleteRpcModel.GlobalEnvEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OS)
+    ..hasRequiredFields = false;
+
+  AutoCompleteRpcModel._() : super();
+  factory AutoCompleteRpcModel({
+    $core.Iterable<AutoCompleteRpcModel_Item>? items,
+    $core.Map<$core.String, $core.String>? localEnv,
+    $core.Map<$core.String, $core.String>? globalEnv,
+  }) {
+    final _result = create();
+    if (items != null) {
+      _result.items.addAll(items);
+    }
+    if (localEnv != null) {
+      _result.localEnv.addAll(localEnv);
+    }
+    if (globalEnv != null) {
+      _result.globalEnv.addAll(globalEnv);
+    }
+    return _result;
+  }
+  factory AutoCompleteRpcModel.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory AutoCompleteRpcModel.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  AutoCompleteRpcModel clone() =>
+      AutoCompleteRpcModel()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  AutoCompleteRpcModel copyWith(void Function(AutoCompleteRpcModel) updates) =>
+      super.copyWith((message) => updates(message as AutoCompleteRpcModel))
+          as AutoCompleteRpcModel; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static AutoCompleteRpcModel create() => AutoCompleteRpcModel._();
+  AutoCompleteRpcModel createEmptyInstance() => create();
+  static $pb.PbList<AutoCompleteRpcModel> createRepeated() =>
+      $pb.PbList<AutoCompleteRpcModel>();
+  @$core.pragma('dart2js:noInline')
+  static AutoCompleteRpcModel getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<AutoCompleteRpcModel>(create);
+  static AutoCompleteRpcModel? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<AutoCompleteRpcModel_Item> get items => $_getList(0);
+
+  @$pb.TagNumber(10)
+  $core.Map<$core.String, $core.String> get localEnv => $_getMap(1);
+
+  @$pb.TagNumber(11)
+  $core.Map<$core.String, $core.String> get globalEnv => $_getMap(2);
+}

@@ -106,4 +106,7 @@ message AutoCompleteRpcModel {
   }
 
   repeated Item items = 1;
+
+  map<string, string> localEnv = 10;
+  map<string, string> globalEnv = 11;
 }

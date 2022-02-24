@@ -393,3 +393,72 @@ const ImageReaderRpcModel_GlobalEnvEntry$json = const {
 /// Descriptor for `ImageReaderRpcModel`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List imageReaderRpcModelDescriptor = $convert.base64Decode(
     'ChNJbWFnZVJlYWRlclJwY01vZGVsEiQKBWltYWdlGAEgASgLMg4uSW1hZ2VScGNNb2RlbFIFaW1hZ2USKAoQbGFyZ2VyX2ltYWdlX3VybBgCIAEoCVIObGFyZ2VySW1hZ2VVcmwSIgoNcmF3X2ltYWdlX3VybBgDIAEoCVILcmF3SW1hZ2VVcmwSHwoLdXBsb2FkX3RpbWUYBCABKAlSCnVwbG9hZFRpbWUSFgoGc291cmNlGAUgASgJUgZzb3VyY2USFgoGcmF0aW5nGAYgASgJUgZyYXRpbmcSFAoFc2NvcmUYByABKAlSBXNjb3JlEiQKBmJhZGdlcxgKIAMoCzIMLlRhZ1JwY01vZGVsUgZiYWRnZXMSPgoIbG9jYWxFbnYYFCADKAsyIi5JbWFnZVJlYWRlclJwY01vZGVsLkxvY2FsRW52RW50cnlSCGxvY2FsRW52EkEKCWdsb2JhbEVudhgVIAMoCzIjLkltYWdlUmVhZGVyUnBjTW9kZWwuR2xvYmFsRW52RW50cnlSCWdsb2JhbEVudho7Cg1Mb2NhbEVudkVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAEaPAoOR2xvYmFsRW52RW50cnkSEAoDa2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4AQ==');
+@$core.Deprecated('Use autoCompleteRpcModelDescriptor instead')
+const AutoCompleteRpcModel$json = const {
+  '1': 'AutoCompleteRpcModel',
+  '2': const [
+    const {
+      '1': 'items',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.AutoCompleteRpcModel.Item',
+      '10': 'items'
+    },
+    const {
+      '1': 'localEnv',
+      '3': 10,
+      '4': 3,
+      '5': 11,
+      '6': '.AutoCompleteRpcModel.LocalEnvEntry',
+      '10': 'localEnv'
+    },
+    const {
+      '1': 'globalEnv',
+      '3': 11,
+      '4': 3,
+      '5': 11,
+      '6': '.AutoCompleteRpcModel.GlobalEnvEntry',
+      '10': 'globalEnv'
+    },
+  ],
+  '3': const [
+    AutoCompleteRpcModel_Item$json,
+    AutoCompleteRpcModel_LocalEnvEntry$json,
+    AutoCompleteRpcModel_GlobalEnvEntry$json
+  ],
+};
+
+@$core.Deprecated('Use autoCompleteRpcModelDescriptor instead')
+const AutoCompleteRpcModel_Item$json = const {
+  '1': 'Item',
+  '2': const [
+    const {'1': 'title', '3': 1, '4': 1, '5': 9, '10': 'title'},
+    const {'1': 'subtitle', '3': 2, '4': 1, '5': 9, '10': 'subtitle'},
+    const {'1': 'complete', '3': 3, '4': 1, '5': 9, '10': 'complete'},
+  ],
+};
+
+@$core.Deprecated('Use autoCompleteRpcModelDescriptor instead')
+const AutoCompleteRpcModel_LocalEnvEntry$json = const {
+  '1': 'LocalEnvEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
+};
+
+@$core.Deprecated('Use autoCompleteRpcModelDescriptor instead')
+const AutoCompleteRpcModel_GlobalEnvEntry$json = const {
+  '1': 'GlobalEnvEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
+};
+
+/// Descriptor for `AutoCompleteRpcModel`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List autoCompleteRpcModelDescriptor = $convert.base64Decode(
+    'ChRBdXRvQ29tcGxldGVScGNNb2RlbBIwCgVpdGVtcxgBIAMoCzIaLkF1dG9Db21wbGV0ZVJwY01vZGVsLkl0ZW1SBWl0ZW1zEj8KCGxvY2FsRW52GAogAygLMiMuQXV0b0NvbXBsZXRlUnBjTW9kZWwuTG9jYWxFbnZFbnRyeVIIbG9jYWxFbnYSQgoJZ2xvYmFsRW52GAsgAygLMiQuQXV0b0NvbXBsZXRlUnBjTW9kZWwuR2xvYmFsRW52RW50cnlSCWdsb2JhbEVudhpUCgRJdGVtEhQKBXRpdGxlGAEgASgJUgV0aXRsZRIaCghzdWJ0aXRsZRgCIAEoCVIIc3VidGl0bGUSGgoIY29tcGxldGUYAyABKAlSCGNvbXBsZXRlGjsKDUxvY2FsRW52RW50cnkSEAoDa2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4ARo8Cg5HbG9iYWxFbnZFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgB');

@@ -1,6 +1,7 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/auto_complete_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/extra_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/gallery_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/list_parser.dart';
@@ -60,8 +61,12 @@ class RulesParserEditor extends StatelessWidget {
         return GalleryParserFragment(model: model as GalleryParserModel);
       case ParserType.PARSER_TYPE_LIST_VIEW:
         return ListParserFragment(model: model as ListViewParserModel);
-      default:
-        return const SizedBox();
+      case ParserType.PARSER_TYPE_AUTO_COMPLETE:
+        return SearchAutoCompleteParser(
+            model: model as AutoCompleteParserModel);
+      case ParserType.PARSER_TYPE_IMAGE:
+        break;
     }
+    throw Exception('未知的解析器类型 ${model.type}');
   }
 }

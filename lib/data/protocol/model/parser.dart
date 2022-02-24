@@ -320,5 +320,5 @@ class AutoCompleteParserModel extends ParserBaseModel implements PbAble {
   String displayType(BuildContext context) => '搜索';
 
   @override
-  ParserType get type => throw UnimplementedError();
+  ParserType get type => ParserType.PARSER_TYPE_AUTO_COMPLETE;
 }

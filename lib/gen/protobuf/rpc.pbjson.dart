@@ -16,12 +16,13 @@ const RpcType$json = const {
     const {'1': 'RPC_TYPE_IMAGE_PARSER', '2': 0},
     const {'1': 'RPC_TYPE_LIST_VIEW_PARSER', '2': 1},
     const {'1': 'RPC_TYPE_GALLERY_PARSER', '2': 2},
+    const {'1': 'RPC_TYPE_AUTO_COMPLETE', '2': 3},
   ],
 };
 
 /// Descriptor for `RpcType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List rpcTypeDescriptor = $convert.base64Decode(
-    'CgdScGNUeXBlEhkKFVJQQ19UWVBFX0lNQUdFX1BBUlNFUhAAEh0KGVJQQ19UWVBFX0xJU1RfVklFV19QQVJTRVIQARIbChdSUENfVFlQRV9HQUxMRVJZX1BBUlNFUhAC');
+    'CgdScGNUeXBlEhkKFVJQQ19UWVBFX0lNQUdFX1BBUlNFUhAAEh0KGVJQQ19UWVBFX0xJU1RfVklFV19QQVJTRVIQARIbChdSUENfVFlQRV9HQUxMRVJZX1BBUlNFUhACEhoKFlJQQ19UWVBFX0FVVE9fQ09NUExFVEUQAw==');
 @$core.Deprecated('Use rpcRequestDescriptor instead')
 const RpcRequest$json = const {
   '1': 'RpcRequest',

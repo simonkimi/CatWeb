@@ -1,8 +1,10 @@
 import 'package:catweb/data/protocol/model/page.dart';
+import 'package:catweb/gen/protobuf/actions.pbserver.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pb.dart';
 import 'package:catweb/gen/protobuf/template.pbserver.dart';
+import 'package:catweb/test/site/eh/parser/auto_complete_parser.dart';
 
 import 'cookies.dart';
 import 'parser/gallery_parser.dart';
@@ -15,6 +17,7 @@ final ehTestSite = SiteBlueprint(
   baseUrl: 'https://e-hentai.org/',
   listViewParsers: [ehListParser],
   galleryParsers: [ehGalleryParser],
+  autoCompleteParsers: [ehAutoCompleteParser],
   flag: 'ignoreCertificate',
   cookies: [
     RegField(reg: r'e[-x]hentai', value: 'ipb_member_id=$ipbMemberId'),
@@ -24,6 +27,18 @@ final ehTestSite = SiteBlueprint(
     RegField(reg: r'e[-x]hentai', value: 'star=$star'),
   ],
   pages: [
+    SitePage(
+      name: '搜索补全',
+      url: 'https://api.e-hentai.org/api.php',
+      netAction: NetActionType.NET_ACTION_TYPE_POST,
+      formData: r'{"method":"tagsuggest","text":"{search}"}',
+      template: Template.TEMPLATE_AUTO_COMPLETE,
+      baseParser: ehAutoCompleteParser.uuid,
+      templateData: TemplateAutoComplete(
+        splitChar: ' ',
+        timeout: 2,
+      ).writeToBuffer(),
+    ),
     SitePage(
       name: '画廊',
       uuid: detailUuid,

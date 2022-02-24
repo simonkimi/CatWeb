@@ -6,6 +6,7 @@ enum RpcType {
   RPC_TYPE_IMAGE_PARSER = 0;
   RPC_TYPE_LIST_VIEW_PARSER = 1;
   RPC_TYPE_GALLERY_PARSER = 2;
+  RPC_TYPE_AUTO_COMPLETE = 3;
 }
 
 message RpcRequest {

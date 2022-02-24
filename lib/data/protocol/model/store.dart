@@ -102,6 +102,7 @@ class SiteBlueprintModel implements PbAble {
         ...listViewParsers,
         ...galleryParsers,
         ...imageParsers,
+        ...autoCompleteParsers,
       ]);
 
   String getParserName(String uuid) => uuid.isEmpty

@@ -25,11 +25,17 @@ class RpcType extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'RPC_TYPE_GALLERY_PARSER');
+  static const RpcType RPC_TYPE_AUTO_COMPLETE = RpcType._(
+      3,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'RPC_TYPE_AUTO_COMPLETE');
 
   static const $core.List<RpcType> values = <RpcType>[
     RPC_TYPE_IMAGE_PARSER,
     RPC_TYPE_LIST_VIEW_PARSER,
     RPC_TYPE_GALLERY_PARSER,
+    RPC_TYPE_AUTO_COMPLETE,
   ];
 
   static final $core.Map<$core.int, RpcType> _byValue =

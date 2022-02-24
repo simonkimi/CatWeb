@@ -3,7 +3,7 @@ import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:uuid/uuid.dart';
 
 final ehListParser = ListViewParser(
-  name: 'commonList',
+  name: '通用列表',
   uuid: const Uuid().v5(Uuid.NAMESPACE_URL, 'commonListUuid').toString(),
   itemSelector: Selector(
     selector: "//div[@class='gl1t'] | //*[starts-with(@class, 'gl2')]/..",
