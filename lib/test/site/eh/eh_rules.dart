@@ -10,7 +10,8 @@ import 'cookies.dart';
 import 'parser/gallery_parser.dart';
 import 'parser/list_parser.dart';
 
-final detailUuid = genUuid();
+final _detailUuid = genUuid();
+final _autoCompleteUuid = genUuid();
 
 final ehTestSite = SiteBlueprint(
   name: 'E-Hentai',
@@ -29,6 +30,7 @@ final ehTestSite = SiteBlueprint(
   pages: [
     SitePage(
       name: '搜索补全',
+      uuid: _autoCompleteUuid,
       url: 'https://api.e-hentai.org/api.php',
       netAction: NetActionType.NET_ACTION_TYPE_POST,
       formData: r'{"method":"tagsuggest","text":"{search}"}',
@@ -41,20 +43,21 @@ final ehTestSite = SiteBlueprint(
     ),
     SitePage(
       name: '画廊',
-      uuid: detailUuid,
+      uuid: _detailUuid,
       template: Template.TEMPLATE_GALLERY,
       baseParser: ehGalleryParser.uuid,
       url: 'g/{idCode}/?p={page:0}',
     ),
     SitePage(
       name: '主页',
-      url: '?page={page:0}{search:&f_search={search}}',
+      url: r'?page={page:0}${search:&f_search={search}}',
       baseParser: ehListParser.uuid,
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'home',
       templateData: TemplateListData(
-        targetItem: detailUuid,
+        targetItem: _detailUuid,
+        targetAutoComplete: _autoCompleteUuid,
         filterItem: [
           TemplateListData_FilterItem(
             name: '同人志',
@@ -157,7 +160,7 @@ final ehTestSite = SiteBlueprint(
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'whatshot',
       templateData: TemplateListData(
-        targetItem: detailUuid,
+        targetItem: _detailUuid,
       ).writeToBuffer(),
     ),
     SitePage(
@@ -168,7 +171,7 @@ final ehTestSite = SiteBlueprint(
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'eye',
       templateData: TemplateListData(
-        targetItem: detailUuid,
+        targetItem: _detailUuid,
       ).writeToBuffer(),
     ),
     SitePage(
@@ -179,7 +182,7 @@ final ehTestSite = SiteBlueprint(
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'heart',
       templateData: TemplateListData(
-        targetItem: detailUuid,
+        targetItem: _detailUuid,
         subPages: [
           TemplateListData_SubPage(name: '全部'),
           TemplateListData_SubPage(

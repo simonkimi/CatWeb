@@ -12,9 +12,12 @@ PbAble parseTemplate({
 }) {
   switch (template) {
     case Template.TEMPLATE_GALLERY:
-    case Template.TEMPLATE_AUTO_COMPLETE:
+
     case Template.TEMPLATE_IMAGE_VIEWER:
       return TemplateEmptyModel();
+
+    case Template.TEMPLATE_AUTO_COMPLETE:
+      return TemplateAutoCompleteModel();
 
     case Template.TEMPLATE_IMAGE_LIST:
     case Template.TEMPLATE_IMAGE_WATERFALL:

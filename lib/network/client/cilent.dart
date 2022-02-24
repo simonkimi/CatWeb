@@ -51,7 +51,11 @@ class NetClient {
     required PageBlueprintModel model,
     required SiteEnvModel localEnv,
   }) async {
-    final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
+    final rsp = await _buildRequest(
+      url: url,
+      model: model,
+      localEnv: localEnv,
+    );
     if (rsp.data == null) {
       throw Exception('data is null');
     }
@@ -89,6 +93,29 @@ class NetClient {
     ).send();
 
     final result = GalleryRpcModel.fromBuffer(buffer);
+    localEnv.mergeMap(result.localEnv);
+    Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
+    return result;
+  }
+
+  Future<AutoCompleteRpcModel> getAutoComplete({
+    required String url,
+    required PageBlueprintModel model,
+    required SiteEnvModel localEnv,
+  }) async {
+    final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
+    if (rsp.data == null) {
+      throw Exception('data is null');
+    }
+
+    final buffer = await ParserFFi(
+      parser: configModel.getAutoCompleteParser(model.baseParser.value).toPb(),
+      source: rsp.data!,
+      env: Get.find<GlobalController>().website.globalEnv,
+      type: RpcType.RPC_TYPE_AUTO_COMPLETE,
+    ).send();
+
+    final result = AutoCompleteRpcModel.fromBuffer(buffer);
     localEnv.mergeMap(result.localEnv);
     Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
     return result;

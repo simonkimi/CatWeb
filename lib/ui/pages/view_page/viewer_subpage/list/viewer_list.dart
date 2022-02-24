@@ -6,7 +6,7 @@ import 'package:catweb/ui/components/tab_bar.dart';
 
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/search_list.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/list/subpage_controller.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/subpage_controller.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/subpage_list.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';

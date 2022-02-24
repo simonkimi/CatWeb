@@ -1,9 +1,12 @@
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
+import 'package:catweb/gen/protobuf/model.pb.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/list/subpage_controller.dart';
+import 'package:catweb/ui/components/simple_sliver.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/search_list_controller.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/subpage_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,9 +32,12 @@ class _SearchListState extends State<SearchList> {
 
   bool get hasFilter => extra.filterItem.isNotEmpty;
 
+  late final SearchListController inputController;
+
   @override
   void initState() {
     super.initState();
+    inputController = SearchListController(extra);
     controller = SubListController(blueprint: widget.blueprint);
   }
 
@@ -48,9 +54,71 @@ class _SearchListState extends State<SearchList> {
           child: SmartRefresher(
             controller: controller.refreshController,
             enablePullDown: false,
-            child: const CustomScrollView(
-              slivers: [],
-            ),
+            child: Obx(() => _buildSearchList(context)),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSearchList(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        const SliverPullToRefresh(
+          extraHeight: 40,
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              final model = inputController.suggestions[index];
+              return _buildSuggestionItem(model, context);
+            },
+            childCount: inputController.suggestions.length,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSuggestionItem(
+      AutoCompleteRpcModel_Item model, BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        inputController.onSuggestionSelected(model);
+      },
+      child: SizedBox(
+        height: 50,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            children: [
+              const Icon(CupertinoIcons.tag, size: 18),
+              const SizedBox(width: 10),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (model.title.isNotEmpty)
+                    Text(
+                      model.title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  if (model.subtitle.trim().isNotEmpty) ...[
+                    const SizedBox(width: 10),
+                    Text(
+                      model.subtitle,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color:
+                            CupertinoColors.placeholderText.resolveFrom(context),
+                      ),
+                    ),
+                  ],
+                ],
+              )
+            ],
           ),
         ),
       ),
@@ -85,6 +153,8 @@ class _SearchListState extends State<SearchList> {
       child: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
         child: CupertinoTextField(
+          controller: inputController.textController,
+          focusNode: inputController.focusNode,
           decoration: BoxDecoration(
             color: CupertinoColors.systemGroupedBackground.resolveFrom(context),
             borderRadius: BorderRadius.circular(50),
@@ -94,19 +164,23 @@ class _SearchListState extends State<SearchList> {
             fontSize: 14,
             color: CupertinoColors.placeholderText.resolveFrom(context),
           ),
-          prefix: const Padding(
-            padding: EdgeInsets.only(left: 10),
+          onChanged: inputController.onTextChanged,
+          clearButtonMode: OverlayVisibilityMode.editing,
+          prefix: Padding(
+            padding: const EdgeInsets.only(left: 10),
             child: SizedBox(
               width: 18,
               height: 18,
-              child: Icon(
-                CupertinoIcons.search,
-                color: CupertinoColors.systemGrey,
-                size: 18,
-              ),
+              child: Obx(() => inputController.isLoading.value
+                  ? const CupertinoActivityIndicator()
+                  : const Icon(
+                      CupertinoIcons.search,
+                      color: CupertinoColors.systemGrey,
+                      size: 18,
+                    )),
             ),
           ),
-          onSubmitted: (value) {},
+          onSubmitted: inputController.onSubmitted,
         ),
       ),
     );
@@ -142,7 +216,7 @@ class _SearchListState extends State<SearchList> {
     );
   }
 
-  Row _buildDialogHeader(StateSetter setState) {
+  Widget _buildDialogHeader(StateSetter setState) {
     return Row(
       children: [
         const Text(

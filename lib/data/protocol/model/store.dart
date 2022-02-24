@@ -54,7 +54,8 @@ class SiteBlueprintModel implements PbAble {
           pb?.actions,
           (ActionCombine e) => ActionCombineModel(e),
         ),
-        pageList = lobs(pb?.pages, (SitePage e) => PageBlueprintModel(e));
+        pageList = lobs(pb?.pages, (SitePage e) => PageBlueprintModel(e)),
+        readme = sobs(pb?.readme);
 
   factory SiteBlueprintModel.fromBuffer(List<int> buffer) =>
       SiteBlueprintModel(SiteBlueprint.fromBuffer(buffer));
@@ -66,6 +67,7 @@ class SiteBlueprintModel implements PbAble {
   final RxString version;
   final RxString upgradeUrl;
   final RxString flag;
+  final RxString readme;
 
   final RxList<RegFieldModel> cookies;
   final RxList<RegFieldModel> headers;
@@ -113,6 +115,9 @@ class SiteBlueprintModel implements PbAble {
       ? ''
       : pageList.get((p0) => p0.uuid == uuid)?.name.value ?? 'No page';
 
+  PageBlueprintModel? getPage(String uuid) =>
+      uuid.isEmpty ? null : pageList.get((p0) => p0.uuid == uuid);
+
   ListViewParserModel getListParser(String uuid) {
     final result = listViewParsers.get((e) => e.uuid == uuid);
     if (result == null) throw Exception('Parser $uuid not exist');
@@ -121,6 +126,12 @@ class SiteBlueprintModel implements PbAble {
 
   GalleryParserModel getGalleryParser(String uuid) {
     final result = galleryParsers.get((e) => e.uuid == uuid);
+    if (result == null) throw Exception('Parser $uuid not exist');
+    return result;
+  }
+
+  AutoCompleteParserModel getAutoCompleteParser(String uuid) {
+    final result = autoCompleteParsers.get((e) => e.uuid == uuid);
     if (result == null) throw Exception('Parser $uuid not exist');
     return result;
   }
@@ -154,5 +165,8 @@ class SiteBlueprintModel implements PbAble {
         listViewParsers: listViewParsers.map((e) => e.toPb()),
         actions: actionList.map((e) => e.toPb()),
         pages: pageList.map((e) => e.toPb()),
+        autoCompleteParsers: autoCompleteParsers.map((e) => e.toPb()),
+        imageParsers: imageParsers.map((e) => e.toPb()),
+        readme: readme.value,
       );
 }
