@@ -287,8 +287,7 @@ class ListViewParserModel extends ParserBaseModel {
 
 class AutoCompleteParserModel extends ParserBaseModel implements PbAble {
   AutoCompleteParserModel([AutoCompleteParser? pb])
-      : split = sobs(pb?.split),
-        itemSelector = SelectorModel(pb?.itemSelector),
+      : itemSelector = SelectorModel(pb?.itemSelector),
         itemTitle = SelectorModel(pb?.itemTitle),
         itemComplete = SelectorModel(pb?.itemComplete),
         itemSubtitle = SelectorModel(pb?.itemSubtitle),
@@ -297,8 +296,6 @@ class AutoCompleteParserModel extends ParserBaseModel implements PbAble {
           extra: pb?.extraSelector,
           uuid: genUuid(pb?.uuid),
         );
-
-  final RxString split; // 分隔符, 默认为空格
 
   final SelectorModel itemSelector;
   final SelectorModel itemComplete;
@@ -314,7 +311,6 @@ class AutoCompleteParserModel extends ParserBaseModel implements PbAble {
         itemSelector: itemSelector.toPb(),
         itemSubtitle: itemSubtitle.toPb(),
         itemTitle: itemTitle.toPb(),
-        split: split.value,
       );
 
   @override

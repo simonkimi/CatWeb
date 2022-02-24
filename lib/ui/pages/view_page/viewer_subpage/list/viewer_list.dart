@@ -20,7 +20,7 @@ class ViewerListFragment extends StatefulWidget {
     this.hasToolBar = false,
   }) : super(key: key);
 
-  final PageBlueprint blueprint;
+  final PageBlueprintModel blueprint;
   final bool hasToolBar;
 
   @override

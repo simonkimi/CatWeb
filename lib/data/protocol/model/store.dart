@@ -54,7 +54,7 @@ class SiteBlueprintModel implements PbAble {
           pb?.actions,
           (ActionCombine e) => ActionCombineModel(e),
         ),
-        pageList = lobs(pb?.pages, (SitePage e) => PageBlueprint(e));
+        pageList = lobs(pb?.pages, (SitePage e) => PageBlueprintModel(e));
 
   factory SiteBlueprintModel.fromBuffer(List<int> buffer) =>
       SiteBlueprintModel(SiteBlueprint.fromBuffer(buffer));
@@ -74,7 +74,7 @@ class SiteBlueprintModel implements PbAble {
   final RxList<ImageReaderParserModel> imageParsers;
   final RxList<AutoCompleteParserModel> autoCompleteParsers;
   final RxList<ActionCombineModel> actionList;
-  final RxList<PageBlueprint> pageList;
+  final RxList<PageBlueprintModel> pageList;
 
   RxList<ParserBaseModel> _selectParser(ParserBaseModel model) {
     switch (model.type) {

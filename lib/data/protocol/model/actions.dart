@@ -100,3 +100,20 @@ class ActionCombineModel implements PbAble {
         icon: icon.value,
       );
 }
+
+extension NetActionTypeTr on NetActionType {
+  String get string {
+    switch (this) {
+      case NetActionType.NET_ACTION_TYPE_GET:
+        return 'GET';
+      case NetActionType.NET_ACTION_TYPE_POST:
+        return 'POST';
+      case NetActionType.NET_ACTION_TYPE_PUT:
+        return 'PUT';
+      case NetActionType.NET_ACTION_TYPE_DELETE:
+        return 'DELETE';
+      default:
+        return 'GET';
+    }
+  }
+}

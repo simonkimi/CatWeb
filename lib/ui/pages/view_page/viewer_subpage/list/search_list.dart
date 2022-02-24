@@ -16,14 +16,14 @@ class SearchList extends StatefulWidget {
     required this.blueprint,
   }) : super(key: key);
 
-  final PageBlueprint blueprint;
+  final PageBlueprintModel blueprint;
 
   @override
   _SearchListState createState() => _SearchListState();
 }
 
 class _SearchListState extends State<SearchList> {
-  late PageBlueprint blueprint = widget.blueprint;
+  late PageBlueprintModel blueprint = widget.blueprint;
   late SubListController controller;
   late final extra = blueprint.templateData as TemplateListDataModel;
 

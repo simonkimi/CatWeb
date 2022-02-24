@@ -49,7 +49,11 @@ class GlobalController extends GetxController {
 
   @override
   void onInit() {
-    setDefaultSite();
+    try {
+      setDefaultSite();
+    } catch (e) {
+      print(e); // TODO 错误处理
+    }
     siteDbChangeListener = DB().webDao.getAllStream().listen((event) {
       if (site.value != null &&
           event.get((element) => element.id == id) == null) {

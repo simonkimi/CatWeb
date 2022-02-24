@@ -1,6 +1,7 @@
 import 'package:catweb/data/protocol/model/interface.dart';
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
+import 'package:catweb/gen/protobuf/actions.pbenum.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pb.dart';
 import 'package:catweb/utils/utils.dart';
@@ -8,11 +9,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
-class PageBlueprint implements PbAble {
-  PageBlueprint(SitePage pb)
+class PageBlueprintModel implements PbAble {
+  PageBlueprintModel(SitePage pb)
       : name = sobs(pb.name),
         uuid = genUuid(pb.uuid),
         url = sobs(pb.url),
+        netAction = pb.netAction.obs,
+        formData = pb.formData.obs,
         icon = sobs(pb.icon),
         display = pb.display.obs,
         flag = sobs(pb.flag),
@@ -23,8 +26,8 @@ class PageBlueprint implements PbAble {
           data: pb.templateData,
         );
 
-  factory PageBlueprint.create(Template template) =>
-      PageBlueprint(SitePage(template: template));
+  factory PageBlueprintModel.create(Template template) =>
+      PageBlueprintModel(SitePage(template: template));
 
   final RxString name;
   final String uuid;
@@ -33,6 +36,8 @@ class PageBlueprint implements PbAble {
   final RxString icon;
   final Rx<SiteDisplayType> display;
   final RxString flag;
+  final Rx<NetActionType> netAction;
+  final RxString formData;
 
   final Rx<Template> template;
   final PbAble templateData;
@@ -45,6 +50,8 @@ class PageBlueprint implements PbAble {
         url: url.value,
         icon: icon.value,
         display: display.value,
+        formData: formData.value,
+        netAction: netAction.value,
         flag: flag.value,
         templateData: templateData.toPb().writeToBuffer(),
         baseParser: baseParser.value,

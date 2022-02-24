@@ -97,3 +97,13 @@ message ImageReaderRpcModel {
   map<string, string> localEnv = 20;
   map<string, string> globalEnv = 21;
 }
+
+message AutoCompleteRpcModel {
+  message Item {
+    string title = 1;
+    string subtitle = 2;
+    string complete = 3;
+  }
+
+  repeated Item items = 1;
+}

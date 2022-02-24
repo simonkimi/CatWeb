@@ -42,5 +42,4 @@ message TemplateAutoComplete {
 }
 
 
-
 message TemplateEmpty {}

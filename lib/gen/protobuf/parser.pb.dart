@@ -1547,11 +1547,6 @@ class AutoCompleteParser extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'uuid')
-    ..aOS(
-        10,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'split')
     ..aOM<$0.Selector>(
         11,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -1589,7 +1584,6 @@ class AutoCompleteParser extends $pb.GeneratedMessage {
   factory AutoCompleteParser({
     $core.String? name,
     $core.String? uuid,
-    $core.String? split,
     $0.Selector? itemSelector,
     $0.Selector? itemComplete,
     $0.Selector? itemSubtitle,
@@ -1602,9 +1596,6 @@ class AutoCompleteParser extends $pb.GeneratedMessage {
     }
     if (uuid != null) {
       _result.uuid = uuid;
-    }
-    if (split != null) {
-      _result.split = split;
     }
     if (itemSelector != null) {
       _result.itemSelector = itemSelector;
@@ -1674,74 +1665,62 @@ class AutoCompleteParser extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearUuid() => clearField(2);
 
-  @$pb.TagNumber(10)
-  $core.String get split => $_getSZ(2);
-  @$pb.TagNumber(10)
-  set split($core.String v) {
-    $_setString(2, v);
-  }
-
-  @$pb.TagNumber(10)
-  $core.bool hasSplit() => $_has(2);
-  @$pb.TagNumber(10)
-  void clearSplit() => clearField(10);
-
   @$pb.TagNumber(11)
-  $0.Selector get itemSelector => $_getN(3);
+  $0.Selector get itemSelector => $_getN(2);
   @$pb.TagNumber(11)
   set itemSelector($0.Selector v) {
     setField(11, v);
   }
 
   @$pb.TagNumber(11)
-  $core.bool hasItemSelector() => $_has(3);
+  $core.bool hasItemSelector() => $_has(2);
   @$pb.TagNumber(11)
   void clearItemSelector() => clearField(11);
   @$pb.TagNumber(11)
-  $0.Selector ensureItemSelector() => $_ensure(3);
+  $0.Selector ensureItemSelector() => $_ensure(2);
 
   @$pb.TagNumber(12)
-  $0.Selector get itemComplete => $_getN(4);
+  $0.Selector get itemComplete => $_getN(3);
   @$pb.TagNumber(12)
   set itemComplete($0.Selector v) {
     setField(12, v);
   }
 
   @$pb.TagNumber(12)
-  $core.bool hasItemComplete() => $_has(4);
+  $core.bool hasItemComplete() => $_has(3);
   @$pb.TagNumber(12)
   void clearItemComplete() => clearField(12);
   @$pb.TagNumber(12)
-  $0.Selector ensureItemComplete() => $_ensure(4);
+  $0.Selector ensureItemComplete() => $_ensure(3);
 
   @$pb.TagNumber(13)
-  $0.Selector get itemSubtitle => $_getN(5);
+  $0.Selector get itemSubtitle => $_getN(4);
   @$pb.TagNumber(13)
   set itemSubtitle($0.Selector v) {
     setField(13, v);
   }
 
   @$pb.TagNumber(13)
-  $core.bool hasItemSubtitle() => $_has(5);
+  $core.bool hasItemSubtitle() => $_has(4);
   @$pb.TagNumber(13)
   void clearItemSubtitle() => clearField(13);
   @$pb.TagNumber(13)
-  $0.Selector ensureItemSubtitle() => $_ensure(5);
+  $0.Selector ensureItemSubtitle() => $_ensure(4);
 
   @$pb.TagNumber(14)
-  $0.Selector get itemTitle => $_getN(6);
+  $0.Selector get itemTitle => $_getN(5);
   @$pb.TagNumber(14)
   set itemTitle($0.Selector v) {
     setField(14, v);
   }
 
   @$pb.TagNumber(14)
-  $core.bool hasItemTitle() => $_has(6);
+  $core.bool hasItemTitle() => $_has(5);
   @$pb.TagNumber(14)
   void clearItemTitle() => clearField(14);
   @$pb.TagNumber(14)
-  $0.Selector ensureItemTitle() => $_ensure(6);
+  $0.Selector ensureItemTitle() => $_ensure(5);
 
   @$pb.TagNumber(99)
-  $core.List<$0.ExtraSelector> get extraSelector => $_getList(7);
+  $core.List<$0.ExtraSelector> get extraSelector => $_getList(6);
 }

@@ -12,7 +12,7 @@ class ListNormalSubPage extends StatelessWidget {
     required this.model,
   }) : super(key: key);
 
-  final PageBlueprint model;
+  final PageBlueprintModel model;
 
   @override
   Widget build(BuildContext context) {

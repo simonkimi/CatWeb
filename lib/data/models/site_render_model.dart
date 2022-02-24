@@ -38,7 +38,7 @@ class SiteRenderConfigModel {
     await DB().webDao.replace(dbEntity.copyWith(favicon: bin));
   }
 
-  List<PageBlueprint> get displayPage => configModel.pageList
+  List<PageBlueprintModel> get displayPage => configModel.pageList
       .where((p0) => p0.display.value == SiteDisplayType.show)
       .where((e) => [
             Template.TEMPLATE_IMAGE_LIST,

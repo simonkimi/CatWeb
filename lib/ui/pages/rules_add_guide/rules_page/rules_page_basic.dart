@@ -1,5 +1,7 @@
+import 'package:catweb/data/protocol/model/actions.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
+import 'package:catweb/gen/protobuf/actions.pbserver.dart';
 import 'package:catweb/gen/protobuf/page.pbenum.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/gen/protobuf/template.pbserver.dart';
@@ -18,7 +20,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
     required this.model,
   }) : super(key: key);
 
-  final PageBlueprint model;
+  final PageBlueprintModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +37,29 @@ class RulesPageBasic extends GetView<RulesEditController> {
             value: model.url,
           ),
           Obx(() => CupertinoReadOnlyInput(
+                labelText: '请求方式',
+                value: model.netAction.value.string,
+                onTap: () => _onNetActionTap(context),
+              )),
+          Obx(() {
+            if (model.netAction.value == NetActionType.NET_ACTION_TYPE_POST) {
+              return CupertinoInput(
+                labelText: '表单',
+                value: model.formData,
+                minLine: 4,
+              );
+            }
+            return const SizedBox();
+          }),
+          Obx(() => CupertinoReadOnlyInput(
                 labelText: '解析器',
                 value:
                     controller.blueprint.getParserName(model.baseParser.value),
                 onTap: () => _onParserTap(context),
               )),
           const CupertinoDivider(height: 20),
-          if (model.template.value != Template.TEMPLATE_IMAGE_VIEWER)
+          if ([Template.TEMPLATE_IMAGE_WATERFALL, Template.TEMPLATE_IMAGE_LIST]
+              .contains(model.template.value))
             Obx(() => CupertinoReadOnlyInput(
                   labelText: '显示方式',
                   value: model.display.value.string(context),
@@ -145,11 +163,25 @@ class RulesPageBasic extends GetView<RulesEditController> {
     }
   }
 
+  Future<void> _onNetActionTap(BuildContext context) async {
+    final result = await showCupertinoSelectDialog<NetActionType>(
+      title: '请选择请求方式',
+      context: context,
+      items: NetActionType.values
+          .map((e) => SelectTileItem(title: e.string, value: e))
+          .toList(),
+      cancelText: '取消',
+    );
+    if (result != null) {
+      model.netAction.value = result;
+    }
+  }
+
   Widget _buildOpenWidget(
     BuildContext context, {
     required String labelText,
     required RxString target,
-    bool Function(PageBlueprint)? filter,
+    bool Function(PageBlueprintModel)? filter,
   }) {
     return Obx(() => CupertinoReadOnlyInput(
           labelText: labelText,

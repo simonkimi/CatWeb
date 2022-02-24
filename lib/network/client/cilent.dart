@@ -27,7 +27,7 @@ class NetClient {
 
   Future<ListRpcModel> getList({
     required String url,
-    required PageBlueprint model,
+    required PageBlueprintModel model,
     required SiteEnvModel localEnv,
   }) async {
     final rsp = await dio.get<String>(url);
@@ -52,7 +52,7 @@ class NetClient {
 
   Future<GalleryRpcModel> getGallery({
     required String url,
-    required PageBlueprint model,
+    required PageBlueprintModel model,
     required SiteEnvModel localEnv,
   }) async {
     final rsp = await dio.get<String>(url);

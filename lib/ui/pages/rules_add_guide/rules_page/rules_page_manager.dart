@@ -52,7 +52,7 @@ class RulesPageManager extends GetView<RulesEditController> {
 
   Future<void> _onTrailingTap(
     BuildContext context,
-    PageBlueprint model,
+    PageBlueprintModel model,
   ) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: '取消',
@@ -78,7 +78,7 @@ class RulesPageManager extends GetView<RulesEditController> {
     }
   }
 
-  void _onPageDelete(BuildContext context, PageBlueprint model) {
+  void _onPageDelete(BuildContext context, PageBlueprintModel model) {
     final using = controller.blueprint.pageList
         .where(
             (p0) => p0.getDependPage().any((element) => element == model.uuid))
@@ -103,7 +103,7 @@ class RulesPageManager extends GetView<RulesEditController> {
   }
 
   Future<void> _toRulesPageEdit(BuildContext context,
-      [PageBlueprint? model]) async {
+      [PageBlueprintModel? model]) async {
     final input = model ?? await _genRules(context);
     if (input == null) return;
     await Get.to(() => RulesPageEdit(model: input));
@@ -112,7 +112,7 @@ class RulesPageManager extends GetView<RulesEditController> {
     }
   }
 
-  Future<PageBlueprint?> _genRules(BuildContext context) async {
+  Future<PageBlueprintModel?> _genRules(BuildContext context) async {
     final select = await showCupertinoSelectDialog<Template>(
       title: '选择模板',
       context: context,
@@ -121,7 +121,7 @@ class RulesPageManager extends GetView<RulesEditController> {
           .toList(),
     );
     if (select != null) {
-      return PageBlueprint.create(select);
+      return PageBlueprintModel.create(select);
     }
     return null;
   }

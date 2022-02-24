@@ -476,7 +476,6 @@ const AutoCompleteParser$json = const {
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'uuid', '3': 2, '4': 1, '5': 9, '10': 'uuid'},
-    const {'1': 'split', '3': 10, '4': 1, '5': 9, '10': 'split'},
     const {
       '1': 'item_selector',
       '3': 11,
@@ -486,12 +485,12 @@ const AutoCompleteParser$json = const {
       '10': 'itemSelector'
     },
     const {
-      '1': 'item_complete',
-      '3': 12,
+      '1': 'item_title',
+      '3': 14,
       '4': 1,
       '5': 11,
       '6': '.Selector',
-      '10': 'itemComplete'
+      '10': 'itemTitle'
     },
     const {
       '1': 'item_subtitle',
@@ -502,12 +501,12 @@ const AutoCompleteParser$json = const {
       '10': 'itemSubtitle'
     },
     const {
-      '1': 'item_title',
-      '3': 14,
+      '1': 'item_complete',
+      '3': 12,
       '4': 1,
       '5': 11,
       '6': '.Selector',
-      '10': 'itemTitle'
+      '10': 'itemComplete'
     },
     const {
       '1': 'extra_selector',
@@ -522,4 +521,4 @@ const AutoCompleteParser$json = const {
 
 /// Descriptor for `AutoCompleteParser`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List autoCompleteParserDescriptor = $convert.base64Decode(
-    'ChJBdXRvQ29tcGxldGVQYXJzZXISEgoEbmFtZRgBIAEoCVIEbmFtZRISCgR1dWlkGAIgASgJUgR1dWlkEhQKBXNwbGl0GAogASgJUgVzcGxpdBIuCg1pdGVtX3NlbGVjdG9yGAsgASgLMgkuU2VsZWN0b3JSDGl0ZW1TZWxlY3RvchIuCg1pdGVtX2NvbXBsZXRlGAwgASgLMgkuU2VsZWN0b3JSDGl0ZW1Db21wbGV0ZRIuCg1pdGVtX3N1YnRpdGxlGA0gASgLMgkuU2VsZWN0b3JSDGl0ZW1TdWJ0aXRsZRIoCgppdGVtX3RpdGxlGA4gASgLMgkuU2VsZWN0b3JSCWl0ZW1UaXRsZRI1Cg5leHRyYV9zZWxlY3RvchhjIAMoCzIOLkV4dHJhU2VsZWN0b3JSDWV4dHJhU2VsZWN0b3I=');
+    'ChJBdXRvQ29tcGxldGVQYXJzZXISEgoEbmFtZRgBIAEoCVIEbmFtZRISCgR1dWlkGAIgASgJUgR1dWlkEi4KDWl0ZW1fc2VsZWN0b3IYCyABKAsyCS5TZWxlY3RvclIMaXRlbVNlbGVjdG9yEigKCml0ZW1fdGl0bGUYDiABKAsyCS5TZWxlY3RvclIJaXRlbVRpdGxlEi4KDWl0ZW1fc3VidGl0bGUYDSABKAsyCS5TZWxlY3RvclIMaXRlbVN1YnRpdGxlEi4KDWl0ZW1fY29tcGxldGUYDCABKAsyCS5TZWxlY3RvclIMaXRlbUNvbXBsZXRlEjUKDmV4dHJhX3NlbGVjdG9yGGMgAygLMg4uRXh0cmFTZWxlY3RvclINZXh0cmFTZWxlY3Rvcg==');

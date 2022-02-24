@@ -20,7 +20,7 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
                   }
                 : null);
 
-  final PageBlueprint blueprint;
+  final PageBlueprintModel blueprint;
   final SubPageModel? subPageModel;
   final SiteEnvModel localEnv;
   final global = Get.find<GlobalController>();

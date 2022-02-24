@@ -97,6 +97,21 @@ class SearchFilterItem implements PbAble {
   SearchFilterItem clone() => SearchFilterItem(toPb());
 }
 
+class TemplateAutoCompleteModel implements PbAble {
+  final RxString splitChar;
+  final RxInt timeout;
+
+  TemplateAutoCompleteModel([TemplateAutoComplete? pb])
+      : splitChar = sobs(pb?.splitChar),
+        timeout = pb?.timeout.obs ?? RxInt(0);
+
+  @override
+  TemplateAutoComplete toPb() => TemplateAutoComplete(
+        splitChar: splitChar.value,
+        timeout: timeout.value,
+      );
+}
+
 class TemplateEmptyModel implements PbAble {
   TemplateEmptyModel([TemplateEmpty? pb]);
 

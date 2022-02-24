@@ -26,7 +26,7 @@ import 'package:get/get.dart';
 class ViewerGalleryFragment extends StatelessWidget {
   ViewerGalleryFragment({
     Key? key,
-    required PageBlueprint target,
+    required PageBlueprintModel target,
     required Object? model,
     required SiteEnvModel env,
   })  : c = GalleryPreviewController(

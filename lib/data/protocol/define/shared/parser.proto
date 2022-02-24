@@ -110,11 +110,11 @@ message AutoCompleteParser {
   string name = 1;
   string uuid = 2;
 
-  string split = 10; // 分隔符, 默认为空格
   Selector item_selector = 11;
-  Selector item_complete = 12;
-  Selector item_subtitle = 13;
+
   Selector item_title = 14;
+  Selector item_subtitle = 13;
+  Selector item_complete = 12;
 
   repeated ExtraSelector extra_selector = 99;
 }

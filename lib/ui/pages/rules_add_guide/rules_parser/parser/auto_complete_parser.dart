@@ -30,10 +30,6 @@ class SearchAutoCompleteParser extends StatelessWidget {
             label: '名称',
             value: model.name,
           ),
-          CupertinoFormInput(
-            label: '分割线',
-            value: model.split,
-          ),
         ]),
       ]),
     );
@@ -46,16 +42,16 @@ class SearchAutoCompleteParser extends StatelessWidget {
         selectorModel: model.itemSelector,
       ),
       RulesForm(
-        title: '补全内容',
-        selectorModel: model.itemComplete,
-      ),
-      RulesForm(
         title: '标题',
         selectorModel: model.itemTitle,
       ),
       RulesForm(
         title: '副标题',
         selectorModel: model.itemSubtitle,
+      ),
+      RulesForm(
+        title: '补全内容',
+        selectorModel: model.itemComplete,
       ),
     ]);
   }
