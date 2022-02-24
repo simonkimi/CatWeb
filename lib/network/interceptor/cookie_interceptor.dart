@@ -24,10 +24,10 @@ class HeaderCookieInterceptor extends Interceptor {
     // Headers
     for (final regField in model.headers) {
       if (RegExp(regField.reg.value).hasMatch(uri)) {
+        print(parseHeaders(regField.value.value));
         options.headers.addAll(parseHeaders(regField.value.value));
       }
     }
-
     return handler.next(options);
   }
 
@@ -38,8 +38,8 @@ class HeaderCookieInterceptor extends Interceptor {
       .map((e) => MapEntry(e[0].trim(), e[1].trim())));
 
   Map<String, String> parseHeaders(String raw) => Map.fromEntries(raw
-      .split('\n')
-      .map((e) => e.split(':'))
+      .split(';')
+      .map((e) => e.split('='))
       .where((e) => e.length == 2)
       .map((e) => MapEntry(e[0].trim(), e[1].trim())));
 
