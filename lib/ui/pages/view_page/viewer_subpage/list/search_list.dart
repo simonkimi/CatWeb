@@ -223,8 +223,35 @@ class _SearchListState extends State<SearchList> {
   }
 
   Widget _buildColorButton(BuildContext context) {
-    final items = controller.filter.where((p0) =>
-        p0.type.value == TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD);
+    final items = controller.filter
+        .where((p0) =>
+            p0.type.value == TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD)
+        .toList();
+
+    void _onLongPress(int index) {
+      final item = items.elementAt(index);
+      var newValue = !(item.value.value == 'true') ? 'true' : 'false';
+      final rawIndex = controller.filter.indexOf(item);
+
+      for (var i = 0; i < rawIndex; i++) {
+        if (controller.filter[i].type.value ==
+            TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD) {
+          controller.filter[i].value.value = newValue;
+        } else {
+          break;
+        }
+      }
+
+      for (var i = rawIndex + 1; i < controller.filter.length; i++) {
+        if (controller.filter[i].type.value ==
+            TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD) {
+          controller.filter[i].value.value = newValue;
+        } else {
+          break;
+        }
+      }
+    }
+
     return Column(
       children: [
         for (var i = 0; i < items.length; i += 2)
@@ -239,6 +266,7 @@ class _SearchListState extends State<SearchList> {
                                   'true'
                               ? 'false'
                               : 'true',
+                      onLongPress: () => _onLongPress(i + j),
                       child: Padding(
                         padding: const EdgeInsets.all(2),
                         child: Obx(() => Badge(
