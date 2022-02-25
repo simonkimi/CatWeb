@@ -22,6 +22,10 @@ class RulesBasic extends GetView<RulesEditController> {
           labelText: '基础Url',
           value: controller.blueprint.baseUrl,
         ),
+        CupertinoInput(
+          labelText: 'flag',
+          value: controller.blueprint.flag,
+        ),
         const CupertinoDivider(height: 30),
         CupertinoInput(
           labelText: '登录Url',

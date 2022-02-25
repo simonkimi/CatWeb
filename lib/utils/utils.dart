@@ -75,6 +75,10 @@ extension RpcColor on ColorRpcModel {
     }
     return null;
   }
+
+  String get string => '#${r.toRadixString(16).padLeft(2, '0')}'
+      '${g.toRadixString(16).padLeft(2, '0')}'
+      '${b.toRadixString(16).padLeft(2, '0')}';
 }
 
 extension THas<T> on T {

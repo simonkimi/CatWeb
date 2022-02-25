@@ -27,14 +27,14 @@ class RulesPageEdit extends GetView<RulesEditController> {
             const CupertinoTab('基础'),
             if (model.templateData is TemplateListDataModel) ...[
               const CupertinoTab('子页面'),
-              const CupertinoTab('搜索'),
+              const CupertinoTab('过滤器'),
             ],
           ],
           children: [
             RulesPageBasic(model: model),
             if (model.templateData is TemplateListDataModel) ...[
               ListNormalSubPage(model: model),
-              ListSearchEditor(model: model),
+              ListFilterEditor(model: model),
             ],
           ],
         ),

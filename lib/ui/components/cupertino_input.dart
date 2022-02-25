@@ -77,6 +77,7 @@ class CupertinoInput extends StatelessWidget {
     this.hintText,
     this.padding = true,
     this.description,
+    this.prefix,
   }) : super(key: key);
 
   final String labelText;
@@ -86,6 +87,7 @@ class CupertinoInput extends StatelessWidget {
   final String? hintText;
   final bool padding;
   final String? description;
+  final Widget? prefix;
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +118,7 @@ class CupertinoInput extends StatelessWidget {
             onChanged: (text) {
               value.value = text;
             },
+            prefix: prefix,
           ),
           if (description != null)
             Padding(

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/actions.pbserver.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
@@ -5,6 +7,7 @@ import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pb.dart';
 import 'package:catweb/gen/protobuf/template.pbserver.dart';
 import 'package:catweb/test/site/eh/parser/auto_complete_parser.dart';
+import 'package:catweb/ui/theme/colors.dart';
 
 import 'cookies.dart';
 import 'parser/gallery_parser.dart';
@@ -25,11 +28,6 @@ final ehTestSite = SiteBlueprint(
     RegField(reg: r'178.162.147.246', value: 'host=api.e-hentai.org'),
   ],
   cookies: [
-    // RegField(reg: r'e[-x]hentai', value: 'ipb_member_id=$ipbMemberId'),
-    // RegField(reg: r'e[-x]hentai', value: 'ipb_pass_hash=$ipbPassHash'),
-    // RegField(reg: r'e[-x]hentai', value: 'igneous=$igneous'),
-    // RegField(reg: r'e[-x]hentai', value: 'sk=$sk'),
-    // RegField(reg: r'e[-x]hentai', value: 'star=$star'),
     RegField(value: 'ipb_member_id=$ipbMemberId'),
     RegField(value: 'ipb_pass_hash=$ipbPassHash'),
     RegField(value: 'igneous=$igneous'),
@@ -67,60 +65,77 @@ final ehTestSite = SiteBlueprint(
       templateData: TemplateListData(
         targetItem: _detailUuid,
         targetAutoComplete: _autoCompleteUuid,
+        disableUnchanged: true,
         filterItem: [
           TemplateListData_FilterItem(
             name: '同人志',
-            key: 'bin_doujinshi',
-            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            key: 'b_doujinshi',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD,
             value: 'true',
+            color: const Color(0xfff76057).rpc,
           ),
           TemplateListData_FilterItem(
             name: '漫画',
-            key: 'bin_manga',
-            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            key: 'b_manga',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD,
             value: 'true',
+            color: const Color(0xfff09c19).rpc,
           ),
           TemplateListData_FilterItem(
             name: '游戏CG',
-            key: 'bin_gamecg',
-            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            key: 'b_gamecg',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD,
             value: 'true',
+            color: const Color(0xff0faa11).rpc,
           ),
           TemplateListData_FilterItem(
             name: '图片集',
-            key: 'bin_imageset',
-            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            key: 'b_imageset',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD,
             value: 'true',
+            color: const Color(0xff455bd6).rpc,
           ),
           TemplateListData_FilterItem(
             name: '画师CG',
-            key: 'bin_artistcg',
-            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            key: 'b_artistcg',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD,
             value: 'true',
+            color: const Color(0xffd5d703).rpc,
           ),
           TemplateListData_FilterItem(
             name: 'Cosplay',
-            key: 'bin_cosplay',
-            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            key: 'b_cosplay',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD,
             value: 'true',
+            color: const Color(0xff9133e1).rpc,
           ),
           TemplateListData_FilterItem(
             name: '西方',
-            key: 'bin_western',
-            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            key: 'b_western',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD,
             value: 'true',
+            color: const Color(0xff38d42f).rpc,
+          ),
+          TemplateListData_FilterItem(
+            name: '东方色情',
+            key: 'b_asianporn',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD,
+            value: 'true',
+            color: const Color(0xffe77fe3).rpc,
           ),
           TemplateListData_FilterItem(
             name: '无H',
-            key: 'bin_nonh',
-            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            key: 'b_nonh',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD,
             value: 'true',
+            color: const Color(0xff0cb9cf).rpc,
           ),
           TemplateListData_FilterItem(
             name: '杂项',
-            key: 'bin_misc',
-            type: TemplateListData_FilterType.FILTER_TYPE_BOOL,
+            key: 'b_misc',
+            type: TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD,
             value: 'true',
+            color: const Color(0xff858585).rpc,
           ),
           TemplateListData_FilterItem(
             name: '搜索画廊名称',
@@ -159,6 +174,8 @@ final ehTestSite = SiteBlueprint(
             value: 'false',
           ),
         ],
+        script:
+            'function hook(n){var a=JSON.parse(n),r=0,i=0,o=["misc","doujinshi","manga","artistcg","gamecg","imageset","cosplay","asianporn","nonh","western"];for(var s in o)r+=a["b_"+o[s]]?0:1<<i,i+=1;var e=["advsearch=1"];for(var s in 0!=r&&e.push("filter="+r),a)-1!=s.indexOf("f")&&a[s]&&e.push(s+"=on");return e.join("&")}',
       ).writeToBuffer(),
     ),
     SitePage(

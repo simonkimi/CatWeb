@@ -9,6 +9,8 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import 'model.pb.dart' as $0;
+
 import 'template.pbenum.dart';
 
 export 'template.pbenum.dart';
@@ -150,6 +152,12 @@ class TemplateListData_FilterItem extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'value')
+    ..aOM<$0.ColorRpcModel>(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'color',
+        subBuilder: $0.ColorRpcModel.create)
     ..hasRequiredFields = false;
 
   TemplateListData_FilterItem._() : super();
@@ -158,6 +166,7 @@ class TemplateListData_FilterItem extends $pb.GeneratedMessage {
     $core.String? key,
     TemplateListData_FilterType? type,
     $core.String? value,
+    $0.ColorRpcModel? color,
   }) {
     final _result = create();
     if (name != null) {
@@ -171,6 +180,9 @@ class TemplateListData_FilterItem extends $pb.GeneratedMessage {
     }
     if (value != null) {
       _result.value = value;
+    }
+    if (color != null) {
+      _result.color = color;
     }
     return _result;
   }
@@ -252,6 +264,20 @@ class TemplateListData_FilterItem extends $pb.GeneratedMessage {
   $core.bool hasValue() => $_has(3);
   @$pb.TagNumber(4)
   void clearValue() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $0.ColorRpcModel get color => $_getN(4);
+  @$pb.TagNumber(5)
+  set color($0.ColorRpcModel v) {
+    setField(5, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasColor() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearColor() => clearField(5);
+  @$pb.TagNumber(5)
+  $0.ColorRpcModel ensureColor() => $_ensure(4);
 }
 
 class TemplateListData extends $pb.GeneratedMessage {
@@ -272,6 +298,11 @@ class TemplateListData extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'script')
+    ..aOB(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'disableUnchanged')
     ..aOS(
         10,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -295,6 +326,7 @@ class TemplateListData extends $pb.GeneratedMessage {
   factory TemplateListData({
     $core.Iterable<TemplateListData_SubPage>? subPages,
     $core.String? script,
+    $core.bool? disableUnchanged,
     $core.String? targetItem,
     $core.String? targetAutoComplete,
     $core.Iterable<TemplateListData_FilterItem>? filterItem,
@@ -305,6 +337,9 @@ class TemplateListData extends $pb.GeneratedMessage {
     }
     if (script != null) {
       _result.script = script;
+    }
+    if (disableUnchanged != null) {
+      _result.disableUnchanged = disableUnchanged;
     }
     if (targetItem != null) {
       _result.targetItem = targetItem;
@@ -359,32 +394,44 @@ class TemplateListData extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearScript() => clearField(3);
 
+  @$pb.TagNumber(4)
+  $core.bool get disableUnchanged => $_getBF(2);
+  @$pb.TagNumber(4)
+  set disableUnchanged($core.bool v) {
+    $_setBool(2, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasDisableUnchanged() => $_has(2);
+  @$pb.TagNumber(4)
+  void clearDisableUnchanged() => clearField(4);
+
   @$pb.TagNumber(10)
-  $core.String get targetItem => $_getSZ(2);
+  $core.String get targetItem => $_getSZ(3);
   @$pb.TagNumber(10)
   set targetItem($core.String v) {
-    $_setString(2, v);
+    $_setString(3, v);
   }
 
   @$pb.TagNumber(10)
-  $core.bool hasTargetItem() => $_has(2);
+  $core.bool hasTargetItem() => $_has(3);
   @$pb.TagNumber(10)
   void clearTargetItem() => clearField(10);
 
   @$pb.TagNumber(11)
-  $core.String get targetAutoComplete => $_getSZ(3);
+  $core.String get targetAutoComplete => $_getSZ(4);
   @$pb.TagNumber(11)
   set targetAutoComplete($core.String v) {
-    $_setString(3, v);
+    $_setString(4, v);
   }
 
   @$pb.TagNumber(11)
-  $core.bool hasTargetAutoComplete() => $_has(3);
+  $core.bool hasTargetAutoComplete() => $_has(4);
   @$pb.TagNumber(11)
   void clearTargetAutoComplete() => clearField(11);
 
   @$pb.TagNumber(22)
-  $core.List<TemplateListData_FilterItem> get filterItem => $_getList(4);
+  $core.List<TemplateListData_FilterItem> get filterItem => $_getList(5);
 }
 
 class TemplateAutoComplete extends $pb.GeneratedMessage {

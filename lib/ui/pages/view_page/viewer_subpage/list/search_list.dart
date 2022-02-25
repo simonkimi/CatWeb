@@ -2,11 +2,13 @@ import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pb.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/search_list_controller.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/subpage_controller.dart';
+import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -111,8 +113,8 @@ class _SearchListState extends State<SearchList> {
                       model.subtitle,
                       style: TextStyle(
                         fontSize: 14,
-                        color:
-                            CupertinoColors.placeholderText.resolveFrom(context),
+                        color: CupertinoColors.placeholderText
+                            .resolveFrom(context),
                       ),
                     ),
                   ],
@@ -200,12 +202,16 @@ class _SearchListState extends State<SearchList> {
             builder: (context, setState) {
               return SingleChildScrollView(
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     _buildDialogHeader(setState),
                     const SizedBox(height: 5),
                     const CupertinoDivider(),
+                    _buildColorButton(context),
                     for (final item in controller.filter)
-                      _buildFilterItem(context, item),
+                      if (item.type.value !=
+                          TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD)
+                        _buildFilterItem(context, item),
                   ],
                 ),
               );
@@ -213,6 +219,45 @@ class _SearchListState extends State<SearchList> {
           ),
         );
       },
+    );
+  }
+
+  Widget _buildColorButton(BuildContext context) {
+    final items = controller.filter.where((p0) =>
+        p0.type.value == TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD);
+    return Column(
+      children: [
+        for (var i = 0; i < items.length; i += 2)
+          Row(
+            children: [
+              for (var j = 0; j < 2; j++)
+                if (i + j < items.length)
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () => items.elementAt(i + j).value.value =
+                          items.elementAt(i + j).value.value.toLowerCase() ==
+                                  'true'
+                              ? 'false'
+                              : 'true',
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Obx(() => Badge(
+                              disable: items
+                                      .elementAt(i + j)
+                                      .value
+                                      .value
+                                      .toLowerCase() !=
+                                  'true',
+                              text: items.elementAt(i + j).name.value,
+                              color: parseColorString(
+                                  items.elementAt(i + j).color.value),
+                            )),
+                      ),
+                    ),
+                  ),
+            ],
+          ),
+      ],
     );
   }
 
@@ -252,6 +297,7 @@ class _SearchListState extends State<SearchList> {
               height: 30,
               child: Transform.scale(
                 scale: 0.8,
+                alignment: Alignment.centerRight,
                 child: Obx(() => CupertinoSwitch(
                       value: item.value.value.toLowerCase().trim() == 'true',
                       onChanged: (value) {

@@ -4,6 +4,8 @@ import 'package:ffi/ffi.dart' as ffi;
 import 'dart:ffi';
 import 'dart:io';
 
+import 'package:tuple/tuple.dart';
+
 RpcResponse ffiParse(RpcRequest msg) {
   final _native = NativeLibrary(Platform.isAndroid
       ? DynamicLibrary.open('libgo.so')
@@ -26,15 +28,15 @@ RpcResponse ffiParse(RpcRequest msg) {
   return rsp;
 }
 
-String runJs(String js, String input) {
+String runJs(Tuple2<String, String> input) {
   final _native = NativeLibrary(Platform.isAndroid
       ? DynamicLibrary.open('libgo.so')
       : Platform.isWindows
           ? DynamicLibrary.open('./lib/libs/libgo.dll')
           : DynamicLibrary.process());
 
-  final jsBuffer = js.toNativeUtf8().cast<Int8>();
-  final inputBuffer = input.toNativeUtf8().cast<Int8>();
+  final jsBuffer = input.item1.toNativeUtf8().cast<Int8>();
+  final inputBuffer = input.item2.toNativeUtf8().cast<Int8>();
 
   final result = _native.RunJs(jsBuffer, inputBuffer);
 

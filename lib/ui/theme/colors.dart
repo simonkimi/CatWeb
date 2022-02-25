@@ -49,3 +49,46 @@ extension ColorHelper on Color {
 
   ColorRpcModel get rpc => ColorRpcModel(a: alpha, b: blue, g: green, r: red);
 }
+
+Color? parseColorString(String colorString) {
+  try {
+    final result = colorString.toLowerCase();
+
+    if (result.startsWith('0x') && result.length == 8) {
+      return Color(int.parse(result.substring(2), radix: 16) | 0xff000000);
+    } else if (result.startsWith('#') && result.length == 7) {
+      return Color(int.parse(result.substring(1), radix: 16) | 0xff000000);
+    }
+
+    final rgb = RegExp(r'[\.\d]+%?');
+    final match = rgb.allMatches(result).toList();
+    if (match.length == 3) {
+      return Color.fromARGB(
+        0xFF,
+        _getColorInt(match[0][0]!),
+        _getColorInt(match[1][0]!),
+        _getColorInt(match[2][0]!),
+      );
+    }
+    if (match.length == 4) {
+      return Color.fromARGB(
+        ((double.tryParse(match[3][0]!) ?? 1) * 255).floor(),
+        _getColorInt(match[0][0]!),
+        _getColorInt(match[1][0]!),
+        _getColorInt(match[2][0]!),
+      );
+    }
+  } on Error {
+    return null;
+  }
+  return null;
+}
+
+int _getColorInt(String input) {
+  if (input.endsWith('%')) {
+    return (255 * (int.parse(input.substring(0, input.length - 1)) / 100))
+        .floor();
+  } else {
+    return double.parse(input).floor();
+  }
+}

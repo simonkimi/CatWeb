@@ -1,4 +1,5 @@
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Badge extends StatelessWidget {
@@ -10,6 +11,7 @@ class Badge extends StatelessWidget {
     this.borderRadius = 8,
     this.fontSize = 15,
     this.textColor,
+    this.disable = false,
   }) : super(key: key);
 
   final Color? color;
@@ -18,17 +20,21 @@ class Badge extends StatelessWidget {
   final EdgeInsets padding;
   final double borderRadius;
   final double fontSize;
+  final bool disable;
 
   @override
   Widget build(BuildContext context) {
-    final background = color ?? FixColor.badge.resolveFrom(context);
+    final background = disable
+        ? CupertinoColors.systemGrey4.resolveFrom(context)
+        : color ?? FixColor.badge.resolveFrom(context);
 
-    return Container(
+    return AnimatedContainer(
       padding: padding,
       decoration: BoxDecoration(
         color: background,
         borderRadius: BorderRadius.circular(borderRadius),
       ),
+      duration: const Duration(milliseconds: 100),
       child: Text(
         text,
         style: TextStyle(

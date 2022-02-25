@@ -1,7 +1,8 @@
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/gen/protobuf/template.pb.dart';
+import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/utils/utils.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'interface.dart';
@@ -56,6 +57,7 @@ class TemplateListDataModel implements PbAble {
   final RxList<SearchFilterItem> filterItem;
   final RxString targetAutoComplete;
   final RxString script;
+  final RxBool disableUnchanged;
 
   TemplateListDataModel([TemplateListData? pb])
       : subPages =
@@ -64,6 +66,7 @@ class TemplateListDataModel implements PbAble {
         filterItem = lobs(pb?.filterItem,
             (TemplateListData_FilterItem e) => SearchFilterItem(e)),
         script = sobs(pb?.script),
+        disableUnchanged = bobs(pb?.disableUnchanged),
         targetAutoComplete = sobs(pb?.targetAutoComplete);
 
   @override
@@ -73,6 +76,7 @@ class TemplateListDataModel implements PbAble {
         script: script.value,
         filterItem: filterItem.map((e) => e.toPb()),
         targetAutoComplete: targetAutoComplete.value,
+        disableUnchanged: disableUnchanged.value,
       );
 }
 
@@ -80,6 +84,7 @@ class SearchFilterItem implements PbAble {
   final RxString name;
   final RxString key;
   final Rx<TemplateListData_FilterType> type;
+  final RxString color;
   final RxString value;
 
   SearchFilterItem([TemplateListData_FilterItem? pb])
@@ -87,7 +92,9 @@ class SearchFilterItem implements PbAble {
         key = sobs(pb?.key),
         type =
             pb?.type.obs ?? TemplateListData_FilterType.FILTER_TYPE_STRING.obs,
-        value = sobs(pb?.value);
+        value = sobs(pb?.value),
+        color =
+            pb?.color.string.obs ?? Colors.primaries.random().rpc.string.obs;
 
   @override
   TemplateListData_FilterItem toPb() => TemplateListData_FilterItem(
@@ -95,6 +102,7 @@ class SearchFilterItem implements PbAble {
         key: key.value,
         type: type.value,
         value: value.value,
+        color: parseColorString(color.value)?.rpc,
       );
 
   SearchFilterItem clone() => SearchFilterItem(toPb());
@@ -126,11 +134,13 @@ extension ExtraSelectorTypeTr on TemplateListData_FilterType {
   String string(BuildContext context) {
     switch (this) {
       case TemplateListData_FilterType.FILTER_TYPE_BOOL:
-        return '是/否';
+        return '布尔值';
       case TemplateListData_FilterType.FILTER_TYPE_NUMBER:
         return '数字';
       case TemplateListData_FilterType.FILTER_TYPE_STRING:
         return '字符串';
+      case TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD:
+        return '布尔值 - 卡片';
     }
     return '';
   }
@@ -139,6 +149,7 @@ extension ExtraSelectorTypeTr on TemplateListData_FilterType {
 Map<String, dynamic> parseFilter(List<TemplateListData_FilterItem> filter) {
   return Map.fromEntries(filter.map((e) {
     switch (e.type) {
+      case TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD:
       case TemplateListData_FilterType.FILTER_TYPE_BOOL:
         return MapEntry(e.key, e.value.toLowerCase().trim() == 'true');
       case TemplateListData_FilterType.FILTER_TYPE_NUMBER:

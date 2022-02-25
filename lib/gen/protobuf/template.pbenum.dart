@@ -70,12 +70,19 @@ class TemplateListData_FilterType extends $pb.ProtobufEnum {
           const $core.bool.fromEnvironment('protobuf.omit_enum_names')
               ? ''
               : 'FILTER_TYPE_BOOL');
+  static const TemplateListData_FilterType FILTER_TYPE_BOOL_CARD =
+      TemplateListData_FilterType._(
+          3,
+          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+              ? ''
+              : 'FILTER_TYPE_BOOL_CARD');
 
   static const $core.List<TemplateListData_FilterType> values =
       <TemplateListData_FilterType>[
     FILTER_TYPE_NUMBER,
     FILTER_TYPE_STRING,
     FILTER_TYPE_BOOL,
+    FILTER_TYPE_BOOL_CARD,
   ];
 
   static final $core.Map<$core.int, TemplateListData_FilterType> _byValue =

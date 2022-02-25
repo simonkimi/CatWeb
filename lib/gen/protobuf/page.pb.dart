@@ -9,9 +9,9 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'actions.pbenum.dart' as $0;
+import 'actions.pbenum.dart' as $1;
 import 'page.pbenum.dart';
-import 'template.pbenum.dart' as $1;
+import 'template.pbenum.dart' as $2;
 
 export 'page.pbenum.dart';
 
@@ -36,15 +36,15 @@ class SitePage extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'url')
-    ..e<$0.NetActionType>(
+    ..e<$1.NetActionType>(
         4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'netAction',
         $pb.PbFieldType.OE,
-        defaultOrMaker: $0.NetActionType.NET_ACTION_TYPE_GET,
-        valueOf: $0.NetActionType.valueOf,
-        enumValues: $0.NetActionType.values)
+        defaultOrMaker: $1.NetActionType.NET_ACTION_TYPE_GET,
+        valueOf: $1.NetActionType.valueOf,
+        enumValues: $1.NetActionType.values)
     ..aOS(
         5,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -74,15 +74,15 @@ class SitePage extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'baseParser')
-    ..e<$1.Template>(
+    ..e<$2.Template>(
         20,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'template',
         $pb.PbFieldType.OE,
-        defaultOrMaker: $1.Template.TEMPLATE_IMAGE_LIST,
-        valueOf: $1.Template.valueOf,
-        enumValues: $1.Template.values)
+        defaultOrMaker: $2.Template.TEMPLATE_IMAGE_LIST,
+        valueOf: $2.Template.valueOf,
+        enumValues: $2.Template.values)
     ..a<$core.List<$core.int>>(
         21,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -96,13 +96,13 @@ class SitePage extends $pb.GeneratedMessage {
     $core.String? name,
     $core.String? uuid,
     $core.String? url,
-    $0.NetActionType? netAction,
+    $1.NetActionType? netAction,
     $core.String? formData,
     $core.String? icon,
     SiteDisplayType? display,
     $core.String? flag,
     $core.String? baseParser,
-    $1.Template? template,
+    $2.Template? template,
     $core.List<$core.int>? templateData,
   }) {
     final _result = create();
@@ -204,9 +204,9 @@ class SitePage extends $pb.GeneratedMessage {
   void clearUrl() => clearField(3);
 
   @$pb.TagNumber(4)
-  $0.NetActionType get netAction => $_getN(3);
+  $1.NetActionType get netAction => $_getN(3);
   @$pb.TagNumber(4)
-  set netAction($0.NetActionType v) {
+  set netAction($1.NetActionType v) {
     setField(4, v);
   }
 
@@ -276,9 +276,9 @@ class SitePage extends $pb.GeneratedMessage {
   void clearBaseParser() => clearField(13);
 
   @$pb.TagNumber(20)
-  $1.Template get template => $_getN(9);
+  $2.Template get template => $_getN(9);
   @$pb.TagNumber(20)
-  set template($1.Template v) {
+  set template($2.Template v) {
     setField(20, v);
   }
 

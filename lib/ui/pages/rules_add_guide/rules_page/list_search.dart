@@ -5,12 +5,13 @@ import 'package:catweb/ui/components/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/javascript_editor/editor.dart';
+import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
 
-class ListSearchEditor extends StatelessWidget {
-  const ListSearchEditor({
+class ListFilterEditor extends StatelessWidget {
+  const ListFilterEditor({
     Key? key,
     required this.model,
   }) : super(key: key);
@@ -24,6 +25,53 @@ class ListSearchEditor extends StatelessWidget {
 
     return ListView(
       children: [
+        Container(
+          decoration: BoxDecoration(
+            color: CupertinoColors.systemBackground.resolveFrom(context),
+            border: Border.symmetric(
+                horizontal: BorderSide(
+              width: 0.4,
+              color: CupertinoColors.separator.resolveFrom(context),
+            )),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              Obx(() => CupertinoReadOnlyInput(
+                    labelText: '脚本',
+                    value: extra.script.value,
+                    onTap: () =>
+                        Get.to(() => JavaScriptEditor(script: extra.script)),
+                  )),
+              Row(
+                children: [
+                  const Text('过滤器改变后启用', style: TextStyle(fontSize: 15)),
+                  const Expanded(child: SizedBox()),
+                  Transform.scale(
+                    alignment: Alignment.centerRight,
+                    scale: 0.8,
+                    child: Obx(() => CupertinoSwitch(
+                          value: extra.disableUnchanged.value,
+                          onChanged: (value) =>
+                              extra.disableUnchanged.value = value,
+                        )),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 5),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+        const Padding(
+          padding: EdgeInsets.only(left: 20),
+          child: Text(
+            '过滤器',
+            style: TextStyle(
+              fontSize: 14,
+            ),
+          ),
+        ),
         Container(
           decoration: BoxDecoration(
             color: CupertinoColors.systemBackground.resolveFrom(context),
@@ -66,24 +114,6 @@ class ListSearchEditor extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          decoration: BoxDecoration(
-            color: CupertinoColors.systemBackground.resolveFrom(context),
-            border: Border.symmetric(
-                horizontal: BorderSide(
-              width: 0.4,
-              color: CupertinoColors.separator.resolveFrom(context),
-            )),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: Obx(() => CupertinoReadOnlyInput(
-                labelText: '脚本',
-                value: extra.script.value,
-                onTap: () =>
-                    Get.to(() => JavaScriptEditor(script: extra.script)),
-              )),
         ),
       ],
     );
@@ -130,6 +160,27 @@ class ListSearchEditor extends StatelessWidget {
                         }
                       }),
                     )),
+                Obx(() {
+                  if (field.type.value ==
+                      TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD) {
+                    return CupertinoInput(
+                      labelText: '颜色',
+                      value: field.color,
+                      prefix: Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Obx(() => Container(
+                              height: 15,
+                              width: 15,
+                              decoration: BoxDecoration(
+                                color: parseColorString(field.color.value),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            )),
+                      ),
+                    );
+                  }
+                  return const SizedBox();
+                }),
                 CupertinoInput(
                   labelText: '默认值',
                   value: field.value,
