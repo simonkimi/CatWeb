@@ -47,14 +47,10 @@ class ImageLoadModel {
   }
 
   Future<void> loadCache() async {
-    if (_state.value == ImageLoadState.cached) {
-      final db = Get.find<SettingController>().dbCacheStore;
-      final cache = await db.get(key);
-      if (cache != null) {
-        await load();
-      } else {
-        _state.value = ImageLoadState.waiting;
-      }
+    final db = Get.find<SettingController>().dbCacheStore;
+    final cache = await db.get(key);
+    if (cache != null) {
+      await load();
     }
   }
 
