@@ -24,7 +24,6 @@ class HeaderCookieInterceptor extends Interceptor {
     // Headers
     for (final regField in model.headers) {
       if (RegExp(regField.reg.value).hasMatch(uri)) {
-        print(parseHeaders(regField.value.value));
         options.headers.addAll(parseHeaders(regField.value.value));
       }
     }

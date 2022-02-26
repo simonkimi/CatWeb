@@ -32,9 +32,26 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
   final global = Get.find<GlobalController>();
 
   late final filter = extra.filterItem.map((e) => e.clone()).toList().obs;
+  late final currentFilter = filter.map((e) => e.clone()).toList();
+
+  var filterKeys = <String>{};
 
   @override
   bool isItemExist(ListRpcModel_Item item) => items.contains(item);
+
+  Future<void> onNewSearch(String keywords) async {
+    currentFilter.clear();
+    if (useFilter) {
+      currentFilter.addAll(filter.map((e) => e.clone()));
+      final map = await resolveFilter();
+      filterKeys.addAll(map.keys);
+      localEnv.mergeMap(map);
+    } else {
+      localEnv.removeKeys({'search'});
+    }
+    localEnv.mergeMap({'search': keywords});
+    await onRefresh();
+  }
 
   @override
   Future<List<ListRpcModel_Item>> loadPage(int page) async {
@@ -65,7 +82,7 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
 
   Future<Map<String, String>> resolveFilter() async {
     final map = <String, dynamic>{};
-    for (final item in filter) {
+    for (final item in currentFilter) {
       if (item.key.isNotEmpty) {
         dynamic value;
         switch (item.type.value) {
@@ -87,8 +104,13 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
     final json = jsonEncode(map);
     final result = await compute(runJs, Tuple2(extra.script.value, json));
     if (result.startsWith('{')) {
-      Map<String, dynamic> json2 = jsonDecode(result);
-      return json2.map((key, value) => MapEntry(key, value.toString()));
+      try {
+        Map<String, dynamic> json2 = jsonDecode(result);
+        return json2.map((key, value) => MapEntry(key, value.toString()));
+      } catch (e) {
+        print('解析过滤器失败: $e');
+        return {};
+      }
     } else {
       return {'filter': result};
     }
@@ -98,4 +120,7 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
 
   TemplateListDataModel get extra =>
       blueprint.templateData as TemplateListDataModel;
+
+  bool get useFilter => List.generate(extra.filterItem.length, (i) => i)
+      .any((e) => filter[e].value.value != extra.filterItem[e].value.value);
 }

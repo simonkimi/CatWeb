@@ -117,7 +117,7 @@ final ehTestSite = SiteBlueprint(
             color: const Color(0xff38d42f).rpc,
           ),
           TemplateListData_FilterItem(
-            name: '东方色情',
+            name: '亚洲色情',
             key: 'b_asianporn',
             type: TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD,
             value: 'true',

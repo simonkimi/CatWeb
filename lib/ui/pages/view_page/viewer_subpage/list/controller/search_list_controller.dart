@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class SearchListController {
+  final ValueChanged<String> onSearch;
   final FocusNode focusNode = FocusNode();
   final Handler handler = Handler();
 
@@ -22,16 +23,21 @@ class SearchListController {
   String get splitChar =>
       extra.splitChar.value.isEmpty ? ' ' : extra.splitChar.value;
 
-  SearchListController(TemplateListDataModel model) {
+  SearchListController({
+    required TemplateListDataModel model,
+    required this.onSearch,
+  }) {
     blueprint = website.configModel.getPage(model.targetAutoComplete.value);
 
     if (blueprint != null) {
       textController.addListener(() {
-        handler.post(extra.timeout.value == 0 ? 1 : extra.timeout.value, () {
-          if (focusNode.hasFocus && textController.text.isNotEmpty) {
-            requestAutoComplete(textController.text);
-          }
-        });
+        if (textController.selection.baseOffset == textController.text.length) {
+          handler.post(extra.timeout.value == 0 ? 1 : extra.timeout.value, () {
+            if (focusNode.hasFocus && textController.text.isNotEmpty) {
+              requestAutoComplete(textController.text);
+            }
+          });
+        }
       });
     }
   }
@@ -41,8 +47,9 @@ class SearchListController {
   }
 
   void onSubmitted(String value) {
-    print('submit $value');
     handler.cancel();
+    onSearch(value);
+    print('新搜索: $value');
   }
 
   void requestAutoComplete(String value) {

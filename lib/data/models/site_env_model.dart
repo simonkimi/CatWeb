@@ -46,9 +46,6 @@ class SiteEnvModel implements EnvMargeAble {
   }
 
   String replace(String input) {
-    for (final entity in _env.entries) {
-      input = input.replaceAll('{${entity.key}}', entity.value);
-    }
     final exp = RegExp(r'\$\{(?<var>\w+):(?<context>[^:]*):?(?<default>.*)\}');
     final matches = exp.allMatches(input);
     for (final match in matches) {
@@ -61,7 +58,14 @@ class SiteEnvModel implements EnvMargeAble {
         input = input.replaceAll(match.group(0)!, defaultValue ?? '');
       }
     }
+    for (final entity in _env.entries) {
+      input = input.replaceAll('{${entity.key}}', entity.value);
+    }
     return input;
+  }
+
+  void removeKeys(Iterable<String> keys) {
+    _env.removeWhere((key, value) => keys.contains(key));
   }
 
   void set(String key, String value) => _env[key] = value;

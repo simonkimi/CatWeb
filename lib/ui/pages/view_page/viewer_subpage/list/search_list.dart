@@ -39,8 +39,12 @@ class _SearchListState extends State<SearchList> {
   @override
   void initState() {
     super.initState();
-    inputController = SearchListController(extra);
+    inputController = SearchListController(model: extra, onSearch: onSearch);
     controller = SubListController(blueprint: widget.blueprint);
+  }
+
+  void onSearch(String value) {
+    controller.onNewSearch(value);
   }
 
   @override
@@ -139,7 +143,7 @@ class _SearchListState extends State<SearchList> {
                   scale: animation,
                   child: child,
                 ),
-                child: useFilter
+                child: controller.useFilter
                     ? const Icon(Icons.filter_alt, key: ValueKey('enable'))
                     : const Icon(Icons.filter_alt_outlined,
                         key: ValueKey('disable')),
@@ -187,10 +191,6 @@ class _SearchListState extends State<SearchList> {
       ),
     );
   }
-
-  bool get useFilter =>
-      List.generate(extra.filterItem.length, (i) => i).any((e) =>
-          controller.filter[e].value.value != extra.filterItem[e].value.value);
 
   void _showFilterDialog(BuildContext context) {
     showCupertinoDialog(
