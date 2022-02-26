@@ -1,3 +1,4 @@
+import 'package:catweb/data/constant.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -186,7 +187,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
       bottom: 1,
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
-        height: 40,
+        height: kSuggestInputHeight,
         child: ColoredBox(
           color: CupertinoColors.systemGrey6.resolveFrom(context),
           child: ListView(

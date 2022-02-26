@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:catweb/ui/pages/javascript_editor/editor.dart';
@@ -39,7 +40,7 @@ class StickyClassifyList extends StatelessWidget {
       header: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5),
         child: Container(
-          height: 40,
+          height: kSuggestInputHeight,
           decoration: BoxDecoration(
             color: isDarkMode(context) ? Colors.blue[800] : Colors.blue[100],
             borderRadius: BorderRadius.circular(5),

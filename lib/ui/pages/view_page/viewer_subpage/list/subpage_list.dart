@@ -18,11 +18,13 @@ class SubPageListFragment extends StatefulWidget {
     required this.controller,
     required this.hasTabBar,
     required this.hasToolBar,
+    this.tabBarHeight,
   }) : super(key: key);
 
   final SubListController controller;
   final bool hasTabBar;
   final bool hasToolBar;
+  final double? tabBarHeight;
 
   @override
   _SubPageListFragmentState createState() => _SubPageListFragmentState();
@@ -55,7 +57,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
               slivers: [
                 SliverPullToRefresh(
                   onRefresh: () => controller.onRefresh(),
-                  extraHeight: widget.hasTabBar ? kCupertinoTabBarHeight : 0,
+                  extraHeight: widget.hasTabBar ? widget.tabBarHeight ?? kCupertinoTabBarHeight : 0,
                 ),
                 _buildBody(context),
               ],

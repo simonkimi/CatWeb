@@ -39,7 +39,7 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
   @override
   bool isItemExist(ListRpcModel_Item item) => items.contains(item);
 
-  Future<void> onNewSearch(String keywords) async {
+  Future<void> applyFilter([bool refresh = false]) async {
     currentFilter.clear();
     if (useFilter) {
       currentFilter.addAll(filter.map((e) => e.clone()));
@@ -47,9 +47,16 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
       filterKeys.addAll(map.keys);
       localEnv.mergeMap(map);
     } else {
-      localEnv.removeKeys({'search'});
+      localEnv.removeKeys(filterKeys);
     }
-    localEnv.mergeMap({'search': keywords});
+    if (refresh) {
+      await onRefresh();
+    }
+  }
+
+  Future<void> onNewSearch(String keywords) async {
+    await applyFilter();
+    localEnv.mergeMap({'search': keywords.trim()});
     await onRefresh();
   }
 

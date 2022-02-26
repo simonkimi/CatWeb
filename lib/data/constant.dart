@@ -5,6 +5,7 @@ const kLightGrey = Color(0xfff2f3f5);
 const kBottomBarHeight = 50.0;
 const kCupertinoNavigatorBar = 44.0;
 const kCupertinoTabBarHeight = 30.0;
+const kSuggestInputHeight = 40.0;
 
 const kDefaultNavBarBorder = Border(
   bottom: BorderSide(

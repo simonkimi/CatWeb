@@ -12,9 +12,11 @@ class CupertinoBackLeading extends StatelessWidget {
   const CupertinoBackLeading({
     Key? key,
     this.title,
+    this.onPressed,
   }) : super(key: key);
 
   final String? title;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class CupertinoBackLeading extends StatelessWidget {
       padding: EdgeInsets.zero,
       minSize: 0,
       child: const Icon(CupertinoIcons.back),
-      onPressed: () => Navigator.of(context).pop(),
+      onPressed: onPressed ?? () => Navigator.of(context).pop(),
     );
   }
 }

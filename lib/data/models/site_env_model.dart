@@ -46,7 +46,7 @@ class SiteEnvModel implements EnvMargeAble {
   }
 
   String replace(String input) {
-    final exp = RegExp(r'\$\{(?<var>\w+):(?<context>[^:^$]*)(?:\:(?<defalut>[^\$]+))?\}');
+    final exp = RegExp(r'\$\{(?<var>\w+):(?<context>[^:^$]*)(?:\:(?<default>[^\$]+))?\}');
     final matches = exp.allMatches(input);
     for (final match in matches) {
       final varName = match.namedGroup('var')!;
