@@ -34,7 +34,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
     with AutomaticKeepAliveClientMixin {
   late final controller = widget.controller;
 
-  late final concurrency = ImageConcurrency(
+  late final concurrency = ImageListConcurrency(
     dio: widget.controller.global.client!.imageDio,
     concurrency: 2,
   );
@@ -57,7 +57,9 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
               slivers: [
                 SliverPullToRefresh(
                   onRefresh: () => controller.onRefresh(),
-                  extraHeight: widget.hasTabBar ? widget.tabBarHeight ?? kCupertinoTabBarHeight : 0,
+                  extraHeight: widget.hasTabBar
+                      ? widget.tabBarHeight ?? kCupertinoTabBarHeight
+                      : 0,
                 ),
                 _buildBody(context),
               ],

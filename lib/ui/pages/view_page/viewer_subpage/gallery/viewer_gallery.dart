@@ -245,7 +245,7 @@ class ViewerGalleryFragment extends StatelessWidget {
         ),
         child: DarkWidget(
           child: ImageLoader(
-            concurrency: ImageConcurrency(
+            concurrency: ImageListConcurrency(
               dio: c.global.website.client.imageDio,
             ),
             model: (c.baseData?.image ?? c.detailModel?.coverImg)!,

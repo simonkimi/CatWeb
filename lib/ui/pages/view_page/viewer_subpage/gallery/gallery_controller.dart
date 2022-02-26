@@ -47,7 +47,7 @@ class GalleryPreviewController extends LoadMoreModel<ImageRpcModel> {
   GalleryBaseData? baseData;
 
   final global = Get.find<GlobalController>();
-  late final ImageConcurrency concurrency = ImageConcurrency(
+  late final ImageListConcurrency concurrency = ImageListConcurrency(
     dio: global.website.client.imageDio,
   );
 
