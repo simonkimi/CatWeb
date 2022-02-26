@@ -95,6 +95,7 @@ class ImageLoadModel {
     if (_handleWidget.value == 0) {
       if (_state.value == ImageLoadState.finish) {
         _state.value = ImageLoadState.cached;
+        _data = null;
       } else {
         _state.value = ImageLoadState.waiting;
       }
@@ -117,24 +118,19 @@ class ImageConcurrency {
   final int concurrency;
 
   final _globalCancelToken = CancelToken();
-  final _loadCompleteImages = <String, ImageLoadModel>{};
-  final _waitLoadImages = <String, ImageLoadModel>{};
-  final _loadingImages = <String, ImageLoadModel>{};
+
+  final _imageMap = <String, ImageLoadModel>{};
 
   List<ImageLoadModel> get activeImage =>
-      _waitLoadImages.values.where((e) => e.needLoad).toList();
+      _imageMap.values.where((e) => e.needLoad).toList();
 
   ImageLoadModel create(ImageRpcModel model) {
     late ImageLoadModel exist;
-    if (_loadCompleteImages.containsKey(model.key)) {
-      exist = _loadCompleteImages[model.key]!..handle();
-    } else if (_waitLoadImages.containsKey(model.key)) {
-      exist = _waitLoadImages[model.key]!..handle();
-    } else if (_loadingImages.containsKey(model.key)) {
-      exist = _loadingImages[model.key]!..handle();
+    if (_imageMap.containsKey(model.key)) {
+      exist = _imageMap[model.key]!..handle();
     } else {
       exist = ImageLoadModel(model: model, dio: dio);
-      _waitLoadImages[model.key] = exist;
+      _imageMap[model.key] = exist;
     }
 
     _trigger();
@@ -143,11 +139,6 @@ class ImageConcurrency {
   }
 
   void reload(ImageLoadModel model) {
-    _loadCompleteImages.remove(model.key);
-    _loadingImages.remove(model.key);
-    if (!_waitLoadImages.containsKey(model.key)) {
-      _waitLoadImages[model.key] = model;
-    }
     model.reset();
     _trigger();
   }
@@ -157,17 +148,10 @@ class ImageConcurrency {
   }
 
   void _trigger() {
-    while ((_loadingImages.length < concurrency || concurrency == 0) &&
+    while ((activeImage.length < concurrency || concurrency == 0) &&
         activeImage.isNotEmpty) {
       final item = activeImage[0];
-      _waitLoadImages.remove(item.key);
-      _loadingImages[item.key] = item;
       item.load().then((value) {
-        _loadCompleteImages[item.key] = item;
-      }).catchError((err) {
-        _waitLoadImages[item.key] = item;
-      }).then((value) {
-        _loadingImages.remove(item.key);
         _trigger();
       });
     }
