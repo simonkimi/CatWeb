@@ -136,7 +136,7 @@ class SiteBlueprintModel implements PbAble {
     return result;
   }
 
-  ImageReaderParserModel? getImageParser(String uuid) {
+  ImageReaderParserModel getImageParser(String uuid) {
     final result = imageParsers.get((e) => e.uuid == uuid);
     if (result == null) throw Exception('Parser $uuid not exist');
     return result;

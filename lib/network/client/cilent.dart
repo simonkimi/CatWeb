@@ -98,6 +98,29 @@ class NetClient {
     return result;
   }
 
+  Future<ImageReaderRpcModel> getReadImage({
+    required String url,
+    required PageBlueprintModel model,
+    required SiteEnvModel localEnv,
+  }) async {
+    final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
+    if (rsp.data == null) {
+      throw Exception('data is null');
+    }
+
+    final buffer = await ParserFFi(
+      parser: configModel.getImageParser(model.baseParser.value).toPb(),
+      source: rsp.data!,
+      env: Get.find<GlobalController>().website.globalEnv,
+      type: RpcType.RPC_TYPE_IMAGE_PARSER,
+    ).send();
+
+    final result = ImageReaderRpcModel.fromBuffer(buffer);
+    localEnv.mergeMap(result.localEnv);
+    Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
+    return result;
+  }
+
   Future<AutoCompleteRpcModel> getAutoComplete({
     required String url,
     required PageBlueprintModel model,
@@ -125,9 +148,10 @@ class NetClient {
 Dio _buildDio(SiteBlueprintModel model, [bool isImage = false]) {
   final dio = Dio();
 
-  dio.options.connectTimeout = 60 * 1000;
-  dio.options.receiveTimeout = 60 * 1000;
-  dio.options.sendTimeout = 60 * 1000;
+  dio.options
+    ..connectTimeout = 60 * 1000
+    ..receiveTimeout = 60 * 1000
+    ..sendTimeout = 60 * 1000;
 
   if (model.baseUrl.value.isNotEmpty) {
     dio.options.baseUrl = model.baseUrl.value;
@@ -135,18 +159,15 @@ Dio _buildDio(SiteBlueprintModel model, [bool isImage = false]) {
 
   dio.interceptors.add(HeaderCookieInterceptor(model));
   dio.transformer = EncodeTransformer();
+  final setting = Get.find<SettingController>();
   if (!isImage) {
-    dio.interceptors.add(HttpFormatter(
-      includeResponseBody: false,
-    ));
-    dio.interceptors.add(
-      DioCacheInterceptor(options: Get.find<SettingController>().cacheOptions),
-    );
+    dio.interceptors.addAll([
+      HttpFormatter(includeResponseBody: false),
+      DioCacheInterceptor(options: setting.cacheOptions),
+    ]);
   } else {
     dio.interceptors.add(
-      DioCacheInterceptor(
-        options: Get.find<SettingController>().imageCacheOption,
-      ),
+      DioCacheInterceptor(options: setting.imageCacheOption),
     );
   }
 
