@@ -13,158 +13,178 @@ enum LoadMoreState {
   loadError, // 加载更多出错
 }
 
-abstract class LoadMoreModel<T> {
-  LoadMoreModel() {
-    _stateListener = _rxState.listen((state) {
-      print('Loading State: $state');
-      switch (state) {
-        case LoadMoreState.idle:
-          refreshController.loadComplete();
-          break;
-        case LoadMoreState.noMoreData:
-          refreshController.loadNoData();
-          break;
-        case LoadMoreState.loadError:
-          refreshController.loadFailed();
-          break;
-        case LoadMoreState.refreshing:
-        case LoadMoreState.loading:
-          break;
-      }
-    });
-  }
-
-  late final StreamSubscription<LoadMoreState> _stateListener;
-
-  final _lock = Lock();
+mixin LoadMoreMixin {
+  final _requestLock = Lock();
 
   final refreshController = RefreshController();
 
-  final RxList<T> _items = <T>[].obs;
+  final Rx<LoadMoreState> _state = LoadMoreState.idle.obs;
 
-  RxList<T> get items => _items;
-
-  final RxInt _page = 0.obs;
-
-  RxInt get page => _page;
-
-  final RxInt _pageTail = 0.obs;
-
-  RxInt get pageTail => _pageTail;
-
-  final Rx<Exception?> _lastException = Rx(null);
-
-  final Rx<LoadMoreState> _rxState = LoadMoreState.idle.obs;
-
-  LoadMoreState get state => _rxState.value;
+  final Rx<Exception?> _exception = null.obs;
 
   bool get isLoading =>
-      state == LoadMoreState.loading || state == LoadMoreState.refreshing;
+      _state.value == LoadMoreState.loading ||
+      _state.value == LoadMoreState.refreshing;
 
   bool get canLoadMore =>
-      state == LoadMoreState.idle || state == LoadMoreState.loadError;
+      _state.value == LoadMoreState.idle ||
+      _state.value == LoadMoreState.loadError;
 
-  bool get isFullScreenLoading => items.isEmpty && isLoading;
+  LoadMoreState get state => _state.value;
 
-  bool get isFullScreenError => items.isEmpty && _lastException.value != null;
+  Future<void> awaitLock() => _requestLock.synchronized(() {});
+
+  void loadStart() {
+    _state.value = LoadMoreState.loading;
+    _exception.value = null;
+  }
+
+  void loadComplete() {
+    _state.value = LoadMoreState.idle;
+    refreshController.loadComplete();
+    refreshController.refreshCompleted();
+  }
+
+  void loadNoData() {
+    _state.value = LoadMoreState.noMoreData;
+    refreshController.loadNoData();
+  }
+
+  void loadError(Exception e) {
+    if (e is DioError && CancelToken.isCancel(e)) {
+      return;
+    }
+    _state.value = LoadMoreState.loadError;
+    _exception.value = e;
+    refreshController.loadFailed();
+  }
+
+  void loadRefresh() {
+    _state.value = LoadMoreState.refreshing;
+    _exception.value = null;
+  }
 
   String? get errorMessage {
-    if (_lastException.value == null) return null;
+    if (_exception.value == null) return null;
 
-    if (_lastException.value is DioError) {
-      return (_lastException.value as DioError).message;
+    if (_exception.value is DioError) {
+      return (_exception.value as DioError).message;
     }
 
-    return _lastException.value.toString();
+    return _exception.value.toString();
   }
+}
+
+abstract class LoadMoreList<T> with LoadMoreMixin {
+  final RxList<T> items = <T>[].obs;
+
+  final RxInt _page = 0.obs; // 加载更多是从page=0开始的
 
   Future<List<T>> loadPage(int page);
 
   bool isItemExist(T item);
 
-  bool get isRefresh => _pageTail.value < 1;
-
-  Future<void> requestFirstLoad() async {
-    if (state == LoadMoreState.idle &&
-        _lastException.value == null &&
-        items.isEmpty) {
-      await onRefresh();
+  Future<void> onLoadMore() async {
+    if (_requestLock.locked) return awaitLock();
+    try {
+      await _requestLock.synchronized(() async {
+        loadStart();
+        final page = _page.value + 1;
+        final loadItems = await loadPage(page);
+        if (loadItems.isEmpty) {
+          loadNoData();
+        } else {
+          _page.value = page;
+          items.addAll(loadItems.where((e) => !isItemExist(e)));
+          loadComplete();
+        }
+      });
+    } on Exception catch (e) {
+      loadError(e);
     }
   }
 
   Future<void> onRefresh() async {
-    if (!isLoading) {
-      if (isRefresh) {
-        _page.value = 0;
-        _items.clear();
-        _rxState.value = LoadMoreState.refreshing;
-        await _loadNextPage();
-      } else {
-        await _loadPreviousPage();
-      }
-    }
-  }
-
-  Future<void> onLoadMore() async {
-    if (canLoadMore) {
-      _rxState.value = LoadMoreState.loading;
-      await _loadNextPage();
-    } else {
-      refreshController.loadComplete();
-    }
-  }
-
-  Future<void> _loadNextPage() async {
-    try {
-      await _lock.synchronized(() async {
-        _lastException.value = null;
-        final page = _page.value + 1;
-        final loadItems = await loadPage(page);
-        final items = loadItems.where((e) => !isItemExist(e));
-        if (items.isEmpty) {
-          _rxState.value = LoadMoreState.noMoreData;
-        } else {
-          _page.value = page;
-          _items.addAll(items);
-          _rxState.value = LoadMoreState.idle;
-        }
-      });
-    } on DioError catch (e) {
-      if (CancelToken.isCancel(e)) return;
-      _lastException.value = e;
-      _rxState.value = LoadMoreState.loadError;
-    } on Exception catch (e) {
-      _lastException.value = e;
-      _rxState.value = LoadMoreState.loadError;
-    }
-  }
-
-  Future<void> _loadPreviousPage() async {
-    try {
-      _lastException.value = null;
-      await _lock.synchronized(() async {
-        _rxState.value = LoadMoreState.refreshing;
-        final page = _pageTail.value - 1;
-        final items =
-            (await loadPage(page)).where((e) => isItemExist(e) == false);
-        if (items.isNotEmpty) {
-          _page.value = page;
-          _items.insertAll(0, items);
-        }
-        _rxState.value = LoadMoreState.idle;
-      });
-    } on DioError catch (e) {
-      if (CancelToken.isCancel(e)) return;
-      _rxState.value = LoadMoreState.loadError;
-      _lastException.value = e;
-    } on Exception catch (e) {
-      _rxState.value = LoadMoreState.loadError;
-      _lastException.value = e;
-      rethrow;
-    }
+    if (_requestLock.locked) return awaitLock();
+    items.clear();
+    _page.value = 0;
+    loadRefresh();
+    await onLoadMore();
   }
 
   void dispose() {
-    _stateListener.cancel();
+    refreshController.dispose();
+  }
+
+  void requestFirstLoad() {
+    if (items.isEmpty && state == LoadMoreState.idle) {
+      onRefresh();
+    }
+  }
+}
+
+abstract class LoadMoreMap<T> with LoadMoreMixin {
+  final RxMap<int, T?> _map = <int, T?>{}.obs;
+
+  int length() => _map.entries.fold(
+      0,
+      (previousValue, element) =>
+          element.value != null && element.key > previousValue
+              ? element.key
+              : previousValue);
+
+  Iterable<T?> get items => _map.values;
+
+  int? get chunkSize; // 每块图片数量, 如果为null则不允许跳页
+
+  int? get totalSize; // 一共有多少图片, 为null则不允许跳页
+
+  final RxInt _page = 0.obs; // 初始加载页面记录
+
+  Future<List<T>> loadPage(int page);
+
+  Future<void> onLoadMore() async {
+    if (_requestLock.locked) return awaitLock();
+    try {
+      await _requestLock.synchronized(() async {
+        loadStart();
+        final loadItems = await loadPage(_page.value + 1);
+        if (loadItems.isEmpty) {
+          loadNoData();
+        } else {
+          _page.value += 1;
+          final _mapLength = length();
+          for (var i = 0; i < loadItems.length; i++) {
+            _map[_mapLength + i] = loadItems[i];
+          }
+          if (chunkSize != null && chunkSize != loadItems.length) {
+            loadNoData();
+          } else {
+            loadComplete();
+          }
+        }
+      });
+    } on Exception catch (e) {
+      loadError(e);
+    }
+  }
+
+  Future<void> onJumpPage(int page) async {
+    assert(chunkSize != null);
+    assert(totalSize != null);
+    try {
+      await _requestLock.synchronized(() async {
+        loadStart();
+        final loadItems = await loadPage(page);
+        _page.value = page;
+        final baseIndex = page * chunkSize!;
+        for (var i = 0; i < loadItems.length; i++) {
+          _map[baseIndex + i] = loadItems[i];
+        }
+        loadComplete();
+      });
+    } on Exception catch (e) {
+      loadError(e);
+    }
   }
 }

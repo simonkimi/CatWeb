@@ -13,7 +13,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
 
-class SubListController extends LoadMoreModel<ListRpcModel_Item> {
+class SubListController extends LoadMoreList<ListRpcModel_Item> {
   SubListController({
     required this.blueprint,
     this.subPageModel,
@@ -37,7 +37,9 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
   var filterKeys = <String>{};
 
   @override
-  bool isItemExist(ListRpcModel_Item item) => items.contains(item);
+  bool isItemExist(ListRpcModel_Item item) => items.any((element) =>
+      element.title == item.title &&
+      item.previewImg.target == item.previewImg.target);
 
   Future<void> applyFilter([bool refresh = false]) async {
     currentFilter.clear();
@@ -130,4 +132,8 @@ class SubListController extends LoadMoreModel<ListRpcModel_Item> {
 
   bool get useFilter => List.generate(extra.filterItem.length, (i) => i)
       .any((e) => filter[e].value.value != extra.filterItem[e].value.value);
+
+  bool get isFullScreenLoading => items.isEmpty && isLoading;
+
+  bool get isFullScreenError => items.isEmpty && errorMessage != null;
 }

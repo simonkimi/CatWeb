@@ -27,7 +27,7 @@ class GalleryBaseData {
   });
 }
 
-class GalleryPreviewController extends LoadMoreModel<ImageRpcModel> {
+class GalleryPreviewController extends LoadMoreList<ImageRpcModel> {
   GalleryPreviewController({
     required this.target,
     SiteEnvModel? outerEnv,
