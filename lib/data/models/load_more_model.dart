@@ -20,7 +20,7 @@ mixin LoadMoreMixin {
 
   final Rx<LoadMoreState> _state = LoadMoreState.idle.obs;
 
-  final Rx<Exception?> _exception = null.obs;
+  final Rx<Exception?> _exception = Rx<Exception?>(null);
 
   bool get isLoading =>
       _state.value == LoadMoreState.loading ||
@@ -124,16 +124,19 @@ abstract class LoadMoreList<T> with LoadMoreMixin {
 }
 
 abstract class LoadMoreMap<T> with LoadMoreMixin {
-  final RxMap<int, T?> _map = <int, T?>{}.obs;
+  final RxMap<int, T?> map = <int, T?>{}.obs;
 
-  int length() => _map.entries.fold(
+  int length() => map.entries.fold(
       0,
       (previousValue, element) =>
-          element.value != null && element.key > previousValue
-              ? element.key
+          element.value != null && (element.key + 1) > (previousValue + 1)
+              ? (element.key + 1)
               : previousValue);
 
-  Iterable<T?> get items => _map.values;
+  List<T> get getCoiledItems => map.entries
+      .takeWhile((value) => value.value != null)
+      .map((e) => e.value!)
+      .toList();
 
   int? get chunkSize; // 每块图片数量, 如果为null则不允许跳页
 
@@ -155,7 +158,7 @@ abstract class LoadMoreMap<T> with LoadMoreMixin {
           _page.value += 1;
           final _mapLength = length();
           for (var i = 0; i < loadItems.length; i++) {
-            _map[_mapLength + i] = loadItems[i];
+            map[_mapLength + i] = loadItems[i];
           }
           if (chunkSize != null && chunkSize != loadItems.length) {
             loadNoData();
@@ -169,6 +172,8 @@ abstract class LoadMoreMap<T> with LoadMoreMixin {
     }
   }
 
+  bool isItemExist(T item);
+
   Future<void> onJumpPage(int page) async {
     assert(chunkSize != null);
     assert(totalSize != null);
@@ -179,12 +184,20 @@ abstract class LoadMoreMap<T> with LoadMoreMixin {
         _page.value = page;
         final baseIndex = page * chunkSize!;
         for (var i = 0; i < loadItems.length; i++) {
-          _map[baseIndex + i] = loadItems[i];
+          map[baseIndex + i] = loadItems[i];
         }
         loadComplete();
       });
     } on Exception catch (e) {
       loadError(e);
     }
+  }
+
+  Future<void> onRefresh() async {
+    if (_requestLock.locked) return awaitLock();
+    map.clear();
+    _page.value = 0;
+    loadRefresh();
+    await onLoadMore();
   }
 }

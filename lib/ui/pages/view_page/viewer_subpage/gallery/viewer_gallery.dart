@@ -89,7 +89,7 @@ class ViewerGalleryFragment extends StatelessWidget {
           height: 150,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: min(c.items.length, 40),
+            itemCount: min(c.getCoiledItems.length, 40),
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(right: 5),
@@ -100,7 +100,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                     child: DarkWidget(
                       child: ImageLoader(
                         concurrency: c.concurrency,
-                        model: c.items[index],
+                        model: c.getCoiledItems[index],
                       ),
                     ),
                   ),

@@ -3,6 +3,7 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
+import 'package:catweb/ui/components/load_more_footer.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/subpage_controller.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/viewer_subpage_scaffold.dart';
@@ -51,7 +52,9 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
             enablePullDown: false,
             enablePullUp: true,
             onLoading: () => controller.onLoadMore(),
-            footer: _buildIndicator(context),
+            footer: LoadMoreFooter(
+              hasToolBar: widget.hasToolBar,
+            ),
             child: CustomScrollView(
               cacheExtent: 300,
               slivers: [
@@ -110,60 +113,6 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
         ),
       );
     });
-  }
-
-  Widget _buildIndicator(BuildContext context) {
-    return CustomFooter(
-      height: 50 + (widget.hasToolBar ? kBottomBarHeight : 0),
-      builder: (BuildContext context, LoadStatus? state) {
-        switch (state) {
-          case null:
-          case LoadStatus.canLoading:
-          case LoadStatus.idle:
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  CupertinoIcons.arrow_down,
-                  size: 18,
-                  color: CupertinoColors.label.resolveFrom(context),
-                ),
-                const SizedBox(width: 10),
-                const Text('不要停下来啊!', style: TextStyle(fontSize: 15)),
-              ],
-            );
-          case LoadStatus.loading:
-            return SizedBox(
-              height: kBottomBarHeight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  CupertinoActivityIndicator(),
-                  SizedBox(width: 10),
-                  Text('努力加载中...', style: TextStyle(fontSize: 15)),
-                ],
-              ),
-            );
-          case LoadStatus.noMore:
-            return const SizedBox(
-              height: kBottomBarHeight,
-              child: Center(
-                child: Text('真的一点也没有了...', style: TextStyle(fontSize: 15)),
-              ),
-            );
-          case LoadStatus.failed:
-            return SizedBox(
-              height: kBottomBarHeight,
-              child: Center(
-                child: Text(controller.errorMessage ?? '',
-                    style: const TextStyle(fontSize: 15)),
-              ),
-            );
-        }
-      },
-    );
   }
 
   @override

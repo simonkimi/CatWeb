@@ -5,6 +5,7 @@ import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/utils/replace_utils.dart';
+import 'package:catweb/data/protocol/model/model.dart';
 import 'package:get/get.dart';
 
 class GalleryBaseData {
@@ -27,7 +28,7 @@ class GalleryBaseData {
   });
 }
 
-class GalleryPreviewController extends LoadMoreList<ImageRpcModel> {
+class GalleryPreviewController extends LoadMoreMap<ImageRpcModel> {
   GalleryPreviewController({
     required this.target,
     SiteEnvModel? outerEnv,
@@ -92,4 +93,10 @@ class GalleryPreviewController extends LoadMoreList<ImageRpcModel> {
 
   bool get fillRemaining =>
       state == LoadMoreState.loading || errorMessage != null;
+
+  @override
+  int? get chunkSize => detailModel?.getCountPrePage();
+
+  @override
+  int? get totalSize => detailModel?.getImageCount();
 }

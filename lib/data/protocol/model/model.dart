@@ -11,11 +11,17 @@ extension GetDetail on GalleryRpcModel {
 
   String? getLanguage() => hasLanguage() ? language : null;
 
-  int? getImageCount() => hasImageCount() ? imageCount : null;
+  int? getImageCount() =>
+      hasImageCount() && !imageCount.isNaN && imageCount != 0
+          ? imageCount
+          : null;
 
   String? getUploadTime() => hasUploadTime() ? uploadTime : null;
 
-  int? getCountPrePage() => hasCountPrePage() ? countPrePage : null;
+  int? getCountPrePage() =>
+      hasCountPrePage() && !countPrePage.isNaN && countPrePage != 0
+          ? countPrePage
+          : null;
 
   String? getDescription() => hasDescription() ? description : null;
 
