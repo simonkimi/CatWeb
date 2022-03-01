@@ -1,7 +1,9 @@
-import 'dart:io';
-
-import 'package:catweb/test/site/eh/eh_rules.dart';
+import 'dart:async';
 
 void main() async {
-  File('test/eh.catweb').writeAsBytesSync(ehTestSite.writeToBuffer());
+  final stream = StreamController<List<int>>.broadcast();
+
+  stream.add([1, 2, 3, 4, 5]);
+
+  print(stream.stream.first);
 }

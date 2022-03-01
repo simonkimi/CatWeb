@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
@@ -53,7 +51,7 @@ class ImageContainer {
 abstract class ReaderInfo<T> {
   String getIdCode(T);
 
-  RxList<T> get fromList;
+  RxList<T?> get galleryList;
 
   int? get pageCount; // 总面数
 }
@@ -64,18 +62,8 @@ class ImageController<T> {
     required this.localEnv,
     required this.blueprint,
   }) {
-    // imageIdCode.value =
-    //     readerInfo.fromList.map((e) => readerInfo.getIdCode(e)).toList();
-    // readerInfo.fromList.listen((List<T> list) {
-    //   imageIdCode.value = list.map((e) => readerInfo.getIdCode(e)).toList();
-    //   for (final item in imageIdCode) {
-    //     imageContainerMap[item] ??= ImageContainer(
-    //       idCode: item,
-    //       blueprint: blueprint,
-    //       localEnv: localEnv,
-    //     );
-    //   }
-    // });
+    _updateIdCode(readerInfo.galleryList);
+    readerInfo.galleryList.listen(_updateIdCode);
   }
 
   final ReaderInfo<T> readerInfo;
@@ -85,7 +73,7 @@ class ImageController<T> {
   final SiteEnvModel localEnv;
 
   // 从上级菜单传过来的列表, 其中包含了idCode
-  final RxList<String?> imageIdCode = <String?>[].obs;
+  final RxMap<int, String?> imageIdCode = <int, String?>{}.obs;
 
   // 图片所在的html获取结果, 相同String共享一个ImageContainer
   final imageContainerMap = <String, ImageContainer>{};
@@ -93,10 +81,9 @@ class ImageController<T> {
   // 图片储存数据, 相同的url公用一个ImageLoadModel
   final imageMap = <String, ImageLoadModel>{};
 
-  void _updateIdCode(List<T> items) {
-    imageIdCode.length = max(imageIdCode.length, items.length);
+  void _updateIdCode(List<T?> items) {
     for (var i = 0; i < items.length; i++) {
-      if (imageIdCode[i] == null) {
+      if (imageIdCode[i] == null && items[i] != null) {
         imageIdCode[i] = readerInfo.getIdCode(items[i]);
       }
     }
