@@ -79,6 +79,8 @@ message GalleryRpcModel {
   repeated TagRpcModel badges = 21;
   repeated Comment comments = 22;
 
+  string next_page = 23;
+
   map<string, string> localEnv = 30;
   map<string, string> globalEnv = 31;
 }

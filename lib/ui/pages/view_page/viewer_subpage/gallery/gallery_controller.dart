@@ -7,6 +7,7 @@ import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 import 'package:get/get.dart';
+import 'package:tuple/tuple.dart';
 
 class GalleryBaseData {
   final String? title;
@@ -28,7 +29,8 @@ class GalleryBaseData {
   });
 }
 
-class GalleryPreviewController extends LoadMoreMap<ImageRpcModel> {
+class GalleryPreviewController
+    extends LoadMoreMap<GalleryRpcModel, ImageRpcModel> {
   GalleryPreviewController({
     required this.target,
     SiteEnvModel? outerEnv,
@@ -63,9 +65,20 @@ class GalleryPreviewController extends LoadMoreMap<ImageRpcModel> {
   }
 
   @override
-  Future<List<ImageRpcModel>> loadPage(int page) async {
+  Future<Tuple2<GalleryRpcModel, List<ImageRpcModel>>> loadPage(
+      int page) async {
     var baseUrl = target.url.value;
-    baseUrl = localEnv.replace(pageReplace(baseUrl, page));
+    if (hasPageExpression(baseUrl) || page == 0) {
+      // 有面数
+      baseUrl = pageReplace(baseUrl, page);
+    } else {
+      if (pages.isNotEmpty) {
+        final preUrl = pages[page - 1]?.nextPage;
+        if (preUrl == null) throw Exception('看起来莫名其妙跳页了: index $page}');
+        baseUrl = preUrl;
+      }
+    }
+    baseUrl = localEnv.replace(baseUrl);
 
     final detail = await global.website.client.getGallery(
       url: baseUrl,
@@ -74,7 +87,12 @@ class GalleryPreviewController extends LoadMoreMap<ImageRpcModel> {
     );
     _detailModel.value = detail;
 
-    return detail.previewImg;
+    if (!hasPageExpression(baseUrl) &&
+        (detail.nextPage == baseUrl || detail.nextPage.isEmpty)) {
+      loadNoData();
+    }
+
+    return Tuple2(detail, detail.previewImg);
   }
 
   static GalleryBaseData? fromModel(Object? model) {
@@ -99,4 +117,7 @@ class GalleryPreviewController extends LoadMoreMap<ImageRpcModel> {
 
   @override
   int? get totalSize => detailModel?.getImageCount();
+
+  @override
+  String get baseUrl => target.url.value;
 }

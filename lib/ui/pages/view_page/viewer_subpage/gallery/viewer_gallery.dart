@@ -13,6 +13,7 @@ import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/gallery/viewer_gallery_images.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/theme/themes.dart';
+import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 
@@ -89,7 +90,7 @@ class ViewerGalleryFragment extends StatelessWidget {
           height: 150,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: min(c.getCoiledItems.length, 40),
+            itemCount: min(c.items.coiledList.length, 40),
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(right: 5),
@@ -100,7 +101,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                     child: DarkWidget(
                       child: ImageLoader(
                         concurrency: c.concurrency,
-                        model: c.getCoiledItems[index],
+                        model: c.items.coiledList[index],
                       ),
                     ),
                   ),

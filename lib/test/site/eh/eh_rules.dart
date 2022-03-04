@@ -57,7 +57,8 @@ final ehTestSite = SiteBlueprint(
     ),
     SitePage(
       name: '主页',
-      url: r'?page={page:0}${search:&f_search={search}}${filter:&{filter}}',
+      // url: r'?page={page:0}${search:&f_search={search}}${filter:&{filter}}',
+      url: r'?${search:f_search={search}}${filter:&{filter}}',
       baseParser: ehListParser.uuid,
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,

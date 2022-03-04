@@ -1089,6 +1089,11 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
             : 'comments',
         $pb.PbFieldType.PM,
         subBuilder: GalleryRpcModel_Comment.create)
+    ..aOS(
+        23,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'nextPage')
     ..m<$core.String, $core.String>(
         30,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -1124,6 +1129,7 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
     TagRpcModel? tag,
     $core.Iterable<TagRpcModel>? badges,
     $core.Iterable<GalleryRpcModel_Comment>? comments,
+    $core.String? nextPage,
     $core.Map<$core.String, $core.String>? localEnv,
     $core.Map<$core.String, $core.String>? globalEnv,
   }) {
@@ -1166,6 +1172,9 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
     }
     if (comments != null) {
       _result.comments.addAll(comments);
+    }
+    if (nextPage != null) {
+      _result.nextPage = nextPage;
     }
     if (localEnv != null) {
       _result.localEnv.addAll(localEnv);
@@ -1335,11 +1344,23 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
   @$pb.TagNumber(22)
   $core.List<GalleryRpcModel_Comment> get comments => $_getList(12);
 
+  @$pb.TagNumber(23)
+  $core.String get nextPage => $_getSZ(13);
+  @$pb.TagNumber(23)
+  set nextPage($core.String v) {
+    $_setString(13, v);
+  }
+
+  @$pb.TagNumber(23)
+  $core.bool hasNextPage() => $_has(13);
+  @$pb.TagNumber(23)
+  void clearNextPage() => clearField(23);
+
   @$pb.TagNumber(30)
-  $core.Map<$core.String, $core.String> get localEnv => $_getMap(13);
+  $core.Map<$core.String, $core.String> get localEnv => $_getMap(14);
 
   @$pb.TagNumber(31)
-  $core.Map<$core.String, $core.String> get globalEnv => $_getMap(14);
+  $core.Map<$core.String, $core.String> get globalEnv => $_getMap(15);
 }
 
 class ImageReaderRpcModel extends $pb.GeneratedMessage {

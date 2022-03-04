@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:catweb/utils/utils.dart';
 import 'package:dio/dio.dart' hide Lock;
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:synchronized/synchronized.dart';
+import 'package:tuple/tuple.dart';
 
 enum LoadMoreState {
   idle, // 待命
@@ -13,7 +15,7 @@ enum LoadMoreState {
   loadError, // 加载更多出错
 }
 
-mixin LoadMoreMixin {
+abstract class LoadMoreBase {
   final _requestLock = Lock();
 
   final refreshController = RefreshController();
@@ -40,9 +42,15 @@ mixin LoadMoreMixin {
   }
 
   void loadComplete() {
-    _state.value = LoadMoreState.idle;
-    refreshController.loadComplete();
-    refreshController.refreshCompleted();
+    if ([
+      LoadMoreState.loading,
+      LoadMoreState.refreshing,
+      LoadMoreState.loadError
+    ].contains(_state.value)) {
+      _state.value = LoadMoreState.idle;
+      refreshController.loadComplete();
+      refreshController.refreshCompleted();
+    }
   }
 
   void loadNoData() {
@@ -75,12 +83,13 @@ mixin LoadMoreMixin {
   }
 }
 
-abstract class LoadMoreList<T> with LoadMoreMixin {
+abstract class LoadMoreList<E, T> extends LoadMoreBase {
   final RxList<T> items = <T>[].obs;
+  final RxList<E> pages = <E>[].obs;
 
-  final RxInt _page = 0.obs; // 加载更多是从page=0开始的
+  final RxInt _page = (-1).obs; // 加载更多是从page=0开始的
 
-  Future<List<T>> loadPage(int page);
+  Future<Tuple2<E, List<T>>> loadPage(int page);
 
   bool isItemExist(T item);
 
@@ -89,13 +98,13 @@ abstract class LoadMoreList<T> with LoadMoreMixin {
     try {
       await _requestLock.synchronized(() async {
         loadStart();
-        final page = _page.value + 1;
-        final loadItems = await loadPage(page);
-        if (loadItems.isEmpty) {
+        final loadItems = await loadPage(_page.value + 1);
+        _page.value += 1;
+        if (loadItems.item2.isEmpty) {
           loadNoData();
         } else {
-          _page.value = page;
-          items.addAll(loadItems.where((e) => !isItemExist(e)));
+          items.addAll(loadItems.item2.where((e) => !isItemExist(e)));
+          pages.add(loadItems.item1);
           loadComplete();
         }
       });
@@ -107,7 +116,8 @@ abstract class LoadMoreList<T> with LoadMoreMixin {
   Future<void> onRefresh() async {
     if (_requestLock.locked) return awaitLock();
     items.clear();
-    _page.value = 0;
+    pages.clear();
+    _page.value = -1;
     loadRefresh();
     await onLoadMore();
   }
@@ -123,80 +133,78 @@ abstract class LoadMoreList<T> with LoadMoreMixin {
   }
 }
 
-abstract class LoadMoreMap<T> with LoadMoreMixin {
-  final RxMap<int, T?> map = <int, T?>{}.obs;
+abstract class LoadMoreMap<E, T> extends LoadMoreBase {
+  final RxMap<int, E?> pages = <int, E?>{}.obs;
+  final RxMap<int, T?> items = <int, T?>{}.obs;
 
-  int length() => map.entries.fold(
-      0,
-      (previousValue, element) =>
-          element.value != null && (element.key + 1) > (previousValue + 1)
-              ? (element.key + 1)
-              : previousValue);
-
-  List<T> get getCoiledItems => map.entries
-      .takeWhile((value) => value.value != null)
-      .map((e) => e.value!)
-      .toList();
-
-  int? get chunkSize; // 每块图片数量, 如果为null则不允许跳页
+  int? get chunkSize; // 每块图片数量, 如果为null则只能一面一面跳页
 
   int? get totalSize; // 一共有多少图片, 为null则不允许跳页
 
-  final RxInt _page = 0.obs; // 初始加载页面记录
+  String get baseUrl;
 
-  Future<List<T>> loadPage(int page);
+  /// page是由0开始的, 所以初始为-1, 在 +1 后变为0
+  final RxInt _page = (-1).obs; // 初始加载页面记录
+
+  /// 加载(page)面的数据, 这里的page是以0开始的
+  Future<Tuple2<E, List<T>>> loadPage(int page);
+
+  bool isItemExist(T item);
 
   Future<void> onLoadMore() async {
-    if (_requestLock.locked) return awaitLock();
     try {
-      await _requestLock.synchronized(() async {
-        loadStart();
-        final loadItems = await loadPage(_page.value + 1);
-        if (loadItems.isEmpty) {
-          loadNoData();
-        } else {
-          _page.value += 1;
-          final _mapLength = length();
-          for (var i = 0; i < loadItems.length; i++) {
-            map[_mapLength + i] = loadItems[i];
-          }
-          if (chunkSize != null && chunkSize != loadItems.length) {
-            loadNoData();
-          } else {
-            loadComplete();
-          }
-        }
-      });
+      await onJumpPage(_page.value + 1);
+      _page.value += 1;
+    } on DioError catch (e) {
+      loadError(e);
     } on Exception catch (e) {
       loadError(e);
     }
   }
 
-  bool isItemExist(T item);
-
+  /// 这里传入的page应该是以0开始的, 第一面就是0
   Future<void> onJumpPage(int page) async {
-    assert(chunkSize != null);
-    assert(totalSize != null);
-    try {
-      await _requestLock.synchronized(() async {
-        loadStart();
-        final loadItems = await loadPage(page);
-        _page.value = page;
-        final baseIndex = page * chunkSize!;
-        for (var i = 0; i < loadItems.length; i++) {
-          map[baseIndex + i] = loadItems[i];
+    await _requestLock.synchronized(() async {
+      if (pages.containsKey(page)) return;
+      loadStart();
+      final pageData = await loadPage(page);
+      pages[page] = pageData.item1;
+      // 如果没有每面页数的话, 则不允许直接跳转对应面数, 只能一面一面加载, 直接寻找到最大位置即可
+      if (chunkSize == null) {
+        for (var i = 0; i < pageData.item2.length; i++) {
+          items[i + pages.trueLength] = pageData.item2[i];
         }
-        loadComplete();
-      });
-    } on Exception catch (e) {
-      loadError(e);
+      } else {
+        // 有最大面数的话, 则在对应的位置进行加载
+        for (var i = 0; i < pageData.item2.length; i++) {
+          items[page * chunkSize! + i] = pageData.item2[i];
+        }
+      }
+      _page.value = page;
+    });
+  }
+
+  Future<void> requestLoadItem(int index, [RxBool? stop]) async {
+    if (totalSize == null) throw UnsupportedError('必须知道总体数量才能跳页');
+    if (chunkSize != null) {
+      // 有确切的面数, 直接加载
+      final page = (index / chunkSize!).floor();
+      await loadPage(page);
+    } else {
+      // 没有确切的面数, 只能一面面加载
+      while (items.maxIndex < index) {
+        if (stop?.isTrue ?? false) {
+          break;
+        }
+        await onLoadMore();
+      }
     }
   }
 
   Future<void> onRefresh() async {
     if (_requestLock.locked) return awaitLock();
-    map.clear();
-    _page.value = 0;
+    pages.clear();
+    _page.value = -1;
     loadRefresh();
     await onLoadMore();
   }

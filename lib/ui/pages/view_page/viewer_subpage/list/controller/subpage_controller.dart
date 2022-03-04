@@ -13,7 +13,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
 
-class SubListController extends LoadMoreList<ListRpcModel_Item> {
+class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item> {
   SubListController({
     required this.blueprint,
     this.subPageModel,
@@ -63,10 +63,18 @@ class SubListController extends LoadMoreList<ListRpcModel_Item> {
   }
 
   @override
-  Future<List<ListRpcModel_Item>> loadPage(int page) async {
+  Future<Tuple2<ListRpcModel, List<ListRpcModel_Item>>> loadPage(
+      int page) async {
     var baseUrl = blueprint.url.value;
-    baseUrl = localEnv.replace(pageReplace(baseUrl, page));
-
+    if (hasPageExpression(baseUrl) || page == 0) {
+      // 有面数
+      baseUrl = pageReplace(baseUrl, page);
+    } else {
+      if (pages.isNotEmpty) {
+        baseUrl = pages.last.nextPage;
+      }
+    }
+    baseUrl = localEnv.replace(baseUrl);
     // 添加缓存
     if (subPageModel != null && subPageModel!.key.value.isNotEmpty) {
       localEnv.mergeMap({
@@ -80,7 +88,14 @@ class SubListController extends LoadMoreList<ListRpcModel_Item> {
       model: blueprint,
       localEnv: localEnv,
     );
-    return data.items;
+
+    if (!hasPageExpression(baseUrl) &&
+        (data.nextPage == baseUrl || data.nextPage.isEmpty)) {
+      print('hasPageExpression loadNoData()');
+      loadNoData();
+    }
+
+    return Tuple2(data, data.items);
   }
 
   void resetFilter() {

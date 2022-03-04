@@ -89,6 +89,11 @@ final ehListParser = ListViewParser(
       regex: r'height:(\d+)',
     ),
   ),
+  nextPage: Selector(
+    selector: '.ptb td:last-child a',
+    function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
+    param: 'href',
+  ),
   extraSelector: [
     ExtraSelector(
       global: true,
@@ -175,6 +180,15 @@ final ehListParser = ListViewParser(
       selector: Selector(
         selector: '#eventpane',
         function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
+      ),
+    ),
+    ExtraSelector(
+      id: 'from',
+      selector: Selector(
+        selector: '.ptb td:last-child a',
+        function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
+        param: 'href',
+        regex: r'from=(\d+)',
       ),
     ),
   ],

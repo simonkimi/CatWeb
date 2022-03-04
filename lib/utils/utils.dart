@@ -90,3 +90,17 @@ extension UnWrap on core.double {
 
   double? get nan2null => isNaN ? 0 : this;
 }
+
+extension SparseMap<T> on Map<int, T?> {
+  int get trueLength => maxIndex + 1;
+
+  int get maxIndex => entries.fold(
+      -1,
+      (previousValue, e) =>
+          e.key > previousValue && e.value != null ? e.key : previousValue);
+
+  List<T> get coiledList => entries
+      .takeWhile((value) => value.value != null)
+      .map((e) => e.value!)
+      .toList();
+}
