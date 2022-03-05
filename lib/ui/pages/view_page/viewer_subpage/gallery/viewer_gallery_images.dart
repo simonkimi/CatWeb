@@ -58,7 +58,7 @@ class ViewerGalleryImages extends StatelessWidget {
                                             },
                                           )
                                         : const Center(
-                                            child: CupertinoActivityIndicator(),
+                                            child: Text('null'),
                                           ),
                                   ),
                                 ),

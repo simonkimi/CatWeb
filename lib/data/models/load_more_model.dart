@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:dio/dio.dart' hide Lock;
 import 'package:get/get.dart';
@@ -153,8 +154,14 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
 
   Future<void> onLoadMore() async {
     try {
-      await onJumpPage(_page.value + 1);
-      _page.value += 1;
+      if (!checkIfOutOfRange(_page.value)) {
+        await onJumpPage(_page.value + 1);
+      } else {
+        loadNoData();
+      }
+      if (checkIfOutOfRange(_page.value)) {
+        loadNoData();
+      }
     } on DioError catch (e) {
       loadError(e);
     } on Exception catch (e) {
@@ -162,8 +169,14 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
     }
   }
 
+  bool checkIfOutOfRange(int page) {
+    if (totalSize == null || chunkSize == null) return false;
+    return (page + 1) * chunkSize! >= totalSize!;
+  }
+
   /// 这里传入的page应该是以0开始的, 第一面就是0
   Future<void> onJumpPage(int page) async {
+    log('当前页面', _page.value, '准备加载页面', page);
     await _requestLock.synchronized(() async {
       if (pages.containsKey(page)) return;
       loadStart();
@@ -171,6 +184,8 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
       pages[page] = pageData.item1;
       // 如果没有每面页数的话, 则不允许直接跳转对应面数, 只能一面一面加载, 直接寻找到最大位置即可
       if (chunkSize == null) {
+        // 如果一面一面加载没有数据了, 就说明加载完毕
+        if (pageData.item2.isEmpty) loadNoData();
         for (var i = 0; i < pageData.item2.length; i++) {
           items[i + pages.trueLength] = pageData.item2[i];
         }
@@ -204,6 +219,7 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
   Future<void> onRefresh() async {
     if (_requestLock.locked) return awaitLock();
     pages.clear();
+    items.clear();
     _page.value = -1;
     loadRefresh();
     await onLoadMore();

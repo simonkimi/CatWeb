@@ -87,7 +87,7 @@ class GalleryPreviewController
     );
     _detailModel.value = detail;
 
-    if (!hasPageExpression(baseUrl) &&
+    if (!hasPageExpression(target.url.value) &&
         (detail.nextPage == baseUrl || detail.nextPage.isEmpty)) {
       loadNoData();
     }
@@ -110,7 +110,7 @@ class GalleryPreviewController
   }
 
   bool get fillRemaining =>
-      state == LoadMoreState.loading || errorMessage != null;
+      (state == LoadMoreState.loading && items.isEmpty) || errorMessage != null;
 
   @override
   int? get chunkSize => detailModel?.getCountPrePage();

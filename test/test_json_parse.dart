@@ -4,7 +4,7 @@ import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
 import 'package:catweb/network/parser/parser.dart';
 import 'package:catweb/test/site/eh/parser/auto_complete_parser.dart';
-import 'package:catweb/utils/time_line.dart';
+import 'package:catweb/utils/debug.dart';
 
 void main() async {
   final line = TimeLine();

@@ -51,33 +51,34 @@ class ViewerGalleryFragment extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Obx(() => CustomScrollView(
-            slivers: [
-              // 上方内容
-              SliverPullToRefresh(onRefresh: c.refresh),
-              _buildHeader(context),
+      child: Obx(() => CupertinoScrollbar(
+            child: CustomScrollView(
+              slivers: [
+                // 上方内容
+                SliverPullToRefresh(onRefresh: c.refresh),
+                _buildHeader(context),
+                // 下方内容, 有信息才会展现
+                if (c.detailModel != null) ...[
+                  // 描述
+                  SliverToBoxAdapter(
+                    child: Obx(() => _buildDescription(context)),
+                  ),
+                  SliverToBoxAdapter(
+                    child: _buildPreviewList(context),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Obx(() => _buildTagList(context)),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Obx(() => _buildCommentList(context)),
+                  ),
+                  const SliverPadding(padding: EdgeInsets.only(bottom: 20)),
+                ],
 
-              // 下方内容, 有信息才会展现
-              if (c.detailModel != null) ...[
-                // 描述
-                SliverToBoxAdapter(
-                  child: Obx(() => _buildDescription(context)),
-                ),
-                SliverToBoxAdapter(
-                  child: _buildPreviewList(context),
-                ),
-                SliverToBoxAdapter(
-                  child: Obx(() => _buildTagList(context)),
-                ),
-                SliverToBoxAdapter(
-                  child: Obx(() => _buildCommentList(context)),
-                ),
-                const SliverPadding(padding: EdgeInsets.only(bottom: 20)),
+                // 加载内容, 不一定会展现
+                if (c.fillRemaining) _buildRemaining(context),
               ],
-
-              // 加载内容, 不一定会展现
-              if (c.fillRemaining) _buildRemaining(context),
-            ],
+            ),
           )),
     );
   }
