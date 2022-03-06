@@ -52,6 +52,7 @@ message ListViewParser {
   Selector badge_color = 24;
 
   Selector paper = 25;
+  Selector target = 26;
 
   // 下一面
   Selector next_page = 30;
@@ -78,6 +79,7 @@ message GalleryParser {
   // 缩略图
   Selector thumbnail_selector = 20;
   ImageSelector thumbnail = 21;
+  Selector target = 22;
 
   // 评论
   Selector comment_selector = 30;

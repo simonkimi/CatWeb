@@ -37,9 +37,8 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item> {
   var filterKeys = <String>{};
 
   @override
-  bool isItemExist(ListRpcModel_Item item) => items.any((element) =>
-      element.title == item.title &&
-      item.previewImg.target == item.previewImg.target);
+  bool isItemExist(ListRpcModel_Item item) => items.any(
+      (element) => element.title == item.title && item.target == item.target);
 
   Future<void> applyFilter([bool refresh = false]) async {
     currentFilter.clear();

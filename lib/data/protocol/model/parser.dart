@@ -92,6 +92,7 @@ class GalleryParserModel extends ParserBaseModel {
         thumbnailSelector = SelectorModel(pb?.thumbnailSelector),
         description = SelectorModel(pb?.description),
         thumbnail = ImageSelectorModel(pb?.thumbnail),
+        target = SelectorModel(pb?.target),
         commentSelector = SelectorModel(pb?.commentSelector),
         comments = CommentSelectorModel(pb?.comment),
         tag = SelectorModel(pb?.tag),
@@ -124,6 +125,7 @@ class GalleryParserModel extends ParserBaseModel {
   // 缩略图
   final SelectorModel thumbnailSelector;
   final ImageSelectorModel thumbnail;
+  final SelectorModel target;
 
   // 评论
   final SelectorModel commentSelector;
@@ -164,6 +166,7 @@ class GalleryParserModel extends ParserBaseModel {
         // 缩略图
         thumbnailSelector: thumbnailSelector.toPb(),
         thumbnail: thumbnail.toPb(),
+        target: target.toPb(),
 
         // 评论
         commentSelector: commentSelector.toPb(),
@@ -209,6 +212,7 @@ class ListViewParserModel extends ParserBaseModel {
         imgCount = SelectorModel(pb?.imgCount),
         language = SelectorModel(pb?.language),
         previewImg = ImageSelectorModel(pb?.previewImg),
+        target = SelectorModel(pb?.target),
         tag = SelectorModel(pb?.tag),
         tagColor = SelectorModel(pb?.tagColor),
         badgeText = SelectorModel(pb?.badgeText),
@@ -236,6 +240,7 @@ class ListViewParserModel extends ParserBaseModel {
 
   // 预览图片
   final ImageSelectorModel previewImg;
+  final SelectorModel target;
 
   // 大Tag
   final SelectorModel tag;
@@ -264,6 +269,7 @@ class ListViewParserModel extends ParserBaseModel {
         imgCount: imgCount.toPb(),
         language: language.toPb(),
         previewImg: previewImg.toPb(),
+        target: target.toPb(),
         tag: tag.toPb(),
         tagColor: tagColor.toPb(),
         badgeText: badgeText.toPb(),

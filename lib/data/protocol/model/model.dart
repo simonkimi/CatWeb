@@ -45,8 +45,6 @@ extension GetImageRpcModel on ImageRpcModel {
 
   double? getImgY() => hasImgY() ? imgY : null;
 
-  String? getTarget() => hasTarget() ? target : null;
-
   String get key => getCacheKey() ?? const Uuid().v5(Uuid.NAMESPACE_URL, url);
 
   bool repeatImage() => hasImgX() && hasImgY();

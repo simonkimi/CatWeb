@@ -52,11 +52,6 @@ class ImageRpcModel extends $pb.GeneratedMessage {
             : 'imgY',
         $pb.PbFieldType.OD,
         protoName: 'imgY')
-    ..aOS(
-        7,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'target')
     ..hasRequiredFields = false;
 
   ImageRpcModel._() : super();
@@ -67,7 +62,6 @@ class ImageRpcModel extends $pb.GeneratedMessage {
     $core.double? height,
     $core.double? imgX,
     $core.double? imgY,
-    $core.String? target,
   }) {
     final _result = create();
     if (url != null) {
@@ -87,9 +81,6 @@ class ImageRpcModel extends $pb.GeneratedMessage {
     }
     if (imgY != null) {
       _result.imgY = imgY;
-    }
-    if (target != null) {
-      _result.target = target;
     }
     return _result;
   }
@@ -191,18 +182,6 @@ class ImageRpcModel extends $pb.GeneratedMessage {
   $core.bool hasImgY() => $_has(5);
   @$pb.TagNumber(6)
   void clearImgY() => clearField(6);
-
-  @$pb.TagNumber(7)
-  $core.String get target => $_getSZ(6);
-  @$pb.TagNumber(7)
-  set target($core.String v) {
-    $_setString(6, v);
-  }
-
-  @$pb.TagNumber(7)
-  $core.bool hasTarget() => $_has(6);
-  @$pb.TagNumber(7)
-  void clearTarget() => clearField(7);
 }
 
 class ColorRpcModel extends $pb.GeneratedMessage {
@@ -520,6 +499,11 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
             ? ''
             : 'paper')
     ..aOS(
+        13,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'target')
+    ..aOS(
         20,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
@@ -546,6 +530,7 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
     TagRpcModel? tag,
     $core.Iterable<TagRpcModel>? badges,
     $core.String? paper,
+    $core.String? target,
     $core.String? nextPage,
     $core.Map<$core.String, $core.String>? env,
   }) {
@@ -579,6 +564,9 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
     }
     if (paper != null) {
       _result.paper = paper;
+    }
+    if (target != null) {
+      _result.target = target;
     }
     if (nextPage != null) {
       _result.nextPage = nextPage;
@@ -730,20 +718,32 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
   @$pb.TagNumber(12)
   void clearPaper() => clearField(12);
 
-  @$pb.TagNumber(20)
-  $core.String get nextPage => $_getSZ(10);
-  @$pb.TagNumber(20)
-  set nextPage($core.String v) {
+  @$pb.TagNumber(13)
+  $core.String get target => $_getSZ(10);
+  @$pb.TagNumber(13)
+  set target($core.String v) {
     $_setString(10, v);
   }
 
+  @$pb.TagNumber(13)
+  $core.bool hasTarget() => $_has(10);
+  @$pb.TagNumber(13)
+  void clearTarget() => clearField(13);
+
   @$pb.TagNumber(20)
-  $core.bool hasNextPage() => $_has(10);
+  $core.String get nextPage => $_getSZ(11);
+  @$pb.TagNumber(20)
+  set nextPage($core.String v) {
+    $_setString(11, v);
+  }
+
+  @$pb.TagNumber(20)
+  $core.bool hasNextPage() => $_has(11);
   @$pb.TagNumber(20)
   void clearNextPage() => clearField(20);
 
   @$pb.TagNumber(30)
-  $core.Map<$core.String, $core.String> get env => $_getMap(11);
+  $core.Map<$core.String, $core.String> get env => $_getMap(12);
 }
 
 class ListRpcModel extends $pb.GeneratedMessage {
@@ -1063,8 +1063,13 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
             : 'previewImg',
         $pb.PbFieldType.PM,
         subBuilder: ImageRpcModel.create)
-    ..aOM<ImageRpcModel>(
+    ..aOS(
         10,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'target')
+    ..aOM<ImageRpcModel>(
+        11,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'coverImg',
@@ -1125,6 +1130,7 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
     $core.String? description,
     $core.double? star,
     $core.Iterable<ImageRpcModel>? previewImg,
+    $core.String? target,
     ImageRpcModel? coverImg,
     TagRpcModel? tag,
     $core.Iterable<TagRpcModel>? badges,
@@ -1160,6 +1166,9 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
     }
     if (previewImg != null) {
       _result.previewImg.addAll(previewImg);
+    }
+    if (target != null) {
+      _result.target = target;
     }
     if (coverImg != null) {
       _result.coverImg = coverImg;
@@ -1311,56 +1320,68 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
   $core.List<ImageRpcModel> get previewImg => $_getList(8);
 
   @$pb.TagNumber(10)
-  ImageRpcModel get coverImg => $_getN(9);
+  $core.String get target => $_getSZ(9);
   @$pb.TagNumber(10)
-  set coverImg(ImageRpcModel v) {
-    setField(10, v);
+  set target($core.String v) {
+    $_setString(9, v);
   }
 
   @$pb.TagNumber(10)
-  $core.bool hasCoverImg() => $_has(9);
+  $core.bool hasTarget() => $_has(9);
   @$pb.TagNumber(10)
-  void clearCoverImg() => clearField(10);
-  @$pb.TagNumber(10)
-  ImageRpcModel ensureCoverImg() => $_ensure(9);
+  void clearTarget() => clearField(10);
+
+  @$pb.TagNumber(11)
+  ImageRpcModel get coverImg => $_getN(10);
+  @$pb.TagNumber(11)
+  set coverImg(ImageRpcModel v) {
+    setField(11, v);
+  }
+
+  @$pb.TagNumber(11)
+  $core.bool hasCoverImg() => $_has(10);
+  @$pb.TagNumber(11)
+  void clearCoverImg() => clearField(11);
+  @$pb.TagNumber(11)
+  ImageRpcModel ensureCoverImg() => $_ensure(10);
 
   @$pb.TagNumber(20)
-  TagRpcModel get tag => $_getN(10);
+  TagRpcModel get tag => $_getN(11);
   @$pb.TagNumber(20)
   set tag(TagRpcModel v) {
     setField(20, v);
   }
 
   @$pb.TagNumber(20)
-  $core.bool hasTag() => $_has(10);
+  $core.bool hasTag() => $_has(11);
   @$pb.TagNumber(20)
   void clearTag() => clearField(20);
   @$pb.TagNumber(20)
-  TagRpcModel ensureTag() => $_ensure(10);
+  TagRpcModel ensureTag() => $_ensure(11);
 
   @$pb.TagNumber(21)
-  $core.List<TagRpcModel> get badges => $_getList(11);
+  $core.List<TagRpcModel> get badges => $_getList(12);
 
   @$pb.TagNumber(22)
-  $core.List<GalleryRpcModel_Comment> get comments => $_getList(12);
+  $core.List<GalleryRpcModel_Comment> get comments => $_getList(13);
 
   @$pb.TagNumber(23)
-  $core.String get nextPage => $_getSZ(13);
+  $core.String get nextPage => $_getSZ(14);
   @$pb.TagNumber(23)
   set nextPage($core.String v) {
-    $_setString(13, v);
+    $_setString(14, v);
   }
 
   @$pb.TagNumber(23)
-  $core.bool hasNextPage() => $_has(13);
+  $core.bool hasNextPage() => $_has(14);
   @$pb.TagNumber(23)
   void clearNextPage() => clearField(23);
 
   @$pb.TagNumber(30)
-  $core.Map<$core.String, $core.String> get localEnv => $_getMap(14);
+  $core.Map<$core.String, $core.String> get localEnv => $_getMap(15);
 
   @$pb.TagNumber(31)
-  $core.Map<$core.String, $core.String> get globalEnv => $_getMap(15);
+  $core.Map<$core.String, $core.String> get globalEnv => $_getMap(16);
 }
 
 class ImageReaderRpcModel extends $pb.GeneratedMessage {

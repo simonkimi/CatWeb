@@ -152,6 +152,10 @@ class GalleryParserFragment extends StatelessWidget {
   StickyClassifyList _buildThumbnailList() {
     return StickyClassifyList(title: '缩略图', children: [
       RulesForm(
+        title: '目标',
+        selectorModel: model.target,
+      ),
+      RulesForm(
         title: '缩略图项目',
         selectorModel: model.thumbnailSelector,
       ),
@@ -174,10 +178,6 @@ class GalleryParserFragment extends StatelessWidget {
       RulesForm(
         title: '缩略图Y偏移',
         selectorModel: model.thumbnail.imgY,
-      ),
-      RulesForm(
-        title: '缩略图目标',
-        selectorModel: model.thumbnail.target,
       ),
     ]);
   }

@@ -9,7 +9,6 @@ message ImageRpcModel {
   double height = 4;
   double imgX = 5;
   double imgY = 6;
-  string target = 7;
 }
 
 
@@ -42,6 +41,7 @@ message ListRpcModel {
     repeated TagRpcModel badges = 11;
 
     string paper = 12;
+    string target = 13;
 
     string next_page = 20;
 
@@ -73,7 +73,8 @@ message GalleryRpcModel {
   string description = 7;
   double star = 8;
   repeated ImageRpcModel preview_img = 9;
-  ImageRpcModel cover_img = 10;
+  string target = 10;
+  ImageRpcModel cover_img = 11;
 
   TagRpcModel tag = 20;
   repeated TagRpcModel badges = 21;
