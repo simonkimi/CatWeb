@@ -395,12 +395,6 @@ class ImageSelector extends $pb.GeneratedMessage {
             ? ''
             : 'imgY',
         subBuilder: Selector.create)
-    ..aOM<Selector>(
-        6,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'target',
-        subBuilder: Selector.create)
     ..hasRequiredFields = false;
 
   ImageSelector._() : super();
@@ -410,7 +404,6 @@ class ImageSelector extends $pb.GeneratedMessage {
     Selector? imgHeight,
     Selector? imgX,
     Selector? imgY,
-    Selector? target,
   }) {
     final _result = create();
     if (imgUrl != null) {
@@ -427,9 +420,6 @@ class ImageSelector extends $pb.GeneratedMessage {
     }
     if (imgY != null) {
       _result.imgY = imgY;
-    }
-    if (target != null) {
-      _result.target = target;
     }
     return _result;
   }
@@ -529,20 +519,6 @@ class ImageSelector extends $pb.GeneratedMessage {
   void clearImgY() => clearField(5);
   @$pb.TagNumber(5)
   Selector ensureImgY() => $_ensure(4);
-
-  @$pb.TagNumber(6)
-  Selector get target => $_getN(5);
-  @$pb.TagNumber(6)
-  set target(Selector v) {
-    setField(6, v);
-  }
-
-  @$pb.TagNumber(6)
-  $core.bool hasTarget() => $_has(5);
-  @$pb.TagNumber(6)
-  void clearTarget() => clearField(6);
-  @$pb.TagNumber(6)
-  Selector ensureTarget() => $_ensure(5);
 }
 
 class CommentSelector extends $pb.GeneratedMessage {

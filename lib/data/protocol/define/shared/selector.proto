@@ -47,7 +47,6 @@ message ImageSelector {
   Selector img_height = 3;
   Selector img_x = 4;
   Selector img_y = 5;
-  Selector target = 6;
 }
 
 message CommentSelector {
