@@ -4,6 +4,8 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_loader.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_controller.dart';
+import 'package:catweb/utils/handle.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 import 'package:get/get.dart';
@@ -30,7 +32,8 @@ class GalleryBaseData {
 }
 
 class GalleryPreviewController
-    extends LoadMoreMap<GalleryRpcModel, ImageRpcModel> {
+    extends LoadMoreMap<GalleryRpcModel, GalleryRpcModel_Item>
+    implements ReaderInfo<Map<int, GalleryRpcModel_Item?>> {
   GalleryPreviewController({
     required this.target,
     SiteEnvModel? outerEnv,
@@ -55,7 +58,7 @@ class GalleryPreviewController
   );
 
   @override
-  bool isItemExist(ImageRpcModel item) => false;
+  bool isItemExist(GalleryRpcModel_Item item) => false;
 
   GalleryRpcModel? get detailModel => _detailModel.value;
 
@@ -65,7 +68,7 @@ class GalleryPreviewController
   }
 
   @override
-  Future<Tuple2<GalleryRpcModel, List<ImageRpcModel>>> loadPage(
+  Future<Tuple2<GalleryRpcModel, List<GalleryRpcModel_Item>>> loadPage(
       int page) async {
     var baseUrl = target.url.value;
     if (hasPageExpression(baseUrl) || page == 0) {
@@ -92,7 +95,7 @@ class GalleryPreviewController
       loadNoData();
     }
 
-    return Tuple2(detail, detail.previewImg);
+    return Tuple2(detail, detail.items);
   }
 
   static GalleryBaseData? fromModel(Object? model) {
@@ -120,4 +123,17 @@ class GalleryPreviewController
 
   @override
   String get baseUrl => target.url.value;
+
+  @override
+  int? get pageCount => detailModel?.getImageCount();
+
+  @override
+  BufferStream<Map<int, GalleryRpcModel_Item?>, Map<int, String?>>
+      get bufferStream => BufferStream(
+            initData: items,
+            stream: items.stream,
+            transmission: (Map<int, GalleryRpcModel_Item?> from) {
+              return from.map((key, value) => MapEntry(key, value?.target));
+            },
+          );
 }

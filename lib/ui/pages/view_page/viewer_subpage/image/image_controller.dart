@@ -3,6 +3,7 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_loader.dart';
+import 'package:catweb/utils/handle.dart';
 import 'package:get/get.dart';
 
 enum ImageState {
@@ -10,6 +11,13 @@ enum ImageState {
   loading, // 加载中
   finish, // 加载完成
   error, // 加载失败
+}
+
+abstract class ReaderInfo<T> {
+  int? get pageCount; // 总面数
+
+  // 第一个T是原类型, 要转换为数据
+  BufferStream<T, Map<int, String?>> get bufferStream;
 }
 
 class ImageContainer {
@@ -48,22 +56,14 @@ class ImageContainer {
   }
 }
 
-abstract class ReaderInfo<T> {
-  String getIdCode(T);
-
-  RxList<T?> get galleryList;
-
-  int? get pageCount; // 总面数
-}
-
 class ImageController<T> {
   ImageController({
     required this.readerInfo,
     required this.localEnv,
     required this.blueprint,
   }) {
-    _updateIdCode(readerInfo.galleryList);
-    readerInfo.galleryList.listen(_updateIdCode);
+    _updateIdCode(readerInfo.bufferStream.buffer);
+    readerInfo.bufferStream.listen(_updateIdCode);
   }
 
   final ReaderInfo<T> readerInfo;
@@ -81,10 +81,10 @@ class ImageController<T> {
   // 图片储存数据, 相同的url公用一个ImageLoadModel
   final imageMap = <String, ImageLoadModel>{};
 
-  void _updateIdCode(List<T?> items) {
-    for (var i = 0; i < items.length; i++) {
-      if (imageIdCode[i] == null && items[i] != null) {
-        imageIdCode[i] = readerInfo.getIdCode(items[i]);
+  void _updateIdCode(Map<int, String?> items) {
+    for (final item in items.entries) {
+      if (imageIdCode[item.key] == null && item.value != null) {
+        imageIdCode[item.key] = item.value;
       }
     }
   }

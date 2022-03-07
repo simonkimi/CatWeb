@@ -8,12 +8,15 @@ import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/ffi/ffi.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_controller.dart';
+import 'package:catweb/utils/handle.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
 
-class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item> {
+class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
+    implements ReaderInfo<List<ListRpcModel_Item>> {
   SubListController({
     required this.blueprint,
     this.subPageModel,
@@ -150,4 +153,17 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item> {
   bool get isFullScreenLoading => items.isEmpty && isLoading;
 
   bool get isFullScreenError => items.isEmpty && errorMessage != null;
+
+  @override
+  int? get pageCount => null;
+
+  @override
+  BufferStream<List<ListRpcModel_Item>, Map<int, String?>> get bufferStream =>
+      BufferStream(
+        initData: items,
+        stream: items.stream,
+        transmission: (List<ListRpcModel_Item> from) {
+          return from.map((e) => e.target).toList().asMap();
+        },
+      );
 }

@@ -48,7 +48,7 @@ class ViewerGalleryImages extends StatelessWidget {
                                     child: c.items[index] != null
                                         ? ImageLoader(
                                             concurrency: c.concurrency,
-                                            model: c.items[index]!,
+                                            model: c.items[index]!.previewImg,
                                             imageWidgetBuilder:
                                                 (context, child) {
                                               return FittedBox(

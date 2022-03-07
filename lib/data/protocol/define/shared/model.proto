@@ -64,6 +64,11 @@ message GalleryRpcModel {
     ImageRpcModel avatar = 5;
   }
 
+  message Item {
+    ImageRpcModel preview_img = 9;
+    string target = 10;
+  }
+
   string title = 1;
   string subtitle = 2;
   string language = 3;
@@ -72,9 +77,8 @@ message GalleryRpcModel {
   int32 count_pre_page = 6;
   string description = 7;
   double star = 8;
-  repeated ImageRpcModel preview_img = 9;
-  string target = 10;
-  ImageRpcModel cover_img = 11;
+  repeated Item items = 9;
+  ImageRpcModel cover_img = 10;
 
   TagRpcModel tag = 20;
   repeated TagRpcModel badges = 21;

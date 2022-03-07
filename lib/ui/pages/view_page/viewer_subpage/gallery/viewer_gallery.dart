@@ -102,7 +102,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                     child: DarkWidget(
                       child: ImageLoader(
                         concurrency: c.concurrency,
-                        model: c.items.coiledList[index],
+                        model: c.items.coiledList[index].previewImg,
                       ),
                     ),
                   ),

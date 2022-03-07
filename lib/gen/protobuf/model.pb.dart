@@ -1007,6 +1007,94 @@ class GalleryRpcModel_Comment extends $pb.GeneratedMessage {
   ImageRpcModel ensureAvatar() => $_ensure(4);
 }
 
+class GalleryRpcModel_Item extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'GalleryRpcModel.Item',
+      createEmptyInstance: create)
+    ..aOM<ImageRpcModel>(
+        9,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'previewImg',
+        subBuilder: ImageRpcModel.create)
+    ..aOS(
+        10,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'target')
+    ..hasRequiredFields = false;
+
+  GalleryRpcModel_Item._() : super();
+  factory GalleryRpcModel_Item({
+    ImageRpcModel? previewImg,
+    $core.String? target,
+  }) {
+    final _result = create();
+    if (previewImg != null) {
+      _result.previewImg = previewImg;
+    }
+    if (target != null) {
+      _result.target = target;
+    }
+    return _result;
+  }
+  factory GalleryRpcModel_Item.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory GalleryRpcModel_Item.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  GalleryRpcModel_Item clone() =>
+      GalleryRpcModel_Item()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  GalleryRpcModel_Item copyWith(void Function(GalleryRpcModel_Item) updates) =>
+      super.copyWith((message) => updates(message as GalleryRpcModel_Item))
+          as GalleryRpcModel_Item; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GalleryRpcModel_Item create() => GalleryRpcModel_Item._();
+  GalleryRpcModel_Item createEmptyInstance() => create();
+  static $pb.PbList<GalleryRpcModel_Item> createRepeated() =>
+      $pb.PbList<GalleryRpcModel_Item>();
+  @$core.pragma('dart2js:noInline')
+  static GalleryRpcModel_Item getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GalleryRpcModel_Item>(create);
+  static GalleryRpcModel_Item? _defaultInstance;
+
+  @$pb.TagNumber(9)
+  ImageRpcModel get previewImg => $_getN(0);
+  @$pb.TagNumber(9)
+  set previewImg(ImageRpcModel v) {
+    setField(9, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasPreviewImg() => $_has(0);
+  @$pb.TagNumber(9)
+  void clearPreviewImg() => clearField(9);
+  @$pb.TagNumber(9)
+  ImageRpcModel ensurePreviewImg() => $_ensure(0);
+
+  @$pb.TagNumber(10)
+  $core.String get target => $_getSZ(1);
+  @$pb.TagNumber(10)
+  set target($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(10)
+  $core.bool hasTarget() => $_has(1);
+  @$pb.TagNumber(10)
+  void clearTarget() => clearField(10);
+}
+
 class GalleryRpcModel extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
@@ -1056,20 +1144,15 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
             ? ''
             : 'star',
         $pb.PbFieldType.OD)
-    ..pc<ImageRpcModel>(
+    ..pc<GalleryRpcModel_Item>(
         9,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'previewImg',
+            : 'items',
         $pb.PbFieldType.PM,
-        subBuilder: ImageRpcModel.create)
-    ..aOS(
-        10,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'target')
+        subBuilder: GalleryRpcModel_Item.create)
     ..aOM<ImageRpcModel>(
-        11,
+        10,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'coverImg',
@@ -1129,8 +1212,7 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
     $core.int? countPrePage,
     $core.String? description,
     $core.double? star,
-    $core.Iterable<ImageRpcModel>? previewImg,
-    $core.String? target,
+    $core.Iterable<GalleryRpcModel_Item>? items,
     ImageRpcModel? coverImg,
     TagRpcModel? tag,
     $core.Iterable<TagRpcModel>? badges,
@@ -1164,11 +1246,8 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
     if (star != null) {
       _result.star = star;
     }
-    if (previewImg != null) {
-      _result.previewImg.addAll(previewImg);
-    }
-    if (target != null) {
-      _result.target = target;
+    if (items != null) {
+      _result.items.addAll(items);
     }
     if (coverImg != null) {
       _result.coverImg = coverImg;
@@ -1317,71 +1396,59 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
   void clearStar() => clearField(8);
 
   @$pb.TagNumber(9)
-  $core.List<ImageRpcModel> get previewImg => $_getList(8);
+  $core.List<GalleryRpcModel_Item> get items => $_getList(8);
 
   @$pb.TagNumber(10)
-  $core.String get target => $_getSZ(9);
+  ImageRpcModel get coverImg => $_getN(9);
   @$pb.TagNumber(10)
-  set target($core.String v) {
-    $_setString(9, v);
-  }
-
-  @$pb.TagNumber(10)
-  $core.bool hasTarget() => $_has(9);
-  @$pb.TagNumber(10)
-  void clearTarget() => clearField(10);
-
-  @$pb.TagNumber(11)
-  ImageRpcModel get coverImg => $_getN(10);
-  @$pb.TagNumber(11)
   set coverImg(ImageRpcModel v) {
-    setField(11, v);
+    setField(10, v);
   }
 
-  @$pb.TagNumber(11)
-  $core.bool hasCoverImg() => $_has(10);
-  @$pb.TagNumber(11)
-  void clearCoverImg() => clearField(11);
-  @$pb.TagNumber(11)
-  ImageRpcModel ensureCoverImg() => $_ensure(10);
+  @$pb.TagNumber(10)
+  $core.bool hasCoverImg() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearCoverImg() => clearField(10);
+  @$pb.TagNumber(10)
+  ImageRpcModel ensureCoverImg() => $_ensure(9);
 
   @$pb.TagNumber(20)
-  TagRpcModel get tag => $_getN(11);
+  TagRpcModel get tag => $_getN(10);
   @$pb.TagNumber(20)
   set tag(TagRpcModel v) {
     setField(20, v);
   }
 
   @$pb.TagNumber(20)
-  $core.bool hasTag() => $_has(11);
+  $core.bool hasTag() => $_has(10);
   @$pb.TagNumber(20)
   void clearTag() => clearField(20);
   @$pb.TagNumber(20)
-  TagRpcModel ensureTag() => $_ensure(11);
+  TagRpcModel ensureTag() => $_ensure(10);
 
   @$pb.TagNumber(21)
-  $core.List<TagRpcModel> get badges => $_getList(12);
+  $core.List<TagRpcModel> get badges => $_getList(11);
 
   @$pb.TagNumber(22)
-  $core.List<GalleryRpcModel_Comment> get comments => $_getList(13);
+  $core.List<GalleryRpcModel_Comment> get comments => $_getList(12);
 
   @$pb.TagNumber(23)
-  $core.String get nextPage => $_getSZ(14);
+  $core.String get nextPage => $_getSZ(13);
   @$pb.TagNumber(23)
   set nextPage($core.String v) {
-    $_setString(14, v);
+    $_setString(13, v);
   }
 
   @$pb.TagNumber(23)
-  $core.bool hasNextPage() => $_has(14);
+  $core.bool hasNextPage() => $_has(13);
   @$pb.TagNumber(23)
   void clearNextPage() => clearField(23);
 
   @$pb.TagNumber(30)
-  $core.Map<$core.String, $core.String> get localEnv => $_getMap(15);
+  $core.Map<$core.String, $core.String> get localEnv => $_getMap(14);
 
   @$pb.TagNumber(31)
-  $core.Map<$core.String, $core.String> get globalEnv => $_getMap(16);
+  $core.Map<$core.String, $core.String> get globalEnv => $_getMap(15);
 }
 
 class ImageReaderRpcModel extends $pb.GeneratedMessage {

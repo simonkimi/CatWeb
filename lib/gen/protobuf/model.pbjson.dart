@@ -210,17 +210,16 @@ const GalleryRpcModel$json = const {
     const {'1': 'description', '3': 7, '4': 1, '5': 9, '10': 'description'},
     const {'1': 'star', '3': 8, '4': 1, '5': 1, '10': 'star'},
     const {
-      '1': 'preview_img',
+      '1': 'items',
       '3': 9,
       '4': 3,
       '5': 11,
-      '6': '.ImageRpcModel',
-      '10': 'previewImg'
+      '6': '.GalleryRpcModel.Item',
+      '10': 'items'
     },
-    const {'1': 'target', '3': 10, '4': 1, '5': 9, '10': 'target'},
     const {
       '1': 'cover_img',
-      '3': 11,
+      '3': 10,
       '4': 1,
       '5': 11,
       '6': '.ImageRpcModel',
@@ -270,6 +269,7 @@ const GalleryRpcModel$json = const {
   ],
   '3': const [
     GalleryRpcModel_Comment$json,
+    GalleryRpcModel_Item$json,
     GalleryRpcModel_LocalEnvEntry$json,
     GalleryRpcModel_GlobalEnvEntry$json
   ],
@@ -295,6 +295,22 @@ const GalleryRpcModel_Comment$json = const {
 };
 
 @$core.Deprecated('Use galleryRpcModelDescriptor instead')
+const GalleryRpcModel_Item$json = const {
+  '1': 'Item',
+  '2': const [
+    const {
+      '1': 'preview_img',
+      '3': 9,
+      '4': 1,
+      '5': 11,
+      '6': '.ImageRpcModel',
+      '10': 'previewImg'
+    },
+    const {'1': 'target', '3': 10, '4': 1, '5': 9, '10': 'target'},
+  ],
+};
+
+@$core.Deprecated('Use galleryRpcModelDescriptor instead')
 const GalleryRpcModel_LocalEnvEntry$json = const {
   '1': 'LocalEnvEntry',
   '2': const [
@@ -316,7 +332,7 @@ const GalleryRpcModel_GlobalEnvEntry$json = const {
 
 /// Descriptor for `GalleryRpcModel`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List galleryRpcModelDescriptor = $convert.base64Decode(
-    'Cg9HYWxsZXJ5UnBjTW9kZWwSFAoFdGl0bGUYASABKAlSBXRpdGxlEhoKCHN1YnRpdGxlGAIgASgJUghzdWJ0aXRsZRIaCghsYW5ndWFnZRgDIAEoCVIIbGFuZ3VhZ2USHwoLaW1hZ2VfY291bnQYBCABKAVSCmltYWdlQ291bnQSHwoLdXBsb2FkX3RpbWUYBSABKAlSCnVwbG9hZFRpbWUSJAoOY291bnRfcHJlX3BhZ2UYBiABKAVSDGNvdW50UHJlUGFnZRIgCgtkZXNjcmlwdGlvbhgHIAEoCVILZGVzY3JpcHRpb24SEgoEc3RhchgIIAEoAVIEc3RhchIvCgtwcmV2aWV3X2ltZxgJIAMoCzIOLkltYWdlUnBjTW9kZWxSCnByZXZpZXdJbWcSFgoGdGFyZ2V0GAogASgJUgZ0YXJnZXQSKwoJY292ZXJfaW1nGAsgASgLMg4uSW1hZ2VScGNNb2RlbFIIY292ZXJJbWcSHgoDdGFnGBQgASgLMgwuVGFnUnBjTW9kZWxSA3RhZxIkCgZiYWRnZXMYFSADKAsyDC5UYWdScGNNb2RlbFIGYmFkZ2VzEjQKCGNvbW1lbnRzGBYgAygLMhguR2FsbGVyeVJwY01vZGVsLkNvbW1lbnRSCGNvbW1lbnRzEhsKCW5leHRfcGFnZRgXIAEoCVIIbmV4dFBhZ2USOgoIbG9jYWxFbnYYHiADKAsyHi5HYWxsZXJ5UnBjTW9kZWwuTG9jYWxFbnZFbnRyeVIIbG9jYWxFbnYSPQoJZ2xvYmFsRW52GB8gAygLMh8uR2FsbGVyeVJwY01vZGVsLkdsb2JhbEVudkVudHJ5UglnbG9iYWxFbnYakQEKB0NvbW1lbnQSGgoIdXNlcm5hbWUYASABKAlSCHVzZXJuYW1lEhgKB2NvbnRlbnQYAiABKAlSB2NvbnRlbnQSEgoEdGltZRgDIAEoCVIEdGltZRIUCgVzY29yZRgEIAEoCVIFc2NvcmUSJgoGYXZhdGFyGAUgASgLMg4uSW1hZ2VScGNNb2RlbFIGYXZhdGFyGjsKDUxvY2FsRW52RW50cnkSEAoDa2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4ARo8Cg5HbG9iYWxFbnZFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgB');
+    'Cg9HYWxsZXJ5UnBjTW9kZWwSFAoFdGl0bGUYASABKAlSBXRpdGxlEhoKCHN1YnRpdGxlGAIgASgJUghzdWJ0aXRsZRIaCghsYW5ndWFnZRgDIAEoCVIIbGFuZ3VhZ2USHwoLaW1hZ2VfY291bnQYBCABKAVSCmltYWdlQ291bnQSHwoLdXBsb2FkX3RpbWUYBSABKAlSCnVwbG9hZFRpbWUSJAoOY291bnRfcHJlX3BhZ2UYBiABKAVSDGNvdW50UHJlUGFnZRIgCgtkZXNjcmlwdGlvbhgHIAEoCVILZGVzY3JpcHRpb24SEgoEc3RhchgIIAEoAVIEc3RhchIrCgVpdGVtcxgJIAMoCzIVLkdhbGxlcnlScGNNb2RlbC5JdGVtUgVpdGVtcxIrCgljb3Zlcl9pbWcYCiABKAsyDi5JbWFnZVJwY01vZGVsUghjb3ZlckltZxIeCgN0YWcYFCABKAsyDC5UYWdScGNNb2RlbFIDdGFnEiQKBmJhZGdlcxgVIAMoCzIMLlRhZ1JwY01vZGVsUgZiYWRnZXMSNAoIY29tbWVudHMYFiADKAsyGC5HYWxsZXJ5UnBjTW9kZWwuQ29tbWVudFIIY29tbWVudHMSGwoJbmV4dF9wYWdlGBcgASgJUghuZXh0UGFnZRI6Cghsb2NhbEVudhgeIAMoCzIeLkdhbGxlcnlScGNNb2RlbC5Mb2NhbEVudkVudHJ5Ughsb2NhbEVudhI9CglnbG9iYWxFbnYYHyADKAsyHy5HYWxsZXJ5UnBjTW9kZWwuR2xvYmFsRW52RW50cnlSCWdsb2JhbEVudhqRAQoHQ29tbWVudBIaCgh1c2VybmFtZRgBIAEoCVIIdXNlcm5hbWUSGAoHY29udGVudBgCIAEoCVIHY29udGVudBISCgR0aW1lGAMgASgJUgR0aW1lEhQKBXNjb3JlGAQgASgJUgVzY29yZRImCgZhdmF0YXIYBSABKAsyDi5JbWFnZVJwY01vZGVsUgZhdmF0YXIaTwoESXRlbRIvCgtwcmV2aWV3X2ltZxgJIAEoCzIOLkltYWdlUnBjTW9kZWxSCnByZXZpZXdJbWcSFgoGdGFyZ2V0GAogASgJUgZ0YXJnZXQaOwoNTG9jYWxFbnZFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgBGjwKDkdsb2JhbEVudkVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAE=');
 @$core.Deprecated('Use imageReaderRpcModelDescriptor instead')
 const ImageReaderRpcModel$json = const {
   '1': 'ImageReaderRpcModel',
