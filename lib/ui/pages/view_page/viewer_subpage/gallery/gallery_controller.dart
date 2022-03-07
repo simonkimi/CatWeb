@@ -131,7 +131,7 @@ class GalleryPreviewController
   BufferStream<Map<int, GalleryRpcModel_Item?>, Map<int, String?>>
       get bufferStream => BufferStream(
             initData: items,
-            stream: items.stream,
+            stream: items.stream.asBroadcastStream(),
             transmission: (Map<int, GalleryRpcModel_Item?> from) {
               return from.map((key, value) => MapEntry(key, value?.target));
             },

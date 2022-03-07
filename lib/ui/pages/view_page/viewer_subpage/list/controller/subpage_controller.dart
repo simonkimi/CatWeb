@@ -161,7 +161,7 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
   BufferStream<List<ListRpcModel_Item>, Map<int, String?>> get bufferStream =>
       BufferStream(
         initData: items,
-        stream: items.stream,
+        stream: items.stream.asBroadcastStream(),
         transmission: (List<ListRpcModel_Item> from) {
           return from.map((e) => e.target).toList().asMap();
         },

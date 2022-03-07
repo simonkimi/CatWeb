@@ -156,10 +156,12 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
     try {
       if (!checkIfOutOfRange(_page.value)) {
         await onJumpPage(_page.value + 1);
+        loadComplete();
+        if (checkIfOutOfRange(_page.value)) {
+          log('下一秒超出范围, 没有更多', _page.value);
+          loadNoData();
+        }
       } else {
-        loadNoData();
-      }
-      if (checkIfOutOfRange(_page.value)) {
         loadNoData();
       }
     } on DioError catch (e) {
