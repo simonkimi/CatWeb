@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:catweb/ui/theme/colors.dart';
@@ -78,6 +79,8 @@ class CupertinoInput extends StatelessWidget {
     this.padding = true,
     this.description,
     this.prefix,
+    this.inputFormatters,
+    this.keyboardType,
   }) : super(key: key);
 
   final String labelText;
@@ -88,6 +91,9 @@ class CupertinoInput extends StatelessWidget {
   final bool padding;
   final String? description;
   final Widget? prefix;
+
+  final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +125,8 @@ class CupertinoInput extends StatelessWidget {
               value.value = text;
             },
             prefix: prefix,
+            inputFormatters: inputFormatters,
+            keyboardType: keyboardType,
           ),
           if (description != null)
             Padding(

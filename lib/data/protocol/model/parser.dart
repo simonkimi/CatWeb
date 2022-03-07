@@ -39,6 +39,9 @@ class ImageReaderParserModel extends ParserBaseModel {
         source = SelectorModel(pb?.source),
         uploadTime = SelectorModel(pb?.uploadTime),
         id = SelectorModel(pb?.id),
+        badgeSelector = SelectorModel(pb?.badgeSelector),
+        badgeText = SelectorModel(pb?.badgeText),
+        badgeCategory = SelectorModel(pb?.badgeCategory),
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
@@ -53,6 +56,11 @@ class ImageReaderParserModel extends ParserBaseModel {
   final SelectorModel score;
   final SelectorModel source;
   final SelectorModel uploadTime;
+
+  // 徽章
+  final SelectorModel badgeSelector;
+  final SelectorModel badgeText;
+  final SelectorModel badgeCategory;
 
   @override
   String displayType(BuildContext context) => '图片查看';
@@ -69,6 +77,9 @@ class ImageReaderParserModel extends ParserBaseModel {
         score: score.toPb(),
         source: source.toPb(),
         uploadTime: uploadTime.toPb(),
+        badgeCategory: badgeCategory.toPb(),
+        badgeSelector: badgeSelector.toPb(),
+        badgeText: badgeText.toPb(),
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
       );
 

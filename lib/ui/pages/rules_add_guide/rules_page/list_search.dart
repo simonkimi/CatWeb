@@ -45,7 +45,7 @@ class ListFilterEditor extends StatelessWidget {
                   )),
               Row(
                 children: [
-                  const Text('过滤器改变后启用', style: TextStyle(fontSize: 15)),
+                  const Text('过滤器未改变时禁用', style: TextStyle(fontSize: 15)),
                   const Expanded(child: SizedBox()),
                   Transform.scale(
                     alignment: Alignment.centerRight,

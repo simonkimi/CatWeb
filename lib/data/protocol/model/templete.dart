@@ -12,13 +12,18 @@ PbAble parseTemplate({
   required List<int> data,
 }) {
   switch (template) {
-    case Template.TEMPLATE_GALLERY:
-
     case Template.TEMPLATE_IMAGE_VIEWER:
       return TemplateEmptyModel();
 
+    case Template.TEMPLATE_GALLERY:
+      return TemplateGalleryModel(
+        data.isNotEmpty ? TemplateGalleryData.fromBuffer(data) : null,
+      );
+
     case Template.TEMPLATE_AUTO_COMPLETE:
-      return TemplateAutoCompleteModel();
+      return TemplateAutoCompleteModel(
+        data.isNotEmpty ? TemplateAutoComplete.fromBuffer(data) : null,
+      );
 
     case Template.TEMPLATE_IMAGE_LIST:
     case Template.TEMPLATE_IMAGE_WATERFALL:
@@ -27,6 +32,18 @@ PbAble parseTemplate({
       );
   }
   throw Exception('Unknown template.proto type $template');
+}
+
+class TemplateGalleryModel implements PbAble {
+  TemplateGalleryModel([TemplateGalleryData? pb])
+      : targetReader = sobs(pb?.targetReader);
+
+  final RxString targetReader;
+
+  @override
+  TemplateGalleryData toPb() => TemplateGalleryData(
+        targetReader: targetReader.value,
+      );
 }
 
 class SubPageModel implements PbAble, EnvMargeAble {
@@ -110,16 +127,16 @@ class SearchFilterItem implements PbAble {
 
 class TemplateAutoCompleteModel implements PbAble {
   final RxString splitChar;
-  final RxInt timeout;
+  final RxString timeout;
 
   TemplateAutoCompleteModel([TemplateAutoComplete? pb])
       : splitChar = sobs(pb?.splitChar),
-        timeout = pb?.timeout.obs ?? RxInt(0);
+        timeout = pb?.timeout.toString().obs ?? '0'.obs;
 
   @override
   TemplateAutoComplete toPb() => TemplateAutoComplete(
         splitChar: splitChar.value,
-        timeout: timeout.value,
+        timeout: int.tryParse(timeout.value),
       );
 }
 

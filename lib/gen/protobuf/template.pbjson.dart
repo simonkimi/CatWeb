@@ -24,6 +24,17 @@ const Template$json = const {
 /// Descriptor for `Template`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List templateDescriptor = $convert.base64Decode(
     'CghUZW1wbGF0ZRIXChNURU1QTEFURV9JTUFHRV9MSVNUEAASHAoYVEVNUExBVEVfSU1BR0VfV0FURVJGQUxMEAESFAoQVEVNUExBVEVfR0FMTEVSWRACEhkKFVRFTVBMQVRFX0lNQUdFX1ZJRVdFUhADEhoKFlRFTVBMQVRFX0FVVE9fQ09NUExFVEUQBA==');
+@$core.Deprecated('Use templateGalleryDataDescriptor instead')
+const TemplateGalleryData$json = const {
+  '1': 'TemplateGalleryData',
+  '2': const [
+    const {'1': 'target_reader', '3': 1, '4': 1, '5': 9, '10': 'targetReader'},
+  ],
+};
+
+/// Descriptor for `TemplateGalleryData`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List templateGalleryDataDescriptor = $convert.base64Decode(
+    'ChNUZW1wbGF0ZUdhbGxlcnlEYXRhEiMKDXRhcmdldF9yZWFkZXIYASABKAlSDHRhcmdldFJlYWRlcg==');
 @$core.Deprecated('Use templateListDataDescriptor instead')
 const TemplateListData$json = const {
   '1': 'TemplateListData',

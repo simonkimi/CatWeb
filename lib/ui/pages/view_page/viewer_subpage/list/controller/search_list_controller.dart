@@ -32,7 +32,10 @@ class SearchListController {
     if (blueprint != null) {
       textController.addListener(() {
         if (textController.selection.baseOffset == textController.text.length) {
-          handler.post(extra.timeout.value == 0 ? 1 : extra.timeout.value, () {
+          handler.post(
+              int.tryParse(extra.timeout.value) == 0
+                  ? 1000
+                  : extra.timeout.value, () {
             if (focusNode.hasFocus && textController.text.isNotEmpty) {
               requestAutoComplete(textController.text);
             }

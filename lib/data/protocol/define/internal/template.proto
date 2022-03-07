@@ -10,6 +10,10 @@ enum Template {
   TEMPLATE_AUTO_COMPLETE = 4;   // 自动补全页
 }
 
+message TemplateGalleryData {
+  string target_reader = 1;
+}
+
 message TemplateListData {
   enum FilterType {
     FILTER_TYPE_NUMBER = 0;

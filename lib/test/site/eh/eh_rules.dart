@@ -7,6 +7,7 @@ import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pb.dart';
 import 'package:catweb/gen/protobuf/template.pbserver.dart';
 import 'package:catweb/test/site/eh/parser/auto_complete_parser.dart';
+import 'package:catweb/test/site/eh/parser/image_parser.dart';
 import 'package:catweb/ui/theme/colors.dart';
 
 import 'cookies.dart';
@@ -15,6 +16,7 @@ import 'parser/list_parser.dart';
 
 final _detailUuid = genUuid();
 final _autoCompleteUuid = genUuid();
+final _readerUuid = genUuid();
 
 final ehTestSite = SiteBlueprint(
   name: 'E-Hentai',
@@ -22,17 +24,18 @@ final ehTestSite = SiteBlueprint(
   listViewParsers: [ehListParser],
   galleryParsers: [ehGalleryParser],
   autoCompleteParsers: [ehAutoCompleteParser],
+  imageParsers: [ehImageParser],
   flag: 'ignoreCertificate',
   headers: [
     RegField(reg: r'104.20.134.21', value: 'host=e-hentai.org'),
     RegField(reg: r'178.162.147.246', value: 'host=api.e-hentai.org'),
   ],
   cookies: [
-    RegField(value: 'ipb_member_id=$ipbMemberId'),
-    RegField(value: 'ipb_pass_hash=$ipbPassHash'),
-    RegField(value: 'igneous=$igneous'),
-    RegField(value: 'sk=$sk'),
-    RegField(value: 'star=$star'),
+    RegField(reg: '104.20.134.21', value: 'ipb_member_id=$ipbMemberId'),
+    RegField(reg: '104.20.134.21', value: 'ipb_pass_hash=$ipbPassHash'),
+    RegField(reg: '104.20.134.21', value: 'igneous=$igneous'),
+    RegField(reg: '104.20.134.21', value: 'sk=$sk'),
+    RegField(reg: '104.20.134.21', value: 'star=$star'),
   ],
   pages: [
     SitePage(
@@ -49,11 +52,20 @@ final ehTestSite = SiteBlueprint(
       ).writeToBuffer(),
     ),
     SitePage(
+      name: '图片显示器',
+      uuid: _readerUuid,
+      template: Template.TEMPLATE_IMAGE_VIEWER,
+      baseParser: ehImageParser.uuid,
+    ),
+    SitePage(
       name: '画廊',
       uuid: _detailUuid,
       template: Template.TEMPLATE_GALLERY,
       baseParser: ehGalleryParser.uuid,
       url: 'g/{idCode}/?p={page:0}',
+      templateData: TemplateGalleryData(
+        targetReader: _readerUuid,
+      ).writeToBuffer(),
     ),
     SitePage(
       name: '主页',

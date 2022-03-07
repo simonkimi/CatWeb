@@ -15,6 +15,69 @@ import 'template.pbenum.dart';
 
 export 'template.pbenum.dart';
 
+class TemplateGalleryData extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TemplateGalleryData',
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'targetReader')
+    ..hasRequiredFields = false;
+
+  TemplateGalleryData._() : super();
+  factory TemplateGalleryData({
+    $core.String? targetReader,
+  }) {
+    final _result = create();
+    if (targetReader != null) {
+      _result.targetReader = targetReader;
+    }
+    return _result;
+  }
+  factory TemplateGalleryData.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TemplateGalleryData.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  TemplateGalleryData clone() => TemplateGalleryData()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TemplateGalleryData copyWith(void Function(TemplateGalleryData) updates) =>
+      super.copyWith((message) => updates(message as TemplateGalleryData))
+          as TemplateGalleryData; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static TemplateGalleryData create() => TemplateGalleryData._();
+  TemplateGalleryData createEmptyInstance() => create();
+  static $pb.PbList<TemplateGalleryData> createRepeated() =>
+      $pb.PbList<TemplateGalleryData>();
+  @$core.pragma('dart2js:noInline')
+  static TemplateGalleryData getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TemplateGalleryData>(create);
+  static TemplateGalleryData? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get targetReader => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set targetReader($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasTargetReader() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTargetReader() => clearField(1);
+}
+
 class TemplateListData_SubPage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')

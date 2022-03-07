@@ -76,7 +76,6 @@ class RulesPageBasic extends GetView<RulesEditController> {
     late final List<Widget> body;
     switch (model.template.value) {
       case Template.TEMPLATE_AUTO_COMPLETE:
-      case Template.TEMPLATE_GALLERY:
       case Template.TEMPLATE_IMAGE_VIEWER:
         body = [];
         break;
@@ -96,6 +95,18 @@ class RulesPageBasic extends GetView<RulesEditController> {
             target: extra.targetAutoComplete,
             filter: (item) =>
                 item.template.value == Template.TEMPLATE_AUTO_COMPLETE,
+          ),
+        ];
+        break;
+      case Template.TEMPLATE_GALLERY:
+        final extra = model.templateData as TemplateGalleryModel;
+        body = [
+          _buildOpenWidget(
+            context,
+            labelText: '阅读跳转',
+            target: extra.targetReader,
+            filter: (item) =>
+                item.template.value == Template.TEMPLATE_IMAGE_VIEWER,
           ),
         ];
         break;
