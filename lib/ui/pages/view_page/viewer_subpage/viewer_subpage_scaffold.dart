@@ -2,12 +2,15 @@ import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/i18n.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_viewer.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/viewer_list.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import 'gallery/viewer_gallery.dart';
+import 'image/image_controller.dart';
 
 class ViewerPage extends StatelessWidget {
   const ViewerPage({
@@ -23,7 +26,7 @@ class ViewerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(child: _buildFragment(context));
+    return _buildFragment(context);
   }
 
   Widget _buildFragment(BuildContext context) {
@@ -39,6 +42,11 @@ class ViewerPage extends StatelessWidget {
           target: target,
           model: model,
           env: env ?? SiteEnvModel(),
+        );
+      case Template.TEMPLATE_IMAGE_VIEWER:
+        return ImageReaderViewer(
+          readerInfo: model as ReaderInfo,
+          blueprint: target,
         );
       default:
         throw UnimplementedError(
@@ -56,9 +64,10 @@ Future<void> pushNewPage({
   final target =
       controller.website.configModel.pageList.get((e) => e.uuid == to);
   if (target == null) throw Exception('$to not exist');
-  Get.to(() => ViewerPage(
-        model: model,
-        env: envModel,
-        target: target,
-      ));
+  Navigator.of(I.context).push(CupertinoPageRoute(
+      builder: (context) => ViewerPage(
+            model: model,
+            env: envModel,
+            target: target,
+          )));
 }

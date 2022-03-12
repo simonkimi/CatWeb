@@ -24,7 +24,7 @@ class SiteEnvModel implements EnvMargeAble {
   @override
   Map<String, String> get env => _env;
 
-  SiteEnvModel copy() => SiteEnvModel({..._env});
+  SiteEnvModel clone() => SiteEnvModel({..._env});
 
   SiteEnvModel merge(EnvMargeAble envModel) {
     _env.addAll(envModel.env);

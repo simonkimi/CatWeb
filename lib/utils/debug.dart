@@ -11,7 +11,7 @@ class TimeLine {
   }
 }
 
-void log(Object p1,
+void trace(Object p1,
     [Object? p2,
     Object? p3,
     Object? p4,

@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math' as math;
 
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/network/client/image_loader.dart';
@@ -11,6 +11,7 @@ import 'package:catweb/ui/components/icon_text.dart';
 import 'package:catweb/ui/components/image_loader.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/gallery/viewer_gallery_images.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/viewer_subpage_scaffold.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/utils/utils.dart';
@@ -41,10 +42,12 @@ class ViewerGalleryFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoAppBar(
-      title: '',
-      child: _buildBody(context),
-      leading: const CupertinoBackLeading(),
+    return CupertinoPageScaffold(
+      child: CupertinoAppBar(
+        title: '',
+        child: _buildBody(context),
+        leading: const CupertinoBackLeading(),
+      ),
     );
   }
 
@@ -89,7 +92,7 @@ class ViewerGalleryFragment extends StatelessWidget {
           height: 150,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: min(c.items.coiledList.length, 40),
+            itemCount: math.min(c.items.coiledList.length, 40),
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(right: 5),
@@ -355,7 +358,11 @@ class ViewerGalleryFragment extends StatelessWidget {
       color: CupertinoColors.systemBlue,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
       minSize: 0,
-      onPressed: () {},
+      onPressed: () => pushNewPage(
+        to: c.extra.targetReader.value,
+        envModel: c.localEnv.clone(),
+        model: c,
+      ),
       borderRadius: BorderRadius.circular(20),
     );
   }

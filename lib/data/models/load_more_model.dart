@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:catweb/utils/debug.dart';
+import 'package:catweb/utils/state_mixin.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:dio/dio.dart' hide Lock;
 import 'package:get/get.dart';
@@ -8,79 +9,32 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:tuple/tuple.dart';
 
-enum LoadMoreState {
-  idle, // 待命
-  loading, // 加载中
-  noMoreData, // 没有其他数据了
-  refreshing, // 刷新中
-  loadError, // 加载更多出错
-}
-
-abstract class LoadMoreBase {
+abstract class LoadMoreBase with LoadStateMixin {
   final _requestLock = Lock();
 
   final refreshController = RefreshController();
 
-  final Rx<LoadMoreState> _state = LoadMoreState.idle.obs;
-
-  final Rx<Exception?> _exception = Rx<Exception?>(null);
-
-  bool get isLoading =>
-      _state.value == LoadMoreState.loading ||
-      _state.value == LoadMoreState.refreshing;
-
-  bool get canLoadMore =>
-      _state.value == LoadMoreState.idle ||
-      _state.value == LoadMoreState.loadError;
-
-  LoadMoreState get state => _state.value;
-
   Future<void> awaitLock() => _requestLock.synchronized(() {});
 
-  void loadStart() {
-    _state.value = LoadMoreState.loading;
-    _exception.value = null;
-  }
-
+  @override
   void loadComplete() {
-    if ([
-      LoadMoreState.loading,
-      LoadMoreState.refreshing,
-      LoadMoreState.loadError
-    ].contains(_state.value)) {
-      _state.value = LoadMoreState.idle;
+    super.loadComplete();
+    if (state.isComplete) {
       refreshController.loadComplete();
       refreshController.refreshCompleted();
     }
   }
 
+  @override
   void loadNoData() {
-    _state.value = LoadMoreState.noMoreData;
+    super.loadNoData();
     refreshController.loadNoData();
   }
 
-  void loadError(Exception e) {
-    if (e is DioError && CancelToken.isCancel(e)) {
-      return;
-    }
-    _state.value = LoadMoreState.loadError;
-    _exception.value = e;
+  @override
+  void loadError(Exception error) {
+    super.loadError(error);
     refreshController.loadFailed();
-  }
-
-  void loadRefresh() {
-    _state.value = LoadMoreState.refreshing;
-    _exception.value = null;
-  }
-
-  String? get errorMessage {
-    if (_exception.value == null) return null;
-
-    if (_exception.value is DioError) {
-      return (_exception.value as DioError).message;
-    }
-
-    return _exception.value.toString();
   }
 }
 
@@ -128,10 +82,16 @@ abstract class LoadMoreList<E, T> extends LoadMoreBase {
   }
 
   void requestFirstLoad() {
-    if (items.isEmpty && state == LoadMoreState.idle) {
+    if (items.isEmpty && state.isIdle) {
       onRefresh();
     }
   }
+
+  Future<void> requestLoadPage(int page) =>
+      throw UnsupportedError('Load More List not support requestLoadPage');
+
+  Future<void> requestLoadIndex(int page, [RxBool? isStop]) =>
+      throw UnsupportedError('Load More List not support requestLoadIndex');
 }
 
 abstract class LoadMoreMap<E, T> extends LoadMoreBase {
@@ -158,7 +118,7 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
         await onJumpPage(_page.value + 1);
         loadComplete();
         if (checkIfOutOfRange(_page.value)) {
-          log('下一秒超出范围, 没有更多', _page.value);
+          trace('下一秒超出范围, 没有更多', _page.value);
           loadNoData();
         }
       } else {
@@ -178,7 +138,7 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
 
   /// 这里传入的page应该是以0开始的, 第一面就是0
   Future<void> onJumpPage(int page) async {
-    log('当前页面', _page.value, '准备加载页面', page);
+    trace('当前页面', _page.value, '准备加载页面', page);
     await _requestLock.synchronized(() async {
       if (pages.containsKey(page)) return;
       loadStart();
@@ -201,12 +161,12 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
     });
   }
 
-  Future<void> requestLoadItem(int index, [RxBool? stop]) async {
+  Future<void> requestLoadIndex(int index, [RxBool? stop]) async {
     if (totalSize == null) throw UnsupportedError('必须知道总体数量才能跳页');
     if (chunkSize != null) {
       // 有确切的面数, 直接加载
       final page = (index / chunkSize!).floor();
-      await loadPage(page);
+      await onJumpPage(page);
     } else {
       // 没有确切的面数, 只能一面面加载
       while (items.maxIndex < index) {
@@ -226,4 +186,6 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
     loadRefresh();
     await onLoadMore();
   }
+
+  Future<void> requestLoadPage(int page) => onJumpPage(page);
 }

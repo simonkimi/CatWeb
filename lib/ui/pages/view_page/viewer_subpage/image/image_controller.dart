@@ -4,9 +4,10 @@ import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/utils/handle.dart';
+import 'package:catweb/utils/state_mixin.dart';
 import 'package:get/get.dart';
 
-enum ImageState {
+enum ImageContainerState {
   waiting, // 等待加载
   loading, // 加载中
   finish, // 加载完成
@@ -17,47 +18,60 @@ abstract class ReaderInfo<T> {
   int? get pageCount; // 总面数
 
   // 第一个T是原类型, 要转换为数据
-  BufferStream<T, Map<int, String?>> get bufferStream;
+  TransmissionBufferStream<T, Map<int, String?>> get bufferStream;
+
+  Future<void> requestLoadPage(int page);
+
+  Future<void> requestLoadIndex(int index, [RxBool isStop]);
 }
 
-class ImageContainer {
-  ImageContainer({
-    required this.idCode,
+class ReaderImageLoader with LoadStateMixin {
+  ReaderImageLoader({
+    required this.index,
+    required this.requestLoadIdCode,
     required this.localEnv,
     required this.blueprint,
+    this.idCode,
   });
 
-  final String idCode;
+  final String? idCode; // 图片的id, 有可能还没有获取, 所以可空
+  final int index; // 图片的index, 这个是可以确定的
+  final Future<void> Function(int index) requestLoadIdCode;
   final SiteEnvModel localEnv;
   final PageBlueprintModel blueprint;
+  ImageReaderRpcModel? model;
 
   final global = Get.find<GlobalController>();
 
-  final Rx<ImageState> state = ImageState.waiting.obs;
-  ImageReaderRpcModel? model;
-
-  Future<void> load() async {
-    state.value = ImageState.loading;
+  // 阅读器想要加载数据的时候, 调用此函数
+  Future<void> requestLoadIndex(bool isAuto) async {
+    if (model != null) return;
+    loadStart();
     try {
-      final url = blueprint.url.isEmpty ? idCode : blueprint.url.value;
+      if (idCode == null) {
+        // 如果idCode为空时, 应该要求加载, 传到上级进行判断
+        await requestLoadIdCode(index);
+        if (idCode == null) return; // 如果idCode还为空的话, 返回 TODO: 错误提示
+      }
 
-      final env = localEnv.copy()..set('idCode', idCode);
+      // 加载好数据后, 开始由idCode拿数据
+      final url = blueprint.url.isEmpty ? idCode! : blueprint.url.value;
+      final env = localEnv.clone()..set('idCode', idCode!);
 
       model = await global.website.client.getReadImage(
         url: url,
         model: blueprint,
         localEnv: env,
       );
-      state.value = ImageState.finish;
-    } catch (e) {
-      state.value = ImageState.error;
-      return;
+    } on Exception catch (e) {
+      loadError(e);
     }
+    loadComplete();
   }
 }
 
-class ImageController<T> {
-  ImageController({
+class ImageReaderController {
+  ImageReaderController({
     required this.readerInfo,
     required this.localEnv,
     required this.blueprint,
@@ -66,7 +80,7 @@ class ImageController<T> {
     readerInfo.bufferStream.listen(_updateIdCode);
   }
 
-  final ReaderInfo<T> readerInfo;
+  final ReaderInfo readerInfo;
   final PageBlueprintModel blueprint;
 
   final global = Get.find<GlobalController>();
@@ -75,8 +89,8 @@ class ImageController<T> {
   // 从上级菜单传过来的列表, 其中包含了idCode
   final RxMap<int, String?> imageIdCode = <int, String?>{}.obs;
 
-  // 图片所在的html获取结果, 相同String共享一个ImageContainer
-  final imageContainerMap = <String, ImageContainer>{};
+  // 图片所在的html获取结果, 相同String共享一个ReaderImageLoader
+  final imageContainerMap = <String, ReaderImageLoader>{};
 
   // 图片储存数据, 相同的url公用一个ImageLoadModel
   final imageMap = <String, ImageLoadModel>{};

@@ -15,6 +15,13 @@ extension IterableUtils<T> on Iterable<T> {
   }
 }
 
+extension DoubleHelper on num {
+  T nearList<T extends num>(List<T> nums) {
+    return nums.reduce((value, element) =>
+        (this - value).abs() < (this - element).abs() ? value : element);
+  }
+}
+
 extension ListHelper<T> on List<T> {
   T random() {
     return this[math.Random().nextInt(length)];

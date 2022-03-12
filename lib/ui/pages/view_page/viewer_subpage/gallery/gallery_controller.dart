@@ -2,6 +2,7 @@ import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
+import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_controller.dart';
@@ -113,7 +114,7 @@ class GalleryPreviewController
   }
 
   bool get fillRemaining =>
-      (state == LoadMoreState.loading && items.isEmpty) || errorMessage != null;
+      (state.isLoading && items.isEmpty) || errorMessage != null;
 
   @override
   int? get chunkSize => detailModel?.getCountPrePage();
@@ -127,9 +128,11 @@ class GalleryPreviewController
   @override
   int? get pageCount => detailModel?.getImageCount();
 
+  TemplateGalleryModel get extra => target.templateData as TemplateGalleryModel;
+
   @override
-  BufferStream<Map<int, GalleryRpcModel_Item?>, Map<int, String?>>
-      get bufferStream => BufferStream(
+  TransmissionBufferStream<Map<int, GalleryRpcModel_Item?>, Map<int, String?>>
+      get bufferStream => TransmissionBufferStream(
             initData: items,
             stream: items.stream.asBroadcastStream(),
             transmission: (Map<int, GalleryRpcModel_Item?> from) {

@@ -150,7 +150,7 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
   bool get useFilter => List.generate(extra.filterItem.length, (i) => i)
       .any((e) => filter[e].value.value != extra.filterItem[e].value.value);
 
-  bool get isFullScreenLoading => items.isEmpty && isLoading;
+  bool get isFullScreenLoading => items.isEmpty && state.isLoading;
 
   bool get isFullScreenError => items.isEmpty && errorMessage != null;
 
@@ -158,12 +158,12 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
   int? get pageCount => null;
 
   @override
-  BufferStream<List<ListRpcModel_Item>, Map<int, String?>> get bufferStream =>
-      BufferStream(
-        initData: items,
-        stream: items.stream.asBroadcastStream(),
-        transmission: (List<ListRpcModel_Item> from) {
-          return from.map((e) => e.target).toList().asMap();
-        },
-      );
+  TransmissionBufferStream<List<ListRpcModel_Item>, Map<int, String?>>
+      get bufferStream => TransmissionBufferStream(
+            initData: items,
+            stream: items.stream.asBroadcastStream(),
+            transmission: (List<ListRpcModel_Item> from) {
+              return from.map((e) => e.target).toList().asMap();
+            },
+          );
 }
