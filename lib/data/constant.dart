@@ -7,6 +7,8 @@ const kCupertinoNavigatorBar = 44.0;
 const kCupertinoTabBarHeight = 30.0;
 const kSuggestInputHeight = 40.0;
 
+const doubleTapScales = <double>[0.99, 2.0, 3.0];
+
 const kDefaultNavBarBorder = Border(
   bottom: BorderSide(
     color: kDefaultNavBarBorderColor,

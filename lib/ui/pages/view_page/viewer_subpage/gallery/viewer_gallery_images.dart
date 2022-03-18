@@ -75,7 +75,7 @@ class ViewerGalleryImages extends StatelessWidget {
                             ),
                           );
                         },
-                        childCount: c.items.trueLength,
+                        childCount: c.items.realLength,
                       ),
                     ),
                   ],

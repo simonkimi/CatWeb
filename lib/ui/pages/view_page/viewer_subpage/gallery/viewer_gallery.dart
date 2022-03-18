@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/network/client/image_loader.dart';
+import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';

@@ -1,5 +1,5 @@
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
-import 'package:catweb/network/client/image_loader.dart';
+import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/dark_image.dart';
 import 'package:catweb/ui/components/image_loader.dart';

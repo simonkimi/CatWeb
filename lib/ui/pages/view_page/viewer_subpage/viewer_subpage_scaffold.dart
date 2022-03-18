@@ -3,7 +3,7 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_viewer.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_reader.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/viewer_list.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,7 +44,7 @@ class ViewerPage extends StatelessWidget {
           env: env ?? SiteEnvModel(),
         );
       case Template.TEMPLATE_IMAGE_VIEWER:
-        return ImageReaderViewer(
+        return ImageReader(
           readerInfo: model as ReaderInfo,
           blueprint: target,
         );

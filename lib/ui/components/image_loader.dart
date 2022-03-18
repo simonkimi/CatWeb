@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:extended_image/extended_image.dart';

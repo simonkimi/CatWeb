@@ -99,7 +99,7 @@ extension UnWrap on core.double {
 }
 
 extension SparseMap<T> on Map<int, T?> {
-  int get trueLength => maxIndex + 1;
+  int get realLength => maxIndex + 1;
 
   int get maxIndex => entries.fold(
       -1,

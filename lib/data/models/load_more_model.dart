@@ -149,7 +149,7 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
         // 如果一面一面加载没有数据了, 就说明加载完毕
         if (pageData.item2.isEmpty) loadNoData();
         for (var i = 0; i < pageData.item2.length; i++) {
-          items[i + pages.trueLength] = pageData.item2[i];
+          items[i + pages.realLength] = pageData.item2[i];
         }
       } else {
         // 有最大面数的话, 则在对应的位置进行加载

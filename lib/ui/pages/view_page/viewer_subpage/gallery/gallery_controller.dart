@@ -4,7 +4,7 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
-import 'package:catweb/network/client/image_loader.dart';
+import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_controller.dart';
 import 'package:catweb/utils/handle.dart';
 import 'package:catweb/utils/replace_utils.dart';
@@ -78,7 +78,7 @@ class GalleryPreviewController
     } else {
       if (pages.isNotEmpty) {
         final preUrl = pages[page - 1]?.nextPage;
-        if (preUrl == null) throw Exception('看起来莫名其妙跳页了: index $page}');
+        if (preUrl == null) throw Exception('看起来莫名其妙跳页了: index $page');
         baseUrl = preUrl;
       }
     }
