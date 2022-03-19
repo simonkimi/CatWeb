@@ -39,7 +39,7 @@ class ReaderImageLoader with LoadStateMixin {
   final SiteEnvModel localEnv;
   final PageBlueprintModel blueprint;
   ImageReaderRpcModel? model;
-  Rx<ImageLoadModel?> loadModel = Rx<ImageLoadModel?>(null);
+  Rx<ImageLoadModel?> imageModel = Rx<ImageLoadModel?>(null);
 
   final global = Get.find<GlobalController>();
 
@@ -70,7 +70,7 @@ class ReaderImageLoader with LoadStateMixin {
   }
 
   Future<void> loadImage() async {
-    loadModel.value = ImageLoadModel(
+    imageModel.value = ImageLoadModel(
       model: model!.image,
       dio: global.website.client.imageDio,
     );
@@ -85,6 +85,7 @@ class ImageReaderController {
   }) {
     _updateIdCode(readerInfo.bufferStream.buffer);
     readerInfo.bufferStream.listen(_updateIdCode);
+    print(imageLoaderList.length);
   }
 
   final ReaderInfo readerInfo;

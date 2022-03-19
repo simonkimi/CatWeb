@@ -8,7 +8,7 @@ import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_zoom.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-
+import 'package:get/get.dart';
 import 'image_controller.dart';
 import 'image_viewer.dart';
 
@@ -57,14 +57,14 @@ class _ImageReaderViewerState extends State<ImageReader>
         ),
       ),
       backgroundColor: CupertinoColors.darkBackgroundGray,
-      child: PhotoViewGallery.builder(
-        itemCount: c.imageLoaderList.length,
-        builder: (context, index) {
-          return _isSingleWidget(index)
-              ? _buildSinglePageImage(context, index)
-              : _buildDoublePageImage(context, index);
-        },
-      ),
+      child: Obx(() => PhotoViewGallery.builder(
+            itemCount: _pageCount,
+            builder: (context, index) {
+              return _isSingleWidget(index)
+                  ? _buildSinglePageImage(context, index)
+                  : _buildDoublePageImage(context, index);
+            },
+          )),
     );
   }
 
@@ -81,12 +81,13 @@ class _ImageReaderViewerState extends State<ImageReader>
 
   bool _isSingleWidget(int index) {
     switch (widget.displayType) {
-      case ReaderDisplayType.single:
+      case ReaderDisplayType.single: // 单面
         return true;
-      case ReaderDisplayType.double:
+      case ReaderDisplayType.double: // 普通双面多出一面
         return c.imageLoaderList.length.isOdd && index == _pageCount - 1;
-      case ReaderDisplayType.doubleCover:
-        return c.imageLoaderList.length.isEven && index == _pageCount - 1;
+      case ReaderDisplayType.doubleCover: // 封面双面的封面和多出的一面
+        return index == 0 ||
+            (c.imageLoaderList.length.isEven && index == _pageCount - 1);
     }
   }
 
@@ -114,16 +115,19 @@ class _ImageReaderViewerState extends State<ImageReader>
       minScale: 1.0,
       maxScale: 5.0,
       controller: zoomController,
-      child: ZoomWidget(
-        controller: zoomController,
-        animation: ZoomAnimation(
-          this,
-          duration: const Duration(milliseconds: 200),
-        ),
-        canZoom: true,
-        child: ImageViewer(
-          model: c.imageLoaderList[readIndex],
-        ),
+      child: ImageViewer(
+        model: c.imageLoaderList[readIndex],
+        imageBuilder: (context, child) {
+          return ZoomWidget(
+            controller: zoomController,
+            animation: ZoomAnimation(
+              this,
+              duration: const Duration(milliseconds: 200),
+            ),
+            canZoom: true,
+            child: child,
+          );
+        },
       ),
     );
   }

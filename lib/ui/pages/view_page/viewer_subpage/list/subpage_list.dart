@@ -33,7 +33,7 @@ class SubPageListFragment extends StatefulWidget {
 
 class _SubPageListFragmentState extends State<SubPageListFragment>
     with AutomaticKeepAliveClientMixin {
-  late final controller = widget.controller;
+  SubListController get controller => widget.controller;
 
   late final concurrency = ImageListConcurrency(
     dio: widget.controller.global.client!.imageDio,

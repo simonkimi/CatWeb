@@ -79,20 +79,24 @@ class _ImageLoaderState extends State<ImageLoader> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      switch (_imageLoadModel.state) {
-        case ImageLoadState.cached:
-        case ImageLoadState.waiting:
-          return loadingWidgetBuilder(context, loadingBuilder(context, 0));
-        case ImageLoadState.loading:
-          return loadingWidgetBuilder(
-              context, loadingBuilder(context, _imageLoadModel.progress));
-        case ImageLoadState.finish:
-          return imageWidgetBuilder(
-              context, imageBuilder(context, _imageLoadModel.data!));
-        case ImageLoadState.error:
-          return errorBuilder(
-              context, _imageLoadModel.lastException.value!, _onReload);
+      final state = _imageLoadModel.state;
+
+      if (state.isWaiting || state.isCached) {
+        return loadingWidgetBuilder(context, loadingBuilder(context, 0));
+      } else if (state.isError) {
+        return errorBuilder(context, state.error, _onReload);
+      } else if (state.isLoading) {
+        return loadingWidgetBuilder(
+          context,
+          loadingBuilder(context, _imageLoadModel.progress),
+        );
+      } else if (state.isFinish) {
+        return imageWidgetBuilder(
+          context,
+          imageBuilder(context, _imageLoadModel.data!),
+        );
       }
+      throw Exception('Unknown state');
     });
   }
 
@@ -109,8 +113,6 @@ class _ImageLoaderState extends State<ImageLoader> {
   Widget _defaultWidgetBuilder(BuildContext context, Widget widget) => widget;
 
   Widget _defaultImageBuilder(BuildContext context, Uint8List imgData) {
-    final model = widget.model;
-
     late Widget child;
 
     if ((!model.imgX.isNaN || !model.imgY.isNaN) &&
@@ -198,4 +200,6 @@ class _ImageLoaderState extends State<ImageLoader> {
       ),
     );
   }
+
+  ImageRpcModel get model => widget.model;
 }
