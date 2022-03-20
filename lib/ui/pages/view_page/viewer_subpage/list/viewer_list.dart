@@ -12,6 +12,7 @@ import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class ViewerListFragment extends StatefulWidget {
   const ViewerListFragment({
@@ -119,7 +120,11 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
       minSize: 0,
       child: const Icon(Icons.menu),
       onPressed: () {
-        Get.to(() => const SiteManager());
+        showCupertinoModalBottomSheet(
+          context: context,
+          expand: true,
+          builder: (context) => const SiteManager(),
+        );
       },
     );
   }

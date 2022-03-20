@@ -1,5 +1,6 @@
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/i18n.dart';
+import 'package:catweb/ui/components/cupertino_router.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/ui/pages/view_page/viewer_main.dart';
 import 'package:flutter/cupertino.dart';
@@ -35,10 +36,15 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         I.delegate
       ],
+      onGenerateRoute: (settings) {
+        return CupertinoWithModalsPageRoute(
+          builder: (context) => const ViewerMain(),
+          settings: settings,
+        );
+      },
       supportedLocales: I.supportedLocales,
       navigatorKey: AppNavigator().key,
       theme: defaultTheme(),
-      home: const ViewerMain(),
     );
   }
 }

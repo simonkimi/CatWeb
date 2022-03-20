@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
 import 'image_controller.dart';
 
@@ -28,6 +27,8 @@ class _ImageViewerState extends State<ImageViewer> {
         '${model.index + 1}',
         style: const TextStyle(
           color: CupertinoColors.white,
+          fontSize: 60,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

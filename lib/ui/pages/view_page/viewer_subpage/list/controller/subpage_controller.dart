@@ -158,12 +158,19 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
   int? get pageCount => null;
 
   @override
-  TransmissionBufferStream<List<ListRpcModel_Item>, Map<int, String?>>
+  TransmissionBufferStream<List<ListRpcModel_Item>,
+          Map<int, ReaderPreviewData?>>
       get bufferStream => TransmissionBufferStream(
             initData: items,
             stream: items.stream.asBroadcastStream(),
             transmission: (List<ListRpcModel_Item> from) {
-              return from.map((e) => e.target).toList().asMap();
+              return from
+                  .map((e) => ReaderPreviewData(
+                        idCode: e.target,
+                        preview: e.previewImg,
+                      ))
+                  .toList()
+                  .asMap();
             },
           );
 }

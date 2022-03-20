@@ -15,11 +15,21 @@ enum ImageContainerState {
   error, // 加载失败
 }
 
+class ReaderPreviewData {
+  ReaderPreviewData({
+    required this.idCode,
+    required this.preview,
+  });
+
+  String? idCode;
+  ImageRpcModel? preview;
+}
+
 abstract class ReaderInfo<T> {
   int? get pageCount; // 总面数
 
   // 第一个T是原类型, 要转换为数据
-  TransmissionBufferStream<T, Map<int, String?>> get bufferStream;
+  TransmissionBufferStream<T, Map<int, ReaderPreviewData?>> get bufferStream;
 
   Future<void> requestLoadIndex(int index, [RxBool isStop]);
 }
@@ -31,9 +41,11 @@ class ReaderImageLoader with LoadStateMixin {
     required this.localEnv,
     required this.blueprint,
     this.idCode,
+    this.preview,
   });
 
   String? idCode; // 图片的id, 有可能还没有获取, 所以可空
+  ImageRpcModel? preview; // 图片的预览信息
   final int index; // 图片的index, 这个是可以确定的
   final Future<void> Function(int index) requestLoadIdCode;
   final SiteEnvModel localEnv;
@@ -97,18 +109,20 @@ class ImageReaderController {
   // 图片列表
   final RxList<ReaderImageLoader> imageLoaderList = <ReaderImageLoader>[].obs;
 
-  void _updateIdCode(Map<int, String?> items) {
+  void _updateIdCode(Map<int, ReaderPreviewData?> items) {
     for (var i = 0; i < items.realLength; i++) {
       if (imageLoaderList.length <= i) {
         imageLoaderList.add(ReaderImageLoader(
           index: i,
-          idCode: items.containsKey(i) ? items[i] : null,
+          idCode: items[i]?.idCode,
+          preview: items[i]?.preview,
           requestLoadIdCode: readerInfo.requestLoadIndex,
           localEnv: localEnv,
           blueprint: blueprint,
         ));
       } else if (imageLoaderList[i].idCode == null && items.containsKey(i)) {
-        imageLoaderList[i].idCode = items[i];
+        imageLoaderList[i].idCode = items[i]?.idCode;
+        imageLoaderList[i].preview = items[i]?.preview;
       }
     }
   }

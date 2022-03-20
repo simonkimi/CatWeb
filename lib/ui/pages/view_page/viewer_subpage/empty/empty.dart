@@ -1,7 +1,10 @@
+import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
+import 'package:catweb/test/site/eh/eh_rules.dart' as eh;
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class EmptyFragment extends StatelessWidget {
   const EmptyFragment({Key? key}) : super(key: key);
@@ -13,7 +16,13 @@ class EmptyFragment extends StatelessWidget {
       navigationBar: CupertinoNavigationBar(
         middle: const Text('CatWeb'),
         leading: CupertinoButton(
-          onPressed: () {},
+          onPressed: () {
+            showCupertinoModalBottomSheet(
+              context: context,
+              expand: true,
+              builder: (context) => const SiteManager(),
+            );
+          },
           child: const Icon(CupertinoIcons.layers_alt),
           padding: EdgeInsets.zero,
           minSize: 0,
@@ -31,7 +40,8 @@ class EmptyFragment extends StatelessWidget {
         Center(
           child: CupertinoButton(
             onPressed: () {
-              Get.to(() => const SiteManager());
+              // Get.to(() => const SiteManager());
+              Get.to(() => RulesEditPage(pb: eh.ehTestSite));
             },
             child: Row(
               mainAxisSize: MainAxisSize.min,

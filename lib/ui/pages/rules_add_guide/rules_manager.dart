@@ -26,18 +26,42 @@ class SiteManager extends StatelessWidget {
     return CupertinoPageScaffold(
       navigationBar: _buildAppbar(context),
       child: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: StreamBuilder<List<WebTableData>>(
-              initialData: const [],
-              stream: DB().webDao.getAllStream(),
-              builder: (context, snapshot) {
-                return _buildListView(snapshot, siteController, context);
-              },
+        child: Column(
+          children: [
+            Expanded(
+              child: SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: StreamBuilder<List<WebTableData>>(
+                    initialData: const [],
+                    stream: DB().webDao.getAllStream(),
+                    builder: (context, snapshot) {
+                      return _buildListView(snapshot, siteController, context);
+                    },
+                  ),
+                ),
+              ),
             ),
-          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CupertinoButton(
+                  child: const Icon(CupertinoIcons.add),
+                  onPressed: () => _toEditPage(null, null),
+                ),
+                CupertinoButton(
+                  child: const Icon(CupertinoIcons.qrcode),
+                  onPressed: () {},
+                ),
+                CupertinoButton(
+                  child: const Icon(CupertinoIcons.settings),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -58,28 +82,20 @@ class SiteManager extends StatelessWidget {
         ));
   }
 
-  ListView _buildListView(
+  Widget _buildListView(
     AsyncSnapshot<List<WebTableData>> snapshot,
     GlobalController globalController,
     BuildContext context,
   ) {
+    if (snapshot.data!.isEmpty) {
+      return const Center(
+        child: Text('没有找到站点, 请点击下面的按钮添加'),
+      );
+    }
     return ListView(
+      physics: const ClampingScrollPhysics(),
       children: [
         ...snapshot.data!.map((e) => _buildSiteItem(context, e)),
-        if (snapshot.data!.isNotEmpty) const SizedBox(height: 50),
-        CupertinoListTile(
-          leading: const Icon(CupertinoIcons.add_circled_solid),
-          title: const Text('编写一个规则'),
-          trailing: const Icon(CupertinoIcons.forward),
-          onTap: () => _toEditPage(null, null),
-        ),
-        const SizedBox(height: 5),
-        CupertinoListTile(
-          leading: const Icon(CupertinoIcons.qrcode_viewfinder),
-          title: const Text('扫码获取规则'),
-          trailing: const Icon(CupertinoIcons.forward),
-          onTap: () {},
-        ),
       ],
     );
   }

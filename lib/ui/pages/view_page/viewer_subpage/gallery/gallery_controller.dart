@@ -131,12 +131,18 @@ class GalleryPreviewController
   TemplateGalleryModel get extra => target.templateData as TemplateGalleryModel;
 
   @override
-  TransmissionBufferStream<Map<int, GalleryRpcModel_Item?>, Map<int, String?>>
+  TransmissionBufferStream<Map<int, GalleryRpcModel_Item?>,
+          Map<int, ReaderPreviewData?>>
       get bufferStream => TransmissionBufferStream(
             initData: items,
             stream: items.stream.asBroadcastStream(),
             transmission: (Map<int, GalleryRpcModel_Item?> from) {
-              return from.map((key, value) => MapEntry(key, value?.target));
+              return from.map((key, value) => MapEntry(
+                  key,
+                  ReaderPreviewData(
+                    idCode: value?.target,
+                    preview: value?.previewImg,
+                  )));
             },
           );
 }
