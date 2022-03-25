@@ -53,8 +53,12 @@ dependencies:
   intl: ^0.17.0
   synchronized: ^3.0.0
   uuid: ^3.0.5
-  ffi: ^1.1.2
   tuple: ^2.0.0
+
+  # native
+  catweb_parser:
+    git:
+      url: https://github.com/simonkimi/catweb-parser.git
 
 
 dev_dependencies:
@@ -64,7 +68,6 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   build_runner: ^2.1.7
   drift_dev: ^1.1.0
-  ffigen: ^4.1.2
   dart_code_metrics: ^4.12.0
 
 flutter:
