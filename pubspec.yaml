@@ -58,7 +58,7 @@ dependencies:
   # parser
   catweb_parser:
     git:
-      url: https://github.com/simonkimi/catweb-parser.git
+      url: git@github.com:simonkimi/catweb-parser.git
 
 
 dev_dependencies:

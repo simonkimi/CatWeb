@@ -3,6 +3,7 @@ import 'package:catweb/data/database/database.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/test/site/eh/eh_rules.dart' as eh;
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
+import 'package:catweb/ui/components/cupertino_router.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -49,7 +50,7 @@ class SiteManager extends StatelessWidget {
               children: [
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.add),
-                  onPressed: () => _toEditPage(null, null),
+                  onPressed: () => _toEditPage(context, pb: null, db: null),
                 ),
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.qrcode),
@@ -137,7 +138,7 @@ class SiteManager extends StatelessWidget {
         // TODO 分享功能
         break;
       case _MenuSelect.edit:
-        await _toEditPage(pb, db);
+        await _toEditPage(context, pb: pb, db: db);
         break;
       case _MenuSelect.delete:
         if (await showCupertinoConfirmDialog(
@@ -153,7 +154,12 @@ class SiteManager extends StatelessWidget {
     }
   }
 
-  Future<void> _toEditPage(SiteBlueprint? pb, WebTableData? db) async {
-    await Get.to(() => RulesEditPage(pb: pb ?? eh.ehTestSite, db: db));
+  Future<void> _toEditPage(
+    BuildContext context, {
+    SiteBlueprint? pb,
+    WebTableData? db,
+  }) async {
+    Navigator.of(context).push(CupertinoWithModalsPageRoute(
+        builder: (context) => RulesEditPage(pb: pb ?? eh.ehTestSite, db: db)));
   }
 }
