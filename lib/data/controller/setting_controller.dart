@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/rx_watcher.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart';
@@ -34,11 +35,11 @@ class SettingController extends GetxController {
   final RxBool imageMaskInDarkMode = true.obs;
   final RxString documentDir = ''.obs;
 
-  late CacheOptions imageCacheOption;
-  late CacheOptions cacheOptions;
+  late final CacheOptions imageCacheOption;
+  late final CacheOptions cacheOptions;
 
-  late DbCacheStore dbCacheStore;
-  late MemCacheStore memCacheStore;
+  late final DbCacheStore dbCacheStore;
+  late final MemCacheStore memCacheStore;
 
   Future<void> init() async {
     cardSize.watch('cardSize', CardSize.middle);
@@ -54,7 +55,10 @@ class SettingController extends GetxController {
       databasePath: p.join(documentDir.value, 'cache'),
     );
 
-    memCacheStore = MemCacheStore();
+    memCacheStore = MemCacheStore(
+      maxSize: 100 * 1024 * 1024,
+      maxEntrySize: 10 * 1024 * 1024,
+    );
 
     imageCacheOption = CacheOptions(
       store: dbCacheStore,
@@ -67,10 +71,10 @@ class SettingController extends GetxController {
     cacheOptions = CacheOptions(
       store: memCacheStore,
       policy: CachePolicy.noCache,
-      hitCacheOnErrorExcept: [401, 403, 500, 501],
-      priority: CachePriority.normal,
       maxStale: const Duration(days: 1),
     );
+
+    trace('init');
 
     super.onInit();
   }

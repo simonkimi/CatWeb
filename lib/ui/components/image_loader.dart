@@ -1,8 +1,10 @@
 import 'dart:typed_data';
 
+import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/network/client/image_loader.dart';
+import 'package:catweb/ui/components/dark_image.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -156,13 +158,15 @@ class _ImageLoaderState extends State<ImageLoader> {
         },
       );
     } else {
-      child = Hero(
-        tag: widget.model.url,
-        child: Image.memory(imgData),
-      );
+      child = Image.memory(imgData);
     }
 
-    return child;
+    return Hero(
+      tag: widget.model.getId(),
+      child: DarkWidget(
+        child: child,
+      ),
+    );
   }
 
   Widget _defaultLoadingBuilder(BuildContext context, double progress) {

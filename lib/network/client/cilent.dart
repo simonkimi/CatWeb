@@ -30,18 +30,19 @@ class NetClient {
     required String url,
     required PageBlueprintModel model,
     required SiteEnvModel localEnv,
+    Options? options,
   }) async {
     final form = localEnv.replace(model.formData.value);
 
     switch (model.netAction.value) {
       case NetActionType.NET_ACTION_TYPE_DELETE:
-        return dio.delete(url);
+        return dio.delete(url, options: options);
       case NetActionType.NET_ACTION_TYPE_GET:
-        return await dio.get<String>(url);
+        return await dio.get<String>(url, options: options);
       case NetActionType.NET_ACTION_TYPE_POST:
-        return await dio.post<String>(url, data: form);
+        return await dio.post<String>(url, data: form, options: options);
       case NetActionType.NET_ACTION_TYPE_PUT:
-        return await dio.put<String>(url, data: form);
+        return await dio.put<String>(url, data: form, options: options);
     }
     throw Exception('Unsupported net action type');
   }
@@ -80,7 +81,24 @@ class NetClient {
     required PageBlueprintModel model,
     required SiteEnvModel localEnv,
   }) async {
-    final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
+    final options = Get.find<SettingController>()
+        .cacheOptions
+        .copyWith(
+            policy: CachePolicy.forceCache,
+            keyBuilder: (options) {
+              print(options.uri.toString());
+              return CacheOptions.defaultCacheKeyBuilder(options);
+            })
+        .toOptions();
+
+
+    final rsp = await _buildRequest(
+      url: url,
+      model: model,
+      localEnv: localEnv,
+      options: options,
+    );
+
     if (rsp.data == null) {
       throw Exception('data is null');
     }
@@ -157,14 +175,14 @@ Dio _buildDio(SiteBlueprintModel model, [bool isImage = false]) {
     dio.options.baseUrl = model.baseUrl.value;
   }
 
-  dio.interceptors.add(HeaderCookieInterceptor(model));
   dio.transformer = EncodeTransformer();
   final setting = Get.find<SettingController>();
+
+  dio.interceptors.add(HeaderCookieInterceptor(model));
+
   if (!isImage) {
-    dio.interceptors.addAll([
-      HttpFormatter(includeResponseBody: false),
-      DioCacheInterceptor(options: setting.cacheOptions),
-    ]);
+    dio.interceptors.add(DioCacheInterceptor(options: setting.cacheOptions));
+    dio.interceptors.add(HttpFormatter(includeResponseBody: false));
   } else {
     dio.interceptors.add(
       DioCacheInterceptor(options: setting.imageCacheOption),

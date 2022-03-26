@@ -33,9 +33,11 @@ dependencies:
   # network
   brotli: ^0.5.0
   dio: ^4.0.4
-  dio_cache_interceptor: ^3.0.3
-  dio_http_formatter: ^2.1.0
+  dio_cache_interceptor: ^3.2.6
   dio_cache_interceptor_db_store: ^4.1.1
+  dio_http_formatter:
+    git:
+      url: git@github.com:simonkimi/dio_http_formatter.git
 
   # state
   get: ^4.3.8

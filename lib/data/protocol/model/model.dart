@@ -48,6 +48,9 @@ extension GetImageRpcModel on ImageRpcModel {
   String get key => getCacheKey() ?? const Uuid().v5(Uuid.NAMESPACE_URL, url);
 
   bool repeatImage() => hasImgX() && hasImgY();
+
+  String getId() =>
+      '${getCacheKey() ?? key}${getWidth() ?? 0}${getHeight() ?? 0}${getImgX() ?? 0}${getImgY() ?? 0}';
 }
 
 extension GetTagRpcModel on TagRpcModel {

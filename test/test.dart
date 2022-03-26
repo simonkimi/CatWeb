@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:catweb/utils/utils.dart';
 import 'package:get/get.dart';
 

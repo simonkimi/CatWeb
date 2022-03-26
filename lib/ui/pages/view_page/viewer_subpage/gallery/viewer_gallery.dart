@@ -5,7 +5,6 @@ import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
-import 'package:catweb/ui/components/dark_image.dart';
 import 'package:catweb/ui/components/description.dart';
 import 'package:catweb/ui/components/icon_text.dart';
 import 'package:catweb/ui/components/image_loader.dart';
@@ -100,11 +99,9 @@ class ViewerGalleryFragment extends StatelessWidget {
                   aspectRatio: 200 / 282,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(5),
-                    child: DarkWidget(
-                      child: ImageLoader(
-                        concurrency: c.concurrency,
-                        model: c.items.coiledList[index].previewImg,
-                      ),
+                    child: ImageLoader(
+                      concurrency: c.concurrency,
+                      model: c.items.coiledList[index].previewImg,
                     ),
                   ),
                 ),
@@ -246,13 +243,11 @@ class ViewerGalleryFragment extends StatelessWidget {
             )
           ],
         ),
-        child: DarkWidget(
-          child: ImageLoader(
-            concurrency: ImageListConcurrency(
-              dio: c.global.website.client.imageDio,
-            ),
-            model: (c.baseData?.image ?? c.detailModel?.coverImg)!,
+        child: ImageLoader(
+          concurrency: ImageListConcurrency(
+            dio: c.global.website.client.imageDio,
           ),
+          model: (c.baseData?.image ?? c.detailModel?.coverImg)!,
         ),
       ),
     );
@@ -347,22 +342,29 @@ class ViewerGalleryFragment extends StatelessWidget {
 
   CupertinoButton _buildReadButton(BuildContext context) {
     return CupertinoButton(
-      child: const Text(
-        '阅读',
-        style: TextStyle(
-          fontSize: 13,
-          fontWeight: FontWeight.bold,
-          color: Color(0xFFF0F0F0),
-        ),
-      ),
-      color: CupertinoColors.systemBlue,
+      child: c.detailModel != null
+          ? const Text(
+              '阅读',
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFFF0F0F0),
+              ),
+            )
+          : Transform.scale(
+              scale: 0.8,
+              child: const CupertinoActivityIndicator(),
+            ),
+      color: CupertinoColors.systemBlue.resolveFrom(context),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
       minSize: 0,
-      onPressed: () => pushNewPage(
-        to: c.extra.targetReader.value,
-        envModel: c.localEnv.clone(),
-        model: c,
-      ),
+      onPressed: c.detailModel != null
+          ? () => pushNewPage(
+                to: c.extra.targetReader.value,
+                envModel: c.localEnv.clone(),
+                model: c,
+              )
+          : null,
       borderRadius: BorderRadius.circular(20),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
-import 'package:catweb/ui/components/dark_image.dart';
 import 'package:catweb/ui/components/image_loader.dart';
 import 'package:catweb/ui/components/load_more_footer.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
@@ -44,22 +43,20 @@ class ViewerGalleryImages extends StatelessWidget {
                             child: Column(
                               children: [
                                 Expanded(
-                                  child: DarkWidget(
-                                    child: c.items[index] != null
-                                        ? ImageLoader(
-                                            concurrency: c.concurrency,
-                                            model: c.items[index]!.previewImg,
-                                            imageWidgetBuilder:
-                                                (context, child) {
-                                              return FittedBox(
-                                                fit: BoxFit.contain,
-                                                child: child,
-                                              );
-                                            },
-                                          )
-                                        : const Center(
-                                            child: Text('null'),
-                                          ),
+                                  child: c.items[index] != null
+                                      ? ImageLoader(
+                                    concurrency: c.concurrency,
+                                    model: c.items[index]!.previewImg,
+                                    imageWidgetBuilder:
+                                        (context, child) {
+                                      return FittedBox(
+                                        fit: BoxFit.contain,
+                                        child: child,
+                                      );
+                                    },
+                                  )
+                                      : const Center(
+                                    child: Text('null'),
                                   ),
                                 ),
                                 const SizedBox(height: 5),
