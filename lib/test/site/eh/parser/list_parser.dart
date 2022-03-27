@@ -38,7 +38,10 @@ final ehListParser = ListViewParser(
     selector: '.gt, .gtl',
   ),
   badgeText: Selector(
-    function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
+    function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
+    param: 'title',
+    regex: r'(\w).+?:(.*)',
+    replace: r'$1:$2',
   ),
   badgeColor: Selector(
     function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
