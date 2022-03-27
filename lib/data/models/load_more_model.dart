@@ -19,7 +19,7 @@ abstract class LoadMoreBase with LoadStateMixin {
   @override
   void loadComplete() {
     super.loadComplete();
-    if (state.isComplete) {
+    if (state.isComplete || state.isIdle) {
       refreshController.loadComplete();
       refreshController.refreshCompleted();
     }
@@ -49,7 +49,6 @@ abstract class LoadMoreList<E, T> extends LoadMoreBase {
   bool isItemExist(T item);
 
   Future<void> onLoadMore() async {
-    if (_requestLock.locked) return awaitLock();
     try {
       await _requestLock.synchronized(() async {
         loadStart();

@@ -29,7 +29,13 @@ class LoadMoreFooter extends StatelessWidget {
                   color: CupertinoColors.label.resolveFrom(context),
                 ),
                 const SizedBox(width: 10),
-                const Text('不要停下来啊!', style: TextStyle(fontSize: 15)),
+                Text(
+                  '不要停下来啊!',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: CupertinoColors.label.resolveFrom(context),
+                  ),
+                ),
               ],
             );
           case LoadStatus.loading:
@@ -38,25 +44,43 @@ class LoadMoreFooter extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  CupertinoActivityIndicator(),
-                  SizedBox(width: 10),
-                  Text('努力加载中...', style: TextStyle(fontSize: 15)),
+                children: [
+                  const CupertinoActivityIndicator(),
+                  const SizedBox(width: 10),
+                  Text(
+                    '努力加载中...',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: CupertinoColors.label.resolveFrom(context),
+                    ),
+                  ),
                 ],
               ),
             );
           case LoadStatus.noMore:
-            return const SizedBox(
+            return SizedBox(
               height: kBottomBarHeight,
               child: Center(
-                child: Text('真的一点也没有了...', style: TextStyle(fontSize: 15)),
+                child: Text(
+                  '真的一点也没有了...',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: CupertinoColors.label.resolveFrom(context),
+                  ),
+                ),
               ),
             );
           case LoadStatus.failed:
-            return const SizedBox(
+            return SizedBox(
               height: kBottomBarHeight,
               child: Center(
-                child: Text('加载失败, 请重试', style: TextStyle(fontSize: 15)),
+                child: Text(
+                  '加载失败, 请重试',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: CupertinoColors.label.resolveFrom(context),
+                  ),
+                ),
               ),
             );
         }

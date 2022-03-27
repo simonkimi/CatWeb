@@ -23,31 +23,14 @@ class ListExtendedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onTap,
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              offset: Offset(1, 1),
-              blurRadius: 2,
-            ),
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            if (model.hasPreviewImg()) _buildLeftImage(),
+            _buildRightInfo(context),
           ],
-        ),
-        child: Container(
-          color: isDarkMode(context)
-              ? FixColor.groupedColor.resolveFrom(context)
-              : CupertinoColors.systemBackground,
-          child: IntrinsicHeight(
-            child: Row(
-              children: [
-                if (model.hasPreviewImg()) _buildLeftImage(),
-                _buildRightInfo(context),
-              ],
-            ),
-          ),
         ),
       ),
     );
@@ -104,6 +87,25 @@ class ListExtendedCard extends StatelessWidget {
     final child = ImageLoader(
       model: model.previewImg,
       concurrency: concurrency,
+      innerImageBuilder: (context, child) {
+        return Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            boxShadow: [
+              BoxShadow(
+                color: isDarkMode(context)
+                    ? CupertinoColors.white.withOpacity(0.2)
+                    : CupertinoColors.black.withOpacity(0.1),
+                blurRadius: 10,
+                spreadRadius: 1,
+                offset: const Offset(1, 1),
+              ),
+            ],
+          ),
+          child: child,
+        );
+      },
     );
 
     return ConstrainedBox(

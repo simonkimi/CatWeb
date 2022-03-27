@@ -43,6 +43,7 @@ class ImageLoader extends StatefulWidget {
     this.hasSize = false,
     this.loadingWidgetBuilder,
     this.imageWidgetBuilder,
+    this.innerImageBuilder,
   }) : super(key: key);
 
   final ImageConcurrency concurrency;
@@ -54,6 +55,7 @@ class ImageLoader extends StatefulWidget {
 
   final WidgetBuilder? loadingWidgetBuilder;
   final WidgetBuilder? imageWidgetBuilder;
+  final WidgetBuilder? innerImageBuilder;
 
   @override
   _ImageLoaderState createState() => _ImageLoaderState();
@@ -66,6 +68,7 @@ class _ImageLoaderState extends State<ImageLoader> {
   late final ImageWidgetBuilder imageBuilder;
   late final WidgetBuilder loadingWidgetBuilder;
   late final WidgetBuilder imageWidgetBuilder;
+  late final WidgetBuilder innerImageBuilder;
 
   @override
   void initState() {
@@ -75,6 +78,7 @@ class _ImageLoaderState extends State<ImageLoader> {
     _imageLoadModel = widget.concurrency.create(widget.model);
     loadingWidgetBuilder = widget.loadingWidgetBuilder ?? _defaultWidgetBuilder;
     imageWidgetBuilder = widget.imageWidgetBuilder ?? _defaultWidgetBuilder;
+    innerImageBuilder = widget.innerImageBuilder ?? _defaultWidgetBuilder;
     super.initState();
   }
 
@@ -145,10 +149,7 @@ class _ImageLoaderState extends State<ImageLoader> {
                 aspectRatio: model.width / model.height,
                 child: FittedBox(
                   fit: BoxFit.contain,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: img,
-                  ),
+                  child: innerImageBuilder(context, img),
                 ),
               );
             }
@@ -158,7 +159,9 @@ class _ImageLoaderState extends State<ImageLoader> {
         },
       );
     } else {
-      child = Image.memory(imgData);
+      child = Center(
+        child: innerImageBuilder(context, Image.memory(imgData)),
+      );
     }
 
     return Hero(

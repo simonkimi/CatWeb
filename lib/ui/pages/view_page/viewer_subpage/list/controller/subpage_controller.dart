@@ -66,7 +66,8 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
 
   @override
   Future<Tuple2<ListRpcModel, List<ListRpcModel_Item>>> loadPage(
-      int page) async {
+    int page,
+  ) async {
     var baseUrl = blueprint.url.value;
     if (hasPageExpression(baseUrl) || page == 0) {
       // 有面数
@@ -96,7 +97,7 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
       print('hasPageExpression loadNoData()');
       loadNoData();
     }
-
+    print('加载完成');
     return Tuple2(data, data.items);
   }
 
