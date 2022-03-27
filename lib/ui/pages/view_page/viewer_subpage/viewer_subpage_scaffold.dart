@@ -3,6 +3,7 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/i18n.dart';
+import 'package:catweb/ui/components/cupertino_router.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_reader.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/viewer_list.dart';
 import 'package:catweb/utils/utils.dart';
@@ -64,7 +65,7 @@ Future<void> pushNewPage({
   final target =
       controller.website.configModel.pageList.get((e) => e.uuid == to);
   if (target == null) throw Exception('$to not exist');
-  Navigator.of(I.context).push(CupertinoPageRoute(
+  Navigator.of(I.context).push(CupertinoWithModalsPageRoute(
       builder: (context) => ViewerPage(
             model: model,
             env: envModel,

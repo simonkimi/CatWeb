@@ -209,32 +209,31 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
       height: kCupertinoNavigatorBar,
       child: Padding(
         padding: widget.padding,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: Stack(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [if (leading != null) leading],
-            ),
-            if (widget.title != null)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    widget.title!,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: FixColor.title.resolveFrom(context),
-                    ),
-                  ),
-                ],
+            if (leading != null)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: leading,
               ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: widget.actions ?? <Widget>[],
+            if (widget.title != null)
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  widget.title!,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: FixColor.title.resolveFrom(context),
+                  ),
+                ),
+              ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: widget.actions ?? <Widget>[],
+              ),
             ),
           ],
         ),

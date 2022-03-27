@@ -91,8 +91,8 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
             return const Padding(
               padding: EdgeInsets.only(
                 right: 5,
-                // left: 121,
-                left: 5,
+                left: 121,
+                // left: 5,
               ),
               child: CupertinoDivider(height: 5),
             );

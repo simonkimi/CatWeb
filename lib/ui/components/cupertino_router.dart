@@ -49,7 +49,6 @@ class CupertinoWithModalsPageRoute<T> extends CupertinoPageRoute<T> {
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
-    final theme = Theme.of(context).pageTransitionsTheme;
     final nextRoute = _nextModalRoute;
     if (nextRoute != null) {
       if (!secondaryAnimation.isDismissed) {
@@ -57,8 +56,13 @@ class CupertinoWithModalsPageRoute<T> extends CupertinoPageRoute<T> {
         final fakeSecondaryAnimation =
             Tween<double>(begin: 0, end: 0).animate(secondaryAnimation);
 
-        final defaultTransition = theme.buildTransitions<T>(
-            this, context, animation, fakeSecondaryAnimation, child);
+        final defaultTransition = CupertinoPageTransition(
+          linearTransition: true,
+          primaryRouteAnimation: animation,
+          secondaryRouteAnimation: fakeSecondaryAnimation,
+          child: child,
+        );
+
         return nextRoute.getPreviousRouteTransition(
             context, secondaryAnimation, defaultTransition);
       } else {
@@ -66,7 +70,11 @@ class CupertinoWithModalsPageRoute<T> extends CupertinoPageRoute<T> {
       }
     }
 
-    return theme.buildTransitions<T>(
-        this, context, animation, secondaryAnimation, child);
+    return CupertinoPageTransition(
+      primaryRouteAnimation: animation,
+      secondaryRouteAnimation: secondaryAnimation,
+      linearTransition: false,
+      child: child,
+    );
   }
 }

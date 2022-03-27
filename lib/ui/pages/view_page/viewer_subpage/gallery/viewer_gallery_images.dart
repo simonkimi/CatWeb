@@ -45,19 +45,25 @@ class ViewerGalleryImages extends StatelessWidget {
                                 Expanded(
                                   child: c.items[index] != null
                                       ? ImageLoader(
-                                    concurrency: c.concurrency,
-                                    model: c.items[index]!.previewImg,
-                                    imageWidgetBuilder:
-                                        (context, child) {
-                                      return FittedBox(
-                                        fit: BoxFit.contain,
-                                        child: child,
-                                      );
-                                    },
-                                  )
+                                          concurrency: c.concurrency,
+                                          model: c.items[index]!.previewImg,
+                                          imageWidgetBuilder: (context, child) {
+                                            return FittedBox(
+                                              fit: BoxFit.contain,
+                                              child: child,
+                                            );
+                                          },
+                                          innerImageBuilder: (context, child) {
+                                            return ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              child: child,
+                                            );
+                                          },
+                                        )
                                       : const Center(
-                                    child: Text('null'),
-                                  ),
+                                          child: Text('null'),
+                                        ),
                                 ),
                                 const SizedBox(height: 5),
                                 Text(

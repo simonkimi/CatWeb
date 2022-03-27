@@ -53,7 +53,7 @@ class SiteManager extends StatelessWidget {
                   onPressed: () => _toEditPage(context, pb: null, db: null),
                 ),
                 CupertinoButton(
-                  child: const Icon(CupertinoIcons.qrcode),
+                  child: const Icon(CupertinoIcons.qrcode_viewfinder),
                   onPressed: () {},
                 ),
                 CupertinoButton(

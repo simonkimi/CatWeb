@@ -20,7 +20,9 @@ import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'comment_item.dart';
+import 'comment_list.dart';
 import 'gallery_controller.dart';
 import 'package:get/get.dart';
 
@@ -102,6 +104,12 @@ class ViewerGalleryFragment extends StatelessWidget {
                     child: ImageLoader(
                       concurrency: c.concurrency,
                       model: c.items.coiledList[index].previewImg,
+                      innerImageBuilder: (context, child) {
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: child,
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -229,25 +237,30 @@ class ViewerGalleryFragment extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(right: 15),
-      child: Container(
+      child: SizedBox(
         width: 140,
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: [
-            BoxShadow(
-              color: CupertinoColors.opaqueSeparator.withOpacity(0.2),
-              offset: const Offset(2, 2),
-              blurRadius: 2,
-              spreadRadius: 0,
-            )
-          ],
-        ),
         child: ImageLoader(
           concurrency: ImageListConcurrency(
             dio: c.global.website.client.imageDio,
           ),
           model: (c.baseData?.image ?? c.detailModel?.coverImg)!,
+          innerImageBuilder: (context, child) {
+            return Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                boxShadow: [
+                  BoxShadow(
+                    color: CupertinoColors.opaqueSeparator.withOpacity(0.2),
+                    offset: const Offset(2, 2),
+                    blurRadius: 2,
+                    spreadRadius: 0,
+                  )
+                ],
+              ),
+              child: child,
+            );
+          },
         ),
       ),
     );
@@ -472,7 +485,11 @@ class ViewerGalleryFragment extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              _buildShowMore(context, () {}),
+              _buildShowMore(context, () {
+                showCupertinoModalBottomSheet(context: context, builder: (context) {
+                  return CommentListPage(c: c);
+                });
+              }),
             ],
           ),
       ],
