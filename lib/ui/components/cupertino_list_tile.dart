@@ -34,7 +34,7 @@ class CupertinoListTile extends HookWidget {
     final isTap = useState(false);
 
     final bgColor = selected
-        ? selectedColor ?? CupertinoColors.activeBlue
+        ? selectedColor ?? CupertinoColors.activeBlue.resolveFrom(context)
         : FixColor.groupedColor.resolveFrom(context);
 
     final textColor = selected

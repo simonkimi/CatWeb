@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/rx_watcher.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart';
@@ -73,8 +72,6 @@ class SettingController extends GetxController {
       policy: CachePolicy.noCache,
       maxStale: const Duration(days: 1),
     );
-
-    trace('init');
 
     super.onInit();
   }

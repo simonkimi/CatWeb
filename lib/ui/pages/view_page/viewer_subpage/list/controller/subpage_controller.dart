@@ -97,7 +97,6 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
       print('hasPageExpression loadNoData()');
       loadNoData();
     }
-    print('加载完成');
     return Tuple2(data, data.items);
   }
 
