@@ -6,6 +6,7 @@ import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/cupertino_router.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
+import 'package:catweb/ui/pages/setting_page/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,7 +59,10 @@ class SiteManager extends StatelessWidget {
                 ),
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.settings),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(CupertinoWithModalsPageRoute(
+                        builder: (context) => const SettingsPage()));
+                  },
                 ),
               ],
             ),

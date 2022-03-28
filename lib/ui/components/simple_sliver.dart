@@ -2,6 +2,8 @@ import 'package:catweb/data/constant.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'cupertino_divider.dart';
+
 class ExceptionSliver extends StatelessWidget {
   const ExceptionSliver({
     Key? key,
@@ -116,5 +118,35 @@ class SliverPullToRefresh extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class SliverChildDividerBuilderDelegate extends SliverChildBuilderDelegate {
+  SliverChildDividerBuilderDelegate({
+    required NullableIndexedWidgetBuilder builder,
+    required this.itemCount,
+    this.divider,
+  }) : super(builder, childCount: itemCount * 2 - 1);
+
+  final Widget? divider;
+  final int itemCount;
+
+  @override
+  Widget? build(BuildContext context, int index) {
+    if (index.isOdd) {
+      return divider ??
+          const Padding(
+            padding: EdgeInsets.only(
+              right: 5,
+              left: 124,
+              // left: 5,
+            ),
+            child: CupertinoDivider(height: 5),
+          );
+    }
+    if (index ~/ 2 >= itemCount) {
+      return null;
+    }
+    return super.builder(context, index ~/ 2);
   }
 }

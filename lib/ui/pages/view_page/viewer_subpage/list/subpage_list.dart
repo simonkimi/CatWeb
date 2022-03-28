@@ -3,7 +3,6 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
-import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/load_more_footer.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/subpage_controller.dart';
@@ -86,36 +85,29 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
     // TODO 瀑布流支持
     return Obx(() {
       return SliverList(
-        delegate: SliverChildBuilderDelegate((context, index) {
-          if (index.isOdd) {
-            return const Padding(
-              padding: EdgeInsets.only(
-                right: 5,
-                left: 124,
-                // left: 5,
+        delegate: SliverChildDividerBuilderDelegate(
+          itemCount: controller.items.length,
+          builder: (context, index) {
+            final model = controller.items[index];
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+              child: ListExtendedCard(
+                model: model,
+                concurrency: concurrency,
+                onTap: () {
+                  pushNewPage(
+                    to: (controller.blueprint.templateData
+                            as TemplateListDataModel)
+                        .targetItem
+                        .value,
+                    envModel: SiteEnvModel(model.env),
+                    model: model,
+                  );
+                },
               ),
-              child: CupertinoDivider(height: 5),
             );
-          }
-          final model = controller.items[index ~/ 2];
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            child: ListExtendedCard(
-              model: model,
-              concurrency: concurrency,
-              onTap: () {
-                pushNewPage(
-                  to: (controller.blueprint.templateData
-                          as TemplateListDataModel)
-                      .targetItem
-                      .value,
-                  envModel: SiteEnvModel(model.env),
-                  model: model,
-                );
-              },
-            ),
-          );
-        }, childCount: controller.items.length * 2),
+          },
+        ),
       );
     });
   }
