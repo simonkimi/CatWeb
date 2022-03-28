@@ -10,6 +10,8 @@ import 'package:get/get.dart';
 class GlobalController extends GetxController {
   late final StreamSubscription<List<WebTableData>> siteDbChangeListener;
 
+  var lastClickBack = DateTime.now().millisecondsSinceEpoch;
+
   final site = Rx<SiteRenderConfigModel?>(null);
 
   SiteRenderConfigModel get website {

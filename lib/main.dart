@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_router.dart';
@@ -42,8 +43,12 @@ class MyApp extends StatelessWidget {
           settings: settings,
         );
       },
+      builder: (context, child) {
+        return BotToastInit()(context, child);
+      },
       supportedLocales: I.supportedLocales,
       navigatorKey: AppNavigator().key,
+      navigatorObservers: [BotToastNavigatorObserver()],
       theme: defaultTheme(),
     );
   }

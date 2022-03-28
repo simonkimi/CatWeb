@@ -8,28 +8,30 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path/path.dart' as p;
 
 class CardSize {
-  static const int small = 1;
-  static const int middle = 2;
-  static const int large = 3;
-  static const int huge = 4;
+  factory CardSize.small() => CardSize.from(100);
 
-  static int of(int value) {
-    switch (value) {
-      case small:
-        return 100;
-      case middle:
-        return 150;
-      case large:
-        return 200;
-      case huge:
-        return 250;
-    }
-    throw UnimplementedError('TODO! $value');
+  factory CardSize.medium() => CardSize.from(150);
+
+  factory CardSize.large() => CardSize.from(200);
+
+  factory CardSize.huge() => CardSize.from(250);
+
+  CardSize.from(this.size);
+
+  final int size;
+
+  @override
+  bool operator ==(Object other) {
+    return (other is CardSize && other.size == size) ||
+        (other is int && other == size);
   }
+
+  @override
+  int get hashCode => size;
 }
 
 class SettingController extends GetxController {
-  final cardSize = CardSize.middle.obs;
+  final cardSize = CardSize.medium().size.obs;
   final RxInt defaultSite = (-1).obs;
   final RxBool imageMaskInDarkMode = true.obs;
   final RxString documentDir = ''.obs;
@@ -41,7 +43,7 @@ class SettingController extends GetxController {
   late final MemCacheStore memCacheStore;
 
   Future<void> init() async {
-    cardSize.watch('cardSize', CardSize.middle);
+    cardSize.watch('cardSize', CardSize.medium().size);
     defaultSite.watch('defaultSite', -1);
     imageMaskInDarkMode.watch('imageMaskInDarkMode', true);
     documentDir.watch('documentDir', '');
