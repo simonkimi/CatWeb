@@ -144,9 +144,9 @@ class SliverChildDividerBuilderDelegate extends SliverChildBuilderDelegate {
             child: CupertinoDivider(height: 5),
           );
     }
-    if (index ~/ 2 >= itemCount) {
+    if (index ~/ 2 >= itemCount || index ~/ 2 < 0) {
       return null;
     }
-    return super.builder(context, index ~/ 2);
+    return super.build(context, index ~/ 2);
   }
 }
