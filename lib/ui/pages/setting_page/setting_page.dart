@@ -1,3 +1,5 @@
+import 'package:catweb/data/constant.dart';
+import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/setting_tile.dart';
 import 'package:catweb/ui/pages/setting_page/setting_group.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,8 +15,11 @@ class SettingsPage extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             const CupertinoSliverNavigationBar(
+              padding: kAppbarPadding,
               backgroundColor: CupertinoColors.systemGroupedBackground,
+              leading: CupertinoBackLeading(),
               largeTitle: Text('设置'),
+              border: null,
             ),
             SettingGroupWidget(
               children: [

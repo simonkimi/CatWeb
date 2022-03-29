@@ -34,6 +34,26 @@ class ImageLoadState {
 
   factory ImageLoadState.error([Exception? error]) =>
       ImageLoadState._(isError: true, error: error);
+
+  @override
+  String toString() {
+    if (isCached) {
+      return 'ImageLoadState.cached';
+    }
+    if (isWaiting) {
+      return 'ImageLoadState.waiting';
+    }
+    if (isFinish) {
+      return 'ImageLoadState.finish';
+    }
+    if (isError) {
+      return 'ImageLoadState.error';
+    }
+    if (isLoading) {
+      return 'ImageLoadState.loading';
+    }
+    return 'ImageLoadState.idle';
+  }
 }
 
 class ImageLoadModel {
@@ -60,6 +80,17 @@ class ImageLoadModel {
   bool get needLoad => _state.value.isWaiting && _handleWidget.value > 0;
 
   ImageLoadState get state => _state.value;
+
+  Future<void> tryLoad() async {
+    if (state.isFinish || state.isLoading) return;
+    if (state.isCached) {
+      await loadCache();
+      return;
+    }
+    if (state.isIdle) {
+      await load();
+    }
+  }
 
   void reset() {
     _state.value = ImageLoadState.waiting();

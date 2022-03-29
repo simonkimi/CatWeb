@@ -1,6 +1,5 @@
-import 'dart:typed_data';
-
 import 'package:catweb/gen/protobuf/model.pb.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,60 +31,32 @@ class _ImageViewerState extends State<ImageViewer> {
   }
 
   Widget _buildImage(BuildContext context) {
-    // 图片数据没有加载完毕或模型加载出来的, 但是还没到处理的时候
-    if (!model.state.isComplete ||
-        model.imageModel.value?.state.isIdle == true) {
+    // 还没有加载完图片数据
+    if (!model.state.isComplete || model.imageModel.value == null) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            '${model.index + 1}',
-            style: const TextStyle(
+          _buildIndexText(),
+          const Text(
+            '正在加载模型...',
+            style: TextStyle(
               color: CupertinoColors.white,
-              fontSize: 60,
-              fontWeight: FontWeight.bold,
             ),
-          ),
-          const CupertinoActivityIndicator(),
-        ],
-      );
-    }
-
-    // 图片数据已经加载完毕了, 而且正在加载图片
-    if (model.imageModel.value?.state.isLoading == true &&
-        model.imageModel.value?.progress != 0) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            '${model.index + 1}',
-            style: const TextStyle(
-              color: CupertinoColors.white,
-              fontSize: 60,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          CupertinoActivityIndicator.partiallyRevealed(
-            progress: model.imageModel.value!.progress,
           ),
         ],
       );
     }
 
-    // 全部已经加载完毕了, 可以显示图片
-    if (model.imageModel.value?.state.isFinish == true &&
-        model.imageModel.value?.data != null) {
-      return _defaultImageBuilder(context, model.imageModel.value!.data!,
-          model.imageModel.value!.model);
-    }
-
-    throw Exception('未知的状态');
+    return _defaultImageBuilder(
+      context,
+      model.imageModel.value!,
+      model.model!.image,
+    );
   }
 
-  Widget _defaultImageBuilder(
-      BuildContext context, Uint8List imgData, ImageRpcModel model) {
+  Widget _defaultImageBuilder(BuildContext context,
+      ReaderImageProvider imageProvider, ImageRpcModel model) {
     late Widget child;
 
     if ((!model.imgX.isNaN || !model.imgY.isNaN) &&
@@ -94,7 +65,9 @@ class _ImageViewerState extends State<ImageViewer> {
       child = ExtendedImage(
         width: model.width.nan2null,
         height: model.height.nan2null,
-        image: MemoryImage(imgData),
+        image: imageProvider,
+        enableLoadState: true,
+        handleLoadingProgress: true,
         loadStateChanged: (state) {
           if (state.extendedImageLoadState == LoadState.completed) {
             final img = ExtendedRawImage(
@@ -108,7 +81,7 @@ class _ImageViewerState extends State<ImageViewer> {
                 model.width,
                 model.height,
               ),
-              scale: 0.2,
+              // scale: 0.2,
             );
 
             if (!model.width.isNaN && !model.height.isNaN) {
@@ -124,14 +97,67 @@ class _ImageViewerState extends State<ImageViewer> {
               );
             }
             return img;
+          } else {
+            return _buildCommonState(state);
           }
-          return null;
         },
       );
     } else {
-      child = Image.memory(imgData);
+      child = ExtendedImage(
+        image: imageProvider,
+        enableLoadState: true,
+        handleLoadingProgress: true,
+        loadStateChanged: (state) {
+          return _buildCommonState(state) ?? state.completedWidget;
+        },
+      );
     }
 
     return child;
+  }
+
+  Widget? _buildCommonState(ExtendedImageState state) {
+    switch (state.extendedImageLoadState) {
+      case LoadState.loading:
+        final progress = state.loadingProgress?.expectedTotalBytes != null
+            ? state.loadingProgress!.cumulativeBytesLoaded /
+                state.loadingProgress!.expectedTotalBytes!
+            : 0.0;
+        return _buildCenterColumn([
+          _buildIndexText(),
+          Text(
+            '${(progress * 100).toInt()}%',
+            style: const TextStyle(
+              color: CupertinoColors.white,
+            ),
+          ),
+        ]);
+      case LoadState.completed:
+        return null;
+      case LoadState.failed:
+        return _buildCenterColumn([
+          _buildIndexText(),
+          Text('貌似出了点问题: ${state.lastException?.toString()}'),
+        ]);
+    }
+  }
+
+  Widget _buildCenterColumn(List<Widget> children) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: children,
+    );
+  }
+
+  Widget _buildIndexText() {
+    return Text(
+      '${model.index + 1}',
+      style: const TextStyle(
+        color: CupertinoColors.white,
+        fontSize: 60,
+        fontWeight: FontWeight.bold,
+      ),
+    );
   }
 }

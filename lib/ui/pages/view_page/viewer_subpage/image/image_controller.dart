@@ -2,11 +2,12 @@ import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
-import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/utils/handle.dart';
 import 'package:catweb/utils/state_mixin.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:get/get.dart';
+
+import 'image_provider.dart';
 
 enum ImageContainerState {
   waiting, // 等待加载
@@ -51,13 +52,13 @@ class ReaderImageLoader with LoadStateMixin {
   final SiteEnvModel localEnv;
   final PageBlueprintModel blueprint;
   ImageReaderRpcModel? model;
-  Rx<ImageLoadModel?> imageModel = Rx<ImageLoadModel?>(null);
+  Rx<ReaderImageProvider?> imageModel = Rx<ReaderImageProvider?>(null);
 
   final global = Get.find<GlobalController>();
 
   // 阅读器想要加载数据的时候, 调用此函数
-  Future<void> requestLoadIndex(bool isAuto) async {
-    if (model != null) return;
+  Future<void> requestLoad(bool isAuto) async {
+    if (model != null || state.isLoading) return;
     loadStart();
     try {
       if (idCode == null) {
@@ -69,23 +70,19 @@ class ReaderImageLoader with LoadStateMixin {
       // 加载好数据后, 开始由idCode拿数据
       final url = blueprint.url.isEmpty ? idCode! : blueprint.url.value;
       final env = localEnv.clone()..set('idCode', idCode!);
-
       model = await global.website.client.getReadImage(
         url: url,
         model: blueprint,
         localEnv: env,
       );
+      imageModel.value = ReaderImageProvider(
+        model: model!.image,
+        dio: global.website.client.imageDio,
+      );
     } on Exception catch (e) {
       loadError(e);
     }
-    loadComplete();
-  }
-
-  Future<void> loadImage() async {
-    imageModel.value = ImageLoadModel(
-      model: model!.image,
-      dio: global.website.client.imageDio,
-    );
+    loadNoData();
   }
 }
 
@@ -97,7 +94,6 @@ class ImageReaderController {
   }) {
     _updateIdCode(readerInfo.bufferStream.buffer);
     readerInfo.bufferStream.listen(_updateIdCode);
-    print(imageLoaderList.length);
   }
 
   final ReaderInfo readerInfo;

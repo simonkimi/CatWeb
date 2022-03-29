@@ -33,6 +33,7 @@ class ExceptionSliver extends StatelessWidget {
               if (errMsg != null)
                 Text(
                   errMsg!,
+                  maxLines: 10,
                   style: TextStyle(
                     color: FixColor.title.resolveFrom(context),
                   ),

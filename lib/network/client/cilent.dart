@@ -33,16 +33,17 @@ class NetClient {
     Options? options,
   }) async {
     final form = localEnv.replace(model.formData.value);
+    final url2 = localEnv.replace(url);
 
     switch (model.netAction.value) {
       case NetActionType.NET_ACTION_TYPE_DELETE:
-        return dio.delete(url, options: options);
+        return dio.delete(url2, options: options);
       case NetActionType.NET_ACTION_TYPE_GET:
-        return await dio.get<String>(url, options: options);
+        return await dio.get<String>(url2, options: options);
       case NetActionType.NET_ACTION_TYPE_POST:
-        return await dio.post<String>(url, data: form, options: options);
+        return await dio.post<String>(url2, data: form, options: options);
       case NetActionType.NET_ACTION_TYPE_PUT:
-        return await dio.put<String>(url, data: form, options: options);
+        return await dio.put<String>(url2, data: form, options: options);
     }
     throw Exception('Unsupported net action type');
   }
@@ -83,14 +84,8 @@ class NetClient {
   }) async {
     final options = Get.find<SettingController>()
         .cacheOptions
-        .copyWith(
-            policy: CachePolicy.forceCache,
-            keyBuilder: (options) {
-              print(options.uri.toString());
-              return CacheOptions.defaultCacheKeyBuilder(options);
-            })
+        .copyWith(policy: CachePolicy.forceCache)
         .toOptions();
-
 
     final rsp = await _buildRequest(
       url: url,
@@ -121,7 +116,17 @@ class NetClient {
     required PageBlueprintModel model,
     required SiteEnvModel localEnv,
   }) async {
-    final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
+    final options = Get.find<SettingController>()
+        .imageCacheOption
+        .copyWith(policy: CachePolicy.forceCache)
+        .toOptions();
+
+    final rsp = await _buildRequest(
+      url: url,
+      model: model,
+      localEnv: localEnv,
+      options: options,
+    );
     if (rsp.data == null) {
       throw Exception('data is null');
     }

@@ -36,6 +36,7 @@ final ehTestSite = SiteBlueprint(
     RegField(reg: '104.20.134.21', value: 'igneous=$igneous'),
     RegField(reg: '104.20.134.21', value: 'sk=$sk'),
     RegField(reg: '104.20.134.21', value: 'star=$star'),
+    RegField(reg: '104.20.134.21', value: 'nw=1'),
   ],
   pages: [
     SitePage(
@@ -53,6 +54,7 @@ final ehTestSite = SiteBlueprint(
     ),
     SitePage(
       name: '图片显示器',
+      url: 's/{idCode}',
       uuid: _readerUuid,
       template: Template.TEMPLATE_IMAGE_VIEWER,
       baseParser: ehImageParser.uuid,

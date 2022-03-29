@@ -115,6 +115,7 @@ final ehGalleryParser = GalleryParser(
     selector: 'a',
     function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
     param: 'href',
+    regex: r'\/s\/(.+)',
   ),
   coverImg: ImageSelector(
     imgUrl: Selector(

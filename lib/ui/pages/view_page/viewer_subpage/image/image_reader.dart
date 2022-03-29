@@ -10,13 +10,8 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:get/get.dart';
 import 'image_controller.dart';
+import 'image_read_controller.dart';
 import 'image_viewer.dart';
-
-enum ReaderDisplayType {
-  single, // 单面情况
-  double, // 双面情况
-  doubleCover, // 封面单独占一面的双面情况
-}
 
 class ImageReader extends StatefulWidget {
   const ImageReader({
@@ -37,6 +32,8 @@ class _ImageReaderViewerState extends State<ImageReader>
     with TickerProviderStateMixin {
   late final ImageReaderController c;
 
+  late final ImageReadController readController;
+
   @override
   void initState() {
     super.initState();
@@ -44,6 +41,10 @@ class _ImageReaderViewerState extends State<ImageReader>
       blueprint: widget.blueprint,
       localEnv: SiteEnvModel(),
       readerInfo: widget.readerInfo,
+    );
+    readController = ImageReadController(
+      displayType: widget.displayType,
+      controller: c,
     );
   }
 
@@ -58,37 +59,15 @@ class _ImageReaderViewerState extends State<ImageReader>
       ),
       backgroundColor: CupertinoColors.darkBackgroundGray,
       child: Obx(() => PhotoViewGallery.builder(
-            itemCount: _pageCount,
+            itemCount: readController.pageCount,
+            onPageChanged: readController.onPageIndexChanged,
             builder: (context, index) {
-              return _isSingleWidget(index)
+              return readController.isSingleWidget(index)
                   ? _buildSinglePageImage(context, index)
                   : _buildDoublePageImage(context, index);
             },
           )),
     );
-  }
-
-  int get _pageCount {
-    switch (widget.displayType) {
-      case ReaderDisplayType.single:
-        return c.imageLoaderList.length;
-      case ReaderDisplayType.double:
-        return 1 + ((c.imageLoaderList.length - 1) / 2).ceil();
-      case ReaderDisplayType.doubleCover:
-        return (c.imageLoaderList.length / 2).ceil();
-    }
-  }
-
-  bool _isSingleWidget(int index) {
-    switch (widget.displayType) {
-      case ReaderDisplayType.single: // 单面
-        return true;
-      case ReaderDisplayType.double: // 普通双面多出一面
-        return c.imageLoaderList.length.isOdd && index == _pageCount - 1;
-      case ReaderDisplayType.doubleCover: // 封面双面的封面和多出的一面
-        return index == 0 ||
-            (c.imageLoaderList.length.isEven && index == _pageCount - 1);
-    }
   }
 
   /// 构建单图片页面, 图片外面套一个缩放控件

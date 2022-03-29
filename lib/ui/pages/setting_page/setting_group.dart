@@ -13,7 +13,7 @@ class SettingGroupWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(10),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 5),
           clipBehavior: Clip.antiAlias,

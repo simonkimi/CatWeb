@@ -35,6 +35,7 @@ class SettingController extends GetxController {
   final RxInt defaultSite = (-1).obs;
   final RxBool imageMaskInDarkMode = true.obs;
   final RxString documentDir = ''.obs;
+  final RxInt preloadCount = 7.obs;
 
   late final CacheOptions imageCacheOption;
   late final CacheOptions cacheOptions;
@@ -47,6 +48,7 @@ class SettingController extends GetxController {
     defaultSite.watch('defaultSite', -1);
     imageMaskInDarkMode.watch('imageMaskInDarkMode', true);
     documentDir.watch('documentDir', '');
+    preloadCount.watch('preloadCount', 7);
 
     if (documentDir.value.isEmpty) {
       documentDir.value = await getDocumentDir();
@@ -63,7 +65,7 @@ class SettingController extends GetxController {
 
     imageCacheOption = CacheOptions(
       store: dbCacheStore,
-      policy: CachePolicy.request,
+      policy: CachePolicy.forceCache,
       hitCacheOnErrorExcept: [401, 403, 500, 501],
       priority: CachePriority.normal,
       maxStale: const Duration(days: 14),
