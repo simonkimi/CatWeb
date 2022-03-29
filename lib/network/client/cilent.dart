@@ -13,7 +13,6 @@ import 'package:catweb/network/parser/parser.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
-import 'package:dio_http_formatter/dio_http_formatter.dart';
 import 'package:get/get.dart' hide Response;
 
 class NetClient {
@@ -187,7 +186,7 @@ Dio _buildDio(SiteBlueprintModel model, [bool isImage = false]) {
 
   if (!isImage) {
     dio.interceptors.add(DioCacheInterceptor(options: setting.cacheOptions));
-    dio.interceptors.add(HttpFormatter(includeResponseBody: false));
+    // dio.interceptors.add(HttpFormatter(includeResponseBody: false));
   } else {
     dio.interceptors.add(
       DioCacheInterceptor(options: setting.imageCacheOption),

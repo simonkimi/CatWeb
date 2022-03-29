@@ -75,6 +75,8 @@ class SiteEnvModel implements EnvMargeAble {
 
   @override
   String toString() => '<Env> $_env';
+
+  operator [](String key) => _env[key];
 }
 
 extension EnvString on String {

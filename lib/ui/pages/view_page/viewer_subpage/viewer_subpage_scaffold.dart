@@ -65,7 +65,7 @@ Future<void> pushNewPage({
   final target =
       controller.website.configModel.pageList.get((e) => e.uuid == to);
   if (target == null) throw Exception('$to not exist');
-  Navigator.of(I.context).push(CupertinoWithModalsPageRoute(
+  await Navigator.of(I.context).push(CupertinoWithModalsPageRoute(
       builder: (context) => ViewerPage(
             model: model,
             env: envModel,

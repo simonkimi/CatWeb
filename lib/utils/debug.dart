@@ -11,7 +11,7 @@ class TimeLine {
   }
 }
 
-void trace(Object p1,
+void trace(Object? p1,
     [Object? p2,
     Object? p3,
     Object? p4,
@@ -21,7 +21,7 @@ void trace(Object p1,
     Object? p8,
     Object? p9,
     Object? p10]) {
-  final msg = <Object?>[p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]
+  final msg = <Object?>[p1 ?? 'null', p2, p3, p4, p5, p6, p7, p8, p9, p10]
       .whereType<Object>()
       .map((e) => e.toString())
       .join(' ');

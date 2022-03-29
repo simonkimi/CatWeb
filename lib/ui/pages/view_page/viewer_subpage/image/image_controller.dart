@@ -33,6 +33,10 @@ abstract class ReaderInfo<T> {
   TransmissionBufferStream<T, Map<int, ReaderPreviewData?>> get bufferStream;
 
   Future<void> requestLoadIndex(int index, [RxBool isStop]);
+
+  String? get idCode;
+
+  String get fromUuid;
 }
 
 class ReaderImageLoader with LoadStateMixin {

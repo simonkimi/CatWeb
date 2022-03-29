@@ -33,7 +33,7 @@ class ViewerGalleryFragment extends StatelessWidget {
     required Object? model,
     required SiteEnvModel env,
   })  : c = GalleryPreviewController(
-          target: target,
+          blueprint: target,
           base: model,
           outerEnv: env,
         ),
@@ -356,14 +356,16 @@ class ViewerGalleryFragment extends StatelessWidget {
   CupertinoButton _buildReadButton(BuildContext context) {
     return CupertinoButton(
       child: c.detailModel != null
-          ? const Text(
-              '阅读',
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFFF0F0F0),
-              ),
-            )
+          ? Obx(() => Text(
+                c.lastReadIndex.value == 0
+                    ? '阅读'
+                    : '阅读(${c.lastReadIndex.value + 1})',
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFF0F0F0),
+                ),
+              ))
           : Transform.scale(
               scale: 0.8,
               child: const CupertinoActivityIndicator(),
@@ -372,11 +374,14 @@ class ViewerGalleryFragment extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
       minSize: 0,
       onPressed: c.detailModel != null
-          ? () => pushNewPage(
+          ? () async {
+              await pushNewPage(
                 to: c.extra.targetReader.value,
                 envModel: c.localEnv.clone(),
                 model: c,
-              )
+              );
+              await c.loadLastRead();
+            }
           : null,
       borderRadius: BorderRadius.circular(20),
     );
@@ -486,9 +491,11 @@ class ViewerGalleryFragment extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               _buildShowMore(context, () {
-                showCupertinoModalBottomSheet(context: context, builder: (context) {
-                  return CommentListPage(c: c);
-                });
+                showCupertinoModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return CommentListPage(c: c);
+                    });
               }),
             ],
           ),

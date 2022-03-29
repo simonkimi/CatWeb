@@ -1,4 +1,5 @@
 import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/database/database.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'image_controller.dart';
@@ -63,6 +64,7 @@ class ImageReadController {
       return;
     }
     final preloadCount = Get.find<SettingController>().preloadCount.value;
+    // 预加载
     if (preloadCount >= 0) {
       controller.imageLoaderList.skip(realIndex).take(preloadCount).forEach(
         (imageLoader) {
@@ -75,6 +77,21 @@ class ImageReadController {
           }
         },
       );
+    }
+
+    // 记录加载数据
+    if (controller.readerInfo.idCode != null) {
+      final db = DB().readerHistoryDao;
+      final entity = await db.get(
+        uuid: controller.readerInfo.fromUuid,
+        idCode: controller.readerInfo.idCode!,
+      );
+      print(entity);
+      if (entity != null) {
+        await db.replace(entity.copyWith(
+          pageIndex: realIndex,
+        ));
+      }
     }
   }
 

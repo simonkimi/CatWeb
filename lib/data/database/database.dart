@@ -1,6 +1,8 @@
 import 'dart:ffi';
 import 'dart:io';
 
+import 'package:catweb/data/database/daos/reader_history_dao.dart';
+import 'package:catweb/data/database/tables/reader_history_table.dart';
 import 'package:catweb/data/database/tables/web_table.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
@@ -30,7 +32,7 @@ LazyDatabase _openConnection() {
   });
 }
 
-@DriftDatabase(tables: [WebTable], daos: [WebDao])
+@DriftDatabase(tables: [WebTable, ReaderHistoryTable], daos: [WebDao, ReaderHistoryDao])
 class AppDataBase extends _$AppDataBase {
   AppDataBase() : super(_openConnection());
 
@@ -47,4 +49,6 @@ class DB {
   final AppDataBase _database = AppDataBase();
 
   WebDao get webDao => _database.webDao;
+
+  ReaderHistoryDao get readerHistoryDao => _database.readerHistoryDao;
 }

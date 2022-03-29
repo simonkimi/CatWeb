@@ -174,4 +174,10 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
                   .asMap();
             },
           );
+
+  @override
+  String? get idCode => null;
+
+  @override
+  String get fromUuid => blueprint.uuid;
 }
