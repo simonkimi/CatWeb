@@ -95,21 +95,24 @@ class ViewerGalleryFragment extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: math.min(c.items.coiledList.length, 40),
             itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 5),
-                child: AspectRatio(
-                  aspectRatio: 200 / 282,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: ImageLoader(
-                      concurrency: c.concurrency,
-                      model: c.items.coiledList[index].previewImg,
-                      innerImageBuilder: (context, child) {
-                        return ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: child,
-                        );
-                      },
+              return GestureDetector(
+                onTap: () => _openReadPage(index),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 5),
+                  child: AspectRatio(
+                    aspectRatio: 200 / 282,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: ImageLoader(
+                        concurrency: c.concurrency,
+                        model: c.items.coiledList[index].previewImg,
+                        innerImageBuilder: (context, child) {
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: child,
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -132,7 +135,10 @@ class ViewerGalleryFragment extends StatelessWidget {
               ),
             const Expanded(child: SizedBox()),
             _buildShowMore(context, () {
-              Get.to(() => ViewerGalleryImages(c: c));
+              Get.to(() => ViewerGalleryImages(
+                    c: c,
+                    onOpenPage: _openReadPage,
+                  ));
             }),
           ],
         ),
@@ -375,15 +381,22 @@ class ViewerGalleryFragment extends StatelessWidget {
       minSize: 0,
       onPressed: c.detailModel != null
           ? () async {
-              await pushNewPage(
-                to: c.extra.targetReader.value,
-                envModel: c.localEnv.clone(),
-                model: c,
-              );
+              await _openReadPage();
               await c.loadLastRead();
             }
           : null,
       borderRadius: BorderRadius.circular(20),
+    );
+  }
+
+  Future<void> _openReadPage([int? startPage]) async {
+    if (startPage != null) {
+      c.lastReadIndex.value = startPage;
+    }
+    await pushNewPage(
+      to: c.extra.targetReader.value,
+      envModel: c.localEnv.clone(),
+      model: c,
     );
   }
 

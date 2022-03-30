@@ -11,9 +11,14 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'gallery_controller.dart';
 
 class ViewerGalleryImages extends StatelessWidget {
-  const ViewerGalleryImages({Key? key, required this.c}) : super(key: key);
+  const ViewerGalleryImages({
+    Key? key,
+    required this.c,
+    required this.onOpenPage,
+  }) : super(key: key);
 
   final GalleryPreviewController c;
+  final Future<void> Function(int?) onOpenPage;
 
   @override
   Widget build(BuildContext context) {
@@ -38,43 +43,49 @@ class ViewerGalleryImages extends StatelessWidget {
                       ),
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(4),
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: c.items[index] != null
-                                      ? ImageLoader(
-                                          concurrency: c.concurrency,
-                                          model: c.items[index]!.previewImg,
-                                          imageWidgetBuilder: (context, child) {
-                                            return FittedBox(
-                                              fit: BoxFit.contain,
-                                              child: child,
-                                            );
-                                          },
-                                          innerImageBuilder: (context, child) {
-                                            return ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              child: child,
-                                            );
-                                          },
-                                        )
-                                      : const Center(
-                                          child: Text('null'),
-                                        ),
-                                ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  (index + 1).toString(),
-                                  style: TextStyle(
-                                    height: 1,
-                                    fontSize: 14,
-                                    color: FixColor.title.resolveFrom(context),
+                          return GestureDetector(
+                            onTap: () => onOpenPage(index),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: c.items[index] != null
+                                        ? ImageLoader(
+                                            concurrency: c.concurrency,
+                                            model: c.items[index]!.previewImg,
+                                            imageWidgetBuilder:
+                                                (context, child) {
+                                              return FittedBox(
+                                                fit: BoxFit.contain,
+                                                child: child,
+                                              );
+                                            },
+                                            innerImageBuilder:
+                                                (context, child) {
+                                              return ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                child: child,
+                                              );
+                                            },
+                                          )
+                                        : const Center(
+                                            child: Text('null'),
+                                          ),
                                   ),
-                                ),
-                              ],
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    (index + 1).toString(),
+                                    style: TextStyle(
+                                      height: 1,
+                                      fontSize: 14,
+                                      color:
+                                          FixColor.title.resolveFrom(context),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },
