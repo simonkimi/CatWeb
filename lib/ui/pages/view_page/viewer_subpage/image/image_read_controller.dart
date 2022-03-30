@@ -1,4 +1,5 @@
 import 'package:catweb/data/database/database.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'image_controller.dart';
 import 'package:get/get.dart';
@@ -13,12 +14,23 @@ class ImageReadController {
   ImageReadController({
     required ReaderDisplayType displayType,
     required this.controller,
-  }) : _displayType = displayType.obs {
-    onPageIndexChanged(0);
-  }
+  }) : _displayType = displayType.obs;
 
   final Rx<ReaderDisplayType> _displayType;
   final ImageReaderController controller;
+  final PageController pageController = PageController();
+
+  void onPageInitFinish() {
+    if (controller.readerInfo.startPage != null) {
+      if (controller.readerInfo.startPage! > 0) {
+        pageController.jumpToPage(controller.readerInfo.startPage!);
+      } else {
+        onPageIndexChanged(0);
+      }
+    } else {
+      onPageIndexChanged(0);
+    }
+  }
 
   int _getRealIndex(int index) {
     switch (displayType) {

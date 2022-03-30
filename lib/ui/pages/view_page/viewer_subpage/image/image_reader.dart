@@ -46,6 +46,9 @@ class _ImageReaderViewerState extends State<ImageReader>
       displayType: widget.displayType,
       controller: c,
     );
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      readController.onPageInitFinish();
+    });
   }
 
   @override
@@ -59,6 +62,7 @@ class _ImageReaderViewerState extends State<ImageReader>
       ),
       backgroundColor: CupertinoColors.darkBackgroundGray,
       child: Obx(() => PhotoViewGallery.builder(
+            pageController: readController.pageController,
             itemCount: readController.pageCount,
             onPageChanged: readController.onPageIndexChanged,
             builder: (context, index) {

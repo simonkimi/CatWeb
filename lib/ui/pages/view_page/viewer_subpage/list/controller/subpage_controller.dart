@@ -180,4 +180,7 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
 
   @override
   String get fromUuid => blueprint.uuid;
+
+  @override
+  int? get startPage => null;
 }

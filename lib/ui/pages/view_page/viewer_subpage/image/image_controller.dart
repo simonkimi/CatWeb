@@ -38,6 +38,8 @@ abstract class ReaderInfo<T> {
   String? get idCode;
 
   String get fromUuid;
+
+  int? get startPage;
 }
 
 class ReaderImageLoader with LoadStateMixin {

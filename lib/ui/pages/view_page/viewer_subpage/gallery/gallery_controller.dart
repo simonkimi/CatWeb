@@ -176,4 +176,7 @@ class GalleryPreviewController
 
   @override
   String get fromUuid => blueprint.uuid;
+
+  @override
+  int? get startPage => lastReadIndex.value;
 }
