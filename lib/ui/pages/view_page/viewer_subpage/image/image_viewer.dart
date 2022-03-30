@@ -137,7 +137,11 @@ class _ImageViewerState extends State<ImageViewer> {
       case LoadState.failed:
         return _buildCenterColumn([
           _buildIndexText(),
-          Text('貌似出了点问题: ${state.lastException?.toString()}'),
+          Text(
+            '貌似出了点问题: ${state.lastException?.toString()}',
+            maxLines: 10,
+            style: const TextStyle(color: CupertinoColors.white),
+          ),
         ]);
     }
   }

@@ -57,10 +57,7 @@ class ImageListConcurrency implements ImageConcurrency {
   void _trigger() {
     while ((activeImage.length < concurrency || concurrency == 0) &&
         activeImage.isNotEmpty) {
-      final item = activeImage[0];
-      item.load().then((value) {
-        _trigger();
-      });
+      activeImage[0].load().then((value) => _trigger());
     }
   }
 }

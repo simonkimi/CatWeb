@@ -1,4 +1,4 @@
-import 'package:bot_toast/bot_toast.dart';
+ import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_router.dart';
@@ -25,7 +25,6 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return GetCupertinoApp(

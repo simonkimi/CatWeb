@@ -1,3 +1,4 @@
+import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
@@ -106,8 +107,43 @@ class ImageReaderController {
   final global = Get.find<GlobalController>();
   final SiteEnvModel localEnv;
 
+  final concurrency = 3;
+  var readerIsForward = true; // 是否为正向阅读
+  var currentIndex = 0; // 当前阅读的页码
+
   // 图片列表
   final RxList<ReaderImageLoader> imageLoaderList = <ReaderImageLoader>[].obs;
+
+  final _waitLoadModel = <int, Future<void> Function(bool)>{};
+
+  Future<void> requestLoadIndex(int index) async {
+    currentIndex = index;
+    final preloadCount = Get.find<SettingController>().preloadCount.value;
+    final needLoadList = imageLoaderList.skip(index).take(preloadCount + 1);
+    // 添加需要加载的数据
+    for (final element in needLoadList) {
+      if (!_waitLoadModel.containsKey(element.index) && element.state.isIdle) {
+        _waitLoadModel[element.index] = element.requestLoad;
+      }
+    }
+    // 删除由于翻页已经不需要加载的页面
+    _waitLoadModel.removeWhere(
+        (key, value) => readerIsForward ? key < index : key > index);
+    _trigger(index);
+  }
+
+  int get loadingCount =>
+      imageLoaderList.where((e) => e.state.isLoading).length;
+
+  void _trigger(int index) {
+    while (concurrency - loadingCount > 0 && _waitLoadModel.isNotEmpty) {
+      final select = _waitLoadModel.keys.map((key) => (key - index).abs());
+      final min = select.reduce((a, b) => a < b ? a : b);
+      final entity = imageLoaderList[min + (readerIsForward ? 0 : -1) + index];
+      entity.requestLoad(true).whenComplete(() => _trigger(currentIndex));
+      _waitLoadModel.remove(entity.index);
+    }
+  }
 
   void _updateIdCode(Map<int, ReaderPreviewData?> items) {
     for (var i = 0; i < items.realLength; i++) {

@@ -69,7 +69,6 @@ class GalleryPreviewController
   Future<void> loadLastRead() async {
     final db = DB().readerHistoryDao;
     final entity = await db.get(uuid: blueprint.uuid, idCode: idCode);
-    print(entity);
     if (entity != null) {
       lastReadIndex.value = entity.pageIndex;
     } else {
@@ -107,6 +106,7 @@ class GalleryPreviewController
       localEnv: localEnv,
     );
     _detailModel.value = detail;
+    _fillItemIndex(detail);
 
     if (!hasPageExpression(blueprint.url.value) &&
         (detail.nextPage == baseUrl || detail.nextPage.isEmpty)) {
@@ -128,6 +128,16 @@ class GalleryPreviewController
       );
     }
     return null;
+  }
+
+  void _fillItemIndex(GalleryRpcModel item) {
+    if (item.imageCount.isFinite && item.imageCount > 0) {
+      for (var i = 0; i < item.imageCount; i++) {
+        if (!items.containsKey(i)) {
+          items[i] = null;
+        }
+      }
+    }
   }
 
   bool get fillRemaining =>
