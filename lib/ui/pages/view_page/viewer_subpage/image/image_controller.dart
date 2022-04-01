@@ -6,6 +6,7 @@ import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/utils/handle.dart';
 import 'package:catweb/utils/state_mixin.dart';
 import 'package:catweb/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import 'image_provider.dart';
@@ -86,6 +87,7 @@ class ReaderImageLoader with LoadStateMixin {
         model: model!.image,
         dio: global.website.client.imageDio,
       );
+      imageModel.value?.resolve(const ImageConfiguration());
     } on Exception catch (e) {
       loadError(e);
     }

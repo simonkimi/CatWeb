@@ -1,4 +1,5 @@
 import 'package:catweb/gen/protobuf/model.pb.dart';
+import 'package:catweb/ui/components/cupertino_progress_bar.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:extended_image/extended_image.dart';
@@ -41,12 +42,8 @@ class _ImageViewerState extends State<ImageViewer> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _buildIndexText(),
-          const Text(
-            '正在加载模型...',
-            style: TextStyle(
-              color: CupertinoColors.white,
-            ),
-          ),
+          const SizedBox(height: 50),
+          const CupertinoInfProgress(),
         ],
       );
     }
@@ -126,11 +123,9 @@ class _ImageViewerState extends State<ImageViewer> {
             : 0.0;
         return _buildCenterColumn([
           _buildIndexText(),
-          Text(
-            '${(progress * 100).toInt()}%',
-            style: const TextStyle(
-              color: CupertinoColors.white,
-            ),
+          const SizedBox(height: 50),
+          CupertinoProgress(
+            progress: progress,
           ),
         ]);
       case LoadState.completed:
@@ -138,6 +133,7 @@ class _ImageViewerState extends State<ImageViewer> {
       case LoadState.failed:
         return _buildCenterColumn([
           _buildIndexText(),
+          const SizedBox(height: 50),
           Text(
             '貌似出了点问题: ${state.lastException?.toString()}',
             maxLines: 10,

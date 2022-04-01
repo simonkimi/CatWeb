@@ -173,7 +173,7 @@ Dio _buildDio(SiteBlueprintModel model, [bool isImage = false]) {
 
   dio.options
     ..connectTimeout = 60 * 1000
-    ..receiveTimeout = 60 * 1000
+    ..receiveTimeout = 60 * 1000 * 5
     ..sendTimeout = 60 * 1000;
 
   if (model.baseUrl.value.isNotEmpty) {
