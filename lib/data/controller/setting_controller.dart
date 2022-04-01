@@ -31,12 +31,19 @@ class CardSize {
 }
 
 class SettingController extends GetxController {
-  final cardSize = CardSize.medium().size.obs;
+  // 内部储存设置
   final RxInt defaultSite = (-1).obs;
-  final RxBool imageMaskInDarkMode = true.obs;
   final RxString documentDir = ''.obs;
+
+  // 阅读设置
+  final RxBool imageMaskInDarkMode = true.obs;
+  final cardSize = CardSize.medium().size.obs;
   final RxInt preloadCount = 7.obs;
 
+  // 下载设置
+
+
+  // 其他数据
   late final CacheOptions imageCacheOption;
   late final CacheOptions cacheOptions;
 

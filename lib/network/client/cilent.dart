@@ -13,6 +13,7 @@ import 'package:catweb/network/parser/parser.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:get/get.dart' hide Response;
 
 class NetClient {
@@ -183,6 +184,16 @@ Dio _buildDio(SiteBlueprintModel model, [bool isImage = false]) {
   final setting = Get.find<SettingController>();
 
   dio.interceptors.add(HeaderCookieInterceptor(model));
+  dio.interceptors.add(RetryInterceptor(
+    dio: dio,
+    logPrint: print,
+    retries: 3,
+    retryDelays: const [
+      Duration(seconds: 1),
+      Duration(seconds: 2),
+      Duration(seconds: 3),
+    ],
+  ));
 
   if (!isImage) {
     dio.interceptors.add(DioCacheInterceptor(options: setting.cacheOptions));

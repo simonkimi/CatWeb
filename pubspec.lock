@@ -250,6 +250,13 @@ packages:
       url: "git@github.com:simonkimi/dio_http_formatter.git"
     source: git
     version: "2.1.1"
+  dio_smart_retry:
+    dependency: "direct main"
+    description:
+      name: dio_smart_retry
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0"
   drift:
     dependency: "direct main"
     description:
@@ -616,12 +623,10 @@ packages:
   photo_view:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: "23063d535909027b8e198c2cffa83bf8f0480c96"
-      url: "https://github.com/bluefireteam/photo_view"
-    source: git
-    version: "0.13.0"
+      name: photo_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.12.0"
   platform:
     dependency: transitive
     description:

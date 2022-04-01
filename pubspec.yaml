@@ -26,16 +26,14 @@ dependencies:
   extended_image: ^6.0.1
   modal_bottom_sheet: ^2.0.1
   bot_toast: ^4.0.1
-  photo_view:
-    git:
-      url: https://github.com/bluefireteam/photo_view
-      ref: master
+  photo_view: ^0.12.0
 
   # network
   brotli: ^0.5.0
   dio: ^4.0.4
   dio_cache_interceptor: ^3.2.6
   dio_cache_interceptor_db_store: ^4.1.1
+  dio_smart_retry: ^1.2.0
   dio_http_formatter:
     git:
       url: git@github.com:simonkimi/dio_http_formatter.git

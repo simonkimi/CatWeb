@@ -20,9 +20,11 @@ class ZoomWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('构建ZoomWidget $canZoom');
     return canZoom
         ? GestureDetector(
-            key: UniqueKey(),
+            child: child,
+            onDoubleTap: () {},
             onDoubleTapDown: (detail) {
               // 缩放
               final position = detail.globalPosition;
@@ -41,15 +43,17 @@ class ZoomWidget extends StatelessWidget {
               final targetX = (mediaSize.width / 2 - position.dx) * (scale - 1);
               final targetY =
                   (mediaSize.height / 2 - position.dy) * (scale - 1);
+
+              animation.listen((model) {
+                print('animation ${model.scale} ${model.offset}');
+                controller.scale = model.scale;
+                controller.position = model.offset;
+              });
+
               animation.animationOffset(
                 Offset(currentX, currentY),
                 Offset(targetX, targetY),
               );
-
-              animation.listen((model) {
-                controller.scale = model.scale;
-                controller.position = model.offset;
-              });
             },
           )
         : child;

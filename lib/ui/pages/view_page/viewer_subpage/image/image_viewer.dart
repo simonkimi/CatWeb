@@ -11,12 +11,12 @@ class ImageViewer extends StatefulWidget {
   const ImageViewer({
     Key? key,
     required this.model,
-    this.imageBuilder,
+    this.imageWrapBuilder,
   }) : super(key: key);
 
   final ReaderImageLoader model;
 
-  final Widget Function(BuildContext context, Widget child)? imageBuilder;
+  final Widget Function(BuildContext context, Widget child)? imageWrapBuilder;
 
   @override
   _ImageViewerState createState() => _ImageViewerState();
@@ -24,6 +24,9 @@ class ImageViewer extends StatefulWidget {
 
 class _ImageViewerState extends State<ImageViewer> {
   ReaderImageLoader get model => widget.model;
+
+  late final _imageWrapBuilder =
+      widget.imageWrapBuilder ?? (BuildContext context, Widget child) => child;
 
   @override
   Widget build(BuildContext context) {
@@ -89,14 +92,11 @@ class _ImageViewerState extends State<ImageViewer> {
                 aspectRatio: model.width / model.height,
                 child: FittedBox(
                   fit: BoxFit.contain,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: img,
-                  ),
+                  child: _imageWrapBuilder(context, img),
                 ),
               );
             }
-            return img;
+            return _imageWrapBuilder(context, img);
           } else {
             return _buildCommonState(state);
           }
@@ -108,7 +108,8 @@ class _ImageViewerState extends State<ImageViewer> {
         enableLoadState: true,
         handleLoadingProgress: true,
         loadStateChanged: (state) {
-          return _buildCommonState(state) ?? state.completedWidget;
+          return _buildCommonState(state) ??
+              _imageWrapBuilder(context, state.completedWidget);
         },
       );
     }

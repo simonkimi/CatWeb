@@ -95,12 +95,12 @@ class _ImageReaderViewerState extends State<ImageReader>
     }
 
     return PhotoViewGalleryPageOptions.customChild(
-      minScale: 1.0,
+      minScale: 0.8,
       maxScale: 5.0,
       controller: zoomController,
       child: ImageViewer(
         model: c.imageLoaderList[readIndex],
-        imageBuilder: (context, child) {
+        imageWrapBuilder: (context, child) {
           return ZoomWidget(
             controller: zoomController,
             animation: ZoomAnimation(
@@ -124,12 +124,14 @@ class _ImageReaderViewerState extends State<ImageReader>
         ? index * 2
         : max((index - 1) * 2 + 1, 0);
 
+    final zoomController = PhotoViewController();
+
     return PhotoViewGalleryPageOptions.customChild(
       minScale: 1.0,
       maxScale: 5.0,
-      controller: PhotoViewController(),
+      controller: zoomController,
       child: ZoomWidget(
-        controller: PhotoViewController(),
+        controller: zoomController,
         animation: ZoomAnimation(
           this,
           duration: const Duration(milliseconds: 200),
