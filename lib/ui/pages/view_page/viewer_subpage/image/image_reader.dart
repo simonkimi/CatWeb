@@ -1,10 +1,12 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/zoom.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_zoom.dart';
+import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -35,6 +37,7 @@ class _ImageReaderViewerState extends State<ImageReader>
 
   late final AnimationController hideToolbarAniController;
   late final Animation<Offset> hideToolbarAni;
+  late final Animation<Offset> hideTabBarAni;
 
   @override
   void initState() {
@@ -50,11 +53,15 @@ class _ImageReaderViewerState extends State<ImageReader>
     );
     hideToolbarAniController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 200),
     );
     hideToolbarAni = Tween(
-      begin: const Offset(0, -1),
-      end: const Offset(0, 0),
+      begin: const Offset(0, 0),
+      end: const Offset(0, -1),
+    ).animate(hideToolbarAniController);
+    hideTabBarAni = Tween(
+      begin: const Offset(0, 0),
+      end: const Offset(0, 1),
     ).animate(hideToolbarAniController);
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       readController.onPageInitFinish();
@@ -64,14 +71,19 @@ class _ImageReaderViewerState extends State<ImageReader>
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        backgroundColor: Color(0x00000000),
-        leading: CupertinoBackLeading(
-          color: CupertinoColors.white,
+      navigationBar: OffsetCupertinoAppBar(
+        offset: hideToolbarAni,
+        child: CupertinoNavigationBar(
+          backgroundColor: FixColor.navigationBarBackground.darkColor,
+          leading: const CupertinoBackLeading(
+            color: CupertinoColors.white,
+          ),
         ),
       ),
       backgroundColor: CupertinoColors.darkBackgroundGray,
-      child: Obx(() => PhotoViewGallery.builder(
+      child: Stack(
+        children: [
+          Obx(() => PhotoViewGallery.builder(
             pageController: readController.pageController,
             itemCount: readController.pageCount,
             onPageChanged: readController.onPageIndexChanged,
@@ -81,7 +93,35 @@ class _ImageReaderViewerState extends State<ImageReader>
                   : _buildDoublePageImage(context, index);
             },
           )),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: SlideTransition(
+              position: hideTabBarAni,
+              child: ClipRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                  child: Container(
+                    color: FixColor.navigationBarBackground.darkColor,
+                    height: 50,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
+  }
+
+  void _onHideToolbar() {
+    if (hideToolbarAniController.isAnimating) {
+      return;
+    }
+    if (hideToolbarAniController.status == AnimationStatus.completed) {
+      hideToolbarAniController.reverse();
+    } else {
+      hideToolbarAniController.forward();
+    }
   }
 
   void _onImageTap(TapUpDetails details) {
@@ -92,7 +132,7 @@ class _ImageReaderViewerState extends State<ImageReader>
     final tap = details.globalPosition.dx;
 
     if (left < tap && tap < right) {
-      // TODO: Center
+      _onHideToolbar();
     } else if (tap < left) {
       readController.toPreviousPage();
     } else {

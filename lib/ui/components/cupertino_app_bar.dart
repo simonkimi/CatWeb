@@ -279,3 +279,30 @@ class AppBarScrollNotification extends ScrollNotification {
     required ScrollMetrics metrics,
   }) : super(context: context, metrics: metrics);
 }
+
+class OffsetCupertinoAppBar extends StatelessWidget
+    implements ObstructingPreferredSizeWidget {
+  const OffsetCupertinoAppBar({
+    Key? key,
+    required this.child,
+    required this.offset,
+  }) : super(key: key);
+
+  final ObstructingPreferredSizeWidget child;
+  final Animation<Offset> offset;
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: offset,
+      child: child,
+    );
+  }
+
+  @override
+  Size get preferredSize => child.preferredSize;
+
+  @override
+  bool shouldFullyObstruct(BuildContext context) =>
+      child.shouldFullyObstruct(context);
+}
