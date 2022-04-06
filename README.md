@@ -1,16 +1,36 @@
-# cat_web
+# CatWeb
 
-A new Flutter project.
+## 介绍
 
-## Getting Started
+CatWeb一款网页采集器，对网页进行重新排版，以更适合在移动设备上使用
 
-This project is a starting point for a Flutter application.
+## 测试平台
 
-A few resources to get you started if this is your first Flutter project:
+软件支持跨平台，但仅在一下平台测试过
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Android： Android 12 | 小米 11
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+iOS： iOS 15.4 | iPhone 13
+
+其他平台将在未来更新
+
+## 功能
+
+- [x] 列表，详情，搜索，阅读
+
+## TODO
+
+- [ ] 阅读图片缩略图预览
+- [ ] 阅读方向调整, 从右到左. 从上到下
+- [ ] 双面预览功能
+- [ ] 瀑布流布局
+- [ ] Favicon显示
+- [ ] 登录/记录Cookie功能
+- [ ] 自定义任务功能, 用于实现网页高级控制
+
+## 长远规划
+- [x] 漫画站点采集, 例如Hentai类
+- [ ] 图片站点采集, 例如Booru类
+- [ ] 文本站点采集, 例如小说站, 论文站
+- [ ] 音频站点采集, 例如xx音乐, ASMR站点
+- [ ] 视频站点采集
