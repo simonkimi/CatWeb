@@ -26,6 +26,7 @@ dependencies:
   extended_image: ^6.0.1
   modal_bottom_sheet: ^2.0.1
   bot_toast: ^4.0.1
+  scrollable_positioned_list: ^0.2.3
   photo_view:
     git: https://github.com/bluefireteam/photo_view.git
 

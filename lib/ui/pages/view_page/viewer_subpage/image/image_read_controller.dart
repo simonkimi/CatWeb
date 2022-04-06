@@ -1,5 +1,7 @@
 import 'package:catweb/data/database/database.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'dart:math' as math;
 
 import 'image_controller.dart';
 import 'package:get/get.dart';
@@ -19,6 +21,7 @@ class ImageReadController {
   final Rx<ReaderDisplayType> _displayType;
   final ImageReaderController controller;
   final PageController pageController = PageController();
+  final listController = ItemScrollController();
 
   void onPageInitFinish() {
     if (controller.readerInfo.startPage != null) {
@@ -33,6 +36,17 @@ class ImageReadController {
   }
 
   int _getRealIndex(int index) {
+    if (_displayType.value == ReaderDisplayType.single) {
+      return index;
+    } else if (_displayType.value == ReaderDisplayType.double) {
+      return index * 2;
+    } else if (_displayType.value == ReaderDisplayType.doubleCover) {
+      return math.max((index - 1) * 2 + 1, 0);
+    }
+    return 0;
+  }
+
+  int _getDisplayIndex(int index) {
     switch (displayType) {
       case ReaderDisplayType.single:
         return index;
@@ -92,4 +106,30 @@ class ImageReadController {
   }
 
   ReaderDisplayType get displayType => _displayType.value;
+
+  void toNextPage() {
+    final displayIndex = _getDisplayIndex(index);
+
+    if (displayIndex < pageCount - 1) {
+      _jumpToPage(displayIndex + 1);
+    }
+  }
+
+  void toPreviousPage() {
+    final displayIndex = _getDisplayIndex(index);
+    if (displayIndex - 1 > 0) {
+      _jumpToPage(displayIndex - 1);
+    }
+  }
+
+  int get index => _getRealIndex((pageController.page ?? 0).toInt());
+
+  void _jumpToPage(int index) {
+    if (pageController.hasClients) {
+      pageController.jumpToPage(index);
+    }
+    if (listController.isAttached) {
+      listController.scrollTo(index: index, duration: 200.milliseconds);
+    }
+  }
 }

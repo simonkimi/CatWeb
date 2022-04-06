@@ -31,8 +31,10 @@ class ImageReader extends StatefulWidget {
 class _ImageReaderViewerState extends State<ImageReader>
     with TickerProviderStateMixin {
   late final ImageReaderController c;
-
   late final ImageReadController readController;
+
+  late final AnimationController hideToolbarAniController;
+  late final Animation<Offset> hideToolbarAni;
 
   @override
   void initState() {
@@ -46,6 +48,14 @@ class _ImageReaderViewerState extends State<ImageReader>
       displayType: widget.displayType,
       controller: c,
     );
+    hideToolbarAniController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+    hideToolbarAni = Tween(
+      begin: const Offset(0, -1),
+      end: const Offset(0, 0),
+    ).animate(hideToolbarAniController);
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       readController.onPageInitFinish();
     });
@@ -74,6 +84,22 @@ class _ImageReaderViewerState extends State<ImageReader>
     );
   }
 
+  void _onImageTap(TapUpDetails details) {
+    final screenSize = MediaQuery.of(context).size;
+
+    final left = screenSize.width / 3;
+    final right = left * 2;
+    final tap = details.globalPosition.dx;
+
+    if (left < tap && tap < right) {
+      // TODO: Center
+    } else if (tap < left) {
+      readController.toPreviousPage();
+    } else {
+      readController.toNextPage();
+    }
+  }
+
   /// 构建单图片页面, 图片外面套一个缩放控件
   PhotoViewGalleryPageOptions _buildSinglePageImage(
     BuildContext context,
@@ -95,22 +121,26 @@ class _ImageReaderViewerState extends State<ImageReader>
     }
 
     return PhotoViewGalleryPageOptions.customChild(
-      minScale: 0.8,
+      minScale: 1.0,
       maxScale: 5.0,
       controller: zoomController,
-      child: ImageViewer(
-        model: c.imageLoaderList[readIndex],
-        imageWrapBuilder: (context, child) {
-          return ZoomWidget(
-            controller: zoomController,
-            animation: ZoomAnimation(
-              this,
-              duration: const Duration(milliseconds: 200),
-            ),
-            canZoom: true,
-            child: child,
-          );
-        },
+      child: GestureDetector(
+        onTap: () {},
+        onTapUp: _onImageTap,
+        child: ImageViewer(
+          model: c.imageLoaderList[readIndex],
+          imageWrapBuilder: (context, child) {
+            return ZoomWidget(
+              controller: zoomController,
+              animation: ZoomAnimation(
+                this,
+                duration: const Duration(milliseconds: 200),
+              ),
+              canZoom: true,
+              child: child,
+            );
+          },
+        ),
       ),
     );
   }
@@ -130,22 +160,26 @@ class _ImageReaderViewerState extends State<ImageReader>
       minScale: 1.0,
       maxScale: 5.0,
       controller: zoomController,
-      child: ZoomWidget(
-        controller: zoomController,
-        animation: ZoomAnimation(
-          this,
-          duration: const Duration(milliseconds: 200),
-        ),
-        canZoom: true,
-        child: Row(
-          children: [
-            Expanded(
-              child: ImageViewer(model: c.imageLoaderList[realIndex]),
-            ),
-            Expanded(
-              child: ImageViewer(model: c.imageLoaderList[realIndex + 1]),
-            ),
-          ],
+      child: GestureDetector(
+        onTap: () {},
+        onTapUp: _onImageTap,
+        child: ZoomWidget(
+          controller: zoomController,
+          animation: ZoomAnimation(
+            this,
+            duration: const Duration(milliseconds: 200),
+          ),
+          canZoom: true,
+          child: Row(
+            children: [
+              Expanded(
+                child: ImageViewer(model: c.imageLoaderList[realIndex]),
+              ),
+              Expanded(
+                child: ImageViewer(model: c.imageLoaderList[realIndex + 1]),
+              ),
+            ],
+          ),
         ),
       ),
     );
