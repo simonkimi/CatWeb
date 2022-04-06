@@ -39,9 +39,9 @@ class SettingController extends GetxController {
   final RxBool imageMaskInDarkMode = true.obs;
   final cardSize = CardSize.medium().size.obs;
   final RxInt preloadCount = 7.obs;
+  final RxInt concurrencyCount = 5.obs;
 
   // 下载设置
-
 
   // 其他数据
   late final CacheOptions imageCacheOption;
@@ -56,6 +56,7 @@ class SettingController extends GetxController {
     imageMaskInDarkMode.watch('imageMaskInDarkMode', true);
     documentDir.watch('documentDir', '');
     preloadCount.watch('preloadCount', 7);
+    concurrencyCount.watch('concurrencyCount', 5);
 
     if (documentDir.value.isEmpty) {
       documentDir.value = await getDocumentDir();

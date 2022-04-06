@@ -1,8 +1,8 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/cupertino_router.dart';
+import 'package:catweb/ui/pages/setting_page/setting_subpage/read_setting.dart';
 import 'package:catweb/ui/pages/setting_page/setting_tile.dart';
-import 'package:catweb/ui/pages/setting_page/read_subpage/read_setting.dart';
 import 'package:catweb/ui/pages/setting_page/setting_group.dart';
 import 'package:flutter/cupertino.dart';
 

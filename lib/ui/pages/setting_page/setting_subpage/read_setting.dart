@@ -10,7 +10,6 @@ class ReadSettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final setting = Get.find<SettingController>();
 
     return CupertinoPageScaffold(
@@ -29,12 +28,11 @@ class ReadSettingPage extends StatelessWidget {
                 ),
               ),
               const SettingDivider(),
-              SettingTile(
-                title: '深色模式下预览图片变暗',
-                trailing: CupertinoObxSwitch(
-                  scale: 0.9,
-                  value: setting.imageMaskInDarkMode,
-                ),
+              SettingNumberTile(value: setting.preloadCount, title: '预加载数量'),
+              const SettingDivider(),
+              SettingNumberTile(
+                value: setting.concurrencyCount,
+                title: '同时加载图片数量',
               ),
             ],
           ),

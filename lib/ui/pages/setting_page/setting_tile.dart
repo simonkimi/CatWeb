@@ -1,5 +1,8 @@
+import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import '../../components/cupertino_divider.dart';
 
@@ -58,6 +61,7 @@ class SettingTile extends StatelessWidget {
     this.icon,
     this.onTap,
     this.trailing,
+    this.trailingText,
   }) : super(key: key);
 
   final String title;
@@ -65,6 +69,7 @@ class SettingTile extends StatelessWidget {
   final IconData? icon;
   final VoidCallback? onTap;
   final Widget? trailing;
+  final String? trailingText;
 
   @override
   Widget build(BuildContext context) {
@@ -105,14 +110,61 @@ class SettingTile extends StatelessWidget {
               ),
             ),
             trailing ??
-                const Icon(
-                  CupertinoIcons.forward,
-                  size: 18,
-                  color: CupertinoColors.inactiveGray,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (trailingText != null)
+                      Text(
+                        trailingText!,
+                        style: const TextStyle(
+                          color: CupertinoColors.inactiveGray,
+                          fontSize: 16,
+                        ),
+                      ),
+                    const Icon(
+                      CupertinoIcons.forward,
+                      size: 18,
+                      color: CupertinoColors.inactiveGray,
+                    )
+                  ],
                 ),
           ],
         ),
       ),
     );
+  }
+}
+
+class SettingNumberTile extends StatelessWidget {
+  const SettingNumberTile({
+    Key? key,
+    required this.value,
+    required this.title,
+  }) : super(key: key);
+
+  final String title;
+  final RxInt value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() => SettingTile(
+          title: title,
+          trailingText: value.string,
+          onTap: () {
+            showCupertinoInputDialog(
+              context,
+              initialValue: value.string,
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+              ],
+            ).then((e) {
+              if (e != null) {
+                value.value = int.tryParse(e) ?? value.value;
+              }
+            });
+          },
+        ));
   }
 }

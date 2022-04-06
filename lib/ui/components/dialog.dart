@@ -1,6 +1,7 @@
 import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class SelectTileItem<T> {
@@ -221,6 +222,45 @@ Future<String?> showCupertinoIconDialog(BuildContext context) async {
             );
           },
         ),
+      );
+    },
+  );
+}
+
+Future<String?> showCupertinoInputDialog(
+  BuildContext context, {
+  String? initialValue,
+  String? title,
+  TextInputType? keyboardType,
+  List<TextInputFormatter>? inputFormatters,
+}) async {
+  final controller = TextEditingController(text: initialValue);
+  return await showCupertinoDialog(
+    barrierDismissible: true,
+    context: context,
+    builder: (context) {
+      return CupertinoAlertDialog(
+        title: Text(title ?? '请输入'),
+        content: CupertinoTextField(
+          controller: controller,
+          autofocus: true,
+          keyboardType: keyboardType,
+          inputFormatters: inputFormatters,
+        ),
+        actions: [
+          CupertinoButton(
+            child: const Text('取消'),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          CupertinoButton(
+            child: const Text('确定'),
+            onPressed: () {
+              Navigator.of(context).pop(controller.text);
+            },
+          ),
+        ],
       );
     },
   );
