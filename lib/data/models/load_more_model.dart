@@ -117,7 +117,7 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
         await onJumpPage(_page.value + 1);
         loadComplete();
         if (checkIfOutOfRange(_page.value)) {
-          trace('下一秒超出范围, 没有更多', _page.value);
+          trace('下一面超出范围, 没有更多', _page.value);
           loadNoData();
         }
       } else {
@@ -137,9 +137,9 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
 
   /// 这里传入的page应该是以0开始的, 第一面就是0
   Future<void> onJumpPage(int page) async {
-    trace('当前页面', _page.value, '准备加载页面', page);
     await _requestLock.synchronized(() async {
       if (pages.containsKey(page)) return;
+      trace('当前页面', _page.value, '准备加载页面', page);
       loadStart();
       final pageData = await loadPage(page);
       pages[page] = pageData.item1;

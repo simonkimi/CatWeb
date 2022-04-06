@@ -23,14 +23,22 @@ class ImageReadController {
   final PageController pageController = PageController();
   final listController = ItemScrollController();
 
+  final Rx<int> _currentPage = 0.obs;
+
+  int get currentPage => _currentPage.value;
+
   void onPageInitFinish() {
     if (controller.readerInfo.startPage != null) {
       if (controller.readerInfo.startPage! > 0) {
-        pageController.jumpToPage(controller.readerInfo.startPage!);
+        _currentPage.value = controller.readerInfo.startPage!;
+        pageController
+            .jumpToPage(_getRealIndex(controller.readerInfo.startPage!));
       } else {
+        _currentPage.value = 0;
         onPageIndexChanged(0);
       }
     } else {
+      _currentPage.value = 0;
       onPageIndexChanged(0);
     }
   }
@@ -57,7 +65,7 @@ class ImageReadController {
     }
   }
 
-  int get pageCount {
+  int get displayPageCount {
     switch (displayType) {
       case ReaderDisplayType.single:
         return controller.imageLoaderList.length;
@@ -74,11 +82,11 @@ class ImageReadController {
         return true;
       case ReaderDisplayType.double: // 普通双面多出一面
         return controller.imageLoaderList.length.isOdd &&
-            index == pageCount - 1;
+            index == displayPageCount - 1;
       case ReaderDisplayType.doubleCover: // 封面双面的封面和多出的一面
         return index == 0 ||
             (controller.imageLoaderList.length.isEven &&
-                index == pageCount - 1);
+                index == displayPageCount - 1);
     }
   }
 
@@ -87,6 +95,7 @@ class ImageReadController {
     if (realIndex >= controller.imageLoaderList.length) {
       return;
     }
+    _currentPage.value = realIndex;
     // 预加载
     await controller.requestLoadIndex(index);
 
@@ -110,21 +119,21 @@ class ImageReadController {
   void toNextPage() {
     final displayIndex = _getDisplayIndex(index);
 
-    if (displayIndex < pageCount - 1) {
-      _jumpToPage(displayIndex + 1);
+    if (displayIndex < displayPageCount - 1) {
+      jumpToPage(displayIndex + 1);
     }
   }
 
   void toPreviousPage() {
     final displayIndex = _getDisplayIndex(index);
     if (displayIndex - 1 > 0) {
-      _jumpToPage(displayIndex - 1);
+      jumpToPage(displayIndex - 1);
     }
   }
 
   int get index => _getRealIndex((pageController.page ?? 0).toInt());
 
-  void _jumpToPage(int index) {
+  void jumpToPage(int index) {
     if (pageController.hasClients) {
       pageController.jumpToPage(index);
     }

@@ -13,6 +13,7 @@ import 'package:photo_view/photo_view_gallery.dart';
 import 'package:get/get.dart';
 import 'image_controller.dart';
 import 'image_read_controller.dart';
+import 'image_slider.dart';
 import 'image_viewer.dart';
 
 class ImageReader extends StatefulWidget {
@@ -84,15 +85,15 @@ class _ImageReaderViewerState extends State<ImageReader>
       child: Stack(
         children: [
           Obx(() => PhotoViewGallery.builder(
-            pageController: readController.pageController,
-            itemCount: readController.pageCount,
-            onPageChanged: readController.onPageIndexChanged,
-            builder: (context, index) {
-              return readController.isSingleWidget(index)
-                  ? _buildSinglePageImage(context, index)
-                  : _buildDoublePageImage(context, index);
-            },
-          )),
+                pageController: readController.pageController,
+                itemCount: readController.displayPageCount,
+                onPageChanged: readController.onPageIndexChanged,
+                builder: (context, index) {
+                  return readController.isSingleWidget(index)
+                      ? _buildSinglePageImage(context, index)
+                      : _buildDoublePageImage(context, index);
+                },
+              )),
           Align(
             alignment: Alignment.bottomCenter,
             child: SlideTransition(
@@ -103,6 +104,16 @@ class _ImageReaderViewerState extends State<ImageReader>
                   child: Container(
                     color: FixColor.navigationBarBackground.darkColor,
                     height: 50,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Obx(() => CupertinoImageSlider(
+                        value: readController.currentPage,
+                        pageCount: c.imageLoaderList.length,
+                        onChanged: (value) {
+                          readController.jumpToPage(value);
+                        },
+                      )),
+                    ),
                   ),
                 ),
               ),
