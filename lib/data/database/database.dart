@@ -32,7 +32,8 @@ LazyDatabase _openConnection() {
   });
 }
 
-@DriftDatabase(tables: [WebTable, ReaderHistoryTable], daos: [WebDao, ReaderHistoryDao])
+@DriftDatabase(
+    tables: [WebTable, ReaderHistoryTable], daos: [WebDao, ReaderHistoryDao])
 class AppDataBase extends _$AppDataBase {
   AppDataBase() : super(_openConnection());
 

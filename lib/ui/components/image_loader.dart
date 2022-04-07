@@ -46,7 +46,7 @@ class ImageLoader extends StatefulWidget {
     this.innerImageBuilder,
   }) : super(key: key);
 
-  final ImageConcurrency concurrency;
+  final ImageListConcurrency concurrency;
   final ImageRpcModel model;
   final ImageWidgetBuilder? imageBuilder;
   final LoadingWidgetBuilder? loadingBuilder;

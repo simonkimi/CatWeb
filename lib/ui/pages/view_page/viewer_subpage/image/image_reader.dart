@@ -107,12 +107,12 @@ class _ImageReaderViewerState extends State<ImageReader>
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Obx(() => CupertinoImageSlider(
-                        value: readController.currentPage,
-                        pageCount: c.imageLoaderList.length,
-                        onChanged: (value) {
-                          readController.jumpToPage(value);
-                        },
-                      )),
+                            value: readController.currentPage,
+                            pageCount: c.imageLoaderList.length,
+                            onChanged: (value) {
+                              readController.jumpToPage(value);
+                            },
+                          )),
                     ),
                   ),
                 ),

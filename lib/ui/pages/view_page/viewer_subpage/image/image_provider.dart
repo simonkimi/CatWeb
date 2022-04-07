@@ -9,41 +9,41 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'dart:ui' as ui;
 
-class ReaderImageProvider extends ImageProvider<ReaderImageProvider> {
-  ReaderImageProvider({
-    required this.model,
+class DioImageProvider extends ImageProvider<DioImageProvider> {
+  DioImageProvider({
+    required this.rpcModel,
     required this.dio,
     this.scale = 1.0,
   });
 
   final Dio dio;
-  final ImageRpcModel model;
+  final ImageRpcModel rpcModel;
   final double scale;
 
   final _cancelToken = CancelToken().obs;
 
   @override
-  ImageStreamCompleter load(ReaderImageProvider key, DecoderCallback decode) {
+  ImageStreamCompleter load(DioImageProvider key, DecoderCallback decode) {
     final StreamController<ImageChunkEvent> chunkEvents =
         StreamController<ImageChunkEvent>();
     return MultiFrameImageStreamCompleter(
       chunkEvents: chunkEvents.stream,
       codec: _loadAsync(key, decode, chunkEvents),
       scale: key.scale,
-      debugLabel: model.url,
+      debugLabel: rpcModel.url,
       informationCollector: () {
         return <DiagnosticsNode>[
           DiagnosticsProperty<ImageProvider>('Image provider', this),
-          DiagnosticsProperty<ReaderImageProvider>('Image key', key),
+          DiagnosticsProperty<DioImageProvider>('Image key', key),
         ];
       },
     );
   }
 
-  Future<ui.Codec> _loadAsync(ReaderImageProvider key, DecoderCallback decode,
+  Future<ui.Codec> _loadAsync(DioImageProvider key, DecoderCallback decode,
       StreamController<ImageChunkEvent> chunkEvents) async {
     final rsp = await dio.get<Uint8List>(
-      model.url,
+      rpcModel.url,
       cancelToken: _cancelToken.value,
       onReceiveProgress: (r, t) => chunkEvents.add(ImageChunkEvent(
         cumulativeBytesLoaded: r,
@@ -56,14 +56,14 @@ class ReaderImageProvider extends ImageProvider<ReaderImageProvider> {
     );
     if (rsp.data == null || rsp.data!.isEmpty) {
       throw StateError(
-          '${model.url} is empty and cannot be loaded as an image.');
+          '${rpcModel.url} is empty and cannot be loaded as an image.');
     }
     return await decode(rsp.data!);
   }
 
   @override
-  Future<ReaderImageProvider> obtainKey(ImageConfiguration configuration) {
-    return SynchronousFuture<ReaderImageProvider>(this);
+  Future<DioImageProvider> obtainKey(ImageConfiguration configuration) {
+    return SynchronousFuture<DioImageProvider>(this);
   }
 
   void cancel() => _cancelToken.value.cancel();

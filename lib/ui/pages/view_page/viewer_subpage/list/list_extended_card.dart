@@ -18,7 +18,7 @@ class ListExtendedCard extends StatelessWidget {
 
   final ListRpcModel_Item model;
   final VoidCallback onTap;
-  final ImageConcurrency concurrency;
+  final ImageListConcurrency concurrency;
 
   @override
   Widget build(BuildContext context) {

@@ -56,7 +56,7 @@ class _ImageViewerState extends State<ImageViewer> {
   }
 
   Widget _defaultImageBuilder(BuildContext context,
-      ReaderImageProvider imageProvider, ImageRpcModel model) {
+      DioImageProvider imageProvider, ImageRpcModel model) {
     late Widget child;
 
     if ((!model.imgX.isNaN || !model.imgY.isNaN) &&

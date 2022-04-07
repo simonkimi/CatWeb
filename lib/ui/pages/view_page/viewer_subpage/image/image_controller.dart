@@ -60,7 +60,7 @@ class ReaderImageLoader with LoadStateMixin {
   final SiteEnvModel localEnv;
   final PageBlueprintModel blueprint;
   ImageReaderRpcModel? model;
-  Rx<ReaderImageProvider?> imageModel = Rx<ReaderImageProvider?>(null);
+  Rx<DioImageProvider?> imageModel = Rx<DioImageProvider?>(null);
 
   final global = Get.find<GlobalController>();
 
@@ -83,8 +83,8 @@ class ReaderImageLoader with LoadStateMixin {
         model: blueprint,
         localEnv: env,
       );
-      imageModel.value = ReaderImageProvider(
-        model: model!.image,
+      imageModel.value = DioImageProvider(
+        rpcModel: model!.image,
         dio: global.website.client.imageDio,
       );
       imageModel.value?.resolve(const ImageConfiguration());
