@@ -14,6 +14,7 @@ import 'package:catweb/utils/replace_utils.dart';
 import 'package:catweb_parser/catweb_parser.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:tuple/tuple.dart';
 
 class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
@@ -169,7 +170,9 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
           Map<int, ReaderPreviewData?>>
       get bufferStream => TransmissionBufferStream(
             initData: items,
-            stream: items.stream.asBroadcastStream(),
+            stream: items.stream
+                .asBroadcastStream()
+                .debounceTime(const Duration(seconds: 1)),
             transmission: (List<ListRpcModel_Item> from) {
               return from
                   .map((e) => ReaderPreviewData(

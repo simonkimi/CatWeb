@@ -123,7 +123,7 @@ class ImageReaderController {
 
   final _waitLoadModel = <int, Future<void> Function(bool)>{};
 
-  Future<void> requestLoadIndex(int index) async {
+  Future<void> requestLoadImageModelIndex(int index) async {
     currentIndex = index;
     final preloadCount = Get.find<SettingController>().preloadCount.value;
     final needLoadList = imageLoaderList.skip(index).take(preloadCount + 1);

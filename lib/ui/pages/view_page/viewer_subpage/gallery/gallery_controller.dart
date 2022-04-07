@@ -12,6 +12,7 @@ import 'package:catweb/utils/replace_utils.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
+import 'package:rxdart/rxdart.dart' hide Rx;
 
 class GalleryBaseData {
   final String? title;
@@ -66,6 +67,7 @@ class GalleryPreviewController
 
   GalleryRpcModel? get detailModel => _detailModel.value;
 
+  /// 从数据库中取出上次加载进度
   Future<void> loadLastRead() async {
     final db = DB().readerHistoryDao;
     final entity = await db.get(uuid: blueprint.uuid, idCode: idCode);
@@ -130,6 +132,7 @@ class GalleryPreviewController
     return null;
   }
 
+  /// 如果是不间断加载, 则将中间所有拿null补全, 用于以后判断是否有数据
   void _fillItemIndex(GalleryRpcModel item) {
     if (item.imageCount.isFinite && item.imageCount > 0) {
       for (var i = 0; i < item.imageCount; i++) {
@@ -143,6 +146,7 @@ class GalleryPreviewController
   bool get fillRemaining =>
       (state.isLoading && items.isEmpty) || errorMessage != null;
 
+  /// 下面的都是给阅读提供的数据
   @override
   int? get chunkSize => detailModel?.getCountPrePage();
 
@@ -163,7 +167,9 @@ class GalleryPreviewController
           Map<int, ReaderPreviewData?>>
       get bufferStream => TransmissionBufferStream(
             initData: items,
-            stream: items.stream.asBroadcastStream(),
+            stream: items.stream
+                .asBroadcastStream()
+                .debounceTime(const Duration(seconds: 1)),
             transmission: (Map<int, GalleryRpcModel_Item?> from) {
               return from.map((key, value) => MapEntry(
                   key,

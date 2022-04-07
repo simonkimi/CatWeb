@@ -100,7 +100,7 @@ class ImagePageController {
     }
     _currentPage.value = realIndex;
     // 预加载
-    await controller.requestLoadIndex(index);
+    await controller.requestLoadImageModelIndex(index);
 
     // 记录加载数据
     if (controller.readerInfo.idCode != null) {

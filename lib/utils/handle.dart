@@ -57,27 +57,3 @@ class TransmissionBufferStream<T, E> extends Stream<E> {
     );
   }
 }
-
-class BufferStream<T> extends Stream<T> {
-  BufferStream({
-    required this.stream,
-    required T initData,
-  }) : buffer = initData;
-
-  final Stream<T> stream;
-  T buffer;
-
-  @override
-  StreamSubscription<T> listen(void Function(T event)? onData,
-      {Function? onError, void Function()? onDone, bool? cancelOnError}) {
-    return stream.listen(
-      (event) {
-        buffer = event;
-        onData?.call(buffer);
-      },
-      cancelOnError: cancelOnError,
-      onDone: onDone,
-      onError: onError,
-    );
-  }
-}

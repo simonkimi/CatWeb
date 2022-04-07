@@ -111,6 +111,7 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
 
   bool isItemExist(T item);
 
+  /// 加载下一面数据
   Future<void> onLoadMore() async {
     try {
       if (!checkIfOutOfRange(_page.value)) {
@@ -130,6 +131,7 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
     }
   }
 
+  /// 检查加载的数据是否已经超出范围
   bool checkIfOutOfRange(int page) {
     if (totalSize == null || chunkSize == null) return false;
     return (page + 1) * chunkSize! >= totalSize!;
@@ -147,33 +149,27 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
       if (chunkSize == null) {
         // 如果一面一面加载没有数据了, 就说明加载完毕
         if (pageData.item2.isEmpty) loadNoData();
-        for (var i = 0; i < pageData.item2.length; i++) {
-          items[i + pages.realLength] = pageData.item2[i];
-        }
+        items.addEntries(List.generate(pageData.item2.length,
+            (i) => MapEntry(i + pages.realLength, pageData.item2[i])));
       } else {
         // 有最大面数的话, 则在对应的位置进行加载
-        for (var i = 0; i < pageData.item2.length; i++) {
-          items[page * chunkSize! + i] = pageData.item2[i];
-        }
+        items.addEntries(List.generate(pageData.item2.length,
+            (i) => MapEntry(page * chunkSize! + i, pageData.item2[i])));
       }
       _page.value = page;
     });
   }
 
+  /// 请求加载index, 由index换算成需要加载的面数, 然后请求加载
+  /// 该请求有两个调用方:
+  ///     1. 阅读里请求加载idCode
+  ///     2. 阅读预览里请求下载缩略图
+  /// 由于上面两个方法调用时并不知道画廊组成, 所以对于同一面会重复调用多次
+  final requestLoadLock = Lock();
+
   Future<void> requestLoadIndex(int index, [RxBool? stop]) async {
-    if (totalSize == null) {
-      while (items.maxIndex < index) {
-        if (stop?.isTrue ?? false) {
-          break;
-        }
-        await onLoadMore();
-      }
-    } else {
-      if (chunkSize != null) {
-        // 有确切的面数, 直接加载
-        final page = (index / chunkSize!).floor();
-        await onJumpPage(page);
-      } else {
+    return await requestLoadLock.synchronized(() async {
+      if (totalSize == null || chunkSize == null) {
         // 没有确切的面数, 只能一面面加载
         while (items.maxIndex < index) {
           if (stop?.isTrue ?? false) {
@@ -181,8 +177,12 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
           }
           await onLoadMore();
         }
+      } else {
+        // 有确切的面数, 直接加载
+        final page = (index / chunkSize!).floor();
+        await onJumpPage(page);
       }
-    }
+    });
   }
 
   Future<void> onRefresh() async {

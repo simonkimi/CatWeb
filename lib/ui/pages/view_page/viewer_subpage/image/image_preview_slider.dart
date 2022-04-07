@@ -82,6 +82,7 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
 
   @override
   Widget build(BuildContext context) {
+    print('rebuild list');
     return SizedBox(
       height: 50,
       child: ListView.builder(
@@ -91,6 +92,7 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
         itemCount: controller.imageLoaderList.length,
         itemBuilder: (context, index) {
           return Padding(
+            key: ValueKey(index),
             padding: const EdgeInsets.symmetric(horizontal: 1),
             child: Obx(() => AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
