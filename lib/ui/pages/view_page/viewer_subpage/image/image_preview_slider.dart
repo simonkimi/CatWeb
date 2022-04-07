@@ -32,6 +32,7 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
     super.initState();
     listGlobalKey = GlobalKey();
     scrollController = ScrollController();
+    _onScroll();
     readController.rxPage.listen((index) {
       if (scrollController.hasClients) {
         final box =
@@ -56,6 +57,24 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
             scrollController.animateTo(offset,
                 duration: 300.milliseconds, curve: Curves.ease);
           }
+        }
+      }
+    });
+  }
+
+  void _onScroll() {
+    scrollController.addListener(() {
+      final box =
+          listGlobalKey.currentContext?.findRenderObject() as RenderBox?;
+      final boxSize = box?.size;
+      if (boxSize != null) {
+        final offset = scrollController.offset;
+        final end =
+            ((offset + boxSize.width) / (boxSize.height * 0.618 + 2)).ceil();
+        final start = (offset / (boxSize.height * 0.618 + 2)).floor();
+
+        for (var i = start; i < end; i++) {
+          controller.readerInfo.requestLoadIndex(i);
         }
       }
     });
@@ -86,21 +105,25 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
                   ),
                   child: AspectRatio(
                     aspectRatio: 0.618,
-                    child: controller.imageLoaderList[index].preview != null
-                        ? ImageLoader(
-                            concurrency:
-                                controller.readerInfo.previewConcurrency,
-                            model: controller.imageLoaderList[index].preview!,
-                          )
-                        : Center(
-                            child: Text(
-                              '${index + 1}',
-                              style: const TextStyle(
-                                color: CupertinoColors.white,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
+                    child: Obx(() =>
+                        controller.imageLoaderList[index].previewModel.value !=
+                                null
+                            ? ImageLoader(
+                                concurrency:
+                                    controller.readerInfo.previewConcurrency,
+                                model: controller
+                                    .imageLoaderList[index].previewModel.value!,
+                                enableHero: false,
+                              )
+                            : Center(
+                                child: Text(
+                                  '${index + 1}',
+                                  style: const TextStyle(
+                                    color: CupertinoColors.white,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              )),
                   ),
                 )),
           );

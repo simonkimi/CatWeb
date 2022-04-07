@@ -53,11 +53,11 @@ class ReaderImageLoader with LoadStateMixin {
     required this.localEnv,
     required this.blueprint,
     this.idCode,
-    this.preview,
-  });
+    ImageRpcModel? preview,
+  }) : previewModel = Rx<ImageRpcModel?>(preview);
 
   String? idCode; // 图片的id, 有可能还没有获取, 所以可空
-  ImageRpcModel? preview; // 图片的预览信息
+  Rx<ImageRpcModel?> previewModel; // 图片的预览信息
   final int index; // 图片的index, 这个是可以确定的
   final Future<void> Function(int index) requestLoadIdCode;
   final SiteEnvModel localEnv;
@@ -165,7 +165,7 @@ class ImageReaderController {
         ));
       } else if (imageLoaderList[i].idCode == null && items.containsKey(i)) {
         imageLoaderList[i].idCode = items[i]?.idCode;
-        imageLoaderList[i].preview = items[i]?.preview;
+        imageLoaderList[i].previewModel.value = items[i]?.preview;
       }
     }
   }

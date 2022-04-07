@@ -161,18 +161,26 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
   }
 
   Future<void> requestLoadIndex(int index, [RxBool? stop]) async {
-    if (totalSize == null) throw UnsupportedError('必须知道总体数量才能跳页');
-    if (chunkSize != null) {
-      // 有确切的面数, 直接加载
-      final page = (index / chunkSize!).floor();
-      await onJumpPage(page);
-    } else {
-      // 没有确切的面数, 只能一面面加载
+    if (totalSize == null) {
       while (items.maxIndex < index) {
         if (stop?.isTrue ?? false) {
           break;
         }
         await onLoadMore();
+      }
+    } else {
+      if (chunkSize != null) {
+        // 有确切的面数, 直接加载
+        final page = (index / chunkSize!).floor();
+        await onJumpPage(page);
+      } else {
+        // 没有确切的面数, 只能一面面加载
+        while (items.maxIndex < index) {
+          if (stop?.isTrue ?? false) {
+            break;
+          }
+          await onLoadMore();
+        }
       }
     }
   }
