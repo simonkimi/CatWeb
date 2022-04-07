@@ -1,7 +1,6 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
-import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/load_more_footer.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
@@ -34,11 +33,6 @@ class SubPageListFragment extends StatefulWidget {
 class _SubPageListFragmentState extends State<SubPageListFragment>
     with AutomaticKeepAliveClientMixin {
   SubListController get controller => widget.controller;
-
-  late final concurrency = ImageListConcurrency(
-    dio: widget.controller.global.client!.imageDio,
-    concurrency: 2,
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +87,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
               child: ListExtendedCard(
                 model: model,
-                concurrency: concurrency,
+                concurrency: controller.concurrency,
                 onTap: () {
                   pushNewPage(
                     to: (controller.blueprint.templateData

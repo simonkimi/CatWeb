@@ -3,6 +3,7 @@ import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/utils/handle.dart';
 import 'package:catweb/utils/state_mixin.dart';
 import 'package:catweb/utils/utils.dart';
@@ -41,6 +42,8 @@ abstract class ReaderInfo<T> {
   String get fromUuid;
 
   int? get startPage;
+
+  ImageListConcurrency get previewConcurrency;
 }
 
 class ReaderImageLoader with LoadStateMixin {

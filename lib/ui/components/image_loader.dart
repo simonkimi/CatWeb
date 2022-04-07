@@ -44,6 +44,7 @@ class ImageLoader extends StatefulWidget {
     this.loadingWidgetBuilder,
     this.imageWidgetBuilder,
     this.innerImageBuilder,
+    this.enableHero = true,
   }) : super(key: key);
 
   final ImageListConcurrency concurrency;
@@ -52,6 +53,7 @@ class ImageLoader extends StatefulWidget {
   final LoadingWidgetBuilder? loadingBuilder;
   final ErrorBuilder? errorBuilder;
   final bool hasSize;
+  final bool enableHero;
 
   final WidgetBuilder? loadingWidgetBuilder;
   final WidgetBuilder? imageWidgetBuilder;
@@ -153,7 +155,7 @@ class _ImageLoaderState extends State<ImageLoader> {
                 ),
               );
             }
-            return img;
+            return innerImageBuilder(context, img);
           }
           return null;
         },
@@ -164,12 +166,16 @@ class _ImageLoaderState extends State<ImageLoader> {
       );
     }
 
-    return Hero(
-      tag: widget.model.getId(),
-      child: DarkWidget(
-        child: child,
-      ),
-    );
+    return widget.enableHero
+        ? Hero(
+            tag: widget.model.getId(),
+            child: DarkWidget(
+              child: child,
+            ),
+          )
+        : DarkWidget(
+            child: child,
+          );
   }
 
   Widget _defaultLoadingBuilder(BuildContext context, double progress) {

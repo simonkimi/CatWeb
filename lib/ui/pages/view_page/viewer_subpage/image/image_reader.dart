@@ -12,6 +12,7 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:get/get.dart';
 import 'image_controller.dart';
+import 'image_preview_slider.dart';
 import 'image_read_controller.dart';
 import 'image_slider.dart';
 import 'image_viewer.dart';
@@ -34,7 +35,7 @@ class ImageReader extends StatefulWidget {
 class _ImageReaderViewerState extends State<ImageReader>
     with TickerProviderStateMixin {
   late final ImageReaderController c;
-  late final ImageReadController readController;
+  late final ImagePageController readController;
 
   late final AnimationController hideToolbarAniController;
   late final Animation<Offset> hideToolbarAni;
@@ -48,7 +49,7 @@ class _ImageReaderViewerState extends State<ImageReader>
       localEnv: SiteEnvModel(),
       readerInfo: widget.readerInfo,
     );
-    readController = ImageReadController(
+    readController = ImagePageController(
       displayType: widget.displayType,
       controller: c,
     );
@@ -103,16 +104,27 @@ class _ImageReaderViewerState extends State<ImageReader>
                   filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                   child: Container(
                     color: FixColor.navigationBarBackground.darkColor,
-                    height: 50,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: Obx(() => CupertinoImageSlider(
-                            value: readController.currentPage,
-                            pageCount: c.imageLoaderList.length,
-                            onChanged: (value) {
-                              readController.jumpToPage(value);
-                            },
-                          )),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ImagePreviewSlider(
+                            controller: c,
+                            readController: readController,
+                          ),
+                          SizedBox(
+                            height: 50,
+                            child: Obx(() => CupertinoImageSlider(
+                                  value: readController.currentPage,
+                                  pageCount: c.imageLoaderList.length,
+                                  onChanged: (value) {
+                                    readController.jumpToPage(value);
+                                  },
+                                )),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

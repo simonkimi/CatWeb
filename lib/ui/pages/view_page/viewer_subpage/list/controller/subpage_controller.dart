@@ -7,6 +7,7 @@ import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_controller.dart';
 import 'package:catweb/utils/handle.dart';
 import 'package:catweb/utils/replace_utils.dart';
@@ -38,6 +39,11 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
   late final currentFilter = filter.map((e) => e.clone()).toList();
 
   var filterKeys = <String>{};
+
+  late final concurrency = ImageListConcurrency(
+    dio: global.client!.imageDio,
+    concurrency: 2,
+  );
 
   @override
   bool isItemExist(ListRpcModel_Item item) => items.any(
@@ -183,4 +189,7 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
 
   @override
   int? get startPage => null;
+
+  @override
+  ImageListConcurrency get previewConcurrency => concurrency;
 }

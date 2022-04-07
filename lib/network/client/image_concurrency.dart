@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 
 import 'image_loader.dart';
 
-
 class ImageListConcurrency {
   ImageListConcurrency({required this.dio, this.concurrency = 0});
 

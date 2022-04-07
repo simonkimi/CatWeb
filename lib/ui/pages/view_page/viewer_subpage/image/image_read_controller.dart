@@ -12,8 +12,8 @@ enum ReaderDisplayType {
   doubleCover, // 封面单独占一面的双面情况
 }
 
-class ImageReadController {
-  ImageReadController({
+class ImagePageController {
+  ImagePageController({
     required ReaderDisplayType displayType,
     required this.controller,
   }) : _displayType = displayType.obs;
@@ -21,11 +21,14 @@ class ImageReadController {
   final Rx<ReaderDisplayType> _displayType;
   final ImageReaderController controller;
   final PageController pageController = PageController();
+
   final listController = ItemScrollController();
 
   final Rx<int> _currentPage = 0.obs;
 
   int get currentPage => _currentPage.value;
+
+  Rx<int> get rxPage => _currentPage;
 
   void onPageInitFinish() {
     if (controller.readerInfo.startPage != null) {

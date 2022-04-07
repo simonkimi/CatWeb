@@ -179,4 +179,7 @@ class GalleryPreviewController
 
   @override
   int? get startPage => lastReadIndex.value;
+
+  @override
+  ImageListConcurrency get previewConcurrency => concurrency;
 }
