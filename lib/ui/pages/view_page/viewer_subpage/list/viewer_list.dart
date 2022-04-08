@@ -8,6 +8,7 @@ import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/search_list.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/subpage_controller.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/subpage_list.dart';
+import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
   @override
   void initState() {
     super.initState();
-    print('ViewerListFragment<${blueprint.name.string}> 初始化');
+    logger.i('ViewerListFragment<${blueprint.name.string}> 初始化');
     tabController = TabController(length: extra.subPages.length, vsync: this);
 
     if (useSingleWidget) {

@@ -1,5 +1,4 @@
 import 'package:catweb/data/protocol/model/store.dart';
-import 'package:catweb/utils/debug.dart';
 import 'package:dio/dio.dart';
 
 class HeaderCookieInterceptor extends Interceptor {
@@ -47,11 +46,4 @@ class HeaderCookieInterceptor extends Interceptor {
       .where((e) => e.key.isNotEmpty && e.value.isNotEmpty)
       .map((e) => '${e.key}=${e.value}')
       .join('; ');
-}
-
-class CheckInterceptor extends Interceptor {
-  @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    trace('Request from internet');
-  }
 }

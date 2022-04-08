@@ -82,7 +82,6 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
 
   @override
   Widget build(BuildContext context) {
-    print('rebuild list');
     return SizedBox(
       height: 50,
       child: ListView.builder(
@@ -91,43 +90,46 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
         scrollDirection: Axis.horizontal,
         itemCount: controller.imageLoaderList.length,
         itemBuilder: (context, index) {
-          return Padding(
-            key: ValueKey(index),
-            padding: const EdgeInsets.symmetric(horizontal: 1),
-            child: Obx(() => AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3),
-                    border: readController.currentPage == index
-                        ? Border.all(
-                            color: CupertinoColors.white,
-                            width: 1,
-                          )
-                        : null,
-                  ),
-                  child: AspectRatio(
-                    aspectRatio: 0.618,
-                    child: Obx(() =>
-                        controller.imageLoaderList[index].previewModel.value !=
-                                null
-                            ? ImageLoader(
-                                concurrency:
-                                    controller.readerInfo.previewConcurrency,
-                                model: controller
-                                    .imageLoaderList[index].previewModel.value!,
-                                enableHero: false,
-                              )
-                            : Center(
-                                child: Text(
-                                  '${index + 1}',
-                                  style: const TextStyle(
-                                    color: CupertinoColors.white,
-                                    fontSize: 12,
-                                  ),
+          return GestureDetector(
+            onTap: () => readController.jumpToPage(index),
+            child: Padding(
+              key: ValueKey(index),
+              padding: const EdgeInsets.symmetric(horizontal: 1),
+              child: Obx(() => AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(3),
+                      border: readController.currentPage == index
+                          ? Border.all(
+                              color: CupertinoColors.white,
+                              width: 1,
+                            )
+                          : null,
+                    ),
+                    child: AspectRatio(
+                      aspectRatio: 0.618,
+                      child: Obx(() => controller
+                                  .imageLoaderList[index].previewModel.value !=
+                              null
+                          ? ImageLoader(
+                              concurrency:
+                                  controller.readerInfo.previewConcurrency,
+                              model: controller
+                                  .imageLoaderList[index].previewModel.value!,
+                              enableHero: false,
+                            )
+                          : Center(
+                              child: Text(
+                                '${index + 1}',
+                                style: const TextStyle(
+                                  color: CupertinoColors.white,
+                                  fontSize: 12,
                                 ),
-                              )),
-                  ),
-                )),
+                              ),
+                            )),
+                    ),
+                  )),
+            ),
           );
         },
       ),

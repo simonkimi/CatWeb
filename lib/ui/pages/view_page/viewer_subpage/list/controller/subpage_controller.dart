@@ -9,6 +9,7 @@ import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_controller.dart';
+import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/handle.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:catweb_parser/catweb_parser.dart';
@@ -92,7 +93,7 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
       });
     }
 
-    print('加载网址: $baseUrl');
+    logger.d('加载网址: $baseUrl');
     final data = await global.website.client.getList(
       url: baseUrl,
       model: blueprint,

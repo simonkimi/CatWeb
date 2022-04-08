@@ -13,6 +13,7 @@ class ReadSettingPage extends StatelessWidget {
     final setting = Get.find<SettingController>();
 
     return CupertinoPageScaffold(
+      backgroundColor: CupertinoColors.systemGroupedBackground,
       navigationBar: const CupertinoNavigationBar(
         middle: Text('阅读'),
       ),
