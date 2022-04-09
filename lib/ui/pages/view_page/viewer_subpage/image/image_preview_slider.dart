@@ -39,21 +39,39 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
             listGlobalKey.currentContext?.findRenderObject() as RenderBox?;
         final boxSize = box?.size;
         if (boxSize != null) {
-          final offset = index * (boxSize.height * 0.618 + 2);
+          if (readController.isForwardDirection) {
+            final offset = (index - 1) * (boxSize.height * 0.618 + 2);
 
-          final currentOffset = scrollController.offset;
+            if ((offset - scrollController.offset).abs() >
+                boxSize.width * 1.5) {
+              scrollController.jumpTo(offset);
+            }
 
-          if (offset > scrollController.position.maxScrollExtent) {
-            scrollController.animateTo(
-                scrollController.position.maxScrollExtent,
-                duration: 300.milliseconds,
-                curve: Curves.ease);
-            return;
-          }
+            if (offset > scrollController.position.maxScrollExtent) {
+              scrollController.animateTo(
+                  scrollController.position.maxScrollExtent,
+                  duration: 300.milliseconds,
+                  curve: Curves.ease);
+              return;
+            }
 
-          if ((offset - currentOffset).abs() > boxSize.width * 1.5) {
-            scrollController.jumpTo(offset);
+            scrollController.animateTo(offset,
+                duration: 300.milliseconds, curve: Curves.ease);
           } else {
+            final offset =
+                (index + 2) * (boxSize.height * 0.618 + 2) - boxSize.width;
+
+            if ((offset - scrollController.offset).abs() >
+                boxSize.width * 1.5) {
+              scrollController.jumpTo(offset);
+            }
+
+            if (offset < 0) {
+              scrollController.animateTo(0,
+                  duration: 300.milliseconds, curve: Curves.ease);
+              return;
+            }
+
             scrollController.animateTo(offset,
                 duration: 300.milliseconds, curve: Curves.ease);
           }

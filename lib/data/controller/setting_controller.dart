@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:catweb/utils/rx_watcher.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart';
@@ -7,29 +8,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path/path.dart' as p;
 
-class CardSize {
-  factory CardSize.small() => CardSize.from(100);
-
-  factory CardSize.medium() => CardSize.from(150);
-
-  factory CardSize.large() => CardSize.from(200);
-
-  factory CardSize.huge() => CardSize.from(250);
-
-  CardSize.from(this.size);
-
-  final int size;
-
-  @override
-  bool operator ==(Object other) {
-    return (other is CardSize && other.size == size) ||
-        (other is int && other == size);
-  }
-
-  @override
-  int get hashCode => size;
-}
-
 class SettingController extends GetxController {
   // 内部储存设置
   final RxInt defaultSite = (-1).obs;
@@ -37,9 +15,10 @@ class SettingController extends GetxController {
 
   // 阅读设置
   final RxBool imageMaskInDarkMode = true.obs;
-  final cardSize = CardSize.medium().size.obs;
+  final cardSize = CardSize.medium.obs;
   final RxInt preloadCount = 7.obs;
   final RxInt concurrencyCount = 5.obs;
+  final RxInt readerDirectory = ReaderDirection.ltr.obs;
 
   // 下载设置
 
@@ -51,12 +30,13 @@ class SettingController extends GetxController {
   late final MemCacheStore memCacheStore;
 
   Future<void> init() async {
-    cardSize.watch('cardSize', CardSize.medium().size);
+    cardSize.watch('cardSize', CardSize.medium);
     defaultSite.watch('defaultSite', -1);
     imageMaskInDarkMode.watch('imageMaskInDarkMode', true);
     documentDir.watch('documentDir', '');
     preloadCount.watch('preloadCount', 7);
     concurrencyCount.watch('concurrencyCount', 5);
+    readerDirectory.watch('readerDirectory', ReaderDirection.ltr);
 
     if (documentDir.value.isEmpty) {
       documentDir.value = await getDocumentDir();

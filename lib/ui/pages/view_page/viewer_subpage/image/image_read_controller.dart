@@ -26,9 +26,7 @@ class ImagePageController {
 
   final Rx<int> _currentPage = 0.obs;
 
-  int get currentPage => _currentPage.value;
-
-  Rx<int> get rxPage => _currentPage;
+  var _isForwardDirection = 0;
 
   void onPageInitFinish() {
     if (controller.readerInfo.startPage != null) {
@@ -57,6 +55,75 @@ class ImagePageController {
     return 0;
   }
 
+  bool isSingleWidget(int index) {
+    switch (displayType) {
+      case ReaderDisplayType.single: // 单面
+        return true;
+      case ReaderDisplayType.double: // 普通双面多出一面
+        return controller.imageLoaderList.length.isOdd &&
+            index == displayPageCount - 1;
+      case ReaderDisplayType.doubleCover: // 封面双面的封面和多出的一面
+        return index == 0 ||
+            (controller.imageLoaderList.length.isEven &&
+                index == displayPageCount - 1);
+    }
+  }
+
+  Future<void> onPageIndexChanged(int index) async {
+    final realIndex = _getRealIndex(index);
+    if (realIndex >= controller.imageLoaderList.length) {
+      return;
+    }
+    if (realIndex > currentPage) {
+      _isForwardDirection =
+          _isForwardDirection >= 2 ? 2 : _isForwardDirection + 1;
+    } else {
+      _isForwardDirection =
+          _isForwardDirection <= -3 ? -3 : _isForwardDirection - 1;
+    }
+    _currentPage.value = realIndex;
+    // 预加载
+    await controller.requestLoadImageModelIndex(index, isForwardDirection);
+
+    // 记录加载数据
+    if (controller.readerInfo.idCode != null) {
+      final db = DB().readerHistoryDao;
+      final entity = await db.get(
+        uuid: controller.readerInfo.fromUuid,
+        idCode: controller.readerInfo.idCode!,
+      );
+      if (entity != null) {
+        await db.replace(entity.copyWith(
+          pageIndex: realIndex,
+        ));
+      }
+    }
+  }
+
+  void toNextPage() {
+    final displayIndex = _getDisplayIndex(index);
+
+    if (displayIndex < displayPageCount - 1) {
+      jumpToPage(displayIndex + 1);
+    }
+  }
+
+  void toPreviousPage() {
+    final displayIndex = _getDisplayIndex(index);
+    if (displayIndex - 1 > 0) {
+      jumpToPage(displayIndex - 1);
+    }
+  }
+
+  void jumpToPage(int index) {
+    if (pageController.hasClients) {
+      pageController.jumpToPage(index);
+    }
+    if (listController.isAttached) {
+      listController.scrollTo(index: index, duration: 200.milliseconds);
+    }
+  }
+
   int _getDisplayIndex(int index) {
     switch (displayType) {
       case ReaderDisplayType.single:
@@ -79,69 +146,13 @@ class ImagePageController {
     }
   }
 
-  bool isSingleWidget(int index) {
-    switch (displayType) {
-      case ReaderDisplayType.single: // 单面
-        return true;
-      case ReaderDisplayType.double: // 普通双面多出一面
-        return controller.imageLoaderList.length.isOdd &&
-            index == displayPageCount - 1;
-      case ReaderDisplayType.doubleCover: // 封面双面的封面和多出的一面
-        return index == 0 ||
-            (controller.imageLoaderList.length.isEven &&
-                index == displayPageCount - 1);
-    }
-  }
-
-  Future<void> onPageIndexChanged(int index) async {
-    final realIndex = _getRealIndex(index);
-    if (realIndex >= controller.imageLoaderList.length) {
-      return;
-    }
-    _currentPage.value = realIndex;
-    // 预加载
-    await controller.requestLoadImageModelIndex(index);
-
-    // 记录加载数据
-    if (controller.readerInfo.idCode != null) {
-      final db = DB().readerHistoryDao;
-      final entity = await db.get(
-        uuid: controller.readerInfo.fromUuid,
-        idCode: controller.readerInfo.idCode!,
-      );
-      if (entity != null) {
-        await db.replace(entity.copyWith(
-          pageIndex: realIndex,
-        ));
-      }
-    }
-  }
-
   ReaderDisplayType get displayType => _displayType.value;
-
-  void toNextPage() {
-    final displayIndex = _getDisplayIndex(index);
-
-    if (displayIndex < displayPageCount - 1) {
-      jumpToPage(displayIndex + 1);
-    }
-  }
-
-  void toPreviousPage() {
-    final displayIndex = _getDisplayIndex(index);
-    if (displayIndex - 1 > 0) {
-      jumpToPage(displayIndex - 1);
-    }
-  }
 
   int get index => _getRealIndex((pageController.page ?? 0).toInt());
 
-  void jumpToPage(int index) {
-    if (pageController.hasClients) {
-      pageController.jumpToPage(index);
-    }
-    if (listController.isAttached) {
-      listController.scrollTo(index: index, duration: 200.milliseconds);
-    }
-  }
+  int get currentPage => _currentPage.value;
+
+  Rx<int> get rxPage => _currentPage;
+
+  bool get isForwardDirection => _isForwardDirection >= 0;
 }
