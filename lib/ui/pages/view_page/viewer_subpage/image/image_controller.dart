@@ -6,7 +6,7 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
-import 'package:catweb/utils/handle.dart';
+import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/state_mixin.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,13 +31,14 @@ class ReaderPreviewData {
   ImageRpcModel? preview;
 }
 
-abstract class ReaderInfo<T> {
+abstract class ReaderInfo {
   int? get pageCount; // 总面数
 
-  // 第一个T是原类型, 要转换为数据
-  TransmissionBufferStream<T, Map<int, ReaderPreviewData?>> get bufferStream;
-
   Future<void> requestLoadIndex(int index, [RxBool isStop]);
+
+  Map<int, ReaderPreviewData?> get previewMap;
+
+  Stream<Map<int, ReaderPreviewData?>> get previewMapStream;
 
   String? get idCode;
 
@@ -51,7 +52,7 @@ abstract class ReaderInfo<T> {
 class ReaderImageLoader with LoadStateMixin {
   ReaderImageLoader({
     required this.index,
-    required this.requestLoadIdCode,
+    required this.requestLoadPreviewListWithIndex,
     required this.localEnv,
     required this.blueprint,
     this.idCode,
@@ -61,7 +62,7 @@ class ReaderImageLoader with LoadStateMixin {
   String? idCode; // 图片的id, 有可能还没有获取, 所以可空
   Rx<ImageRpcModel?> previewModel; // 图片的预览信息
   final int index; // 图片的index, 这个是可以确定的
-  final Future<void> Function(int index) requestLoadIdCode;
+  final Future<void> Function(int index) requestLoadPreviewListWithIndex;
   final SiteEnvModel localEnv;
   final PageBlueprintModel blueprint;
   ImageReaderRpcModel? model;
@@ -76,8 +77,13 @@ class ReaderImageLoader with LoadStateMixin {
     try {
       if (idCode == null) {
         // 如果idCode为空时, 应该要求加载, 传到上级进行判断
-        await requestLoadIdCode(index);
-        if (idCode == null) return; // 如果idCode还为空的话, 返回 TODO: 错误提示
+        await requestLoadPreviewListWithIndex(index);
+        if (idCode == null) {
+          // 如果idCode还为空的话, 说明加载出错
+          logger.wtf(index, 'idCode还为空');
+          loadError(Exception('$index idCode还为空'));
+          return;
+        }
       }
 
       // 加载好数据后, 开始由idCode拿数据
@@ -106,8 +112,8 @@ class ImageReaderController {
     required this.localEnv,
     required this.blueprint,
   }) {
-    _updateIdCode(readerInfo.bufferStream.buffer);
-    readerInfo.bufferStream.listen(_updateIdCode);
+    _updateIdCode(readerInfo.previewMap);
+    readerInfo.previewMapStream.listen(_updateIdCode);
   }
 
   final ReaderInfo readerInfo;
@@ -124,6 +130,11 @@ class ImageReaderController {
   final RxList<ReaderImageLoader> imageLoaderList = <ReaderImageLoader>[].obs;
 
   final _waitLoadModel = <int, Future<void> Function(bool)>{};
+
+  Future<void> requestLoadPreviewListWithIndex(int index) async {
+    await readerInfo.requestLoadIndex(index);
+    _updateIdCode(readerInfo.previewMap);
+  }
 
   Future<void> requestLoadImageModelIndex(int index, bool isForward) async {
     readerIsForward = isForward;
@@ -171,7 +182,7 @@ class ImageReaderController {
           index: i,
           idCode: items[i]?.idCode,
           preview: items[i]?.preview,
-          requestLoadIdCode: readerInfo.requestLoadIndex,
+          requestLoadPreviewListWithIndex: requestLoadPreviewListWithIndex,
           localEnv: localEnv,
           blueprint: blueprint,
         ));

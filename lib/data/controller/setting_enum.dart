@@ -10,4 +10,3 @@ class ReaderDirection {
   static const rtl = 1;
   static const ttb = 2;
 }
-

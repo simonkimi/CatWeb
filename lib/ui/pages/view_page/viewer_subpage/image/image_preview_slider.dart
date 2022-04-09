@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:catweb/ui/components/image_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -87,11 +89,11 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
       final boxSize = box?.size;
       if (boxSize != null) {
         final offset = scrollController.offset;
-        final end =
-            ((offset + boxSize.width) / (boxSize.height * 0.618 + 2)).ceil();
+        final end = min(controller.imageLoaderList.length,
+            ((offset + boxSize.width) / (boxSize.height * 0.618 + 2)).ceil());
         final start = (offset / (boxSize.height * 0.618 + 2)).floor();
 
-        for (var i = start; i < end; i++) {
+        for (var i = max(start, 0); i < end; i++) {
           controller.readerInfo.requestLoadIndex(i);
         }
       }

@@ -7,7 +7,6 @@ import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_controller.dart';
-import 'package:catweb/utils/handle.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 import 'package:get/get.dart';
@@ -36,7 +35,7 @@ class GalleryBaseData {
 
 class GalleryPreviewController
     extends LoadMoreMap<GalleryRpcModel, GalleryRpcModel_Item>
-    implements ReaderInfo<Map<int, GalleryRpcModel_Item?>> {
+    implements ReaderInfo {
   GalleryPreviewController({
     required this.blueprint,
     SiteEnvModel? outerEnv,
@@ -163,24 +162,6 @@ class GalleryPreviewController
       blueprint.templateData as TemplateGalleryModel;
 
   @override
-  TransmissionBufferStream<Map<int, GalleryRpcModel_Item?>,
-          Map<int, ReaderPreviewData?>>
-      get bufferStream => TransmissionBufferStream(
-            initData: items,
-            stream: items.stream
-                .asBroadcastStream()
-                .debounceTime(const Duration(seconds: 1)),
-            transmission: (Map<int, GalleryRpcModel_Item?> from) {
-              return from.map((key, value) => MapEntry(
-                  key,
-                  ReaderPreviewData(
-                    idCode: value?.target,
-                    preview: value?.previewImg,
-                  )));
-            },
-          );
-
-  @override
   String get fromUuid => blueprint.uuid;
 
   @override
@@ -188,4 +169,21 @@ class GalleryPreviewController
 
   @override
   ImageListConcurrency get previewConcurrency => concurrency;
+
+  @override
+  Map<int, ReaderPreviewData?> get previewMap => items.map(_toReaderModel);
+
+  MapEntry<int, ReaderPreviewData?> _toReaderModel(
+          int key, GalleryRpcModel_Item? value) =>
+      MapEntry(
+          key,
+          ReaderPreviewData(
+            idCode: value?.target,
+            preview: value?.previewImg,
+          ));
+
+  @override
+  Stream<Map<int, ReaderPreviewData?>> get previewMapStream => items.stream
+      .debounceTime(const Duration(seconds: 1))
+      .map((event) => event.map(_toReaderModel));
 }

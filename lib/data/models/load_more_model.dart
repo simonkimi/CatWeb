@@ -149,13 +149,19 @@ abstract class LoadMoreMap<E, T> extends LoadMoreBase {
       if (chunkSize == null) {
         // 如果一面一面加载没有数据了, 就说明加载完毕
         if (pageData.item2.isEmpty) loadNoData();
+        final realLength = pages.realLength;
         items.addEntries(List.generate(pageData.item2.length,
-            (i) => MapEntry(i + pages.realLength, pageData.item2[i])));
+            (i) => MapEntry(i + realLength, pageData.item2[i])));
+        logger.i('加载', page, '完成, 其index为', realLength, '~',
+            page * chunkSize! + pageData.item2.length);
       } else {
         // 有最大面数的话, 则在对应的位置进行加载
         items.addEntries(List.generate(pageData.item2.length,
             (i) => MapEntry(page * chunkSize! + i, pageData.item2[i])));
+        logger.i('加载', page, '完成, 其index为', page * chunkSize!, '~',
+            page * chunkSize! + pageData.item2.length);
       }
+
       _page.value = page;
     });
   }

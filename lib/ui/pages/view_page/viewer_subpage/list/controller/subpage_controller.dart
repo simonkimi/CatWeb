@@ -10,16 +10,15 @@ import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_controller.dart';
 import 'package:catweb/utils/debug.dart';
-import 'package:catweb/utils/handle.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:catweb_parser/catweb_parser.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:tuple/tuple.dart';
+import 'package:rxdart/rxdart.dart' hide Rx;
 
 class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
-    implements ReaderInfo<List<ListRpcModel_Item>> {
+    implements ReaderInfo {
   SubListController({
     required this.blueprint,
     this.subPageModel,
@@ -167,25 +166,6 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
   int? get pageCount => null;
 
   @override
-  TransmissionBufferStream<List<ListRpcModel_Item>,
-          Map<int, ReaderPreviewData?>>
-      get bufferStream => TransmissionBufferStream(
-            initData: items,
-            stream: items.stream
-                .asBroadcastStream()
-                .debounceTime(const Duration(seconds: 1)),
-            transmission: (List<ListRpcModel_Item> from) {
-              return from
-                  .map((e) => ReaderPreviewData(
-                        idCode: e.target,
-                        preview: e.previewImg,
-                      ))
-                  .toList()
-                  .asMap();
-            },
-          );
-
-  @override
   String? get idCode => null;
 
   @override
@@ -196,4 +176,19 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
 
   @override
   ImageListConcurrency get previewConcurrency => concurrency;
+
+  ReaderPreviewData _toReaderModel(ListRpcModel_Item e) => ReaderPreviewData(
+        idCode: e.target,
+        preview: e.previewImg,
+      );
+
+  @override
+  Map<int, ReaderPreviewData?> get previewMap =>
+      items.map(_toReaderModel).toList().asMap();
+
+  @override
+  Stream<Map<int, ReaderPreviewData?>> get previewMapStream => items.stream
+      .debounceTime(const Duration(seconds: 1))
+      .map((event) => event.asMap())
+      .map((e) => e.map((key, value) => MapEntry(key, _toReaderModel(value))));
 }

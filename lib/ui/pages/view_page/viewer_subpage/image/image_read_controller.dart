@@ -74,12 +74,15 @@ class ImagePageController {
     if (realIndex >= controller.imageLoaderList.length) {
       return;
     }
-    if (realIndex > currentPage) {
-      _isForwardDirection =
-          _isForwardDirection >= 2 ? 2 : _isForwardDirection + 1;
-    } else {
-      _isForwardDirection =
-          _isForwardDirection <= -3 ? -3 : _isForwardDirection - 1;
+    if ((realIndex - currentPage).abs() == 1) {
+      // 跳页不作为翻页
+      if (realIndex > currentPage) {
+        _isForwardDirection =
+            _isForwardDirection >= 2 ? 2 : _isForwardDirection + 1;
+      } else {
+        _isForwardDirection =
+            _isForwardDirection <= -3 ? -3 : _isForwardDirection - 1;
+      }
     }
     _currentPage.value = realIndex;
     // 预加载
