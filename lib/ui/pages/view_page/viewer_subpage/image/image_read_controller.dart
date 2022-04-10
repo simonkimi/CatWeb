@@ -1,4 +1,7 @@
+import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:catweb/data/database/database.dart';
+import 'package:catweb/utils/debug.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'dart:math' as math;
@@ -6,19 +9,11 @@ import 'dart:math' as math;
 import 'image_controller.dart';
 import 'package:get/get.dart';
 
-enum ReaderDisplayType {
-  single, // 单面情况
-  double, // 双面情况
-  doubleCover, // 封面单独占一面的双面情况
-}
-
 class ImagePageController {
   ImagePageController({
-    required ReaderDisplayType displayType,
     required this.controller,
-  }) : _displayType = displayType.obs;
+  });
 
-  final Rx<ReaderDisplayType> _displayType;
   final ImageReaderController controller;
   final PageController pageController = PageController();
 
@@ -31,9 +26,9 @@ class ImagePageController {
   void onPageInitFinish() {
     if (controller.readerInfo.startPage != null) {
       if (controller.readerInfo.startPage! > 0) {
-        _currentPage.value = controller.readerInfo.startPage!;
-        pageController
-            .jumpToPage(_getRealIndex(controller.readerInfo.startPage!));
+        final start = _getDisplayIndex(controller.readerInfo.startPage!);
+        _currentPage.value = start;
+        pageController.jumpToPage(start);
       } else {
         _currentPage.value = 0;
         onPageIndexChanged(0);
@@ -45,11 +40,11 @@ class ImagePageController {
   }
 
   int _getRealIndex(int index) {
-    if (_displayType.value == ReaderDisplayType.single) {
+    if (displayType == ReaderDisplayType.single) {
       return index;
-    } else if (_displayType.value == ReaderDisplayType.double) {
+    } else if (displayType == ReaderDisplayType.double) {
       return index * 2;
-    } else if (_displayType.value == ReaderDisplayType.doubleCover) {
+    } else if (displayType == ReaderDisplayType.doubleCover) {
       return math.max((index - 1) * 2 + 1, 0);
     }
     return 0;
@@ -57,15 +52,17 @@ class ImagePageController {
 
   bool isSingleWidget(int index) {
     switch (displayType) {
-      case ReaderDisplayType.single: // 单面
-        return true;
       case ReaderDisplayType.double: // 普通双面多出一面
         return controller.imageLoaderList.length.isOdd &&
             index == displayPageCount - 1;
       case ReaderDisplayType.doubleCover: // 封面双面的封面和多出的一面
+
         return index == 0 ||
             (controller.imageLoaderList.length.isEven &&
                 index == displayPageCount - 1);
+      case ReaderDisplayType.single: // 单面
+      default:
+        return true;
     }
   }
 
@@ -74,6 +71,8 @@ class ImagePageController {
     if (realIndex >= controller.imageLoaderList.length) {
       return;
     }
+    logger.d('翻页到: $index -> $realIndex');
+
     if ((realIndex - currentPage).abs() == 1) {
       // 跳页不作为翻页
       if (realIndex > currentPage) {
@@ -119,8 +118,9 @@ class ImagePageController {
   }
 
   void jumpToPage(int index) {
+    final displayIndex = _getDisplayIndex(index);
     if (pageController.hasClients) {
-      pageController.jumpToPage(index);
+      pageController.jumpToPage(displayIndex);
     }
     if (listController.isAttached) {
       listController.scrollTo(index: index, duration: 200.milliseconds);
@@ -129,27 +129,29 @@ class ImagePageController {
 
   int _getDisplayIndex(int index) {
     switch (displayType) {
-      case ReaderDisplayType.single:
-        return index;
       case ReaderDisplayType.double:
         return (index / 2).ceil();
       case ReaderDisplayType.doubleCover:
         return ((index + 1) / 2).floor();
+      case ReaderDisplayType.single:
+      default:
+        return index;
     }
   }
 
   int get displayPageCount {
     switch (displayType) {
-      case ReaderDisplayType.single:
-        return controller.imageLoaderList.length;
       case ReaderDisplayType.double:
         return 1 + ((controller.imageLoaderList.length - 1) / 2).ceil();
       case ReaderDisplayType.doubleCover:
         return (controller.imageLoaderList.length / 2).ceil();
+      case ReaderDisplayType.single:
+      default:
+        return controller.imageLoaderList.length;
     }
   }
 
-  ReaderDisplayType get displayType => _displayType.value;
+  int get displayType => Get.find<SettingController>().displayType.value;
 
   int get index => _getRealIndex((pageController.page ?? 0).toInt());
 

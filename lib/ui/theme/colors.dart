@@ -41,7 +41,7 @@ class FixColor {
   );
 
   static const CupertinoDynamicColor pressedColor =
-  CupertinoDynamicColor.withBrightness(
+      CupertinoDynamicColor.withBrightness(
     color: Color(0xffd1d0d5),
     darkColor: Color(0xff3a3a3a),
   );

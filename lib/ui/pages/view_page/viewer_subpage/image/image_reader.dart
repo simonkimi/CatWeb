@@ -30,7 +30,6 @@ class ImageReader extends StatefulWidget {
 
   final ReaderInfo readerInfo;
   final PageBlueprintModel blueprint;
-  final ReaderDisplayType displayType = ReaderDisplayType.single;
 
   @override
   _ImageReaderViewerState createState() => _ImageReaderViewerState();
@@ -53,10 +52,7 @@ class _ImageReaderViewerState extends State<ImageReader>
       localEnv: SiteEnvModel(),
       readerInfo: widget.readerInfo,
     );
-    readController = ImagePageController(
-      displayType: widget.displayType,
-      controller: c,
-    );
+    readController = ImagePageController(controller: c);
     hideToolbarAniController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 200),
@@ -84,20 +80,7 @@ class _ImageReaderViewerState extends State<ImageReader>
           leading: const CupertinoBackLeading(
             color: CupertinoColors.white,
           ),
-          trailing: CupertinoButton(
-            padding: EdgeInsets.zero,
-            minSize: 0,
-            child: const Icon(
-              CupertinoIcons.settings,
-              color: CupertinoColors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).push(CupertinoWithModalsPageRoute(
-                  builder: (context) => const DisplaySettingPage(
-                        fromSetting: false,
-                      )));
-            },
-          ),
+          trailing: _buildTrailing(context),
         ),
       ),
       backgroundColor: CupertinoColors.darkBackgroundGray,
@@ -191,15 +174,15 @@ class _ImageReaderViewerState extends State<ImageReader>
     final zoomController = PhotoViewController();
 
     late final int readIndex;
-    switch (widget.displayType) {
-      case ReaderDisplayType.single:
-        readIndex = index;
-        break;
+    switch (readController.displayType) {
       case ReaderDisplayType.double:
         readIndex = index * 2;
         break;
       case ReaderDisplayType.doubleCover:
         readIndex = max((index - 1) * 2 + 1, 0);
+        break;
+      case ReaderDisplayType.single:
+        readIndex = index;
         break;
     }
 
@@ -233,7 +216,7 @@ class _ImageReaderViewerState extends State<ImageReader>
     BuildContext context,
     int index,
   ) {
-    final realIndex = widget.displayType == ReaderDisplayType.double
+    final realIndex = readController.displayType == ReaderDisplayType.double
         ? index * 2
         : max((index - 1) * 2 + 1, 0);
 
@@ -265,6 +248,55 @@ class _ImageReaderViewerState extends State<ImageReader>
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTrailing(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Obx(() => CupertinoButton(
+              padding: EdgeInsets.zero,
+              minSize: 0,
+              child: Icon(
+                readController.displayType == ReaderDisplayType.single
+                    ? CupertinoIcons.square
+                    : readController.displayType == ReaderDisplayType.double
+                        ? CupertinoIcons.square_split_2x1
+                        : CupertinoIcons.square_split_2x1_fill,
+                color: CupertinoColors.white,
+              ),
+              onPressed: () {
+                final setting = Get.find<SettingController>();
+                switch (readController.displayType) {
+                  case ReaderDisplayType.single:
+                    setting.displayType.value = ReaderDisplayType.double;
+                    break;
+                  case ReaderDisplayType.double:
+                    setting.displayType.value = ReaderDisplayType.doubleCover;
+                    break;
+                  case ReaderDisplayType.doubleCover:
+                    setting.displayType.value = ReaderDisplayType.single;
+                    break;
+                }
+              },
+            )),
+        const SizedBox(width: 5),
+        CupertinoButton(
+          padding: EdgeInsets.zero,
+          minSize: 0,
+          child: const Icon(
+            CupertinoIcons.settings,
+            color: CupertinoColors.white,
+          ),
+          onPressed: () {
+            Navigator.of(context).push(CupertinoWithModalsPageRoute(
+                builder: (context) => const DisplaySettingPage(
+                      fromSetting: false,
+                    )));
+          },
+        ),
+      ],
     );
   }
 }

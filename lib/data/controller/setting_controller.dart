@@ -19,6 +19,7 @@ class SettingController extends GetxController {
   final RxInt preloadCount = 7.obs;
   final RxInt concurrencyCount = 5.obs;
   final RxInt readerDirectory = ReaderDirection.ltr.obs;
+  final RxInt displayType = ReaderDisplayType.single.obs;
 
   // 下载设置
 
@@ -37,6 +38,7 @@ class SettingController extends GetxController {
     preloadCount.watch('preloadCount', 7);
     concurrencyCount.watch('concurrencyCount', 5);
     readerDirectory.watch('readerDirectory', ReaderDirection.ltr);
+    displayType.watch('displayType', ReaderDisplayType.single);
 
     if (documentDir.value.isEmpty) {
       documentDir.value = await getDocumentDir();
