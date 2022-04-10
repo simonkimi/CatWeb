@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:catweb/ui/components/image_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -104,55 +106,57 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
-      child: ListView.builder(
-        key: listGlobalKey,
-        controller: scrollController,
-        scrollDirection: Axis.horizontal,
-        itemCount: controller.imageLoaderList.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => readController.jumpToPage(index),
-            child: Padding(
-              key: ValueKey(index),
-              padding: const EdgeInsets.symmetric(horizontal: 1),
-              child: Obx(() => AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(3),
-                      border: readController.currentPage == index
-                          ? Border.all(
-                              color: CupertinoColors.white,
-                              width: 1,
-                            )
-                          : null,
-                    ),
-                    child: AspectRatio(
-                      aspectRatio: 0.618,
-                      child: Obx(() => controller
-                                  .imageLoaderList[index].previewModel.value !=
-                              null
-                          ? ImageLoader(
-                              concurrency:
-                                  controller.readerInfo.previewConcurrency,
-                              model: controller
-                                  .imageLoaderList[index].previewModel.value!,
-                              enableHero: false,
-                            )
-                          : Center(
-                              child: Text(
-                                '${index + 1}',
-                                style: const TextStyle(
+      child: Obx(() => ListView.builder(
+            reverse: Get.find<SettingController>().readerDirectory.value ==
+                ReaderDirection.rtl,
+            key: listGlobalKey,
+            controller: scrollController,
+            scrollDirection: Axis.horizontal,
+            itemCount: controller.imageLoaderList.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () => readController.jumpToPage(index),
+                child: Padding(
+                  key: ValueKey(index),
+                  padding: const EdgeInsets.symmetric(horizontal: 1),
+                  child: Obx(() => AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(3),
+                          border: readController.currentPage == index
+                              ? Border.all(
                                   color: CupertinoColors.white,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            )),
-                    ),
-                  )),
-            ),
-          );
-        },
-      ),
+                                  width: 1,
+                                )
+                              : null,
+                        ),
+                        child: AspectRatio(
+                          aspectRatio: 0.618,
+                          child: Obx(() => controller.imageLoaderList[index]
+                                      .previewModel.value !=
+                                  null
+                              ? ImageLoader(
+                                  concurrency:
+                                      controller.readerInfo.previewConcurrency,
+                                  model: controller.imageLoaderList[index]
+                                      .previewModel.value!,
+                                  enableHero: false,
+                                )
+                              : Center(
+                                  child: Text(
+                                    '${index + 1}',
+                                    style: const TextStyle(
+                                      color: CupertinoColors.white,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                )),
+                        ),
+                      )),
+                ),
+              );
+            },
+          )),
     );
   }
 }

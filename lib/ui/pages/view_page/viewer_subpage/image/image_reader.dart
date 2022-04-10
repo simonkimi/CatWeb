@@ -1,10 +1,14 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
+import 'package:catweb/ui/components/cupertino_router.dart';
 import 'package:catweb/ui/components/zoom.dart';
+import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_zoom.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -80,12 +84,28 @@ class _ImageReaderViewerState extends State<ImageReader>
           leading: const CupertinoBackLeading(
             color: CupertinoColors.white,
           ),
+          trailing: CupertinoButton(
+            padding: EdgeInsets.zero,
+            minSize: 0,
+            child: const Icon(
+              CupertinoIcons.settings,
+              color: CupertinoColors.white,
+            ),
+            onPressed: () {
+              Navigator.of(context).push(CupertinoWithModalsPageRoute(
+                  builder: (context) => const DisplaySettingPage(
+                        fromSetting: false,
+                      )));
+            },
+          ),
         ),
       ),
       backgroundColor: CupertinoColors.darkBackgroundGray,
       child: Stack(
         children: [
           Obx(() => PhotoViewGallery.builder(
+                reverse: Get.find<SettingController>().readerDirectory.value ==
+                    ReaderDirection.rtl,
                 pageController: readController.pageController,
                 itemCount: readController.displayPageCount,
                 onPageChanged: readController.onPageIndexChanged,

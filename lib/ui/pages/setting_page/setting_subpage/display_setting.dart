@@ -9,7 +9,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class DisplaySettingPage extends StatelessWidget {
-  const DisplaySettingPage({Key? key}) : super(key: key);
+  const DisplaySettingPage({
+    Key? key,
+    this.fromSetting = true,
+  }) : super(key: key);
+
+  final bool fromSetting;
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +22,10 @@ class DisplaySettingPage extends StatelessWidget {
 
     return CupertinoPageScaffold(
       backgroundColor: CupertinoColors.systemGroupedBackground,
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('显示'),
+      navigationBar: CupertinoNavigationBar(
+        middle: const Text('显示'),
         backgroundColor: CupertinoColors.systemGroupedBackground,
-        previousPageTitle: '设置',
+        previousPageTitle: fromSetting ? '设置' : null,
         padding: EdgeInsetsDirectional.zero,
         border: null,
       ),
