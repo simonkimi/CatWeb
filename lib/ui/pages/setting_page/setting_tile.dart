@@ -2,6 +2,7 @@ import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 
 import '../../components/cupertino_divider.dart';
@@ -53,7 +54,7 @@ class SettingTileTrailing extends StatelessWidget {
   }
 }
 
-class SettingTile extends StatelessWidget {
+class SettingTile extends HookWidget {
   const SettingTile({
     Key? key,
     required this.title,
@@ -73,63 +74,76 @@ class SettingTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isTapDown = useState(false);
+
     return GestureDetector(
       onTap: onTap,
+      onTapDown: (_) => isTapDown.value = true,
+      onTapUp: (_) => isTapDown.value = false,
+      onTapCancel: () => isTapDown.value = false,
       behavior: HitTestBehavior.opaque,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (icon != null && color != null) ...[
-              Container(
-                padding: const EdgeInsets.all(3),
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(3),
-                ),
-                child: Icon(
-                  icon,
-                  size: 20,
-                  color: CupertinoColors.white,
-                ),
-              ),
-              const SizedBox(width: 10),
-            ],
-            Expanded(
-              child: Row(
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: FixColor.title.resolveFrom(context),
-                    ),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        decoration: BoxDecoration(
+          color: isTapDown.value
+              ? FixColor.pressedColor.resolveFrom(context)
+              : null,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (icon != null && color != null) ...[
+                Container(
+                  padding: const EdgeInsets.all(3),
+                  decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: BorderRadius.circular(3),
                   ),
-                ],
-              ),
-            ),
-            trailing ??
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  child: Icon(
+                    icon,
+                    size: 20,
+                    color: CupertinoColors.white,
+                  ),
+                ),
+                const SizedBox(width: 10),
+              ],
+              Expanded(
+                child: Row(
                   children: [
-                    if (trailingText != null)
-                      Text(
-                        trailingText!,
-                        style: const TextStyle(
-                          color: CupertinoColors.inactiveGray,
-                          fontSize: 16,
-                        ),
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: FixColor.title.resolveFrom(context),
                       ),
-                    const Icon(
-                      CupertinoIcons.forward,
-                      size: 18,
-                      color: CupertinoColors.inactiveGray,
-                    )
+                    ),
                   ],
                 ),
-          ],
+              ),
+              trailing ??
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      if (trailingText != null)
+                        Text(
+                          trailingText!,
+                          style: const TextStyle(
+                            color: CupertinoColors.inactiveGray,
+                            fontSize: 16,
+                          ),
+                        ),
+                      const Icon(
+                        CupertinoIcons.forward,
+                        size: 18,
+                        color: CupertinoColors.inactiveGray,
+                      )
+                    ],
+                  ),
+            ],
+          ),
         ),
       ),
     );

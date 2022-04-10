@@ -25,7 +25,12 @@ class CupertinoBackLeading extends StatelessWidget {
     return CupertinoButton(
       padding: EdgeInsets.zero,
       minSize: 0,
-      child: Icon(CupertinoIcons.back, color: color),
+      child: Row(
+        children: [
+          Icon(CupertinoIcons.back, color: color),
+          if (title != null) Text(title!),
+        ],
+      ),
       onPressed: onPressed ?? () => Navigator.of(context).pop(),
     );
   }

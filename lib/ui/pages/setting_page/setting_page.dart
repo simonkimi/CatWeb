@@ -1,7 +1,7 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/cupertino_router.dart';
-import 'package:catweb/ui/pages/setting_page/setting_subpage/read_setting.dart';
+import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
 import 'package:catweb/ui/pages/setting_page/setting_tile.dart';
 import 'package:catweb/ui/pages/setting_page/setting_group.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,12 +26,12 @@ class SettingsPage extends StatelessWidget {
             SettingGroupSliver(
               children: [
                 SettingTile(
-                  title: '阅读',
+                  title: '显示',
                   color: CupertinoColors.systemBlue.resolveFrom(context),
                   icon: CupertinoIcons.book,
                   onTap: () {
                     Navigator.of(context).push(CupertinoWithModalsPageRoute(
-                        builder: (context) => const ReadSettingPage()));
+                        builder: (context) => const DisplaySettingPage()));
                   },
                 ),
                 const SettingIconDivider(),

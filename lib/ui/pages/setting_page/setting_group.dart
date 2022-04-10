@@ -32,6 +32,29 @@ class SettingGroupSliver extends StatelessWidget {
   }
 }
 
+class SettingGroupTitle extends StatelessWidget {
+  const SettingGroupTitle(
+    this.title, {
+    Key? key,
+  }) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 5),
+      child: Text(
+        title,
+        style: TextStyle(
+          color: CupertinoColors.inactiveGray.resolveFrom(context),
+          fontSize: 14,
+        ),
+      ),
+    );
+  }
+}
+
 class SettingGroupWidget extends StatelessWidget {
   const SettingGroupWidget({
     Key? key,
@@ -43,7 +66,7 @@ class SettingGroupWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(

@@ -18,7 +18,7 @@ class SelectTileItem<T> {
 
 Future<T?> showCupertinoSelectDialog<T>({
   required BuildContext context,
-  required List<SelectTileItem<T>> items,
+  required Iterable<SelectTileItem<T>> items,
   T? selectedValue,
   String? title,
   String? message,

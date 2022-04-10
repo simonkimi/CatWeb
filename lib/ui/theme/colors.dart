@@ -39,6 +39,12 @@ class FixColor {
     color: Color(0xfff9f9f9),
     darkColor: Color(0xff0d0d0d),
   );
+
+  static const CupertinoDynamicColor pressedColor =
+  CupertinoDynamicColor.withBrightness(
+    color: Color(0xffd1d0d5),
+    darkColor: Color(0xff3a3a3a),
+  );
 }
 
 bool isDarkMode(BuildContext context) =>
