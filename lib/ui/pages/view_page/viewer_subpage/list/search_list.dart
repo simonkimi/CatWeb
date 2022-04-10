@@ -178,7 +178,6 @@ class _SearchListState extends State<SearchList> {
           ),
           placeholder: '搜索',
           placeholderStyle: TextStyle(
-            fontSize: 14,
             color: CupertinoColors.placeholderText.resolveFrom(context),
           ),
           onChanged: inputController.onTextChanged,
