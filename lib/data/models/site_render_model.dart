@@ -21,6 +21,7 @@ class SiteRenderConfigModel {
             dbEntity.favicon.isNotEmpty ? dbEntity.favicon.obs : Rx(null) {
     client = NetClient(
       configModel: configModel,
+      db: dbEntity,
       cookieJar: PersistCookieJar(
         ignoreExpires: false,
         storage: CookieJarStorage(dbEntity.uuid),

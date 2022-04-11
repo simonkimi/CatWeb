@@ -14,13 +14,17 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
   final Uint8List env;
   final Uint8List favicon;
   final int lastOpen;
+  final bool securityModel;
+  final String loginCookies;
   WebTableData(
       {required this.id,
       required this.uuid,
       required this.blueprint,
       required this.env,
       required this.favicon,
-      required this.lastOpen});
+      required this.lastOpen,
+      required this.securityModel,
+      required this.loginCookies});
   factory WebTableData.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return WebTableData(
@@ -36,6 +40,10 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
           .mapFromDatabaseResponse(data['${effectivePrefix}favicon'])!,
       lastOpen: const IntType()
           .mapFromDatabaseResponse(data['${effectivePrefix}last_open'])!,
+      securityModel: const BoolType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}security_model'])!,
+      loginCookies: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}login_cookies'])!,
     );
   }
   @override
@@ -47,6 +55,8 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
     map['env'] = Variable<Uint8List>(env);
     map['favicon'] = Variable<Uint8List>(favicon);
     map['last_open'] = Variable<int>(lastOpen);
+    map['security_model'] = Variable<bool>(securityModel);
+    map['login_cookies'] = Variable<String>(loginCookies);
     return map;
   }
 
@@ -58,6 +68,8 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
       env: Value(env),
       favicon: Value(favicon),
       lastOpen: Value(lastOpen),
+      securityModel: Value(securityModel),
+      loginCookies: Value(loginCookies),
     );
   }
 
@@ -71,6 +83,8 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
       env: serializer.fromJson<Uint8List>(json['env']),
       favicon: serializer.fromJson<Uint8List>(json['favicon']),
       lastOpen: serializer.fromJson<int>(json['lastOpen']),
+      securityModel: serializer.fromJson<bool>(json['securityModel']),
+      loginCookies: serializer.fromJson<String>(json['loginCookies']),
     );
   }
   @override
@@ -83,6 +97,8 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
       'env': serializer.toJson<Uint8List>(env),
       'favicon': serializer.toJson<Uint8List>(favicon),
       'lastOpen': serializer.toJson<int>(lastOpen),
+      'securityModel': serializer.toJson<bool>(securityModel),
+      'loginCookies': serializer.toJson<String>(loginCookies),
     };
   }
 
@@ -92,7 +108,9 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
           Uint8List? blueprint,
           Uint8List? env,
           Uint8List? favicon,
-          int? lastOpen}) =>
+          int? lastOpen,
+          bool? securityModel,
+          String? loginCookies}) =>
       WebTableData(
         id: id ?? this.id,
         uuid: uuid ?? this.uuid,
@@ -100,6 +118,8 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
         env: env ?? this.env,
         favicon: favicon ?? this.favicon,
         lastOpen: lastOpen ?? this.lastOpen,
+        securityModel: securityModel ?? this.securityModel,
+        loginCookies: loginCookies ?? this.loginCookies,
       );
   @override
   String toString() {
@@ -109,13 +129,16 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
           ..write('blueprint: $blueprint, ')
           ..write('env: $env, ')
           ..write('favicon: $favicon, ')
-          ..write('lastOpen: $lastOpen')
+          ..write('lastOpen: $lastOpen, ')
+          ..write('securityModel: $securityModel, ')
+          ..write('loginCookies: $loginCookies')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, uuid, blueprint, env, favicon, lastOpen);
+  int get hashCode => Object.hash(
+      id, uuid, blueprint, env, favicon, lastOpen, securityModel, loginCookies);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -125,7 +148,9 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
           other.blueprint == this.blueprint &&
           other.env == this.env &&
           other.favicon == this.favicon &&
-          other.lastOpen == this.lastOpen);
+          other.lastOpen == this.lastOpen &&
+          other.securityModel == this.securityModel &&
+          other.loginCookies == this.loginCookies);
 }
 
 class WebTableCompanion extends UpdateCompanion<WebTableData> {
@@ -135,6 +160,8 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
   final Value<Uint8List> env;
   final Value<Uint8List> favicon;
   final Value<int> lastOpen;
+  final Value<bool> securityModel;
+  final Value<String> loginCookies;
   const WebTableCompanion({
     this.id = const Value.absent(),
     this.uuid = const Value.absent(),
@@ -142,6 +169,8 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
     this.env = const Value.absent(),
     this.favicon = const Value.absent(),
     this.lastOpen = const Value.absent(),
+    this.securityModel = const Value.absent(),
+    this.loginCookies = const Value.absent(),
   });
   WebTableCompanion.insert({
     this.id = const Value.absent(),
@@ -150,6 +179,8 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
     required Uint8List env,
     this.favicon = const Value.absent(),
     this.lastOpen = const Value.absent(),
+    this.securityModel = const Value.absent(),
+    this.loginCookies = const Value.absent(),
   })  : blueprint = Value(blueprint),
         env = Value(env);
   static Insertable<WebTableData> custom({
@@ -159,6 +190,8 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
     Expression<Uint8List>? env,
     Expression<Uint8List>? favicon,
     Expression<int>? lastOpen,
+    Expression<bool>? securityModel,
+    Expression<String>? loginCookies,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -167,6 +200,8 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
       if (env != null) 'env': env,
       if (favicon != null) 'favicon': favicon,
       if (lastOpen != null) 'last_open': lastOpen,
+      if (securityModel != null) 'security_model': securityModel,
+      if (loginCookies != null) 'login_cookies': loginCookies,
     });
   }
 
@@ -176,7 +211,9 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
       Value<Uint8List>? blueprint,
       Value<Uint8List>? env,
       Value<Uint8List>? favicon,
-      Value<int>? lastOpen}) {
+      Value<int>? lastOpen,
+      Value<bool>? securityModel,
+      Value<String>? loginCookies}) {
     return WebTableCompanion(
       id: id ?? this.id,
       uuid: uuid ?? this.uuid,
@@ -184,6 +221,8 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
       env: env ?? this.env,
       favicon: favicon ?? this.favicon,
       lastOpen: lastOpen ?? this.lastOpen,
+      securityModel: securityModel ?? this.securityModel,
+      loginCookies: loginCookies ?? this.loginCookies,
     );
   }
 
@@ -208,6 +247,12 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
     if (lastOpen.present) {
       map['last_open'] = Variable<int>(lastOpen.value);
     }
+    if (securityModel.present) {
+      map['security_model'] = Variable<bool>(securityModel.value);
+    }
+    if (loginCookies.present) {
+      map['login_cookies'] = Variable<String>(loginCookies.value);
+    }
     return map;
   }
 
@@ -219,7 +264,9 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
           ..write('blueprint: $blueprint, ')
           ..write('env: $env, ')
           ..write('favicon: $favicon, ')
-          ..write('lastOpen: $lastOpen')
+          ..write('lastOpen: $lastOpen, ')
+          ..write('securityModel: $securityModel, ')
+          ..write('loginCookies: $loginCookies')
           ..write(')'))
         .toString();
   }
@@ -269,9 +316,34 @@ class $WebTableTable extends WebTable
       type: const IntType(),
       requiredDuringInsert: false,
       clientDefault: () => DateTime.now().millisecond);
+  final VerificationMeta _securityModelMeta =
+      const VerificationMeta('securityModel');
   @override
-  List<GeneratedColumn> get $columns =>
-      [id, uuid, blueprint, env, favicon, lastOpen];
+  late final GeneratedColumn<bool?> securityModel = GeneratedColumn<bool?>(
+      'security_model', aliasedName, false,
+      type: const BoolType(),
+      requiredDuringInsert: false,
+      defaultConstraints: 'CHECK (security_model IN (0, 1))',
+      clientDefault: () => true);
+  final VerificationMeta _loginCookiesMeta =
+      const VerificationMeta('loginCookies');
+  @override
+  late final GeneratedColumn<String?> loginCookies = GeneratedColumn<String?>(
+      'login_cookies', aliasedName, false,
+      type: const StringType(),
+      requiredDuringInsert: false,
+      clientDefault: () => '');
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        uuid,
+        blueprint,
+        env,
+        favicon,
+        lastOpen,
+        securityModel,
+        loginCookies
+      ];
   @override
   String get aliasedName => _alias ?? 'web_table';
   @override
@@ -307,6 +379,18 @@ class $WebTableTable extends WebTable
     if (data.containsKey('last_open')) {
       context.handle(_lastOpenMeta,
           lastOpen.isAcceptableOrUnknown(data['last_open']!, _lastOpenMeta));
+    }
+    if (data.containsKey('security_model')) {
+      context.handle(
+          _securityModelMeta,
+          securityModel.isAcceptableOrUnknown(
+              data['security_model']!, _securityModelMeta));
+    }
+    if (data.containsKey('login_cookies')) {
+      context.handle(
+          _loginCookiesMeta,
+          loginCookies.isAcceptableOrUnknown(
+              data['login_cookies']!, _loginCookiesMeta));
     }
     return context;
   }

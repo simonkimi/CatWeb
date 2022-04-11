@@ -1,6 +1,7 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/store.dart';
@@ -22,14 +23,17 @@ class NetClient {
   NetClient({
     required this.configModel,
     required CookieJar cookieJar,
+    required WebTableData db,
   })  : dio = _buildDio(
           model: configModel,
           cookieJar: cookieJar,
+          db: db,
         ),
         imageDio = _buildDio(
           model: configModel,
           cookieJar: cookieJar,
           isImage: true,
+          db: db,
         );
 
   final Dio dio;
@@ -181,6 +185,7 @@ class NetClient {
 Dio _buildDio({
   required SiteBlueprintModel model,
   required CookieJar cookieJar,
+  required WebTableData db,
   bool isImage = false,
 }) {
   final dio = Dio();
@@ -197,8 +202,8 @@ Dio _buildDio({
   dio.transformer = EncodeTransformer();
   final setting = Get.find<SettingController>();
 
-  dio.interceptors.add(HeaderCookieInterceptor(model));
   dio.interceptors.add(CookieManager(cookieJar));
+  dio.interceptors.add(HeaderCookieInterceptor(model: model, db: db));
   dio.interceptors.add(RetryInterceptor(
     dio: dio,
     logPrint: print,

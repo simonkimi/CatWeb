@@ -16,4 +16,8 @@ class WebTable extends Table {
 
   IntColumn get lastOpen =>
       integer().clientDefault(() => DateTime.now().millisecond)();
+
+  BoolColumn get securityModel => boolean().clientDefault(() => true)();
+
+  TextColumn get loginCookies => text().clientDefault(() => '')();
 }

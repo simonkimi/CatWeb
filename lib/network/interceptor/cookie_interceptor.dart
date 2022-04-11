@@ -1,12 +1,17 @@
 import 'dart:io';
 
+import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:dio/dio.dart';
 
 class HeaderCookieInterceptor extends Interceptor {
-  HeaderCookieInterceptor(this.model);
+  HeaderCookieInterceptor({
+    required this.model,
+    required this.db,
+  });
 
   final SiteBlueprintModel model;
+  final WebTableData db;
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -22,6 +27,20 @@ class HeaderCookieInterceptor extends Interceptor {
         cookie.addEntries(_parseCookies(regField.value.value).entries);
       }
     }
+
+    // 登录Cookies
+    if (db.loginCookies.isNotEmpty) {
+      if (model.loginCookieReg.value.isEmpty ||
+          RegExp(model.loginCookieReg.value).hasMatch(uri)) {
+        if (db.securityModel &&
+            options.uri.host == Uri.tryParse(model.baseUrl.value)?.host) {
+          cookie.addEntries(_parseCookies(db.loginCookies).entries);
+        } else if (!db.securityModel) {
+          cookie.addEntries(_parseCookies(db.loginCookies).entries);
+        }
+      }
+    }
+
     options.headers[HttpHeaders.cookieHeader] = _generateCookie(cookie);
 
     // Headers
