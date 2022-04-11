@@ -15,6 +15,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:get/get.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'image_controller.dart';
 import 'image_preview_slider.dart';
 import 'image_read_controller.dart';
@@ -43,6 +44,8 @@ class _ImageReaderViewerState extends State<ImageReader>
   late final AnimationController hideToolbarAniController;
   late final Animation<Offset> hideToolbarAni;
   late final Animation<Offset> hideTabBarAni;
+
+  final settings = Get.find<SettingController>();
 
   @override
   void initState() {
@@ -84,57 +87,82 @@ class _ImageReaderViewerState extends State<ImageReader>
         ),
       ),
       backgroundColor: CupertinoColors.darkBackgroundGray,
-      child: Stack(
-        children: [
-          Obx(() => PhotoViewGallery.builder(
-                reverse: Get.find<SettingController>().readerDirectory.value ==
-                    ReaderDirection.rtl,
-                pageController: readController.pageController,
-                itemCount: readController.displayPageCount,
-                onPageChanged: readController.onPageIndexChanged,
-                builder: (context, index) {
-                  return readController.isSingleWidget(index)
-                      ? _buildSinglePageImage(context, index)
-                      : _buildDoublePageImage(context, index);
-                },
-              )),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: SlideTransition(
-              position: hideTabBarAni,
-              child: ClipRect(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                  child: Container(
-                    color: FixColor.navigationBarBackground.darkColor,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ImagePreviewSlider(
-                            controller: c,
-                            readController: readController,
-                          ),
-                          SizedBox(
-                            height: 50,
-                            child: Obx(() => CupertinoImageSlider(
-                                  value: readController.currentPage,
-                                  pageCount: c.imageLoaderList.length,
-                                  onChanged: (value) {
-                                    readController.jumpToPage(value);
-                                  },
-                                )),
-                          )
-                        ],
+      child: Obx(() => Stack(
+            children: [
+              if (settings.readerDirectory.value == ReaderDirection.ttb)
+                Obx(() => GestureDetector(
+                      onTap: () {},
+                      onTapUp: _onImageTap,
+                      child: ScrollablePositionedList.builder(
+                        itemScrollController: readController.listController,
+                        itemCount: readController.displayPageCount,
+                        itemPositionsListener:
+                            readController.listPositionsListener,
+                        initialScrollIndex: readController.currentPage,
+                        itemBuilder: (context, index) {
+                          return ImageViewer(model: c.imageLoaderList[index]);
+                        },
                       ),
+                    ))
+              else
+                Builder(builder: (context) {
+                  Future.delayed(const Duration(milliseconds: 100), () {
+                    readController.onPageViewBuild();
+                  });
+                  return Obx(() => PhotoViewGallery.builder(
+                        reverse: settings.readerDirectory.value ==
+                            ReaderDirection.rtl,
+                        pageController: readController.pageController,
+                        itemCount: readController.displayPageCount,
+                        onPageChanged: readController.onPageIndexChanged,
+                        builder: (context, index) {
+                          return readController.isSingleWidget(index)
+                              ? _buildSinglePageImage(context, index)
+                              : _buildDoublePageImage(context, index);
+                        },
+                      ));
+                }),
+              _buildSlider(context),
+            ],
+          )),
+    );
+  }
+
+  Align _buildSlider(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: SlideTransition(
+        position: hideTabBarAni,
+        child: ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              color: FixColor.navigationBarBackground.darkColor,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ImagePreviewSlider(
+                      controller: c,
+                      readController: readController,
                     ),
-                  ),
+                    SizedBox(
+                      height: 50,
+                      child: Obx(() => CupertinoImageSlider(
+                            value: readController.currentPage,
+                            pageCount: c.imageLoaderList.length,
+                            onChanged: (value) {
+                              readController.jumpToPage(value);
+                            },
+                          )),
+                    )
+                  ],
                 ),
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -255,32 +283,34 @@ class _ImageReaderViewerState extends State<ImageReader>
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Obx(() => CupertinoButton(
-              padding: EdgeInsets.zero,
-              minSize: 0,
-              child: Icon(
-                readController.displayType == ReaderDisplayType.single
-                    ? CupertinoIcons.square
-                    : readController.displayType == ReaderDisplayType.double
-                        ? CupertinoIcons.square_split_2x1
-                        : CupertinoIcons.square_split_2x1_fill,
-                color: CupertinoColors.white,
-              ),
-              onPressed: () {
-                final setting = Get.find<SettingController>();
-                switch (readController.displayType) {
-                  case ReaderDisplayType.single:
-                    setting.displayType.value = ReaderDisplayType.double;
-                    break;
-                  case ReaderDisplayType.double:
-                    setting.displayType.value = ReaderDisplayType.doubleCover;
-                    break;
-                  case ReaderDisplayType.doubleCover:
-                    setting.displayType.value = ReaderDisplayType.single;
-                    break;
-                }
-              },
-            )),
+        Obx(() => readController.readerDirectory == ReaderDirection.ttb
+            ? const SizedBox()
+            : CupertinoButton(
+                padding: EdgeInsets.zero,
+                minSize: 0,
+                child: Icon(
+                  readController.displayType == ReaderDisplayType.single
+                      ? CupertinoIcons.square
+                      : readController.displayType == ReaderDisplayType.double
+                          ? CupertinoIcons.square_split_2x1
+                          : CupertinoIcons.square_split_2x1_fill,
+                  color: CupertinoColors.white,
+                ),
+                onPressed: () {
+                  final setting = Get.find<SettingController>();
+                  switch (readController.displayType) {
+                    case ReaderDisplayType.single:
+                      setting.displayType.value = ReaderDisplayType.double;
+                      break;
+                    case ReaderDisplayType.double:
+                      setting.displayType.value = ReaderDisplayType.doubleCover;
+                      break;
+                    case ReaderDisplayType.doubleCover:
+                      setting.displayType.value = ReaderDisplayType.single;
+                      break;
+                  }
+                },
+              )),
         const SizedBox(width: 5),
         CupertinoButton(
           padding: EdgeInsets.zero,

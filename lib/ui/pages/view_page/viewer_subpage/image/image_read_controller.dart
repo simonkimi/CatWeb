@@ -12,34 +12,52 @@ import 'package:get/get.dart';
 class ImagePageController {
   ImagePageController({
     required this.controller,
-  });
+  }) : _currentPage = controller.readerInfo.startPage != null
+            ? controller.readerInfo.startPage!.obs
+            : 0.obs;
 
   final ImageReaderController controller;
   final PageController pageController = PageController();
 
   final listController = ItemScrollController();
+  final listPositionsListener = ItemPositionsListener.create();
 
-  final Rx<int> _currentPage = 0.obs;
+  final settings = Get.find<SettingController>();
+
+  final Rx<int> _currentPage;
 
   var _isForwardDirection = 0;
 
   void onPageInitFinish() {
-    if (controller.readerInfo.startPage != null) {
-      if (controller.readerInfo.startPage! > 0) {
-        final start = _getDisplayIndex(controller.readerInfo.startPage!);
-        _currentPage.value = start;
-        pageController.jumpToPage(start);
-      } else {
-        _currentPage.value = 0;
-        onPageIndexChanged(0);
+    listPositionsListener.itemPositions.addListener(() {
+      if (listController.isAttached) {
+        final index = listPositionsListener.itemPositions.value.first.index;
+        if (index != currentPage) {
+          onPageIndexChanged(index);
+        }
       }
+    });
+
+    if (currentPage > 0) {
+      final start = _getDisplayIndex(controller.readerInfo.startPage!);
+      _currentPage.value = start;
+      onPageIndexChanged(start);
+      jumpToPage(start);
     } else {
-      _currentPage.value = 0;
       onPageIndexChanged(0);
     }
   }
 
+  void onPageViewBuild() {
+    if (currentPage > 0) {
+      jumpToPage(currentPage);
+    }
+  }
+
   int _getRealIndex(int index) {
+    if (readerDirectory == ReaderDirection.ttb) {
+      return index;
+    }
     if (displayType == ReaderDisplayType.single) {
       return index;
     } else if (displayType == ReaderDisplayType.double) {
@@ -103,7 +121,7 @@ class ImagePageController {
   }
 
   void toNextPage() {
-    final displayIndex = _getDisplayIndex(index);
+    final displayIndex = _getDisplayIndex(currentPage);
 
     if (displayIndex < displayPageCount - 1) {
       jumpToPage(displayIndex + 1);
@@ -111,7 +129,7 @@ class ImagePageController {
   }
 
   void toPreviousPage() {
-    final displayIndex = _getDisplayIndex(index);
+    final displayIndex = _getDisplayIndex(currentPage);
     if (displayIndex - 1 > 0) {
       jumpToPage(displayIndex - 1);
     }
@@ -123,11 +141,14 @@ class ImagePageController {
       pageController.jumpToPage(displayIndex);
     }
     if (listController.isAttached) {
-      listController.scrollTo(index: index, duration: 200.milliseconds);
+      listController.jumpTo(index: index);
     }
   }
 
   int _getDisplayIndex(int index) {
+    if (readerDirectory == ReaderDirection.ttb) {
+      return index;
+    }
     switch (displayType) {
       case ReaderDisplayType.double:
         return (index / 2).ceil();
@@ -140,6 +161,9 @@ class ImagePageController {
   }
 
   int get displayPageCount {
+    if (readerDirectory == ReaderDirection.ttb) {
+      return controller.imageLoaderList.length;
+    }
     switch (displayType) {
       case ReaderDisplayType.double:
         return 1 + ((controller.imageLoaderList.length - 1) / 2).ceil();
@@ -151,9 +175,9 @@ class ImagePageController {
     }
   }
 
-  int get displayType => Get.find<SettingController>().displayType.value;
+  int get displayType => settings.displayType.value;
 
-  int get index => _getRealIndex((pageController.page ?? 0).toInt());
+  int get readerDirectory => settings.readerDirectory.value;
 
   int get currentPage => _currentPage.value;
 

@@ -95,7 +95,7 @@ extension THas<T> on T {
 extension UnWrap on core.double {
   double get nan2zero => isNaN ? 0 : this;
 
-  double? get nan2null => isNaN ? 0 : this;
+  double? get nan2null => isNaN ? null : this;
 }
 
 extension SparseMap<T> on Map<int, T?> {

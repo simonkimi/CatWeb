@@ -34,25 +34,41 @@ class _ImageViewerState extends State<ImageViewer> {
     return Obx(() => _buildImage(context));
   }
 
+  Widget _buildAspRation(BuildContext context, Widget child) {
+    if (model.previewModel.value?.hasWidth() == true &&
+        model.previewModel.value?.hasHeight() == true) {
+      return AspectRatio(
+        aspectRatio:
+            model.previewModel.value!.width / model.previewModel.value!.height,
+        child: child,
+      );
+    }
+    return child;
+  }
+
   Widget _buildImage(BuildContext context) {
     // 还没有加载完图片数据
     if (!model.state.isComplete || model.imageModel.value == null) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          _buildIndexText(),
-          const SizedBox(height: 50),
-          const CupertinoInfProgress(),
-        ],
-      );
+      return _buildAspRation(
+          context,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _buildIndexText(),
+              const SizedBox(height: 50),
+              const CupertinoInfProgress(),
+            ],
+          ));
     }
 
-    return _defaultImageBuilder(
-      context,
-      model.imageModel.value!,
-      model.model!.image,
-    );
+    return _buildAspRation(
+        context,
+        _defaultImageBuilder(
+          context,
+          model.imageModel.value!,
+          model.model!.image,
+        ));
   }
 
   Widget _defaultImageBuilder(BuildContext context,
