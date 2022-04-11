@@ -119,7 +119,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
     return CupertinoButton(
       padding: EdgeInsets.zero,
       minSize: 0,
-      child: const Icon(Icons.menu),
+      child: const Icon(CupertinoIcons.layers_alt),
       onPressed: () {
         showCupertinoModalBottomSheet(
           context: context,

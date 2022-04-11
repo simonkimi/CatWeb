@@ -10,20 +10,30 @@ import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
 import 'package:catweb/network/parser/parser.dart';
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:get/get.dart' hide Response;
 
 class NetClient {
-  NetClient(this.configModel)
-      : dio = _buildDio(configModel),
-        imageDio = _buildDio(configModel, true);
+  NetClient({
+    required this.configModel,
+    required CookieJar cookieJar,
+  })  : dio = _buildDio(
+          model: configModel,
+          cookieJar: cookieJar,
+        ),
+        imageDio = _buildDio(
+          model: configModel,
+          cookieJar: cookieJar,
+          isImage: true,
+        );
 
   final Dio dio;
   final Dio imageDio;
-
   final SiteBlueprintModel configModel;
 
   Future<Response<String>> _buildRequest({
@@ -168,7 +178,11 @@ class NetClient {
   }
 }
 
-Dio _buildDio(SiteBlueprintModel model, [bool isImage = false]) {
+Dio _buildDio({
+  required SiteBlueprintModel model,
+  required CookieJar cookieJar,
+  bool isImage = false,
+}) {
   final dio = Dio();
 
   dio.options
@@ -184,6 +198,7 @@ Dio _buildDio(SiteBlueprintModel model, [bool isImage = false]) {
   final setting = Get.find<SettingController>();
 
   dio.interceptors.add(HeaderCookieInterceptor(model));
+  dio.interceptors.add(CookieManager(cookieJar));
   dio.interceptors.add(RetryInterceptor(
     dio: dio,
     logPrint: print,

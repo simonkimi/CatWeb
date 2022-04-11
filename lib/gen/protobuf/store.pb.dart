@@ -7,6 +7,7 @@
 
 import 'dart:core' as $core;
 
+import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'parser.pb.dart' as $3;
@@ -117,29 +118,33 @@ class SiteBlueprint extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'loginUrl')
-    ..aOM<RegField>(
+    ..aOS(
         4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'loginCookie',
-        subBuilder: RegField.create)
+            : 'loginCookieReg')
     ..aOS(
         5,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'version')
+            : 'loginCookieDescription')
     ..aOS(
         6,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'upgradeUrl')
+            : 'version')
     ..aOS(
         7,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'flag')
+            : 'upgradeUrl')
     ..aOS(
         8,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'flag')
+    ..aOS(
+        9,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'readme')
@@ -206,7 +211,8 @@ class SiteBlueprint extends $pb.GeneratedMessage {
     $core.String? name,
     $core.String? baseUrl,
     $core.String? loginUrl,
-    RegField? loginCookie,
+    $core.String? loginCookieReg,
+    $core.String? loginCookieDescription,
     $core.String? version,
     $core.String? upgradeUrl,
     $core.String? flag,
@@ -230,8 +236,11 @@ class SiteBlueprint extends $pb.GeneratedMessage {
     if (loginUrl != null) {
       _result.loginUrl = loginUrl;
     }
-    if (loginCookie != null) {
-      _result.loginCookie = loginCookie;
+    if (loginCookieReg != null) {
+      _result.loginCookieReg = loginCookieReg;
+    }
+    if (loginCookieDescription != null) {
+      _result.loginCookieDescription = loginCookieDescription;
     }
     if (version != null) {
       _result.version = version;
@@ -335,90 +344,100 @@ class SiteBlueprint extends $pb.GeneratedMessage {
   void clearLoginUrl() => clearField(3);
 
   @$pb.TagNumber(4)
-  RegField get loginCookie => $_getN(3);
+  $core.String get loginCookieReg => $_getSZ(3);
   @$pb.TagNumber(4)
-  set loginCookie(RegField v) {
-    setField(4, v);
+  set loginCookieReg($core.String v) {
+    $_setString(3, v);
   }
 
   @$pb.TagNumber(4)
-  $core.bool hasLoginCookie() => $_has(3);
+  $core.bool hasLoginCookieReg() => $_has(3);
   @$pb.TagNumber(4)
-  void clearLoginCookie() => clearField(4);
-  @$pb.TagNumber(4)
-  RegField ensureLoginCookie() => $_ensure(3);
+  void clearLoginCookieReg() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get version => $_getSZ(4);
+  $core.String get loginCookieDescription => $_getSZ(4);
   @$pb.TagNumber(5)
-  set version($core.String v) {
+  set loginCookieDescription($core.String v) {
     $_setString(4, v);
   }
 
   @$pb.TagNumber(5)
-  $core.bool hasVersion() => $_has(4);
+  $core.bool hasLoginCookieDescription() => $_has(4);
   @$pb.TagNumber(5)
-  void clearVersion() => clearField(5);
+  void clearLoginCookieDescription() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.String get upgradeUrl => $_getSZ(5);
+  $core.String get version => $_getSZ(5);
   @$pb.TagNumber(6)
-  set upgradeUrl($core.String v) {
+  set version($core.String v) {
     $_setString(5, v);
   }
 
   @$pb.TagNumber(6)
-  $core.bool hasUpgradeUrl() => $_has(5);
+  $core.bool hasVersion() => $_has(5);
   @$pb.TagNumber(6)
-  void clearUpgradeUrl() => clearField(6);
+  void clearVersion() => clearField(6);
 
   @$pb.TagNumber(7)
-  $core.String get flag => $_getSZ(6);
+  $core.String get upgradeUrl => $_getSZ(6);
   @$pb.TagNumber(7)
-  set flag($core.String v) {
+  set upgradeUrl($core.String v) {
     $_setString(6, v);
   }
 
   @$pb.TagNumber(7)
-  $core.bool hasFlag() => $_has(6);
+  $core.bool hasUpgradeUrl() => $_has(6);
   @$pb.TagNumber(7)
-  void clearFlag() => clearField(7);
+  void clearUpgradeUrl() => clearField(7);
 
   @$pb.TagNumber(8)
-  $core.String get readme => $_getSZ(7);
+  $core.String get flag => $_getSZ(7);
   @$pb.TagNumber(8)
-  set readme($core.String v) {
+  set flag($core.String v) {
     $_setString(7, v);
   }
 
   @$pb.TagNumber(8)
-  $core.bool hasReadme() => $_has(7);
+  $core.bool hasFlag() => $_has(7);
   @$pb.TagNumber(8)
-  void clearReadme() => clearField(8);
+  void clearFlag() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.String get readme => $_getSZ(8);
+  @$pb.TagNumber(9)
+  set readme($core.String v) {
+    $_setString(8, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasReadme() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearReadme() => clearField(9);
 
   @$pb.TagNumber(15)
-  $core.List<RegField> get headers => $_getList(8);
+  $core.List<RegField> get headers => $_getList(9);
 
   @$pb.TagNumber(16)
-  $core.List<RegField> get cookies => $_getList(9);
+  $core.List<RegField> get cookies => $_getList(10);
 
   @$pb.TagNumber(20)
-  $core.List<$3.GalleryParser> get galleryParsers => $_getList(10);
+  $core.List<$3.GalleryParser> get galleryParsers => $_getList(11);
 
   @$pb.TagNumber(21)
-  $core.List<$3.ListViewParser> get listViewParsers => $_getList(11);
+  $core.List<$3.ListViewParser> get listViewParsers => $_getList(12);
 
   @$pb.TagNumber(22)
-  $core.List<$3.ImageReaderParser> get imageParsers => $_getList(12);
+  $core.List<$3.ImageReaderParser> get imageParsers => $_getList(13);
 
   @$pb.TagNumber(23)
-  $core.List<$3.AutoCompleteParser> get autoCompleteParsers => $_getList(13);
+  $core.List<$3.AutoCompleteParser> get autoCompleteParsers => $_getList(14);
 
   @$pb.TagNumber(30)
-  $core.List<$1.ActionCombine> get actions => $_getList(14);
+  $core.List<$1.ActionCombine> get actions => $_getList(15);
 
   @$pb.TagNumber(31)
-  $core.List<$4.SitePage> get pages => $_getList(15);
+  $core.List<$4.SitePage> get pages => $_getList(16);
 }
 
 class EnvStore extends $pb.GeneratedMessage {
@@ -475,4 +494,150 @@ class EnvStore extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.Map<$core.String, $core.String> get env => $_getMap(0);
+}
+
+class CookieJarMessage_SerializableCookie extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'CookieJarMessage.SerializableCookie',
+      createEmptyInstance: create)
+    ..aInt64(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'createTime')
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'cookie')
+    ..hasRequiredFields = false;
+
+  CookieJarMessage_SerializableCookie._() : super();
+  factory CookieJarMessage_SerializableCookie({
+    $fixnum.Int64? createTime,
+    $core.String? cookie,
+  }) {
+    final _result = create();
+    if (createTime != null) {
+      _result.createTime = createTime;
+    }
+    if (cookie != null) {
+      _result.cookie = cookie;
+    }
+    return _result;
+  }
+  factory CookieJarMessage_SerializableCookie.fromBuffer(
+          $core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory CookieJarMessage_SerializableCookie.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  CookieJarMessage_SerializableCookie clone() =>
+      CookieJarMessage_SerializableCookie()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  CookieJarMessage_SerializableCookie copyWith(
+          void Function(CookieJarMessage_SerializableCookie) updates) =>
+      super.copyWith((message) =>
+              updates(message as CookieJarMessage_SerializableCookie))
+          as CookieJarMessage_SerializableCookie; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static CookieJarMessage_SerializableCookie create() =>
+      CookieJarMessage_SerializableCookie._();
+  CookieJarMessage_SerializableCookie createEmptyInstance() => create();
+  static $pb.PbList<CookieJarMessage_SerializableCookie> createRepeated() =>
+      $pb.PbList<CookieJarMessage_SerializableCookie>();
+  @$core.pragma('dart2js:noInline')
+  static CookieJarMessage_SerializableCookie getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<
+          CookieJarMessage_SerializableCookie>(create);
+  static CookieJarMessage_SerializableCookie? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get createTime => $_getI64(0);
+  @$pb.TagNumber(1)
+  set createTime($fixnum.Int64 v) {
+    $_setInt64(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasCreateTime() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearCreateTime() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get cookie => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set cookie($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasCookie() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCookie() => clearField(2);
+}
+
+class CookieJarMessage extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'CookieJarMessage',
+      createEmptyInstance: create)
+    ..pc<CookieJarMessage_SerializableCookie>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'cookies',
+        $pb.PbFieldType.PM,
+        subBuilder: CookieJarMessage_SerializableCookie.create)
+    ..hasRequiredFields = false;
+
+  CookieJarMessage._() : super();
+  factory CookieJarMessage({
+    $core.Iterable<CookieJarMessage_SerializableCookie>? cookies,
+  }) {
+    final _result = create();
+    if (cookies != null) {
+      _result.cookies.addAll(cookies);
+    }
+    return _result;
+  }
+  factory CookieJarMessage.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory CookieJarMessage.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  CookieJarMessage clone() => CookieJarMessage()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  CookieJarMessage copyWith(void Function(CookieJarMessage) updates) =>
+      super.copyWith((message) => updates(message as CookieJarMessage))
+          as CookieJarMessage; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static CookieJarMessage create() => CookieJarMessage._();
+  CookieJarMessage createEmptyInstance() => create();
+  static $pb.PbList<CookieJarMessage> createRepeated() =>
+      $pb.PbList<CookieJarMessage>();
+  @$core.pragma('dart2js:noInline')
+  static CookieJarMessage getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<CookieJarMessage>(create);
+  static CookieJarMessage? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<CookieJarMessage_SerializableCookie> get cookies => $_getList(0);
 }

@@ -33,12 +33,12 @@ class RulesBasic extends GetView<RulesEditController> {
         ),
         CupertinoInput(
           labelText: '登录Cookie作用域',
-          value: controller.blueprint.loginCookie.reg,
+          value: controller.blueprint.loginCookieReg,
           hintText: '.*',
         ),
         CupertinoInput(
-          labelText: 'Cookies',
-          value: controller.blueprint.loginCookie.value,
+          labelText: 'Cookie跨域说明',
+          value: controller.blueprint.loginCookieDescription,
           minLine: 3,
         ),
         const CupertinoDivider(height: 30),

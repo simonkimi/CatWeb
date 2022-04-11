@@ -80,6 +80,16 @@ class SiteManager extends StatelessWidget {
           title: Text(pb.name),
           subtitle: Text(pb.baseUrl),
           trailing: const Icon(Icons.more_horiz),
+          // leading: Center(
+          //   child: SizedBox(
+          //     width: 20,
+          //     height: 20,
+          //     child: Image.asset(
+          //       'assets/images/gelbooru.ico',
+          //       fit: BoxFit.fill,
+          //     ),
+          //   ),
+          // ),
           onTrailingTap: () => _onTrailingTap(context, e, pb),
           onTap: () => siteController.setNewSite(
             siteController.id == e.id ? null : e,

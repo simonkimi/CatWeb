@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:io';
 
 import 'package:catweb/data/database/daos/reader_history_dao.dart';
+import 'package:catweb/data/database/tables/cookie_jar_table.dart';
 import 'package:catweb/data/database/tables/reader_history_table.dart';
 import 'package:catweb/data/database/tables/web_table.dart';
 import 'package:drift/drift.dart';
@@ -9,6 +10,7 @@ import 'package:drift/native.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
+import 'daos/cookie_jar_dao.dart';
 import 'daos/web_dao.dart';
 
 part 'database.g.dart';
@@ -33,7 +35,8 @@ LazyDatabase _openConnection() {
 }
 
 @DriftDatabase(
-    tables: [WebTable, ReaderHistoryTable], daos: [WebDao, ReaderHistoryDao])
+    tables: [WebTable, ReaderHistoryTable, CookieJarTable],
+    daos: [WebDao, ReaderHistoryDao, CookieJarDao])
 class AppDataBase extends _$AppDataBase {
   AppDataBase() : super(_openConnection());
 
@@ -52,4 +55,6 @@ class DB {
   WebDao get webDao => _database.webDao;
 
   ReaderHistoryDao get readerHistoryDao => _database.readerHistoryDao;
+
+  CookieJarDao get cookieJarDao => _database.cookieJarDao;
 }

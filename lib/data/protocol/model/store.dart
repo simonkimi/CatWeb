@@ -32,7 +32,8 @@ class SiteBlueprintModel implements PbAble {
         cookies = lobs(pb?.cookies, (RegField e) => RegFieldModel(e)),
         headers = lobs(pb?.headers, (RegField e) => RegFieldModel(e)),
         loginUrl = sobs(pb?.loginUrl),
-        loginCookie = RegFieldModel(pb?.loginCookie),
+        loginCookieReg = sobs(pb?.loginCookieReg),
+        loginCookieDescription = sobs(pb?.loginCookieDescription),
         version = sobs(pb?.version),
         upgradeUrl = sobs(pb?.upgradeUrl),
         flag = sobs(pb?.flag),
@@ -63,7 +64,8 @@ class SiteBlueprintModel implements PbAble {
   final RxString name;
   final RxString baseUrl;
   final RxString loginUrl;
-  final RegFieldModel loginCookie;
+  final RxString loginCookieReg;
+  final RxString loginCookieDescription;
   final RxString version;
   final RxString upgradeUrl;
   final RxString flag;
@@ -157,7 +159,8 @@ class SiteBlueprintModel implements PbAble {
         cookies: cookies.map((e) => e.toPb()),
         headers: headers.map((e) => e.toPb()),
         loginUrl: loginUrl.value,
-        loginCookie: loginCookie.toPb(),
+        loginCookieReg: loginCookieReg.value,
+        loginCookieDescription: loginCookieDescription.value,
         version: version.value,
         upgradeUrl: upgradeUrl.value,
         flag: flag.value,

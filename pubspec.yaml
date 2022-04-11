@@ -36,9 +36,14 @@ dependencies:
   dio_cache_interceptor: ^3.2.6
   dio_cache_interceptor_db_store: ^4.1.1
   dio_smart_retry: ^1.2.0
+  cookie_jar: ^3.0.1
+  dio_cookie_manager: ^2.0.0
   dio_http_formatter:
     git:
       url: git@github.com:simonkimi/dio_http_formatter.git
+
+  flutter_inappwebview: ^5.3.2
+  webview_cookie_manager: ^2.0.6
 
   # state
   get: ^4.3.8

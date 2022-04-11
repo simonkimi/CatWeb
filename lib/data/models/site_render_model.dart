@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:catweb/data/database/cookie_jar_storage.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
@@ -7,6 +8,7 @@ import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/network/client/cilent.dart';
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:get/get.dart';
 
 /// 渲染时所创建的模型
@@ -17,7 +19,13 @@ class SiteRenderConfigModel {
   })  : globalEnv = SiteEnvModel.fromBuffer(dbEntity.env),
         favicon =
             dbEntity.favicon.isNotEmpty ? dbEntity.favicon.obs : Rx(null) {
-    client = NetClient(configModel);
+    client = NetClient(
+      configModel: configModel,
+      cookieJar: PersistCookieJar(
+        ignoreExpires: false,
+        storage: CookieJarStorage(dbEntity.uuid),
+      ),
+    );
   }
 
   // 需求字段
@@ -37,6 +45,8 @@ class SiteRenderConfigModel {
     favicon.value = bin;
     await DB().webDao.replace(dbEntity.copyWith(favicon: bin));
   }
+
+  Future<void> updateCookies() async {}
 
   List<PageBlueprintModel> get displayPage => configModel.pageList
       .where((p0) => p0.display.value == SiteDisplayType.show)

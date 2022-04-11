@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:dio/dio.dart';
 
@@ -8,7 +10,8 @@ class HeaderCookieInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    final baseCookies = options.headers['Cookie'] as String? ?? '';
+    final baseCookies =
+        options.headers[HttpHeaders.cookieHeader] as String? ?? '';
     final uri = options.uri.toString();
     final cookie = _parseCookies(baseCookies);
 
@@ -19,7 +22,7 @@ class HeaderCookieInterceptor extends Interceptor {
         cookie.addEntries(_parseCookies(regField.value.value).entries);
       }
     }
-    options.headers['Cookie'] = _generateCookie(cookie);
+    options.headers[HttpHeaders.cookieHeader] = _generateCookie(cookie);
 
     // Headers
     for (final regField in model.headers) {

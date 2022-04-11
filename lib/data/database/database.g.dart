@@ -576,17 +576,231 @@ class $ReaderHistoryTableTable extends ReaderHistoryTable
   }
 }
 
+class CookieJarTableData extends DataClass
+    implements Insertable<CookieJarTableData> {
+  final String webUuid;
+  final String key;
+  final String value;
+  CookieJarTableData(
+      {required this.webUuid, required this.key, required this.value});
+  factory CookieJarTableData.fromData(Map<String, dynamic> data,
+      {String? prefix}) {
+    final effectivePrefix = prefix ?? '';
+    return CookieJarTableData(
+      webUuid: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}web_uuid'])!,
+      key: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}key'])!,
+      value: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}value'])!,
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['web_uuid'] = Variable<String>(webUuid);
+    map['key'] = Variable<String>(key);
+    map['value'] = Variable<String>(value);
+    return map;
+  }
+
+  CookieJarTableCompanion toCompanion(bool nullToAbsent) {
+    return CookieJarTableCompanion(
+      webUuid: Value(webUuid),
+      key: Value(key),
+      value: Value(value),
+    );
+  }
+
+  factory CookieJarTableData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return CookieJarTableData(
+      webUuid: serializer.fromJson<String>(json['webUuid']),
+      key: serializer.fromJson<String>(json['key']),
+      value: serializer.fromJson<String>(json['value']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'webUuid': serializer.toJson<String>(webUuid),
+      'key': serializer.toJson<String>(key),
+      'value': serializer.toJson<String>(value),
+    };
+  }
+
+  CookieJarTableData copyWith({String? webUuid, String? key, String? value}) =>
+      CookieJarTableData(
+        webUuid: webUuid ?? this.webUuid,
+        key: key ?? this.key,
+        value: value ?? this.value,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('CookieJarTableData(')
+          ..write('webUuid: $webUuid, ')
+          ..write('key: $key, ')
+          ..write('value: $value')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(webUuid, key, value);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CookieJarTableData &&
+          other.webUuid == this.webUuid &&
+          other.key == this.key &&
+          other.value == this.value);
+}
+
+class CookieJarTableCompanion extends UpdateCompanion<CookieJarTableData> {
+  final Value<String> webUuid;
+  final Value<String> key;
+  final Value<String> value;
+  const CookieJarTableCompanion({
+    this.webUuid = const Value.absent(),
+    this.key = const Value.absent(),
+    this.value = const Value.absent(),
+  });
+  CookieJarTableCompanion.insert({
+    required String webUuid,
+    required String key,
+    required String value,
+  })  : webUuid = Value(webUuid),
+        key = Value(key),
+        value = Value(value);
+  static Insertable<CookieJarTableData> custom({
+    Expression<String>? webUuid,
+    Expression<String>? key,
+    Expression<String>? value,
+  }) {
+    return RawValuesInsertable({
+      if (webUuid != null) 'web_uuid': webUuid,
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+    });
+  }
+
+  CookieJarTableCompanion copyWith(
+      {Value<String>? webUuid, Value<String>? key, Value<String>? value}) {
+    return CookieJarTableCompanion(
+      webUuid: webUuid ?? this.webUuid,
+      key: key ?? this.key,
+      value: value ?? this.value,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (webUuid.present) {
+      map['web_uuid'] = Variable<String>(webUuid.value);
+    }
+    if (key.present) {
+      map['key'] = Variable<String>(key.value);
+    }
+    if (value.present) {
+      map['value'] = Variable<String>(value.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CookieJarTableCompanion(')
+          ..write('webUuid: $webUuid, ')
+          ..write('key: $key, ')
+          ..write('value: $value')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $CookieJarTableTable extends CookieJarTable
+    with TableInfo<$CookieJarTableTable, CookieJarTableData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CookieJarTableTable(this.attachedDatabase, [this._alias]);
+  final VerificationMeta _webUuidMeta = const VerificationMeta('webUuid');
+  @override
+  late final GeneratedColumn<String?> webUuid = GeneratedColumn<String?>(
+      'web_uuid', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _keyMeta = const VerificationMeta('key');
+  @override
+  late final GeneratedColumn<String?> key = GeneratedColumn<String?>(
+      'key', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _valueMeta = const VerificationMeta('value');
+  @override
+  late final GeneratedColumn<String?> value = GeneratedColumn<String?>(
+      'value', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [webUuid, key, value];
+  @override
+  String get aliasedName => _alias ?? 'cookie_jar_table';
+  @override
+  String get actualTableName => 'cookie_jar_table';
+  @override
+  VerificationContext validateIntegrity(Insertable<CookieJarTableData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('web_uuid')) {
+      context.handle(_webUuidMeta,
+          webUuid.isAcceptableOrUnknown(data['web_uuid']!, _webUuidMeta));
+    } else if (isInserting) {
+      context.missing(_webUuidMeta);
+    }
+    if (data.containsKey('key')) {
+      context.handle(
+          _keyMeta, key.isAcceptableOrUnknown(data['key']!, _keyMeta));
+    } else if (isInserting) {
+      context.missing(_keyMeta);
+    }
+    if (data.containsKey('value')) {
+      context.handle(
+          _valueMeta, value.isAcceptableOrUnknown(data['value']!, _valueMeta));
+    } else if (isInserting) {
+      context.missing(_valueMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {webUuid, key};
+  @override
+  CookieJarTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return CookieJarTableData.fromData(data,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  }
+
+  @override
+  $CookieJarTableTable createAlias(String alias) {
+    return $CookieJarTableTable(attachedDatabase, alias);
+  }
+}
+
 abstract class _$AppDataBase extends GeneratedDatabase {
   _$AppDataBase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   late final $WebTableTable webTable = $WebTableTable(this);
   late final $ReaderHistoryTableTable readerHistoryTable =
       $ReaderHistoryTableTable(this);
+  late final $CookieJarTableTable cookieJarTable = $CookieJarTableTable(this);
   late final WebDao webDao = WebDao(this as AppDataBase);
   late final ReaderHistoryDao readerHistoryDao =
       ReaderHistoryDao(this as AppDataBase);
+  late final CookieJarDao cookieJarDao = CookieJarDao(this as AppDataBase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [webTable, readerHistoryTable];
+      [webTable, readerHistoryTable, cookieJarTable];
 }
