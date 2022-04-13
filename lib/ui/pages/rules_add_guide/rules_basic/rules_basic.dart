@@ -1,3 +1,4 @@
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
@@ -15,11 +16,11 @@ class RulesBasic extends GetView<RulesEditController> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       children: [
         CupertinoInput(
-          labelText: '名称',
+          labelText: I.of(context).name,
           value: controller.blueprint.name,
         ),
         CupertinoInput(
-          labelText: '基础Url',
+          labelText: I.of(context).base_url,
           value: controller.blueprint.baseUrl,
         ),
         CupertinoInput(
@@ -28,11 +29,11 @@ class RulesBasic extends GetView<RulesEditController> {
         ),
         const CupertinoDivider(height: 30),
         CupertinoInput(
-          labelText: '登录Url',
+          labelText: I.of(context).login_url,
           value: controller.blueprint.loginUrl,
         ),
         CupertinoInput(
-          labelText: '登录Cookie作用域',
+          labelText: I.of(context).login_url_reg,
           value: controller.blueprint.loginCookieReg,
           hintText: '.*',
         ),
@@ -43,7 +44,7 @@ class RulesBasic extends GetView<RulesEditController> {
         ),
         const CupertinoDivider(height: 30),
         CupertinoInput(
-          labelText: '更新Url',
+          labelText: I.of(context).check_upgrade_url,
           value: controller.blueprint.upgradeUrl,
         ),
       ],

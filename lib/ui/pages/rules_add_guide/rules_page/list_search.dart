@@ -1,6 +1,7 @@
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/components/dialog.dart';
@@ -38,7 +39,7 @@ class ListFilterEditor extends StatelessWidget {
           child: Column(
             children: [
               Obx(() => CupertinoReadOnlyInput(
-                    labelText: '脚本',
+                    labelText: I.of(context).script,
                     value: extra.script.value,
                     onTap: () =>
                         Get.to(() => JavaScriptEditor(script: extra.script)),
@@ -63,11 +64,11 @@ class ListFilterEditor extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        const Padding(
-          padding: EdgeInsets.only(left: 20),
+        Padding(
+          padding: const EdgeInsets.only(left: 20),
           child: Text(
-            '过滤器',
-            style: TextStyle(
+            I.of(context).filter,
+            style: const TextStyle(
               fontSize: 14,
             ),
           ),
@@ -107,7 +108,7 @@ class ListFilterEditor extends StatelessWidget {
                   CupertinoIcons.add_circled_solid,
                   color: CupertinoColors.systemGreen.resolveFrom(context),
                 ),
-                text: '添加',
+                text: I.of(context).add,
                 onTap: () {
                   extra.filterItem.add(SearchFilterItem());
                 },
@@ -127,22 +128,22 @@ class ListFilterEditor extends StatelessWidget {
           return CupertinoAlertDialog(
             actions: [
               CupertinoButton(
-                child: const Text('确定'),
+                child: Text(I.of(context).positive),
                 onPressed: () => Get.back(),
               )
             ],
             content: Column(
               children: [
                 CupertinoInput(
-                  labelText: '名称',
+                  labelText: I.of(context).name,
                   value: field.name,
                 ),
                 CupertinoInput(
-                  labelText: '键',
+                  labelText: I.of(context).key,
                   value: field.key,
                 ),
                 Obx(() => CupertinoReadOnlyInput(
-                      labelText: '类型',
+                      labelText: I.of(context).type,
                       value: field.type.value.string(context),
                       onTap: () => showCupertinoSelectDialog<
                           TemplateListData_FilterType>(
@@ -153,7 +154,7 @@ class ListFilterEditor extends StatelessWidget {
                                   value: e,
                                 ))
                             .toList(),
-                        cancelText: '取消',
+                        cancelText: I.of(context).negative,
                       ).then((value) {
                         if (value != null) {
                           field.type.value = value;
@@ -164,7 +165,7 @@ class ListFilterEditor extends StatelessWidget {
                   if (field.type.value ==
                       TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD) {
                     return CupertinoInput(
-                      labelText: '颜色',
+                      labelText: I.of(context).color,
                       value: field.color,
                       prefix: Padding(
                         padding: const EdgeInsets.only(left: 5),
@@ -182,7 +183,7 @@ class ListFilterEditor extends StatelessWidget {
                   return const SizedBox();
                 }),
                 CupertinoInput(
-                  labelText: '默认值',
+                  labelText: I.of(context).default_value,
                   value: field.value,
                 ),
               ],

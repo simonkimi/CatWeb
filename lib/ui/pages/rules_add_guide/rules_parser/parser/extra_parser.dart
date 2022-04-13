@@ -2,6 +2,7 @@ import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/components/form.dart';
@@ -33,12 +34,12 @@ class ExtraParser extends StatelessWidget {
               }),
               CupertinoListTile(
                 leading: const Icon(Icons.add),
-                title: const Text('添加'),
+                title: Text(I.of(context).add),
                 onTap: () async {
                   final result =
                       await showCupertinoSelectDialog<ExtraSelectorType>(
                     context: context,
-                    cancelText: '取消',
+                    cancelText: I.of(context).cancel,
                     items: [
                       SelectTileItem(
                         title: ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE

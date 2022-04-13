@@ -1,4 +1,5 @@
 import 'package:catweb/data/constant.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/cupertino_router.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
@@ -16,17 +17,17 @@ class SettingsPage extends StatelessWidget {
       child: CupertinoScrollbar(
         child: CustomScrollView(
           slivers: [
-            const CupertinoSliverNavigationBar(
+            CupertinoSliverNavigationBar(
               padding: kAppbarPadding,
               backgroundColor: CupertinoColors.systemGroupedBackground,
-              leading: CupertinoBackLeading(),
-              largeTitle: Text('设置'),
+              leading: const CupertinoBackLeading(),
+              largeTitle: Text(I.of(context).setting),
               border: null,
             ),
             SettingGroupSliver(
               children: [
                 SettingTile(
-                  title: '显示',
+                  title: I.of(context).display,
                   color: CupertinoColors.systemBlue.resolveFrom(context),
                   icon: CupertinoIcons.book,
                   onTap: () {
@@ -36,25 +37,25 @@ class SettingsPage extends StatelessWidget {
                 ),
                 const SettingIconDivider(),
                 SettingTile(
-                  title: '下载',
+                  title: I.of(context).download,
                   color: CupertinoColors.systemGreen.resolveFrom(context),
                   icon: CupertinoIcons.cloud_download,
                 ),
                 const SettingIconDivider(),
                 SettingTile(
-                  title: '安全',
+                  title: I.of(context).security,
                   color: CupertinoColors.systemRed.resolveFrom(context),
                   icon: CupertinoIcons.lock,
                 ),
                 const SettingIconDivider(),
                 SettingTile(
-                  title: '高级',
+                  title: I.of(context).advanced,
                   color: CupertinoColors.systemTeal.resolveFrom(context),
                   icon: CupertinoIcons.chevron_left_slash_chevron_right,
                 ),
                 const SettingIconDivider(),
                 SettingTile(
-                  title: '关于',
+                  title: I.of(context).about,
                   color: CupertinoColors.systemBlue.resolveFrom(context),
                   icon: CupertinoIcons.info,
                 ),

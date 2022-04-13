@@ -1,4 +1,5 @@
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/components/form.dart';
 import 'package:catweb/ui/components/rules_card.dart';
@@ -27,7 +28,7 @@ class SearchAutoCompleteParser extends StatelessWidget {
       delegate: SliverChildListDelegate([
         RulesCard(title: '基础信息', children: [
           CupertinoFormInput(
-            label: '名称',
+            label: I.of(context).name,
             value: model.name,
           ),
         ]),

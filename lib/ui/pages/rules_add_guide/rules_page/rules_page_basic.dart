@@ -5,6 +5,7 @@ import 'package:catweb/gen/protobuf/actions.pbserver.dart';
 import 'package:catweb/gen/protobuf/page.pbenum.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/gen/protobuf/template.pbserver.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/components/dialog.dart';
@@ -29,7 +30,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         children: [
           CupertinoInput(
-            labelText: '名称',
+            labelText: I.of(context).name,
             value: model.name,
           ),
           CupertinoInput(
@@ -130,7 +131,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '图标',
+            I.of(context).icon,
             style: TextStyle(
                 color: FixColor.title.resolveFrom(context), fontSize: 13),
           ),
@@ -167,7 +168,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
           .parser(controller.blueprint.parsers)
           .map((e) => SelectTileItem(title: e.name.value, value: e.uuid))
           .toList(),
-      cancelText: '取消',
+      cancelText: I.of(context).negative,
     );
     if (result != null) {
       model.baseParser.value = result;
@@ -181,7 +182,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
       items: NetActionType.values
           .map((e) => SelectTileItem(title: e.string, value: e))
           .toList(),
-      cancelText: '取消',
+      cancelText: I.of(context).negative,
     );
     if (result != null) {
       model.netAction.value = result;
@@ -206,7 +207,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
                         title: e.name.string,
                         value: e.uuid,
                       )),
-              const SelectTileItem(title: '无', value: ''),
+              SelectTileItem(title: I.of(context).none, value: ''),
             ],
           ).then((value) {
             if (value != null) {
@@ -224,7 +225,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
           .map((e) => SelectTileItem<SiteDisplayType>(
               title: e.string(context), value: e))
           .toList(),
-      cancelText: '取消',
+      cancelText: I.of(context).negative,
     );
 
     if (result != null) {

@@ -1,4 +1,5 @@
 import 'package:catweb/data/protocol/model/parser.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:catweb/ui/components/form.dart';
 import 'package:catweb/ui/components/rules_card.dart';
@@ -17,14 +18,14 @@ class GalleryParserFragment extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         _buildBaseList(context),
-        _buildInfoList(),
-        _buildCoverList(),
-        _buildTagList(),
-        _buildThumbnailList(),
-        _buildBadgeList(),
-        _buildCommentList(),
-        _buildChapterList(),
-        _buildIndexList(),
+        _buildInfoList(context),
+        _buildCoverList(context),
+        _buildTagList(context),
+        _buildThumbnailList(context),
+        _buildBadgeList(context),
+        _buildCommentList(context),
+        _buildChapterList(context),
+        _buildIndexList(context),
       ],
     );
   }
@@ -34,7 +35,7 @@ class GalleryParserFragment extends StatelessWidget {
       delegate: SliverChildListDelegate([
         RulesCard(title: '基础信息', children: [
           CupertinoFormInput(
-            label: '名称',
+            label: I.of(context).name,
             value: model.name,
           )
         ]),
@@ -42,9 +43,9 @@ class GalleryParserFragment extends StatelessWidget {
     );
   }
 
-  StickyClassifyList _buildIndexList() {
+  StickyClassifyList _buildIndexList(BuildContext context) {
     return StickyClassifyList(
-      title: '索引',
+      title: I.of(context).index,
       children: [
         RulesForm(
           title: '下一面',
@@ -54,7 +55,7 @@ class GalleryParserFragment extends StatelessWidget {
     );
   }
 
-  StickyClassifyList _buildBadgeList() {
+  StickyClassifyList _buildBadgeList(BuildContext context) {
     return StickyClassifyList(
       title: '徽章',
       children: [
@@ -74,7 +75,7 @@ class GalleryParserFragment extends StatelessWidget {
     );
   }
 
-  StickyClassifyList _buildCommentList() {
+  StickyClassifyList _buildCommentList(BuildContext context) {
     return StickyClassifyList(title: '评论', children: [
       RulesForm(
         title: '评论项目',
@@ -99,7 +100,7 @@ class GalleryParserFragment extends StatelessWidget {
     ]);
   }
 
-  StickyClassifyList _buildTagList() {
+  StickyClassifyList _buildTagList(BuildContext context) {
     return StickyClassifyList(title: '分类', children: [
       RulesForm(
         title: '分类',
@@ -112,7 +113,7 @@ class GalleryParserFragment extends StatelessWidget {
     ]);
   }
 
-  StickyClassifyList _buildChapterList() {
+  StickyClassifyList _buildChapterList(BuildContext context) {
     return StickyClassifyList(title: '章节', children: [
       RulesForm(
         title: '章节选择器',
@@ -149,7 +150,7 @@ class GalleryParserFragment extends StatelessWidget {
     ]);
   }
 
-  StickyClassifyList _buildThumbnailList() {
+  StickyClassifyList _buildThumbnailList(BuildContext context) {
     return StickyClassifyList(title: '缩略图', children: [
       RulesForm(
         title: '目标',
@@ -182,7 +183,7 @@ class GalleryParserFragment extends StatelessWidget {
     ]);
   }
 
-  StickyClassifyList _buildCoverList() {
+  StickyClassifyList _buildCoverList(BuildContext context) {
     return StickyClassifyList(
       title: '封面',
       children: [
@@ -210,7 +211,7 @@ class GalleryParserFragment extends StatelessWidget {
     );
   }
 
-  StickyClassifyList _buildInfoList() {
+  StickyClassifyList _buildInfoList(BuildContext context) {
     return StickyClassifyList(title: '基础信息', children: [
       RulesForm(
         title: '标题',

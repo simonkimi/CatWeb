@@ -1,5 +1,6 @@
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/components/cupertino_input.dart';
 import 'package:flutter/cupertino.dart';
@@ -51,7 +52,7 @@ class ListNormalSubPage extends StatelessWidget {
                     CupertinoIcons.add_circled_solid,
                     color: CupertinoColors.systemGreen.resolveFrom(context),
                   ),
-                  text: '添加',
+                  text: I.of(context).add,
                   onTap: () {
                     extra.subPages.add(SubPageModel());
                   },
@@ -72,22 +73,22 @@ class ListNormalSubPage extends StatelessWidget {
             return CupertinoAlertDialog(
               actions: [
                 CupertinoButton(
-                  child: const Text('确定'),
+                  child: Text(I.of(context).positive),
                   onPressed: () => Get.back(),
                 )
               ],
               content: Column(
                 children: [
                   CupertinoInput(
-                    labelText: '名称',
+                    labelText: I.of(context).name,
                     value: field.name,
                   ),
                   CupertinoInput(
-                    labelText: '键',
+                    labelText: I.of(context).key,
                     value: field.key,
                   ),
                   CupertinoInput(
-                    labelText: '值',
+                    labelText: I.of(context).value,
                     value: field.value,
                   ),
                 ],

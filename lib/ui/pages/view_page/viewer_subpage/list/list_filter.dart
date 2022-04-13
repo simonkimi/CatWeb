@@ -1,5 +1,6 @@
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/badge.dart';
 import 'package:catweb/ui/components/cupertino_divider.dart';
 import 'package:catweb/ui/theme/colors.dart';
@@ -46,11 +47,11 @@ class ListFilterButton extends StatelessWidget {
         return CupertinoAlertDialog(
           actions: [
             CupertinoDialogAction(
-              child: const Text('返回'),
+              child: Text(I.of(context).back),
               onPressed: () => Get.back(),
             ),
             CupertinoDialogAction(
-              child: const Text('应用'),
+              child: Text(I.of(context).apply),
               onPressed: () {
                 controller.applyFilter(true);
                 Get.back();
@@ -63,7 +64,7 @@ class ListFilterButton extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    _buildDialogHeader(setState),
+                    _buildDialogHeader(context, setState),
                     const SizedBox(height: 5),
                     const CupertinoDivider(),
                     _buildColorButton(context),
@@ -148,12 +149,12 @@ class ListFilterButton extends StatelessWidget {
     );
   }
 
-  Widget _buildDialogHeader(StateSetter setState) {
+  Widget _buildDialogHeader(BuildContext context, StateSetter setState) {
     return Row(
       children: [
-        const Text(
-          '过滤器',
-          style: TextStyle(
+        Text(
+          I.of(context).filter,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),

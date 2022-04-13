@@ -1,6 +1,7 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/tab_bar.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page_basic.dart';
@@ -62,7 +63,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
         padding: EdgeInsets.zero,
         minSize: 0,
       ),
-      middle: const Text('页面'),
+      middle: Text(I.of(context).page),
       border: model.hasExtraData() ? const Border() : kDefaultNavBarBorder,
     );
   }

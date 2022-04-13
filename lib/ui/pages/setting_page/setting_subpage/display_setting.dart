@@ -1,5 +1,6 @@
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/controller/setting_enum.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_obs_swiitch.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/setting_page/setting_group.dart';
@@ -23,9 +24,9 @@ class DisplaySettingPage extends StatelessWidget {
     return CupertinoPageScaffold(
       backgroundColor: CupertinoColors.systemGroupedBackground,
       navigationBar: CupertinoNavigationBar(
-        middle: const Text('显示'),
+        middle: Text(I.of(context).display),
         backgroundColor: CupertinoColors.systemGroupedBackground,
-        previousPageTitle: fromSetting ? '设置' : null,
+        previousPageTitle: fromSetting ? I.of(context).setting : null,
         padding: EdgeInsetsDirectional.zero,
         border: null,
       ),

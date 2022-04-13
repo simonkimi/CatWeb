@@ -1,6 +1,7 @@
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pb.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/search_list_controller.dart';
@@ -62,7 +63,7 @@ class _SearchListState extends State<SearchList> {
       child: CupertinoPageScaffold(
         child: CupertinoScrollbar(
           child: CupertinoAppBar(
-            title: '搜索',
+            title: I.of(context).search,
             leading: CupertinoBackLeading(
               onPressed: () async {
                 _onWillPop().then((value) {
@@ -176,7 +177,7 @@ class _SearchListState extends State<SearchList> {
             color: CupertinoColors.systemGroupedBackground.resolveFrom(context),
             borderRadius: BorderRadius.circular(50),
           ),
-          placeholder: '搜索',
+          placeholder: I.of(context).search,
           placeholderStyle: TextStyle(
             color: CupertinoColors.placeholderText.resolveFrom(context),
           ),

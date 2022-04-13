@@ -1,5 +1,6 @@
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
@@ -40,7 +41,7 @@ class RulesPageManager extends GetView<RulesEditController> {
               }).toList(),
             )),
         CupertinoListTile(
-          title: const Text('添加'),
+          title:  Text(I.of(context).add),
           leading: const Icon(Icons.add),
           onTap: () {
             _toRulesPageEdit(context);
@@ -55,12 +56,12 @@ class RulesPageManager extends GetView<RulesEditController> {
     PageBlueprintModel model,
   ) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
-      cancelText: '取消',
+      cancelText: I.of(context).cancel,
       context: context,
-      items: const [
-        SelectTileItem(title: '编辑', value: _MenuSelect.edit),
+      items: [
+        SelectTileItem(title: I.of(context).edit, value: _MenuSelect.edit),
         SelectTileItem(
-          title: '删除',
+          title: I.of(context).delete,
           value: _MenuSelect.delete,
           destructive: true,
         ),
@@ -92,7 +93,7 @@ class RulesPageManager extends GetView<RulesEditController> {
       showCupertinoConfirmDialog(
         context: context,
         content: '确定要删除 ${model.name} 吗？',
-        title: '取消',
+        title: I.of(context).cancel,
         showCancel: true,
       ).then((value) {
         if (value == true) {
