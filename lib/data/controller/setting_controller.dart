@@ -23,6 +23,9 @@ class SettingController extends GetxController {
 
   // 下载设置
 
+  // 安全设置
+  final RxBool protectCookie = true.obs;
+
   // 其他数据
   late final CacheOptions imageCacheOption;
   late final CacheOptions cacheOptions;
@@ -39,6 +42,7 @@ class SettingController extends GetxController {
     concurrencyCount.watch('concurrencyCount', 5);
     readerDirectory.watch('readerDirectory', ReaderDirection.ltr);
     displayType.watch('displayType', ReaderDisplayType.single);
+    protectCookie.watch('protectCookie', true);
 
     if (documentDir.value.isEmpty) {
       documentDir.value = await getDocumentDir();

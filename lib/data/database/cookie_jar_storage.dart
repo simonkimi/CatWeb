@@ -24,5 +24,5 @@ class CookieJarStorage implements Storage {
 
   @override
   Future<void> write(String key, String value) =>
-      _cookieJarDao.write(uuid, key);
+      _cookieJarDao.write(uuid, key, value);
 }

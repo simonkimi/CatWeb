@@ -1,3 +1,5 @@
+import 'package:bot_toast/bot_toast.dart';
+import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
@@ -7,6 +9,7 @@ import 'package:catweb/ui/components/cupertino_router.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
 import 'package:catweb/ui/pages/setting_page/setting_page.dart';
+import 'package:catweb/ui/pages/webview_login_in/webview_login_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +18,7 @@ enum _MenuSelect {
   edit,
   share,
   delete,
+  login,
 }
 
 class SiteManager extends StatelessWidget {
@@ -136,10 +140,13 @@ class SiteManager extends StatelessWidget {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: '取消',
       context: context,
-      items: const [
-        SelectTileItem(title: '编辑', value: _MenuSelect.edit),
-        SelectTileItem(title: '分享', value: _MenuSelect.share),
+      items: [
+        const SelectTileItem(title: '编辑', value: _MenuSelect.edit),
+        const SelectTileItem(title: '分享', value: _MenuSelect.share),
         SelectTileItem(
+            title: db.loginCookies.isNotEmpty ? '注销' : '登录',
+            value: _MenuSelect.login),
+        const SelectTileItem(
           title: '删除',
           value: _MenuSelect.delete,
           destructive: true,
@@ -149,22 +156,85 @@ class SiteManager extends StatelessWidget {
     switch (result) {
       case null:
       case _MenuSelect.share:
-        // TODO 分享功能
-        break;
+        return _share();
       case _MenuSelect.edit:
-        await _toEditPage(context, pb: pb, db: db);
-        break;
+        return _toEditPage(context, pb: pb, db: db);
       case _MenuSelect.delete:
-        if (await showCupertinoConfirmDialog(
-              context: context,
-              content: '确定要删除 ${pb.name} 吗？',
-              title: '取消',
-              showCancel: true,
-            ) ==
-            true) {
-          DB().webDao.remove(db);
+        return _onDelete(context, db, pb);
+      case _MenuSelect.login:
+        return _loginIn(context, db, pb);
+    }
+  }
+
+  Future<void> _loginIn(
+    BuildContext context,
+    WebTableData db,
+    SiteBlueprint pb,
+  ) async {
+    if (db.loginCookies.isNotEmpty) {
+      // 注销登录
+      final isReload = await showCupertinoConfirmDialog(
+        context: context,
+        title: '注销登录',
+        content: '确定要注销登录吗?',
+      );
+      if (isReload == true) {
+        await DB().webDao.replace(db.copyWith(loginCookies: ''));
+        Get.back();
+      }
+    } else {
+      // 登录
+      if (Uri.tryParse(pb.baseUrl)?.host != Uri.tryParse(pb.loginUrl)?.host) {
+        if (!Get.find<SettingController>().protectCookie.value ||
+            !db.securityModel) {
+          final w = await showCupertinoConfirmDialog(
+            context: context,
+            title: '登录',
+            content: '登录地址和网站地址不在同一个域名下, 请确认您信任此规则发布者, 否则您的认证令牌可能会被盗用! 是否继续登录?',
+          );
+          if (w == false) {
+            return;
+          }
+        } else {
+          final w = await showCupertinoConfirmDialog(
+            context: context,
+            title: '登录',
+            content:
+                '登录地址和网站地址不在同一个域名下, 安全模式已开启, 将会保护您的认证令牌(可能造成某些网站异常), 若要关闭, 请前往网站设置',
+          );
+          if (w == false) {
+            return;
+          }
         }
-        break;
+      }
+
+      final cookies = await Navigator.of(context).push(
+        CupertinoPageRoute(
+          builder: (context) => WebViewLoginIn(
+            url: pb.loginUrl,
+          ),
+        ),
+      );
+
+      if (cookies != null) {
+        await DB().webDao.replace(db.copyWith(loginCookies: cookies));
+        BotToast.showText(text: '登录成功');
+      }
+    }
+  }
+
+  Future<void> _share() async {}
+
+  Future<void> _onDelete(
+      BuildContext context, WebTableData db, SiteBlueprint pb) async {
+    if (await showCupertinoConfirmDialog(
+          context: context,
+          content: '确定要删除 ${pb.name} 吗？',
+          title: '取消',
+          showCancel: true,
+        ) ==
+        true) {
+      DB().webDao.remove(db);
     }
   }
 

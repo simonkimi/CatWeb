@@ -9,22 +9,24 @@ class CookieJarDao extends DatabaseAccessor<AppDataBase>
     with _$CookieJarDaoMixin {
   CookieJarDao(AppDataBase attachedDatabase) : super(attachedDatabase);
 
-  Future<void> write(String uuid, String key) async {
+  Future<void> write(String uuid, String key, String value) async {
     final entity = await (select(cookieJarTable)
           ..where((tbl) => tbl.webUuid.equals(uuid) & tbl.key.equals(key)))
         .getSingleOrNull();
 
     if (entity == null) {
-      await into(cookieJarTable).insert(CookieJarTableCompanion(
-        webUuid: Value(uuid),
-        key: Value(key),
+      await into(cookieJarTable).insert(CookieJarTableCompanion.insert(
+        webUuid: uuid,
+        key: key,
+        value: value,
       ));
     } else {
       await (update(cookieJarTable)
             ..where((tbl) => tbl.webUuid.equals(uuid) & tbl.key.equals(key)))
-          .write(CookieJarTableCompanion(
-        webUuid: Value(uuid),
-        key: Value(key),
+          .write(CookieJarTableCompanion.insert(
+        webUuid: uuid,
+        key: key,
+        value: value,
       ));
     }
   }
