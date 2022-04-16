@@ -25,6 +25,7 @@ class SettingController extends GetxController {
 
   // 安全设置
   final RxBool protectCookie = true.obs;
+  final RxBool blurWhenBackground = false.obs;
 
   // 其他数据
   late final CacheOptions imageCacheOption;
@@ -43,6 +44,7 @@ class SettingController extends GetxController {
     readerDirectory.watch('readerDirectory', ReaderDirection.ltr);
     displayType.watch('displayType', ReaderDisplayType.single);
     protectCookie.watch('protectCookie', true);
+    blurWhenBackground.watch('blurWhenBackground', false);
 
     if (documentDir.value.isEmpty) {
       documentDir.value = await getDocumentDir();

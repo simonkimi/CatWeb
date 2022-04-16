@@ -125,10 +125,10 @@ class _WebViewLoginInState extends State<WebViewLoginIn> {
   Future<void> _onImport() async {
     final cookies = await _getCookies();
     showCupertinoConfirmDialog(
-        context: context,
-        title: 'cookie',
-        content:
-        '将导入以下Cookies: \n ${cookies.map((c) => '${c.name}: ${c.value}').join('\n')}')
+            context: context,
+            title: 'cookie',
+            content:
+                '将导入以下Cookies: \n ${cookies.map((c) => '${c.name}: ${c.value}').join('\n')}')
         .then((value) {
       if (value == true) {
         Navigator.of(context).pop(cookies);

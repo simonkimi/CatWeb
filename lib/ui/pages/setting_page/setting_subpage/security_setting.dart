@@ -21,6 +21,16 @@ class SecuritySettingPage extends GetView<SettingController> {
     return SettingScaffold(
       title: I.of(context).security,
       children: [
+        SettingGroupWidget(children: [
+          SettingTile(
+            title: '切到后台后模糊',
+            trailing: CupertinoObxSwitch(
+              scale: 0.9,
+              value: controller.blurWhenBackground,
+            ),
+          ),
+        ]),
+        const SizedBox(height: 20),
         const SettingGroupTitle('Cookie保护'),
         SettingGroupWidget(children: [
           _buildSecuritySwitch(context),
