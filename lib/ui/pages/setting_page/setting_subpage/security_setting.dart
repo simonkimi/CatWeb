@@ -1,6 +1,7 @@
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_obs_swiitch.dart';
+import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_group.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_base.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
@@ -34,38 +35,17 @@ class SecuritySettingPage extends GetView<SettingController> {
       title: '启用安全模式',
       trailing: CupertinoObxSwitch(
         scale: 0.9,
-        value: controller.imageMaskInDarkMode,
+        value: controller.protectCookie,
         onChange: (value) async {
           if (!value) {
-            return (await showCupertinoDialog(
+            return (await showCupertinoConfirmDialog(
                   context: context,
-                  builder: (context) {
-                    return CupertinoAlertDialog(
-                      title: const Text('警告'),
-                      content: const Text('此开关为全局安全模式开关, 若您想为莫规则单独关闭, 请前往设置主页'),
-                      actions: [
-                        CupertinoDialogAction(
-                          child: const Text('取消'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        CupertinoDialogAction(
-                          child: Text(
-                            '关闭',
-                            style: TextStyle(
-                                color: CupertinoColors.systemRed
-                                    .resolveFrom(context)),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop(false);
-                          },
-                        ),
-                      ],
-                    );
-                  },
+                  content: '此开关为全局安全模式开关, 若您想为莫规则单独关闭, 请前往设置主页',
+                  confineText: '关闭',
+                  confineTextColor:
+                      CupertinoColors.systemRed.resolveFrom(context),
                 ) !=
-                false);
+                true);
           } else {
             return value;
           }

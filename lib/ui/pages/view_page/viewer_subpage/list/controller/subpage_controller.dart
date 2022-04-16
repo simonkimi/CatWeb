@@ -12,6 +12,7 @@ import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_controller.
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:catweb_parser/catweb_parser.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
@@ -45,6 +46,8 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
     dio: global.client!.imageDio,
     concurrency: 2,
   );
+
+  final scrollController = ScrollController();
 
   @override
   bool isItemExist(ListRpcModel_Item item) => items.any(
@@ -191,4 +194,10 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
       .debounceTime(const Duration(seconds: 1))
       .map((event) => event.asMap())
       .map((e) => e.map((key, value) => MapEntry(key, _toReaderModel(value))));
+
+  @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
+  }
 }

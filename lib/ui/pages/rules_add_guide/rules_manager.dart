@@ -11,8 +11,10 @@ import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
 import 'package:catweb/ui/pages/setting_page/setting_page.dart';
 import 'package:catweb/ui/pages/webview_login_in/webview_login_in.dart';
+import 'package:catweb/utils/debug.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
 
 enum _MenuSelect {
@@ -209,7 +211,7 @@ class SiteManager extends StatelessWidget {
         }
       }
 
-      final cookies = await Navigator.of(context).push(
+      final List<Cookie>? cookies = await Navigator.of(context).push(
         CupertinoPageRoute(
           builder: (context) => WebViewLoginIn(
             url: pb.loginUrl,
@@ -218,8 +220,10 @@ class SiteManager extends StatelessWidget {
       );
 
       if (cookies != null) {
-        await DB().webDao.replace(db.copyWith(loginCookies: cookies));
+        final cookieStr = cookies.map((e) => '${e.name}=${e.value}').join('; ');
+        await DB().webDao.replace(db.copyWith(loginCookies: cookieStr));
         BotToast.showText(text: '登录成功');
+        logger.i('登录成功, cookies: $cookieStr');
       }
     }
   }

@@ -40,6 +40,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
     super.build(context);
     return AppBarScrollNotifier(
       child: CupertinoScrollbar(
+        controller: controller.scrollController,
         child: SmartRefresher(
           controller: controller.refreshController,
           enablePullDown: false,
@@ -49,6 +50,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
             hasToolBar: widget.hasToolBar,
           ),
           child: CustomScrollView(
+            controller: controller.scrollController,
             cacheExtent: 300,
             slivers: [
               SliverPullToRefresh(
@@ -85,7 +87,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
             if (index.isOdd) {
               return const ImageListDivider();
             }
-            final model = controller.items[index];
+            final model = controller.items[index ~/ 2];
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
               child: ListExtendedCard(

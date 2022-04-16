@@ -59,7 +59,6 @@ class LoadingSliver extends StatelessWidget {
   }
 }
 
-
 class SliverPullToRefresh extends StatelessWidget {
   const SliverPullToRefresh({
     Key? key,

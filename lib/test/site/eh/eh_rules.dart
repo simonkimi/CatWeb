@@ -14,6 +14,7 @@ import 'parser/gallery_parser.dart';
 import 'parser/list_parser.dart';
 
 final _detailUuid = genUuid();
+
 final _autoCompleteUuid = genUuid();
 final _readerUuid = genUuid();
 
@@ -25,16 +26,14 @@ final ehTestSite = SiteBlueprint(
   autoCompleteParsers: [ehAutoCompleteParser],
   imageParsers: [ehImageParser],
   flag: 'ignoreCertificate',
+  loginUrl: 'https://forums.e-hentai.org/index.php?act=Login&CODE=00',
+  loginCookieReg: '104.20.134.21',
+  loginCookieDescription: '因为登录没法直连, 导致域名不一样',
   headers: [
     RegField(reg: r'104.20.134.21', value: 'host=e-hentai.org'),
     RegField(reg: r'178.162.147.246', value: 'host=api.e-hentai.org'),
   ],
   cookies: [
-    // RegField(reg: '104.20.134.21', value: 'ipb_member_id=$ipbMemberId'),
-    // RegField(reg: '104.20.134.21', value: 'ipb_pass_hash=$ipbPassHash'),
-    // RegField(reg: '104.20.134.21', value: 'igneous=$igneous'),
-    // RegField(reg: '104.20.134.21', value: 'sk=$sk'),
-    // RegField(reg: '104.20.134.21', value: 'star=$star'),
     RegField(reg: '104.20.134.21', value: 'nw=1'),
   ],
   pages: [
