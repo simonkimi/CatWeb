@@ -59,36 +59,6 @@ class LoadingSliver extends StatelessWidget {
   }
 }
 
-class FooSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
-  FooSliverPersistentHeaderDelegate({
-    required this.builder,
-    required this.maxHeight,
-    required this.minHeight,
-  });
-
-  final double minHeight;
-  final double maxHeight;
-
-  final Function(
-      BuildContext context, double shrinkOffset, bool overlapsContent) builder;
-
-  @override
-  Widget build(
-          BuildContext context, double shrinkOffset, bool overlapsContent) =>
-      builder(context, shrinkOffset, overlapsContent);
-
-  @override
-  double get maxExtent => maxHeight;
-
-  @override
-  double get minExtent => minHeight;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return minHeight != oldDelegate.minExtent ||
-        maxHeight != oldDelegate.maxExtent;
-  }
-}
 
 class SliverPullToRefresh extends StatelessWidget {
   const SliverPullToRefresh({

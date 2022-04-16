@@ -26,3 +26,19 @@ class CupertinoDivider extends StatelessWidget {
     );
   }
 }
+
+class ImageListDivider extends StatelessWidget {
+  const ImageListDivider({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.only(
+        right: 5,
+        left: 124,
+        // left: 5,
+      ),
+      child: CupertinoDivider(height: 5),
+    );
+  }
+}
