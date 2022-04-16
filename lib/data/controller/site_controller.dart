@@ -25,8 +25,7 @@ class GlobalController extends GetxController {
         dbEntity: db,
         configModel: SiteBlueprintModel.fromBuffer(db.blueprint),
       );
-      final setting = Get.find<SettingController>();
-      setting.defaultSite.value = db.id;
+      Get.find<SettingController>().defaultSite.value = db.id;
     } else {
       site.value = null;
     }
@@ -57,11 +56,24 @@ class GlobalController extends GetxController {
       print(e); // TODO 错误处理
     }
     siteDbChangeListener = DB().webDao.getAllStream().listen((event) {
-      if (site.value != null &&
-          event.get((element) => element.id == id) == null) {
+      // 检测当前网站的配置是否被更新
+      final currentNewSite = event.get((e) => e.id == id);
+      if (currentNewSite != null) {
+        if (currentNewSite.loginCookies != website.dbEntity.loginCookies ||
+            currentNewSite.blueprint != website.dbEntity.blueprint) {
+          setNewSite(currentNewSite);
+          return;
+        }
+      }
+
+      // 检测是否被删除
+      if (id != null && currentNewSite == null) {
         autoSelectNewSite();
-      } else if (site.value == null && event.isNotEmpty) {
+        return;
+      }
+      if (site.value == null && event.isNotEmpty) {
         autoSelectNewSite();
+        return;
       }
     });
     super.onInit();
