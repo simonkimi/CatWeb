@@ -10,7 +10,6 @@ import 'package:catweb/test/site/eh/parser/auto_complete_parser.dart';
 import 'package:catweb/test/site/eh/parser/image_parser.dart';
 import 'package:catweb/ui/theme/colors.dart';
 
-import 'cookies.dart';
 import 'parser/gallery_parser.dart';
 import 'parser/list_parser.dart';
 
@@ -31,11 +30,11 @@ final ehTestSite = SiteBlueprint(
     RegField(reg: r'178.162.147.246', value: 'host=api.e-hentai.org'),
   ],
   cookies: [
-    RegField(reg: '104.20.134.21', value: 'ipb_member_id=$ipbMemberId'),
-    RegField(reg: '104.20.134.21', value: 'ipb_pass_hash=$ipbPassHash'),
-    RegField(reg: '104.20.134.21', value: 'igneous=$igneous'),
-    RegField(reg: '104.20.134.21', value: 'sk=$sk'),
-    RegField(reg: '104.20.134.21', value: 'star=$star'),
+    // RegField(reg: '104.20.134.21', value: 'ipb_member_id=$ipbMemberId'),
+    // RegField(reg: '104.20.134.21', value: 'ipb_pass_hash=$ipbPassHash'),
+    // RegField(reg: '104.20.134.21', value: 'igneous=$igneous'),
+    // RegField(reg: '104.20.134.21', value: 'sk=$sk'),
+    // RegField(reg: '104.20.134.21', value: 'star=$star'),
     RegField(reg: '104.20.134.21', value: 'nw=1'),
   ],
   pages: [

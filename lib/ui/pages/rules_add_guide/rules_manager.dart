@@ -3,6 +3,7 @@ import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/test/site/eh/eh_rules.dart' as eh;
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/cupertino_router.dart';
@@ -230,8 +231,9 @@ class SiteManager extends StatelessWidget {
     if (await showCupertinoConfirmDialog(
           context: context,
           content: '确定要删除 ${pb.name} 吗？',
-          title: '取消',
-          showCancel: true,
+          title: I.of(context).delete,
+          confineText: I.of(context).delete,
+          confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
         ) ==
         true) {
       DB().webDao.remove(db);

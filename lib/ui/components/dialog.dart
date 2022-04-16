@@ -1,3 +1,4 @@
+import 'package:catweb/i18n.dart';
 import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -87,9 +88,11 @@ Future<bool?> showCupertinoConfirmDialog({
   required BuildContext context,
   String? title,
   String? content,
-  bool showCancel = false,
-  String? confineText = '确认',
-  String? cancelText = '取消',
+  bool showCancel = true,
+  String? confineText,
+  String? cancelText,
+  Color? cancelColor,
+  Color? confineTextColor,
 }) {
   return showCupertinoDialog(
     context: context,
@@ -99,15 +102,29 @@ Future<bool?> showCupertinoConfirmDialog({
         title: title != null ? Text(title) : null,
         content: content != null ? Text(content) : null,
         actions: [
-          if (showCancel)
+          if (showCancel || cancelText != null)
             CupertinoDialogAction(
-              child: Text(cancelText ?? '取消'),
+              child: Text(
+                cancelText ?? I.of(context).negative,
+                style: cancelColor != null
+                    ? TextStyle(
+                        color: cancelColor,
+                      )
+                    : null,
+              ),
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
             ),
           CupertinoDialogAction(
-            child: Text(confineText ?? '确认'),
+            child: Text(
+              confineText ?? I.of(context).positive,
+              style: confineTextColor != null
+                  ? TextStyle(
+                      color: confineTextColor,
+                    )
+                  : null,
+            ),
             onPressed: () {
               Navigator.of(context).pop(true);
             },

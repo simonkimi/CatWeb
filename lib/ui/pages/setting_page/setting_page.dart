@@ -3,8 +3,9 @@ import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_app_bar.dart';
 import 'package:catweb/ui/components/cupertino_router.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
-import 'package:catweb/ui/pages/setting_page/setting_tile.dart';
-import 'package:catweb/ui/pages/setting_page/setting_group.dart';
+import 'package:catweb/ui/pages/setting_page/setting_subpage/security_setting.dart';
+import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
+import 'package:catweb/ui/pages/setting_page/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -46,6 +47,9 @@ class SettingsPage extends StatelessWidget {
                   title: I.of(context).security,
                   color: CupertinoColors.systemRed.resolveFrom(context),
                   icon: CupertinoIcons.lock,
+                  onTap: () => Navigator.of(context).push(
+                      CupertinoWithModalsPageRoute(
+                          builder: (context) => const SecuritySettingPage())),
                 ),
                 const SettingIconDivider(),
                 SettingTile(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -6,10 +8,12 @@ class CupertinoObxSwitch extends StatelessWidget {
     Key? key,
     required this.value,
     this.scale,
+    this.onChange,
   }) : super(key: key);
 
   final RxBool value;
   final double? scale;
+  final FutureOr<bool> Function(bool value)? onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,10 @@ class CupertinoObxSwitch extends StatelessWidget {
           height: 20,
           child: CupertinoSwitch(
             value: value.value,
-            onChanged: (value) => this.value.value = value,
+            onChanged: (value) async {
+              this.value.value =
+                  onChange != null ? await onChange!(value) : value;
+            },
           ),
         ));
     if (scale != null) {

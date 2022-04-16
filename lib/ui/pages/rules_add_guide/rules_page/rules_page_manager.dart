@@ -41,7 +41,7 @@ class RulesPageManager extends GetView<RulesEditController> {
               }).toList(),
             )),
         CupertinoListTile(
-          title:  Text(I.of(context).add),
+          title: Text(I.of(context).add),
           leading: const Icon(Icons.add),
           onTap: () {
             _toRulesPageEdit(context);
@@ -94,7 +94,8 @@ class RulesPageManager extends GetView<RulesEditController> {
         context: context,
         content: '确定要删除 ${model.name} 吗？',
         title: I.of(context).cancel,
-        showCancel: true,
+        confineText: I.of(context).delete,
+        confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
       ).then((value) {
         if (value == true) {
           controller.blueprint.pageList.remove(model);

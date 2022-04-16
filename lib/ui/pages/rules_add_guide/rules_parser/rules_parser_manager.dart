@@ -1,5 +1,6 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/parser.pbenum.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/components/cupertino_list_tile.dart';
 import 'package:catweb/ui/components/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
@@ -89,8 +90,8 @@ class RulesParserManager extends GetView<RulesEditController> {
       showCupertinoConfirmDialog(
         context: context,
         content: '确定要删除 ${model.name} 吗？',
-        title: '取消',
-        showCancel: true,
+        confineText: I.of(context).delete,
+        confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
       ).then((value) {
         if (value == true) {
           controller.blueprint.removeParser(model);

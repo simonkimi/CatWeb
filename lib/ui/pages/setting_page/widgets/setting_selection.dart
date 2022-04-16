@@ -1,7 +1,7 @@
 import 'package:catweb/ui/components/cupertino_router.dart';
 import 'package:catweb/ui/components/dialog.dart';
-import 'package:catweb/ui/pages/setting_page/setting_group.dart';
-import 'package:catweb/ui/pages/setting_page/setting_tile.dart';
+import 'package:catweb/ui/pages/setting_page/widgets/setting_group.dart';
+import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';

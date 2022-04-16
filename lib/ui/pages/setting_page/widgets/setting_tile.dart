@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 
-import '../../components/cupertino_divider.dart';
+import '../../../components/cupertino_divider.dart';
 
 class SettingIconDivider extends StatelessWidget {
   const SettingIconDivider({Key? key}) : super(key: key);
