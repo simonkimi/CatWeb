@@ -26,7 +26,8 @@ final ehTestSite = SiteBlueprint(
   autoCompleteParsers: [ehAutoCompleteParser],
   imageParsers: [ehImageParser],
   flag: 'ignoreCertificate',
-  loginUrl: 'https://forums.e-hentai.org/index.php?act=Login&CODE=00',
+  // loginUrl: 'https://forums.e-hentai.org/index.php?act=Login&CODE=00',
+  loginUrl: 'https://e-hentai.org/bounce_login.php',
   loginCookieReg: '104.20.134.21',
   loginCookieDescription: '因为登录没法直连, 导致域名不一样',
   headers: [

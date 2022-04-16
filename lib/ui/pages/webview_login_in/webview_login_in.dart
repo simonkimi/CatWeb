@@ -56,24 +56,27 @@ class _WebViewLoginInState extends State<WebViewLoginIn> {
           },
         ),
       ),
-      child: InAppWebView(
-        key: webViewKey,
-        initialOptions: options,
-        onWebViewCreated: (controller) {
-          webViewController = controller;
-        },
-        initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
-        onLoadStart: (controller, url) {
-          currentUri = url;
-        },
-        onLoadStop: (controller, url) {
-          currentUri = url;
-        },
-        androidOnPermissionRequest: (controller, origin, resources) async {
-          return PermissionRequestResponse(
-              resources: resources,
-              action: PermissionRequestResponseAction.GRANT);
-        },
+      resizeToAvoidBottomInset: true,
+      child: SafeArea(
+        child: InAppWebView(
+          key: webViewKey,
+          initialOptions: options,
+          onWebViewCreated: (controller) {
+            webViewController = controller;
+          },
+          initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
+          onLoadStart: (controller, url) {
+            currentUri = url;
+          },
+          onLoadStop: (controller, url) {
+            currentUri = url;
+          },
+          androidOnPermissionRequest: (controller, origin, resources) async {
+            return PermissionRequestResponse(
+                resources: resources,
+                action: PermissionRequestResponseAction.GRANT);
+          },
+        ),
       ),
     );
   }
