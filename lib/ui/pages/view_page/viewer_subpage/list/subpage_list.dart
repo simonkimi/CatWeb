@@ -15,12 +15,12 @@ import 'list_extended_card.dart';
 
 class SubPageListFragment extends StatefulWidget {
   const SubPageListFragment({
-    Key? key,
+    super.key,
     required this.controller,
     required this.hasTabBar,
     required this.hasToolBar,
     this.tabBarHeight,
-  }) : super(key: key);
+  });
 
   final SubListController controller;
   final bool hasTabBar;
@@ -28,7 +28,7 @@ class SubPageListFragment extends StatefulWidget {
   final double? tabBarHeight;
 
   @override
-  _SubPageListFragmentState createState() => _SubPageListFragmentState();
+  State<SubPageListFragment> createState() => _SubPageListFragmentState();
 }
 
 class _SubPageListFragmentState extends State<SubPageListFragment>

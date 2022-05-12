@@ -10,17 +10,17 @@ import 'image_controller.dart';
 
 class ImageViewer extends StatefulWidget {
   const ImageViewer({
-    Key? key,
+    super.key,
     required this.model,
     this.imageWrapBuilder,
-  }) : super(key: key);
+  });
 
   final ReaderImageLoader model;
 
   final Widget Function(BuildContext context, Widget child)? imageWrapBuilder;
 
   @override
-  _ImageViewerState createState() => _ImageViewerState();
+  State<ImageViewer> createState() => _ImageViewerState();
 }
 
 class _ImageViewerState extends State<ImageViewer> {

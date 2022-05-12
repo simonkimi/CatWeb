@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 
 class SettingGroupSliver extends StatelessWidget {
   const SettingGroupSliver({
-    Key? key,
+    super.key,
     required this.children,
-  }) : super(key: key);
+  });
 
   final List<Widget> children;
 
@@ -35,8 +35,8 @@ class SettingGroupSliver extends StatelessWidget {
 class SettingGroupTitle extends StatelessWidget {
   const SettingGroupTitle(
     this.title, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String title;
 
@@ -57,9 +57,9 @@ class SettingGroupTitle extends StatelessWidget {
 
 class SettingGroupWidget extends StatelessWidget {
   const SettingGroupWidget({
-    Key? key,
+    super.key,
     required this.children,
-  }) : super(key: key);
+  });
 
   final List<Widget> children;
 

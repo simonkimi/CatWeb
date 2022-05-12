@@ -4,9 +4,9 @@ import 'package:catweb/data/constant.dart';
 
 class LoadMoreFooter extends StatelessWidget {
   const LoadMoreFooter({
-    Key? key,
+    super.key,
     this.hasToolBar = false,
-  }) : super(key: key);
+  });
 
   final bool hasToolBar;
 

@@ -6,10 +6,10 @@ import 'cupertino_divider.dart';
 
 class ExceptionSliver extends StatelessWidget {
   const ExceptionSliver({
-    Key? key,
+    super.key,
     this.errMsg,
     this.onRetry,
-  }) : super(key: key);
+  });
 
   final String? errMsg;
   final VoidCallback? onRetry;
@@ -47,7 +47,7 @@ class ExceptionSliver extends StatelessWidget {
 }
 
 class LoadingSliver extends StatelessWidget {
-  const LoadingSliver({Key? key}) : super(key: key);
+  const LoadingSliver({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +61,10 @@ class LoadingSliver extends StatelessWidget {
 
 class SliverPullToRefresh extends StatelessWidget {
   const SliverPullToRefresh({
-    Key? key,
+    super.key,
     this.onRefresh,
     this.extraHeight = 0,
-  }) : super(key: key);
+  });
 
   final RefreshCallback? onRefresh;
   final double extraHeight;

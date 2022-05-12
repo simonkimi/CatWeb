@@ -17,9 +17,9 @@ import 'package:get/get.dart';
 
 class RulesPageBasic extends GetView<RulesEditController> {
   const RulesPageBasic({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final PageBlueprintModel model;
 

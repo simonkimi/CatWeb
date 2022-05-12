@@ -15,11 +15,11 @@ import 'image/image_controller.dart';
 
 class ViewerPage extends StatelessWidget {
   const ViewerPage({
-    Key? key,
+    super.key,
     required this.target,
     this.model,
     this.env,
-  }) : super(key: key);
+  });
 
   final PageBlueprintModel target;
   final SiteEnvModel? env;

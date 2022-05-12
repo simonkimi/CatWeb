@@ -5,10 +5,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class CupertinoInfProgress extends HookWidget {
   const CupertinoInfProgress({
-    Key? key,
+    super.key,
     this.size,
     this.duration = const Duration(seconds: 2),
-  }) : super(key: key);
+  });
 
   final double? size;
   final Duration duration;
@@ -68,14 +68,11 @@ class CircularInfProgressPaint extends CustomPainter {
 
 class CupertinoProgress extends ImplicitlyAnimatedWidget {
   const CupertinoProgress({
-    Key? key,
+    super.key,
     required this.progress,
     Duration duration = const Duration(milliseconds: 200),
     this.size,
-  }) : super(
-          key: key,
-          duration: duration,
-        );
+  }) : super(duration: duration);
 
   final double progress;
   final double? size;

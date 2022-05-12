@@ -7,10 +7,10 @@ import 'dark_image.dart';
 
 class SimpleCard extends StatelessWidget {
   const SimpleCard({
-    Key? key,
+    super.key,
     required this.model,
     this.useCard = true,
-  }) : super(key: key);
+  });
 
   final ListRpcModel_Item model;
   final bool useCard;

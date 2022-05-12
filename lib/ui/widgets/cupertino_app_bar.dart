@@ -10,11 +10,11 @@ import 'grey_tab_indicator.dart';
 
 class CupertinoBackLeading extends StatelessWidget {
   const CupertinoBackLeading({
-    Key? key,
+    super.key,
     this.title,
     this.onPressed,
     this.color,
-  }) : super(key: key);
+  });
 
   final String? title;
   final VoidCallback? onPressed;
@@ -25,23 +25,23 @@ class CupertinoBackLeading extends StatelessWidget {
     return CupertinoButton(
       padding: EdgeInsets.zero,
       minSize: 0,
+      onPressed: onPressed ?? () => Navigator.of(context).pop(),
       child: Row(
         children: [
           Icon(CupertinoIcons.back, color: color),
           if (title != null) Text(title!),
         ],
       ),
-      onPressed: onPressed ?? () => Navigator.of(context).pop(),
     );
   }
 }
 
 class CupertinoCustomTabBar extends StatelessWidget {
   const CupertinoCustomTabBar({
-    Key? key,
+    super.key,
     required this.tabController,
     required this.tabs,
-  }) : super(key: key);
+  });
 
   final TabController tabController;
   final List<CupertinoTab> tabs;
@@ -65,7 +65,7 @@ class CupertinoCustomTabBar extends StatelessWidget {
 
 class CupertinoAppBar extends StatefulWidget {
   const CupertinoAppBar({
-    Key? key,
+    super.key,
     this.title,
     required this.child,
     this.leading,
@@ -75,7 +75,7 @@ class CupertinoAppBar extends StatefulWidget {
     this.automaticallyImplyLeading = true,
     this.tabBar,
     this.tabBarHeight,
-  }) : super(key: key);
+  });
 
   final String? title;
   final Widget? leading;
@@ -88,7 +88,7 @@ class CupertinoAppBar extends StatefulWidget {
   final double? tabBarHeight;
 
   @override
-  _CupertinoAppBarState createState() => _CupertinoAppBarState();
+  State<CupertinoAppBar> createState() => _CupertinoAppBarState();
 }
 
 class _CupertinoAppBarState extends State<CupertinoAppBar>
@@ -248,7 +248,7 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
 }
 
 class AppBarScrollNotifier extends StatelessWidget {
-  const AppBarScrollNotifier({Key? key, required this.child}) : super(key: key);
+  const AppBarScrollNotifier({super.key, required this.child});
 
   final Widget child;
 
@@ -288,10 +288,10 @@ class AppBarScrollNotification extends ScrollNotification {
 class OffsetCupertinoAppBar extends StatelessWidget
     implements ObstructingPreferredSizeWidget {
   const OffsetCupertinoAppBar({
-    Key? key,
+    super.key,
     required this.child,
     required this.offset,
-  }) : super(key: key);
+  });
 
   final ObstructingPreferredSizeWidget child;
   final Animation<Offset> offset;

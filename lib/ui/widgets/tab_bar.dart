@@ -5,13 +5,14 @@ import 'package:catweb/ui/theme/colors.dart';
 import 'grey_tab_indicator.dart';
 
 class CupertinoTab extends StatelessWidget {
-  const CupertinoTab(this.text, {Key? key}) : super(key: key);
+  const CupertinoTab(this.text, {super.key});
 
   final String text;
 
   @override
   Widget build(BuildContext context) {
     return Tab(
+      height: 30,
       child: Text(
         text,
         style: TextStyle(
@@ -20,18 +21,16 @@ class CupertinoTab extends StatelessWidget {
         ),
         maxLines: 1,
       ),
-      height: 30,
     );
   }
 }
 
 class CupertinoTabBarView extends StatelessWidget {
   const CupertinoTabBarView({
-    Key? key,
+    super.key,
     required this.tabs,
     required this.children,
-  })  : assert(tabs.length == children.length),
-        super(key: key);
+  }) : assert(tabs.length == children.length);
 
   final List<CupertinoTab> tabs;
   final List<Widget> children;

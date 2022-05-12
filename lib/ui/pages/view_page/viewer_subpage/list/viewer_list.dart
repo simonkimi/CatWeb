@@ -17,16 +17,16 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class ViewerListFragment extends StatefulWidget {
   const ViewerListFragment({
-    Key? key,
+    super.key,
     required this.blueprint,
     this.hasToolBar = false,
-  }) : super(key: key);
+  });
 
   final PageBlueprintModel blueprint;
   final bool hasToolBar;
 
   @override
-  _ViewerListFragmentState createState() => _ViewerListFragmentState();
+  State<ViewerListFragment> createState() => _ViewerListFragmentState();
 }
 
 class _ViewerListFragmentState extends State<ViewerListFragment>

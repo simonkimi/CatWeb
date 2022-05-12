@@ -12,9 +12,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class RulesEditPage extends StatelessWidget {
-  RulesEditPage({Key? key, SiteBlueprint? pb, WebTableData? db})
-      : controller = Get.put(RulesEditController(pb: pb, db: db)),
-        super(key: key);
+  RulesEditPage({super.key, SiteBlueprint? pb, WebTableData? db})
+      : controller = Get.put(RulesEditController(pb: pb, db: db));
 
   final RulesEditController controller;
 
@@ -51,16 +50,16 @@ class RulesEditPage extends StatelessWidget {
             if (value) Get.back();
           });
         },
-        child: const Icon(CupertinoIcons.back),
         padding: EdgeInsets.zero,
         minSize: 0,
+        child: const Icon(CupertinoIcons.back),
       ),
       middle: const Text('规则编辑'),
       trailing: CupertinoButton(
         onPressed: () => _save(context),
-        child: const Text('保存', style: TextStyle(fontSize: 15)),
         padding: EdgeInsets.zero,
         minSize: 0,
+        child: const Text('保存', style: TextStyle(fontSize: 15)),
       ),
       border: const Border(),
     );

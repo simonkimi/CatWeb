@@ -24,14 +24,13 @@ enum _MenuSelect {
   login,
 }
 
-class SiteManager extends StatelessWidget {
-  const SiteManager({Key? key}) : super(key: key);
+class SiteManager extends GetWidget<GlobalController> {
+  const SiteManager({super.key});
 
   static const routeName = 'SiteManager';
 
   @override
   Widget build(BuildContext context) {
-    final siteController = Get.find<GlobalController>();
     return CupertinoPageScaffold(
       navigationBar: _buildAppbar(context),
       child: SafeArea(
@@ -47,7 +46,7 @@ class SiteManager extends StatelessWidget {
                     initialData: const [],
                     stream: DB().webDao.getAllStream(),
                     builder: (context, snapshot) {
-                      return _buildListView(snapshot, siteController, context);
+                      return _buildListView(snapshot, controller, context);
                     },
                   ),
                 ),
@@ -80,10 +79,9 @@ class SiteManager extends StatelessWidget {
   }
 
   Widget _buildSiteItem(BuildContext context, WebTableData e) {
-    final siteController = Get.find<GlobalController>();
     final pb = SiteBlueprint.fromBuffer(e.blueprint);
     return Obx(() => CupertinoListTile(
-          selected: siteController.id == e.id,
+          selected: controller.id == e.id,
           title: Text(pb.name),
           subtitle: Text(pb.baseUrl),
           trailing: const Icon(Icons.more_horiz),
@@ -98,8 +96,8 @@ class SiteManager extends StatelessWidget {
           //   ),
           // ),
           onTrailingTap: () => _onTrailingTap(context, e, pb),
-          onTap: () => siteController.setNewSite(
-            siteController.id == e.id ? null : e,
+          onTap: () => controller.setNewSite(
+            controller.id == e.id ? null : e,
           ),
         ));
   }
@@ -127,9 +125,9 @@ class SiteManager extends StatelessWidget {
       padding: const EdgeInsetsDirectional.only(start: 10),
       leading: CupertinoButton(
         onPressed: () => Get.back(),
-        child: const Icon(CupertinoIcons.back),
         padding: EdgeInsets.zero,
         minSize: 0,
+        child: const Icon(CupertinoIcons.back),
       ),
       middle: const Text('站点管理'),
     );
@@ -244,12 +242,12 @@ class SiteManager extends StatelessWidget {
     }
   }
 
-  Future<void> _toEditPage(
+  void _toEditPage(
     BuildContext context, {
     SiteBlueprint? pb,
     WebTableData? db,
-  }) async {
-    Navigator.of(context).push(CupertinoWithModalsPageRoute(
-        builder: (context) => RulesEditPage(pb: pb ?? eh.ehTestSite, db: db)));
-  }
+  }) =>
+      Navigator.of(context).push(CupertinoWithModalsPageRoute(
+          builder: (context) =>
+              RulesEditPage(pb: pb ?? eh.ehTestSite, db: db)));
 }

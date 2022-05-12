@@ -11,14 +11,14 @@ import 'package:catweb/ui/theme/colors.dart';
 
 class JavaScriptEditor extends StatefulWidget {
   const JavaScriptEditor({
-    Key? key,
+    super.key,
     required this.script,
-  }) : super(key: key);
+  });
 
   final RxString script;
 
   @override
-  _JavaScriptEditorState createState() => _JavaScriptEditorState();
+  State<JavaScriptEditor> createState() => _JavaScriptEditorState();
 }
 
 class _JavaScriptEditorState extends State<JavaScriptEditor> {
@@ -59,9 +59,9 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
         onPressed: () {
           Get.back();
         },
-        child: const Icon(CupertinoIcons.back),
         padding: EdgeInsets.zero,
         minSize: 0,
+        child: const Icon(CupertinoIcons.back),
       ),
       middle: const Text('脚本'),
       border: const Border(),
@@ -80,9 +80,9 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
                 }
               });
             },
-            child: const Icon(CupertinoIcons.clear),
             padding: EdgeInsets.zero,
             minSize: 0,
+            child: const Icon(CupertinoIcons.clear),
           ),
           const SizedBox(width: 10),
           CupertinoButton(
@@ -91,9 +91,9 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
                 isEdit = !isEdit;
               });
             },
-            child: isEdit ? const Icon(Icons.check) : const Icon(Icons.edit),
             padding: EdgeInsets.zero,
             minSize: 0,
+            child: isEdit ? const Icon(Icons.check) : const Icon(Icons.edit),
           ),
         ],
       ),

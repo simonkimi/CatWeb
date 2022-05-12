@@ -4,10 +4,10 @@ import 'package:catweb/ui/theme/colors.dart';
 
 class RulesCard extends StatelessWidget {
   const RulesCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.children,
-  }) : super(key: key);
+  });
 
   final String title;
 

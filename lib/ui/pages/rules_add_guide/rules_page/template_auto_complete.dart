@@ -6,9 +6,9 @@ import 'package:flutter/services.dart';
 
 class TemplateAutoCompleteFragment extends StatelessWidget {
   const TemplateAutoCompleteFragment({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final PageBlueprintModel model;
 

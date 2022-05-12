@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class EmptyFragment extends StatelessWidget {
-  const EmptyFragment({Key? key}) : super(key: key);
+  const EmptyFragment({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +23,9 @@ class EmptyFragment extends StatelessWidget {
               builder: (context) => const SiteManager(),
             );
           },
-          child: const Icon(CupertinoIcons.layers_alt),
           padding: EdgeInsets.zero,
           minSize: 0,
+          child: const Icon(CupertinoIcons.layers_alt),
         ),
       ),
       child: SafeArea(
@@ -43,6 +43,7 @@ class EmptyFragment extends StatelessWidget {
               // Get.to(() => const SiteManager());
               Get.to(() => RulesEditPage(pb: eh.ehTestSite));
             },
+            color: FixColor.groupedColor,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: const [
@@ -61,7 +62,6 @@ class EmptyFragment extends StatelessWidget {
                 )
               ],
             ),
-            color: FixColor.groupedColor,
           ),
         ),
         Center(

@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 
 class SettingScaffold extends StatelessWidget {
   const SettingScaffold({
-    Key? key,
+    super.key,
     this.fromSetting = true,
     this.title = '',
     required this.children,
-  }) : super(key: key);
+  });
 
   final bool fromSetting;
   final String title;

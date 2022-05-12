@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class IconText extends StatelessWidget {
   const IconText({
-    Key? key,
+    super.key,
     required this.icon,
     required this.text,
     this.iconColor,
     this.style,
     this.space,
-  }) : super(key: key);
+  });
 
   final IconData icon;
   final Color? iconColor;

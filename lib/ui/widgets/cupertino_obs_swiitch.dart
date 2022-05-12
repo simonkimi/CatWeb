@@ -5,11 +5,11 @@ import 'package:get/get.dart';
 
 class CupertinoObxSwitch extends StatelessWidget {
   const CupertinoObxSwitch({
-    Key? key,
+    super.key,
     required this.value,
     this.scale,
     this.onChange,
-  }) : super(key: key);
+  });
 
   final RxBool value;
   final double? scale;

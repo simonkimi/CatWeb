@@ -6,7 +6,7 @@ import 'comment_item.dart';
 import 'gallery_controller.dart';
 
 class CommentListPage extends StatelessWidget {
-  const CommentListPage({Key? key, required this.c}) : super(key: key);
+  const CommentListPage({super.key, required this.c});
 
   final GalleryPreviewController c;
 

@@ -14,14 +14,14 @@ import 'list_filter.dart';
 
 class SearchList extends StatefulWidget {
   const SearchList({
-    Key? key,
+    super.key,
     required this.blueprint,
-  }) : super(key: key);
+  });
 
   final PageBlueprintModel blueprint;
 
   @override
-  _SearchListState createState() => _SearchListState();
+  State<SearchList> createState() => _SearchListState();
 }
 
 class _SearchListState extends State<SearchList> {

@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 
 class CupertinoInfoItem extends StatelessWidget {
   const CupertinoInfoItem({
-    Key? key,
+    super.key,
     required this.top,
     required this.middle,
     required this.bottom,
-  }) : super(key: key);
+  });
 
   final Widget top;
   final Widget middle;
@@ -14,25 +14,21 @@ class CupertinoInfoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _top = _buildSize(context, top, 14);
-    final _middle = _buildSize(context, middle, 20, true);
-    final _bottom = _buildSize(context, bottom, 14);
-
     return Column(
       children: [
         SizedBox(
           height: 20,
-          child: _top,
+          child: _buildSize(context, top, 14),
         ),
         SizedBox(
           height: 30,
           child: Center(
-            child: _middle,
+            child: _buildSize(context, middle, 20, true),
           ),
         ),
         SizedBox(
           height: 20,
-          child: _bottom,
+          child: _buildSize(context, bottom, 14),
         ),
       ],
     );

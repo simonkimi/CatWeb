@@ -28,16 +28,15 @@ import 'package:get/get.dart';
 
 class ViewerGalleryFragment extends StatelessWidget {
   ViewerGalleryFragment({
-    Key? key,
+    super.key,
     required PageBlueprintModel target,
     required Object? model,
     required SiteEnvModel env,
-  })  : c = GalleryPreviewController(
+  }) : c = GalleryPreviewController(
           blueprint: target,
           base: model,
           outerEnv: env,
-        ),
-        super(key: key);
+        );
 
   final GalleryPreviewController c;
 
@@ -46,8 +45,8 @@ class ViewerGalleryFragment extends StatelessWidget {
     return CupertinoPageScaffold(
       child: CupertinoAppBar(
         title: '',
-        child: _buildBody(context),
         leading: const CupertinoBackLeading(),
+        child: _buildBody(context),
       ),
     );
   }
@@ -361,6 +360,16 @@ class ViewerGalleryFragment extends StatelessWidget {
 
   CupertinoButton _buildReadButton(BuildContext context) {
     return CupertinoButton(
+      color: CupertinoColors.systemBlue.resolveFrom(context),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+      minSize: 0,
+      onPressed: c.detailModel != null
+          ? () async {
+              await _openReadPage();
+              await c.loadLastRead();
+            }
+          : null,
+      borderRadius: BorderRadius.circular(20),
       child: c.detailModel != null
           ? Obx(() => Text(
                 c.lastReadIndex.value == 0
@@ -376,16 +385,6 @@ class ViewerGalleryFragment extends StatelessWidget {
               scale: 0.8,
               child: const CupertinoActivityIndicator(),
             ),
-      color: CupertinoColors.systemBlue.resolveFrom(context),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
-      minSize: 0,
-      onPressed: c.detailModel != null
-          ? () async {
-              await _openReadPage();
-              await c.loadLastRead();
-            }
-          : null,
-      borderRadius: BorderRadius.circular(20),
     );
   }
 

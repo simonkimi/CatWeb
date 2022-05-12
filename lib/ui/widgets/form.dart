@@ -26,10 +26,10 @@ Widget buildCardList(
 
 class StickyClassifyList extends StatelessWidget {
   const StickyClassifyList({
-    Key? key,
+    super.key,
     required this.title,
     required this.children,
-  }) : super(key: key);
+  });
 
   final String title;
   final List<Widget> children;
@@ -72,15 +72,14 @@ class StickyClassifyList extends StatelessWidget {
 
 class RulesForm extends StatelessWidget {
   const RulesForm({
-    Key? key,
+    super.key,
     this.title,
     required this.selectorModel,
     this.onTap,
     this.extraSelectorModel,
     this.onDelete,
     this.field,
-  })  : assert(title != null || extraSelectorModel != null),
-        super(key: key);
+  }) : assert(title != null || extraSelectorModel != null);
 
   final String? title;
   final String? field;
@@ -258,6 +257,7 @@ class RulesForm extends StatelessWidget {
           : CupertinoColors.inactiveGray.resolveFrom(context),
       minSize: 0,
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      onPressed: onPressed,
       child: Row(
         children: [
           if (value)
@@ -273,7 +273,6 @@ class RulesForm extends StatelessWidget {
           )
         ],
       ),
-      onPressed: onPressed,
     );
   }
 
@@ -367,7 +366,7 @@ class RulesForm extends StatelessWidget {
 }
 
 class ThinDivider extends StatelessWidget {
-  const ThinDivider({Key? key}) : super(key: key);
+  const ThinDivider({super.key});
 
   @override
   Widget build(BuildContext context) {

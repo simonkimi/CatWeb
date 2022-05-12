@@ -8,13 +8,13 @@ import 'package:get/get.dart';
 
 class SettingSelectionTile<T> extends StatelessWidget {
   const SettingSelectionTile({
-    Key? key,
+    super.key,
     required this.title,
     required this.items,
     required this.value,
     this.useDialog = false,
     this.previousPageTitle,
-  }) : super(key: key);
+  });
 
   static SettingSelectionTile<int> number({
     required String title,
@@ -73,12 +73,12 @@ class SettingSelectionTile<T> extends StatelessWidget {
 
 class _SettingSelectionPage<T> extends StatelessWidget {
   const _SettingSelectionPage({
-    Key? key,
+    super.key,
     required this.title,
     required this.items,
     required this.value,
     this.previousPageTitle,
-  }) : super(key: key);
+  });
 
   final String title;
   final Iterable<SelectTileItem<T>> items;

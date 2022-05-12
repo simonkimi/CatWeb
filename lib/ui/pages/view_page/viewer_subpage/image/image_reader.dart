@@ -24,16 +24,16 @@ import 'image_viewer.dart';
 
 class ImageReader extends StatefulWidget {
   const ImageReader({
-    Key? key,
+    super.key,
     required this.readerInfo,
     required this.blueprint,
-  }) : super(key: key);
+  });
 
   final ReaderInfo readerInfo;
   final PageBlueprintModel blueprint;
 
   @override
-  _ImageReaderViewerState createState() => _ImageReaderViewerState();
+  State<ImageReader> createState() => _ImageReaderViewerState();
 }
 
 class _ImageReaderViewerState extends State<ImageReader>
@@ -68,7 +68,7 @@ class _ImageReaderViewerState extends State<ImageReader>
       begin: const Offset(0, 0),
       end: const Offset(0, 1),
     ).animate(hideToolbarAniController);
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       readController.onPageInitFinish();
     });
   }

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 
 class CommentItem extends StatelessWidget {
-  const CommentItem({Key? key, required this.model}) : super(key: key);
+  const CommentItem({super.key, required this.model});
 
   final GalleryRpcModel_Comment model;
 

@@ -13,9 +13,9 @@ import 'controller/subpage_controller.dart';
 
 class ListFilterButton extends StatelessWidget {
   const ListFilterButton({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final SubListController controller;
 
@@ -162,12 +162,12 @@ class ListFilterButton extends StatelessWidget {
         const Expanded(child: SizedBox()),
         CupertinoButton(
           padding: EdgeInsets.zero,
-          child: const Icon(CupertinoIcons.refresh),
           minSize: 0,
           onPressed: () {
             controller.resetFilter();
             setState(() {});
           },
+          child: const Icon(CupertinoIcons.refresh),
         )
       ],
     );

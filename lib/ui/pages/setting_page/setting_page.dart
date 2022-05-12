@@ -9,7 +9,7 @@ import 'package:catweb/ui/pages/setting_page/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

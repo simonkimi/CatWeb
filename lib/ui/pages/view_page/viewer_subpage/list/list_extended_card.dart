@@ -10,11 +10,11 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ListExtendedCard extends StatelessWidget {
   const ListExtendedCard({
-    Key? key,
+    super.key,
     required this.model,
     required this.onTap,
     required this.concurrency,
-  }) : super(key: key);
+  });
 
   final ListRpcModel_Item model;
   final VoidCallback onTap;

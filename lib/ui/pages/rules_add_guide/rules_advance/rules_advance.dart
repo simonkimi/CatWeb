@@ -9,8 +9,8 @@ import 'package:get/get.dart';
 
 class RulesAdvance extends GetView<RulesEditController> {
   const RulesAdvance({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

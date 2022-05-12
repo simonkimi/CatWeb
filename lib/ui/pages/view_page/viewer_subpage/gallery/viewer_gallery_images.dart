@@ -12,10 +12,10 @@ import 'gallery_controller.dart';
 
 class ViewerGalleryImages extends StatelessWidget {
   const ViewerGalleryImages({
-    Key? key,
+    super.key,
     required this.c,
     required this.onOpenPage,
-  }) : super(key: key);
+  });
 
   final GalleryPreviewController c;
   final Future<void> Function(int?) onOpenPage;

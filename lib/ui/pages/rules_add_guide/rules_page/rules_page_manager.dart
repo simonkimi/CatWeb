@@ -16,8 +16,8 @@ enum _MenuSelect {
 
 class RulesPageManager extends GetView<RulesEditController> {
   const RulesPageManager({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

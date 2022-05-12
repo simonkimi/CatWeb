@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class CupertinoListTile extends HookWidget {
   const CupertinoListTile({
-    Key? key,
+    super.key,
     this.leading,
     this.title,
     this.enabled = true,
@@ -15,8 +15,7 @@ class CupertinoListTile extends HookWidget {
     this.selectedColor,
     this.onTrailingTap,
     this.padding = const EdgeInsets.symmetric(vertical: 5),
-  })  : assert(onTrailingTap == null || trailing != null),
-        super(key: key);
+  }) : assert(onTrailingTap == null || trailing != null);
 
   final Widget? leading;
   final bool enabled;

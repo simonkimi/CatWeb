@@ -6,11 +6,11 @@ import 'package:catweb/ui/theme/colors.dart';
 
 class DarkImage extends GetView<SettingController> {
   const DarkImage({
-    Key? key,
+    super.key,
     required this.image,
     this.fit,
     this.loadingBuilder,
-  }) : super(key: key);
+  });
   final ImageProvider image;
   final BoxFit? fit;
   final ImageLoadingBuilder? loadingBuilder;
@@ -39,11 +39,11 @@ class DarkImage extends GetView<SettingController> {
 
 class DarkWidget extends StatelessWidget {
   const DarkWidget({
-    Key? key,
+    super.key,
     required this.child,
     this.width,
     this.height,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final double? width;

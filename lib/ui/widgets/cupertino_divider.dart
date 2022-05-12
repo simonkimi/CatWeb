@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 class CupertinoDivider extends StatelessWidget {
   const CupertinoDivider({
-    Key? key,
+    super.key,
     this.padding = EdgeInsets.zero,
     this.height,
-  }) : super(key: key);
+  });
 
   final EdgeInsets padding;
   final double? height;
@@ -28,7 +28,7 @@ class CupertinoDivider extends StatelessWidget {
 }
 
 class ImageListDivider extends StatelessWidget {
-  const ImageListDivider({Key? key}) : super(key: key);
+  const ImageListDivider({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ViewerMain extends GetView<GlobalController> {
-  const ViewerMain({Key? key}) : super(key: key);
+  const ViewerMain({super.key});
 
   @override
   Widget build(BuildContext context) {

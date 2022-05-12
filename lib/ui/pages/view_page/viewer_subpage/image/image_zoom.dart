@@ -6,12 +6,12 @@ import 'package:photo_view/photo_view.dart';
 
 class ZoomWidget extends StatelessWidget {
   const ZoomWidget({
-    Key? key,
+    super.key,
     required this.controller,
     required this.animation,
     required this.canZoom,
     required this.child,
-  }) : super(key: key);
+  });
 
   final PhotoViewController controller;
   final ZoomAnimation animation;

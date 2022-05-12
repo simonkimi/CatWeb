@@ -7,9 +7,9 @@ import 'package:flutter/cupertino.dart';
 
 class GalleryParserFragment extends StatelessWidget {
   const GalleryParserFragment({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final GalleryParserModel model;
 

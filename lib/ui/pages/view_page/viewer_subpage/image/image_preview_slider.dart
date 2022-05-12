@@ -11,10 +11,10 @@ import 'image_read_controller.dart';
 
 class ImagePreviewSlider extends StatefulWidget {
   const ImagePreviewSlider({
-    Key? key,
+    super.key,
     required this.controller,
     required this.readController,
-  }) : super(key: key);
+  });
 
   final ImageReaderController controller;
   final ImagePageController readController;

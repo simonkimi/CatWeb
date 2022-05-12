@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 
 class CupertinoImageSlider extends StatefulWidget {
   const CupertinoImageSlider({
-    Key? key,
+    super.key,
     required this.value,
     required this.pageCount,
     this.onChanged,
-  }) : super(key: key);
+  });
 
   final int value;
   final int pageCount;

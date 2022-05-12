@@ -16,7 +16,7 @@ class CupertinoReadOnlyInput extends StatelessWidget {
   final VoidCallback? onTap;
 
   const CupertinoReadOnlyInput({
-    Key? key,
+    super.key,
     required this.labelText,
     required this.value,
     this.minLine = 1,
@@ -24,7 +24,7 @@ class CupertinoReadOnlyInput extends StatelessWidget {
     this.padding = true,
     this.description,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class CupertinoReadOnlyInput extends StatelessWidget {
 
 class CupertinoInput extends StatelessWidget {
   const CupertinoInput({
-    Key? key,
+    super.key,
     required this.labelText,
     required this.value,
     this.minLine = 1,
@@ -81,7 +81,7 @@ class CupertinoInput extends StatelessWidget {
     this.prefix,
     this.inputFormatters,
     this.keyboardType,
-  }) : super(key: key);
+  });
 
   final String labelText;
   final RxString value;
@@ -147,12 +147,12 @@ class CupertinoInput extends StatelessWidget {
 
 class CupertinoFormInput extends StatelessWidget {
   const CupertinoFormInput({
-    Key? key,
+    super.key,
     this.label,
     required this.value,
     this.width,
     this.decoration,
-  }) : super(key: key);
+  });
 
   final BoxDecoration? decoration;
   final double? width;

@@ -12,9 +12,9 @@ import 'package:get/get.dart';
 
 class DisplaySettingPage extends GetView<SettingController> {
   const DisplaySettingPage({
-    Key? key,
+    super.key,
     this.fromSetting = true,
-  }) : super(key: key);
+  });
 
   final bool fromSetting;
 

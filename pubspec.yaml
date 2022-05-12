@@ -6,7 +6,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -21,12 +21,12 @@ dependencies:
   flutter_highlight: ^0.7.0
   cupertino_icons: ^1.0.4
   flutter_sticky_header: ^0.6.0
-  flutter_swipe_action_cell: ^2.1.4
+  flutter_swipe_action_cell: ^2.2.2
   pull_to_refresh: ^2.0.0
-  extended_image: ^6.0.1
+  extended_image: ^7.0.0-dev.1
   modal_bottom_sheet: ^2.0.1
   bot_toast: ^4.0.1
-  scrollable_positioned_list: ^0.2.3
+  scrollable_positioned_list: ^0.3.2
   photo_view:
     git: https://github.com/bluefireteam/photo_view.git
 
@@ -46,7 +46,7 @@ dependencies:
   webview_cookie_manager: ^2.0.6
 
   # state
-  get: ^4.3.8
+  get: ^5.0.0-beta.51
   flutter_hooks: ^0.18.0
 
   # database
@@ -75,7 +75,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
   build_runner: ^2.1.7
   drift_dev: ^1.1.0
   dart_code_metrics: ^4.12.0

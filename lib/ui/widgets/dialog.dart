@@ -35,12 +35,12 @@ Future<T?> showCupertinoSelectDialog<T>({
         message: message != null ? Text(message) : null,
         actions: items.map((item) {
           return CupertinoActionSheetAction(
-            child: Text(item.title),
             isDefaultAction: item.value == selectedValue,
             isDestructiveAction: item.destructive,
             onPressed: () {
               Navigator.pop(context, item.value);
             },
+            child: Text(item.title),
           );
         }).toList(),
         cancelButton: cancelText != null

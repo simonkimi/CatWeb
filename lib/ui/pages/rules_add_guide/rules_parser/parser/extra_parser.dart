@@ -11,9 +11,9 @@ import 'package:get/get.dart';
 
 class ExtraParser extends StatelessWidget {
   const ExtraParser({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final ParserBaseModel model;
 

@@ -10,9 +10,9 @@ import 'package:get/get.dart';
 
 class SecuritySettingPage extends GetView<SettingController> {
   const SecuritySettingPage({
-    Key? key,
+    super.key,
     this.fromSetting = true,
-  }) : super(key: key);
+  });
 
   final bool fromSetting;
 

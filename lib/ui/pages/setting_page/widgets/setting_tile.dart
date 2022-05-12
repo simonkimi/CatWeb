@@ -7,7 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 
 class SettingIconDivider extends StatelessWidget {
-  const SettingIconDivider({Key? key}) : super(key: key);
+  const SettingIconDivider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class SettingIconDivider extends StatelessWidget {
 }
 
 class SettingDivider extends StatelessWidget {
-  const SettingDivider({Key? key}) : super(key: key);
+  const SettingDivider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +32,9 @@ class SettingDivider extends StatelessWidget {
 
 class SettingTileTrailing extends StatelessWidget {
   const SettingTileTrailing({
-    Key? key,
+    super.key,
     required this.text,
-  }) : super(key: key);
+  });
 
   final String text;
 
@@ -55,14 +55,14 @@ class SettingTileTrailing extends StatelessWidget {
 
 class SettingTile extends HookWidget {
   const SettingTile({
-    Key? key,
+    super.key,
     required this.title,
     this.color,
     this.icon,
     this.onTap,
     this.trailing,
     this.trailingText,
-  }) : super(key: key);
+  });
 
   final String title;
   final Color? color;
@@ -151,10 +151,10 @@ class SettingTile extends HookWidget {
 
 class SettingNumberTile extends StatelessWidget {
   const SettingNumberTile({
-    Key? key,
+    super.key,
     required this.value,
     required this.title,
-  }) : super(key: key);
+  });
 
   final String title;
   final RxInt value;

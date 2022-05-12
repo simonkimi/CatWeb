@@ -6,9 +6,9 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class WebViewLoginIn extends StatefulWidget {
   const WebViewLoginIn({
-    Key? key,
+    super.key,
     required this.url,
-  }) : super(key: key);
+  });
 
   final String url;
 
@@ -43,8 +43,8 @@ class _WebViewLoginInState extends State<WebViewLoginIn> {
         trailing: CupertinoButton(
           minSize: 0,
           padding: EdgeInsets.zero,
-          child: const Text('导入'),
           onPressed: _onImport,
+          child: const Text('导入'),
         ),
       ),
       resizeToAvoidBottomInset: true,
@@ -106,8 +106,8 @@ class _WebViewLoginInState extends State<WebViewLoginIn> {
                           CupertinoButton(
                             minSize: 0,
                             padding: EdgeInsets.zero,
-                            child: const Icon(CupertinoIcons.checkmark),
                             onPressed: _onImport,
+                            child: const Icon(CupertinoIcons.checkmark),
                           ),
                         ],
                       ),

@@ -16,8 +16,8 @@ enum _MenuSelect {
 
 class RulesParserManager extends GetView<RulesEditController> {
   const RulesParserManager({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

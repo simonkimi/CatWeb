@@ -7,9 +7,9 @@ import 'package:flutter/cupertino.dart';
 
 class ImageReaderParserFragment extends StatelessWidget {
   const ImageReaderParserFragment({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final ImageReaderParserModel model;
 

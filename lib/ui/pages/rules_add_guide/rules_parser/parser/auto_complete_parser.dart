@@ -7,9 +7,9 @@ import 'package:flutter/cupertino.dart';
 
 class SearchAutoCompleteParser extends StatelessWidget {
   const SearchAutoCompleteParser({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final AutoCompleteParserModel model;
 

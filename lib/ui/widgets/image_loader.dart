@@ -34,7 +34,7 @@ typedef WidgetBuilder = Widget Function(
 
 class ImageLoader extends StatefulWidget {
   const ImageLoader({
-    Key? key,
+    super.key,
     required this.concurrency,
     required this.model,
     this.imageBuilder,
@@ -45,7 +45,7 @@ class ImageLoader extends StatefulWidget {
     this.imageWidgetBuilder,
     this.innerImageBuilder,
     this.enableHero = true,
-  }) : super(key: key);
+  });
 
   final ImageListConcurrency concurrency;
   final ImageRpcModel model;
@@ -60,7 +60,7 @@ class ImageLoader extends StatefulWidget {
   final WidgetBuilder? innerImageBuilder;
 
   @override
-  _ImageLoaderState createState() => _ImageLoaderState();
+  State<ImageLoader> createState() => _ImageLoaderState();
 }
 
 class _ImageLoaderState extends State<ImageLoader> {

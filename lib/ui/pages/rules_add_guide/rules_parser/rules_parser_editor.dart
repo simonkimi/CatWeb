@@ -13,9 +13,9 @@ import 'package:get/get.dart';
 
 class RulesParserEditor extends StatelessWidget {
   const RulesParserEditor({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final ParserBaseModel model;
 
@@ -32,13 +32,13 @@ class RulesParserEditor extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return CupertinoTabBarView(
-      children: [
-        _buildEditor(context),
-        ExtraParser(model: model),
-      ],
       tabs: const [
         CupertinoTab('基础规则'),
         CupertinoTab('附加字段'),
+      ],
+      children: [
+        _buildEditor(context),
+        ExtraParser(model: model),
       ],
     );
   }
@@ -47,9 +47,9 @@ class RulesParserEditor extends StatelessWidget {
     return CupertinoNavigationBar(
       leading: CupertinoButton(
         onPressed: () => Get.back(),
-        child: const Icon(CupertinoIcons.back),
         padding: EdgeInsets.zero,
         minSize: 0,
+        child: const Icon(CupertinoIcons.back),
       ),
       middle: const Text('规则'),
       border: const Border(),

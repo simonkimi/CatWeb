@@ -13,9 +13,9 @@ import 'list_search.dart';
 
 class RulesPageEdit extends GetView<RulesEditController> {
   const RulesPageEdit({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final PageBlueprintModel model;
 
@@ -59,9 +59,9 @@ class RulesPageEdit extends GetView<RulesEditController> {
         onPressed: () {
           Get.back();
         },
-        child: const Icon(CupertinoIcons.back),
         padding: EdgeInsets.zero,
         minSize: 0,
+        child: const Icon(CupertinoIcons.back),
       ),
       middle: Text(I.of(context).page),
       border: model.hasExtraData() ? const Border() : kDefaultNavBarBorder,

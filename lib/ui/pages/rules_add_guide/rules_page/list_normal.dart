@@ -9,9 +9,9 @@ import 'package:get/get.dart';
 
 class ListNormalSubPage extends StatelessWidget {
   const ListNormalSubPage({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final PageBlueprintModel model;
 

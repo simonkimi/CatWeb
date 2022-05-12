@@ -25,7 +25,7 @@ Future<void> main() async {
 }
 
 class BlurController extends StatefulWidget {
-  const BlurController({Key? key}) : super(key: key);
+  const BlurController({super.key});
 
   @override
   State<BlurController> createState() => _BlurControllerState();
@@ -38,7 +38,7 @@ class _BlurControllerState extends State<BlurController>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
@@ -71,7 +71,7 @@ class _BlurControllerState extends State<BlurController>
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {

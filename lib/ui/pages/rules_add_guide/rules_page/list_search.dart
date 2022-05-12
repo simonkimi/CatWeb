@@ -13,9 +13,9 @@ import 'package:get/get.dart';
 
 class ListFilterEditor extends StatelessWidget {
   const ListFilterEditor({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final PageBlueprintModel model;
 

@@ -5,12 +5,12 @@ import 'package:flutter_swipe_action_cell/core/controller.dart';
 
 class CupertinoClassicalListTile extends StatelessWidget {
   const CupertinoClassicalListTile({
-    Key? key,
+    super.key,
     required this.icon,
     required this.text,
     this.padding = 15,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final Widget icon;
   final String text;
@@ -45,13 +45,13 @@ class CupertinoClassicalListTile extends StatelessWidget {
 
 class CupertinoDeletableTile extends StatelessWidget {
   const CupertinoDeletableTile({
-    Key? key,
+    super.key,
     required this.controller,
     required this.index,
     required this.text,
     required this.onDelete,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   final SwipeActionController controller;
   final int index;
@@ -78,6 +78,23 @@ class CupertinoDeletableTile extends StatelessWidget {
           index: index,
           backgroundColor:
               CupertinoColors.systemBackground.resolveFrom(context),
+          trailingActions: <SwipeAction>[
+            SwipeAction(
+              widthSpace: 50,
+              closeOnTap: true,
+              icon: const Icon(
+                CupertinoIcons.delete,
+                color: CupertinoColors.white,
+                size: 18,
+              ),
+              onTap: (CompletionHandler handler) async {
+                await handler(true);
+                onDelete(index);
+              },
+              color: CupertinoColors.systemRed.resolveFrom(context),
+              style: const TextStyle(fontSize: 14),
+            ),
+          ],
           child: _buildListBody(
             padding: 15,
             icon: CupertinoButton(
@@ -102,23 +119,6 @@ class CupertinoDeletableTile extends StatelessWidget {
               ),
             ),
           ),
-          trailingActions: <SwipeAction>[
-            SwipeAction(
-              widthSpace: 50,
-              closeOnTap: true,
-              icon: const Icon(
-                CupertinoIcons.delete,
-                color: CupertinoColors.white,
-                size: 18,
-              ),
-              onTap: (CompletionHandler handler) async {
-                await handler(true);
-                onDelete(index);
-              },
-              color: CupertinoColors.systemRed.resolveFrom(context),
-              style: const TextStyle(fontSize: 14),
-            ),
-          ],
         ),
       ),
     );

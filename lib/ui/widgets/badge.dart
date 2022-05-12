@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class Badge extends StatelessWidget {
   const Badge({
-    Key? key,
+    super.key,
     required this.text,
     this.color,
     this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
@@ -12,7 +12,7 @@ class Badge extends StatelessWidget {
     this.fontSize = 15,
     this.textColor,
     this.disable = false,
-  }) : super(key: key);
+  });
 
   final Color? color;
   final Color? textColor;

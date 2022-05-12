@@ -10,9 +10,9 @@ import 'package:flutter/material.dart';
 
 class ListParserFragment extends StatelessWidget {
   const ListParserFragment({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final ListViewParserModel model;
 
