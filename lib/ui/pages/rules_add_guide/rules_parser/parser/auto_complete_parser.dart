@@ -1,8 +1,8 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/components/cupertino_input.dart';
-import 'package:catweb/ui/components/form.dart';
-import 'package:catweb/ui/components/rules_card.dart';
+import 'package:catweb/ui/widgets/cupertino_input.dart';
+import 'package:catweb/ui/widgets/form.dart';
+import 'package:catweb/ui/widgets/rules_card.dart';
 import 'package:flutter/cupertino.dart';
 
 class SearchAutoCompleteParser extends StatelessWidget {

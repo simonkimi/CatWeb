@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/controller/setting_enum.dart';
-import 'package:catweb/ui/components/image_loader.dart';
+import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

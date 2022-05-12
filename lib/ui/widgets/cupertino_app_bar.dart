@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:catweb/data/constant.dart';
-import 'package:catweb/ui/components/tab_bar.dart';
+import 'package:catweb/ui/widgets/tab_bar.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

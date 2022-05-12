@@ -1,4 +1,4 @@
-import 'package:catweb/ui/components/form.dart';
+import 'package:catweb/ui/widgets/form.dart';
 import 'package:flutter/material.dart';
 
 class RulesActions extends StatelessWidget {

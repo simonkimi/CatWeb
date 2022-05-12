@@ -1,5 +1,5 @@
 import 'package:catweb/data/constant.dart';
-import 'package:catweb/ui/components/cupertino_app_bar.dart';
+import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'comment_item.dart';

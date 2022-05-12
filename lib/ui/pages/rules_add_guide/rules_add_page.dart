@@ -1,8 +1,8 @@
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/components/dialog.dart';
-import 'package:catweb/ui/components/tab_bar.dart';
+import 'package:catweb/ui/widgets/dialog.dart';
+import 'package:catweb/ui/widgets/tab_bar.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_advance/rules_advance.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_basic/rules_basic.dart';

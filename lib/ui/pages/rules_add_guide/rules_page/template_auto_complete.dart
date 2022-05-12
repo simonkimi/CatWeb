@@ -1,6 +1,6 @@
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
-import 'package:catweb/ui/components/cupertino_input.dart';
+import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 

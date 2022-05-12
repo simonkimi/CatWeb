@@ -1,7 +1,7 @@
-import 'package:catweb/ui/components/cupertino_app_bar.dart';
-import 'package:catweb/ui/components/image_loader.dart';
-import 'package:catweb/ui/components/load_more_footer.dart';
-import 'package:catweb/ui/components/simple_sliver.dart';
+import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
+import 'package:catweb/ui/widgets/image_loader.dart';
+import 'package:catweb/ui/widgets/load_more_footer.dart';
+import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';

@@ -3,9 +3,9 @@ import 'package:catweb/data/protocol/model/selector.dart';
 import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/gen/protobuf/selector.pbserver.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/components/cupertino_list_tile.dart';
-import 'package:catweb/ui/components/dialog.dart';
-import 'package:catweb/ui/components/form.dart';
+import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
+import 'package:catweb/ui/widgets/dialog.dart';
+import 'package:catweb/ui/widgets/form.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -49,7 +49,7 @@ abstract class ReaderInfo {
   ImageListConcurrency get previewConcurrency;
 }
 
-class ReaderImageLoader with LoadStateMixin {
+class ReaderImageLoader with LoadListStateMixin {
   ReaderImageLoader({
     required this.index,
     required this.requestLoadPreviewListWithIndex,
@@ -126,9 +126,10 @@ class ImageReaderController {
   var readerIsForward = true; // 是否为正向阅读
   var currentIndex = 0; // 当前阅读的页码
 
-  // 图片列表
+  /// 图片列表
   final RxList<ReaderImageLoader> imageLoaderList = <ReaderImageLoader>[].obs;
 
+  /// 正在加载的数据
   final _waitLoadModel = <int, Future<void> Function(bool)>{};
 
   Future<void> requestLoadPreviewListWithIndex(int index) async {

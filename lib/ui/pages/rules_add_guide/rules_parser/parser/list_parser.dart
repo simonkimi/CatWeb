@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'package:catweb/data/protocol/model/parser.dart';
-import 'package:catweb/ui/components/cupertino_input.dart';
+import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/theme/colors.dart';
-import 'package:catweb/ui/components/form.dart';
-import 'package:catweb/ui/components/rules_card.dart';
+import 'package:catweb/ui/widgets/form.dart';
+import 'package:catweb/ui/widgets/rules_card.dart';
 import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

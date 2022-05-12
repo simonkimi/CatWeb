@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/components/cupertino_router.dart';
+import 'package:catweb/ui/widgets/cupertino_router.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/ui/pages/view_page/viewer_main.dart';
 import 'package:flutter/cupertino.dart';

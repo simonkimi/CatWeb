@@ -1,6 +1,6 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/parser.pbenum.dart';
-import 'package:catweb/ui/components/tab_bar.dart';
+import 'package:catweb/ui/widgets/tab_bar.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/auto_complete_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/extra_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/gallery_parser.dart';

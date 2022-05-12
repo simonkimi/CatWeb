@@ -1,11 +1,10 @@
-import 'package:catweb/ui/components/dialog.dart';
+import 'package:catweb/ui/widgets/cupertino_divider.dart';
+import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
-
-import '../../../components/cupertino_divider.dart';
 
 class SettingIconDivider extends StatelessWidget {
   const SettingIconDivider({Key? key}) : super(key: key);

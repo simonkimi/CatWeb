@@ -1,10 +1,10 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
-import 'package:catweb/ui/components/cupertino_app_bar.dart';
-import 'package:catweb/ui/components/cupertino_divider.dart';
-import 'package:catweb/ui/components/load_more_footer.dart';
-import 'package:catweb/ui/components/simple_sliver.dart';
+import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
+import 'package:catweb/ui/widgets/cupertino_divider.dart';
+import 'package:catweb/ui/widgets/load_more_footer.dart';
+import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/subpage_controller.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/viewer_subpage_scaffold.dart';
 

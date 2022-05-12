@@ -1,7 +1,7 @@
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
-import 'package:catweb/ui/components/cupertino_deletable_tile.dart';
-import 'package:catweb/ui/components/cupertino_input.dart';
+import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
+import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';

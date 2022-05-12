@@ -1,6 +1,6 @@
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/components/cupertino_divider.dart';
-import 'package:catweb/ui/components/cupertino_input.dart';
+import 'package:catweb/ui/widgets/cupertino_divider.dart';
+import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,5 +1,5 @@
 import 'package:catweb/data/constant.dart';
-import 'package:catweb/ui/components/dialog.dart';
+import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';

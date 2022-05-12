@@ -1,8 +1,8 @@
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/components/badge.dart';
-import 'package:catweb/ui/components/cupertino_divider.dart';
+import 'package:catweb/ui/widgets/badge.dart';
+import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

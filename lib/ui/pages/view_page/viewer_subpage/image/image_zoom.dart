@@ -1,5 +1,5 @@
 import 'package:catweb/data/constant.dart';
-import 'package:catweb/ui/components/zoom.dart';
+import 'package:catweb/ui/widgets/zoom.dart';
 import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:photo_view/photo_view.dart';
@@ -34,7 +34,6 @@ class ZoomWidget extends StatelessWidget {
               if (index >= doubleTapScales.length) index = 0;
               final scale = doubleTapScales[index];
               animation.animationScale(currentScale, scale);
-
               // 位移
               final mediaSize = MediaQuery.of(context).size;
               final currentX = controller.position.dx;

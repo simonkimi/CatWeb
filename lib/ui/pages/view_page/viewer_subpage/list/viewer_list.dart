@@ -1,8 +1,8 @@
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
-import 'package:catweb/ui/components/cupertino_app_bar.dart';
-import 'package:catweb/ui/components/tab_bar.dart';
+import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
+import 'package:catweb/ui/widgets/tab_bar.dart';
 
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/search_list.dart';

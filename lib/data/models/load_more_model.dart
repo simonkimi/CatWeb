@@ -9,7 +9,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:tuple/tuple.dart';
 
-abstract class LoadMoreBase with LoadStateMixin {
+abstract class LoadMoreBase with LoadListStateMixin {
   final _requestLock = Lock();
 
   final refreshController = RefreshController();

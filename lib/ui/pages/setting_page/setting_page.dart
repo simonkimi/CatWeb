@@ -1,7 +1,7 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/components/cupertino_app_bar.dart';
-import 'package:catweb/ui/components/cupertino_router.dart';
+import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
+import 'package:catweb/ui/widgets/cupertino_router.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/security_setting.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';

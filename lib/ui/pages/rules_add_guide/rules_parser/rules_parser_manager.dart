@@ -1,8 +1,8 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/components/cupertino_list_tile.dart';
-import 'package:catweb/ui/components/dialog.dart';
+import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
+import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_editor.dart';
 import 'package:flutter/cupertino.dart';
