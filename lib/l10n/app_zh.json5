@@ -1,4 +1,5 @@
 {
+  //
   // 基础单词
   "parser": "解析器",
   "action": "动作器",
@@ -37,11 +38,10 @@
   "advanced": "高级",
   "delete": "删除",
   "basic": "基础",
-
-  // 页面
+  //
+  // 基础设置页面
   "basic_setting": "基础",
   "page_manager": "页面",
-
   "base_url": "基础URL",
   "login_url": "登录URL",
   "login_url_reg": "Cookie登录URL正则",
