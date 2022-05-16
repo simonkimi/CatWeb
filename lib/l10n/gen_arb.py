@@ -14,7 +14,7 @@ def yaml_to_json(yaml_file):
                 json_struct[key] = value['text']
             attribute = {}
             for attribute_key, attribute_value in value.items():
-                if attribute_key == 'placeholders':
+                if attribute_key == 'placeholders' or attribute_key == 'attrs':
                     attribute['placeholders'] = dict(zip([i for i in attribute_value], [{} for _ in attribute_value]))
                 elif attribute_key == 'text':
                     pass
