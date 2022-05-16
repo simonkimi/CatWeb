@@ -15,3 +15,4 @@ linter:
   rules:
     avoid_print: false
     prefer_single_quotes: true
+    use_build_context_synchronously: false

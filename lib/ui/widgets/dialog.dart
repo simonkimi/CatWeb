@@ -25,8 +25,9 @@ Future<T?> showCupertinoSelectDialog<T>({
   String? message,
   String? cancelText,
   bool barrierDismissible = true,
+  void Function(T?)? onSelected,
 }) {
-  return showCupertinoModalPopup(
+  return showCupertinoModalPopup<T>(
     barrierDismissible: barrierDismissible,
     context: context,
     builder: (context) {
@@ -38,6 +39,7 @@ Future<T?> showCupertinoSelectDialog<T>({
             isDefaultAction: item.value == selectedValue,
             isDestructiveAction: item.destructive,
             onPressed: () {
+              onSelected?.call(item.value);
               Navigator.pop(context, item.value);
             },
             child: Text(item.title),
@@ -46,6 +48,7 @@ Future<T?> showCupertinoSelectDialog<T>({
         cancelButton: cancelText != null
             ? CupertinoActionSheetAction(
                 onPressed: () {
+                  onSelected?.call(null);
                   Navigator.of(context).pop();
                 },
                 child: Text(cancelText),

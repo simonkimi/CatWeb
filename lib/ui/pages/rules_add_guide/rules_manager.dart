@@ -57,7 +57,7 @@ class SiteManager extends GetWidget<GlobalController> {
               children: [
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.add),
-                  onPressed: () => _toEditPage(context, pb: null, db: null),
+                  onPressed: () => _toEditPage(Navigator.of(context), pb: null, db: null),
                 ),
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.qrcode_viewfinder),
@@ -138,11 +138,12 @@ class SiteManager extends GetWidget<GlobalController> {
     WebTableData db,
     SiteBlueprint pb,
   ) async {
+    final navigator = Navigator.of(context);
     final result = await showCupertinoSelectDialog<_MenuSelect>(
-      cancelText: '取消',
+      cancelText: I.of(context).cancel,
       context: context,
       items: [
-        const SelectTileItem(title: '编辑', value: _MenuSelect.edit),
+        SelectTileItem(title: I.of(context).edit, value: _MenuSelect.edit),
         const SelectTileItem(title: '分享', value: _MenuSelect.share),
         SelectTileItem(
             title: db.loginCookies.isNotEmpty ? '注销' : '登录',
@@ -159,7 +160,7 @@ class SiteManager extends GetWidget<GlobalController> {
       case _MenuSelect.share:
         return _share();
       case _MenuSelect.edit:
-        return _toEditPage(context, pb: pb, db: db);
+        return _toEditPage(navigator, pb: pb, db: db);
       case _MenuSelect.delete:
         return _onDelete(context, db, pb);
       case _MenuSelect.login:
@@ -243,11 +244,11 @@ class SiteManager extends GetWidget<GlobalController> {
   }
 
   void _toEditPage(
-    BuildContext context, {
+    NavigatorState navigator, {
     SiteBlueprint? pb,
     WebTableData? db,
   }) =>
-      Navigator.of(context).push(CupertinoWithModalsPageRoute(
+      navigator.push(CupertinoWithModalsPageRoute(
           builder: (context) =>
               RulesEditPage(pb: pb ?? eh.ehTestSite, db: db)));
 }
