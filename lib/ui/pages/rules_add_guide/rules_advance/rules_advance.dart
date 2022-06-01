@@ -1,5 +1,6 @@
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
@@ -49,7 +50,7 @@ class RulesAdvance extends GetView<RulesEditController> {
                   CupertinoIcons.add_circled_solid,
                   color: CupertinoColors.systemGreen.resolveFrom(context),
                 ),
-                text: '添加',
+                text: I.of(context).add,
                 onTap: () {
                   controller.blueprint.headers.add(
                     RegFieldModel(RegField(reg: '*', value: '')),
@@ -91,7 +92,7 @@ class RulesAdvance extends GetView<RulesEditController> {
                   CupertinoIcons.add_circled_solid,
                   color: CupertinoColors.systemGreen.resolveFrom(context),
                 ),
-                text: '添加',
+                text: I.of(context).add,
                 onTap: () {
                   controller.blueprint.cookies.add(
                     RegFieldModel(RegField(reg: '', value: '')),
@@ -113,18 +114,18 @@ class RulesAdvance extends GetView<RulesEditController> {
           return CupertinoAlertDialog(
             actions: [
               CupertinoButton(
-                child: const Text('确定'),
+                child: Text(I.of(context).positive),
                 onPressed: () => Get.back(),
               )
             ],
             content: Column(
               children: [
                 CupertinoInput(
-                  labelText: '正则',
+                  labelText: I.of(context).reg,
                   value: field.reg,
                 ),
                 CupertinoInput(
-                  labelText: '内容',
+                  labelText: I.of(context).content,
                   value: field.value,
                 ),
               ],

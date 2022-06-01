@@ -73,13 +73,13 @@ Future<bool?> showConfirmDialog({
             onPressed: () {
               Navigator.of(context).pop(false);
             },
-            child: const Text('取消'),
+            child: Text(I.of(context).cancel),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop(true);
             },
-            child: const Text('确认'),
+            child: Text(I.of(context).positive),
           ),
         ],
       );

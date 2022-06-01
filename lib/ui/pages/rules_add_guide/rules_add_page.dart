@@ -28,7 +28,7 @@ class RulesEditPage extends StatelessWidget {
             CupertinoTab(I.of(context).basic_setting),
             CupertinoTab(I.of(context).page_manager),
             CupertinoTab(I.of(context).parser),
-            const CupertinoTab('身份'),
+            CupertinoTab(I.of(context).identity),
           ],
           children: const [
             RulesBasic(),
@@ -54,12 +54,12 @@ class RulesEditPage extends StatelessWidget {
         minSize: 0,
         child: const Icon(CupertinoIcons.back),
       ),
-      middle: const Text('规则编辑'),
+      middle:  Text(I.of(context).rule_edit),
       trailing: CupertinoButton(
         onPressed: () => _save(context),
         padding: EdgeInsets.zero,
         minSize: 0,
-        child: const Text('保存', style: TextStyle(fontSize: 15)),
+        child: Text(I.of(context).save, style: const TextStyle(fontSize: 15)),
       ),
       border: const Border(),
     );
@@ -68,8 +68,8 @@ class RulesEditPage extends StatelessWidget {
   Future<bool> _showExitConfine(BuildContext context) async {
     return (await showCupertinoConfirmDialog(
           context: context,
-          title: '退出',
-          content: '您确定不保存而退出吗?\n所做的修改将不会保存.',
+          title: I.of(context).exit,
+          content: I.of(context).exit_not_save,
           showCancel: true,
         )) ==
         true;
@@ -79,8 +79,8 @@ class RulesEditPage extends StatelessWidget {
     if (controller.blueprint.name.isEmpty) {
       showCupertinoConfirmDialog(
         context: context,
-        title: '标题',
-        content: '规则名称不能为空',
+        title: I.of(context).title,
+        content: I.of(context).rule_name_empty,
         showCancel: false,
       );
       return;
@@ -88,8 +88,8 @@ class RulesEditPage extends StatelessWidget {
     if (controller.blueprint.baseUrl.isEmpty) {
       showCupertinoConfirmDialog(
         context: context,
-        title: '网站',
-        content: '基础Url不能为空',
+        title: I.of(context).website,
+        content: I.of(context).base_url_empty,
         showCancel: false,
       );
       return;

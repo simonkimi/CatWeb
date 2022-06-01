@@ -23,11 +23,11 @@ class DisplaySettingPage extends GetView<SettingController> {
     return SettingScaffold(
       title: I.of(context).display,
       children: [
-        const SettingGroupTitle('预览'),
+        SettingGroupTitle(I.of(context).preview),
         SettingGroupWidget(
           children: [
             SettingTile(
-              title: '深色模式下预览图片变暗',
+              title: I.of(context).dark_mask,
               trailing: CupertinoObxSwitch(
                 scale: 0.9,
                 value: controller.imageMaskInDarkMode,
@@ -35,10 +35,11 @@ class DisplaySettingPage extends GetView<SettingController> {
             ),
             const SettingDivider(),
             SettingSelectionTile(
-              title: '同时加载图片数量',
+              title: I.of(context).image_concurrency,
               value: controller.concurrencyCount,
               items: [
-                const SelectTileItem(value: 0, title: '不限制'),
+                SelectTileItem(value: -1, title: I.of(context).disable),
+                SelectTileItem(value: 0, title: I.of(context).no_limit),
                 for (var i = 1; i <= 10; i += 2)
                   SelectTileItem(value: i, title: '$i'),
               ],
@@ -46,27 +47,30 @@ class DisplaySettingPage extends GetView<SettingController> {
           ],
         ),
         const SizedBox(height: 20),
-        const SettingGroupTitle('阅读'),
+        SettingGroupTitle(I.of(context).read),
         SettingGroupWidget(
           children: [
             SettingSelectionTile(
-              title: '预加载数量',
+              title: I.of(context).pre_load_count,
               value: controller.preloadCount,
               items: [
-                const SelectTileItem(value: 0, title: '不预加载'),
+                SelectTileItem(value: 0, title: I.of(context).disable),
                 for (var i = 1; i <= 17; i += 2)
                   SelectTileItem(value: i, title: '$i'),
               ],
             ),
             const SettingDivider(),
             SettingSelectionTile<int>(
-              title: '阅读方向',
-              previousPageTitle: '显示',
+              title: I.of(context).read_direction,
+              previousPageTitle: I.of(context).display,
               value: controller.readerDirectory,
-              items: const [
-                SelectTileItem(value: ReaderDirection.ltr, title: '从左到右'),
-                SelectTileItem(value: ReaderDirection.rtl, title: '从右到左'),
-                SelectTileItem(value: ReaderDirection.ttb, title: '从上到下'),
+              items: [
+                SelectTileItem(
+                    value: ReaderDirection.ltr, title: I.of(context).ltr),
+                SelectTileItem(
+                    value: ReaderDirection.rtl, title: I.of(context).rtl),
+                SelectTileItem(
+                    value: ReaderDirection.ttb, title: I.of(context).ttb),
               ],
             ),
           ],

@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -39,12 +40,12 @@ class _WebViewLoginInState extends State<WebViewLoginIn> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: const Text('登录'),
+        middle: Text(I.of(context).login),
         trailing: CupertinoButton(
           minSize: 0,
           padding: EdgeInsets.zero,
           onPressed: _onImport,
-          child: const Text('导入'),
+          child: Text(I.of(context).import),
         ),
       ),
       resizeToAvoidBottomInset: true,
@@ -127,8 +128,7 @@ class _WebViewLoginInState extends State<WebViewLoginIn> {
     showCupertinoConfirmDialog(
             context: context,
             title: 'cookie',
-            content:
-                '将导入以下Cookies: \n ${cookies.map((c) => '${c.name}: ${c.value}').join('\n')}')
+            content: '${I.of(context).import_cookie}\n${cookies.map((c) => '${c.name}: ${c.value}').join('\n')}')
         .then((value) {
       if (value == true) {
         Navigator.of(context).pop(cookies);

@@ -89,7 +89,7 @@ class ImagePageController {
     if (realIndex >= controller.imageLoaderList.length) {
       return;
     }
-    logger.d('翻页到: $index -> $realIndex');
+    logger.d('Page changed: $index -> $realIndex');
 
     if ((realIndex - currentPage).abs() == 1) {
       // 跳页不作为翻页

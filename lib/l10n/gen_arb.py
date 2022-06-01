@@ -15,7 +15,14 @@ def yaml_to_json(yaml_file):
             attribute = {}
             for attribute_key, attribute_value in value.items():
                 if attribute_key == 'placeholders' or attribute_key == 'attrs':
-                    attribute['placeholders'] = dict(zip([i for i in attribute_value], [{} for _ in attribute_value]))
+                    placeholders = {}
+                    for attr in attribute_value:
+                        if type(attr) is str:
+                            placeholders[attr] = {}
+                        elif type(attr) is dict:
+                            for k, v in attr.items():
+                                placeholders[k] = v
+                    attribute['placeholders'] = placeholders
                 elif attribute_key == 'text':
                     pass
                 else:
@@ -24,13 +31,10 @@ def yaml_to_json(yaml_file):
     return json.dumps(json_struct)
 
 
-for root, dirs, files in os.walk('.'):
+for root, dirs, files in os.walk('..'):
     for file in files:
         if file.endswith('.yaml') or file.endswith('.yml'):
             with open(file, 'r', encoding='utf-8') as f:
-                try:
-                    data = yaml_to_json(f)
-                    with open('../gen/l10n/' + file.split('.')[0] + '.arb', 'w') as f2:
-                        f2.write(data)
-                except Exception as e:
-                    print('Unexpected exception:', e)
+                data = yaml_to_json(f)
+                with open('../gen/l10n/' + file.split('.')[0] + '.arb', 'w') as f2:
+                    f2.write(data)

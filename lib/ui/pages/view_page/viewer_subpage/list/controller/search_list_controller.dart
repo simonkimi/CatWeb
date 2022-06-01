@@ -3,6 +3,7 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/handle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -52,7 +53,7 @@ class SearchListController {
   void onSubmitted(String value) {
     handler.cancel();
     onSearch(value);
-    print('新搜索: $value');
+    logger.d('NewSearch: $value');
   }
 
   void requestAutoComplete(String value) {

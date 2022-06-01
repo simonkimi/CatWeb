@@ -1,4 +1,5 @@
 import 'package:catweb/data/constant.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -14,7 +15,7 @@ class CommentListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       child: CupertinoAppBar(
-        title: '评论',
+        title: I.of(context).comment,
         leading: const CupertinoBackLeading(),
         child: SafeArea(
           child: ListView.builder(

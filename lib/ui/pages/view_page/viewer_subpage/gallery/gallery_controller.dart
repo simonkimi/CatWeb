@@ -95,7 +95,7 @@ class GalleryPreviewController
     } else {
       if (pages.isNotEmpty) {
         final preUrl = pages[page - 1]?.nextPage;
-        if (preUrl == null) throw Exception('看起来莫名其妙跳页了: index $page');
+        if (preUrl == null) throw Exception('Error: Jump page to index $page ?');
         baseUrl = preUrl;
       }
     }

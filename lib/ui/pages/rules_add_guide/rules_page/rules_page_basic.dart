@@ -34,18 +34,18 @@ class RulesPageBasic extends GetView<RulesEditController> {
             value: model.name,
           ),
           CupertinoInput(
-            labelText: '网址',
+            labelText: I.of(context).website,
             value: model.url,
           ),
           Obx(() => CupertinoReadOnlyInput(
-                labelText: '请求方式',
+                labelText: I.of(context).net_action,
                 value: model.netAction.value.string,
                 onTap: () => _onNetActionTap(context),
               )),
           Obx(() {
             if (model.netAction.value == NetActionType.NET_ACTION_TYPE_POST) {
               return CupertinoInput(
-                labelText: '表单',
+                labelText: I.of(context).form,
                 value: model.formData,
                 minLine: 4,
               );
@@ -53,7 +53,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
             return const SizedBox();
           }),
           Obx(() => CupertinoReadOnlyInput(
-                labelText: '解析器',
+                labelText: I.of(context).parser,
                 value:
                     controller.blueprint.getParserName(model.baseParser.value),
                 onTap: () => _onParserTap(context),
@@ -62,7 +62,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
           if ([Template.TEMPLATE_IMAGE_WATERFALL, Template.TEMPLATE_IMAGE_LIST]
               .contains(model.template.value))
             Obx(() => CupertinoReadOnlyInput(
-                  labelText: '显示方式',
+                  labelText: I.of(context).display_type,
                   value: model.display.value.string(context),
                   onTap: () => _onDisplayTap(context),
                 )),
@@ -87,12 +87,12 @@ class RulesPageBasic extends GetView<RulesEditController> {
         body = [
           _buildOpenWidget(
             context,
-            labelText: '项目跳转',
+            labelText: I.of(context).item_jump_to,
             target: extra.targetItem,
           ),
           _buildOpenWidget(
             context,
-            labelText: '自动补全设定',
+            labelText: I.of(context).auto_complete_jump_to,
             target: extra.targetAutoComplete,
             filter: (item) =>
                 item.template.value == Template.TEMPLATE_AUTO_COMPLETE,
@@ -104,7 +104,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
         body = [
           _buildOpenWidget(
             context,
-            labelText: '阅读跳转',
+            labelText: I.of(context).read_jump_to,
             target: extra.targetReader,
             filter: (item) =>
                 item.template.value == Template.TEMPLATE_IMAGE_VIEWER,
@@ -162,7 +162,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
 
   Future<void> _onParserTap(BuildContext context) async {
     final result = await showCupertinoSelectDialog<String>(
-      title: '请选择解析器',
+      title: I.of(context).select_parser,
       context: context,
       items: model.template.value
           .parser(controller.blueprint.parsers)
@@ -177,7 +177,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
 
   Future<void> _onNetActionTap(BuildContext context) async {
     final result = await showCupertinoSelectDialog<NetActionType>(
-      title: '请选择请求方式',
+      title: I.of(context).select_net_action,
       context: context,
       items: NetActionType.values
           .map((e) => SelectTileItem(title: e.string, value: e))
@@ -219,7 +219,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
 
   Future<void> _onDisplayTap(BuildContext context) async {
     final result = await showCupertinoSelectDialog<SiteDisplayType>(
-      title: '显示方式',
+      title: I.of(context).display_type,
       context: context,
       items: SiteDisplayType.values
           .map((e) => SelectTileItem<SiteDisplayType>(

@@ -1,3 +1,4 @@
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
 import 'package:catweb/test/site/eh/eh_rules.dart' as eh;
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
@@ -46,15 +47,15 @@ class EmptyFragment extends StatelessWidget {
             color: FixColor.groupedColor,
             child: Row(
               mainAxisSize: MainAxisSize.min,
-              children: const [
-                Icon(
+              children: [
+                const Icon(
                   CupertinoIcons.add,
                   color: CupertinoColors.activeBlue,
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 Text(
-                  '添加站点',
-                  style: TextStyle(
+                  I.of(context).add_site,
+                  style: const TextStyle(
                     color: CupertinoColors.activeBlue,
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
@@ -67,11 +68,11 @@ class EmptyFragment extends StatelessWidget {
         Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: const [
-              SizedBox(height: 100),
+            children: [
+              const SizedBox(height: 100),
               Text(
-                '没有找到任何站点',
-                style: TextStyle(
+                I.of(context).no_site,
+                style: const TextStyle(
                   fontSize: 12,
                   color: CupertinoColors.systemGrey,
                 ),

@@ -33,7 +33,7 @@ class GalleryParserFragment extends StatelessWidget {
   SliverList _buildBaseList(BuildContext context) {
     return SliverList(
       delegate: SliverChildListDelegate([
-        RulesCard(title: '基础信息', children: [
+        RulesCard(title: I.of(context).basic_setting, children: [
           CupertinoFormInput(
             label: I.of(context).name,
             value: model.name,
@@ -48,7 +48,7 @@ class GalleryParserFragment extends StatelessWidget {
       title: I.of(context).index,
       children: [
         RulesForm(
-          title: '下一面',
+          title: I.of(context).next_page,
           selectorModel: model.nextPage,
         ),
       ],
@@ -57,18 +57,18 @@ class GalleryParserFragment extends StatelessWidget {
 
   StickyClassifyList _buildBadgeList(BuildContext context) {
     return StickyClassifyList(
-      title: '徽章',
+      title: I.of(context).badge,
       children: [
         RulesForm(
-          title: '徽章项目',
+          title: I.of(context).badge_item,
           selectorModel: model.badgeSelector,
         ),
         RulesForm(
-          title: '徽章内容',
+          title: I.of(context).badge_content,
           selectorModel: model.badgeText,
         ),
         RulesForm(
-          title: '徽章类型',
+          title: I.of(context).badge_type,
           selectorModel: model.badgeCategory,
         ),
       ],
@@ -76,38 +76,38 @@ class GalleryParserFragment extends StatelessWidget {
   }
 
   StickyClassifyList _buildCommentList(BuildContext context) {
-    return StickyClassifyList(title: '评论', children: [
+    return StickyClassifyList(title: I.of(context).comment, children: [
       RulesForm(
-        title: '评论项目',
+        title: I.of(context).comment_item,
         selectorModel: model.commentSelector,
       ),
       RulesForm(
-        title: '评论内容',
+        title: I.of(context).comment_content,
         selectorModel: model.comments.content,
       ),
       RulesForm(
-        title: '用户名',
+        title: I.of(context).username,
         selectorModel: model.comments.username,
       ),
       RulesForm(
-        title: '评论时间',
+        title: I.of(context).comment_time,
         selectorModel: model.comments.time,
       ),
       RulesForm(
-        title: '评论评分',
+        title: I.of(context).comment_score,
         selectorModel: model.comments.score,
       ),
     ]);
   }
 
   StickyClassifyList _buildTagList(BuildContext context) {
-    return StickyClassifyList(title: '分类', children: [
+    return StickyClassifyList(title: I.of(context).tag, children: [
       RulesForm(
-        title: '分类',
+        title: I.of(context).tag,
         selectorModel: model.tag,
       ),
       RulesForm(
-        title: '分类颜色',
+        title: I.of(context).tag_color,
         selectorModel: model.tagColor,
       ),
     ]);
@@ -151,33 +151,33 @@ class GalleryParserFragment extends StatelessWidget {
   }
 
   StickyClassifyList _buildThumbnailList(BuildContext context) {
-    return StickyClassifyList(title: '缩略图', children: [
+    return StickyClassifyList(title: I.of(context).thumbnail, children: [
       RulesForm(
-        title: '目标',
+        title: I.of(context).thumbnail_target,
         selectorModel: model.target,
       ),
       RulesForm(
-        title: '缩略图项目',
+        title: I.of(context).thumbnail_selector,
         selectorModel: model.thumbnailSelector,
       ),
       RulesForm(
-        title: '缩略图地址',
+        title: I.of(context).thumbnail_img,
         selectorModel: model.thumbnail.imgUrl,
       ),
       RulesForm(
-        title: '缩略图宽度',
+        title: I.of(context).thumbnail_width,
         selectorModel: model.thumbnail.imgWidth,
       ),
       RulesForm(
-        title: '缩略图高度',
+        title: I.of(context).thumbnail_height,
         selectorModel: model.thumbnail.imgHeight,
       ),
       RulesForm(
-        title: '缩略图X偏移',
+        title: I.of(context).thumbnail_x,
         selectorModel: model.thumbnail.imgX,
       ),
       RulesForm(
-        title: '缩略图Y偏移',
+        title: I.of(context).thumbnail_y,
         selectorModel: model.thumbnail.imgY,
       ),
     ]);
@@ -185,26 +185,26 @@ class GalleryParserFragment extends StatelessWidget {
 
   StickyClassifyList _buildCoverList(BuildContext context) {
     return StickyClassifyList(
-      title: '封面',
+      title: I.of(context).cover,
       children: [
         RulesForm(
-          title: '封面地址',
+          title: I.of(context).cover_img,
           selectorModel: model.coverImg.imgUrl,
         ),
         RulesForm(
-          title: '封面宽度',
+          title: I.of(context).cover_width,
           selectorModel: model.coverImg.imgWidth,
         ),
         RulesForm(
-          title: '封面高度',
+          title: I.of(context).cover_height,
           selectorModel: model.coverImg.imgHeight,
         ),
         RulesForm(
-          title: '封面X偏移',
+          title: I.of(context).cover_x,
           selectorModel: model.coverImg.imgX,
         ),
         RulesForm(
-          title: '封面Y偏移',
+          title: I.of(context).cover_y,
           selectorModel: model.coverImg.imgY,
         ),
       ],
@@ -212,41 +212,41 @@ class GalleryParserFragment extends StatelessWidget {
   }
 
   StickyClassifyList _buildInfoList(BuildContext context) {
-    return StickyClassifyList(title: '基础信息', children: [
+    return StickyClassifyList(title: I.of(context).basic_setting, children: [
       RulesForm(
-        title: '标题',
+        title: I.of(context).title,
         selectorModel: model.title,
       ),
       RulesForm(
-        title: '副标题',
+        title: I.of(context).subtitle,
         selectorModel: model.subtitle,
       ),
       RulesForm(
-        title: '上传时间',
+        title: I.of(context).upload_time,
         selectorModel: model.uploadTime,
       ),
       RulesForm(
-        title: '评分',
+        title: I.of(context).star,
         selectorModel: model.star,
       ),
       RulesForm(
-        title: '语言',
+        title: I.of(context).language,
         selectorModel: model.language,
       ),
       RulesForm(
-        title: '描述',
+        title: I.of(context).description,
         selectorModel: model.description,
       ),
       RulesForm(
-        title: '总图片数',
+        title: I.of(context).image_count,
         selectorModel: model.imgCount,
       ),
       RulesForm(
-        title: '总页数',
+        title: I.of(context).page_count,
         selectorModel: model.pageCount,
       ),
       RulesForm(
-        title: '每页图片数',
+        title: I.of(context).image_pre_page,
         selectorModel: model.countPrePage,
       ),
     ]);

@@ -145,7 +145,7 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
         Map<String, dynamic> json2 = jsonDecode(result);
         return json2.map((key, value) => MapEntry(key, value.toString()));
       } catch (e) {
-        print('解析过滤器失败: $e');
+        logger.e('解析过滤器失败: $e');
         return {};
       }
     } else {

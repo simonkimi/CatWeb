@@ -26,13 +26,13 @@ class RulesPageEdit extends GetView<RulesEditController> {
         navigationBar: _buildAppbar(context),
         child: CupertinoTabBarView(
           tabs: [
-            const CupertinoTab('基础'),
+            CupertinoTab(I.of(context).basic),
             if (model.templateData is TemplateListDataModel) ...[
               const CupertinoTab('子页面'),
               CupertinoTab(I.of(context).filter),
             ],
             if (model.templateData is TemplateAutoCompleteModel)
-              const CupertinoTab('设定'),
+              CupertinoTab(I.of(context).setting),
           ],
           children: [
             RulesPageBasic(model: model),

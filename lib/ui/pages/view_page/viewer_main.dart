@@ -1,6 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/protocol/model/page.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/empty/empty.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/viewer_subpage_scaffold.dart';
 import 'package:catweb/utils/icons.dart';
@@ -17,7 +18,7 @@ class ViewerMain extends GetView<GlobalController> {
         if (controller.lastClickBack + 1000 <
             DateTime.now().millisecondsSinceEpoch) {
           controller.lastClickBack = DateTime.now().millisecondsSinceEpoch;
-          BotToast.showText(text: '再按一次退出');
+          BotToast.showText(text: I.of(context).press_again_to_exist);
           return false;
         }
         return true;

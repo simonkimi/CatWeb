@@ -72,7 +72,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
             onPressed: () {
               showCupertinoConfirmDialog(
                 context: context,
-                content: '确定清除脚本?',
+                content: I.of(context).script_clear,
               ).then((value) {
                 if (value == true) {
                   widget.script.value = '';

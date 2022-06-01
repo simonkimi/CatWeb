@@ -57,7 +57,8 @@ class SiteManager extends GetWidget<GlobalController> {
               children: [
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.add),
-                  onPressed: () => _toEditPage(Navigator.of(context), pb: null, db: null),
+                  onPressed: () =>
+                      _toEditPage(Navigator.of(context), pb: null, db: null),
                 ),
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.qrcode_viewfinder),
@@ -146,10 +147,12 @@ class SiteManager extends GetWidget<GlobalController> {
         SelectTileItem(title: I.of(context).edit, value: _MenuSelect.edit),
         const SelectTileItem(title: '分享', value: _MenuSelect.share),
         SelectTileItem(
-            title: db.loginCookies.isNotEmpty ? '注销' : '登录',
+            title: db.loginCookies.isNotEmpty
+                ? I.of(context).logout
+                : I.of(context).login,
             value: _MenuSelect.login),
-        const SelectTileItem(
-          title: '删除',
+        SelectTileItem(
+          title: I.of(context).delete,
           value: _MenuSelect.delete,
           destructive: true,
         ),
@@ -177,8 +180,8 @@ class SiteManager extends GetWidget<GlobalController> {
       // 注销登录
       final isReload = await showCupertinoConfirmDialog(
         context: context,
-        title: '注销登录',
-        content: '确定要注销登录吗?',
+        title: I.of(context).logout,
+        content: I.of(context).logout_check,
       );
       if (isReload == true) {
         await DB().webDao.replace(db.copyWith(loginCookies: ''));
@@ -191,8 +194,9 @@ class SiteManager extends GetWidget<GlobalController> {
             !db.securityModel) {
           final w = await showCupertinoConfirmDialog(
             context: context,
-            title: '登录',
-            content: '登录地址和网站地址不在同一个域名下, 请确认您信任此规则发布者, 否则您的认证令牌可能会被盗用! 是否继续登录?',
+            title: I.of(context).login,
+            content:
+                I.of(context).login_without_security(pb.loginCookieDescription),
           );
           if (w == false) {
             return;
@@ -200,9 +204,8 @@ class SiteManager extends GetWidget<GlobalController> {
         } else {
           final w = await showCupertinoConfirmDialog(
             context: context,
-            title: '登录',
-            content:
-                '登录地址和网站地址不在同一个域名下, 安全模式已开启, 将会保护您的认证令牌(可能造成某些网站异常), 若要关闭, 请前往网站设置',
+            title: I.of(context).login,
+            content: I.of(context).login_with_security,
           );
           if (w == false) {
             return;
@@ -221,8 +224,8 @@ class SiteManager extends GetWidget<GlobalController> {
       if (cookies != null) {
         final cookieStr = cookies.map((e) => '${e.name}=${e.value}').join('; ');
         await DB().webDao.replace(db.copyWith(loginCookies: cookieStr));
-        BotToast.showText(text: '登录成功');
-        logger.i('登录成功, cookies: $cookieStr');
+        BotToast.showText(text: I.of(context).login_success);
+        logger.i('Login success, cookies: $cookieStr');
       }
     }
   }
