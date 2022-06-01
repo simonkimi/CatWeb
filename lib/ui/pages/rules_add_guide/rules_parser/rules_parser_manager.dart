@@ -89,7 +89,7 @@ class RulesParserManager extends GetView<RulesEditController> {
     } else {
       showCupertinoConfirmDialog(
         context: context,
-        content: '确定要删除 ${model.name} 吗？',
+        content: I.of(context).delete_confirm(model.name.value),
         confineText: I.of(context).delete,
         confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
       ).then((value) {

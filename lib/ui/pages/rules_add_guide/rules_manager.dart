@@ -236,7 +236,7 @@ class SiteManager extends GetWidget<GlobalController> {
       BuildContext context, WebTableData db, SiteBlueprint pb) async {
     if (await showCupertinoConfirmDialog(
           context: context,
-          content: '确定要删除 ${pb.name} 吗？',
+          content: I.of(context).delete_confirm(pb.name),
           title: I.of(context).delete,
           confineText: I.of(context).delete,
           confineTextColor: CupertinoColors.systemRed.resolveFrom(context),

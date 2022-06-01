@@ -51,7 +51,7 @@ read: '阅读'
 # rule_add_page
 identity: '身份'
 rule_edit: '规则编辑'
-exit_not_save: '您确定不保存而退出吗?\n所做的修改将不会保存。'
+exit_not_save: '您确定不保存而退出吗？\n所做的修改将不会保存。'
 rule_name_empty: '规则名称不能为空'
 base_url_empty: '基础Url不能为空'
 net_action: '请求方式'
@@ -69,16 +69,20 @@ no_site: '没有找到任何站点'
 
 # web_login
 import_cookie: '将导入以下Cookies'
-login_with_security: '登录地址和网站地址不在同一个域名下, 安全模式已开启, 将会保护您的认证令牌(可能造成某些网站异常), 若要关闭, 请前往网站设置'
+login_with_security: '登录地址和网站地址不在同一个域名下，安全模式已开启，将会保护您的认证令牌(可能造成某些网站异常)，若要关闭，请前往网站设置'
 login_success: '登录成功'
 login_without_security:
-  text: '登录地址和网站地址不在同一个域名下, 请确认您信任此规则发布者, 否则您的认证令牌可能会被盗用! 是否继续登录? \n规则创建者解释如下：\n{description}'
+  text: '登录地址和网站地址不在同一个域名下，请确认您信任此规则发布者，否则您的认证令牌可能会被盗用! 是否继续登录？\n规则创建者解释如下：\n{description}'
   attrs:
     - description: { type: 'String' }
 logout_check: '确定退出登录吗？'
 
 # 基础语句
 press_again_to_exist: '再按一次退出'
+delete_confirm:
+  text: '确定要删除 {value} 吗？'
+  attrs:
+    - value: { type: 'String' }
 
 # basie_setting
 basic_setting: '基础'

@@ -92,7 +92,7 @@ class RulesPageManager extends GetView<RulesEditController> {
     } else {
       showCupertinoConfirmDialog(
         context: context,
-        content: '确定要删除 ${model.name} 吗？',
+        content: I.of(context).delete_confirm(model.name.value),
         title: I.of(context).cancel,
         confineText: I.of(context).delete,
         confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
