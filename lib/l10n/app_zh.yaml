@@ -1,3 +1,5 @@
+"@@locale": "zh"
+
 # 基础单词
 parser: 解析器
 action: 动作器
@@ -44,3 +46,4 @@ base_url: 基础URL
 login_url: 登录URL
 login_url_reg: Cookie登录URL正则
 check_upgrade_url: 更新URL
+

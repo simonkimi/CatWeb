@@ -30,7 +30,7 @@ for root, dirs, files in os.walk('.'):
             with open(file, 'r', encoding='utf-8') as f:
                 try:
                     data = yaml_to_json(f)
-                    with open('gen/' + file.split('.')[0] + '.arb', 'w') as f2:
+                    with open('../gen/l10n/' + file.split('.')[0] + '.arb', 'w') as f2:
                         f2.write(data)
                 except Exception as e:
                     print('Unexpected exception:', e)
