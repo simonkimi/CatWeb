@@ -75,6 +75,7 @@ class CupertinoAppBar extends StatefulWidget {
     this.automaticallyImplyLeading = true,
     this.tabBar,
     this.tabBarHeight,
+    this.canHide = true,
   });
 
   final String? title;
@@ -86,6 +87,7 @@ class CupertinoAppBar extends StatefulWidget {
   final bool automaticallyImplyLeading;
   final Widget? tabBar;
   final double? tabBarHeight;
+  final bool canHide;
 
   @override
   State<CupertinoAppBar> createState() => _CupertinoAppBarState();
@@ -141,10 +143,15 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
       onNotification: (notification) {
         final pixel = notification.metrics.pixels;
         final didReleasePointer = pixel == _lastPixel;
+        final hide = pixel > 0.0 && _translateController.value > 0.5;
+
+        if (!widget.canHide) {
+          if (hide) _fastReverse();
+          return false;
+        }
 
         if (didReleasePointer) {
           _setTranslateCurve(Curves.easeInOutCubic);
-          final hide = pixel > 0.0 && _translateController.value > 0.5;
           hide
               ? _translateController.forward()
               : _translateController.reverse();

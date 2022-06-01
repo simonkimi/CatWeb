@@ -103,7 +103,8 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
   }
 
   Widget _buildSingleViewer(BuildContext context) {
-    return CupertinoAppBar(
+    return Obx(() => CupertinoAppBar(
+      canHide: subListController.first.items.isNotEmpty,
       title: blueprint.name.string,
       leading: _buildLeading(context),
       actions: _buildActions(context),
@@ -112,7 +113,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
         hasTabBar: !useSingleWidget,
         hasToolBar: widget.hasToolBar,
       ),
-    );
+    ));
   }
 
   Widget _buildLeading(BuildContext context) {

@@ -62,23 +62,25 @@ class _SearchListState extends State<SearchList> {
       onWillPop: _onWillPop,
       child: CupertinoPageScaffold(
         child: CupertinoScrollbar(
-          child: CupertinoAppBar(
-            title: I.of(context).search,
-            leading: CupertinoBackLeading(
-              onPressed: () async {
-                _onWillPop().then((value) {
-                  if (value) {
-                    Get.back();
-                  }
-                });
-              },
-            ),
-            tabBar: _buildSearchInput(context),
-            tabBarHeight: 40,
-            actions: _buildAction(context),
-            child:
-                isSearchMode ? _buildSearchList(context) : _buildList(context),
-          ),
+          child: Obx(() => CupertinoAppBar(
+                canHide: controller.items.isNotEmpty,
+                title: I.of(context).search,
+                leading: CupertinoBackLeading(
+                  onPressed: () async {
+                    _onWillPop().then((value) {
+                      if (value) {
+                        Get.back();
+                      }
+                    });
+                  },
+                ),
+                tabBar: _buildSearchInput(context),
+                tabBarHeight: 40,
+                actions: _buildAction(context),
+                child: isSearchMode
+                    ? _buildSearchList(context)
+                    : _buildList(context),
+              )),
         ),
       ),
     );
