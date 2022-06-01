@@ -63,9 +63,9 @@ class ListFilterEditor extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 20),
         Padding(
-          padding: const EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 20, bottom: 30),
           child: Text(
             I.of(context).filter,
             style: const TextStyle(

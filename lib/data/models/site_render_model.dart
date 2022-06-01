@@ -51,6 +51,9 @@ class SiteRenderConfigModel {
 
   List<PageBlueprintModel> get displayPage => configModel.pageList
       .where((p0) => p0.display.value == SiteDisplayType.show)
+      .where((e) => e.containsFlag('requireLogin')
+          ? dbEntity.loginCookies.isNotEmpty
+          : true)
       .where((e) => [
             Template.TEMPLATE_IMAGE_LIST,
             Template.TEMPLATE_IMAGE_WATERFALL

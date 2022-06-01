@@ -209,6 +209,7 @@ final ehTestSite = SiteBlueprint(
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'eye',
+      flag: 'requireLogin',
       templateData: TemplateListData(
         targetItem: _detailUuid,
       ).writeToBuffer(),
@@ -220,6 +221,7 @@ final ehTestSite = SiteBlueprint(
       display: SiteDisplayType.show,
       template: Template.TEMPLATE_IMAGE_LIST,
       icon: 'heart',
+      flag: 'requireLogin',
       templateData: TemplateListData(
         targetItem: _detailUuid,
         subPages: [

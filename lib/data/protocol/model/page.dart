@@ -57,8 +57,12 @@ class PageBlueprintModel implements PbAble {
         baseParser: baseParser.value,
       );
 
-  bool containsFlag(String flag) =>
-      this.flag.value.split('|').map((e) => e.trim()).contains(flag);
+  bool containsFlag(String flag) => this
+      .flag
+      .value
+      .split('|')
+      .map((e) => e.trim().toLowerCase())
+      .contains(flag.toLowerCase().trim());
 
   bool hasExtraData() => templateData is! TemplateEmptyModel;
 

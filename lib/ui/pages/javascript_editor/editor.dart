@@ -1,4 +1,5 @@
 import 'package:catweb/data/constant.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -63,8 +64,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
         minSize: 0,
         child: const Icon(CupertinoIcons.back),
       ),
-      middle: const Text('脚本'),
-      border: const Border(),
+      middle: Text(I.of(context).script),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -122,7 +122,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
     if (preText.isNotEmpty &&
         preText.codeUnits.last == 10 &&
         inputController.text.length > lastInput.length) {
-      final reg = RegExp(r'\n|\r');
+      final reg = RegExp(r'[\n\r]');
       final preLines = reg.allMatches(preText).toList();
       final nextLines = reg.allMatches(nextText).toList();
 

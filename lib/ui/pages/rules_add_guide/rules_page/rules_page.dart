@@ -29,7 +29,7 @@ class RulesPageEdit extends GetView<RulesEditController> {
             const CupertinoTab('基础'),
             if (model.templateData is TemplateListDataModel) ...[
               const CupertinoTab('子页面'),
-              const CupertinoTab('过滤器'),
+              CupertinoTab(I.of(context).filter),
             ],
             if (model.templateData is TemplateAutoCompleteModel)
               const CupertinoTab('设定'),
