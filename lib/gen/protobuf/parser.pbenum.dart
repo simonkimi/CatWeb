@@ -10,37 +10,21 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class ParserType extends $pb.ProtobufEnum {
-  static const ParserType PARSER_TYPE_IMAGE = ParserType._(
-      0,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'PARSER_TYPE_IMAGE');
-  static const ParserType PARSER_TYPE_LIST_VIEW = ParserType._(
-      1,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'PARSER_TYPE_LIST_VIEW');
-  static const ParserType PARSER_TYPE_GALLERY = ParserType._(
-      2,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'PARSER_TYPE_GALLERY');
-  static const ParserType PARSER_TYPE_AUTO_COMPLETE = ParserType._(
-      3,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'PARSER_TYPE_AUTO_COMPLETE');
+  static const ParserType PARSER_TYPE_IMAGE = ParserType._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'PARSER_TYPE_IMAGE');
+  static const ParserType PARSER_TYPE_LIST_VIEW = ParserType._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'PARSER_TYPE_LIST_VIEW');
+  static const ParserType PARSER_TYPE_GALLERY = ParserType._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'PARSER_TYPE_GALLERY');
+  static const ParserType PARSER_TYPE_AUTO_COMPLETE = ParserType._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'PARSER_TYPE_AUTO_COMPLETE');
 
-  static const $core.List<ParserType> values = <ParserType>[
+  static const $core.List<ParserType> values = <ParserType> [
     PARSER_TYPE_IMAGE,
     PARSER_TYPE_LIST_VIEW,
     PARSER_TYPE_GALLERY,
     PARSER_TYPE_AUTO_COMPLETE,
   ];
 
-  static final $core.Map<$core.int, ParserType> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, ParserType> _byValue = $pb.ProtobufEnum.initByValue(values);
   static ParserType? valueOf($core.int value) => _byValue[value];
 
   const ParserType._($core.int v, $core.String n) : super(v, n);
 }
+

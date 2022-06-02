@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/actions.pbserver.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
+import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pb.dart';
 import 'package:catweb/gen/protobuf/template.pbserver.dart';
@@ -21,10 +22,25 @@ final _readerUuid = genUuid();
 final ehTestSite = SiteBlueprint(
   name: 'E-Hentai',
   baseUrl: 'https://104.20.134.21/',
-  listViewParsers: [ehListParser],
-  galleryParsers: [ehGalleryParser],
-  autoCompleteParsers: [ehAutoCompleteParser],
-  imageParsers: [ehImageParser],
+
+  parsers: [
+    ParserStore(
+      type: ParserType.PARSER_TYPE_LIST_VIEW,
+      parser: ehListParser.writeToBuffer(),
+    ),
+    ParserStore(
+      type: ParserType.PARSER_TYPE_GALLERY,
+      parser: ehGalleryParser.writeToBuffer(),
+    ),
+    ParserStore(
+      type: ParserType.PARSER_TYPE_AUTO_COMPLETE,
+      parser: ehAutoCompleteParser.writeToBuffer(),
+    ),
+    ParserStore(
+      type: ParserType.PARSER_TYPE_IMAGE,
+      parser: ehImageParser.writeToBuffer(),
+    ),
+  ],
   flag: 'ignoreCertificate',
   // loginUrl: 'https://forums.e-hentai.org/index.php?act=Login&CODE=00',
   loginUrl: 'https://e-hentai.org/bounce_login.php',

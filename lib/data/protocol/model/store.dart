@@ -37,26 +37,27 @@ class SiteBlueprintModel implements PbAble {
         version = sobs(pb?.version),
         upgradeUrl = sobs(pb?.upgradeUrl),
         flag = sobs(pb?.flag),
-        galleryParsers = lobs(
-            pb?.galleryParsers, (GalleryParser e) => GalleryParserModel(e)),
-        listViewParsers = lobs(
-          pb?.listViewParsers,
-          (ListViewParser e) => ListViewParserModel(e),
-        ),
-        imageParsers = lobs(
-          pb?.imageParsers,
-          (ImageReaderParser e) => ImageReaderParserModel(e),
-        ),
-        autoCompleteParsers = lobs(
-          pb?.autoCompleteParsers,
-          (AutoCompleteParser e) => AutoCompleteParserModel(e),
-        ),
         actionList = lobs(
           pb?.actions,
           (ActionCombine e) => ActionCombineModel(e),
         ),
         pageList = lobs(pb?.pages, (SitePage e) => PageBlueprintModel(e)),
-        readme = sobs(pb?.readme);
+        readme = sobs(pb?.readme),
+        parsers = lobs(pb?.parsers, (ParserStore e) {
+          switch (e.type) {
+            case ParserType.PARSER_TYPE_AUTO_COMPLETE:
+              return AutoCompleteParserModel(
+                  AutoCompleteParser.fromBuffer(e.parser));
+            case ParserType.PARSER_TYPE_GALLERY:
+              return GalleryParserModel(GalleryParser.fromBuffer(e.parser));
+            case ParserType.PARSER_TYPE_IMAGE:
+              return ImageReaderParserModel(
+                  ImageReaderParser.fromBuffer(e.parser));
+            case ParserType.PARSER_TYPE_LIST_VIEW:
+              return ListViewParserModel(ListViewParser.fromBuffer(e.parser));
+          }
+          throw Exception('Unknown parser type: ${e.type}');
+        });
 
   factory SiteBlueprintModel.fromBuffer(List<int> buffer) =>
       SiteBlueprintModel(SiteBlueprint.fromBuffer(buffer));
@@ -73,41 +74,31 @@ class SiteBlueprintModel implements PbAble {
 
   final RxList<RegFieldModel> cookies;
   final RxList<RegFieldModel> headers;
-  final RxList<GalleryParserModel> galleryParsers;
-  final RxList<ListViewParserModel> listViewParsers;
-  final RxList<ImageReaderParserModel> imageParsers;
-  final RxList<AutoCompleteParserModel> autoCompleteParsers;
+  final RxList<ParserBaseModel> parsers;
   final RxList<ActionCombineModel> actionList;
   final RxList<PageBlueprintModel> pageList;
 
-  RxList<ParserBaseModel> _selectParser(ParserBaseModel model) {
-    switch (model.type) {
+  Iterable<ParserBaseModel> _selectParser(ParserType type) {
+    switch (type) {
       case ParserType.PARSER_TYPE_LIST_VIEW:
-        return listViewParsers;
+        return parsers.whereType<ListViewParserModel>();
       case ParserType.PARSER_TYPE_GALLERY:
-        return galleryParsers;
+        return parsers.whereType<GalleryParserModel>();
       case ParserType.PARSER_TYPE_IMAGE:
-        return imageParsers;
+        return parsers.whereType<ImageReaderParserModel>();
       case ParserType.PARSER_TYPE_AUTO_COMPLETE:
-        return autoCompleteParsers;
+        return parsers.whereType<AutoCompleteParserModel>();
     }
-    throw UnimplementedError('Unknown parser $model');
+    throw UnimplementedError('Unknown parser $type');
   }
 
   void removeParser(ParserBaseModel model) {
-    _selectParser(model).remove(model);
+    parsers.remove(model);
   }
 
   void addParser(ParserBaseModel model) {
-    _selectParser(model).add(model);
+    parsers.add(model);
   }
-
-  RxList<ParserBaseModel> get parsers => RxList.from([
-        ...listViewParsers,
-        ...galleryParsers,
-        ...imageParsers,
-        ...autoCompleteParsers,
-      ]);
 
   String getParserName(String uuid) => uuid.isEmpty
       ? ''
@@ -121,27 +112,31 @@ class SiteBlueprintModel implements PbAble {
       uuid.isEmpty ? null : pageList.get((p0) => p0.uuid == uuid);
 
   ListViewParserModel getListParser(String uuid) {
-    final result = listViewParsers.get((e) => e.uuid == uuid);
+    final result = _selectParser(ParserType.PARSER_TYPE_LIST_VIEW)
+        .get((e) => e.uuid == uuid);
     if (result == null) throw Exception('Parser $uuid not exist');
-    return result;
+    return result as ListViewParserModel;
   }
 
   GalleryParserModel getGalleryParser(String uuid) {
-    final result = galleryParsers.get((e) => e.uuid == uuid);
+    final result = _selectParser(ParserType.PARSER_TYPE_GALLERY)
+        .get((e) => e.uuid == uuid);
     if (result == null) throw Exception('Parser $uuid not exist');
-    return result;
+    return result as GalleryParserModel;
   }
 
   AutoCompleteParserModel getAutoCompleteParser(String uuid) {
-    final result = autoCompleteParsers.get((e) => e.uuid == uuid);
+    final result = _selectParser(ParserType.PARSER_TYPE_GALLERY)
+        .get((e) => e.uuid == uuid);
     if (result == null) throw Exception('Parser $uuid not exist');
-    return result;
+    return result as AutoCompleteParserModel;
   }
 
   ImageReaderParserModel getImageParser(String uuid) {
-    final result = imageParsers.get((e) => e.uuid == uuid);
+    final result =
+        _selectParser(ParserType.PARSER_TYPE_IMAGE).get((e) => e.uuid == uuid);
     if (result == null) throw Exception('Parser $uuid not exist');
-    return result;
+    return result as ImageReaderParserModel;
   }
 
   bool containsFlag(String flag) => this
@@ -164,12 +159,10 @@ class SiteBlueprintModel implements PbAble {
         version: version.value,
         upgradeUrl: upgradeUrl.value,
         flag: flag.value,
-        galleryParsers: galleryParsers.map((e) => e.toPb()),
-        listViewParsers: listViewParsers.map((e) => e.toPb()),
         actions: actionList.map((e) => e.toPb()),
         pages: pageList.map((e) => e.toPb()),
-        autoCompleteParsers: autoCompleteParsers.map((e) => e.toPb()),
-        imageParsers: imageParsers.map((e) => e.toPb()),
         readme: readme.value,
+        parsers: parsers.map(
+            (e) => ParserStore(parser: e.toPb().writeToBuffer(), type: e.type)),
       );
 }

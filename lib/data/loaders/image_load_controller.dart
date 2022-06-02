@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:catweb/data/controller/setting_controller.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_reader_bridge/reader_base_info.dart';
+import 'package:catweb/data/loaders/image_with_preview.dart';
 import 'package:get/get.dart';
 
 /// 这里是图片控制器
@@ -12,10 +12,10 @@ abstract class BaseImageLoadController {
   int? get pageCount;
 
   /// 图片列表
-  RxList<ImageReaderItem> get imageList;
+  RxList<ImageWithPreviewModel> get imageList;
 
   // 下面是具体实现的方法
-  final _waitLoadModel = <int, ImageReaderItem>{};
+  final _waitLoadModel = <int, ImageWithPreviewModel>{};
   var readerIsForward = true;
   var currentIndex = 0;
 
@@ -52,7 +52,7 @@ abstract class BaseImageLoadController {
                 ? value
                 : element);
         _waitLoadModel.remove(entity.key);
-        entity.value.requestLoad().whenComplete(() => _trigger(currentIndex));
+        entity.value.loadModel().whenComplete(() => _trigger(currentIndex));
       }
     }
   }
