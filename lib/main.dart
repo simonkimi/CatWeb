@@ -21,18 +21,17 @@ Future<void> initGetX() async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initGetX();
-  runApp(const BlurController());
+  runApp(const MyApp());
 }
 
-class BlurController extends StatefulWidget {
-  const BlurController({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<BlurController> createState() => _BlurControllerState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _BlurControllerState extends State<BlurController>
-    with WidgetsBindingObserver {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   var _needBlur = false;
 
   @override
@@ -44,34 +43,15 @@ class _BlurControllerState extends State<BlurController>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (Get.find<SettingController>().blurWhenBackground.isTrue) {
-      final newState = state != AppLifecycleState.resumed;
+      final newState = state != AppLifecycleState.resumed &&
+          Get.find<SettingController>().blurWhenBackground.isTrue;
       if (newState != _needBlur) {
         setState(() {
-          _needBlur = newState &&
-              Get.find<SettingController>().blurWhenBackground.isTrue;
+          _needBlur = newState;
         });
       }
     }
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      textDirection: TextDirection.ltr,
-      children: [
-        const MyApp(),
-        if (_needBlur)
-          BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: const SizedBox(),
-          ),
-      ],
-    );
-  }
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +71,19 @@ class MyApp extends StatelessWidget {
         );
       },
       builder: (context, child) {
-        return BotToastInit()(context, child);
+        child = Stack(
+          textDirection: TextDirection.ltr,
+          children: [
+            child ?? const SizedBox(),
+            if (_needBlur)
+              BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                child: const SizedBox(),
+              ),
+          ],
+        );
+        child = BotToastInit()(context, child);
+        return child;
       },
       supportedLocales: I.supportedLocales,
       navigatorKey: AppNavigator().key,
