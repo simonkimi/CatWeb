@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:yaml/yaml.dart';
 
 void main() {
-  final dir = Directory('lib/l10n');
-  print(dir.listSync());
+  final inL10n =
+      Directory('.').absolute.path.contains(RegExp(r'[\\/]lib[\\/]l10n'));
+
+  final dir = inL10n ? Directory('.') : Directory('lib/l10n/');
 
   final files =
       dir.listSync().whereType<File>().where((e) => e.path.endsWith('.yaml'));
@@ -12,7 +14,10 @@ void main() {
   for (final file in files) {
     final filename = file.path.split(RegExp(r'[\\/]')).last.split('.').first;
     final json = decodeYaml(file);
-    File('./lib/gen/l10n/$filename.arb').writeAsStringSync(json);
+    final f = inL10n
+        ? File('../gen/l10n/$filename.arb')
+        : File('lib/gen/l10n/$filename.arb');
+    f.writeAsStringSync(json);
   }
 }
 

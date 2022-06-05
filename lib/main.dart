@@ -91,4 +91,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       theme: defaultTheme(),
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
 }
