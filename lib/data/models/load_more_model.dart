@@ -36,6 +36,92 @@ abstract class LoadMoreBase with LoadListStateMixin {
     super.loadError(error);
     refreshController.loadFailed();
   }
+
+  void dispose() {
+    refreshController.dispose();
+  }
+}
+
+abstract class LoadMorePage<T> extends LoadMoreBase {
+  final RxMap<int, List<T>> pages = <int, List<T>>{}.obs;
+  final RxInt _currentPage = (-1).obs; // 下一面，上一面要用的
+
+  int? get chunkSize; // 每块图片数量, 如果为null则只能一面一面跳页
+  int? get totalSize; // 一共有多少图片, 为null则不允许跳页
+
+  Iterable<T> get items =>
+      (pages.entries.where((e) => e.key >= _currentPage.value).toList()
+            ..sort((a, b) => a.key - b.key))
+          .getSuccessive((e) => e.key)
+          .expand((e) => e.value);
+
+  /// 检查加载的数据是否已经超出范围
+  bool checkIfOutOfRange(int page) {
+    if (totalSize == null || chunkSize == null) return false;
+    return (page + 1) * chunkSize! >= totalSize!;
+  }
+
+  /// 这里传入的page应该是以0开始的, 第一面就是0
+  Future<void> _jumpTo(int page) async {
+    await _requestLock.synchronized(() async {
+      if (pages.containsKey(page)) return;
+      logger.i('当前页面', _currentPage.value, '准备加载页面', page);
+      loadStart();
+      final pageData = await requestLoadPage(page);
+      pages[page] = pageData;
+      logger.i('加载', page, '完成');
+    });
+  }
+
+  /// 加载下一面数据
+  Future<void> onLoadMore() async {
+    try {
+      if (!checkIfOutOfRange(_currentPage.value)) {
+        await _jumpTo(_currentPage.value + 1);
+        _currentPage.value += 1;
+        loadComplete();
+        if (checkIfOutOfRange(_currentPage.value)) {
+          logger.i('下一面${_currentPage.value}超出范围, 没有更多', _currentPage.value);
+          loadNoData();
+        }
+      } else {
+        loadNoData();
+      }
+    } on DioError catch (e) {
+      loadError(e);
+    } on Exception catch (e) {
+      loadError(e);
+    }
+  }
+
+  Future<void> onRefresh() async {
+    if (_requestLock.locked) return awaitLock();
+    pages.clear();
+    _currentPage.value = -1;
+    loadRefresh();
+    await onLoadMore();
+  }
+
+  /// 加载指定的index，用于在预览中跳页
+  Future<void> requestLoadIndex(int index, [RxBool? stop]) async {
+    return await _requestLock.synchronized(() async {
+      if (totalSize == null || chunkSize == null) {
+        // 没有确切的面数, 只能一面面加载
+        while (items.length < index) {
+          if (stop?.isTrue ?? false) {
+            break;
+          }
+          await onLoadMore();
+        }
+      } else {
+        // 有确切的面数, 直接加载
+        final page = (index / chunkSize!).floor();
+        await _jumpTo(page);
+      }
+    });
+  }
+
+  Future<List<T>> requestLoadPage(int page);
 }
 
 abstract class LoadMoreList<E, T> extends LoadMoreBase {
@@ -74,10 +160,6 @@ abstract class LoadMoreList<E, T> extends LoadMoreBase {
     _page.value = -1;
     loadRefresh();
     await onLoadMore();
-  }
-
-  void dispose() {
-    refreshController.dispose();
   }
 
   void requestFirstLoad() {

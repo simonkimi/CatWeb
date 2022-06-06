@@ -5,9 +5,7 @@ import 'package:yaml/yaml.dart';
 void main() {
   final inL10n =
       Directory('.').absolute.path.contains(RegExp(r'[\\/]lib[\\/]l10n'));
-
   final dir = inL10n ? Directory('.') : Directory('lib/l10n/');
-
   final files =
       dir.listSync().whereType<File>().where((e) => e.path.endsWith('.yaml'));
 
@@ -48,8 +46,7 @@ String decodeYaml(File file) {
             }
             attribute['placeholders'] = placeholders;
           }
-        } else if (attr.key == 'text') {
-        } else {
+        } else if (attr.key != 'text') {
           attribute[attr.key] == attr.value;
         }
       }

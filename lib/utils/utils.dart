@@ -15,14 +15,14 @@ extension IterableUtils<T> on Iterable<T> {
   }
 }
 
-extension DoubleHelper on num {
+extension DoubleUtils on num {
   T nearList<T extends num>(List<T> nums) {
     return nums.reduce((value, element) =>
         (this - value).abs() < (this - element).abs() ? value : element);
   }
 }
 
-extension ListHelper<T> on List<T> {
+extension ListUtils<T> on List<T> {
   T random() {
     return this[math.Random().nextInt(length)];
   }
@@ -42,9 +42,22 @@ extension ListHelper<T> on List<T> {
   T lastAt(int index) {
     return this[length - index];
   }
+
+  Iterable<T> getSuccessive(int Function(T e) getKey) sync* {
+    if (isNotEmpty) {
+      final minIndex = getKey(this[0]);
+      for (var i = 0; i < length; i++) {
+        if (getKey(this[i]) == i + minIndex) {
+          yield this[i];
+        } else {
+          break;
+        }
+      }
+    }
+  }
 }
 
-extension AnimationControllerHelper on AnimationController {
+extension AnimationControllerUtils on AnimationController {
   void byValue(bool display) {
     if (display && isEnd) reverse();
     if (!display && isStart) forward();
@@ -96,16 +109,4 @@ extension UnWrap on core.double {
   double get nan2zero => isNaN ? 0 : this;
 
   double? get nan2null => isNaN ? null : this;
-}
-
-extension SparseMap<T> on Map<int, T?> {
-  int get realLength => maxIndex + 1;
-
-  int get maxIndex => entries.fold(
-      -1, (previousValue, e) => e.key > previousValue ? e.key : previousValue);
-
-  List<T> get coiledList => entries
-      .takeWhile((value) => value.value != null)
-      .map((e) => e.value!)
-      .toList();
 }

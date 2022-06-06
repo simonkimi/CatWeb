@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/loaders/image_with_preview.dart';
 import 'package:catweb/data/models/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
@@ -8,7 +9,6 @@ import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_controller.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:catweb_parser/catweb_parser.dart';
@@ -16,10 +16,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
-import 'package:rxdart/rxdart.dart' hide Rx;
 
-class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
-    implements ReaderInfo {
+class ListItemModel extends ImageWithPreviewModel<ListRpcModel_Item> {
+  ListItemModel({
+    required super.index,
+    required super.previewModel,
+  });
+
+  @override
+  ImageRpcModel get preview => previewModel.previewImg;
+}
+
+class SubListController extends LoadMoreList<ListRpcModel, ListItemModel> {
   SubListController({
     required this.blueprint,
     this.subPageModel,
@@ -50,8 +58,9 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
   final scrollController = ScrollController();
 
   @override
-  bool isItemExist(ListRpcModel_Item item) => items.any(
-      (element) => element.title == item.title && item.target == item.target);
+  bool isItemExist(ListItemModel item) => items.any((e) =>
+      e.previewModel.title == item.previewModel.title &&
+      e.previewModel.target == item.previewModel.target);
 
   Future<void> applyFilter([bool refresh = false]) async {
     currentFilter.clear();
@@ -164,36 +173,6 @@ class SubListController extends LoadMoreList<ListRpcModel, ListRpcModel_Item>
   bool get isFullScreenLoading => items.isEmpty && state.isLoading;
 
   bool get isFullScreenError => items.isEmpty && errorMessage != null;
-
-  @override
-  int? get pageCount => null;
-
-  @override
-  String? get idCode => null;
-
-  @override
-  String get fromUuid => blueprint.uuid;
-
-  @override
-  int? get startPage => null;
-
-  @override
-  ImageListConcurrency get previewConcurrency => concurrency;
-
-  ReaderPreviewData _toReaderModel(ListRpcModel_Item e) => ReaderPreviewData(
-        idCode: e.target,
-        preview: e.previewImg,
-      );
-
-  @override
-  Map<int, ReaderPreviewData?> get previewMap =>
-      items.map(_toReaderModel).toList().asMap();
-
-  @override
-  Stream<Map<int, ReaderPreviewData?>> get previewMapStream => items.stream
-      .debounceTime(const Duration(seconds: 1))
-      .map((event) => event.asMap())
-      .map((e) => e.map((key, value) => MapEntry(key, _toReaderModel(value))));
 
   @override
   void dispose() {
