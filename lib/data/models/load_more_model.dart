@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/state_mixin.dart';
-import 'package:catweb/utils/utils.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:dio/dio.dart' hide Lock;
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';

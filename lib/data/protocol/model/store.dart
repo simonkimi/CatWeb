@@ -4,7 +4,7 @@ import 'package:catweb/gen/protobuf/actions.pbserver.dart';
 import 'package:catweb/gen/protobuf/page.pbserver.dart';
 import 'package:catweb/gen/protobuf/parser.pbserver.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
-import 'package:catweb/utils/utils.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:get/get.dart';
 
 import 'actions.dart';

@@ -6,7 +6,7 @@ import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_router.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_reader.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/viewer_list.dart';
-import 'package:catweb/utils/utils.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

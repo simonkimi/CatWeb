@@ -1,6 +1,6 @@
 import 'package:catweb/data/protocol/model/interface.dart';
 import 'package:catweb/gen/protobuf/actions.pbserver.dart';
-import 'package:catweb/utils/utils.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:get/get.dart';
 
 class NetWorkActionModel implements PbAble {

@@ -3,7 +3,7 @@ import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:catweb/ui/theme/colors.dart';
-import 'package:catweb/utils/utils.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

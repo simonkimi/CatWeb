@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
-import 'package:catweb/utils/utils.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:uuid/uuid.dart';
 
 extension GetDetail on GalleryRpcModel {

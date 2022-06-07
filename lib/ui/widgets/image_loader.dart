@@ -5,7 +5,7 @@ import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/widgets/dark_image.dart';
-import 'package:catweb/utils/utils.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

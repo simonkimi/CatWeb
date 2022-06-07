@@ -4,7 +4,7 @@ import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/network/client/cilent.dart';
-import 'package:catweb/utils/utils.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:get/get.dart';
 
 class GlobalController extends GetxController {

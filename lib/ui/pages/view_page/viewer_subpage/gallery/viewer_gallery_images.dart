@@ -3,7 +3,7 @@ import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:catweb/ui/widgets/load_more_footer.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:catweb/ui/theme/colors.dart';
-import 'package:catweb/utils/utils.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';

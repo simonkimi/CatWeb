@@ -9,7 +9,7 @@ import 'package:catweb/ui/pages/view_page/viewer_subpage/list/search_list.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/subpage_controller.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/list/subpage_list.dart';
 import 'package:catweb/utils/debug.dart';
-import 'package:catweb/utils/utils.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

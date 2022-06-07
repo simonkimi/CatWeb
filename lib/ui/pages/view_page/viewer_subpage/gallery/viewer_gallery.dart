@@ -13,7 +13,6 @@ import 'package:catweb/ui/pages/view_page/viewer_subpage/gallery/viewer_gallery_
 import 'package:catweb/ui/pages/view_page/viewer_subpage/viewer_subpage_scaffold.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/theme/themes.dart';
-import 'package:catweb/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 
