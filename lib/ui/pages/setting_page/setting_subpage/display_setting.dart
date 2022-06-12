@@ -38,8 +38,7 @@ class DisplaySettingPage extends GetView<SettingController> {
               title: I.of(context).image_concurrency,
               value: controller.concurrencyCount,
               items: [
-                SelectTileItem(value: -1, title: I.of(context).disable),
-                SelectTileItem(value: 0, title: I.of(context).no_limit),
+                SelectTileItem(value: -1, title: I.of(context).no_limit),
                 for (var i = 1; i <= 10; i += 2)
                   SelectTileItem(value: i, title: '$i'),
               ],

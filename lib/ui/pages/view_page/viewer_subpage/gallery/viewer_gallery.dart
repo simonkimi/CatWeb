@@ -91,7 +91,7 @@ class ViewerGalleryFragment extends StatelessWidget {
           height: 150,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: math.min(c.items.coiledList.length, 40),
+            itemCount: math.min(c.items.length, 40),
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () => _openReadPage(index),
@@ -103,7 +103,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5),
                       child: ImageLoader(
                         concurrency: c.concurrency,
-                        model: c.items.coiledList[index].previewImg,
+                        model: c.items.toList()[index]!.previewImg,
                         innerImageBuilder: (context, child) {
                           return ClipRRect(
                             borderRadius: BorderRadius.circular(5),

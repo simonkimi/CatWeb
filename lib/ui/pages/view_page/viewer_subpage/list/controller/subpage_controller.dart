@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/loaders/image_with_preview.dart';
-import 'package:catweb/data/models/load_more_model.dart';
+import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
@@ -17,17 +17,17 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
 
-class ListItemModel extends ImageWithPreviewModel<ListRpcModel_Item> {
-  ListItemModel({
-    required super.index,
-    required super.previewModel,
-  });
+class ListPageItem extends LoadMoreItem<ListRpcModel, ListRpcModel_Item> {
+  ListPageItem(super.pageData);
 
   @override
-  ImageRpcModel get preview => previewModel.previewImg;
+  ListItemModel genModel(ListRpcModel_Item item) => ListItemModel(item);
+
+  @override
+  List<ListRpcModel_Item> get items => pageData.items;
 }
 
-class SubListController extends LoadMoreList<ListRpcModel, ListItemModel> {
+class SubListController extends LoadMorePage<ListRpcModel, ListRpcModel_Item> {
   SubListController({
     required this.blueprint,
     this.subPageModel,
@@ -57,11 +57,6 @@ class SubListController extends LoadMoreList<ListRpcModel, ListItemModel> {
 
   final scrollController = ScrollController();
 
-  @override
-  bool isItemExist(ListItemModel item) => items.any((e) =>
-      e.previewModel.title == item.previewModel.title &&
-      e.previewModel.target == item.previewModel.target);
-
   Future<void> applyFilter([bool refresh = false]) async {
     currentFilter.clear();
     if (useFilter) {
@@ -84,7 +79,7 @@ class SubListController extends LoadMoreList<ListRpcModel, ListItemModel> {
   }
 
   @override
-  Future<Tuple2<ListRpcModel, List<ListRpcModel_Item>>> loadPage(
+  Future<ListPageItem> netWorkLoadPage(
     int page,
   ) async {
     var baseUrl = blueprint.url.value;
@@ -116,7 +111,7 @@ class SubListController extends LoadMoreList<ListRpcModel, ListItemModel> {
       print('hasPageExpression loadNoData()');
       loadNoData();
     }
-    return Tuple2(data, data.items);
+    return ListPageItem(data);
   }
 
   void resetFilter() {
@@ -179,4 +174,11 @@ class SubListController extends LoadMoreList<ListRpcModel, ListItemModel> {
     super.dispose();
     scrollController.dispose();
   }
+
+  @override
+  int? get chunkSize => throw UnimplementedError();
+
+  @override
+  // TODO: implement totalSize
+  int? get totalSize => throw UnimplementedError();
 }

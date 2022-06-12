@@ -1,17 +1,14 @@
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/models/load_more_model.dart';
+import 'package:catweb/data/loaders/image_with_preview.dart';
+import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_controller.dart';
 import 'package:catweb/utils/replace_utils.dart';
-import 'package:catweb/data/protocol/model/model.dart';
 import 'package:get/get.dart';
-import 'package:tuple/tuple.dart';
-import 'package:rxdart/rxdart.dart' hide Rx;
+import 'package:catweb/data/protocol/model/model.dart';
 
 class GalleryBaseData {
   final String? title;
@@ -33,9 +30,21 @@ class GalleryBaseData {
   });
 }
 
+class GalleryLoadMore
+    extends LoadMoreItem<GalleryRpcModel, GalleryRpcModel_Item> {
+  GalleryLoadMore(super.pageData);
+
+  @override
+  ImageWithPreviewModel<GalleryRpcModel_Item> genModel(
+          GalleryRpcModel_Item item) =>
+      GalleryImageWithPreview(item);
+
+  @override
+  List<GalleryRpcModel_Item> get items => pageData.items;
+}
+
 class GalleryPreviewController
-    extends LoadMoreMap<GalleryRpcModel, GalleryRpcModel_Item>
-    implements ReaderInfo {
+    extends LoadMorePage<GalleryRpcModel, GalleryRpcModel_Item> {
   GalleryPreviewController({
     required this.blueprint,
     SiteEnvModel? outerEnv,
@@ -61,10 +70,9 @@ class GalleryPreviewController
     dio: global.website.client.imageDio,
   );
 
-  @override
-  bool isItemExist(GalleryRpcModel_Item item) => false;
-
   GalleryRpcModel? get detailModel => _detailModel.value;
+
+  String get idCode => localEnv.replace(blueprint.url.value);
 
   /// 从数据库中取出上次加载进度
   Future<void> loadLastRead() async {
@@ -83,19 +91,17 @@ class GalleryPreviewController
   }
 
   @override
-  String get idCode => localEnv.replace(blueprint.url.value);
-
-  @override
-  Future<Tuple2<GalleryRpcModel, List<GalleryRpcModel_Item>>> loadPage(
-      int page) async {
+  Future<GalleryLoadMore> netWorkLoadPage(int page) async {
     var baseUrl = blueprint.url.value;
     if (hasPageExpression(baseUrl) || page == 0) {
       // 有面数
       baseUrl = pageReplace(baseUrl, page);
     } else {
       if (pages.isNotEmpty) {
-        final preUrl = pages[page - 1]?.nextPage;
-        if (preUrl == null) throw Exception('Error: Jump page to index $page ?');
+        final preUrl = pages[page - 1]?.pageData.nextPage;
+        if (preUrl == null || preUrl.isEmpty) {
+          throw Exception('Error: Jump page to index $page ?');
+        }
         baseUrl = preUrl;
       }
     }
@@ -107,14 +113,13 @@ class GalleryPreviewController
       localEnv: localEnv,
     );
     _detailModel.value = detail;
-    _fillItemIndex(detail);
 
     if (!hasPageExpression(blueprint.url.value) &&
         (detail.nextPage == baseUrl || detail.nextPage.isEmpty)) {
       loadNoData();
     }
 
-    return Tuple2(detail, detail.items);
+    return GalleryLoadMore(detail);
   }
 
   static GalleryBaseData? fromModel(Object? model) {
@@ -131,59 +136,12 @@ class GalleryPreviewController
     return null;
   }
 
-  /// 如果是不间断加载, 则将中间所有拿null补全, 用于以后判断是否有数据
-  void _fillItemIndex(GalleryRpcModel item) {
-    if (item.imageCount.isFinite && item.imageCount > 0) {
-      for (var i = 0; i < item.imageCount; i++) {
-        if (!items.containsKey(i)) {
-          items[i] = null;
-        }
-      }
-    }
-  }
-
   bool get fillRemaining =>
-      (state.isLoading && items.isEmpty) || errorMessage != null;
+      (state.isLoading && successiveItems.isEmpty) || errorMessage != null;
 
-  /// 下面的都是给阅读提供的数据
   @override
   int? get chunkSize => detailModel?.getCountPrePage();
 
   @override
   int? get totalSize => detailModel?.getImageCount();
-
-  @override
-  String get baseUrl => blueprint.url.value;
-
-  @override
-  int? get pageCount => detailModel?.getImageCount();
-
-  TemplateGalleryModel get extra =>
-      blueprint.templateData as TemplateGalleryModel;
-
-  @override
-  String get fromUuid => blueprint.uuid;
-
-  @override
-  int? get startPage => lastReadIndex.value;
-
-  @override
-  ImageListConcurrency get previewConcurrency => concurrency;
-
-  @override
-  Map<int, ReaderPreviewData?> get previewMap => items.map(_toReaderModel);
-
-  MapEntry<int, ReaderPreviewData?> _toReaderModel(
-          int key, GalleryRpcModel_Item? value) =>
-      MapEntry(
-          key,
-          ReaderPreviewData(
-            idCode: value?.target,
-            preview: value?.previewImg,
-          ));
-
-  @override
-  Stream<Map<int, ReaderPreviewData?>> get previewMapStream => items.stream
-      .debounceTime(const Duration(seconds: 1))
-      .map((event) => event.map(_toReaderModel));
 }

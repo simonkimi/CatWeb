@@ -50,6 +50,7 @@ dependencies:
   # state
   get: ^4.6.5
   flutter_hooks: ^0.18.4
+  event_bus: ^2.0.0
 
   # database
   drift: ^1.3.0

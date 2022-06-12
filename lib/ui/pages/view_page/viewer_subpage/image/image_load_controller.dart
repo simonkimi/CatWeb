@@ -2,21 +2,25 @@ import 'dart:math';
 
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/loaders/image_with_preview.dart';
+import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:get/get.dart';
 
 /// 这里是图片控制器
 /// 图片加载页面应该只做最基本的事情, 便是显示图片
 /// 其他功能例如加载图片数据(url, 高度宽度等), 应该交由上级负责, 因为不知道模板是怎么实现的
-abstract class BaseImageLoadController {
+abstract class BaseImageLoadController<T, E extends ImageWithPreviewModel> {
+  BaseImageLoadController({required this.loaderController});
+
   /// 总面数
   int? get pageCount;
 
-  /// 图片列表
-  RxList<ImageWithPreviewModel> get imageList;
+  /// 图片加载控制器
+  final LoadMorePage<T, E> loaderController;
 
   // 下面是具体实现的方法
-  final _waitLoadModel = <int, ImageWithPreviewModel>{};
+  final _waitLoadModel = <ImageWithPreviewModel<E>>[];
   var readerIsForward = true;
+
   var currentIndex = 0;
 
   /// 现在阅读器阅读到哪一面了, 里面做的是预加载与记录
@@ -25,12 +29,12 @@ abstract class BaseImageLoadController {
     currentIndex = index;
     final preloadCount = Get.find<SettingController>().preloadCount.value;
     final needLoadList = isForward
-        ? imageList.skip(index).take(preloadCount + 1)
-        : imageList.skip(max(0, index - preloadCount)).take(preloadCount + 1);
+        ? loaderController.items.skip(index).take(preloadCount + 1)
+        : loaderController.items.skip(max(0, index - preloadCount)).take(preloadCount + 1);
     // 添加需要加载的数据
     for (final element in needLoadList) {
-      if (!_waitLoadModel.containsKey(element.index) && element.state.isIdle) {
-        _waitLoadModel[element.index] = element;
+      if (!_waitLoadModel.contains(element) && element.state.isIdle) {
+        _waitLoadModel.add(element);
       }
     }
     // 删除由于翻页已经不需要加载的页面
@@ -42,8 +46,9 @@ abstract class BaseImageLoadController {
   int get loadingCount => imageList.where((e) => e.state.isLoading).length;
 
   void _trigger(int index) {
-    final concurrency = Get.find<SettingController>().concurrencyCount.value;
-    while (concurrency - loadingCount > 0 && _waitLoadModel.isNotEmpty) {
+    var concurrency = Get.find<SettingController>().concurrencyCount.value;
+    while (concurrency == -1 ||
+        (concurrency - loadingCount > 0 && _waitLoadModel.isNotEmpty)) {
       final entities = _waitLoadModel.entries
           .where((e) => readerIsForward ? e.key >= index : e.key <= index);
       if (entities.isNotEmpty) {
@@ -52,8 +57,11 @@ abstract class BaseImageLoadController {
                 ? value
                 : element);
         _waitLoadModel.remove(entity.key);
-        entity.value.loadModel().whenComplete(() => _trigger(currentIndex));
+        // TODO，加载逻辑放在这一层或上一层做
+        loadModel(entity.key).whenComplete(() => _trigger(currentIndex));
       }
     }
   }
+
+  Future<void> loadModel(int index);
 }

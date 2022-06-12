@@ -3,7 +3,6 @@ import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:catweb/ui/widgets/load_more_footer.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:catweb/ui/theme/colors.dart';
-import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -19,6 +18,8 @@ class ViewerGalleryImages extends StatelessWidget {
 
   final GalleryPreviewController c;
   final Future<void> Function(int?) onOpenPage;
+
+  // TODO Gallery图片加载问题
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +44,7 @@ class ViewerGalleryImages extends StatelessWidget {
                       ),
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
+                          final list = c.items.toList();
                           return GestureDetector(
                             onTap: () => onOpenPage(index),
                             child: Padding(
@@ -50,10 +52,10 @@ class ViewerGalleryImages extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Expanded(
-                                    child: c.items[index] != null
+                                    child: list[index] != null
                                         ? ImageLoader(
                                             concurrency: c.concurrency,
-                                            model: c.items[index]!.previewImg,
+                                            model: list[index]!.previewImg,
                                             imageWidgetBuilder:
                                                 (context, child) {
                                               return FittedBox(
@@ -89,7 +91,7 @@ class ViewerGalleryImages extends StatelessWidget {
                             ),
                           );
                         },
-                        childCount: c.items.realLength,
+                        childCount: c.items.length,
                       ),
                     ),
                   ],
