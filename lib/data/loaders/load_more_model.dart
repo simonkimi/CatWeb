@@ -1,53 +1,16 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:catweb/utils/debug.dart';
-import 'package:catweb/utils/state_mixin.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:dio/dio.dart' hide Lock;
 import 'package:event_bus/event_bus.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:synchronized/synchronized.dart';
-
 import 'load_more_actions.dart';
-
-abstract class LoadMoreBase with LoadListStateMixin {
-  final _requestLock = Lock();
-
-  final refreshController = RefreshController();
-
-  Future<void> awaitLock() => _requestLock.synchronized(() {});
-
-  @override
-  void loadComplete() {
-    super.loadComplete();
-    if (state.isComplete || state.isIdle) {
-      refreshController.loadComplete();
-      refreshController.refreshCompleted();
-    }
-  }
-
-  @override
-  void loadNoData() {
-    super.loadNoData();
-    refreshController.loadNoData();
-  }
-
-  @override
-  void loadError(Exception error) {
-    super.loadError(error);
-    refreshController.loadFailed();
-  }
-
-  void dispose() {
-    refreshController.dispose();
-  }
-}
+import 'load_more_mixin.dart';
 
 abstract class LoadMoreItem<T, E, V> {
-  LoadMoreItem(this.pageData, {List<V> Function(T data)? genModel}) {
-    models = genModel != null ? genModel(pageData) : [];
+  LoadMoreItem(this.pageData) {
+    models = genModel();
   }
 
   /// 页面数据
@@ -55,11 +18,16 @@ abstract class LoadMoreItem<T, E, V> {
 
   List<E> get items;
 
-  late final List<V> models;
+  late final Iterable<V> models;
+
+  Iterable<V> genModel() => [];
 }
 
+/// 加载控制器: 页面风格
+/// T: 页面数据, E: 项目原始数据, V: 项目处理模型数据
 abstract class LoadMorePage<T, E, V> extends LoadMoreBase {
-  final RxMap<int, LoadMoreItem<T, E, V>> pages = <int, LoadMoreItem<T, E, V>>{}.obs;
+  final RxMap<int, LoadMoreItem<T, E, V>> pages =
+      <int, LoadMoreItem<T, E, V>>{}.obs;
   final RxInt _currentPage = (-1).obs; // 下一面，上一面要用的
   final RxInt _startPage = (0).obs;
   final event = EventBus();
@@ -72,7 +40,7 @@ abstract class LoadMorePage<T, E, V> extends LoadMoreBase {
 
   /// 这里传入的page应该是以0开始的, 第一面就是0
   Future<void> _loadPageData(int page) async {
-    await _requestLock.synchronized(() async {
+    await requestLock.synchronized(() async {
       if (pages.containsKey(page)) return;
       logger.i('当前页面', _currentPage.value, '准备加载页面', page);
       loadStart();
@@ -106,7 +74,7 @@ abstract class LoadMorePage<T, E, V> extends LoadMoreBase {
 
   /// 刷新页面数据
   Future<void> onRefresh() async {
-    if (_requestLock.locked) return awaitLock();
+    if (requestLock.locked) return awaitLock();
     pages.clear();
     _currentPage.value = -1;
     loadRefresh();

@@ -17,17 +17,19 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
 
-class ListPageItem extends LoadMoreItem<ListRpcModel, ListRpcModel_Item> {
+class ListPageItem
+    extends LoadMoreItem<ListRpcModel, ListRpcModel_Item, ListItemModel> {
   ListPageItem(super.pageData);
 
   @override
-  ListItemModel genModel(ListRpcModel_Item item) => ListItemModel(item);
+  List<ListRpcModel_Item> get items => pageData.items;
 
   @override
-  List<ListRpcModel_Item> get items => pageData.items;
+  Iterable<ListItemModel> genModel() => items.map((e) => ListItemModel(e));
 }
 
-class SubListController extends LoadMorePage<ListRpcModel, ListRpcModel_Item> {
+class SubListController
+    extends LoadMorePage<ListRpcModel, ListRpcModel_Item, Object> {
   SubListController({
     required this.blueprint,
     this.subPageModel,

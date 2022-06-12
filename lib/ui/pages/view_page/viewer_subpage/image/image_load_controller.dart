@@ -8,17 +8,17 @@ import 'package:get/get.dart';
 /// 这里是图片控制器
 /// 图片加载页面应该只做最基本的事情, 便是显示图片
 /// 其他功能例如加载图片数据(url, 高度宽度等), 应该交由上级负责, 因为不知道模板是怎么实现的
-abstract class BaseImageLoadController<T, E extends ImageWithPreviewModel> {
+abstract class BaseImageLoadController<T, E, V extends ImageWithPreviewModel<E>> {
   BaseImageLoadController({required this.loaderController});
 
   /// 总面数
   int? get pageCount;
 
   /// 图片加载控制器
-  final LoadMorePage<T, E> loaderController;
+  final LoadMorePage<T, E, V> loaderController;
 
   // 下面是具体实现的方法
-  final _waitLoadModel = <ImageWithPreviewModel<E>>[];
+  final _waitLoadModel = <V>[];
   var readerIsForward = true;
 
   var currentIndex = 0;
@@ -63,5 +63,6 @@ abstract class BaseImageLoadController<T, E extends ImageWithPreviewModel> {
     }
   }
 
+  /// 请求加载数据
   Future<void> loadModel(int index);
 }

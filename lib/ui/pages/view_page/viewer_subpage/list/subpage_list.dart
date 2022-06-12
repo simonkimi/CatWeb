@@ -87,7 +87,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
             if (index.isOdd) {
               return const ImageListDivider();
             }
-            final model = controller.items[index ~/ 2];
+            final model = controller.items.toList()[index ~/ 2];
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
               child: ListExtendedCard(

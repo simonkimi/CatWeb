@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/loaders/load_more_mixin.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';

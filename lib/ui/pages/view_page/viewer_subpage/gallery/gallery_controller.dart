@@ -4,6 +4,7 @@ import 'package:catweb/data/loaders/image_with_preview.dart';
 import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
+import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/utils/replace_utils.dart';
@@ -30,21 +31,20 @@ class GalleryBaseData {
   });
 }
 
-class GalleryLoadMore
-    extends LoadMoreItem<GalleryRpcModel, GalleryRpcModel_Item> {
+class GalleryLoadMore extends LoadMoreItem<GalleryRpcModel,
+    GalleryRpcModel_Item, GalleryImageWithPreview> {
   GalleryLoadMore(super.pageData);
 
   @override
-  ImageWithPreviewModel<GalleryRpcModel_Item> genModel(
-          GalleryRpcModel_Item item) =>
-      GalleryImageWithPreview(item);
+  List<GalleryRpcModel_Item> get items => pageData.items;
 
   @override
-  List<GalleryRpcModel_Item> get items => pageData.items;
+  Iterable<GalleryImageWithPreview> genModel() =>
+      items.map((e) => GalleryImageWithPreview(e));
 }
 
 class GalleryPreviewController
-    extends LoadMorePage<GalleryRpcModel, GalleryRpcModel_Item> {
+    extends LoadMorePage<GalleryRpcModel, GalleryRpcModel_Item, GalleryImageWithPreview> {
   GalleryPreviewController({
     required this.blueprint,
     SiteEnvModel? outerEnv,
@@ -135,6 +135,9 @@ class GalleryPreviewController
     }
     return null;
   }
+
+  TemplateGalleryModel get extra =>
+      blueprint.templateData as TemplateGalleryModel;
 
   bool get fillRemaining =>
       (state.isLoading && successiveItems.isEmpty) || errorMessage != null;
