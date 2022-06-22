@@ -106,6 +106,8 @@ mixin LoadStateMixin {
     }
     _state.value = LoadListStatue.error(error);
   }
+
+  bool get canLoad => state.isIdle || state.isError;
 }
 
 abstract class LoadMoreBase with LoadListStateMixin {

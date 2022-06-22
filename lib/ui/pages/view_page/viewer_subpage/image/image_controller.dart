@@ -8,8 +8,6 @@ import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/utils/debug.dart';
-import 'package:catweb/utils/state_mixin.dart';
-import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

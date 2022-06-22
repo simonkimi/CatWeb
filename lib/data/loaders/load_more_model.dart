@@ -8,8 +8,12 @@ import 'package:get/get.dart';
 import 'load_more_actions.dart';
 import 'load_more_mixin.dart';
 
-abstract class LoadMoreItem<T, E, V> {
-  LoadMoreItem(this.pageData) {
+abstract class LoadMoreItem<E> {
+  E get item;
+}
+
+abstract class LoadMorePage<T, E, V extends LoadMoreItem<E>> {
+  LoadMorePage(this.pageData) {
     models = genModel();
   }
 
@@ -18,16 +22,17 @@ abstract class LoadMoreItem<T, E, V> {
 
   List<E> get items;
 
-  late final Iterable<V> models;
+  late final List<V> models;
 
-  Iterable<V> genModel() => [];
+  List<V> genModel() => [];
 }
 
 /// 加载控制器: 页面风格
 /// T: 页面数据, E: 项目原始数据, V: 项目处理模型数据
-abstract class LoadMorePage<T, E, V> extends LoadMoreBase {
-  final RxMap<int, LoadMoreItem<T, E, V>> pages =
-      <int, LoadMoreItem<T, E, V>>{}.obs;
+abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
+    extends LoadMoreBase {
+  final RxMap<int, LoadMorePage<T, E, V>> pages =
+      <int, LoadMorePage<T, E, V>>{}.obs;
   final RxInt _currentPage = (-1).obs; // 下一面，上一面要用的
   final RxInt _startPage = (0).obs;
   final event = EventBus();
@@ -108,20 +113,20 @@ abstract class LoadMorePage<T, E, V> extends LoadMoreBase {
     await onLoadMore();
   }
 
-  Future<LoadMoreItem<T, E, V>> netWorkLoadPage(int page);
+  Future<LoadMorePage<T, E, V>> netWorkLoadPage(int page);
 
   int? get chunkSize; // 每块图片数量, 如果为null则只能一面一面跳页
   int? get totalSize; // 一共有多少图片, 为null则不允许跳页
 
-  Iterable<E> get successiveItems => successivePages.expand((e) => e.items);
+  Iterable<V> get successiveItems => successivePages.expand((e) => e.models);
 
-  Iterable<LoadMoreItem<T, E, V>> get successivePages =>
+  Iterable<LoadMorePage<T, E, V>> get successivePages =>
       (pages.entries.where((e) => e.key >= _startPage.value).toList()
             ..sort((a, b) => a.key - b.key))
           .getSuccessive((e) => e.key)
           .map((e) => e.value);
 
-  Iterable<E?> get allItems sync* {
+  Iterable<V?> get allItems sync* {
     assert(chunkSize != null);
     if (totalSize != null) {
       for (var i = 0; i < totalSize!; i++) {
@@ -130,7 +135,7 @@ abstract class LoadMorePage<T, E, V> extends LoadMoreBase {
         if (model == null) {
           yield null;
         } else {
-          yield model.items.index(i % chunkSize!);
+          yield model.models.index(i % chunkSize!);
         }
       }
     } else {
@@ -139,11 +144,11 @@ abstract class LoadMorePage<T, E, V> extends LoadMoreBase {
         final chunk =
             i == maxIndex ? pages[maxIndex]!.items.length : chunkSize!;
         for (var j = 0; j < chunk; j++) {
-          yield pages[i]?.items[j];
+          yield pages[i]?.models[j];
         }
       }
     }
   }
 
-  Iterable<E?> get items => chunkSize == null ? successiveItems : allItems;
+  Iterable<V?> get items => chunkSize == null ? successiveItems : allItems;
 }

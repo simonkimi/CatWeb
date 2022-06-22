@@ -10,6 +10,7 @@ import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/utils/debug.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:catweb_parser/catweb_parser.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,18 +19,15 @@ import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
 
 class ListPageItem
-    extends LoadMoreItem<ListRpcModel, ListRpcModel_Item, ListItemModel> {
+    extends LoadMorePage<ListRpcModel, ListRpcModel_Item, ListItemModel> {
   ListPageItem(super.pageData);
 
   @override
   List<ListRpcModel_Item> get items => pageData.items;
-
-  @override
-  Iterable<ListItemModel> genModel() => items.map((e) => ListItemModel(e));
 }
 
 class SubListController
-    extends LoadMorePage<ListRpcModel, ListRpcModel_Item, Object> {
+    extends LoadMoreLoader<ListRpcModel, ListRpcModel_Item, ListItemModel> {
   SubListController({
     required this.blueprint,
     this.subPageModel,
@@ -89,8 +87,13 @@ class SubListController
       // 有面数
       baseUrl = pageReplace(baseUrl, page);
     } else {
+      // 无面数, 最后一个为面数
       if (pages.isNotEmpty) {
-        baseUrl = pages.last.nextPage;
+        final maxPage = iterableMax(pages.keys);
+        if (maxPage == null) {
+          throw Exception('No page loaded? WTF?');
+        }
+        baseUrl = pages[maxPage]!.pageData.nextPage;
       }
     }
     baseUrl = localEnv.replace(baseUrl);

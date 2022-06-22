@@ -53,7 +53,8 @@ class DisplaySettingPage extends GetView<SettingController> {
               title: I.of(context).pre_load_count,
               value: controller.preloadCount,
               items: [
-                SelectTileItem(value: 0, title: I.of(context).disable),
+                SelectTileItem(
+                    value: 0, title: I.of(context).disable), // 0禁用, 只加载自己
                 for (var i = 1; i <= 17; i += 2)
                   SelectTileItem(value: i, title: '$i'),
               ],

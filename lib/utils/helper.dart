@@ -27,12 +27,9 @@ extension ListUtils<T> on List<T> {
     return this[math.Random().nextInt(length)];
   }
 
-  T? index(int index) {
-    if (length > index && index >= 0) {
-      return this[index]!;
-    }
-    return null;
-  }
+  bool has(int index) => length > index && index >= 0;
+
+  T? index(int index) => has(index) ? this[index]! : null;
 
   List<T> addIfNotExist(Iterable<T> other) {
     addAll(other.where((e) => !contains(e)));
@@ -109,4 +106,14 @@ extension UnWrap on core.double {
   double get nan2zero => isNaN ? 0 : this;
 
   double? get nan2null => isNaN ? null : this;
+}
+
+T? iterableMax<T extends num>(Iterable<T> iter) {
+  if (iter.isEmpty) return null;
+  return iter.reduce(math.max);
+}
+
+T? iterableMin<T extends num>(Iterable<T> iter) {
+  if (iter.isEmpty) return null;
+  return iter.reduce(math.min);
 }

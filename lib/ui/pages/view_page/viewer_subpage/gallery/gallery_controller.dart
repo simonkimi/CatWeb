@@ -31,20 +31,16 @@ class GalleryBaseData {
   });
 }
 
-class GalleryLoadMore extends LoadMoreItem<GalleryRpcModel,
+class GalleryLoadMore extends LoadMorePage<GalleryRpcModel,
     GalleryRpcModel_Item, GalleryImageWithPreview> {
   GalleryLoadMore(super.pageData);
 
   @override
   List<GalleryRpcModel_Item> get items => pageData.items;
-
-  @override
-  Iterable<GalleryImageWithPreview> genModel() =>
-      items.map((e) => GalleryImageWithPreview(e));
 }
 
-class GalleryPreviewController
-    extends LoadMorePage<GalleryRpcModel, GalleryRpcModel_Item, GalleryImageWithPreview> {
+class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
+    GalleryRpcModel_Item, GalleryImageWithPreview> {
   GalleryPreviewController({
     required this.blueprint,
     SiteEnvModel? outerEnv,
