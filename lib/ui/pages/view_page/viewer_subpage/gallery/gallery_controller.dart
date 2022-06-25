@@ -1,13 +1,15 @@
 import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/loaders/image_with_preview.dart';
+import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/replace_utils.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 
@@ -31,6 +33,21 @@ class GalleryBaseData {
   });
 }
 
+/// Gallery带预览的加载项目
+class GalleryImageWithPreview
+    extends ImageWithPreviewModel<GalleryRpcModel_Item> {
+  GalleryImageWithPreview(super.previewModel);
+
+  @override
+  ImageRpcModel get previewImage => previewModel.previewImg;
+
+  @override
+  GalleryRpcModel_Item get value => previewModel;
+
+  @override
+  String? get idCode => value.target;
+}
+
 class GalleryLoadMore extends LoadMorePage<GalleryRpcModel,
     GalleryRpcModel_Item, GalleryImageWithPreview> {
   GalleryLoadMore(super.pageData);
@@ -40,7 +57,8 @@ class GalleryLoadMore extends LoadMorePage<GalleryRpcModel,
 }
 
 class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
-    GalleryRpcModel_Item, GalleryImageWithPreview> {
+        GalleryRpcModel_Item, GalleryImageWithPreview>
+    implements ReaderInfo<GalleryRpcModel_Item, GalleryImageWithPreview> {
   GalleryPreviewController({
     required this.blueprint,
     SiteEnvModel? outerEnv,
@@ -143,4 +161,11 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
 
   @override
   int? get totalSize => detailModel?.getImageCount();
+
+  @override
+  Future<void> loadIndexModel(int index, CancelToken cancelToken) =>
+      loadIndex(index);
+
+  @override
+  int? get pageCount => totalSize;
 }

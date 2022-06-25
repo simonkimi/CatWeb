@@ -103,7 +103,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5),
                       child: ImageLoader(
                         concurrency: c.concurrency,
-                        model: c.items.toList()[index]!.previewImg,
+                        model: c.items.toList()[index]!.value.previewImg,
                         innerImageBuilder: (context, child) {
                           return ClipRRect(
                             borderRadius: BorderRadius.circular(5),

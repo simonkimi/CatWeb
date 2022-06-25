@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'dart:math' as math;
 
-import 'image_controller.dart';
+import 'controller/image_controller.dart';
 import 'package:get/get.dart';
 
 class ImagePageController {

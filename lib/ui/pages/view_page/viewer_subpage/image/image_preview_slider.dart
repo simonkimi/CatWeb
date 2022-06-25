@@ -6,7 +6,7 @@ import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import 'image_controller.dart';
+import 'controller/image_controller.dart';
 import 'image_read_controller.dart';
 
 class ImagePreviewSlider extends StatefulWidget {
@@ -16,7 +16,7 @@ class ImagePreviewSlider extends StatefulWidget {
     required this.readController,
   });
 
-  final ImageReaderController controller;
+  // final ImageReaderController controller;
   final ImagePageController readController;
 
   @override

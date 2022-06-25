@@ -11,7 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import 'gallery/viewer_gallery.dart';
-import 'image/image_controller.dart';
+import 'image/controller/image_load_controller.dart';
 
 class ViewerPage extends StatelessWidget {
   const ViewerPage({

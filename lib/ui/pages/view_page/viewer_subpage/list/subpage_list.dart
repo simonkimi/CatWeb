@@ -91,7 +91,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
               child: ListExtendedCard(
-                model: model,
+                model: model!.item,
                 concurrency: controller.concurrency,
                 onTap: () {
                   pushNewPage(
@@ -99,7 +99,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
                             as TemplateListDataModel)
                         .targetItem
                         .value,
-                    envModel: SiteEnvModel(model.env),
+                    envModel: SiteEnvModel(model.item.env),
                     model: model,
                   );
                 },

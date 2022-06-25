@@ -8,10 +8,12 @@ import 'package:get/get.dart';
 import 'load_more_actions.dart';
 import 'load_more_mixin.dart';
 
+/// 加载中每一个数据的内部值
 abstract class LoadMoreItem<E> {
-  E get item;
+  E get value;
 }
 
+/// 用于加载一面一面数据
 abstract class LoadMorePage<T, E, V extends LoadMoreItem<E>> {
   LoadMorePage(this.pageData) {
     models = genModel();
@@ -20,8 +22,10 @@ abstract class LoadMorePage<T, E, V extends LoadMoreItem<E>> {
   /// 页面数据
   final T pageData;
 
+  /// 页面数据内有效的列表数据
   List<E> get items;
 
+  /// 列表数据经过处理后模型
   late final List<V> models;
 
   List<V> genModel() => [];
@@ -88,23 +92,21 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
   }
 
   /// 加载指定的index，用于在预览中跳页
-  // Future<void> loadIndex(int index, [RxBool? stop]) async {
-  //   return await _requestLock.synchronized(() async {
-  //     if (totalSize == null || chunkSize == null) {
-  //       // 没有确切的面数, 只能一面面加载
-  //       while (items.length < index) {
-  //         if (stop?.isTrue ?? false) {
-  //           break;
-  //         }
-  //         await onLoadMore();
-  //       }
-  //     } else {
-  //       // 有确切的面数, 直接加载
-  //       final page = (index / chunkSize!).floor();
-  //       await _loadPageData(page);
-  //     }
-  //   });
-  // }
+  Future<void> loadIndex(int index) async {
+    // TODO 检查这里逻辑是否有问题
+    return await requestLock.synchronized(() async {
+      if (totalSize == null || chunkSize == null) {
+        // 没有确切的面数, 只能一面面加载
+        while (items.length < index) {
+          await onLoadMore();
+        }
+      } else {
+        // 有确切的面数, 直接加载
+        final page = (index / chunkSize!).floor();
+        await _loadPageData(page);
+      }
+    });
+  }
 
   /// 跳页，加载某夜数据
   Future<void> jumpPage(int page) async {

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:catweb/data/controller/site_controller.dart';
-import 'package:catweb/data/loaders/image_with_preview.dart';
+import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
@@ -9,10 +9,12 @@ import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:catweb_parser/catweb_parser.dart';
+import 'package:dio/src/cancel_token.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -26,8 +28,23 @@ class ListPageItem
   List<ListRpcModel_Item> get items => pageData.items;
 }
 
+/// List带预览加载的项目
+class ListItemModel extends ImageWithPreviewModel<ListRpcModel_Item> {
+  ListItemModel(super.previewModel);
+
+  @override
+  ImageRpcModel get previewImage => previewModel.previewImg;
+
+  @override
+  ListRpcModel_Item get value => previewModel;
+
+  @override
+  String? get idCode => value.target;
+}
+
 class SubListController
-    extends LoadMoreLoader<ListRpcModel, ListRpcModel_Item, ListItemModel> {
+    extends LoadMoreLoader<ListRpcModel, ListRpcModel_Item, ListItemModel>
+    implements ReaderInfo<ListRpcModel_Item, ListItemModel> {
   SubListController({
     required this.blueprint,
     this.subPageModel,
@@ -180,10 +197,24 @@ class SubListController
     scrollController.dispose();
   }
 
+  Future<void> requestFirstLoad() async {
+    if (pages.isEmpty && state.isIdle) {
+      await onLoadMore();
+    }
+  }
+
   @override
   int? get chunkSize => throw UnimplementedError();
 
   @override
-  // TODO: implement totalSize
   int? get totalSize => throw UnimplementedError();
+
+  @override
+  int? get pageCount => totalSize;
+
+  @override
+  Future<void> loadIndexModel(int index, CancelToken cancelToken) {
+    // TODO: implement loadIndexModel
+    throw UnimplementedError();
+  }
 }

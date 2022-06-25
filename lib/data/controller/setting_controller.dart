@@ -17,9 +17,11 @@ class SettingController extends GetxController {
   final RxBool imageMaskInDarkMode = true.obs;
   final cardSize = CardSize.medium.obs;
   final RxInt preloadCount = 7.obs;
-  final RxInt concurrencyCount = 5.obs;
   final RxInt readerDirectory = ReaderDirection.ltr.obs;
   final RxInt displayType = ReaderDisplayType.single.obs;
+
+  /// 并发数量
+  final RxInt concurrencyCount = 5.obs;
 
   // 下载设置
 

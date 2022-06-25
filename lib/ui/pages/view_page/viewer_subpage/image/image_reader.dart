@@ -16,7 +16,7 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:get/get.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'image_controller.dart';
+import 'controller/image_controller.dart';
 import 'image_preview_slider.dart';
 import 'image_read_controller.dart';
 import 'image_slider.dart';

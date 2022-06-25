@@ -6,7 +6,7 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import 'image_controller.dart';
+import 'controller/image_controller.dart';
 
 class ImageViewer extends StatefulWidget {
   const ImageViewer({
