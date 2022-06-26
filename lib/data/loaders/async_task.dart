@@ -23,9 +23,9 @@ class AsyncState {
   factory AsyncState.running() => AsyncState._(isRunning: true);
 
   factory AsyncState.error(Exception error) => AsyncState._(
-    isError: true,
-    error: error,
-  );
+        isError: true,
+        error: error,
+      );
 
   factory AsyncState.finish() => AsyncState._(isFinish: true);
 
@@ -54,6 +54,8 @@ abstract class AsyncTask<T> {
   Future<T> run();
 
   AsyncState get state => _state;
+
+  int? get id;
 }
 
 class AsyncPool<T extends AsyncTask> {
@@ -77,6 +79,14 @@ class AsyncPool<T extends AsyncTask> {
     _taskQueue.addAll(tasks);
     _trigger();
   }
+
+  void removeWhere(bool Function(T task) test) {
+    _taskQueue.removeWhere(test);
+  }
+
+  bool contains(int id) =>
+      _taskQueue.where((e) => e.id == id).isNotEmpty ||
+      _workQueue.where((e) => e.id == id).isNotEmpty;
 
   final _taskQueue = Queue<T>();
   final _workQueue = Queue<T>();
