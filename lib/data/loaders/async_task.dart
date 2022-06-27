@@ -33,9 +33,15 @@ class AsyncState {
 }
 
 class AsyncTaskBuilder<T> extends AsyncTask<T> {
-  AsyncTaskBuilder(this.task);
+  AsyncTaskBuilder({
+    required this.task,
+    this.id,
+  });
 
   final Future<T> Function() task;
+
+  @override
+  final int? id;
 
   @override
   Future<T> run() => task();

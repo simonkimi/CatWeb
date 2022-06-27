@@ -16,9 +16,9 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:get/get.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'controller/image_controller.dart';
+import 'controller/image_load_controller.dart';
 import 'image_preview_slider.dart';
-import 'image_read_controller.dart';
+import 'controller/image_read_controller.dart';
 import 'image_slider.dart';
 import 'image_viewer.dart';
 
@@ -38,7 +38,7 @@ class ImageReader extends StatefulWidget {
 
 class _ImageReaderViewerState extends State<ImageReader>
     with TickerProviderStateMixin {
-  late final ImageReaderController c;
+  late final ReaderLoaderController c;
   late final ImagePageController readController;
 
   late final AnimationController hideToolbarAniController;
@@ -50,7 +50,7 @@ class _ImageReaderViewerState extends State<ImageReader>
   @override
   void initState() {
     super.initState();
-    c = ImageReaderController(
+    c = ReaderLoaderController(
       blueprint: widget.blueprint,
       localEnv: SiteEnvModel(),
       readerInfo: widget.readerInfo,
@@ -100,7 +100,11 @@ class _ImageReaderViewerState extends State<ImageReader>
                             readController.listPositionsListener,
                         initialScrollIndex: readController.currentPage,
                         itemBuilder: (context, index) {
-                          return ImageViewer(model: c.imageLoaderList[index]);
+                          return ImageViewer(
+                            // TODO 空检查
+                            model: c.readerInfo.items.toList()[index]!,
+                            index: index,
+                          );
                         },
                       ),
                     ))
@@ -151,7 +155,7 @@ class _ImageReaderViewerState extends State<ImageReader>
                       height: 50,
                       child: Obx(() => CupertinoImageSlider(
                             value: readController.currentPage,
-                            pageCount: c.imageLoaderList.length,
+                            pageCount: c.readerInfo.items.length,
                             onChanged: (value) {
                               readController.jumpToPage(value);
                             },
@@ -222,7 +226,9 @@ class _ImageReaderViewerState extends State<ImageReader>
         onTap: () {},
         onTapUp: _onImageTap,
         child: ImageViewer(
-          model: c.imageLoaderList[readIndex],
+          // TODO 空检查
+          model: c.readerInfo.items.toList()[readIndex]!,
+          index: readIndex,
           imageWrapBuilder: (context, child) {
             return ZoomWidget(
               controller: zoomController,
@@ -266,11 +272,18 @@ class _ImageReaderViewerState extends State<ImageReader>
           canZoom: true,
           child: Row(
             children: [
+              // TODO 空检查
               Expanded(
-                child: ImageViewer(model: c.imageLoaderList[realIndex]),
+                child: ImageViewer(
+                  model: c.readerInfo.items.toList()[realIndex]!,
+                  index: realIndex,
+                ),
               ),
               Expanded(
-                child: ImageViewer(model: c.imageLoaderList[realIndex + 1]),
+                child: ImageViewer(
+                  model: c.readerInfo.items.toList()[realIndex + 1]!,
+                  index: realIndex,
+                ),
               ),
             ],
           ),

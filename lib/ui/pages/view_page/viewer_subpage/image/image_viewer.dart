@@ -1,3 +1,4 @@
+import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/gen/protobuf/model.pb.dart';
 import 'package:catweb/ui/widgets/cupertino_progress_bar.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
@@ -6,16 +7,17 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import 'controller/image_controller.dart';
 
 class ImageViewer extends StatefulWidget {
   const ImageViewer({
     super.key,
     required this.model,
     this.imageWrapBuilder,
+    required this.index,
   });
 
-  final ReaderImageLoader model;
+  final ImageWithPreviewModel model;
+  final int index;
 
   final Widget Function(BuildContext context, Widget child)? imageWrapBuilder;
 
@@ -24,7 +26,7 @@ class ImageViewer extends StatefulWidget {
 }
 
 class _ImageViewerState extends State<ImageViewer> {
-  ReaderImageLoader get model => widget.model;
+  ImageWithPreviewModel get model => widget.model;
 
   late final _imageWrapBuilder =
       widget.imageWrapBuilder ?? (BuildContext context, Widget child) => child;
@@ -48,7 +50,7 @@ class _ImageViewerState extends State<ImageViewer> {
 
   Widget _buildImage(BuildContext context) {
     // 还没有加载完图片数据
-    if (!model.state.isComplete || model.imageModel.value == null) {
+    if (!model.state.isComplete || model.imageModel == null) {
       return _buildAspRation(
           context,
           Column(
@@ -66,8 +68,8 @@ class _ImageViewerState extends State<ImageViewer> {
         context,
         _defaultImageBuilder(
           context,
-          model.imageModel.value!,
-          model.model!.image,
+          model.imageProvider.value!,
+          model.imageModel!.image,
         ));
   }
 
@@ -169,7 +171,7 @@ class _ImageViewerState extends State<ImageViewer> {
 
   Widget _buildIndexText() {
     return Text(
-      '${model.index + 1}',
+      '${widget.index + 1}',
       style: const TextStyle(
         color: CupertinoColors.white,
         fontSize: 60,

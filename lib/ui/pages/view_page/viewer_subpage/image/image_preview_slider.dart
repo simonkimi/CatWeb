@@ -2,12 +2,14 @@ import 'dart:math';
 
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/controller/setting_enum.dart';
+import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import 'controller/image_controller.dart';
-import 'image_read_controller.dart';
+import 'controller/image_load_controller.dart';
+import 'controller/image_read_controller.dart';
 
 class ImagePreviewSlider extends StatefulWidget {
   const ImagePreviewSlider({
@@ -16,7 +18,7 @@ class ImagePreviewSlider extends StatefulWidget {
     required this.readController,
   });
 
-  // final ImageReaderController controller;
+  final ReaderLoaderController controller;
   final ImagePageController readController;
 
   @override
@@ -24,7 +26,7 @@ class ImagePreviewSlider extends StatefulWidget {
 }
 
 class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
-  ImageReaderController get controller => widget.controller;
+  ReaderLoaderController get controller => widget.controller;
 
   ImagePageController get readController => widget.readController;
 
@@ -91,12 +93,12 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
       final boxSize = box?.size;
       if (boxSize != null) {
         final offset = scrollController.offset;
-        final end = min(controller.imageLoaderList.length,
+        final end = min(controller.readerInfo.items.length,
             ((offset + boxSize.width) / (boxSize.height * 0.618 + 2)).ceil());
         final start = (offset / (boxSize.height * 0.618 + 2)).floor();
 
         for (var i = max(start, 0); i < end; i++) {
-          controller.readerInfo.requestLoadIndex(i);
+          controller.readerInfo.loadIndexModel(i);
         }
       }
     });
@@ -112,7 +114,7 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
             key: listGlobalKey,
             controller: scrollController,
             scrollDirection: Axis.horizontal,
-            itemCount: controller.imageLoaderList.length,
+            itemCount: controller.readerInfo.items.length,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () => readController.jumpToPage(index),
@@ -132,14 +134,22 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
                         ),
                         child: AspectRatio(
                           aspectRatio: 0.618,
-                          child: Obx(() => controller.imageLoaderList[index]
-                                      .previewModel.value !=
+                          child: Obx(() => controller.readerInfo.items
+                                      .toList()[index]
+                                      ?.previewModel
+                                      .value !=
                                   null
                               ? ImageLoader(
-                                  concurrency:
-                                      controller.readerInfo.previewConcurrency,
-                                  model: controller.imageLoaderList[index]
-                                      .previewModel.value!,
+                                  concurrency: ImageListConcurrency(
+                                    dio: Get.find<GlobalController>()
+                                        .website
+                                        .client
+                                        .imageDio,
+                                  ),
+                                  model: controller.readerInfo.items
+                                      .toList()[index]!
+                                      .previewModel
+                                      .value!,
                                   enableHero: false,
                                 )
                               : Center(

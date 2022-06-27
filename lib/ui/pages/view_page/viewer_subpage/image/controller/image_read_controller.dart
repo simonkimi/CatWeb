@@ -1,22 +1,21 @@
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/controller/setting_enum.dart';
-import 'package:catweb/data/database/database.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'dart:math' as math;
 
-import 'controller/image_controller.dart';
 import 'package:get/get.dart';
+import 'image_load_controller.dart';
 
 class ImagePageController {
   ImagePageController({
     required this.controller,
-  }) : _currentPage = controller.readerInfo.startPage != null
-            ? controller.readerInfo.startPage!.obs
+  }) : _currentPage = controller.readerInfo.startReadIndex != null
+            ? controller.readerInfo.startReadIndex!.obs
             : 0.obs;
 
-  final ImageReaderController controller;
+  final ReaderLoaderController controller;
   final PageController pageController = PageController();
 
   final listController = ItemScrollController();
@@ -39,7 +38,7 @@ class ImagePageController {
     });
 
     if (currentPage > 0) {
-      final start = _getDisplayIndex(controller.readerInfo.startPage!);
+      final start = _getDisplayIndex(controller.readerInfo.startReadIndex!);
       _currentPage.value = start;
       onPageIndexChanged(start);
       jumpToPage(start);
@@ -71,12 +70,12 @@ class ImagePageController {
   bool isSingleWidget(int index) {
     switch (displayType) {
       case ReaderDisplayType.double: // 普通双面多出一面
-        return controller.imageLoaderList.length.isOdd &&
+        return controller.readerInfo.items.length.isOdd &&
             index == displayPageCount - 1;
       case ReaderDisplayType.doubleCover: // 封面双面的封面和多出的一面
 
         return index == 0 ||
-            (controller.imageLoaderList.length.isEven &&
+            (controller.readerInfo.items.length.isEven &&
                 index == displayPageCount - 1);
       case ReaderDisplayType.single: // 单面
       default:
@@ -86,7 +85,7 @@ class ImagePageController {
 
   Future<void> onPageIndexChanged(int index) async {
     final realIndex = _getRealIndex(index);
-    if (realIndex >= controller.imageLoaderList.length) {
+    if (realIndex >= controller.readerInfo.items.length) {
       return;
     }
     logger.d('Page changed: $index -> $realIndex');
@@ -103,21 +102,8 @@ class ImagePageController {
     }
     _currentPage.value = realIndex;
     // 预加载
-    await controller.requestLoadImageModelIndex(index, isForwardDirection);
-
-    // 记录加载数据
-    if (controller.readerInfo.idCode != null) {
-      final db = DB().readerHistoryDao;
-      final entity = await db.get(
-        uuid: controller.readerInfo.fromUuid,
-        idCode: controller.readerInfo.idCode!,
-      );
-      if (entity != null) {
-        await db.replace(entity.copyWith(
-          pageIndex: realIndex,
-        ));
-      }
-    }
+    controller.readerInfo.onReaderIndexChanged(realIndex);
+    await controller.onIndexChanged(index, isForwardDirection);
   }
 
   void toNextPage() {
@@ -162,16 +148,16 @@ class ImagePageController {
 
   int get displayPageCount {
     if (readerDirectory == ReaderDirection.ttb) {
-      return controller.imageLoaderList.length;
+      return controller.readerInfo.items.length;
     }
     switch (displayType) {
       case ReaderDisplayType.double:
-        return 1 + ((controller.imageLoaderList.length - 1) / 2).ceil();
+        return 1 + ((controller.readerInfo.items.length - 1) / 2).ceil();
       case ReaderDisplayType.doubleCover:
-        return (controller.imageLoaderList.length / 2).ceil();
+        return (controller.readerInfo.items.length / 2).ceil();
       case ReaderDisplayType.single:
       default:
-        return controller.imageLoaderList.length;
+        return controller.readerInfo.items.length;
     }
   }
 

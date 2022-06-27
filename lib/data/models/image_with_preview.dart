@@ -24,7 +24,7 @@ abstract class ImageWithPreviewModel<T>
 
   /// 大图的数据
   ImageReaderRpcModel? imageModel;
-  Rx<ImageProvider?> imageProvider = Rx(null);
+  Rx<DioImageProvider?> imageProvider = Rx(null);
 
 
   /// 加载模型

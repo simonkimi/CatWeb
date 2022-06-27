@@ -14,7 +14,6 @@ import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:catweb_parser/catweb_parser.dart';
-import 'package:dio/src/cancel_token.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -210,11 +209,17 @@ class SubListController
   int? get totalSize => throw UnimplementedError();
 
   @override
-  int? get pageCount => totalSize;
-
-  @override
-  Future<void> loadIndexModel(int index, CancelToken cancelToken) {
+  Future<void> loadIndexModel(int index) async {
     // TODO: implement loadIndexModel
     throw UnimplementedError();
   }
+
+  @override
+  int? get itemsCount => null;
+
+  @override
+  int? get startReadIndex => null;
+
+  @override
+  void onReaderIndexChanged(int index) {}
 }

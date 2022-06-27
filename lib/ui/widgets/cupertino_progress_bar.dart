@@ -21,13 +21,13 @@ class CupertinoInfProgress extends HookWidget {
     aniController.repeat();
     return CustomPaint(
       size: Size.square(size ?? 20),
-      painter: CircularInfProgressPaint(ani),
+      painter: _CircularInfProgressPaint(ani),
     );
   }
 }
 
-class CircularInfProgressPaint extends CustomPainter {
-  CircularInfProgressPaint(this.value);
+class _CircularInfProgressPaint extends CustomPainter {
+  _CircularInfProgressPaint(this.value);
 
   final double value;
 
@@ -62,7 +62,7 @@ class CircularInfProgressPaint extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CircularInfProgressPaint oldDelegate) =>
+  bool shouldRepaint(_CircularInfProgressPaint oldDelegate) =>
       oldDelegate.value != value;
 }
 
@@ -90,7 +90,7 @@ class _CupertinoProgressState
   Widget build(BuildContext context) {
     return CustomPaint(
       size: Size.square(widget.size ?? 20),
-      painter: CircularProgressPaint(
+      painter: _CircularProgressPaint(
         _progressTween!.evaluate(animation).clamp(0, 1),
       ),
     );
@@ -103,8 +103,8 @@ class _CupertinoProgressState
   }
 }
 
-class CircularProgressPaint extends CustomPainter {
-  CircularProgressPaint(this.progress);
+class _CircularProgressPaint extends CustomPainter {
+  _CircularProgressPaint(this.progress);
 
   final double progress;
 
@@ -137,6 +137,6 @@ class CircularProgressPaint extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CircularProgressPaint oldDelegate) =>
+  bool shouldRepaint(_CircularProgressPaint oldDelegate) =>
       oldDelegate.progress != progress;
 }

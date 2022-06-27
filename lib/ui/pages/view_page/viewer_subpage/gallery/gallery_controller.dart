@@ -9,7 +9,6 @@ import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/replace_utils.dart';
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 
@@ -163,9 +162,25 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
   int? get totalSize => detailModel?.getImageCount();
 
   @override
-  Future<void> loadIndexModel(int index, CancelToken cancelToken) =>
-      loadIndex(index);
+  Future<void> loadIndexModel(int index) => loadIndex(index);
 
   @override
-  int? get pageCount => totalSize;
+  int? get itemsCount => totalSize;
+
+  @override
+  int? get startReadIndex => lastReadIndex.value;
+
+  @override
+  Future<void> onReaderIndexChanged(int index) async {
+    final db = DB().readerHistoryDao;
+    final entity = await db.get(
+      uuid: blueprint.uuid,
+      idCode: idCode,
+    );
+    if (entity != null) {
+      await db.replace(entity.copyWith(
+        pageIndex: index,
+      ));
+    }
+  }
 }

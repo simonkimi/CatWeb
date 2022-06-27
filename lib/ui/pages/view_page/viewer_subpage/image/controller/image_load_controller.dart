@@ -5,15 +5,22 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-abstract class ReaderInfo<T, E extends ImageWithPreviewModel<T>> {
-  Iterable<E?> get items;
+abstract class ReaderInfo<T, V extends ImageWithPreviewModel<T>> {
+  /// 获取项目模型
+  Iterable<V?> get items;
 
-  int? get pageCount;
+  /// 一共有多少项目
+  int? get itemsCount;
 
-  Future<void> loadIndexModel(int index, CancelToken cancelToken);
+  /// 告知上级去加载[index]的数据
+  Future<void> loadIndexModel(int index);
+
+  /// 初始界面的index
+  int? get startReadIndex;
+
+  void onReaderIndexChanged(int index) {}
 }
 
 class _LoadModelTask extends AsyncTask<void> {
@@ -22,20 +29,18 @@ class _LoadModelTask extends AsyncTask<void> {
     required this.index,
     required this.blueprint,
     required this.localEnv,
-    required this.cancelToken,
   });
 
   final ReaderInfo readerInfo;
   final int index;
   final PageBlueprintModel blueprint;
   final SiteEnvModel localEnv;
-  final CancelToken cancelToken;
 
   @override
   Future<void> run() async {
     final model = readerInfo.items.toList().index(index);
     if (model == null) {
-      await readerInfo.loadIndexModel(index, cancelToken);
+      await readerInfo.loadIndexModel(index);
       if (model == null) {
         logger.wtf('加载$index后仍然为空');
         throw Exception('加载$index后仍然为空');
@@ -69,7 +74,6 @@ class ReaderLoaderController {
   // 下面是具体实现的方法
   var readerIsForward = true;
   var currentIndex = 0;
-  final _cancelToken = CancelToken();
 
   late final _loadModelPool = AsyncPool<_LoadModelTask>(
     priorityBuilder: (task) => 99999 - (currentIndex - task.index).abs(),
@@ -91,15 +95,10 @@ class ReaderLoaderController {
               localEnv: localEnv,
               readerInfo: readerInfo,
               index: e,
-              cancelToken: _cancelToken,
             ));
 
     _loadModelPool.removeWhere(
         (task) => readerIsForward ? task.index < index : task.index > index);
     _loadModelPool.addAll(needLoadItem);
-  }
-
-  void dispose() {
-    _cancelToken.cancel();
   }
 }
