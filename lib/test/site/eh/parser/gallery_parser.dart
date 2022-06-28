@@ -122,7 +122,7 @@ final ehGalleryParser = GalleryParser(
       selector: '#gd1 div',
       function: SelectorFunction.SELECTOR_FUNCTION_ATTR,
       param: 'style',
-      regex: r'url(.+)\)',
+      regex: r'url\((.+)\)',
     ),
     imgWidth: Selector(
       selector: '#gd1 div',

@@ -215,9 +215,10 @@ Dio _buildDio({
     ],
   ));
 
+  // dio.interceptors.add(HttpFormatter(includeResponseBody: false));
+
   if (!isImage) {
     dio.interceptors.add(DioCacheInterceptor(options: setting.cacheOptions));
-    // dio.interceptors.add(HttpFormatter(includeResponseBody: false));
   } else {
     dio.interceptors.add(
       DioCacheInterceptor(options: setting.imageCacheOption),

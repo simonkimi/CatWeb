@@ -17,15 +17,15 @@ abstract class ImageWithPreviewModel<T>
 
   /// 预览图的数据, 初始状态下就能拿到
   T previewModel;
-  ImageRpcModel get previewImage;
+
+  ImageRpcModel? get previewImage;
+
   /// 从初始
   String? get idCode;
-
 
   /// 大图的数据
   ImageReaderRpcModel? imageModel;
   Rx<DioImageProvider?> imageProvider = Rx(null);
-
 
   /// 加载模型
   Future<void> loadReaderModel({

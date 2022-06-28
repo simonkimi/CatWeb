@@ -3,6 +3,7 @@ import 'package:catweb/data/loaders/async_task.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
+import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,8 @@ abstract class ReaderInfo<T, V extends ImageWithPreviewModel<T>> {
   int? get startReadIndex;
 
   void onReaderIndexChanged(int index) {}
+
+  ImageListConcurrency get previewConcurrency;
 }
 
 class _LoadModelTask extends AsyncTask<void> {

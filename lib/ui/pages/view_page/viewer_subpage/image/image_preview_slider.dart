@@ -2,8 +2,6 @@ import 'dart:math';
 
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/controller/setting_enum.dart';
-import 'package:catweb/data/controller/site_controller.dart';
-import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -136,20 +134,14 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
                           aspectRatio: 0.618,
                           child: Obx(() => controller.readerInfo.items
                                       .toList()[index]
-                                      ?.previewModel
-                                      .value !=
+                                      ?.previewImage !=
                                   null
                               ? ImageLoader(
-                                  concurrency: ImageListConcurrency(
-                                    dio: Get.find<GlobalController>()
-                                        .website
-                                        .client
-                                        .imageDio,
-                                  ),
+                                  concurrency:
+                                      controller.readerInfo.previewConcurrency,
                                   model: controller.readerInfo.items
                                       .toList()[index]!
-                                      .previewModel
-                                      .value!,
+                                      .previewImage!,
                                   enableHero: false,
                                 )
                               : Center(

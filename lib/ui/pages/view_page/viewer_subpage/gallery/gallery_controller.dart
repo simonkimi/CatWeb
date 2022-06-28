@@ -53,6 +53,10 @@ class GalleryLoadMore extends LoadMorePage<GalleryRpcModel,
 
   @override
   List<GalleryRpcModel_Item> get items => pageData.items;
+
+  @override
+  List<GalleryImageWithPreview> genModel() =>
+      items.map((e) => GalleryImageWithPreview(e)).toList();
 }
 
 class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
@@ -79,9 +83,9 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
   final Rx<int> lastReadIndex = 0.obs;
 
   final global = Get.find<GlobalController>();
-  late final ImageListConcurrency concurrency = ImageListConcurrency(
-    dio: global.website.client.imageDio,
-  );
+
+  @override
+  late final ImageListConcurrency previewConcurrency = ImageListConcurrency();
 
   GalleryRpcModel? get detailModel => _detailModel.value;
 

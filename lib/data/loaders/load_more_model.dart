@@ -28,7 +28,7 @@ abstract class LoadMorePage<T, E, V extends LoadMoreItem<E>> {
   /// 列表数据经过处理后模型
   late final List<V> models;
 
-  List<V> genModel() => [];
+  List<V> genModel();
 }
 
 /// 加载控制器: 页面风格

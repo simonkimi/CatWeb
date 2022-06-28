@@ -25,6 +25,9 @@ class ListPageItem
 
   @override
   List<ListRpcModel_Item> get items => pageData.items;
+
+  @override
+  List<ListItemModel> genModel() => items.map((e) => ListItemModel(e)).toList();
 }
 
 /// List带预览加载的项目
@@ -65,11 +68,6 @@ class SubListController
   late final currentFilter = filter.map((e) => e.clone()).toList();
 
   var filterKeys = <String>{};
-
-  late final concurrency = ImageListConcurrency(
-    dio: global.client!.imageDio,
-    concurrency: 2,
-  );
 
   final scrollController = ScrollController();
 
@@ -203,16 +201,13 @@ class SubListController
   }
 
   @override
-  int? get chunkSize => throw UnimplementedError();
+  int? get chunkSize => null;
 
   @override
-  int? get totalSize => throw UnimplementedError();
+  int? get totalSize => null;
 
   @override
-  Future<void> loadIndexModel(int index) async {
-    // TODO: implement loadIndexModel
-    throw UnimplementedError();
-  }
+  Future<void> loadIndexModel(int index) => loadIndex(index);
 
   @override
   int? get itemsCount => null;
@@ -222,4 +217,10 @@ class SubListController
 
   @override
   void onReaderIndexChanged(int index) {}
+
+  @override
+  late final previewConcurrency = ImageListConcurrency(
+    dio: global.client!.imageDio,
+    concurrency: 4,
+  );
 }

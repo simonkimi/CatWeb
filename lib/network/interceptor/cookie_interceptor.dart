@@ -17,7 +17,19 @@ class HeaderCookieInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     final baseCookies =
         options.headers[HttpHeaders.cookieHeader] as String? ?? '';
-    final uri = options.uri.toString();
+
+    final path = options.path;
+    final uri =
+        path.startsWith(RegExp(r'https?://')) ? path : options.uri.toString();
+
+    print('---------------');
+    print(path);
+    print(path.startsWith(RegExp(r'https?://')));
+    print('---------------');
+
+    // logger.d(path, '\n', path.startsWith(RegExp(r'https?://')), '\n', uri, '\n',
+    //     options.uri.toString());
+
     final cookie = _parseCookies(baseCookies);
 
     // Cookies
@@ -49,6 +61,7 @@ class HeaderCookieInterceptor extends Interceptor {
         options.headers.addAll(_parseHeaders(regField.value.value));
       }
     }
+
     return handler.next(options);
   }
 

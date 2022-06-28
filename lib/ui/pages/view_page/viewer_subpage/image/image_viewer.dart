@@ -37,11 +37,11 @@ class _ImageViewerState extends State<ImageViewer> {
   }
 
   Widget _buildAspRation(BuildContext context, Widget child) {
-    if (model.previewModel.value?.hasWidth() == true &&
-        model.previewModel.value?.hasHeight() == true) {
+    if (model.previewImage?.hasWidth() == true &&
+        model.previewImage?.hasHeight() == true) {
       return AspectRatio(
         aspectRatio:
-            model.previewModel.value!.width / model.previewModel.value!.height,
+            model.previewImage!.width / model.previewImage!.height,
         child: child,
       );
     }

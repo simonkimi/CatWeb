@@ -92,7 +92,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
               child: ListExtendedCard(
                 model: model!.previewModel,
-                concurrency: controller.concurrency,
+                concurrency: controller.previewConcurrency,
                 onTap: () {
                   pushNewPage(
                     to: (controller.blueprint.templateData

@@ -1,6 +1,5 @@
 import 'package:catweb/data/controller/setting_controller.dart';
 import 'package:catweb/data/controller/setting_enum.dart';
-import 'package:catweb/utils/debug.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'dart:math' as math;
@@ -88,7 +87,7 @@ class ImagePageController {
     if (realIndex >= controller.readerInfo.items.length) {
       return;
     }
-    logger.d('Page changed: $index -> $realIndex');
+    // logger.d('Page changed: $index -> $realIndex');
 
     if ((realIndex - currentPage).abs() == 1) {
       // 跳页不作为翻页

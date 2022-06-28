@@ -54,7 +54,7 @@ class ViewerGalleryImages extends StatelessWidget {
                                   Expanded(
                                     child: list[index] != null
                                         ? ImageLoader(
-                                            concurrency: c.concurrency,
+                                            concurrency: c.previewConcurrency,
                                             model: list[index]!.value.previewImg,
                                             imageWidgetBuilder:
                                                 (context, child) {

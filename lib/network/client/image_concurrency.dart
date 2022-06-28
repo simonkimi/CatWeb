@@ -1,11 +1,19 @@
+import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/gen/protobuf/model.pb.dart';
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 
 import 'image_loader.dart';
 
 class ImageListConcurrency {
-  ImageListConcurrency({required this.dio, this.concurrency = 0});
+  ImageListConcurrency({
+    Dio? dio,
+    int? concurrency,
+  })  : concurrency =
+            concurrency ?? Get.find<SettingController>().concurrencyCount.value,
+        dio = dio ?? Get.find<GlobalController>().website.client.imageDio;
 
   final Dio dio;
   final int concurrency;

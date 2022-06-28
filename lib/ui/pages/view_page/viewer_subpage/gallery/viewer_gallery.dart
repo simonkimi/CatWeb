@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
@@ -102,7 +101,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: ImageLoader(
-                        concurrency: c.concurrency,
+                        concurrency: c.previewConcurrency,
                         model: c.items.toList()[index]!.value.previewImg,
                         innerImageBuilder: (context, child) {
                           return ClipRRect(
@@ -238,15 +237,12 @@ class ViewerGalleryFragment extends StatelessWidget {
     if (c.baseData?.image == null && c.detailModel?.coverImg == null) {
       return const SizedBox();
     }
-
     return Padding(
       padding: const EdgeInsets.only(right: 15),
       child: SizedBox(
         width: 140,
         child: ImageLoader(
-          concurrency: ImageListConcurrency(
-            dio: c.global.website.client.imageDio,
-          ),
+          concurrency: c.previewConcurrency,
           model: (c.baseData?.image ?? c.detailModel?.coverImg)!,
           innerImageBuilder: (context, child) {
             return Container(
