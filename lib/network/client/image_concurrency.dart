@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import 'image_loader.dart';
 
+/// 用于加载图片, 同url公用用一个imageProvider
 class ImageListConcurrency {
   ImageListConcurrency({
     Dio? dio,
@@ -54,7 +55,7 @@ class ImageListConcurrency {
   void _trigger() {
     while ((activeImage.length < concurrency || concurrency == 0) &&
         activeImage.isNotEmpty) {
-      activeImage[0].load().then((value) => _trigger());
+      activeImage.first.load().whenComplete(_trigger);
     }
   }
 }

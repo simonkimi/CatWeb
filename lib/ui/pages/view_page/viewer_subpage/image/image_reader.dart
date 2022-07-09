@@ -38,7 +38,7 @@ class ImageReader extends StatefulWidget {
 
 class _ImageReaderViewerState extends State<ImageReader>
     with TickerProviderStateMixin {
-  late final ReaderLoaderController c;
+  late final ReaderLoaderController controller;
   late final ImagePageController readController;
 
   late final AnimationController hideToolbarAniController;
@@ -50,12 +50,12 @@ class _ImageReaderViewerState extends State<ImageReader>
   @override
   void initState() {
     super.initState();
-    c = ReaderLoaderController(
+    controller = ReaderLoaderController(
       blueprint: widget.blueprint,
       localEnv: SiteEnvModel(),
       readerInfo: widget.readerInfo,
     );
-    readController = ImagePageController(controller: c);
+    readController = ImagePageController(controller: controller);
     hideToolbarAniController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 200),
@@ -90,6 +90,7 @@ class _ImageReaderViewerState extends State<ImageReader>
       child: Obx(() => Stack(
             children: [
               if (settings.readerDirectory.value == ReaderDirection.ttb)
+                // 垂直方向阅读
                 Obx(() => GestureDetector(
                       onTap: () {},
                       onTapUp: _onImageTap,
@@ -101,14 +102,14 @@ class _ImageReaderViewerState extends State<ImageReader>
                         initialScrollIndex: readController.currentPage,
                         itemBuilder: (context, index) {
                           return ImageViewer(
-                            // TODO 空检查
-                            model: c.readerInfo.items.toList()[index]!,
+                            readerInfo: controller.readerInfo,
                             index: index,
                           );
                         },
                       ),
                     ))
               else
+                // 水平方向阅读
                 Builder(builder: (context) {
                   Future.delayed(const Duration(milliseconds: 100), () {
                     readController.onPageViewBuild();
@@ -148,14 +149,14 @@ class _ImageReaderViewerState extends State<ImageReader>
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ImagePreviewSlider(
-                      controller: c,
+                      controller: controller,
                       readController: readController,
                     ),
                     SizedBox(
                       height: 50,
                       child: Obx(() => CupertinoImageSlider(
                             value: readController.currentPage,
-                            pageCount: c.readerInfo.items.length,
+                            pageCount: controller.readerInfo.items.length,
                             onChanged: (value) {
                               readController.jumpToPage(value);
                             },
@@ -227,7 +228,7 @@ class _ImageReaderViewerState extends State<ImageReader>
         onTapUp: _onImageTap,
         child: ImageViewer(
           // TODO 空检查
-          model: c.readerInfo.items.toList()[readIndex]!,
+          readerInfo: controller.readerInfo,
           index: readIndex,
           imageWrapBuilder: (context, child) {
             return ZoomWidget(
@@ -275,14 +276,14 @@ class _ImageReaderViewerState extends State<ImageReader>
               // TODO 空检查
               Expanded(
                 child: ImageViewer(
-                  model: c.readerInfo.items.toList()[realIndex]!,
+                  readerInfo: controller.readerInfo,
                   index: realIndex,
                 ),
               ),
               Expanded(
                 child: ImageViewer(
-                  model: c.readerInfo.items.toList()[realIndex + 1]!,
-                  index: realIndex,
+                  readerInfo: controller.readerInfo,
+                  index: realIndex + 1,
                 ),
               ),
             ],

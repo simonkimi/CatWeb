@@ -1,60 +1,10 @@
 import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/loaders/load_more_mixin.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:get/get.dart';
-
-class ImageLoadState {
-  ImageLoadState._({
-    this.isCached = false,
-    this.isWaiting = false,
-    this.isFinish = false,
-    this.isError = false,
-    this.isLoading = false,
-    this.error,
-  });
-
-  final bool isCached;
-  final bool isWaiting;
-  final bool isFinish;
-  final bool isError;
-  final bool isLoading;
-  Exception? error;
-
-  bool get isIdle => isWaiting || isCached;
-
-  factory ImageLoadState.cached() => ImageLoadState._(isCached: true);
-
-  factory ImageLoadState.waiting() => ImageLoadState._(isWaiting: true);
-
-  factory ImageLoadState.finish() => ImageLoadState._(isFinish: true);
-
-  factory ImageLoadState.loading() => ImageLoadState._(isLoading: true);
-
-  factory ImageLoadState.error([Exception? error]) =>
-      ImageLoadState._(isError: true, error: error);
-
-  @override
-  String toString() {
-    if (isCached) {
-      return 'ImageLoadState.cached';
-    }
-    if (isWaiting) {
-      return 'ImageLoadState.waiting';
-    }
-    if (isFinish) {
-      return 'ImageLoadState.finish';
-    }
-    if (isError) {
-      return 'ImageLoadState.error';
-    }
-    if (isLoading) {
-      return 'ImageLoadState.loading';
-    }
-    return 'ImageLoadState.idle';
-  }
-}
 
 class ImageLoadModel {
   ImageLoadModel({
@@ -80,17 +30,6 @@ class ImageLoadModel {
   bool get needLoad => _state.value.isWaiting && _handleWidget.value > 0;
 
   ImageLoadState get state => _state.value;
-
-  Future<void> tryLoad() async {
-    if (state.isFinish || state.isLoading) return;
-    if (state.isCached) {
-      await loadCache();
-      return;
-    }
-    if (state.isIdle) {
-      await load();
-    }
-  }
 
   void reset() {
     _state.value = ImageLoadState.waiting();

@@ -12,6 +12,7 @@ import 'package:catweb/ui/pages/view_page/viewer_subpage/gallery/viewer_gallery_
 import 'package:catweb/ui/pages/view_page/viewer_subpage/viewer_subpage_scaffold.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/theme/themes.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 
@@ -90,7 +91,7 @@ class ViewerGalleryFragment extends StatelessWidget {
           height: 150,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: math.min(c.items.length, 40),
+            itemCount: math.min(c.items.length, 60),
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () => _openReadPage(index),
@@ -100,7 +101,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                     aspectRatio: 200 / 282,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
-                      child: ImageLoader(
+                      child: c.items.toList().index(index) != null ? ImageLoader(
                         concurrency: c.previewConcurrency,
                         model: c.items.toList()[index]!.value.previewImg,
                         innerImageBuilder: (context, child) {
@@ -109,7 +110,10 @@ class ViewerGalleryFragment extends StatelessWidget {
                             child: child,
                           );
                         },
-                      ),
+                      ): Builder(builder: (context) {
+                        c.loadIndexModel(index);
+                        return const CupertinoActivityIndicator();
+                      }),
                     ),
                   ),
                 ),

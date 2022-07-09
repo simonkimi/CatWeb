@@ -51,6 +51,7 @@ class ViewerGalleryImages extends StatelessWidget {
                               padding: const EdgeInsets.all(4),
                               child: Column(
                                 children: [
+                                  // TODO 加载图片模型
                                   Expanded(
                                     child: list[index] != null
                                         ? ImageLoader(

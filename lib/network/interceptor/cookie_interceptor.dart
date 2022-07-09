@@ -22,14 +22,6 @@ class HeaderCookieInterceptor extends Interceptor {
     final uri =
         path.startsWith(RegExp(r'https?://')) ? path : options.uri.toString();
 
-    print('---------------');
-    print(path);
-    print(path.startsWith(RegExp(r'https?://')));
-    print('---------------');
-
-    // logger.d(path, '\n', path.startsWith(RegExp(r'https?://')), '\n', uri, '\n',
-    //     options.uri.toString());
-
     final cookie = _parseCookies(baseCookies);
 
     // Cookies

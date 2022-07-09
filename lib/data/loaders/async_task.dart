@@ -69,9 +69,12 @@ class AsyncPool<T extends AsyncTask> {
     this.maxConcurrency = 1,
     this.priorityBuilder,
     this.ignoreError = false,
+    this.filter,
   });
 
   final int Function(T task)? priorityBuilder;
+
+  final bool Function(T task)? filter;
 
   final int maxConcurrency;
   final bool ignoreError;
@@ -90,7 +93,7 @@ class AsyncPool<T extends AsyncTask> {
     _taskQueue.removeWhere(test);
   }
 
-  bool contains(int id) =>
+  bool containsTaskId(int id) =>
       _taskQueue.where((e) => e.id == id).isNotEmpty ||
       _workQueue.where((e) => e.id == id).isNotEmpty;
 
@@ -98,19 +101,24 @@ class AsyncPool<T extends AsyncTask> {
   final _workQueue = Queue<T>();
 
   void _trigger() {
-    while (_taskQueue.isNotEmpty && _workQueue.length < maxConcurrency) {
+    final queue = filter != null
+        ? _taskQueue.where(filter!)
+        : _taskQueue.toList();
+
+    while (queue.isNotEmpty && _workQueue.length < maxConcurrency) {
       late final T task;
 
       if (priorityBuilder != null) {
         _taskQueue.removeWhere((e) => e.state.isCanceled);
-        final priority = _taskQueue.toList()
+        final priority = queue.toList()
           ..sort((a, b) => priorityBuilder!(b) - priorityBuilder!(a));
         if (priority.isNotEmpty) {
           task = priority.first;
         }
         _taskQueue.remove(task);
       } else {
-        task = _taskQueue.removeFirst();
+        task = queue.first;
+        _taskQueue.remove(task);
         if (task._state.isCanceled) {
           continue;
         }

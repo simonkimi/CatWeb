@@ -133,12 +133,7 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
     if (totalSize != null) {
       for (var i = 0; i < totalSize!; i++) {
         final index = (i / chunkSize!).floor();
-        final model = pages[index];
-        if (model == null) {
-          yield null;
-        } else {
-          yield model.models.index(i % chunkSize!);
-        }
+        yield pages[index]?.models.index(i % chunkSize!);
       }
     } else {
       final maxIndex = pages.keys.fold(-1, max);

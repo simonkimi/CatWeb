@@ -29,7 +29,9 @@ extension ListUtils<T> on List<T> {
 
   bool has(int index) => length > index && index >= 0;
 
-  T? index(int index) => has(index) ? this[index]! : null;
+  T? index(int index) {
+    return has(index) ? this[index] : null;
+  }
 
   List<T> addIfNotExist(Iterable<T> other) {
     addAll(other.where((e) => !contains(e)));

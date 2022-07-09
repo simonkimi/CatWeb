@@ -7,16 +7,17 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import 'controller/image_load_controller.dart';
 
 class ImageViewer extends StatefulWidget {
   const ImageViewer({
     super.key,
-    required this.model,
+    required this.readerInfo,
     this.imageWrapBuilder,
     required this.index,
   });
 
-  final ImageWithPreviewModel model;
+  final ReaderInfo readerInfo;
   final int index;
 
   final Widget Function(BuildContext context, Widget child)? imageWrapBuilder;
@@ -26,22 +27,23 @@ class ImageViewer extends StatefulWidget {
 }
 
 class _ImageViewerState extends State<ImageViewer> {
-  ImageWithPreviewModel get model => widget.model;
+  ImageWithPreviewModel? get model =>
+      widget.readerInfo.items.toList().index(widget.index);
 
   late final _imageWrapBuilder =
       widget.imageWrapBuilder ?? (BuildContext context, Widget child) => child;
 
   @override
   Widget build(BuildContext context) {
+
     return Obx(() => _buildImage(context));
   }
 
   Widget _buildAspRation(BuildContext context, Widget child) {
-    if (model.previewImage?.hasWidth() == true &&
-        model.previewImage?.hasHeight() == true) {
+    if (model?.previewImage?.hasWidth() == true &&
+        model?.previewImage?.hasHeight() == true) {
       return AspectRatio(
-        aspectRatio:
-            model.previewImage!.width / model.previewImage!.height,
+        aspectRatio: model!.previewImage!.width / model!.previewImage!.height,
         child: child,
       );
     }
@@ -50,7 +52,7 @@ class _ImageViewerState extends State<ImageViewer> {
 
   Widget _buildImage(BuildContext context) {
     // 还没有加载完图片数据
-    if (!model.state.isComplete || model.imageModel == null) {
+    if (model == null || model!.imageModel.value == null) {
       return _buildAspRation(
           context,
           Column(
@@ -63,20 +65,21 @@ class _ImageViewerState extends State<ImageViewer> {
             ],
           ));
     }
-
     return _buildAspRation(
         context,
         _defaultImageBuilder(
           context,
-          model.imageProvider.value!,
-          model.imageModel!.image,
+          model!.imageProvider.value!,
+          model!.imageModel.value!.image,
         ));
   }
 
-  Widget _defaultImageBuilder(BuildContext context,
-      DioImageProvider imageProvider, ImageRpcModel model) {
+  Widget _defaultImageBuilder(
+    BuildContext context,
+    DioImageProvider imageProvider,
+    ImageRpcModel model,
+  ) {
     late Widget child;
-
     if ((!model.imgX.isNaN || !model.imgY.isNaN) &&
         model.hasWidth() &&
         model.hasHeight()) {

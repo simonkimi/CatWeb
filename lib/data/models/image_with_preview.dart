@@ -3,6 +3,7 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pb.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
+import 'package:catweb/utils/debug.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +25,7 @@ abstract class ImageWithPreviewModel<T>
   String? get idCode;
 
   /// 大图的数据
-  ImageReaderRpcModel? imageModel;
+  Rx<ImageReaderRpcModel?> imageModel = Rx(null);
   Rx<DioImageProvider?> imageProvider = Rx(null);
 
   /// 加载模型
@@ -32,19 +33,27 @@ abstract class ImageWithPreviewModel<T>
     required PageBlueprintModel blueprint,
     required SiteEnvModel localEnv,
   }) async {
-    if (imageModel != null || state.isLoading) return;
-    final url = blueprint.url.isEmpty ? idCode! : blueprint.url.value;
-    final global = Get.find<GlobalController>();
-    final env = localEnv.clone()..set('idCode', idCode!);
-    imageModel = await global.website.client.getReadImage(
-      url: url,
-      model: blueprint,
-      localEnv: env,
-    );
-    imageProvider.value = DioImageProvider(
-      rpcModel: imageModel!.image,
-      dio: global.website.client.imageDio,
-    );
-    imageProvider.value?.resolve(const ImageConfiguration());
+
+    try {
+      if (imageModel.value != null || state.isLoading) return;
+      loadStart();
+      final url = blueprint.url.isEmpty ? idCode! : blueprint.url.value;
+      final global = Get.find<GlobalController>();
+      final env = localEnv.clone()..set('idCode', idCode!);
+      imageModel.value = await global.website.client.getReadImage(
+        url: url,
+        model: blueprint,
+        localEnv: env,
+      );
+      imageProvider.value = DioImageProvider(
+        rpcModel: imageModel.value!.image,
+        dio: global.website.client.imageDio,
+      );
+      imageProvider.value?.resolve(const ImageConfiguration());
+      loadComplete();
+    } on Exception catch (e) {
+      logger.e(e);
+      loadError(e);
+    }
   }
 }
