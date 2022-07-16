@@ -33,7 +33,6 @@ abstract class ImageWithPreviewModel<T>
     required PageBlueprintModel blueprint,
     required SiteEnvModel localEnv,
   }) async {
-
     try {
       if (imageModel.value != null || state.isLoading) return;
       loadStart();

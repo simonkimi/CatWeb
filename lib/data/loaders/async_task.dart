@@ -101,9 +101,8 @@ class AsyncPool<T extends AsyncTask> {
   final _workQueue = Queue<T>();
 
   void _trigger() {
-    final queue = filter != null
-        ? _taskQueue.where(filter!)
-        : _taskQueue.toList();
+    final queue =
+        filter != null ? _taskQueue.where(filter!) : _taskQueue.toList();
 
     while (queue.isNotEmpty && _workQueue.length < maxConcurrency) {
       late final T task;

@@ -12,11 +12,11 @@ import 'gallery_controller.dart';
 class ViewerGalleryImages extends StatelessWidget {
   const ViewerGalleryImages({
     super.key,
-    required this.c,
+    required this.previewController,
     required this.onOpenPage,
   });
 
-  final GalleryPreviewController c;
+  final GalleryPreviewController previewController;
   final Future<void> Function(int?) onOpenPage;
 
   // TODO Gallery图片加载问题
@@ -30,12 +30,12 @@ class ViewerGalleryImages extends StatelessWidget {
               child: SmartRefresher(
                 enablePullDown: false,
                 enablePullUp: true,
-                controller: c.refreshController,
-                onLoading: c.onLoadMore,
+                controller: previewController.refreshController,
+                onLoading: previewController.onLoadMore,
                 footer: const LoadMoreFooter(),
                 child: CustomScrollView(
                   slivers: [
-                    SliverPullToRefresh(onRefresh: c.onRefresh),
+                    SliverPullToRefresh(onRefresh: previewController.onRefresh),
                     SliverGrid(
                       gridDelegate:
                           const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -44,7 +44,7 @@ class ViewerGalleryImages extends StatelessWidget {
                       ),
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
-                          final list = c.items.toList();
+                          final list = previewController.items.toList();
                           return GestureDetector(
                             onTap: () => onOpenPage(index),
                             child: Padding(
@@ -55,8 +55,10 @@ class ViewerGalleryImages extends StatelessWidget {
                                   Expanded(
                                     child: list[index] != null
                                         ? ImageLoader(
-                                            concurrency: c.previewConcurrency,
-                                            model: list[index]!.value.previewImg,
+                                            concurrency: previewController
+                                                .previewConcurrency,
+                                            model:
+                                                list[index]!.value.previewImg,
                                             imageWidgetBuilder:
                                                 (context, child) {
                                               return FittedBox(
@@ -92,7 +94,7 @@ class ViewerGalleryImages extends StatelessWidget {
                             ),
                           );
                         },
-                        childCount: c.items.length,
+                        childCount: previewController.items.length,
                       ),
                     ),
                   ],

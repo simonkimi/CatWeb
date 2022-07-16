@@ -54,7 +54,7 @@ class RulesEditPage extends StatelessWidget {
         minSize: 0,
         child: const Icon(CupertinoIcons.back),
       ),
-      middle:  Text(I.of(context).rule_edit),
+      middle: Text(I.of(context).rule_edit),
       trailing: CupertinoButton(
         onPressed: () => _save(context),
         padding: EdgeInsets.zero,

@@ -35,7 +35,6 @@ class _ImageViewerState extends State<ImageViewer> {
 
   @override
   Widget build(BuildContext context) {
-
     return Obx(() => _buildImage(context));
   }
 

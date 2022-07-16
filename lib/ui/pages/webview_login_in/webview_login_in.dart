@@ -128,7 +128,8 @@ class _WebViewLoginInState extends State<WebViewLoginIn> {
     showCupertinoConfirmDialog(
             context: context,
             title: 'cookie',
-            content: '${I.of(context).import_cookie}\n${cookies.map((c) => '${c.name}: ${c.value}').join('\n')}')
+            content:
+                '${I.of(context).import_cookie}\n${cookies.map((c) => '${c.name}: ${c.value}').join('\n')}')
         .then((value) {
       if (value == true) {
         Navigator.of(context).pop(cookies);

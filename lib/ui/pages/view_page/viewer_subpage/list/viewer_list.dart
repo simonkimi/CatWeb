@@ -104,16 +104,16 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
 
   Widget _buildSingleViewer(BuildContext context) {
     return Obx(() => CupertinoAppBar(
-      canHide: subListController.first.items.isNotEmpty,
-      title: blueprint.name.string,
-      leading: _buildLeading(context),
-      actions: _buildActions(context),
-      child: SubPageListFragment(
-        controller: subListController.first,
-        hasTabBar: !useSingleWidget,
-        hasToolBar: widget.hasToolBar,
-      ),
-    ));
+          canHide: subListController.first.items.isNotEmpty,
+          title: blueprint.name.string,
+          leading: _buildLeading(context),
+          actions: _buildActions(context),
+          child: SubPageListFragment(
+            controller: subListController.first,
+            hasTabBar: !useSingleWidget,
+            hasToolBar: widget.hasToolBar,
+          ),
+        ));
   }
 
   Widget _buildLeading(BuildContext context) {
@@ -151,7 +151,6 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
         )
     ];
   }
-
 
   @override
   bool get wantKeepAlive => true;

@@ -88,11 +88,14 @@ class ReaderLoaderController {
     currentIndex = index;
     final preloadCount = Get.find<SettingController>().preloadCount.value;
     final items = readerInfo.items.toList();
-    final needLoadItem = List.generate(preloadCount + 1,  // 加载预加载页面+1, e为index
+    final needLoadItem = List.generate(
+            preloadCount + 1, // 加载预加载页面+1, e为index
             (index) => (readerIsForward ? 1 : -1) * index + currentIndex)
-        .where((e) => e < items.length && e >= 0)  // 过滤掉超出范围的页面
-        .where((e) => !items.has(e) || (items[e]?.state.isComplete ?? false))  // 过滤掉已经完成的任务
-        .where((e) => !_loadModelPool.containsTaskId(e))  // 过滤掉任务中已经存在的
+        .where((e) => e < items.length && e >= 0) // 过滤掉超出范围的页面
+        .where((e) =>
+            !items.has(e) ||
+            (items[e]?.state.isComplete ?? false)) // 过滤掉已经完成的任务
+        .where((e) => !_loadModelPool.containsTaskId(e)) // 过滤掉任务中已经存在的
         .map((e) => _LoadModelTask(
               blueprint: blueprint,
               localEnv: localEnv,

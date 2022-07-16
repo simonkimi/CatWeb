@@ -7,9 +7,9 @@ import 'comment_item.dart';
 import 'gallery_controller.dart';
 
 class CommentListPage extends StatelessWidget {
-  const CommentListPage({super.key, required this.c});
+  const CommentListPage({super.key, required this.previewController});
 
-  final GalleryPreviewController c;
+  final GalleryPreviewController previewController;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class CommentListPage extends StatelessWidget {
         child: SafeArea(
           child: ListView.builder(
             physics: const ClampingScrollPhysics(),
-            itemCount: c.detailModel!.comments.length,
+            itemCount: previewController.detailModel!.comments.length,
             padding: const EdgeInsets.only(
               left: 5,
               right: 5,
@@ -29,7 +29,8 @@ class CommentListPage extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
-                child: CommentItem(model: c.detailModel!.comments[index]),
+                child: CommentItem(
+                    model: previewController.detailModel!.comments[index]),
               );
             },
           ),
