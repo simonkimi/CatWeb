@@ -54,6 +54,9 @@ class ViewerGalleryFragment extends StatelessWidget {
     return Obx(() => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: CustomScrollView(
+            physics: previewController.detailModel == null
+                ? const NeverScrollableScrollPhysics()
+                : null,
             slivers: [
               // 上方内容
               SliverPullToRefresh(onRefresh: previewController.refresh),

@@ -54,7 +54,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
             cacheExtent: 300,
             physics: (controller.state.isRefresh || controller.state.isLoading) && controller.items.isEmpty
                 ? const NeverScrollableScrollPhysics()
-                : const BouncingScrollPhysics(),
+                : null,
             slivers: [
               SliverPullToRefresh(
                 onRefresh: () => controller.onRefresh(),
