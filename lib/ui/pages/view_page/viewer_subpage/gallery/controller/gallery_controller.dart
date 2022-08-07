@@ -85,7 +85,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
   final global = Get.find<GlobalController>();
 
   @override
-  late final ImageListConcurrency previewConcurrency = ImageListConcurrency();
+  final previewConcurrency = ImageListConcurrency();  // 预览图片内容的加载器
 
   GalleryRpcModel? get detailModel => _detailModel.value;
 

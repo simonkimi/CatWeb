@@ -56,7 +56,7 @@ class _LoadModelTask extends AsyncTask<void> {
   }
 
   @override
-  int? get id => index;
+  String? get id => index.toString();
 }
 
 /// 图片阅读控制器
@@ -95,7 +95,7 @@ class ReaderLoaderController {
         .where((e) =>
             !items.has(e) ||
             (items[e]?.state.isComplete ?? false)) // 过滤掉已经完成的任务
-        .where((e) => !_loadModelPool.containsTaskId(e)) // 过滤掉任务中已经存在的
+        .where((e) => !_loadModelPool.containsTaskId(e.toString())) // 过滤掉任务中已经存在的
         .map((e) => _LoadModelTask(
               blueprint: blueprint,
               localEnv: localEnv,

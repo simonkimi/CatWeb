@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:collection';
 
+import 'package:flutter/material.dart';
+
 class AsyncState {
   AsyncState._({
     this.isIdle = true,
@@ -41,7 +43,7 @@ class AsyncTaskBuilder<T> extends AsyncTask<T> {
   final Future<T> Function() task;
 
   @override
-  final int? id;
+  final String? id;
 
   @override
   Future<T> run() => task();
@@ -61,7 +63,7 @@ abstract class AsyncTask<T> {
 
   AsyncState get state => _state;
 
-  int? get id;
+  String? get id;
 }
 
 class AsyncPool<T extends AsyncTask> {
@@ -70,6 +72,7 @@ class AsyncPool<T extends AsyncTask> {
     this.priorityBuilder,
     this.ignoreError = false,
     this.filter,
+    this.saveSuccessfulTask = false,
   });
 
   final int Function(T task)? priorityBuilder;
@@ -78,54 +81,61 @@ class AsyncPool<T extends AsyncTask> {
 
   final int maxConcurrency;
   final bool ignoreError;
+  final bool saveSuccessfulTask;
 
   void add(T task) {
-    _taskQueue.add(task);
+    taskQueue.add(task);
     _trigger();
   }
 
   void addAll(Iterable<T> tasks) {
-    _taskQueue.addAll(tasks);
+    taskQueue.addAll(tasks);
     _trigger();
   }
 
   void removeWhere(bool Function(T task) test) {
-    _taskQueue.removeWhere(test);
+    taskQueue.removeWhere(test);
   }
 
-  bool containsTaskId(int id) =>
-      _taskQueue.where((e) => e.id == id).isNotEmpty ||
-      _workQueue.where((e) => e.id == id).isNotEmpty;
+  bool containsTaskId(String id) =>
+      taskQueue.where((e) => e.id == id).isNotEmpty ||
+      workQueue.where((e) => e.id == id).isNotEmpty;
 
-  final _taskQueue = Queue<T>();
-  final _workQueue = Queue<T>();
+  @protected
+  final taskQueue = Queue<T>();
+
+  @protected
+  final workQueue = Queue<T>();
+
+  @protected
+  final completeMap = <String, T>{};
 
   void _trigger() {
     final queue =
-        filter != null ? _taskQueue.where(filter!) : _taskQueue.toList();
+        filter != null ? taskQueue.where(filter!) : taskQueue.toList();
 
-    while (queue.isNotEmpty && _workQueue.length < maxConcurrency) {
+    while (queue.isNotEmpty && workQueue.length < maxConcurrency) {
       late final T task;
 
       if (priorityBuilder != null) {
-        _taskQueue.removeWhere((e) => e.state.isCanceled);
+        taskQueue.removeWhere((e) => e.state.isCanceled);
         final priority = queue.toList()
           ..sort((a, b) => priorityBuilder!(b) - priorityBuilder!(a));
         if (priority.isNotEmpty) {
           task = priority.first;
         }
-        _taskQueue.remove(task);
+        taskQueue.remove(task);
       } else {
         task = queue.first;
-        _taskQueue.remove(task);
+        taskQueue.remove(task);
         if (task._state.isCanceled) {
           continue;
         }
       }
 
-      _workQueue.add(task);
+      workQueue.add(task);
       _runner(task).then((value) {
-        _workQueue.remove(task);
+        workQueue.remove(task);
         _trigger();
       });
     }

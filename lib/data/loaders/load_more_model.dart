@@ -51,11 +51,11 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
   Future<void> _loadPageData(int page) async {
     await requestLock.synchronized(() async {
       if (pages.containsKey(page)) return;
-      logger.i('当前页面', _currentPage.value, '准备加载页面', page);
+      logger.d('当前页面', _currentPage.value, '准备加载页面', page);
       loadStart();
       final pageData = await netWorkLoadPage(page);
       pages[page] = pageData;
-      logger.i('加载', page, '完成');
+      logger.d('加载', page, '完成');
     });
   }
 
@@ -68,7 +68,7 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
         _currentPage.value += 1;
         loadComplete();
         if (checkIfOutOfRange(_currentPage.value)) {
-          logger.i('下一面${_currentPage.value}超出范围, 没有更多', _currentPage.value);
+          logger.d('下一面${_currentPage.value}超出范围, 没有更多', _currentPage.value);
           loadNoData();
         }
       } else {
@@ -93,19 +93,17 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
 
   /// 加载指定的index，用于在预览中跳页
   Future<void> loadIndex(int index) async {
-    // TODO 检查这里逻辑是否有问题
-    return await requestLock.synchronized(() async {
-      if (totalSize == null || chunkSize == null) {
-        // 没有确切的面数, 只能一面面加载
-        while (items.length < index) {
-          await onLoadMore();
-        }
-      } else {
-        // 有确切的面数, 直接加载
-        final page = (index / chunkSize!).floor();
-        await _loadPageData(page);
+    if (totalSize == null || chunkSize == null) {
+      // 没有确切的面数, 只能一面面加载
+      // 没有确定面数, item必定是连续的, 不存在null的可能性
+      while (items.length < index) {
+        await onLoadMore();
       }
-    });
+    } else {
+      // 有确切的面数, 直接加载
+      final page = (index / chunkSize!).floor();
+      await _loadPageData(page);
+    }
   }
 
   /// 跳页，加载某夜数据
