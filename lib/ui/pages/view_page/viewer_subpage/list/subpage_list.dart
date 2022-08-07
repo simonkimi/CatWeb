@@ -39,7 +39,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
   Widget build(BuildContext context) {
     super.build(context);
     return AppBarScrollNotifier(
-      child: CupertinoScrollbar(
+      child: Obx(() => CupertinoScrollbar(
         controller: controller.scrollController,
         child: SmartRefresher(
           controller: controller.refreshController,
@@ -52,6 +52,9 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
           child: CustomScrollView(
             controller: controller.scrollController,
             cacheExtent: 300,
+            physics: (controller.state.isRefresh || controller.state.isLoading) && controller.items.isEmpty
+                ? const NeverScrollableScrollPhysics()
+                : const BouncingScrollPhysics(),
             slivers: [
               SliverPullToRefresh(
                 onRefresh: () => controller.onRefresh(),
@@ -63,7 +66,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 
@@ -79,7 +82,6 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
   }
 
   Widget _buildSliverList(BuildContext context) {
-    // TODO 瀑布流支持
     return Obx(() {
       return SliverList(
         delegate: SliverChildBuilderDelegate(
