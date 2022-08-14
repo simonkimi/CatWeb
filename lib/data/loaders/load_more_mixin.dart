@@ -44,21 +44,21 @@ mixin LoadListStateMixin {
 
   LoadListStatue get state => _state.value;
 
-  void loadStart() => _state.value = LoadListStatue.loading();
+  void stateLoadStart() => _state.value = LoadListStatue.loading();
 
-  void loadNoData() => _state.value = LoadListStatue.complete();
+  void stateLoadNoData() => _state.value = LoadListStatue.complete();
 
-  void loadComplete() =>
+  void stateLoadComplete() =>
       state.isRunning ? _state.value = LoadListStatue.idle() : null;
 
-  void loadError(Exception error) {
+  void stateLoadError(Exception error) {
     if (error is DioError && CancelToken.isCancel(error)) {
       return;
     }
     _state.value = LoadListStatue.error(error);
   }
 
-  void loadRefresh() => _state.value = LoadListStatue.refresh();
+  void stateLoadRefresh() => _state.value = LoadListStatue.refresh();
 
   String? get errorMessage => state.error?.toString();
 }
@@ -119,8 +119,8 @@ abstract class LoadMoreBase with LoadListStateMixin {
   Future<void> awaitLock() => requestLock.synchronized(() {});
 
   @override
-  void loadComplete() {
-    super.loadComplete();
+  void stateLoadComplete() {
+    super.stateLoadComplete();
     if (state.isComplete || state.isIdle) {
       refreshController.loadComplete();
       refreshController.refreshCompleted();
@@ -128,14 +128,14 @@ abstract class LoadMoreBase with LoadListStateMixin {
   }
 
   @override
-  void loadNoData() {
-    super.loadNoData();
+  void stateLoadNoData() {
+    super.stateLoadNoData();
     refreshController.loadNoData();
   }
 
   @override
-  void loadError(Exception error) {
-    super.loadError(error);
+  void stateLoadError(Exception error) {
+    super.stateLoadError(error);
     refreshController.loadFailed();
   }
 

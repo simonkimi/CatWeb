@@ -128,7 +128,7 @@ class SubListController
     if (!hasPageExpression(baseUrl) &&
         (data.nextPage == baseUrl || data.nextPage.isEmpty)) {
       print('hasPageExpression loadNoData()');
-      loadNoData();
+      stateLoadNoData();
     }
     return ListPageItem(data);
   }

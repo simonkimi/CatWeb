@@ -5,6 +5,7 @@ import 'package:catweb/utils/helper.dart';
 import 'package:dio/dio.dart' hide Lock;
 import 'package:event_bus/event_bus.dart';
 import 'package:get/get.dart';
+import 'package:synchronized/synchronized.dart';
 import 'load_more_actions.dart';
 import 'load_more_mixin.dart';
 
@@ -52,7 +53,7 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
     await requestLock.synchronized(() async {
       if (pages.containsKey(page)) return;
       logger.d('当前页面', _currentPage.value, '准备加载页面', page);
-      loadStart();
+      stateLoadStart();
       final pageData = await netWorkLoadPage(page);
       pages[page] = pageData;
       logger.d('加载', page, '完成');
@@ -66,18 +67,18 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
         await _loadPageData(_currentPage.value + 1);
         event.fire(LoaderNextPageEvent());
         _currentPage.value += 1;
-        loadComplete();
+        stateLoadComplete();
         if (checkIfOutOfRange(_currentPage.value)) {
           logger.d('下一面${_currentPage.value}超出范围, 没有更多', _currentPage.value);
-          loadNoData();
+          stateLoadNoData();
         }
       } else {
-        loadNoData();
+        stateLoadNoData();
       }
     } on DioError catch (e) {
-      loadError(e);
+      stateLoadError(e);
     } on Exception catch (e) {
-      loadError(e);
+      stateLoadError(e);
     }
   }
 
@@ -86,24 +87,28 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
     if (requestLock.locked) return awaitLock();
     pages.clear();
     _currentPage.value = -1;
-    loadRefresh();
+    stateLoadRefresh();
     await onLoadMore();
     event.fire(LoaderRefreshEvent());
   }
 
+  final loadIndexLock = Lock();
+
   /// 加载指定的index，用于在预览中跳页
   Future<void> loadIndex(int index) async {
-    if (totalSize == null || chunkSize == null) {
-      // 没有确切的面数, 只能一面面加载
-      // 没有确定面数, item必定是连续的, 不存在null的可能性
-      while (items.length < index) {
-        await onLoadMore();
+    await loadIndexLock.synchronized(() async {
+      if (totalSize == null || chunkSize == null) {
+        // 没有确切的面数, 只能一面面加载
+        // 没有确定面数, item必定是连续的, 不存在null的可能性
+        while (items.length < index) {
+          await onLoadMore();
+        }
+      } else {
+        // 有确切的面数, 直接加载
+        final page = (index / chunkSize!).floor();
+        await _loadPageData(page);
       }
-    } else {
-      // 有确切的面数, 直接加载
-      final page = (index / chunkSize!).floor();
-      await _loadPageData(page);
-    }
+    });
   }
 
   /// 跳页，加载某夜数据

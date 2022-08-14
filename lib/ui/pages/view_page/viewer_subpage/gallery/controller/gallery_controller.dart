@@ -133,7 +133,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
 
     if (!hasPageExpression(blueprint.url.value) &&
         (detail.nextPage == baseUrl || detail.nextPage.isEmpty)) {
-      loadNoData();
+      stateLoadNoData();
     }
 
     return GalleryLoadMore(detail);
