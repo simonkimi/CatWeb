@@ -513,6 +513,10 @@ class ListRpcModel extends $pb.GeneratedMessage {
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage')
     ..m<$core.String, $core.String>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localEnv', protoName: 'localEnv', entryClassName: 'ListRpcModel.LocalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
     ..m<$core.String, $core.String>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'globalEnv', protoName: 'globalEnv', entryClassName: 'ListRpcModel.GlobalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..aOB(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableSuccess')
+    ..aOB(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableFail')
+    ..aOB(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isSuccess')
+    ..aOS(23, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failedMessage')
     ..hasRequiredFields = false
   ;
 
@@ -522,6 +526,10 @@ class ListRpcModel extends $pb.GeneratedMessage {
     $core.String? nextPage,
     $core.Map<$core.String, $core.String>? localEnv,
     $core.Map<$core.String, $core.String>? globalEnv,
+    $core.bool? enableSuccess,
+    $core.bool? enableFail,
+    $core.bool? isSuccess,
+    $core.String? failedMessage,
   }) {
     final _result = create();
     if (items != null) {
@@ -535,6 +543,18 @@ class ListRpcModel extends $pb.GeneratedMessage {
     }
     if (globalEnv != null) {
       _result.globalEnv.addAll(globalEnv);
+    }
+    if (enableSuccess != null) {
+      _result.enableSuccess = enableSuccess;
+    }
+    if (enableFail != null) {
+      _result.enableFail = enableFail;
+    }
+    if (isSuccess != null) {
+      _result.isSuccess = isSuccess;
+    }
+    if (failedMessage != null) {
+      _result.failedMessage = failedMessage;
     }
     return _result;
   }
@@ -576,6 +596,42 @@ class ListRpcModel extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(11)
   $core.Map<$core.String, $core.String> get globalEnv => $_getMap(3);
+
+  @$pb.TagNumber(20)
+  $core.bool get enableSuccess => $_getBF(4);
+  @$pb.TagNumber(20)
+  set enableSuccess($core.bool v) { $_setBool(4, v); }
+  @$pb.TagNumber(20)
+  $core.bool hasEnableSuccess() => $_has(4);
+  @$pb.TagNumber(20)
+  void clearEnableSuccess() => clearField(20);
+
+  @$pb.TagNumber(21)
+  $core.bool get enableFail => $_getBF(5);
+  @$pb.TagNumber(21)
+  set enableFail($core.bool v) { $_setBool(5, v); }
+  @$pb.TagNumber(21)
+  $core.bool hasEnableFail() => $_has(5);
+  @$pb.TagNumber(21)
+  void clearEnableFail() => clearField(21);
+
+  @$pb.TagNumber(22)
+  $core.bool get isSuccess => $_getBF(6);
+  @$pb.TagNumber(22)
+  set isSuccess($core.bool v) { $_setBool(6, v); }
+  @$pb.TagNumber(22)
+  $core.bool hasIsSuccess() => $_has(6);
+  @$pb.TagNumber(22)
+  void clearIsSuccess() => clearField(22);
+
+  @$pb.TagNumber(23)
+  $core.String get failedMessage => $_getSZ(7);
+  @$pb.TagNumber(23)
+  set failedMessage($core.String v) { $_setString(7, v); }
+  @$pb.TagNumber(23)
+  $core.bool hasFailedMessage() => $_has(7);
+  @$pb.TagNumber(23)
+  void clearFailedMessage() => clearField(23);
 }
 
 class GalleryRpcModel_Comment extends $pb.GeneratedMessage {
@@ -764,6 +820,10 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
     ..aOS(23, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage')
     ..m<$core.String, $core.String>(30, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localEnv', protoName: 'localEnv', entryClassName: 'GalleryRpcModel.LocalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
     ..m<$core.String, $core.String>(31, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'globalEnv', protoName: 'globalEnv', entryClassName: 'GalleryRpcModel.GlobalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..aOB(40, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableSuccess')
+    ..aOB(41, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableFail')
+    ..aOB(42, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isSuccess')
+    ..aOS(43, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failedMessage')
     ..hasRequiredFields = false
   ;
 
@@ -785,6 +845,10 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
     $core.String? nextPage,
     $core.Map<$core.String, $core.String>? localEnv,
     $core.Map<$core.String, $core.String>? globalEnv,
+    $core.bool? enableSuccess,
+    $core.bool? enableFail,
+    $core.bool? isSuccess,
+    $core.String? failedMessage,
   }) {
     final _result = create();
     if (title != null) {
@@ -834,6 +898,18 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
     }
     if (globalEnv != null) {
       _result.globalEnv.addAll(globalEnv);
+    }
+    if (enableSuccess != null) {
+      _result.enableSuccess = enableSuccess;
+    }
+    if (enableFail != null) {
+      _result.enableFail = enableFail;
+    }
+    if (isSuccess != null) {
+      _result.isSuccess = isSuccess;
+    }
+    if (failedMessage != null) {
+      _result.failedMessage = failedMessage;
     }
     return _result;
   }
@@ -975,6 +1051,42 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(31)
   $core.Map<$core.String, $core.String> get globalEnv => $_getMap(15);
+
+  @$pb.TagNumber(40)
+  $core.bool get enableSuccess => $_getBF(16);
+  @$pb.TagNumber(40)
+  set enableSuccess($core.bool v) { $_setBool(16, v); }
+  @$pb.TagNumber(40)
+  $core.bool hasEnableSuccess() => $_has(16);
+  @$pb.TagNumber(40)
+  void clearEnableSuccess() => clearField(40);
+
+  @$pb.TagNumber(41)
+  $core.bool get enableFail => $_getBF(17);
+  @$pb.TagNumber(41)
+  set enableFail($core.bool v) { $_setBool(17, v); }
+  @$pb.TagNumber(41)
+  $core.bool hasEnableFail() => $_has(17);
+  @$pb.TagNumber(41)
+  void clearEnableFail() => clearField(41);
+
+  @$pb.TagNumber(42)
+  $core.bool get isSuccess => $_getBF(18);
+  @$pb.TagNumber(42)
+  set isSuccess($core.bool v) { $_setBool(18, v); }
+  @$pb.TagNumber(42)
+  $core.bool hasIsSuccess() => $_has(18);
+  @$pb.TagNumber(42)
+  void clearIsSuccess() => clearField(42);
+
+  @$pb.TagNumber(43)
+  $core.String get failedMessage => $_getSZ(19);
+  @$pb.TagNumber(43)
+  set failedMessage($core.String v) { $_setString(19, v); }
+  @$pb.TagNumber(43)
+  $core.bool hasFailedMessage() => $_has(19);
+  @$pb.TagNumber(43)
+  void clearFailedMessage() => clearField(43);
 }
 
 class ImageReaderRpcModel extends $pb.GeneratedMessage {
@@ -989,6 +1101,10 @@ class ImageReaderRpcModel extends $pb.GeneratedMessage {
     ..pc<TagRpcModel>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badges', $pb.PbFieldType.PM, subBuilder: TagRpcModel.create)
     ..m<$core.String, $core.String>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localEnv', protoName: 'localEnv', entryClassName: 'ImageReaderRpcModel.LocalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
     ..m<$core.String, $core.String>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'globalEnv', protoName: 'globalEnv', entryClassName: 'ImageReaderRpcModel.GlobalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..aOB(30, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableSuccess')
+    ..aOB(31, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableFail')
+    ..aOB(32, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isSuccess')
+    ..aOS(33, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failedMessage')
     ..hasRequiredFields = false
   ;
 
@@ -1004,6 +1120,10 @@ class ImageReaderRpcModel extends $pb.GeneratedMessage {
     $core.Iterable<TagRpcModel>? badges,
     $core.Map<$core.String, $core.String>? localEnv,
     $core.Map<$core.String, $core.String>? globalEnv,
+    $core.bool? enableSuccess,
+    $core.bool? enableFail,
+    $core.bool? isSuccess,
+    $core.String? failedMessage,
   }) {
     final _result = create();
     if (image != null) {
@@ -1035,6 +1155,18 @@ class ImageReaderRpcModel extends $pb.GeneratedMessage {
     }
     if (globalEnv != null) {
       _result.globalEnv.addAll(globalEnv);
+    }
+    if (enableSuccess != null) {
+      _result.enableSuccess = enableSuccess;
+    }
+    if (enableFail != null) {
+      _result.enableFail = enableFail;
+    }
+    if (isSuccess != null) {
+      _result.isSuccess = isSuccess;
+    }
+    if (failedMessage != null) {
+      _result.failedMessage = failedMessage;
     }
     return _result;
   }
@@ -1132,6 +1264,42 @@ class ImageReaderRpcModel extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(21)
   $core.Map<$core.String, $core.String> get globalEnv => $_getMap(9);
+
+  @$pb.TagNumber(30)
+  $core.bool get enableSuccess => $_getBF(10);
+  @$pb.TagNumber(30)
+  set enableSuccess($core.bool v) { $_setBool(10, v); }
+  @$pb.TagNumber(30)
+  $core.bool hasEnableSuccess() => $_has(10);
+  @$pb.TagNumber(30)
+  void clearEnableSuccess() => clearField(30);
+
+  @$pb.TagNumber(31)
+  $core.bool get enableFail => $_getBF(11);
+  @$pb.TagNumber(31)
+  set enableFail($core.bool v) { $_setBool(11, v); }
+  @$pb.TagNumber(31)
+  $core.bool hasEnableFail() => $_has(11);
+  @$pb.TagNumber(31)
+  void clearEnableFail() => clearField(31);
+
+  @$pb.TagNumber(32)
+  $core.bool get isSuccess => $_getBF(12);
+  @$pb.TagNumber(32)
+  set isSuccess($core.bool v) { $_setBool(12, v); }
+  @$pb.TagNumber(32)
+  $core.bool hasIsSuccess() => $_has(12);
+  @$pb.TagNumber(32)
+  void clearIsSuccess() => clearField(32);
+
+  @$pb.TagNumber(33)
+  $core.String get failedMessage => $_getSZ(13);
+  @$pb.TagNumber(33)
+  set failedMessage($core.String v) { $_setString(13, v); }
+  @$pb.TagNumber(33)
+  $core.bool hasFailedMessage() => $_has(13);
+  @$pb.TagNumber(33)
+  void clearFailedMessage() => clearField(33);
 }
 
 class AutoCompleteRpcModel_Item extends $pb.GeneratedMessage {
@@ -1214,6 +1382,10 @@ class AutoCompleteRpcModel extends $pb.GeneratedMessage {
     ..pc<AutoCompleteRpcModel_Item>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'items', $pb.PbFieldType.PM, subBuilder: AutoCompleteRpcModel_Item.create)
     ..m<$core.String, $core.String>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localEnv', protoName: 'localEnv', entryClassName: 'AutoCompleteRpcModel.LocalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
     ..m<$core.String, $core.String>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'globalEnv', protoName: 'globalEnv', entryClassName: 'AutoCompleteRpcModel.GlobalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..aOB(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableSuccess')
+    ..aOB(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableFail')
+    ..aOB(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isSuccess')
+    ..aOS(23, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failedMessage')
     ..hasRequiredFields = false
   ;
 
@@ -1222,6 +1394,10 @@ class AutoCompleteRpcModel extends $pb.GeneratedMessage {
     $core.Iterable<AutoCompleteRpcModel_Item>? items,
     $core.Map<$core.String, $core.String>? localEnv,
     $core.Map<$core.String, $core.String>? globalEnv,
+    $core.bool? enableSuccess,
+    $core.bool? enableFail,
+    $core.bool? isSuccess,
+    $core.String? failedMessage,
   }) {
     final _result = create();
     if (items != null) {
@@ -1232,6 +1408,18 @@ class AutoCompleteRpcModel extends $pb.GeneratedMessage {
     }
     if (globalEnv != null) {
       _result.globalEnv.addAll(globalEnv);
+    }
+    if (enableSuccess != null) {
+      _result.enableSuccess = enableSuccess;
+    }
+    if (enableFail != null) {
+      _result.enableFail = enableFail;
+    }
+    if (isSuccess != null) {
+      _result.isSuccess = isSuccess;
+    }
+    if (failedMessage != null) {
+      _result.failedMessage = failedMessage;
     }
     return _result;
   }
@@ -1264,5 +1452,41 @@ class AutoCompleteRpcModel extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(11)
   $core.Map<$core.String, $core.String> get globalEnv => $_getMap(2);
+
+  @$pb.TagNumber(20)
+  $core.bool get enableSuccess => $_getBF(3);
+  @$pb.TagNumber(20)
+  set enableSuccess($core.bool v) { $_setBool(3, v); }
+  @$pb.TagNumber(20)
+  $core.bool hasEnableSuccess() => $_has(3);
+  @$pb.TagNumber(20)
+  void clearEnableSuccess() => clearField(20);
+
+  @$pb.TagNumber(21)
+  $core.bool get enableFail => $_getBF(4);
+  @$pb.TagNumber(21)
+  set enableFail($core.bool v) { $_setBool(4, v); }
+  @$pb.TagNumber(21)
+  $core.bool hasEnableFail() => $_has(4);
+  @$pb.TagNumber(21)
+  void clearEnableFail() => clearField(21);
+
+  @$pb.TagNumber(22)
+  $core.bool get isSuccess => $_getBF(5);
+  @$pb.TagNumber(22)
+  set isSuccess($core.bool v) { $_setBool(5, v); }
+  @$pb.TagNumber(22)
+  $core.bool hasIsSuccess() => $_has(5);
+  @$pb.TagNumber(22)
+  void clearIsSuccess() => clearField(22);
+
+  @$pb.TagNumber(23)
+  $core.String get failedMessage => $_getSZ(6);
+  @$pb.TagNumber(23)
+  set failedMessage($core.String v) { $_setString(6, v); }
+  @$pb.TagNumber(23)
+  $core.bool hasFailedMessage() => $_has(6);
+  @$pb.TagNumber(23)
+  void clearFailedMessage() => clearField(23);
 }
 

@@ -48,6 +48,11 @@ message ListRpcModel {
     map<string, string> env = 30;
   }
 
+  bool enable_success = 20;
+  bool enable_fail = 21;
+  bool is_success = 22;
+  string failed_message = 23;
+
   repeated Item items = 1;
   string next_page = 2;
   map<string, string> localEnv = 10;
@@ -88,6 +93,11 @@ message GalleryRpcModel {
 
   map<string, string> localEnv = 30;
   map<string, string> globalEnv = 31;
+
+  bool enable_success = 40;
+  bool enable_fail = 41;
+  bool is_success = 42;
+  string failed_message = 43;
 }
 
 message ImageReaderRpcModel {
@@ -103,6 +113,11 @@ message ImageReaderRpcModel {
 
   map<string, string> localEnv = 20;
   map<string, string> globalEnv = 21;
+
+  bool enable_success = 30;
+  bool enable_fail = 31;
+  bool is_success = 32;
+  string failed_message = 33;
 }
 
 message AutoCompleteRpcModel {
@@ -116,4 +131,9 @@ message AutoCompleteRpcModel {
 
   map<string, string> localEnv = 10;
   map<string, string> globalEnv = 11;
+
+  bool enable_success = 20;
+  bool enable_fail = 21;
+  bool is_success = 22;
+  string failed_message = 23;
 }
