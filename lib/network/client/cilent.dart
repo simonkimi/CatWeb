@@ -63,6 +63,21 @@ class NetClient {
     throw Exception('Unsupported net action type');
   }
 
+  void _checkSuccessFlag({
+    required bool enableSuccess,
+    required bool enableFail,
+    required bool isSuccess,
+    required String failedMessage,
+  }) {
+    if (enableFail && failedMessage.isNotEmpty) {
+      throw Exception(failedMessage);
+    }
+
+    if (enableSuccess && !isSuccess) {
+      throw Exception('Failed');
+    }
+  }
+
   Future<ListRpcModel> getList({
     required String url,
     required PageBlueprintModel model,
@@ -85,6 +100,13 @@ class NetClient {
     ).send();
 
     final result = ListRpcModel.fromBuffer(buffer);
+
+    _checkSuccessFlag(
+      enableSuccess: result.enableSuccess,
+      enableFail: result.enableFail,
+      isSuccess: result.isSuccess,
+      failedMessage: result.failedMessage,
+    );
 
     localEnv.mergeMap(result.localEnv);
     Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
@@ -121,6 +143,14 @@ class NetClient {
     ).send();
 
     final result = GalleryRpcModel.fromBuffer(buffer);
+
+    _checkSuccessFlag(
+      enableSuccess: result.enableSuccess,
+      enableFail: result.enableFail,
+      isSuccess: result.isSuccess,
+      failedMessage: result.failedMessage,
+    );
+
     localEnv.mergeMap(result.localEnv);
     Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
     return result;
@@ -154,6 +184,14 @@ class NetClient {
     ).send();
 
     final result = ImageReaderRpcModel.fromBuffer(buffer);
+
+    _checkSuccessFlag(
+      enableSuccess: result.enableSuccess,
+      enableFail: result.enableFail,
+      isSuccess: result.isSuccess,
+      failedMessage: result.failedMessage,
+    );
+
     localEnv.mergeMap(result.localEnv);
     Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
     return result;
@@ -177,6 +215,14 @@ class NetClient {
     ).send();
 
     final result = AutoCompleteRpcModel.fromBuffer(buffer);
+
+    _checkSuccessFlag(
+      enableSuccess: result.enableSuccess,
+      enableFail: result.enableFail,
+      isSuccess: result.isSuccess,
+      failedMessage: result.failedMessage,
+    );
+
     localEnv.mergeMap(result.localEnv);
     Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
     return result;
