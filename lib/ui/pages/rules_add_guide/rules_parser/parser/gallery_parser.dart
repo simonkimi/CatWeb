@@ -26,6 +26,23 @@ class GalleryParserFragment extends StatelessWidget {
         _buildCommentList(context),
         _buildChapterList(context),
         _buildIndexList(context),
+        _buildFlagList(context),
+      ],
+    );
+  }
+
+  Widget _buildFlagList(BuildContext context) {
+    return StickyClassifyList(
+      title: '标志位',
+      children: [
+        RulesForm(
+          title: '成功标志',
+          selectorModel: model.successSelector,
+        ),
+        RulesForm(
+          title: '失败标志',
+          selectorModel: model.failedSelector,
+        ),
       ],
     );
   }

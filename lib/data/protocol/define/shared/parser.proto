@@ -28,12 +28,18 @@ message ImageReaderParser {
   Selector badge_text = 21;
   Selector badge_category = 22;
 
+  Selector successSelector = 30;  // 成功选取标志
+  Selector failedSelector = 31;  // 失败选取标志
+
   repeated ExtraSelector extra_selector = 99;
 }
 
 message ListViewParser {
   string name = 1;
   string uuid = 2;
+
+  Selector successSelector = 3;  // 成功选取标志
+  Selector failedSelector = 4;  // 失败选取标志
 
   Selector item_selector = 10; // 选取整个列表
   Selector title = 11;
@@ -105,6 +111,9 @@ message GalleryParser {
   Selector next_page = 70;
   Selector count_pre_page = 71;  // 一页多少面, 用于跳页
 
+  Selector successSelector = 72;  // 成功选取标志
+  Selector failedSelector = 73;  // 失败选取标志
+
   repeated ExtraSelector extra_selector = 99;
 }
 
@@ -117,6 +126,9 @@ message AutoCompleteParser {
   Selector item_title = 14;
   Selector item_subtitle = 13;
   Selector item_complete = 12;
+
+  Selector successSelector = 20;  // 成功选取标志
+  Selector failedSelector = 21;  // 失败选取标志
 
   repeated ExtraSelector extra_selector = 99;
 }

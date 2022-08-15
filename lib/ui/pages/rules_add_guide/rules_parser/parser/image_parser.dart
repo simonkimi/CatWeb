@@ -21,6 +21,23 @@ class ImageReaderParserFragment extends StatelessWidget {
         _buildImage(),
         _buildMetaInfo(),
         _buildBadgeList(),
+        _buildFlagList(),
+      ],
+    );
+  }
+
+  Widget _buildFlagList() {
+    return StickyClassifyList(
+      title: '标志位',
+      children: [
+        RulesForm(
+          title: '成功标志',
+          selectorModel: model.successSelector,
+        ),
+        RulesForm(
+          title: '失败标志',
+          selectorModel: model.failedSelector,
+        ),
       ],
     );
   }

@@ -19,6 +19,23 @@ class SearchAutoCompleteParser extends StatelessWidget {
       slivers: [
         _buildBaseList(context),
         _buildInfoList(),
+        _buildFlagList(),
+      ],
+    );
+  }
+
+  Widget _buildFlagList() {
+    return StickyClassifyList(
+      title: '标志位',
+      children: [
+        RulesForm(
+          title: '成功标志',
+          selectorModel: model.successSelector,
+        ),
+        RulesForm(
+          title: '失败标志',
+          selectorModel: model.failedSelector,
+        ),
       ],
     );
   }

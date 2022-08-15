@@ -42,6 +42,8 @@ class ImageReaderParserModel extends ParserBaseModel {
         badgeSelector = SelectorModel(pb?.badgeSelector),
         badgeText = SelectorModel(pb?.badgeText),
         badgeCategory = SelectorModel(pb?.badgeCategory),
+        successSelector = SelectorModel(pb?.successSelector),
+        failedSelector = SelectorModel(pb?.failedSelector),
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
@@ -56,6 +58,9 @@ class ImageReaderParserModel extends ParserBaseModel {
   final SelectorModel score;
   final SelectorModel source;
   final SelectorModel uploadTime;
+
+  final SelectorModel successSelector;
+  final SelectorModel failedSelector;
 
   // 徽章
   final SelectorModel badgeSelector;
@@ -80,6 +85,8 @@ class ImageReaderParserModel extends ParserBaseModel {
         badgeCategory: badgeCategory.toPb(),
         badgeSelector: badgeSelector.toPb(),
         badgeText: badgeText.toPb(),
+        successSelector: successSelector.toPb(),
+        failedSelector: failedSelector.toPb(),
         extraSelector: extraSelectorModel.map((e) => e.toPb()),
       );
 
@@ -117,6 +124,8 @@ class GalleryParserModel extends ParserBaseModel {
         chapterCover = ImageSelectorModel(pb?.chapterCover),
         nextPage = SelectorModel(pb?.nextPage),
         countPrePage = SelectorModel(pb?.countPrePage),
+        successSelector = SelectorModel(pb?.successSelector),
+        failedSelector = SelectorModel(pb?.failedSelector),
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
@@ -132,6 +141,9 @@ class GalleryParserModel extends ParserBaseModel {
   final SelectorModel language;
   final ImageSelectorModel coverImg;
   final SelectorModel description;
+
+  final SelectorModel successSelector;
+  final SelectorModel failedSelector;
 
   // 缩略图
   final SelectorModel thumbnailSelector;
@@ -173,6 +185,9 @@ class GalleryParserModel extends ParserBaseModel {
         coverImg: coverImg.toPb(),
         pageCount: pageCount.toPb(),
         description: description.toPb(),
+
+        successSelector: successSelector.toPb(),
+        failedSelector: failedSelector.toPb(),
 
         // 缩略图
         thumbnailSelector: thumbnailSelector.toPb(),
@@ -232,6 +247,8 @@ class ListViewParserModel extends ParserBaseModel {
         paper = SelectorModel(pb?.paper),
         badgeSelector = SelectorModel(pb?.badgeSelector),
         idCode = SelectorModel(pb?.idCode),
+        successSelector = SelectorModel(pb?.successSelector),
+        failedSelector = SelectorModel(pb?.failedSelector),
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
@@ -240,6 +257,9 @@ class ListViewParserModel extends ParserBaseModel {
 
   // 列表选择器
   final SelectorModel itemSelector;
+
+  final SelectorModel successSelector;
+  final SelectorModel failedSelector;
 
   // 基础信息
   final SelectorModel title;
@@ -290,6 +310,8 @@ class ListViewParserModel extends ParserBaseModel {
         paper: paper.toPb(),
         badgeSelector: badgeSelector.toPb(),
         idCode: idCode.toPb(),
+        successSelector: successSelector.toPb(),
+        failedSelector: failedSelector.toPb(),
       );
 
   @override
@@ -308,6 +330,8 @@ class AutoCompleteParserModel extends ParserBaseModel implements PbAble {
         itemTitle = SelectorModel(pb?.itemTitle),
         itemComplete = SelectorModel(pb?.itemComplete),
         itemSubtitle = SelectorModel(pb?.itemSubtitle),
+        successSelector = SelectorModel(pb?.successSelector),
+        failedSelector = SelectorModel(pb?.failedSelector),
         super(
           name: sobs(pb?.name),
           extra: pb?.extraSelector,
@@ -319,6 +343,9 @@ class AutoCompleteParserModel extends ParserBaseModel implements PbAble {
   final SelectorModel itemTitle;
   final SelectorModel itemSubtitle;
 
+  final SelectorModel successSelector;
+  final SelectorModel failedSelector;
+
   @override
   AutoCompleteParser toPb() => AutoCompleteParser(
         uuid: uuid,
@@ -328,6 +355,8 @@ class AutoCompleteParserModel extends ParserBaseModel implements PbAble {
         itemSelector: itemSelector.toPb(),
         itemSubtitle: itemSubtitle.toPb(),
         itemTitle: itemTitle.toPb(),
+        successSelector: successSelector.toPb(),
+        failedSelector: failedSelector.toPb(),
       );
 
   @override

@@ -38,12 +38,29 @@ class ListParserFragment extends StatelessWidget {
           _buildTagList(),
           _buildBadgeList(),
           _buildIndexList(),
+          _buildFlagList(),
         ],
       ),
     );
   }
 
-  StickyClassifyList _buildIndexList() {
+  Widget _buildFlagList() {
+    return StickyClassifyList(
+      title: '标志位',
+      children: [
+        RulesForm(
+          title: '成功标志',
+          selectorModel: model.successSelector,
+        ),
+        RulesForm(
+          title: '失败标志',
+          selectorModel: model.failedSelector,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildIndexList() {
     return StickyClassifyList(
       title: '索引',
       children: [
