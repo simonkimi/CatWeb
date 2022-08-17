@@ -19,6 +19,13 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:dio_http_formatter/dio_http_formatter.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:get/get.dart' hide Response;
+import 'package:catweb/i18n.dart';
+
+class FlagException implements Exception {
+  final String message;
+  FlagException(this.message);
+}
+
 
 class NetClient {
   NetClient({
@@ -70,11 +77,11 @@ class NetClient {
     required String failedMessage,
   }) {
     if (enableFail && failedMessage.isNotEmpty) {
-      throw Exception(failedMessage);
+      throw FlagException(failedMessage);
     }
 
     if (enableSuccess && !isSuccess) {
-      throw Exception('Failed');
+      throw FlagException(I.g.network_not_success_flag);
     }
   }
 

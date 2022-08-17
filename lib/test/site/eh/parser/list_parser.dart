@@ -8,6 +8,10 @@ final ehListParser = ListViewParser(
   itemSelector: Selector(
     selector: "//div[@class='gl1t'] | //*[starts-with(@class, 'gl2')]/..",
   ),
+  failedSelector: Selector(
+    selector: '//*[contains(text(), "IP address has")]',
+    function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
+  ),
   idCode: Selector(
     selector: '.glname a, .gl1e a, .gl3t a',
     function: SelectorFunction.SELECTOR_FUNCTION_ATTR,

@@ -83,6 +83,7 @@ delete_confirm:
   text: 确定要删除 {value} 吗？
   attrs:
     - value: { type: String }
+network_not_success_flag: "没有请求到有效数据"
 
 # basie_setting
 basic_setting: 基础

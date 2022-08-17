@@ -9,6 +9,10 @@ final ehGalleryParser = GalleryParser(
     selector: '//h1[@id="gj"]/text() | //h1[@id="gn"]/text()',
     function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
   ),
+  failedSelector: Selector(
+    selector: '//*[contains(text(), "IP address has")]',
+    function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
+  ),
   subtitle: Selector(
     selector: '#gdn',
     function: SelectorFunction.SELECTOR_FUNCTION_TEXT,
