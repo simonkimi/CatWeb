@@ -21,7 +21,7 @@ final _readerUuid = genUuid();
 
 final ehTestSite = SiteBlueprint(
   name: 'E-Hentai',
-  baseUrl: 'https://104.20.134.21/',
+  baseUrl: 'https://e-hentai.org/',
   parsers: [
     ParserStore(
       type: ParserType.PARSER_TYPE_LIST_VIEW,
@@ -42,7 +42,7 @@ final ehTestSite = SiteBlueprint(
   ],
   flag: 'ignoreCertificate',
   loginUrl: 'https://e-hentai.org/bounce_login.php',
-  loginCookieReg: '104.20.134.21',
+  loginCookieReg: 'e-hentai.org',
   loginCookieDescription: '因为登录没法直连, 导致域名不一样',
   headers: [
     RegField(reg: r'104.20.134.21', value: 'host=e-hentai.org'),
@@ -55,7 +55,7 @@ final ehTestSite = SiteBlueprint(
     SitePage(
       name: '搜索补全',
       uuid: _autoCompleteUuid,
-      url: 'https://178.162.147.246/api.php',
+      url: 'https://api.e-hentai.org/api.php',
       netAction: NetActionType.NET_ACTION_TYPE_POST,
       formData: r'{"method":"tagsuggest","text":"{search}"}',
       template: Template.TEMPLATE_AUTO_COMPLETE,

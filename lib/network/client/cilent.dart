@@ -23,9 +23,9 @@ import 'package:catweb/i18n.dart';
 
 class FlagException implements Exception {
   final String message;
+
   FlagException(this.message);
 }
-
 
 class NetClient {
   NetClient({
@@ -271,7 +271,7 @@ Dio _buildDio({
 
   if (!isImage) {
     dio.interceptors.add(DioCacheInterceptor(options: setting.cacheOptions));
-    dio.interceptors.add(HttpFormatter(includeResponseBody: false));
+    dio.interceptors.add(HttpFormatter(includeResponseBody: true));
   } else {
     dio.interceptors.add(
       DioCacheInterceptor(options: setting.imageCacheOption),
@@ -280,7 +280,9 @@ Dio _buildDio({
 
   if (model.containsFlag(Flag.ignoreCertificate)) {
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (client) => client..badCertificateCallback = (cert, host, port) => true;
+        (client) => client
+          ..badCertificateCallback = ((cert, host, port) => true)
+          ..userAgent = null;
   }
 
   return dio;
