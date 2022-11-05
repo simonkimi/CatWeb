@@ -1,4 +1,3 @@
-@echo off
 cd lib/l10n
 dart gen_arb.dart
 cd ../..

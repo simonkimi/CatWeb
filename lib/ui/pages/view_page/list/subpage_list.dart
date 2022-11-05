@@ -5,8 +5,8 @@ import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/load_more_footer.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/subpage_controller.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/viewer_subpage_scaffold.dart';
+import 'package:catweb/ui/pages/view_page/list/controller/subpage_controller.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage_scaffold.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';

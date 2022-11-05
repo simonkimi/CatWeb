@@ -7,7 +7,7 @@ import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/image/controller/image_load_controller.dart';
+import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:get/get.dart';
 import 'package:catweb/data/protocol/model/model.dart';

@@ -1,7 +1,7 @@
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/gen/protobuf/model.pb.dart';
 import 'package:catweb/ui/widgets/cupertino_progress_bar.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
+import 'package:catweb/ui/pages/view_page/image/image_provider.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';

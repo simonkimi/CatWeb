@@ -2,7 +2,7 @@ import 'package:catweb/data/controller/site_controller.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pb.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
+import 'package:catweb/ui/pages/view_page/image/image_provider.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
