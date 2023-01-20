@@ -9,7 +9,7 @@ import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:catweb/gen/protobuf/template.pbenum.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/image/controller/image_load_controller.dart';
+import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/replace_utils.dart';

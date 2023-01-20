@@ -5,9 +5,9 @@ import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
 
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/list/search_list.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/list/controller/subpage_controller.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/list/subpage_list.dart';
+import 'package:catweb/ui/pages/view_page/list/search_list.dart';
+import 'package:catweb/ui/pages/view_page/list/controller/subpage_controller.dart';
+import 'package:catweb/ui/pages/view_page/list/subpage_list.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';

@@ -9,7 +9,7 @@ import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/cupertino_router.dart';
 import 'package:catweb/ui/widgets/zoom.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_zoom.dart';
+import 'package:catweb/ui/pages/view_page/image/image_zoom.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:photo_view/photo_view.dart';
