@@ -1,4 +1,4 @@
-import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -20,7 +20,7 @@ class ImagePageController {
   final listController = ItemScrollController();
   final listPositionsListener = ItemPositionsListener.create();
 
-  final settings = Get.find<SettingController>();
+  final settings = Get.find<SettingService>();
 
   final Rx<int> _currentPage;
 

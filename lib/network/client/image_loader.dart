@@ -1,4 +1,4 @@
-import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/loaders/load_more_mixin.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/gen/protobuf/model.pbserver.dart';
@@ -39,7 +39,7 @@ class ImageLoadModel {
 
   Future<void> loadCache() async {
     if (state.isCached || state.isWaiting) {
-      final db = Get.find<SettingController>().dbCacheStore;
+      final db = Get.find<SettingService>().dbCacheStore;
       final cache = await db.get(key);
       if (cache != null) {
         await load();
@@ -53,7 +53,7 @@ class ImageLoadModel {
       final rsp = await dio.get<Uint8List>(
         model.url,
         onReceiveProgress: (r, t) => _progress.value = r / t,
-        options: Get.find<SettingController>()
+        options: Get.find<SettingService>()
             .imageCacheOption
             .copyWith(keyBuilder: (req) => key)
             .toOptions()
@@ -98,6 +98,6 @@ class ImageLoadModel {
     _state.value = ImageLoadState.error(e);
     _progress.value = 0.0;
     _data = null;
-    Get.find<SettingController>().dbCacheStore.delete(key);
+    Get.find<SettingService>().dbCacheStore.delete(key);
   }
 }

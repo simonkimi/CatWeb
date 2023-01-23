@@ -1,5 +1,5 @@
-import 'package:catweb/data/controller/setting_controller.dart';
-import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/controller/setting_service.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 import 'package:catweb/gen/protobuf/model.pb.dart';
 import 'package:dio/dio.dart';
@@ -13,8 +13,8 @@ class ImageListConcurrency {
     Dio? dio,
     int? concurrency,
   })  : concurrency =
-            concurrency ?? Get.find<SettingController>().concurrencyCount.value,
-        dio = dio ?? Get.find<GlobalController>().website.client.imageDio;
+            concurrency ?? Get.find<SettingService>().concurrencyCount.value,
+        dio = dio ?? Get.find<SiteService>().website.client.imageDio;
 
   final Dio dio;
   final int concurrency;

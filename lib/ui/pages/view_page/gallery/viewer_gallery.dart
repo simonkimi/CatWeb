@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:catweb/data/controller/navigator_service.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
@@ -9,7 +10,6 @@ import 'package:catweb/ui/widgets/icon_text.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/gallery/viewer_gallery_images.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage_scaffold.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/utils/helper.dart';
@@ -31,13 +31,18 @@ class ViewerGalleryFragment extends StatelessWidget {
     required PageBlueprintModel target,
     required Object? model,
     required SiteEnvModel env,
-  }) : previewController = GalleryPreviewController(
-          blueprint: target,
-          base: model,
-          outerEnv: env,
-        );
+  }) {
+    previewController = Get.put(
+      GalleryPreviewController(
+        blueprint: target,
+        base: model,
+        outerEnv: env,
+      ),
+      tag: NavigatorService.depth,
+    );
+  }
 
-  final GalleryPreviewController previewController;
+  late final GalleryPreviewController previewController;
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +109,9 @@ class ViewerGalleryFragment extends StatelessWidget {
                     aspectRatio: 200 / 282,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
-                      child: previewController.successiveItems.toList().index(index) !=
+                      child: previewController.successiveItems
+                                  .toList()
+                                  .index(index) !=
                               null
                           ? ImageLoader(
                               concurrency: previewController.previewConcurrency,
@@ -410,8 +417,8 @@ class ViewerGalleryFragment extends StatelessWidget {
     if (startPage != null) {
       previewController.lastReadIndex.value = startPage;
     }
-    await pushNewPage(
-      to: previewController.extra.targetReader.value,
+    await NavigatorService.push(
+      targetName: previewController.extra.targetReader.value,
       envModel: previewController.localEnv.clone(),
       model: previewController,
     );

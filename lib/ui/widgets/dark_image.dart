@@ -1,10 +1,10 @@
-import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/setting_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:catweb/ui/theme/colors.dart';
 
-class DarkImage extends GetView<SettingController> {
+class DarkImage extends GetView<SettingService> {
   const DarkImage({
     super.key,
     required this.image,

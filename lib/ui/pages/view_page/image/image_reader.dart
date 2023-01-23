@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
@@ -45,7 +45,7 @@ class _ImageReaderViewerState extends State<ImageReader>
   late final Animation<Offset> hideToolbarAni;
   late final Animation<Offset> hideTabBarAni;
 
-  final settings = Get.find<SettingController>();
+  final settings = Get.find<SettingService>();
 
   @override
   void initState() {
@@ -311,7 +311,7 @@ class _ImageReaderViewerState extends State<ImageReader>
                   color: CupertinoColors.white,
                 ),
                 onPressed: () {
-                  final setting = Get.find<SettingController>();
+                  final setting = Get.find<SettingService>();
                   switch (readController.displayType) {
                     case ReaderDisplayType.single:
                       setting.displayType.value = ReaderDisplayType.double;

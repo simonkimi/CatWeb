@@ -1,4 +1,4 @@
-import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_obs_swiitch.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
@@ -8,7 +8,7 @@ import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class SecuritySettingPage extends GetView<SettingController> {
+class SecuritySettingPage extends GetView<SettingService> {
   const SecuritySettingPage({
     super.key,
     this.fromSetting = true,

@@ -1,8 +1,8 @@
-import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/gen/protobuf/model.pb.dart';
-import 'package:catweb/ui/pages/view_page/image/image_provider.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -37,7 +37,7 @@ abstract class ImageWithPreviewModel<T>
       if (imageModel.value != null || state.isLoading) return;
       loadStart();
       final url = blueprint.url.isEmpty ? idCode! : blueprint.url.value;
-      final global = Get.find<GlobalController>();
+      final global = Get.find<SiteService>();
       final env = localEnv.clone()..set('idCode', idCode!);
       imageModel.value = await global.website.client.getReadImage(
         url: url,

@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_router.dart';
 import 'package:catweb/ui/theme/themes.dart';
@@ -10,12 +10,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
-import 'data/controller/setting_controller.dart';
+import 'data/controller/setting_service.dart';
 import 'navigator.dart';
 
 Future<void> initGetX() async {
-  await Get.put(SettingController(), permanent: true).init();
-  Get.put(GlobalController(), permanent: true);
+  // await Get.put(SettingService()).init();
+
+  Get.putAsync(() async {
+    final service = SettingService();
+    await service.init();
+    return service;
+  });
+
+  Get.put(SiteService(), permanent: true);
 }
 
 Future<void> main() async {
@@ -42,9 +49,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (Get.find<SettingController>().blurWhenBackground.isTrue) {
+    if (Get.find<SettingService>().blurWhenBackground.isTrue) {
       final newState = state != AppLifecycleState.resumed &&
-          Get.find<SettingController>().blurWhenBackground.isTrue;
+          Get.find<SettingService>().blurWhenBackground.isTrue;
       if (newState != _needBlur) {
         setState(() {
           _needBlur = newState;

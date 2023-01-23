@@ -1,4 +1,4 @@
-import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
@@ -23,7 +23,7 @@ class RulesEditController extends GetxController {
       final newDb = db!.copyWith(blueprint: blueprint.toPb().writeToBuffer());
       await DB().webDao.replace(newDb);
       // 检测是否为当前配置
-      final controller = Get.find<GlobalController>();
+      final controller = Get.find<SiteService>();
       if (controller.site.value?.id == db!.id) {
         controller.setNewSite(newDb);
       }

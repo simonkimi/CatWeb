@@ -1,4 +1,4 @@
-import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_obs_swiitch.dart';
@@ -10,7 +10,7 @@ import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class DisplaySettingPage extends GetView<SettingController> {
+class DisplaySettingPage extends GetView<SettingService> {
   const DisplaySettingPage({
     super.key,
     this.fromSetting = true,

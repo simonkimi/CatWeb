@@ -1,6 +1,6 @@
 import 'package:catweb/data/constant.dart';
-import 'package:catweb/data/controller/setting_controller.dart';
-import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/controller/setting_service.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
@@ -102,7 +102,7 @@ class NetClient {
     final buffer = await ParserFFi(
       parser: configModel.getListParser(model.baseParser.value).toPb(),
       source: rsp.data!,
-      env: Get.find<GlobalController>().website.globalEnv,
+      env: Get.find<SiteService>().website.globalEnv,
       type: RpcType.RPC_TYPE_LIST_VIEW_PARSER,
     ).send();
 
@@ -116,7 +116,7 @@ class NetClient {
     );
 
     localEnv.mergeMap(result.localEnv);
-    Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
+    Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
 
     return result;
   }
@@ -126,7 +126,7 @@ class NetClient {
     required PageBlueprintModel model,
     required SiteEnvModel localEnv,
   }) async {
-    final options = Get.find<SettingController>()
+    final options = Get.find<SettingService>()
         .cacheOptions
         .copyWith(policy: CachePolicy.forceCache)
         .toOptions();
@@ -145,7 +145,7 @@ class NetClient {
     final buffer = await ParserFFi(
       parser: configModel.getGalleryParser(model.baseParser.value).toPb(),
       source: rsp.data!,
-      env: Get.find<GlobalController>().website.globalEnv,
+      env: Get.find<SiteService>().website.globalEnv,
       type: RpcType.RPC_TYPE_GALLERY_PARSER,
     ).send();
 
@@ -159,7 +159,7 @@ class NetClient {
     );
 
     localEnv.mergeMap(result.localEnv);
-    Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
+    Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
     return result;
   }
 
@@ -168,7 +168,7 @@ class NetClient {
     required PageBlueprintModel model,
     required SiteEnvModel localEnv,
   }) async {
-    final options = Get.find<SettingController>()
+    final options = Get.find<SettingService>()
         .imageCacheOption
         .copyWith(policy: CachePolicy.forceCache)
         .toOptions();
@@ -186,7 +186,7 @@ class NetClient {
     final buffer = await ParserFFi(
       parser: configModel.getImageParser(model.baseParser.value).toPb(),
       source: rsp.data!,
-      env: Get.find<GlobalController>().website.globalEnv,
+      env: Get.find<SiteService>().website.globalEnv,
       type: RpcType.RPC_TYPE_IMAGE_PARSER,
     ).send();
 
@@ -200,7 +200,7 @@ class NetClient {
     );
 
     localEnv.mergeMap(result.localEnv);
-    Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
+    Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
     return result;
   }
 
@@ -217,7 +217,7 @@ class NetClient {
     final buffer = await ParserFFi(
       parser: configModel.getAutoCompleteParser(model.baseParser.value).toPb(),
       source: rsp.data!,
-      env: Get.find<GlobalController>().website.globalEnv,
+      env: Get.find<SiteService>().website.globalEnv,
       type: RpcType.RPC_TYPE_AUTO_COMPLETE,
     ).send();
 
@@ -231,7 +231,7 @@ class NetClient {
     );
 
     localEnv.mergeMap(result.localEnv);
-    Get.find<GlobalController>().website.updateGlobalEnv(result.globalEnv);
+    Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
     return result;
   }
 }
@@ -254,7 +254,7 @@ Dio _buildDio({
   }
 
   dio.transformer = EncodeTransformer();
-  final setting = Get.find<SettingController>();
+  final setting = Get.find<SettingService>();
 
   dio.interceptors.add(CookieManager(cookieJar));
   dio.interceptors.add(HeaderCookieInterceptor(model: model, db: db));

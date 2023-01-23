@@ -1,4 +1,5 @@
 import 'package:catweb/data/constant.dart';
+import 'package:catweb/data/controller/navigator_service.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
@@ -6,8 +7,6 @@ import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/load_more_footer.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/list/controller/subpage_controller.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage_scaffold.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -40,33 +39,35 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
     super.build(context);
     return AppBarScrollNotifier(
       child: Obx(() => CupertinoScrollbar(
-        controller: controller.scrollController,
-        child: SmartRefresher(
-          controller: controller.refreshController,
-          enablePullDown: false,
-          enablePullUp: !controller.state.isRefresh,
-          onLoading: () => controller.onLoadMore(),
-          footer: LoadMoreFooter(
-            hasToolBar: widget.hasToolBar,
-          ),
-          child: CustomScrollView(
             controller: controller.scrollController,
-            cacheExtent: 300,
-            physics: (controller.state.isRefresh || controller.state.isLoading) && controller.items.isEmpty
-                ? const NeverScrollableScrollPhysics()
-                : null,
-            slivers: [
-              SliverPullToRefresh(
-                onRefresh: () => controller.onRefresh(),
-                extraHeight: widget.hasTabBar
-                    ? widget.tabBarHeight ?? kCupertinoTabBarHeight
-                    : 0,
+            child: SmartRefresher(
+              controller: controller.refreshController,
+              enablePullDown: false,
+              enablePullUp: !controller.state.isRefresh,
+              onLoading: () => controller.onLoadMore(),
+              footer: LoadMoreFooter(
+                hasToolBar: widget.hasToolBar,
               ),
-              _buildBody(context),
-            ],
-          ),
-        ),
-      )),
+              child: CustomScrollView(
+                controller: controller.scrollController,
+                cacheExtent: 300,
+                physics: (controller.state.isRefresh ||
+                            controller.state.isLoading) &&
+                        controller.items.isEmpty
+                    ? const NeverScrollableScrollPhysics()
+                    : null,
+                slivers: [
+                  SliverPullToRefresh(
+                    onRefresh: () => controller.onRefresh(),
+                    extraHeight: widget.hasTabBar
+                        ? widget.tabBarHeight ?? kCupertinoTabBarHeight
+                        : 0,
+                  ),
+                  _buildBody(context),
+                ],
+              ),
+            ),
+          )),
     );
   }
 
@@ -96,8 +97,8 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
                 model: model!.previewModel,
                 concurrency: controller.previewConcurrency,
                 onTap: () {
-                  pushNewPage(
-                    to: (controller.blueprint.templateData
+                  NavigatorService.push(
+                    targetName: (controller.blueprint.templateData
                             as TemplateListDataModel)
                         .targetItem
                         .value,

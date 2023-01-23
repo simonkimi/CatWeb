@@ -1,4 +1,4 @@
-import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/loaders/load_more_model.dart';
@@ -82,7 +82,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
   GalleryBaseData? baseData;
   final Rx<int> lastReadIndex = 0.obs;
 
-  final global = Get.find<GlobalController>();
+  final global = Get.find<SiteService>();
 
   @override
   final previewConcurrency = ImageListConcurrency();  // 预览图片内容的加载器

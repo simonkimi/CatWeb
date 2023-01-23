@@ -1,6 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:catweb/data/controller/setting_controller.dart';
-import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/controller/setting_service.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/i18n.dart';
@@ -24,7 +24,7 @@ enum _MenuSelect {
   login,
 }
 
-class SiteManager extends GetWidget<GlobalController> {
+class SiteManager extends GetWidget<SiteService> {
   const SiteManager({super.key});
 
   static const routeName = 'SiteManager';
@@ -105,7 +105,7 @@ class SiteManager extends GetWidget<GlobalController> {
 
   Widget _buildListView(
     AsyncSnapshot<List<WebTableData>> snapshot,
-    GlobalController globalController,
+    SiteService SiteService,
     BuildContext context,
   ) {
     if (snapshot.data!.isEmpty) {
@@ -190,7 +190,7 @@ class SiteManager extends GetWidget<GlobalController> {
     } else {
       // 登录
       if (Uri.tryParse(pb.baseUrl)?.host != Uri.tryParse(pb.loginUrl)?.host) {
-        if (!Get.find<SettingController>().protectCookie.value ||
+        if (!Get.find<SettingService>().protectCookie.value ||
             !db.securityModel) {
           final w = await showCupertinoConfirmDialog(
             context: context,

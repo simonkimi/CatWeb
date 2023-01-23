@@ -1,5 +1,5 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/view_page/empty/empty.dart';
@@ -8,7 +8,7 @@ import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class ViewerMain extends GetView<GlobalController> {
+class ViewerMain extends GetView<SiteService> {
   const ViewerMain({super.key});
 
   @override

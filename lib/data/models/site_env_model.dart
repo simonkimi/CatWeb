@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:get/get.dart';
 
@@ -47,7 +47,7 @@ class SiteEnvModel implements EnvMargeAble {
 
   String replace(String input) {
     final exp = RegExp(
-        r'\$\{(?<var>\w+):(?<context>[^:^$]*)(?:\:(?<default>[^\$]+))?\}');
+        r'\$\{(?<var>\w+):(?<context>[^:^$]*)(?::(?<default>[^$]+))?\}');
     final matches = exp.allMatches(input);
     for (final match in matches) {
       final varName = match.namedGroup('var')!;
@@ -83,5 +83,5 @@ extension EnvString on String {
   String env(SiteEnvModel env) => env.replace(this);
 
   String globalEnv() =>
-      Get.find<GlobalController>().website.globalEnv.replace(this);
+      Get.find<SiteService>().website.globalEnv.replace(this);
 }

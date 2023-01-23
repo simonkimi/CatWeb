@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:flutter/cupertino.dart';
@@ -107,7 +107,7 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
     return SizedBox(
       height: 50,
       child: Obx(() => ListView.builder(
-            reverse: Get.find<SettingController>().readerDirectory.value ==
+            reverse: Get.find<SettingService>().readerDirectory.value ==
                 ReaderDirection.rtl,
             key: listGlobalKey,
             controller: scrollController,

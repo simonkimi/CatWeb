@@ -8,7 +8,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path/path.dart' as p;
 
-class SettingController extends GetxController {
+class SettingService extends GetxService {
+  static SettingService get to => Get.find();
+
   // 内部储存设置
   final RxInt defaultSite = (-1).obs;
   final RxString documentDir = ''.obs;

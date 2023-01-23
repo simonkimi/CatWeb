@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
@@ -62,7 +62,7 @@ class SubListController
   final PageBlueprintModel blueprint;
   final SubPageModel? subPageModel;
   final SiteEnvModel localEnv;
-  final global = Get.find<GlobalController>();
+  final global = Get.find<SiteService>();
 
   late final filter = extra.filterItem.map((e) => e.clone()).toList().obs;
   late final currentFilter = filter.map((e) => e.clone()).toList();

@@ -1,4 +1,4 @@
-import 'package:catweb/data/controller/site_controller.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/templete.dart';
@@ -14,7 +14,7 @@ class SearchListController {
   final Handler handler = Handler();
 
   final TextEditingController textController = TextEditingController();
-  final website = Get.find<GlobalController>().website;
+  final website = Get.find<SiteService>().website;
 
   late final PageBlueprintModel? blueprint;
 

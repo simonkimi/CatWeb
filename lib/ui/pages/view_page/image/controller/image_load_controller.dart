@@ -1,4 +1,4 @@
-import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/loaders/async_task.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/models/site_env_model.dart';
@@ -86,7 +86,7 @@ class ReaderLoaderController {
   Future<void> onIndexChanged(int index, bool isForward) async {
     readerIsForward = isForward;
     currentIndex = index;
-    final preloadCount = Get.find<SettingController>().preloadCount.value;
+    final preloadCount = Get.find<SettingService>().preloadCount.value;
     final items = readerInfo.items.toList();
     final needLoadItem = List.generate(
             preloadCount + 1, // 加载预加载页面+1, e为index

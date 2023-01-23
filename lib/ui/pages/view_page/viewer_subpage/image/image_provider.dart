@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:typed_data';
-
-import 'package:catweb/data/controller/setting_controller.dart';
+import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/gen/protobuf/model.pb.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,7 +21,8 @@ class DioImageProvider extends ImageProvider<DioImageProvider> {
   final _cancelToken = CancelToken().obs;
 
   @override
-  ImageStreamCompleter load(DioImageProvider key, DecoderCallback decode) {
+  ImageStreamCompleter loadBuffer(
+      DioImageProvider key, DecoderBufferCallback decode) {
     final StreamController<ImageChunkEvent> chunkEvents =
         StreamController<ImageChunkEvent>();
     return MultiFrameImageStreamCompleter(
@@ -40,7 +39,9 @@ class DioImageProvider extends ImageProvider<DioImageProvider> {
     );
   }
 
-  Future<ui.Codec> _loadAsync(DioImageProvider key, DecoderCallback decode,
+  Future<ui.Codec> _loadAsync(
+      DioImageProvider key,
+      DecoderBufferCallback decode,
       StreamController<ImageChunkEvent> chunkEvents) async {
     final rsp = await dio.get<Uint8List>(
       rpcModel.url,
@@ -49,7 +50,7 @@ class DioImageProvider extends ImageProvider<DioImageProvider> {
         cumulativeBytesLoaded: r,
         expectedTotalBytes: t,
       )),
-      options: Get.find<SettingController>()
+      options: Get.find<SettingService>()
           .imageCacheOption
           .toOptions()
           .copyWith(responseType: ResponseType.bytes),
@@ -58,7 +59,8 @@ class DioImageProvider extends ImageProvider<DioImageProvider> {
       throw StateError(
           '${rpcModel.url} is empty and cannot be loaded as an image.');
     }
-    return await decode(rsp.data!);
+    final buffer = await ui.ImmutableBuffer.fromUint8List(rsp.data!);
+    return decode(buffer);
   }
 
   @override
