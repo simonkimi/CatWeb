@@ -46,7 +46,7 @@ class SiteManager extends GetWidget<SiteService> {
                     initialData: const [],
                     stream: DB().webDao.getAllStream(),
                     builder: (context, snapshot) {
-                      return _buildListView(snapshot, controller, context);
+                      return _buildListView(snapshot, context);
                     },
                   ),
                 ),
@@ -105,12 +105,16 @@ class SiteManager extends GetWidget<SiteService> {
 
   Widget _buildListView(
     AsyncSnapshot<List<WebTableData>> snapshot,
-    SiteService SiteService,
     BuildContext context,
   ) {
     if (snapshot.data!.isEmpty) {
-      return const Center(
-        child: Text('没有找到站点, 请点击下面的按钮添加'),
+      return Center(
+        child: Text(
+          '没有找到站点, 请点击下面的按钮添加',
+          style: TextStyle(
+            color: CupertinoColors.label.resolveFrom(context),
+          ),
+        ),
       );
     }
     return ListView(
@@ -131,6 +135,7 @@ class SiteManager extends GetWidget<SiteService> {
         child: const Icon(CupertinoIcons.back),
       ),
       middle: const Text('站点管理'),
+      transitionBetweenRoutes: false,
     );
   }
 

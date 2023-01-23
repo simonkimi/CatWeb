@@ -27,6 +27,17 @@ class SecuritySettingPage extends GetView<SettingService> {
             trailing: CupertinoObxSwitch(
               scale: 0.9,
               value: controller.blurWhenBackground,
+              onChange: (value) async {
+                if (GetPlatform.isAndroid && value) {
+                  showCupertinoConfirmDialog(
+                    context: context,
+                    title: '提示',
+                    content: I.of(context).blur_android_warning,
+                    showCancel: false,
+                  );
+                }
+                return value;
+              },
             ),
           ),
         ]),

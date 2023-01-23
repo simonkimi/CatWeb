@@ -14,13 +14,11 @@ import 'data/controller/setting_service.dart';
 import 'navigator.dart';
 
 Future<void> initGetX() async {
-  // await Get.put(SettingService()).init();
-
-  Get.putAsync(() async {
+  await Get.putAsync(() async {
     final service = SettingService();
     await service.init();
     return service;
-  });
+  }, permanent: true);
 
   Get.put(SiteService(), permanent: true);
 }
@@ -49,7 +47,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (Get.find<SettingService>().blurWhenBackground.isTrue) {
+    if (SettingService.to.blurWhenBackground.isTrue) {
       final newState = state != AppLifecycleState.resumed &&
           Get.find<SettingService>().blurWhenBackground.isTrue;
       if (newState != _needBlur) {
