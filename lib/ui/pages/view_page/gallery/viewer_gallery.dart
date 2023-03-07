@@ -230,7 +230,7 @@ class ViewerGalleryFragment extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (e.key != '_') ...[
-                  Badge(
+                  SlimBadge(
                     text: e.key,
                     color: cupertinoLightColors(
                       context,
@@ -244,7 +244,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                     spacing: 5,
                     runSpacing: 5,
                     children: e.value.map((e) {
-                      return Badge(
+                      return SlimBadge(
                         text: e,
                         color: FixColor.groupedColor.resolveFrom(context),
                       );

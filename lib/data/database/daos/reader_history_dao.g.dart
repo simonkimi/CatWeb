@@ -2,10 +2,7 @@
 
 part of 'reader_history_dao.dart';
 
-// **************************************************************************
-// DaoGenerator
-// **************************************************************************
-
+// ignore_for_file: type=lint
 mixin _$ReaderHistoryDaoMixin on DatabaseAccessor<AppDataBase> {
   $ReaderHistoryTableTable get readerHistoryTable =>
       attachedDatabase.readerHistoryTable;

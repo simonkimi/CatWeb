@@ -130,7 +130,7 @@ class ListExtendedCard extends StatelessWidget {
       spacing: 2,
       runSpacing: 2,
       children: model.badges.where((e) => e.hasText()).map((e) {
-        return Badge(
+        return SlimBadge(
           color: e.color.color,
           text: e.text,
           fontSize: 11,
@@ -237,7 +237,7 @@ class ListExtendedCard extends StatelessWidget {
   Widget _buildTag(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 2),
-      child: Badge(
+      child: SlimBadge(
         color: model.tag.color.color,
         text: model.tag.text,
         fontSize: 11,

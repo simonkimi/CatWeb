@@ -2,10 +2,7 @@
 
 part of 'web_dao.dart';
 
-// **************************************************************************
-// DaoGenerator
-// **************************************************************************
-
+// ignore_for_file: type=lint
 mixin _$WebDaoMixin on DatabaseAccessor<AppDataBase> {
   $WebTableTable get webTable => attachedDatabase.webTable;
 }

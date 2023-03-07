@@ -1,3 +1,4 @@
+import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/protocol/model/store.dart';
@@ -15,13 +16,13 @@ class RulesEditController extends GetxController {
 
   Future<void> save() async {
     if (db == null) {
-      await DB().webDao.insert(WebTableCompanion.insert(
+      await Get.find<DbService>().webDao.insert(WebTableCompanion.insert(
             blueprint: blueprint.toPb().writeToBuffer(),
             env: EnvStore().writeToBuffer(),
           ));
     } else {
       final newDb = db!.copyWith(blueprint: blueprint.toPb().writeToBuffer());
-      await DB().webDao.replace(newDb);
+      await Get.find<DbService>().webDao.replace(newDb);
       // 检测是否为当前配置
       final controller = Get.find<SiteService>();
       if (controller.site.value?.id == db!.id) {

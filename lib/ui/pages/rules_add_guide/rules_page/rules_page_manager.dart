@@ -27,7 +27,7 @@ class RulesPageManager extends GetView<RulesEditController> {
         Obx(() => Column(
               mainAxisSize: MainAxisSize.min,
               children: controller.blueprint.pageList.map((e) {
-                return CupertinoListTile(
+                return CupertinoCustomListTile(
                   title: Text(e.name.value),
                   subtitle: Text(e.template.value.string(context)),
                   trailing: CupertinoButton(
@@ -40,7 +40,7 @@ class RulesPageManager extends GetView<RulesEditController> {
                 );
               }).toList(),
             )),
-        CupertinoListTile(
+        CupertinoCustomListTile(
           title: Text(I.of(context).add),
           leading: const Icon(Icons.add),
           onTap: () {

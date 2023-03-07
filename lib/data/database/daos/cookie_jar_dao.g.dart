@@ -2,10 +2,7 @@
 
 part of 'cookie_jar_dao.dart';
 
-// **************************************************************************
-// DaoGenerator
-// **************************************************************************
-
+// ignore_for_file: type=lint
 mixin _$CookieJarDaoMixin on DatabaseAccessor<AppDataBase> {
   $CookieJarTableTable get cookieJarTable => attachedDatabase.cookieJarTable;
 }

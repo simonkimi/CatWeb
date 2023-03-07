@@ -2,8 +2,8 @@ import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class CupertinoListTile extends HookWidget {
-  const CupertinoListTile({
+class CupertinoCustomListTile extends HookWidget {
+  const CupertinoCustomListTile({
     super.key,
     this.leading,
     this.title,

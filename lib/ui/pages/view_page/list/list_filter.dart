@@ -129,7 +129,7 @@ class ListFilterButton extends StatelessWidget {
                       onLongPress: () => _onLongPress(i + j),
                       child: Padding(
                         padding: const EdgeInsets.all(2),
-                        child: Obx(() => Badge(
+                        child: Obx(() => SlimBadge(
                               disable: items
                                       .elementAt(i + j)
                                       .value

@@ -2,11 +2,170 @@
 
 part of 'database.dart';
 
-// **************************************************************************
-// MoorGenerator
-// **************************************************************************
+// ignore_for_file: type=lint
+class $WebTableTable extends WebTable
+    with TableInfo<$WebTableTable, WebTableData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $WebTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _uuidMeta = const VerificationMeta('uuid');
+  @override
+  late final GeneratedColumn<String> uuid = GeneratedColumn<String>(
+      'uuid', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      clientDefault: () => const Uuid().v4().toString());
+  static const VerificationMeta _blueprintMeta =
+      const VerificationMeta('blueprint');
+  @override
+  late final GeneratedColumn<Uint8List> blueprint = GeneratedColumn<Uint8List>(
+      'blueprint', aliasedName, false,
+      type: DriftSqlType.blob, requiredDuringInsert: true);
+  static const VerificationMeta _envMeta = const VerificationMeta('env');
+  @override
+  late final GeneratedColumn<Uint8List> env = GeneratedColumn<Uint8List>(
+      'env', aliasedName, false,
+      type: DriftSqlType.blob, requiredDuringInsert: true);
+  static const VerificationMeta _faviconMeta =
+      const VerificationMeta('favicon');
+  @override
+  late final GeneratedColumn<Uint8List> favicon = GeneratedColumn<Uint8List>(
+      'favicon', aliasedName, false,
+      type: DriftSqlType.blob,
+      requiredDuringInsert: false,
+      clientDefault: () => Uint8List.fromList([]));
+  static const VerificationMeta _lastOpenMeta =
+      const VerificationMeta('lastOpen');
+  @override
+  late final GeneratedColumn<int> lastOpen = GeneratedColumn<int>(
+      'last_open', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      clientDefault: () => DateTime.now().millisecond);
+  static const VerificationMeta _securityModelMeta =
+      const VerificationMeta('securityModel');
+  @override
+  late final GeneratedColumn<bool> securityModel =
+      GeneratedColumn<bool>('security_model', aliasedName, false,
+          type: DriftSqlType.bool,
+          requiredDuringInsert: false,
+          defaultConstraints: GeneratedColumn.constraintsDependsOnDialect({
+            SqlDialect.sqlite: 'CHECK ("security_model" IN (0, 1))',
+            SqlDialect.mysql: '',
+            SqlDialect.postgres: '',
+          }),
+          clientDefault: () => true);
+  static const VerificationMeta _loginCookiesMeta =
+      const VerificationMeta('loginCookies');
+  @override
+  late final GeneratedColumn<String> loginCookies = GeneratedColumn<String>(
+      'login_cookies', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      clientDefault: () => '');
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        uuid,
+        blueprint,
+        env,
+        favicon,
+        lastOpen,
+        securityModel,
+        loginCookies
+      ];
+  @override
+  String get aliasedName => _alias ?? 'web_table';
+  @override
+  String get actualTableName => 'web_table';
+  @override
+  VerificationContext validateIntegrity(Insertable<WebTableData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('uuid')) {
+      context.handle(
+          _uuidMeta, uuid.isAcceptableOrUnknown(data['uuid']!, _uuidMeta));
+    }
+    if (data.containsKey('blueprint')) {
+      context.handle(_blueprintMeta,
+          blueprint.isAcceptableOrUnknown(data['blueprint']!, _blueprintMeta));
+    } else if (isInserting) {
+      context.missing(_blueprintMeta);
+    }
+    if (data.containsKey('env')) {
+      context.handle(
+          _envMeta, env.isAcceptableOrUnknown(data['env']!, _envMeta));
+    } else if (isInserting) {
+      context.missing(_envMeta);
+    }
+    if (data.containsKey('favicon')) {
+      context.handle(_faviconMeta,
+          favicon.isAcceptableOrUnknown(data['favicon']!, _faviconMeta));
+    }
+    if (data.containsKey('last_open')) {
+      context.handle(_lastOpenMeta,
+          lastOpen.isAcceptableOrUnknown(data['last_open']!, _lastOpenMeta));
+    }
+    if (data.containsKey('security_model')) {
+      context.handle(
+          _securityModelMeta,
+          securityModel.isAcceptableOrUnknown(
+              data['security_model']!, _securityModelMeta));
+    }
+    if (data.containsKey('login_cookies')) {
+      context.handle(
+          _loginCookiesMeta,
+          loginCookies.isAcceptableOrUnknown(
+              data['login_cookies']!, _loginCookiesMeta));
+    }
+    return context;
+  }
 
-// ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  WebTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return WebTableData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      uuid: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}uuid'])!,
+      blueprint: attachedDatabase.typeMapping
+          .read(DriftSqlType.blob, data['${effectivePrefix}blueprint'])!,
+      env: attachedDatabase.typeMapping
+          .read(DriftSqlType.blob, data['${effectivePrefix}env'])!,
+      favicon: attachedDatabase.typeMapping
+          .read(DriftSqlType.blob, data['${effectivePrefix}favicon'])!,
+      lastOpen: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}last_open'])!,
+      securityModel: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}security_model'])!,
+      loginCookies: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}login_cookies'])!,
+    );
+  }
+
+  @override
+  $WebTableTable createAlias(String alias) {
+    return $WebTableTable(attachedDatabase, alias);
+  }
+}
+
 class WebTableData extends DataClass implements Insertable<WebTableData> {
   final int id;
   final String uuid;
@@ -16,7 +175,7 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
   final int lastOpen;
   final bool securityModel;
   final String loginCookies;
-  WebTableData(
+  const WebTableData(
       {required this.id,
       required this.uuid,
       required this.blueprint,
@@ -25,27 +184,6 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
       required this.lastOpen,
       required this.securityModel,
       required this.loginCookies});
-  factory WebTableData.fromData(Map<String, dynamic> data, {String? prefix}) {
-    final effectivePrefix = prefix ?? '';
-    return WebTableData(
-      id: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      uuid: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}uuid'])!,
-      blueprint: const BlobType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}blueprint'])!,
-      env: const BlobType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}env'])!,
-      favicon: const BlobType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}favicon'])!,
-      lastOpen: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}last_open'])!,
-      securityModel: const BoolType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}security_model'])!,
-      loginCookies: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}login_cookies'])!,
-    );
-  }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -138,16 +276,23 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
 
   @override
   int get hashCode => Object.hash(
-      id, uuid, blueprint, env, favicon, lastOpen, securityModel, loginCookies);
+      id,
+      uuid,
+      $driftBlobEquality.hash(blueprint),
+      $driftBlobEquality.hash(env),
+      $driftBlobEquality.hash(favicon),
+      lastOpen,
+      securityModel,
+      loginCookies);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is WebTableData &&
           other.id == this.id &&
           other.uuid == this.uuid &&
-          other.blueprint == this.blueprint &&
-          other.env == this.env &&
-          other.favicon == this.favicon &&
+          $driftBlobEquality.equals(other.blueprint, this.blueprint) &&
+          $driftBlobEquality.equals(other.env, this.env) &&
+          $driftBlobEquality.equals(other.favicon, this.favicon) &&
           other.lastOpen == this.lastOpen &&
           other.securityModel == this.securityModel &&
           other.loginCookies == this.loginCookies);
@@ -272,84 +417,46 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
   }
 }
 
-class $WebTableTable extends WebTable
-    with TableInfo<$WebTableTable, WebTableData> {
+class $ReaderHistoryTableTable extends ReaderHistoryTable
+    with TableInfo<$ReaderHistoryTableTable, ReaderHistoryTableData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $WebTableTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
+  $ReaderHistoryTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
-  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
       'id', aliasedName, false,
-      type: const IntType(),
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
       requiredDuringInsert: false,
-      defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
-  final VerificationMeta _uuidMeta = const VerificationMeta('uuid');
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _uuidMeta = const VerificationMeta('uuid');
   @override
-  late final GeneratedColumn<String?> uuid = GeneratedColumn<String?>(
+  late final GeneratedColumn<String> uuid = GeneratedColumn<String>(
       'uuid', aliasedName, false,
-      type: const StringType(),
-      requiredDuringInsert: false,
-      clientDefault: () => const Uuid().v4().toString());
-  final VerificationMeta _blueprintMeta = const VerificationMeta('blueprint');
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _idCodeMeta = const VerificationMeta('idCode');
   @override
-  late final GeneratedColumn<Uint8List?> blueprint =
-      GeneratedColumn<Uint8List?>('blueprint', aliasedName, false,
-          type: const BlobType(), requiredDuringInsert: true);
-  final VerificationMeta _envMeta = const VerificationMeta('env');
+  late final GeneratedColumn<String> idCode = GeneratedColumn<String>(
+      'id_code', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _pageIndexMeta =
+      const VerificationMeta('pageIndex');
   @override
-  late final GeneratedColumn<Uint8List?> env = GeneratedColumn<Uint8List?>(
-      'env', aliasedName, false,
-      type: const BlobType(), requiredDuringInsert: true);
-  final VerificationMeta _faviconMeta = const VerificationMeta('favicon');
+  late final GeneratedColumn<int> pageIndex = GeneratedColumn<int>(
+      'page_index', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
   @override
-  late final GeneratedColumn<Uint8List?> favicon = GeneratedColumn<Uint8List?>(
-      'favicon', aliasedName, false,
-      type: const BlobType(),
-      requiredDuringInsert: false,
-      clientDefault: () => Uint8List.fromList([]));
-  final VerificationMeta _lastOpenMeta = const VerificationMeta('lastOpen');
+  List<GeneratedColumn> get $columns => [id, uuid, idCode, pageIndex];
   @override
-  late final GeneratedColumn<int?> lastOpen = GeneratedColumn<int?>(
-      'last_open', aliasedName, false,
-      type: const IntType(),
-      requiredDuringInsert: false,
-      clientDefault: () => DateTime.now().millisecond);
-  final VerificationMeta _securityModelMeta =
-      const VerificationMeta('securityModel');
+  String get aliasedName => _alias ?? 'reader_history_table';
   @override
-  late final GeneratedColumn<bool?> securityModel = GeneratedColumn<bool?>(
-      'security_model', aliasedName, false,
-      type: const BoolType(),
-      requiredDuringInsert: false,
-      defaultConstraints: 'CHECK (security_model IN (0, 1))',
-      clientDefault: () => true);
-  final VerificationMeta _loginCookiesMeta =
-      const VerificationMeta('loginCookies');
+  String get actualTableName => 'reader_history_table';
   @override
-  late final GeneratedColumn<String?> loginCookies = GeneratedColumn<String?>(
-      'login_cookies', aliasedName, false,
-      type: const StringType(),
-      requiredDuringInsert: false,
-      clientDefault: () => '');
-  @override
-  List<GeneratedColumn> get $columns => [
-        id,
-        uuid,
-        blueprint,
-        env,
-        favicon,
-        lastOpen,
-        securityModel,
-        loginCookies
-      ];
-  @override
-  String get aliasedName => _alias ?? 'web_table';
-  @override
-  String get actualTableName => 'web_table';
-  @override
-  VerificationContext validateIntegrity(Insertable<WebTableData> instance,
+  VerificationContext validateIntegrity(
+      Insertable<ReaderHistoryTableData> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -359,38 +466,20 @@ class $WebTableTable extends WebTable
     if (data.containsKey('uuid')) {
       context.handle(
           _uuidMeta, uuid.isAcceptableOrUnknown(data['uuid']!, _uuidMeta));
-    }
-    if (data.containsKey('blueprint')) {
-      context.handle(_blueprintMeta,
-          blueprint.isAcceptableOrUnknown(data['blueprint']!, _blueprintMeta));
     } else if (isInserting) {
-      context.missing(_blueprintMeta);
+      context.missing(_uuidMeta);
     }
-    if (data.containsKey('env')) {
-      context.handle(
-          _envMeta, env.isAcceptableOrUnknown(data['env']!, _envMeta));
+    if (data.containsKey('id_code')) {
+      context.handle(_idCodeMeta,
+          idCode.isAcceptableOrUnknown(data['id_code']!, _idCodeMeta));
     } else if (isInserting) {
-      context.missing(_envMeta);
+      context.missing(_idCodeMeta);
     }
-    if (data.containsKey('favicon')) {
-      context.handle(_faviconMeta,
-          favicon.isAcceptableOrUnknown(data['favicon']!, _faviconMeta));
-    }
-    if (data.containsKey('last_open')) {
-      context.handle(_lastOpenMeta,
-          lastOpen.isAcceptableOrUnknown(data['last_open']!, _lastOpenMeta));
-    }
-    if (data.containsKey('security_model')) {
-      context.handle(
-          _securityModelMeta,
-          securityModel.isAcceptableOrUnknown(
-              data['security_model']!, _securityModelMeta));
-    }
-    if (data.containsKey('login_cookies')) {
-      context.handle(
-          _loginCookiesMeta,
-          loginCookies.isAcceptableOrUnknown(
-              data['login_cookies']!, _loginCookiesMeta));
+    if (data.containsKey('page_index')) {
+      context.handle(_pageIndexMeta,
+          pageIndex.isAcceptableOrUnknown(data['page_index']!, _pageIndexMeta));
+    } else if (isInserting) {
+      context.missing(_pageIndexMeta);
     }
     return context;
   }
@@ -398,14 +487,23 @@ class $WebTableTable extends WebTable
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  WebTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return WebTableData.fromData(data,
-        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  ReaderHistoryTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ReaderHistoryTableData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      uuid: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}uuid'])!,
+      idCode: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}id_code'])!,
+      pageIndex: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}page_index'])!,
+    );
   }
 
   @override
-  $WebTableTable createAlias(String alias) {
-    return $WebTableTable(attachedDatabase, alias);
+  $ReaderHistoryTableTable createAlias(String alias) {
+    return $ReaderHistoryTableTable(attachedDatabase, alias);
   }
 }
 
@@ -415,25 +513,11 @@ class ReaderHistoryTableData extends DataClass
   final String uuid;
   final String idCode;
   final int pageIndex;
-  ReaderHistoryTableData(
+  const ReaderHistoryTableData(
       {required this.id,
       required this.uuid,
       required this.idCode,
       required this.pageIndex});
-  factory ReaderHistoryTableData.fromData(Map<String, dynamic> data,
-      {String? prefix}) {
-    final effectivePrefix = prefix ?? '';
-    return ReaderHistoryTableData(
-      id: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      uuid: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}uuid'])!,
-      idCode: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}id_code'])!,
-      pageIndex: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}page_index'])!,
-    );
-  }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -582,81 +666,78 @@ class ReaderHistoryTableCompanion
   }
 }
 
-class $ReaderHistoryTableTable extends ReaderHistoryTable
-    with TableInfo<$ReaderHistoryTableTable, ReaderHistoryTableData> {
+class $CookieJarTableTable extends CookieJarTable
+    with TableInfo<$CookieJarTableTable, CookieJarTableData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $ReaderHistoryTableTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
+  $CookieJarTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _webUuidMeta =
+      const VerificationMeta('webUuid');
   @override
-  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
-      'id', aliasedName, false,
-      type: const IntType(),
-      requiredDuringInsert: false,
-      defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
-  final VerificationMeta _uuidMeta = const VerificationMeta('uuid');
+  late final GeneratedColumn<String> webUuid = GeneratedColumn<String>(
+      'web_uuid', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _keyMeta = const VerificationMeta('key');
   @override
-  late final GeneratedColumn<String?> uuid = GeneratedColumn<String?>(
-      'uuid', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
-  final VerificationMeta _idCodeMeta = const VerificationMeta('idCode');
+  late final GeneratedColumn<String> key = GeneratedColumn<String>(
+      'key', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _valueMeta = const VerificationMeta('value');
   @override
-  late final GeneratedColumn<String?> idCode = GeneratedColumn<String?>(
-      'id_code', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
-  final VerificationMeta _pageIndexMeta = const VerificationMeta('pageIndex');
+  late final GeneratedColumn<String> value = GeneratedColumn<String>(
+      'value', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
   @override
-  late final GeneratedColumn<int?> pageIndex = GeneratedColumn<int?>(
-      'page_index', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: true);
+  List<GeneratedColumn> get $columns => [webUuid, key, value];
   @override
-  List<GeneratedColumn> get $columns => [id, uuid, idCode, pageIndex];
+  String get aliasedName => _alias ?? 'cookie_jar_table';
   @override
-  String get aliasedName => _alias ?? 'reader_history_table';
+  String get actualTableName => 'cookie_jar_table';
   @override
-  String get actualTableName => 'reader_history_table';
-  @override
-  VerificationContext validateIntegrity(
-      Insertable<ReaderHistoryTableData> instance,
+  VerificationContext validateIntegrity(Insertable<CookieJarTableData> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    if (data.containsKey('web_uuid')) {
+      context.handle(_webUuidMeta,
+          webUuid.isAcceptableOrUnknown(data['web_uuid']!, _webUuidMeta));
+    } else if (isInserting) {
+      context.missing(_webUuidMeta);
     }
-    if (data.containsKey('uuid')) {
+    if (data.containsKey('key')) {
       context.handle(
-          _uuidMeta, uuid.isAcceptableOrUnknown(data['uuid']!, _uuidMeta));
+          _keyMeta, key.isAcceptableOrUnknown(data['key']!, _keyMeta));
     } else if (isInserting) {
-      context.missing(_uuidMeta);
+      context.missing(_keyMeta);
     }
-    if (data.containsKey('id_code')) {
-      context.handle(_idCodeMeta,
-          idCode.isAcceptableOrUnknown(data['id_code']!, _idCodeMeta));
+    if (data.containsKey('value')) {
+      context.handle(
+          _valueMeta, value.isAcceptableOrUnknown(data['value']!, _valueMeta));
     } else if (isInserting) {
-      context.missing(_idCodeMeta);
-    }
-    if (data.containsKey('page_index')) {
-      context.handle(_pageIndexMeta,
-          pageIndex.isAcceptableOrUnknown(data['page_index']!, _pageIndexMeta));
-    } else if (isInserting) {
-      context.missing(_pageIndexMeta);
+      context.missing(_valueMeta);
     }
     return context;
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {id};
+  Set<GeneratedColumn> get $primaryKey => {webUuid, key};
   @override
-  ReaderHistoryTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return ReaderHistoryTableData.fromData(data,
-        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  CookieJarTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CookieJarTableData(
+      webUuid: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}web_uuid'])!,
+      key: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}key'])!,
+      value: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}value'])!,
+    );
   }
 
   @override
-  $ReaderHistoryTableTable createAlias(String alias) {
-    return $ReaderHistoryTableTable(attachedDatabase, alias);
+  $CookieJarTableTable createAlias(String alias) {
+    return $CookieJarTableTable(attachedDatabase, alias);
   }
 }
 
@@ -665,20 +746,8 @@ class CookieJarTableData extends DataClass
   final String webUuid;
   final String key;
   final String value;
-  CookieJarTableData(
+  const CookieJarTableData(
       {required this.webUuid, required this.key, required this.value});
-  factory CookieJarTableData.fromData(Map<String, dynamic> data,
-      {String? prefix}) {
-    final effectivePrefix = prefix ?? '';
-    return CookieJarTableData(
-      webUuid: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}web_uuid'])!,
-      key: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}key'])!,
-      value: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}value'])!,
-    );
-  }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -805,75 +874,8 @@ class CookieJarTableCompanion extends UpdateCompanion<CookieJarTableData> {
   }
 }
 
-class $CookieJarTableTable extends CookieJarTable
-    with TableInfo<$CookieJarTableTable, CookieJarTableData> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $CookieJarTableTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _webUuidMeta = const VerificationMeta('webUuid');
-  @override
-  late final GeneratedColumn<String?> webUuid = GeneratedColumn<String?>(
-      'web_uuid', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
-  final VerificationMeta _keyMeta = const VerificationMeta('key');
-  @override
-  late final GeneratedColumn<String?> key = GeneratedColumn<String?>(
-      'key', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
-  final VerificationMeta _valueMeta = const VerificationMeta('value');
-  @override
-  late final GeneratedColumn<String?> value = GeneratedColumn<String?>(
-      'value', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
-  @override
-  List<GeneratedColumn> get $columns => [webUuid, key, value];
-  @override
-  String get aliasedName => _alias ?? 'cookie_jar_table';
-  @override
-  String get actualTableName => 'cookie_jar_table';
-  @override
-  VerificationContext validateIntegrity(Insertable<CookieJarTableData> instance,
-      {bool isInserting = false}) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('web_uuid')) {
-      context.handle(_webUuidMeta,
-          webUuid.isAcceptableOrUnknown(data['web_uuid']!, _webUuidMeta));
-    } else if (isInserting) {
-      context.missing(_webUuidMeta);
-    }
-    if (data.containsKey('key')) {
-      context.handle(
-          _keyMeta, key.isAcceptableOrUnknown(data['key']!, _keyMeta));
-    } else if (isInserting) {
-      context.missing(_keyMeta);
-    }
-    if (data.containsKey('value')) {
-      context.handle(
-          _valueMeta, value.isAcceptableOrUnknown(data['value']!, _valueMeta));
-    } else if (isInserting) {
-      context.missing(_valueMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {webUuid, key};
-  @override
-  CookieJarTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return CookieJarTableData.fromData(data,
-        prefix: tablePrefix != null ? '$tablePrefix.' : null);
-  }
-
-  @override
-  $CookieJarTableTable createAlias(String alias) {
-    return $CookieJarTableTable(attachedDatabase, alias);
-  }
-}
-
 abstract class _$AppDataBase extends GeneratedDatabase {
-  _$AppDataBase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
+  _$AppDataBase(QueryExecutor e) : super(e);
   late final $WebTableTable webTable = $WebTableTable(this);
   late final $ReaderHistoryTableTable readerHistoryTable =
       $ReaderHistoryTableTable(this);
@@ -883,7 +885,8 @@ abstract class _$AppDataBase extends GeneratedDatabase {
       ReaderHistoryDao(this as AppDataBase);
   late final CookieJarDao cookieJarDao = CookieJarDao(this as AppDataBase);
   @override
-  Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
+  Iterable<TableInfo<Table, Object?>> get allTables =>
+      allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
       [webTable, readerHistoryTable, cookieJarTable];

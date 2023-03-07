@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_router.dart';
@@ -20,6 +21,7 @@ Future<void> initGetX() async {
     return service;
   }, permanent: true);
 
+  Get.put(DbService(), permanent: true);
   Get.put(SiteService(), permanent: true);
 }
 

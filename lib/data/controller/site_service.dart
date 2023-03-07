@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_render_model.dart';
@@ -14,6 +15,8 @@ class SiteService extends GetxService {
   var lastClickBack = DateTime.now().millisecondsSinceEpoch;
 
   final site = Rx<SiteRenderConfigModel?>(null);
+
+  final db = DbService.to;
 
   SiteRenderConfigModel get website {
     assert(site.value != null);
@@ -34,13 +37,13 @@ class SiteService extends GetxService {
 
   Future<void> setDefaultSite() async {
     final setting = Get.find<SettingService>();
-    final df = (await DB().webDao.getAll())
+    final df = (await db.webDao.getAll())
         .get((e) => e.id == setting.defaultSite.value);
     await setNewSite(df);
   }
 
   Future<void> autoSelectNewSite() async {
-    final sitesList = await DB().webDao.getAll();
+    final sitesList = await Get.find<DbService>().webDao.getAll();
     if (sitesList.isNotEmpty) {
       final site = sitesList.first;
       await setNewSite(site);
@@ -56,7 +59,7 @@ class SiteService extends GetxService {
     } catch (e) {
       print(e); // TODO 错误处理
     }
-    siteDbChangeListener = DB().webDao.getAllStream().listen((event) {
+    siteDbChangeListener = Get.find<DbService>().webDao.getAllStream().listen((event) {
       // 检测当前网站的配置是否被更新
       final currentNewSite = event.get((e) => e.id == id);
       if (currentNewSite != null) {

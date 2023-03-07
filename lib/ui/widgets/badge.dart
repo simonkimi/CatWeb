@@ -2,8 +2,8 @@ import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Badge extends StatelessWidget {
-  const Badge({
+class SlimBadge extends StatelessWidget {
+  const SlimBadge({
     super.key,
     required this.text,
     this.color,

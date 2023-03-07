@@ -1,4 +1,5 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
@@ -40,11 +41,13 @@ class SiteManager extends GetWidget<SiteService> {
               child: SizedBox(
                 width: double.infinity,
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 5,
+                  ),
                   child: StreamBuilder<List<WebTableData>>(
                     initialData: const [],
-                    stream: DB().webDao.getAllStream(),
+                    stream: Get.find<DbService>().webDao.getAllStream(),
                     builder: (context, snapshot) {
                       return _buildListView(snapshot, context);
                     },
@@ -81,7 +84,7 @@ class SiteManager extends GetWidget<SiteService> {
 
   Widget _buildSiteItem(BuildContext context, WebTableData e) {
     final pb = SiteBlueprint.fromBuffer(e.blueprint);
-    return Obx(() => CupertinoListTile(
+    return Obx(() => CupertinoCustomListTile(
           selected: controller.id == e.id,
           title: Text(pb.name),
           subtitle: Text(pb.baseUrl),
@@ -189,7 +192,7 @@ class SiteManager extends GetWidget<SiteService> {
         content: I.of(context).logout_check,
       );
       if (isReload == true) {
-        await DB().webDao.replace(db.copyWith(loginCookies: ''));
+        await Get.find<DbService>().webDao.replace(db.copyWith(loginCookies: ''));
         Get.back();
       }
     } else {
@@ -228,7 +231,7 @@ class SiteManager extends GetWidget<SiteService> {
 
       if (cookies != null) {
         final cookieStr = cookies.map((e) => '${e.name}=${e.value}').join('; ');
-        await DB().webDao.replace(db.copyWith(loginCookies: cookieStr));
+        await Get.find<DbService>().webDao.replace(db.copyWith(loginCookies: cookieStr));
         BotToast.showText(text: I.of(context).login_success);
         logger.i('Login success, cookies: $cookieStr');
       }
@@ -247,7 +250,7 @@ class SiteManager extends GetWidget<SiteService> {
           confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
         ) ==
         true) {
-      DB().webDao.remove(db);
+      Get.find<DbService>().webDao.remove(db);
     }
   }
 

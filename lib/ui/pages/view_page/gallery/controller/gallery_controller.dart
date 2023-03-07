@@ -1,5 +1,5 @@
+import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
-import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
@@ -93,7 +93,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
 
   /// 从数据库中取出上次加载进度
   Future<void> loadLastRead() async {
-    final db = DB().readerHistoryDao;
+    final db = Get.find<DbService>().readerHistoryDao;
     final entity = await db.get(uuid: blueprint.uuid, idCode: idCode);
     if (entity != null) {
       lastReadIndex.value = entity.pageIndex;
@@ -176,7 +176,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
 
   @override
   Future<void> onReaderIndexChanged(int index) async {
-    final db = DB().readerHistoryDao;
+    final db = Get.find<DbService>().readerHistoryDao;
     final entity = await db.get(
       uuid: blueprint.uuid,
       idCode: idCode,

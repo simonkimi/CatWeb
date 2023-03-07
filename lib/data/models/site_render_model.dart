@@ -11,6 +11,8 @@ import 'package:catweb/network/client/cilent.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:get/get.dart';
 
+import '../controller/db_service.dart';
+
 /// 渲染时所创建的模型
 class SiteRenderConfigModel {
   SiteRenderConfigModel({
@@ -44,7 +46,7 @@ class SiteRenderConfigModel {
 
   Future<void> setFavicon(Uint8List bin) async {
     favicon.value = bin;
-    await DB().webDao.replace(dbEntity.copyWith(favicon: bin));
+    await Get.find<DbService>().webDao.replace(dbEntity.copyWith(favicon: bin));
   }
 
   Future<void> updateCookies() async {}
@@ -70,7 +72,7 @@ class SiteRenderConfigModel {
       }
     }
     if (didUpdate) {
-      await DB()
+      await Get.find<DbService>()
           .webDao
           .replace(dbEntity.copyWith(env: globalEnv.writeToBuffer()));
     }

@@ -43,18 +43,3 @@ class AppDataBase extends _$AppDataBase {
   @override
   int get schemaVersion => 1;
 }
-
-class DB {
-  factory DB() => _db;
-
-  DB._();
-
-  static final DB _db = DB._();
-  final AppDataBase _database = AppDataBase();
-
-  WebDao get webDao => _database.webDao;
-
-  ReaderHistoryDao get readerHistoryDao => _database.readerHistoryDao;
-
-  CookieJarDao get cookieJarDao => _database.cookieJarDao;
-}

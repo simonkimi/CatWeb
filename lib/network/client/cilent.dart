@@ -12,8 +12,8 @@ import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
 import 'package:catweb/network/parser/parser.dart';
 import 'package:cookie_jar/cookie_jar.dart';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:dio_http_formatter/dio_http_formatter.dart';
@@ -245,9 +245,9 @@ Dio _buildDio({
   final dio = Dio();
 
   dio.options
-    ..connectTimeout = 60 * 1000
-    ..receiveTimeout = 60 * 1000 * 5
-    ..sendTimeout = 60 * 1000;
+    ..connectTimeout = 60.seconds
+    ..receiveTimeout = (5 * 60).seconds
+    ..sendTimeout = 60.seconds;
 
   if (model.baseUrl.value.isNotEmpty) {
     dio.options.baseUrl = model.baseUrl.value;
@@ -279,7 +279,7 @@ Dio _buildDio({
   }
 
   if (model.containsFlag(Flag.ignoreCertificate)) {
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+    (dio.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
         (client) => client
           ..badCertificateCallback = ((cert, host, port) => true)
           ..userAgent = null;

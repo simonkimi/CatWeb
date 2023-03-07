@@ -6,7 +6,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.18.6 <3.0.0"
+  sdk: ">=2.19.3 <3.0.0"
 
 dependencies:
   flutter:
@@ -23,7 +23,7 @@ dependencies:
   flutter_sticky_header: ^0.6.3
   flutter_swipe_action_cell: ^3.0.2
   extended_image: ^7.0.0-dev.1
-  modal_bottom_sheet: ^2.0.1
+  modal_bottom_sheet: ^3.0.0-pre
   bot_toast: ^4.0.2
   scrollable_positioned_list: ^0.3.2
   photo_view:
@@ -34,15 +34,13 @@ dependencies:
 
   # network
   brotli: ^0.5.0
-  dio: ^4.0.4
-  dio_cache_interceptor: ^3.2.6
-  dio_cache_interceptor_db_store: ^4.1.1
-  dio_smart_retry: ^1.2.0
+  dio: ^5.0.1
+  dio_cache_interceptor: ^3.4.0
+  dio_cache_interceptor_db_store: ^5.1.0
+  dio_smart_retry: ^5.0.0
   cookie_jar: ^3.0.1
   dio_cookie_manager: ^2.0.0
-  dio_http_formatter:
-    git:
-      url: https://github.com/simonkimi/dio_http_formatter.git
+  dio_http_formatter: ^3.0.0-preview.1
 
   flutter_inappwebview: ^5.3.2
   webview_cookie_manager: ^2.0.6
@@ -53,11 +51,11 @@ dependencies:
   event_bus: ^2.0.0
 
   # database
-  drift: ^1.3.0
+  drift: ^2.5.0
   shared_preferences: ^2.0.9
   sqlite3_flutter_libs: ^0.5.7
   path_provider: ^2.0.0
-  path: ^1.8.1
+  path: any
 
   # tools
   protobuf: ^2.0.0
@@ -80,9 +78,8 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.1
-  build_runner: ^2.1.11
-  drift_dev: ^1.1.0
-  dart_code_metrics: ^4.15.2
+  build_runner: any
+  drift_dev: ^2.5.2
 
 flutter:
   uses-material-design: true
