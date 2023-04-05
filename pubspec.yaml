@@ -53,7 +53,7 @@ dependencies:
   # database
   drift: ^2.5.0
   shared_preferences: ^2.0.9
-  sqlite3_flutter_libs: ^0.5.7
+  sqlite3_flutter_libs: ^0.5.13
   path_provider: ^2.0.0
   path: any
 
