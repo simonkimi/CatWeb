@@ -96,16 +96,14 @@ class LruMap<T> {
   }
 }
 
-class _Link<T> implements MapEntry<String, T> {
+class _Link<T> {
   _Link? next;
   _Link? previous;
 
   final int size;
 
-  @override
   final String key;
 
-  @override
   final T value;
 
   _Link(this.key, this.value, this.size);

@@ -273,6 +273,7 @@ class AppBarScrollNotifier extends StatelessWidget {
             maxScrollExtent: metrics.maxScrollExtent,
             minScrollExtent: metrics.minScrollExtent,
             viewportDimension: metrics.viewportDimension,
+            devicePixelRatio: 1,
           );
         }
         AppBarScrollNotification(
