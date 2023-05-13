@@ -67,6 +67,8 @@ dependencies:
   logger: ^1.1.0
   yaml: ^3.1.2
   xml: ^6.3.0
+  json_annotation: ^4.8.1
+  freezed_annotation: ^2.2.0
 
   # parser
   catweb_parser:
@@ -74,13 +76,17 @@ dependencies:
       url: https://github.com/simonkimi/catweb-parser.git
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.1
-  build_runner: any
   drift_dev: ^2.5.2
+  freezed: ^2.3.3
+  json_serializable: ^6.6.2
+  build_runner: ^2.4.4
+
 
 flutter:
   uses-material-design: true

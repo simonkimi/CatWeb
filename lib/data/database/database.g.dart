@@ -815,15 +815,18 @@ class CookieJarTableCompanion extends UpdateCompanion<CookieJarTableData> {
   final Value<String> webUuid;
   final Value<String> key;
   final Value<String> value;
+  final Value<int> rowid;
   const CookieJarTableCompanion({
     this.webUuid = const Value.absent(),
     this.key = const Value.absent(),
     this.value = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   CookieJarTableCompanion.insert({
     required String webUuid,
     required String key,
     required String value,
+    this.rowid = const Value.absent(),
   })  : webUuid = Value(webUuid),
         key = Value(key),
         value = Value(value);
@@ -831,20 +834,26 @@ class CookieJarTableCompanion extends UpdateCompanion<CookieJarTableData> {
     Expression<String>? webUuid,
     Expression<String>? key,
     Expression<String>? value,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (webUuid != null) 'web_uuid': webUuid,
       if (key != null) 'key': key,
       if (value != null) 'value': value,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
   CookieJarTableCompanion copyWith(
-      {Value<String>? webUuid, Value<String>? key, Value<String>? value}) {
+      {Value<String>? webUuid,
+      Value<String>? key,
+      Value<String>? value,
+      Value<int>? rowid}) {
     return CookieJarTableCompanion(
       webUuid: webUuid ?? this.webUuid,
       key: key ?? this.key,
       value: value ?? this.value,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -860,6 +869,9 @@ class CookieJarTableCompanion extends UpdateCompanion<CookieJarTableData> {
     if (value.present) {
       map['value'] = Variable<String>(value.value);
     }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
     return map;
   }
 
@@ -868,7 +880,8 @@ class CookieJarTableCompanion extends UpdateCompanion<CookieJarTableData> {
     return (StringBuffer('CookieJarTableCompanion(')
           ..write('webUuid: $webUuid, ')
           ..write('key: $key, ')
-          ..write('value: $value')
+          ..write('value: $value, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }

@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart' hide Lock;
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:synchronized/synchronized.dart';
