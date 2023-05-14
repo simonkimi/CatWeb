@@ -11,12 +11,14 @@ class SelectorEditor extends StatelessWidget {
     this.onChanged,
     Selector? selector,
     this.onlySelector = false,
+    required this.title,
   })  : rxSelector = (selector ?? const Selector()).obs,
         super(key: key);
 
   final Rx<Selector> rxSelector;
   final Function(Selector)? onChanged;
   final bool onlySelector;
+  final String title;
 
   Selector get selector => rxSelector.value;
 
@@ -162,7 +164,7 @@ class SelectorEditor extends StatelessWidget {
         minSize: 0,
         child: const Text('取消'),
       ),
-      middle: const Text('规则编辑'),
+      middle: Text('规则: $title'),
       transitionBetweenRoutes: false,
       trailing: CupertinoButton(
         onPressed: () {

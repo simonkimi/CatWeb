@@ -31,6 +31,7 @@ class ParserTile extends StatelessWidget {
             onlySelector: onlySelector,
             onChanged: onChanged,
             selector: selector,
+            title: title,
           ),
         );
       },
