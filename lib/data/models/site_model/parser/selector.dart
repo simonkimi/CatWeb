@@ -122,13 +122,13 @@ class CommentSelector with _$CommentSelector {
 class ExtraSelector with _$ExtraSelector {
   const factory ExtraSelector({
     @Default(Selector())
-    Selector? selector,
+    Selector selector,
     @Default('')
-    String? id,
+    String id,
     @Default(false)
-    bool? global,
+    bool global,
     @Default(ExtraSelectorType.galleryBadge)
-    ExtraSelectorType? type,
+    ExtraSelectorType type,
   }) = _ExtraSelector;
 
   factory ExtraSelector.fromJson(Map<String, dynamic> json) =>

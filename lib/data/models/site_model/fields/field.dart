@@ -30,6 +30,7 @@ class ColorField with _$ColorField {
 
 @JsonEnum(valueField: 'value')
 enum ScriptFieldType {
+  output('output'),
   js('javascript'),
   lua('lua'),
   computed('computed'),
@@ -48,7 +49,7 @@ enum ScriptFieldType {
 class ScriptField with _$ScriptField {
   const factory ScriptField({
     @Default('') String script,
-    @Default(ScriptFieldType.computed) ScriptFieldType type,
+    @Default(ScriptFieldType.output) ScriptFieldType type,
   }) = _ScriptField;
 
   factory ScriptField.fromJson(Map<String, dynamic> json) =>

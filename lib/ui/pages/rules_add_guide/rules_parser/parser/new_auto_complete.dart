@@ -20,6 +20,7 @@ class AutoCompleteParserEdit extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
+        const SizedBox(height: 5),
         const SettingGroupTitle('基础信息'),
         SettingGroupWidget(
           children: [
@@ -31,6 +32,7 @@ class AutoCompleteParserEdit extends StatelessWidget {
                 rxModel(model.copyWith(itemSelector: value));
               },
             )),
+            const SettingDivider(),
             Obx(() => ParserTile(
               title: '标题',
               selector: model.itemTitle,
@@ -38,6 +40,7 @@ class AutoCompleteParserEdit extends StatelessWidget {
                 rxModel(model.copyWith(itemTitle: value));
               },
             )),
+            const SettingDivider(),
             Obx(() => ParserTile(
               title: '副标题',
               selector: model.itemSubtitle,
@@ -45,6 +48,7 @@ class AutoCompleteParserEdit extends StatelessWidget {
                 rxModel(model.copyWith(itemSubtitle: value));
               },
             )),
+            const SettingDivider(),
             Obx(() => ParserTile(
               title: '补全内容',
               selector: model.itemComplete,

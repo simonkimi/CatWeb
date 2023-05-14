@@ -37,7 +37,7 @@ _$_ScriptField _$$_ScriptFieldFromJson(Map<String, dynamic> json) =>
     _$_ScriptField(
       script: json['script'] as String? ?? '',
       type: $enumDecodeNullable(_$ScriptFieldTypeEnumMap, json['type']) ??
-          ScriptFieldType.computed,
+          ScriptFieldType.output,
     );
 
 Map<String, dynamic> _$$_ScriptFieldToJson(_$_ScriptField instance) =>
@@ -47,6 +47,7 @@ Map<String, dynamic> _$$_ScriptFieldToJson(_$_ScriptField instance) =>
     };
 
 const _$ScriptFieldTypeEnumMap = {
+  ScriptFieldType.output: 'output',
   ScriptFieldType.js: 'javascript',
   ScriptFieldType.lua: 'lua',
   ScriptFieldType.computed: 'computed',

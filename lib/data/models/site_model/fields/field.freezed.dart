@@ -449,8 +449,7 @@ class __$$_ScriptFieldCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ScriptField implements _ScriptField {
-  const _$_ScriptField(
-      {this.script = '', this.type = ScriptFieldType.computed});
+  const _$_ScriptField({this.script = '', this.type = ScriptFieldType.output});
 
   factory _$_ScriptField.fromJson(Map<String, dynamic> json) =>
       _$$_ScriptFieldFromJson(json);

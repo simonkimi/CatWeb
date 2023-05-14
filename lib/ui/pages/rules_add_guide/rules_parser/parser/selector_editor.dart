@@ -108,21 +108,9 @@ class SelectorEditor extends StatelessWidget {
         },
       ),
       const CupertinoDivider(height: 1),
-      _SelectorText(
-        prefix: '脚本',
-        text: selector.script.script,
-        onChanged: (value) {
-          rxSelector(selector.copyWith(
-            script: selector.script.copyWith(
-              script: value,
-            ),
-          ));
-        },
-      ),
-      const CupertinoDivider(height: 1),
       Obx(() => _SelectorSelectPopup<ScriptFieldType>(
           text: selector.script.type.value,
-          prefix: '类型',
+          prefix: '输出',
           items: ScriptFieldType.values
               .map((e) => SelectTileItem(
                     title: e.value,
@@ -138,6 +126,30 @@ class SelectorEditor extends StatelessWidget {
               ),
             ));
           })),
+      Obx(() {
+        if (selector.script.type == ScriptFieldType.output ||
+            selector.script.type == ScriptFieldType.computed) {
+          return const SizedBox();
+        }
+        return Column(
+          children: [
+            const CupertinoDivider(height: 1),
+            _SelectorText(
+              prefix: '脚本',
+              text: selector.script.script,
+              multiline: true,
+              onChanged: (value) {
+                rxSelector(selector.copyWith(
+                  script: selector.script.copyWith(
+                    script: value,
+                  ),
+                ));
+              },
+            ),
+          ],
+        );
+      }),
+      const CupertinoDivider(height: 1),
     ];
   }
 
@@ -171,11 +183,13 @@ class _SelectorText extends StatelessWidget {
     required this.prefix,
     required this.text,
     this.onChanged,
+    this.multiline = false,
   }) : super(key: key);
 
   final String text;
   final String prefix;
   final Function(String)? onChanged;
+  final bool multiline;
 
   @override
   Widget build(BuildContext context) {
@@ -189,9 +203,13 @@ class _SelectorText extends StatelessWidget {
           fontSize: 12,
         ),
       ),
+      maxLines: multiline ? 5: null,
       padding: const EdgeInsets.all(10),
-      onChanged: (value) {
-        onChanged?.call(value);
+      onEditingComplete: () {
+        onChanged?.call(controller.text);
+      },
+      onTapOutside: (_) {
+        onChanged?.call(controller.text);
       },
     );
   }

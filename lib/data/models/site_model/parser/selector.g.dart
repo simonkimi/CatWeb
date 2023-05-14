@@ -118,7 +118,7 @@ Map<String, dynamic> _$$_ExtraSelectorToJson(_$_ExtraSelector instance) =>
       'selector': instance.selector,
       'id': instance.id,
       'global': instance.global,
-      'type': _$ExtraSelectorTypeEnumMap[instance.type],
+      'type': _$ExtraSelectorTypeEnumMap[instance.type]!,
     };
 
 const _$ExtraSelectorTypeEnumMap = {

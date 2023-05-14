@@ -913,10 +913,10 @@ ExtraSelector _$ExtraSelectorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ExtraSelector {
-  Selector? get selector => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
-  bool? get global => throw _privateConstructorUsedError;
-  ExtraSelectorType? get type => throw _privateConstructorUsedError;
+  Selector get selector => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  bool get global => throw _privateConstructorUsedError;
+  ExtraSelectorType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -931,9 +931,9 @@ abstract class $ExtraSelectorCopyWith<$Res> {
       _$ExtraSelectorCopyWithImpl<$Res, ExtraSelector>;
   @useResult
   $Res call(
-      {Selector? selector, String? id, bool? global, ExtraSelectorType? type});
+      {Selector selector, String id, bool global, ExtraSelectorType type});
 
-  $SelectorCopyWith<$Res>? get selector;
+  $SelectorCopyWith<$Res> get selector;
 }
 
 /// @nodoc
@@ -949,39 +949,35 @@ class _$ExtraSelectorCopyWithImpl<$Res, $Val extends ExtraSelector>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selector = freezed,
-    Object? id = freezed,
-    Object? global = freezed,
-    Object? type = freezed,
+    Object? selector = null,
+    Object? id = null,
+    Object? global = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
-      selector: freezed == selector
+      selector: null == selector
           ? _value.selector
           : selector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      id: freezed == id
+              as Selector,
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      global: freezed == global
+              as String,
+      global: null == global
           ? _value.global
           : global // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      type: freezed == type
+              as bool,
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as ExtraSelectorType?,
+              as ExtraSelectorType,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get selector {
-    if (_value.selector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.selector!, (value) {
+  $SelectorCopyWith<$Res> get selector {
+    return $SelectorCopyWith<$Res>(_value.selector, (value) {
       return _then(_value.copyWith(selector: value) as $Val);
     });
   }
@@ -996,10 +992,10 @@ abstract class _$$_ExtraSelectorCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Selector? selector, String? id, bool? global, ExtraSelectorType? type});
+      {Selector selector, String id, bool global, ExtraSelectorType type});
 
   @override
-  $SelectorCopyWith<$Res>? get selector;
+  $SelectorCopyWith<$Res> get selector;
 }
 
 /// @nodoc
@@ -1013,28 +1009,28 @@ class __$$_ExtraSelectorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selector = freezed,
-    Object? id = freezed,
-    Object? global = freezed,
-    Object? type = freezed,
+    Object? selector = null,
+    Object? id = null,
+    Object? global = null,
+    Object? type = null,
   }) {
     return _then(_$_ExtraSelector(
-      selector: freezed == selector
+      selector: null == selector
           ? _value.selector
           : selector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      id: freezed == id
+              as Selector,
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      global: freezed == global
+              as String,
+      global: null == global
           ? _value.global
           : global // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      type: freezed == type
+              as bool,
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as ExtraSelectorType?,
+              as ExtraSelectorType,
     ));
   }
 }
@@ -1053,16 +1049,16 @@ class _$_ExtraSelector implements _ExtraSelector {
 
   @override
   @JsonKey()
-  final Selector? selector;
+  final Selector selector;
   @override
   @JsonKey()
-  final String? id;
+  final String id;
   @override
   @JsonKey()
-  final bool? global;
+  final bool global;
   @override
   @JsonKey()
-  final ExtraSelectorType? type;
+  final ExtraSelectorType type;
 
   @override
   String toString() {
@@ -1101,22 +1097,22 @@ class _$_ExtraSelector implements _ExtraSelector {
 
 abstract class _ExtraSelector implements ExtraSelector {
   const factory _ExtraSelector(
-      {final Selector? selector,
-      final String? id,
-      final bool? global,
-      final ExtraSelectorType? type}) = _$_ExtraSelector;
+      {final Selector selector,
+      final String id,
+      final bool global,
+      final ExtraSelectorType type}) = _$_ExtraSelector;
 
   factory _ExtraSelector.fromJson(Map<String, dynamic> json) =
       _$_ExtraSelector.fromJson;
 
   @override
-  Selector? get selector;
+  Selector get selector;
   @override
-  String? get id;
+  String get id;
   @override
-  bool? get global;
+  bool get global;
   @override
-  ExtraSelectorType? get type;
+  ExtraSelectorType get type;
   @override
   @JsonKey(ignore: true)
   _$$_ExtraSelectorCopyWith<_$_ExtraSelector> get copyWith =>

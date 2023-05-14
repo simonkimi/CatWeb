@@ -1,6 +1,7 @@
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/new_auto_complete.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/new_list_parser.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/auto_complete_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/extra_parser.dart';
@@ -62,7 +63,8 @@ class RulesParserEditor extends StatelessWidget {
       case ParserType.PARSER_TYPE_GALLERY:
         return GalleryParserFragment(model: model as GalleryParserModel);
       case ParserType.PARSER_TYPE_LIST_VIEW:
-        return ListParserFragment(model: model as ListViewParserModel);
+        // return ListParserFragment(model: model as ListViewParserModel);
+        return NewListParser();
       case ParserType.PARSER_TYPE_AUTO_COMPLETE:
         // return SearchAutoCompleteParser(
         //     model: model as AutoCompleteParserModel);
