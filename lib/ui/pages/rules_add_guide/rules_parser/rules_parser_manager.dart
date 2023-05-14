@@ -2,6 +2,7 @@ import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
+import 'package:catweb/ui/widgets/cupertino_router.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_editor.dart';
@@ -24,7 +25,8 @@ class RulesParserManager extends GetView<RulesEditController> {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       children: [
-        Obx(() => Column(
+        Obx(() =>
+            Column(
               mainAxisSize: MainAxisSize.min,
               children: controller.blueprint.parsers.map((e) {
                 return CupertinoCustomListTile(
@@ -49,10 +51,8 @@ class RulesParserManager extends GetView<RulesEditController> {
     );
   }
 
-  Future<void> _onTrailingTap(
-    BuildContext context,
-    ParserBaseModel model,
-  ) async {
+  Future<void> _onTrailingTap(BuildContext context,
+      ParserBaseModel model,) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: '取消',
       context: context,
@@ -85,12 +85,15 @@ class RulesParserManager extends GetView<RulesEditController> {
     if (using.isNotEmpty) {
       showCupertinoConfirmDialog(
           context: context,
-          content: '无法删除, 因下列页面正在使用此解析器:\n ${using.join(' ')}');
+          content: '无法删除, 因下列页面正在使用此解析器:\n ${using.join(
+              ' ')}');
     } else {
       showCupertinoConfirmDialog(
         context: context,
         content: I.of(context).delete_confirm(model.name.value),
-        confineText: I.of(context).delete,
+        confineText: I
+            .of(context)
+            .delete,
         confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
       ).then((value) {
         if (value == true) {
@@ -106,7 +109,8 @@ class RulesParserManager extends GetView<RulesEditController> {
       title: '规则类型',
       cancelText: '取消',
       items: const [
-        SelectTileItem(title: '列表页', value: ParserType.PARSER_TYPE_LIST_VIEW),
+        SelectTileItem(
+            title: '列表页', value: ParserType.PARSER_TYPE_LIST_VIEW),
         SelectTileItem(title: '详情页', value: ParserType.PARSER_TYPE_GALLERY),
         SelectTileItem(title: '图片页', value: ParserType.PARSER_TYPE_IMAGE),
         SelectTileItem(
@@ -128,13 +132,21 @@ class RulesParserManager extends GetView<RulesEditController> {
     return null;
   }
 
-  Future<void> _editRules(
-    BuildContext context, [
+  Future<void> _editRules(BuildContext context, [
     ParserBaseModel? model,
   ]) async {
     final input = model ?? await _genParser(context);
     if (input == null) return;
-    await Get.to(() => RulesParserEditor(model: input));
+    // await Get.to(() => CupertinoWithModalsPageRoute(
+    //   builder: (context) => RulesParserEditor(model: input)
+    // ));
+
+    await Navigator.of(context).push(
+      CupertinoWithModalsPageRoute(builder: (BuildContext context) {
+        return RulesParserEditor(model: input);
+      }),
+    );
+
     if (model == null) controller.blueprint.addParser(input);
   }
 }

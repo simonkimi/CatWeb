@@ -30,7 +30,7 @@ class ColorField with _$ColorField {
 
 @JsonEnum(valueField: 'value')
 enum ScriptFieldType {
-  js('js'),
+  js('javascript'),
   lua('lua'),
   computed('computed'),
   replace('replace');
@@ -47,7 +47,7 @@ enum ScriptFieldType {
 @freezed
 class ScriptField with _$ScriptField {
   const factory ScriptField({
-    @Default('') String? script,
+    @Default('') String script,
     @Default(ScriptFieldType.computed) ScriptFieldType type,
   }) = _ScriptField;
 

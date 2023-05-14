@@ -57,31 +57,31 @@ class ImageReaderParser with _$ImageReaderParser implements IParserBase {
     required String name,
     required String uuid,
     @Default([])
-        Iterable<ExtraSelector>? extra,
+        Iterable<ExtraSelector> extra,
     @Default(ImageSelector())
-        ImageSelector? image,
+        ImageSelector image,
     @Default(Selector())
-        Selector? largerImage,
+        Selector largerImage,
     @Default(Selector())
-        Selector? rawImage,
+        Selector rawImage,
     @Default(Selector())
-        Selector? rating,
+        Selector rating,
     @Default(Selector())
-        Selector? score,
+        Selector score,
     @Default(Selector())
-        Selector? source,
+        Selector source,
     @Default(Selector())
-        Selector? uploadTime,
+        Selector uploadTime,
     @Default(Selector())
-        Selector? successSelector,
+        Selector successSelector,
     @Default(Selector())
-        Selector? failedSelector,
+        Selector failedSelector,
     @Default(Selector())
-        Selector? badgeSelector,
+        Selector badgeSelector,
     @Default(Selector())
-        Selector? badgeText,
+        Selector badgeText,
     @Default(Selector())
-        Selector? badgeCategory,
+        Selector badgeCategory,
   }) = _ImageReaderParser;
 
   factory ImageReaderParser.fromJson(Map<String, dynamic> json) =>
@@ -100,61 +100,61 @@ class GalleryParser with _$GalleryParser implements IParserBase {
     required String name,
     required String uuid,
     @Default([])
-        Iterable<ExtraSelector>? extra,
+        Iterable<ExtraSelector> extra,
     @Default(Selector())
-        Selector? title,
+        Selector title,
     @Default(Selector())
-        Selector? subtitle,
+        Selector subtitle,
     @Default(Selector())
-        Selector? uploadTime,
+        Selector uploadTime,
     @Default(Selector())
-        Selector? star,
+        Selector star,
     @Default(Selector())
-        Selector? imgCount,
+        Selector imgCount,
     @Default(Selector())
-        Selector? pageCount,
+        Selector pageCount,
     @Default(Selector())
-        Selector? language,
+        Selector language,
     @Default(ImageSelector())
-        ImageSelector? coverImg,
+        ImageSelector coverImg,
     @Default(Selector())
-        Selector? description,
+        Selector description,
     @Default(Selector())
-        Selector? successSelector,
+        Selector successSelector,
     @Default(Selector())
-        Selector? failedSelector,
+        Selector failedSelector,
     @Default(Selector())
-        Selector? thumbnailSelector,
+        Selector thumbnailSelector,
     @Default(ImageSelector())
-        ImageSelector? thumbnail,
+        ImageSelector thumbnail,
     @Default(Selector())
-        Selector? target,
+        Selector target,
     @Default(Selector())
-        Selector? commentSelector,
+        Selector commentSelector,
     @Default(CommentSelector())
-        CommentSelector? comments,
+        CommentSelector comments,
     @Default(Selector())
-        Selector? tag,
+        Selector tag,
     @Default(Selector())
-        Selector? tagColor,
+        Selector tagColor,
     @Default(Selector())
-        Selector? badgeSelector,
+        Selector badgeSelector,
     @Default(Selector())
-        Selector? badgeText,
+        Selector badgeText,
     @Default(Selector())
-        Selector? badgeCategory,
+        Selector badgeCategory,
     @Default(Selector())
-        Selector? chapterSelector,
+        Selector chapterSelector,
     @Default(Selector())
-        Selector? chapterTitle,
+        Selector chapterTitle,
     @Default(Selector())
-        Selector? chapterSubtitle,
+        Selector chapterSubtitle,
     @Default(ImageSelector())
-        ImageSelector? chapterCover,
+        ImageSelector chapterCover,
     @Default(Selector())
-        Selector? nextPage,
+        Selector nextPage,
     @Default(Selector())
-        Selector? countPrePage,
+        Selector countPrePage,
   }) = _GalleryParser;
 
   factory GalleryParser.fromJson(Map<String, dynamic> json) =>
@@ -173,45 +173,45 @@ class ListViewParser with _$ListViewParser implements IParserBase {
     required String name,
     required String uuid,
     @Default([])
-        Iterable<ExtraSelector>? extra,
+        Iterable<ExtraSelector> extra,
     @Default(Selector())
-        Selector? itemSelector,
+        Selector itemSelector,
     @Default(Selector())
-        Selector? successSelector,
+        Selector successSelector,
     @Default(Selector())
-        Selector? failedSelector,
+        Selector failedSelector,
     @Default(Selector())
-        Selector? title,
+        Selector title,
     @Default(Selector())
-        Selector? subtitle,
+        Selector subtitle,
     @Default(Selector())
-        Selector? uploadTime,
+        Selector uploadTime,
     @Default(Selector())
-        Selector? star,
+        Selector star,
     @Default(Selector())
-        Selector? imgCount,
+        Selector imgCount,
     @Default(Selector())
-        Selector? language,
+        Selector language,
     @Default(ImageSelector())
-        ImageSelector? previewImg,
+        ImageSelector previewImg,
     @Default(Selector())
-        Selector? target,
+        Selector target,
     @Default(Selector())
-        Selector? tag,
+        Selector tag,
     @Default(Selector())
-        Selector? tagColor,
+        Selector tagColor,
     @Default(Selector())
-        Selector? badgeSelector,
+        Selector badgeSelector,
     @Default(Selector())
-        Selector? badgeText,
+        Selector badgeText,
     @Default(Selector())
-        Selector? badgeColor,
+        Selector badgeColor,
     @Default(Selector())
-        Selector? paper,
+        Selector paper,
     @Default(Selector())
-        Selector? idCode,
+        Selector idCode,
     @Default(Selector())
-        Selector? nextPage,
+        Selector nextPage,
   }) = _ListViewParser;
 
   factory ListViewParser.fromJson(Map<String, dynamic> json) =>
@@ -231,19 +231,19 @@ class AutoCompleteParser with _$AutoCompleteParser implements IParserBase {
     required String name,
     required String uuid,
     @Default([])
-        Iterable<ExtraSelector>? extra,
+        Iterable<ExtraSelector>?extra,
     @Default(Selector())
-        Selector? itemSelector,
+        Selector itemSelector,
     @Default(Selector())
-        Selector? itemComplete,
+        Selector itemComplete,
     @Default(Selector())
-        Selector? itemTitle,
+        Selector itemTitle,
     @Default(Selector())
-        Selector? itemSubtitle,
+        Selector itemSubtitle,
     @Default(Selector())
-        Selector? successSelector,
+        Selector successSelector,
     @Default(Selector())
-        Selector? failedSelector,
+        Selector failedSelector,
   }) = _AutoCompleteParser;
 
   factory AutoCompleteParser.fromJson(Map<String, dynamic> json) =>

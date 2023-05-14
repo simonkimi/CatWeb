@@ -5,7 +5,7 @@ import 'package:catweb/ui/widgets/cupertino_router.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/security_setting.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
-import 'package:catweb/ui/pages/setting_page/widgets/setting_group.dart';
+import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
 
 class SettingsPage extends StatelessWidget {

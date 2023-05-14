@@ -361,7 +361,7 @@ ScriptField _$ScriptFieldFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ScriptField {
-  String? get script => throw _privateConstructorUsedError;
+  String get script => throw _privateConstructorUsedError;
   ScriptFieldType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -376,7 +376,7 @@ abstract class $ScriptFieldCopyWith<$Res> {
           ScriptField value, $Res Function(ScriptField) then) =
       _$ScriptFieldCopyWithImpl<$Res, ScriptField>;
   @useResult
-  $Res call({String? script, ScriptFieldType type});
+  $Res call({String script, ScriptFieldType type});
 }
 
 /// @nodoc
@@ -392,14 +392,14 @@ class _$ScriptFieldCopyWithImpl<$Res, $Val extends ScriptField>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? script = freezed,
+    Object? script = null,
     Object? type = null,
   }) {
     return _then(_value.copyWith(
-      script: freezed == script
+      script: null == script
           ? _value.script
           : script // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -416,7 +416,7 @@ abstract class _$$_ScriptFieldCopyWith<$Res>
       __$$_ScriptFieldCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? script, ScriptFieldType type});
+  $Res call({String script, ScriptFieldType type});
 }
 
 /// @nodoc
@@ -430,14 +430,14 @@ class __$$_ScriptFieldCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? script = freezed,
+    Object? script = null,
     Object? type = null,
   }) {
     return _then(_$_ScriptField(
-      script: freezed == script
+      script: null == script
           ? _value.script
           : script // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -457,7 +457,7 @@ class _$_ScriptField implements _ScriptField {
 
   @override
   @JsonKey()
-  final String? script;
+  final String script;
   @override
   @JsonKey()
   final ScriptFieldType type;
@@ -496,13 +496,13 @@ class _$_ScriptField implements _ScriptField {
 
 abstract class _ScriptField implements ScriptField {
   const factory _ScriptField(
-      {final String? script, final ScriptFieldType type}) = _$_ScriptField;
+      {final String script, final ScriptFieldType type}) = _$_ScriptField;
 
   factory _ScriptField.fromJson(Map<String, dynamic> json) =
       _$_ScriptField.fromJson;
 
   @override
-  String? get script;
+  String get script;
   @override
   ScriptFieldType get type;
   @override

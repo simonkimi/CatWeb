@@ -12,7 +12,7 @@ _$_Selector _$$_SelectorFromJson(Map<String, dynamic> json) => _$_Selector(
           SelectorType.css,
       function: $enumDecodeNullable(
               _$SelectorFunctionTypeEnumMap, json['function']) ??
-          SelectorFunctionType.auto,
+          SelectorFunctionType.text,
       param: json['param'] as String? ?? '',
       regex: json['regex'] as String? ?? '',
       replace: json['replace'] as String? ?? '',
@@ -25,8 +25,8 @@ _$_Selector _$$_SelectorFromJson(Map<String, dynamic> json) => _$_Selector(
 Map<String, dynamic> _$$_SelectorToJson(_$_Selector instance) =>
     <String, dynamic>{
       'selector': instance.selector,
-      'type': _$SelectorTypeEnumMap[instance.type],
-      'function': _$SelectorFunctionTypeEnumMap[instance.function],
+      'type': _$SelectorTypeEnumMap[instance.type]!,
+      'function': _$SelectorFunctionTypeEnumMap[instance.function]!,
       'param': instance.param,
       'regex': instance.regex,
       'replace': instance.replace,
@@ -37,11 +37,10 @@ Map<String, dynamic> _$$_SelectorToJson(_$_Selector instance) =>
 const _$SelectorTypeEnumMap = {
   SelectorType.css: 'css',
   SelectorType.xpath: 'xpath',
-  SelectorType.jsonPath: 'jsonPath',
+  SelectorType.jsonPath: 'json path',
 };
 
 const _$SelectorFunctionTypeEnumMap = {
-  SelectorFunctionType.auto: 'auto',
   SelectorFunctionType.text: 'text',
   SelectorFunctionType.attr: 'attr',
   SelectorFunctionType.raw: 'raw',

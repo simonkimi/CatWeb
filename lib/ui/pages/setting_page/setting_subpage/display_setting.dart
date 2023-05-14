@@ -3,7 +3,7 @@ import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_obs_swiitch.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
-import 'package:catweb/ui/pages/setting_page/widgets/setting_group.dart';
+import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_base.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_selection.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';

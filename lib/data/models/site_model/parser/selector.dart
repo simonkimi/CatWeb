@@ -9,7 +9,7 @@ part 'selector.freezed.dart';
 enum SelectorType {
   css('css'),
   xpath('xpath'),
-  jsonPath('jsonPath');
+  jsonPath('json path');
 
   const SelectorType(this.value);
 
@@ -22,7 +22,6 @@ enum SelectorType {
 
 @JsonEnum(valueField: 'value')
 enum SelectorFunctionType {
-  auto('auto'),
   text('text'),
   attr('attr'),
   raw('raw');
@@ -52,42 +51,48 @@ enum ExtraSelectorType {
 
 @freezed
 class Selector with _$Selector {
+  const Selector._();
+
   const factory Selector({
     @Default('')
-    String? selector,
+    String selector,
     @Default(SelectorType.css)
-    SelectorType? type,
-    @Default(SelectorFunctionType.auto)
-    SelectorFunctionType? function,
+    SelectorType type,
+    @Default(SelectorFunctionType.text)
+    SelectorFunctionType function,
     @Default('')
-    String? param,
+    String param,
     @Default('')
-    String? regex,
+    String regex,
     @Default('')
-    String? replace,
+    String replace,
     @Default(ScriptField())
-    ScriptField? script,
+    ScriptField script,
     @Default('')
-    String? defaultValue,
+    String defaultValue,
   }) = _Selector;
 
   factory Selector.fromJson(Map<String, dynamic> json) =>
       _$SelectorFromJson(json);
+
+  bool isEmpty() {
+    return selector.isEmpty && param.isEmpty;
+  }
 }
 
 @freezed
 class ImageSelector with _$ImageSelector {
   const factory ImageSelector({
     @Default(Selector())
-    Selector? imgUrl,
+    Selector imgUrl,
     @Default(Selector())
-    Selector? imgWidth,
+    Selector imgWidth,
     @Default(Selector())
-    Selector? imgHeight,
+    Selector imgHeight,
     @Default(Selector())
-    Selector? imgX,
+    Selector imgX,
     @Default(Selector())
-    Selector? imgY,
+    Selector imgY,
   }) = _ImageSelector;
 
   factory ImageSelector.fromJson(Map<String, dynamic> json) =>

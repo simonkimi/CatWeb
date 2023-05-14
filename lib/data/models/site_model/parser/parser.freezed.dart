@@ -24,19 +24,19 @@ mixin _$ImageReaderParser {
   ParserType get parserType => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
-  Iterable<ExtraSelector>? get extra => throw _privateConstructorUsedError;
-  ImageSelector? get image => throw _privateConstructorUsedError;
-  Selector? get largerImage => throw _privateConstructorUsedError;
-  Selector? get rawImage => throw _privateConstructorUsedError;
-  Selector? get rating => throw _privateConstructorUsedError;
-  Selector? get score => throw _privateConstructorUsedError;
-  Selector? get source => throw _privateConstructorUsedError;
-  Selector? get uploadTime => throw _privateConstructorUsedError;
-  Selector? get successSelector => throw _privateConstructorUsedError;
-  Selector? get failedSelector => throw _privateConstructorUsedError;
-  Selector? get badgeSelector => throw _privateConstructorUsedError;
-  Selector? get badgeText => throw _privateConstructorUsedError;
-  Selector? get badgeCategory => throw _privateConstructorUsedError;
+  Iterable<ExtraSelector> get extra => throw _privateConstructorUsedError;
+  ImageSelector get image => throw _privateConstructorUsedError;
+  Selector get largerImage => throw _privateConstructorUsedError;
+  Selector get rawImage => throw _privateConstructorUsedError;
+  Selector get rating => throw _privateConstructorUsedError;
+  Selector get score => throw _privateConstructorUsedError;
+  Selector get source => throw _privateConstructorUsedError;
+  Selector get uploadTime => throw _privateConstructorUsedError;
+  Selector get successSelector => throw _privateConstructorUsedError;
+  Selector get failedSelector => throw _privateConstructorUsedError;
+  Selector get badgeSelector => throw _privateConstructorUsedError;
+  Selector get badgeText => throw _privateConstructorUsedError;
+  Selector get badgeCategory => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,32 +55,32 @@ abstract class $ImageReaderParserCopyWith<$Res> {
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector>? extra,
-      ImageSelector? image,
-      Selector? largerImage,
-      Selector? rawImage,
-      Selector? rating,
-      Selector? score,
-      Selector? source,
-      Selector? uploadTime,
-      Selector? successSelector,
-      Selector? failedSelector,
-      Selector? badgeSelector,
-      Selector? badgeText,
-      Selector? badgeCategory});
+      Iterable<ExtraSelector> extra,
+      ImageSelector image,
+      Selector largerImage,
+      Selector rawImage,
+      Selector rating,
+      Selector score,
+      Selector source,
+      Selector uploadTime,
+      Selector successSelector,
+      Selector failedSelector,
+      Selector badgeSelector,
+      Selector badgeText,
+      Selector badgeCategory});
 
-  $ImageSelectorCopyWith<$Res>? get image;
-  $SelectorCopyWith<$Res>? get largerImage;
-  $SelectorCopyWith<$Res>? get rawImage;
-  $SelectorCopyWith<$Res>? get rating;
-  $SelectorCopyWith<$Res>? get score;
-  $SelectorCopyWith<$Res>? get source;
-  $SelectorCopyWith<$Res>? get uploadTime;
-  $SelectorCopyWith<$Res>? get successSelector;
-  $SelectorCopyWith<$Res>? get failedSelector;
-  $SelectorCopyWith<$Res>? get badgeSelector;
-  $SelectorCopyWith<$Res>? get badgeText;
-  $SelectorCopyWith<$Res>? get badgeCategory;
+  $ImageSelectorCopyWith<$Res> get image;
+  $SelectorCopyWith<$Res> get largerImage;
+  $SelectorCopyWith<$Res> get rawImage;
+  $SelectorCopyWith<$Res> get rating;
+  $SelectorCopyWith<$Res> get score;
+  $SelectorCopyWith<$Res> get source;
+  $SelectorCopyWith<$Res> get uploadTime;
+  $SelectorCopyWith<$Res> get successSelector;
+  $SelectorCopyWith<$Res> get failedSelector;
+  $SelectorCopyWith<$Res> get badgeSelector;
+  $SelectorCopyWith<$Res> get badgeText;
+  $SelectorCopyWith<$Res> get badgeCategory;
 }
 
 /// @nodoc
@@ -99,19 +99,19 @@ class _$ImageReaderParserCopyWithImpl<$Res, $Val extends ImageReaderParser>
     Object? parserType = null,
     Object? name = null,
     Object? uuid = null,
-    Object? extra = freezed,
-    Object? image = freezed,
-    Object? largerImage = freezed,
-    Object? rawImage = freezed,
-    Object? rating = freezed,
-    Object? score = freezed,
-    Object? source = freezed,
-    Object? uploadTime = freezed,
-    Object? successSelector = freezed,
-    Object? failedSelector = freezed,
-    Object? badgeSelector = freezed,
-    Object? badgeText = freezed,
-    Object? badgeCategory = freezed,
+    Object? extra = null,
+    Object? image = null,
+    Object? largerImage = null,
+    Object? rawImage = null,
+    Object? rating = null,
+    Object? score = null,
+    Object? source = null,
+    Object? uploadTime = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
+    Object? badgeSelector = null,
+    Object? badgeText = null,
+    Object? badgeCategory = null,
   }) {
     return _then(_value.copyWith(
       parserType: null == parserType
@@ -126,201 +126,153 @@ class _$ImageReaderParserCopyWithImpl<$Res, $Val extends ImageReaderParser>
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
-      extra: freezed == extra
+      extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>?,
-      image: freezed == image
+              as Iterable<ExtraSelector>,
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as ImageSelector?,
-      largerImage: freezed == largerImage
+              as ImageSelector,
+      largerImage: null == largerImage
           ? _value.largerImage
           : largerImage // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      rawImage: freezed == rawImage
+              as Selector,
+      rawImage: null == rawImage
           ? _value.rawImage
           : rawImage // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      rating: freezed == rating
+              as Selector,
+      rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      score: freezed == score
+              as Selector,
+      score: null == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      source: freezed == source
+              as Selector,
+      source: null == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      uploadTime: freezed == uploadTime
+              as Selector,
+      uploadTime: null == uploadTime
           ? _value.uploadTime
           : uploadTime // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      successSelector: freezed == successSelector
+              as Selector,
+      successSelector: null == successSelector
           ? _value.successSelector
           : successSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      failedSelector: freezed == failedSelector
+              as Selector,
+      failedSelector: null == failedSelector
           ? _value.failedSelector
           : failedSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeSelector: freezed == badgeSelector
+              as Selector,
+      badgeSelector: null == badgeSelector
           ? _value.badgeSelector
           : badgeSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeText: freezed == badgeText
+              as Selector,
+      badgeText: null == badgeText
           ? _value.badgeText
           : badgeText // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeCategory: freezed == badgeCategory
+              as Selector,
+      badgeCategory: null == badgeCategory
           ? _value.badgeCategory
           : badgeCategory // ignore: cast_nullable_to_non_nullable
-              as Selector?,
+              as Selector,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageSelectorCopyWith<$Res>? get image {
-    if (_value.image == null) {
-      return null;
-    }
-
-    return $ImageSelectorCopyWith<$Res>(_value.image!, (value) {
+  $ImageSelectorCopyWith<$Res> get image {
+    return $ImageSelectorCopyWith<$Res>(_value.image, (value) {
       return _then(_value.copyWith(image: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get largerImage {
-    if (_value.largerImage == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.largerImage!, (value) {
+  $SelectorCopyWith<$Res> get largerImage {
+    return $SelectorCopyWith<$Res>(_value.largerImage, (value) {
       return _then(_value.copyWith(largerImage: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get rawImage {
-    if (_value.rawImage == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.rawImage!, (value) {
+  $SelectorCopyWith<$Res> get rawImage {
+    return $SelectorCopyWith<$Res>(_value.rawImage, (value) {
       return _then(_value.copyWith(rawImage: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get rating {
-    if (_value.rating == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.rating!, (value) {
+  $SelectorCopyWith<$Res> get rating {
+    return $SelectorCopyWith<$Res>(_value.rating, (value) {
       return _then(_value.copyWith(rating: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get score {
-    if (_value.score == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.score!, (value) {
+  $SelectorCopyWith<$Res> get score {
+    return $SelectorCopyWith<$Res>(_value.score, (value) {
       return _then(_value.copyWith(score: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get source {
-    if (_value.source == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.source!, (value) {
+  $SelectorCopyWith<$Res> get source {
+    return $SelectorCopyWith<$Res>(_value.source, (value) {
       return _then(_value.copyWith(source: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get uploadTime {
-    if (_value.uploadTime == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.uploadTime!, (value) {
+  $SelectorCopyWith<$Res> get uploadTime {
+    return $SelectorCopyWith<$Res>(_value.uploadTime, (value) {
       return _then(_value.copyWith(uploadTime: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get successSelector {
-    if (_value.successSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.successSelector!, (value) {
+  $SelectorCopyWith<$Res> get successSelector {
+    return $SelectorCopyWith<$Res>(_value.successSelector, (value) {
       return _then(_value.copyWith(successSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get failedSelector {
-    if (_value.failedSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.failedSelector!, (value) {
+  $SelectorCopyWith<$Res> get failedSelector {
+    return $SelectorCopyWith<$Res>(_value.failedSelector, (value) {
       return _then(_value.copyWith(failedSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get badgeSelector {
-    if (_value.badgeSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.badgeSelector!, (value) {
+  $SelectorCopyWith<$Res> get badgeSelector {
+    return $SelectorCopyWith<$Res>(_value.badgeSelector, (value) {
       return _then(_value.copyWith(badgeSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get badgeText {
-    if (_value.badgeText == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.badgeText!, (value) {
+  $SelectorCopyWith<$Res> get badgeText {
+    return $SelectorCopyWith<$Res>(_value.badgeText, (value) {
       return _then(_value.copyWith(badgeText: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get badgeCategory {
-    if (_value.badgeCategory == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.badgeCategory!, (value) {
+  $SelectorCopyWith<$Res> get badgeCategory {
+    return $SelectorCopyWith<$Res>(_value.badgeCategory, (value) {
       return _then(_value.copyWith(badgeCategory: value) as $Val);
     });
   }
@@ -339,44 +291,44 @@ abstract class _$$_ImageReaderParserCopyWith<$Res>
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector>? extra,
-      ImageSelector? image,
-      Selector? largerImage,
-      Selector? rawImage,
-      Selector? rating,
-      Selector? score,
-      Selector? source,
-      Selector? uploadTime,
-      Selector? successSelector,
-      Selector? failedSelector,
-      Selector? badgeSelector,
-      Selector? badgeText,
-      Selector? badgeCategory});
+      Iterable<ExtraSelector> extra,
+      ImageSelector image,
+      Selector largerImage,
+      Selector rawImage,
+      Selector rating,
+      Selector score,
+      Selector source,
+      Selector uploadTime,
+      Selector successSelector,
+      Selector failedSelector,
+      Selector badgeSelector,
+      Selector badgeText,
+      Selector badgeCategory});
 
   @override
-  $ImageSelectorCopyWith<$Res>? get image;
+  $ImageSelectorCopyWith<$Res> get image;
   @override
-  $SelectorCopyWith<$Res>? get largerImage;
+  $SelectorCopyWith<$Res> get largerImage;
   @override
-  $SelectorCopyWith<$Res>? get rawImage;
+  $SelectorCopyWith<$Res> get rawImage;
   @override
-  $SelectorCopyWith<$Res>? get rating;
+  $SelectorCopyWith<$Res> get rating;
   @override
-  $SelectorCopyWith<$Res>? get score;
+  $SelectorCopyWith<$Res> get score;
   @override
-  $SelectorCopyWith<$Res>? get source;
+  $SelectorCopyWith<$Res> get source;
   @override
-  $SelectorCopyWith<$Res>? get uploadTime;
+  $SelectorCopyWith<$Res> get uploadTime;
   @override
-  $SelectorCopyWith<$Res>? get successSelector;
+  $SelectorCopyWith<$Res> get successSelector;
   @override
-  $SelectorCopyWith<$Res>? get failedSelector;
+  $SelectorCopyWith<$Res> get failedSelector;
   @override
-  $SelectorCopyWith<$Res>? get badgeSelector;
+  $SelectorCopyWith<$Res> get badgeSelector;
   @override
-  $SelectorCopyWith<$Res>? get badgeText;
+  $SelectorCopyWith<$Res> get badgeText;
   @override
-  $SelectorCopyWith<$Res>? get badgeCategory;
+  $SelectorCopyWith<$Res> get badgeCategory;
 }
 
 /// @nodoc
@@ -393,19 +345,19 @@ class __$$_ImageReaderParserCopyWithImpl<$Res>
     Object? parserType = null,
     Object? name = null,
     Object? uuid = null,
-    Object? extra = freezed,
-    Object? image = freezed,
-    Object? largerImage = freezed,
-    Object? rawImage = freezed,
-    Object? rating = freezed,
-    Object? score = freezed,
-    Object? source = freezed,
-    Object? uploadTime = freezed,
-    Object? successSelector = freezed,
-    Object? failedSelector = freezed,
-    Object? badgeSelector = freezed,
-    Object? badgeText = freezed,
-    Object? badgeCategory = freezed,
+    Object? extra = null,
+    Object? image = null,
+    Object? largerImage = null,
+    Object? rawImage = null,
+    Object? rating = null,
+    Object? score = null,
+    Object? source = null,
+    Object? uploadTime = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
+    Object? badgeSelector = null,
+    Object? badgeText = null,
+    Object? badgeCategory = null,
   }) {
     return _then(_$_ImageReaderParser(
       parserType: null == parserType
@@ -420,58 +372,58 @@ class __$$_ImageReaderParserCopyWithImpl<$Res>
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
-      extra: freezed == extra
+      extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>?,
-      image: freezed == image
+              as Iterable<ExtraSelector>,
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as ImageSelector?,
-      largerImage: freezed == largerImage
+              as ImageSelector,
+      largerImage: null == largerImage
           ? _value.largerImage
           : largerImage // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      rawImage: freezed == rawImage
+              as Selector,
+      rawImage: null == rawImage
           ? _value.rawImage
           : rawImage // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      rating: freezed == rating
+              as Selector,
+      rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      score: freezed == score
+              as Selector,
+      score: null == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      source: freezed == source
+              as Selector,
+      source: null == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      uploadTime: freezed == uploadTime
+              as Selector,
+      uploadTime: null == uploadTime
           ? _value.uploadTime
           : uploadTime // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      successSelector: freezed == successSelector
+              as Selector,
+      successSelector: null == successSelector
           ? _value.successSelector
           : successSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      failedSelector: freezed == failedSelector
+              as Selector,
+      failedSelector: null == failedSelector
           ? _value.failedSelector
           : failedSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeSelector: freezed == badgeSelector
+              as Selector,
+      badgeSelector: null == badgeSelector
           ? _value.badgeSelector
           : badgeSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeText: freezed == badgeText
+              as Selector,
+      badgeText: null == badgeText
           ? _value.badgeText
           : badgeText // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeCategory: freezed == badgeCategory
+              as Selector,
+      badgeCategory: null == badgeCategory
           ? _value.badgeCategory
           : badgeCategory // ignore: cast_nullable_to_non_nullable
-              as Selector?,
+              as Selector,
     ));
   }
 }
@@ -513,43 +465,43 @@ class _$_ImageReaderParser extends _ImageReaderParser {
   final String uuid;
   @override
   @JsonKey()
-  final Iterable<ExtraSelector>? extra;
+  final Iterable<ExtraSelector> extra;
   @override
   @JsonKey()
-  final ImageSelector? image;
+  final ImageSelector image;
   @override
   @JsonKey()
-  final Selector? largerImage;
+  final Selector largerImage;
   @override
   @JsonKey()
-  final Selector? rawImage;
+  final Selector rawImage;
   @override
   @JsonKey()
-  final Selector? rating;
+  final Selector rating;
   @override
   @JsonKey()
-  final Selector? score;
+  final Selector score;
   @override
   @JsonKey()
-  final Selector? source;
+  final Selector source;
   @override
   @JsonKey()
-  final Selector? uploadTime;
+  final Selector uploadTime;
   @override
   @JsonKey()
-  final Selector? successSelector;
+  final Selector successSelector;
   @override
   @JsonKey()
-  final Selector? failedSelector;
+  final Selector failedSelector;
   @override
   @JsonKey()
-  final Selector? badgeSelector;
+  final Selector badgeSelector;
   @override
   @JsonKey()
-  final Selector? badgeText;
+  final Selector badgeText;
   @override
   @JsonKey()
-  final Selector? badgeCategory;
+  final Selector badgeCategory;
 
   @override
   String toString() {
@@ -630,19 +582,19 @@ abstract class _ImageReaderParser extends ImageReaderParser {
           final ParserType parserType,
       required final String name,
       required final String uuid,
-      final Iterable<ExtraSelector>? extra,
-      final ImageSelector? image,
-      final Selector? largerImage,
-      final Selector? rawImage,
-      final Selector? rating,
-      final Selector? score,
-      final Selector? source,
-      final Selector? uploadTime,
-      final Selector? successSelector,
-      final Selector? failedSelector,
-      final Selector? badgeSelector,
-      final Selector? badgeText,
-      final Selector? badgeCategory}) = _$_ImageReaderParser;
+      final Iterable<ExtraSelector> extra,
+      final ImageSelector image,
+      final Selector largerImage,
+      final Selector rawImage,
+      final Selector rating,
+      final Selector score,
+      final Selector source,
+      final Selector uploadTime,
+      final Selector successSelector,
+      final Selector failedSelector,
+      final Selector badgeSelector,
+      final Selector badgeText,
+      final Selector badgeCategory}) = _$_ImageReaderParser;
   _ImageReaderParser._() : super._();
 
   factory _ImageReaderParser.fromJson(Map<String, dynamic> json) =
@@ -656,31 +608,31 @@ abstract class _ImageReaderParser extends ImageReaderParser {
   @override
   String get uuid;
   @override
-  Iterable<ExtraSelector>? get extra;
+  Iterable<ExtraSelector> get extra;
   @override
-  ImageSelector? get image;
+  ImageSelector get image;
   @override
-  Selector? get largerImage;
+  Selector get largerImage;
   @override
-  Selector? get rawImage;
+  Selector get rawImage;
   @override
-  Selector? get rating;
+  Selector get rating;
   @override
-  Selector? get score;
+  Selector get score;
   @override
-  Selector? get source;
+  Selector get source;
   @override
-  Selector? get uploadTime;
+  Selector get uploadTime;
   @override
-  Selector? get successSelector;
+  Selector get successSelector;
   @override
-  Selector? get failedSelector;
+  Selector get failedSelector;
   @override
-  Selector? get badgeSelector;
+  Selector get badgeSelector;
   @override
-  Selector? get badgeText;
+  Selector get badgeText;
   @override
-  Selector? get badgeCategory;
+  Selector get badgeCategory;
   @override
   @JsonKey(ignore: true)
   _$$_ImageReaderParserCopyWith<_$_ImageReaderParser> get copyWith =>
@@ -697,34 +649,34 @@ mixin _$GalleryParser {
   ParserType get parserType => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
-  Iterable<ExtraSelector>? get extra => throw _privateConstructorUsedError;
-  Selector? get title => throw _privateConstructorUsedError;
-  Selector? get subtitle => throw _privateConstructorUsedError;
-  Selector? get uploadTime => throw _privateConstructorUsedError;
-  Selector? get star => throw _privateConstructorUsedError;
-  Selector? get imgCount => throw _privateConstructorUsedError;
-  Selector? get pageCount => throw _privateConstructorUsedError;
-  Selector? get language => throw _privateConstructorUsedError;
-  ImageSelector? get coverImg => throw _privateConstructorUsedError;
-  Selector? get description => throw _privateConstructorUsedError;
-  Selector? get successSelector => throw _privateConstructorUsedError;
-  Selector? get failedSelector => throw _privateConstructorUsedError;
-  Selector? get thumbnailSelector => throw _privateConstructorUsedError;
-  ImageSelector? get thumbnail => throw _privateConstructorUsedError;
-  Selector? get target => throw _privateConstructorUsedError;
-  Selector? get commentSelector => throw _privateConstructorUsedError;
-  CommentSelector? get comments => throw _privateConstructorUsedError;
-  Selector? get tag => throw _privateConstructorUsedError;
-  Selector? get tagColor => throw _privateConstructorUsedError;
-  Selector? get badgeSelector => throw _privateConstructorUsedError;
-  Selector? get badgeText => throw _privateConstructorUsedError;
-  Selector? get badgeCategory => throw _privateConstructorUsedError;
-  Selector? get chapterSelector => throw _privateConstructorUsedError;
-  Selector? get chapterTitle => throw _privateConstructorUsedError;
-  Selector? get chapterSubtitle => throw _privateConstructorUsedError;
-  ImageSelector? get chapterCover => throw _privateConstructorUsedError;
-  Selector? get nextPage => throw _privateConstructorUsedError;
-  Selector? get countPrePage => throw _privateConstructorUsedError;
+  Iterable<ExtraSelector> get extra => throw _privateConstructorUsedError;
+  Selector get title => throw _privateConstructorUsedError;
+  Selector get subtitle => throw _privateConstructorUsedError;
+  Selector get uploadTime => throw _privateConstructorUsedError;
+  Selector get star => throw _privateConstructorUsedError;
+  Selector get imgCount => throw _privateConstructorUsedError;
+  Selector get pageCount => throw _privateConstructorUsedError;
+  Selector get language => throw _privateConstructorUsedError;
+  ImageSelector get coverImg => throw _privateConstructorUsedError;
+  Selector get description => throw _privateConstructorUsedError;
+  Selector get successSelector => throw _privateConstructorUsedError;
+  Selector get failedSelector => throw _privateConstructorUsedError;
+  Selector get thumbnailSelector => throw _privateConstructorUsedError;
+  ImageSelector get thumbnail => throw _privateConstructorUsedError;
+  Selector get target => throw _privateConstructorUsedError;
+  Selector get commentSelector => throw _privateConstructorUsedError;
+  CommentSelector get comments => throw _privateConstructorUsedError;
+  Selector get tag => throw _privateConstructorUsedError;
+  Selector get tagColor => throw _privateConstructorUsedError;
+  Selector get badgeSelector => throw _privateConstructorUsedError;
+  Selector get badgeText => throw _privateConstructorUsedError;
+  Selector get badgeCategory => throw _privateConstructorUsedError;
+  Selector get chapterSelector => throw _privateConstructorUsedError;
+  Selector get chapterTitle => throw _privateConstructorUsedError;
+  Selector get chapterSubtitle => throw _privateConstructorUsedError;
+  ImageSelector get chapterCover => throw _privateConstructorUsedError;
+  Selector get nextPage => throw _privateConstructorUsedError;
+  Selector get countPrePage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -743,62 +695,62 @@ abstract class $GalleryParserCopyWith<$Res> {
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector>? extra,
-      Selector? title,
-      Selector? subtitle,
-      Selector? uploadTime,
-      Selector? star,
-      Selector? imgCount,
-      Selector? pageCount,
-      Selector? language,
-      ImageSelector? coverImg,
-      Selector? description,
-      Selector? successSelector,
-      Selector? failedSelector,
-      Selector? thumbnailSelector,
-      ImageSelector? thumbnail,
-      Selector? target,
-      Selector? commentSelector,
-      CommentSelector? comments,
-      Selector? tag,
-      Selector? tagColor,
-      Selector? badgeSelector,
-      Selector? badgeText,
-      Selector? badgeCategory,
-      Selector? chapterSelector,
-      Selector? chapterTitle,
-      Selector? chapterSubtitle,
-      ImageSelector? chapterCover,
-      Selector? nextPage,
-      Selector? countPrePage});
+      Iterable<ExtraSelector> extra,
+      Selector title,
+      Selector subtitle,
+      Selector uploadTime,
+      Selector star,
+      Selector imgCount,
+      Selector pageCount,
+      Selector language,
+      ImageSelector coverImg,
+      Selector description,
+      Selector successSelector,
+      Selector failedSelector,
+      Selector thumbnailSelector,
+      ImageSelector thumbnail,
+      Selector target,
+      Selector commentSelector,
+      CommentSelector comments,
+      Selector tag,
+      Selector tagColor,
+      Selector badgeSelector,
+      Selector badgeText,
+      Selector badgeCategory,
+      Selector chapterSelector,
+      Selector chapterTitle,
+      Selector chapterSubtitle,
+      ImageSelector chapterCover,
+      Selector nextPage,
+      Selector countPrePage});
 
-  $SelectorCopyWith<$Res>? get title;
-  $SelectorCopyWith<$Res>? get subtitle;
-  $SelectorCopyWith<$Res>? get uploadTime;
-  $SelectorCopyWith<$Res>? get star;
-  $SelectorCopyWith<$Res>? get imgCount;
-  $SelectorCopyWith<$Res>? get pageCount;
-  $SelectorCopyWith<$Res>? get language;
-  $ImageSelectorCopyWith<$Res>? get coverImg;
-  $SelectorCopyWith<$Res>? get description;
-  $SelectorCopyWith<$Res>? get successSelector;
-  $SelectorCopyWith<$Res>? get failedSelector;
-  $SelectorCopyWith<$Res>? get thumbnailSelector;
-  $ImageSelectorCopyWith<$Res>? get thumbnail;
-  $SelectorCopyWith<$Res>? get target;
-  $SelectorCopyWith<$Res>? get commentSelector;
-  $CommentSelectorCopyWith<$Res>? get comments;
-  $SelectorCopyWith<$Res>? get tag;
-  $SelectorCopyWith<$Res>? get tagColor;
-  $SelectorCopyWith<$Res>? get badgeSelector;
-  $SelectorCopyWith<$Res>? get badgeText;
-  $SelectorCopyWith<$Res>? get badgeCategory;
-  $SelectorCopyWith<$Res>? get chapterSelector;
-  $SelectorCopyWith<$Res>? get chapterTitle;
-  $SelectorCopyWith<$Res>? get chapterSubtitle;
-  $ImageSelectorCopyWith<$Res>? get chapterCover;
-  $SelectorCopyWith<$Res>? get nextPage;
-  $SelectorCopyWith<$Res>? get countPrePage;
+  $SelectorCopyWith<$Res> get title;
+  $SelectorCopyWith<$Res> get subtitle;
+  $SelectorCopyWith<$Res> get uploadTime;
+  $SelectorCopyWith<$Res> get star;
+  $SelectorCopyWith<$Res> get imgCount;
+  $SelectorCopyWith<$Res> get pageCount;
+  $SelectorCopyWith<$Res> get language;
+  $ImageSelectorCopyWith<$Res> get coverImg;
+  $SelectorCopyWith<$Res> get description;
+  $SelectorCopyWith<$Res> get successSelector;
+  $SelectorCopyWith<$Res> get failedSelector;
+  $SelectorCopyWith<$Res> get thumbnailSelector;
+  $ImageSelectorCopyWith<$Res> get thumbnail;
+  $SelectorCopyWith<$Res> get target;
+  $SelectorCopyWith<$Res> get commentSelector;
+  $CommentSelectorCopyWith<$Res> get comments;
+  $SelectorCopyWith<$Res> get tag;
+  $SelectorCopyWith<$Res> get tagColor;
+  $SelectorCopyWith<$Res> get badgeSelector;
+  $SelectorCopyWith<$Res> get badgeText;
+  $SelectorCopyWith<$Res> get badgeCategory;
+  $SelectorCopyWith<$Res> get chapterSelector;
+  $SelectorCopyWith<$Res> get chapterTitle;
+  $SelectorCopyWith<$Res> get chapterSubtitle;
+  $ImageSelectorCopyWith<$Res> get chapterCover;
+  $SelectorCopyWith<$Res> get nextPage;
+  $SelectorCopyWith<$Res> get countPrePage;
 }
 
 /// @nodoc
@@ -817,34 +769,34 @@ class _$GalleryParserCopyWithImpl<$Res, $Val extends GalleryParser>
     Object? parserType = null,
     Object? name = null,
     Object? uuid = null,
-    Object? extra = freezed,
-    Object? title = freezed,
-    Object? subtitle = freezed,
-    Object? uploadTime = freezed,
-    Object? star = freezed,
-    Object? imgCount = freezed,
-    Object? pageCount = freezed,
-    Object? language = freezed,
-    Object? coverImg = freezed,
-    Object? description = freezed,
-    Object? successSelector = freezed,
-    Object? failedSelector = freezed,
-    Object? thumbnailSelector = freezed,
-    Object? thumbnail = freezed,
-    Object? target = freezed,
-    Object? commentSelector = freezed,
-    Object? comments = freezed,
-    Object? tag = freezed,
-    Object? tagColor = freezed,
-    Object? badgeSelector = freezed,
-    Object? badgeText = freezed,
-    Object? badgeCategory = freezed,
-    Object? chapterSelector = freezed,
-    Object? chapterTitle = freezed,
-    Object? chapterSubtitle = freezed,
-    Object? chapterCover = freezed,
-    Object? nextPage = freezed,
-    Object? countPrePage = freezed,
+    Object? extra = null,
+    Object? title = null,
+    Object? subtitle = null,
+    Object? uploadTime = null,
+    Object? star = null,
+    Object? imgCount = null,
+    Object? pageCount = null,
+    Object? language = null,
+    Object? coverImg = null,
+    Object? description = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
+    Object? thumbnailSelector = null,
+    Object? thumbnail = null,
+    Object? target = null,
+    Object? commentSelector = null,
+    Object? comments = null,
+    Object? tag = null,
+    Object? tagColor = null,
+    Object? badgeSelector = null,
+    Object? badgeText = null,
+    Object? badgeCategory = null,
+    Object? chapterSelector = null,
+    Object? chapterTitle = null,
+    Object? chapterSubtitle = null,
+    Object? chapterCover = null,
+    Object? nextPage = null,
+    Object? countPrePage = null,
   }) {
     return _then(_value.copyWith(
       parserType: null == parserType
@@ -859,441 +811,333 @@ class _$GalleryParserCopyWithImpl<$Res, $Val extends GalleryParser>
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
-      extra: freezed == extra
+      extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>?,
-      title: freezed == title
+              as Iterable<ExtraSelector>,
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      subtitle: freezed == subtitle
+              as Selector,
+      subtitle: null == subtitle
           ? _value.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      uploadTime: freezed == uploadTime
+              as Selector,
+      uploadTime: null == uploadTime
           ? _value.uploadTime
           : uploadTime // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      star: freezed == star
+              as Selector,
+      star: null == star
           ? _value.star
           : star // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      imgCount: freezed == imgCount
+              as Selector,
+      imgCount: null == imgCount
           ? _value.imgCount
           : imgCount // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      pageCount: freezed == pageCount
+              as Selector,
+      pageCount: null == pageCount
           ? _value.pageCount
           : pageCount // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      language: freezed == language
+              as Selector,
+      language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      coverImg: freezed == coverImg
+              as Selector,
+      coverImg: null == coverImg
           ? _value.coverImg
           : coverImg // ignore: cast_nullable_to_non_nullable
-              as ImageSelector?,
-      description: freezed == description
+              as ImageSelector,
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      successSelector: freezed == successSelector
+              as Selector,
+      successSelector: null == successSelector
           ? _value.successSelector
           : successSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      failedSelector: freezed == failedSelector
+              as Selector,
+      failedSelector: null == failedSelector
           ? _value.failedSelector
           : failedSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      thumbnailSelector: freezed == thumbnailSelector
+              as Selector,
+      thumbnailSelector: null == thumbnailSelector
           ? _value.thumbnailSelector
           : thumbnailSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      thumbnail: freezed == thumbnail
+              as Selector,
+      thumbnail: null == thumbnail
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
-              as ImageSelector?,
-      target: freezed == target
+              as ImageSelector,
+      target: null == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      commentSelector: freezed == commentSelector
+              as Selector,
+      commentSelector: null == commentSelector
           ? _value.commentSelector
           : commentSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      comments: freezed == comments
+              as Selector,
+      comments: null == comments
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as CommentSelector?,
-      tag: freezed == tag
+              as CommentSelector,
+      tag: null == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      tagColor: freezed == tagColor
+              as Selector,
+      tagColor: null == tagColor
           ? _value.tagColor
           : tagColor // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeSelector: freezed == badgeSelector
+              as Selector,
+      badgeSelector: null == badgeSelector
           ? _value.badgeSelector
           : badgeSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeText: freezed == badgeText
+              as Selector,
+      badgeText: null == badgeText
           ? _value.badgeText
           : badgeText // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeCategory: freezed == badgeCategory
+              as Selector,
+      badgeCategory: null == badgeCategory
           ? _value.badgeCategory
           : badgeCategory // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      chapterSelector: freezed == chapterSelector
+              as Selector,
+      chapterSelector: null == chapterSelector
           ? _value.chapterSelector
           : chapterSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      chapterTitle: freezed == chapterTitle
+              as Selector,
+      chapterTitle: null == chapterTitle
           ? _value.chapterTitle
           : chapterTitle // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      chapterSubtitle: freezed == chapterSubtitle
+              as Selector,
+      chapterSubtitle: null == chapterSubtitle
           ? _value.chapterSubtitle
           : chapterSubtitle // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      chapterCover: freezed == chapterCover
+              as Selector,
+      chapterCover: null == chapterCover
           ? _value.chapterCover
           : chapterCover // ignore: cast_nullable_to_non_nullable
-              as ImageSelector?,
-      nextPage: freezed == nextPage
+              as ImageSelector,
+      nextPage: null == nextPage
           ? _value.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      countPrePage: freezed == countPrePage
+              as Selector,
+      countPrePage: null == countPrePage
           ? _value.countPrePage
           : countPrePage // ignore: cast_nullable_to_non_nullable
-              as Selector?,
+              as Selector,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get title {
-    if (_value.title == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.title!, (value) {
+  $SelectorCopyWith<$Res> get title {
+    return $SelectorCopyWith<$Res>(_value.title, (value) {
       return _then(_value.copyWith(title: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get subtitle {
-    if (_value.subtitle == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.subtitle!, (value) {
+  $SelectorCopyWith<$Res> get subtitle {
+    return $SelectorCopyWith<$Res>(_value.subtitle, (value) {
       return _then(_value.copyWith(subtitle: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get uploadTime {
-    if (_value.uploadTime == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.uploadTime!, (value) {
+  $SelectorCopyWith<$Res> get uploadTime {
+    return $SelectorCopyWith<$Res>(_value.uploadTime, (value) {
       return _then(_value.copyWith(uploadTime: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get star {
-    if (_value.star == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.star!, (value) {
+  $SelectorCopyWith<$Res> get star {
+    return $SelectorCopyWith<$Res>(_value.star, (value) {
       return _then(_value.copyWith(star: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get imgCount {
-    if (_value.imgCount == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.imgCount!, (value) {
+  $SelectorCopyWith<$Res> get imgCount {
+    return $SelectorCopyWith<$Res>(_value.imgCount, (value) {
       return _then(_value.copyWith(imgCount: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get pageCount {
-    if (_value.pageCount == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.pageCount!, (value) {
+  $SelectorCopyWith<$Res> get pageCount {
+    return $SelectorCopyWith<$Res>(_value.pageCount, (value) {
       return _then(_value.copyWith(pageCount: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get language {
-    if (_value.language == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.language!, (value) {
+  $SelectorCopyWith<$Res> get language {
+    return $SelectorCopyWith<$Res>(_value.language, (value) {
       return _then(_value.copyWith(language: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageSelectorCopyWith<$Res>? get coverImg {
-    if (_value.coverImg == null) {
-      return null;
-    }
-
-    return $ImageSelectorCopyWith<$Res>(_value.coverImg!, (value) {
+  $ImageSelectorCopyWith<$Res> get coverImg {
+    return $ImageSelectorCopyWith<$Res>(_value.coverImg, (value) {
       return _then(_value.copyWith(coverImg: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get description {
-    if (_value.description == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.description!, (value) {
+  $SelectorCopyWith<$Res> get description {
+    return $SelectorCopyWith<$Res>(_value.description, (value) {
       return _then(_value.copyWith(description: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get successSelector {
-    if (_value.successSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.successSelector!, (value) {
+  $SelectorCopyWith<$Res> get successSelector {
+    return $SelectorCopyWith<$Res>(_value.successSelector, (value) {
       return _then(_value.copyWith(successSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get failedSelector {
-    if (_value.failedSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.failedSelector!, (value) {
+  $SelectorCopyWith<$Res> get failedSelector {
+    return $SelectorCopyWith<$Res>(_value.failedSelector, (value) {
       return _then(_value.copyWith(failedSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get thumbnailSelector {
-    if (_value.thumbnailSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.thumbnailSelector!, (value) {
+  $SelectorCopyWith<$Res> get thumbnailSelector {
+    return $SelectorCopyWith<$Res>(_value.thumbnailSelector, (value) {
       return _then(_value.copyWith(thumbnailSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageSelectorCopyWith<$Res>? get thumbnail {
-    if (_value.thumbnail == null) {
-      return null;
-    }
-
-    return $ImageSelectorCopyWith<$Res>(_value.thumbnail!, (value) {
+  $ImageSelectorCopyWith<$Res> get thumbnail {
+    return $ImageSelectorCopyWith<$Res>(_value.thumbnail, (value) {
       return _then(_value.copyWith(thumbnail: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get target {
-    if (_value.target == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.target!, (value) {
+  $SelectorCopyWith<$Res> get target {
+    return $SelectorCopyWith<$Res>(_value.target, (value) {
       return _then(_value.copyWith(target: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get commentSelector {
-    if (_value.commentSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.commentSelector!, (value) {
+  $SelectorCopyWith<$Res> get commentSelector {
+    return $SelectorCopyWith<$Res>(_value.commentSelector, (value) {
       return _then(_value.copyWith(commentSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $CommentSelectorCopyWith<$Res>? get comments {
-    if (_value.comments == null) {
-      return null;
-    }
-
-    return $CommentSelectorCopyWith<$Res>(_value.comments!, (value) {
+  $CommentSelectorCopyWith<$Res> get comments {
+    return $CommentSelectorCopyWith<$Res>(_value.comments, (value) {
       return _then(_value.copyWith(comments: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get tag {
-    if (_value.tag == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.tag!, (value) {
+  $SelectorCopyWith<$Res> get tag {
+    return $SelectorCopyWith<$Res>(_value.tag, (value) {
       return _then(_value.copyWith(tag: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get tagColor {
-    if (_value.tagColor == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.tagColor!, (value) {
+  $SelectorCopyWith<$Res> get tagColor {
+    return $SelectorCopyWith<$Res>(_value.tagColor, (value) {
       return _then(_value.copyWith(tagColor: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get badgeSelector {
-    if (_value.badgeSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.badgeSelector!, (value) {
+  $SelectorCopyWith<$Res> get badgeSelector {
+    return $SelectorCopyWith<$Res>(_value.badgeSelector, (value) {
       return _then(_value.copyWith(badgeSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get badgeText {
-    if (_value.badgeText == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.badgeText!, (value) {
+  $SelectorCopyWith<$Res> get badgeText {
+    return $SelectorCopyWith<$Res>(_value.badgeText, (value) {
       return _then(_value.copyWith(badgeText: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get badgeCategory {
-    if (_value.badgeCategory == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.badgeCategory!, (value) {
+  $SelectorCopyWith<$Res> get badgeCategory {
+    return $SelectorCopyWith<$Res>(_value.badgeCategory, (value) {
       return _then(_value.copyWith(badgeCategory: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get chapterSelector {
-    if (_value.chapterSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.chapterSelector!, (value) {
+  $SelectorCopyWith<$Res> get chapterSelector {
+    return $SelectorCopyWith<$Res>(_value.chapterSelector, (value) {
       return _then(_value.copyWith(chapterSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get chapterTitle {
-    if (_value.chapterTitle == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.chapterTitle!, (value) {
+  $SelectorCopyWith<$Res> get chapterTitle {
+    return $SelectorCopyWith<$Res>(_value.chapterTitle, (value) {
       return _then(_value.copyWith(chapterTitle: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get chapterSubtitle {
-    if (_value.chapterSubtitle == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.chapterSubtitle!, (value) {
+  $SelectorCopyWith<$Res> get chapterSubtitle {
+    return $SelectorCopyWith<$Res>(_value.chapterSubtitle, (value) {
       return _then(_value.copyWith(chapterSubtitle: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageSelectorCopyWith<$Res>? get chapterCover {
-    if (_value.chapterCover == null) {
-      return null;
-    }
-
-    return $ImageSelectorCopyWith<$Res>(_value.chapterCover!, (value) {
+  $ImageSelectorCopyWith<$Res> get chapterCover {
+    return $ImageSelectorCopyWith<$Res>(_value.chapterCover, (value) {
       return _then(_value.copyWith(chapterCover: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get nextPage {
-    if (_value.nextPage == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.nextPage!, (value) {
+  $SelectorCopyWith<$Res> get nextPage {
+    return $SelectorCopyWith<$Res>(_value.nextPage, (value) {
       return _then(_value.copyWith(nextPage: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get countPrePage {
-    if (_value.countPrePage == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.countPrePage!, (value) {
+  $SelectorCopyWith<$Res> get countPrePage {
+    return $SelectorCopyWith<$Res>(_value.countPrePage, (value) {
       return _then(_value.copyWith(countPrePage: value) as $Val);
     });
   }
@@ -1312,89 +1156,89 @@ abstract class _$$_GalleryParserCopyWith<$Res>
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector>? extra,
-      Selector? title,
-      Selector? subtitle,
-      Selector? uploadTime,
-      Selector? star,
-      Selector? imgCount,
-      Selector? pageCount,
-      Selector? language,
-      ImageSelector? coverImg,
-      Selector? description,
-      Selector? successSelector,
-      Selector? failedSelector,
-      Selector? thumbnailSelector,
-      ImageSelector? thumbnail,
-      Selector? target,
-      Selector? commentSelector,
-      CommentSelector? comments,
-      Selector? tag,
-      Selector? tagColor,
-      Selector? badgeSelector,
-      Selector? badgeText,
-      Selector? badgeCategory,
-      Selector? chapterSelector,
-      Selector? chapterTitle,
-      Selector? chapterSubtitle,
-      ImageSelector? chapterCover,
-      Selector? nextPage,
-      Selector? countPrePage});
+      Iterable<ExtraSelector> extra,
+      Selector title,
+      Selector subtitle,
+      Selector uploadTime,
+      Selector star,
+      Selector imgCount,
+      Selector pageCount,
+      Selector language,
+      ImageSelector coverImg,
+      Selector description,
+      Selector successSelector,
+      Selector failedSelector,
+      Selector thumbnailSelector,
+      ImageSelector thumbnail,
+      Selector target,
+      Selector commentSelector,
+      CommentSelector comments,
+      Selector tag,
+      Selector tagColor,
+      Selector badgeSelector,
+      Selector badgeText,
+      Selector badgeCategory,
+      Selector chapterSelector,
+      Selector chapterTitle,
+      Selector chapterSubtitle,
+      ImageSelector chapterCover,
+      Selector nextPage,
+      Selector countPrePage});
 
   @override
-  $SelectorCopyWith<$Res>? get title;
+  $SelectorCopyWith<$Res> get title;
   @override
-  $SelectorCopyWith<$Res>? get subtitle;
+  $SelectorCopyWith<$Res> get subtitle;
   @override
-  $SelectorCopyWith<$Res>? get uploadTime;
+  $SelectorCopyWith<$Res> get uploadTime;
   @override
-  $SelectorCopyWith<$Res>? get star;
+  $SelectorCopyWith<$Res> get star;
   @override
-  $SelectorCopyWith<$Res>? get imgCount;
+  $SelectorCopyWith<$Res> get imgCount;
   @override
-  $SelectorCopyWith<$Res>? get pageCount;
+  $SelectorCopyWith<$Res> get pageCount;
   @override
-  $SelectorCopyWith<$Res>? get language;
+  $SelectorCopyWith<$Res> get language;
   @override
-  $ImageSelectorCopyWith<$Res>? get coverImg;
+  $ImageSelectorCopyWith<$Res> get coverImg;
   @override
-  $SelectorCopyWith<$Res>? get description;
+  $SelectorCopyWith<$Res> get description;
   @override
-  $SelectorCopyWith<$Res>? get successSelector;
+  $SelectorCopyWith<$Res> get successSelector;
   @override
-  $SelectorCopyWith<$Res>? get failedSelector;
+  $SelectorCopyWith<$Res> get failedSelector;
   @override
-  $SelectorCopyWith<$Res>? get thumbnailSelector;
+  $SelectorCopyWith<$Res> get thumbnailSelector;
   @override
-  $ImageSelectorCopyWith<$Res>? get thumbnail;
+  $ImageSelectorCopyWith<$Res> get thumbnail;
   @override
-  $SelectorCopyWith<$Res>? get target;
+  $SelectorCopyWith<$Res> get target;
   @override
-  $SelectorCopyWith<$Res>? get commentSelector;
+  $SelectorCopyWith<$Res> get commentSelector;
   @override
-  $CommentSelectorCopyWith<$Res>? get comments;
+  $CommentSelectorCopyWith<$Res> get comments;
   @override
-  $SelectorCopyWith<$Res>? get tag;
+  $SelectorCopyWith<$Res> get tag;
   @override
-  $SelectorCopyWith<$Res>? get tagColor;
+  $SelectorCopyWith<$Res> get tagColor;
   @override
-  $SelectorCopyWith<$Res>? get badgeSelector;
+  $SelectorCopyWith<$Res> get badgeSelector;
   @override
-  $SelectorCopyWith<$Res>? get badgeText;
+  $SelectorCopyWith<$Res> get badgeText;
   @override
-  $SelectorCopyWith<$Res>? get badgeCategory;
+  $SelectorCopyWith<$Res> get badgeCategory;
   @override
-  $SelectorCopyWith<$Res>? get chapterSelector;
+  $SelectorCopyWith<$Res> get chapterSelector;
   @override
-  $SelectorCopyWith<$Res>? get chapterTitle;
+  $SelectorCopyWith<$Res> get chapterTitle;
   @override
-  $SelectorCopyWith<$Res>? get chapterSubtitle;
+  $SelectorCopyWith<$Res> get chapterSubtitle;
   @override
-  $ImageSelectorCopyWith<$Res>? get chapterCover;
+  $ImageSelectorCopyWith<$Res> get chapterCover;
   @override
-  $SelectorCopyWith<$Res>? get nextPage;
+  $SelectorCopyWith<$Res> get nextPage;
   @override
-  $SelectorCopyWith<$Res>? get countPrePage;
+  $SelectorCopyWith<$Res> get countPrePage;
 }
 
 /// @nodoc
@@ -1411,34 +1255,34 @@ class __$$_GalleryParserCopyWithImpl<$Res>
     Object? parserType = null,
     Object? name = null,
     Object? uuid = null,
-    Object? extra = freezed,
-    Object? title = freezed,
-    Object? subtitle = freezed,
-    Object? uploadTime = freezed,
-    Object? star = freezed,
-    Object? imgCount = freezed,
-    Object? pageCount = freezed,
-    Object? language = freezed,
-    Object? coverImg = freezed,
-    Object? description = freezed,
-    Object? successSelector = freezed,
-    Object? failedSelector = freezed,
-    Object? thumbnailSelector = freezed,
-    Object? thumbnail = freezed,
-    Object? target = freezed,
-    Object? commentSelector = freezed,
-    Object? comments = freezed,
-    Object? tag = freezed,
-    Object? tagColor = freezed,
-    Object? badgeSelector = freezed,
-    Object? badgeText = freezed,
-    Object? badgeCategory = freezed,
-    Object? chapterSelector = freezed,
-    Object? chapterTitle = freezed,
-    Object? chapterSubtitle = freezed,
-    Object? chapterCover = freezed,
-    Object? nextPage = freezed,
-    Object? countPrePage = freezed,
+    Object? extra = null,
+    Object? title = null,
+    Object? subtitle = null,
+    Object? uploadTime = null,
+    Object? star = null,
+    Object? imgCount = null,
+    Object? pageCount = null,
+    Object? language = null,
+    Object? coverImg = null,
+    Object? description = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
+    Object? thumbnailSelector = null,
+    Object? thumbnail = null,
+    Object? target = null,
+    Object? commentSelector = null,
+    Object? comments = null,
+    Object? tag = null,
+    Object? tagColor = null,
+    Object? badgeSelector = null,
+    Object? badgeText = null,
+    Object? badgeCategory = null,
+    Object? chapterSelector = null,
+    Object? chapterTitle = null,
+    Object? chapterSubtitle = null,
+    Object? chapterCover = null,
+    Object? nextPage = null,
+    Object? countPrePage = null,
   }) {
     return _then(_$_GalleryParser(
       parserType: null == parserType
@@ -1453,118 +1297,118 @@ class __$$_GalleryParserCopyWithImpl<$Res>
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
-      extra: freezed == extra
+      extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>?,
-      title: freezed == title
+              as Iterable<ExtraSelector>,
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      subtitle: freezed == subtitle
+              as Selector,
+      subtitle: null == subtitle
           ? _value.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      uploadTime: freezed == uploadTime
+              as Selector,
+      uploadTime: null == uploadTime
           ? _value.uploadTime
           : uploadTime // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      star: freezed == star
+              as Selector,
+      star: null == star
           ? _value.star
           : star // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      imgCount: freezed == imgCount
+              as Selector,
+      imgCount: null == imgCount
           ? _value.imgCount
           : imgCount // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      pageCount: freezed == pageCount
+              as Selector,
+      pageCount: null == pageCount
           ? _value.pageCount
           : pageCount // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      language: freezed == language
+              as Selector,
+      language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      coverImg: freezed == coverImg
+              as Selector,
+      coverImg: null == coverImg
           ? _value.coverImg
           : coverImg // ignore: cast_nullable_to_non_nullable
-              as ImageSelector?,
-      description: freezed == description
+              as ImageSelector,
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      successSelector: freezed == successSelector
+              as Selector,
+      successSelector: null == successSelector
           ? _value.successSelector
           : successSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      failedSelector: freezed == failedSelector
+              as Selector,
+      failedSelector: null == failedSelector
           ? _value.failedSelector
           : failedSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      thumbnailSelector: freezed == thumbnailSelector
+              as Selector,
+      thumbnailSelector: null == thumbnailSelector
           ? _value.thumbnailSelector
           : thumbnailSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      thumbnail: freezed == thumbnail
+              as Selector,
+      thumbnail: null == thumbnail
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
-              as ImageSelector?,
-      target: freezed == target
+              as ImageSelector,
+      target: null == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      commentSelector: freezed == commentSelector
+              as Selector,
+      commentSelector: null == commentSelector
           ? _value.commentSelector
           : commentSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      comments: freezed == comments
+              as Selector,
+      comments: null == comments
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as CommentSelector?,
-      tag: freezed == tag
+              as CommentSelector,
+      tag: null == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      tagColor: freezed == tagColor
+              as Selector,
+      tagColor: null == tagColor
           ? _value.tagColor
           : tagColor // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeSelector: freezed == badgeSelector
+              as Selector,
+      badgeSelector: null == badgeSelector
           ? _value.badgeSelector
           : badgeSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeText: freezed == badgeText
+              as Selector,
+      badgeText: null == badgeText
           ? _value.badgeText
           : badgeText // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeCategory: freezed == badgeCategory
+              as Selector,
+      badgeCategory: null == badgeCategory
           ? _value.badgeCategory
           : badgeCategory // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      chapterSelector: freezed == chapterSelector
+              as Selector,
+      chapterSelector: null == chapterSelector
           ? _value.chapterSelector
           : chapterSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      chapterTitle: freezed == chapterTitle
+              as Selector,
+      chapterTitle: null == chapterTitle
           ? _value.chapterTitle
           : chapterTitle // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      chapterSubtitle: freezed == chapterSubtitle
+              as Selector,
+      chapterSubtitle: null == chapterSubtitle
           ? _value.chapterSubtitle
           : chapterSubtitle // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      chapterCover: freezed == chapterCover
+              as Selector,
+      chapterCover: null == chapterCover
           ? _value.chapterCover
           : chapterCover // ignore: cast_nullable_to_non_nullable
-              as ImageSelector?,
-      nextPage: freezed == nextPage
+              as ImageSelector,
+      nextPage: null == nextPage
           ? _value.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      countPrePage: freezed == countPrePage
+              as Selector,
+      countPrePage: null == countPrePage
           ? _value.countPrePage
           : countPrePage // ignore: cast_nullable_to_non_nullable
-              as Selector?,
+              as Selector,
     ));
   }
 }
@@ -1620,88 +1464,88 @@ class _$_GalleryParser extends _GalleryParser {
   final String uuid;
   @override
   @JsonKey()
-  final Iterable<ExtraSelector>? extra;
+  final Iterable<ExtraSelector> extra;
   @override
   @JsonKey()
-  final Selector? title;
+  final Selector title;
   @override
   @JsonKey()
-  final Selector? subtitle;
+  final Selector subtitle;
   @override
   @JsonKey()
-  final Selector? uploadTime;
+  final Selector uploadTime;
   @override
   @JsonKey()
-  final Selector? star;
+  final Selector star;
   @override
   @JsonKey()
-  final Selector? imgCount;
+  final Selector imgCount;
   @override
   @JsonKey()
-  final Selector? pageCount;
+  final Selector pageCount;
   @override
   @JsonKey()
-  final Selector? language;
+  final Selector language;
   @override
   @JsonKey()
-  final ImageSelector? coverImg;
+  final ImageSelector coverImg;
   @override
   @JsonKey()
-  final Selector? description;
+  final Selector description;
   @override
   @JsonKey()
-  final Selector? successSelector;
+  final Selector successSelector;
   @override
   @JsonKey()
-  final Selector? failedSelector;
+  final Selector failedSelector;
   @override
   @JsonKey()
-  final Selector? thumbnailSelector;
+  final Selector thumbnailSelector;
   @override
   @JsonKey()
-  final ImageSelector? thumbnail;
+  final ImageSelector thumbnail;
   @override
   @JsonKey()
-  final Selector? target;
+  final Selector target;
   @override
   @JsonKey()
-  final Selector? commentSelector;
+  final Selector commentSelector;
   @override
   @JsonKey()
-  final CommentSelector? comments;
+  final CommentSelector comments;
   @override
   @JsonKey()
-  final Selector? tag;
+  final Selector tag;
   @override
   @JsonKey()
-  final Selector? tagColor;
+  final Selector tagColor;
   @override
   @JsonKey()
-  final Selector? badgeSelector;
+  final Selector badgeSelector;
   @override
   @JsonKey()
-  final Selector? badgeText;
+  final Selector badgeText;
   @override
   @JsonKey()
-  final Selector? badgeCategory;
+  final Selector badgeCategory;
   @override
   @JsonKey()
-  final Selector? chapterSelector;
+  final Selector chapterSelector;
   @override
   @JsonKey()
-  final Selector? chapterTitle;
+  final Selector chapterTitle;
   @override
   @JsonKey()
-  final Selector? chapterSubtitle;
+  final Selector chapterSubtitle;
   @override
   @JsonKey()
-  final ImageSelector? chapterCover;
+  final ImageSelector chapterCover;
   @override
   @JsonKey()
-  final Selector? nextPage;
+  final Selector nextPage;
   @override
   @JsonKey()
-  final Selector? countPrePage;
+  final Selector countPrePage;
 
   @override
   String toString() {
@@ -1827,34 +1671,34 @@ abstract class _GalleryParser extends GalleryParser {
           final ParserType parserType,
       required final String name,
       required final String uuid,
-      final Iterable<ExtraSelector>? extra,
-      final Selector? title,
-      final Selector? subtitle,
-      final Selector? uploadTime,
-      final Selector? star,
-      final Selector? imgCount,
-      final Selector? pageCount,
-      final Selector? language,
-      final ImageSelector? coverImg,
-      final Selector? description,
-      final Selector? successSelector,
-      final Selector? failedSelector,
-      final Selector? thumbnailSelector,
-      final ImageSelector? thumbnail,
-      final Selector? target,
-      final Selector? commentSelector,
-      final CommentSelector? comments,
-      final Selector? tag,
-      final Selector? tagColor,
-      final Selector? badgeSelector,
-      final Selector? badgeText,
-      final Selector? badgeCategory,
-      final Selector? chapterSelector,
-      final Selector? chapterTitle,
-      final Selector? chapterSubtitle,
-      final ImageSelector? chapterCover,
-      final Selector? nextPage,
-      final Selector? countPrePage}) = _$_GalleryParser;
+      final Iterable<ExtraSelector> extra,
+      final Selector title,
+      final Selector subtitle,
+      final Selector uploadTime,
+      final Selector star,
+      final Selector imgCount,
+      final Selector pageCount,
+      final Selector language,
+      final ImageSelector coverImg,
+      final Selector description,
+      final Selector successSelector,
+      final Selector failedSelector,
+      final Selector thumbnailSelector,
+      final ImageSelector thumbnail,
+      final Selector target,
+      final Selector commentSelector,
+      final CommentSelector comments,
+      final Selector tag,
+      final Selector tagColor,
+      final Selector badgeSelector,
+      final Selector badgeText,
+      final Selector badgeCategory,
+      final Selector chapterSelector,
+      final Selector chapterTitle,
+      final Selector chapterSubtitle,
+      final ImageSelector chapterCover,
+      final Selector nextPage,
+      final Selector countPrePage}) = _$_GalleryParser;
   _GalleryParser._() : super._();
 
   factory _GalleryParser.fromJson(Map<String, dynamic> json) =
@@ -1868,61 +1712,61 @@ abstract class _GalleryParser extends GalleryParser {
   @override
   String get uuid;
   @override
-  Iterable<ExtraSelector>? get extra;
+  Iterable<ExtraSelector> get extra;
   @override
-  Selector? get title;
+  Selector get title;
   @override
-  Selector? get subtitle;
+  Selector get subtitle;
   @override
-  Selector? get uploadTime;
+  Selector get uploadTime;
   @override
-  Selector? get star;
+  Selector get star;
   @override
-  Selector? get imgCount;
+  Selector get imgCount;
   @override
-  Selector? get pageCount;
+  Selector get pageCount;
   @override
-  Selector? get language;
+  Selector get language;
   @override
-  ImageSelector? get coverImg;
+  ImageSelector get coverImg;
   @override
-  Selector? get description;
+  Selector get description;
   @override
-  Selector? get successSelector;
+  Selector get successSelector;
   @override
-  Selector? get failedSelector;
+  Selector get failedSelector;
   @override
-  Selector? get thumbnailSelector;
+  Selector get thumbnailSelector;
   @override
-  ImageSelector? get thumbnail;
+  ImageSelector get thumbnail;
   @override
-  Selector? get target;
+  Selector get target;
   @override
-  Selector? get commentSelector;
+  Selector get commentSelector;
   @override
-  CommentSelector? get comments;
+  CommentSelector get comments;
   @override
-  Selector? get tag;
+  Selector get tag;
   @override
-  Selector? get tagColor;
+  Selector get tagColor;
   @override
-  Selector? get badgeSelector;
+  Selector get badgeSelector;
   @override
-  Selector? get badgeText;
+  Selector get badgeText;
   @override
-  Selector? get badgeCategory;
+  Selector get badgeCategory;
   @override
-  Selector? get chapterSelector;
+  Selector get chapterSelector;
   @override
-  Selector? get chapterTitle;
+  Selector get chapterTitle;
   @override
-  Selector? get chapterSubtitle;
+  Selector get chapterSubtitle;
   @override
-  ImageSelector? get chapterCover;
+  ImageSelector get chapterCover;
   @override
-  Selector? get nextPage;
+  Selector get nextPage;
   @override
-  Selector? get countPrePage;
+  Selector get countPrePage;
   @override
   @JsonKey(ignore: true)
   _$$_GalleryParserCopyWith<_$_GalleryParser> get copyWith =>
@@ -1939,26 +1783,26 @@ mixin _$ListViewParser {
   ParserType get parserType => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
-  Iterable<ExtraSelector>? get extra => throw _privateConstructorUsedError;
-  Selector? get itemSelector => throw _privateConstructorUsedError;
-  Selector? get successSelector => throw _privateConstructorUsedError;
-  Selector? get failedSelector => throw _privateConstructorUsedError;
-  Selector? get title => throw _privateConstructorUsedError;
-  Selector? get subtitle => throw _privateConstructorUsedError;
-  Selector? get uploadTime => throw _privateConstructorUsedError;
-  Selector? get star => throw _privateConstructorUsedError;
-  Selector? get imgCount => throw _privateConstructorUsedError;
-  Selector? get language => throw _privateConstructorUsedError;
-  ImageSelector? get previewImg => throw _privateConstructorUsedError;
-  Selector? get target => throw _privateConstructorUsedError;
-  Selector? get tag => throw _privateConstructorUsedError;
-  Selector? get tagColor => throw _privateConstructorUsedError;
-  Selector? get badgeSelector => throw _privateConstructorUsedError;
-  Selector? get badgeText => throw _privateConstructorUsedError;
-  Selector? get badgeColor => throw _privateConstructorUsedError;
-  Selector? get paper => throw _privateConstructorUsedError;
-  Selector? get idCode => throw _privateConstructorUsedError;
-  Selector? get nextPage => throw _privateConstructorUsedError;
+  Iterable<ExtraSelector> get extra => throw _privateConstructorUsedError;
+  Selector get itemSelector => throw _privateConstructorUsedError;
+  Selector get successSelector => throw _privateConstructorUsedError;
+  Selector get failedSelector => throw _privateConstructorUsedError;
+  Selector get title => throw _privateConstructorUsedError;
+  Selector get subtitle => throw _privateConstructorUsedError;
+  Selector get uploadTime => throw _privateConstructorUsedError;
+  Selector get star => throw _privateConstructorUsedError;
+  Selector get imgCount => throw _privateConstructorUsedError;
+  Selector get language => throw _privateConstructorUsedError;
+  ImageSelector get previewImg => throw _privateConstructorUsedError;
+  Selector get target => throw _privateConstructorUsedError;
+  Selector get tag => throw _privateConstructorUsedError;
+  Selector get tagColor => throw _privateConstructorUsedError;
+  Selector get badgeSelector => throw _privateConstructorUsedError;
+  Selector get badgeText => throw _privateConstructorUsedError;
+  Selector get badgeColor => throw _privateConstructorUsedError;
+  Selector get paper => throw _privateConstructorUsedError;
+  Selector get idCode => throw _privateConstructorUsedError;
+  Selector get nextPage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1977,46 +1821,46 @@ abstract class $ListViewParserCopyWith<$Res> {
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector>? extra,
-      Selector? itemSelector,
-      Selector? successSelector,
-      Selector? failedSelector,
-      Selector? title,
-      Selector? subtitle,
-      Selector? uploadTime,
-      Selector? star,
-      Selector? imgCount,
-      Selector? language,
-      ImageSelector? previewImg,
-      Selector? target,
-      Selector? tag,
-      Selector? tagColor,
-      Selector? badgeSelector,
-      Selector? badgeText,
-      Selector? badgeColor,
-      Selector? paper,
-      Selector? idCode,
-      Selector? nextPage});
+      Iterable<ExtraSelector> extra,
+      Selector itemSelector,
+      Selector successSelector,
+      Selector failedSelector,
+      Selector title,
+      Selector subtitle,
+      Selector uploadTime,
+      Selector star,
+      Selector imgCount,
+      Selector language,
+      ImageSelector previewImg,
+      Selector target,
+      Selector tag,
+      Selector tagColor,
+      Selector badgeSelector,
+      Selector badgeText,
+      Selector badgeColor,
+      Selector paper,
+      Selector idCode,
+      Selector nextPage});
 
-  $SelectorCopyWith<$Res>? get itemSelector;
-  $SelectorCopyWith<$Res>? get successSelector;
-  $SelectorCopyWith<$Res>? get failedSelector;
-  $SelectorCopyWith<$Res>? get title;
-  $SelectorCopyWith<$Res>? get subtitle;
-  $SelectorCopyWith<$Res>? get uploadTime;
-  $SelectorCopyWith<$Res>? get star;
-  $SelectorCopyWith<$Res>? get imgCount;
-  $SelectorCopyWith<$Res>? get language;
-  $ImageSelectorCopyWith<$Res>? get previewImg;
-  $SelectorCopyWith<$Res>? get target;
-  $SelectorCopyWith<$Res>? get tag;
-  $SelectorCopyWith<$Res>? get tagColor;
-  $SelectorCopyWith<$Res>? get badgeSelector;
-  $SelectorCopyWith<$Res>? get badgeText;
-  $SelectorCopyWith<$Res>? get badgeColor;
-  $SelectorCopyWith<$Res>? get paper;
-  $SelectorCopyWith<$Res>? get idCode;
-  $SelectorCopyWith<$Res>? get nextPage;
+  $SelectorCopyWith<$Res> get itemSelector;
+  $SelectorCopyWith<$Res> get successSelector;
+  $SelectorCopyWith<$Res> get failedSelector;
+  $SelectorCopyWith<$Res> get title;
+  $SelectorCopyWith<$Res> get subtitle;
+  $SelectorCopyWith<$Res> get uploadTime;
+  $SelectorCopyWith<$Res> get star;
+  $SelectorCopyWith<$Res> get imgCount;
+  $SelectorCopyWith<$Res> get language;
+  $ImageSelectorCopyWith<$Res> get previewImg;
+  $SelectorCopyWith<$Res> get target;
+  $SelectorCopyWith<$Res> get tag;
+  $SelectorCopyWith<$Res> get tagColor;
+  $SelectorCopyWith<$Res> get badgeSelector;
+  $SelectorCopyWith<$Res> get badgeText;
+  $SelectorCopyWith<$Res> get badgeColor;
+  $SelectorCopyWith<$Res> get paper;
+  $SelectorCopyWith<$Res> get idCode;
+  $SelectorCopyWith<$Res> get nextPage;
 }
 
 /// @nodoc
@@ -2035,26 +1879,26 @@ class _$ListViewParserCopyWithImpl<$Res, $Val extends ListViewParser>
     Object? parserType = null,
     Object? name = null,
     Object? uuid = null,
-    Object? extra = freezed,
-    Object? itemSelector = freezed,
-    Object? successSelector = freezed,
-    Object? failedSelector = freezed,
-    Object? title = freezed,
-    Object? subtitle = freezed,
-    Object? uploadTime = freezed,
-    Object? star = freezed,
-    Object? imgCount = freezed,
-    Object? language = freezed,
-    Object? previewImg = freezed,
-    Object? target = freezed,
-    Object? tag = freezed,
-    Object? tagColor = freezed,
-    Object? badgeSelector = freezed,
-    Object? badgeText = freezed,
-    Object? badgeColor = freezed,
-    Object? paper = freezed,
-    Object? idCode = freezed,
-    Object? nextPage = freezed,
+    Object? extra = null,
+    Object? itemSelector = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
+    Object? title = null,
+    Object? subtitle = null,
+    Object? uploadTime = null,
+    Object? star = null,
+    Object? imgCount = null,
+    Object? language = null,
+    Object? previewImg = null,
+    Object? target = null,
+    Object? tag = null,
+    Object? tagColor = null,
+    Object? badgeSelector = null,
+    Object? badgeText = null,
+    Object? badgeColor = null,
+    Object? paper = null,
+    Object? idCode = null,
+    Object? nextPage = null,
   }) {
     return _then(_value.copyWith(
       parserType: null == parserType
@@ -2069,313 +1913,237 @@ class _$ListViewParserCopyWithImpl<$Res, $Val extends ListViewParser>
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
-      extra: freezed == extra
+      extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>?,
-      itemSelector: freezed == itemSelector
+              as Iterable<ExtraSelector>,
+      itemSelector: null == itemSelector
           ? _value.itemSelector
           : itemSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      successSelector: freezed == successSelector
+              as Selector,
+      successSelector: null == successSelector
           ? _value.successSelector
           : successSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      failedSelector: freezed == failedSelector
+              as Selector,
+      failedSelector: null == failedSelector
           ? _value.failedSelector
           : failedSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      title: freezed == title
+              as Selector,
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      subtitle: freezed == subtitle
+              as Selector,
+      subtitle: null == subtitle
           ? _value.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      uploadTime: freezed == uploadTime
+              as Selector,
+      uploadTime: null == uploadTime
           ? _value.uploadTime
           : uploadTime // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      star: freezed == star
+              as Selector,
+      star: null == star
           ? _value.star
           : star // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      imgCount: freezed == imgCount
+              as Selector,
+      imgCount: null == imgCount
           ? _value.imgCount
           : imgCount // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      language: freezed == language
+              as Selector,
+      language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      previewImg: freezed == previewImg
+              as Selector,
+      previewImg: null == previewImg
           ? _value.previewImg
           : previewImg // ignore: cast_nullable_to_non_nullable
-              as ImageSelector?,
-      target: freezed == target
+              as ImageSelector,
+      target: null == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      tag: freezed == tag
+              as Selector,
+      tag: null == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      tagColor: freezed == tagColor
+              as Selector,
+      tagColor: null == tagColor
           ? _value.tagColor
           : tagColor // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeSelector: freezed == badgeSelector
+              as Selector,
+      badgeSelector: null == badgeSelector
           ? _value.badgeSelector
           : badgeSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeText: freezed == badgeText
+              as Selector,
+      badgeText: null == badgeText
           ? _value.badgeText
           : badgeText // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeColor: freezed == badgeColor
+              as Selector,
+      badgeColor: null == badgeColor
           ? _value.badgeColor
           : badgeColor // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      paper: freezed == paper
+              as Selector,
+      paper: null == paper
           ? _value.paper
           : paper // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      idCode: freezed == idCode
+              as Selector,
+      idCode: null == idCode
           ? _value.idCode
           : idCode // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      nextPage: freezed == nextPage
+              as Selector,
+      nextPage: null == nextPage
           ? _value.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
-              as Selector?,
+              as Selector,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get itemSelector {
-    if (_value.itemSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.itemSelector!, (value) {
+  $SelectorCopyWith<$Res> get itemSelector {
+    return $SelectorCopyWith<$Res>(_value.itemSelector, (value) {
       return _then(_value.copyWith(itemSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get successSelector {
-    if (_value.successSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.successSelector!, (value) {
+  $SelectorCopyWith<$Res> get successSelector {
+    return $SelectorCopyWith<$Res>(_value.successSelector, (value) {
       return _then(_value.copyWith(successSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get failedSelector {
-    if (_value.failedSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.failedSelector!, (value) {
+  $SelectorCopyWith<$Res> get failedSelector {
+    return $SelectorCopyWith<$Res>(_value.failedSelector, (value) {
       return _then(_value.copyWith(failedSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get title {
-    if (_value.title == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.title!, (value) {
+  $SelectorCopyWith<$Res> get title {
+    return $SelectorCopyWith<$Res>(_value.title, (value) {
       return _then(_value.copyWith(title: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get subtitle {
-    if (_value.subtitle == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.subtitle!, (value) {
+  $SelectorCopyWith<$Res> get subtitle {
+    return $SelectorCopyWith<$Res>(_value.subtitle, (value) {
       return _then(_value.copyWith(subtitle: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get uploadTime {
-    if (_value.uploadTime == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.uploadTime!, (value) {
+  $SelectorCopyWith<$Res> get uploadTime {
+    return $SelectorCopyWith<$Res>(_value.uploadTime, (value) {
       return _then(_value.copyWith(uploadTime: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get star {
-    if (_value.star == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.star!, (value) {
+  $SelectorCopyWith<$Res> get star {
+    return $SelectorCopyWith<$Res>(_value.star, (value) {
       return _then(_value.copyWith(star: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get imgCount {
-    if (_value.imgCount == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.imgCount!, (value) {
+  $SelectorCopyWith<$Res> get imgCount {
+    return $SelectorCopyWith<$Res>(_value.imgCount, (value) {
       return _then(_value.copyWith(imgCount: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get language {
-    if (_value.language == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.language!, (value) {
+  $SelectorCopyWith<$Res> get language {
+    return $SelectorCopyWith<$Res>(_value.language, (value) {
       return _then(_value.copyWith(language: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageSelectorCopyWith<$Res>? get previewImg {
-    if (_value.previewImg == null) {
-      return null;
-    }
-
-    return $ImageSelectorCopyWith<$Res>(_value.previewImg!, (value) {
+  $ImageSelectorCopyWith<$Res> get previewImg {
+    return $ImageSelectorCopyWith<$Res>(_value.previewImg, (value) {
       return _then(_value.copyWith(previewImg: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get target {
-    if (_value.target == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.target!, (value) {
+  $SelectorCopyWith<$Res> get target {
+    return $SelectorCopyWith<$Res>(_value.target, (value) {
       return _then(_value.copyWith(target: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get tag {
-    if (_value.tag == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.tag!, (value) {
+  $SelectorCopyWith<$Res> get tag {
+    return $SelectorCopyWith<$Res>(_value.tag, (value) {
       return _then(_value.copyWith(tag: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get tagColor {
-    if (_value.tagColor == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.tagColor!, (value) {
+  $SelectorCopyWith<$Res> get tagColor {
+    return $SelectorCopyWith<$Res>(_value.tagColor, (value) {
       return _then(_value.copyWith(tagColor: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get badgeSelector {
-    if (_value.badgeSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.badgeSelector!, (value) {
+  $SelectorCopyWith<$Res> get badgeSelector {
+    return $SelectorCopyWith<$Res>(_value.badgeSelector, (value) {
       return _then(_value.copyWith(badgeSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get badgeText {
-    if (_value.badgeText == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.badgeText!, (value) {
+  $SelectorCopyWith<$Res> get badgeText {
+    return $SelectorCopyWith<$Res>(_value.badgeText, (value) {
       return _then(_value.copyWith(badgeText: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get badgeColor {
-    if (_value.badgeColor == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.badgeColor!, (value) {
+  $SelectorCopyWith<$Res> get badgeColor {
+    return $SelectorCopyWith<$Res>(_value.badgeColor, (value) {
       return _then(_value.copyWith(badgeColor: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get paper {
-    if (_value.paper == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.paper!, (value) {
+  $SelectorCopyWith<$Res> get paper {
+    return $SelectorCopyWith<$Res>(_value.paper, (value) {
       return _then(_value.copyWith(paper: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get idCode {
-    if (_value.idCode == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.idCode!, (value) {
+  $SelectorCopyWith<$Res> get idCode {
+    return $SelectorCopyWith<$Res>(_value.idCode, (value) {
       return _then(_value.copyWith(idCode: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get nextPage {
-    if (_value.nextPage == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.nextPage!, (value) {
+  $SelectorCopyWith<$Res> get nextPage {
+    return $SelectorCopyWith<$Res>(_value.nextPage, (value) {
       return _then(_value.copyWith(nextPage: value) as $Val);
     });
   }
@@ -2394,65 +2162,65 @@ abstract class _$$_ListViewParserCopyWith<$Res>
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector>? extra,
-      Selector? itemSelector,
-      Selector? successSelector,
-      Selector? failedSelector,
-      Selector? title,
-      Selector? subtitle,
-      Selector? uploadTime,
-      Selector? star,
-      Selector? imgCount,
-      Selector? language,
-      ImageSelector? previewImg,
-      Selector? target,
-      Selector? tag,
-      Selector? tagColor,
-      Selector? badgeSelector,
-      Selector? badgeText,
-      Selector? badgeColor,
-      Selector? paper,
-      Selector? idCode,
-      Selector? nextPage});
+      Iterable<ExtraSelector> extra,
+      Selector itemSelector,
+      Selector successSelector,
+      Selector failedSelector,
+      Selector title,
+      Selector subtitle,
+      Selector uploadTime,
+      Selector star,
+      Selector imgCount,
+      Selector language,
+      ImageSelector previewImg,
+      Selector target,
+      Selector tag,
+      Selector tagColor,
+      Selector badgeSelector,
+      Selector badgeText,
+      Selector badgeColor,
+      Selector paper,
+      Selector idCode,
+      Selector nextPage});
 
   @override
-  $SelectorCopyWith<$Res>? get itemSelector;
+  $SelectorCopyWith<$Res> get itemSelector;
   @override
-  $SelectorCopyWith<$Res>? get successSelector;
+  $SelectorCopyWith<$Res> get successSelector;
   @override
-  $SelectorCopyWith<$Res>? get failedSelector;
+  $SelectorCopyWith<$Res> get failedSelector;
   @override
-  $SelectorCopyWith<$Res>? get title;
+  $SelectorCopyWith<$Res> get title;
   @override
-  $SelectorCopyWith<$Res>? get subtitle;
+  $SelectorCopyWith<$Res> get subtitle;
   @override
-  $SelectorCopyWith<$Res>? get uploadTime;
+  $SelectorCopyWith<$Res> get uploadTime;
   @override
-  $SelectorCopyWith<$Res>? get star;
+  $SelectorCopyWith<$Res> get star;
   @override
-  $SelectorCopyWith<$Res>? get imgCount;
+  $SelectorCopyWith<$Res> get imgCount;
   @override
-  $SelectorCopyWith<$Res>? get language;
+  $SelectorCopyWith<$Res> get language;
   @override
-  $ImageSelectorCopyWith<$Res>? get previewImg;
+  $ImageSelectorCopyWith<$Res> get previewImg;
   @override
-  $SelectorCopyWith<$Res>? get target;
+  $SelectorCopyWith<$Res> get target;
   @override
-  $SelectorCopyWith<$Res>? get tag;
+  $SelectorCopyWith<$Res> get tag;
   @override
-  $SelectorCopyWith<$Res>? get tagColor;
+  $SelectorCopyWith<$Res> get tagColor;
   @override
-  $SelectorCopyWith<$Res>? get badgeSelector;
+  $SelectorCopyWith<$Res> get badgeSelector;
   @override
-  $SelectorCopyWith<$Res>? get badgeText;
+  $SelectorCopyWith<$Res> get badgeText;
   @override
-  $SelectorCopyWith<$Res>? get badgeColor;
+  $SelectorCopyWith<$Res> get badgeColor;
   @override
-  $SelectorCopyWith<$Res>? get paper;
+  $SelectorCopyWith<$Res> get paper;
   @override
-  $SelectorCopyWith<$Res>? get idCode;
+  $SelectorCopyWith<$Res> get idCode;
   @override
-  $SelectorCopyWith<$Res>? get nextPage;
+  $SelectorCopyWith<$Res> get nextPage;
 }
 
 /// @nodoc
@@ -2469,26 +2237,26 @@ class __$$_ListViewParserCopyWithImpl<$Res>
     Object? parserType = null,
     Object? name = null,
     Object? uuid = null,
-    Object? extra = freezed,
-    Object? itemSelector = freezed,
-    Object? successSelector = freezed,
-    Object? failedSelector = freezed,
-    Object? title = freezed,
-    Object? subtitle = freezed,
-    Object? uploadTime = freezed,
-    Object? star = freezed,
-    Object? imgCount = freezed,
-    Object? language = freezed,
-    Object? previewImg = freezed,
-    Object? target = freezed,
-    Object? tag = freezed,
-    Object? tagColor = freezed,
-    Object? badgeSelector = freezed,
-    Object? badgeText = freezed,
-    Object? badgeColor = freezed,
-    Object? paper = freezed,
-    Object? idCode = freezed,
-    Object? nextPage = freezed,
+    Object? extra = null,
+    Object? itemSelector = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
+    Object? title = null,
+    Object? subtitle = null,
+    Object? uploadTime = null,
+    Object? star = null,
+    Object? imgCount = null,
+    Object? language = null,
+    Object? previewImg = null,
+    Object? target = null,
+    Object? tag = null,
+    Object? tagColor = null,
+    Object? badgeSelector = null,
+    Object? badgeText = null,
+    Object? badgeColor = null,
+    Object? paper = null,
+    Object? idCode = null,
+    Object? nextPage = null,
   }) {
     return _then(_$_ListViewParser(
       parserType: null == parserType
@@ -2503,86 +2271,86 @@ class __$$_ListViewParserCopyWithImpl<$Res>
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
-      extra: freezed == extra
+      extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>?,
-      itemSelector: freezed == itemSelector
+              as Iterable<ExtraSelector>,
+      itemSelector: null == itemSelector
           ? _value.itemSelector
           : itemSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      successSelector: freezed == successSelector
+              as Selector,
+      successSelector: null == successSelector
           ? _value.successSelector
           : successSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      failedSelector: freezed == failedSelector
+              as Selector,
+      failedSelector: null == failedSelector
           ? _value.failedSelector
           : failedSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      title: freezed == title
+              as Selector,
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      subtitle: freezed == subtitle
+              as Selector,
+      subtitle: null == subtitle
           ? _value.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      uploadTime: freezed == uploadTime
+              as Selector,
+      uploadTime: null == uploadTime
           ? _value.uploadTime
           : uploadTime // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      star: freezed == star
+              as Selector,
+      star: null == star
           ? _value.star
           : star // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      imgCount: freezed == imgCount
+              as Selector,
+      imgCount: null == imgCount
           ? _value.imgCount
           : imgCount // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      language: freezed == language
+              as Selector,
+      language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      previewImg: freezed == previewImg
+              as Selector,
+      previewImg: null == previewImg
           ? _value.previewImg
           : previewImg // ignore: cast_nullable_to_non_nullable
-              as ImageSelector?,
-      target: freezed == target
+              as ImageSelector,
+      target: null == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      tag: freezed == tag
+              as Selector,
+      tag: null == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      tagColor: freezed == tagColor
+              as Selector,
+      tagColor: null == tagColor
           ? _value.tagColor
           : tagColor // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeSelector: freezed == badgeSelector
+              as Selector,
+      badgeSelector: null == badgeSelector
           ? _value.badgeSelector
           : badgeSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeText: freezed == badgeText
+              as Selector,
+      badgeText: null == badgeText
           ? _value.badgeText
           : badgeText // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      badgeColor: freezed == badgeColor
+              as Selector,
+      badgeColor: null == badgeColor
           ? _value.badgeColor
           : badgeColor // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      paper: freezed == paper
+              as Selector,
+      paper: null == paper
           ? _value.paper
           : paper // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      idCode: freezed == idCode
+              as Selector,
+      idCode: null == idCode
           ? _value.idCode
           : idCode // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      nextPage: freezed == nextPage
+              as Selector,
+      nextPage: null == nextPage
           ? _value.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
-              as Selector?,
+              as Selector,
     ));
   }
 }
@@ -2631,64 +2399,64 @@ class _$_ListViewParser extends _ListViewParser {
   final String uuid;
   @override
   @JsonKey()
-  final Iterable<ExtraSelector>? extra;
+  final Iterable<ExtraSelector> extra;
   @override
   @JsonKey()
-  final Selector? itemSelector;
+  final Selector itemSelector;
   @override
   @JsonKey()
-  final Selector? successSelector;
+  final Selector successSelector;
   @override
   @JsonKey()
-  final Selector? failedSelector;
+  final Selector failedSelector;
   @override
   @JsonKey()
-  final Selector? title;
+  final Selector title;
   @override
   @JsonKey()
-  final Selector? subtitle;
+  final Selector subtitle;
   @override
   @JsonKey()
-  final Selector? uploadTime;
+  final Selector uploadTime;
   @override
   @JsonKey()
-  final Selector? star;
+  final Selector star;
   @override
   @JsonKey()
-  final Selector? imgCount;
+  final Selector imgCount;
   @override
   @JsonKey()
-  final Selector? language;
+  final Selector language;
   @override
   @JsonKey()
-  final ImageSelector? previewImg;
+  final ImageSelector previewImg;
   @override
   @JsonKey()
-  final Selector? target;
+  final Selector target;
   @override
   @JsonKey()
-  final Selector? tag;
+  final Selector tag;
   @override
   @JsonKey()
-  final Selector? tagColor;
+  final Selector tagColor;
   @override
   @JsonKey()
-  final Selector? badgeSelector;
+  final Selector badgeSelector;
   @override
   @JsonKey()
-  final Selector? badgeText;
+  final Selector badgeText;
   @override
   @JsonKey()
-  final Selector? badgeColor;
+  final Selector badgeColor;
   @override
   @JsonKey()
-  final Selector? paper;
+  final Selector paper;
   @override
   @JsonKey()
-  final Selector? idCode;
+  final Selector idCode;
   @override
   @JsonKey()
-  final Selector? nextPage;
+  final Selector nextPage;
 
   @override
   String toString() {
@@ -2788,26 +2556,26 @@ abstract class _ListViewParser extends ListViewParser {
           final ParserType parserType,
       required final String name,
       required final String uuid,
-      final Iterable<ExtraSelector>? extra,
-      final Selector? itemSelector,
-      final Selector? successSelector,
-      final Selector? failedSelector,
-      final Selector? title,
-      final Selector? subtitle,
-      final Selector? uploadTime,
-      final Selector? star,
-      final Selector? imgCount,
-      final Selector? language,
-      final ImageSelector? previewImg,
-      final Selector? target,
-      final Selector? tag,
-      final Selector? tagColor,
-      final Selector? badgeSelector,
-      final Selector? badgeText,
-      final Selector? badgeColor,
-      final Selector? paper,
-      final Selector? idCode,
-      final Selector? nextPage}) = _$_ListViewParser;
+      final Iterable<ExtraSelector> extra,
+      final Selector itemSelector,
+      final Selector successSelector,
+      final Selector failedSelector,
+      final Selector title,
+      final Selector subtitle,
+      final Selector uploadTime,
+      final Selector star,
+      final Selector imgCount,
+      final Selector language,
+      final ImageSelector previewImg,
+      final Selector target,
+      final Selector tag,
+      final Selector tagColor,
+      final Selector badgeSelector,
+      final Selector badgeText,
+      final Selector badgeColor,
+      final Selector paper,
+      final Selector idCode,
+      final Selector nextPage}) = _$_ListViewParser;
   _ListViewParser._() : super._();
 
   factory _ListViewParser.fromJson(Map<String, dynamic> json) =
@@ -2821,45 +2589,45 @@ abstract class _ListViewParser extends ListViewParser {
   @override
   String get uuid;
   @override
-  Iterable<ExtraSelector>? get extra;
+  Iterable<ExtraSelector> get extra;
   @override
-  Selector? get itemSelector;
+  Selector get itemSelector;
   @override
-  Selector? get successSelector;
+  Selector get successSelector;
   @override
-  Selector? get failedSelector;
+  Selector get failedSelector;
   @override
-  Selector? get title;
+  Selector get title;
   @override
-  Selector? get subtitle;
+  Selector get subtitle;
   @override
-  Selector? get uploadTime;
+  Selector get uploadTime;
   @override
-  Selector? get star;
+  Selector get star;
   @override
-  Selector? get imgCount;
+  Selector get imgCount;
   @override
-  Selector? get language;
+  Selector get language;
   @override
-  ImageSelector? get previewImg;
+  ImageSelector get previewImg;
   @override
-  Selector? get target;
+  Selector get target;
   @override
-  Selector? get tag;
+  Selector get tag;
   @override
-  Selector? get tagColor;
+  Selector get tagColor;
   @override
-  Selector? get badgeSelector;
+  Selector get badgeSelector;
   @override
-  Selector? get badgeText;
+  Selector get badgeText;
   @override
-  Selector? get badgeColor;
+  Selector get badgeColor;
   @override
-  Selector? get paper;
+  Selector get paper;
   @override
-  Selector? get idCode;
+  Selector get idCode;
   @override
-  Selector? get nextPage;
+  Selector get nextPage;
   @override
   @JsonKey(ignore: true)
   _$$_ListViewParserCopyWith<_$_ListViewParser> get copyWith =>
@@ -2877,12 +2645,12 @@ mixin _$AutoCompleteParser {
   String get name => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
   Iterable<ExtraSelector>? get extra => throw _privateConstructorUsedError;
-  Selector? get itemSelector => throw _privateConstructorUsedError;
-  Selector? get itemComplete => throw _privateConstructorUsedError;
-  Selector? get itemTitle => throw _privateConstructorUsedError;
-  Selector? get itemSubtitle => throw _privateConstructorUsedError;
-  Selector? get successSelector => throw _privateConstructorUsedError;
-  Selector? get failedSelector => throw _privateConstructorUsedError;
+  Selector get itemSelector => throw _privateConstructorUsedError;
+  Selector get itemComplete => throw _privateConstructorUsedError;
+  Selector get itemTitle => throw _privateConstructorUsedError;
+  Selector get itemSubtitle => throw _privateConstructorUsedError;
+  Selector get successSelector => throw _privateConstructorUsedError;
+  Selector get failedSelector => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2902,19 +2670,19 @@ abstract class $AutoCompleteParserCopyWith<$Res> {
       String name,
       String uuid,
       Iterable<ExtraSelector>? extra,
-      Selector? itemSelector,
-      Selector? itemComplete,
-      Selector? itemTitle,
-      Selector? itemSubtitle,
-      Selector? successSelector,
-      Selector? failedSelector});
+      Selector itemSelector,
+      Selector itemComplete,
+      Selector itemTitle,
+      Selector itemSubtitle,
+      Selector successSelector,
+      Selector failedSelector});
 
-  $SelectorCopyWith<$Res>? get itemSelector;
-  $SelectorCopyWith<$Res>? get itemComplete;
-  $SelectorCopyWith<$Res>? get itemTitle;
-  $SelectorCopyWith<$Res>? get itemSubtitle;
-  $SelectorCopyWith<$Res>? get successSelector;
-  $SelectorCopyWith<$Res>? get failedSelector;
+  $SelectorCopyWith<$Res> get itemSelector;
+  $SelectorCopyWith<$Res> get itemComplete;
+  $SelectorCopyWith<$Res> get itemTitle;
+  $SelectorCopyWith<$Res> get itemSubtitle;
+  $SelectorCopyWith<$Res> get successSelector;
+  $SelectorCopyWith<$Res> get failedSelector;
 }
 
 /// @nodoc
@@ -2934,12 +2702,12 @@ class _$AutoCompleteParserCopyWithImpl<$Res, $Val extends AutoCompleteParser>
     Object? name = null,
     Object? uuid = null,
     Object? extra = freezed,
-    Object? itemSelector = freezed,
-    Object? itemComplete = freezed,
-    Object? itemTitle = freezed,
-    Object? itemSubtitle = freezed,
-    Object? successSelector = freezed,
-    Object? failedSelector = freezed,
+    Object? itemSelector = null,
+    Object? itemComplete = null,
+    Object? itemTitle = null,
+    Object? itemSubtitle = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
   }) {
     return _then(_value.copyWith(
       parserType: null == parserType
@@ -2958,101 +2726,77 @@ class _$AutoCompleteParserCopyWithImpl<$Res, $Val extends AutoCompleteParser>
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
               as Iterable<ExtraSelector>?,
-      itemSelector: freezed == itemSelector
+      itemSelector: null == itemSelector
           ? _value.itemSelector
           : itemSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      itemComplete: freezed == itemComplete
+              as Selector,
+      itemComplete: null == itemComplete
           ? _value.itemComplete
           : itemComplete // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      itemTitle: freezed == itemTitle
+              as Selector,
+      itemTitle: null == itemTitle
           ? _value.itemTitle
           : itemTitle // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      itemSubtitle: freezed == itemSubtitle
+              as Selector,
+      itemSubtitle: null == itemSubtitle
           ? _value.itemSubtitle
           : itemSubtitle // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      successSelector: freezed == successSelector
+              as Selector,
+      successSelector: null == successSelector
           ? _value.successSelector
           : successSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      failedSelector: freezed == failedSelector
+              as Selector,
+      failedSelector: null == failedSelector
           ? _value.failedSelector
           : failedSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
+              as Selector,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get itemSelector {
-    if (_value.itemSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.itemSelector!, (value) {
+  $SelectorCopyWith<$Res> get itemSelector {
+    return $SelectorCopyWith<$Res>(_value.itemSelector, (value) {
       return _then(_value.copyWith(itemSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get itemComplete {
-    if (_value.itemComplete == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.itemComplete!, (value) {
+  $SelectorCopyWith<$Res> get itemComplete {
+    return $SelectorCopyWith<$Res>(_value.itemComplete, (value) {
       return _then(_value.copyWith(itemComplete: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get itemTitle {
-    if (_value.itemTitle == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.itemTitle!, (value) {
+  $SelectorCopyWith<$Res> get itemTitle {
+    return $SelectorCopyWith<$Res>(_value.itemTitle, (value) {
       return _then(_value.copyWith(itemTitle: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get itemSubtitle {
-    if (_value.itemSubtitle == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.itemSubtitle!, (value) {
+  $SelectorCopyWith<$Res> get itemSubtitle {
+    return $SelectorCopyWith<$Res>(_value.itemSubtitle, (value) {
       return _then(_value.copyWith(itemSubtitle: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get successSelector {
-    if (_value.successSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.successSelector!, (value) {
+  $SelectorCopyWith<$Res> get successSelector {
+    return $SelectorCopyWith<$Res>(_value.successSelector, (value) {
       return _then(_value.copyWith(successSelector: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get failedSelector {
-    if (_value.failedSelector == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.failedSelector!, (value) {
+  $SelectorCopyWith<$Res> get failedSelector {
+    return $SelectorCopyWith<$Res>(_value.failedSelector, (value) {
       return _then(_value.copyWith(failedSelector: value) as $Val);
     });
   }
@@ -3072,25 +2816,25 @@ abstract class _$$_AutoCompleteParserCopyWith<$Res>
       String name,
       String uuid,
       Iterable<ExtraSelector>? extra,
-      Selector? itemSelector,
-      Selector? itemComplete,
-      Selector? itemTitle,
-      Selector? itemSubtitle,
-      Selector? successSelector,
-      Selector? failedSelector});
+      Selector itemSelector,
+      Selector itemComplete,
+      Selector itemTitle,
+      Selector itemSubtitle,
+      Selector successSelector,
+      Selector failedSelector});
 
   @override
-  $SelectorCopyWith<$Res>? get itemSelector;
+  $SelectorCopyWith<$Res> get itemSelector;
   @override
-  $SelectorCopyWith<$Res>? get itemComplete;
+  $SelectorCopyWith<$Res> get itemComplete;
   @override
-  $SelectorCopyWith<$Res>? get itemTitle;
+  $SelectorCopyWith<$Res> get itemTitle;
   @override
-  $SelectorCopyWith<$Res>? get itemSubtitle;
+  $SelectorCopyWith<$Res> get itemSubtitle;
   @override
-  $SelectorCopyWith<$Res>? get successSelector;
+  $SelectorCopyWith<$Res> get successSelector;
   @override
-  $SelectorCopyWith<$Res>? get failedSelector;
+  $SelectorCopyWith<$Res> get failedSelector;
 }
 
 /// @nodoc
@@ -3108,12 +2852,12 @@ class __$$_AutoCompleteParserCopyWithImpl<$Res>
     Object? name = null,
     Object? uuid = null,
     Object? extra = freezed,
-    Object? itemSelector = freezed,
-    Object? itemComplete = freezed,
-    Object? itemTitle = freezed,
-    Object? itemSubtitle = freezed,
-    Object? successSelector = freezed,
-    Object? failedSelector = freezed,
+    Object? itemSelector = null,
+    Object? itemComplete = null,
+    Object? itemTitle = null,
+    Object? itemSubtitle = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
   }) {
     return _then(_$_AutoCompleteParser(
       parserType: null == parserType
@@ -3132,30 +2876,30 @@ class __$$_AutoCompleteParserCopyWithImpl<$Res>
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
               as Iterable<ExtraSelector>?,
-      itemSelector: freezed == itemSelector
+      itemSelector: null == itemSelector
           ? _value.itemSelector
           : itemSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      itemComplete: freezed == itemComplete
+              as Selector,
+      itemComplete: null == itemComplete
           ? _value.itemComplete
           : itemComplete // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      itemTitle: freezed == itemTitle
+              as Selector,
+      itemTitle: null == itemTitle
           ? _value.itemTitle
           : itemTitle // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      itemSubtitle: freezed == itemSubtitle
+              as Selector,
+      itemSubtitle: null == itemSubtitle
           ? _value.itemSubtitle
           : itemSubtitle // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      successSelector: freezed == successSelector
+              as Selector,
+      successSelector: null == successSelector
           ? _value.successSelector
           : successSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      failedSelector: freezed == failedSelector
+              as Selector,
+      failedSelector: null == failedSelector
           ? _value.failedSelector
           : failedSelector // ignore: cast_nullable_to_non_nullable
-              as Selector?,
+              as Selector,
     ));
   }
 }
@@ -3194,22 +2938,22 @@ class _$_AutoCompleteParser extends _AutoCompleteParser {
   final Iterable<ExtraSelector>? extra;
   @override
   @JsonKey()
-  final Selector? itemSelector;
+  final Selector itemSelector;
   @override
   @JsonKey()
-  final Selector? itemComplete;
+  final Selector itemComplete;
   @override
   @JsonKey()
-  final Selector? itemTitle;
+  final Selector itemTitle;
   @override
   @JsonKey()
-  final Selector? itemSubtitle;
+  final Selector itemSubtitle;
   @override
   @JsonKey()
-  final Selector? successSelector;
+  final Selector successSelector;
   @override
   @JsonKey()
-  final Selector? failedSelector;
+  final Selector failedSelector;
 
   @override
   String toString() {
@@ -3277,12 +3021,12 @@ abstract class _AutoCompleteParser extends AutoCompleteParser {
       required final String name,
       required final String uuid,
       final Iterable<ExtraSelector>? extra,
-      final Selector? itemSelector,
-      final Selector? itemComplete,
-      final Selector? itemTitle,
-      final Selector? itemSubtitle,
-      final Selector? successSelector,
-      final Selector? failedSelector}) = _$_AutoCompleteParser;
+      final Selector itemSelector,
+      final Selector itemComplete,
+      final Selector itemTitle,
+      final Selector itemSubtitle,
+      final Selector successSelector,
+      final Selector failedSelector}) = _$_AutoCompleteParser;
   _AutoCompleteParser._() : super._();
 
   factory _AutoCompleteParser.fromJson(Map<String, dynamic> json) =
@@ -3298,17 +3042,17 @@ abstract class _AutoCompleteParser extends AutoCompleteParser {
   @override
   Iterable<ExtraSelector>? get extra;
   @override
-  Selector? get itemSelector;
+  Selector get itemSelector;
   @override
-  Selector? get itemComplete;
+  Selector get itemComplete;
   @override
-  Selector? get itemTitle;
+  Selector get itemTitle;
   @override
-  Selector? get itemSubtitle;
+  Selector get itemSubtitle;
   @override
-  Selector? get successSelector;
+  Selector get successSelector;
   @override
-  Selector? get failedSelector;
+  Selector get failedSelector;
   @override
   @JsonKey(ignore: true)
   _$$_AutoCompleteParserCopyWith<_$_AutoCompleteParser> get copyWith =>

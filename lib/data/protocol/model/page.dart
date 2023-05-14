@@ -111,7 +111,7 @@ extension PageTemplateTr on Template {
         if (my == this) return parent;
       }
     }
-    throw UnimplementedError('Not define brother ${this}');
+    throw UnimplementedError('Not define brother $this');
   }
 
   Iterable<ParserBaseModel> parser(List<ParserBaseModel> input) {

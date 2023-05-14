@@ -20,14 +20,14 @@ Selector _$SelectorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Selector {
-  String? get selector => throw _privateConstructorUsedError;
-  SelectorType? get type => throw _privateConstructorUsedError;
-  SelectorFunctionType? get function => throw _privateConstructorUsedError;
-  String? get param => throw _privateConstructorUsedError;
-  String? get regex => throw _privateConstructorUsedError;
-  String? get replace => throw _privateConstructorUsedError;
-  ScriptField? get script => throw _privateConstructorUsedError;
-  String? get defaultValue => throw _privateConstructorUsedError;
+  String get selector => throw _privateConstructorUsedError;
+  SelectorType get type => throw _privateConstructorUsedError;
+  SelectorFunctionType get function => throw _privateConstructorUsedError;
+  String get param => throw _privateConstructorUsedError;
+  String get regex => throw _privateConstructorUsedError;
+  String get replace => throw _privateConstructorUsedError;
+  ScriptField get script => throw _privateConstructorUsedError;
+  String get defaultValue => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,16 +41,16 @@ abstract class $SelectorCopyWith<$Res> {
       _$SelectorCopyWithImpl<$Res, Selector>;
   @useResult
   $Res call(
-      {String? selector,
-      SelectorType? type,
-      SelectorFunctionType? function,
-      String? param,
-      String? regex,
-      String? replace,
-      ScriptField? script,
-      String? defaultValue});
+      {String selector,
+      SelectorType type,
+      SelectorFunctionType function,
+      String param,
+      String regex,
+      String replace,
+      ScriptField script,
+      String defaultValue});
 
-  $ScriptFieldCopyWith<$Res>? get script;
+  $ScriptFieldCopyWith<$Res> get script;
 }
 
 /// @nodoc
@@ -66,59 +66,55 @@ class _$SelectorCopyWithImpl<$Res, $Val extends Selector>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selector = freezed,
-    Object? type = freezed,
-    Object? function = freezed,
-    Object? param = freezed,
-    Object? regex = freezed,
-    Object? replace = freezed,
-    Object? script = freezed,
-    Object? defaultValue = freezed,
+    Object? selector = null,
+    Object? type = null,
+    Object? function = null,
+    Object? param = null,
+    Object? regex = null,
+    Object? replace = null,
+    Object? script = null,
+    Object? defaultValue = null,
   }) {
     return _then(_value.copyWith(
-      selector: freezed == selector
+      selector: null == selector
           ? _value.selector
           : selector // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
+              as String,
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SelectorType?,
-      function: freezed == function
+              as SelectorType,
+      function: null == function
           ? _value.function
           : function // ignore: cast_nullable_to_non_nullable
-              as SelectorFunctionType?,
-      param: freezed == param
+              as SelectorFunctionType,
+      param: null == param
           ? _value.param
           : param // ignore: cast_nullable_to_non_nullable
-              as String?,
-      regex: freezed == regex
+              as String,
+      regex: null == regex
           ? _value.regex
           : regex // ignore: cast_nullable_to_non_nullable
-              as String?,
-      replace: freezed == replace
+              as String,
+      replace: null == replace
           ? _value.replace
           : replace // ignore: cast_nullable_to_non_nullable
-              as String?,
-      script: freezed == script
+              as String,
+      script: null == script
           ? _value.script
           : script // ignore: cast_nullable_to_non_nullable
-              as ScriptField?,
-      defaultValue: freezed == defaultValue
+              as ScriptField,
+      defaultValue: null == defaultValue
           ? _value.defaultValue
           : defaultValue // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ScriptFieldCopyWith<$Res>? get script {
-    if (_value.script == null) {
-      return null;
-    }
-
-    return $ScriptFieldCopyWith<$Res>(_value.script!, (value) {
+  $ScriptFieldCopyWith<$Res> get script {
+    return $ScriptFieldCopyWith<$Res>(_value.script, (value) {
       return _then(_value.copyWith(script: value) as $Val);
     });
   }
@@ -132,17 +128,17 @@ abstract class _$$_SelectorCopyWith<$Res> implements $SelectorCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? selector,
-      SelectorType? type,
-      SelectorFunctionType? function,
-      String? param,
-      String? regex,
-      String? replace,
-      ScriptField? script,
-      String? defaultValue});
+      {String selector,
+      SelectorType type,
+      SelectorFunctionType function,
+      String param,
+      String regex,
+      String replace,
+      ScriptField script,
+      String defaultValue});
 
   @override
-  $ScriptFieldCopyWith<$Res>? get script;
+  $ScriptFieldCopyWith<$Res> get script;
 }
 
 /// @nodoc
@@ -156,92 +152,93 @@ class __$$_SelectorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selector = freezed,
-    Object? type = freezed,
-    Object? function = freezed,
-    Object? param = freezed,
-    Object? regex = freezed,
-    Object? replace = freezed,
-    Object? script = freezed,
-    Object? defaultValue = freezed,
+    Object? selector = null,
+    Object? type = null,
+    Object? function = null,
+    Object? param = null,
+    Object? regex = null,
+    Object? replace = null,
+    Object? script = null,
+    Object? defaultValue = null,
   }) {
     return _then(_$_Selector(
-      selector: freezed == selector
+      selector: null == selector
           ? _value.selector
           : selector // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
+              as String,
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SelectorType?,
-      function: freezed == function
+              as SelectorType,
+      function: null == function
           ? _value.function
           : function // ignore: cast_nullable_to_non_nullable
-              as SelectorFunctionType?,
-      param: freezed == param
+              as SelectorFunctionType,
+      param: null == param
           ? _value.param
           : param // ignore: cast_nullable_to_non_nullable
-              as String?,
-      regex: freezed == regex
+              as String,
+      regex: null == regex
           ? _value.regex
           : regex // ignore: cast_nullable_to_non_nullable
-              as String?,
-      replace: freezed == replace
+              as String,
+      replace: null == replace
           ? _value.replace
           : replace // ignore: cast_nullable_to_non_nullable
-              as String?,
-      script: freezed == script
+              as String,
+      script: null == script
           ? _value.script
           : script // ignore: cast_nullable_to_non_nullable
-              as ScriptField?,
-      defaultValue: freezed == defaultValue
+              as ScriptField,
+      defaultValue: null == defaultValue
           ? _value.defaultValue
           : defaultValue // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Selector implements _Selector {
+class _$_Selector extends _Selector {
   const _$_Selector(
       {this.selector = '',
       this.type = SelectorType.css,
-      this.function = SelectorFunctionType.auto,
+      this.function = SelectorFunctionType.text,
       this.param = '',
       this.regex = '',
       this.replace = '',
       this.script = const ScriptField(),
-      this.defaultValue = ''});
+      this.defaultValue = ''})
+      : super._();
 
   factory _$_Selector.fromJson(Map<String, dynamic> json) =>
       _$$_SelectorFromJson(json);
 
   @override
   @JsonKey()
-  final String? selector;
+  final String selector;
   @override
   @JsonKey()
-  final SelectorType? type;
+  final SelectorType type;
   @override
   @JsonKey()
-  final SelectorFunctionType? function;
+  final SelectorFunctionType function;
   @override
   @JsonKey()
-  final String? param;
+  final String param;
   @override
   @JsonKey()
-  final String? regex;
+  final String regex;
   @override
   @JsonKey()
-  final String? replace;
+  final String replace;
   @override
   @JsonKey()
-  final ScriptField? script;
+  final ScriptField script;
   @override
   @JsonKey()
-  final String? defaultValue;
+  final String defaultValue;
 
   @override
   String toString() {
@@ -285,35 +282,36 @@ class _$_Selector implements _Selector {
   }
 }
 
-abstract class _Selector implements Selector {
+abstract class _Selector extends Selector {
   const factory _Selector(
-      {final String? selector,
-      final SelectorType? type,
-      final SelectorFunctionType? function,
-      final String? param,
-      final String? regex,
-      final String? replace,
-      final ScriptField? script,
-      final String? defaultValue}) = _$_Selector;
+      {final String selector,
+      final SelectorType type,
+      final SelectorFunctionType function,
+      final String param,
+      final String regex,
+      final String replace,
+      final ScriptField script,
+      final String defaultValue}) = _$_Selector;
+  const _Selector._() : super._();
 
   factory _Selector.fromJson(Map<String, dynamic> json) = _$_Selector.fromJson;
 
   @override
-  String? get selector;
+  String get selector;
   @override
-  SelectorType? get type;
+  SelectorType get type;
   @override
-  SelectorFunctionType? get function;
+  SelectorFunctionType get function;
   @override
-  String? get param;
+  String get param;
   @override
-  String? get regex;
+  String get regex;
   @override
-  String? get replace;
+  String get replace;
   @override
-  ScriptField? get script;
+  ScriptField get script;
   @override
-  String? get defaultValue;
+  String get defaultValue;
   @override
   @JsonKey(ignore: true)
   _$$_SelectorCopyWith<_$_Selector> get copyWith =>
@@ -326,11 +324,11 @@ ImageSelector _$ImageSelectorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ImageSelector {
-  Selector? get imgUrl => throw _privateConstructorUsedError;
-  Selector? get imgWidth => throw _privateConstructorUsedError;
-  Selector? get imgHeight => throw _privateConstructorUsedError;
-  Selector? get imgX => throw _privateConstructorUsedError;
-  Selector? get imgY => throw _privateConstructorUsedError;
+  Selector get imgUrl => throw _privateConstructorUsedError;
+  Selector get imgWidth => throw _privateConstructorUsedError;
+  Selector get imgHeight => throw _privateConstructorUsedError;
+  Selector get imgX => throw _privateConstructorUsedError;
+  Selector get imgY => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -345,17 +343,17 @@ abstract class $ImageSelectorCopyWith<$Res> {
       _$ImageSelectorCopyWithImpl<$Res, ImageSelector>;
   @useResult
   $Res call(
-      {Selector? imgUrl,
-      Selector? imgWidth,
-      Selector? imgHeight,
-      Selector? imgX,
-      Selector? imgY});
+      {Selector imgUrl,
+      Selector imgWidth,
+      Selector imgHeight,
+      Selector imgX,
+      Selector imgY});
 
-  $SelectorCopyWith<$Res>? get imgUrl;
-  $SelectorCopyWith<$Res>? get imgWidth;
-  $SelectorCopyWith<$Res>? get imgHeight;
-  $SelectorCopyWith<$Res>? get imgX;
-  $SelectorCopyWith<$Res>? get imgY;
+  $SelectorCopyWith<$Res> get imgUrl;
+  $SelectorCopyWith<$Res> get imgWidth;
+  $SelectorCopyWith<$Res> get imgHeight;
+  $SelectorCopyWith<$Res> get imgX;
+  $SelectorCopyWith<$Res> get imgY;
 }
 
 /// @nodoc
@@ -371,92 +369,72 @@ class _$ImageSelectorCopyWithImpl<$Res, $Val extends ImageSelector>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? imgUrl = freezed,
-    Object? imgWidth = freezed,
-    Object? imgHeight = freezed,
-    Object? imgX = freezed,
-    Object? imgY = freezed,
+    Object? imgUrl = null,
+    Object? imgWidth = null,
+    Object? imgHeight = null,
+    Object? imgX = null,
+    Object? imgY = null,
   }) {
     return _then(_value.copyWith(
-      imgUrl: freezed == imgUrl
+      imgUrl: null == imgUrl
           ? _value.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      imgWidth: freezed == imgWidth
+              as Selector,
+      imgWidth: null == imgWidth
           ? _value.imgWidth
           : imgWidth // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      imgHeight: freezed == imgHeight
+              as Selector,
+      imgHeight: null == imgHeight
           ? _value.imgHeight
           : imgHeight // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      imgX: freezed == imgX
+              as Selector,
+      imgX: null == imgX
           ? _value.imgX
           : imgX // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      imgY: freezed == imgY
+              as Selector,
+      imgY: null == imgY
           ? _value.imgY
           : imgY // ignore: cast_nullable_to_non_nullable
-              as Selector?,
+              as Selector,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get imgUrl {
-    if (_value.imgUrl == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.imgUrl!, (value) {
+  $SelectorCopyWith<$Res> get imgUrl {
+    return $SelectorCopyWith<$Res>(_value.imgUrl, (value) {
       return _then(_value.copyWith(imgUrl: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get imgWidth {
-    if (_value.imgWidth == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.imgWidth!, (value) {
+  $SelectorCopyWith<$Res> get imgWidth {
+    return $SelectorCopyWith<$Res>(_value.imgWidth, (value) {
       return _then(_value.copyWith(imgWidth: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get imgHeight {
-    if (_value.imgHeight == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.imgHeight!, (value) {
+  $SelectorCopyWith<$Res> get imgHeight {
+    return $SelectorCopyWith<$Res>(_value.imgHeight, (value) {
       return _then(_value.copyWith(imgHeight: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get imgX {
-    if (_value.imgX == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.imgX!, (value) {
+  $SelectorCopyWith<$Res> get imgX {
+    return $SelectorCopyWith<$Res>(_value.imgX, (value) {
       return _then(_value.copyWith(imgX: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get imgY {
-    if (_value.imgY == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.imgY!, (value) {
+  $SelectorCopyWith<$Res> get imgY {
+    return $SelectorCopyWith<$Res>(_value.imgY, (value) {
       return _then(_value.copyWith(imgY: value) as $Val);
     });
   }
@@ -471,22 +449,22 @@ abstract class _$$_ImageSelectorCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Selector? imgUrl,
-      Selector? imgWidth,
-      Selector? imgHeight,
-      Selector? imgX,
-      Selector? imgY});
+      {Selector imgUrl,
+      Selector imgWidth,
+      Selector imgHeight,
+      Selector imgX,
+      Selector imgY});
 
   @override
-  $SelectorCopyWith<$Res>? get imgUrl;
+  $SelectorCopyWith<$Res> get imgUrl;
   @override
-  $SelectorCopyWith<$Res>? get imgWidth;
+  $SelectorCopyWith<$Res> get imgWidth;
   @override
-  $SelectorCopyWith<$Res>? get imgHeight;
+  $SelectorCopyWith<$Res> get imgHeight;
   @override
-  $SelectorCopyWith<$Res>? get imgX;
+  $SelectorCopyWith<$Res> get imgX;
   @override
-  $SelectorCopyWith<$Res>? get imgY;
+  $SelectorCopyWith<$Res> get imgY;
 }
 
 /// @nodoc
@@ -500,33 +478,33 @@ class __$$_ImageSelectorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? imgUrl = freezed,
-    Object? imgWidth = freezed,
-    Object? imgHeight = freezed,
-    Object? imgX = freezed,
-    Object? imgY = freezed,
+    Object? imgUrl = null,
+    Object? imgWidth = null,
+    Object? imgHeight = null,
+    Object? imgX = null,
+    Object? imgY = null,
   }) {
     return _then(_$_ImageSelector(
-      imgUrl: freezed == imgUrl
+      imgUrl: null == imgUrl
           ? _value.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      imgWidth: freezed == imgWidth
+              as Selector,
+      imgWidth: null == imgWidth
           ? _value.imgWidth
           : imgWidth // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      imgHeight: freezed == imgHeight
+              as Selector,
+      imgHeight: null == imgHeight
           ? _value.imgHeight
           : imgHeight // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      imgX: freezed == imgX
+              as Selector,
+      imgX: null == imgX
           ? _value.imgX
           : imgX // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      imgY: freezed == imgY
+              as Selector,
+      imgY: null == imgY
           ? _value.imgY
           : imgY // ignore: cast_nullable_to_non_nullable
-              as Selector?,
+              as Selector,
     ));
   }
 }
@@ -546,19 +524,19 @@ class _$_ImageSelector implements _ImageSelector {
 
   @override
   @JsonKey()
-  final Selector? imgUrl;
+  final Selector imgUrl;
   @override
   @JsonKey()
-  final Selector? imgWidth;
+  final Selector imgWidth;
   @override
   @JsonKey()
-  final Selector? imgHeight;
+  final Selector imgHeight;
   @override
   @JsonKey()
-  final Selector? imgX;
+  final Selector imgX;
   @override
   @JsonKey()
-  final Selector? imgY;
+  final Selector imgY;
 
   @override
   String toString() {
@@ -600,25 +578,25 @@ class _$_ImageSelector implements _ImageSelector {
 
 abstract class _ImageSelector implements ImageSelector {
   const factory _ImageSelector(
-      {final Selector? imgUrl,
-      final Selector? imgWidth,
-      final Selector? imgHeight,
-      final Selector? imgX,
-      final Selector? imgY}) = _$_ImageSelector;
+      {final Selector imgUrl,
+      final Selector imgWidth,
+      final Selector imgHeight,
+      final Selector imgX,
+      final Selector imgY}) = _$_ImageSelector;
 
   factory _ImageSelector.fromJson(Map<String, dynamic> json) =
       _$_ImageSelector.fromJson;
 
   @override
-  Selector? get imgUrl;
+  Selector get imgUrl;
   @override
-  Selector? get imgWidth;
+  Selector get imgWidth;
   @override
-  Selector? get imgHeight;
+  Selector get imgHeight;
   @override
-  Selector? get imgX;
+  Selector get imgX;
   @override
-  Selector? get imgY;
+  Selector get imgY;
   @override
   @JsonKey(ignore: true)
   _$$_ImageSelectorCopyWith<_$_ImageSelector> get copyWith =>
