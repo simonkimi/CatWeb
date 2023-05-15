@@ -4,9 +4,8 @@ import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import 'selector_editor.dart';
+import '../parser/selector_editor.dart';
 
 class AutoCompleteParserEdit extends StatelessWidget {
   AutoCompleteParserEdit({Key? key}) : super(key: key);

@@ -35,41 +35,19 @@ enum SelectorFunctionType {
   }
 }
 
-@JsonEnum(valueField: 'value')
-enum ExtraSelectorType {
-  none(0),
-  listItem(1),
-  galleryThumbnail(2),
-  galleryComment(3),
-  galleryBadge(4),
-  galleryChapter(5);
-
-  const ExtraSelectorType(this.value);
-
-  final int value;
-}
-
 @freezed
 class Selector with _$Selector {
   const Selector._();
 
   const factory Selector({
-    @Default('')
-    String selector,
-    @Default(SelectorType.css)
-    SelectorType type,
-    @Default(SelectorFunctionType.text)
-    SelectorFunctionType function,
-    @Default('')
-    String param,
-    @Default('')
-    String regex,
-    @Default('')
-    String replace,
-    @Default(ScriptField())
-    ScriptField script,
-    @Default('')
-    String defaultValue,
+    @Default('') String selector,
+    @Default(SelectorType.css) SelectorType type,
+    @Default(SelectorFunctionType.text) SelectorFunctionType function,
+    @Default('') String param,
+    @Default('') String regex,
+    @Default('') String replace,
+    @Default(ScriptField()) ScriptField script,
+    @Default('') String defaultValue,
   }) = _Selector;
 
   factory Selector.fromJson(Map<String, dynamic> json) =>
@@ -83,16 +61,11 @@ class Selector with _$Selector {
 @freezed
 class ImageSelector with _$ImageSelector {
   const factory ImageSelector({
-    @Default(Selector())
-    Selector imgUrl,
-    @Default(Selector())
-    Selector imgWidth,
-    @Default(Selector())
-    Selector imgHeight,
-    @Default(Selector())
-    Selector imgX,
-    @Default(Selector())
-    Selector imgY,
+    @Default(Selector()) Selector imgUrl,
+    @Default(Selector()) Selector imgWidth,
+    @Default(Selector()) Selector imgHeight,
+    @Default(Selector()) Selector imgX,
+    @Default(Selector()) Selector imgY,
   }) = _ImageSelector;
 
   factory ImageSelector.fromJson(Map<String, dynamic> json) =>
@@ -102,16 +75,11 @@ class ImageSelector with _$ImageSelector {
 @freezed
 class CommentSelector with _$CommentSelector {
   const factory CommentSelector({
-    @Default(Selector())
-    Selector? username,
-    @Default(Selector())
-    Selector? time,
-    @Default(Selector())
-    Selector? score,
-    @Default(Selector())
-    Selector? content,
-    @Default(ImageSelector())
-    ImageSelector? avatar,
+    @Default(Selector()) Selector username,
+    @Default(Selector()) Selector time,
+    @Default(Selector()) Selector score,
+    @Default(Selector()) Selector content,
+    @Default(ImageSelector()) ImageSelector avatar,
   }) = _CommentSelector;
 
   factory CommentSelector.fromJson(Map<String, dynamic> json) =>
@@ -121,14 +89,9 @@ class CommentSelector with _$CommentSelector {
 @freezed
 class ExtraSelector with _$ExtraSelector {
   const factory ExtraSelector({
-    @Default(Selector())
-    Selector selector,
-    @Default('')
-    String id,
-    @Default(false)
-    bool global,
-    @Default(ExtraSelectorType.galleryBadge)
-    ExtraSelectorType type,
+    @Default(Selector()) Selector selector,
+    @Default('') String id,
+    @Default(false) bool global,
   }) = _ExtraSelector;
 
   factory ExtraSelector.fromJson(Map<String, dynamic> json) =>

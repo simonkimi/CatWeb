@@ -14,7 +14,8 @@ _$_ImageReaderParser _$$_ImageReaderParserFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       uuid: json['uuid'] as String,
       extra: (json['extra'] as List<dynamic>?)
-              ?.map((e) => ExtraSelector.fromJson(e as Map<String, dynamic>)) ??
+              ?.map((e) => ExtraSelector.fromJson(e as Map<String, dynamic>))
+              .toList() ??
           const [],
       image: json['image'] == null
           ? const ImageSelector()
@@ -60,7 +61,7 @@ Map<String, dynamic> _$$_ImageReaderParserToJson(
       'parserType': ParserType._toType(instance.parserType),
       'name': instance.name,
       'uuid': instance.uuid,
-      'extra': instance.extra.toList(),
+      'extra': instance.extra,
       'image': instance.image,
       'largerImage': instance.largerImage,
       'rawImage': instance.rawImage,
@@ -83,7 +84,8 @@ _$_GalleryParser _$$_GalleryParserFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       uuid: json['uuid'] as String,
       extra: (json['extra'] as List<dynamic>?)
-              ?.map((e) => ExtraSelector.fromJson(e as Map<String, dynamic>)) ??
+              ?.map((e) => ExtraSelector.fromJson(e as Map<String, dynamic>))
+              .toList() ??
           const [],
       title: json['title'] == null
           ? const Selector()
@@ -175,7 +177,7 @@ Map<String, dynamic> _$$_GalleryParserToJson(_$_GalleryParser instance) =>
       'parserType': ParserType._toType(instance.parserType),
       'name': instance.name,
       'uuid': instance.uuid,
-      'extra': instance.extra.toList(),
+      'extra': instance.extra,
       'title': instance.title,
       'subtitle': instance.subtitle,
       'uploadTime': instance.uploadTime,
@@ -213,7 +215,8 @@ _$_ListViewParser _$$_ListViewParserFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       uuid: json['uuid'] as String,
       extra: (json['extra'] as List<dynamic>?)
-              ?.map((e) => ExtraSelector.fromJson(e as Map<String, dynamic>)) ??
+              ?.map((e) => ExtraSelector.fromJson(e as Map<String, dynamic>))
+              .toList() ??
           const [],
       itemSelector: json['itemSelector'] == null
           ? const Selector()
@@ -279,7 +282,7 @@ Map<String, dynamic> _$$_ListViewParserToJson(_$_ListViewParser instance) =>
       'parserType': ParserType._toType(instance.parserType),
       'name': instance.name,
       'uuid': instance.uuid,
-      'extra': instance.extra.toList(),
+      'extra': instance.extra,
       'itemSelector': instance.itemSelector,
       'successSelector': instance.successSelector,
       'failedSelector': instance.failedSelector,
@@ -310,7 +313,8 @@ _$_AutoCompleteParser _$$_AutoCompleteParserFromJson(
       name: json['name'] as String,
       uuid: json['uuid'] as String,
       extra: (json['extra'] as List<dynamic>?)
-              ?.map((e) => ExtraSelector.fromJson(e as Map<String, dynamic>)) ??
+              ?.map((e) => ExtraSelector.fromJson(e as Map<String, dynamic>))
+              .toList() ??
           const [],
       itemSelector: json['itemSelector'] == null
           ? const Selector()
@@ -338,7 +342,7 @@ Map<String, dynamic> _$$_AutoCompleteParserToJson(
       'parserType': ParserType._toType(instance.parserType),
       'name': instance.name,
       'uuid': instance.uuid,
-      'extra': instance.extra?.toList(),
+      'extra': instance.extra,
       'itemSelector': instance.itemSelector,
       'itemComplete': instance.itemComplete,
       'itemTitle': instance.itemTitle,

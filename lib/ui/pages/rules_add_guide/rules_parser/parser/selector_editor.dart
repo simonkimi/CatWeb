@@ -9,16 +9,20 @@ class SelectorEditor extends StatelessWidget {
   SelectorEditor({
     Key? key,
     this.onChanged,
+    this.onExtraChanged,
     Selector? selector,
     this.onlySelector = false,
     required this.title,
+    this.extraSelector,
   })  : rxSelector = (selector ?? const Selector()).obs,
         super(key: key);
 
   final Rx<Selector> rxSelector;
   final Function(Selector)? onChanged;
+  final Function(ExtraSelector)? onExtraChanged;
   final bool onlySelector;
   final String title;
+  final ExtraSelector? extraSelector;
 
   Selector get selector => rxSelector.value;
 
@@ -53,10 +57,15 @@ class SelectorEditor extends StatelessWidget {
                   rxSelector(selector.copyWith(type: value));
                 })),
             if (!onlySelector) ..._otherSelector(),
+            if (extraSelector != null) ..._extraSelector(),
           ],
         ),
       ),
     );
+  }
+
+  List<Widget> _extraSelector() {
+    return [];
   }
 
   List<Widget> _otherSelector() {
@@ -169,6 +178,9 @@ class SelectorEditor extends StatelessWidget {
       trailing: CupertinoButton(
         onPressed: () {
           onChanged?.call(selector);
+          if (extraSelector != null) {
+            onExtraChanged?.call(extraSelector!);
+          }
           Navigator.of(context).pop();
         },
         padding: const EdgeInsets.only(right: 10),
@@ -205,7 +217,7 @@ class _SelectorText extends StatelessWidget {
           fontSize: 12,
         ),
       ),
-      maxLines: multiline ? 5: null,
+      maxLines: multiline ? 5 : null,
       padding: const EdgeInsets.all(10),
       onEditingComplete: () {
         onChanged?.call(controller.text);

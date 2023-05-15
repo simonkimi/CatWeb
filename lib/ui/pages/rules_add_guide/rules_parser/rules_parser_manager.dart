@@ -29,7 +29,7 @@ class RulesParserManager extends GetView<RulesEditController> {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: controller.blueprint.parsers.map((e) {
-                return CupertinoCustomListTile(
+                return CupertinoCardTile(
                   title: Text(e.name.value),
                   subtitle: Text(e.displayType(context)),
                   trailing: CupertinoButton(
@@ -42,7 +42,7 @@ class RulesParserManager extends GetView<RulesEditController> {
                 );
               }).toList(),
             )),
-        CupertinoCustomListTile(
+        CupertinoCardTile(
           title: const Text('添加'),
           leading: const Icon(Icons.add),
           onTap: () => _editRules(context),

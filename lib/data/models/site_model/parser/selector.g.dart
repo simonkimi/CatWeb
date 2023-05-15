@@ -109,8 +109,6 @@ _$_ExtraSelector _$$_ExtraSelectorFromJson(Map<String, dynamic> json) =>
           : Selector.fromJson(json['selector'] as Map<String, dynamic>),
       id: json['id'] as String? ?? '',
       global: json['global'] as bool? ?? false,
-      type: $enumDecodeNullable(_$ExtraSelectorTypeEnumMap, json['type']) ??
-          ExtraSelectorType.galleryBadge,
     );
 
 Map<String, dynamic> _$$_ExtraSelectorToJson(_$_ExtraSelector instance) =>
@@ -118,14 +116,4 @@ Map<String, dynamic> _$$_ExtraSelectorToJson(_$_ExtraSelector instance) =>
       'selector': instance.selector,
       'id': instance.id,
       'global': instance.global,
-      'type': _$ExtraSelectorTypeEnumMap[instance.type]!,
     };
-
-const _$ExtraSelectorTypeEnumMap = {
-  ExtraSelectorType.none: 0,
-  ExtraSelectorType.listItem: 1,
-  ExtraSelectorType.galleryThumbnail: 2,
-  ExtraSelectorType.galleryComment: 3,
-  ExtraSelectorType.galleryBadge: 4,
-  ExtraSelectorType.galleryChapter: 5,
-};

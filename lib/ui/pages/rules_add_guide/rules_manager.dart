@@ -84,7 +84,7 @@ class SiteManager extends GetWidget<SiteService> {
 
   Widget _buildSiteItem(BuildContext context, WebTableData e) {
     final pb = SiteBlueprint.fromBuffer(e.blueprint);
-    return Obx(() => CupertinoCustomListTile(
+    return Obx(() => CupertinoCardTile(
           selected: controller.id == e.id,
           title: Text(pb.name),
           subtitle: Text(pb.baseUrl),

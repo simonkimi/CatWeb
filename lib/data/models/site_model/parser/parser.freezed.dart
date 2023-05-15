@@ -22,21 +22,38 @@ ImageReaderParser _$ImageReaderParserFromJson(Map<String, dynamic> json) {
 mixin _$ImageReaderParser {
   @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
   ParserType get parserType => throw _privateConstructorUsedError;
+  @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
+  set parserType(ParserType value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
-  Iterable<ExtraSelector> get extra => throw _privateConstructorUsedError;
+  set uuid(String value) => throw _privateConstructorUsedError;
+  List<ExtraSelector> get extra => throw _privateConstructorUsedError;
+  set extra(List<ExtraSelector> value) => throw _privateConstructorUsedError;
   ImageSelector get image => throw _privateConstructorUsedError;
+  set image(ImageSelector value) => throw _privateConstructorUsedError;
   Selector get largerImage => throw _privateConstructorUsedError;
+  set largerImage(Selector value) => throw _privateConstructorUsedError;
   Selector get rawImage => throw _privateConstructorUsedError;
+  set rawImage(Selector value) => throw _privateConstructorUsedError;
   Selector get rating => throw _privateConstructorUsedError;
+  set rating(Selector value) => throw _privateConstructorUsedError;
   Selector get score => throw _privateConstructorUsedError;
+  set score(Selector value) => throw _privateConstructorUsedError;
   Selector get source => throw _privateConstructorUsedError;
+  set source(Selector value) => throw _privateConstructorUsedError;
   Selector get uploadTime => throw _privateConstructorUsedError;
+  set uploadTime(Selector value) => throw _privateConstructorUsedError;
   Selector get successSelector => throw _privateConstructorUsedError;
+  set successSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get failedSelector => throw _privateConstructorUsedError;
+  set failedSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get badgeSelector => throw _privateConstructorUsedError;
+  set badgeSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get badgeText => throw _privateConstructorUsedError;
+  set badgeText(Selector value) => throw _privateConstructorUsedError;
   Selector get badgeCategory => throw _privateConstructorUsedError;
+  set badgeCategory(Selector value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +72,7 @@ abstract class $ImageReaderParserCopyWith<$Res> {
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector> extra,
+      List<ExtraSelector> extra,
       ImageSelector image,
       Selector largerImage,
       Selector rawImage,
@@ -129,7 +146,7 @@ class _$ImageReaderParserCopyWithImpl<$Res, $Val extends ImageReaderParser>
       extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>,
+              as List<ExtraSelector>,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -291,7 +308,7 @@ abstract class _$$_ImageReaderParserCopyWith<$Res>
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector> extra,
+      List<ExtraSelector> extra,
       ImageSelector image,
       Selector largerImage,
       Selector rawImage,
@@ -375,7 +392,7 @@ class __$$_ImageReaderParserCopyWithImpl<$Res>
       extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>,
+              as List<ExtraSelector>,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -458,108 +475,55 @@ class _$_ImageReaderParser extends _ImageReaderParser {
 
   @override
   @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
-  final ParserType parserType;
+  ParserType parserType;
   @override
-  final String name;
+  String name;
   @override
-  final String uuid;
-  @override
-  @JsonKey()
-  final Iterable<ExtraSelector> extra;
+  String uuid;
   @override
   @JsonKey()
-  final ImageSelector image;
+  List<ExtraSelector> extra;
   @override
   @JsonKey()
-  final Selector largerImage;
+  ImageSelector image;
   @override
   @JsonKey()
-  final Selector rawImage;
+  Selector largerImage;
   @override
   @JsonKey()
-  final Selector rating;
+  Selector rawImage;
   @override
   @JsonKey()
-  final Selector score;
+  Selector rating;
   @override
   @JsonKey()
-  final Selector source;
+  Selector score;
   @override
   @JsonKey()
-  final Selector uploadTime;
+  Selector source;
   @override
   @JsonKey()
-  final Selector successSelector;
+  Selector uploadTime;
   @override
   @JsonKey()
-  final Selector failedSelector;
+  Selector successSelector;
   @override
   @JsonKey()
-  final Selector badgeSelector;
+  Selector failedSelector;
   @override
   @JsonKey()
-  final Selector badgeText;
+  Selector badgeSelector;
   @override
   @JsonKey()
-  final Selector badgeCategory;
+  Selector badgeText;
+  @override
+  @JsonKey()
+  Selector badgeCategory;
 
   @override
   String toString() {
     return 'ImageReaderParser(parserType: $parserType, name: $name, uuid: $uuid, extra: $extra, image: $image, largerImage: $largerImage, rawImage: $rawImage, rating: $rating, score: $score, source: $source, uploadTime: $uploadTime, successSelector: $successSelector, failedSelector: $failedSelector, badgeSelector: $badgeSelector, badgeText: $badgeText, badgeCategory: $badgeCategory)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ImageReaderParser &&
-            (identical(other.parserType, parserType) ||
-                other.parserType == parserType) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.uuid, uuid) || other.uuid == uuid) &&
-            const DeepCollectionEquality().equals(other.extra, extra) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.largerImage, largerImage) ||
-                other.largerImage == largerImage) &&
-            (identical(other.rawImage, rawImage) ||
-                other.rawImage == rawImage) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
-            (identical(other.score, score) || other.score == score) &&
-            (identical(other.source, source) || other.source == source) &&
-            (identical(other.uploadTime, uploadTime) ||
-                other.uploadTime == uploadTime) &&
-            (identical(other.successSelector, successSelector) ||
-                other.successSelector == successSelector) &&
-            (identical(other.failedSelector, failedSelector) ||
-                other.failedSelector == failedSelector) &&
-            (identical(other.badgeSelector, badgeSelector) ||
-                other.badgeSelector == badgeSelector) &&
-            (identical(other.badgeText, badgeText) ||
-                other.badgeText == badgeText) &&
-            (identical(other.badgeCategory, badgeCategory) ||
-                other.badgeCategory == badgeCategory));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      parserType,
-      name,
-      uuid,
-      const DeepCollectionEquality().hash(extra),
-      image,
-      largerImage,
-      rawImage,
-      rating,
-      score,
-      source,
-      uploadTime,
-      successSelector,
-      failedSelector,
-      badgeSelector,
-      badgeText,
-      badgeCategory);
 
   @JsonKey(ignore: true)
   @override
@@ -579,22 +543,22 @@ class _$_ImageReaderParser extends _ImageReaderParser {
 abstract class _ImageReaderParser extends ImageReaderParser {
   factory _ImageReaderParser(
       {@JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
-          final ParserType parserType,
-      required final String name,
-      required final String uuid,
-      final Iterable<ExtraSelector> extra,
-      final ImageSelector image,
-      final Selector largerImage,
-      final Selector rawImage,
-      final Selector rating,
-      final Selector score,
-      final Selector source,
-      final Selector uploadTime,
-      final Selector successSelector,
-      final Selector failedSelector,
-      final Selector badgeSelector,
-      final Selector badgeText,
-      final Selector badgeCategory}) = _$_ImageReaderParser;
+          ParserType parserType,
+      required String name,
+      required String uuid,
+      List<ExtraSelector> extra,
+      ImageSelector image,
+      Selector largerImage,
+      Selector rawImage,
+      Selector rating,
+      Selector score,
+      Selector source,
+      Selector uploadTime,
+      Selector successSelector,
+      Selector failedSelector,
+      Selector badgeSelector,
+      Selector badgeText,
+      Selector badgeCategory}) = _$_ImageReaderParser;
   _ImageReaderParser._() : super._();
 
   factory _ImageReaderParser.fromJson(Map<String, dynamic> json) =
@@ -603,36 +567,53 @@ abstract class _ImageReaderParser extends ImageReaderParser {
   @override
   @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
   ParserType get parserType;
+  @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
+  set parserType(ParserType value);
   @override
   String get name;
+  set name(String value);
   @override
   String get uuid;
+  set uuid(String value);
   @override
-  Iterable<ExtraSelector> get extra;
+  List<ExtraSelector> get extra;
+  set extra(List<ExtraSelector> value);
   @override
   ImageSelector get image;
+  set image(ImageSelector value);
   @override
   Selector get largerImage;
+  set largerImage(Selector value);
   @override
   Selector get rawImage;
+  set rawImage(Selector value);
   @override
   Selector get rating;
+  set rating(Selector value);
   @override
   Selector get score;
+  set score(Selector value);
   @override
   Selector get source;
+  set source(Selector value);
   @override
   Selector get uploadTime;
+  set uploadTime(Selector value);
   @override
   Selector get successSelector;
+  set successSelector(Selector value);
   @override
   Selector get failedSelector;
+  set failedSelector(Selector value);
   @override
   Selector get badgeSelector;
+  set badgeSelector(Selector value);
   @override
   Selector get badgeText;
+  set badgeText(Selector value);
   @override
   Selector get badgeCategory;
+  set badgeCategory(Selector value);
   @override
   @JsonKey(ignore: true)
   _$$_ImageReaderParserCopyWith<_$_ImageReaderParser> get copyWith =>
@@ -647,36 +628,68 @@ GalleryParser _$GalleryParserFromJson(Map<String, dynamic> json) {
 mixin _$GalleryParser {
   @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
   ParserType get parserType => throw _privateConstructorUsedError;
+  @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
+  set parserType(ParserType value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
-  Iterable<ExtraSelector> get extra => throw _privateConstructorUsedError;
+  set uuid(String value) => throw _privateConstructorUsedError;
+  List<ExtraSelector> get extra => throw _privateConstructorUsedError;
+  set extra(List<ExtraSelector> value) => throw _privateConstructorUsedError;
   Selector get title => throw _privateConstructorUsedError;
+  set title(Selector value) => throw _privateConstructorUsedError;
   Selector get subtitle => throw _privateConstructorUsedError;
+  set subtitle(Selector value) => throw _privateConstructorUsedError;
   Selector get uploadTime => throw _privateConstructorUsedError;
+  set uploadTime(Selector value) => throw _privateConstructorUsedError;
   Selector get star => throw _privateConstructorUsedError;
+  set star(Selector value) => throw _privateConstructorUsedError;
   Selector get imgCount => throw _privateConstructorUsedError;
+  set imgCount(Selector value) => throw _privateConstructorUsedError;
   Selector get pageCount => throw _privateConstructorUsedError;
+  set pageCount(Selector value) => throw _privateConstructorUsedError;
   Selector get language => throw _privateConstructorUsedError;
+  set language(Selector value) => throw _privateConstructorUsedError;
   ImageSelector get coverImg => throw _privateConstructorUsedError;
+  set coverImg(ImageSelector value) => throw _privateConstructorUsedError;
   Selector get description => throw _privateConstructorUsedError;
+  set description(Selector value) => throw _privateConstructorUsedError;
   Selector get successSelector => throw _privateConstructorUsedError;
+  set successSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get failedSelector => throw _privateConstructorUsedError;
+  set failedSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get thumbnailSelector => throw _privateConstructorUsedError;
+  set thumbnailSelector(Selector value) => throw _privateConstructorUsedError;
   ImageSelector get thumbnail => throw _privateConstructorUsedError;
+  set thumbnail(ImageSelector value) => throw _privateConstructorUsedError;
   Selector get target => throw _privateConstructorUsedError;
+  set target(Selector value) => throw _privateConstructorUsedError;
   Selector get commentSelector => throw _privateConstructorUsedError;
+  set commentSelector(Selector value) => throw _privateConstructorUsedError;
   CommentSelector get comments => throw _privateConstructorUsedError;
+  set comments(CommentSelector value) => throw _privateConstructorUsedError;
   Selector get tag => throw _privateConstructorUsedError;
+  set tag(Selector value) => throw _privateConstructorUsedError;
   Selector get tagColor => throw _privateConstructorUsedError;
+  set tagColor(Selector value) => throw _privateConstructorUsedError;
   Selector get badgeSelector => throw _privateConstructorUsedError;
+  set badgeSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get badgeText => throw _privateConstructorUsedError;
+  set badgeText(Selector value) => throw _privateConstructorUsedError;
   Selector get badgeCategory => throw _privateConstructorUsedError;
+  set badgeCategory(Selector value) => throw _privateConstructorUsedError;
   Selector get chapterSelector => throw _privateConstructorUsedError;
+  set chapterSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get chapterTitle => throw _privateConstructorUsedError;
+  set chapterTitle(Selector value) => throw _privateConstructorUsedError;
   Selector get chapterSubtitle => throw _privateConstructorUsedError;
+  set chapterSubtitle(Selector value) => throw _privateConstructorUsedError;
   ImageSelector get chapterCover => throw _privateConstructorUsedError;
+  set chapterCover(ImageSelector value) => throw _privateConstructorUsedError;
   Selector get nextPage => throw _privateConstructorUsedError;
+  set nextPage(Selector value) => throw _privateConstructorUsedError;
   Selector get countPrePage => throw _privateConstructorUsedError;
+  set countPrePage(Selector value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -695,7 +708,7 @@ abstract class $GalleryParserCopyWith<$Res> {
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector> extra,
+      List<ExtraSelector> extra,
       Selector title,
       Selector subtitle,
       Selector uploadTime,
@@ -814,7 +827,7 @@ class _$GalleryParserCopyWithImpl<$Res, $Val extends GalleryParser>
       extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>,
+              as List<ExtraSelector>,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -1156,7 +1169,7 @@ abstract class _$$_GalleryParserCopyWith<$Res>
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector> extra,
+      List<ExtraSelector> extra,
       Selector title,
       Selector subtitle,
       Selector uploadTime,
@@ -1300,7 +1313,7 @@ class __$$_GalleryParserCopyWithImpl<$Res>
       extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>,
+              as List<ExtraSelector>,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -1457,199 +1470,100 @@ class _$_GalleryParser extends _GalleryParser {
 
   @override
   @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
-  final ParserType parserType;
+  ParserType parserType;
   @override
-  final String name;
+  String name;
   @override
-  final String uuid;
-  @override
-  @JsonKey()
-  final Iterable<ExtraSelector> extra;
+  String uuid;
   @override
   @JsonKey()
-  final Selector title;
+  List<ExtraSelector> extra;
   @override
   @JsonKey()
-  final Selector subtitle;
+  Selector title;
   @override
   @JsonKey()
-  final Selector uploadTime;
+  Selector subtitle;
   @override
   @JsonKey()
-  final Selector star;
+  Selector uploadTime;
   @override
   @JsonKey()
-  final Selector imgCount;
+  Selector star;
   @override
   @JsonKey()
-  final Selector pageCount;
+  Selector imgCount;
   @override
   @JsonKey()
-  final Selector language;
+  Selector pageCount;
   @override
   @JsonKey()
-  final ImageSelector coverImg;
+  Selector language;
   @override
   @JsonKey()
-  final Selector description;
+  ImageSelector coverImg;
   @override
   @JsonKey()
-  final Selector successSelector;
+  Selector description;
   @override
   @JsonKey()
-  final Selector failedSelector;
+  Selector successSelector;
   @override
   @JsonKey()
-  final Selector thumbnailSelector;
+  Selector failedSelector;
   @override
   @JsonKey()
-  final ImageSelector thumbnail;
+  Selector thumbnailSelector;
   @override
   @JsonKey()
-  final Selector target;
+  ImageSelector thumbnail;
   @override
   @JsonKey()
-  final Selector commentSelector;
+  Selector target;
   @override
   @JsonKey()
-  final CommentSelector comments;
+  Selector commentSelector;
   @override
   @JsonKey()
-  final Selector tag;
+  CommentSelector comments;
   @override
   @JsonKey()
-  final Selector tagColor;
+  Selector tag;
   @override
   @JsonKey()
-  final Selector badgeSelector;
+  Selector tagColor;
   @override
   @JsonKey()
-  final Selector badgeText;
+  Selector badgeSelector;
   @override
   @JsonKey()
-  final Selector badgeCategory;
+  Selector badgeText;
   @override
   @JsonKey()
-  final Selector chapterSelector;
+  Selector badgeCategory;
   @override
   @JsonKey()
-  final Selector chapterTitle;
+  Selector chapterSelector;
   @override
   @JsonKey()
-  final Selector chapterSubtitle;
+  Selector chapterTitle;
   @override
   @JsonKey()
-  final ImageSelector chapterCover;
+  Selector chapterSubtitle;
   @override
   @JsonKey()
-  final Selector nextPage;
+  ImageSelector chapterCover;
   @override
   @JsonKey()
-  final Selector countPrePage;
+  Selector nextPage;
+  @override
+  @JsonKey()
+  Selector countPrePage;
 
   @override
   String toString() {
     return 'GalleryParser(parserType: $parserType, name: $name, uuid: $uuid, extra: $extra, title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imgCount: $imgCount, pageCount: $pageCount, language: $language, coverImg: $coverImg, description: $description, successSelector: $successSelector, failedSelector: $failedSelector, thumbnailSelector: $thumbnailSelector, thumbnail: $thumbnail, target: $target, commentSelector: $commentSelector, comments: $comments, tag: $tag, tagColor: $tagColor, badgeSelector: $badgeSelector, badgeText: $badgeText, badgeCategory: $badgeCategory, chapterSelector: $chapterSelector, chapterTitle: $chapterTitle, chapterSubtitle: $chapterSubtitle, chapterCover: $chapterCover, nextPage: $nextPage, countPrePage: $countPrePage)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_GalleryParser &&
-            (identical(other.parserType, parserType) ||
-                other.parserType == parserType) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.uuid, uuid) || other.uuid == uuid) &&
-            const DeepCollectionEquality().equals(other.extra, extra) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.subtitle, subtitle) ||
-                other.subtitle == subtitle) &&
-            (identical(other.uploadTime, uploadTime) ||
-                other.uploadTime == uploadTime) &&
-            (identical(other.star, star) || other.star == star) &&
-            (identical(other.imgCount, imgCount) ||
-                other.imgCount == imgCount) &&
-            (identical(other.pageCount, pageCount) ||
-                other.pageCount == pageCount) &&
-            (identical(other.language, language) ||
-                other.language == language) &&
-            (identical(other.coverImg, coverImg) ||
-                other.coverImg == coverImg) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.successSelector, successSelector) ||
-                other.successSelector == successSelector) &&
-            (identical(other.failedSelector, failedSelector) ||
-                other.failedSelector == failedSelector) &&
-            (identical(other.thumbnailSelector, thumbnailSelector) ||
-                other.thumbnailSelector == thumbnailSelector) &&
-            (identical(other.thumbnail, thumbnail) ||
-                other.thumbnail == thumbnail) &&
-            (identical(other.target, target) || other.target == target) &&
-            (identical(other.commentSelector, commentSelector) ||
-                other.commentSelector == commentSelector) &&
-            (identical(other.comments, comments) ||
-                other.comments == comments) &&
-            (identical(other.tag, tag) || other.tag == tag) &&
-            (identical(other.tagColor, tagColor) ||
-                other.tagColor == tagColor) &&
-            (identical(other.badgeSelector, badgeSelector) ||
-                other.badgeSelector == badgeSelector) &&
-            (identical(other.badgeText, badgeText) ||
-                other.badgeText == badgeText) &&
-            (identical(other.badgeCategory, badgeCategory) ||
-                other.badgeCategory == badgeCategory) &&
-            (identical(other.chapterSelector, chapterSelector) ||
-                other.chapterSelector == chapterSelector) &&
-            (identical(other.chapterTitle, chapterTitle) ||
-                other.chapterTitle == chapterTitle) &&
-            (identical(other.chapterSubtitle, chapterSubtitle) ||
-                other.chapterSubtitle == chapterSubtitle) &&
-            (identical(other.chapterCover, chapterCover) ||
-                other.chapterCover == chapterCover) &&
-            (identical(other.nextPage, nextPage) ||
-                other.nextPage == nextPage) &&
-            (identical(other.countPrePage, countPrePage) ||
-                other.countPrePage == countPrePage));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        parserType,
-        name,
-        uuid,
-        const DeepCollectionEquality().hash(extra),
-        title,
-        subtitle,
-        uploadTime,
-        star,
-        imgCount,
-        pageCount,
-        language,
-        coverImg,
-        description,
-        successSelector,
-        failedSelector,
-        thumbnailSelector,
-        thumbnail,
-        target,
-        commentSelector,
-        comments,
-        tag,
-        tagColor,
-        badgeSelector,
-        badgeText,
-        badgeCategory,
-        chapterSelector,
-        chapterTitle,
-        chapterSubtitle,
-        chapterCover,
-        nextPage,
-        countPrePage
-      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -1668,37 +1582,37 @@ class _$_GalleryParser extends _GalleryParser {
 abstract class _GalleryParser extends GalleryParser {
   factory _GalleryParser(
       {@JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
-          final ParserType parserType,
-      required final String name,
-      required final String uuid,
-      final Iterable<ExtraSelector> extra,
-      final Selector title,
-      final Selector subtitle,
-      final Selector uploadTime,
-      final Selector star,
-      final Selector imgCount,
-      final Selector pageCount,
-      final Selector language,
-      final ImageSelector coverImg,
-      final Selector description,
-      final Selector successSelector,
-      final Selector failedSelector,
-      final Selector thumbnailSelector,
-      final ImageSelector thumbnail,
-      final Selector target,
-      final Selector commentSelector,
-      final CommentSelector comments,
-      final Selector tag,
-      final Selector tagColor,
-      final Selector badgeSelector,
-      final Selector badgeText,
-      final Selector badgeCategory,
-      final Selector chapterSelector,
-      final Selector chapterTitle,
-      final Selector chapterSubtitle,
-      final ImageSelector chapterCover,
-      final Selector nextPage,
-      final Selector countPrePage}) = _$_GalleryParser;
+          ParserType parserType,
+      required String name,
+      required String uuid,
+      List<ExtraSelector> extra,
+      Selector title,
+      Selector subtitle,
+      Selector uploadTime,
+      Selector star,
+      Selector imgCount,
+      Selector pageCount,
+      Selector language,
+      ImageSelector coverImg,
+      Selector description,
+      Selector successSelector,
+      Selector failedSelector,
+      Selector thumbnailSelector,
+      ImageSelector thumbnail,
+      Selector target,
+      Selector commentSelector,
+      CommentSelector comments,
+      Selector tag,
+      Selector tagColor,
+      Selector badgeSelector,
+      Selector badgeText,
+      Selector badgeCategory,
+      Selector chapterSelector,
+      Selector chapterTitle,
+      Selector chapterSubtitle,
+      ImageSelector chapterCover,
+      Selector nextPage,
+      Selector countPrePage}) = _$_GalleryParser;
   _GalleryParser._() : super._();
 
   factory _GalleryParser.fromJson(Map<String, dynamic> json) =
@@ -1707,66 +1621,98 @@ abstract class _GalleryParser extends GalleryParser {
   @override
   @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
   ParserType get parserType;
+  @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
+  set parserType(ParserType value);
   @override
   String get name;
+  set name(String value);
   @override
   String get uuid;
+  set uuid(String value);
   @override
-  Iterable<ExtraSelector> get extra;
+  List<ExtraSelector> get extra;
+  set extra(List<ExtraSelector> value);
   @override
   Selector get title;
+  set title(Selector value);
   @override
   Selector get subtitle;
+  set subtitle(Selector value);
   @override
   Selector get uploadTime;
+  set uploadTime(Selector value);
   @override
   Selector get star;
+  set star(Selector value);
   @override
   Selector get imgCount;
+  set imgCount(Selector value);
   @override
   Selector get pageCount;
+  set pageCount(Selector value);
   @override
   Selector get language;
+  set language(Selector value);
   @override
   ImageSelector get coverImg;
+  set coverImg(ImageSelector value);
   @override
   Selector get description;
+  set description(Selector value);
   @override
   Selector get successSelector;
+  set successSelector(Selector value);
   @override
   Selector get failedSelector;
+  set failedSelector(Selector value);
   @override
   Selector get thumbnailSelector;
+  set thumbnailSelector(Selector value);
   @override
   ImageSelector get thumbnail;
+  set thumbnail(ImageSelector value);
   @override
   Selector get target;
+  set target(Selector value);
   @override
   Selector get commentSelector;
+  set commentSelector(Selector value);
   @override
   CommentSelector get comments;
+  set comments(CommentSelector value);
   @override
   Selector get tag;
+  set tag(Selector value);
   @override
   Selector get tagColor;
+  set tagColor(Selector value);
   @override
   Selector get badgeSelector;
+  set badgeSelector(Selector value);
   @override
   Selector get badgeText;
+  set badgeText(Selector value);
   @override
   Selector get badgeCategory;
+  set badgeCategory(Selector value);
   @override
   Selector get chapterSelector;
+  set chapterSelector(Selector value);
   @override
   Selector get chapterTitle;
+  set chapterTitle(Selector value);
   @override
   Selector get chapterSubtitle;
+  set chapterSubtitle(Selector value);
   @override
   ImageSelector get chapterCover;
+  set chapterCover(ImageSelector value);
   @override
   Selector get nextPage;
+  set nextPage(Selector value);
   @override
   Selector get countPrePage;
+  set countPrePage(Selector value);
   @override
   @JsonKey(ignore: true)
   _$$_GalleryParserCopyWith<_$_GalleryParser> get copyWith =>
@@ -1781,28 +1727,52 @@ ListViewParser _$ListViewParserFromJson(Map<String, dynamic> json) {
 mixin _$ListViewParser {
   @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
   ParserType get parserType => throw _privateConstructorUsedError;
+  @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
+  set parserType(ParserType value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
-  Iterable<ExtraSelector> get extra => throw _privateConstructorUsedError;
+  set uuid(String value) => throw _privateConstructorUsedError;
+  List<ExtraSelector> get extra => throw _privateConstructorUsedError;
+  set extra(List<ExtraSelector> value) => throw _privateConstructorUsedError;
   Selector get itemSelector => throw _privateConstructorUsedError;
+  set itemSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get successSelector => throw _privateConstructorUsedError;
+  set successSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get failedSelector => throw _privateConstructorUsedError;
+  set failedSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get title => throw _privateConstructorUsedError;
+  set title(Selector value) => throw _privateConstructorUsedError;
   Selector get subtitle => throw _privateConstructorUsedError;
+  set subtitle(Selector value) => throw _privateConstructorUsedError;
   Selector get uploadTime => throw _privateConstructorUsedError;
+  set uploadTime(Selector value) => throw _privateConstructorUsedError;
   Selector get star => throw _privateConstructorUsedError;
+  set star(Selector value) => throw _privateConstructorUsedError;
   Selector get imgCount => throw _privateConstructorUsedError;
+  set imgCount(Selector value) => throw _privateConstructorUsedError;
   Selector get language => throw _privateConstructorUsedError;
+  set language(Selector value) => throw _privateConstructorUsedError;
   ImageSelector get previewImg => throw _privateConstructorUsedError;
+  set previewImg(ImageSelector value) => throw _privateConstructorUsedError;
   Selector get target => throw _privateConstructorUsedError;
+  set target(Selector value) => throw _privateConstructorUsedError;
   Selector get tag => throw _privateConstructorUsedError;
+  set tag(Selector value) => throw _privateConstructorUsedError;
   Selector get tagColor => throw _privateConstructorUsedError;
+  set tagColor(Selector value) => throw _privateConstructorUsedError;
   Selector get badgeSelector => throw _privateConstructorUsedError;
+  set badgeSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get badgeText => throw _privateConstructorUsedError;
+  set badgeText(Selector value) => throw _privateConstructorUsedError;
   Selector get badgeColor => throw _privateConstructorUsedError;
+  set badgeColor(Selector value) => throw _privateConstructorUsedError;
   Selector get paper => throw _privateConstructorUsedError;
+  set paper(Selector value) => throw _privateConstructorUsedError;
   Selector get idCode => throw _privateConstructorUsedError;
+  set idCode(Selector value) => throw _privateConstructorUsedError;
   Selector get nextPage => throw _privateConstructorUsedError;
+  set nextPage(Selector value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1821,7 +1791,7 @@ abstract class $ListViewParserCopyWith<$Res> {
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector> extra,
+      List<ExtraSelector> extra,
       Selector itemSelector,
       Selector successSelector,
       Selector failedSelector,
@@ -1916,7 +1886,7 @@ class _$ListViewParserCopyWithImpl<$Res, $Val extends ListViewParser>
       extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>,
+              as List<ExtraSelector>,
       itemSelector: null == itemSelector
           ? _value.itemSelector
           : itemSelector // ignore: cast_nullable_to_non_nullable
@@ -2162,7 +2132,7 @@ abstract class _$$_ListViewParserCopyWith<$Res>
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector> extra,
+      List<ExtraSelector> extra,
       Selector itemSelector,
       Selector successSelector,
       Selector failedSelector,
@@ -2274,7 +2244,7 @@ class __$$_ListViewParserCopyWithImpl<$Res>
       extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>,
+              as List<ExtraSelector>,
       itemSelector: null == itemSelector
           ? _value.itemSelector
           : itemSelector // ignore: cast_nullable_to_non_nullable
@@ -2392,149 +2362,76 @@ class _$_ListViewParser extends _ListViewParser {
 
   @override
   @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
-  final ParserType parserType;
+  ParserType parserType;
   @override
-  final String name;
+  String name;
   @override
-  final String uuid;
-  @override
-  @JsonKey()
-  final Iterable<ExtraSelector> extra;
+  String uuid;
   @override
   @JsonKey()
-  final Selector itemSelector;
+  List<ExtraSelector> extra;
   @override
   @JsonKey()
-  final Selector successSelector;
+  Selector itemSelector;
   @override
   @JsonKey()
-  final Selector failedSelector;
+  Selector successSelector;
   @override
   @JsonKey()
-  final Selector title;
+  Selector failedSelector;
   @override
   @JsonKey()
-  final Selector subtitle;
+  Selector title;
   @override
   @JsonKey()
-  final Selector uploadTime;
+  Selector subtitle;
   @override
   @JsonKey()
-  final Selector star;
+  Selector uploadTime;
   @override
   @JsonKey()
-  final Selector imgCount;
+  Selector star;
   @override
   @JsonKey()
-  final Selector language;
+  Selector imgCount;
   @override
   @JsonKey()
-  final ImageSelector previewImg;
+  Selector language;
   @override
   @JsonKey()
-  final Selector target;
+  ImageSelector previewImg;
   @override
   @JsonKey()
-  final Selector tag;
+  Selector target;
   @override
   @JsonKey()
-  final Selector tagColor;
+  Selector tag;
   @override
   @JsonKey()
-  final Selector badgeSelector;
+  Selector tagColor;
   @override
   @JsonKey()
-  final Selector badgeText;
+  Selector badgeSelector;
   @override
   @JsonKey()
-  final Selector badgeColor;
+  Selector badgeText;
   @override
   @JsonKey()
-  final Selector paper;
+  Selector badgeColor;
   @override
   @JsonKey()
-  final Selector idCode;
+  Selector paper;
   @override
   @JsonKey()
-  final Selector nextPage;
+  Selector idCode;
+  @override
+  @JsonKey()
+  Selector nextPage;
 
   @override
   String toString() {
     return 'ListViewParser(parserType: $parserType, name: $name, uuid: $uuid, extra: $extra, itemSelector: $itemSelector, successSelector: $successSelector, failedSelector: $failedSelector, title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imgCount: $imgCount, language: $language, previewImg: $previewImg, target: $target, tag: $tag, tagColor: $tagColor, badgeSelector: $badgeSelector, badgeText: $badgeText, badgeColor: $badgeColor, paper: $paper, idCode: $idCode, nextPage: $nextPage)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ListViewParser &&
-            (identical(other.parserType, parserType) ||
-                other.parserType == parserType) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.uuid, uuid) || other.uuid == uuid) &&
-            const DeepCollectionEquality().equals(other.extra, extra) &&
-            (identical(other.itemSelector, itemSelector) ||
-                other.itemSelector == itemSelector) &&
-            (identical(other.successSelector, successSelector) ||
-                other.successSelector == successSelector) &&
-            (identical(other.failedSelector, failedSelector) ||
-                other.failedSelector == failedSelector) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.subtitle, subtitle) ||
-                other.subtitle == subtitle) &&
-            (identical(other.uploadTime, uploadTime) ||
-                other.uploadTime == uploadTime) &&
-            (identical(other.star, star) || other.star == star) &&
-            (identical(other.imgCount, imgCount) ||
-                other.imgCount == imgCount) &&
-            (identical(other.language, language) ||
-                other.language == language) &&
-            (identical(other.previewImg, previewImg) ||
-                other.previewImg == previewImg) &&
-            (identical(other.target, target) || other.target == target) &&
-            (identical(other.tag, tag) || other.tag == tag) &&
-            (identical(other.tagColor, tagColor) ||
-                other.tagColor == tagColor) &&
-            (identical(other.badgeSelector, badgeSelector) ||
-                other.badgeSelector == badgeSelector) &&
-            (identical(other.badgeText, badgeText) ||
-                other.badgeText == badgeText) &&
-            (identical(other.badgeColor, badgeColor) ||
-                other.badgeColor == badgeColor) &&
-            (identical(other.paper, paper) || other.paper == paper) &&
-            (identical(other.idCode, idCode) || other.idCode == idCode) &&
-            (identical(other.nextPage, nextPage) ||
-                other.nextPage == nextPage));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        parserType,
-        name,
-        uuid,
-        const DeepCollectionEquality().hash(extra),
-        itemSelector,
-        successSelector,
-        failedSelector,
-        title,
-        subtitle,
-        uploadTime,
-        star,
-        imgCount,
-        language,
-        previewImg,
-        target,
-        tag,
-        tagColor,
-        badgeSelector,
-        badgeText,
-        badgeColor,
-        paper,
-        idCode,
-        nextPage
-      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -2553,29 +2450,29 @@ class _$_ListViewParser extends _ListViewParser {
 abstract class _ListViewParser extends ListViewParser {
   factory _ListViewParser(
       {@JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
-          final ParserType parserType,
-      required final String name,
-      required final String uuid,
-      final Iterable<ExtraSelector> extra,
-      final Selector itemSelector,
-      final Selector successSelector,
-      final Selector failedSelector,
-      final Selector title,
-      final Selector subtitle,
-      final Selector uploadTime,
-      final Selector star,
-      final Selector imgCount,
-      final Selector language,
-      final ImageSelector previewImg,
-      final Selector target,
-      final Selector tag,
-      final Selector tagColor,
-      final Selector badgeSelector,
-      final Selector badgeText,
-      final Selector badgeColor,
-      final Selector paper,
-      final Selector idCode,
-      final Selector nextPage}) = _$_ListViewParser;
+          ParserType parserType,
+      required String name,
+      required String uuid,
+      List<ExtraSelector> extra,
+      Selector itemSelector,
+      Selector successSelector,
+      Selector failedSelector,
+      Selector title,
+      Selector subtitle,
+      Selector uploadTime,
+      Selector star,
+      Selector imgCount,
+      Selector language,
+      ImageSelector previewImg,
+      Selector target,
+      Selector tag,
+      Selector tagColor,
+      Selector badgeSelector,
+      Selector badgeText,
+      Selector badgeColor,
+      Selector paper,
+      Selector idCode,
+      Selector nextPage}) = _$_ListViewParser;
   _ListViewParser._() : super._();
 
   factory _ListViewParser.fromJson(Map<String, dynamic> json) =
@@ -2584,50 +2481,74 @@ abstract class _ListViewParser extends ListViewParser {
   @override
   @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
   ParserType get parserType;
+  @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
+  set parserType(ParserType value);
   @override
   String get name;
+  set name(String value);
   @override
   String get uuid;
+  set uuid(String value);
   @override
-  Iterable<ExtraSelector> get extra;
+  List<ExtraSelector> get extra;
+  set extra(List<ExtraSelector> value);
   @override
   Selector get itemSelector;
+  set itemSelector(Selector value);
   @override
   Selector get successSelector;
+  set successSelector(Selector value);
   @override
   Selector get failedSelector;
+  set failedSelector(Selector value);
   @override
   Selector get title;
+  set title(Selector value);
   @override
   Selector get subtitle;
+  set subtitle(Selector value);
   @override
   Selector get uploadTime;
+  set uploadTime(Selector value);
   @override
   Selector get star;
+  set star(Selector value);
   @override
   Selector get imgCount;
+  set imgCount(Selector value);
   @override
   Selector get language;
+  set language(Selector value);
   @override
   ImageSelector get previewImg;
+  set previewImg(ImageSelector value);
   @override
   Selector get target;
+  set target(Selector value);
   @override
   Selector get tag;
+  set tag(Selector value);
   @override
   Selector get tagColor;
+  set tagColor(Selector value);
   @override
   Selector get badgeSelector;
+  set badgeSelector(Selector value);
   @override
   Selector get badgeText;
+  set badgeText(Selector value);
   @override
   Selector get badgeColor;
+  set badgeColor(Selector value);
   @override
   Selector get paper;
+  set paper(Selector value);
   @override
   Selector get idCode;
+  set idCode(Selector value);
   @override
   Selector get nextPage;
+  set nextPage(Selector value);
   @override
   @JsonKey(ignore: true)
   _$$_ListViewParserCopyWith<_$_ListViewParser> get copyWith =>
@@ -2642,15 +2563,26 @@ AutoCompleteParser _$AutoCompleteParserFromJson(Map<String, dynamic> json) {
 mixin _$AutoCompleteParser {
   @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
   ParserType get parserType => throw _privateConstructorUsedError;
+  @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
+  set parserType(ParserType value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
-  Iterable<ExtraSelector>? get extra => throw _privateConstructorUsedError;
+  set uuid(String value) => throw _privateConstructorUsedError;
+  List<ExtraSelector> get extra => throw _privateConstructorUsedError;
+  set extra(List<ExtraSelector> value) => throw _privateConstructorUsedError;
   Selector get itemSelector => throw _privateConstructorUsedError;
+  set itemSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get itemComplete => throw _privateConstructorUsedError;
+  set itemComplete(Selector value) => throw _privateConstructorUsedError;
   Selector get itemTitle => throw _privateConstructorUsedError;
+  set itemTitle(Selector value) => throw _privateConstructorUsedError;
   Selector get itemSubtitle => throw _privateConstructorUsedError;
+  set itemSubtitle(Selector value) => throw _privateConstructorUsedError;
   Selector get successSelector => throw _privateConstructorUsedError;
+  set successSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get failedSelector => throw _privateConstructorUsedError;
+  set failedSelector(Selector value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2669,7 +2601,7 @@ abstract class $AutoCompleteParserCopyWith<$Res> {
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector>? extra,
+      List<ExtraSelector> extra,
       Selector itemSelector,
       Selector itemComplete,
       Selector itemTitle,
@@ -2701,7 +2633,7 @@ class _$AutoCompleteParserCopyWithImpl<$Res, $Val extends AutoCompleteParser>
     Object? parserType = null,
     Object? name = null,
     Object? uuid = null,
-    Object? extra = freezed,
+    Object? extra = null,
     Object? itemSelector = null,
     Object? itemComplete = null,
     Object? itemTitle = null,
@@ -2722,10 +2654,10 @@ class _$AutoCompleteParserCopyWithImpl<$Res, $Val extends AutoCompleteParser>
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
-      extra: freezed == extra
+      extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>?,
+              as List<ExtraSelector>,
       itemSelector: null == itemSelector
           ? _value.itemSelector
           : itemSelector // ignore: cast_nullable_to_non_nullable
@@ -2815,7 +2747,7 @@ abstract class _$$_AutoCompleteParserCopyWith<$Res>
           ParserType parserType,
       String name,
       String uuid,
-      Iterable<ExtraSelector>? extra,
+      List<ExtraSelector> extra,
       Selector itemSelector,
       Selector itemComplete,
       Selector itemTitle,
@@ -2851,7 +2783,7 @@ class __$$_AutoCompleteParserCopyWithImpl<$Res>
     Object? parserType = null,
     Object? name = null,
     Object? uuid = null,
-    Object? extra = freezed,
+    Object? extra = null,
     Object? itemSelector = null,
     Object? itemComplete = null,
     Object? itemTitle = null,
@@ -2872,10 +2804,10 @@ class __$$_AutoCompleteParserCopyWithImpl<$Res>
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
-      extra: freezed == extra
+      extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
-              as Iterable<ExtraSelector>?,
+              as List<ExtraSelector>,
       itemSelector: null == itemSelector
           ? _value.itemSelector
           : itemSelector // ignore: cast_nullable_to_non_nullable
@@ -2928,76 +2860,37 @@ class _$_AutoCompleteParser extends _AutoCompleteParser {
 
   @override
   @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
-  final ParserType parserType;
+  ParserType parserType;
   @override
-  final String name;
+  String name;
   @override
-  final String uuid;
-  @override
-  @JsonKey()
-  final Iterable<ExtraSelector>? extra;
+  String uuid;
   @override
   @JsonKey()
-  final Selector itemSelector;
+  List<ExtraSelector> extra;
   @override
   @JsonKey()
-  final Selector itemComplete;
+  Selector itemSelector;
   @override
   @JsonKey()
-  final Selector itemTitle;
+  Selector itemComplete;
   @override
   @JsonKey()
-  final Selector itemSubtitle;
+  Selector itemTitle;
   @override
   @JsonKey()
-  final Selector successSelector;
+  Selector itemSubtitle;
   @override
   @JsonKey()
-  final Selector failedSelector;
+  Selector successSelector;
+  @override
+  @JsonKey()
+  Selector failedSelector;
 
   @override
   String toString() {
     return 'AutoCompleteParser(parserType: $parserType, name: $name, uuid: $uuid, extra: $extra, itemSelector: $itemSelector, itemComplete: $itemComplete, itemTitle: $itemTitle, itemSubtitle: $itemSubtitle, successSelector: $successSelector, failedSelector: $failedSelector)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AutoCompleteParser &&
-            (identical(other.parserType, parserType) ||
-                other.parserType == parserType) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.uuid, uuid) || other.uuid == uuid) &&
-            const DeepCollectionEquality().equals(other.extra, extra) &&
-            (identical(other.itemSelector, itemSelector) ||
-                other.itemSelector == itemSelector) &&
-            (identical(other.itemComplete, itemComplete) ||
-                other.itemComplete == itemComplete) &&
-            (identical(other.itemTitle, itemTitle) ||
-                other.itemTitle == itemTitle) &&
-            (identical(other.itemSubtitle, itemSubtitle) ||
-                other.itemSubtitle == itemSubtitle) &&
-            (identical(other.successSelector, successSelector) ||
-                other.successSelector == successSelector) &&
-            (identical(other.failedSelector, failedSelector) ||
-                other.failedSelector == failedSelector));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      parserType,
-      name,
-      uuid,
-      const DeepCollectionEquality().hash(extra),
-      itemSelector,
-      itemComplete,
-      itemTitle,
-      itemSubtitle,
-      successSelector,
-      failedSelector);
 
   @JsonKey(ignore: true)
   @override
@@ -3017,16 +2910,16 @@ class _$_AutoCompleteParser extends _AutoCompleteParser {
 abstract class _AutoCompleteParser extends AutoCompleteParser {
   factory _AutoCompleteParser(
       {@JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
-          final ParserType parserType,
-      required final String name,
-      required final String uuid,
-      final Iterable<ExtraSelector>? extra,
-      final Selector itemSelector,
-      final Selector itemComplete,
-      final Selector itemTitle,
-      final Selector itemSubtitle,
-      final Selector successSelector,
-      final Selector failedSelector}) = _$_AutoCompleteParser;
+          ParserType parserType,
+      required String name,
+      required String uuid,
+      List<ExtraSelector> extra,
+      Selector itemSelector,
+      Selector itemComplete,
+      Selector itemTitle,
+      Selector itemSubtitle,
+      Selector successSelector,
+      Selector failedSelector}) = _$_AutoCompleteParser;
   _AutoCompleteParser._() : super._();
 
   factory _AutoCompleteParser.fromJson(Map<String, dynamic> json) =
@@ -3035,24 +2928,35 @@ abstract class _AutoCompleteParser extends AutoCompleteParser {
   @override
   @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
   ParserType get parserType;
+  @JsonKey(toJson: ParserType._toType, fromJson: ParserType._fromType)
+  set parserType(ParserType value);
   @override
   String get name;
+  set name(String value);
   @override
   String get uuid;
+  set uuid(String value);
   @override
-  Iterable<ExtraSelector>? get extra;
+  List<ExtraSelector> get extra;
+  set extra(List<ExtraSelector> value);
   @override
   Selector get itemSelector;
+  set itemSelector(Selector value);
   @override
   Selector get itemComplete;
+  set itemComplete(Selector value);
   @override
   Selector get itemTitle;
+  set itemTitle(Selector value);
   @override
   Selector get itemSubtitle;
+  set itemSubtitle(Selector value);
   @override
   Selector get successSelector;
+  set successSelector(Selector value);
   @override
   Selector get failedSelector;
+  set failedSelector(Selector value);
   @override
   @JsonKey(ignore: true)
   _$$_AutoCompleteParserCopyWith<_$_AutoCompleteParser> get copyWith =>

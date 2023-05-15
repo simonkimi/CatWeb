@@ -609,11 +609,11 @@ CommentSelector _$CommentSelectorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CommentSelector {
-  Selector? get username => throw _privateConstructorUsedError;
-  Selector? get time => throw _privateConstructorUsedError;
-  Selector? get score => throw _privateConstructorUsedError;
-  Selector? get content => throw _privateConstructorUsedError;
-  ImageSelector? get avatar => throw _privateConstructorUsedError;
+  Selector get username => throw _privateConstructorUsedError;
+  Selector get time => throw _privateConstructorUsedError;
+  Selector get score => throw _privateConstructorUsedError;
+  Selector get content => throw _privateConstructorUsedError;
+  ImageSelector get avatar => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -628,17 +628,17 @@ abstract class $CommentSelectorCopyWith<$Res> {
       _$CommentSelectorCopyWithImpl<$Res, CommentSelector>;
   @useResult
   $Res call(
-      {Selector? username,
-      Selector? time,
-      Selector? score,
-      Selector? content,
-      ImageSelector? avatar});
+      {Selector username,
+      Selector time,
+      Selector score,
+      Selector content,
+      ImageSelector avatar});
 
-  $SelectorCopyWith<$Res>? get username;
-  $SelectorCopyWith<$Res>? get time;
-  $SelectorCopyWith<$Res>? get score;
-  $SelectorCopyWith<$Res>? get content;
-  $ImageSelectorCopyWith<$Res>? get avatar;
+  $SelectorCopyWith<$Res> get username;
+  $SelectorCopyWith<$Res> get time;
+  $SelectorCopyWith<$Res> get score;
+  $SelectorCopyWith<$Res> get content;
+  $ImageSelectorCopyWith<$Res> get avatar;
 }
 
 /// @nodoc
@@ -654,92 +654,72 @@ class _$CommentSelectorCopyWithImpl<$Res, $Val extends CommentSelector>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = freezed,
-    Object? time = freezed,
-    Object? score = freezed,
-    Object? content = freezed,
-    Object? avatar = freezed,
+    Object? username = null,
+    Object? time = null,
+    Object? score = null,
+    Object? content = null,
+    Object? avatar = null,
   }) {
     return _then(_value.copyWith(
-      username: freezed == username
+      username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      time: freezed == time
+              as Selector,
+      time: null == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      score: freezed == score
+              as Selector,
+      score: null == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      content: freezed == content
+              as Selector,
+      content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      avatar: freezed == avatar
+              as Selector,
+      avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as ImageSelector?,
+              as ImageSelector,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get username {
-    if (_value.username == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.username!, (value) {
+  $SelectorCopyWith<$Res> get username {
+    return $SelectorCopyWith<$Res>(_value.username, (value) {
       return _then(_value.copyWith(username: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get time {
-    if (_value.time == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.time!, (value) {
+  $SelectorCopyWith<$Res> get time {
+    return $SelectorCopyWith<$Res>(_value.time, (value) {
       return _then(_value.copyWith(time: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get score {
-    if (_value.score == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.score!, (value) {
+  $SelectorCopyWith<$Res> get score {
+    return $SelectorCopyWith<$Res>(_value.score, (value) {
       return _then(_value.copyWith(score: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res>? get content {
-    if (_value.content == null) {
-      return null;
-    }
-
-    return $SelectorCopyWith<$Res>(_value.content!, (value) {
+  $SelectorCopyWith<$Res> get content {
+    return $SelectorCopyWith<$Res>(_value.content, (value) {
       return _then(_value.copyWith(content: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageSelectorCopyWith<$Res>? get avatar {
-    if (_value.avatar == null) {
-      return null;
-    }
-
-    return $ImageSelectorCopyWith<$Res>(_value.avatar!, (value) {
+  $ImageSelectorCopyWith<$Res> get avatar {
+    return $ImageSelectorCopyWith<$Res>(_value.avatar, (value) {
       return _then(_value.copyWith(avatar: value) as $Val);
     });
   }
@@ -754,22 +734,22 @@ abstract class _$$_CommentSelectorCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Selector? username,
-      Selector? time,
-      Selector? score,
-      Selector? content,
-      ImageSelector? avatar});
+      {Selector username,
+      Selector time,
+      Selector score,
+      Selector content,
+      ImageSelector avatar});
 
   @override
-  $SelectorCopyWith<$Res>? get username;
+  $SelectorCopyWith<$Res> get username;
   @override
-  $SelectorCopyWith<$Res>? get time;
+  $SelectorCopyWith<$Res> get time;
   @override
-  $SelectorCopyWith<$Res>? get score;
+  $SelectorCopyWith<$Res> get score;
   @override
-  $SelectorCopyWith<$Res>? get content;
+  $SelectorCopyWith<$Res> get content;
   @override
-  $ImageSelectorCopyWith<$Res>? get avatar;
+  $ImageSelectorCopyWith<$Res> get avatar;
 }
 
 /// @nodoc
@@ -783,33 +763,33 @@ class __$$_CommentSelectorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = freezed,
-    Object? time = freezed,
-    Object? score = freezed,
-    Object? content = freezed,
-    Object? avatar = freezed,
+    Object? username = null,
+    Object? time = null,
+    Object? score = null,
+    Object? content = null,
+    Object? avatar = null,
   }) {
     return _then(_$_CommentSelector(
-      username: freezed == username
+      username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      time: freezed == time
+              as Selector,
+      time: null == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      score: freezed == score
+              as Selector,
+      score: null == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      content: freezed == content
+              as Selector,
+      content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as Selector?,
-      avatar: freezed == avatar
+              as Selector,
+      avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as ImageSelector?,
+              as ImageSelector,
     ));
   }
 }
@@ -829,19 +809,19 @@ class _$_CommentSelector implements _CommentSelector {
 
   @override
   @JsonKey()
-  final Selector? username;
+  final Selector username;
   @override
   @JsonKey()
-  final Selector? time;
+  final Selector time;
   @override
   @JsonKey()
-  final Selector? score;
+  final Selector score;
   @override
   @JsonKey()
-  final Selector? content;
+  final Selector content;
   @override
   @JsonKey()
-  final ImageSelector? avatar;
+  final ImageSelector avatar;
 
   @override
   String toString() {
@@ -882,25 +862,25 @@ class _$_CommentSelector implements _CommentSelector {
 
 abstract class _CommentSelector implements CommentSelector {
   const factory _CommentSelector(
-      {final Selector? username,
-      final Selector? time,
-      final Selector? score,
-      final Selector? content,
-      final ImageSelector? avatar}) = _$_CommentSelector;
+      {final Selector username,
+      final Selector time,
+      final Selector score,
+      final Selector content,
+      final ImageSelector avatar}) = _$_CommentSelector;
 
   factory _CommentSelector.fromJson(Map<String, dynamic> json) =
       _$_CommentSelector.fromJson;
 
   @override
-  Selector? get username;
+  Selector get username;
   @override
-  Selector? get time;
+  Selector get time;
   @override
-  Selector? get score;
+  Selector get score;
   @override
-  Selector? get content;
+  Selector get content;
   @override
-  ImageSelector? get avatar;
+  ImageSelector get avatar;
   @override
   @JsonKey(ignore: true)
   _$$_CommentSelectorCopyWith<_$_CommentSelector> get copyWith =>
@@ -916,7 +896,6 @@ mixin _$ExtraSelector {
   Selector get selector => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   bool get global => throw _privateConstructorUsedError;
-  ExtraSelectorType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -930,8 +909,7 @@ abstract class $ExtraSelectorCopyWith<$Res> {
           ExtraSelector value, $Res Function(ExtraSelector) then) =
       _$ExtraSelectorCopyWithImpl<$Res, ExtraSelector>;
   @useResult
-  $Res call(
-      {Selector selector, String id, bool global, ExtraSelectorType type});
+  $Res call({Selector selector, String id, bool global});
 
   $SelectorCopyWith<$Res> get selector;
 }
@@ -952,7 +930,6 @@ class _$ExtraSelectorCopyWithImpl<$Res, $Val extends ExtraSelector>
     Object? selector = null,
     Object? id = null,
     Object? global = null,
-    Object? type = null,
   }) {
     return _then(_value.copyWith(
       selector: null == selector
@@ -967,10 +944,6 @@ class _$ExtraSelectorCopyWithImpl<$Res, $Val extends ExtraSelector>
           ? _value.global
           : global // ignore: cast_nullable_to_non_nullable
               as bool,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ExtraSelectorType,
     ) as $Val);
   }
 
@@ -991,8 +964,7 @@ abstract class _$$_ExtraSelectorCopyWith<$Res>
       __$$_ExtraSelectorCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Selector selector, String id, bool global, ExtraSelectorType type});
+  $Res call({Selector selector, String id, bool global});
 
   @override
   $SelectorCopyWith<$Res> get selector;
@@ -1012,7 +984,6 @@ class __$$_ExtraSelectorCopyWithImpl<$Res>
     Object? selector = null,
     Object? id = null,
     Object? global = null,
-    Object? type = null,
   }) {
     return _then(_$_ExtraSelector(
       selector: null == selector
@@ -1027,10 +998,6 @@ class __$$_ExtraSelectorCopyWithImpl<$Res>
           ? _value.global
           : global // ignore: cast_nullable_to_non_nullable
               as bool,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ExtraSelectorType,
     ));
   }
 }
@@ -1039,10 +1006,7 @@ class __$$_ExtraSelectorCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ExtraSelector implements _ExtraSelector {
   const _$_ExtraSelector(
-      {this.selector = const Selector(),
-      this.id = '',
-      this.global = false,
-      this.type = ExtraSelectorType.galleryBadge});
+      {this.selector = const Selector(), this.id = '', this.global = false});
 
   factory _$_ExtraSelector.fromJson(Map<String, dynamic> json) =>
       _$$_ExtraSelectorFromJson(json);
@@ -1056,13 +1020,10 @@ class _$_ExtraSelector implements _ExtraSelector {
   @override
   @JsonKey()
   final bool global;
-  @override
-  @JsonKey()
-  final ExtraSelectorType type;
 
   @override
   String toString() {
-    return 'ExtraSelector(selector: $selector, id: $id, global: $global, type: $type)';
+    return 'ExtraSelector(selector: $selector, id: $id, global: $global)';
   }
 
   @override
@@ -1073,13 +1034,12 @@ class _$_ExtraSelector implements _ExtraSelector {
             (identical(other.selector, selector) ||
                 other.selector == selector) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.global, global) || other.global == global) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.global, global) || other.global == global));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, selector, id, global, type);
+  int get hashCode => Object.hash(runtimeType, selector, id, global);
 
   @JsonKey(ignore: true)
   @override
@@ -1099,8 +1059,7 @@ abstract class _ExtraSelector implements ExtraSelector {
   const factory _ExtraSelector(
       {final Selector selector,
       final String id,
-      final bool global,
-      final ExtraSelectorType type}) = _$_ExtraSelector;
+      final bool global}) = _$_ExtraSelector;
 
   factory _ExtraSelector.fromJson(Map<String, dynamic> json) =
       _$_ExtraSelector.fromJson;
@@ -1111,8 +1070,6 @@ abstract class _ExtraSelector implements ExtraSelector {
   String get id;
   @override
   bool get global;
-  @override
-  ExtraSelectorType get type;
   @override
   @JsonKey(ignore: true)
   _$$_ExtraSelectorCopyWith<_$_ExtraSelector> get copyWith =>

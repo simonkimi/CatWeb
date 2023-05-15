@@ -27,7 +27,7 @@ enum ParserType {
 abstract class IParserBase {
   final String name;
   final String uuid;
-  final Iterable<ExtraSelector>? extra;
+  late List<ExtraSelector> extra;
 
   IParserBase(this.name, this.uuid, this.extra);
 
@@ -44,7 +44,7 @@ abstract class IParserBase {
   }
 }
 
-@freezed
+@unfreezed
 class ImageReaderParser with _$ImageReaderParser implements IParserBase {
   ImageReaderParser._();
 
@@ -57,7 +57,7 @@ class ImageReaderParser with _$ImageReaderParser implements IParserBase {
     required String name,
     required String uuid,
     @Default([])
-        Iterable<ExtraSelector> extra,
+        List<ExtraSelector> extra,
     @Default(ImageSelector())
         ImageSelector image,
     @Default(Selector())
@@ -88,7 +88,7 @@ class ImageReaderParser with _$ImageReaderParser implements IParserBase {
       _$ImageReaderParserFromJson(json);
 }
 
-@freezed
+@unfreezed
 class GalleryParser with _$GalleryParser implements IParserBase {
   GalleryParser._();
 
@@ -100,7 +100,7 @@ class GalleryParser with _$GalleryParser implements IParserBase {
     required String name,
     required String uuid,
     @Default([])
-        Iterable<ExtraSelector> extra,
+        List<ExtraSelector> extra,
     @Default(Selector())
         Selector title,
     @Default(Selector())
@@ -161,7 +161,7 @@ class GalleryParser with _$GalleryParser implements IParserBase {
       _$GalleryParserFromJson(json);
 }
 
-@freezed
+@unfreezed
 class ListViewParser with _$ListViewParser implements IParserBase {
   ListViewParser._();
 
@@ -173,7 +173,7 @@ class ListViewParser with _$ListViewParser implements IParserBase {
     required String name,
     required String uuid,
     @Default([])
-        Iterable<ExtraSelector> extra,
+        List<ExtraSelector> extra,
     @Default(Selector())
         Selector itemSelector,
     @Default(Selector())
@@ -218,7 +218,7 @@ class ListViewParser with _$ListViewParser implements IParserBase {
       _$ListViewParserFromJson(json);
 }
 
-@freezed
+@unfreezed
 class AutoCompleteParser with _$AutoCompleteParser implements IParserBase {
   AutoCompleteParser._();
 
@@ -231,7 +231,7 @@ class AutoCompleteParser with _$AutoCompleteParser implements IParserBase {
     required String name,
     required String uuid,
     @Default([])
-        Iterable<ExtraSelector>?extra,
+        List<ExtraSelector> extra,
     @Default(Selector())
         Selector itemSelector,
     @Default(Selector())

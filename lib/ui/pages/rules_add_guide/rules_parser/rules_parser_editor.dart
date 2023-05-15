@@ -1,17 +1,19 @@
+import 'package:catweb/data/models/site_model/parser/parser.dart'
+    hide ParserType;
 import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/parser.pbenum.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/new_auto_complete.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/new_list_parser.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/new_parser/auto_complete.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/new_parser/list_parser.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/auto_complete_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/extra_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/gallery_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/image_parser.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/list_parser.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'new_parser/extra_parser.dart';
 
 class RulesParserEditor extends StatelessWidget {
   const RulesParserEditor({
@@ -40,7 +42,13 @@ class RulesParserEditor extends StatelessWidget {
       ],
       children: [
         _buildEditor(context),
-        ExtraParser(model: model),
+        // ExtraParser(model: model),
+        NewExtraParser(
+          parser: GalleryParser(
+            name: '123123',
+            uuid: '12132',
+          ),
+        ),
       ],
     );
   }

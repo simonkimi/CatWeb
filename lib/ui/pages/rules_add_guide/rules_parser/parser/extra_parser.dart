@@ -32,7 +32,7 @@ class ExtraParser extends StatelessWidget {
                   },
                 );
               }),
-              CupertinoCustomListTile(
+              CupertinoCardTile(
                 leading: const Icon(Icons.add),
                 title: Text(I.of(context).add),
                 onTap: () async {
