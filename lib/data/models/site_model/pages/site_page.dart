@@ -1,5 +1,4 @@
 import 'package:catweb/data/models/site_model/pages/template.dart';
-import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'site_page.g.dart';

@@ -10,10 +10,11 @@ import 'package:catweb/ui/pages/view_page/list/controller/subpage_controller.dar
 import 'package:catweb/ui/pages/view_page/list/subpage_list.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
+import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
 
 class ViewerListFragment extends StatefulWidget {
   const ViewerListFragment({
@@ -122,9 +123,8 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
       minSize: 0,
       child: const Icon(CupertinoIcons.layers_alt),
       onPressed: () {
-        showCupertinoModalBottomSheet(
+        showCupertinoModalSheet(
           context: context,
-          expand: true,
           builder: (context) => const SiteManager(),
         );
       },

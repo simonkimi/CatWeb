@@ -5,7 +5,6 @@ import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../parser/selector_editor.dart';
 
 class AutoCompleteParserEdit extends StatelessWidget {
   AutoCompleteParserEdit({Key? key}) : super(key: key);

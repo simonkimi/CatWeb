@@ -1,10 +1,11 @@
 import 'package:catweb/data/models/site_model/parser/selector.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/selector_editor.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
+import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
 
 class ParserTile extends StatelessWidget {
   const ParserTile({
@@ -27,9 +28,8 @@ class ParserTile extends StatelessWidget {
     return SettingTile(
       title: title,
       onTap: () {
-        showCupertinoModalBottomSheet(
+        showCupertinoModalSheet(
           context: context,
-          expand: true,
           builder: (context) => SelectorEditor(
             onlySelector: onlySelector,
             onChanged: onChanged,
@@ -75,9 +75,8 @@ class ExtraParserTile extends StatelessWidget {
     return SettingTile(
       title: title,
       onTap: () {
-        showCupertinoModalBottomSheet(
+        showCupertinoModalSheet(
           context: context,
-          expand: true,
           builder: (context) => SelectorEditor(
             onlySelector: onlySelector,
             onChanged: (selector) {

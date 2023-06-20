@@ -6,7 +6,6 @@ import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
-import 'package:catweb/ui/widgets/cupertino_router.dart';
 import 'package:catweb/ui/widgets/zoom.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
 import 'package:catweb/ui/pages/view_page/image/image_zoom.dart';
@@ -334,7 +333,7 @@ class _ImageReaderViewerState extends State<ImageReader>
             color: CupertinoColors.white,
           ),
           onPressed: () {
-            Navigator.of(context).push(CupertinoWithModalsPageRoute(
+            Navigator.of(context).push(CupertinoPageRoute(
                 builder: (context) => const DisplaySettingPage(
                       fromSetting: false,
                     )));

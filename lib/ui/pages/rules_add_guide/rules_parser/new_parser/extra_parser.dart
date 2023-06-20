@@ -3,9 +3,9 @@ import 'package:catweb/data/models/site_model/parser/selector.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/selector_editor.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
+import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class NewExtraParser extends StatefulWidget {
   const NewExtraParser({
@@ -44,9 +44,8 @@ class _NewExtraParserState extends State<NewExtraParser> {
                   title: Text(e.id),
                   trailing: const Icon(Icons.more_horiz_outlined),
                   onTap: () {
-                    showCupertinoModalBottomSheet(
+                    showCupertinoModalSheet(
                       context: context,
-                      expand: true,
                       builder: (context) => SelectorEditor(
                         onChanged: (selector) {
                           setState(() {
@@ -80,7 +79,6 @@ class _NewExtraParserState extends State<NewExtraParser> {
                 if (value == null) return;
                 setState(() {
                   extra.add(ExtraSelector(id: value));
-                  print(extra);
                 });
               });
             },

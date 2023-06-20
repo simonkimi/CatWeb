@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
-import 'package:dio/dio.dart' hide Lock;
+import 'package:dio/dio.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:get/get.dart';
 import 'package:synchronized/synchronized.dart';
@@ -75,7 +75,7 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
       } else {
         stateLoadNoData();
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       stateLoadError(e);
     } on Exception catch (e) {
       stateLoadError(e);

@@ -13,13 +13,14 @@ import 'package:catweb/ui/pages/view_page/gallery/viewer_gallery_images.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/utils/helper.dart';
+import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:catweb/data/protocol/model/model.dart';
 
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
 import 'comment_item.dart';
 import 'comment_list.dart';
 import 'controller/gallery_controller.dart';
@@ -536,7 +537,7 @@ class ViewerGalleryFragment extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               _buildShowMore(context, () {
-                showCupertinoModalBottomSheet(
+                showCupertinoModalSheet(
                     context: context,
                     builder: (context) {
                       return CommentListPage(

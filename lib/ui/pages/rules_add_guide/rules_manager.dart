@@ -7,7 +7,6 @@ import 'package:catweb/gen/protobuf/store.pbserver.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/test/site/eh/eh_rules.dart' as eh;
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
-import 'package:catweb/ui/widgets/cupertino_router.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
 import 'package:catweb/ui/pages/setting_page/setting_page.dart';
@@ -70,7 +69,7 @@ class SiteManager extends GetWidget<SiteService> {
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.settings),
                   onPressed: () {
-                    Navigator.of(context).push(CupertinoWithModalsPageRoute(
+                    Navigator.of(context).push(CupertinoPageRoute(
                         builder: (context) => const SettingsPage()));
                   },
                 ),
@@ -259,7 +258,7 @@ class SiteManager extends GetWidget<SiteService> {
     SiteBlueprint? pb,
     WebTableData? db,
   }) =>
-      navigator.push(CupertinoWithModalsPageRoute(
+      navigator.push(CupertinoPageRoute(
           builder: (context) =>
               RulesEditPage(pb: pb ?? eh.ehTestSite, db: db)));
 }

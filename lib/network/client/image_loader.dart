@@ -65,7 +65,7 @@ class ImageLoadModel {
       }
       _data = rsp.data;
       _state.value = ImageLoadState.finish();
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (CancelToken.isCancel(e)) {
         return this;
       }

@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:catweb/i18n.dart';
 
 import '../../ui/pages/view_page/viewer_subpage_scaffold.dart';
-import '../../ui/widgets/cupertino_router.dart';
 import '../models/site_env_model.dart';
 
 /// 路由管理器，通过管理预览的深度进行状态管理
@@ -38,7 +37,7 @@ class NavigatorService extends GetxService {
       to._depth += 1;
     }
 
-    await Navigator.of(I.context).push(CupertinoWithModalsPageRoute(
+    await Navigator.of(I.context).push(CupertinoPageRoute(
         builder: (context) => ViewerPage(
               model: model,
               env: envModel,

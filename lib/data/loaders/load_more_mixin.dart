@@ -52,7 +52,7 @@ mixin LoadListStateMixin {
       state.isRunning ? _state.value = LoadListStatue.idle() : null;
 
   void stateLoadError(Exception error) {
-    if (error is DioError && CancelToken.isCancel(error)) {
+    if (error is DioException && CancelToken.isCancel(error)) {
       return;
     }
     _state.value = LoadListStatue.error(error);
@@ -100,7 +100,7 @@ mixin LoadStateMixin {
   void loadComplete() => _state.value = LoadListStatue.complete();
 
   void loadError(Exception error) {
-    if (error is DioError && CancelToken.isCancel(error)) {
+    if (error is DioException && CancelToken.isCancel(error)) {
       loadComplete();
       return;
     }

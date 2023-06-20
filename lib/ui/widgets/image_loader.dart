@@ -195,7 +195,7 @@ class _ImageLoaderState extends State<ImageLoader> {
     Object? err,
     VoidCallback reload,
   ) {
-    if (err is DioError) {
+    if (err is DioException) {
       logger.e('图片网路错误: \n url: <${err.requestOptions.path}>\n path: <${err.requestOptions.path}>');
     } else {
       logger.e('图片加载错误', err);

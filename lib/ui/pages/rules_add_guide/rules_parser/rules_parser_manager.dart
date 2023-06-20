@@ -2,7 +2,6 @@ import 'package:catweb/data/protocol/model/parser.dart';
 import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
-import 'package:catweb/ui/widgets/cupertino_router.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_editor.dart';
@@ -137,12 +136,12 @@ class RulesParserManager extends GetView<RulesEditController> {
   ]) async {
     final input = model ?? await _genParser(context);
     if (input == null) return;
-    // await Get.to(() => CupertinoWithModalsPageRoute(
+    // await Get.to(() => CupertinoPageRoute(
     //   builder: (context) => RulesParserEditor(model: input)
     // ));
 
     await Navigator.of(context).push(
-      CupertinoWithModalsPageRoute(builder: (BuildContext context) {
+      CupertinoPageRoute(builder: (BuildContext context) {
         return RulesParserEditor(model: input);
       }),
     );

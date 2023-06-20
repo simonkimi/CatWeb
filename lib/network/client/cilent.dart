@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
@@ -279,10 +281,10 @@ Dio _buildDio({
   }
 
   if (model.containsFlag(Flag.ignoreCertificate)) {
-    (dio.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
-        (client) => client
-          ..badCertificateCallback = ((cert, host, port) => true)
-          ..userAgent = null;
+    (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient =
+        () => HttpClient()
+          ..badCertificateCallback =
+              (X509Certificate cert, String host, int port) => true;
   }
 
   return dio;

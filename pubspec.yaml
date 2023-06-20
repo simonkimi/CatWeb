@@ -23,7 +23,7 @@ dependencies:
   flutter_sticky_header: ^0.6.3
   flutter_swipe_action_cell: ^3.0.2
   extended_image: ^8.0.1
-  modal_bottom_sheet: ^3.0.0-pre
+  cupertino_modal_sheet: ^1.0.0
   bot_toast: ^4.0.2
   scrollable_positioned_list: ^0.3.8
   photo_view:

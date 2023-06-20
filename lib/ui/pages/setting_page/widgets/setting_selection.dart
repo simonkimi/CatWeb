@@ -1,4 +1,3 @@
-import 'package:catweb/ui/widgets/cupertino_router.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
@@ -57,7 +56,7 @@ class SettingSelectionTile<T> extends StatelessWidget {
       }
     } else {
       final result =
-          await Navigator.of(context).push(CupertinoWithModalsPageRoute(
+          await Navigator.of(context).push(CupertinoPageRoute(
               builder: (context) => _SettingSelectionPage(
                     title: title,
                     value: value,

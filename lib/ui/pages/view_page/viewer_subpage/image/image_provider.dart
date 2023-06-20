@@ -21,8 +21,7 @@ class DioImageProvider extends ImageProvider<DioImageProvider> {
   final _cancelToken = CancelToken().obs;
 
   @override
-  ImageStreamCompleter loadBuffer(
-      DioImageProvider key, DecoderBufferCallback decode) {
+  ImageStreamCompleter loadImage(DioImageProvider key, ImageDecoderCallback decode) {
     final StreamController<ImageChunkEvent> chunkEvents =
         StreamController<ImageChunkEvent>();
     return MultiFrameImageStreamCompleter(
@@ -41,7 +40,7 @@ class DioImageProvider extends ImageProvider<DioImageProvider> {
 
   Future<ui.Codec> _loadAsync(
       DioImageProvider key,
-      DecoderBufferCallback decode,
+      ImageDecoderCallback decode,
       StreamController<ImageChunkEvent> chunkEvents) async {
     final rsp = await dio.get<Uint8List>(
       rpcModel.url,

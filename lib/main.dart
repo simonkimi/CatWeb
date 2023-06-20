@@ -3,11 +3,9 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/widgets/cupertino_router.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/ui/pages/view_page/viewer_main.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
@@ -72,7 +70,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         I.delegate
       ],
       onGenerateRoute: (settings) {
-        return CupertinoWithModalsPageRoute(
+        return CupertinoPageRoute(
           builder: (context) => const ViewerMain(),
           settings: settings,
         );

@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:brotli/brotli.dart';
 import 'package:dio/dio.dart';
 
-class EncodeTransformer extends DefaultTransformer {
+class EncodeTransformer extends BackgroundTransformer {
   @override
   Future transformResponse(
       RequestOptions options, ResponseBody response) async {

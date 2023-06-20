@@ -5,7 +5,6 @@ import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/new_parser/auto_complete.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/new_parser/list_parser.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/extra_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/gallery_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/image_parser.dart';
 

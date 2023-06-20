@@ -88,7 +88,7 @@ class ListFilterButton extends StatelessWidget {
             p0.type.value == TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD)
         .toList();
 
-    void _onLongPress(int index) {
+    void onLongPress(int index) {
       final item = items.elementAt(index);
       var newValue = !(item.value.value == 'true') ? 'true' : 'false';
       final rawIndex = controller.filter.indexOf(item);
@@ -126,7 +126,7 @@ class ListFilterButton extends StatelessWidget {
                                   'true'
                               ? 'false'
                               : 'true',
-                      onLongPress: () => _onLongPress(i + j),
+                      onLongPress: () => onLongPress(i + j),
                       child: Padding(
                         padding: const EdgeInsets.all(2),
                         child: Obx(() => SlimBadge(
