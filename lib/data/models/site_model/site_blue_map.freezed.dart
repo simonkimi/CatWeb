@@ -21,21 +21,38 @@ SiteBlueMap _$SiteBlueMapFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SiteBlueMap {
   String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   String get baseUrl => throw _privateConstructorUsedError;
+  set baseUrl(String value) => throw _privateConstructorUsedError;
   String get loginUrl => throw _privateConstructorUsedError;
+  set loginUrl(String value) => throw _privateConstructorUsedError;
   String get loginCookieReg => throw _privateConstructorUsedError;
+  set loginCookieReg(String value) => throw _privateConstructorUsedError;
   String get loginCookieDescription => throw _privateConstructorUsedError;
+  set loginCookieDescription(String value) =>
+      throw _privateConstructorUsedError;
   String get version => throw _privateConstructorUsedError;
+  set version(String value) => throw _privateConstructorUsedError;
   String get upgradeUrl => throw _privateConstructorUsedError;
+  set upgradeUrl(String value) => throw _privateConstructorUsedError;
   String get flag => throw _privateConstructorUsedError;
+  set flag(String value) => throw _privateConstructorUsedError;
   String get readme => throw _privateConstructorUsedError;
+  set readme(String value) => throw _privateConstructorUsedError;
   List<RegField> get headers => throw _privateConstructorUsedError;
+  set headers(List<RegField> value) => throw _privateConstructorUsedError;
   List<RegField> get cookies => throw _privateConstructorUsedError;
+  set cookies(List<RegField> value) => throw _privateConstructorUsedError;
   @JsonKey(
       fromJson: SiteBlueMap._parserListFromJson,
       toJson: SiteBlueMap._parserListToJson)
   List<IParserBase> get parserList => throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: SiteBlueMap._parserListFromJson,
+      toJson: SiteBlueMap._parserListToJson)
+  set parserList(List<IParserBase> value) => throw _privateConstructorUsedError;
   List<SitePage> get pageList => throw _privateConstructorUsedError;
+  set pageList(List<SitePage> value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -238,19 +255,19 @@ class __$$_SiteBlueMapCopyWithImpl<$Res>
           : readme // ignore: cast_nullable_to_non_nullable
               as String,
       headers: null == headers
-          ? _value._headers
+          ? _value.headers
           : headers // ignore: cast_nullable_to_non_nullable
               as List<RegField>,
       cookies: null == cookies
-          ? _value._cookies
+          ? _value.cookies
           : cookies // ignore: cast_nullable_to_non_nullable
               as List<RegField>,
       parserList: null == parserList
-          ? _value._parserList
+          ? _value.parserList
           : parserList // ignore: cast_nullable_to_non_nullable
               as List<IParserBase>,
       pageList: null == pageList
-          ? _value._pageList
+          ? _value.pageList
           : pageList // ignore: cast_nullable_to_non_nullable
               as List<SitePage>,
     ));
@@ -260,129 +277,71 @@ class __$$_SiteBlueMapCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SiteBlueMap implements _SiteBlueMap {
-  const _$_SiteBlueMap(
-      {required this.name,
-      required this.baseUrl,
-      required this.loginUrl,
-      required this.loginCookieReg,
-      required this.loginCookieDescription,
-      required this.version,
-      required this.upgradeUrl,
-      required this.flag,
-      required this.readme,
-      required final List<RegField> headers,
-      required final List<RegField> cookies,
+  _$_SiteBlueMap(
+      {this.name = '',
+      this.baseUrl = '',
+      this.loginUrl = '',
+      this.loginCookieReg = '',
+      this.loginCookieDescription = '',
+      this.version = '',
+      this.upgradeUrl = '',
+      this.flag = '',
+      this.readme = '',
+      this.headers = const [],
+      this.cookies = const [],
       @JsonKey(fromJson: SiteBlueMap._parserListFromJson, toJson: SiteBlueMap._parserListToJson)
-          required final List<IParserBase> parserList,
-      required final List<SitePage> pageList})
-      : _headers = headers,
-        _cookies = cookies,
-        _parserList = parserList,
-        _pageList = pageList;
+          this.parserList = const [],
+      this.pageList = const []});
 
   factory _$_SiteBlueMap.fromJson(Map<String, dynamic> json) =>
       _$$_SiteBlueMapFromJson(json);
 
   @override
-  final String name;
+  @JsonKey()
+  String name;
   @override
-  final String baseUrl;
+  @JsonKey()
+  String baseUrl;
   @override
-  final String loginUrl;
+  @JsonKey()
+  String loginUrl;
   @override
-  final String loginCookieReg;
+  @JsonKey()
+  String loginCookieReg;
   @override
-  final String loginCookieDescription;
+  @JsonKey()
+  String loginCookieDescription;
   @override
-  final String version;
+  @JsonKey()
+  String version;
   @override
-  final String upgradeUrl;
+  @JsonKey()
+  String upgradeUrl;
   @override
-  final String flag;
+  @JsonKey()
+  String flag;
   @override
-  final String readme;
-  final List<RegField> _headers;
+  @JsonKey()
+  String readme;
   @override
-  List<RegField> get headers {
-    if (_headers is EqualUnmodifiableListView) return _headers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_headers);
-  }
-
-  final List<RegField> _cookies;
+  @JsonKey()
+  List<RegField> headers;
   @override
-  List<RegField> get cookies {
-    if (_cookies is EqualUnmodifiableListView) return _cookies;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cookies);
-  }
-
-  final List<IParserBase> _parserList;
+  @JsonKey()
+  List<RegField> cookies;
   @override
   @JsonKey(
       fromJson: SiteBlueMap._parserListFromJson,
       toJson: SiteBlueMap._parserListToJson)
-  List<IParserBase> get parserList {
-    if (_parserList is EqualUnmodifiableListView) return _parserList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_parserList);
-  }
-
-  final List<SitePage> _pageList;
+  List<IParserBase> parserList;
   @override
-  List<SitePage> get pageList {
-    if (_pageList is EqualUnmodifiableListView) return _pageList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_pageList);
-  }
+  @JsonKey()
+  List<SitePage> pageList;
 
   @override
   String toString() {
     return 'SiteBlueMap(name: $name, baseUrl: $baseUrl, loginUrl: $loginUrl, loginCookieReg: $loginCookieReg, loginCookieDescription: $loginCookieDescription, version: $version, upgradeUrl: $upgradeUrl, flag: $flag, readme: $readme, headers: $headers, cookies: $cookies, parserList: $parserList, pageList: $pageList)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SiteBlueMap &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.baseUrl, baseUrl) || other.baseUrl == baseUrl) &&
-            (identical(other.loginUrl, loginUrl) ||
-                other.loginUrl == loginUrl) &&
-            (identical(other.loginCookieReg, loginCookieReg) ||
-                other.loginCookieReg == loginCookieReg) &&
-            (identical(other.loginCookieDescription, loginCookieDescription) ||
-                other.loginCookieDescription == loginCookieDescription) &&
-            (identical(other.version, version) || other.version == version) &&
-            (identical(other.upgradeUrl, upgradeUrl) ||
-                other.upgradeUrl == upgradeUrl) &&
-            (identical(other.flag, flag) || other.flag == flag) &&
-            (identical(other.readme, readme) || other.readme == readme) &&
-            const DeepCollectionEquality().equals(other._headers, _headers) &&
-            const DeepCollectionEquality().equals(other._cookies, _cookies) &&
-            const DeepCollectionEquality()
-                .equals(other._parserList, _parserList) &&
-            const DeepCollectionEquality().equals(other._pageList, _pageList));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      baseUrl,
-      loginUrl,
-      loginCookieReg,
-      loginCookieDescription,
-      version,
-      upgradeUrl,
-      flag,
-      readme,
-      const DeepCollectionEquality().hash(_headers),
-      const DeepCollectionEquality().hash(_cookies),
-      const DeepCollectionEquality().hash(_parserList),
-      const DeepCollectionEquality().hash(_pageList));
 
   @JsonKey(ignore: true)
   @override
@@ -399,54 +358,70 @@ class _$_SiteBlueMap implements _SiteBlueMap {
 }
 
 abstract class _SiteBlueMap implements SiteBlueMap {
-  const factory _SiteBlueMap(
-      {required final String name,
-      required final String baseUrl,
-      required final String loginUrl,
-      required final String loginCookieReg,
-      required final String loginCookieDescription,
-      required final String version,
-      required final String upgradeUrl,
-      required final String flag,
-      required final String readme,
-      required final List<RegField> headers,
-      required final List<RegField> cookies,
+  factory _SiteBlueMap(
+      {String name,
+      String baseUrl,
+      String loginUrl,
+      String loginCookieReg,
+      String loginCookieDescription,
+      String version,
+      String upgradeUrl,
+      String flag,
+      String readme,
+      List<RegField> headers,
+      List<RegField> cookies,
       @JsonKey(fromJson: SiteBlueMap._parserListFromJson, toJson: SiteBlueMap._parserListToJson)
-          required final List<IParserBase> parserList,
-      required final List<SitePage> pageList}) = _$_SiteBlueMap;
+          List<IParserBase> parserList,
+      List<SitePage> pageList}) = _$_SiteBlueMap;
 
   factory _SiteBlueMap.fromJson(Map<String, dynamic> json) =
       _$_SiteBlueMap.fromJson;
 
   @override
   String get name;
+  set name(String value);
   @override
   String get baseUrl;
+  set baseUrl(String value);
   @override
   String get loginUrl;
+  set loginUrl(String value);
   @override
   String get loginCookieReg;
+  set loginCookieReg(String value);
   @override
   String get loginCookieDescription;
+  set loginCookieDescription(String value);
   @override
   String get version;
+  set version(String value);
   @override
   String get upgradeUrl;
+  set upgradeUrl(String value);
   @override
   String get flag;
+  set flag(String value);
   @override
   String get readme;
+  set readme(String value);
   @override
   List<RegField> get headers;
+  set headers(List<RegField> value);
   @override
   List<RegField> get cookies;
+  set cookies(List<RegField> value);
   @override
   @JsonKey(
       fromJson: SiteBlueMap._parserListFromJson,
       toJson: SiteBlueMap._parserListToJson)
   List<IParserBase> get parserList;
+  @JsonKey(
+      fromJson: SiteBlueMap._parserListFromJson,
+      toJson: SiteBlueMap._parserListToJson)
+  set parserList(List<IParserBase> value);
   @override
   List<SitePage> get pageList;
+  set pageList(List<SitePage> value);
   @override
   @JsonKey(ignore: true)
   _$$_SiteBlueMapCopyWith<_$_SiteBlueMap> get copyWith =>

@@ -1,27 +1,30 @@
 import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/protocol/model/store.dart';
-import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:get/get.dart';
 
 class RulesEditController extends GetxController {
   RulesEditController({
-    SiteBlueprint? pb,
+    SiteBlueMap? blueMap,
     this.db,
-  }) : blueprint = SiteBlueprintModel(pb);
+  }) : blueprint = Rx(blueMap ?? const SiteBlueMap());
 
-  final SiteBlueprintModel blueprint;
+  Rx<SiteBlueMap> blueprint;
   final WebTableData? db;
+
+  void updateBlueMap(SiteBlueMap entity) {
+    blueprint(entity);
+  }
 
   Future<void> save() async {
     if (db == null) {
       await Get.find<DbService>().webDao.insert(WebTableCompanion.insert(
-            blueprint: blueprint.toPb().writeToBuffer(),
-            env: EnvStore().writeToBuffer(),
+            blueprint: blueprint.toJson(),
+            env: '{}',
           ));
     } else {
-      final newDb = db!.copyWith(blueprint: blueprint.toPb().writeToBuffer());
+      final newDb = db!.copyWith(blueprint: blueprint.toJson());
       await Get.find<DbService>().webDao.replace(newDb);
       // 检测是否为当前配置
       final controller = Get.find<SiteService>();

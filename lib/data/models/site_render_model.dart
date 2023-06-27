@@ -1,12 +1,12 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:catweb/data/database/cookie_jar_storage.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/data/protocol/model/store.dart';
-import 'package:catweb/gen/protobuf/page.pbserver.dart';
-import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/data/models/site_model/pages/site_page.dart';
+import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/network/client/cilent.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:get/get.dart';
@@ -16,13 +16,13 @@ import '../controller/db_service.dart';
 /// 渲染时所创建的模型
 class SiteRenderConfigModel {
   SiteRenderConfigModel({
-    required this.configModel,
+    required this.blueMap,
     required this.dbEntity,
-  })  : globalEnv = SiteEnvModel.fromBuffer(dbEntity.env),
+  })  : globalEnv = SiteEnvStore.fromJson(jsonDecode(dbEntity.env)),
         favicon =
             dbEntity.favicon.isNotEmpty ? dbEntity.favicon.obs : Rx(null) {
     client = NetClient(
-      configModel: configModel,
+      blueMap: blueMap,
       db: dbEntity,
       cookieJar: PersistCookieJar(
         ignoreExpires: false,
@@ -36,11 +36,11 @@ class SiteRenderConfigModel {
   late final NetClient client;
 
   // 储存字段
-  final SiteEnvModel globalEnv;
-  final SiteBlueprintModel configModel;
+  final SiteEnvStore globalEnv;
+  final SiteBlueMap blueMap;
   final Rx<Uint8List?> favicon;
 
-  String get name => configModel.name.value;
+  String get name => blueMap.name;
 
   int get id => dbEntity.id;
 
@@ -51,15 +51,13 @@ class SiteRenderConfigModel {
 
   Future<void> updateCookies() async {}
 
-  List<PageBlueprintModel> get displayPage => configModel.pageList
-      .where((p0) => p0.display.value == SiteDisplayType.show)
+  List<SitePage> get displayPage => blueMap.pageList
+      .where((p0) => p0.displayType == SiteDisplayType.show)
       .where((e) => e.containsFlag('requireLogin')
           ? dbEntity.loginCookies.isNotEmpty
           : true)
-      .where((e) => [
-            Template.TEMPLATE_IMAGE_LIST,
-            Template.TEMPLATE_IMAGE_WATERFALL
-          ].contains(e.template.value))
+      .where((e) => [TemplateType.imageList, TemplateType.imageWaterFall]
+          .contains(e.template.type))
       .toList();
 
   void updateGlobalEnv(Map<String, String> env) async {
@@ -74,7 +72,7 @@ class SiteRenderConfigModel {
     if (didUpdate) {
       await Get.find<DbService>()
           .webDao
-          .replace(dbEntity.copyWith(env: globalEnv.writeToBuffer()));
+          .replace(dbEntity.copyWith(env: globalEnv.toJsonString()));
     }
   }
 }

@@ -1,19 +1,23 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: parser.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
-// ignore_for_file: UNDEFINED_SHOWN_NAME
+// ignore_for_file: annotate_overrides, camel_case_types
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
+
 import 'dart:core' as $core;
+
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class ParserType extends $pb.ProtobufEnum {
-  static const ParserType PARSER_TYPE_IMAGE = ParserType._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'PARSER_TYPE_IMAGE');
-  static const ParserType PARSER_TYPE_LIST_VIEW = ParserType._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'PARSER_TYPE_LIST_VIEW');
-  static const ParserType PARSER_TYPE_GALLERY = ParserType._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'PARSER_TYPE_GALLERY');
-  static const ParserType PARSER_TYPE_AUTO_COMPLETE = ParserType._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'PARSER_TYPE_AUTO_COMPLETE');
+  static const ParserType PARSER_TYPE_IMAGE = ParserType._(0, _omitEnumNames ? '' : 'PARSER_TYPE_IMAGE');
+  static const ParserType PARSER_TYPE_LIST_VIEW = ParserType._(1, _omitEnumNames ? '' : 'PARSER_TYPE_LIST_VIEW');
+  static const ParserType PARSER_TYPE_GALLERY = ParserType._(2, _omitEnumNames ? '' : 'PARSER_TYPE_GALLERY');
+  static const ParserType PARSER_TYPE_AUTO_COMPLETE = ParserType._(3, _omitEnumNames ? '' : 'PARSER_TYPE_AUTO_COMPLETE');
 
   static const $core.List<ParserType> values = <ParserType> [
     PARSER_TYPE_IMAGE,
@@ -28,3 +32,5 @@ class ParserType extends $pb.ProtobufEnum {
   const ParserType._($core.int v, $core.String n) : super(v, n);
 }
 
+
+const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

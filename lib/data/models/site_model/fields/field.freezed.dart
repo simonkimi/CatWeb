@@ -20,8 +20,8 @@ RegField _$RegFieldFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RegField {
-  String? get reg => throw _privateConstructorUsedError;
-  String? get value => throw _privateConstructorUsedError;
+  String get reg => throw _privateConstructorUsedError;
+  String get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $RegFieldCopyWith<$Res> {
   factory $RegFieldCopyWith(RegField value, $Res Function(RegField) then) =
       _$RegFieldCopyWithImpl<$Res, RegField>;
   @useResult
-  $Res call({String? reg, String? value});
+  $Res call({String reg, String value});
 }
 
 /// @nodoc
@@ -50,18 +50,18 @@ class _$RegFieldCopyWithImpl<$Res, $Val extends RegField>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? reg = freezed,
-    Object? value = freezed,
+    Object? reg = null,
+    Object? value = null,
   }) {
     return _then(_value.copyWith(
-      reg: freezed == reg
+      reg: null == reg
           ? _value.reg
           : reg // ignore: cast_nullable_to_non_nullable
-              as String?,
-      value: freezed == value
+              as String,
+      value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -73,7 +73,7 @@ abstract class _$$_RegFieldCopyWith<$Res> implements $RegFieldCopyWith<$Res> {
       __$$_RegFieldCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? reg, String? value});
+  $Res call({String reg, String value});
 }
 
 /// @nodoc
@@ -87,18 +87,18 @@ class __$$_RegFieldCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? reg = freezed,
-    Object? value = freezed,
+    Object? reg = null,
+    Object? value = null,
   }) {
     return _then(_$_RegField(
-      reg: freezed == reg
+      reg: null == reg
           ? _value.reg
           : reg // ignore: cast_nullable_to_non_nullable
-              as String?,
-      value: freezed == value
+              as String,
+      value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -113,10 +113,10 @@ class _$_RegField implements _RegField {
 
   @override
   @JsonKey()
-  final String? reg;
+  final String reg;
   @override
   @JsonKey()
-  final String? value;
+  final String value;
 
   @override
   String toString() {
@@ -151,15 +151,14 @@ class _$_RegField implements _RegField {
 }
 
 abstract class _RegField implements RegField {
-  const factory _RegField({final String? reg, final String? value}) =
-      _$_RegField;
+  const factory _RegField({final String reg, final String value}) = _$_RegField;
 
   factory _RegField.fromJson(Map<String, dynamic> json) = _$_RegField.fromJson;
 
   @override
-  String? get reg;
+  String get reg;
   @override
-  String? get value;
+  String get value;
   @override
   @JsonKey(ignore: true)
   _$$_RegFieldCopyWith<_$_RegField> get copyWith =>
@@ -282,19 +281,22 @@ class __$$_ColorFieldCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ColorField implements _ColorField {
-  const _$_ColorField(
-      {required this.a, required this.r, required this.g, required this.b});
+  const _$_ColorField({this.a = 0, this.r = 0, this.g = 0, this.b = 0});
 
   factory _$_ColorField.fromJson(Map<String, dynamic> json) =>
       _$$_ColorFieldFromJson(json);
 
   @override
+  @JsonKey()
   final int a;
   @override
+  @JsonKey()
   final int r;
   @override
+  @JsonKey()
   final int g;
   @override
+  @JsonKey()
   final int b;
 
   @override
@@ -333,10 +335,7 @@ class _$_ColorField implements _ColorField {
 
 abstract class _ColorField implements ColorField {
   const factory _ColorField(
-      {required final int a,
-      required final int r,
-      required final int g,
-      required final int b}) = _$_ColorField;
+      {final int a, final int r, final int g, final int b}) = _$_ColorField;
 
   factory _ColorField.fromJson(Map<String, dynamic> json) =
       _$_ColorField.fromJson;

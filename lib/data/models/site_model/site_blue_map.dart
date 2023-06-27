@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -7,27 +9,33 @@ part 'site_blue_map.freezed.dart';
 
 part 'site_blue_map.g.dart';
 
-@freezed
+@unfreezed
 class SiteBlueMap with _$SiteBlueMap {
-  const factory SiteBlueMap({
-    required String name,
-    required String baseUrl,
-    required String loginUrl,
-    required String loginCookieReg,
-    required String loginCookieDescription,
-    required String version,
-    required String upgradeUrl,
-    required String flag,
-    required String readme,
-    required List<RegField> headers,
-    required List<RegField> cookies,
-    @JsonKey(fromJson: SiteBlueMap._parserListFromJson, toJson: SiteBlueMap._parserListToJson)
-        required List<IParserBase> parserList,
-    required List<SitePage> pageList,
+  factory SiteBlueMap({
+    @Default('') String name,
+    @Default('') String baseUrl,
+    @Default('') String loginUrl,
+    @Default('') String loginCookieReg,
+    @Default('') String loginCookieDescription,
+    @Default('') String version,
+    @Default('') String upgradeUrl,
+    @Default('') String flag,
+    @Default('') String readme,
+    @Default([]) List<RegField> headers,
+    @Default([]) List<RegField> cookies,
+    @Default([])
+    @JsonKey(
+        fromJson: SiteBlueMap._parserListFromJson,
+        toJson: SiteBlueMap._parserListToJson)
+    List<IParserBase> parserList,
+    @Default([]) List<SitePage> pageList,
   }) = _SiteBlueMap;
 
   factory SiteBlueMap.fromJson(Map<String, dynamic> json) =>
       _$SiteBlueMapFromJson(json);
+
+  factory SiteBlueMap.fromJsonString(String json) =>
+      _$SiteBlueMapFromJson(jsonDecode(json));
 
   static List<IParserBase> _parserListFromJson(List<dynamic> json) {
     return json.map((e) => IParserBase.fromJson(e)).toList();

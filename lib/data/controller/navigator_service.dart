@@ -1,5 +1,5 @@
 import 'package:catweb/data/controller/site_service.dart';
-import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,17 +21,17 @@ class NavigatorService extends GetxService {
   /// [envModel] 环境
   static Future<void> push({
     required String targetName,
-    SiteEnvModel? envModel,
+    SiteEnvStore? envModel,
     Object? model,
   }) async {
-    final target = SiteService.to.website.configModel.pageList
+    final target = SiteService.to.website.blueMap.pageList
         .get((e) => e.uuid == targetName);
     if (target == null) {
       throw Exception('NavigatorService: $targetName not exist');
     }
 
-    var add = [Template.TEMPLATE_IMAGE_LIST, Template.TEMPLATE_IMAGE_WATERFALL]
-        .contains(target.template.value);
+    var add = [TemplateType.imageList, TemplateType.imageWaterFall]
+        .contains(target.template.type);
 
     if (add) {
       to._depth += 1;

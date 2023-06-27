@@ -14,7 +14,7 @@ void main() async {
   final req = ParserFFi(
     source: file,
     parser: ehListParser,
-    env: SiteEnvModel(),
+    env: SiteEnvStore(),
     type: RpcType.RPC_TYPE_LIST_VIEW_PARSER,
   );
 

@@ -1,9 +1,13 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: selector.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+
+// ignore_for_file: annotate_overrides, camel_case_types
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
 import 'dart:core' as $core;
 
@@ -14,58 +18,23 @@ import 'selector.pbenum.dart';
 export 'selector.pbenum.dart';
 
 class Selector extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Selector', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'selector')
-    ..e<SelectorFunction>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'function', $pb.PbFieldType.OE, defaultOrMaker: SelectorFunction.SELECTOR_FUNCTION_AUTO, valueOf: SelectorFunction.valueOf, enumValues: SelectorFunction.values)
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'param')
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'regex')
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'replace')
-    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'script')
-    ..aOB(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'computed')
-    ..aOS(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'defaultValue')
+  factory Selector() => create();
+  Selector._() : super();
+  factory Selector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Selector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Selector', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'selector')
+    ..e<SelectorFunction>(2, _omitFieldNames ? '' : 'function', $pb.PbFieldType.OE, defaultOrMaker: SelectorFunction.SELECTOR_FUNCTION_AUTO, valueOf: SelectorFunction.valueOf, enumValues: SelectorFunction.values)
+    ..aOS(3, _omitFieldNames ? '' : 'param')
+    ..aOS(4, _omitFieldNames ? '' : 'regex')
+    ..aOS(5, _omitFieldNames ? '' : 'replace')
+    ..aOS(6, _omitFieldNames ? '' : 'script')
+    ..aOB(7, _omitFieldNames ? '' : 'computed')
+    ..aOS(8, _omitFieldNames ? '' : 'defaultValue')
     ..hasRequiredFields = false
   ;
 
-  Selector._() : super();
-  factory Selector({
-    $core.String? selector,
-    SelectorFunction? function,
-    $core.String? param,
-    $core.String? regex,
-    $core.String? replace,
-    $core.String? script,
-    $core.bool? computed,
-    $core.String? defaultValue,
-  }) {
-    final _result = create();
-    if (selector != null) {
-      _result.selector = selector;
-    }
-    if (function != null) {
-      _result.function = function;
-    }
-    if (param != null) {
-      _result.param = param;
-    }
-    if (regex != null) {
-      _result.regex = regex;
-    }
-    if (replace != null) {
-      _result.replace = replace;
-    }
-    if (script != null) {
-      _result.script = script;
-    }
-    if (computed != null) {
-      _result.computed = computed;
-    }
-    if (defaultValue != null) {
-      _result.defaultValue = defaultValue;
-    }
-    return _result;
-  }
-  factory Selector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory Selector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -75,8 +44,10 @@ class Selector extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  Selector copyWith(void Function(Selector) updates) => super.copyWith((message) => updates(message as Selector)) as Selector; // ignore: deprecated_member_use
+  Selector copyWith(void Function(Selector) updates) => super.copyWith((message) => updates(message as Selector)) as Selector;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Selector create() => Selector._();
   Selector createEmptyInstance() => create();
@@ -159,38 +130,19 @@ class Selector extends $pb.GeneratedMessage {
 }
 
 class ExtraSelector extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ExtraSelector', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
-    ..aOM<Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'selector', subBuilder: Selector.create)
-    ..aOB(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'global')
-    ..e<ExtraSelectorType>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE, valueOf: ExtraSelectorType.valueOf, enumValues: ExtraSelectorType.values)
+  factory ExtraSelector() => create();
+  ExtraSelector._() : super();
+  factory ExtraSelector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ExtraSelector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ExtraSelector', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aOM<Selector>(2, _omitFieldNames ? '' : 'selector', subBuilder: Selector.create)
+    ..aOB(3, _omitFieldNames ? '' : 'global')
+    ..e<ExtraSelectorType>(4, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: ExtraSelectorType.EXTRA_SELECTOR_TYPE_NONE, valueOf: ExtraSelectorType.valueOf, enumValues: ExtraSelectorType.values)
     ..hasRequiredFields = false
   ;
 
-  ExtraSelector._() : super();
-  factory ExtraSelector({
-    $core.String? id,
-    Selector? selector,
-    $core.bool? global,
-    ExtraSelectorType? type,
-  }) {
-    final _result = create();
-    if (id != null) {
-      _result.id = id;
-    }
-    if (selector != null) {
-      _result.selector = selector;
-    }
-    if (global != null) {
-      _result.global = global;
-    }
-    if (type != null) {
-      _result.type = type;
-    }
-    return _result;
-  }
-  factory ExtraSelector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ExtraSelector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -200,8 +152,10 @@ class ExtraSelector extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ExtraSelector copyWith(void Function(ExtraSelector) updates) => super.copyWith((message) => updates(message as ExtraSelector)) as ExtraSelector; // ignore: deprecated_member_use
+  ExtraSelector copyWith(void Function(ExtraSelector) updates) => super.copyWith((message) => updates(message as ExtraSelector)) as ExtraSelector;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ExtraSelector create() => ExtraSelector._();
   ExtraSelector createEmptyInstance() => create();
@@ -250,43 +204,20 @@ class ExtraSelector extends $pb.GeneratedMessage {
 }
 
 class ImageSelector extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ImageSelector', createEmptyInstance: create)
-    ..aOM<Selector>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgUrl', subBuilder: Selector.create)
-    ..aOM<Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgWidth', subBuilder: Selector.create)
-    ..aOM<Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgHeight', subBuilder: Selector.create)
-    ..aOM<Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgX', subBuilder: Selector.create)
-    ..aOM<Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgY', subBuilder: Selector.create)
+  factory ImageSelector() => create();
+  ImageSelector._() : super();
+  factory ImageSelector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ImageSelector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageSelector', createEmptyInstance: create)
+    ..aOM<Selector>(1, _omitFieldNames ? '' : 'imgUrl', subBuilder: Selector.create)
+    ..aOM<Selector>(2, _omitFieldNames ? '' : 'imgWidth', subBuilder: Selector.create)
+    ..aOM<Selector>(3, _omitFieldNames ? '' : 'imgHeight', subBuilder: Selector.create)
+    ..aOM<Selector>(4, _omitFieldNames ? '' : 'imgX', subBuilder: Selector.create)
+    ..aOM<Selector>(5, _omitFieldNames ? '' : 'imgY', subBuilder: Selector.create)
     ..hasRequiredFields = false
   ;
 
-  ImageSelector._() : super();
-  factory ImageSelector({
-    Selector? imgUrl,
-    Selector? imgWidth,
-    Selector? imgHeight,
-    Selector? imgX,
-    Selector? imgY,
-  }) {
-    final _result = create();
-    if (imgUrl != null) {
-      _result.imgUrl = imgUrl;
-    }
-    if (imgWidth != null) {
-      _result.imgWidth = imgWidth;
-    }
-    if (imgHeight != null) {
-      _result.imgHeight = imgHeight;
-    }
-    if (imgX != null) {
-      _result.imgX = imgX;
-    }
-    if (imgY != null) {
-      _result.imgY = imgY;
-    }
-    return _result;
-  }
-  factory ImageSelector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ImageSelector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -296,8 +227,10 @@ class ImageSelector extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ImageSelector copyWith(void Function(ImageSelector) updates) => super.copyWith((message) => updates(message as ImageSelector)) as ImageSelector; // ignore: deprecated_member_use
+  ImageSelector copyWith(void Function(ImageSelector) updates) => super.copyWith((message) => updates(message as ImageSelector)) as ImageSelector;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ImageSelector create() => ImageSelector._();
   ImageSelector createEmptyInstance() => create();
@@ -363,43 +296,20 @@ class ImageSelector extends $pb.GeneratedMessage {
 }
 
 class CommentSelector extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CommentSelector', createEmptyInstance: create)
-    ..aOM<Selector>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'username', subBuilder: Selector.create)
-    ..aOM<Selector>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'time', subBuilder: Selector.create)
-    ..aOM<Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'score', subBuilder: Selector.create)
-    ..aOM<Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content', subBuilder: Selector.create)
-    ..aOM<ImageSelector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'avatar', subBuilder: ImageSelector.create)
+  factory CommentSelector() => create();
+  CommentSelector._() : super();
+  factory CommentSelector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CommentSelector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CommentSelector', createEmptyInstance: create)
+    ..aOM<Selector>(1, _omitFieldNames ? '' : 'username', subBuilder: Selector.create)
+    ..aOM<Selector>(2, _omitFieldNames ? '' : 'time', subBuilder: Selector.create)
+    ..aOM<Selector>(3, _omitFieldNames ? '' : 'score', subBuilder: Selector.create)
+    ..aOM<Selector>(4, _omitFieldNames ? '' : 'content', subBuilder: Selector.create)
+    ..aOM<ImageSelector>(5, _omitFieldNames ? '' : 'avatar', subBuilder: ImageSelector.create)
     ..hasRequiredFields = false
   ;
 
-  CommentSelector._() : super();
-  factory CommentSelector({
-    Selector? username,
-    Selector? time,
-    Selector? score,
-    Selector? content,
-    ImageSelector? avatar,
-  }) {
-    final _result = create();
-    if (username != null) {
-      _result.username = username;
-    }
-    if (time != null) {
-      _result.time = time;
-    }
-    if (score != null) {
-      _result.score = score;
-    }
-    if (content != null) {
-      _result.content = content;
-    }
-    if (avatar != null) {
-      _result.avatar = avatar;
-    }
-    return _result;
-  }
-  factory CommentSelector.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory CommentSelector.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -409,8 +319,10 @@ class CommentSelector extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  CommentSelector copyWith(void Function(CommentSelector) updates) => super.copyWith((message) => updates(message as CommentSelector)) as CommentSelector; // ignore: deprecated_member_use
+  CommentSelector copyWith(void Function(CommentSelector) updates) => super.copyWith((message) => updates(message as CommentSelector)) as CommentSelector;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static CommentSelector create() => CommentSelector._();
   CommentSelector createEmptyInstance() => create();
@@ -475,3 +387,6 @@ class CommentSelector extends $pb.GeneratedMessage {
   ImageSelector ensureAvatar() => $_ensure(4);
 }
 
+
+const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

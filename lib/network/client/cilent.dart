@@ -5,6 +5,7 @@ import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/data/protocol/model/page.dart';
 import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/gen/protobuf/actions.pbenum.dart';
@@ -31,16 +32,16 @@ class FlagException implements Exception {
 
 class NetClient {
   NetClient({
-    required this.configModel,
+    required this.blueMap,
     required CookieJar cookieJar,
     required WebTableData db,
   })  : dio = _buildDio(
-          model: configModel,
+          model: blueMap,
           cookieJar: cookieJar,
           db: db,
         ),
         imageDio = _buildDio(
-          model: configModel,
+          model: blueMap,
           cookieJar: cookieJar,
           isImage: true,
           db: db,
@@ -48,16 +49,16 @@ class NetClient {
 
   final Dio dio;
   final Dio imageDio;
-  final SiteBlueprintModel configModel;
+  final SiteBlueMap blueMap;
 
   Future<Response<String>> _buildRequest({
     required String url,
     required PageBlueprintModel model,
-    required SiteEnvModel localEnv,
+    required SiteEnvStore localEnv,
     Options? options,
   }) async {
-    final form = localEnv.replace(model.formData.value);
-    final url2 = localEnv.replace(url);
+    final form = localEnv.apply(model.formData.value);
+    final url2 = localEnv.apply(url);
 
     switch (model.netAction.value) {
       case NetActionType.NET_ACTION_TYPE_DELETE:
@@ -102,7 +103,7 @@ class NetClient {
     }
 
     final buffer = await ParserFFi(
-      parser: configModel.getListParser(model.baseParser.value).toPb(),
+      parser: blueMap.getListParser(model.baseParser.value).toPb(),
       source: rsp.data!,
       env: Get.find<SiteService>().website.globalEnv,
       type: RpcType.RPC_TYPE_LIST_VIEW_PARSER,
@@ -145,7 +146,7 @@ class NetClient {
     }
 
     final buffer = await ParserFFi(
-      parser: configModel.getGalleryParser(model.baseParser.value).toPb(),
+      parser: blueMap.getGalleryParser(model.baseParser.value).toPb(),
       source: rsp.data!,
       env: Get.find<SiteService>().website.globalEnv,
       type: RpcType.RPC_TYPE_GALLERY_PARSER,
@@ -186,7 +187,7 @@ class NetClient {
     }
 
     final buffer = await ParserFFi(
-      parser: configModel.getImageParser(model.baseParser.value).toPb(),
+      parser: blueMap.getImageParser(model.baseParser.value).toPb(),
       source: rsp.data!,
       env: Get.find<SiteService>().website.globalEnv,
       type: RpcType.RPC_TYPE_IMAGE_PARSER,
@@ -217,7 +218,7 @@ class NetClient {
     }
 
     final buffer = await ParserFFi(
-      parser: configModel.getAutoCompleteParser(model.baseParser.value).toPb(),
+      parser: blueMap.getAutoCompleteParser(model.baseParser.value).toPb(),
       source: rsp.data!,
       env: Get.find<SiteService>().website.globalEnv,
       type: RpcType.RPC_TYPE_AUTO_COMPLETE,
@@ -239,7 +240,7 @@ class NetClient {
 }
 
 Dio _buildDio({
-  required SiteBlueprintModel model,
+  required SiteBlueMap model,
   required CookieJar cookieJar,
   required WebTableData db,
   bool isImage = false,
@@ -251,8 +252,8 @@ Dio _buildDio({
     ..receiveTimeout = (5 * 60).seconds
     ..sendTimeout = 60.seconds;
 
-  if (model.baseUrl.value.isNotEmpty) {
-    dio.options.baseUrl = model.baseUrl.value;
+  if (model.baseUrl.isNotEmpty) {
+    dio.options.baseUrl = model.baseUrl;
   }
 
   dio.transformer = EncodeTransformer();

@@ -1,9 +1,13 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: rpc.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+
+// ignore_for_file: annotate_overrides, camel_case_types
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
 import 'dart:core' as $core;
 
@@ -14,38 +18,19 @@ import 'rpc.pbenum.dart';
 export 'rpc.pbenum.dart';
 
 class RpcRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RpcRequest', createEmptyInstance: create)
-    ..e<RpcType>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: RpcType.RPC_TYPE_IMAGE_PARSER, valueOf: RpcType.valueOf, enumValues: RpcType.values)
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'data')
-    ..a<$core.List<$core.int>>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'parserData', $pb.PbFieldType.OY)
-    ..m<$core.String, $core.String>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'env', entryClassName: 'RpcRequest.EnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+  factory RpcRequest() => create();
+  RpcRequest._() : super();
+  factory RpcRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RpcRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RpcRequest', createEmptyInstance: create)
+    ..e<RpcType>(1, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: RpcType.RPC_TYPE_IMAGE_PARSER, valueOf: RpcType.valueOf, enumValues: RpcType.values)
+    ..aOS(2, _omitFieldNames ? '' : 'data')
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'parserData', $pb.PbFieldType.OY)
+    ..m<$core.String, $core.String>(4, _omitFieldNames ? '' : 'env', entryClassName: 'RpcRequest.EnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
     ..hasRequiredFields = false
   ;
 
-  RpcRequest._() : super();
-  factory RpcRequest({
-    RpcType? type,
-    $core.String? data,
-    $core.List<$core.int>? parserData,
-    $core.Map<$core.String, $core.String>? env,
-  }) {
-    final _result = create();
-    if (type != null) {
-      _result.type = type;
-    }
-    if (data != null) {
-      _result.data = data;
-    }
-    if (parserData != null) {
-      _result.parserData = parserData;
-    }
-    if (env != null) {
-      _result.env.addAll(env);
-    }
-    return _result;
-  }
-  factory RpcRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory RpcRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -55,8 +40,10 @@ class RpcRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  RpcRequest copyWith(void Function(RpcRequest) updates) => super.copyWith((message) => updates(message as RpcRequest)) as RpcRequest; // ignore: deprecated_member_use
+  RpcRequest copyWith(void Function(RpcRequest) updates) => super.copyWith((message) => updates(message as RpcRequest)) as RpcRequest;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static RpcRequest create() => RpcRequest._();
   RpcRequest createEmptyInstance() => create();
@@ -97,28 +84,17 @@ class RpcRequest extends $pb.GeneratedMessage {
 }
 
 class RpcResponse extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RpcResponse', createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'data', $pb.PbFieldType.OY)
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'error')
+  factory RpcResponse() => create();
+  RpcResponse._() : super();
+  factory RpcResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RpcResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RpcResponse', createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'data', $pb.PbFieldType.OY)
+    ..aOS(2, _omitFieldNames ? '' : 'error')
     ..hasRequiredFields = false
   ;
 
-  RpcResponse._() : super();
-  factory RpcResponse({
-    $core.List<$core.int>? data,
-    $core.String? error,
-  }) {
-    final _result = create();
-    if (data != null) {
-      _result.data = data;
-    }
-    if (error != null) {
-      _result.error = error;
-    }
-    return _result;
-  }
-  factory RpcResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory RpcResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -128,8 +104,10 @@ class RpcResponse extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  RpcResponse copyWith(void Function(RpcResponse) updates) => super.copyWith((message) => updates(message as RpcResponse)) as RpcResponse; // ignore: deprecated_member_use
+  RpcResponse copyWith(void Function(RpcResponse) updates) => super.copyWith((message) => updates(message as RpcResponse)) as RpcResponse;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static RpcResponse create() => RpcResponse._();
   RpcResponse createEmptyInstance() => create();
@@ -157,3 +135,6 @@ class RpcResponse extends $pb.GeneratedMessage {
   void clearError() => clearField(2);
 }
 
+
+const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

@@ -1,57 +1,34 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: model.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+
+// ignore_for_file: annotate_overrides, camel_case_types
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class ImageRpcModel extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ImageRpcModel', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'url')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cacheKey', protoName: 'cacheKey')
-    ..a<$core.double>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'width', $pb.PbFieldType.OD)
-    ..a<$core.double>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'height', $pb.PbFieldType.OD)
-    ..a<$core.double>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgX', $pb.PbFieldType.OD, protoName: 'imgX')
-    ..a<$core.double>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgY', $pb.PbFieldType.OD, protoName: 'imgY')
+  factory ImageRpcModel() => create();
+  ImageRpcModel._() : super();
+  factory ImageRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ImageRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageRpcModel', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'url')
+    ..aOS(2, _omitFieldNames ? '' : 'cacheKey', protoName: 'cacheKey')
+    ..a<$core.double>(3, _omitFieldNames ? '' : 'width', $pb.PbFieldType.OD)
+    ..a<$core.double>(4, _omitFieldNames ? '' : 'height', $pb.PbFieldType.OD)
+    ..a<$core.double>(5, _omitFieldNames ? '' : 'imgX', $pb.PbFieldType.OD, protoName: 'imgX')
+    ..a<$core.double>(6, _omitFieldNames ? '' : 'imgY', $pb.PbFieldType.OD, protoName: 'imgY')
     ..hasRequiredFields = false
   ;
 
-  ImageRpcModel._() : super();
-  factory ImageRpcModel({
-    $core.String? url,
-    $core.String? cacheKey,
-    $core.double? width,
-    $core.double? height,
-    $core.double? imgX,
-    $core.double? imgY,
-  }) {
-    final _result = create();
-    if (url != null) {
-      _result.url = url;
-    }
-    if (cacheKey != null) {
-      _result.cacheKey = cacheKey;
-    }
-    if (width != null) {
-      _result.width = width;
-    }
-    if (height != null) {
-      _result.height = height;
-    }
-    if (imgX != null) {
-      _result.imgX = imgX;
-    }
-    if (imgY != null) {
-      _result.imgY = imgY;
-    }
-    return _result;
-  }
-  factory ImageRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ImageRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -61,8 +38,10 @@ class ImageRpcModel extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ImageRpcModel copyWith(void Function(ImageRpcModel) updates) => super.copyWith((message) => updates(message as ImageRpcModel)) as ImageRpcModel; // ignore: deprecated_member_use
+  ImageRpcModel copyWith(void Function(ImageRpcModel) updates) => super.copyWith((message) => updates(message as ImageRpcModel)) as ImageRpcModel;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ImageRpcModel create() => ImageRpcModel._();
   ImageRpcModel createEmptyInstance() => create();
@@ -127,38 +106,19 @@ class ImageRpcModel extends $pb.GeneratedMessage {
 }
 
 class ColorRpcModel extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ColorRpcModel', createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'a', $pb.PbFieldType.O3)
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'r', $pb.PbFieldType.O3)
-    ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'g', $pb.PbFieldType.O3)
-    ..a<$core.int>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'b', $pb.PbFieldType.O3)
+  factory ColorRpcModel() => create();
+  ColorRpcModel._() : super();
+  factory ColorRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ColorRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ColorRpcModel', createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'a', $pb.PbFieldType.O3)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'r', $pb.PbFieldType.O3)
+    ..a<$core.int>(3, _omitFieldNames ? '' : 'g', $pb.PbFieldType.O3)
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'b', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
-  ColorRpcModel._() : super();
-  factory ColorRpcModel({
-    $core.int? a,
-    $core.int? r,
-    $core.int? g,
-    $core.int? b,
-  }) {
-    final _result = create();
-    if (a != null) {
-      _result.a = a;
-    }
-    if (r != null) {
-      _result.r = r;
-    }
-    if (g != null) {
-      _result.g = g;
-    }
-    if (b != null) {
-      _result.b = b;
-    }
-    return _result;
-  }
-  factory ColorRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ColorRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -168,8 +128,10 @@ class ColorRpcModel extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ColorRpcModel copyWith(void Function(ColorRpcModel) updates) => super.copyWith((message) => updates(message as ColorRpcModel)) as ColorRpcModel; // ignore: deprecated_member_use
+  ColorRpcModel copyWith(void Function(ColorRpcModel) updates) => super.copyWith((message) => updates(message as ColorRpcModel)) as ColorRpcModel;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ColorRpcModel create() => ColorRpcModel._();
   ColorRpcModel createEmptyInstance() => create();
@@ -216,38 +178,19 @@ class ColorRpcModel extends $pb.GeneratedMessage {
 }
 
 class TagRpcModel extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TagRpcModel', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'text')
-    ..aOM<ColorRpcModel>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'color', subBuilder: ColorRpcModel.create)
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'category')
-    ..m<$core.String, $core.String>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'env', entryClassName: 'TagRpcModel.EnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+  factory TagRpcModel() => create();
+  TagRpcModel._() : super();
+  factory TagRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory TagRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TagRpcModel', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'text')
+    ..aOM<ColorRpcModel>(2, _omitFieldNames ? '' : 'color', subBuilder: ColorRpcModel.create)
+    ..aOS(3, _omitFieldNames ? '' : 'category')
+    ..m<$core.String, $core.String>(4, _omitFieldNames ? '' : 'env', entryClassName: 'TagRpcModel.EnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
     ..hasRequiredFields = false
   ;
 
-  TagRpcModel._() : super();
-  factory TagRpcModel({
-    $core.String? text,
-    ColorRpcModel? color,
-    $core.String? category,
-    $core.Map<$core.String, $core.String>? env,
-  }) {
-    final _result = create();
-    if (text != null) {
-      _result.text = text;
-    }
-    if (color != null) {
-      _result.color = color;
-    }
-    if (category != null) {
-      _result.category = category;
-    }
-    if (env != null) {
-      _result.env.addAll(env);
-    }
-    return _result;
-  }
-  factory TagRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TagRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -257,8 +200,10 @@ class TagRpcModel extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  TagRpcModel copyWith(void Function(TagRpcModel) updates) => super.copyWith((message) => updates(message as TagRpcModel)) as TagRpcModel; // ignore: deprecated_member_use
+  TagRpcModel copyWith(void Function(TagRpcModel) updates) => super.copyWith((message) => updates(message as TagRpcModel)) as TagRpcModel;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static TagRpcModel create() => TagRpcModel._();
   TagRpcModel createEmptyInstance() => create();
@@ -301,83 +246,28 @@ class TagRpcModel extends $pb.GeneratedMessage {
 }
 
 class ListRpcModel_Item extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ListRpcModel.Item', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'title')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subtitle')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTime')
-    ..a<$core.double>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'star', $pb.PbFieldType.OD)
-    ..a<$core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgCount', $pb.PbFieldType.O3)
-    ..aOM<ImageRpcModel>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'previewImg', subBuilder: ImageRpcModel.create)
-    ..aOS(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'language')
-    ..aOM<TagRpcModel>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tag', subBuilder: TagRpcModel.create)
-    ..pc<TagRpcModel>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badges', $pb.PbFieldType.PM, subBuilder: TagRpcModel.create)
-    ..aOS(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'paper')
-    ..aOS(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'target')
-    ..aOS(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage')
-    ..m<$core.String, $core.String>(30, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'env', entryClassName: 'ListRpcModel.Item.EnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+  factory ListRpcModel_Item() => create();
+  ListRpcModel_Item._() : super();
+  factory ListRpcModel_Item.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ListRpcModel_Item.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ListRpcModel.Item', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'title')
+    ..aOS(2, _omitFieldNames ? '' : 'subtitle')
+    ..aOS(3, _omitFieldNames ? '' : 'uploadTime')
+    ..a<$core.double>(4, _omitFieldNames ? '' : 'star', $pb.PbFieldType.OD)
+    ..a<$core.int>(5, _omitFieldNames ? '' : 'imgCount', $pb.PbFieldType.O3)
+    ..aOM<ImageRpcModel>(6, _omitFieldNames ? '' : 'previewImg', subBuilder: ImageRpcModel.create)
+    ..aOS(7, _omitFieldNames ? '' : 'language')
+    ..aOM<TagRpcModel>(10, _omitFieldNames ? '' : 'tag', subBuilder: TagRpcModel.create)
+    ..pc<TagRpcModel>(11, _omitFieldNames ? '' : 'badges', $pb.PbFieldType.PM, subBuilder: TagRpcModel.create)
+    ..aOS(12, _omitFieldNames ? '' : 'paper')
+    ..aOS(13, _omitFieldNames ? '' : 'target')
+    ..aOS(20, _omitFieldNames ? '' : 'nextPage')
+    ..m<$core.String, $core.String>(30, _omitFieldNames ? '' : 'env', entryClassName: 'ListRpcModel.Item.EnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
     ..hasRequiredFields = false
   ;
 
-  ListRpcModel_Item._() : super();
-  factory ListRpcModel_Item({
-    $core.String? title,
-    $core.String? subtitle,
-    $core.String? uploadTime,
-    $core.double? star,
-    $core.int? imgCount,
-    ImageRpcModel? previewImg,
-    $core.String? language,
-    TagRpcModel? tag,
-    $core.Iterable<TagRpcModel>? badges,
-    $core.String? paper,
-    $core.String? target,
-    $core.String? nextPage,
-    $core.Map<$core.String, $core.String>? env,
-  }) {
-    final _result = create();
-    if (title != null) {
-      _result.title = title;
-    }
-    if (subtitle != null) {
-      _result.subtitle = subtitle;
-    }
-    if (uploadTime != null) {
-      _result.uploadTime = uploadTime;
-    }
-    if (star != null) {
-      _result.star = star;
-    }
-    if (imgCount != null) {
-      _result.imgCount = imgCount;
-    }
-    if (previewImg != null) {
-      _result.previewImg = previewImg;
-    }
-    if (language != null) {
-      _result.language = language;
-    }
-    if (tag != null) {
-      _result.tag = tag;
-    }
-    if (badges != null) {
-      _result.badges.addAll(badges);
-    }
-    if (paper != null) {
-      _result.paper = paper;
-    }
-    if (target != null) {
-      _result.target = target;
-    }
-    if (nextPage != null) {
-      _result.nextPage = nextPage;
-    }
-    if (env != null) {
-      _result.env.addAll(env);
-    }
-    return _result;
-  }
-  factory ListRpcModel_Item.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ListRpcModel_Item.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -387,8 +277,10 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ListRpcModel_Item copyWith(void Function(ListRpcModel_Item) updates) => super.copyWith((message) => updates(message as ListRpcModel_Item)) as ListRpcModel_Item; // ignore: deprecated_member_use
+  ListRpcModel_Item copyWith(void Function(ListRpcModel_Item) updates) => super.copyWith((message) => updates(message as ListRpcModel_Item)) as ListRpcModel_Item;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ListRpcModel_Item create() => ListRpcModel_Item._();
   ListRpcModel_Item createEmptyInstance() => create();
@@ -508,58 +400,23 @@ class ListRpcModel_Item extends $pb.GeneratedMessage {
 }
 
 class ListRpcModel extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ListRpcModel', createEmptyInstance: create)
-    ..pc<ListRpcModel_Item>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'items', $pb.PbFieldType.PM, subBuilder: ListRpcModel_Item.create)
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage')
-    ..m<$core.String, $core.String>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localEnv', protoName: 'localEnv', entryClassName: 'ListRpcModel.LocalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
-    ..m<$core.String, $core.String>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'globalEnv', protoName: 'globalEnv', entryClassName: 'ListRpcModel.GlobalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
-    ..aOB(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableSuccess')
-    ..aOB(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableFail')
-    ..aOB(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isSuccess')
-    ..aOS(23, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failedMessage')
+  factory ListRpcModel() => create();
+  ListRpcModel._() : super();
+  factory ListRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ListRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ListRpcModel', createEmptyInstance: create)
+    ..pc<ListRpcModel_Item>(1, _omitFieldNames ? '' : 'items', $pb.PbFieldType.PM, subBuilder: ListRpcModel_Item.create)
+    ..aOS(2, _omitFieldNames ? '' : 'nextPage')
+    ..m<$core.String, $core.String>(10, _omitFieldNames ? '' : 'localEnv', protoName: 'localEnv', entryClassName: 'ListRpcModel.LocalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..m<$core.String, $core.String>(11, _omitFieldNames ? '' : 'globalEnv', protoName: 'globalEnv', entryClassName: 'ListRpcModel.GlobalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..aOB(20, _omitFieldNames ? '' : 'enableSuccess')
+    ..aOB(21, _omitFieldNames ? '' : 'enableFail')
+    ..aOB(22, _omitFieldNames ? '' : 'isSuccess')
+    ..aOS(23, _omitFieldNames ? '' : 'failedMessage')
     ..hasRequiredFields = false
   ;
 
-  ListRpcModel._() : super();
-  factory ListRpcModel({
-    $core.Iterable<ListRpcModel_Item>? items,
-    $core.String? nextPage,
-    $core.Map<$core.String, $core.String>? localEnv,
-    $core.Map<$core.String, $core.String>? globalEnv,
-    $core.bool? enableSuccess,
-    $core.bool? enableFail,
-    $core.bool? isSuccess,
-    $core.String? failedMessage,
-  }) {
-    final _result = create();
-    if (items != null) {
-      _result.items.addAll(items);
-    }
-    if (nextPage != null) {
-      _result.nextPage = nextPage;
-    }
-    if (localEnv != null) {
-      _result.localEnv.addAll(localEnv);
-    }
-    if (globalEnv != null) {
-      _result.globalEnv.addAll(globalEnv);
-    }
-    if (enableSuccess != null) {
-      _result.enableSuccess = enableSuccess;
-    }
-    if (enableFail != null) {
-      _result.enableFail = enableFail;
-    }
-    if (isSuccess != null) {
-      _result.isSuccess = isSuccess;
-    }
-    if (failedMessage != null) {
-      _result.failedMessage = failedMessage;
-    }
-    return _result;
-  }
-  factory ListRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ListRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -569,8 +426,10 @@ class ListRpcModel extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ListRpcModel copyWith(void Function(ListRpcModel) updates) => super.copyWith((message) => updates(message as ListRpcModel)) as ListRpcModel; // ignore: deprecated_member_use
+  ListRpcModel copyWith(void Function(ListRpcModel) updates) => super.copyWith((message) => updates(message as ListRpcModel)) as ListRpcModel;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ListRpcModel create() => ListRpcModel._();
   ListRpcModel createEmptyInstance() => create();
@@ -635,43 +494,20 @@ class ListRpcModel extends $pb.GeneratedMessage {
 }
 
 class GalleryRpcModel_Comment extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GalleryRpcModel.Comment', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'username')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'time')
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'score')
-    ..aOM<ImageRpcModel>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'avatar', subBuilder: ImageRpcModel.create)
+  factory GalleryRpcModel_Comment() => create();
+  GalleryRpcModel_Comment._() : super();
+  factory GalleryRpcModel_Comment.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GalleryRpcModel_Comment.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GalleryRpcModel.Comment', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'username')
+    ..aOS(2, _omitFieldNames ? '' : 'content')
+    ..aOS(3, _omitFieldNames ? '' : 'time')
+    ..aOS(4, _omitFieldNames ? '' : 'score')
+    ..aOM<ImageRpcModel>(5, _omitFieldNames ? '' : 'avatar', subBuilder: ImageRpcModel.create)
     ..hasRequiredFields = false
   ;
 
-  GalleryRpcModel_Comment._() : super();
-  factory GalleryRpcModel_Comment({
-    $core.String? username,
-    $core.String? content,
-    $core.String? time,
-    $core.String? score,
-    ImageRpcModel? avatar,
-  }) {
-    final _result = create();
-    if (username != null) {
-      _result.username = username;
-    }
-    if (content != null) {
-      _result.content = content;
-    }
-    if (time != null) {
-      _result.time = time;
-    }
-    if (score != null) {
-      _result.score = score;
-    }
-    if (avatar != null) {
-      _result.avatar = avatar;
-    }
-    return _result;
-  }
-  factory GalleryRpcModel_Comment.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GalleryRpcModel_Comment.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -681,8 +517,10 @@ class GalleryRpcModel_Comment extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  GalleryRpcModel_Comment copyWith(void Function(GalleryRpcModel_Comment) updates) => super.copyWith((message) => updates(message as GalleryRpcModel_Comment)) as GalleryRpcModel_Comment; // ignore: deprecated_member_use
+  GalleryRpcModel_Comment copyWith(void Function(GalleryRpcModel_Comment) updates) => super.copyWith((message) => updates(message as GalleryRpcModel_Comment)) as GalleryRpcModel_Comment;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static GalleryRpcModel_Comment create() => GalleryRpcModel_Comment._();
   GalleryRpcModel_Comment createEmptyInstance() => create();
@@ -740,28 +578,17 @@ class GalleryRpcModel_Comment extends $pb.GeneratedMessage {
 }
 
 class GalleryRpcModel_Item extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GalleryRpcModel.Item', createEmptyInstance: create)
-    ..aOM<ImageRpcModel>(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'previewImg', subBuilder: ImageRpcModel.create)
-    ..aOS(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'target')
+  factory GalleryRpcModel_Item() => create();
+  GalleryRpcModel_Item._() : super();
+  factory GalleryRpcModel_Item.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GalleryRpcModel_Item.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GalleryRpcModel.Item', createEmptyInstance: create)
+    ..aOM<ImageRpcModel>(9, _omitFieldNames ? '' : 'previewImg', subBuilder: ImageRpcModel.create)
+    ..aOS(10, _omitFieldNames ? '' : 'target')
     ..hasRequiredFields = false
   ;
 
-  GalleryRpcModel_Item._() : super();
-  factory GalleryRpcModel_Item({
-    ImageRpcModel? previewImg,
-    $core.String? target,
-  }) {
-    final _result = create();
-    if (previewImg != null) {
-      _result.previewImg = previewImg;
-    }
-    if (target != null) {
-      _result.target = target;
-    }
-    return _result;
-  }
-  factory GalleryRpcModel_Item.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GalleryRpcModel_Item.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -771,8 +598,10 @@ class GalleryRpcModel_Item extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  GalleryRpcModel_Item copyWith(void Function(GalleryRpcModel_Item) updates) => super.copyWith((message) => updates(message as GalleryRpcModel_Item)) as GalleryRpcModel_Item; // ignore: deprecated_member_use
+  GalleryRpcModel_Item copyWith(void Function(GalleryRpcModel_Item) updates) => super.copyWith((message) => updates(message as GalleryRpcModel_Item)) as GalleryRpcModel_Item;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static GalleryRpcModel_Item create() => GalleryRpcModel_Item._();
   GalleryRpcModel_Item createEmptyInstance() => create();
@@ -803,118 +632,35 @@ class GalleryRpcModel_Item extends $pb.GeneratedMessage {
 }
 
 class GalleryRpcModel extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GalleryRpcModel', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'title')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subtitle')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'language')
-    ..a<$core.int>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imageCount', $pb.PbFieldType.O3)
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTime')
-    ..a<$core.int>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'countPrePage', $pb.PbFieldType.O3)
-    ..aOS(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'description')
-    ..a<$core.double>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'star', $pb.PbFieldType.OD)
-    ..pc<GalleryRpcModel_Item>(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'items', $pb.PbFieldType.PM, subBuilder: GalleryRpcModel_Item.create)
-    ..aOM<ImageRpcModel>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'coverImg', subBuilder: ImageRpcModel.create)
-    ..aOM<TagRpcModel>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tag', subBuilder: TagRpcModel.create)
-    ..pc<TagRpcModel>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badges', $pb.PbFieldType.PM, subBuilder: TagRpcModel.create)
-    ..pc<GalleryRpcModel_Comment>(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'comments', $pb.PbFieldType.PM, subBuilder: GalleryRpcModel_Comment.create)
-    ..aOS(23, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage')
-    ..m<$core.String, $core.String>(30, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localEnv', protoName: 'localEnv', entryClassName: 'GalleryRpcModel.LocalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
-    ..m<$core.String, $core.String>(31, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'globalEnv', protoName: 'globalEnv', entryClassName: 'GalleryRpcModel.GlobalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
-    ..aOB(40, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableSuccess')
-    ..aOB(41, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableFail')
-    ..aOB(42, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isSuccess')
-    ..aOS(43, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failedMessage')
+  factory GalleryRpcModel() => create();
+  GalleryRpcModel._() : super();
+  factory GalleryRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GalleryRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GalleryRpcModel', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'title')
+    ..aOS(2, _omitFieldNames ? '' : 'subtitle')
+    ..aOS(3, _omitFieldNames ? '' : 'language')
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'imageCount', $pb.PbFieldType.O3)
+    ..aOS(5, _omitFieldNames ? '' : 'uploadTime')
+    ..a<$core.int>(6, _omitFieldNames ? '' : 'countPrePage', $pb.PbFieldType.O3)
+    ..aOS(7, _omitFieldNames ? '' : 'description')
+    ..a<$core.double>(8, _omitFieldNames ? '' : 'star', $pb.PbFieldType.OD)
+    ..pc<GalleryRpcModel_Item>(9, _omitFieldNames ? '' : 'items', $pb.PbFieldType.PM, subBuilder: GalleryRpcModel_Item.create)
+    ..aOM<ImageRpcModel>(10, _omitFieldNames ? '' : 'coverImg', subBuilder: ImageRpcModel.create)
+    ..aOM<TagRpcModel>(20, _omitFieldNames ? '' : 'tag', subBuilder: TagRpcModel.create)
+    ..pc<TagRpcModel>(21, _omitFieldNames ? '' : 'badges', $pb.PbFieldType.PM, subBuilder: TagRpcModel.create)
+    ..pc<GalleryRpcModel_Comment>(22, _omitFieldNames ? '' : 'comments', $pb.PbFieldType.PM, subBuilder: GalleryRpcModel_Comment.create)
+    ..aOS(23, _omitFieldNames ? '' : 'nextPage')
+    ..m<$core.String, $core.String>(30, _omitFieldNames ? '' : 'localEnv', protoName: 'localEnv', entryClassName: 'GalleryRpcModel.LocalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..m<$core.String, $core.String>(31, _omitFieldNames ? '' : 'globalEnv', protoName: 'globalEnv', entryClassName: 'GalleryRpcModel.GlobalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..aOB(40, _omitFieldNames ? '' : 'enableSuccess')
+    ..aOB(41, _omitFieldNames ? '' : 'enableFail')
+    ..aOB(42, _omitFieldNames ? '' : 'isSuccess')
+    ..aOS(43, _omitFieldNames ? '' : 'failedMessage')
     ..hasRequiredFields = false
   ;
 
-  GalleryRpcModel._() : super();
-  factory GalleryRpcModel({
-    $core.String? title,
-    $core.String? subtitle,
-    $core.String? language,
-    $core.int? imageCount,
-    $core.String? uploadTime,
-    $core.int? countPrePage,
-    $core.String? description,
-    $core.double? star,
-    $core.Iterable<GalleryRpcModel_Item>? items,
-    ImageRpcModel? coverImg,
-    TagRpcModel? tag,
-    $core.Iterable<TagRpcModel>? badges,
-    $core.Iterable<GalleryRpcModel_Comment>? comments,
-    $core.String? nextPage,
-    $core.Map<$core.String, $core.String>? localEnv,
-    $core.Map<$core.String, $core.String>? globalEnv,
-    $core.bool? enableSuccess,
-    $core.bool? enableFail,
-    $core.bool? isSuccess,
-    $core.String? failedMessage,
-  }) {
-    final _result = create();
-    if (title != null) {
-      _result.title = title;
-    }
-    if (subtitle != null) {
-      _result.subtitle = subtitle;
-    }
-    if (language != null) {
-      _result.language = language;
-    }
-    if (imageCount != null) {
-      _result.imageCount = imageCount;
-    }
-    if (uploadTime != null) {
-      _result.uploadTime = uploadTime;
-    }
-    if (countPrePage != null) {
-      _result.countPrePage = countPrePage;
-    }
-    if (description != null) {
-      _result.description = description;
-    }
-    if (star != null) {
-      _result.star = star;
-    }
-    if (items != null) {
-      _result.items.addAll(items);
-    }
-    if (coverImg != null) {
-      _result.coverImg = coverImg;
-    }
-    if (tag != null) {
-      _result.tag = tag;
-    }
-    if (badges != null) {
-      _result.badges.addAll(badges);
-    }
-    if (comments != null) {
-      _result.comments.addAll(comments);
-    }
-    if (nextPage != null) {
-      _result.nextPage = nextPage;
-    }
-    if (localEnv != null) {
-      _result.localEnv.addAll(localEnv);
-    }
-    if (globalEnv != null) {
-      _result.globalEnv.addAll(globalEnv);
-    }
-    if (enableSuccess != null) {
-      _result.enableSuccess = enableSuccess;
-    }
-    if (enableFail != null) {
-      _result.enableFail = enableFail;
-    }
-    if (isSuccess != null) {
-      _result.isSuccess = isSuccess;
-    }
-    if (failedMessage != null) {
-      _result.failedMessage = failedMessage;
-    }
-    return _result;
-  }
-  factory GalleryRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GalleryRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -924,8 +670,10 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  GalleryRpcModel copyWith(void Function(GalleryRpcModel) updates) => super.copyWith((message) => updates(message as GalleryRpcModel)) as GalleryRpcModel; // ignore: deprecated_member_use
+  GalleryRpcModel copyWith(void Function(GalleryRpcModel) updates) => super.copyWith((message) => updates(message as GalleryRpcModel)) as GalleryRpcModel;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static GalleryRpcModel create() => GalleryRpcModel._();
   GalleryRpcModel createEmptyInstance() => create();
@@ -1090,88 +838,29 @@ class GalleryRpcModel extends $pb.GeneratedMessage {
 }
 
 class ImageReaderRpcModel extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ImageReaderRpcModel', createEmptyInstance: create)
-    ..aOM<ImageRpcModel>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'image', subBuilder: ImageRpcModel.create)
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'largerImageUrl')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rawImageUrl')
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTime')
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'source')
-    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rating')
-    ..aOS(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'score')
-    ..pc<TagRpcModel>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badges', $pb.PbFieldType.PM, subBuilder: TagRpcModel.create)
-    ..m<$core.String, $core.String>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localEnv', protoName: 'localEnv', entryClassName: 'ImageReaderRpcModel.LocalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
-    ..m<$core.String, $core.String>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'globalEnv', protoName: 'globalEnv', entryClassName: 'ImageReaderRpcModel.GlobalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
-    ..aOB(30, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableSuccess')
-    ..aOB(31, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableFail')
-    ..aOB(32, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isSuccess')
-    ..aOS(33, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failedMessage')
+  factory ImageReaderRpcModel() => create();
+  ImageReaderRpcModel._() : super();
+  factory ImageReaderRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ImageReaderRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageReaderRpcModel', createEmptyInstance: create)
+    ..aOM<ImageRpcModel>(1, _omitFieldNames ? '' : 'image', subBuilder: ImageRpcModel.create)
+    ..aOS(2, _omitFieldNames ? '' : 'largerImageUrl')
+    ..aOS(3, _omitFieldNames ? '' : 'rawImageUrl')
+    ..aOS(4, _omitFieldNames ? '' : 'uploadTime')
+    ..aOS(5, _omitFieldNames ? '' : 'source')
+    ..aOS(6, _omitFieldNames ? '' : 'rating')
+    ..aOS(7, _omitFieldNames ? '' : 'score')
+    ..pc<TagRpcModel>(10, _omitFieldNames ? '' : 'badges', $pb.PbFieldType.PM, subBuilder: TagRpcModel.create)
+    ..m<$core.String, $core.String>(20, _omitFieldNames ? '' : 'localEnv', protoName: 'localEnv', entryClassName: 'ImageReaderRpcModel.LocalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..m<$core.String, $core.String>(21, _omitFieldNames ? '' : 'globalEnv', protoName: 'globalEnv', entryClassName: 'ImageReaderRpcModel.GlobalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..aOB(30, _omitFieldNames ? '' : 'enableSuccess')
+    ..aOB(31, _omitFieldNames ? '' : 'enableFail')
+    ..aOB(32, _omitFieldNames ? '' : 'isSuccess')
+    ..aOS(33, _omitFieldNames ? '' : 'failedMessage')
     ..hasRequiredFields = false
   ;
 
-  ImageReaderRpcModel._() : super();
-  factory ImageReaderRpcModel({
-    ImageRpcModel? image,
-    $core.String? largerImageUrl,
-    $core.String? rawImageUrl,
-    $core.String? uploadTime,
-    $core.String? source,
-    $core.String? rating,
-    $core.String? score,
-    $core.Iterable<TagRpcModel>? badges,
-    $core.Map<$core.String, $core.String>? localEnv,
-    $core.Map<$core.String, $core.String>? globalEnv,
-    $core.bool? enableSuccess,
-    $core.bool? enableFail,
-    $core.bool? isSuccess,
-    $core.String? failedMessage,
-  }) {
-    final _result = create();
-    if (image != null) {
-      _result.image = image;
-    }
-    if (largerImageUrl != null) {
-      _result.largerImageUrl = largerImageUrl;
-    }
-    if (rawImageUrl != null) {
-      _result.rawImageUrl = rawImageUrl;
-    }
-    if (uploadTime != null) {
-      _result.uploadTime = uploadTime;
-    }
-    if (source != null) {
-      _result.source = source;
-    }
-    if (rating != null) {
-      _result.rating = rating;
-    }
-    if (score != null) {
-      _result.score = score;
-    }
-    if (badges != null) {
-      _result.badges.addAll(badges);
-    }
-    if (localEnv != null) {
-      _result.localEnv.addAll(localEnv);
-    }
-    if (globalEnv != null) {
-      _result.globalEnv.addAll(globalEnv);
-    }
-    if (enableSuccess != null) {
-      _result.enableSuccess = enableSuccess;
-    }
-    if (enableFail != null) {
-      _result.enableFail = enableFail;
-    }
-    if (isSuccess != null) {
-      _result.isSuccess = isSuccess;
-    }
-    if (failedMessage != null) {
-      _result.failedMessage = failedMessage;
-    }
-    return _result;
-  }
-  factory ImageReaderRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ImageReaderRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -1181,8 +870,10 @@ class ImageReaderRpcModel extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ImageReaderRpcModel copyWith(void Function(ImageReaderRpcModel) updates) => super.copyWith((message) => updates(message as ImageReaderRpcModel)) as ImageReaderRpcModel; // ignore: deprecated_member_use
+  ImageReaderRpcModel copyWith(void Function(ImageReaderRpcModel) updates) => super.copyWith((message) => updates(message as ImageReaderRpcModel)) as ImageReaderRpcModel;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ImageReaderRpcModel create() => ImageReaderRpcModel._();
   ImageReaderRpcModel createEmptyInstance() => create();
@@ -1303,33 +994,18 @@ class ImageReaderRpcModel extends $pb.GeneratedMessage {
 }
 
 class AutoCompleteRpcModel_Item extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AutoCompleteRpcModel.Item', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'title')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subtitle')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'complete')
+  factory AutoCompleteRpcModel_Item() => create();
+  AutoCompleteRpcModel_Item._() : super();
+  factory AutoCompleteRpcModel_Item.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AutoCompleteRpcModel_Item.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AutoCompleteRpcModel.Item', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'title')
+    ..aOS(2, _omitFieldNames ? '' : 'subtitle')
+    ..aOS(3, _omitFieldNames ? '' : 'complete')
     ..hasRequiredFields = false
   ;
 
-  AutoCompleteRpcModel_Item._() : super();
-  factory AutoCompleteRpcModel_Item({
-    $core.String? title,
-    $core.String? subtitle,
-    $core.String? complete,
-  }) {
-    final _result = create();
-    if (title != null) {
-      _result.title = title;
-    }
-    if (subtitle != null) {
-      _result.subtitle = subtitle;
-    }
-    if (complete != null) {
-      _result.complete = complete;
-    }
-    return _result;
-  }
-  factory AutoCompleteRpcModel_Item.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory AutoCompleteRpcModel_Item.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -1339,8 +1015,10 @@ class AutoCompleteRpcModel_Item extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  AutoCompleteRpcModel_Item copyWith(void Function(AutoCompleteRpcModel_Item) updates) => super.copyWith((message) => updates(message as AutoCompleteRpcModel_Item)) as AutoCompleteRpcModel_Item; // ignore: deprecated_member_use
+  AutoCompleteRpcModel_Item copyWith(void Function(AutoCompleteRpcModel_Item) updates) => super.copyWith((message) => updates(message as AutoCompleteRpcModel_Item)) as AutoCompleteRpcModel_Item;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static AutoCompleteRpcModel_Item create() => AutoCompleteRpcModel_Item._();
   AutoCompleteRpcModel_Item createEmptyInstance() => create();
@@ -1378,53 +1056,22 @@ class AutoCompleteRpcModel_Item extends $pb.GeneratedMessage {
 }
 
 class AutoCompleteRpcModel extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AutoCompleteRpcModel', createEmptyInstance: create)
-    ..pc<AutoCompleteRpcModel_Item>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'items', $pb.PbFieldType.PM, subBuilder: AutoCompleteRpcModel_Item.create)
-    ..m<$core.String, $core.String>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'localEnv', protoName: 'localEnv', entryClassName: 'AutoCompleteRpcModel.LocalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
-    ..m<$core.String, $core.String>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'globalEnv', protoName: 'globalEnv', entryClassName: 'AutoCompleteRpcModel.GlobalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
-    ..aOB(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableSuccess')
-    ..aOB(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enableFail')
-    ..aOB(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isSuccess')
-    ..aOS(23, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failedMessage')
+  factory AutoCompleteRpcModel() => create();
+  AutoCompleteRpcModel._() : super();
+  factory AutoCompleteRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AutoCompleteRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AutoCompleteRpcModel', createEmptyInstance: create)
+    ..pc<AutoCompleteRpcModel_Item>(1, _omitFieldNames ? '' : 'items', $pb.PbFieldType.PM, subBuilder: AutoCompleteRpcModel_Item.create)
+    ..m<$core.String, $core.String>(10, _omitFieldNames ? '' : 'localEnv', protoName: 'localEnv', entryClassName: 'AutoCompleteRpcModel.LocalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..m<$core.String, $core.String>(11, _omitFieldNames ? '' : 'globalEnv', protoName: 'globalEnv', entryClassName: 'AutoCompleteRpcModel.GlobalEnvEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS)
+    ..aOB(20, _omitFieldNames ? '' : 'enableSuccess')
+    ..aOB(21, _omitFieldNames ? '' : 'enableFail')
+    ..aOB(22, _omitFieldNames ? '' : 'isSuccess')
+    ..aOS(23, _omitFieldNames ? '' : 'failedMessage')
     ..hasRequiredFields = false
   ;
 
-  AutoCompleteRpcModel._() : super();
-  factory AutoCompleteRpcModel({
-    $core.Iterable<AutoCompleteRpcModel_Item>? items,
-    $core.Map<$core.String, $core.String>? localEnv,
-    $core.Map<$core.String, $core.String>? globalEnv,
-    $core.bool? enableSuccess,
-    $core.bool? enableFail,
-    $core.bool? isSuccess,
-    $core.String? failedMessage,
-  }) {
-    final _result = create();
-    if (items != null) {
-      _result.items.addAll(items);
-    }
-    if (localEnv != null) {
-      _result.localEnv.addAll(localEnv);
-    }
-    if (globalEnv != null) {
-      _result.globalEnv.addAll(globalEnv);
-    }
-    if (enableSuccess != null) {
-      _result.enableSuccess = enableSuccess;
-    }
-    if (enableFail != null) {
-      _result.enableFail = enableFail;
-    }
-    if (isSuccess != null) {
-      _result.isSuccess = isSuccess;
-    }
-    if (failedMessage != null) {
-      _result.failedMessage = failedMessage;
-    }
-    return _result;
-  }
-  factory AutoCompleteRpcModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory AutoCompleteRpcModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -1434,8 +1081,10 @@ class AutoCompleteRpcModel extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  AutoCompleteRpcModel copyWith(void Function(AutoCompleteRpcModel) updates) => super.copyWith((message) => updates(message as AutoCompleteRpcModel)) as AutoCompleteRpcModel; // ignore: deprecated_member_use
+  AutoCompleteRpcModel copyWith(void Function(AutoCompleteRpcModel) updates) => super.copyWith((message) => updates(message as AutoCompleteRpcModel)) as AutoCompleteRpcModel;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static AutoCompleteRpcModel create() => AutoCompleteRpcModel._();
   AutoCompleteRpcModel createEmptyInstance() => create();
@@ -1490,3 +1139,6 @@ class AutoCompleteRpcModel extends $pb.GeneratedMessage {
   void clearFailedMessage() => clearField(23);
 }
 
+
+const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

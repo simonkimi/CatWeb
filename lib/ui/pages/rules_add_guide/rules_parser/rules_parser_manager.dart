@@ -16,9 +16,7 @@ enum _MenuSelect {
 }
 
 class RulesParserManager extends GetView<RulesEditController> {
-  const RulesParserManager({
-    super.key,
-  });
+  const RulesParserManager({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +25,10 @@ class RulesParserManager extends GetView<RulesEditController> {
       children: [
         Obx(() => Column(
               mainAxisSize: MainAxisSize.min,
-              children: controller.blueprint.parsers.map((e) {
+              children: controller.blueprint.value.parserList.map((e) {
                 return CupertinoCardTile(
-                  title: Text(e.name.value),
-                  subtitle: Text(e.displayType(context)),
+                  title: Text(e.name),
+                  subtitle: Text(e.parserType.value),
                   trailing: CupertinoButton(
                     padding: EdgeInsets.zero,
                     minSize: 10,
@@ -52,7 +50,7 @@ class RulesParserManager extends GetView<RulesEditController> {
 
   Future<void> _onTrailingTap(
     BuildContext context,
-    ParserBaseModel model,
+    IParserBase model,
   ) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: '取消',
@@ -78,10 +76,10 @@ class RulesParserManager extends GetView<RulesEditController> {
     }
   }
 
-  void _onParserDelete(BuildContext context, ParserBaseModel model) {
-    final using = controller.blueprint.pageList
-        .where((p0) => p0.baseParser.value == model.uuid)
-        .map((e) => e.name.value)
+  void _onParserDelete(BuildContext context, IParserBase model) {
+    final using = controller.blueprint.value.pageList
+        .where((p0) => p0.parserId == model.uuid)
+        .map((e) => e.name)
         .toList();
     if (using.isNotEmpty) {
       showCupertinoConfirmDialog(
@@ -90,12 +88,13 @@ class RulesParserManager extends GetView<RulesEditController> {
     } else {
       showCupertinoConfirmDialog(
         context: context,
-        content: I.of(context).delete_confirm(model.name.value),
+        content: I.of(context).delete_confirm(model.name),
         confineText: I.of(context).delete,
         confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
       ).then((value) {
         if (value == true) {
-          controller.blueprint.removeParser(model);
+          controller.blueprint.value.parserList.remove(model);
+
         }
       });
     }
@@ -142,6 +141,9 @@ class RulesParserManager extends GetView<RulesEditController> {
       }),
     );
 
-    if (model == null) controller.blueprint.addParser(input);
+    if (model == null) {
+      controller.blueprint.value.parserList.add(input);
+      controller.updateBlueMap(controller.blueprint.value);
+    }
   }
 }

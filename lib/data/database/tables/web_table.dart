@@ -7,9 +7,9 @@ class WebTable extends Table {
   TextColumn get uuid =>
       text().clientDefault(() => const Uuid().v4().toString())();
 
-  BlobColumn get blueprint => blob()();
+  TextColumn get blueprint => text()();
 
-  BlobColumn get env => blob()();
+  TextColumn get env => text()();
 
   BlobColumn get favicon =>
       blob().clientDefault(() => Uint8List.fromList([]))();

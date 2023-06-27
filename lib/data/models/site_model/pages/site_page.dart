@@ -28,18 +28,20 @@ enum SiteDisplayType {
 
 @freezed
 class SitePage with _$SitePage {
-  const factory SitePage({
+  const SitePage._();
+
+  factory SitePage({
     required String name,
     required String uuid,
     required String url,
-    SiteActionType? action,
-    String? formData,
-    String? icon,
-    SiteDisplayType? displayType,
-    String? flag,
-    String? parserId,
+    @Default(SiteActionType.get) SiteActionType action,
+    @Default('') String formData,
+    @Default('') String icon,
+    @Default(SiteDisplayType.show) SiteDisplayType displayType,
+    @Default('') String flag,
+    @Default('') String parserId,
     @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
-        required ITemplate template,
+    required ITemplate template,
   }) = _SitePage;
 
   factory SitePage.fromJson(Map<String, dynamic> json) =>
@@ -47,5 +49,14 @@ class SitePage with _$SitePage {
 
   static Map<String, dynamic> _parserToJson(ITemplate parser) {
     return parser.toJson();
+  }
+
+  bool containsFlag(String flag) {
+    for (final flag in this.flag.split('|')) {
+      if (flag.toLowerCase() == flag.toLowerCase()) {
+        return true;
+      }
+    }
+    return false;
   }
 }

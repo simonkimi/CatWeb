@@ -15,7 +15,7 @@ class ParserFFi {
   final String source;
   final GeneratedMessage parser;
   final RpcType type;
-  final SiteEnvModel env;
+  final SiteEnvStore env;
 
   static RpcResponse ffiParse(RpcRequest msg) {
     return RpcResponse.fromBuffer(NativeBinder.parse(msg.writeToBuffer()));

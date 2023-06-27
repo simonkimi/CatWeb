@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/database/database.dart';
+import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/data/models/site_render_model.dart';
-import 'package:catweb/data/protocol/model/store.dart';
 import 'package:catweb/network/client/cilent.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:get/get.dart';
@@ -27,7 +27,7 @@ class SiteService extends GetxService {
     if (db != null) {
       site.value = SiteRenderConfigModel(
         dbEntity: db,
-        configModel: SiteBlueprintModel.fromBuffer(db.blueprint),
+        blueMap: SiteBlueMap.fromJsonString(db.blueprint),
       );
       Get.find<SettingService>().defaultSite.value = db.id;
     } else {
@@ -59,7 +59,8 @@ class SiteService extends GetxService {
     } catch (e) {
       print(e); // TODO 错误处理
     }
-    siteDbChangeListener = Get.find<DbService>().webDao.getAllStream().listen((event) {
+    siteDbChangeListener =
+        Get.find<DbService>().webDao.getAllStream().listen((event) {
       // 检测当前网站的配置是否被更新
       final currentNewSite = event.get((e) => e.id == id);
       if (currentNewSite != null) {

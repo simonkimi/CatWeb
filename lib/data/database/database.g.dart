@@ -28,14 +28,14 @@ class $WebTableTable extends WebTable
   static const VerificationMeta _blueprintMeta =
       const VerificationMeta('blueprint');
   @override
-  late final GeneratedColumn<Uint8List> blueprint = GeneratedColumn<Uint8List>(
+  late final GeneratedColumn<String> blueprint = GeneratedColumn<String>(
       'blueprint', aliasedName, false,
-      type: DriftSqlType.blob, requiredDuringInsert: true);
+      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _envMeta = const VerificationMeta('env');
   @override
-  late final GeneratedColumn<Uint8List> env = GeneratedColumn<Uint8List>(
+  late final GeneratedColumn<String> env = GeneratedColumn<String>(
       'env', aliasedName, false,
-      type: DriftSqlType.blob, requiredDuringInsert: true);
+      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _faviconMeta =
       const VerificationMeta('favicon');
   @override
@@ -146,9 +146,9 @@ class $WebTableTable extends WebTable
       uuid: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}uuid'])!,
       blueprint: attachedDatabase.typeMapping
-          .read(DriftSqlType.blob, data['${effectivePrefix}blueprint'])!,
+          .read(DriftSqlType.string, data['${effectivePrefix}blueprint'])!,
       env: attachedDatabase.typeMapping
-          .read(DriftSqlType.blob, data['${effectivePrefix}env'])!,
+          .read(DriftSqlType.string, data['${effectivePrefix}env'])!,
       favicon: attachedDatabase.typeMapping
           .read(DriftSqlType.blob, data['${effectivePrefix}favicon'])!,
       lastOpen: attachedDatabase.typeMapping
@@ -169,8 +169,8 @@ class $WebTableTable extends WebTable
 class WebTableData extends DataClass implements Insertable<WebTableData> {
   final int id;
   final String uuid;
-  final Uint8List blueprint;
-  final Uint8List env;
+  final String blueprint;
+  final String env;
   final Uint8List favicon;
   final int lastOpen;
   final bool securityModel;
@@ -189,8 +189,8 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['uuid'] = Variable<String>(uuid);
-    map['blueprint'] = Variable<Uint8List>(blueprint);
-    map['env'] = Variable<Uint8List>(env);
+    map['blueprint'] = Variable<String>(blueprint);
+    map['env'] = Variable<String>(env);
     map['favicon'] = Variable<Uint8List>(favicon);
     map['last_open'] = Variable<int>(lastOpen);
     map['security_model'] = Variable<bool>(securityModel);
@@ -217,8 +217,8 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
     return WebTableData(
       id: serializer.fromJson<int>(json['id']),
       uuid: serializer.fromJson<String>(json['uuid']),
-      blueprint: serializer.fromJson<Uint8List>(json['blueprint']),
-      env: serializer.fromJson<Uint8List>(json['env']),
+      blueprint: serializer.fromJson<String>(json['blueprint']),
+      env: serializer.fromJson<String>(json['env']),
       favicon: serializer.fromJson<Uint8List>(json['favicon']),
       lastOpen: serializer.fromJson<int>(json['lastOpen']),
       securityModel: serializer.fromJson<bool>(json['securityModel']),
@@ -231,8 +231,8 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'uuid': serializer.toJson<String>(uuid),
-      'blueprint': serializer.toJson<Uint8List>(blueprint),
-      'env': serializer.toJson<Uint8List>(env),
+      'blueprint': serializer.toJson<String>(blueprint),
+      'env': serializer.toJson<String>(env),
       'favicon': serializer.toJson<Uint8List>(favicon),
       'lastOpen': serializer.toJson<int>(lastOpen),
       'securityModel': serializer.toJson<bool>(securityModel),
@@ -243,8 +243,8 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
   WebTableData copyWith(
           {int? id,
           String? uuid,
-          Uint8List? blueprint,
-          Uint8List? env,
+          String? blueprint,
+          String? env,
           Uint8List? favicon,
           int? lastOpen,
           bool? securityModel,
@@ -275,23 +275,16 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
   }
 
   @override
-  int get hashCode => Object.hash(
-      id,
-      uuid,
-      $driftBlobEquality.hash(blueprint),
-      $driftBlobEquality.hash(env),
-      $driftBlobEquality.hash(favicon),
-      lastOpen,
-      securityModel,
-      loginCookies);
+  int get hashCode => Object.hash(id, uuid, blueprint, env,
+      $driftBlobEquality.hash(favicon), lastOpen, securityModel, loginCookies);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is WebTableData &&
           other.id == this.id &&
           other.uuid == this.uuid &&
-          $driftBlobEquality.equals(other.blueprint, this.blueprint) &&
-          $driftBlobEquality.equals(other.env, this.env) &&
+          other.blueprint == this.blueprint &&
+          other.env == this.env &&
           $driftBlobEquality.equals(other.favicon, this.favicon) &&
           other.lastOpen == this.lastOpen &&
           other.securityModel == this.securityModel &&
@@ -301,8 +294,8 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
 class WebTableCompanion extends UpdateCompanion<WebTableData> {
   final Value<int> id;
   final Value<String> uuid;
-  final Value<Uint8List> blueprint;
-  final Value<Uint8List> env;
+  final Value<String> blueprint;
+  final Value<String> env;
   final Value<Uint8List> favicon;
   final Value<int> lastOpen;
   final Value<bool> securityModel;
@@ -320,8 +313,8 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
   WebTableCompanion.insert({
     this.id = const Value.absent(),
     this.uuid = const Value.absent(),
-    required Uint8List blueprint,
-    required Uint8List env,
+    required String blueprint,
+    required String env,
     this.favicon = const Value.absent(),
     this.lastOpen = const Value.absent(),
     this.securityModel = const Value.absent(),
@@ -331,8 +324,8 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
   static Insertable<WebTableData> custom({
     Expression<int>? id,
     Expression<String>? uuid,
-    Expression<Uint8List>? blueprint,
-    Expression<Uint8List>? env,
+    Expression<String>? blueprint,
+    Expression<String>? env,
     Expression<Uint8List>? favicon,
     Expression<int>? lastOpen,
     Expression<bool>? securityModel,
@@ -353,8 +346,8 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
   WebTableCompanion copyWith(
       {Value<int>? id,
       Value<String>? uuid,
-      Value<Uint8List>? blueprint,
-      Value<Uint8List>? env,
+      Value<String>? blueprint,
+      Value<String>? env,
       Value<Uint8List>? favicon,
       Value<int>? lastOpen,
       Value<bool>? securityModel,
@@ -381,10 +374,10 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
       map['uuid'] = Variable<String>(uuid.value);
     }
     if (blueprint.present) {
-      map['blueprint'] = Variable<Uint8List>(blueprint.value);
+      map['blueprint'] = Variable<String>(blueprint.value);
     }
     if (env.present) {
-      map['env'] = Variable<Uint8List>(env.value);
+      map['env'] = Variable<String>(env.value);
     }
     if (favicon.present) {
       map['favicon'] = Variable<Uint8List>(favicon.value);

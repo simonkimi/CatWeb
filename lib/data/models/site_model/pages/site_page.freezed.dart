@@ -23,12 +23,12 @@ mixin _$SitePage {
   String get name => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
-  SiteActionType? get action => throw _privateConstructorUsedError;
-  String? get formData => throw _privateConstructorUsedError;
-  String? get icon => throw _privateConstructorUsedError;
-  SiteDisplayType? get displayType => throw _privateConstructorUsedError;
-  String? get flag => throw _privateConstructorUsedError;
-  String? get parserId => throw _privateConstructorUsedError;
+  SiteActionType get action => throw _privateConstructorUsedError;
+  String get formData => throw _privateConstructorUsedError;
+  String get icon => throw _privateConstructorUsedError;
+  SiteDisplayType get displayType => throw _privateConstructorUsedError;
+  String get flag => throw _privateConstructorUsedError;
+  String get parserId => throw _privateConstructorUsedError;
   @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
   ITemplate get template => throw _privateConstructorUsedError;
 
@@ -47,12 +47,12 @@ abstract class $SitePageCopyWith<$Res> {
       {String name,
       String uuid,
       String url,
-      SiteActionType? action,
-      String? formData,
-      String? icon,
-      SiteDisplayType? displayType,
-      String? flag,
-      String? parserId,
+      SiteActionType action,
+      String formData,
+      String icon,
+      SiteDisplayType displayType,
+      String flag,
+      String parserId,
       @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
           ITemplate template});
 }
@@ -73,12 +73,12 @@ class _$SitePageCopyWithImpl<$Res, $Val extends SitePage>
     Object? name = null,
     Object? uuid = null,
     Object? url = null,
-    Object? action = freezed,
-    Object? formData = freezed,
-    Object? icon = freezed,
-    Object? displayType = freezed,
-    Object? flag = freezed,
-    Object? parserId = freezed,
+    Object? action = null,
+    Object? formData = null,
+    Object? icon = null,
+    Object? displayType = null,
+    Object? flag = null,
+    Object? parserId = null,
     Object? template = null,
   }) {
     return _then(_value.copyWith(
@@ -94,30 +94,30 @@ class _$SitePageCopyWithImpl<$Res, $Val extends SitePage>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      action: freezed == action
+      action: null == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
-              as SiteActionType?,
-      formData: freezed == formData
+              as SiteActionType,
+      formData: null == formData
           ? _value.formData
           : formData // ignore: cast_nullable_to_non_nullable
-              as String?,
-      icon: freezed == icon
+              as String,
+      icon: null == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayType: freezed == displayType
+              as String,
+      displayType: null == displayType
           ? _value.displayType
           : displayType // ignore: cast_nullable_to_non_nullable
-              as SiteDisplayType?,
-      flag: freezed == flag
+              as SiteDisplayType,
+      flag: null == flag
           ? _value.flag
           : flag // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parserId: freezed == parserId
+              as String,
+      parserId: null == parserId
           ? _value.parserId
           : parserId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       template: null == template
           ? _value.template
           : template // ignore: cast_nullable_to_non_nullable
@@ -137,12 +137,12 @@ abstract class _$$_SitePageCopyWith<$Res> implements $SitePageCopyWith<$Res> {
       {String name,
       String uuid,
       String url,
-      SiteActionType? action,
-      String? formData,
-      String? icon,
-      SiteDisplayType? displayType,
-      String? flag,
-      String? parserId,
+      SiteActionType action,
+      String formData,
+      String icon,
+      SiteDisplayType displayType,
+      String flag,
+      String parserId,
       @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
           ITemplate template});
 }
@@ -161,12 +161,12 @@ class __$$_SitePageCopyWithImpl<$Res>
     Object? name = null,
     Object? uuid = null,
     Object? url = null,
-    Object? action = freezed,
-    Object? formData = freezed,
-    Object? icon = freezed,
-    Object? displayType = freezed,
-    Object? flag = freezed,
-    Object? parserId = freezed,
+    Object? action = null,
+    Object? formData = null,
+    Object? icon = null,
+    Object? displayType = null,
+    Object? flag = null,
+    Object? parserId = null,
     Object? template = null,
   }) {
     return _then(_$_SitePage(
@@ -182,30 +182,30 @@ class __$$_SitePageCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      action: freezed == action
+      action: null == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
-              as SiteActionType?,
-      formData: freezed == formData
+              as SiteActionType,
+      formData: null == formData
           ? _value.formData
           : formData // ignore: cast_nullable_to_non_nullable
-              as String?,
-      icon: freezed == icon
+              as String,
+      icon: null == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayType: freezed == displayType
+              as String,
+      displayType: null == displayType
           ? _value.displayType
           : displayType // ignore: cast_nullable_to_non_nullable
-              as SiteDisplayType?,
-      flag: freezed == flag
+              as SiteDisplayType,
+      flag: null == flag
           ? _value.flag
           : flag // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parserId: freezed == parserId
+              as String,
+      parserId: null == parserId
           ? _value.parserId
           : parserId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       template: null == template
           ? _value.template
           : template // ignore: cast_nullable_to_non_nullable
@@ -216,19 +216,20 @@ class __$$_SitePageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SitePage implements _SitePage {
-  const _$_SitePage(
+class _$_SitePage extends _SitePage {
+  _$_SitePage(
       {required this.name,
       required this.uuid,
       required this.url,
-      this.action,
-      this.formData,
-      this.icon,
-      this.displayType,
-      this.flag,
-      this.parserId,
+      this.action = SiteActionType.get,
+      this.formData = '',
+      this.icon = '',
+      this.displayType = SiteDisplayType.show,
+      this.flag = '',
+      this.parserId = '',
       @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
-          required this.template});
+          required this.template})
+      : super._();
 
   factory _$_SitePage.fromJson(Map<String, dynamic> json) =>
       _$$_SitePageFromJson(json);
@@ -240,17 +241,23 @@ class _$_SitePage implements _SitePage {
   @override
   final String url;
   @override
-  final SiteActionType? action;
+  @JsonKey()
+  final SiteActionType action;
   @override
-  final String? formData;
+  @JsonKey()
+  final String formData;
   @override
-  final String? icon;
+  @JsonKey()
+  final String icon;
   @override
-  final SiteDisplayType? displayType;
+  @JsonKey()
+  final SiteDisplayType displayType;
   @override
-  final String? flag;
+  @JsonKey()
+  final String flag;
   @override
-  final String? parserId;
+  @JsonKey()
+  final String parserId;
   @override
   @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
   final ITemplate template;
@@ -300,19 +307,20 @@ class _$_SitePage implements _SitePage {
   }
 }
 
-abstract class _SitePage implements SitePage {
-  const factory _SitePage(
+abstract class _SitePage extends SitePage {
+  factory _SitePage(
       {required final String name,
       required final String uuid,
       required final String url,
-      final SiteActionType? action,
-      final String? formData,
-      final String? icon,
-      final SiteDisplayType? displayType,
-      final String? flag,
-      final String? parserId,
+      final SiteActionType action,
+      final String formData,
+      final String icon,
+      final SiteDisplayType displayType,
+      final String flag,
+      final String parserId,
       @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
           required final ITemplate template}) = _$_SitePage;
+  _SitePage._() : super._();
 
   factory _SitePage.fromJson(Map<String, dynamic> json) = _$_SitePage.fromJson;
 
@@ -323,17 +331,17 @@ abstract class _SitePage implements SitePage {
   @override
   String get url;
   @override
-  SiteActionType? get action;
+  SiteActionType get action;
   @override
-  String? get formData;
+  String get formData;
   @override
-  String? get icon;
+  String get icon;
   @override
-  SiteDisplayType? get displayType;
+  SiteDisplayType get displayType;
   @override
-  String? get flag;
+  String get flag;
   @override
-  String? get parserId;
+  String get parserId;
   @override
   @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
   ITemplate get template;

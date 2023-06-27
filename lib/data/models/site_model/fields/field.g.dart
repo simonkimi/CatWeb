@@ -19,10 +19,10 @@ Map<String, dynamic> _$$_RegFieldToJson(_$_RegField instance) =>
 
 _$_ColorField _$$_ColorFieldFromJson(Map<String, dynamic> json) =>
     _$_ColorField(
-      a: json['a'] as int,
-      r: json['r'] as int,
-      g: json['g'] as int,
-      b: json['b'] as int,
+      a: json['a'] as int? ?? 0,
+      r: json['r'] as int? ?? 0,
+      g: json['g'] as int? ?? 0,
+      b: json['b'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$_ColorFieldToJson(_$_ColorField instance) =>

@@ -1,9 +1,13 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: parser.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+
+// ignore_for_file: annotate_overrides, camel_case_types
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
 import 'dart:core' as $core;
 
@@ -14,98 +18,31 @@ import 'selector.pb.dart' as $0;
 export 'parser.pbenum.dart';
 
 class ImageReaderParser extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ImageReaderParser', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uuid')
-    ..aOM<$0.Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id', subBuilder: $0.Selector.create)
-    ..aOM<$0.ImageSelector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'image', subBuilder: $0.ImageSelector.create)
-    ..aOM<$0.Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'largerImage', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rawImage', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTime', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'source', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'rating', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'score', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeText', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeCategory', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(30, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'successSelector', protoName: 'successSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(31, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failedSelector', protoName: 'failedSelector', subBuilder: $0.Selector.create)
-    ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, subBuilder: $0.ExtraSelector.create)
+  factory ImageReaderParser() => create();
+  ImageReaderParser._() : super();
+  factory ImageReaderParser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ImageReaderParser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageReaderParser', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aOS(2, _omitFieldNames ? '' : 'uuid')
+    ..aOM<$0.Selector>(3, _omitFieldNames ? '' : 'id', subBuilder: $0.Selector.create)
+    ..aOM<$0.ImageSelector>(4, _omitFieldNames ? '' : 'image', subBuilder: $0.ImageSelector.create)
+    ..aOM<$0.Selector>(5, _omitFieldNames ? '' : 'largerImage', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(6, _omitFieldNames ? '' : 'rawImage', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(7, _omitFieldNames ? '' : 'uploadTime', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(8, _omitFieldNames ? '' : 'source', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(9, _omitFieldNames ? '' : 'rating', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(10, _omitFieldNames ? '' : 'score', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(20, _omitFieldNames ? '' : 'badgeSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(21, _omitFieldNames ? '' : 'badgeText', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(22, _omitFieldNames ? '' : 'badgeCategory', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(30, _omitFieldNames ? '' : 'successSelector', protoName: 'successSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(31, _omitFieldNames ? '' : 'failedSelector', protoName: 'failedSelector', subBuilder: $0.Selector.create)
+    ..pc<$0.ExtraSelector>(99, _omitFieldNames ? '' : 'extraSelector', $pb.PbFieldType.PM, subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false
   ;
 
-  ImageReaderParser._() : super();
-  factory ImageReaderParser({
-    $core.String? name,
-    $core.String? uuid,
-    $0.Selector? id,
-    $0.ImageSelector? image,
-    $0.Selector? largerImage,
-    $0.Selector? rawImage,
-    $0.Selector? uploadTime,
-    $0.Selector? source,
-    $0.Selector? rating,
-    $0.Selector? score,
-    $0.Selector? badgeSelector,
-    $0.Selector? badgeText,
-    $0.Selector? badgeCategory,
-    $0.Selector? successSelector,
-    $0.Selector? failedSelector,
-    $core.Iterable<$0.ExtraSelector>? extraSelector,
-  }) {
-    final _result = create();
-    if (name != null) {
-      _result.name = name;
-    }
-    if (uuid != null) {
-      _result.uuid = uuid;
-    }
-    if (id != null) {
-      _result.id = id;
-    }
-    if (image != null) {
-      _result.image = image;
-    }
-    if (largerImage != null) {
-      _result.largerImage = largerImage;
-    }
-    if (rawImage != null) {
-      _result.rawImage = rawImage;
-    }
-    if (uploadTime != null) {
-      _result.uploadTime = uploadTime;
-    }
-    if (source != null) {
-      _result.source = source;
-    }
-    if (rating != null) {
-      _result.rating = rating;
-    }
-    if (score != null) {
-      _result.score = score;
-    }
-    if (badgeSelector != null) {
-      _result.badgeSelector = badgeSelector;
-    }
-    if (badgeText != null) {
-      _result.badgeText = badgeText;
-    }
-    if (badgeCategory != null) {
-      _result.badgeCategory = badgeCategory;
-    }
-    if (successSelector != null) {
-      _result.successSelector = successSelector;
-    }
-    if (failedSelector != null) {
-      _result.failedSelector = failedSelector;
-    }
-    if (extraSelector != null) {
-      _result.extraSelector.addAll(extraSelector);
-    }
-    return _result;
-  }
-  factory ImageReaderParser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ImageReaderParser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -115,8 +52,10 @@ class ImageReaderParser extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ImageReaderParser copyWith(void Function(ImageReaderParser) updates) => super.copyWith((message) => updates(message as ImageReaderParser)) as ImageReaderParser; // ignore: deprecated_member_use
+  ImageReaderParser copyWith(void Function(ImageReaderParser) updates) => super.copyWith((message) => updates(message as ImageReaderParser)) as ImageReaderParser;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ImageReaderParser create() => ImageReaderParser._();
   ImageReaderParser createEmptyInstance() => create();
@@ -291,128 +230,37 @@ class ImageReaderParser extends $pb.GeneratedMessage {
 }
 
 class ListViewParser extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ListViewParser', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uuid')
-    ..aOM<$0.Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'successSelector', protoName: 'successSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failedSelector', protoName: 'failedSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'itemSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'title', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subtitle', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTime', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'star', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(15, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgCount', subBuilder: $0.Selector.create)
-    ..aOM<$0.ImageSelector>(16, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'previewImg', subBuilder: $0.ImageSelector.create)
-    ..aOM<$0.Selector>(17, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'language', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tag', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tagColor', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(23, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeText', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(24, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeColor', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(25, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'paper', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(26, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'target', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(30, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(31, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'idCode', subBuilder: $0.Selector.create)
-    ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, subBuilder: $0.ExtraSelector.create)
+  factory ListViewParser() => create();
+  ListViewParser._() : super();
+  factory ListViewParser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ListViewParser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ListViewParser', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aOS(2, _omitFieldNames ? '' : 'uuid')
+    ..aOM<$0.Selector>(3, _omitFieldNames ? '' : 'successSelector', protoName: 'successSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(4, _omitFieldNames ? '' : 'failedSelector', protoName: 'failedSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(10, _omitFieldNames ? '' : 'itemSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(11, _omitFieldNames ? '' : 'title', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(12, _omitFieldNames ? '' : 'subtitle', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(13, _omitFieldNames ? '' : 'uploadTime', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(14, _omitFieldNames ? '' : 'star', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(15, _omitFieldNames ? '' : 'imgCount', subBuilder: $0.Selector.create)
+    ..aOM<$0.ImageSelector>(16, _omitFieldNames ? '' : 'previewImg', subBuilder: $0.ImageSelector.create)
+    ..aOM<$0.Selector>(17, _omitFieldNames ? '' : 'language', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(20, _omitFieldNames ? '' : 'tag', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(21, _omitFieldNames ? '' : 'tagColor', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(22, _omitFieldNames ? '' : 'badgeSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(23, _omitFieldNames ? '' : 'badgeText', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(24, _omitFieldNames ? '' : 'badgeColor', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(25, _omitFieldNames ? '' : 'paper', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(26, _omitFieldNames ? '' : 'target', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(30, _omitFieldNames ? '' : 'nextPage', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(31, _omitFieldNames ? '' : 'idCode', subBuilder: $0.Selector.create)
+    ..pc<$0.ExtraSelector>(99, _omitFieldNames ? '' : 'extraSelector', $pb.PbFieldType.PM, subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false
   ;
 
-  ListViewParser._() : super();
-  factory ListViewParser({
-    $core.String? name,
-    $core.String? uuid,
-    $0.Selector? successSelector,
-    $0.Selector? failedSelector,
-    $0.Selector? itemSelector,
-    $0.Selector? title,
-    $0.Selector? subtitle,
-    $0.Selector? uploadTime,
-    $0.Selector? star,
-    $0.Selector? imgCount,
-    $0.ImageSelector? previewImg,
-    $0.Selector? language,
-    $0.Selector? tag,
-    $0.Selector? tagColor,
-    $0.Selector? badgeSelector,
-    $0.Selector? badgeText,
-    $0.Selector? badgeColor,
-    $0.Selector? paper,
-    $0.Selector? target,
-    $0.Selector? nextPage,
-    $0.Selector? idCode,
-    $core.Iterable<$0.ExtraSelector>? extraSelector,
-  }) {
-    final _result = create();
-    if (name != null) {
-      _result.name = name;
-    }
-    if (uuid != null) {
-      _result.uuid = uuid;
-    }
-    if (successSelector != null) {
-      _result.successSelector = successSelector;
-    }
-    if (failedSelector != null) {
-      _result.failedSelector = failedSelector;
-    }
-    if (itemSelector != null) {
-      _result.itemSelector = itemSelector;
-    }
-    if (title != null) {
-      _result.title = title;
-    }
-    if (subtitle != null) {
-      _result.subtitle = subtitle;
-    }
-    if (uploadTime != null) {
-      _result.uploadTime = uploadTime;
-    }
-    if (star != null) {
-      _result.star = star;
-    }
-    if (imgCount != null) {
-      _result.imgCount = imgCount;
-    }
-    if (previewImg != null) {
-      _result.previewImg = previewImg;
-    }
-    if (language != null) {
-      _result.language = language;
-    }
-    if (tag != null) {
-      _result.tag = tag;
-    }
-    if (tagColor != null) {
-      _result.tagColor = tagColor;
-    }
-    if (badgeSelector != null) {
-      _result.badgeSelector = badgeSelector;
-    }
-    if (badgeText != null) {
-      _result.badgeText = badgeText;
-    }
-    if (badgeColor != null) {
-      _result.badgeColor = badgeColor;
-    }
-    if (paper != null) {
-      _result.paper = paper;
-    }
-    if (target != null) {
-      _result.target = target;
-    }
-    if (nextPage != null) {
-      _result.nextPage = nextPage;
-    }
-    if (idCode != null) {
-      _result.idCode = idCode;
-    }
-    if (extraSelector != null) {
-      _result.extraSelector.addAll(extraSelector);
-    }
-    return _result;
-  }
-  factory ListViewParser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ListViewParser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -422,8 +270,10 @@ class ListViewParser extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ListViewParser copyWith(void Function(ListViewParser) updates) => super.copyWith((message) => updates(message as ListViewParser)) as ListViewParser; // ignore: deprecated_member_use
+  ListViewParser copyWith(void Function(ListViewParser) updates) => super.copyWith((message) => updates(message as ListViewParser)) as ListViewParser;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ListViewParser create() => ListViewParser._();
   ListViewParser createEmptyInstance() => create();
@@ -664,168 +514,45 @@ class ListViewParser extends $pb.GeneratedMessage {
 }
 
 class GalleryParser extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GalleryParser', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uuid')
-    ..aOM<$0.Selector>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'title', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subtitle', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uploadTime', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'star', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imgCount', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'pageCount', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'language', subBuilder: $0.Selector.create)
-    ..aOM<$0.ImageSelector>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'coverImg', subBuilder: $0.ImageSelector.create)
-    ..aOM<$0.Selector>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'description', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'thumbnailSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.ImageSelector>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'thumbnail', subBuilder: $0.ImageSelector.create)
-    ..aOM<$0.Selector>(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'target', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(30, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'commentSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.CommentSelector>(31, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'comment', subBuilder: $0.CommentSelector.create)
-    ..aOM<$0.Selector>(40, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tag', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(41, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tagColor', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(50, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(51, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeText', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(52, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'badgeCategory', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(60, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chapterSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(61, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chapterTitle', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(62, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chapterSubtitle', subBuilder: $0.Selector.create)
-    ..aOM<$0.ImageSelector>(63, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chapterCover', subBuilder: $0.ImageSelector.create)
-    ..aOM<$0.Selector>(70, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nextPage', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(71, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'countPrePage', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(72, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'successSelector', protoName: 'successSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(73, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failedSelector', protoName: 'failedSelector', subBuilder: $0.Selector.create)
-    ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, subBuilder: $0.ExtraSelector.create)
+  factory GalleryParser() => create();
+  GalleryParser._() : super();
+  factory GalleryParser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GalleryParser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GalleryParser', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aOS(2, _omitFieldNames ? '' : 'uuid')
+    ..aOM<$0.Selector>(3, _omitFieldNames ? '' : 'title', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(4, _omitFieldNames ? '' : 'subtitle', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(5, _omitFieldNames ? '' : 'uploadTime', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(6, _omitFieldNames ? '' : 'star', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(7, _omitFieldNames ? '' : 'imgCount', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(8, _omitFieldNames ? '' : 'pageCount', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(9, _omitFieldNames ? '' : 'language', subBuilder: $0.Selector.create)
+    ..aOM<$0.ImageSelector>(10, _omitFieldNames ? '' : 'coverImg', subBuilder: $0.ImageSelector.create)
+    ..aOM<$0.Selector>(11, _omitFieldNames ? '' : 'description', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(20, _omitFieldNames ? '' : 'thumbnailSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.ImageSelector>(21, _omitFieldNames ? '' : 'thumbnail', subBuilder: $0.ImageSelector.create)
+    ..aOM<$0.Selector>(22, _omitFieldNames ? '' : 'target', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(30, _omitFieldNames ? '' : 'commentSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.CommentSelector>(31, _omitFieldNames ? '' : 'comment', subBuilder: $0.CommentSelector.create)
+    ..aOM<$0.Selector>(40, _omitFieldNames ? '' : 'tag', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(41, _omitFieldNames ? '' : 'tagColor', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(50, _omitFieldNames ? '' : 'badgeSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(51, _omitFieldNames ? '' : 'badgeText', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(52, _omitFieldNames ? '' : 'badgeCategory', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(60, _omitFieldNames ? '' : 'chapterSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(61, _omitFieldNames ? '' : 'chapterTitle', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(62, _omitFieldNames ? '' : 'chapterSubtitle', subBuilder: $0.Selector.create)
+    ..aOM<$0.ImageSelector>(63, _omitFieldNames ? '' : 'chapterCover', subBuilder: $0.ImageSelector.create)
+    ..aOM<$0.Selector>(70, _omitFieldNames ? '' : 'nextPage', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(71, _omitFieldNames ? '' : 'countPrePage', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(72, _omitFieldNames ? '' : 'successSelector', protoName: 'successSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(73, _omitFieldNames ? '' : 'failedSelector', protoName: 'failedSelector', subBuilder: $0.Selector.create)
+    ..pc<$0.ExtraSelector>(99, _omitFieldNames ? '' : 'extraSelector', $pb.PbFieldType.PM, subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false
   ;
 
-  GalleryParser._() : super();
-  factory GalleryParser({
-    $core.String? name,
-    $core.String? uuid,
-    $0.Selector? title,
-    $0.Selector? subtitle,
-    $0.Selector? uploadTime,
-    $0.Selector? star,
-    $0.Selector? imgCount,
-    $0.Selector? pageCount,
-    $0.Selector? language,
-    $0.ImageSelector? coverImg,
-    $0.Selector? description,
-    $0.Selector? thumbnailSelector,
-    $0.ImageSelector? thumbnail,
-    $0.Selector? target,
-    $0.Selector? commentSelector,
-    $0.CommentSelector? comment,
-    $0.Selector? tag,
-    $0.Selector? tagColor,
-    $0.Selector? badgeSelector,
-    $0.Selector? badgeText,
-    $0.Selector? badgeCategory,
-    $0.Selector? chapterSelector,
-    $0.Selector? chapterTitle,
-    $0.Selector? chapterSubtitle,
-    $0.ImageSelector? chapterCover,
-    $0.Selector? nextPage,
-    $0.Selector? countPrePage,
-    $0.Selector? successSelector,
-    $0.Selector? failedSelector,
-    $core.Iterable<$0.ExtraSelector>? extraSelector,
-  }) {
-    final _result = create();
-    if (name != null) {
-      _result.name = name;
-    }
-    if (uuid != null) {
-      _result.uuid = uuid;
-    }
-    if (title != null) {
-      _result.title = title;
-    }
-    if (subtitle != null) {
-      _result.subtitle = subtitle;
-    }
-    if (uploadTime != null) {
-      _result.uploadTime = uploadTime;
-    }
-    if (star != null) {
-      _result.star = star;
-    }
-    if (imgCount != null) {
-      _result.imgCount = imgCount;
-    }
-    if (pageCount != null) {
-      _result.pageCount = pageCount;
-    }
-    if (language != null) {
-      _result.language = language;
-    }
-    if (coverImg != null) {
-      _result.coverImg = coverImg;
-    }
-    if (description != null) {
-      _result.description = description;
-    }
-    if (thumbnailSelector != null) {
-      _result.thumbnailSelector = thumbnailSelector;
-    }
-    if (thumbnail != null) {
-      _result.thumbnail = thumbnail;
-    }
-    if (target != null) {
-      _result.target = target;
-    }
-    if (commentSelector != null) {
-      _result.commentSelector = commentSelector;
-    }
-    if (comment != null) {
-      _result.comment = comment;
-    }
-    if (tag != null) {
-      _result.tag = tag;
-    }
-    if (tagColor != null) {
-      _result.tagColor = tagColor;
-    }
-    if (badgeSelector != null) {
-      _result.badgeSelector = badgeSelector;
-    }
-    if (badgeText != null) {
-      _result.badgeText = badgeText;
-    }
-    if (badgeCategory != null) {
-      _result.badgeCategory = badgeCategory;
-    }
-    if (chapterSelector != null) {
-      _result.chapterSelector = chapterSelector;
-    }
-    if (chapterTitle != null) {
-      _result.chapterTitle = chapterTitle;
-    }
-    if (chapterSubtitle != null) {
-      _result.chapterSubtitle = chapterSubtitle;
-    }
-    if (chapterCover != null) {
-      _result.chapterCover = chapterCover;
-    }
-    if (nextPage != null) {
-      _result.nextPage = nextPage;
-    }
-    if (countPrePage != null) {
-      _result.countPrePage = countPrePage;
-    }
-    if (successSelector != null) {
-      _result.successSelector = successSelector;
-    }
-    if (failedSelector != null) {
-      _result.failedSelector = failedSelector;
-    }
-    if (extraSelector != null) {
-      _result.extraSelector.addAll(extraSelector);
-    }
-    return _result;
-  }
-  factory GalleryParser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GalleryParser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -835,8 +562,10 @@ class GalleryParser extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  GalleryParser copyWith(void Function(GalleryParser) updates) => super.copyWith((message) => updates(message as GalleryParser)) as GalleryParser; // ignore: deprecated_member_use
+  GalleryParser copyWith(void Function(GalleryParser) updates) => super.copyWith((message) => updates(message as GalleryParser)) as GalleryParser;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static GalleryParser create() => GalleryParser._();
   GalleryParser createEmptyInstance() => create();
@@ -1165,63 +894,24 @@ class GalleryParser extends $pb.GeneratedMessage {
 }
 
 class AutoCompleteParser extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AutoCompleteParser', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uuid')
-    ..aOM<$0.Selector>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'itemSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'itemComplete', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'itemSubtitle', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'itemTitle', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'successSelector', protoName: 'successSelector', subBuilder: $0.Selector.create)
-    ..aOM<$0.Selector>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failedSelector', protoName: 'failedSelector', subBuilder: $0.Selector.create)
-    ..pc<$0.ExtraSelector>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extraSelector', $pb.PbFieldType.PM, subBuilder: $0.ExtraSelector.create)
+  factory AutoCompleteParser() => create();
+  AutoCompleteParser._() : super();
+  factory AutoCompleteParser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AutoCompleteParser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AutoCompleteParser', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aOS(2, _omitFieldNames ? '' : 'uuid')
+    ..aOM<$0.Selector>(11, _omitFieldNames ? '' : 'itemSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(12, _omitFieldNames ? '' : 'itemComplete', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(13, _omitFieldNames ? '' : 'itemSubtitle', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(14, _omitFieldNames ? '' : 'itemTitle', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(20, _omitFieldNames ? '' : 'successSelector', protoName: 'successSelector', subBuilder: $0.Selector.create)
+    ..aOM<$0.Selector>(21, _omitFieldNames ? '' : 'failedSelector', protoName: 'failedSelector', subBuilder: $0.Selector.create)
+    ..pc<$0.ExtraSelector>(99, _omitFieldNames ? '' : 'extraSelector', $pb.PbFieldType.PM, subBuilder: $0.ExtraSelector.create)
     ..hasRequiredFields = false
   ;
 
-  AutoCompleteParser._() : super();
-  factory AutoCompleteParser({
-    $core.String? name,
-    $core.String? uuid,
-    $0.Selector? itemSelector,
-    $0.Selector? itemComplete,
-    $0.Selector? itemSubtitle,
-    $0.Selector? itemTitle,
-    $0.Selector? successSelector,
-    $0.Selector? failedSelector,
-    $core.Iterable<$0.ExtraSelector>? extraSelector,
-  }) {
-    final _result = create();
-    if (name != null) {
-      _result.name = name;
-    }
-    if (uuid != null) {
-      _result.uuid = uuid;
-    }
-    if (itemSelector != null) {
-      _result.itemSelector = itemSelector;
-    }
-    if (itemComplete != null) {
-      _result.itemComplete = itemComplete;
-    }
-    if (itemSubtitle != null) {
-      _result.itemSubtitle = itemSubtitle;
-    }
-    if (itemTitle != null) {
-      _result.itemTitle = itemTitle;
-    }
-    if (successSelector != null) {
-      _result.successSelector = successSelector;
-    }
-    if (failedSelector != null) {
-      _result.failedSelector = failedSelector;
-    }
-    if (extraSelector != null) {
-      _result.extraSelector.addAll(extraSelector);
-    }
-    return _result;
-  }
-  factory AutoCompleteParser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory AutoCompleteParser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -1231,8 +921,10 @@ class AutoCompleteParser extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  AutoCompleteParser copyWith(void Function(AutoCompleteParser) updates) => super.copyWith((message) => updates(message as AutoCompleteParser)) as AutoCompleteParser; // ignore: deprecated_member_use
+  AutoCompleteParser copyWith(void Function(AutoCompleteParser) updates) => super.copyWith((message) => updates(message as AutoCompleteParser)) as AutoCompleteParser;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static AutoCompleteParser create() => AutoCompleteParser._();
   AutoCompleteParser createEmptyInstance() => create();
@@ -1329,3 +1021,6 @@ class AutoCompleteParser extends $pb.GeneratedMessage {
   $core.List<$0.ExtraSelector> get extraSelector => $_getList(8);
 }
 
+
+const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

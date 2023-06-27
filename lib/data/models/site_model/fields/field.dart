@@ -7,8 +7,8 @@ part 'field.freezed.dart';
 @freezed
 class RegField with _$RegField {
   const factory RegField({
-    @Default('') String? reg,
-    @Default('') String? value,
+    @Default('') String reg,
+    @Default('') String value,
   }) = _RegField;
 
   factory RegField.fromJson(Map<String, dynamic> json) =>
@@ -18,10 +18,10 @@ class RegField with _$RegField {
 @freezed
 class ColorField with _$ColorField {
   const factory ColorField({
-    required int a,
-    required int r,
-    required int g,
-    required int b,
+    @Default(0) int a,
+    @Default(0) int r,
+    @Default(0) int g,
+    @Default(0) int b,
   }) = _ColorField;
 
   factory ColorField.fromJson(Map<String, dynamic> json) =>
