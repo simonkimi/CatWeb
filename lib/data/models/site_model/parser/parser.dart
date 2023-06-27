@@ -27,9 +27,10 @@ enum ParserType {
 abstract class IParserBase {
   final String name;
   final String uuid;
+  final ParserType parserType;
   late List<ExtraSelector> extra;
 
-  IParserBase(this.name, this.uuid, this.extra);
+  IParserBase(this.name, this.uuid, this.extra, this.parserType);
 
   Map<String, dynamic> toJson();
 

@@ -1,5 +1,5 @@
+import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/data/protocol/model/parser.dart';
-import 'package:catweb/gen/protobuf/parser.pbenum.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
@@ -8,6 +8,7 @@ import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_editor
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
 enum _MenuSelect {
   edit,
@@ -24,8 +25,7 @@ class RulesParserManager extends GetView<RulesEditController> {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       children: [
-        Obx(() =>
-            Column(
+        Obx(() => Column(
               mainAxisSize: MainAxisSize.min,
               children: controller.blueprint.parsers.map((e) {
                 return CupertinoCardTile(
@@ -50,8 +50,10 @@ class RulesParserManager extends GetView<RulesEditController> {
     );
   }
 
-  Future<void> _onTrailingTap(BuildContext context,
-      ParserBaseModel model,) async {
+  Future<void> _onTrailingTap(
+    BuildContext context,
+    ParserBaseModel model,
+  ) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: '取消',
       context: context,
@@ -84,15 +86,12 @@ class RulesParserManager extends GetView<RulesEditController> {
     if (using.isNotEmpty) {
       showCupertinoConfirmDialog(
           context: context,
-          content: '无法删除, 因下列页面正在使用此解析器:\n ${using.join(
-              ' ')}');
+          content: '无法删除, 因下列页面正在使用此解析器:\n ${using.join(' ')}');
     } else {
       showCupertinoConfirmDialog(
         context: context,
         content: I.of(context).delete_confirm(model.name.value),
-        confineText: I
-            .of(context)
-            .delete,
+        confineText: I.of(context).delete,
         confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
       ).then((value) {
         if (value == true) {
@@ -102,44 +101,41 @@ class RulesParserManager extends GetView<RulesEditController> {
     }
   }
 
-  Future<ParserBaseModel?> _genParser(BuildContext context) async {
+  Future<IParserBase?> _genParser(BuildContext context) async {
     final selection = await showCupertinoSelectDialog<ParserType>(
       context: context,
       title: '规则类型',
       cancelText: '取消',
       items: const [
-        SelectTileItem(
-            title: '列表页', value: ParserType.PARSER_TYPE_LIST_VIEW),
-        SelectTileItem(title: '详情页', value: ParserType.PARSER_TYPE_GALLERY),
-        SelectTileItem(title: '图片页', value: ParserType.PARSER_TYPE_IMAGE),
-        SelectTileItem(
-            title: '补全页', value: ParserType.PARSER_TYPE_AUTO_COMPLETE),
+        SelectTileItem(title: '列表页', value: ParserType.listView),
+        SelectTileItem(title: '详情页', value: ParserType.gallery),
+        SelectTileItem(title: '图片页', value: ParserType.imageReader),
+        SelectTileItem(title: '补全页', value: ParserType.autoComplete),
       ],
     );
-    if (selection != null) {
-      switch (selection) {
-        case ParserType.PARSER_TYPE_LIST_VIEW:
-          return ListViewParserModel();
-        case ParserType.PARSER_TYPE_GALLERY:
-          return GalleryParserModel();
-        case ParserType.PARSER_TYPE_IMAGE:
-          return ImageReaderParserModel();
-        case ParserType.PARSER_TYPE_AUTO_COMPLETE:
-          return AutoCompleteParserModel();
-      }
+    if (selection == null) return null;
+    final name = await showCupertinoInputDialog(context, title: '名称');
+    if (name == null) return null;
+
+    final uuid = const Uuid().v4().toString();
+    switch (selection) {
+      case ParserType.listView:
+        return ListViewParser(name: name, uuid: uuid);
+      case ParserType.gallery:
+        return GalleryParser(name: name, uuid: uuid);
+      case ParserType.imageReader:
+        return ImageReaderParser(name: name, uuid: uuid);
+      case ParserType.autoComplete:
+        return AutoCompleteParser(name: name, uuid: uuid);
     }
-    return null;
   }
 
-  Future<void> _editRules(BuildContext context, [
-    ParserBaseModel? model,
+  Future<void> _editRules(
+    BuildContext context, [
+    IParserBase? model,
   ]) async {
     final input = model ?? await _genParser(context);
     if (input == null) return;
-    // await Get.to(() => CupertinoPageRoute(
-    //   builder: (context) => RulesParserEditor(model: input)
-    // ));
-
     await Navigator.of(context).push(
       CupertinoPageRoute(builder: (BuildContext context) {
         return RulesParserEditor(model: input);

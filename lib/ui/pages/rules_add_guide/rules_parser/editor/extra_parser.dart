@@ -1,14 +1,14 @@
 import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/data/models/site_model/parser/selector.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/selector_editor.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/selector_editor.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class NewExtraParser extends StatefulWidget {
-  const NewExtraParser({
+class ExtraParserEditor extends StatefulWidget {
+  const ExtraParserEditor({
     Key? key,
     required this.parser,
   }) : super(key: key);
@@ -16,10 +16,10 @@ class NewExtraParser extends StatefulWidget {
   final IParserBase parser;
 
   @override
-  State<NewExtraParser> createState() => _NewExtraParserState();
+  State<ExtraParserEditor> createState() => _ExtraParserEditorState();
 }
 
-class _NewExtraParserState extends State<NewExtraParser> {
+class _ExtraParserEditorState extends State<ExtraParserEditor> {
   late final List<ExtraSelector> extra;
 
   @override

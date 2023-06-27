@@ -1,5 +1,5 @@
 import 'package:catweb/data/models/site_model/parser/selector.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/selector_editor.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/selector_editor.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';

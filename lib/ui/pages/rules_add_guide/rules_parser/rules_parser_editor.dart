@@ -1,18 +1,14 @@
-import 'package:catweb/data/models/site_model/parser/parser.dart'
-    hide ParserType;
-import 'package:catweb/data/protocol/model/parser.dart';
-import 'package:catweb/gen/protobuf/parser.pbenum.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/new_parser/auto_complete.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/new_parser/list_parser.dart';
+import 'package:catweb/data/models/site_model/parser/parser.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/editor/auto_complete.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/editor/extra_parser.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/editor/gallery_parser.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/editor/image_parser.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/editor/list_parser.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/gallery_parser.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/image_parser.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'new_parser/extra_parser.dart';
 
 class RulesParserEditor extends StatelessWidget {
   const RulesParserEditor({
@@ -20,7 +16,7 @@ class RulesParserEditor extends StatelessWidget {
     required this.model,
   });
 
-  final ParserBaseModel model;
+  final IParserBase model;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +37,7 @@ class RulesParserEditor extends StatelessWidget {
       ],
       children: [
         _buildEditor(context),
-        // ExtraParser(model: model),
-        NewExtraParser(
+        ExtraParserEditor(
           parser: GalleryParser(
             name: '123123',
             uuid: '12132',
@@ -66,20 +61,15 @@ class RulesParserEditor extends StatelessWidget {
   }
 
   Widget _buildEditor(BuildContext context) {
-    switch (model.type) {
-      case ParserType.PARSER_TYPE_GALLERY:
-        return GalleryParserFragment(model: model as GalleryParserModel);
-      case ParserType.PARSER_TYPE_LIST_VIEW:
-        // return ListParserFragment(model: model as ListViewParserModel);
-        return NewListParser();
-      case ParserType.PARSER_TYPE_AUTO_COMPLETE:
-        // return SearchAutoCompleteParser(
-        //     model: model as AutoCompleteParserModel);
-        return AutoCompleteParserEdit();
-      case ParserType.PARSER_TYPE_IMAGE:
-        return ImageReaderParserFragment(
-            model: model as ImageReaderParserModel);
+    switch (model.parserType) {
+      case ParserType.gallery:
+        return GalleryParserEditor();
+      case ParserType.listView:
+        return ListParserEditor();
+      case ParserType.autoComplete:
+        return AutoCompleteParserEditor();
+      case ParserType.imageReader:
+        return NewImageParserEditor();
     }
-    throw Exception('未知的解析器类型 ${model.type}');
   }
 }

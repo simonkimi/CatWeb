@@ -1,13 +1,13 @@
 import 'package:catweb/data/models/site_model/parser/parser.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser/parser_tile.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser_tile.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 
-class AutoCompleteParserEdit extends StatelessWidget {
-  AutoCompleteParserEdit({Key? key}) : super(key: key);
+class AutoCompleteParserEditor extends StatelessWidget {
+  AutoCompleteParserEditor({Key? key}) : super(key: key);
 
   final Rx<AutoCompleteParser> rxModel =
       AutoCompleteParser(name: '自动补全', uuid: 'test').obs;
