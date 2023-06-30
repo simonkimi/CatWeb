@@ -1,28 +1,34 @@
-import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/data/protocol/model/templete.dart';
-import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/data/models/site_model/pages/site_page.dart';
+import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
-import 'package:catweb/ui/pages/javascript_editor/editor.dart';
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
 
-class ListFilterEditor extends StatelessWidget {
+class ListFilterEditor extends HookWidget {
   const ListFilterEditor({
     super.key,
     required this.model,
   });
 
-  final PageBlueprintModel model;
+  final SitePage model;
 
   @override
   Widget build(BuildContext context) {
     final filterController = SwipeActionController();
-    final extra = model.templateData as TemplateListDataModel;
+    final template = useState(model.template as TemplateList);
+
+    useEffect(() {
+      return () {
+        model.template = template.value;
+      };
+    });
 
     return ListView(
       children: [
@@ -38,12 +44,11 @@ class ListFilterEditor extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              Obx(() => CupertinoReadOnlyInput(
-                    labelText: I.of(context).script,
-                    value: extra.script.value,
-                    onTap: () =>
-                        Get.to(() => JavaScriptEditor(script: extra.script)),
-                  )),
+              CupertinoReadOnlyInput(
+                labelText: I.of(context).script,
+                value: template.value.script.script,
+                onTap: () {},
+              ),
               Row(
                 children: [
                   const Text('过滤器未改变时禁用', style: TextStyle(fontSize: 15)),
@@ -52,10 +57,11 @@ class ListFilterEditor extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     scale: 0.8,
                     child: Obx(() => CupertinoSwitch(
-                          value: extra.disableUnchanged.value,
-                          onChanged: (value) =>
-                              extra.disableUnchanged.value = value,
-                        )),
+                        value: template.value.disableUnchanged,
+                        onChanged: (value) {
+                          template.value =
+                              template.value.copyWith(disableUnchanged: value);
+                        })),
                   ),
                 ],
               ),
@@ -87,21 +93,19 @@ class ListFilterEditor extends StatelessWidget {
               ColoredBox(
                 color: CupertinoColors.systemGroupedBackground
                     .resolveFrom(context),
-                child: Obx(() => Column(
-                      children: extra.filterItem.asMap().entries.map((e) {
-                        return Obx(
-                          () => CupertinoDeletableTile(
-                              index: e.key,
-                              controller: filterController,
-                              text:
-                                  '${e.value.name.value} - ${e.value.key.value}',
-                              onDelete: (index) {
-                                extra.filterItem.removeAt(index);
-                              },
-                              onTap: () => _editFilter(context, e.value)),
-                        );
-                      }).toList(),
-                    )),
+                child: Column(
+                  children: template.value.filters.asMap().entries.map((e) {
+                    return CupertinoDeletableTile(
+                        index: e.key,
+                        controller: filterController,
+                        text: '${e.value.name} - ${e.value.key}',
+                        onDelete: (index) {
+                          template.value = template.value.copyWith(
+                              filters: template.value.filters.exceptAt(index));
+                        },
+                        onTap: () => _editFilter(context, e.value));
+                  }).toList(),
+                ),
               ),
               CupertinoClassicalListTile(
                 icon: Icon(
@@ -110,7 +114,10 @@ class ListFilterEditor extends StatelessWidget {
                 ),
                 text: I.of(context).add,
                 onTap: () {
-                  extra.filterItem.add(SearchFilterItem());
+                  template.value = template.value.copyWith(filters: [
+                    ...template.value.filters,
+                    const TemplateListFilterItem()
+                  ]);
                 },
               ),
             ],
@@ -120,7 +127,9 @@ class ListFilterEditor extends StatelessWidget {
     );
   }
 
-  Future<void> _editFilter(BuildContext context, SearchFilterItem field) async {
+  Future<TemplateListFilterItem> _editFilter(
+      BuildContext context, TemplateListFilterItem field) async {
+    var colorString = field.color.toString();
     await showCupertinoDialog(
         barrierDismissible: true,
         context: context,
@@ -137,58 +146,71 @@ class ListFilterEditor extends StatelessWidget {
                 CupertinoInput(
                   labelText: I.of(context).name,
                   value: field.name,
+                  onChanged: (value) {
+                    field = field.copyWith(name: value);
+                  },
                 ),
                 CupertinoInput(
                   labelText: I.of(context).key,
                   value: field.key,
+                  onChanged: (value) {
+                    field = field.copyWith(key: value);
+                  },
                 ),
-                Obx(() => CupertinoReadOnlyInput(
-                      labelText: I.of(context).type,
-                      value: field.type.value.string(context),
-                      onTap: () => showCupertinoSelectDialog<
-                          TemplateListData_FilterType>(
-                        context: context,
-                        items: TemplateListData_FilterType.values
-                            .map((e) => SelectTileItem(
-                                  title: e.string(context),
-                                  value: e,
-                                ))
-                            .toList(),
-                        cancelText: I.of(context).negative,
-                      ).then((value) {
-                        if (value != null) {
-                          field.type.value = value;
-                        }
-                      }),
-                    )),
-                Obx(() {
-                  if (field.type.value ==
-                      TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD) {
-                    return CupertinoInput(
-                      labelText: I.of(context).color,
-                      value: field.color,
-                      prefix: Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Obx(() => Container(
-                              height: 15,
-                              width: 15,
-                              decoration: BoxDecoration(
-                                color: parseColorString(field.color.value),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                            )),
-                      ),
-                    );
-                  }
-                  return const SizedBox();
-                }),
+                CupertinoReadOnlyInput(
+                  labelText: I.of(context).type,
+                  value: field.type.value,
+                  onTap: () => showCupertinoSelectDialog<FilterType>(
+                    context: context,
+                    items: FilterType.values
+                        .map((e) => SelectTileItem(
+                              title: e.value,
+                              value: e,
+                            ))
+                        .toList(),
+                    cancelText: I.of(context).negative,
+                  ).then((value) {
+                    if (value != null) {
+                      field = field.copyWith(type: value);
+                    }
+                  }),
+                ),
+                if (field.type == FilterType.boolCard)
+                  StatefulBuilder(
+                    builder: (context, setState) {
+                      return CupertinoInput(
+                        labelText: I.of(context).color,
+                        value: colorString,
+                        prefix: Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Container(
+                            height: 15,
+                            width: 15,
+                            decoration: BoxDecoration(
+                              color: parseColorString(colorString),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            colorString = value;
+                          });
+                        },
+                      );
+                    },
+                  ),
                 CupertinoInput(
                   labelText: I.of(context).default_value,
                   value: field.value,
+                  onChanged: (value) {
+                    field = field.copyWith(value: value);
+                  },
                 ),
               ],
             ),
           );
         });
+    return field;
   }
 }

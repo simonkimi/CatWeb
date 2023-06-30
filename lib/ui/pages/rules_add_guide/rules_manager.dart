@@ -3,9 +3,8 @@ import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/test/site/eh/eh_rules.dart' as eh;
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
@@ -60,7 +59,7 @@ class SiteManager extends GetWidget<SiteService> {
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.add),
                   onPressed: () =>
-                      _toEditPage(Navigator.of(context), pb: null, db: null),
+                      _toEditPage(Navigator.of(context), entity: null, db: null),
                 ),
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.qrcode_viewfinder),
@@ -82,7 +81,7 @@ class SiteManager extends GetWidget<SiteService> {
   }
 
   Widget _buildSiteItem(BuildContext context, WebTableData e) {
-    final pb = SiteBlueprint.fromBuffer(e.blueprint);
+    final pb = SiteBlueMap.fromJsonString(e.blueprint);
     return Obx(() => CupertinoCardTile(
           selected: controller.id == e.id,
           title: Text(pb.name),
@@ -144,7 +143,7 @@ class SiteManager extends GetWidget<SiteService> {
   Future<void> _onTrailingTap(
     BuildContext context,
     WebTableData db,
-    SiteBlueprint pb,
+    SiteBlueMap entity,
   ) async {
     final navigator = Navigator.of(context);
     final result = await showCupertinoSelectDialog<_MenuSelect>(
@@ -170,18 +169,18 @@ class SiteManager extends GetWidget<SiteService> {
       case _MenuSelect.share:
         return _share();
       case _MenuSelect.edit:
-        return _toEditPage(navigator, pb: pb, db: db);
+        return _toEditPage(navigator, entity: entity, db: db);
       case _MenuSelect.delete:
-        return _onDelete(context, db, pb);
+        return _onDelete(context, db, entity);
       case _MenuSelect.login:
-        return _loginIn(context, db, pb);
+        return _loginIn(context, db, entity);
     }
   }
 
   Future<void> _loginIn(
     BuildContext context,
     WebTableData db,
-    SiteBlueprint pb,
+    SiteBlueMap entity,
   ) async {
     if (db.loginCookies.isNotEmpty) {
       // 注销登录
@@ -191,19 +190,23 @@ class SiteManager extends GetWidget<SiteService> {
         content: I.of(context).logout_check,
       );
       if (isReload == true) {
-        await Get.find<DbService>().webDao.replace(db.copyWith(loginCookies: ''));
+        await Get.find<DbService>()
+            .webDao
+            .replace(db.copyWith(loginCookies: ''));
         Get.back();
       }
     } else {
       // 登录
-      if (Uri.tryParse(pb.baseUrl)?.host != Uri.tryParse(pb.loginUrl)?.host) {
+      if (Uri.tryParse(entity.baseUrl)?.host !=
+          Uri.tryParse(entity.loginUrl)?.host) {
         if (!Get.find<SettingService>().protectCookie.value ||
             !db.securityModel) {
           final w = await showCupertinoConfirmDialog(
             context: context,
             title: I.of(context).login,
-            content:
-                I.of(context).login_without_security(pb.loginCookieDescription),
+            content: I
+                .of(context)
+                .login_without_security(entity.loginCookieDescription),
           );
           if (w == false) {
             return;
@@ -223,14 +226,16 @@ class SiteManager extends GetWidget<SiteService> {
       final List<Cookie>? cookies = await Navigator.of(context).push(
         CupertinoPageRoute(
           builder: (context) => WebViewLoginIn(
-            url: pb.loginUrl,
+            url: entity.loginUrl,
           ),
         ),
       );
 
       if (cookies != null) {
         final cookieStr = cookies.map((e) => '${e.name}=${e.value}').join('; ');
-        await Get.find<DbService>().webDao.replace(db.copyWith(loginCookies: cookieStr));
+        await Get.find<DbService>()
+            .webDao
+            .replace(db.copyWith(loginCookies: cookieStr));
         BotToast.showText(text: I.of(context).login_success);
         logger.i('Login success, cookies: $cookieStr');
       }
@@ -240,10 +245,10 @@ class SiteManager extends GetWidget<SiteService> {
   Future<void> _share() async {}
 
   Future<void> _onDelete(
-      BuildContext context, WebTableData db, SiteBlueprint pb) async {
+      BuildContext context, WebTableData db, SiteBlueMap entity) async {
     if (await showCupertinoConfirmDialog(
           context: context,
-          content: I.of(context).delete_confirm(pb.name),
+          content: I.of(context).delete_confirm(entity.name),
           title: I.of(context).delete,
           confineText: I.of(context).delete,
           confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
@@ -255,10 +260,10 @@ class SiteManager extends GetWidget<SiteService> {
 
   void _toEditPage(
     NavigatorState navigator, {
-    SiteBlueprint? pb,
+    SiteBlueMap? entity,
     WebTableData? db,
   }) =>
       navigator.push(CupertinoPageRoute(
           builder: (context) =>
-              RulesEditPage(pb: pb ?? eh.ehTestSite, db: db)));
+              RulesEditPage(blueMap: entity, db: db)));
 }

@@ -9,7 +9,7 @@ part of 'site_page.dart';
 _$_SitePage _$$_SitePageFromJson(Map<String, dynamic> json) => _$_SitePage(
       name: json['name'] as String,
       uuid: json['uuid'] as String,
-      url: json['url'] as String,
+      url: json['url'] as String? ?? '',
       action: $enumDecodeNullable(_$SiteActionTypeEnumMap, json['action']) ??
           SiteActionType.get,
       formData: json['formData'] as String? ?? '',
@@ -39,6 +39,8 @@ Map<String, dynamic> _$$_SitePageToJson(_$_SitePage instance) =>
 const _$SiteActionTypeEnumMap = {
   SiteActionType.get: 'get',
   SiteActionType.post: 'post',
+  SiteActionType.put: 'put',
+  SiteActionType.delete: 'delete',
 };
 
 const _$SiteDisplayTypeEnumMap = {

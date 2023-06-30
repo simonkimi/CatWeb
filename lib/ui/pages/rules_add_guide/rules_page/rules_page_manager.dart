@@ -1,5 +1,6 @@
-import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/data/models/site_model/pages/site_page.dart';
+import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
@@ -8,6 +9,7 @@ import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
 enum _MenuSelect {
   edit,
@@ -19,41 +21,40 @@ class RulesPageManager extends GetView<RulesEditController> {
     super.key,
   });
 
+  SiteBlueMap get blueprint => controller.blueprint;
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      children: [
-        Obx(() => Column(
-              mainAxisSize: MainAxisSize.min,
-              children: controller.blueprint.pageList.map((e) {
-                return CupertinoCardTile(
-                  title: Text(e.name.value),
-                  subtitle: Text(e.template.value.string(context)),
-                  trailing: CupertinoButton(
-                    padding: EdgeInsets.zero,
-                    minSize: 10,
-                    child: const Icon(Icons.more_horiz_outlined),
-                    onPressed: () => _onTrailingTap(context, e),
-                  ),
-                  onTap: () => _toRulesPageEdit(context, e),
-                );
-              }).toList(),
-            )),
-        CupertinoCardTile(
-          title: Text(I.of(context).add),
-          leading: const Icon(Icons.add),
-          onTap: () {
-            _toRulesPageEdit(context);
-          },
-        ),
-      ],
-    );
+    return Obx(() => ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          children: [
+            ...blueprint.pageList.map((e) {
+              return CupertinoCardTile(
+                title: Text(e.name),
+                subtitle: Text(e.template?.type.value ?? ''),
+                trailing: CupertinoButton(
+                  padding: EdgeInsets.zero,
+                  minSize: 10,
+                  child: const Icon(Icons.more_horiz_outlined),
+                  onPressed: () => _onTrailingTap(context, e),
+                ),
+                onTap: () => _toRulesPageEdit(context, e),
+              );
+            }).toList(),
+            CupertinoCardTile(
+              title: Text(I.of(context).add),
+              leading: const Icon(Icons.add),
+              onTap: () {
+                _toRulesPageEdit(context);
+              },
+            ),
+          ],
+        ));
   }
 
   Future<void> _onTrailingTap(
     BuildContext context,
-    PageBlueprintModel model,
+    SitePage model,
   ) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: I.of(context).cancel,
@@ -79,12 +80,13 @@ class RulesPageManager extends GetView<RulesEditController> {
     }
   }
 
-  void _onPageDelete(BuildContext context, PageBlueprintModel model) {
-    final using = controller.blueprint.pageList
+  void _onPageDelete(BuildContext context, SitePage model) {
+    final using = blueprint.pageList
         .where(
             (p0) => p0.getDependPage().any((element) => element == model.uuid))
-        .map((e) => e.name.value)
+        .map((e) => e.name)
         .toList();
+
     if (using.isNotEmpty) {
       showCupertinoConfirmDialog(
           context: context,
@@ -92,39 +94,50 @@ class RulesPageManager extends GetView<RulesEditController> {
     } else {
       showCupertinoConfirmDialog(
         context: context,
-        content: I.of(context).delete_confirm(model.name.value),
+        content: I.of(context).delete_confirm(model.name),
         title: I.of(context).cancel,
         confineText: I.of(context).delete,
         confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
       ).then((value) {
         if (value == true) {
-          controller.blueprint.pageList.remove(model);
+          blueprint.pageList.remove(model);
         }
       });
     }
   }
 
-  Future<void> _toRulesPageEdit(BuildContext context,
-      [PageBlueprintModel? model]) async {
+  Future<void> _toRulesPageEdit(BuildContext context, [SitePage? model]) async {
     final input = model ?? await _genRules(context);
     if (input == null) return;
-    await Get.to(() => RulesPageEdit(model: input));
-    if (model == null) {
-      controller.blueprint.pageList.add(input);
+    final pageModel = await Navigator.of(context).push(
+        CupertinoPageRoute(builder: (context) => RulesPageEdit(model: input)));
+    if (pageModel != null) {
+      blueprint.pageList.add(pageModel);
     }
   }
 
-  Future<PageBlueprintModel?> _genRules(BuildContext context) async {
-    final select = await showCupertinoSelectDialog<Template>(
+  Future<SitePage?> _genRules(BuildContext context) async {
+    final name = await showCupertinoInputDialog(
+      context,
+      title: I.of(context).name,
+    );
+    if (name == null) {
+      return null;
+    }
+    final select = await showCupertinoSelectDialog<TemplateType>(
       title: '选择模板',
       context: context,
-      items: Template.values
-          .map((e) => SelectTileItem(title: e.string(context), value: e))
+      items: TemplateType.values
+          .map((e) => SelectTileItem(title: e.value, value: e))
           .toList(),
     );
-    if (select != null) {
-      return PageBlueprintModel.create(select);
+    if (select == null) {
+      return null;
     }
-    return null;
+    return SitePage(
+      name: name,
+      uuid: const Uuid().v4().toString(),
+      template: ITemplate.create(select),
+    );
   }
 }

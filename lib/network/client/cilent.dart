@@ -2,18 +2,13 @@ import 'dart:io';
 
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/controller/setting_service.dart';
-import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
+import 'package:catweb/data/models/ffi/parser_result.dart';
 import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/site_blue_map.dart';
-import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/data/protocol/model/store.dart';
-import 'package:catweb/gen/protobuf/actions.pbenum.dart';
-import 'package:catweb/gen/protobuf/model.pbserver.dart';
-import 'package:catweb/gen/protobuf/rpc.pbserver.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
-import 'package:catweb/network/parser/parser.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
@@ -53,24 +48,23 @@ class NetClient {
 
   Future<Response<String>> _buildRequest({
     required String url,
-    required PageBlueprintModel model,
+    required SitePage model,
     required SiteEnvStore localEnv,
     Options? options,
   }) async {
-    final form = localEnv.apply(model.formData.value);
+    final form = localEnv.apply(model.formData);
     final url2 = localEnv.apply(url);
 
-    switch (model.netAction.value) {
-      case NetActionType.NET_ACTION_TYPE_DELETE:
+    switch (model.action) {
+      case SiteActionType.delete:
         return dio.delete(url2, options: options);
-      case NetActionType.NET_ACTION_TYPE_GET:
+      case SiteActionType.get:
         return await dio.get<String>(url2, options: options);
-      case NetActionType.NET_ACTION_TYPE_POST:
+      case SiteActionType.post:
         return await dio.post<String>(url2, data: form, options: options);
-      case NetActionType.NET_ACTION_TYPE_PUT:
+      case SiteActionType.put:
         return await dio.put<String>(url2, data: form, options: options);
     }
-    throw Exception('Unsupported net action type');
   }
 
   void _checkSuccessFlag({
@@ -88,10 +82,10 @@ class NetClient {
     }
   }
 
-  Future<ListRpcModel> getList({
+  Future<ListParserResult> getList({
     required String url,
-    required PageBlueprintModel model,
-    required SiteEnvModel localEnv,
+    required SitePage model,
+    required SiteEnvStore localEnv,
   }) async {
     final rsp = await _buildRequest(
       url: url,
@@ -102,32 +96,33 @@ class NetClient {
       throw Exception('data is null');
     }
 
-    final buffer = await ParserFFi(
-      parser: blueMap.getListParser(model.baseParser.value).toPb(),
-      source: rsp.data!,
-      env: Get.find<SiteService>().website.globalEnv,
-      type: RpcType.RPC_TYPE_LIST_VIEW_PARSER,
-    ).send();
+    // final buffer = await ParserFFi(
+    //   parser: blueMap.getListParser(model.baseParser.value).toPb(),
+    //   source: rsp.data!,
+    //   env: Get.find<SiteService>().website.globalEnv,
+    //   type: RpcType.RPC_TYPE_LIST_VIEW_PARSER,
+    // ).send();
+    //
+    // final result = ListRpcModel.fromBuffer(buffer);
+    //
+    // _checkSuccessFlag(
+    //   enableSuccess: result.enableSuccess,
+    //   enableFail: result.enableFail,
+    //   isSuccess: result.isSuccess,
+    //   failedMessage: result.failedMessage,
+    // );
+    //
+    // localEnv.mergeMap(result.localEnv);
+    // Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
 
-    final result = ListRpcModel.fromBuffer(buffer);
 
-    _checkSuccessFlag(
-      enableSuccess: result.enableSuccess,
-      enableFail: result.enableFail,
-      isSuccess: result.isSuccess,
-      failedMessage: result.failedMessage,
-    );
-
-    localEnv.mergeMap(result.localEnv);
-    Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
-
-    return result;
+    throw UnimplementedError();
   }
 
-  Future<GalleryRpcModel> getGallery({
+  Future<GalleryParserResult> getGallery({
     required String url,
-    required PageBlueprintModel model,
-    required SiteEnvModel localEnv,
+    required SitePage model,
+    required SiteEnvStore localEnv,
   }) async {
     final options = Get.find<SettingService>()
         .cacheOptions
@@ -145,97 +140,97 @@ class NetClient {
       throw Exception('data is null');
     }
 
-    final buffer = await ParserFFi(
-      parser: blueMap.getGalleryParser(model.baseParser.value).toPb(),
-      source: rsp.data!,
-      env: Get.find<SiteService>().website.globalEnv,
-      type: RpcType.RPC_TYPE_GALLERY_PARSER,
-    ).send();
-
-    final result = GalleryRpcModel.fromBuffer(buffer);
-
-    _checkSuccessFlag(
-      enableSuccess: result.enableSuccess,
-      enableFail: result.enableFail,
-      isSuccess: result.isSuccess,
-      failedMessage: result.failedMessage,
-    );
-
-    localEnv.mergeMap(result.localEnv);
-    Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
-    return result;
+    // final buffer = await ParserFFi(
+    //   parser: blueMap.getGalleryParser(model.baseParser.value).toPb(),
+    //   source: rsp.data!,
+    //   env: Get.find<SiteService>().website.globalEnv,
+    //   type: RpcType.RPC_TYPE_GALLERY_PARSER,
+    // ).send();
+    //
+    // final result = GalleryRpcModel.fromBuffer(buffer);
+    //
+    // _checkSuccessFlag(
+    //   enableSuccess: result.enableSuccess,
+    //   enableFail: result.enableFail,
+    //   isSuccess: result.isSuccess,
+    //   failedMessage: result.failedMessage,
+    // );
+    //
+    // localEnv.mergeMap(result.localEnv);
+    // Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
+    throw UnimplementedError();
   }
 
-  Future<ImageReaderRpcModel> getReadImage({
+  Future<ImageReaderParserResult> getReadImage({
     required String url,
-    required PageBlueprintModel model,
-    required SiteEnvModel localEnv,
+    required SitePage model,
+    required SiteEnvStore localEnv,
   }) async {
-    final options = Get.find<SettingService>()
-        .imageCacheOption
-        .copyWith(policy: CachePolicy.forceCache)
-        .toOptions();
-
-    final rsp = await _buildRequest(
-      url: url,
-      model: model,
-      localEnv: localEnv,
-      options: options,
-    );
-    if (rsp.data == null) {
-      throw Exception('data is null');
-    }
-
-    final buffer = await ParserFFi(
-      parser: blueMap.getImageParser(model.baseParser.value).toPb(),
-      source: rsp.data!,
-      env: Get.find<SiteService>().website.globalEnv,
-      type: RpcType.RPC_TYPE_IMAGE_PARSER,
-    ).send();
-
-    final result = ImageReaderRpcModel.fromBuffer(buffer);
-
-    _checkSuccessFlag(
-      enableSuccess: result.enableSuccess,
-      enableFail: result.enableFail,
-      isSuccess: result.isSuccess,
-      failedMessage: result.failedMessage,
-    );
-
-    localEnv.mergeMap(result.localEnv);
-    Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
-    return result;
+    // final options = Get.find<SettingService>()
+    //     .imageCacheOption
+    //     .copyWith(policy: CachePolicy.forceCache)
+    //     .toOptions();
+    //
+    // final rsp = await _buildRequest(
+    //   url: url,
+    //   model: model,
+    //   localEnv: localEnv,
+    //   options: options,
+    // );
+    // if (rsp.data == null) {
+    //   throw Exception('data is null');
+    // }
+    //
+    // final buffer = await ParserFFi(
+    //   parser: blueMap.getImageParser(model.baseParser.value).toPb(),
+    //   source: rsp.data!,
+    //   env: Get.find<SiteService>().website.globalEnv,
+    //   type: RpcType.RPC_TYPE_IMAGE_PARSER,
+    // ).send();
+    //
+    // final result = ImageReaderRpcModel.fromBuffer(buffer);
+    //
+    // _checkSuccessFlag(
+    //   enableSuccess: result.enableSuccess,
+    //   enableFail: result.enableFail,
+    //   isSuccess: result.isSuccess,
+    //   failedMessage: result.failedMessage,
+    // );
+    //
+    // localEnv.mergeMap(result.localEnv);
+    // Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
+    throw UnimplementedError();
   }
 
-  Future<AutoCompleteRpcModel> getAutoComplete({
+  Future<AutoCompleteParserResult> getAutoComplete({
     required String url,
-    required PageBlueprintModel model,
-    required SiteEnvModel localEnv,
+    required SitePage model,
+    required SiteEnvStore localEnv,
   }) async {
-    final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
-    if (rsp.data == null) {
-      throw Exception('data is null');
-    }
-
-    final buffer = await ParserFFi(
-      parser: blueMap.getAutoCompleteParser(model.baseParser.value).toPb(),
-      source: rsp.data!,
-      env: Get.find<SiteService>().website.globalEnv,
-      type: RpcType.RPC_TYPE_AUTO_COMPLETE,
-    ).send();
-
-    final result = AutoCompleteRpcModel.fromBuffer(buffer);
-
-    _checkSuccessFlag(
-      enableSuccess: result.enableSuccess,
-      enableFail: result.enableFail,
-      isSuccess: result.isSuccess,
-      failedMessage: result.failedMessage,
-    );
-
-    localEnv.mergeMap(result.localEnv);
-    Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
-    return result;
+    // final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
+    // if (rsp.data == null) {
+    //   throw Exception('data is null');
+    // }
+    //
+    // final buffer = await ParserFFi(
+    //   parser: blueMap.getAutoCompleteParser(model.baseParser.value).toPb(),
+    //   source: rsp.data!,
+    //   env: Get.find<SiteService>().website.globalEnv,
+    //   type: RpcType.RPC_TYPE_AUTO_COMPLETE,
+    // ).send();
+    //
+    // final result = AutoCompleteRpcModel.fromBuffer(buffer);
+    //
+    // _checkSuccessFlag(
+    //   enableSuccess: result.enableSuccess,
+    //   enableFail: result.enableFail,
+    //   isSuccess: result.isSuccess,
+    //   failedMessage: result.failedMessage,
+    // );
+    //
+    // localEnv.mergeMap(result.localEnv);
+    // Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
+    throw UnimplementedError();
   }
 }
 

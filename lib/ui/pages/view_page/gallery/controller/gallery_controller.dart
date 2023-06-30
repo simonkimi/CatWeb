@@ -1,24 +1,24 @@
 import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
+import 'package:catweb/data/models/ffi/models.dart';
+import 'package:catweb/data/models/ffi/parser_result.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/data/protocol/model/templete.dart';
-import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/data/models/site_model/pages/site_page.dart';
+import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:get/get.dart';
-import 'package:catweb/data/protocol/model/model.dart';
 
 class GalleryBaseData {
   final String? title;
   final String? subtitle;
   final String? language;
   final double? star;
-  final TagRpcModel? tag;
-  final ImageRpcModel? image;
+  final TagRspModel? tag;
+  final ImageRspModel? image;
   final int? imageCount;
 
   GalleryBaseData({
@@ -34,51 +34,51 @@ class GalleryBaseData {
 
 /// Gallery带预览的加载项目
 class GalleryImageWithPreview
-    extends ImageWithPreviewModel<GalleryRpcModel_Item> {
+    extends ImageWithPreviewModel<GalleryParserResultItem> {
   GalleryImageWithPreview(super.previewModel);
 
   @override
-  ImageRpcModel get previewImage => previewModel.previewImg;
+  ImageRspModel get previewImage => previewModel.previewImg;
 
   @override
-  GalleryRpcModel_Item get value => previewModel;
+  GalleryParserResultItem get value => previewModel;
 
   @override
   String? get idCode => value.target;
 }
 
-class GalleryLoadMore extends LoadMorePage<GalleryRpcModel,
-    GalleryRpcModel_Item, GalleryImageWithPreview> {
+class GalleryLoadMore extends LoadMorePage<GalleryParserResult,
+    GalleryParserResultItem, GalleryImageWithPreview> {
   GalleryLoadMore(super.pageData);
 
   @override
-  List<GalleryRpcModel_Item> get items => pageData.items;
+  List<GalleryParserResultItem> get items => pageData.items;
 
   @override
   List<GalleryImageWithPreview> genModel() =>
       items.map((e) => GalleryImageWithPreview(e)).toList();
 }
 
-class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
-        GalleryRpcModel_Item, GalleryImageWithPreview>
-    implements ReaderInfo<GalleryRpcModel_Item, GalleryImageWithPreview> {
+class GalleryPreviewController extends LoadMoreLoader<GalleryParserResult,
+    GalleryParserResultItem, GalleryImageWithPreview>
+    implements ReaderInfo<GalleryParserResultItem, GalleryImageWithPreview> {
   GalleryPreviewController({
     required this.blueprint,
-    SiteEnvModel? outerEnv,
+    SiteEnvStore? outerEnv,
     Object? base,
-    GalleryRpcModel? detailModel,
-  })  : localEnv = SiteEnvModel(outerEnv?.env),
+    GalleryParserResult? detailModel,
+  })  : localEnv = SiteEnvStore(outerEnv?.env),
         baseData = GalleryPreviewController.fromModel(base),
         _detailModel = Rx(detailModel) {
     onLoadMore();
     loadLastRead();
   }
 
-  final PageBlueprintModel blueprint;
-  final SiteEnvModel localEnv;
+  final SitePage blueprint;
+  final SiteEnvStore localEnv;
 
   // 信息
-  final Rx<GalleryRpcModel?> _detailModel;
+  final Rx<GalleryParserResult?> _detailModel;
   GalleryBaseData? baseData;
   final Rx<int> lastReadIndex = 0.obs;
 
@@ -87,9 +87,9 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
   @override
   final previewConcurrency = ImageListConcurrency();  // 预览图片内容的加载器
 
-  GalleryRpcModel? get detailModel => _detailModel.value;
+  GalleryParserResult? get detailModel => _detailModel.value;
 
-  String get idCode => localEnv.replace(blueprint.url.value);
+  String get idCode => localEnv.apply(blueprint.url);
 
   /// 从数据库中取出上次加载进度
   Future<void> loadLastRead() async {
@@ -109,7 +109,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
 
   @override
   Future<GalleryLoadMore> netWorkLoadPage(int page) async {
-    var baseUrl = blueprint.url.value;
+    var baseUrl = blueprint.url;
     if (hasPageExpression(baseUrl) || page == 0) {
       // 有面数
       baseUrl = pageReplace(baseUrl, page);
@@ -131,7 +131,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
     );
     _detailModel.value = detail;
 
-    if (!hasPageExpression(blueprint.url.value) &&
+    if (!hasPageExpression(blueprint.url) &&
         (detail.nextPage == baseUrl || detail.nextPage.isEmpty)) {
       stateLoadNoData();
     }
@@ -140,7 +140,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
   }
 
   static GalleryBaseData? fromModel(Object? model) {
-    if (model != null && model is ListRpcModel_Item) {
+    if (model != null && model is ListParserResultItem) {
       return GalleryBaseData(
         title: model.title,
         subtitle: model.subtitle,
@@ -153,17 +153,17 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryRpcModel,
     return null;
   }
 
-  TemplateGalleryModel get extra =>
-      blueprint.templateData as TemplateGalleryModel;
+  TemplateGallery get extra =>
+      blueprint.template as TemplateGallery;
 
   bool get fillRemaining =>
       (state.isLoading && successiveItems.isEmpty) || errorMessage != null;
 
   @override
-  int? get chunkSize => detailModel?.getCountPrePage();
+  int? get chunkSize => detailModel?.countPrePage;
 
   @override
-  int? get totalSize => detailModel?.getImageCount();
+  int? get totalSize => detailModel?.imageCount;
 
   @override
   Future<void> loadIndexModel(int index) => loadIndex(index);

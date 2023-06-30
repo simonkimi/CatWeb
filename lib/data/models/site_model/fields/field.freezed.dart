@@ -280,8 +280,9 @@ class __$$_ColorFieldCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ColorField implements _ColorField {
-  const _$_ColorField({this.a = 0, this.r = 0, this.g = 0, this.b = 0});
+class _$_ColorField extends _ColorField {
+  const _$_ColorField({this.a = 0, this.r = 0, this.g = 0, this.b = 0})
+      : super._();
 
   factory _$_ColorField.fromJson(Map<String, dynamic> json) =>
       _$$_ColorFieldFromJson(json);
@@ -298,11 +299,6 @@ class _$_ColorField implements _ColorField {
   @override
   @JsonKey()
   final int b;
-
-  @override
-  String toString() {
-    return 'ColorField(a: $a, r: $r, g: $g, b: $b)';
-  }
 
   @override
   bool operator ==(dynamic other) {
@@ -333,9 +329,10 @@ class _$_ColorField implements _ColorField {
   }
 }
 
-abstract class _ColorField implements ColorField {
+abstract class _ColorField extends ColorField {
   const factory _ColorField(
       {final int a, final int r, final int g, final int b}) = _$_ColorField;
+  const _ColorField._() : super._();
 
   factory _ColorField.fromJson(Map<String, dynamic> json) =
       _$_ColorField.fromJson;

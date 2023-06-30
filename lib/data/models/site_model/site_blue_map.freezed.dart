@@ -276,7 +276,7 @@ class __$$_SiteBlueMapCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SiteBlueMap implements _SiteBlueMap {
+class _$_SiteBlueMap extends _SiteBlueMap {
   _$_SiteBlueMap(
       {this.name = '',
       this.baseUrl = '',
@@ -291,7 +291,8 @@ class _$_SiteBlueMap implements _SiteBlueMap {
       this.cookies = const [],
       @JsonKey(fromJson: SiteBlueMap._parserListFromJson, toJson: SiteBlueMap._parserListToJson)
           this.parserList = const [],
-      this.pageList = const []});
+      this.pageList = const []})
+      : super._();
 
   factory _$_SiteBlueMap.fromJson(Map<String, dynamic> json) =>
       _$$_SiteBlueMapFromJson(json);
@@ -357,7 +358,7 @@ class _$_SiteBlueMap implements _SiteBlueMap {
   }
 }
 
-abstract class _SiteBlueMap implements SiteBlueMap {
+abstract class _SiteBlueMap extends SiteBlueMap {
   factory _SiteBlueMap(
       {String name,
       String baseUrl,
@@ -373,6 +374,7 @@ abstract class _SiteBlueMap implements SiteBlueMap {
       @JsonKey(fromJson: SiteBlueMap._parserListFromJson, toJson: SiteBlueMap._parserListToJson)
           List<IParserBase> parserList,
       List<SitePage> pageList}) = _$_SiteBlueMap;
+  _SiteBlueMap._() : super._();
 
   factory _SiteBlueMap.fromJson(Map<String, dynamic> json) =
       _$_SiteBlueMap.fromJson;

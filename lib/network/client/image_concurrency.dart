@@ -1,7 +1,6 @@
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
-import 'package:catweb/data/protocol/model/model.dart';
-import 'package:catweb/gen/protobuf/model.pb.dart';
+import 'package:catweb/data/models/ffi/models.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
@@ -26,13 +25,13 @@ class ImageListConcurrency {
   List<ImageLoadModel> get activeImage =>
       _imageMap.values.where((e) => e.needLoad).toList();
 
-  ImageLoadModel create(ImageRpcModel model) {
+  ImageLoadModel create(ImageRspModel model) {
     late ImageLoadModel exist;
-    if (_imageMap.containsKey(model.key)) {
-      exist = _imageMap[model.key]!..handle();
+    if (_imageMap.containsKey(model.cacheKey)) {
+      exist = _imageMap[model.cacheKey]!..handle();
     } else {
       exist = ImageLoadModel(model: model, dio: dio);
-      _imageMap[model.key] = exist;
+      _imageMap[model.cacheKey] = exist;
     }
 
     _trigger();

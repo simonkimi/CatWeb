@@ -1,5 +1,4 @@
-import 'package:catweb/data/protocol/model/store.dart';
-import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/data/models/site_model/fields/field.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
@@ -42,7 +41,11 @@ class RulesAdvance extends GetView<RulesEditController> {
                           onDelete: (index) {
                             controller.blueprint.headers.removeAt(index);
                           },
-                          onTap: () => _editRegField(context, e.value)));
+                          onTap: () async {
+                            var newReg = await _editRegField(context, e.value);
+                            controller.blueprint.headers.removeAt(e.key);
+                            controller.blueprint.headers.insert(e.key, newReg);
+                          }));
                     }).toList(),
                   )),
               CupertinoClassicalListTile(
@@ -52,9 +55,8 @@ class RulesAdvance extends GetView<RulesEditController> {
                 ),
                 text: I.of(context).add,
                 onTap: () {
-                  controller.blueprint.headers.add(
-                    RegFieldModel(RegField(reg: '*', value: '')),
-                  );
+                  controller.blueprint.headers
+                      .add(const RegField(reg: '*', value: ''));
                 },
               ),
             ],
@@ -84,7 +86,11 @@ class RulesAdvance extends GetView<RulesEditController> {
                           onDelete: (index) {
                             controller.blueprint.cookies.removeAt(index);
                           },
-                          onTap: () => _editRegField(context, e.value)));
+                          onTap: () async {
+                            var newReg = await _editRegField(context, e.value);
+                            controller.blueprint.headers.removeAt(e.key);
+                            controller.blueprint.headers.insert(e.key, newReg);
+                          }));
                     }).toList(),
                   )),
               CupertinoClassicalListTile(
@@ -95,7 +101,7 @@ class RulesAdvance extends GetView<RulesEditController> {
                 text: I.of(context).add,
                 onTap: () {
                   controller.blueprint.cookies.add(
-                    RegFieldModel(RegField(reg: '', value: '')),
+                    const RegField(reg: '*', value: ''),
                   );
                 },
               ),
@@ -106,7 +112,7 @@ class RulesAdvance extends GetView<RulesEditController> {
     );
   }
 
-  Future<void> _editRegField(BuildContext context, RegFieldModel field) async {
+  Future<RegField> _editRegField(BuildContext context, RegField field) async {
     await showCupertinoDialog(
         barrierDismissible: true,
         context: context,
@@ -123,15 +129,22 @@ class RulesAdvance extends GetView<RulesEditController> {
                 CupertinoInput(
                   labelText: I.of(context).reg,
                   value: field.reg,
+                  onChanged: (value) {
+                    field = field.copyWith(reg: value);
+                  },
                 ),
                 CupertinoInput(
                   labelText: I.of(context).content,
                   value: field.value,
+                  onChanged: (value) {
+                    field = field.copyWith(value: value);
+                  },
                 ),
               ],
             ),
           );
         });
+    return field;
   }
 
   Widget _buildSubTitle(BuildContext context, String text) {

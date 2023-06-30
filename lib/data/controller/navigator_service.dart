@@ -31,7 +31,7 @@ class NavigatorService extends GetxService {
     }
 
     var add = [TemplateType.imageList, TemplateType.imageWaterFall]
-        .contains(target.template.type);
+        .contains(target.template?.type);
 
     if (add) {
       to._depth += 1;

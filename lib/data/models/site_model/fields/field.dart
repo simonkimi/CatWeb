@@ -17,6 +17,8 @@ class RegField with _$RegField {
 
 @freezed
 class ColorField with _$ColorField {
+  const ColorField._();
+
   const factory ColorField({
     @Default(0) int a,
     @Default(0) int r,
@@ -26,6 +28,11 @@ class ColorField with _$ColorField {
 
   factory ColorField.fromJson(Map<String, dynamic> json) =>
       _$ColorFieldFromJson(json);
+
+  @override
+  String toString() {
+    return '#${r.toRadixString(16).padLeft(2, '0')}${g.toRadixString(16).padLeft(2, '0')}${b.toRadixString(16).padLeft(2, '0')}';
+  }
 }
 
 @JsonEnum(valueField: 'value')

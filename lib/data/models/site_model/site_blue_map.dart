@@ -11,6 +11,7 @@ part 'site_blue_map.g.dart';
 
 @unfreezed
 class SiteBlueMap with _$SiteBlueMap {
+  const SiteBlueMap._();
   factory SiteBlueMap({
     @Default('') String name,
     @Default('') String baseUrl,
@@ -44,5 +45,14 @@ class SiteBlueMap with _$SiteBlueMap {
   static List<Map<String, dynamic>> _parserListToJson(
       List<IParserBase> parserList) {
     return parserList.map((e) => e.toJson()).toList();
+  }
+
+  bool containsFlag(String flag) {
+    for (final flag in this.flag.split('|')) {
+      if (flag.toLowerCase() == flag.toLowerCase()) {
+        return true;
+      }
+    }
+    return false;
   }
 }

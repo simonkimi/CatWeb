@@ -21,16 +21,27 @@ SitePage _$SitePageFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SitePage {
   String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
+  set uuid(String value) => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
+  set url(String value) => throw _privateConstructorUsedError;
   SiteActionType get action => throw _privateConstructorUsedError;
+  set action(SiteActionType value) => throw _privateConstructorUsedError;
   String get formData => throw _privateConstructorUsedError;
+  set formData(String value) => throw _privateConstructorUsedError;
   String get icon => throw _privateConstructorUsedError;
+  set icon(String value) => throw _privateConstructorUsedError;
   SiteDisplayType get displayType => throw _privateConstructorUsedError;
+  set displayType(SiteDisplayType value) => throw _privateConstructorUsedError;
   String get flag => throw _privateConstructorUsedError;
+  set flag(String value) => throw _privateConstructorUsedError;
   String get parserId => throw _privateConstructorUsedError;
+  set parserId(String value) => throw _privateConstructorUsedError;
   @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
-  ITemplate get template => throw _privateConstructorUsedError;
+  ITemplate? get template => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
+  set template(ITemplate? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +65,7 @@ abstract class $SitePageCopyWith<$Res> {
       String flag,
       String parserId,
       @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
-          ITemplate template});
+          ITemplate? template});
 }
 
 /// @nodoc
@@ -79,7 +90,7 @@ class _$SitePageCopyWithImpl<$Res, $Val extends SitePage>
     Object? displayType = null,
     Object? flag = null,
     Object? parserId = null,
-    Object? template = null,
+    Object? template = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -118,10 +129,10 @@ class _$SitePageCopyWithImpl<$Res, $Val extends SitePage>
           ? _value.parserId
           : parserId // ignore: cast_nullable_to_non_nullable
               as String,
-      template: null == template
+      template: freezed == template
           ? _value.template
           : template // ignore: cast_nullable_to_non_nullable
-              as ITemplate,
+              as ITemplate?,
     ) as $Val);
   }
 }
@@ -144,7 +155,7 @@ abstract class _$$_SitePageCopyWith<$Res> implements $SitePageCopyWith<$Res> {
       String flag,
       String parserId,
       @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
-          ITemplate template});
+          ITemplate? template});
 }
 
 /// @nodoc
@@ -167,7 +178,7 @@ class __$$_SitePageCopyWithImpl<$Res>
     Object? displayType = null,
     Object? flag = null,
     Object? parserId = null,
-    Object? template = null,
+    Object? template = freezed,
   }) {
     return _then(_$_SitePage(
       name: null == name
@@ -206,10 +217,10 @@ class __$$_SitePageCopyWithImpl<$Res>
           ? _value.parserId
           : parserId // ignore: cast_nullable_to_non_nullable
               as String,
-      template: null == template
+      template: freezed == template
           ? _value.template
           : template // ignore: cast_nullable_to_non_nullable
-              as ITemplate,
+              as ITemplate?,
     ));
   }
 }
@@ -220,7 +231,7 @@ class _$_SitePage extends _SitePage {
   _$_SitePage(
       {required this.name,
       required this.uuid,
-      required this.url,
+      this.url = '',
       this.action = SiteActionType.get,
       this.formData = '',
       this.icon = '',
@@ -235,63 +246,38 @@ class _$_SitePage extends _SitePage {
       _$$_SitePageFromJson(json);
 
   @override
-  final String name;
+  String name;
   @override
-  final String uuid;
-  @override
-  final String url;
+  String uuid;
   @override
   @JsonKey()
-  final SiteActionType action;
+  String url;
   @override
   @JsonKey()
-  final String formData;
+  SiteActionType action;
   @override
   @JsonKey()
-  final String icon;
+  String formData;
   @override
   @JsonKey()
-  final SiteDisplayType displayType;
+  String icon;
   @override
   @JsonKey()
-  final String flag;
+  SiteDisplayType displayType;
   @override
   @JsonKey()
-  final String parserId;
+  String flag;
+  @override
+  @JsonKey()
+  String parserId;
   @override
   @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
-  final ITemplate template;
+  ITemplate? template;
 
   @override
   String toString() {
     return 'SitePage(name: $name, uuid: $uuid, url: $url, action: $action, formData: $formData, icon: $icon, displayType: $displayType, flag: $flag, parserId: $parserId, template: $template)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SitePage &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.uuid, uuid) || other.uuid == uuid) &&
-            (identical(other.url, url) || other.url == url) &&
-            (identical(other.action, action) || other.action == action) &&
-            (identical(other.formData, formData) ||
-                other.formData == formData) &&
-            (identical(other.icon, icon) || other.icon == icon) &&
-            (identical(other.displayType, displayType) ||
-                other.displayType == displayType) &&
-            (identical(other.flag, flag) || other.flag == flag) &&
-            (identical(other.parserId, parserId) ||
-                other.parserId == parserId) &&
-            (identical(other.template, template) ||
-                other.template == template));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, name, uuid, url, action,
-      formData, icon, displayType, flag, parserId, template);
 
   @JsonKey(ignore: true)
   @override
@@ -309,42 +295,53 @@ class _$_SitePage extends _SitePage {
 
 abstract class _SitePage extends SitePage {
   factory _SitePage(
-      {required final String name,
-      required final String uuid,
-      required final String url,
-      final SiteActionType action,
-      final String formData,
-      final String icon,
-      final SiteDisplayType displayType,
-      final String flag,
-      final String parserId,
+      {required String name,
+      required String uuid,
+      String url,
+      SiteActionType action,
+      String formData,
+      String icon,
+      SiteDisplayType displayType,
+      String flag,
+      String parserId,
       @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
-          required final ITemplate template}) = _$_SitePage;
+          required ITemplate? template}) = _$_SitePage;
   _SitePage._() : super._();
 
   factory _SitePage.fromJson(Map<String, dynamic> json) = _$_SitePage.fromJson;
 
   @override
   String get name;
+  set name(String value);
   @override
   String get uuid;
+  set uuid(String value);
   @override
   String get url;
+  set url(String value);
   @override
   SiteActionType get action;
+  set action(SiteActionType value);
   @override
   String get formData;
+  set formData(String value);
   @override
   String get icon;
+  set icon(String value);
   @override
   SiteDisplayType get displayType;
+  set displayType(SiteDisplayType value);
   @override
   String get flag;
+  set flag(String value);
   @override
   String get parserId;
+  set parserId(String value);
   @override
   @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
-  ITemplate get template;
+  ITemplate? get template;
+  @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
+  set template(ITemplate? value);
   @override
   @JsonKey(ignore: true)
   _$$_SitePageCopyWith<_$_SitePage> get copyWith =>

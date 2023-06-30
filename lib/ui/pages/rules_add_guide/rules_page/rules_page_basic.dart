@@ -1,116 +1,133 @@
-import 'package:catweb/data/protocol/model/actions.dart';
-import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/data/protocol/model/templete.dart';
-import 'package:catweb/gen/protobuf/actions.pbserver.dart';
-import 'package:catweb/gen/protobuf/page.pbenum.dart';
-import 'package:catweb/gen/protobuf/template.pbenum.dart';
-import 'package:catweb/gen/protobuf/template.pbserver.dart';
+import 'package:catweb/data/models/site_model/pages/site_page.dart';
+import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/i18n.dart';
+import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
-import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 
-class RulesPageBasic extends GetView<RulesEditController> {
+class RulesPageBasic extends HookWidget {
   const RulesPageBasic({
     super.key,
-    required this.model,
+    required this.sitePage,
+    required this.onModelChanged,
   });
 
-  final PageBlueprintModel model;
+  final SitePage sitePage;
+  final Function(SitePage) onModelChanged;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<RulesEditController>();
+    final model = useState(sitePage);
+    useState(() {
+      return () => onModelChanged(model.value);
+    });
+
     return SafeArea(
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         children: [
           CupertinoInput(
             labelText: I.of(context).name,
-            value: model.name,
+            value: model.value.name,
+            onChanged: (value) {
+              model.value = model.value.copyWith(name: value);
+            },
           ),
           CupertinoInput(
             labelText: I.of(context).website,
-            value: model.url,
+            value: model.value.url,
+            onChanged: (value) {
+              model.value = model.value.copyWith(url: value);
+            },
           ),
-          Obx(() => CupertinoReadOnlyInput(
-                labelText: I.of(context).net_action,
-                value: model.netAction.value.string,
-                onTap: () => _onNetActionTap(context),
-              )),
-          Obx(() {
-            if (model.netAction.value == NetActionType.NET_ACTION_TYPE_POST) {
-              return CupertinoInput(
-                labelText: I.of(context).form,
-                value: model.formData,
-                minLine: 4,
-              );
-            }
-            return const SizedBox();
-          }),
-          Obx(() => CupertinoReadOnlyInput(
-                labelText: I.of(context).parser,
-                value:
-                    controller.blueprint.getParserName(model.baseParser.value),
-                onTap: () => _onParserTap(context),
-              )),
+          CupertinoReadOnlyInput(
+            labelText: I.of(context).net_action,
+            value: model.value.action.value,
+            onTap: () => _onNetActionTap(context),
+          ),
+          if (model.value.action == SiteActionType.post)
+            CupertinoInput(
+              labelText: I.of(context).form,
+              value: model.value.formData,
+              minLine: 4,
+              onChanged: (value) {
+                model.value = model.value.copyWith(formData: value);
+              },
+            ),
+          CupertinoReadOnlyInput(
+            labelText: I.of(context).parser,
+            value: controller.blueprint.parserList
+                    .get((e) => e.uuid == model.value.parserId)
+                    ?.name ??
+                'No parser',
+            onTap: () => _onParserTap(context),
+          ),
           const CupertinoDivider(height: 20),
-          if ([Template.TEMPLATE_IMAGE_WATERFALL, Template.TEMPLATE_IMAGE_LIST]
-              .contains(model.template.value))
-            Obx(() => CupertinoReadOnlyInput(
-                  labelText: I.of(context).display_type,
-                  value: model.display.value.string(context),
-                  onTap: () => _onDisplayTap(context),
-                )),
-          _buildIcon(context),
-          _buildOpenNewPage(context),
+          if ([TemplateType.imageWaterFall, TemplateType.imageList]
+              .contains(model.value.template?.type))
+            CupertinoReadOnlyInput(
+              labelText: I.of(context).display_type,
+              value: model.value.displayType.value,
+              onTap: () => _onDisplayTap(context),
+            ),
+          _buildIcon(model, context),
+          _buildOpenNewPage(model, context),
         ],
       ),
     );
   }
 
-  Widget _buildOpenNewPage(BuildContext context) {
+  Widget _buildOpenNewPage(
+      ValueNotifier<SitePage> model, BuildContext context) {
     late final List<Widget> body;
-    switch (model.template.value) {
-      case Template.TEMPLATE_AUTO_COMPLETE:
-      case Template.TEMPLATE_IMAGE_VIEWER:
-        body = [];
-        break;
 
-      case Template.TEMPLATE_IMAGE_LIST:
-      case Template.TEMPLATE_IMAGE_WATERFALL:
-        final extra = model.templateData as TemplateListDataModel;
-        body = [
-          _buildOpenWidget(
-            context,
-            labelText: I.of(context).item_jump_to,
-            target: extra.targetItem,
-          ),
-          _buildOpenWidget(
-            context,
-            labelText: I.of(context).auto_complete_jump_to,
-            target: extra.targetAutoComplete,
-            filter: (item) =>
-                item.template.value == Template.TEMPLATE_AUTO_COMPLETE,
-          ),
-        ];
-        break;
-      case Template.TEMPLATE_GALLERY:
-        final extra = model.templateData as TemplateGalleryModel;
-        body = [
-          _buildOpenWidget(
-            context,
-            labelText: I.of(context).read_jump_to,
-            target: extra.targetReader,
-            filter: (item) =>
-                item.template.value == Template.TEMPLATE_IMAGE_VIEWER,
-          ),
-        ];
-        break;
+    if (model.value.template == null) {
+      body = [];
+    } else {
+      switch (model.value.template!.type) {
+        case TemplateType.autoComplete:
+        case TemplateType.imageViewer:
+          body = [];
+          break;
+
+        case TemplateType.imageList:
+        case TemplateType.imageWaterFall:
+          final extra = model.value.template as TemplateList;
+          body = [
+            _buildOpenWidget(
+              context,
+              labelText: I.of(context).item_jump_to,
+              target: extra.targetItem,
+            ),
+            _buildOpenWidget(
+              context,
+              labelText: I.of(context).auto_complete_jump_to,
+              target: extra.targetAutoComplete,
+              filter: (item) =>
+                  item.template.value == TemplateType.autoComplete,
+            ),
+          ];
+          break;
+        case TemplateType.gallery:
+          final extra = model.value.template as TemplateGallery;
+          body = [
+            _buildOpenWidget(
+              context,
+              labelText: I.of(context).read_jump_to,
+              target: extra.targetReader,
+              filter: (item) => item.template.value == TemplateType.imageViewer,
+            ),
+          ];
+          break;
+      }
     }
 
     return Padding(
@@ -124,7 +141,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
     );
   }
 
-  Widget _buildIcon(BuildContext context) {
+  Widget _buildIcon(ValueNotifier<SitePage> model, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
@@ -143,13 +160,13 @@ class RulesPageBasic extends GetView<RulesEditController> {
                     .resolveFrom(context),
                 padding: EdgeInsets.zero,
                 child: Obx(() => Icon(
-                      cupertinoIcons[model.icon.value] ?? CupertinoIcons.app,
+                      cupertinoIcons[model.value.icon] ?? CupertinoIcons.app,
                       color: CupertinoColors.systemBlue.resolveFrom(context),
                     )),
                 onPressed: () async {
                   final result = await showCupertinoIconDialog(context);
                   if (result != null && result.isNotEmpty) {
-                    model.icon.value = result;
+                    model.value = model.value.copyWith(icon: result);
                   }
                 },
               )
@@ -192,7 +209,7 @@ class RulesPageBasic extends GetView<RulesEditController> {
   Widget _buildOpenWidget(
     BuildContext context, {
     required String labelText,
-    required RxString target,
+    required String target,
     bool Function(PageBlueprintModel)? filter,
   }) {
     return Obx(() => CupertinoReadOnlyInput(

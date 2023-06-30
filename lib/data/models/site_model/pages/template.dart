@@ -44,6 +44,15 @@ abstract class ITemplate {
     };
   }
 
+  static ITemplate create(TemplateType type) {
+    return switch (type) {
+      TemplateType.gallery => const TemplateGallery(),
+      TemplateType.imageList || TemplateType.gallery => const TemplateList(),
+      TemplateType.autoComplete => const TemplateAutoComplete(),
+      _ => throw Exception('Invalid template type')
+    };
+  }
+
   Map<String, dynamic> toJson();
 }
 
@@ -53,8 +62,8 @@ class TemplateGallery with _$TemplateGallery implements ITemplate {
   const factory TemplateGallery({
     @Default(TemplateType.gallery)
     @JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
-        TemplateType type,
-    required String targetReader,
+    TemplateType type,
+    @Default('') String targetReader,
   }) = _TemplateGallery;
 
   factory TemplateGallery.fromJson(Map<String, dynamic> json) =>
@@ -76,8 +85,9 @@ enum FilterType {
 @freezed
 class TemplateListSubPage with _$TemplateListSubPage {
   const factory TemplateListSubPage({
-    required String key,
-    required String value,
+    @Default('') String name,
+    @Default('') String key,
+    @Default('') String value,
   }) = _TemplateListSubPage;
 
   factory TemplateListSubPage.fromJson(Map<String, dynamic> json) =>
@@ -87,10 +97,11 @@ class TemplateListSubPage with _$TemplateListSubPage {
 @freezed
 class TemplateListFilterItem with _$TemplateListFilterItem {
   const factory TemplateListFilterItem({
-    required String key,
-    required FilterType type,
-    required String value,
-    required ColorField color,
+   @Default('') String name,
+   @Default('') String key,
+   @Default(FilterType.string) FilterType type,
+   @Default('') String value,
+   @Default(ColorField()) ColorField color,
   }) = _TemplateListFilterItem;
 
   factory TemplateListFilterItem.fromJson(Map<String, dynamic> json) =>
@@ -103,14 +114,14 @@ class TemplateList with _$TemplateList implements ITemplate {
   const factory TemplateList({
     @Default(TemplateType.imageList)
     @JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
-        TemplateType type,
-    required String name,
-    required List<TemplateListSubPage> subPages,
-    required List<TemplateListFilterItem> filters,
-    required ScriptField script,
-    required bool disableUnchanged,
-    required String targetItem,
-    required String targetAutoComplete,
+    TemplateType type,
+    @Default('') String name,
+    @Default([]) List<TemplateListSubPage> subPages,
+    @Default([]) List<TemplateListFilterItem> filters,
+    @Default(ScriptField()) ScriptField script,
+    @Default(false) bool disableUnchanged,
+    @Default('') String targetItem,
+    @Default('') String targetAutoComplete,
   }) = _TemplateList;
 
   factory TemplateList.fromJson(Map<String, dynamic> json) =>
@@ -123,11 +134,9 @@ class TemplateAutoComplete with _$TemplateAutoComplete implements ITemplate {
   const factory TemplateAutoComplete({
     @Default(TemplateType.autoComplete)
     @JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
-        TemplateType type,
-    @Default(' ')
-        String? splitChar,
-    @Default(200)
-        int? timeout,
+    TemplateType type,
+    @Default(' ') String? splitChar,
+    @Default(200) int? timeout,
     ScriptField? script,
   }) = _TemplateAutoComplete;
 

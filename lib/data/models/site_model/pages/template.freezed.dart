@@ -118,7 +118,7 @@ class _$_TemplateGallery implements _TemplateGallery {
   const _$_TemplateGallery(
       {@JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
           this.type = TemplateType.gallery,
-      required this.targetReader})
+      this.targetReader = ''})
       : assert(type == TemplateType.gallery, 'type must be gallery');
 
   factory _$_TemplateGallery.fromJson(Map<String, dynamic> json) =>
@@ -128,6 +128,7 @@ class _$_TemplateGallery implements _TemplateGallery {
   @JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
   final TemplateType type;
   @override
+  @JsonKey()
   final String targetReader;
 
   @override
@@ -167,7 +168,7 @@ abstract class _TemplateGallery implements TemplateGallery {
   const factory _TemplateGallery(
       {@JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
           final TemplateType type,
-      required final String targetReader}) = _$_TemplateGallery;
+      final String targetReader}) = _$_TemplateGallery;
 
   factory _TemplateGallery.fromJson(Map<String, dynamic> json) =
       _$_TemplateGallery.fromJson;
@@ -189,6 +190,7 @@ TemplateListSubPage _$TemplateListSubPageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TemplateListSubPage {
+  String get name => throw _privateConstructorUsedError;
   String get key => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
 
@@ -204,7 +206,7 @@ abstract class $TemplateListSubPageCopyWith<$Res> {
           TemplateListSubPage value, $Res Function(TemplateListSubPage) then) =
       _$TemplateListSubPageCopyWithImpl<$Res, TemplateListSubPage>;
   @useResult
-  $Res call({String key, String value});
+  $Res call({String name, String key, String value});
 }
 
 /// @nodoc
@@ -220,10 +222,15 @@ class _$TemplateListSubPageCopyWithImpl<$Res, $Val extends TemplateListSubPage>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? key = null,
     Object? value = null,
   }) {
     return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -244,7 +251,7 @@ abstract class _$$_TemplateListSubPageCopyWith<$Res>
       __$$_TemplateListSubPageCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String key, String value});
+  $Res call({String name, String key, String value});
 }
 
 /// @nodoc
@@ -258,10 +265,15 @@ class __$$_TemplateListSubPageCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? key = null,
     Object? value = null,
   }) {
     return _then(_$_TemplateListSubPage(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -277,19 +289,25 @@ class __$$_TemplateListSubPageCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TemplateListSubPage implements _TemplateListSubPage {
-  const _$_TemplateListSubPage({required this.key, required this.value});
+  const _$_TemplateListSubPage(
+      {this.name = '', this.key = '', this.value = ''});
 
   factory _$_TemplateListSubPage.fromJson(Map<String, dynamic> json) =>
       _$$_TemplateListSubPageFromJson(json);
 
   @override
+  @JsonKey()
+  final String name;
+  @override
+  @JsonKey()
   final String key;
   @override
+  @JsonKey()
   final String value;
 
   @override
   String toString() {
-    return 'TemplateListSubPage(key: $key, value: $value)';
+    return 'TemplateListSubPage(name: $name, key: $key, value: $value)';
   }
 
   @override
@@ -297,13 +315,14 @@ class _$_TemplateListSubPage implements _TemplateListSubPage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TemplateListSubPage &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.value, value) || other.value == value));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, key, value);
+  int get hashCode => Object.hash(runtimeType, name, key, value);
 
   @JsonKey(ignore: true)
   @override
@@ -322,12 +341,15 @@ class _$_TemplateListSubPage implements _TemplateListSubPage {
 
 abstract class _TemplateListSubPage implements TemplateListSubPage {
   const factory _TemplateListSubPage(
-      {required final String key,
-      required final String value}) = _$_TemplateListSubPage;
+      {final String name,
+      final String key,
+      final String value}) = _$_TemplateListSubPage;
 
   factory _TemplateListSubPage.fromJson(Map<String, dynamic> json) =
       _$_TemplateListSubPage.fromJson;
 
+  @override
+  String get name;
   @override
   String get key;
   @override
@@ -345,6 +367,7 @@ TemplateListFilterItem _$TemplateListFilterItemFromJson(
 
 /// @nodoc
 mixin _$TemplateListFilterItem {
+  String get name => throw _privateConstructorUsedError;
   String get key => throw _privateConstructorUsedError;
   FilterType get type => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
@@ -362,7 +385,12 @@ abstract class $TemplateListFilterItemCopyWith<$Res> {
           $Res Function(TemplateListFilterItem) then) =
       _$TemplateListFilterItemCopyWithImpl<$Res, TemplateListFilterItem>;
   @useResult
-  $Res call({String key, FilterType type, String value, ColorField color});
+  $Res call(
+      {String name,
+      String key,
+      FilterType type,
+      String value,
+      ColorField color});
 
   $ColorFieldCopyWith<$Res> get color;
 }
@@ -381,12 +409,17 @@ class _$TemplateListFilterItemCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? key = null,
     Object? type = null,
     Object? value = null,
     Object? color = null,
   }) {
     return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -423,7 +456,12 @@ abstract class _$$_TemplateListFilterItemCopyWith<$Res>
       __$$_TemplateListFilterItemCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String key, FilterType type, String value, ColorField color});
+  $Res call(
+      {String name,
+      String key,
+      FilterType type,
+      String value,
+      ColorField color});
 
   @override
   $ColorFieldCopyWith<$Res> get color;
@@ -441,12 +479,17 @@ class __$$_TemplateListFilterItemCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? key = null,
     Object? type = null,
     Object? value = null,
     Object? color = null,
   }) {
     return _then(_$_TemplateListFilterItem(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -471,26 +514,34 @@ class __$$_TemplateListFilterItemCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TemplateListFilterItem implements _TemplateListFilterItem {
   const _$_TemplateListFilterItem(
-      {required this.key,
-      required this.type,
-      required this.value,
-      required this.color});
+      {this.name = '',
+      this.key = '',
+      this.type = FilterType.string,
+      this.value = '',
+      this.color = const ColorField()});
 
   factory _$_TemplateListFilterItem.fromJson(Map<String, dynamic> json) =>
       _$$_TemplateListFilterItemFromJson(json);
 
   @override
+  @JsonKey()
+  final String name;
+  @override
+  @JsonKey()
   final String key;
   @override
+  @JsonKey()
   final FilterType type;
   @override
+  @JsonKey()
   final String value;
   @override
+  @JsonKey()
   final ColorField color;
 
   @override
   String toString() {
-    return 'TemplateListFilterItem(key: $key, type: $type, value: $value, color: $color)';
+    return 'TemplateListFilterItem(name: $name, key: $key, type: $type, value: $value, color: $color)';
   }
 
   @override
@@ -498,6 +549,7 @@ class _$_TemplateListFilterItem implements _TemplateListFilterItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TemplateListFilterItem &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.value, value) || other.value == value) &&
@@ -506,7 +558,7 @@ class _$_TemplateListFilterItem implements _TemplateListFilterItem {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, key, type, value, color);
+  int get hashCode => Object.hash(runtimeType, name, key, type, value, color);
 
   @JsonKey(ignore: true)
   @override
@@ -525,14 +577,17 @@ class _$_TemplateListFilterItem implements _TemplateListFilterItem {
 
 abstract class _TemplateListFilterItem implements TemplateListFilterItem {
   const factory _TemplateListFilterItem(
-      {required final String key,
-      required final FilterType type,
-      required final String value,
-      required final ColorField color}) = _$_TemplateListFilterItem;
+      {final String name,
+      final String key,
+      final FilterType type,
+      final String value,
+      final ColorField color}) = _$_TemplateListFilterItem;
 
   factory _TemplateListFilterItem.fromJson(Map<String, dynamic> json) =
       _$_TemplateListFilterItem.fromJson;
 
+  @override
+  String get name;
   @override
   String get key;
   @override
@@ -743,13 +798,13 @@ class _$_TemplateList implements _TemplateList {
   const _$_TemplateList(
       {@JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
           this.type = TemplateType.imageList,
-      required this.name,
-      required final List<TemplateListSubPage> subPages,
-      required final List<TemplateListFilterItem> filters,
-      required this.script,
-      required this.disableUnchanged,
-      required this.targetItem,
-      required this.targetAutoComplete})
+      this.name = '',
+      final List<TemplateListSubPage> subPages = const [],
+      final List<TemplateListFilterItem> filters = const [],
+      this.script = const ScriptField(),
+      this.disableUnchanged = false,
+      this.targetItem = '',
+      this.targetAutoComplete = ''})
       : assert(type == TemplateType.imageList, 'type must be imageList'),
         _subPages = subPages,
         _filters = filters;
@@ -761,9 +816,11 @@ class _$_TemplateList implements _TemplateList {
   @JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
   final TemplateType type;
   @override
+  @JsonKey()
   final String name;
   final List<TemplateListSubPage> _subPages;
   @override
+  @JsonKey()
   List<TemplateListSubPage> get subPages {
     if (_subPages is EqualUnmodifiableListView) return _subPages;
     // ignore: implicit_dynamic_type
@@ -772,6 +829,7 @@ class _$_TemplateList implements _TemplateList {
 
   final List<TemplateListFilterItem> _filters;
   @override
+  @JsonKey()
   List<TemplateListFilterItem> get filters {
     if (_filters is EqualUnmodifiableListView) return _filters;
     // ignore: implicit_dynamic_type
@@ -779,12 +837,16 @@ class _$_TemplateList implements _TemplateList {
   }
 
   @override
+  @JsonKey()
   final ScriptField script;
   @override
+  @JsonKey()
   final bool disableUnchanged;
   @override
+  @JsonKey()
   final String targetItem;
   @override
+  @JsonKey()
   final String targetAutoComplete;
 
   @override
@@ -841,13 +903,13 @@ abstract class _TemplateList implements TemplateList {
   const factory _TemplateList(
       {@JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
           final TemplateType type,
-      required final String name,
-      required final List<TemplateListSubPage> subPages,
-      required final List<TemplateListFilterItem> filters,
-      required final ScriptField script,
-      required final bool disableUnchanged,
-      required final String targetItem,
-      required final String targetAutoComplete}) = _$_TemplateList;
+      final String name,
+      final List<TemplateListSubPage> subPages,
+      final List<TemplateListFilterItem> filters,
+      final ScriptField script,
+      final bool disableUnchanged,
+      final String targetItem,
+      final String targetAutoComplete}) = _$_TemplateList;
 
   factory _TemplateList.fromJson(Map<String, dynamic> json) =
       _$_TemplateList.fromJson;

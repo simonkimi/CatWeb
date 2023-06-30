@@ -1,7 +1,6 @@
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/loaders/load_more_mixin.dart';
-import 'package:catweb/data/protocol/model/model.dart';
-import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/data/models/ffi/models.dart';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:get/get.dart';
@@ -12,7 +11,7 @@ class ImageLoadModel {
     required this.dio,
   });
 
-  final ImageRpcModel model;
+  final ImageRspModel model;
   final Dio dio;
 
   final Rx<ImageLoadState> _state = ImageLoadState.waiting().obs;
@@ -25,7 +24,7 @@ class ImageLoadModel {
 
   double get progress => _progress.value;
 
-  String get key => model.key;
+  String get key => model.cacheKey;
 
   bool get needLoad => _state.value.isWaiting && _handleWidget.value > 0;
 

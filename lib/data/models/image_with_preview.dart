@@ -1,7 +1,8 @@
 import 'package:catweb/data/controller/site_service.dart';
+import 'package:catweb/data/models/ffi/models.dart';
+import 'package:catweb/data/models/ffi/parser_result.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
-import 'package:catweb/gen/protobuf/model.pb.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:flutter/widgets.dart';
@@ -19,13 +20,13 @@ abstract class ImageWithPreviewModel<T>
   /// 预览图的数据, 初始状态下就能拿到
   T previewModel;
 
-  ImageRpcModel? get previewImage;
+  ImageRspModel? get previewImage;
 
   /// 从初始
   String? get idCode;
 
   /// 大图的数据
-  Rx<ImageReaderRpcModel?> imageModel = Rx(null);
+  Rx<ImageReaderParserResult?> imageModel = Rx(null);
   Rx<DioImageProvider?> imageProvider = Rx(null);
 
   /// 加载模型
@@ -38,7 +39,7 @@ abstract class ImageWithPreviewModel<T>
       loadStart();
       final url = blueprint.url.isEmpty ? idCode! : blueprint.url;
       final global = Get.find<SiteService>();
-      final env = localEnv.clone()..set('idCode', idCode!);
+      final env = localEnv.clone()..['idCode'] = idCode!;
       imageModel.value = await global.website.client.getReadImage(
         url: url,
         model: blueprint,

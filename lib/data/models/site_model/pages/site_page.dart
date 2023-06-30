@@ -8,7 +8,9 @@ part 'site_page.freezed.dart';
 @JsonEnum(valueField: 'value')
 enum SiteActionType {
   get('get'),
-  post('post');
+  post('post'),
+  put('put'),
+  delete('delete');
 
   final String value;
 
@@ -26,14 +28,14 @@ enum SiteDisplayType {
   const SiteDisplayType(this.value);
 }
 
-@freezed
+@unfreezed
 class SitePage with _$SitePage {
   const SitePage._();
 
   factory SitePage({
     required String name,
     required String uuid,
-    required String url,
+    @Default('') String url,
     @Default(SiteActionType.get) SiteActionType action,
     @Default('') String formData,
     @Default('') String icon,
@@ -41,14 +43,14 @@ class SitePage with _$SitePage {
     @Default('') String flag,
     @Default('') String parserId,
     @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
-    required ITemplate template,
+    required ITemplate? template,
   }) = _SitePage;
 
   factory SitePage.fromJson(Map<String, dynamic> json) =>
       _$SitePageFromJson(json);
 
-  static Map<String, dynamic> _parserToJson(ITemplate parser) {
-    return parser.toJson();
+  static Map<String, dynamic> _parserToJson(ITemplate? parser) {
+    return parser?.toJson() ?? {};
   }
 
   bool containsFlag(String flag) {
@@ -58,5 +60,20 @@ class SitePage with _$SitePage {
       }
     }
     return false;
+  }
+
+  List<String> getDependPage() {
+    if (template == null) {
+      return [];
+    }
+
+    switch (template!.type) {
+      case TemplateType.imageList:
+      case TemplateType.imageWaterFall:
+        final model = template as TemplateList;
+        return [model.targetItem, model.targetAutoComplete];
+      default:
+        return [];
+    }
   }
 }

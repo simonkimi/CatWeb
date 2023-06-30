@@ -1,7 +1,7 @@
 import 'dart:core' as core;
 import 'dart:core';
 import 'dart:math' as math;
-import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/data/models/ffi/models.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';
@@ -12,6 +12,19 @@ extension IterableUtils<T> on Iterable<T> {
       if (test(e)) return e;
     }
     return null;
+  }
+
+  Iterable<T> replace(int index, T newValue) sync* {
+    final iter = iterator;
+    var i = 0;
+    while (iter.moveNext()) {
+      if (i == index) {
+        yield newValue;
+      } else {
+        yield iter.current;
+      }
+      i++;
+    }
   }
 }
 
@@ -54,6 +67,14 @@ extension ListUtils<T> on List<T> {
       }
     }
   }
+
+  List<T> replaceAt(int index, T newValue) {
+    return replace(index, newValue).toList();
+  }
+
+  List<T> exceptAt(int index) {
+    return [...this]..removeAt(index);
+  }
 }
 
 extension AnimationControllerUtils on AnimationController {
@@ -75,24 +96,9 @@ extension AnimationControllerUtils on AnimationController {
   bool get isEnd => value == 1.0;
 }
 
-T df<T>(T? value, T defaultValue, bool Function()? has) =>
-    has != null && has() ? value ?? defaultValue : defaultValue;
-
-T? has<T>(T value, bool Function() has) => has() ? value : null;
-
-RxString sobs(String? pb) => pb?.obs ?? ''.obs;
-
-RxBool bobs(bool? pb) => pb?.obs ?? false.obs;
-
-RxList<T> lobs<T, E>(core.Iterable<E>? pb, T Function(E e) func) =>
-    pb?.map((E e) => func(e)).toList().obs ?? <T>[].obs;
-
-extension RpcColor on ColorRpcModel {
+extension RpcColor on ColorRspModel {
   Color? get color {
-    if (hasR() && hasG() && hasB()) {
-      return Color.fromARGB(hasA() ? a : 0xFF, r, g, b);
-    }
-    return null;
+    return Color.fromARGB(a ?? 0xFF, r, g, b);
   }
 
   String get string => '#${r.toRadixString(16).padLeft(2, '0')}'

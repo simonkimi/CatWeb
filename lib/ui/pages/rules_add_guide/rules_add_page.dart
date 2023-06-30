@@ -1,5 +1,5 @@
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/gen/protobuf/store.pbserver.dart';
+import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
@@ -12,8 +12,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class RulesEditPage extends StatelessWidget {
-  RulesEditPage({super.key, SiteBlueprint? pb, WebTableData? db})
-      : controller = Get.put(RulesEditController(pb: pb, db: db));
+  RulesEditPage({super.key, SiteBlueMap? blueMap, WebTableData? db})
+      : controller = Get.put(RulesEditController(blueMap: blueMap, db: db));
 
   final RulesEditController controller;
 

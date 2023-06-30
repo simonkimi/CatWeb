@@ -15,6 +15,20 @@ class SiteEnvStore {
 
   SiteEnvStore clone() => SiteEnvStore({..._env});
 
+  operator [](String key) => _env[key];
+
+  operator []=(String key, String value) => _env[key] = value;
+
+  SiteEnvStore merge(SiteEnvStore envModel) {
+    _env.addAll(envModel.env);
+    return this;
+  }
+
+  SiteEnvStore mergeMap(Map<String, String> map) {
+    _env.addAll(map);
+    return this;
+  }
+
   String apply(String input) {
     final exp =
         RegExp(r'\$\{(?<var>\w+):(?<context>[^:^$]*)(?::(?<default>[^$]+))?\}');
