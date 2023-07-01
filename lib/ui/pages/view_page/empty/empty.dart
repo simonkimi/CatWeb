@@ -1,6 +1,5 @@
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
-import 'package:catweb/test/site/eh/eh_rules.dart' as eh;
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
@@ -41,8 +40,7 @@ class EmptyFragment extends StatelessWidget {
         Center(
           child: CupertinoButton(
             onPressed: () {
-              // Get.to(() => const SiteManager());
-              Get.to(() => RulesEditPage(pb: eh.ehTestSite));
+              Get.to(() => RulesEditPage());
             },
             color: FixColor.groupedColor,
             child: Row(

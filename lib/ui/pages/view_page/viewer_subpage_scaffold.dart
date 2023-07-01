@@ -1,6 +1,6 @@
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/data/models/site_model/pages/site_page.dart';
+import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/ui/pages/view_page/image/image_reader.dart';
 import 'package:catweb/ui/pages/view_page/list/viewer_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,8 +16,8 @@ class ViewerPage extends StatelessWidget {
     this.env,
   });
 
-  final PageBlueprintModel target;
-  final SiteEnvModel? env;
+  final SitePage target;
+  final SiteEnvStore? env;
   final Object? model;
 
   @override
@@ -26,27 +26,27 @@ class ViewerPage extends StatelessWidget {
   }
 
   Widget _buildFragment(BuildContext context) {
-    switch (target.template.value) {
-      case Template.TEMPLATE_IMAGE_WATERFALL:
-      case Template.TEMPLATE_IMAGE_LIST:
+    switch (target.template.type) {
+      case TemplateType.imageWaterFall:
+      case TemplateType.imageList:
         return ViewerListFragment(
           blueprint: target,
           hasToolBar: model != null,
         );
-      case Template.TEMPLATE_GALLERY:
+      case TemplateType.gallery:
         return ViewerGalleryFragment(
           target: target,
           model: model,
-          env: env ?? SiteEnvModel(),
+          env: env ?? SiteEnvStore(),
         );
-      case Template.TEMPLATE_IMAGE_VIEWER:
+      case TemplateType.imageViewer:
         return ImageReader(
           readerInfo: model as ReaderInfo,
           blueprint: target,
         );
       default:
         throw UnimplementedError(
-            'ViewerPage can not handle ${target.template.value}');
+            'ViewerPage can not handle ${target.template.type}');
     }
   }
 }

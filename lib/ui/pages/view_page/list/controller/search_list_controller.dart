@@ -1,10 +1,11 @@
 import 'package:catweb/data/controller/site_service.dart';
+import 'package:catweb/data/models/ffi/parser_result.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/data/protocol/model/templete.dart';
-import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/data/models/site_model/pages/site_page.dart';
+import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/handle.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -16,27 +17,25 @@ class SearchListController {
   final TextEditingController textController = TextEditingController();
   final website = Get.find<SiteService>().website;
 
-  late final PageBlueprintModel? blueprint;
+  late final SitePage? blueprint;
 
   final isLoading = false.obs;
-  final suggestions = RxList<AutoCompleteRpcModel_Item>();
+  final suggestions = RxList<AutoCompleteParserResultItem>();
 
   String get splitChar =>
-      extra.splitChar.value.isEmpty ? ' ' : extra.splitChar.value;
+      extra.splitChar.isEmpty ? ' ' : extra.splitChar;
 
   SearchListController({
-    required TemplateListDataModel model,
+    required TemplateList model,
     required this.onSearch,
   }) {
-    blueprint = website.configModel.getPage(model.targetAutoComplete.value);
+    blueprint = website.blueMap.pageList.get((e) => e.uuid == model.targetAutoComplete);
 
     if (blueprint != null) {
       textController.addListener(() {
         if (textController.selection.baseOffset == textController.text.length) {
           handler.post(
-              int.tryParse(extra.timeout.value) == 0
-                  ? 1000
-                  : extra.timeout.value, () {
+              extra.timeout, () {
             if (focusNode.hasFocus && textController.text.isNotEmpty) {
               requestAutoComplete(textController.text);
             }
@@ -70,9 +69,9 @@ class SearchListController {
     isLoading.value = true;
     try {
       final result = await website.client.getAutoComplete(
-        url: blueprint!.url.value,
+        url: blueprint!.url,
         model: blueprint!,
-        localEnv: SiteEnvModel({
+        localEnv: SiteEnvStore({
           'search': keyword,
         }),
       );
@@ -83,10 +82,10 @@ class SearchListController {
     }
   }
 
-  void onSuggestionSelected(AutoCompleteRpcModel_Item item) {
+  void onSuggestionSelected(AutoCompleteParserResultItem item) {
     final keyWords = textController.text.split(splitChar);
     keyWords.removeLast();
-    keyWords.add(item.complete);
+    keyWords.add(item.complete!);
     final text = keyWords.join(splitChar) + splitChar;
     textController.value = TextEditingValue(
       text: text,
@@ -97,6 +96,6 @@ class SearchListController {
     onTextChanged(text);
   }
 
-  TemplateAutoCompleteModel get extra =>
-      blueprint!.templateData as TemplateAutoCompleteModel;
+  TemplateAutoComplete get extra =>
+      blueprint!.template as TemplateAutoComplete;
 }

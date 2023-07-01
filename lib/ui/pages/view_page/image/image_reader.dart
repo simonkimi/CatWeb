@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/data/protocol/model/page.dart';
+import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/zoom.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
@@ -29,7 +29,7 @@ class ImageReader extends StatefulWidget {
   });
 
   final ReaderInfo readerInfo;
-  final PageBlueprintModel blueprint;
+  final SitePage blueprint;
 
   @override
   State<ImageReader> createState() => _ImageReaderViewerState();
@@ -51,7 +51,7 @@ class _ImageReaderViewerState extends State<ImageReader>
     super.initState();
     controller = ReaderLoaderController(
       blueprint: widget.blueprint,
-      localEnv: SiteEnvModel(),
+      localEnv: SiteEnvStore(),
       readerInfo: widget.readerInfo,
     );
     readController = ImagePageController(controller: controller);

@@ -1,9 +1,7 @@
-import 'package:catweb/data/protocol/model/templete.dart';
-import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
-import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -69,8 +67,7 @@ class ListFilterButton extends StatelessWidget {
                     const CupertinoDivider(),
                     _buildColorButton(context),
                     for (final item in controller.filter)
-                      if (item.type.value !=
-                          TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD)
+                      if (item.type != FilterType.boolCard)
                         _buildFilterItem(context, item),
                   ],
                 ),
@@ -84,8 +81,7 @@ class ListFilterButton extends StatelessWidget {
 
   Widget _buildColorButton(BuildContext context) {
     final items = controller.filter
-        .where((p0) =>
-            p0.type.value == TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD)
+        .where((p0) => p0.type == FilterType.boolCard)
         .toList();
 
     void onLongPress(int index) {
@@ -94,8 +90,7 @@ class ListFilterButton extends StatelessWidget {
       final rawIndex = controller.filter.indexOf(item);
 
       for (var i = 0; i < rawIndex; i++) {
-        if (controller.filter[i].type.value ==
-            TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD) {
+        if (controller.filter[i].type == FilterType.boolCard) {
           controller.filter[i].value.value = newValue;
         } else {
           break;
@@ -103,8 +98,7 @@ class ListFilterButton extends StatelessWidget {
       }
 
       for (var i = rawIndex + 1; i < controller.filter.length; i++) {
-        if (controller.filter[i].type.value ==
-            TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD) {
+        if (controller.filter[i].type == FilterType.boolCard) {
           controller.filter[i].value.value = newValue;
         } else {
           break;
@@ -136,9 +130,8 @@ class ListFilterButton extends StatelessWidget {
                                       .value
                                       .toLowerCase() !=
                                   'true',
-                              text: items.elementAt(i + j).name.value,
-                              color: parseColorString(
-                                  items.elementAt(i + j).color.value),
+                              text: items.elementAt(i + j).name,
+                              color: items.elementAt(i + j).color,
                             )),
                       ),
                     ),
@@ -173,14 +166,14 @@ class ListFilterButton extends StatelessWidget {
     );
   }
 
-  Widget _buildFilterItem(BuildContext context, SearchFilterItem item) {
+  Widget _buildFilterItem(BuildContext context, FilterObx item) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 1),
       child: Row(
         children: [
-          Text(item.name.value),
+          Text(item.name),
           const Expanded(child: SizedBox()),
-          if (item.type.value == TemplateListData_FilterType.FILTER_TYPE_BOOL)
+          if (item.type == FilterType.bool)
             SizedBox(
               height: 30,
               child: Transform.scale(
@@ -197,9 +190,7 @@ class ListFilterButton extends StatelessWidget {
                     )),
               ),
             ),
-          if (item.type.value ==
-                  TemplateListData_FilterType.FILTER_TYPE_STRING ||
-              item.type.value == TemplateListData_FilterType.FILTER_TYPE_NUMBER)
+          if (item.type == FilterType.string || item.type == FilterType.number)
             SizedBox(
               height: 30,
               width: 60,
@@ -211,12 +202,10 @@ class ListFilterButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 inputFormatters: [
-                  if (item.type.value ==
-                      TemplateListData_FilterType.FILTER_TYPE_NUMBER)
+                  if (item.type == FilterType.number)
                     FilteringTextInputFormatter.digitsOnly
                 ],
-                keyboardType: item.type.value ==
-                        TemplateListData_FilterType.FILTER_TYPE_NUMBER
+                keyboardType: item.type == FilterType.number
                     ? TextInputType.number
                     : null,
                 onChanged: (value) {

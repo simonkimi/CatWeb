@@ -1,4 +1,3 @@
-import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
@@ -12,15 +11,21 @@ import 'package:get/get.dart';
 class ListNormalSubPage extends HookWidget {
   const ListNormalSubPage({
     super.key,
-    required this.model,
+    required this.templateBase,
+    required this.onTemplateChanged,
   });
 
-  final SitePage model;
+  final TemplateList templateBase;
+  final Function(TemplateList) onTemplateChanged;
 
   @override
   Widget build(BuildContext context) {
     final cookieController = SwipeActionController();
-    final template = useState(model.template as TemplateList);
+    final template = useState(templateBase);
+
+    useEffect(() {
+      return () => onTemplateChanged(template.value);
+    });
 
     return ColoredBox(
       color: CupertinoColors.systemGroupedBackground.resolveFrom(context),

@@ -122,7 +122,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryParserResult,
         baseUrl = preUrl;
       }
     }
-    baseUrl = localEnv.replace(baseUrl);
+    baseUrl = localEnv.apply(baseUrl);
 
     final detail = await global.website.client.getGallery(
       url: baseUrl,
@@ -132,7 +132,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryParserResult,
     _detailModel.value = detail;
 
     if (!hasPageExpression(blueprint.url) &&
-        (detail.nextPage == baseUrl || detail.nextPage.isEmpty)) {
+        (detail.nextPage == baseUrl || detail.nextPage?.isEmpty == true)) {
       stateLoadNoData();
     }
 

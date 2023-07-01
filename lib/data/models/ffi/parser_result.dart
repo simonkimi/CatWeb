@@ -32,7 +32,7 @@ class ListParserResultItem with _$ListParserResultItem {
     required String? uploadTime,
     required double? star,
     required int? imgCount,
-    required ImageRspModel? previewImg,
+    required ImageRspModel previewImg,
     required String? language,
     required TagRspModel? tag,
     required List<TagRspModel> badges,
@@ -113,7 +113,7 @@ class GalleryParserResultItem with _$GalleryParserResultItem {
   const GalleryParserResultItem._();
 
   factory GalleryParserResultItem({
-    required ImageRspModel? previewImg,
+    required ImageRspModel previewImg,
     required String? target,
   }) = _GalleryParserResultItem;
 

@@ -109,7 +109,7 @@ _$_TemplateAutoComplete _$$_TemplateAutoCompleteFromJson(
           ? TemplateType.autoComplete
           : TemplateType._fromValue(json['type'] as String),
       splitChar: json['splitChar'] as String? ?? ' ',
-      timeout: json['timeout'] as int? ?? 200,
+      timeout: json['timeout'] as int? ?? 1000,
       script: json['script'] == null
           ? null
           : ScriptField.fromJson(json['script'] as Map<String, dynamic>),
@@ -122,4 +122,18 @@ Map<String, dynamic> _$$_TemplateAutoCompleteToJson(
       'splitChar': instance.splitChar,
       'timeout': instance.timeout,
       'script': instance.script,
+    };
+
+_$_TemplateImageViewer _$$_TemplateImageViewerFromJson(
+        Map<String, dynamic> json) =>
+    _$_TemplateImageViewer(
+      type: json['type'] == null
+          ? TemplateType.imageViewer
+          : TemplateType._fromValue(json['type'] as String),
+    );
+
+Map<String, dynamic> _$$_TemplateImageViewerToJson(
+        _$_TemplateImageViewer instance) =>
+    <String, dynamic>{
+      'type': TemplateType._toValue(instance.type),
     };

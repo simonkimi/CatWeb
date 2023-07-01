@@ -13,57 +13,94 @@ import 'list_search.dart';
 class RulesPageEdit extends HookWidget {
   const RulesPageEdit({
     super.key,
-    required this.model,
+    required this.baseModel,
+    required this.onModelChanged,
   });
 
-  final SitePage model;
+  final SitePage baseModel;
+  final Function(SitePage) onModelChanged;
 
   @override
   Widget build(BuildContext context) {
-    if (model.template != null) {
+    final model = useState(baseModel);
+    model.addListener(() {
+      onModelChanged(model.value);
+    });
+
+    if (model.value.template.type != TemplateType.imageViewer) {
       return CupertinoPageScaffold(
-        navigationBar: _buildAppbar(context),
+        navigationBar: _buildAppbar(model, context),
         child: CupertinoTabBarView(
           tabs: [
             CupertinoTab(I.of(context).basic),
-            if (model.template is TemplateList) ...[
+            if (model.value.template is TemplateList) ...[
               const CupertinoTab('子页面'),
               CupertinoTab(I.of(context).filter),
             ],
-            if (model.template is TemplateAutoComplete)
+            if (model.value.template is TemplateAutoComplete)
               CupertinoTab(I.of(context).setting),
           ],
           children: [
-            RulesPageBasic(model: model),
-            if (model.template is TemplateList) ...[
-              ListNormalSubPage(model: model),
-              ListFilterEditor(model: model),
+            RulesPageBasic(
+              sitePage: model.value,
+              onModelChanged: (value) {
+                model.value = value;
+              },
+            ),
+            if (model.value.template is TemplateList) ...[
+              ListNormalSubPage(
+                templateBase: model.value.template as TemplateList,
+                onTemplateChanged: (template) {
+                  model.value = model.value.copyWith(template: template);
+                },
+              ),
+              ListFilterEditor(
+                templateBase: model.value.template as TemplateList,
+                onTemplateChanged: (template) {
+                  model.value = model.value.copyWith(template: template);
+                },
+              ),
             ],
-            if (model.template is TemplateAutoComplete)
-              TemplateAutoCompleteFragment(model: model),
+            if (model.value.template is TemplateAutoComplete)
+              TemplateAutoCompleteEditor(
+                templateBase: model.value.template as TemplateAutoComplete,
+                onTemplateChanged: (value) {
+                  model.value = model.value.copyWith(template: value);
+                },
+              ),
           ],
         ),
       );
     }
     return CupertinoPageScaffold(
-      navigationBar: _buildAppbar(context),
-      child: RulesPageBasic(model: model),
+      navigationBar: _buildAppbar(model, context),
+      child: RulesPageBasic(
+        sitePage: model.value,
+        onModelChanged: (value) {
+          model.value = value;
+        },
+      ),
     );
   }
 
-  CupertinoNavigationBar _buildAppbar(BuildContext context) {
+  CupertinoNavigationBar _buildAppbar(
+    ValueNotifier<SitePage> model,
+    BuildContext context,
+  ) {
     return CupertinoNavigationBar(
       padding: kAppbarPadding,
       leading: CupertinoButton(
         onPressed: () {
-          Navigator.of(context).pop(model);
+          Navigator.of(context).pop();
         },
         padding: EdgeInsets.zero,
         minSize: 0,
         child: const Icon(CupertinoIcons.back),
       ),
       middle: Text(I.of(context).page),
-      border: model.template != null ? const Border() : kDefaultNavBarBorder,
+      border: model.value.template is! TemplateImageViewer
+          ? const Border()
+          : kDefaultNavBarBorder,
     );
   }
 }

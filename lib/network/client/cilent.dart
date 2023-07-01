@@ -56,13 +56,13 @@ class NetClient {
     final url2 = localEnv.apply(url);
 
     switch (model.action) {
-      case SiteActionType.delete:
+      case SiteNetType.delete:
         return dio.delete(url2, options: options);
-      case SiteActionType.get:
+      case SiteNetType.get:
         return await dio.get<String>(url2, options: options);
-      case SiteActionType.post:
+      case SiteNetType.post:
         return await dio.post<String>(url2, data: form, options: options);
-      case SiteActionType.put:
+      case SiteNetType.put:
         return await dio.put<String>(url2, data: form, options: options);
     }
   }

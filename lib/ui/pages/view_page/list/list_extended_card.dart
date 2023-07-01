@@ -1,9 +1,8 @@
-import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/data/models/ffi/parser_result.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:catweb/ui/theme/colors.dart';
-import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -16,7 +15,7 @@ class ListExtendedCard extends StatelessWidget {
     required this.concurrency,
   });
 
-  final ListRpcModel_Item model;
+  final ListParserResultItem model;
   final VoidCallback onTap;
   final ImageListConcurrency concurrency;
 
@@ -28,10 +27,8 @@ class ListExtendedCard extends StatelessWidget {
       child: IntrinsicHeight(
         child: Row(
           children: [
-            if (model.hasPreviewImg()) ...[
-              _buildLeftImage(),
-              const SizedBox(width: 3),
-            ],
+            _buildLeftImage(),
+            const SizedBox(width: 3),
             _buildRightInfo(context),
           ],
         ),
@@ -63,18 +60,18 @@ class ListExtendedCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (model.hasTitle())
+        if (model.title != null)
           Text(
-            model.title,
+            model.title!,
             maxLines: 2,
             softWrap: true,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 color: FixColor.title.resolveFrom(context), fontSize: 15),
           ),
-        if (model.hasSubtitle())
+        if (model.subtitle != null)
           Text(
-            model.subtitle,
+            model.subtitle!,
             style: TextStyle(
               color: CupertinoColors.secondaryLabel.resolveFrom(context),
               fontSize: 13,
@@ -115,9 +112,9 @@ class ListExtendedCard extends StatelessWidget {
       constraints: const BoxConstraints(maxHeight: 160, minHeight: 140),
       child: SizedBox(
         width: 110,
-        child: model.previewImg.hasWidth() && model.previewImg.hasHeight()
+        child: model.previewImg.width != null && model.previewImg.height != null
             ? AspectRatio(
-                aspectRatio: model.previewImg.width / model.previewImg.height,
+                aspectRatio: model.previewImg.width! / model.previewImg.height!,
                 child: child,
               )
             : child,
@@ -129,10 +126,10 @@ class ListExtendedCard extends StatelessWidget {
     return Wrap(
       spacing: 2,
       runSpacing: 2,
-      children: model.badges.where((e) => e.hasText()).map((e) {
+      children: model.badges.where((e) => e.text != null).map((e) {
         return SlimBadge(
-          color: e.color.color,
-          text: e.text,
+          color: e.color?.color,
+          text: e.text!,
           fontSize: 11,
           padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
           borderRadius: 5,
@@ -151,8 +148,8 @@ class ListExtendedCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (model.hasStar()) _buildStar(context),
-              if (model.hasTag()) _buildTag(context),
+              if (model.star != null) _buildStar(context),
+              if (model.tag != null) _buildTag(context),
             ],
           ),
           Column(
@@ -163,9 +160,9 @@ class ListExtendedCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  if (model.hasLanguage())
+                  if (model.language != null)
                     Text(
-                      model.language,
+                      model.language!,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 12.5,
@@ -174,7 +171,7 @@ class ListExtendedCard extends StatelessWidget {
                             CupertinoColors.secondaryLabel.resolveFrom(context),
                       ),
                     ),
-                  if (model.hasImgCount())
+                  if (model.imgCount != null)
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: Text(
@@ -190,9 +187,9 @@ class ListExtendedCard extends StatelessWidget {
                     ),
                 ],
               ),
-              if (model.hasUploadTime())
+              if (model.uploadTime != null)
                 Text(
-                  model.uploadTime,
+                  model.uploadTime!,
                   style: TextStyle(
                     fontSize: 12.5,
                     color: CupertinoColors.secondaryLabel.resolveFrom(context),
@@ -213,7 +210,7 @@ class ListExtendedCard extends StatelessWidget {
         RatingBar.builder(
           itemSize: 16,
           ignoreGestures: true,
-          initialRating: model.star,
+          initialRating: model.star!,
           onRatingUpdate: (value) {},
           itemBuilder: (BuildContext context, int index) {
             return const Icon(
@@ -238,8 +235,8 @@ class ListExtendedCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 2),
       child: SlimBadge(
-        color: model.tag.color.color,
-        text: model.tag.text,
+        color: model.tag!.color!.color,
+        text: model.tag!.text!,
         fontSize: 11,
         padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
         borderRadius: 5,

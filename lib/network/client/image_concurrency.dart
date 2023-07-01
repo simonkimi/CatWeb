@@ -27,11 +27,14 @@ class ImageListConcurrency {
 
   ImageLoadModel create(ImageRspModel model) {
     late ImageLoadModel exist;
-    if (_imageMap.containsKey(model.cacheKey)) {
-      exist = _imageMap[model.cacheKey]!..handle();
+
+    final cacheKey = model.cacheKey ?? model.url;
+
+    if (_imageMap.containsKey(cacheKey)) {
+      exist = _imageMap[cacheKey]!..handle();
     } else {
       exist = ImageLoadModel(model: model, dio: dio);
-      _imageMap[model.cacheKey] = exist;
+      _imageMap[cacheKey] = exist;
     }
 
     _trigger();

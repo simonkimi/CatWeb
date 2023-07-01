@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:catweb/data/controller/navigator_service.dart';
 import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
@@ -15,9 +16,6 @@ import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:catweb/data/protocol/model/model.dart';
-
-import 'package:catweb/data/protocol/model/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -29,9 +27,9 @@ import 'package:get/get.dart';
 class ViewerGalleryFragment extends StatelessWidget {
   ViewerGalleryFragment({
     super.key,
-    required PageBlueprintModel target,
+    required SitePage target,
     required Object? model,
-    required SiteEnvModel env,
+    required SiteEnvStore env,
   }) {
     previewController = Get.put(
       GalleryPreviewController(
@@ -217,8 +215,8 @@ class ViewerGalleryFragment extends StatelessWidget {
     final tagMaps = <String, List<String>>{'_': []};
 
     for (final tag in previewController.detailModel!.badges) {
-      tagMaps[tag.category.isEmpty ? '_' : tag.category] ??= [];
-      tagMaps[tag.category.isEmpty ? '_' : tag.category]!.add(tag.text);
+      tagMaps[tag.category?.isEmpty == true ? '_' : tag.category!] ??= [];
+      tagMaps[tag.category?.isEmpty == true ? '_' : tag.category]!.add(tag.text ?? '');
     }
 
     return Column(
@@ -343,7 +341,7 @@ class ViewerGalleryFragment extends StatelessWidget {
 
   Widget _buildLanguage(BuildContext context) {
     final language = previewController.baseData?.language ??
-        previewController.detailModel?.getLanguage();
+        previewController.detailModel?.language;
     if (language == null) return const SizedBox();
     return Text(
       language,
@@ -356,7 +354,7 @@ class ViewerGalleryFragment extends StatelessWidget {
 
   Widget _buildStarBar(BuildContext context) {
     final star = previewController.baseData?.star ??
-        previewController.detailModel?.getStar();
+        previewController.detailModel?.star;
     if (star == null) return const SizedBox();
     return Row(
       children: [
@@ -419,14 +417,14 @@ class ViewerGalleryFragment extends StatelessWidget {
       previewController.lastReadIndex.value = startPage;
     }
     await NavigatorService.push(
-      targetName: previewController.extra.targetReader.value,
+      targetName: previewController.extra.targetReader,
       envModel: previewController.localEnv.clone(),
       model: previewController,
     );
   }
 
   Widget _buildTitle(BuildContext context) {
-    final title = previewController.detailModel?.getTitle() ??
+    final title = previewController.detailModel?.title ??
         previewController.baseData?.title;
     if (title == null) return const SizedBox();
     return Text(
@@ -439,7 +437,7 @@ class ViewerGalleryFragment extends StatelessWidget {
   }
 
   Widget _buildSubtitle(BuildContext context) {
-    final subtitle = previewController.detailModel?.getSubTitle() ??
+    final subtitle = previewController.detailModel?.subtitle ??
         previewController.baseData?.subtitle;
     if (subtitle == null) return const SizedBox();
     return Text(
@@ -452,7 +450,7 @@ class ViewerGalleryFragment extends StatelessWidget {
   }
 
   Widget _buildDescription(BuildContext context) {
-    if (!(previewController.detailModel?.hasDescription() ?? false)) {
+    if (!(previewController.detailModel?.description != null)) {
       return const SizedBox();
     }
 
@@ -463,7 +461,7 @@ class ViewerGalleryFragment extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DescriptionWidget(text: description),
+          DescriptionWidget(text: description!),
           const SizedBox(height: 15),
           Text(
             previewController.detailModel?.subtitle ??
@@ -486,7 +484,7 @@ class ViewerGalleryFragment extends StatelessWidget {
               ),
               if (previewController.detailModel?.uploadTime != null)
                 Text(
-                  previewController.detailModel!.uploadTime,
+                  previewController.detailModel!.uploadTime!,
                   style: TextStyle(
                     color: CupertinoColors.secondaryLabel.resolveFrom(context),
                     fontSize: 12,

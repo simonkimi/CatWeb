@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'field.g.dart';
@@ -32,6 +34,10 @@ class ColorField with _$ColorField {
   @override
   String toString() {
     return '#${r.toRadixString(16).padLeft(2, '0')}${g.toRadixString(16).padLeft(2, '0')}${b.toRadixString(16).padLeft(2, '0')}';
+  }
+
+  Color toColor() {
+    return Color.fromARGB(a, r, g, b);
   }
 }
 

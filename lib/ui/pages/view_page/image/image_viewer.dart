@@ -1,5 +1,5 @@
+import 'package:catweb/data/models/ffi/models.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
-import 'package:catweb/gen/protobuf/model.pb.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
 import 'package:catweb/ui/widgets/cupertino_progress_bar.dart';
 import 'package:catweb/utils/helper.dart';
@@ -39,10 +39,10 @@ class _ImageViewerState extends State<ImageViewer> {
   }
 
   Widget _buildAspRation(BuildContext context, Widget child) {
-    if (model?.previewImage?.hasWidth() == true &&
-        model?.previewImage?.hasHeight() == true) {
+    if (model?.previewImage?.width != null &&
+        model?.previewImage?.height != null) {
       return AspectRatio(
-        aspectRatio: model!.previewImage!.width / model!.previewImage!.height,
+        aspectRatio: model!.previewImage!.width! / model!.previewImage!.height!,
         child: child,
       );
     }
@@ -76,15 +76,13 @@ class _ImageViewerState extends State<ImageViewer> {
   Widget _defaultImageBuilder(
     BuildContext context,
     DioImageProvider imageProvider,
-    ImageRpcModel model,
+    ImageRspModel model,
   ) {
     late Widget child;
-    if ((!model.imgX.isNaN || !model.imgY.isNaN) &&
-        model.hasWidth() &&
-        model.hasHeight()) {
+    if (model.imgX != null && model.imgY != null && model.width != null && model.height != null) {
       child = ExtendedImage(
-        width: model.width.nan2null,
-        height: model.height.nan2null,
+        width: model.width,
+        height: model.height,
         image: imageProvider,
         enableLoadState: true,
         handleLoadingProgress: true,
@@ -96,17 +94,17 @@ class _ImageViewerState extends State<ImageViewer> {
               height: model.height,
               fit: BoxFit.fill,
               sourceRect: Rect.fromLTWH(
-                model.imgX.nan2zero,
-                model.imgY.nan2zero,
-                model.width,
-                model.height,
+                model.imgX ?? 0,
+                model.imgY ?? 0,
+                model.width!,
+                model.height!,
               ),
               // scale: 0.2,
             );
 
-            if (!model.width.isNaN && !model.height.isNaN) {
+            if (model.width != null && model.height != null) {
               return AspectRatio(
-                aspectRatio: model.width / model.height,
+                aspectRatio: model.width! / model.height!,
                 child: FittedBox(
                   fit: BoxFit.contain,
                   child: _imageWrapBuilder(context, img),

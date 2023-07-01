@@ -1,6 +1,6 @@
-import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/data/protocol/model/templete.dart';
-import 'package:catweb/gen/protobuf/model.pb.dart';
+import 'package:catweb/data/models/ffi/parser_result.dart';
+import 'package:catweb/data/models/site_model/pages/site_page.dart';
+import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
@@ -18,16 +18,16 @@ class SearchList extends StatefulWidget {
     required this.blueprint,
   });
 
-  final PageBlueprintModel blueprint;
+  final SitePage blueprint;
 
   @override
   State<SearchList> createState() => _SearchListState();
 }
 
 class _SearchListState extends State<SearchList> {
-  late PageBlueprintModel blueprint = widget.blueprint;
+  late SitePage blueprint = widget.blueprint;
   late SubListController controller;
-  late final extra = blueprint.templateData as TemplateListDataModel;
+  late final extra = blueprint.template as TemplateList;
   late final SearchListController inputController;
   var isSearchMode = true;
 
@@ -115,7 +115,9 @@ class _SearchListState extends State<SearchList> {
   }
 
   Widget _buildSuggestionItem(
-      AutoCompleteRpcModel_Item model, BuildContext context) {
+    AutoCompleteParserResultItem model,
+    BuildContext context,
+  ) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
@@ -134,18 +136,19 @@ class _SearchListState extends State<SearchList> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (model.title.isNotEmpty)
+                    if (model.title != null)
                       Text(
-                        model.title,
+                        model.title!,
                         style: const TextStyle(
                           fontSize: 16,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                    if (model.subtitle.trim().isNotEmpty) ...[
+                    if (model.subtitle != null &&
+                        model.subtitle!.trim().isNotEmpty) ...[
                       const SizedBox(width: 10),
                       Text(
-                        model.subtitle,
+                        model.subtitle!,
                         style: TextStyle(
                           fontSize: 14,
                           color: CupertinoColors.placeholderText
@@ -210,5 +213,5 @@ class _SearchListState extends State<SearchList> {
     );
   }
 
-  bool get hasFilter => extra.filterItem.isNotEmpty;
+  bool get hasFilter => extra.filters.isNotEmpty;
 }

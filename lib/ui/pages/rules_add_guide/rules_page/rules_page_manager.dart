@@ -31,7 +31,7 @@ class RulesPageManager extends GetView<RulesEditController> {
             ...blueprint.pageList.map((e) {
               return CupertinoCardTile(
                 title: Text(e.name),
-                subtitle: Text(e.template?.type.value ?? ''),
+                subtitle: Text(e.template.type.value),
                 trailing: CupertinoButton(
                   padding: EdgeInsets.zero,
                   minSize: 10,
@@ -109,11 +109,19 @@ class RulesPageManager extends GetView<RulesEditController> {
   Future<void> _toRulesPageEdit(BuildContext context, [SitePage? model]) async {
     final input = model ?? await _genRules(context);
     if (input == null) return;
-    final pageModel = await Navigator.of(context).push(
-        CupertinoPageRoute(builder: (context) => RulesPageEdit(model: input)));
-    if (pageModel != null) {
-      blueprint.pageList.add(pageModel);
-    }
+    await Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
+      return RulesPageEdit(
+        baseModel: input,
+        onModelChanged: (model) {
+          final index = blueprint.pageList.indexWhere((e) => e.uuid == model.uuid);
+          if (index == -1) {
+            blueprint.pageList.add(model);
+          } else {
+            blueprint.pageList[index] = model;
+          }
+        },
+      );
+    }));
   }
 
   Future<SitePage?> _genRules(BuildContext context) async {

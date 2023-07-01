@@ -51,9 +51,9 @@ class RulesPageBasic extends HookWidget {
           CupertinoReadOnlyInput(
             labelText: I.of(context).net_action,
             value: model.value.action.value,
-            onTap: () => _onNetActionTap(context),
+            onTap: () => _onNetActionTap(model, context),
           ),
-          if (model.value.action == SiteActionType.post)
+          if (model.value.action == SiteNetType.post)
             CupertinoInput(
               labelText: I.of(context).form,
               value: model.value.formData,
@@ -68,15 +68,15 @@ class RulesPageBasic extends HookWidget {
                     .get((e) => e.uuid == model.value.parserId)
                     ?.name ??
                 'No parser',
-            onTap: () => _onParserTap(context),
+            onTap: () => _onParserTap(model, context),
           ),
           const CupertinoDivider(height: 20),
           if ([TemplateType.imageWaterFall, TemplateType.imageList]
-              .contains(model.value.template?.type))
+              .contains(model.value.template.type))
             CupertinoReadOnlyInput(
               labelText: I.of(context).display_type,
               value: model.value.displayType.value,
-              onTap: () => _onDisplayTap(context),
+              onTap: () => _onDisplayTap(model, context),
             ),
           _buildIcon(model, context),
           _buildOpenNewPage(model, context),
@@ -86,48 +86,53 @@ class RulesPageBasic extends HookWidget {
   }
 
   Widget _buildOpenNewPage(
-      ValueNotifier<SitePage> model, BuildContext context) {
+    ValueNotifier<SitePage> model,
+    BuildContext context,
+  ) {
     late final List<Widget> body;
 
-    if (model.value.template == null) {
-      body = [];
-    } else {
-      switch (model.value.template!.type) {
-        case TemplateType.autoComplete:
-        case TemplateType.imageViewer:
-          body = [];
-          break;
+    switch (model.value.template.type) {
+      case TemplateType.autoComplete:
+      case TemplateType.imageViewer:
+        body = [];
+        break;
 
-        case TemplateType.imageList:
-        case TemplateType.imageWaterFall:
-          final extra = model.value.template as TemplateList;
-          body = [
-            _buildOpenWidget(
-              context,
+      case TemplateType.imageList:
+      case TemplateType.imageWaterFall:
+        final extra = model.value.template as TemplateList;
+        body = [
+          _buildOpenWidget(model, context,
               labelText: I.of(context).item_jump_to,
-              target: extra.targetItem,
-            ),
-            _buildOpenWidget(
-              context,
+              target: extra.targetItem, onTargetChanged: (value) {
+            model.value = model.value.copyWith(
+              template: extra.copyWith(targetItem: value ?? ''),
+            );
+          }),
+          _buildOpenWidget(model, context,
               labelText: I.of(context).auto_complete_jump_to,
               target: extra.targetAutoComplete,
-              filter: (item) =>
-                  item.template.value == TemplateType.autoComplete,
-            ),
-          ];
-          break;
-        case TemplateType.gallery:
-          final extra = model.value.template as TemplateGallery;
-          body = [
-            _buildOpenWidget(
-              context,
+              filter: (item) => item.template.type == TemplateType.autoComplete,
+              onTargetChanged: (value) {
+                model.value = model.value.copyWith(
+                  template: extra.copyWith(targetAutoComplete: value ?? ''),
+                );
+              }),
+        ];
+        break;
+      case TemplateType.gallery:
+        final extra = model.value.template as TemplateGallery;
+        body = [
+          _buildOpenWidget(model, context,
               labelText: I.of(context).read_jump_to,
               target: extra.targetReader,
-              filter: (item) => item.template.value == TemplateType.imageViewer,
-            ),
-          ];
-          break;
-      }
+              filter: (item) => item.template.type == TemplateType.imageViewer,
+              onTargetChanged: (value) {
+                model.value = model.value.copyWith(
+                  template: extra.copyWith(targetReader: value ?? ''),
+                );
+              }),
+        ];
+        break;
     }
 
     return Padding(
@@ -177,76 +182,87 @@ class RulesPageBasic extends HookWidget {
     );
   }
 
-  Future<void> _onParserTap(BuildContext context) async {
+  Future<void> _onParserTap(
+    ValueNotifier<SitePage> model,
+    BuildContext context,
+  ) async {
+    final controller = Get.find<RulesEditController>();
     final result = await showCupertinoSelectDialog<String>(
       title: I.of(context).select_parser,
       context: context,
-      items: model.template.value
-          .parser(controller.blueprint.parsers)
-          .map((e) => SelectTileItem(title: e.name.value, value: e.uuid))
+      items: controller.blueprint.parserList
+          .where((e) => e.parserType == model.value.acceptParserType())
+          .map((e) => SelectTileItem(title: e.name, value: e.uuid))
           .toList(),
       cancelText: I.of(context).negative,
     );
     if (result != null) {
-      model.baseParser.value = result;
+      model.value = model.value.copyWith(parserId: result);
     }
   }
 
-  Future<void> _onNetActionTap(BuildContext context) async {
-    final result = await showCupertinoSelectDialog<NetActionType>(
+  Future<void> _onNetActionTap(
+    ValueNotifier<SitePage> model,
+    BuildContext context,
+  ) async {
+    final result = await showCupertinoSelectDialog<SiteNetType>(
       title: I.of(context).select_net_action,
       context: context,
-      items: NetActionType.values
-          .map((e) => SelectTileItem(title: e.string, value: e))
+      items: SiteNetType.values
+          .map((e) => SelectTileItem(title: e.value, value: e))
           .toList(),
       cancelText: I.of(context).negative,
     );
     if (result != null) {
-      model.netAction.value = result;
+      model.value = model.value.copyWith(action: result);
     }
   }
 
   Widget _buildOpenWidget(
+    ValueNotifier<SitePage> model,
     BuildContext context, {
     required String labelText,
     required String target,
-    bool Function(PageBlueprintModel)? filter,
+    bool Function(SitePage)? filter,
+    required void Function(String?) onTargetChanged,
   }) {
-    return Obx(() => CupertinoReadOnlyInput(
-          labelText: labelText,
-          value: controller.blueprint.getPageName(target.value),
-          onTap: () => showCupertinoSelectDialog(
-            context: context,
-            items: [
-              ...controller.blueprint.pageList
-                  .where((e) => filter != null ? filter(e) : true)
-                  .map((e) => SelectTileItem(
-                        title: e.name.string,
-                        value: e.uuid,
-                      )),
-              SelectTileItem(title: I.of(context).none, value: ''),
-            ],
-          ).then((value) {
-            if (value != null) {
-              target.value = value;
-            }
-          }),
-        ));
+    final controller = Get.find<RulesEditController>();
+    return CupertinoReadOnlyInput(
+      labelText: labelText,
+      value: controller.blueprint.pageList.get((e) => e.uuid == target)?.name ??
+          I.of(context).none,
+      onTap: () => showCupertinoSelectDialog(
+        context: context,
+        items: [
+          ...controller.blueprint.pageList
+              .where((e) => filter != null ? filter(e) : true)
+              .map((e) => SelectTileItem(
+                    title: e.name,
+                    value: e.uuid,
+                  )),
+          SelectTileItem(title: I.of(context).none, value: ''),
+        ],
+      ).then((value) {
+        onTargetChanged(value);
+      }),
+    );
   }
 
-  Future<void> _onDisplayTap(BuildContext context) async {
+  Future<void> _onDisplayTap(
+    ValueNotifier<SitePage> model,
+    BuildContext context,
+  ) async {
     final result = await showCupertinoSelectDialog<SiteDisplayType>(
       title: I.of(context).display_type,
       context: context,
       items: SiteDisplayType.values
-          .map((e) => SelectTileItem<SiteDisplayType>(
-              title: e.string(context), value: e))
+          .map((e) => SelectTileItem<SiteDisplayType>(title: e.value, value: e))
           .toList(),
       cancelText: I.of(context).negative,
     );
 
     if (result != null) {
-      model.display.value = result;
+      model.value = model.value.copyWith(displayType: result);
     }
   }
 }

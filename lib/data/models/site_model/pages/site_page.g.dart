@@ -10,8 +10,8 @@ _$_SitePage _$$_SitePageFromJson(Map<String, dynamic> json) => _$_SitePage(
       name: json['name'] as String,
       uuid: json['uuid'] as String,
       url: json['url'] as String? ?? '',
-      action: $enumDecodeNullable(_$SiteActionTypeEnumMap, json['action']) ??
-          SiteActionType.get,
+      action: $enumDecodeNullable(_$SiteNetTypeEnumMap, json['action']) ??
+          SiteNetType.get,
       formData: json['formData'] as String? ?? '',
       icon: json['icon'] as String? ?? '',
       displayType:
@@ -27,7 +27,7 @@ Map<String, dynamic> _$$_SitePageToJson(_$_SitePage instance) =>
       'name': instance.name,
       'uuid': instance.uuid,
       'url': instance.url,
-      'action': _$SiteActionTypeEnumMap[instance.action]!,
+      'action': _$SiteNetTypeEnumMap[instance.action]!,
       'formData': instance.formData,
       'icon': instance.icon,
       'displayType': _$SiteDisplayTypeEnumMap[instance.displayType]!,
@@ -36,11 +36,11 @@ Map<String, dynamic> _$$_SitePageToJson(_$_SitePage instance) =>
       'template': SitePage._parserToJson(instance.template),
     };
 
-const _$SiteActionTypeEnumMap = {
-  SiteActionType.get: 'get',
-  SiteActionType.post: 'post',
-  SiteActionType.put: 'put',
-  SiteActionType.delete: 'delete',
+const _$SiteNetTypeEnumMap = {
+  SiteNetType.get: 'get',
+  SiteNetType.post: 'post',
+  SiteNetType.put: 'put',
+  SiteNetType.delete: 'delete',
 };
 
 const _$SiteDisplayTypeEnumMap = {

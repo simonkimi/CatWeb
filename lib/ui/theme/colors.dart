@@ -1,5 +1,4 @@
 import 'package:catweb/data/models/ffi/models.dart';
-import 'package:catweb/gen/protobuf/model.pbserver.dart';
 import 'package:flutter/cupertino.dart';
 
 class FixColor {
@@ -67,7 +66,7 @@ Color? parseColorString(String colorString) {
       return Color(int.parse(result.substring(1), radix: 16) | 0xff000000);
     }
 
-    final rgb = RegExp(r'[\.\d]+%?');
+    final rgb = RegExp(r'[.\d]+%?');
     final match = rgb.allMatches(result).toList();
     if (match.length == 3) {
       return Color.fromARGB(

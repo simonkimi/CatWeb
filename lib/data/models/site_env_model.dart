@@ -29,6 +29,10 @@ class SiteEnvStore {
     return this;
   }
 
+  void removeKeys(Iterable<String> keys) {
+    _env.removeWhere((key, value) => keys.contains(key));
+  }
+
   String apply(String input) {
     final exp =
         RegExp(r'\$\{(?<var>\w+):(?<context>[^:^$]*)(?::(?<default>[^$]+))?\}');
@@ -47,6 +51,10 @@ class SiteEnvStore {
       input = input.replaceAll('{${entity.key}}', entity.value);
     }
     return input;
+  }
+
+  SiteEnvStore create(SiteEnvStore envModel) {
+    return SiteEnvStore({..._env, ...envModel.env});
   }
 }
 

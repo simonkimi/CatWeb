@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:catweb/data/controller/setting_service.dart';
-import 'package:catweb/gen/protobuf/model.pb.dart';
+import 'package:catweb/data/models/ffi/models.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -15,7 +15,7 @@ class DioImageProvider extends ImageProvider<DioImageProvider> {
   });
 
   final Dio dio;
-  final ImageRpcModel rpcModel;
+  final ImageRspModel rpcModel;
   final double scale;
 
   final _cancelToken = CancelToken().obs;

@@ -945,8 +945,8 @@ TemplateAutoComplete _$TemplateAutoCompleteFromJson(Map<String, dynamic> json) {
 mixin _$TemplateAutoComplete {
   @JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
   TemplateType get type => throw _privateConstructorUsedError;
-  String? get splitChar => throw _privateConstructorUsedError;
-  int? get timeout => throw _privateConstructorUsedError;
+  String get splitChar => throw _privateConstructorUsedError;
+  int get timeout => throw _privateConstructorUsedError;
   ScriptField? get script => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -964,8 +964,8 @@ abstract class $TemplateAutoCompleteCopyWith<$Res> {
   $Res call(
       {@JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
           TemplateType type,
-      String? splitChar,
-      int? timeout,
+      String splitChar,
+      int timeout,
       ScriptField? script});
 
   $ScriptFieldCopyWith<$Res>? get script;
@@ -986,8 +986,8 @@ class _$TemplateAutoCompleteCopyWithImpl<$Res,
   @override
   $Res call({
     Object? type = null,
-    Object? splitChar = freezed,
-    Object? timeout = freezed,
+    Object? splitChar = null,
+    Object? timeout = null,
     Object? script = freezed,
   }) {
     return _then(_value.copyWith(
@@ -995,14 +995,14 @@ class _$TemplateAutoCompleteCopyWithImpl<$Res,
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TemplateType,
-      splitChar: freezed == splitChar
+      splitChar: null == splitChar
           ? _value.splitChar
           : splitChar // ignore: cast_nullable_to_non_nullable
-              as String?,
-      timeout: freezed == timeout
+              as String,
+      timeout: null == timeout
           ? _value.timeout
           : timeout // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       script: freezed == script
           ? _value.script
           : script // ignore: cast_nullable_to_non_nullable
@@ -1034,8 +1034,8 @@ abstract class _$$_TemplateAutoCompleteCopyWith<$Res>
   $Res call(
       {@JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
           TemplateType type,
-      String? splitChar,
-      int? timeout,
+      String splitChar,
+      int timeout,
       ScriptField? script});
 
   @override
@@ -1054,8 +1054,8 @@ class __$$_TemplateAutoCompleteCopyWithImpl<$Res>
   @override
   $Res call({
     Object? type = null,
-    Object? splitChar = freezed,
-    Object? timeout = freezed,
+    Object? splitChar = null,
+    Object? timeout = null,
     Object? script = freezed,
   }) {
     return _then(_$_TemplateAutoComplete(
@@ -1063,14 +1063,14 @@ class __$$_TemplateAutoCompleteCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TemplateType,
-      splitChar: freezed == splitChar
+      splitChar: null == splitChar
           ? _value.splitChar
           : splitChar // ignore: cast_nullable_to_non_nullable
-              as String?,
-      timeout: freezed == timeout
+              as String,
+      timeout: null == timeout
           ? _value.timeout
           : timeout // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       script: freezed == script
           ? _value.script
           : script // ignore: cast_nullable_to_non_nullable
@@ -1086,7 +1086,7 @@ class _$_TemplateAutoComplete implements _TemplateAutoComplete {
       {@JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
           this.type = TemplateType.autoComplete,
       this.splitChar = ' ',
-      this.timeout = 200,
+      this.timeout = 1000,
       this.script})
       : assert(type == TemplateType.autoComplete, 'type must be autoComplete');
 
@@ -1098,10 +1098,10 @@ class _$_TemplateAutoComplete implements _TemplateAutoComplete {
   final TemplateType type;
   @override
   @JsonKey()
-  final String? splitChar;
+  final String splitChar;
   @override
   @JsonKey()
-  final int? timeout;
+  final int timeout;
   @override
   final ScriptField? script;
 
@@ -1146,8 +1146,8 @@ abstract class _TemplateAutoComplete implements TemplateAutoComplete {
   const factory _TemplateAutoComplete(
       {@JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
           final TemplateType type,
-      final String? splitChar,
-      final int? timeout,
+      final String splitChar,
+      final int timeout,
       final ScriptField? script}) = _$_TemplateAutoComplete;
 
   factory _TemplateAutoComplete.fromJson(Map<String, dynamic> json) =
@@ -1157,13 +1157,162 @@ abstract class _TemplateAutoComplete implements TemplateAutoComplete {
   @JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
   TemplateType get type;
   @override
-  String? get splitChar;
+  String get splitChar;
   @override
-  int? get timeout;
+  int get timeout;
   @override
   ScriptField? get script;
   @override
   @JsonKey(ignore: true)
   _$$_TemplateAutoCompleteCopyWith<_$_TemplateAutoComplete> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+TemplateImageViewer _$TemplateImageViewerFromJson(Map<String, dynamic> json) {
+  return _TemplateImageViewer.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TemplateImageViewer {
+  @JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
+  TemplateType get type => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TemplateImageViewerCopyWith<TemplateImageViewer> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TemplateImageViewerCopyWith<$Res> {
+  factory $TemplateImageViewerCopyWith(
+          TemplateImageViewer value, $Res Function(TemplateImageViewer) then) =
+      _$TemplateImageViewerCopyWithImpl<$Res, TemplateImageViewer>;
+  @useResult
+  $Res call(
+      {@JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
+          TemplateType type});
+}
+
+/// @nodoc
+class _$TemplateImageViewerCopyWithImpl<$Res, $Val extends TemplateImageViewer>
+    implements $TemplateImageViewerCopyWith<$Res> {
+  _$TemplateImageViewerCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TemplateType,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_TemplateImageViewerCopyWith<$Res>
+    implements $TemplateImageViewerCopyWith<$Res> {
+  factory _$$_TemplateImageViewerCopyWith(_$_TemplateImageViewer value,
+          $Res Function(_$_TemplateImageViewer) then) =
+      __$$_TemplateImageViewerCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
+          TemplateType type});
+}
+
+/// @nodoc
+class __$$_TemplateImageViewerCopyWithImpl<$Res>
+    extends _$TemplateImageViewerCopyWithImpl<$Res, _$_TemplateImageViewer>
+    implements _$$_TemplateImageViewerCopyWith<$Res> {
+  __$$_TemplateImageViewerCopyWithImpl(_$_TemplateImageViewer _value,
+      $Res Function(_$_TemplateImageViewer) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(_$_TemplateImageViewer(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TemplateType,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_TemplateImageViewer implements _TemplateImageViewer {
+  const _$_TemplateImageViewer(
+      {@JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
+          this.type = TemplateType.imageViewer})
+      : assert(type == TemplateType.imageViewer, 'type must be imageViewer');
+
+  factory _$_TemplateImageViewer.fromJson(Map<String, dynamic> json) =>
+      _$$_TemplateImageViewerFromJson(json);
+
+  @override
+  @JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
+  final TemplateType type;
+
+  @override
+  String toString() {
+    return 'TemplateImageViewer(type: $type)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TemplateImageViewer &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, type);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TemplateImageViewerCopyWith<_$_TemplateImageViewer> get copyWith =>
+      __$$_TemplateImageViewerCopyWithImpl<_$_TemplateImageViewer>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TemplateImageViewerToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TemplateImageViewer implements TemplateImageViewer {
+  const factory _TemplateImageViewer(
+      {@JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
+          final TemplateType type}) = _$_TemplateImageViewer;
+
+  factory _TemplateImageViewer.fromJson(Map<String, dynamic> json) =
+      _$_TemplateImageViewer.fromJson;
+
+  @override
+  @JsonKey(fromJson: TemplateType._fromValue, toJson: TemplateType._toValue)
+  TemplateType get type;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TemplateImageViewerCopyWith<_$_TemplateImageViewer> get copyWith =>
       throw _privateConstructorUsedError;
 }

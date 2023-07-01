@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:catweb/data/controller/site_service.dart';
+import 'package:catweb/data/models/ffi/models.dart';
+import 'package:catweb/data/models/ffi/parser_result.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/data/protocol/model/page.dart';
-import 'package:catweb/data/protocol/model/templete.dart';
-import 'package:catweb/gen/protobuf/model.pbserver.dart';
-import 'package:catweb/gen/protobuf/template.pbenum.dart';
+import 'package:catweb/data/models/site_model/fields/field.dart';
+import 'package:catweb/data/models/site_model/pages/site_page.dart';
+import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/debug.dart';
@@ -19,53 +20,78 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
 
-class ListPageItem
-    extends LoadMorePage<ListRpcModel, ListRpcModel_Item, ListItemModel> {
+class FilterObx {
+  FilterObx(TemplateListFilterItem raw)
+      : name = raw.name,
+        key = raw.key,
+        type = raw.type,
+        value = raw.value.obs,
+        color = raw.color.toColor();
+
+  FilterObx.from(FilterObx raw)
+      : name = raw.name,
+        key = raw.key,
+        type = raw.type,
+        value = raw.value.value.obs,
+        color = raw.color;
+
+  final String name;
+  final String key;
+  final FilterType type;
+
+  final RxString value;
+  final Color color;
+
+  FilterObx copyWith() => FilterObx.from(this);
+}
+
+class ListPageItem extends LoadMorePage<ListParserResult, ListParserResultItem,
+    ListItemModel> {
   ListPageItem(super.pageData);
 
   @override
-  List<ListRpcModel_Item> get items => pageData.items;
+  List<ListParserResultItem> get items => pageData.items;
 
   @override
   List<ListItemModel> genModel() => items.map((e) => ListItemModel(e)).toList();
 }
 
 /// List带预览加载的项目
-class ListItemModel extends ImageWithPreviewModel<ListRpcModel_Item> {
+class ListItemModel extends ImageWithPreviewModel<ListParserResultItem> {
   ListItemModel(super.previewModel);
 
   @override
-  ImageRpcModel get previewImage => previewModel.previewImg;
+  ImageRspModel get previewImage => previewModel.previewImg;
 
   @override
-  ListRpcModel_Item get value => previewModel;
+  ListParserResultItem get value => previewModel;
 
   @override
   String? get idCode => value.target;
 }
 
-class SubListController
-    extends LoadMoreLoader<ListRpcModel, ListRpcModel_Item, ListItemModel>
-    implements ReaderInfo<ListRpcModel_Item, ListItemModel> {
+class SubListController extends LoadMoreLoader<
+    ListParserResult,
+    ListParserResultItem,
+    ListItemModel> implements ReaderInfo<ListParserResultItem, ListItemModel> {
   SubListController({
     required this.blueprint,
     this.subPageModel,
   }) : localEnv =
-            SiteEnvModel(subPageModel != null && subPageModel.value.isNotEmpty
+            SiteEnvStore(subPageModel != null && subPageModel.value.isNotEmpty
                 ? {
-                    subPageModel.key.value.isNotEmpty
-                        ? subPageModel.key.value
-                        : 'subKey': subPageModel.value.value,
+                    subPageModel.key.isNotEmpty ? subPageModel.key : 'subKey':
+                        subPageModel.value,
                   }
                 : null);
 
-  final PageBlueprintModel blueprint;
-  final SubPageModel? subPageModel;
-  final SiteEnvModel localEnv;
+  final SitePage blueprint;
+  final TemplateListSubPage? subPageModel;
+  final SiteEnvStore localEnv;
   final global = Get.find<SiteService>();
 
-  late final filter = extra.filterItem.map((e) => e.clone()).toList().obs;
-  late final currentFilter = filter.map((e) => e.clone()).toList();
+  late final filter = extra.filters.map((e) => FilterObx(e)).toList().obs;
+  late final currentFilter = filter.map((e) => e.copyWith()).toList();
 
   var filterKeys = <String>{};
 
@@ -74,7 +100,7 @@ class SubListController
   Future<void> applyFilter([bool refresh = false]) async {
     currentFilter.clear();
     if (useFilter) {
-      currentFilter.addAll(filter.map((e) => e.clone()));
+      currentFilter.addAll(filter.map((e) => e.copyWith()));
       final map = await resolveFilter();
       filterKeys.addAll(map.keys);
       localEnv.mergeMap(map);
@@ -96,7 +122,7 @@ class SubListController
   Future<ListPageItem> netWorkLoadPage(
     int page,
   ) async {
-    var baseUrl = blueprint.url.value;
+    var baseUrl = blueprint.url;
     if (hasPageExpression(baseUrl) || page == 0) {
       // 有面数
       baseUrl = pageReplace(baseUrl, page);
@@ -110,11 +136,11 @@ class SubListController
         baseUrl = pages[maxPage]!.pageData.nextPage;
       }
     }
-    baseUrl = localEnv.replace(baseUrl);
+    baseUrl = localEnv.apply(baseUrl);
     // 添加缓存
-    if (subPageModel != null && subPageModel!.key.value.isNotEmpty) {
+    if (subPageModel != null && subPageModel!.key.isNotEmpty) {
       localEnv.mergeMap({
-        subPageModel!.key.value: subPageModel!.value.value,
+        subPageModel!.key: subPageModel!.value,
       });
     }
 
@@ -135,7 +161,7 @@ class SubListController
 
   void resetFilter() {
     for (var i = 0; i < filter.length; i++) {
-      filter[i].value.value = extra.filterItem[i].value.value;
+      filter[i].value.value = extra.filters[i].value;
     }
   }
 
@@ -144,25 +170,27 @@ class SubListController
     for (final item in currentFilter) {
       if (item.key.isNotEmpty) {
         dynamic value;
-        switch (item.type.value) {
-          case TemplateListData_FilterType.FILTER_TYPE_BOOL_CARD:
-          case TemplateListData_FilterType.FILTER_TYPE_BOOL:
+        switch (item.type) {
+          case FilterType.boolCard:
+          case FilterType.bool:
             value = item.value.value.trim().toLowerCase() == 'true';
             break;
-          case TemplateListData_FilterType.FILTER_TYPE_NUMBER:
+          case FilterType.number:
             value = int.tryParse(item.value.value);
             break;
-          case TemplateListData_FilterType.FILTER_TYPE_STRING:
+          case FilterType.string:
             value = item.value.value;
             break;
         }
-        map[item.key.value] = value;
+        map[item.key] = value;
       }
     }
 
     final json = jsonEncode(map);
-    final result =
-        await compute(NativeBinder.runJs, Tuple2(extra.script.value, json));
+    final result = await compute(
+        NativeBinder.runJs
+            as ComputeCallback<Tuple2<ScriptField, String>, String>,
+        Tuple2(extra.script, json));
     if (result.startsWith('{')) {
       try {
         Map<String, dynamic> json2 = jsonDecode(result);
@@ -176,13 +204,12 @@ class SubListController
     }
   }
 
-  SiteEnvModel get env => global.website.globalEnv.create(localEnv);
+  SiteEnvStore get env => global.website.globalEnv.create(localEnv);
 
-  TemplateListDataModel get extra =>
-      blueprint.templateData as TemplateListDataModel;
+  TemplateList get extra => blueprint.template as TemplateList;
 
-  bool get useFilter => List.generate(extra.filterItem.length, (i) => i)
-      .any((e) => filter[e].value.value != extra.filterItem[e].value.value);
+  bool get useFilter => List.generate(extra.filters.length, (i) => i)
+      .any((e) => filter[e].value.value != extra.filters[e].value);
 
   bool get isFullScreenLoading => items.isEmpty && state.isLoading;
 

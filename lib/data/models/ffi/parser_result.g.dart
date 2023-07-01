@@ -13,9 +13,8 @@ _$_ListParserItem _$$_ListParserItemFromJson(Map<String, dynamic> json) =>
       uploadTime: json['uploadTime'] as String?,
       star: (json['star'] as num?)?.toDouble(),
       imgCount: json['imgCount'] as int?,
-      previewImg: json['previewImg'] == null
-          ? null
-          : ImageRspModel.fromJson(json['previewImg'] as Map<String, dynamic>),
+      previewImg:
+          ImageRspModel.fromJson(json['previewImg'] as Map<String, dynamic>),
       language: json['language'] as String?,
       tag: json['tag'] == null
           ? null
@@ -157,9 +156,8 @@ Map<String, dynamic> _$$_GalleryParserResultCommentToJson(
 _$_GalleryParserResultItem _$$_GalleryParserResultItemFromJson(
         Map<String, dynamic> json) =>
     _$_GalleryParserResultItem(
-      previewImg: json['previewImg'] == null
-          ? null
-          : ImageRspModel.fromJson(json['previewImg'] as Map<String, dynamic>),
+      previewImg:
+          ImageRspModel.fromJson(json['previewImg'] as Map<String, dynamic>),
       target: json['target'] as String?,
     );
 

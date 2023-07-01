@@ -1,12 +1,9 @@
 import 'dart:typed_data';
-
-import 'package:catweb/data/protocol/model/model.dart';
-import 'package:catweb/gen/protobuf/model.pbserver.dart';
+import 'package:catweb/data/models/ffi/models.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/widgets/dark_image.dart';
 import 'package:catweb/utils/debug.dart';
-import 'package:catweb/utils/helper.dart';
 import 'package:dio/dio.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -50,7 +47,7 @@ class ImageLoader extends StatefulWidget {
   });
 
   final ImageListConcurrency concurrency;
-  final ImageRpcModel model;
+  final ImageRspModel model;
   final ImageWidgetBuilder? imageBuilder;
   final LoadingWidgetBuilder? loadingBuilder;
   final ErrorBuilder? errorBuilder;
@@ -125,12 +122,10 @@ class _ImageLoaderState extends State<ImageLoader> {
   Widget _defaultImageBuilder(BuildContext context, Uint8List imgData) {
     late Widget child;
 
-    if ((!model.imgX.isNaN || !model.imgY.isNaN) &&
-        model.hasWidth() &&
-        model.hasHeight()) {
+    if (model.width != null && model.height != null) {
       child = ExtendedImage(
-        width: model.width.nan2null,
-        height: model.height.nan2null,
+        width: model.width,
+        height: model.height,
         image: MemoryImage(imgData),
         loadStateChanged: (state) {
           if (state.extendedImageLoadState == LoadState.completed) {
@@ -140,17 +135,17 @@ class _ImageLoaderState extends State<ImageLoader> {
               height: model.height,
               fit: BoxFit.fill,
               sourceRect: Rect.fromLTWH(
-                model.imgX.nan2zero,
-                model.imgY.nan2zero,
-                model.width,
-                model.height,
+                model.imgX ?? 0,
+                model.imgY ?? 0,
+                model.width!,
+                model.height!,
               ),
               scale: 0.2,
             );
 
-            if (!model.width.isNaN && !model.height.isNaN) {
+            if (model.width != null && model.height != null) {
               return AspectRatio(
-                aspectRatio: model.width / model.height,
+                aspectRatio: model.width! / model.height!,
                 child: FittedBox(
                   fit: BoxFit.contain,
                   child: innerImageBuilder(context, img),
@@ -170,7 +165,7 @@ class _ImageLoaderState extends State<ImageLoader> {
 
     return widget.enableHero
         ? Hero(
-            tag: widget.model.getId(),
+            tag: widget.model.key,
             child: DarkWidget(
               child: child,
             ),
@@ -196,7 +191,8 @@ class _ImageLoaderState extends State<ImageLoader> {
     VoidCallback reload,
   ) {
     if (err is DioException) {
-      logger.e('图片网路错误: \n url: <${err.requestOptions.path}>\n path: <${err.requestOptions.path}>');
+      logger.e(
+          '图片网路错误: \n url: <${err.requestOptions.path}>\n path: <${err.requestOptions.path}>');
     } else {
       logger.e('图片加载错误', err);
     }
@@ -222,5 +218,5 @@ class _ImageLoaderState extends State<ImageLoader> {
     );
   }
 
-  ImageRpcModel get model => widget.model;
+  ImageRspModel get model => widget.model;
 }

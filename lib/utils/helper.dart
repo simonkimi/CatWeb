@@ -1,7 +1,8 @@
 import 'dart:core' as core;
 import 'dart:core';
 import 'dart:math' as math;
-import 'package:catweb/data/models/ffi/models.dart';
+import 'package:catweb/data/controller/site_service.dart';
+import 'package:catweb/data/models/site_env_model.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';
@@ -96,16 +97,6 @@ extension AnimationControllerUtils on AnimationController {
   bool get isEnd => value == 1.0;
 }
 
-extension RpcColor on ColorRspModel {
-  Color? get color {
-    return Color.fromARGB(a ?? 0xFF, r, g, b);
-  }
-
-  String get string => '#${r.toRadixString(16).padLeft(2, '0')}'
-      '${g.toRadixString(16).padLeft(2, '0')}'
-      '${b.toRadixString(16).padLeft(2, '0')}';
-}
-
 extension THas<T> on T {
   T? has(bool Function()? has) => (has?.call() ?? false) ? this : null;
 }
@@ -124,4 +115,11 @@ T? iterableMax<T extends num>(Iterable<T> iter) {
 T? iterableMin<T extends num>(Iterable<T> iter) {
   if (iter.isEmpty) return null;
   return iter.reduce(math.min);
+}
+
+extension EnvString on String {
+  String env(SiteEnvStore env) => env.apply(this);
+
+  String globalEnv() =>
+      Get.find<SiteService>().website.globalEnv.apply(this);
 }

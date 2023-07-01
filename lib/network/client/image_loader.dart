@@ -24,7 +24,7 @@ class ImageLoadModel {
 
   double get progress => _progress.value;
 
-  String get key => model.cacheKey;
+  String get key => model.cacheKey ?? model.url;
 
   bool get needLoad => _state.value.isWaiting && _handleWidget.value > 0;
 

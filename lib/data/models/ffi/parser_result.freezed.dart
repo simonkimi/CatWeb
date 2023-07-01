@@ -25,7 +25,7 @@ mixin _$ListParserResultItem {
   String? get uploadTime => throw _privateConstructorUsedError;
   double? get star => throw _privateConstructorUsedError;
   int? get imgCount => throw _privateConstructorUsedError;
-  ImageRspModel? get previewImg => throw _privateConstructorUsedError;
+  ImageRspModel get previewImg => throw _privateConstructorUsedError;
   String? get language => throw _privateConstructorUsedError;
   TagRspModel? get tag => throw _privateConstructorUsedError;
   List<TagRspModel> get badges => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ abstract class $ListParserResultItemCopyWith<$Res> {
       String? uploadTime,
       double? star,
       int? imgCount,
-      ImageRspModel? previewImg,
+      ImageRspModel previewImg,
       String? language,
       TagRspModel? tag,
       List<TagRspModel> badges,
@@ -61,7 +61,7 @@ abstract class $ListParserResultItemCopyWith<$Res> {
       String? nextPage,
       Map<String, String> env});
 
-  $ImageRspModelCopyWith<$Res>? get previewImg;
+  $ImageRspModelCopyWith<$Res> get previewImg;
   $TagRspModelCopyWith<$Res>? get tag;
 }
 
@@ -84,7 +84,7 @@ class _$ListParserResultItemCopyWithImpl<$Res,
     Object? uploadTime = freezed,
     Object? star = freezed,
     Object? imgCount = freezed,
-    Object? previewImg = freezed,
+    Object? previewImg = null,
     Object? language = freezed,
     Object? tag = freezed,
     Object? badges = null,
@@ -114,10 +114,10 @@ class _$ListParserResultItemCopyWithImpl<$Res,
           ? _value.imgCount
           : imgCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      previewImg: freezed == previewImg
+      previewImg: null == previewImg
           ? _value.previewImg
           : previewImg // ignore: cast_nullable_to_non_nullable
-              as ImageRspModel?,
+              as ImageRspModel,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -151,12 +151,8 @@ class _$ListParserResultItemCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageRspModelCopyWith<$Res>? get previewImg {
-    if (_value.previewImg == null) {
-      return null;
-    }
-
-    return $ImageRspModelCopyWith<$Res>(_value.previewImg!, (value) {
+  $ImageRspModelCopyWith<$Res> get previewImg {
+    return $ImageRspModelCopyWith<$Res>(_value.previewImg, (value) {
       return _then(_value.copyWith(previewImg: value) as $Val);
     });
   }
@@ -188,7 +184,7 @@ abstract class _$$_ListParserItemCopyWith<$Res>
       String? uploadTime,
       double? star,
       int? imgCount,
-      ImageRspModel? previewImg,
+      ImageRspModel previewImg,
       String? language,
       TagRspModel? tag,
       List<TagRspModel> badges,
@@ -198,7 +194,7 @@ abstract class _$$_ListParserItemCopyWith<$Res>
       Map<String, String> env});
 
   @override
-  $ImageRspModelCopyWith<$Res>? get previewImg;
+  $ImageRspModelCopyWith<$Res> get previewImg;
   @override
   $TagRspModelCopyWith<$Res>? get tag;
 }
@@ -219,7 +215,7 @@ class __$$_ListParserItemCopyWithImpl<$Res>
     Object? uploadTime = freezed,
     Object? star = freezed,
     Object? imgCount = freezed,
-    Object? previewImg = freezed,
+    Object? previewImg = null,
     Object? language = freezed,
     Object? tag = freezed,
     Object? badges = null,
@@ -249,10 +245,10 @@ class __$$_ListParserItemCopyWithImpl<$Res>
           ? _value.imgCount
           : imgCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      previewImg: freezed == previewImg
+      previewImg: null == previewImg
           ? _value.previewImg
           : previewImg // ignore: cast_nullable_to_non_nullable
-              as ImageRspModel?,
+              as ImageRspModel,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -319,7 +315,7 @@ class _$_ListParserItem implements _ListParserItem {
   @override
   final int? imgCount;
   @override
-  final ImageRspModel? previewImg;
+  final ImageRspModel previewImg;
   @override
   final String? language;
   @override
@@ -416,7 +412,7 @@ abstract class _ListParserItem implements ListParserResultItem {
       required final String? uploadTime,
       required final double? star,
       required final int? imgCount,
-      required final ImageRspModel? previewImg,
+      required final ImageRspModel previewImg,
       required final String? language,
       required final TagRspModel? tag,
       required final List<TagRspModel> badges,
@@ -439,7 +435,7 @@ abstract class _ListParserItem implements ListParserResultItem {
   @override
   int? get imgCount;
   @override
-  ImageRspModel? get previewImg;
+  ImageRspModel get previewImg;
   @override
   String? get language;
   @override
@@ -1649,7 +1645,7 @@ GalleryParserResultItem _$GalleryParserResultItemFromJson(
 
 /// @nodoc
 mixin _$GalleryParserResultItem {
-  ImageRspModel? get previewImg => throw _privateConstructorUsedError;
+  ImageRspModel get previewImg => throw _privateConstructorUsedError;
   String? get target => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1664,9 +1660,9 @@ abstract class $GalleryParserResultItemCopyWith<$Res> {
           $Res Function(GalleryParserResultItem) then) =
       _$GalleryParserResultItemCopyWithImpl<$Res, GalleryParserResultItem>;
   @useResult
-  $Res call({ImageRspModel? previewImg, String? target});
+  $Res call({ImageRspModel previewImg, String? target});
 
-  $ImageRspModelCopyWith<$Res>? get previewImg;
+  $ImageRspModelCopyWith<$Res> get previewImg;
 }
 
 /// @nodoc
@@ -1683,14 +1679,14 @@ class _$GalleryParserResultItemCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? previewImg = freezed,
+    Object? previewImg = null,
     Object? target = freezed,
   }) {
     return _then(_value.copyWith(
-      previewImg: freezed == previewImg
+      previewImg: null == previewImg
           ? _value.previewImg
           : previewImg // ignore: cast_nullable_to_non_nullable
-              as ImageRspModel?,
+              as ImageRspModel,
       target: freezed == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
@@ -1700,12 +1696,8 @@ class _$GalleryParserResultItemCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageRspModelCopyWith<$Res>? get previewImg {
-    if (_value.previewImg == null) {
-      return null;
-    }
-
-    return $ImageRspModelCopyWith<$Res>(_value.previewImg!, (value) {
+  $ImageRspModelCopyWith<$Res> get previewImg {
+    return $ImageRspModelCopyWith<$Res>(_value.previewImg, (value) {
       return _then(_value.copyWith(previewImg: value) as $Val);
     });
   }
@@ -1719,10 +1711,10 @@ abstract class _$$_GalleryParserResultItemCopyWith<$Res>
       __$$_GalleryParserResultItemCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ImageRspModel? previewImg, String? target});
+  $Res call({ImageRspModel previewImg, String? target});
 
   @override
-  $ImageRspModelCopyWith<$Res>? get previewImg;
+  $ImageRspModelCopyWith<$Res> get previewImg;
 }
 
 /// @nodoc
@@ -1737,14 +1729,14 @@ class __$$_GalleryParserResultItemCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? previewImg = freezed,
+    Object? previewImg = null,
     Object? target = freezed,
   }) {
     return _then(_$_GalleryParserResultItem(
-      previewImg: freezed == previewImg
+      previewImg: null == previewImg
           ? _value.previewImg
           : previewImg // ignore: cast_nullable_to_non_nullable
-              as ImageRspModel?,
+              as ImageRspModel,
       target: freezed == target
           ? _value.target
           : target // ignore: cast_nullable_to_non_nullable
@@ -1763,7 +1755,7 @@ class _$_GalleryParserResultItem extends _GalleryParserResultItem {
       _$$_GalleryParserResultItemFromJson(json);
 
   @override
-  final ImageRspModel? previewImg;
+  final ImageRspModel previewImg;
   @override
   final String? target;
 
@@ -1804,7 +1796,7 @@ class _$_GalleryParserResultItem extends _GalleryParserResultItem {
 
 abstract class _GalleryParserResultItem extends GalleryParserResultItem {
   factory _GalleryParserResultItem(
-      {required final ImageRspModel? previewImg,
+      {required final ImageRspModel previewImg,
       required final String? target}) = _$_GalleryParserResultItem;
   _GalleryParserResultItem._() : super._();
 
@@ -1812,7 +1804,7 @@ abstract class _GalleryParserResultItem extends GalleryParserResultItem {
       _$_GalleryParserResultItem.fromJson;
 
   @override
-  ImageRspModel? get previewImg;
+  ImageRspModel get previewImg;
   @override
   String? get target;
   @override

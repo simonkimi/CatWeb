@@ -21,11 +21,11 @@ ImageRspModel _$ImageRspModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ImageRspModel {
   String get url => throw _privateConstructorUsedError;
-  String get cacheKey => throw _privateConstructorUsedError;
-  double get width => throw _privateConstructorUsedError;
-  double get height => throw _privateConstructorUsedError;
-  double get imgX => throw _privateConstructorUsedError;
-  double get imgY => throw _privateConstructorUsedError;
+  String? get cacheKey => throw _privateConstructorUsedError;
+  double? get width => throw _privateConstructorUsedError;
+  double? get height => throw _privateConstructorUsedError;
+  double? get imgX => throw _privateConstructorUsedError;
+  double? get imgY => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,11 +41,11 @@ abstract class $ImageRspModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String url,
-      String cacheKey,
-      double width,
-      double height,
-      double imgX,
-      double imgY});
+      String? cacheKey,
+      double? width,
+      double? height,
+      double? imgX,
+      double? imgY});
 }
 
 /// @nodoc
@@ -62,37 +62,37 @@ class _$ImageRspModelCopyWithImpl<$Res, $Val extends ImageRspModel>
   @override
   $Res call({
     Object? url = null,
-    Object? cacheKey = null,
-    Object? width = null,
-    Object? height = null,
-    Object? imgX = null,
-    Object? imgY = null,
+    Object? cacheKey = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
+    Object? imgX = freezed,
+    Object? imgY = freezed,
   }) {
     return _then(_value.copyWith(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      cacheKey: null == cacheKey
+      cacheKey: freezed == cacheKey
           ? _value.cacheKey
           : cacheKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      width: null == width
+              as String?,
+      width: freezed == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
-              as double,
-      height: null == height
+              as double?,
+      height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as double,
-      imgX: null == imgX
+              as double?,
+      imgX: freezed == imgX
           ? _value.imgX
           : imgX // ignore: cast_nullable_to_non_nullable
-              as double,
-      imgY: null == imgY
+              as double?,
+      imgY: freezed == imgY
           ? _value.imgY
           : imgY // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
     ) as $Val);
   }
 }
@@ -107,11 +107,11 @@ abstract class _$$_ImageRspModelCopyWith<$Res>
   @useResult
   $Res call(
       {String url,
-      String cacheKey,
-      double width,
-      double height,
-      double imgX,
-      double imgY});
+      String? cacheKey,
+      double? width,
+      double? height,
+      double? imgX,
+      double? imgY});
 }
 
 /// @nodoc
@@ -126,37 +126,37 @@ class __$$_ImageRspModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? url = null,
-    Object? cacheKey = null,
-    Object? width = null,
-    Object? height = null,
-    Object? imgX = null,
-    Object? imgY = null,
+    Object? cacheKey = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
+    Object? imgX = freezed,
+    Object? imgY = freezed,
   }) {
     return _then(_$_ImageRspModel(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      cacheKey: null == cacheKey
+      cacheKey: freezed == cacheKey
           ? _value.cacheKey
           : cacheKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      width: null == width
+              as String?,
+      width: freezed == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
-              as double,
-      height: null == height
+              as double?,
+      height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as double,
-      imgX: null == imgX
+              as double?,
+      imgX: freezed == imgX
           ? _value.imgX
           : imgX // ignore: cast_nullable_to_non_nullable
-              as double,
-      imgY: null == imgY
+              as double?,
+      imgY: freezed == imgY
           ? _value.imgY
           : imgY // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
     ));
   }
 }
@@ -179,15 +179,15 @@ class _$_ImageRspModel extends _ImageRspModel {
   @override
   final String url;
   @override
-  final String cacheKey;
+  final String? cacheKey;
   @override
-  final double width;
+  final double? width;
   @override
-  final double height;
+  final double? height;
   @override
-  final double imgX;
+  final double? imgX;
   @override
-  final double imgY;
+  final double? imgY;
 
   @override
   String toString() {
@@ -230,11 +230,11 @@ class _$_ImageRspModel extends _ImageRspModel {
 abstract class _ImageRspModel extends ImageRspModel {
   factory _ImageRspModel(
       {required final String url,
-      required final String cacheKey,
-      required final double width,
-      required final double height,
-      required final double imgX,
-      required final double imgY}) = _$_ImageRspModel;
+      required final String? cacheKey,
+      required final double? width,
+      required final double? height,
+      required final double? imgX,
+      required final double? imgY}) = _$_ImageRspModel;
   _ImageRspModel._() : super._();
 
   factory _ImageRspModel.fromJson(Map<String, dynamic> json) =
@@ -243,15 +243,15 @@ abstract class _ImageRspModel extends ImageRspModel {
   @override
   String get url;
   @override
-  String get cacheKey;
+  String? get cacheKey;
   @override
-  double get width;
+  double? get width;
   @override
-  double get height;
+  double? get height;
   @override
-  double get imgX;
+  double? get imgX;
   @override
-  double get imgY;
+  double? get imgY;
   @override
   @JsonKey(ignore: true)
   _$$_ImageRspModelCopyWith<_$_ImageRspModel> get copyWith =>
@@ -265,9 +265,9 @@ ColorRspModel _$ColorRspModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ColorRspModel {
   int? get a => throw _privateConstructorUsedError;
-  int get r => throw _privateConstructorUsedError;
-  int get g => throw _privateConstructorUsedError;
-  int get b => throw _privateConstructorUsedError;
+  int? get r => throw _privateConstructorUsedError;
+  int? get g => throw _privateConstructorUsedError;
+  int? get b => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -281,7 +281,7 @@ abstract class $ColorRspModelCopyWith<$Res> {
           ColorRspModel value, $Res Function(ColorRspModel) then) =
       _$ColorRspModelCopyWithImpl<$Res, ColorRspModel>;
   @useResult
-  $Res call({int? a, int r, int g, int b});
+  $Res call({int? a, int? r, int? g, int? b});
 }
 
 /// @nodoc
@@ -298,27 +298,27 @@ class _$ColorRspModelCopyWithImpl<$Res, $Val extends ColorRspModel>
   @override
   $Res call({
     Object? a = freezed,
-    Object? r = null,
-    Object? g = null,
-    Object? b = null,
+    Object? r = freezed,
+    Object? g = freezed,
+    Object? b = freezed,
   }) {
     return _then(_value.copyWith(
       a: freezed == a
           ? _value.a
           : a // ignore: cast_nullable_to_non_nullable
               as int?,
-      r: null == r
+      r: freezed == r
           ? _value.r
           : r // ignore: cast_nullable_to_non_nullable
-              as int,
-      g: null == g
+              as int?,
+      g: freezed == g
           ? _value.g
           : g // ignore: cast_nullable_to_non_nullable
-              as int,
-      b: null == b
+              as int?,
+      b: freezed == b
           ? _value.b
           : b // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -331,7 +331,7 @@ abstract class _$$_ColorRspModelCopyWith<$Res>
       __$$_ColorRspModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? a, int r, int g, int b});
+  $Res call({int? a, int? r, int? g, int? b});
 }
 
 /// @nodoc
@@ -346,27 +346,27 @@ class __$$_ColorRspModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? a = freezed,
-    Object? r = null,
-    Object? g = null,
-    Object? b = null,
+    Object? r = freezed,
+    Object? g = freezed,
+    Object? b = freezed,
   }) {
     return _then(_$_ColorRspModel(
       a: freezed == a
           ? _value.a
           : a // ignore: cast_nullable_to_non_nullable
               as int?,
-      r: null == r
+      r: freezed == r
           ? _value.r
           : r // ignore: cast_nullable_to_non_nullable
-              as int,
-      g: null == g
+              as int?,
+      g: freezed == g
           ? _value.g
           : g // ignore: cast_nullable_to_non_nullable
-              as int,
-      b: null == b
+              as int?,
+      b: freezed == b
           ? _value.b
           : b // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -384,16 +384,11 @@ class _$_ColorRspModel extends _ColorRspModel {
   @override
   final int? a;
   @override
-  final int r;
+  final int? r;
   @override
-  final int g;
+  final int? g;
   @override
-  final int b;
-
-  @override
-  String toString() {
-    return 'ColorRspModel(a: $a, r: $r, g: $g, b: $b)';
-  }
+  final int? b;
 
   @override
   bool operator ==(dynamic other) {
@@ -427,9 +422,9 @@ class _$_ColorRspModel extends _ColorRspModel {
 abstract class _ColorRspModel extends ColorRspModel {
   factory _ColorRspModel(
       {required final int? a,
-      required final int r,
-      required final int g,
-      required final int b}) = _$_ColorRspModel;
+      required final int? r,
+      required final int? g,
+      required final int? b}) = _$_ColorRspModel;
   _ColorRspModel._() : super._();
 
   factory _ColorRspModel.fromJson(Map<String, dynamic> json) =
@@ -438,11 +433,11 @@ abstract class _ColorRspModel extends ColorRspModel {
   @override
   int? get a;
   @override
-  int get r;
+  int? get r;
   @override
-  int get g;
+  int? get g;
   @override
-  int get b;
+  int? get b;
   @override
   @JsonKey(ignore: true)
   _$$_ColorRspModelCopyWith<_$_ColorRspModel> get copyWith =>
@@ -455,9 +450,9 @@ TagRspModel _$TagRspModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TagRspModel {
-  String get text => throw _privateConstructorUsedError;
-  ColorRspModel get color => throw _privateConstructorUsedError;
-  String get category => throw _privateConstructorUsedError;
+  String? get text => throw _privateConstructorUsedError;
+  ColorRspModel? get color => throw _privateConstructorUsedError;
+  String? get category => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -471,9 +466,9 @@ abstract class $TagRspModelCopyWith<$Res> {
           TagRspModel value, $Res Function(TagRspModel) then) =
       _$TagRspModelCopyWithImpl<$Res, TagRspModel>;
   @useResult
-  $Res call({String text, ColorRspModel color, String category});
+  $Res call({String? text, ColorRspModel? color, String? category});
 
-  $ColorRspModelCopyWith<$Res> get color;
+  $ColorRspModelCopyWith<$Res>? get color;
 }
 
 /// @nodoc
@@ -489,30 +484,34 @@ class _$TagRspModelCopyWithImpl<$Res, $Val extends TagRspModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = null,
-    Object? color = null,
-    Object? category = null,
+    Object? text = freezed,
+    Object? color = freezed,
+    Object? category = freezed,
   }) {
     return _then(_value.copyWith(
-      text: null == text
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      color: null == color
+              as String?,
+      color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as ColorRspModel,
-      category: null == category
+              as ColorRspModel?,
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorRspModelCopyWith<$Res> get color {
-    return $ColorRspModelCopyWith<$Res>(_value.color, (value) {
+  $ColorRspModelCopyWith<$Res>? get color {
+    if (_value.color == null) {
+      return null;
+    }
+
+    return $ColorRspModelCopyWith<$Res>(_value.color!, (value) {
       return _then(_value.copyWith(color: value) as $Val);
     });
   }
@@ -526,10 +525,10 @@ abstract class _$$_TagRspModelCopyWith<$Res>
       __$$_TagRspModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String text, ColorRspModel color, String category});
+  $Res call({String? text, ColorRspModel? color, String? category});
 
   @override
-  $ColorRspModelCopyWith<$Res> get color;
+  $ColorRspModelCopyWith<$Res>? get color;
 }
 
 /// @nodoc
@@ -543,23 +542,23 @@ class __$$_TagRspModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = null,
-    Object? color = null,
-    Object? category = null,
+    Object? text = freezed,
+    Object? color = freezed,
+    Object? category = freezed,
   }) {
     return _then(_$_TagRspModel(
-      text: null == text
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      color: null == color
+              as String?,
+      color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as ColorRspModel,
-      category: null == category
+              as ColorRspModel?,
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -575,11 +574,11 @@ class _$_TagRspModel extends _TagRspModel {
       _$$_TagRspModelFromJson(json);
 
   @override
-  final String text;
+  final String? text;
   @override
-  final ColorRspModel color;
+  final ColorRspModel? color;
   @override
-  final String category;
+  final String? category;
 
   @override
   String toString() {
@@ -617,20 +616,20 @@ class _$_TagRspModel extends _TagRspModel {
 
 abstract class _TagRspModel extends TagRspModel {
   factory _TagRspModel(
-      {required final String text,
-      required final ColorRspModel color,
-      required final String category}) = _$_TagRspModel;
+      {required final String? text,
+      required final ColorRspModel? color,
+      required final String? category}) = _$_TagRspModel;
   _TagRspModel._() : super._();
 
   factory _TagRspModel.fromJson(Map<String, dynamic> json) =
       _$_TagRspModel.fromJson;
 
   @override
-  String get text;
+  String? get text;
   @override
-  ColorRspModel get color;
+  ColorRspModel? get color;
   @override
-  String get category;
+  String? get category;
   @override
   @JsonKey(ignore: true)
   _$$_TagRspModelCopyWith<_$_TagRspModel> get copyWith =>
