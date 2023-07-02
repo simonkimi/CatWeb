@@ -3,14 +3,26 @@ import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser_tile.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
-class ListParserEditor extends StatelessWidget {
-  ListParserEditor({Key? key}) : super(key: key);
+class ListParserEditor extends StatefulWidget {
+  ListParserEditor({Key? key, ListViewParser? parser})
+      : parser = parser ?? ListViewParser(name: '列表', uuid: ''),
+        super(key: key);
 
-  final Rx<ListViewParser> rxModel = ListViewParser(name: '列表', uuid: '').obs;
+  final ListViewParser parser;
 
-  ListViewParser get model => rxModel.value;
+  @override
+  State<StatefulWidget> createState() => _ListParserEditorState();
+}
+
+class _ListParserEditorState extends State<ListParserEditor> {
+  late ListViewParser model;
+
+  @override
+  void initState() {
+    model = widget.parser;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,23 +45,23 @@ class ListParserEditor extends StatelessWidget {
       const SettingGroupTitle('标志位'),
       SettingGroupWidget(
         children: [
-          Obx(() => ParserTile(
-                title: '请求成功',
-                selector: model.successSelector,
-                onlySelector: true,
-                onChanged: (value) {
-                  rxModel(model.copyWith(successSelector: value));
-                },
-              )),
+          ParserTile(
+            title: '请求成功',
+            selector: model.successSelector,
+            onlySelector: true,
+            onChanged: (value) {
+              setState(() => model.successSelector = value);
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '请求失败',
-                selector: model.failedSelector,
-                onlySelector: true,
-                onChanged: (value) {
-                  rxModel(model.copyWith(failedSelector: value));
-                },
-              )),
+          ParserTile(
+            title: '请求失败',
+            selector: model.failedSelector,
+            onlySelector: true,
+            onChanged: (value) {
+              setState(() => model.failedSelector = value);
+            },
+          ),
         ],
       ),
     ];
@@ -60,14 +72,14 @@ class ListParserEditor extends StatelessWidget {
       const SettingGroupTitle('索引'),
       SettingGroupWidget(
         children: [
-          Obx(() => ParserTile(
-                title: '下一面地址',
-                selector: model.nextPage,
-                onlySelector: true,
-                onChanged: (value) {
-                  rxModel(model.copyWith(nextPage: value));
-                },
-              )),
+          ParserTile(
+            title: '下一面地址',
+            selector: model.nextPage,
+            onlySelector: true,
+            onChanged: (value) {
+              setState(() => model.nextPage = value);
+            },
+          ),
           const SettingDivider(),
         ],
       ),
@@ -79,22 +91,22 @@ class ListParserEditor extends StatelessWidget {
       const SettingGroupTitle('徽章'),
       SettingGroupWidget(
         children: [
-          Obx(() => ParserTile(
-                title: '徽章选择器',
-                selector: model.badgeText,
-                onlySelector: true,
-                onChanged: (value) {
-                  rxModel(model.copyWith(badgeText: value));
-                },
-              )),
+          ParserTile(
+            title: '徽章选择器',
+            selector: model.badgeText,
+            onlySelector: true,
+            onChanged: (value) {
+              setState(() => model.badgeText = value);
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '徽章颜色',
-                selector: model.badgeColor,
-                onChanged: (value) {
-                  rxModel(model.copyWith(badgeColor: value));
-                },
-              )),
+          ParserTile(
+            title: '徽章颜色',
+            selector: model.badgeColor,
+            onChanged: (value) {
+              setState(() => model.badgeColor = value);
+            },
+          ),
         ],
       ),
     ];
@@ -105,22 +117,22 @@ class ListParserEditor extends StatelessWidget {
       const SettingGroupTitle('标签'),
       SettingGroupWidget(
         children: [
-          Obx(() => ParserTile(
-                title: '标签选择器',
-                selector: model.tag,
-                onlySelector: true,
-                onChanged: (value) {
-                  rxModel(model.copyWith(tag: value));
-                },
-              )),
+          ParserTile(
+            title: '标签选择器',
+            selector: model.tag,
+            onlySelector: true,
+            onChanged: (value) {
+              setState(() => model.tag = value);
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '标签颜色',
-                selector: model.tagColor,
-                onChanged: (value) {
-                  rxModel(model.copyWith(tagColor: value));
-                },
-              )),
+          ParserTile(
+            title: '标签颜色',
+            selector: model.tagColor,
+            onChanged: (value) {
+              setState(() => model.tagColor = value);
+            },
+          ),
         ],
       ),
     ];
@@ -131,62 +143,56 @@ class ListParserEditor extends StatelessWidget {
       const SettingGroupTitle('封面设置'),
       SettingGroupWidget(
         children: [
-          Obx(() => ParserTile(
-                title: '封面地址',
-                selector: model.previewImg.imgUrl,
-                onChanged: (value) {
-                  rxModel(model.copyWith(
-                      previewImg: model.previewImg.copyWith(
-                    imgUrl: value,
-                  )));
-                },
-              )),
+          ParserTile(
+            title: '封面地址',
+            selector: model.previewImg.imgUrl,
+            onChanged: (value) {
+              setState(() => model.previewImg = model.previewImg.copyWith(imgUrl: value));
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '封面宽度',
-                selector: model.previewImg.imgWidth,
-                onChanged: (value) {
-                  rxModel(model.copyWith(
-                      previewImg: model.previewImg.copyWith(
-                    imgWidth: value,
-                  )));
-                },
-              )),
+          ParserTile(
+            title: '封面宽度',
+            selector: model.previewImg.imgWidth,
+            onChanged: (value) {
+              // setState(() => model.previewImg.imgWidth = value);
+              setState(() {
+                model.previewImg = model.previewImg.copyWith(imgWidth: value);
+              });
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '封面高度',
-                selector: model.previewImg.imgHeight,
-                onChanged: (value) {
-                  rxModel(model.copyWith(
-                      previewImg: model.previewImg.copyWith(
-                    imgHeight: value,
-                  )));
-                },
-              )),
+          ParserTile(
+            title: '封面高度',
+            selector: model.previewImg.imgHeight,
+            onChanged: (value) {
+              setState(() {
+                model.previewImg = model.previewImg.copyWith(imgHeight: value);
+              });
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '封面X偏移',
-                selector: model.previewImg.imgX,
-                onlySelector: true,
-                onChanged: (value) {
-                  rxModel(model.copyWith(
-                      previewImg: model.previewImg.copyWith(
-                    imgX: value,
-                  )));
-                },
-              )),
+          ParserTile(
+            title: '封面X偏移',
+            selector: model.previewImg.imgX,
+            onlySelector: true,
+            onChanged: (value) {
+              setState(() {
+                model.previewImg = model.previewImg.copyWith(imgX: value);
+              });
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '封面Y偏移',
-                selector: model.previewImg.imgY,
-                onlySelector: true,
-                onChanged: (value) {
-                  rxModel(model.copyWith(
-                      previewImg: model.previewImg.copyWith(
-                    imgY: value,
-                  )));
-                },
-              )),
+          ParserTile(
+            title: '封面Y偏移',
+            selector: model.previewImg.imgY,
+            onlySelector: true,
+            onChanged: (value) {
+              setState(() {
+                model.previewImg = model.previewImg.copyWith(imgY: value);
+              });
+            },
+          ),
         ],
       ),
     ];
@@ -197,14 +203,14 @@ class ListParserEditor extends StatelessWidget {
       const SettingGroupTitle('基础信息'),
       SettingGroupWidget(
         children: [
-          Obx(() => ParserTile(
-                title: '项目选择器',
-                selector: model.itemSelector,
-                onlySelector: true,
-                onChanged: (value) {
-                  rxModel(model.copyWith(itemSelector: value));
-                },
-              )),
+          ParserTile(
+            title: '项目选择器',
+            selector: model.itemSelector,
+            onlySelector: true,
+            onChanged: (value) {
+              setState(() => model.itemSelector = value);
+            },
+          ),
         ],
       ),
     ];
@@ -215,61 +221,61 @@ class ListParserEditor extends StatelessWidget {
       const SettingGroupTitle('信息设置'),
       SettingGroupWidget(
         children: [
-          Obx(() => ParserTile(
-                title: 'idCode',
-                selector: model.idCode,
-                onChanged: (value) {
-                  rxModel(model.copyWith(idCode: value));
-                },
-              )),
+          ParserTile(
+            title: 'idCode',
+            selector: model.idCode,
+            onChanged: (value) {
+              setState(() => model.idCode = value);
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '标题',
-                selector: model.title,
-                onChanged: (value) {
-                  rxModel(model.copyWith(title: value));
-                },
-              )),
+          ParserTile(
+            title: '标题',
+            selector: model.title,
+            onChanged: (value) {
+              setState(() => model.title = value);
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '副标题',
-                selector: model.subtitle,
-                onChanged: (value) {
-                  rxModel(model.copyWith(subtitle: value));
-                },
-              )),
+          ParserTile(
+            title: '副标题',
+            selector: model.subtitle,
+            onChanged: (value) {
+              setState(() => model.subtitle = value);
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '上传时间',
-                selector: model.uploadTime,
-                onChanged: (value) {
-                  rxModel(model.copyWith(uploadTime: value));
-                },
-              )),
+          ParserTile(
+            title: '上传时间',
+            selector: model.uploadTime,
+            onChanged: (value) {
+              setState(() => model.uploadTime = value);
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '评分',
-                selector: model.star,
-                onChanged: (value) {
-                  rxModel(model.copyWith(star: value));
-                },
-              )),
+          ParserTile(
+            title: '评分',
+            selector: model.star,
+            onChanged: (value) {
+              setState(() => model.star = value);
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '面数',
-                selector: model.imgCount,
-                onChanged: (value) {
-                  rxModel(model.copyWith(imgCount: value));
-                },
-              )),
+          ParserTile(
+            title: '面数',
+            selector: model.imgCount,
+            onChanged: (value) {
+              setState(() => model.imgCount = value);
+            },
+          ),
           const SettingDivider(),
-          Obx(() => ParserTile(
-                title: '语言',
-                selector: model.language,
-                onChanged: (value) {
-                  rxModel(model.copyWith(language: value));
-                },
-              )),
+          ParserTile(
+            title: '语言',
+            selector: model.language,
+            onChanged: (value) {
+              setState(() => model.language = value);
+            },
+          ),
         ],
       ),
     ];

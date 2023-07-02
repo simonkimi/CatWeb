@@ -3,11 +3,13 @@ import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
 
-class RulesAdvance extends GetView<RulesEditController> {
+class RulesAdvance extends HookWidget {
   const RulesAdvance({
     super.key,
   });
@@ -16,6 +18,14 @@ class RulesAdvance extends GetView<RulesEditController> {
   Widget build(BuildContext context) {
     final headerController = SwipeActionController();
     final cookieController = SwipeActionController();
+
+    final c = Get.find<RulesEditController>();
+    final model = useState(c.blueprint);
+
+    useEffect(() {
+      return () => c.updateBlueMap(model.value);
+    });
+
     return ListView(
       padding: const EdgeInsets.symmetric(vertical: 10),
       children: [
@@ -31,23 +41,24 @@ class RulesAdvance extends GetView<RulesEditController> {
           ),
           child: Column(
             children: [
-              Obx(() => Column(
-                    children:
-                        controller.blueprint.headers.asMap().entries.map((e) {
-                      return Obx(() => CupertinoDeletableTile(
-                          index: e.key,
-                          controller: headerController,
-                          text: '${e.value.reg}: ${e.value.value}',
-                          onDelete: (index) {
-                            controller.blueprint.headers.removeAt(index);
-                          },
-                          onTap: () async {
-                            var newReg = await _editRegField(context, e.value);
-                            controller.blueprint.headers.removeAt(e.key);
-                            controller.blueprint.headers.insert(e.key, newReg);
-                          }));
-                    }).toList(),
-                  )),
+              Column(
+                children: model.value.headers.asMap().entries.map((e) {
+                  return Obx(() => CupertinoDeletableTile(
+                      index: e.key,
+                      controller: headerController,
+                      text: '${e.value.reg}: ${e.value.value}',
+                      onDelete: (index) {
+                        model.value = model.value.copyWith(
+                            headers: model.value.headers.exceptAt(index));
+                      },
+                      onTap: () async {
+                        var newReg = await _editRegField(context, e.value);
+                        model.value = model.value.copyWith(
+                            headers: [...model.value.headers]
+                              ..replaceRange(e.key, e.key + 1, [newReg]));
+                      }));
+                }).toList(),
+              ),
               CupertinoClassicalListTile(
                 icon: Icon(
                   CupertinoIcons.add_circled_solid,
@@ -55,8 +66,10 @@ class RulesAdvance extends GetView<RulesEditController> {
                 ),
                 text: I.of(context).add,
                 onTap: () {
-                  controller.blueprint.headers
-                      .add(const RegField(reg: '*', value: ''));
+                  model.value = model.value.copyWith(headers: [
+                    ...model.value.headers,
+                    const RegField(reg: '*', value: '')
+                  ], cookies: model.value.cookies);
                 },
               ),
             ],
@@ -75,24 +88,24 @@ class RulesAdvance extends GetView<RulesEditController> {
           ),
           child: Column(
             children: [
-              Obx(() => Column(
-                    children:
-                        controller.blueprint.cookies.asMap().entries.map((e) {
-                      return Obx(() => CupertinoDeletableTile(
-                          index: e.key,
-                          controller: cookieController,
-                          text:
-                              '${e.value.reg.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
-                          onDelete: (index) {
-                            controller.blueprint.cookies.removeAt(index);
-                          },
-                          onTap: () async {
-                            var newReg = await _editRegField(context, e.value);
-                            controller.blueprint.headers.removeAt(e.key);
-                            controller.blueprint.headers.insert(e.key, newReg);
-                          }));
-                    }).toList(),
-                  )),
+              Column(
+                children: model.value.cookies.asMap().entries.map((e) {
+                  return CupertinoDeletableTile(
+                      index: e.key,
+                      controller: cookieController,
+                      text:
+                      '${e.value.reg.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
+                      onDelete: (index) {
+                        model.value.cookies =
+                            model.value.cookies.exceptAt(index);
+                      },
+                      onTap: () async {
+                        var newReg = await _editRegField(context, e.value);
+                        model.value.cookies = [...model.value.cookies]
+                          ..replaceRange(e.key, e.key + 1, [newReg]);
+                      });
+                }).toList(),
+              ),
               CupertinoClassicalListTile(
                 icon: Icon(
                   CupertinoIcons.add_circled_solid,
@@ -100,9 +113,10 @@ class RulesAdvance extends GetView<RulesEditController> {
                 ),
                 text: I.of(context).add,
                 onTap: () {
-                  controller.blueprint.cookies.add(
-                    const RegField(reg: '*', value: ''),
-                  );
+                  model.value = model.value.copyWith(cookies: [
+                    ...model.value.cookies,
+                    const RegField(reg: '*', value: '')
+                  ], headers: model.value.headers);
                 },
               ),
             ],

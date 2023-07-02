@@ -3,15 +3,26 @@ import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser_tile.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
-class NewImageParserEditor extends StatelessWidget {
-  NewImageParserEditor({Key? key}) : super(key: key);
+class NewImageParserEditor extends StatefulWidget {
+  NewImageParserEditor({Key? key, ImageReaderParser? parser})
+      : parser = parser ?? ImageReaderParser(name: '列表', uuid: ''),
+        super(key: key);
 
-  final Rx<ImageReaderParser> rxModel =
-      ImageReaderParser(name: '列表', uuid: '').obs;
+  final ImageReaderParser parser;
 
-  ImageReaderParser get model => rxModel.value;
+  @override
+  State<NewImageParserEditor> createState() => _NewImageParserEditorState();
+}
+
+class _NewImageParserEditorState extends State<NewImageParserEditor> {
+  late ImageReaderParser model;
+
+  @override
+  void initState() {
+    model = widget.parser;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,48 +40,50 @@ class NewImageParserEditor extends StatelessWidget {
     return [
       const SizedBox(height: 5),
       const SettingGroupTitle('缩略图'),
-      Obx(() => ParserTile(
-            title: '图片地址',
-            selector: model.image.imgUrl,
-            onChanged: (value) {
-              rxModel(
-                  model.copyWith(image: model.image.copyWith(imgUrl: value)));
-            },
-          )),
+      ParserTile(
+        title: '图片地址',
+        selector: model.image.imgUrl,
+        onChanged: (value) {
+          // setState(() => model.image.imgUrl = value);
+          setState(() => model.image = model.image.copyWith(imgUrl: value));
+        },
+      ),
       const SettingDivider(),
-      Obx(() => ParserTile(
-            title: '图片宽度',
-            selector: model.image.imgWidth,
-            onChanged: (value) {
-              rxModel(
-                  model.copyWith(image: model.image.copyWith(imgWidth: value)));
-            },
-          )),
+      ParserTile(
+        title: '图片宽度',
+        selector: model.image.imgWidth,
+        onChanged: (value) {
+          // setState(() => model.image.imgWidth = value);
+          setState(() => model.image = model.image.copyWith(imgWidth: value));
+        },
+      ),
       const SettingDivider(),
-      Obx(() => ParserTile(
-            title: '图片高度',
-            selector: model.image.imgHeight,
-            onChanged: (value) {
-              rxModel(model.copyWith(
-                  image: model.image.copyWith(imgHeight: value)));
-            },
-          )),
+      ParserTile(
+        title: '图片高度',
+        selector: model.image.imgHeight,
+        onChanged: (value) {
+          // setState(() => model.image.imgHeight = value);
+          setState(() => model.image = model.image.copyWith(imgHeight: value));
+        },
+      ),
       const SettingDivider(),
-      Obx(() => ParserTile(
-            title: '图片X偏移',
-            selector: model.image.imgX,
-            onChanged: (value) {
-              rxModel(model.copyWith(image: model.image.copyWith(imgX: value)));
-            },
-          )),
+      ParserTile(
+        title: '图片X偏移',
+        selector: model.image.imgX,
+        onChanged: (value) {
+          // setState(() => model.image.imgX = value);
+          setState(() => model.image = model.image.copyWith(imgX: value));
+        },
+      ),
       const SettingDivider(),
-      Obx(() => ParserTile(
-            title: '图片Y偏移',
-            selector: model.image.imgY,
-            onChanged: (value) {
-              rxModel(model.copyWith(image: model.image.copyWith(imgY: value)));
-            },
-          )),
+      ParserTile(
+        title: '图片Y偏移',
+        selector: model.image.imgY,
+        onChanged: (value) {
+          // setState(() => model.image.imgY = value);
+          setState(() => model.image = model.image.copyWith(imgY: value));
+        },
+      ),
     ];
   }
 
@@ -78,53 +91,53 @@ class NewImageParserEditor extends StatelessWidget {
     return [
       const SizedBox(height: 5),
       const SettingGroupTitle('图片信息'),
-      Obx(() => ParserTile(
-            title: '大图地址',
-            selector: model.largerImage,
-            onChanged: (value) {
-              rxModel(model.copyWith(largerImage: value));
-            },
-          )),
+      ParserTile(
+        title: '大图地址',
+        selector: model.largerImage,
+        onChanged: (value) {
+          setState(() => model.largerImage = value);
+        },
+      ),
       const SettingDivider(),
-      Obx(() => ParserTile(
-            title: '原图地址',
-            selector: model.rawImage,
-            onChanged: (value) {
-              rxModel(model.copyWith(rawImage: value));
-            },
-          )),
+      ParserTile(
+        title: '原图地址',
+        selector: model.rawImage,
+        onChanged: (value) {
+          setState(() => model.rawImage = value);
+        },
+      ),
       const SettingDivider(),
-      Obx(() => ParserTile(
-            title: '级别',
-            selector: model.rating,
-            onChanged: (value) {
-              rxModel(model.copyWith(rating: value));
-            },
-          )),
+      ParserTile(
+        title: '级别',
+        selector: model.rating,
+        onChanged: (value) {
+          setState(() => model.rating = value);
+        },
+      ),
       const SettingDivider(),
-      Obx(() => ParserTile(
-            title: '评分',
-            selector: model.score,
-            onChanged: (value) {
-              rxModel(model.copyWith(score: value));
-            },
-          )),
+      ParserTile(
+        title: '评分',
+        selector: model.score,
+        onChanged: (value) {
+          setState(() => model.score = value);
+        },
+      ),
       const SettingDivider(),
-      Obx(() => ParserTile(
-            title: '来源',
-            selector: model.source,
-            onChanged: (value) {
-              rxModel(model.copyWith(source: value));
-            },
-          )),
+      ParserTile(
+        title: '来源',
+        selector: model.source,
+        onChanged: (value) {
+          setState(() => model.source = value);
+        },
+      ),
       const SettingDivider(),
-      Obx(() => ParserTile(
-            title: '上传时间',
-            selector: model.uploadTime,
-            onChanged: (value) {
-              rxModel(model.copyWith(uploadTime: value));
-            },
-          )),
+      ParserTile(
+        title: '上传时间',
+        selector: model.uploadTime,
+        onChanged: (value) {
+          setState(() => model.uploadTime = value);
+        },
+      ),
     ];
   }
 
@@ -132,29 +145,29 @@ class NewImageParserEditor extends StatelessWidget {
     return [
       const SizedBox(height: 5),
       const SettingGroupTitle('标签'),
-      Obx(() => ParserTile(
-            title: '标签项目',
-            selector: model.badgeSelector,
-            onChanged: (value) {
-              rxModel(model.copyWith(badgeSelector: value));
-            },
-          )),
+      ParserTile(
+        title: '标签项目',
+        selector: model.badgeSelector,
+        onChanged: (value) {
+          setState(() => model.badgeSelector = value);
+        },
+      ),
       const SettingDivider(),
-      Obx(() => ParserTile(
-            title: '徽章内容',
-            selector: model.badgeText,
-            onChanged: (value) {
-              rxModel(model.copyWith(badgeText: value));
-            },
-          )),
+      ParserTile(
+        title: '徽章内容',
+        selector: model.badgeText,
+        onChanged: (value) {
+          setState(() => model.badgeText = value);
+        },
+      ),
       const SettingDivider(),
-      Obx(() => ParserTile(
-            title: '徽章类型',
-            selector: model.badgeCategory,
-            onChanged: (value) {
-              rxModel(model.copyWith(badgeCategory: value));
-            },
-          )),
+      ParserTile(
+        title: '徽章类型',
+        selector: model.badgeCategory,
+        onChanged: (value) {
+          setState(() => model.badgeCategory = value);
+        },
+      ),
     ];
   }
 }

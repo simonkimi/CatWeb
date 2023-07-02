@@ -39,36 +39,34 @@ class _ExtraParserEditorState extends State<ExtraParserEditor> {
       child: ListView(
         children: [
           ...extra
-              .map(
-                (e) => CupertinoCardTile(
-                  title: Text(e.id),
-                  trailing: const Icon(Icons.more_horiz_outlined),
-                  onTap: () {
-                    showCupertinoModalSheet(
-                      context: context,
-                      builder: (context) => SelectorEditor(
-                        onChanged: (selector) {
-                          setState(() {
-                            extra[extra.indexOf(e)] = e.copyWith(
-                              selector: selector,
-                            );
-                          });
-                          _updateResource();
-                        },
-                        onExtraChanged: (newExtra) {
-                          setState(() {
-                            extra[extra.indexOf(e)] = newExtra;
-                          });
-                          _updateResource();
-                        },
-                        extraSelector: e,
-                        title: e.id,
-                      ),
-                    );
-                  },
-                  onTrailingTap: () {},
-                ),
-              )
+              .map((e) => CupertinoCardTile(
+                    title: Text(e.id),
+                    trailing: const Icon(Icons.more_horiz_outlined),
+                    onTap: () {
+                      showCupertinoModalSheet(
+                        context: context,
+                        builder: (context) => SelectorEditor(
+                          onChanged: (selector) {
+                            setState(() {
+                              extra[extra.indexOf(e)] = e.copyWith(
+                                selector: selector,
+                              );
+                            });
+                            _updateResource();
+                          },
+                          onExtraChanged: (newExtra) {
+                            setState(() {
+                              extra[extra.indexOf(e)] = newExtra;
+                            });
+                            _updateResource();
+                          },
+                          extraSelector: e,
+                          title: e.id,
+                        ),
+                      );
+                    },
+                    onTrailingTap: () {},
+                  ))
               .toList(),
           CupertinoCardTile(
             title: const Text('添加规则'),
