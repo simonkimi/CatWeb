@@ -17,6 +17,9 @@ _$_ImageReaderParser _$$_ImageReaderParserFromJson(Map<String, dynamic> json) =>
               ?.map((e) => ExtraSelector.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      id: json['id'] == null
+          ? const Selector()
+          : Selector.fromJson(json['id'] as Map<String, dynamic>),
       image: json['image'] == null
           ? const ImageSelector()
           : ImageSelector.fromJson(json['image'] as Map<String, dynamic>),
@@ -62,6 +65,7 @@ Map<String, dynamic> _$$_ImageReaderParserToJson(
       'name': instance.name,
       'uuid': instance.uuid,
       'extra': instance.extra,
+      'id': instance.id,
       'image': instance.image,
       'largerImage': instance.largerImage,
       'rawImage': instance.rawImage,

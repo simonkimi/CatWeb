@@ -31,6 +31,15 @@ class ColorField with _$ColorField {
   factory ColorField.fromJson(Map<String, dynamic> json) =>
       _$ColorFieldFromJson(json);
 
+  factory ColorField.fromColor(Color color) {
+    return ColorField(
+      a: color.alpha,
+      r: color.red,
+      g: color.green,
+      b: color.blue,
+    );
+  }
+
   @override
   String toString() {
     return '#${r.toRadixString(16).padLeft(2, '0')}${g.toRadixString(16).padLeft(2, '0')}${b.toRadixString(16).padLeft(2, '0')}';

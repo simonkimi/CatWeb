@@ -30,6 +30,8 @@ mixin _$ImageReaderParser {
   set uuid(String value) => throw _privateConstructorUsedError;
   List<ExtraSelector> get extra => throw _privateConstructorUsedError;
   set extra(List<ExtraSelector> value) => throw _privateConstructorUsedError;
+  Selector get id => throw _privateConstructorUsedError;
+  set id(Selector value) => throw _privateConstructorUsedError;
   ImageSelector get image => throw _privateConstructorUsedError;
   set image(ImageSelector value) => throw _privateConstructorUsedError;
   Selector get largerImage => throw _privateConstructorUsedError;
@@ -73,6 +75,7 @@ abstract class $ImageReaderParserCopyWith<$Res> {
       String name,
       String uuid,
       List<ExtraSelector> extra,
+      Selector id,
       ImageSelector image,
       Selector largerImage,
       Selector rawImage,
@@ -86,6 +89,7 @@ abstract class $ImageReaderParserCopyWith<$Res> {
       Selector badgeText,
       Selector badgeCategory});
 
+  $SelectorCopyWith<$Res> get id;
   $ImageSelectorCopyWith<$Res> get image;
   $SelectorCopyWith<$Res> get largerImage;
   $SelectorCopyWith<$Res> get rawImage;
@@ -117,6 +121,7 @@ class _$ImageReaderParserCopyWithImpl<$Res, $Val extends ImageReaderParser>
     Object? name = null,
     Object? uuid = null,
     Object? extra = null,
+    Object? id = null,
     Object? image = null,
     Object? largerImage = null,
     Object? rawImage = null,
@@ -147,6 +152,10 @@ class _$ImageReaderParserCopyWithImpl<$Res, $Val extends ImageReaderParser>
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
               as List<ExtraSelector>,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as Selector,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -196,6 +205,14 @@ class _$ImageReaderParserCopyWithImpl<$Res, $Val extends ImageReaderParser>
           : badgeCategory // ignore: cast_nullable_to_non_nullable
               as Selector,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorCopyWith<$Res> get id {
+    return $SelectorCopyWith<$Res>(_value.id, (value) {
+      return _then(_value.copyWith(id: value) as $Val);
+    });
   }
 
   @override
@@ -309,6 +326,7 @@ abstract class _$$_ImageReaderParserCopyWith<$Res>
       String name,
       String uuid,
       List<ExtraSelector> extra,
+      Selector id,
       ImageSelector image,
       Selector largerImage,
       Selector rawImage,
@@ -322,6 +340,8 @@ abstract class _$$_ImageReaderParserCopyWith<$Res>
       Selector badgeText,
       Selector badgeCategory});
 
+  @override
+  $SelectorCopyWith<$Res> get id;
   @override
   $ImageSelectorCopyWith<$Res> get image;
   @override
@@ -363,6 +383,7 @@ class __$$_ImageReaderParserCopyWithImpl<$Res>
     Object? name = null,
     Object? uuid = null,
     Object? extra = null,
+    Object? id = null,
     Object? image = null,
     Object? largerImage = null,
     Object? rawImage = null,
@@ -393,6 +414,10 @@ class __$$_ImageReaderParserCopyWithImpl<$Res>
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
               as List<ExtraSelector>,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as Selector,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -454,6 +479,7 @@ class _$_ImageReaderParser extends _ImageReaderParser {
       required this.name,
       required this.uuid,
       this.extra = const [],
+      this.id = const Selector(),
       this.image = const ImageSelector(),
       this.largerImage = const Selector(),
       this.rawImage = const Selector(),
@@ -483,6 +509,9 @@ class _$_ImageReaderParser extends _ImageReaderParser {
   @override
   @JsonKey()
   List<ExtraSelector> extra;
+  @override
+  @JsonKey()
+  Selector id;
   @override
   @JsonKey()
   ImageSelector image;
@@ -522,7 +551,7 @@ class _$_ImageReaderParser extends _ImageReaderParser {
 
   @override
   String toString() {
-    return 'ImageReaderParser(parserType: $parserType, name: $name, uuid: $uuid, extra: $extra, image: $image, largerImage: $largerImage, rawImage: $rawImage, rating: $rating, score: $score, source: $source, uploadTime: $uploadTime, successSelector: $successSelector, failedSelector: $failedSelector, badgeSelector: $badgeSelector, badgeText: $badgeText, badgeCategory: $badgeCategory)';
+    return 'ImageReaderParser(parserType: $parserType, name: $name, uuid: $uuid, extra: $extra, id: $id, image: $image, largerImage: $largerImage, rawImage: $rawImage, rating: $rating, score: $score, source: $source, uploadTime: $uploadTime, successSelector: $successSelector, failedSelector: $failedSelector, badgeSelector: $badgeSelector, badgeText: $badgeText, badgeCategory: $badgeCategory)';
   }
 
   @JsonKey(ignore: true)
@@ -547,6 +576,7 @@ abstract class _ImageReaderParser extends ImageReaderParser {
       required String name,
       required String uuid,
       List<ExtraSelector> extra,
+      Selector id,
       ImageSelector image,
       Selector largerImage,
       Selector rawImage,
@@ -578,6 +608,9 @@ abstract class _ImageReaderParser extends ImageReaderParser {
   @override
   List<ExtraSelector> get extra;
   set extra(List<ExtraSelector> value);
+  @override
+  Selector get id;
+  set id(Selector value);
   @override
   ImageSelector get image;
   set image(ImageSelector value);

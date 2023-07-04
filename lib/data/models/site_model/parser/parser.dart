@@ -58,6 +58,7 @@ class ImageReaderParser with _$ImageReaderParser implements IParserBase {
     required String name,
     required String uuid,
     @Default([]) List<ExtraSelector> extra,
+    @Default(Selector()) Selector id,
     @Default(ImageSelector()) ImageSelector image,
     @Default(Selector()) Selector largerImage,
     @Default(Selector()) Selector rawImage,
