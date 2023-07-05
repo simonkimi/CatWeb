@@ -53,8 +53,7 @@ class ColorField with _$ColorField {
 @JsonEnum(valueField: 'value')
 enum ScriptFieldType {
   output('output'),
-  js('javascript'),
-  lua('lua'),
+  js('js'),
   computed('computed'),
   replace('replace');
 

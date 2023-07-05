@@ -687,10 +687,6 @@ mixin _$GalleryParser {
   set coverImg(ImageSelector value) => throw _privateConstructorUsedError;
   Selector get description => throw _privateConstructorUsedError;
   set description(Selector value) => throw _privateConstructorUsedError;
-  Selector get successSelector => throw _privateConstructorUsedError;
-  set successSelector(Selector value) => throw _privateConstructorUsedError;
-  Selector get failedSelector => throw _privateConstructorUsedError;
-  set failedSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get thumbnailSelector => throw _privateConstructorUsedError;
   set thumbnailSelector(Selector value) => throw _privateConstructorUsedError;
   ImageSelector get thumbnail => throw _privateConstructorUsedError;
@@ -723,6 +719,10 @@ mixin _$GalleryParser {
   set nextPage(Selector value) => throw _privateConstructorUsedError;
   Selector get countPrePage => throw _privateConstructorUsedError;
   set countPrePage(Selector value) => throw _privateConstructorUsedError;
+  Selector get successSelector => throw _privateConstructorUsedError;
+  set successSelector(Selector value) => throw _privateConstructorUsedError;
+  Selector get failedSelector => throw _privateConstructorUsedError;
+  set failedSelector(Selector value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -751,8 +751,6 @@ abstract class $GalleryParserCopyWith<$Res> {
       Selector language,
       ImageSelector coverImg,
       Selector description,
-      Selector successSelector,
-      Selector failedSelector,
       Selector thumbnailSelector,
       ImageSelector thumbnail,
       Selector target,
@@ -768,7 +766,9 @@ abstract class $GalleryParserCopyWith<$Res> {
       Selector chapterSubtitle,
       ImageSelector chapterCover,
       Selector nextPage,
-      Selector countPrePage});
+      Selector countPrePage,
+      Selector successSelector,
+      Selector failedSelector});
 
   $SelectorCopyWith<$Res> get title;
   $SelectorCopyWith<$Res> get subtitle;
@@ -779,8 +779,6 @@ abstract class $GalleryParserCopyWith<$Res> {
   $SelectorCopyWith<$Res> get language;
   $ImageSelectorCopyWith<$Res> get coverImg;
   $SelectorCopyWith<$Res> get description;
-  $SelectorCopyWith<$Res> get successSelector;
-  $SelectorCopyWith<$Res> get failedSelector;
   $SelectorCopyWith<$Res> get thumbnailSelector;
   $ImageSelectorCopyWith<$Res> get thumbnail;
   $SelectorCopyWith<$Res> get target;
@@ -797,6 +795,8 @@ abstract class $GalleryParserCopyWith<$Res> {
   $ImageSelectorCopyWith<$Res> get chapterCover;
   $SelectorCopyWith<$Res> get nextPage;
   $SelectorCopyWith<$Res> get countPrePage;
+  $SelectorCopyWith<$Res> get successSelector;
+  $SelectorCopyWith<$Res> get failedSelector;
 }
 
 /// @nodoc
@@ -825,8 +825,6 @@ class _$GalleryParserCopyWithImpl<$Res, $Val extends GalleryParser>
     Object? language = null,
     Object? coverImg = null,
     Object? description = null,
-    Object? successSelector = null,
-    Object? failedSelector = null,
     Object? thumbnailSelector = null,
     Object? thumbnail = null,
     Object? target = null,
@@ -843,6 +841,8 @@ class _$GalleryParserCopyWithImpl<$Res, $Val extends GalleryParser>
     Object? chapterCover = null,
     Object? nextPage = null,
     Object? countPrePage = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
   }) {
     return _then(_value.copyWith(
       parserType: null == parserType
@@ -896,14 +896,6 @@ class _$GalleryParserCopyWithImpl<$Res, $Val extends GalleryParser>
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as Selector,
-      successSelector: null == successSelector
-          ? _value.successSelector
-          : successSelector // ignore: cast_nullable_to_non_nullable
-              as Selector,
-      failedSelector: null == failedSelector
-          ? _value.failedSelector
-          : failedSelector // ignore: cast_nullable_to_non_nullable
               as Selector,
       thumbnailSelector: null == thumbnailSelector
           ? _value.thumbnailSelector
@@ -968,6 +960,14 @@ class _$GalleryParserCopyWithImpl<$Res, $Val extends GalleryParser>
       countPrePage: null == countPrePage
           ? _value.countPrePage
           : countPrePage // ignore: cast_nullable_to_non_nullable
+              as Selector,
+      successSelector: null == successSelector
+          ? _value.successSelector
+          : successSelector // ignore: cast_nullable_to_non_nullable
+              as Selector,
+      failedSelector: null == failedSelector
+          ? _value.failedSelector
+          : failedSelector // ignore: cast_nullable_to_non_nullable
               as Selector,
     ) as $Val);
   }
@@ -1041,22 +1041,6 @@ class _$GalleryParserCopyWithImpl<$Res, $Val extends GalleryParser>
   $SelectorCopyWith<$Res> get description {
     return $SelectorCopyWith<$Res>(_value.description, (value) {
       return _then(_value.copyWith(description: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res> get successSelector {
-    return $SelectorCopyWith<$Res>(_value.successSelector, (value) {
-      return _then(_value.copyWith(successSelector: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res> get failedSelector {
-    return $SelectorCopyWith<$Res>(_value.failedSelector, (value) {
-      return _then(_value.copyWith(failedSelector: value) as $Val);
     });
   }
 
@@ -1187,6 +1171,22 @@ class _$GalleryParserCopyWithImpl<$Res, $Val extends GalleryParser>
       return _then(_value.copyWith(countPrePage: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorCopyWith<$Res> get successSelector {
+    return $SelectorCopyWith<$Res>(_value.successSelector, (value) {
+      return _then(_value.copyWith(successSelector: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorCopyWith<$Res> get failedSelector {
+    return $SelectorCopyWith<$Res>(_value.failedSelector, (value) {
+      return _then(_value.copyWith(failedSelector: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -1212,8 +1212,6 @@ abstract class _$$_GalleryParserCopyWith<$Res>
       Selector language,
       ImageSelector coverImg,
       Selector description,
-      Selector successSelector,
-      Selector failedSelector,
       Selector thumbnailSelector,
       ImageSelector thumbnail,
       Selector target,
@@ -1229,7 +1227,9 @@ abstract class _$$_GalleryParserCopyWith<$Res>
       Selector chapterSubtitle,
       ImageSelector chapterCover,
       Selector nextPage,
-      Selector countPrePage});
+      Selector countPrePage,
+      Selector successSelector,
+      Selector failedSelector});
 
   @override
   $SelectorCopyWith<$Res> get title;
@@ -1249,10 +1249,6 @@ abstract class _$$_GalleryParserCopyWith<$Res>
   $ImageSelectorCopyWith<$Res> get coverImg;
   @override
   $SelectorCopyWith<$Res> get description;
-  @override
-  $SelectorCopyWith<$Res> get successSelector;
-  @override
-  $SelectorCopyWith<$Res> get failedSelector;
   @override
   $SelectorCopyWith<$Res> get thumbnailSelector;
   @override
@@ -1285,6 +1281,10 @@ abstract class _$$_GalleryParserCopyWith<$Res>
   $SelectorCopyWith<$Res> get nextPage;
   @override
   $SelectorCopyWith<$Res> get countPrePage;
+  @override
+  $SelectorCopyWith<$Res> get successSelector;
+  @override
+  $SelectorCopyWith<$Res> get failedSelector;
 }
 
 /// @nodoc
@@ -1311,8 +1311,6 @@ class __$$_GalleryParserCopyWithImpl<$Res>
     Object? language = null,
     Object? coverImg = null,
     Object? description = null,
-    Object? successSelector = null,
-    Object? failedSelector = null,
     Object? thumbnailSelector = null,
     Object? thumbnail = null,
     Object? target = null,
@@ -1329,6 +1327,8 @@ class __$$_GalleryParserCopyWithImpl<$Res>
     Object? chapterCover = null,
     Object? nextPage = null,
     Object? countPrePage = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
   }) {
     return _then(_$_GalleryParser(
       parserType: null == parserType
@@ -1382,14 +1382,6 @@ class __$$_GalleryParserCopyWithImpl<$Res>
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as Selector,
-      successSelector: null == successSelector
-          ? _value.successSelector
-          : successSelector // ignore: cast_nullable_to_non_nullable
-              as Selector,
-      failedSelector: null == failedSelector
-          ? _value.failedSelector
-          : failedSelector // ignore: cast_nullable_to_non_nullable
               as Selector,
       thumbnailSelector: null == thumbnailSelector
           ? _value.thumbnailSelector
@@ -1455,6 +1447,14 @@ class __$$_GalleryParserCopyWithImpl<$Res>
           ? _value.countPrePage
           : countPrePage // ignore: cast_nullable_to_non_nullable
               as Selector,
+      successSelector: null == successSelector
+          ? _value.successSelector
+          : successSelector // ignore: cast_nullable_to_non_nullable
+              as Selector,
+      failedSelector: null == failedSelector
+          ? _value.failedSelector
+          : failedSelector // ignore: cast_nullable_to_non_nullable
+              as Selector,
     ));
   }
 }
@@ -1477,8 +1477,6 @@ class _$_GalleryParser extends _GalleryParser {
       this.language = const Selector(),
       this.coverImg = const ImageSelector(),
       this.description = const Selector(),
-      this.successSelector = const Selector(),
-      this.failedSelector = const Selector(),
       this.thumbnailSelector = const Selector(),
       this.thumbnail = const ImageSelector(),
       this.target = const Selector(),
@@ -1494,7 +1492,9 @@ class _$_GalleryParser extends _GalleryParser {
       this.chapterSubtitle = const Selector(),
       this.chapterCover = const ImageSelector(),
       this.nextPage = const Selector(),
-      this.countPrePage = const Selector()})
+      this.countPrePage = const Selector(),
+      this.successSelector = const Selector(),
+      this.failedSelector = const Selector()})
       : assert(parserType == ParserType.gallery, 'parserType must be gallery'),
         super._();
 
@@ -1538,12 +1538,6 @@ class _$_GalleryParser extends _GalleryParser {
   @override
   @JsonKey()
   Selector description;
-  @override
-  @JsonKey()
-  Selector successSelector;
-  @override
-  @JsonKey()
-  Selector failedSelector;
   @override
   @JsonKey()
   Selector thumbnailSelector;
@@ -1592,10 +1586,16 @@ class _$_GalleryParser extends _GalleryParser {
   @override
   @JsonKey()
   Selector countPrePage;
+  @override
+  @JsonKey()
+  Selector successSelector;
+  @override
+  @JsonKey()
+  Selector failedSelector;
 
   @override
   String toString() {
-    return 'GalleryParser(parserType: $parserType, name: $name, uuid: $uuid, extra: $extra, title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imgCount: $imgCount, pageCount: $pageCount, language: $language, coverImg: $coverImg, description: $description, successSelector: $successSelector, failedSelector: $failedSelector, thumbnailSelector: $thumbnailSelector, thumbnail: $thumbnail, target: $target, commentSelector: $commentSelector, comments: $comments, tag: $tag, tagColor: $tagColor, badgeSelector: $badgeSelector, badgeText: $badgeText, badgeCategory: $badgeCategory, chapterSelector: $chapterSelector, chapterTitle: $chapterTitle, chapterSubtitle: $chapterSubtitle, chapterCover: $chapterCover, nextPage: $nextPage, countPrePage: $countPrePage)';
+    return 'GalleryParser(parserType: $parserType, name: $name, uuid: $uuid, extra: $extra, title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imgCount: $imgCount, pageCount: $pageCount, language: $language, coverImg: $coverImg, description: $description, thumbnailSelector: $thumbnailSelector, thumbnail: $thumbnail, target: $target, commentSelector: $commentSelector, comments: $comments, tag: $tag, tagColor: $tagColor, badgeSelector: $badgeSelector, badgeText: $badgeText, badgeCategory: $badgeCategory, chapterSelector: $chapterSelector, chapterTitle: $chapterTitle, chapterSubtitle: $chapterSubtitle, chapterCover: $chapterCover, nextPage: $nextPage, countPrePage: $countPrePage, successSelector: $successSelector, failedSelector: $failedSelector)';
   }
 
   @JsonKey(ignore: true)
@@ -1628,8 +1628,6 @@ abstract class _GalleryParser extends GalleryParser {
       Selector language,
       ImageSelector coverImg,
       Selector description,
-      Selector successSelector,
-      Selector failedSelector,
       Selector thumbnailSelector,
       ImageSelector thumbnail,
       Selector target,
@@ -1645,7 +1643,9 @@ abstract class _GalleryParser extends GalleryParser {
       Selector chapterSubtitle,
       ImageSelector chapterCover,
       Selector nextPage,
-      Selector countPrePage}) = _$_GalleryParser;
+      Selector countPrePage,
+      Selector successSelector,
+      Selector failedSelector}) = _$_GalleryParser;
   _GalleryParser._() : super._();
 
   factory _GalleryParser.fromJson(Map<String, dynamic> json) =
@@ -1692,12 +1692,6 @@ abstract class _GalleryParser extends GalleryParser {
   @override
   Selector get description;
   set description(Selector value);
-  @override
-  Selector get successSelector;
-  set successSelector(Selector value);
-  @override
-  Selector get failedSelector;
-  set failedSelector(Selector value);
   @override
   Selector get thumbnailSelector;
   set thumbnailSelector(Selector value);
@@ -1747,6 +1741,12 @@ abstract class _GalleryParser extends GalleryParser {
   Selector get countPrePage;
   set countPrePage(Selector value);
   @override
+  Selector get successSelector;
+  set successSelector(Selector value);
+  @override
+  Selector get failedSelector;
+  set failedSelector(Selector value);
+  @override
   @JsonKey(ignore: true)
   _$$_GalleryParserCopyWith<_$_GalleryParser> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1770,10 +1770,6 @@ mixin _$ListViewParser {
   set extra(List<ExtraSelector> value) => throw _privateConstructorUsedError;
   Selector get itemSelector => throw _privateConstructorUsedError;
   set itemSelector(Selector value) => throw _privateConstructorUsedError;
-  Selector get successSelector => throw _privateConstructorUsedError;
-  set successSelector(Selector value) => throw _privateConstructorUsedError;
-  Selector get failedSelector => throw _privateConstructorUsedError;
-  set failedSelector(Selector value) => throw _privateConstructorUsedError;
   Selector get title => throw _privateConstructorUsedError;
   set title(Selector value) => throw _privateConstructorUsedError;
   Selector get subtitle => throw _privateConstructorUsedError;
@@ -1806,6 +1802,10 @@ mixin _$ListViewParser {
   set idCode(Selector value) => throw _privateConstructorUsedError;
   Selector get nextPage => throw _privateConstructorUsedError;
   set nextPage(Selector value) => throw _privateConstructorUsedError;
+  Selector get successSelector => throw _privateConstructorUsedError;
+  set successSelector(Selector value) => throw _privateConstructorUsedError;
+  Selector get failedSelector => throw _privateConstructorUsedError;
+  set failedSelector(Selector value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1826,8 +1826,6 @@ abstract class $ListViewParserCopyWith<$Res> {
       String uuid,
       List<ExtraSelector> extra,
       Selector itemSelector,
-      Selector successSelector,
-      Selector failedSelector,
       Selector title,
       Selector subtitle,
       Selector uploadTime,
@@ -1843,11 +1841,11 @@ abstract class $ListViewParserCopyWith<$Res> {
       Selector badgeColor,
       Selector paper,
       Selector idCode,
-      Selector nextPage});
+      Selector nextPage,
+      Selector successSelector,
+      Selector failedSelector});
 
   $SelectorCopyWith<$Res> get itemSelector;
-  $SelectorCopyWith<$Res> get successSelector;
-  $SelectorCopyWith<$Res> get failedSelector;
   $SelectorCopyWith<$Res> get title;
   $SelectorCopyWith<$Res> get subtitle;
   $SelectorCopyWith<$Res> get uploadTime;
@@ -1864,6 +1862,8 @@ abstract class $ListViewParserCopyWith<$Res> {
   $SelectorCopyWith<$Res> get paper;
   $SelectorCopyWith<$Res> get idCode;
   $SelectorCopyWith<$Res> get nextPage;
+  $SelectorCopyWith<$Res> get successSelector;
+  $SelectorCopyWith<$Res> get failedSelector;
 }
 
 /// @nodoc
@@ -1884,8 +1884,6 @@ class _$ListViewParserCopyWithImpl<$Res, $Val extends ListViewParser>
     Object? uuid = null,
     Object? extra = null,
     Object? itemSelector = null,
-    Object? successSelector = null,
-    Object? failedSelector = null,
     Object? title = null,
     Object? subtitle = null,
     Object? uploadTime = null,
@@ -1902,6 +1900,8 @@ class _$ListViewParserCopyWithImpl<$Res, $Val extends ListViewParser>
     Object? paper = null,
     Object? idCode = null,
     Object? nextPage = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
   }) {
     return _then(_value.copyWith(
       parserType: null == parserType
@@ -1923,14 +1923,6 @@ class _$ListViewParserCopyWithImpl<$Res, $Val extends ListViewParser>
       itemSelector: null == itemSelector
           ? _value.itemSelector
           : itemSelector // ignore: cast_nullable_to_non_nullable
-              as Selector,
-      successSelector: null == successSelector
-          ? _value.successSelector
-          : successSelector // ignore: cast_nullable_to_non_nullable
-              as Selector,
-      failedSelector: null == failedSelector
-          ? _value.failedSelector
-          : failedSelector // ignore: cast_nullable_to_non_nullable
               as Selector,
       title: null == title
           ? _value.title
@@ -1996,6 +1988,14 @@ class _$ListViewParserCopyWithImpl<$Res, $Val extends ListViewParser>
           ? _value.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
               as Selector,
+      successSelector: null == successSelector
+          ? _value.successSelector
+          : successSelector // ignore: cast_nullable_to_non_nullable
+              as Selector,
+      failedSelector: null == failedSelector
+          ? _value.failedSelector
+          : failedSelector // ignore: cast_nullable_to_non_nullable
+              as Selector,
     ) as $Val);
   }
 
@@ -2004,22 +2004,6 @@ class _$ListViewParserCopyWithImpl<$Res, $Val extends ListViewParser>
   $SelectorCopyWith<$Res> get itemSelector {
     return $SelectorCopyWith<$Res>(_value.itemSelector, (value) {
       return _then(_value.copyWith(itemSelector: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res> get successSelector {
-    return $SelectorCopyWith<$Res>(_value.successSelector, (value) {
-      return _then(_value.copyWith(successSelector: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorCopyWith<$Res> get failedSelector {
-    return $SelectorCopyWith<$Res>(_value.failedSelector, (value) {
-      return _then(_value.copyWith(failedSelector: value) as $Val);
     });
   }
 
@@ -2150,6 +2134,22 @@ class _$ListViewParserCopyWithImpl<$Res, $Val extends ListViewParser>
       return _then(_value.copyWith(nextPage: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorCopyWith<$Res> get successSelector {
+    return $SelectorCopyWith<$Res>(_value.successSelector, (value) {
+      return _then(_value.copyWith(successSelector: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorCopyWith<$Res> get failedSelector {
+    return $SelectorCopyWith<$Res>(_value.failedSelector, (value) {
+      return _then(_value.copyWith(failedSelector: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -2167,8 +2167,6 @@ abstract class _$$_ListViewParserCopyWith<$Res>
       String uuid,
       List<ExtraSelector> extra,
       Selector itemSelector,
-      Selector successSelector,
-      Selector failedSelector,
       Selector title,
       Selector subtitle,
       Selector uploadTime,
@@ -2184,14 +2182,12 @@ abstract class _$$_ListViewParserCopyWith<$Res>
       Selector badgeColor,
       Selector paper,
       Selector idCode,
-      Selector nextPage});
+      Selector nextPage,
+      Selector successSelector,
+      Selector failedSelector});
 
   @override
   $SelectorCopyWith<$Res> get itemSelector;
-  @override
-  $SelectorCopyWith<$Res> get successSelector;
-  @override
-  $SelectorCopyWith<$Res> get failedSelector;
   @override
   $SelectorCopyWith<$Res> get title;
   @override
@@ -2224,6 +2220,10 @@ abstract class _$$_ListViewParserCopyWith<$Res>
   $SelectorCopyWith<$Res> get idCode;
   @override
   $SelectorCopyWith<$Res> get nextPage;
+  @override
+  $SelectorCopyWith<$Res> get successSelector;
+  @override
+  $SelectorCopyWith<$Res> get failedSelector;
 }
 
 /// @nodoc
@@ -2242,8 +2242,6 @@ class __$$_ListViewParserCopyWithImpl<$Res>
     Object? uuid = null,
     Object? extra = null,
     Object? itemSelector = null,
-    Object? successSelector = null,
-    Object? failedSelector = null,
     Object? title = null,
     Object? subtitle = null,
     Object? uploadTime = null,
@@ -2260,6 +2258,8 @@ class __$$_ListViewParserCopyWithImpl<$Res>
     Object? paper = null,
     Object? idCode = null,
     Object? nextPage = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
   }) {
     return _then(_$_ListViewParser(
       parserType: null == parserType
@@ -2281,14 +2281,6 @@ class __$$_ListViewParserCopyWithImpl<$Res>
       itemSelector: null == itemSelector
           ? _value.itemSelector
           : itemSelector // ignore: cast_nullable_to_non_nullable
-              as Selector,
-      successSelector: null == successSelector
-          ? _value.successSelector
-          : successSelector // ignore: cast_nullable_to_non_nullable
-              as Selector,
-      failedSelector: null == failedSelector
-          ? _value.failedSelector
-          : failedSelector // ignore: cast_nullable_to_non_nullable
               as Selector,
       title: null == title
           ? _value.title
@@ -2354,6 +2346,14 @@ class __$$_ListViewParserCopyWithImpl<$Res>
           ? _value.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
               as Selector,
+      successSelector: null == successSelector
+          ? _value.successSelector
+          : successSelector // ignore: cast_nullable_to_non_nullable
+              as Selector,
+      failedSelector: null == failedSelector
+          ? _value.failedSelector
+          : failedSelector // ignore: cast_nullable_to_non_nullable
+              as Selector,
     ));
   }
 }
@@ -2368,8 +2368,6 @@ class _$_ListViewParser extends _ListViewParser {
       required this.uuid,
       this.extra = const [],
       this.itemSelector = const Selector(),
-      this.successSelector = const Selector(),
-      this.failedSelector = const Selector(),
       this.title = const Selector(),
       this.subtitle = const Selector(),
       this.uploadTime = const Selector(),
@@ -2385,7 +2383,9 @@ class _$_ListViewParser extends _ListViewParser {
       this.badgeColor = const Selector(),
       this.paper = const Selector(),
       this.idCode = const Selector(),
-      this.nextPage = const Selector()})
+      this.nextPage = const Selector(),
+      this.successSelector = const Selector(),
+      this.failedSelector = const Selector()})
       : assert(
             parserType == ParserType.listView, 'parserType must be listView'),
         super._();
@@ -2406,12 +2406,6 @@ class _$_ListViewParser extends _ListViewParser {
   @override
   @JsonKey()
   Selector itemSelector;
-  @override
-  @JsonKey()
-  Selector successSelector;
-  @override
-  @JsonKey()
-  Selector failedSelector;
   @override
   @JsonKey()
   Selector title;
@@ -2460,10 +2454,16 @@ class _$_ListViewParser extends _ListViewParser {
   @override
   @JsonKey()
   Selector nextPage;
+  @override
+  @JsonKey()
+  Selector successSelector;
+  @override
+  @JsonKey()
+  Selector failedSelector;
 
   @override
   String toString() {
-    return 'ListViewParser(parserType: $parserType, name: $name, uuid: $uuid, extra: $extra, itemSelector: $itemSelector, successSelector: $successSelector, failedSelector: $failedSelector, title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imgCount: $imgCount, language: $language, previewImg: $previewImg, target: $target, tag: $tag, tagColor: $tagColor, badgeSelector: $badgeSelector, badgeText: $badgeText, badgeColor: $badgeColor, paper: $paper, idCode: $idCode, nextPage: $nextPage)';
+    return 'ListViewParser(parserType: $parserType, name: $name, uuid: $uuid, extra: $extra, itemSelector: $itemSelector, title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imgCount: $imgCount, language: $language, previewImg: $previewImg, target: $target, tag: $tag, tagColor: $tagColor, badgeSelector: $badgeSelector, badgeText: $badgeText, badgeColor: $badgeColor, paper: $paper, idCode: $idCode, nextPage: $nextPage, successSelector: $successSelector, failedSelector: $failedSelector)';
   }
 
   @JsonKey(ignore: true)
@@ -2488,8 +2488,6 @@ abstract class _ListViewParser extends ListViewParser {
       required String uuid,
       List<ExtraSelector> extra,
       Selector itemSelector,
-      Selector successSelector,
-      Selector failedSelector,
       Selector title,
       Selector subtitle,
       Selector uploadTime,
@@ -2505,7 +2503,9 @@ abstract class _ListViewParser extends ListViewParser {
       Selector badgeColor,
       Selector paper,
       Selector idCode,
-      Selector nextPage}) = _$_ListViewParser;
+      Selector nextPage,
+      Selector successSelector,
+      Selector failedSelector}) = _$_ListViewParser;
   _ListViewParser._() : super._();
 
   factory _ListViewParser.fromJson(Map<String, dynamic> json) =
@@ -2528,12 +2528,6 @@ abstract class _ListViewParser extends ListViewParser {
   @override
   Selector get itemSelector;
   set itemSelector(Selector value);
-  @override
-  Selector get successSelector;
-  set successSelector(Selector value);
-  @override
-  Selector get failedSelector;
-  set failedSelector(Selector value);
   @override
   Selector get title;
   set title(Selector value);
@@ -2582,6 +2576,12 @@ abstract class _ListViewParser extends ListViewParser {
   @override
   Selector get nextPage;
   set nextPage(Selector value);
+  @override
+  Selector get successSelector;
+  set successSelector(Selector value);
+  @override
+  Selector get failedSelector;
+  set failedSelector(Selector value);
   @override
   @JsonKey(ignore: true)
   _$$_ListViewParserCopyWith<_$_ListViewParser> get copyWith =>

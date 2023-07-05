@@ -22,6 +22,7 @@ enum SelectorType {
 
 @JsonEnum(valueField: 'value')
 enum SelectorFunctionType {
+  none('auto'),
   text('text'),
   attr('attr'),
   raw('raw');
@@ -42,7 +43,7 @@ class Selector with _$Selector {
   const factory Selector({
     @Default('') String selector,
     @Default(SelectorType.css) SelectorType type,
-    @Default(SelectorFunctionType.text) SelectorFunctionType function,
+    @Default(SelectorFunctionType.none) SelectorFunctionType function,
     @Default('') String param,
     @Default('') String regex,
     @Default('') String replace,

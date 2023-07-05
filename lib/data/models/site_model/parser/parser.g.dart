@@ -118,12 +118,6 @@ _$_GalleryParser _$$_GalleryParserFromJson(Map<String, dynamic> json) =>
       description: json['description'] == null
           ? const Selector()
           : Selector.fromJson(json['description'] as Map<String, dynamic>),
-      successSelector: json['successSelector'] == null
-          ? const Selector()
-          : Selector.fromJson(json['successSelector'] as Map<String, dynamic>),
-      failedSelector: json['failedSelector'] == null
-          ? const Selector()
-          : Selector.fromJson(json['failedSelector'] as Map<String, dynamic>),
       thumbnailSelector: json['thumbnailSelector'] == null
           ? const Selector()
           : Selector.fromJson(
@@ -174,6 +168,12 @@ _$_GalleryParser _$$_GalleryParserFromJson(Map<String, dynamic> json) =>
       countPrePage: json['countPrePage'] == null
           ? const Selector()
           : Selector.fromJson(json['countPrePage'] as Map<String, dynamic>),
+      successSelector: json['successSelector'] == null
+          ? const Selector()
+          : Selector.fromJson(json['successSelector'] as Map<String, dynamic>),
+      failedSelector: json['failedSelector'] == null
+          ? const Selector()
+          : Selector.fromJson(json['failedSelector'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_GalleryParserToJson(_$_GalleryParser instance) =>
@@ -191,8 +191,6 @@ Map<String, dynamic> _$$_GalleryParserToJson(_$_GalleryParser instance) =>
       'language': instance.language,
       'coverImg': instance.coverImg,
       'description': instance.description,
-      'successSelector': instance.successSelector,
-      'failedSelector': instance.failedSelector,
       'thumbnailSelector': instance.thumbnailSelector,
       'thumbnail': instance.thumbnail,
       'target': instance.target,
@@ -209,6 +207,8 @@ Map<String, dynamic> _$$_GalleryParserToJson(_$_GalleryParser instance) =>
       'chapterCover': instance.chapterCover,
       'nextPage': instance.nextPage,
       'countPrePage': instance.countPrePage,
+      'successSelector': instance.successSelector,
+      'failedSelector': instance.failedSelector,
     };
 
 _$_ListViewParser _$$_ListViewParserFromJson(Map<String, dynamic> json) =>
@@ -225,12 +225,6 @@ _$_ListViewParser _$$_ListViewParserFromJson(Map<String, dynamic> json) =>
       itemSelector: json['itemSelector'] == null
           ? const Selector()
           : Selector.fromJson(json['itemSelector'] as Map<String, dynamic>),
-      successSelector: json['successSelector'] == null
-          ? const Selector()
-          : Selector.fromJson(json['successSelector'] as Map<String, dynamic>),
-      failedSelector: json['failedSelector'] == null
-          ? const Selector()
-          : Selector.fromJson(json['failedSelector'] as Map<String, dynamic>),
       title: json['title'] == null
           ? const Selector()
           : Selector.fromJson(json['title'] as Map<String, dynamic>),
@@ -279,6 +273,12 @@ _$_ListViewParser _$$_ListViewParserFromJson(Map<String, dynamic> json) =>
       nextPage: json['nextPage'] == null
           ? const Selector()
           : Selector.fromJson(json['nextPage'] as Map<String, dynamic>),
+      successSelector: json['successSelector'] == null
+          ? const Selector()
+          : Selector.fromJson(json['successSelector'] as Map<String, dynamic>),
+      failedSelector: json['failedSelector'] == null
+          ? const Selector()
+          : Selector.fromJson(json['failedSelector'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ListViewParserToJson(_$_ListViewParser instance) =>
@@ -288,8 +288,6 @@ Map<String, dynamic> _$$_ListViewParserToJson(_$_ListViewParser instance) =>
       'uuid': instance.uuid,
       'extra': instance.extra,
       'itemSelector': instance.itemSelector,
-      'successSelector': instance.successSelector,
-      'failedSelector': instance.failedSelector,
       'title': instance.title,
       'subtitle': instance.subtitle,
       'uploadTime': instance.uploadTime,
@@ -306,6 +304,8 @@ Map<String, dynamic> _$$_ListViewParserToJson(_$_ListViewParser instance) =>
       'paper': instance.paper,
       'idCode': instance.idCode,
       'nextPage': instance.nextPage,
+      'successSelector': instance.successSelector,
+      'failedSelector': instance.failedSelector,
     };
 
 _$_AutoCompleteParser _$$_AutoCompleteParserFromJson(

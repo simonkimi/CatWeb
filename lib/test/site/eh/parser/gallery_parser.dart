@@ -27,8 +27,9 @@ final ehGalleryParser = GalleryParser(
     selector: '#gdd tr:nth-child(4)>.gdt2',
     function: SelectorFunctionType.text,
     script: ScriptField(
-      script:
-          '{"Chinese":"中文","English":"英语","French":"法语","German":"德语","Japanese":"日语","Korean":"韩语","Russian":"俄语","Spanish":"西班牙语","Speechless":"无字","Italian":"意大利语"}',
+      script: '{"Chinese":"中文","English":"英语","French":"法语","German":"德语",'
+          '"Japanese":"日语","Korean":"韩语","Russian":"俄语","Spanish":"西班牙语",'
+          '"Speechless":"无字","Italian":"意大利语"}',
       type: ScriptFieldType.replace,
     ),
   ),
@@ -157,8 +158,7 @@ final ehGalleryParser = GalleryParser(
     regex: r'<div class="ths nosel">(\d+) rows.+sel">(\w)',
     replace: r'$1|$2',
     script: ScriptField(
-      script:
-          "function hook(t){var row=t.split('|')[0];var column=t.split('|')[1];return parseInt(row)*{'L':5,'N':10}[column]}",
+      script: r"let[r,c]=$arg.split('|');parseInt(r)*{'L':5,'N':10}[c];",
       type: ScriptFieldType.js,
     ),
   ),
