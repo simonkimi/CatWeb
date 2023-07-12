@@ -1,9 +1,16 @@
 import 'package:catweb/data/models/site_model/fields/field.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 part 'selector.g.dart';
 
 part 'selector.freezed.dart';
+
+abstract class StringValue {
+  final String value;
+
+  StringValue(this.value);
+}
 
 @JsonEnum(valueField: 'value')
 enum SelectorType {
@@ -15,24 +22,37 @@ enum SelectorType {
 
   final String value;
 
-  factory SelectorType.fromValue(String value) {
+  factory SelectorType.fromJson(String value) {
     return SelectorType.values.firstWhere((e) => e.value == value);
   }
 }
 
 @JsonEnum(valueField: 'value')
-enum SelectorFunctionType {
+enum SelectorFunctionType implements StringValue {
   text('text'),
   attr('attr'),
   raw('raw');
 
   const SelectorFunctionType(this.value);
 
+  @override
   final String value;
 
   factory SelectorFunctionType.fromValue(String value) {
     return SelectorFunctionType.values.firstWhere((e) => e.value == value);
   }
+}
+
+class SelectorFunctionTypeConverter
+    implements JsonConverter<Rx<SelectorFunctionType>, String> {
+  const SelectorFunctionTypeConverter();
+
+  @override
+  Rx<SelectorFunctionType> fromJson(String json) =>
+      SelectorFunctionType.fromValue(json).obs;
+
+  @override
+  String toJson(Rx<SelectorFunctionType> object) => object.value.value;
 }
 
 @freezed

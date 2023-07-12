@@ -15,13 +15,13 @@ enum ParserType {
 
   final String value;
 
-  factory ParserType.fromString(String value) {
+  factory ParserType.fromJson(String value) {
     return ParserType.values.firstWhere((e) => e.value == value);
   }
 
   static String _toType(ParserType type) => type.value;
 
-  static ParserType _fromType(String type) => ParserType.fromString(type);
+  static ParserType _fromType(String type) => ParserType.fromJson(type);
 }
 
 abstract class IParserBase {
@@ -35,7 +35,7 @@ abstract class IParserBase {
   Map<String, dynamic> toJson();
 
   static IParserBase fromJson(Map<String, dynamic> json) {
-    final type = ParserType.fromString(json['parserType'] as String);
+    final type = ParserType.fromJson(json['parserType'] as String);
     return switch (type) {
       ParserType.imageReader => ImageReaderParser.fromJson(json),
       ParserType.listView => ListViewParser.fromJson(json),
