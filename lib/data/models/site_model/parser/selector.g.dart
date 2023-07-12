@@ -12,7 +12,7 @@ _$_Selector _$$_SelectorFromJson(Map<String, dynamic> json) => _$_Selector(
           SelectorType.css,
       function: $enumDecodeNullable(
               _$SelectorFunctionTypeEnumMap, json['function']) ??
-          SelectorFunctionType.text,
+          SelectorFunctionType.none,
       param: json['param'] as String? ?? '',
       regex: json['regex'] as String? ?? '',
       replace: json['replace'] as String? ?? '',
@@ -41,6 +41,7 @@ const _$SelectorTypeEnumMap = {
 };
 
 const _$SelectorFunctionTypeEnumMap = {
+  SelectorFunctionType.none: 'auto',
   SelectorFunctionType.text: 'text',
   SelectorFunctionType.attr: 'attr',
   SelectorFunctionType.raw: 'raw',

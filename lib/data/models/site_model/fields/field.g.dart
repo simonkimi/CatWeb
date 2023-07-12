@@ -48,8 +48,7 @@ Map<String, dynamic> _$$_ScriptFieldToJson(_$_ScriptField instance) =>
 
 const _$ScriptFieldTypeEnumMap = {
   ScriptFieldType.output: 'output',
-  ScriptFieldType.js: 'javascript',
-  ScriptFieldType.lua: 'lua',
+  ScriptFieldType.js: 'js',
   ScriptFieldType.computed: 'computed',
   ScriptFieldType.replace: 'replace',
 };

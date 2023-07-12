@@ -204,7 +204,7 @@ class _$_Selector extends _Selector {
   const _$_Selector(
       {this.selector = '',
       this.type = SelectorType.css,
-      this.function = SelectorFunctionType.text,
+      this.function = SelectorFunctionType.none,
       this.param = '',
       this.regex = '',
       this.replace = '',

@@ -1,16 +1,9 @@
 import 'package:catweb/data/models/site_model/fields/field.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 part 'selector.g.dart';
 
 part 'selector.freezed.dart';
-
-abstract class StringValue {
-  final String value;
-
-  StringValue(this.value);
-}
 
 @JsonEnum(valueField: 'value')
 enum SelectorType {
@@ -28,31 +21,19 @@ enum SelectorType {
 }
 
 @JsonEnum(valueField: 'value')
-enum SelectorFunctionType implements StringValue {
+enum SelectorFunctionType {
+  none('auto'),
   text('text'),
   attr('attr'),
   raw('raw');
 
   const SelectorFunctionType(this.value);
 
-  @override
   final String value;
 
   factory SelectorFunctionType.fromValue(String value) {
     return SelectorFunctionType.values.firstWhere((e) => e.value == value);
   }
-}
-
-class SelectorFunctionTypeConverter
-    implements JsonConverter<Rx<SelectorFunctionType>, String> {
-  const SelectorFunctionTypeConverter();
-
-  @override
-  Rx<SelectorFunctionType> fromJson(String json) =>
-      SelectorFunctionType.fromValue(json).obs;
-
-  @override
-  String toJson(Rx<SelectorFunctionType> object) => object.value.value;
 }
 
 @freezed
@@ -62,7 +43,7 @@ class Selector with _$Selector {
   const factory Selector({
     @Default('') String selector,
     @Default(SelectorType.css) SelectorType type,
-    @Default(SelectorFunctionType.text) SelectorFunctionType function,
+    @Default(SelectorFunctionType.none) SelectorFunctionType function,
     @Default('') String param,
     @Default('') String regex,
     @Default('') String replace,

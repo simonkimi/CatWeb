@@ -98,7 +98,7 @@ class GalleryParserResultComment with _$GalleryParserResultComment {
 
   factory GalleryParserResultComment({
     required String? username,
-    required String? content,
+    required String content,
     required String? time,
     required String? score,
     required ImageRspModel avatar,

@@ -26,7 +26,7 @@ class RulesPageBasic extends HookWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<RulesEditController>();
     final model = useState(sitePage);
-    useState(() {
+    useEffect(() {
       return () => onModelChanged(model.value);
     });
 

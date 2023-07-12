@@ -58,6 +58,7 @@ class ImageReaderParser with _$ImageReaderParser implements IParserBase {
     required String name,
     required String uuid,
     @Default([]) List<ExtraSelector> extra,
+    @Default(Selector()) Selector id,
     @Default(ImageSelector()) ImageSelector image,
     @Default(Selector()) Selector largerImage,
     @Default(Selector()) Selector rawImage,
@@ -97,8 +98,6 @@ class GalleryParser with _$GalleryParser implements IParserBase {
     @Default(Selector()) Selector language,
     @Default(ImageSelector()) ImageSelector coverImg,
     @Default(Selector()) Selector description,
-    @Default(Selector()) Selector successSelector,
-    @Default(Selector()) Selector failedSelector,
     @Default(Selector()) Selector thumbnailSelector,
     @Default(ImageSelector()) ImageSelector thumbnail,
     @Default(Selector()) Selector target,
@@ -115,6 +114,8 @@ class GalleryParser with _$GalleryParser implements IParserBase {
     @Default(ImageSelector()) ImageSelector chapterCover,
     @Default(Selector()) Selector nextPage,
     @Default(Selector()) Selector countPrePage,
+    @Default(Selector()) Selector successSelector,
+    @Default(Selector()) Selector failedSelector,
   }) = _GalleryParser;
 
   factory GalleryParser.fromJson(Map<String, dynamic> json) =>
@@ -134,8 +135,6 @@ class ListViewParser with _$ListViewParser implements IParserBase {
     required String uuid,
     @Default([]) List<ExtraSelector> extra,
     @Default(Selector()) Selector itemSelector,
-    @Default(Selector()) Selector successSelector,
-    @Default(Selector()) Selector failedSelector,
     @Default(Selector()) Selector title,
     @Default(Selector()) Selector subtitle,
     @Default(Selector()) Selector uploadTime,
@@ -152,6 +151,8 @@ class ListViewParser with _$ListViewParser implements IParserBase {
     @Default(Selector()) Selector paper,
     @Default(Selector()) Selector idCode,
     @Default(Selector()) Selector nextPage,
+    @Default(Selector()) Selector successSelector,
+    @Default(Selector()) Selector failedSelector,
   }) = _ListViewParser;
 
   factory ListViewParser.fromJson(Map<String, dynamic> json) =>
