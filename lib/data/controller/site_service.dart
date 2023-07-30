@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/database/database.dart';
@@ -27,7 +28,7 @@ class SiteService extends GetxService {
     if (db != null) {
       site.value = SiteRenderConfigModel(
         dbEntity: db,
-        blueMap: SiteBlueMap.fromJsonString(db.blueprint),
+        blueMap: SiteBlueMap.fromJson(jsonDecode(db.blueprint)),
       );
       Get.find<SettingService>().defaultSite.value = db.id;
     } else {

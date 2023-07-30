@@ -417,7 +417,7 @@ class ViewerGalleryFragment extends StatelessWidget {
       previewController.lastReadIndex.value = startPage;
     }
     await NavigatorService.push(
-      targetName: previewController.extra.targetReader,
+      targetName: previewController.extra.targetReader.value,
       envModel: previewController.localEnv.clone(),
       model: previewController,
     );

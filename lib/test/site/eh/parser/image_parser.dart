@@ -5,13 +5,13 @@ import 'package:uuid/uuid.dart';
 final ehImageParser = ImageReaderParser(
   name: '画廊查看器',
   uuid: const Uuid().v4().toString(),
-  id: const Selector(
+  id: Selector(
     selector: '#i2 .sn a:nth-child(1)',
     function: SelectorFunctionType.attr,
     param: 'href',
     regex: r's\/(.+)',
   ),
-  image: const ImageSelector(
+  image: ImageSelector(
     imgUrl: Selector(
       selector: '#i3 img',
       function: SelectorFunctionType.attr,
@@ -30,7 +30,7 @@ final ehImageParser = ImageReaderParser(
       regex: r'height: (\d+)px',
     ),
   ),
-  rawImage: const Selector(
+  rawImage: Selector(
     selector: '#i7 a',
     function: SelectorFunctionType.attr,
     param: 'href',

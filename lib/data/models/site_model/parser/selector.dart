@@ -1,11 +1,7 @@
-import 'package:catweb/data/models/site_model/fields/field.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:catweb/data/models/site_model/parser/field.dart';
+import 'package:catweb/data/models/site_model/parser/selector.dart';
+import 'package:get/get.dart';
 
-part 'selector.g.dart';
-
-part 'selector.freezed.dart';
-
-@JsonEnum(valueField: 'value')
 enum SelectorType {
   css('css'),
   xpath('xpath'),
@@ -20,7 +16,6 @@ enum SelectorType {
   }
 }
 
-@JsonEnum(valueField: 'value')
 enum SelectorFunctionType {
   none('auto'),
   text('text'),
@@ -36,65 +31,155 @@ enum SelectorFunctionType {
   }
 }
 
-@freezed
-class Selector with _$Selector {
-  const Selector._();
+class Selector {
+  final RxString selector;
 
-  const factory Selector({
-    @Default('') String selector,
-    @Default(SelectorType.css) SelectorType type,
-    @Default(SelectorFunctionType.none) SelectorFunctionType function,
-    @Default('') String param,
-    @Default('') String regex,
-    @Default('') String replace,
-    @Default(ScriptField()) ScriptField script,
-    @Default('') String defaultValue,
-  }) = _Selector;
+  final Rx<SelectorType> type;
+  final Rx<SelectorFunctionType> function;
+  final RxString param;
+  final RxString regex;
+  final RxString replace;
+  final ScriptField script;
+  final RxString defaultValue;
 
-  factory Selector.fromJson(Map<String, dynamic> json) =>
-      _$SelectorFromJson(json);
+  Selector({
+    String selector = '',
+    SelectorType type = SelectorType.css,
+    SelectorFunctionType function = SelectorFunctionType.text,
+    String param = '',
+    String regex = '',
+    String replace = '',
+    ScriptField? script,
+    String defaultValue = '',
+  })  : selector = selector.obs,
+        type = type.obs,
+        function = function.obs,
+        param = param.obs,
+        regex = regex.obs,
+        replace = replace.obs,
+        script = script ?? ScriptField(),
+        defaultValue = defaultValue.obs;
 
-  bool isEmpty() {
-    return selector.isEmpty && param.isEmpty;
-  }
+  Map<String, dynamic> toJson() => {
+        'selector': selector.value,
+        'type': type.value.value,
+        'function': function.value.value,
+        'param': param.value,
+        'regex': regex.value,
+        'replace': replace.value,
+        'script': script.toJson(),
+        'defaultValue': defaultValue.value,
+      };
+
+  factory Selector.fromJson(Map<String, dynamic> json) => Selector(
+        selector: json['selector'] as String,
+        type: SelectorType.fromJson(json['type'] as String),
+        function: SelectorFunctionType.fromValue(json['function'] as String),
+        param: json['param'] as String,
+        regex: json['regex'] as String,
+        replace: json['replace'] as String,
+        script: ScriptField.fromJson(json['script']),
+        defaultValue: json['defaultValue'] as String,
+      );
 }
 
-@freezed
-class ImageSelector with _$ImageSelector {
-  const factory ImageSelector({
-    @Default(Selector()) Selector imgUrl,
-    @Default(Selector()) Selector imgWidth,
-    @Default(Selector()) Selector imgHeight,
-    @Default(Selector()) Selector imgX,
-    @Default(Selector()) Selector imgY,
-  }) = _ImageSelector;
+class ImageSelector {
+  final Selector imgUrl;
+  final Selector imgWidth;
+  final Selector imgHeight;
+  final Selector imgX;
+  final Selector imgY;
+
+  ImageSelector({
+    Selector? imgUrl,
+    Selector? imgWidth,
+    Selector? imgHeight,
+    Selector? imgX,
+    Selector? imgY,
+  })  : imgUrl = imgUrl ?? Selector(),
+        imgWidth = imgWidth ?? Selector(),
+        imgHeight = imgHeight ?? Selector(),
+        imgX = imgX ?? Selector(),
+        imgY = imgY ?? Selector();
+
+  Map<String, dynamic> toJson() => {
+        'imgUrl': imgUrl.toJson(),
+        'imgWidth': imgWidth.toJson(),
+        'imgHeight': imgHeight.toJson(),
+        'imgX': imgX.toJson(),
+        'imgY': imgY.toJson(),
+      };
 
   factory ImageSelector.fromJson(Map<String, dynamic> json) =>
-      _$ImageSelectorFromJson(json);
+      ImageSelector(
+        imgUrl: Selector.fromJson(json['imgUrl']),
+        imgWidth: Selector.fromJson(json['imgWidth']),
+        imgHeight: Selector.fromJson(json['imgHeight']),
+        imgX: Selector.fromJson(json['imgX']),
+        imgY: Selector.fromJson(json['imgY']),
+      );
 }
 
-@freezed
-class CommentSelector with _$CommentSelector {
-  const factory CommentSelector({
-    @Default(Selector()) Selector username,
-    @Default(Selector()) Selector time,
-    @Default(Selector()) Selector score,
-    @Default(Selector()) Selector content,
-    @Default(ImageSelector()) ImageSelector avatar,
-  }) = _CommentSelector;
+class CommentSelector {
+  final Selector username;
+  final Selector time;
+  final Selector score;
+  final Selector content;
+  final ImageSelector avatar;
+
+  CommentSelector({
+    Selector? username,
+    Selector? time,
+    Selector? score,
+    Selector? content,
+    ImageSelector? avatar,
+  })  : username = username ?? Selector(),
+        time = time ?? Selector(),
+        score = score ?? Selector(),
+        content = content ?? Selector(),
+        avatar = avatar ?? ImageSelector();
+
+  Map<String, dynamic> toJson() => {
+        'username': username.toJson(),
+        'time': time.toJson(),
+        'score': score.toJson(),
+        'content': content.toJson(),
+        'avatar': avatar.toJson(),
+      };
 
   factory CommentSelector.fromJson(Map<String, dynamic> json) =>
-      _$CommentSelectorFromJson(json);
+      CommentSelector(
+        username: Selector.fromJson(json['username']),
+        time: Selector.fromJson(json['time']),
+        score: Selector.fromJson(json['score']),
+        content: Selector.fromJson(json['content']),
+        avatar: ImageSelector.fromJson(json['avatar']),
+      );
 }
 
-@freezed
-class ExtraSelector with _$ExtraSelector {
-  const factory ExtraSelector({
-    @Default(Selector()) Selector selector,
-    @Default('') String id,
-    @Default(false) bool global,
-  }) = _ExtraSelector;
+class ExtraSelector {
+  final Selector selector;
+  final String id;
+  final bool global;
+
+  ExtraSelector({
+    Selector? selector,
+    String? id,
+    bool? global,
+  })  : selector = selector ?? Selector(),
+        id = id ?? '',
+        global = global ?? false;
+
+  Map<String, dynamic> toJson() => {
+        'selector': selector.toJson(),
+        'id': id,
+        'global': global,
+      };
 
   factory ExtraSelector.fromJson(Map<String, dynamic> json) =>
-      _$ExtraSelectorFromJson(json);
+      ExtraSelector(
+        selector: Selector.fromJson(json['selector']),
+        id: json['id'],
+        global: json['global'],
+      );
 }

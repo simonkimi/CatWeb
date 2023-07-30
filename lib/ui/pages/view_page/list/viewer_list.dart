@@ -1,5 +1,6 @@
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
 
@@ -84,7 +85,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
       title: blueprint.name,
       tabBar: CupertinoCustomTabBar(
         tabs: extra.subPages
-            .map((e) => CupertinoTab(e.name.globalEnv()))
+            .map((e) => CupertinoTab(e.name.value.globalEnv()))
             .toList(),
         tabController: tabController,
       ),

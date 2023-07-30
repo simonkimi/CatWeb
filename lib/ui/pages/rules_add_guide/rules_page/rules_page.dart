@@ -1,6 +1,9 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/data/models/site_model/pages/template_auto_complete.dart';
+import 'package:catweb/data/models/site_model/pages/template_image_viewer.dart';
+import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page_basic.dart';
@@ -50,23 +53,14 @@ class RulesPageEdit extends HookWidget {
             if (model.value.template is TemplateList) ...[
               ListNormalSubPage(
                 templateBase: model.value.template as TemplateList,
-                onTemplateChanged: (template) {
-                  model.value = model.value.copyWith(template: template);
-                },
               ),
               ListFilterEditor(
                 templateBase: model.value.template as TemplateList,
-                onTemplateChanged: (template) {
-                  model.value = model.value.copyWith(template: template);
-                },
               ),
             ],
             if (model.value.template is TemplateAutoComplete)
               TemplateAutoCompleteEditor(
                 templateBase: model.value.template as TemplateAutoComplete,
-                onTemplateChanged: (value) {
-                  model.value = model.value.copyWith(template: value);
-                },
               ),
           ],
         ),

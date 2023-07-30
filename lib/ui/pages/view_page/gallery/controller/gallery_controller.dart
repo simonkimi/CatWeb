@@ -6,7 +6,7 @@ import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
-import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/data/models/site_model/pages/template_gallery.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/replace_utils.dart';
@@ -89,7 +89,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryParserResult,
 
   GalleryParserResult? get detailModel => _detailModel.value;
 
-  String get idCode => localEnv.apply(blueprint.url);
+  String get idCode => localEnv.apply(blueprint.url.value);
 
   /// 从数据库中取出上次加载进度
   Future<void> loadLastRead() async {
@@ -109,7 +109,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryParserResult,
 
   @override
   Future<GalleryLoadMore> netWorkLoadPage(int page) async {
-    var baseUrl = blueprint.url;
+    var baseUrl = blueprint.url.value;
     if (hasPageExpression(baseUrl) || page == 0) {
       // 有面数
       baseUrl = pageReplace(baseUrl, page);
@@ -131,7 +131,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryParserResult,
     );
     _detailModel.value = detail;
 
-    if (!hasPageExpression(blueprint.url) &&
+    if (!hasPageExpression(blueprint.url.value) &&
         (detail.nextPage == baseUrl || detail.nextPage?.isEmpty == true)) {
       stateLoadNoData();
     }

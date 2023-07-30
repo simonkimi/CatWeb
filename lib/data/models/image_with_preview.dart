@@ -37,7 +37,7 @@ abstract class ImageWithPreviewModel<T>
     try {
       if (imageModel.value != null || state.isLoading) return;
       loadStart();
-      final url = blueprint.url.isEmpty ? idCode! : blueprint.url;
+      final url = blueprint.url.isEmpty ? idCode! : blueprint.url.value;
       final global = Get.find<SiteService>();
       final env = localEnv.clone()..['idCode'] = idCode!;
       imageModel.value = await global.website.client.getReadImage(

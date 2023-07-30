@@ -40,7 +40,7 @@ class SiteRenderConfigModel {
   final SiteBlueMap blueMap;
   final Rx<Uint8List?> favicon;
 
-  String get name => blueMap.name;
+  String get name => blueMap.name.value;
 
   int get id => dbEntity.id;
 
@@ -52,7 +52,7 @@ class SiteRenderConfigModel {
   Future<void> updateCookies() async {}
 
   List<SitePage> get displayPage => blueMap.pageList
-      .where((p0) => p0.displayType == SiteDisplayType.show)
+      .where((p0) => p0.displayType.value == SiteDisplayType.show)
       .where((e) => e.containsFlag('requireLogin')
           ? dbEntity.loginCookies.isNotEmpty
           : true)

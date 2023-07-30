@@ -2,7 +2,8 @@ import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/ffi/parser_result.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
-import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/data/models/site_model/pages/template_auto_complete.dart';
+import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/handle.dart';
 import 'package:catweb/utils/helper.dart';
@@ -23,19 +24,19 @@ class SearchListController {
   final suggestions = RxList<AutoCompleteParserResultItem>();
 
   String get splitChar =>
-      extra.splitChar.isEmpty ? ' ' : extra.splitChar;
+      extra.splitChar.value.isEmpty ? ' ' : extra.splitChar.value;
 
   SearchListController({
     required TemplateList model,
     required this.onSearch,
   }) {
-    blueprint = website.blueMap.pageList.get((e) => e.uuid == model.targetAutoComplete);
+    blueprint = website.blueMap.pageList
+        .get((e) => e.uuid == model.targetAutoComplete.value);
 
     if (blueprint != null) {
       textController.addListener(() {
         if (textController.selection.baseOffset == textController.text.length) {
-          handler.post(
-              extra.timeout, () {
+          handler.post(extra.timeout, () {
             if (focusNode.hasFocus && textController.text.isNotEmpty) {
               requestAutoComplete(textController.text);
             }
@@ -69,7 +70,7 @@ class SearchListController {
     isLoading.value = true;
     try {
       final result = await website.client.getAutoComplete(
-        url: blueprint!.url,
+        url: blueprint!.url.value,
         model: blueprint!,
         localEnv: SiteEnvStore({
           'search': keyword,
@@ -96,6 +97,5 @@ class SearchListController {
     onTextChanged(text);
   }
 
-  TemplateAutoComplete get extra =>
-      blueprint!.template as TemplateAutoComplete;
+  TemplateAutoComplete get extra => blueprint!.template as TemplateAutoComplete;
 }

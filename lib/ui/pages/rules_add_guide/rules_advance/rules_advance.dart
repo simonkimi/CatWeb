@@ -1,30 +1,25 @@
-import 'package:catweb/data/models/site_model/fields/field.dart';
+import 'package:catweb/data/models/site_model/parser/field.dart';
+import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
-import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:get/get.dart';
 
-class RulesAdvance extends HookWidget {
+class RulesAdvance extends GetWidget<RulesEditController> {
   const RulesAdvance({
     super.key,
   });
+
+  SiteBlueMap get model => controller.blueprint;
 
   @override
   Widget build(BuildContext context) {
     final headerController = SwipeActionController();
     final cookieController = SwipeActionController();
-
-    final c = Get.find<RulesEditController>();
-    final model = useState(c.blueprint);
-
-    useEffect(() {
-      return () => c.updateBlueMap(model.value);
-    });
 
     return ListView(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -41,24 +36,21 @@ class RulesAdvance extends HookWidget {
           ),
           child: Column(
             children: [
-              Column(
-                children: model.value.headers.asMap().entries.map((e) {
-                  return Obx(() => CupertinoDeletableTile(
-                      index: e.key,
-                      controller: headerController,
-                      text: '${e.value.reg}: ${e.value.value}',
-                      onDelete: (index) {
-                        model.value = model.value.copyWith(
-                            headers: model.value.headers.exceptAt(index));
-                      },
-                      onTap: () async {
-                        var newReg = await _editRegField(context, e.value);
-                        model.value = model.value.copyWith(
-                            headers: [...model.value.headers]
-                              ..replaceRange(e.key, e.key + 1, [newReg]));
-                      }));
-                }).toList(),
-              ),
+              Obx(() => Column(
+                    children: model.headers.asMap().entries.map((e) {
+                      return CupertinoDeletableTile(
+                          index: e.key,
+                          controller: headerController,
+                          text: '${e.value.reg}: ${e.value.value}',
+                          onDelete: (index) {
+                            model.headers.removeAt(index);
+                          },
+                          onTap: () async {
+                            var newReg = await _editRegField(context, e.value);
+                            model.headers[e.key] = newReg;
+                          });
+                    }).toList(),
+                  )),
               CupertinoClassicalListTile(
                 icon: Icon(
                   CupertinoIcons.add_circled_solid,
@@ -66,10 +58,7 @@ class RulesAdvance extends HookWidget {
                 ),
                 text: I.of(context).add,
                 onTap: () {
-                  model.value = model.value.copyWith(headers: [
-                    ...model.value.headers,
-                    const RegField(reg: '*', value: '')
-                  ], cookies: model.value.cookies);
+                  model.headers.add(RegField(reg: '*', value: ''));
                 },
               ),
             ],
@@ -88,24 +77,22 @@ class RulesAdvance extends HookWidget {
           ),
           child: Column(
             children: [
-              Column(
-                children: model.value.cookies.asMap().entries.map((e) {
+              Obx(() => Column(
+                children: model.cookies.asMap().entries.map((e) {
                   return CupertinoDeletableTile(
                       index: e.key,
                       controller: cookieController,
                       text:
                       '${e.value.reg.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
                       onDelete: (index) {
-                        model.value.cookies =
-                            model.value.cookies.exceptAt(index);
+                        model.cookies.removeAt(index);
                       },
                       onTap: () async {
                         var newReg = await _editRegField(context, e.value);
-                        model.value.cookies = [...model.value.cookies]
-                          ..replaceRange(e.key, e.key + 1, [newReg]);
+                        model.cookies[e.key] = newReg;
                       });
                 }).toList(),
-              ),
+              )),
               CupertinoClassicalListTile(
                 icon: Icon(
                   CupertinoIcons.add_circled_solid,
@@ -113,10 +100,7 @@ class RulesAdvance extends HookWidget {
                 ),
                 text: I.of(context).add,
                 onTap: () {
-                  model.value = model.value.copyWith(cookies: [
-                    ...model.value.cookies,
-                    const RegField(reg: '*', value: '')
-                  ], headers: model.value.headers);
+                  model.cookies.add(RegField(reg: '*', value: ''));
                 },
               ),
             ],
@@ -143,16 +127,10 @@ class RulesAdvance extends HookWidget {
                 CupertinoInput(
                   labelText: I.of(context).reg,
                   value: field.reg,
-                  onChanged: (value) {
-                    field = field.copyWith(reg: value);
-                  },
                 ),
                 CupertinoInput(
                   labelText: I.of(context).content,
                   value: field.value,
-                  onChanged: (value) {
-                    field = field.copyWith(value: value);
-                  },
                 ),
               ],
             ),

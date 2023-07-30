@@ -1,10 +1,11 @@
-import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/data/models/site_model/pages/subpage.dart';
+import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
+import 'package:catweb/ui/widgets/cupertino_obs_swiitch.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/theme/colors.dart';
-import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
@@ -14,20 +15,13 @@ class ListFilterEditor extends HookWidget {
   const ListFilterEditor({
     super.key,
     required this.templateBase,
-    required this.onTemplateChanged,
   });
 
   final TemplateList templateBase;
-  final Function(TemplateList) onTemplateChanged;
 
   @override
   Widget build(BuildContext context) {
     final filterController = SwipeActionController();
-    final template = useState(templateBase);
-
-    useEffect(() {
-      return () => onTemplateChanged(template.value);
-    });
 
     return ListView(
       children: [
@@ -45,7 +39,7 @@ class ListFilterEditor extends HookWidget {
             children: [
               CupertinoReadOnlyInput(
                 labelText: I.of(context).script,
-                value: template.value.script.script,
+                value: templateBase.script.type.value.value,
                 onTap: () {},
               ),
               Row(
@@ -55,12 +49,10 @@ class ListFilterEditor extends HookWidget {
                   Transform.scale(
                     alignment: Alignment.centerRight,
                     scale: 0.8,
-                    child: Obx(() => CupertinoSwitch(
-                        value: template.value.disableUnchanged,
-                        onChanged: (value) {
-                          template.value =
-                              template.value.copyWith(disableUnchanged: value);
-                        })),
+                    child: CupertinoObxSwitch(
+                      value: templateBase.disableUnchanged,
+                      scale: 0.8,
+                    ),
                   ),
                 ],
               ),
@@ -92,19 +84,18 @@ class ListFilterEditor extends HookWidget {
               ColoredBox(
                 color: CupertinoColors.systemGroupedBackground
                     .resolveFrom(context),
-                child: Column(
-                  children: template.value.filters.asMap().entries.map((e) {
-                    return CupertinoDeletableTile(
-                        index: e.key,
-                        controller: filterController,
-                        text: '${e.value.name} - ${e.value.key}',
-                        onDelete: (index) {
-                          template.value = template.value.copyWith(
-                              filters: template.value.filters.exceptAt(index));
-                        },
-                        onTap: () => _editFilter(context, e.value));
-                  }).toList(),
-                ),
+                child: Obx(() => Column(
+                      children: templateBase.filters.asMap().entries.map((e) {
+                        return CupertinoDeletableTile(
+                            index: e.key,
+                            controller: filterController,
+                            text: '${e.value.name} - ${e.value.key}',
+                            onDelete: (index) {
+                              templateBase.filters.removeAt(index);
+                            },
+                            onTap: () => _editFilter(context, e.value));
+                      }).toList(),
+                    )),
               ),
               CupertinoClassicalListTile(
                 icon: Icon(
@@ -113,10 +104,7 @@ class ListFilterEditor extends HookWidget {
                 ),
                 text: I.of(context).add,
                 onTap: () {
-                  template.value = template.value.copyWith(filters: [
-                    ...template.value.filters,
-                    const TemplateListFilterItem()
-                  ]);
+                  templateBase.filters.add(TemplateListFilterItem());
                 },
               ),
             ],
@@ -128,7 +116,7 @@ class ListFilterEditor extends HookWidget {
 
   Future<TemplateListFilterItem> _editFilter(
       BuildContext context, TemplateListFilterItem field) async {
-    var colorString = field.color.toString();
+    var colorString = field.color.hex;
     await showCupertinoDialog(
         barrierDismissible: true,
         context: context,
@@ -145,20 +133,14 @@ class ListFilterEditor extends HookWidget {
                 CupertinoInput(
                   labelText: I.of(context).name,
                   value: field.name,
-                  onChanged: (value) {
-                    field = field.copyWith(name: value);
-                  },
                 ),
                 CupertinoInput(
                   labelText: I.of(context).key,
                   value: field.key,
-                  onChanged: (value) {
-                    field = field.copyWith(key: value);
-                  },
                 ),
                 CupertinoReadOnlyInput(
                   labelText: I.of(context).type,
-                  value: field.type.value,
+                  value: field.type.value.value,
                   onTap: () => showCupertinoSelectDialog<FilterType>(
                     context: context,
                     items: FilterType.values
@@ -170,16 +152,16 @@ class ListFilterEditor extends HookWidget {
                     cancelText: I.of(context).negative,
                   ).then((value) {
                     if (value != null) {
-                      field = field.copyWith(type: value);
+                      field.type.value = value;
                     }
                   }),
                 ),
-                if (field.type == FilterType.boolCard)
+                if (field.type.value == FilterType.boolCard)
                   StatefulBuilder(
                     builder: (context, setState) {
                       return CupertinoInput(
                         labelText: I.of(context).color,
-                        value: colorString,
+                        value: ''.obs,
                         prefix: Padding(
                           padding: const EdgeInsets.only(left: 5),
                           child: Container(
@@ -191,20 +173,12 @@ class ListFilterEditor extends HookWidget {
                             ),
                           ),
                         ),
-                        onChanged: (String value) {
-                          setState(() {
-                            colorString = value;
-                          });
-                        },
                       );
                     },
                   ),
                 CupertinoInput(
                   labelText: I.of(context).default_value,
                   value: field.value,
-                  onChanged: (value) {
-                    field = field.copyWith(value: value);
-                  },
                 ),
               ],
             ),

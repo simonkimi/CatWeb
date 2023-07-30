@@ -203,7 +203,7 @@ class GalleryParserEditor extends HookWidget {
         title: I.of(context).badge_type,
         selector: model.value.badgeCategory,
         onChanged: (value) {
-          model.value = model.value.copyWith(badgeCategory: value);
+          model.value = model.value.copyWith(badgeColor: value);
         },
       ),
     ];

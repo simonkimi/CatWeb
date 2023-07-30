@@ -1,13 +1,7 @@
 import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:get/get.dart';
 
-import 'package:catweb/data/models/site_model/parser/parser.dart';
-
-part 'site_page.g.dart';
-
-part 'site_page.freezed.dart';
-
-@JsonEnum(valueField: 'value')
 enum SiteNetType {
   get('get'),
   post('post'),
@@ -17,9 +11,18 @@ enum SiteNetType {
   final String value;
 
   const SiteNetType(this.value);
+
+  static SiteNetType fromJson(String value) {
+    return switch (value) {
+      'get' => SiteNetType.get,
+      'post' => SiteNetType.post,
+      'put' => SiteNetType.put,
+      'delete' => SiteNetType.delete,
+      _ => SiteNetType.get
+    };
+  }
 }
 
-@JsonEnum(valueField: 'value')
 enum SiteDisplayType {
   show('show'),
   hide('hide'),
@@ -28,32 +31,74 @@ enum SiteDisplayType {
   final String value;
 
   const SiteDisplayType(this.value);
+
+  static SiteDisplayType fromJson(String value) {
+    return switch (value) {
+      'show' => SiteDisplayType.show,
+      'hide' => SiteDisplayType.hide,
+      'shrink' => SiteDisplayType.shrink,
+      _ => SiteDisplayType.show
+    };
+  }
 }
 
-@unfreezed
-class SitePage with _$SitePage {
-  const SitePage._();
+class SitePage {
+  SitePage({
+    required this.name,
+    required this.uuid,
+    required this.template,
+    String url = '',
+    SiteNetType action = SiteNetType.get,
+    String formData = '',
+    String icon = '',
+    SiteDisplayType displayType = SiteDisplayType.show,
+    String flag = '',
+    String parserId = '',
+  })  : url = url.obs,
+        action = action.obs,
+        formData = formData.obs,
+        icon = icon.obs,
+        displayType = displayType.obs,
+        flag = flag.obs,
+        parserId = parserId.obs;
 
-  factory SitePage({
-    required String name,
-    required String uuid,
-    @Default('') String url,
-    @Default(SiteNetType.get) SiteNetType action,
-    @Default('') String formData,
-    @Default('') String icon,
-    @Default(SiteDisplayType.show) SiteDisplayType displayType,
-    @Default('') String flag,
-    @Default('') String parserId,
-    @JsonKey(fromJson: ITemplate.fromJson, toJson: SitePage._parserToJson)
-    required ITemplate template,
-  }) = _SitePage;
+  final String name;
+  final String uuid;
+  final ITemplate template;
 
-  factory SitePage.fromJson(Map<String, dynamic> json) =>
-      _$SitePageFromJson(json);
+  final RxString url;
+  final Rx<SiteNetType> action;
+  final RxString formData;
+  final RxString icon;
+  final Rx<SiteDisplayType> displayType;
+  final RxString flag;
+  final RxString parserId;
 
-  static Map<String, dynamic> _parserToJson(ITemplate? parser) {
-    return parser?.toJson() ?? {};
-  }
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'uuid': uuid,
+        'url': url.value,
+        'action': action.value.value,
+        'formData': formData.value,
+        'icon': icon.value,
+        'displayType': displayType.value.value,
+        'flag': flag.value,
+        'parserId': parserId.value,
+        'template': template.toJson(),
+      };
+
+  factory SitePage.fromJson(Map<String, dynamic> json) => SitePage(
+        name: json['name'] as String,
+        uuid: json['uuid'] as String,
+        url: json['url'] as String,
+        action: SiteNetType.fromJson(json['action'] as String),
+        formData: json['formData'] as String,
+        icon: json['icon'] as String,
+        displayType: SiteDisplayType.fromJson(json['displayType'] as String),
+        flag: json['flag'] as String,
+        parserId: json['parserId'] as String,
+        template: ITemplate.fromJson(json['template'] as Map<String, dynamic>),
+      );
 
   bool containsFlag(String flag) {
     for (final flag in this.flag.split('|')) {
@@ -62,25 +107,5 @@ class SitePage with _$SitePage {
       }
     }
     return false;
-  }
-
-  List<String> getDependPage() {
-    switch (template.type) {
-      case TemplateType.imageList:
-      case TemplateType.imageWaterFall:
-        final model = template as TemplateList;
-        return [model.targetItem, model.targetAutoComplete];
-      default:
-        return [];
-    }
-  }
-
-  ParserType acceptParserType() {
-    return switch(template.type) {
-      TemplateType.imageList || TemplateType.imageWaterFall => ParserType.listView,
-      TemplateType.autoComplete => ParserType.autoComplete,
-      TemplateType.gallery => ParserType.gallery,
-      TemplateType.imageViewer => ParserType.imageReader,
-    };
   }
 }

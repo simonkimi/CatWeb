@@ -1,4 +1,4 @@
-import 'package:catweb/data/models/site_model/fields/field.dart';
+import 'package:catweb/data/models/site_model/parser/field.dart';
 import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/data/models/site_model/parser/selector.dart';
 import 'package:uuid/uuid.dart';
@@ -6,30 +6,30 @@ import 'package:uuid/uuid.dart';
 final ehListParser = ListViewParser(
   name: '通用列表',
   uuid: const Uuid().v5(Uuid.NAMESPACE_URL, 'commonListUuid').toString(),
-  itemSelector: const Selector(
+  itemSelector: Selector(
     selector: "//div[@class='gl1t'] | //*[starts-with(@class, 'gl2')]/..",
     type: SelectorType.xpath,
   ),
-  failedSelector: const Selector(
+  failedSelector: Selector(
     selector: '//*[contains(text(), "IP address has")]',
     function: SelectorFunctionType.text,
     type: SelectorType.xpath,
   ),
-  idCode: const Selector(
+  idCode: Selector(
     selector: '.glname a, .gl1e a, .gl3t a',
     function: SelectorFunctionType.attr,
     param: 'href',
     regex: r'g\/(\d+\/\w+)',
   ),
-  title: const Selector(
+  title: Selector(
     selector: '.glink',
     function: SelectorFunctionType.text,
   ),
-  subtitle: const Selector(
+  subtitle: Selector(
     selector: '.gl5m a, .gl4c a, .gl3e a',
     function: SelectorFunctionType.text,
   ),
-  language: const Selector(
+  language: Selector(
     selector: '.gt[title^=language]',
     function: SelectorFunctionType.text,
     script: ScriptField(
@@ -38,32 +38,32 @@ final ehListParser = ListViewParser(
       type: ScriptFieldType.replace,
     ),
   ),
-  imgCount: const Selector(
+  imgCount: Selector(
     selector:
         "//div[@class='glthumb']/*[2]/*[2]|//div[@class='gl3e']/*[5]|//div[@class='gl5t']/*[2]/*[2]",
     type: SelectorType.xpath,
     function: SelectorFunctionType.text,
     regex: r'\d+',
   ),
-  badgeSelector: const Selector(
+  badgeSelector: Selector(
     selector: '.gt, .gtl',
   ),
-  badgeText: const Selector(
+  badgeText: Selector(
     function: SelectorFunctionType.attr,
     param: 'title',
     regex: r'(\w).+?:(.*)',
     replace: r'$1:$2',
   ),
-  badgeColor: const Selector(
+  badgeColor: Selector(
     function: SelectorFunctionType.attr,
     param: 'style',
     regex: r'(#[0-9a-fA-F]{6})\)',
   ),
-  tag: const Selector(
+  tag: Selector(
     selector: '.cn, .cs',
     function: SelectorFunctionType.text,
   ),
-  tagColor: const Selector(
+  tagColor: Selector(
     selector: '.cn, .cs',
     function: SelectorFunctionType.attr,
     param: 'class',
@@ -74,18 +74,18 @@ final ehListParser = ListViewParser(
       type: ScriptFieldType.js,
     ),
   ),
-  star: const Selector(
+  star: Selector(
     selector: '.ir',
     function: SelectorFunctionType.attr,
     param: 'style',
     regex: r'background-position:-?(\d+)px -?(\d+)px',
     replace: r'5-$1/16-($2-1)/40',
   ),
-  uploadTime: const Selector(
+  uploadTime: Selector(
     selector: '.glnew,.glfc',
     function: SelectorFunctionType.text,
   ),
-  previewImg: const ImageSelector(
+  previewImg: ImageSelector(
     imgUrl: Selector(
       selector: '.gl2c img,.glthumb img,.gl1e img,.gl3t img',
       function: SelectorFunctionType.attr,
@@ -106,12 +106,12 @@ final ehListParser = ListViewParser(
       regex: r'height:(\d+)',
     ),
   ),
-  nextPage: const Selector(
+  nextPage: Selector(
     selector: '.ptb td:last-child a',
     function: SelectorFunctionType.attr,
     param: 'href',
   ),
-  extra: const [
+  extra: [
     ExtraSelector(
       global: true,
       id: 'fav0Tag',

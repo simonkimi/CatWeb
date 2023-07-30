@@ -26,18 +26,18 @@ class HeaderCookieInterceptor extends Interceptor {
 
     // Cookies
     for (final regField in model.cookies) {
-      if (regField.reg.isEmpty ||
-          RegExp(regField.reg).hasMatch(uri)) {
-        cookie.addEntries(_parseCookies(regField.value).entries);
+      if (regField.reg.value.isEmpty ||
+          RegExp(regField.reg.value).hasMatch(uri)) {
+        cookie.addEntries(_parseCookies(regField.value.value).entries);
       }
     }
 
     // 登录Cookies
     if (db.loginCookies.isNotEmpty) {
-      if (model.loginCookieReg.isEmpty ||
-          RegExp(model.loginCookieReg).hasMatch(uri)) {
+      if (model.loginCookieReg.value.isEmpty ||
+          RegExp(model.loginCookieReg.value).hasMatch(uri)) {
         if (db.securityModel &&
-            options.uri.host == Uri.tryParse(model.baseUrl)?.host) {
+            options.uri.host == Uri.tryParse(model.baseUrl.value)?.host) {
           cookie.addEntries(_parseCookies(db.loginCookies).entries);
         } else if (!db.securityModel) {
           cookie.addEntries(_parseCookies(db.loginCookies).entries);
@@ -51,8 +51,8 @@ class HeaderCookieInterceptor extends Interceptor {
 
     // Headers
     for (final regField in model.headers) {
-      if (RegExp(regField.reg).hasMatch(uri)) {
-        options.headers.addAll(_parseHeaders(regField.value));
+      if (RegExp(regField.reg.value).hasMatch(uri)) {
+        options.headers.addAll(_parseHeaders(regField.value.value));
       }
     }
 

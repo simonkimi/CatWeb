@@ -52,10 +52,10 @@ class NetClient {
     required SiteEnvStore localEnv,
     Options? options,
   }) async {
-    final form = localEnv.apply(model.formData);
+    final form = localEnv.apply(model.formData.value);
     final url2 = localEnv.apply(url);
 
-    switch (model.action) {
+    switch (model.action.value) {
       case SiteNetType.delete:
         return dio.delete(url2, options: options);
       case SiteNetType.get:
@@ -248,7 +248,7 @@ Dio _buildDio({
     ..sendTimeout = 60.seconds;
 
   if (model.baseUrl.isNotEmpty) {
-    dio.options.baseUrl = model.baseUrl;
+    dio.options.baseUrl = model.baseUrl.value;
   }
 
   dio.transformer = EncodeTransformer();

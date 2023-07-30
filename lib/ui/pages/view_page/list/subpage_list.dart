@@ -1,7 +1,7 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/controller/navigator_service.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/load_more_footer.dart';
@@ -99,7 +99,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
                 onTap: () {
                   NavigatorService.push(
                     targetName: (controller.blueprint.template as TemplateList)
-                        .targetItem,
+                        .targetItem.value,
                     envModel: SiteEnvStore(model.previewModel.env),
                     model: model,
                   );

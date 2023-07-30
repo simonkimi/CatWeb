@@ -74,7 +74,6 @@ class CupertinoInput extends StatelessWidget {
     super.key,
     required this.labelText,
     required this.value,
-    required this.onChanged,
     this.minLine = 1,
     this.hintText,
     this.padding = true,
@@ -85,7 +84,7 @@ class CupertinoInput extends StatelessWidget {
   });
 
   final String labelText;
-  final String value;
+  final RxString value;
 
   final int minLine;
   final String? hintText;
@@ -95,7 +94,6 @@ class CupertinoInput extends StatelessWidget {
 
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
-  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -112,9 +110,9 @@ class CupertinoInput extends StatelessWidget {
           ),
           const SizedBox(height: 3),
           CupertinoTextField(
-            controller: TextEditingController(text: value)
+            controller: TextEditingController(text: value.value)
               ..selection = TextSelection.collapsed(
-                offset: value.length,
+                offset: value.value.length,
               ),
             decoration: BoxDecoration(
               border: const Border(),
@@ -123,7 +121,7 @@ class CupertinoInput extends StatelessWidget {
             ),
             minLines: minLine,
             maxLines: minLine,
-            onChanged: onChanged,
+            onChanged: (v) => value.value = v,
             prefix: prefix,
             inputFormatters: inputFormatters,
             keyboardType: keyboardType,

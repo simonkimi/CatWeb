@@ -6,9 +6,10 @@ import 'package:catweb/data/models/ffi/parser_result.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/data/models/site_model/fields/field.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
-import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/data/models/site_model/pages/subpage.dart';
+import 'package:catweb/data/models/site_model/pages/template_list.dart';
+import 'package:catweb/data/models/site_model/parser/field.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/debug.dart';
@@ -22,11 +23,11 @@ import 'package:tuple/tuple.dart';
 
 class FilterObx {
   FilterObx(TemplateListFilterItem raw)
-      : name = raw.name,
-        key = raw.key,
-        type = raw.type,
-        value = raw.value.obs,
-        color = raw.color.toColor();
+      : name = raw.name.value,
+        key = raw.key.value,
+        type = raw.type.value,
+        value = raw.value,
+        color = raw.color.color;
 
   FilterObx.from(FilterObx raw)
       : name = raw.name,
@@ -80,8 +81,8 @@ class SubListController extends LoadMoreLoader<
   }) : localEnv =
             SiteEnvStore(subPageModel != null && subPageModel.value.isNotEmpty
                 ? {
-                    subPageModel.key.isNotEmpty ? subPageModel.key : 'subKey':
-                        subPageModel.value,
+                    subPageModel.key.value.isNotEmpty ? subPageModel.key.value : 'subKey':
+                        subPageModel.value.value,
                   }
                 : null);
 
@@ -122,7 +123,7 @@ class SubListController extends LoadMoreLoader<
   Future<ListPageItem> netWorkLoadPage(
     int page,
   ) async {
-    var baseUrl = blueprint.url;
+    var baseUrl = blueprint.url.value;
     if (hasPageExpression(baseUrl) || page == 0) {
       // 有面数
       baseUrl = pageReplace(baseUrl, page);
@@ -140,7 +141,7 @@ class SubListController extends LoadMoreLoader<
     // 添加缓存
     if (subPageModel != null && subPageModel!.key.isNotEmpty) {
       localEnv.mergeMap({
-        subPageModel!.key: subPageModel!.value,
+        subPageModel!.key.value: subPageModel!.value.value,
       });
     }
 
@@ -161,7 +162,7 @@ class SubListController extends LoadMoreLoader<
 
   void resetFilter() {
     for (var i = 0; i < filter.length; i++) {
-      filter[i].value.value = extra.filters[i].value;
+      filter[i].value.value = extra.filters[i].value.value;
     }
   }
 
@@ -209,7 +210,7 @@ class SubListController extends LoadMoreLoader<
   TemplateList get extra => blueprint.template as TemplateList;
 
   bool get useFilter => List.generate(extra.filters.length, (i) => i)
-      .any((e) => filter[e].value.value != extra.filters[e].value);
+      .any((e) => filter[e].value.value != extra.filters[e].value.value);
 
   bool get isFullScreenLoading => items.isEmpty && state.isLoading;
 

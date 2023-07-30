@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/setting_service.dart';
@@ -81,11 +83,11 @@ class SiteManager extends GetWidget<SiteService> {
   }
 
   Widget _buildSiteItem(BuildContext context, WebTableData e) {
-    final pb = SiteBlueMap.fromJsonString(e.blueprint);
+    final model = SiteBlueMap.fromJson(jsonDecode(e.blueprint));
     return Obx(() => CupertinoCardTile(
           selected: controller.id == e.id,
-          title: Text(pb.name),
-          subtitle: Text(pb.baseUrl),
+          title: Text(model.name.value),
+          subtitle: Text(model.baseUrl.value),
           trailing: const Icon(Icons.more_horiz),
           // leading: Center(
           //   child: SizedBox(
@@ -97,7 +99,7 @@ class SiteManager extends GetWidget<SiteService> {
           //     ),
           //   ),
           // ),
-          onTrailingTap: () => _onTrailingTap(context, e, pb),
+          onTrailingTap: () => _onTrailingTap(context, e, model),
           onTap: () => controller.setNewSite(
             controller.id == e.id ? null : e,
           ),
@@ -197,8 +199,8 @@ class SiteManager extends GetWidget<SiteService> {
       }
     } else {
       // 登录
-      if (Uri.tryParse(entity.baseUrl)?.host !=
-          Uri.tryParse(entity.loginUrl)?.host) {
+      if (Uri.tryParse(entity.baseUrl.value)?.host !=
+          Uri.tryParse(entity.loginUrl.value)?.host) {
         if (!Get.find<SettingService>().protectCookie.value ||
             !db.securityModel) {
           final w = await showCupertinoConfirmDialog(
@@ -206,7 +208,7 @@ class SiteManager extends GetWidget<SiteService> {
             title: I.of(context).login,
             content: I
                 .of(context)
-                .login_without_security(entity.loginCookieDescription),
+                .login_without_security(entity.loginCookieDescription.value),
           );
           if (w == false) {
             return;
@@ -226,7 +228,7 @@ class SiteManager extends GetWidget<SiteService> {
       final List<Cookie>? cookies = await Navigator.of(context).push(
         CupertinoPageRoute(
           builder: (context) => WebViewLoginIn(
-            url: entity.loginUrl,
+            url: entity.loginUrl.value,
           ),
         ),
       );
@@ -248,7 +250,7 @@ class SiteManager extends GetWidget<SiteService> {
       BuildContext context, WebTableData db, SiteBlueMap entity) async {
     if (await showCupertinoConfirmDialog(
           context: context,
-          content: I.of(context).delete_confirm(entity.name),
+          content: I.of(context).delete_confirm(entity.name.value),
           title: I.of(context).delete,
           confineText: I.of(context).delete,
           confineTextColor: CupertinoColors.systemRed.resolveFrom(context),

@@ -1,6 +1,6 @@
 import 'package:catweb/data/models/ffi/parser_result.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
-import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';

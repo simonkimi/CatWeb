@@ -1,4 +1,4 @@
-import 'package:catweb/data/models/site_model/fields/field.dart';
+import 'package:catweb/data/models/site_model/parser/field.dart';
 import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/data/models/site_model/parser/selector.dart';
 import 'package:uuid/uuid.dart';
@@ -6,24 +6,24 @@ import 'package:uuid/uuid.dart';
 final ehGalleryParser = GalleryParser(
   name: '画廊',
   uuid: const Uuid().v4().toString(),
-  title: const Selector(
+  title: Selector(
     selector: '//h1[@id="gj"]/text() | //h1[@id="gn"]/text()',
     type: SelectorType.xpath,
     function: SelectorFunctionType.attr,
   ),
-  failedSelector: const Selector(
+  failedSelector: Selector(
       selector: '//*[contains(text(), "IP address has")]',
       type: SelectorType.xpath,
       function: SelectorFunctionType.text),
-  subtitle: const Selector(
+  subtitle: Selector(
     selector: '#gdn',
     function: SelectorFunctionType.text,
   ),
-  uploadTime: const Selector(
+  uploadTime: Selector(
     selector: '#gdd tr:nth-child(1)>.gdt2',
     function: SelectorFunctionType.text,
   ),
-  language: const Selector(
+  language: Selector(
     selector: '#gdd tr:nth-child(4)>.gdt2',
     function: SelectorFunctionType.text,
     script: ScriptField(
@@ -33,21 +33,21 @@ final ehGalleryParser = GalleryParser(
       type: ScriptFieldType.replace,
     ),
   ),
-  imgCount: const Selector(
+  imgCount: Selector(
     selector: '#gdd tr:nth-child(6)>.gdt2',
     function: SelectorFunctionType.text,
     regex: r'\d+',
   ),
-  star: const Selector(
+  star: Selector(
     selector: '#rating_label',
     function: SelectorFunctionType.text,
     regex: r'Average: (.+)',
   ),
-  tag: const Selector(
+  tag: Selector(
     selector: '.cs',
     function: SelectorFunctionType.text,
   ),
-  tagColor: const Selector(
+  tagColor: Selector(
     selector: '.cs',
     function: SelectorFunctionType.attr,
     param: 'class',
@@ -58,26 +58,26 @@ final ehGalleryParser = GalleryParser(
       type: ScriptFieldType.replace,
     ),
   ),
-  badgeSelector: const Selector(selector: '.gt,.gtl'),
-  badgeText: const Selector(
+  badgeSelector: Selector(selector: '.gt,.gtl'),
+  badgeText: Selector(
     function: SelectorFunctionType.text,
   ),
-  badgeCategory: const Selector(
+  badgeCategory: Selector(
     function: SelectorFunctionType.attr,
     param: 'id',
     regex: 'td_(.+?):',
   ),
-  description: const Selector(
+  description: Selector(
     selector:
         '//a[@name="ulcomment"]/ancestor::div[@class="c1"]//div[@id="comment_0"]',
     type: SelectorType.xpath,
     function: SelectorFunctionType.text,
   ),
-  commentSelector: const Selector(
+  commentSelector: Selector(
     selector: "//div[starts-with(@class, 'c5')]/../..",
     type: SelectorType.xpath,
   ),
-  comments: const CommentSelector(
+  comments: CommentSelector(
     content: Selector(
       selector: '#cdiv .c6',
       function: SelectorFunctionType.text,
@@ -97,8 +97,8 @@ final ehGalleryParser = GalleryParser(
       regex: r'.?\d+',
     ),
   ),
-  thumbnailSelector: const Selector(selector: '.gdtm, .gdtl'),
-  thumbnail: const ImageSelector(
+  thumbnailSelector: Selector(selector: '.gdtm, .gdtl'),
+  thumbnail: ImageSelector(
     imgWidth: Selector(
       selector: 'img',
       function: SelectorFunctionType.attr,
@@ -126,13 +126,13 @@ final ehGalleryParser = GalleryParser(
       regex: r'https:.+?\.jpg',
     ),
   ),
-  target: const Selector(
+  target: Selector(
     selector: 'a',
     function: SelectorFunctionType.attr,
     param: 'href',
     regex: r'\/s\/(.+)',
   ),
-  coverImg: const ImageSelector(
+  coverImg: ImageSelector(
     imgUrl: Selector(
       selector: '#gd1 div',
       function: SelectorFunctionType.attr,
@@ -152,7 +152,7 @@ final ehGalleryParser = GalleryParser(
       regex: r'height:(\d+)px',
     ),
   ),
-  countPrePage: const Selector(
+  countPrePage: Selector(
     selector: '#gdo',
     function: SelectorFunctionType.raw,
     regex: r'<div class="ths nosel">(\d+) rows.+sel">(\w)',
