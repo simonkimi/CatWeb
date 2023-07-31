@@ -17,68 +17,54 @@ class RulesPageEdit extends HookWidget {
   const RulesPageEdit({
     super.key,
     required this.baseModel,
-    required this.onModelChanged,
   });
 
   final SitePage baseModel;
-  final Function(SitePage) onModelChanged;
 
   @override
   Widget build(BuildContext context) {
-    final model = useState(baseModel);
-    model.addListener(() {
-      onModelChanged(model.value);
-    });
-
-    if (model.value.template.type != TemplateType.imageViewer) {
+    if (baseModel.template.type != TemplateType.imageViewer) {
       return CupertinoPageScaffold(
-        navigationBar: _buildAppbar(model, context),
+        navigationBar: _buildAppbar(context),
         child: CupertinoTabBarView(
           tabs: [
             CupertinoTab(I.of(context).basic),
-            if (model.value.template is TemplateList) ...[
+            if (baseModel.template is TemplateList) ...[
               const CupertinoTab('子页面'),
               CupertinoTab(I.of(context).filter),
             ],
-            if (model.value.template is TemplateAutoComplete)
+            if (baseModel.template is TemplateAutoComplete)
               CupertinoTab(I.of(context).setting),
           ],
           children: [
             RulesPageBasic(
-              sitePage: model.value,
-              onModelChanged: (value) {
-                model.value = value;
-              },
+              sitePage: baseModel,
             ),
-            if (model.value.template is TemplateList) ...[
+            if (baseModel.template is TemplateList) ...[
               ListNormalSubPage(
-                templateBase: model.value.template as TemplateList,
+                templateBase: baseModel.template as TemplateList,
               ),
               ListFilterEditor(
-                templateBase: model.value.template as TemplateList,
+                templateBase: baseModel.template as TemplateList,
               ),
             ],
-            if (model.value.template is TemplateAutoComplete)
+            if (baseModel.template is TemplateAutoComplete)
               TemplateAutoCompleteEditor(
-                templateBase: model.value.template as TemplateAutoComplete,
+                templateBase: baseModel.template as TemplateAutoComplete,
               ),
           ],
         ),
       );
     }
     return CupertinoPageScaffold(
-      navigationBar: _buildAppbar(model, context),
+      navigationBar: _buildAppbar(context),
       child: RulesPageBasic(
-        sitePage: model.value,
-        onModelChanged: (value) {
-          model.value = value;
-        },
+        sitePage: baseModel,
       ),
     );
   }
 
   CupertinoNavigationBar _buildAppbar(
-    ValueNotifier<SitePage> model,
     BuildContext context,
   ) {
     return CupertinoNavigationBar(
@@ -92,7 +78,7 @@ class RulesPageEdit extends HookWidget {
         child: const Icon(CupertinoIcons.back),
       ),
       middle: Text(I.of(context).page),
-      border: model.value.template is! TemplateImageViewer
+      border: baseModel.template is! TemplateImageViewer
           ? const Border()
           : kDefaultNavBarBorder,
     );

@@ -1,4 +1,4 @@
-import 'package:catweb/data/models/site_model/fields/field.dart';
+import 'package:catweb/data/models/site_model/parser/field.dart';
 import 'package:catweb/data/models/site_model/parser/selector.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
@@ -8,23 +8,17 @@ import 'package:get/get.dart';
 class SelectorEditor extends StatelessWidget {
   SelectorEditor({
     Key? key,
-    this.onChanged,
-    this.onExtraChanged,
     Selector? selector,
     this.onlySelector = false,
     required this.title,
     this.extraSelector,
-  })  : rxSelector = (selector ?? const Selector()).obs,
+  })  : selector = selector ?? Selector(),
         super(key: key);
 
-  final Rx<Selector> rxSelector;
-  final Function(Selector)? onChanged;
-  final Function(ExtraSelector)? onExtraChanged;
   final bool onlySelector;
   final String title;
   final ExtraSelector? extraSelector;
-
-  Selector get selector => rxSelector.value;
+  final Selector selector;
 
   @override
   Widget build(BuildContext context) {
@@ -36,26 +30,20 @@ class SelectorEditor extends StatelessWidget {
           children: [
             _SelectorText(
               prefix: '选择器',
-              text: selector.selector,
-              onChanged: (value) {
-                rxSelector(selector.copyWith(selector: value));
-              },
+              value: selector.selector,
             ),
             const CupertinoDivider(height: 1),
             Obx(() => _SelectorSelectPopup<SelectorType>(
-                text: selector.type.value,
-                prefix: '类型',
-                items: SelectorType.values
-                    .map((e) => SelectTileItem(
-                          title: e.value,
-                          value: e,
-                        ))
-                    .toList(),
-                value: selector.type,
-                onSelected: (value) {
-                  if (value == null) return;
-                  rxSelector(selector.copyWith(type: value));
-                })),
+                  text: selector.type.value.value,
+                  prefix: '类型',
+                  items: SelectorType.values
+                      .map((e) => SelectTileItem(
+                            title: e.value,
+                            value: e,
+                          ))
+                      .toList(),
+                  value: selector.type,
+                )),
             if (!onlySelector) ..._otherSelector(),
             if (extraSelector != null) ..._extraSelector(),
           ],
@@ -72,32 +60,26 @@ class SelectorEditor extends StatelessWidget {
     return [
       const CupertinoDivider(height: 1),
       Obx(() => _SelectorSelectPopup<SelectorFunctionType>(
-          text: selector.function.value,
-          prefix: '函数',
-          items: SelectorFunctionType.values
-              .map((e) => SelectTileItem(
-                    title: e.value,
-                    value: e,
-                  ))
-              .toList(),
-          value: selector.function,
-          onSelected: (value) {
-            if (value == null) return;
-            rxSelector(selector.copyWith(function: value));
-          })),
+            text: selector.function.value.value,
+            prefix: '函数',
+            items: SelectorFunctionType.values
+                .map((e) => SelectTileItem(
+                      title: e.value,
+                      value: e,
+                    ))
+                .toList(),
+            value: selector.function,
+          )),
       const CupertinoDivider(height: 1),
       Obx(() {
-        if (selector.function != SelectorFunctionType.attr) {
+        if (selector.function.value != SelectorFunctionType.attr) {
           return const SizedBox();
         }
         return Column(
           children: [
             _SelectorText(
               prefix: '参数',
-              text: selector.param,
-              onChanged: (value) {
-                rxSelector(selector.copyWith(param: value));
-              },
+              value: selector.param,
             ),
             const CupertinoDivider(height: 1),
           ],
@@ -105,41 +87,28 @@ class SelectorEditor extends StatelessWidget {
       }),
       _SelectorText(
         prefix: '正则',
-        text: selector.regex,
-        onChanged: (value) {
-          rxSelector(selector.copyWith(regex: value));
-        },
+        value: selector.regex,
       ),
       const CupertinoDivider(height: 1),
       _SelectorText(
         prefix: '替换',
-        text: selector.replace,
-        onChanged: (value) {
-          rxSelector(selector.copyWith(replace: value));
-        },
+        value: selector.replace,
       ),
       const CupertinoDivider(height: 1),
       Obx(() => _SelectorSelectPopup<ScriptFieldType>(
-          text: selector.script.type.value,
-          prefix: '输出',
-          items: ScriptFieldType.values
-              .map((e) => SelectTileItem(
-                    title: e.value,
-                    value: e,
-                  ))
-              .toList(),
-          value: selector.script.type,
-          onSelected: (value) {
-            if (value == null) return;
-            rxSelector(selector.copyWith(
-              script: selector.script.copyWith(
-                type: value,
-              ),
-            ));
-          })),
+            text: selector.script.type.value.value,
+            prefix: '输出',
+            items: ScriptFieldType.values
+                .map((e) => SelectTileItem(
+                      title: e.value,
+                      value: e,
+                    ))
+                .toList(),
+            value: selector.script.type,
+          )),
       Obx(() {
-        if (selector.script.type == ScriptFieldType.output ||
-            selector.script.type == ScriptFieldType.computed) {
+        if (selector.script.type.value == ScriptFieldType.output ||
+            selector.script.type.value == ScriptFieldType.computed) {
           return const SizedBox();
         }
         return Column(
@@ -147,15 +116,8 @@ class SelectorEditor extends StatelessWidget {
             const CupertinoDivider(height: 1),
             _SelectorText(
               prefix: '脚本',
-              text: selector.script.script,
+              value: selector.script.script,
               multiline: true,
-              onChanged: (value) {
-                rxSelector(selector.copyWith(
-                  script: selector.script.copyWith(
-                    script: value,
-                  ),
-                ));
-              },
             ),
           ],
         );
@@ -177,15 +139,11 @@ class SelectorEditor extends StatelessWidget {
       transitionBetweenRoutes: false,
       trailing: CupertinoButton(
         onPressed: () {
-          onChanged?.call(selector);
-          if (extraSelector != null) {
-            onExtraChanged?.call(extraSelector!);
-          }
           Navigator.of(context).pop();
         },
         padding: const EdgeInsets.only(right: 10),
         minSize: 0,
-        child: const Text('确定'),
+        child: const Text('返回'),
       ),
     );
   }
@@ -195,19 +153,17 @@ class _SelectorText extends StatelessWidget {
   const _SelectorText({
     Key? key,
     required this.prefix,
-    required this.text,
-    this.onChanged,
+    required this.value,
     this.multiline = false,
   }) : super(key: key);
 
-  final String text;
+  final RxString value;
   final String prefix;
-  final Function(String)? onChanged;
   final bool multiline;
 
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController()..text = text;
+    final controller = TextEditingController()..text = value.value;
     return CupertinoTextField.borderless(
       controller: controller,
       prefix: Text(
@@ -220,10 +176,10 @@ class _SelectorText extends StatelessWidget {
       maxLines: multiline ? 5 : null,
       padding: const EdgeInsets.all(10),
       onEditingComplete: () {
-        onChanged?.call(controller.text);
+        value.value = controller.text;
       },
       onTapOutside: (_) {
-        onChanged?.call(controller.text);
+        value.value = controller.text;
       },
     );
   }
@@ -235,14 +191,12 @@ class _SelectorSelectPopup<T> extends StatelessWidget {
     required this.prefix,
     required this.items,
     required this.text,
-    this.value,
-    this.onSelected,
+    required this.value,
   }) : super(key: key);
 
-  final T? value;
+  final Rx<T> value;
   final String prefix;
   final List<SelectTileItem<T>> items;
-  final Function(T?)? onSelected;
   final String text;
 
   @override
@@ -262,8 +216,11 @@ class _SelectorSelectPopup<T> extends StatelessWidget {
         showCupertinoSelectDialog<T>(
           context: context,
           items: items,
-          onSelected: onSelected,
-          selectedValue: value,
+          selectedValue: value.value,
+          onSelected: (e) {
+            if (e == null) return;
+            value.value = e;
+          },
         );
       },
     );

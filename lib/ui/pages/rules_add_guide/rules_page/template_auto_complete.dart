@@ -1,8 +1,6 @@
-import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/data/models/site_model/pages/template_auto_complete.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class TemplateAutoCompleteEditor extends HookWidget {
@@ -24,11 +22,9 @@ class TemplateAutoCompleteEditor extends HookWidget {
             value: templateBase.splitChar,
             description: '默认为空格',
           ),
-          CupertinoInput(
+          CupertinoNumberInput(
             labelText: '开始搜索时间',
             value: templateBase.timeout,
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            keyboardType: TextInputType.number,
             description: '当输入等待多久后, 开始搜索 (默认1000毫秒)',
           ),
         ],

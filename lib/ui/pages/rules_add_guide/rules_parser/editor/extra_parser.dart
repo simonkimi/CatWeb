@@ -7,7 +7,7 @@ import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ExtraParserEditor extends StatefulWidget {
+class ExtraParserEditor extends StatelessWidget {
   const ExtraParserEditor({
     Key? key,
     required this.parser,
@@ -15,22 +15,7 @@ class ExtraParserEditor extends StatefulWidget {
 
   final IParserBase parser;
 
-  @override
-  State<ExtraParserEditor> createState() => _ExtraParserEditorState();
-}
-
-class _ExtraParserEditorState extends State<ExtraParserEditor> {
-  late final List<ExtraSelector> extra;
-
-  @override
-  void initState() {
-    super.initState();
-    extra = widget.parser.extra.toList();
-  }
-
-  void _updateResource() {
-    widget.parser.extra = extra;
-  }
+  List<ExtraSelector> get extra => parser.extra.toList();
 
   @override
   Widget build(BuildContext context) {
@@ -46,20 +31,6 @@ class _ExtraParserEditorState extends State<ExtraParserEditor> {
                       showCupertinoModalSheet(
                         context: context,
                         builder: (context) => SelectorEditor(
-                          onChanged: (selector) {
-                            setState(() {
-                              extra[extra.indexOf(e)] = e.copyWith(
-                                selector: selector,
-                              );
-                            });
-                            _updateResource();
-                          },
-                          onExtraChanged: (newExtra) {
-                            setState(() {
-                              extra[extra.indexOf(e)] = newExtra;
-                            });
-                            _updateResource();
-                          },
                           extraSelector: e,
                           title: e.id,
                         ),
@@ -75,9 +46,7 @@ class _ExtraParserEditorState extends State<ExtraParserEditor> {
               showCupertinoInputDialog(context, title: '规则id', initialValue: '')
                   .then((value) {
                 if (value == null) return;
-                setState(() {
-                  extra.add(ExtraSelector(id: value));
-                });
+                extra.add(ExtraSelector(id: value));
               });
             },
           ),

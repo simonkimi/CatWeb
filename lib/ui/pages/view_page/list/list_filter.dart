@@ -1,5 +1,4 @@
 import 'package:catweb/data/models/site_model/pages/subpage.dart';
-import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';

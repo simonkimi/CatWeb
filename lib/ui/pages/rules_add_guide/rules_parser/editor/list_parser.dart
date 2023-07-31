@@ -4,25 +4,9 @@ import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
 
-class ListParserEditor extends StatefulWidget {
-  ListParserEditor({Key? key, ListViewParser? parser})
-      : parser = parser ?? ListViewParser(name: '列表', uuid: ''),
-        super(key: key);
-
+class ListParserEditor extends StatelessWidget {
+  const ListParserEditor({Key? key, required this.parser}) : super(key: key);
   final ListViewParser parser;
-
-  @override
-  State<StatefulWidget> createState() => _ListParserEditorState();
-}
-
-class _ListParserEditorState extends State<ListParserEditor> {
-  late ListViewParser model;
-
-  @override
-  void initState() {
-    model = widget.parser;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,20 +31,14 @@ class _ListParserEditorState extends State<ListParserEditor> {
         children: [
           ParserTile(
             title: '请求成功',
-            selector: model.successSelector,
+            selector: parser.successSelector,
             onlySelector: true,
-            onChanged: (value) {
-              setState(() => model.successSelector = value);
-            },
           ),
           const SettingDivider(),
           ParserTile(
             title: '请求失败',
-            selector: model.failedSelector,
+            selector: parser.failedSelector,
             onlySelector: true,
-            onChanged: (value) {
-              setState(() => model.failedSelector = value);
-            },
           ),
         ],
       ),
@@ -74,11 +52,8 @@ class _ListParserEditorState extends State<ListParserEditor> {
         children: [
           ParserTile(
             title: '下一面地址',
-            selector: model.nextPage,
+            selector: parser.nextPage,
             onlySelector: true,
-            onChanged: (value) {
-              setState(() => model.nextPage = value);
-            },
           ),
           const SettingDivider(),
         ],
@@ -93,19 +68,13 @@ class _ListParserEditorState extends State<ListParserEditor> {
         children: [
           ParserTile(
             title: '徽章选择器',
-            selector: model.badgeText,
+            selector: parser.badgeText,
             onlySelector: true,
-            onChanged: (value) {
-              setState(() => model.badgeText = value);
-            },
           ),
           const SettingDivider(),
           ParserTile(
             title: '徽章颜色',
-            selector: model.badgeColor,
-            onChanged: (value) {
-              setState(() => model.badgeColor = value);
-            },
+            selector: parser.badgeColor,
           ),
         ],
       ),
@@ -119,19 +88,13 @@ class _ListParserEditorState extends State<ListParserEditor> {
         children: [
           ParserTile(
             title: '标签选择器',
-            selector: model.tag,
+            selector: parser.tag,
             onlySelector: true,
-            onChanged: (value) {
-              setState(() => model.tag = value);
-            },
           ),
           const SettingDivider(),
           ParserTile(
             title: '标签颜色',
-            selector: model.tagColor,
-            onChanged: (value) {
-              setState(() => model.tagColor = value);
-            },
+            selector: parser.tagColor,
           ),
         ],
       ),
@@ -145,53 +108,29 @@ class _ListParserEditorState extends State<ListParserEditor> {
         children: [
           ParserTile(
             title: '封面地址',
-            selector: model.previewImg.imgUrl,
-            onChanged: (value) {
-              setState(() => model.previewImg = model.previewImg.copyWith(imgUrl: value));
-            },
+            selector: parser.previewImg.imgUrl,
           ),
           const SettingDivider(),
           ParserTile(
             title: '封面宽度',
-            selector: model.previewImg.imgWidth,
-            onChanged: (value) {
-              // setState(() => model.previewImg.imgWidth = value);
-              setState(() {
-                model.previewImg = model.previewImg.copyWith(imgWidth: value);
-              });
-            },
+            selector: parser.previewImg.imgWidth,
           ),
           const SettingDivider(),
           ParserTile(
             title: '封面高度',
-            selector: model.previewImg.imgHeight,
-            onChanged: (value) {
-              setState(() {
-                model.previewImg = model.previewImg.copyWith(imgHeight: value);
-              });
-            },
+            selector: parser.previewImg.imgHeight,
           ),
           const SettingDivider(),
           ParserTile(
             title: '封面X偏移',
-            selector: model.previewImg.imgX,
+            selector: parser.previewImg.imgX,
             onlySelector: true,
-            onChanged: (value) {
-              setState(() {
-                model.previewImg = model.previewImg.copyWith(imgX: value);
-              });
-            },
           ),
           const SettingDivider(),
           ParserTile(
             title: '封面Y偏移',
-            selector: model.previewImg.imgY,
+            selector: parser.previewImg.imgY,
             onlySelector: true,
-            onChanged: (value) {
-              setState(() {
-                model.previewImg = model.previewImg.copyWith(imgY: value);
-              });
-            },
           ),
         ],
       ),
@@ -205,11 +144,8 @@ class _ListParserEditorState extends State<ListParserEditor> {
         children: [
           ParserTile(
             title: '项目选择器',
-            selector: model.itemSelector,
+            selector: parser.itemSelector,
             onlySelector: true,
-            onChanged: (value) {
-              setState(() => model.itemSelector = value);
-            },
           ),
         ],
       ),
@@ -223,58 +159,37 @@ class _ListParserEditorState extends State<ListParserEditor> {
         children: [
           ParserTile(
             title: 'idCode',
-            selector: model.idCode,
-            onChanged: (value) {
-              setState(() => model.idCode = value);
-            },
+            selector: parser.idCode,
           ),
           const SettingDivider(),
           ParserTile(
             title: '标题',
-            selector: model.title,
-            onChanged: (value) {
-              setState(() => model.title = value);
-            },
+            selector: parser.title,
           ),
           const SettingDivider(),
           ParserTile(
             title: '副标题',
-            selector: model.subtitle,
-            onChanged: (value) {
-              setState(() => model.subtitle = value);
-            },
+            selector: parser.subtitle,
           ),
           const SettingDivider(),
           ParserTile(
             title: '上传时间',
-            selector: model.uploadTime,
-            onChanged: (value) {
-              setState(() => model.uploadTime = value);
-            },
+            selector: parser.uploadTime,
           ),
           const SettingDivider(),
           ParserTile(
             title: '评分',
-            selector: model.star,
-            onChanged: (value) {
-              setState(() => model.star = value);
-            },
+            selector: parser.star,
           ),
           const SettingDivider(),
           ParserTile(
             title: '面数',
-            selector: model.imgCount,
-            onChanged: (value) {
-              setState(() => model.imgCount = value);
-            },
+            selector: parser.imgCount,
           ),
           const SettingDivider(),
           ParserTile(
             title: '语言',
-            selector: model.language,
-            onChanged: (value) {
-              setState(() => model.language = value);
-            },
+            selector: parser.language,
           ),
         ],
       ),

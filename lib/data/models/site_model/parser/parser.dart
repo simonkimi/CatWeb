@@ -16,7 +16,7 @@ enum ParserType {
   }
 }
 
-abstract class RxParserBase {
+abstract class IParserBase {
   final String name;
   final String uuid;
   final ParserType parserType;
@@ -25,9 +25,9 @@ abstract class RxParserBase {
 
   Map<String, dynamic> toJson();
 
-  RxParserBase(this.name, this.uuid, this.parserType, this.extra);
+  IParserBase(this.name, this.uuid, this.parserType, this.extra);
 
-  static RxParserBase fromJson(Map<String, dynamic> json) {
+  static IParserBase fromJson(Map<String, dynamic> json) {
     final parserType = ParserType.fromJson(json['parserType']);
     return switch (parserType) {
       ParserType.imageReader => ImageReaderParser.fromJson(json),
@@ -38,7 +38,7 @@ abstract class RxParserBase {
   }
 }
 
-class ImageReaderParser implements RxParserBase {
+class ImageReaderParser implements IParserBase {
   @override
   final String name;
   @override
@@ -146,7 +146,7 @@ class ImageReaderParser implements RxParserBase {
   }
 }
 
-class GalleryParser implements RxParserBase {
+class GalleryParser implements IParserBase {
   @override
   final String name;
   @override
@@ -336,7 +336,7 @@ class GalleryParser implements RxParserBase {
   }
 }
 
-class ListViewParser implements RxParserBase {
+class ListViewParser implements IParserBase {
   @override
   final String name;
   @override
@@ -477,7 +477,7 @@ class ListViewParser implements RxParserBase {
   }
 }
 
-class AutoCompleteParser implements RxParserBase {
+class AutoCompleteParser implements IParserBase {
   @override
   final String name;
   @override

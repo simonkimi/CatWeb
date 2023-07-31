@@ -137,7 +137,7 @@ _$_GalleryParserResultComment _$$_GalleryParserResultCommentFromJson(
         Map<String, dynamic> json) =>
     _$_GalleryParserResultComment(
       username: json['username'] as String?,
-      content: json['content'] as String,
+      content: json['content'] as String?,
       time: json['time'] as String?,
       score: json['score'] as String?,
       avatar: ImageRspModel.fromJson(json['avatar'] as Map<String, dynamic>),

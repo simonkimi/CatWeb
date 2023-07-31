@@ -1,5 +1,4 @@
 import 'package:catweb/data/models/site_model/parser/field.dart';
-import 'package:catweb/data/models/site_model/parser/selector.dart';
 import 'package:get/get.dart';
 
 enum SelectorType {
@@ -81,6 +80,8 @@ class Selector {
         script: ScriptField.fromJson(json['script']),
         defaultValue: json['defaultValue'] as String,
       );
+
+  bool get isEmpty => selector.value.isEmpty && param.value.isEmpty && defaultValue.value.isEmpty;
 }
 
 class ImageSelector {

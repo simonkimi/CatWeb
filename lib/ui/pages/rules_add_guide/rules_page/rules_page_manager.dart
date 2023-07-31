@@ -30,7 +30,7 @@ class RulesPageManager extends GetView<RulesEditController> {
           children: [
             ...blueprint.pageList.map((e) {
               return CupertinoCardTile(
-                title: Text(e.name),
+                title: Text(e.name.value),
                 subtitle: Text(e.template.type.value),
                 trailing: CupertinoButton(
                   padding: EdgeInsets.zero,
@@ -94,7 +94,7 @@ class RulesPageManager extends GetView<RulesEditController> {
     } else {
       showCupertinoConfirmDialog(
         context: context,
-        content: I.of(context).delete_confirm(model.name),
+        content: I.of(context).delete_confirm(model.name.value),
         title: I.of(context).cancel,
         confineText: I.of(context).delete,
         confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
@@ -112,14 +112,6 @@ class RulesPageManager extends GetView<RulesEditController> {
     await Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
       return RulesPageEdit(
         baseModel: input,
-        onModelChanged: (model) {
-          final index = blueprint.pageList.indexWhere((e) => e.uuid == model.uuid);
-          if (index == -1) {
-            blueprint.pageList.add(model);
-          } else {
-            blueprint.pageList[index] = model;
-          }
-        },
       );
     }));
   }

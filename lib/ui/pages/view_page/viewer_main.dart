@@ -47,7 +47,7 @@ class ViewerMain extends GetView<SiteService> {
               cupertinoIcons[e.icon] ?? CupertinoIcons.circle,
               size: 22,
             ),
-            label: e.name,
+            label: e.name.value,
           );
         }).toList(),
       ),

@@ -1,5 +1,4 @@
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
-import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
@@ -82,7 +81,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
 
   Widget _buildMultiViewer(BuildContext context) {
     return CupertinoAppBar(
-      title: blueprint.name,
+      title: blueprint.name.value,
       tabBar: CupertinoCustomTabBar(
         tabs: extra.subPages
             .map((e) => CupertinoTab(e.name.value.globalEnv()))
@@ -107,7 +106,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
   Widget _buildSingleViewer(BuildContext context) {
     return Obx(() => CupertinoAppBar(
           canHide: subListController.first.items.isNotEmpty,
-          title: blueprint.name,
+          title: blueprint.name.value,
           leading: _buildLeading(context),
           actions: _buildActions(context),
           child: SubPageListFragment(

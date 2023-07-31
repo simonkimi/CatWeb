@@ -1,5 +1,7 @@
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/data/models/site_model/pages/template_gallery.dart';
+import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
@@ -9,89 +11,75 @@ import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 
-class RulesPageBasic extends HookWidget {
+class RulesPageBasic extends GetWidget<RulesEditController> {
   const RulesPageBasic({
     super.key,
     required this.sitePage,
-    required this.onModelChanged,
   });
 
   final SitePage sitePage;
-  final Function(SitePage) onModelChanged;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<RulesEditController>();
-    final model = useState(sitePage);
-    useEffect(() {
-      return () => onModelChanged(model.value);
-    });
-
     return SafeArea(
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         children: [
           CupertinoInput(
             labelText: I.of(context).name,
-            value: model.value.name,
-            onChanged: (value) {
-              model.value = model.value.copyWith(name: value);
-            },
+            value: sitePage.name,
           ),
           CupertinoInput(
             labelText: I.of(context).website,
-            value: model.value.url,
-            onChanged: (value) {
-              model.value = model.value.copyWith(url: value);
-            },
+            value: sitePage.url,
           ),
-          CupertinoReadOnlyInput(
+          CupertinoSelectInput(
+            field: sitePage.action,
             labelText: I.of(context).net_action,
-            value: model.value.action.value,
-            onTap: () => _onNetActionTap(model, context),
+            items: SiteNetType.values,
+            selectionConverter: (value) => value.value,
           ),
-          if (model.value.action == SiteNetType.post)
-            CupertinoInput(
-              labelText: I.of(context).form,
-              value: model.value.formData,
-              minLine: 4,
-              onChanged: (value) {
-                model.value = model.value.copyWith(formData: value);
-              },
-            ),
-          CupertinoReadOnlyInput(
-            labelText: I.of(context).parser,
-            value: controller.blueprint.parserList
-                    .get((e) => e.uuid == model.value.parserId)
-                    ?.name ??
-                'No parser',
-            onTap: () => _onParserTap(model, context),
-          ),
+          Obx(() {
+            if (sitePage.action.value == SiteNetType.post) {
+              return CupertinoInput(
+                labelText: I.of(context).form,
+                value: sitePage.formData,
+                minLine: 4,
+              );
+            }
+            return const SizedBox();
+          }),
+          Obx(() => CupertinoReadOnlyInput(
+                labelText: I.of(context).parser,
+                value: controller.blueprint.parserList
+                        .get((e) => e.uuid == sitePage.parserId.value)
+                        ?.name ??
+                    'No parser',
+                onTap: () => _onParserTap(context),
+              )),
           const CupertinoDivider(height: 20),
           if ([TemplateType.imageWaterFall, TemplateType.imageList]
-              .contains(model.value.template.type))
-            CupertinoReadOnlyInput(
-              labelText: I.of(context).display_type,
-              value: model.value.displayType.value,
-              onTap: () => _onDisplayTap(model, context),
-            ),
-          _buildIcon(model, context),
-          _buildOpenNewPage(model, context),
+              .contains(sitePage.template.type))
+            Obx(() => CupertinoReadOnlyInput(
+                  labelText: I.of(context).display_type,
+                  value: sitePage.displayType.value.value,
+                  onTap: () => _onDisplayTap(context),
+                )),
+          _buildIcon(context),
+          _buildOpenNewPage(context),
         ],
       ),
     );
   }
 
   Widget _buildOpenNewPage(
-    ValueNotifier<SitePage> model,
     BuildContext context,
   ) {
     late final List<Widget> body;
 
-    switch (model.value.template.type) {
+    switch (sitePage.template.type) {
       case TemplateType.autoComplete:
       case TemplateType.imageViewer:
         body = [];
@@ -99,37 +87,31 @@ class RulesPageBasic extends HookWidget {
 
       case TemplateType.imageList:
       case TemplateType.imageWaterFall:
-        final extra = model.value.template as TemplateList;
+        final extra = sitePage.template as TemplateList;
         body = [
-          _buildOpenWidget(model, context,
+          _buildOpenWidget(context,
               labelText: I.of(context).item_jump_to,
-              target: extra.targetItem, onTargetChanged: (value) {
-            model.value = model.value.copyWith(
-              template: extra.copyWith(targetItem: value ?? ''),
-            );
+              target: extra.targetItem.value, onTargetChanged: (value) {
+                extra.targetItem.value = value ?? '';
           }),
-          _buildOpenWidget(model, context,
+          _buildOpenWidget(context,
               labelText: I.of(context).auto_complete_jump_to,
-              target: extra.targetAutoComplete,
+              target: extra.targetAutoComplete.value,
               filter: (item) => item.template.type == TemplateType.autoComplete,
               onTargetChanged: (value) {
-                model.value = model.value.copyWith(
-                  template: extra.copyWith(targetAutoComplete: value ?? ''),
-                );
+                extra.targetAutoComplete.value = value ?? '';
               }),
         ];
         break;
       case TemplateType.gallery:
-        final extra = model.value.template as TemplateGallery;
+        final extra = sitePage.template as TemplateGallery;
         body = [
-          _buildOpenWidget(model, context,
+          _buildOpenWidget(context,
               labelText: I.of(context).read_jump_to,
-              target: extra.targetReader,
+              target: extra.targetReader.value,
               filter: (item) => item.template.type == TemplateType.imageViewer,
               onTargetChanged: (value) {
-                model.value = model.value.copyWith(
-                  template: extra.copyWith(targetReader: value ?? ''),
-                );
+                extra.targetReader.value = value ?? '';
               }),
         ];
         break;
@@ -146,7 +128,7 @@ class RulesPageBasic extends HookWidget {
     );
   }
 
-  Widget _buildIcon(ValueNotifier<SitePage> model, BuildContext context) {
+  Widget _buildIcon(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
@@ -165,13 +147,13 @@ class RulesPageBasic extends HookWidget {
                     .resolveFrom(context),
                 padding: EdgeInsets.zero,
                 child: Obx(() => Icon(
-                      cupertinoIcons[model.value.icon] ?? CupertinoIcons.app,
+                      cupertinoIcons[sitePage.icon.value] ?? CupertinoIcons.app,
                       color: CupertinoColors.systemBlue.resolveFrom(context),
                     )),
                 onPressed: () async {
                   final result = await showCupertinoIconDialog(context);
                   if (result != null && result.isNotEmpty) {
-                    model.value = model.value.copyWith(icon: result);
+                    sitePage.icon.value = result;
                   }
                 },
               )
@@ -182,76 +164,54 @@ class RulesPageBasic extends HookWidget {
     );
   }
 
-  Future<void> _onParserTap(
-    ValueNotifier<SitePage> model,
-    BuildContext context,
-  ) async {
+  Future<void> _onParserTap(BuildContext context) async {
     final controller = Get.find<RulesEditController>();
     final result = await showCupertinoSelectDialog<String>(
       title: I.of(context).select_parser,
       context: context,
       items: controller.blueprint.parserList
-          .where((e) => e.parserType == model.value.acceptParserType())
+          .where((e) => e.parserType == sitePage.acceptParserType())
           .map((e) => SelectTileItem(title: e.name, value: e.uuid))
           .toList(),
       cancelText: I.of(context).negative,
     );
     if (result != null) {
-      model.value = model.value.copyWith(parserId: result);
-    }
-  }
-
-  Future<void> _onNetActionTap(
-    ValueNotifier<SitePage> model,
-    BuildContext context,
-  ) async {
-    final result = await showCupertinoSelectDialog<SiteNetType>(
-      title: I.of(context).select_net_action,
-      context: context,
-      items: SiteNetType.values
-          .map((e) => SelectTileItem(title: e.value, value: e))
-          .toList(),
-      cancelText: I.of(context).negative,
-    );
-    if (result != null) {
-      model.value = model.value.copyWith(action: result);
+      sitePage.parserId.value = result;
     }
   }
 
   Widget _buildOpenWidget(
-    ValueNotifier<SitePage> model,
     BuildContext context, {
     required String labelText,
     required String target,
     bool Function(SitePage)? filter,
     required void Function(String?) onTargetChanged,
   }) {
-    final controller = Get.find<RulesEditController>();
-    return CupertinoReadOnlyInput(
-      labelText: labelText,
-      value: controller.blueprint.pageList.get((e) => e.uuid == target)?.name ??
-          I.of(context).none,
-      onTap: () => showCupertinoSelectDialog(
-        context: context,
-        items: [
-          ...controller.blueprint.pageList
-              .where((e) => filter != null ? filter(e) : true)
-              .map((e) => SelectTileItem(
-                    title: e.name,
-                    value: e.uuid,
-                  )),
-          SelectTileItem(title: I.of(context).none, value: ''),
-        ],
-      ).then((value) {
-        onTargetChanged(value);
-      }),
-    );
+    return Obx(() => CupertinoReadOnlyInput(
+          labelText: labelText,
+          value: controller.blueprint.pageList
+                  .get((e) => e.uuid == target)
+                  ?.name
+                  .value ??
+              I.of(context).none,
+          onTap: () => showCupertinoSelectDialog(
+            context: context,
+            items: [
+              ...controller.blueprint.pageList
+                  .where((e) => filter != null ? filter(e) : true)
+                  .map((e) => SelectTileItem(
+                        title: e.name.value,
+                        value: e.uuid,
+                      )),
+              SelectTileItem(title: I.of(context).none, value: ''),
+            ],
+          ).then((value) {
+            onTargetChanged(value);
+          }),
+        ));
   }
 
-  Future<void> _onDisplayTap(
-    ValueNotifier<SitePage> model,
-    BuildContext context,
-  ) async {
+  Future<void> _onDisplayTap(BuildContext context) async {
     final result = await showCupertinoSelectDialog<SiteDisplayType>(
       title: I.of(context).display_type,
       context: context,
@@ -262,7 +222,7 @@ class RulesPageBasic extends HookWidget {
     );
 
     if (result != null) {
-      model.value = model.value.copyWith(displayType: result);
+      sitePage.displayType.value = result;
     }
   }
 }

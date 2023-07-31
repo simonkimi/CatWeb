@@ -16,7 +16,7 @@ class SiteBlueMap {
     String readme = '',
     List<RegField> headers = const [],
     List<RegField> cookies = const [],
-    List<RxParserBase> parserList = const [],
+    List<IParserBase> parserList = const [],
     List<SitePage> pageList = const [],
   })  : name = name.obs,
         baseUrl = baseUrl.obs,
@@ -43,7 +43,7 @@ class SiteBlueMap {
   final RxString readme;
   final RxList<RegField> headers;
   final RxList<RegField> cookies;
-  final RxList<RxParserBase> parserList;
+  final RxList<IParserBase> parserList;
   final RxList<SitePage> pageList;
 
   Map<String, dynamic> toJson() {
@@ -78,7 +78,7 @@ class SiteBlueMap {
       headers: json['headers'] ?? [],
       cookies: json['cookies'] ?? [],
       parserList: (json['parserList'] as List<dynamic>? ?? [])
-          .map((e) => RxParserBase.fromJson(e))
+          .map((e) => IParserBase.fromJson(e))
           .toList()
           .obs,
       pageList: (json['pageList'] as List<dynamic>? ?? [])

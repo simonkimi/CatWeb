@@ -6,7 +6,6 @@ import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_editor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
@@ -15,49 +14,42 @@ enum _MenuSelect {
   delete,
 }
 
-class RulesParserManager extends HookWidget {
+class RulesParserManager extends GetWidget<RulesEditController> {
   const RulesParserManager({super.key});
+
+  RxList<IParserBase> get parserList => controller.blueprint.parserList;
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.find<RulesEditController>();
-    final parserList = useState(c.blueprint.parserList);
-
-    useEffect(() {
-      return () =>
-          c.updateBlueMap(c.blueprint.copyWith(parserList: parserList.value));
-    });
-
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: parserList.value.map((e) {
-            return CupertinoCardTile(
-              title: Text(e.name),
-              subtitle: Text(e.parserType.value),
-              trailing: CupertinoButton(
-                padding: EdgeInsets.zero,
-                minSize: 10,
-                child: const Icon(Icons.more_horiz_outlined),
-                onPressed: () => _onTrailingTap(parserList, context, e),
-              ),
-              onTap: () => _editRules(parserList, context, e),
-            );
-          }).toList(),
-        ),
+        Obx(() => Column(
+              mainAxisSize: MainAxisSize.min,
+              children: parserList.map((e) {
+                return CupertinoCardTile(
+                  title: Text(e.name),
+                  subtitle: Text(e.parserType.value),
+                  trailing: CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    minSize: 10,
+                    child: const Icon(Icons.more_horiz_outlined),
+                    onPressed: () => _onTrailingTap(context, e),
+                  ),
+                  onTap: () => _editRules(context, e),
+                );
+              }).toList(),
+            )),
         CupertinoCardTile(
           title: const Text('添加'),
           leading: const Icon(Icons.add),
-          onTap: () => _editRules(parserList, context),
+          onTap: () => _editRules(context),
         ),
       ],
     );
   }
 
   Future<void> _onTrailingTap(
-    ValueNotifier<List<IParserBase>> parserList,
     BuildContext context,
     IParserBase model,
   ) async {
@@ -77,22 +69,21 @@ class RulesParserManager extends HookWidget {
       case null:
         break;
       case _MenuSelect.edit:
-        await _editRules(parserList, context, model);
+        await _editRules(context, model);
         break;
       case _MenuSelect.delete:
-        _onParserDelete(parserList, context, model);
+        _onParserDelete(context, model);
         break;
     }
   }
 
   void _onParserDelete(
-    ValueNotifier<List<IParserBase>> parserList,
     BuildContext context,
     IParserBase model,
   ) {
     final controller = Get.find<RulesEditController>();
     final using = controller.blueprint.pageList
-        .where((p0) => p0.parserId == model.uuid)
+        .where((p0) => p0.parserId.value == model.uuid)
         .map((e) => e.name)
         .toList();
     if (using.isNotEmpty) {
@@ -107,7 +98,7 @@ class RulesParserManager extends HookWidget {
         confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
       ).then((value) {
         if (value == true) {
-          parserList.value = [...parserList.value]..remove(model);
+          parserList.remove(model);
         }
       });
     }
@@ -143,7 +134,6 @@ class RulesParserManager extends HookWidget {
   }
 
   Future<void> _editRules(
-    ValueNotifier<List<IParserBase>> parserList,
     BuildContext context, [
     IParserBase? model,
   ]) async {
@@ -156,7 +146,7 @@ class RulesParserManager extends HookWidget {
     );
 
     if (model == null) {
-      parserList.value = [...parserList.value, input];
+      parserList.add(input);
     }
   }
 }

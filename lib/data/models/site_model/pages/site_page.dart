@@ -1,5 +1,6 @@
 import 'package:catweb/data/models/site_model/pages/template.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:catweb/data/models/site_model/pages/template_list.dart';
+import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:get/get.dart';
 
 enum SiteNetType {
@@ -44,7 +45,7 @@ enum SiteDisplayType {
 
 class SitePage {
   SitePage({
-    required this.name,
+    String name = '',
     required this.uuid,
     required this.template,
     String url = '',
@@ -54,7 +55,8 @@ class SitePage {
     SiteDisplayType displayType = SiteDisplayType.show,
     String flag = '',
     String parserId = '',
-  })  : url = url.obs,
+  })  : name = name.obs,
+        url = url.obs,
         action = action.obs,
         formData = formData.obs,
         icon = icon.obs,
@@ -62,7 +64,7 @@ class SitePage {
         flag = flag.obs,
         parserId = parserId.obs;
 
-  final String name;
+  final RxString name;
   final String uuid;
   final ITemplate template;
 
@@ -73,6 +75,26 @@ class SitePage {
   final Rx<SiteDisplayType> displayType;
   final RxString flag;
   final RxString parserId;
+
+  ParserType acceptParserType() {
+    return switch(template.type) {
+      TemplateType.imageList || TemplateType.imageWaterFall => ParserType.listView,
+      TemplateType.autoComplete => ParserType.autoComplete,
+      TemplateType.gallery => ParserType.gallery,
+      TemplateType.imageViewer => ParserType.imageReader,
+    };
+  }
+
+  List<String> getDependPage() {
+    switch (template.type) {
+      case TemplateType.imageList:
+      case TemplateType.imageWaterFall:
+        final model = template as TemplateList;
+        return [model.targetItem.value, model.targetAutoComplete.value];
+      default:
+        return [];
+    }
+  }
 
   Map<String, dynamic> toJson() => {
         'name': name,

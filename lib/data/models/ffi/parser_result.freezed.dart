@@ -1402,7 +1402,7 @@ GalleryParserResultComment _$GalleryParserResultCommentFromJson(
 /// @nodoc
 mixin _$GalleryParserResultComment {
   String? get username => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
+  String? get content => throw _privateConstructorUsedError;
   String? get time => throw _privateConstructorUsedError;
   String? get score => throw _privateConstructorUsedError;
   ImageRspModel get avatar => throw _privateConstructorUsedError;
@@ -1422,7 +1422,7 @@ abstract class $GalleryParserResultCommentCopyWith<$Res> {
   @useResult
   $Res call(
       {String? username,
-      String content,
+      String? content,
       String? time,
       String? score,
       ImageRspModel avatar});
@@ -1445,7 +1445,7 @@ class _$GalleryParserResultCommentCopyWithImpl<$Res,
   @override
   $Res call({
     Object? username = freezed,
-    Object? content = null,
+    Object? content = freezed,
     Object? time = freezed,
     Object? score = freezed,
     Object? avatar = null,
@@ -1455,10 +1455,10 @@ class _$GalleryParserResultCommentCopyWithImpl<$Res,
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -1494,7 +1494,7 @@ abstract class _$$_GalleryParserResultCommentCopyWith<$Res>
   @useResult
   $Res call(
       {String? username,
-      String content,
+      String? content,
       String? time,
       String? score,
       ImageRspModel avatar});
@@ -1517,7 +1517,7 @@ class __$$_GalleryParserResultCommentCopyWithImpl<$Res>
   @override
   $Res call({
     Object? username = freezed,
-    Object? content = null,
+    Object? content = freezed,
     Object? time = freezed,
     Object? score = freezed,
     Object? avatar = null,
@@ -1527,10 +1527,10 @@ class __$$_GalleryParserResultCommentCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -1564,7 +1564,7 @@ class _$_GalleryParserResultComment extends _GalleryParserResultComment {
   @override
   final String? username;
   @override
-  final String content;
+  final String? content;
   @override
   final String? time;
   @override
@@ -1613,7 +1613,7 @@ class _$_GalleryParserResultComment extends _GalleryParserResultComment {
 abstract class _GalleryParserResultComment extends GalleryParserResultComment {
   factory _GalleryParserResultComment(
       {required final String? username,
-      required final String content,
+      required final String? content,
       required final String? time,
       required final String? score,
       required final ImageRspModel avatar}) = _$_GalleryParserResultComment;
@@ -1625,7 +1625,7 @@ abstract class _GalleryParserResultComment extends GalleryParserResultComment {
   @override
   String? get username;
   @override
-  String get content;
+  String? get content;
   @override
   String? get time;
   @override

@@ -9,7 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class RulesParserEditor extends StatelessWidget {
   const RulesParserEditor({
     super.key,
@@ -63,13 +62,13 @@ class RulesParserEditor extends StatelessWidget {
   Widget _buildEditor(BuildContext context) {
     switch (model.parserType) {
       case ParserType.gallery:
-        return GalleryParserEditor();
+        return GalleryParserEditor(parser: model as GalleryParser);
       case ParserType.listView:
-        return ListParserEditor();
+        return ListParserEditor(parser: model as ListViewParser);
       case ParserType.autoComplete:
-        return AutoCompleteParserEditor();
+        return AutoCompleteParserEditor(parser: model as AutoCompleteParser);
       case ParserType.imageReader:
-        return NewImageParserEditor();
+        return NewImageParserEditor(parser: model as ImageReaderParser);
     }
   }
 }

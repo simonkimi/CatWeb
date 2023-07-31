@@ -6,21 +6,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class ParserTile extends StatelessWidget {
   const ParserTile({
     Key? key,
     required this.title,
     required this.selector,
-    this.onChanged,
     this.onlySelector = false,
-    this.onExtraChanged,
   }) : super(key: key);
 
   final String title;
   final Selector selector;
-  final Function(Selector)? onChanged;
-  final Function(ExtraSelector)? onExtraChanged;
   final bool onlySelector;
 
   @override
@@ -32,13 +27,12 @@ class ParserTile extends StatelessWidget {
           context: context,
           builder: (context) => SelectorEditor(
             onlySelector: onlySelector,
-            onChanged: onChanged,
             selector: selector,
             title: title,
           ),
         );
       },
-      trailing: selector.isEmpty()
+      trailing: Obx(() => selector.isEmpty
           ? const Icon(
               CupertinoIcons.add,
               size: 18,
@@ -48,27 +42,24 @@ class ParserTile extends StatelessWidget {
               Icons.edit,
               size: 18,
               color: CupertinoColors.activeGreen.resolveFrom(context),
-            ),
+            )),
     );
   }
 }
 
 class ExtraParserTile extends StatelessWidget {
-  ExtraParserTile({
+  const ExtraParserTile({
     Key? key,
     required this.title,
-    required ExtraSelector selector,
+    required this.extraSelector,
     this.onlySelector = false,
-    this.onChanged,
-  })  : rxSelector = selector.obs,
-        super(key: key);
+  }) : super(key: key);
 
   final String title;
 
-  final Function(ExtraSelector)? onChanged;
   final bool onlySelector;
 
-  final Rx<ExtraSelector> rxSelector;
+  final ExtraSelector extraSelector;
 
   @override
   Widget build(BuildContext context) {
@@ -79,20 +70,12 @@ class ExtraParserTile extends StatelessWidget {
           context: context,
           builder: (context) => SelectorEditor(
             onlySelector: onlySelector,
-            onChanged: (selector) {
-              rxSelector(rxSelector.value.copyWith(selector: selector));
-              onChanged?.call(rxSelector.value);
-            },
-            onExtraChanged: (extra) {
-              rxSelector(extra);
-              onChanged?.call(rxSelector.value);
-            },
-            selector: rxSelector.value.selector,
+            selector: extraSelector.selector,
             title: title,
           ),
         );
       },
-      trailing: rxSelector.value.selector.isEmpty()
+      trailing: Obx(() => extraSelector.selector.isEmpty
           ? const Icon(
               CupertinoIcons.add,
               size: 18,
@@ -102,7 +85,7 @@ class ExtraParserTile extends StatelessWidget {
               Icons.edit,
               size: 18,
               color: CupertinoColors.activeGreen.resolveFrom(context),
-            ),
+            )),
     );
   }
 }
