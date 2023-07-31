@@ -154,10 +154,10 @@ class ViewerGalleryFragment extends StatelessWidget {
               ),
             const Expanded(child: SizedBox()),
             _buildShowMore(context, () {
-              Get.to(() => ViewerGalleryImages(
-                    previewController: previewController,
-                    onOpenPage: _openReadPage,
-                  ));
+              Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ViewerGalleryImages(
+                previewController: previewController,
+                onOpenPage: _openReadPage,
+              )));
             }),
           ],
         ),

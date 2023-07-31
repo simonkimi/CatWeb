@@ -42,14 +42,11 @@ class SettingGroupTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 5),
-      child: Text(
-        title,
-        style: TextStyle(
-          color: CupertinoColors.inactiveGray.resolveFrom(context),
-          fontSize: 14,
-        ),
+    return Text(
+      title,
+      style: TextStyle(
+        color: CupertinoColors.inactiveGray.resolveFrom(context),
+        fontSize: 14,
       ),
     );
   }

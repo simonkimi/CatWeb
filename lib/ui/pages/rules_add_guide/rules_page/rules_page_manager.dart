@@ -25,31 +25,34 @@ class RulesPageManager extends GetView<RulesEditController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          children: [
-            ...blueprint.pageList.map((e) {
-              return CupertinoCardTile(
-                title: Text(e.name.value),
-                subtitle: Text(e.template.type.value),
-                trailing: CupertinoButton(
-                  padding: EdgeInsets.zero,
-                  minSize: 10,
-                  child: const Icon(Icons.more_horiz_outlined),
-                  onPressed: () => _onTrailingTap(context, e),
-                ),
-                onTap: () => _toRulesPageEdit(context, e),
-              );
-            }).toList(),
-            CupertinoCardTile(
-              title: Text(I.of(context).add),
-              leading: const Icon(Icons.add),
-              onTap: () {
-                _toRulesPageEdit(context);
-              },
-            ),
-          ],
-        ));
+    return ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      children: [
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: blueprint.pageList.map((e) {
+            return CupertinoCardTile(
+              title: Text(e.name.value),
+              subtitle: Text(e.template.type.value),
+              trailing: CupertinoButton(
+                padding: EdgeInsets.zero,
+                minSize: 10,
+                child: const Icon(Icons.more_horiz_outlined),
+                onPressed: () => _onTrailingTap(context, e),
+              ),
+              onTap: () => _toRulesPageEdit(context, e),
+            );
+          }).toList(),
+        ),
+        CupertinoCardTile(
+          title: Text(I.of(context).add),
+          leading: const Icon(Icons.add),
+          onTap: () {
+            _toRulesPageEdit(context);
+          },
+        ),
+      ],
+    );
   }
 
   Future<void> _onTrailingTap(

@@ -12,8 +12,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class RulesEditPage extends StatelessWidget {
-  RulesEditPage({super.key, SiteBlueMap? blueMap, WebTableData? db})
-      : controller = Get.put(RulesEditController(blueMap: blueMap, db: db));
+  RulesEditPage({
+    super.key,
+    SiteBlueMap? blueMap,
+    WebTableData? db,
+  }) : controller = Get.put(RulesEditController(blueprint: blueMap, db: db));
 
   final RulesEditController controller;
 

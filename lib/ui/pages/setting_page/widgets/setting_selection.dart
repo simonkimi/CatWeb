@@ -55,14 +55,13 @@ class SettingSelectionTile<T> extends StatelessWidget {
         value.value = result;
       }
     } else {
-      final result =
-          await Navigator.of(context).push(CupertinoPageRoute(
-              builder: (context) => _SettingSelectionPage(
-                    title: title,
-                    value: value,
-                    items: items,
-                    previousPageTitle: previousPageTitle,
-                  )));
+      final result = await Navigator.of(context).push(CupertinoPageRoute(
+          builder: (context) => _SettingSelectionPage(
+                title: title,
+                value: value,
+                items: items,
+                previousPageTitle: previousPageTitle,
+              )));
       if (result != null) {
         value.value = result;
       }
@@ -98,25 +97,20 @@ class _SettingSelectionPage<T> extends StatelessWidget {
       ),
       child: ListView(
         children: [
-          const SizedBox(height: 16),
-          SettingGroupWidget(children: [
-            for (var i = 0; i < items.length * 2; i++)
-              if (i % 2 == 0)
-                SettingTile(
-                  title: items.elementAt(i ~/ 2).title,
-                  trailing: Obx(() => AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 100),
-                      child: items.elementAt(i ~/ 2).value == value.value
-                          ? const Icon(
-                              CupertinoIcons.checkmark,
-                              size: 18,
-                            )
-                          : const SizedBox())),
-                  onTap: () => value.value = items.elementAt(i ~/ 2).value,
-                )
-              else
-                const SettingDivider(),
-          ]),
+          Obx(() => CupertinoListSection.insetGrouped(
+                children: items
+                    .map((e) => SettingTile(
+                          title: e.title,
+                          trailing: value.value == e.value
+                              ? const Icon(CupertinoIcons.checkmark, size: 18)
+                              : const SizedBox(),
+                          onTap: () {
+                            value.value = e.value;
+                            Navigator.of(context).pop();
+                          },
+                        ))
+                    .toList(),
+              )),
         ],
       ),
     );

@@ -139,7 +139,8 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
           minSize: 0,
           child: const Icon(CupertinoIcons.search),
           onPressed: () {
-            Get.to(() => SearchList(blueprint: blueprint));
+            Navigator.of(context).push(CupertinoPageRoute(
+                builder: (context) => SearchList(blueprint: blueprint)));
           },
         ),
       if (hasFilter)

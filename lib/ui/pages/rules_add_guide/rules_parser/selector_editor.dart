@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:catweb/data/models/site_model/parser/field.dart';
 import 'package:catweb/data/models/site_model/parser/selector.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
@@ -128,13 +130,9 @@ class SelectorEditor extends StatelessWidget {
 
   CupertinoNavigationBar _buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
+      leading: null,
+      automaticallyImplyLeading: false,
       padding: const EdgeInsetsDirectional.only(start: 10),
-      leading: CupertinoButton(
-        onPressed: () => Navigator.of(context).pop(),
-        padding: const EdgeInsets.symmetric(horizontal: 5),
-        minSize: 0,
-        child: const Text('取消'),
-      ),
       middle: Text('规则: $title'),
       transitionBetweenRoutes: false,
       trailing: CupertinoButton(
@@ -143,7 +141,7 @@ class SelectorEditor extends StatelessWidget {
         },
         padding: const EdgeInsets.only(right: 10),
         minSize: 0,
-        child: const Text('返回'),
+        child: const Text('确定'),
       ),
     );
   }

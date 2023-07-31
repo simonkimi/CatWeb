@@ -53,7 +53,7 @@ class SettingTileTrailing extends StatelessWidget {
   }
 }
 
-class SettingTile extends HookWidget {
+class SettingTile extends StatelessWidget {
   const SettingTile({
     super.key,
     required this.title,
@@ -62,6 +62,7 @@ class SettingTile extends HookWidget {
     this.onTap,
     this.trailing,
     this.trailingText,
+    this.autoImplyTrailing = true,
   });
 
   final String title;
@@ -70,81 +71,37 @@ class SettingTile extends HookWidget {
   final VoidCallback? onTap;
   final Widget? trailing;
   final String? trailingText;
+  final bool autoImplyTrailing;
 
   @override
   Widget build(BuildContext context) {
-    final isTapDown = useState(false);
-
-    return GestureDetector(
+    return CupertinoListTile(
+      title: Text(title),
       onTap: onTap,
-      onTapDown: (_) => isTapDown.value = true,
-      onTapUp: (_) => isTapDown.value = false,
-      onTapCancel: () => isTapDown.value = false,
-      behavior: HitTestBehavior.opaque,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 100),
-        decoration: BoxDecoration(
-          color: isTapDown.value
-              ? FixColor.pressedColor.resolveFrom(context)
-              : null,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (icon != null && color != null) ...[
-                Container(
-                  padding: const EdgeInsets.all(3),
-                  decoration: BoxDecoration(
-                    color: color,
-                    borderRadius: BorderRadius.circular(3),
-                  ),
-                  child: Icon(
-                    icon,
-                    size: 20,
-                    color: CupertinoColors.white,
-                  ),
-                ),
-                const SizedBox(width: 10),
-              ],
-              Expanded(
-                child: Row(
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyle(
-                        color: FixColor.title.resolveFrom(context),
-                      ),
-                    ),
-                  ],
-                ),
+      leading: icon != null && color != null
+          ? Container(
+              padding: const EdgeInsets.all(3),
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(3),
               ),
-              trailing ??
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      if (trailingText != null)
-                        Text(
-                          trailingText!,
-                          style: const TextStyle(
-                            color: CupertinoColors.inactiveGray,
-                            fontSize: 16,
-                          ),
-                        ),
-                      const Icon(
-                        CupertinoIcons.forward,
-                        size: 18,
-                        color: CupertinoColors.inactiveGray,
-                      )
-                    ],
-                  ),
-            ],
-          ),
-        ),
-      ),
+              child: Icon(
+                icon,
+                size: 18,
+                color: CupertinoColors.white,
+              ),
+            )
+          : null,
+      trailing: trailing ??
+          (trailingText != null
+              ? SettingTileTrailing(text: trailingText!)
+              : autoImplyTrailing
+                  ? const Icon(
+                      CupertinoIcons.forward,
+                      size: 18,
+                      color: CupertinoColors.inactiveGray,
+                    )
+                  : null),
     );
   }
 }

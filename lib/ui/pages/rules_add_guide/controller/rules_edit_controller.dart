@@ -8,17 +8,13 @@ import 'package:get/get.dart';
 
 class RulesEditController extends GetxController {
   RulesEditController({
-    SiteBlueMap? blueMap,
+    SiteBlueMap? blueprint,
     this.db,
-  }) : rxBlueprint = Rx(blueMap ?? SiteBlueMap());
+  }) : blueprint = blueprint ?? SiteBlueMap();
 
-  Rx<SiteBlueMap> rxBlueprint;
-  SiteBlueMap get blueprint => rxBlueprint.value;
+  SiteBlueMap blueprint;
   final WebTableData? db;
 
-  void updateBlueMap(SiteBlueMap entity) {
-    rxBlueprint(entity);
-  }
 
   Future<void> save() async {
     if (db == null) {

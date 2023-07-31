@@ -23,17 +23,16 @@ class DisplaySettingPage extends GetView<SettingService> {
     return SettingScaffold(
       title: I.of(context).display,
       children: [
-        SettingGroupTitle(I.of(context).preview),
-        SettingGroupWidget(
+        CupertinoListSection.insetGrouped(
+          header: SettingGroupTitle(I.of(context).preview),
           children: [
             SettingTile(
               title: I.of(context).dark_mask,
               trailing: CupertinoObxSwitch(
-                scale: 0.9,
+                scale: 0.8,
                 value: controller.imageMaskInDarkMode,
               ),
             ),
-            const SettingDivider(),
             SettingSelectionTile(
               title: I.of(context).image_concurrency,
               value: controller.concurrencyCount,
@@ -45,9 +44,8 @@ class DisplaySettingPage extends GetView<SettingService> {
             ),
           ],
         ),
-        const SizedBox(height: 20),
-        SettingGroupTitle(I.of(context).read),
-        SettingGroupWidget(
+        CupertinoListSection.insetGrouped(
+          header: SettingGroupTitle(I.of(context).read),
           children: [
             SettingSelectionTile(
               title: I.of(context).pre_load_count,
@@ -59,7 +57,6 @@ class DisplaySettingPage extends GetView<SettingService> {
                   SelectTileItem(value: i, title: '$i'),
               ],
             ),
-            const SettingDivider(),
             SettingSelectionTile<int>(
               title: I.of(context).read_direction,
               previousPageTitle: I.of(context).display,
