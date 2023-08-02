@@ -7,13 +7,13 @@ part 'result.freezed.dart';
 part 'result.g.dart';
 
 @freezed
-class PreviewItem with _$PreviewItem {
-  const factory PreviewItem({
+class DetailPreviewItem with _$PreviewItem {
+  const factory DetailPreviewItem({
     ImageResult? previewImage,
     String? target,
   }) = _PreviewItem;
 
-  factory PreviewItem.fromJson(Map<String, dynamic> json) =>
+  factory DetailPreviewItem.fromJson(Map<String, dynamic> json) =>
       _$PreviewItemFromJson(json);
 }
 
@@ -28,7 +28,7 @@ class DetailParserResult with _$DetailParserResult {
     int? countPrePage,
     String? description,
     double? star,
-    List<PreviewItem>? previews,
+    List<DetailPreviewItem>? previews,
     ImageResult? coverImage,
     List<TagResult>? badges,
     List<TagResult>? tags,
@@ -41,4 +41,80 @@ class DetailParserResult with _$DetailParserResult {
 
   factory DetailParserResult.fromJson(Map<String, dynamic> json) =>
       _$DetailParserResultFromJson(json);
+}
+
+@freezed
+class AutoCompleteResultItem with _$AutoCompleteResultItem {
+  const factory AutoCompleteResultItem({
+    String? title,
+    String? subtitle,
+    String? complete,
+  }) = _AutoCompleteResultItem;
+
+  factory AutoCompleteResultItem.fromJson(Map<String, dynamic> json) =>
+      _$AutoCompleteResultItemFromJson(json);
+}
+
+@freezed
+class AutoCompleteResult with _$AutoCompleteResult {
+  const factory AutoCompleteResult({
+    List<AutoCompleteResultItem>? items,
+    bool? isSuccess,
+    String? failMessage,
+    List<EnvResult>? env,
+  }) = _AutoCompleteResult;
+
+  factory AutoCompleteResult.fromJson(Map<String, dynamic> json) =>
+      _$AutoCompleteResultFromJson(json);
+}
+
+@freezed
+class ImageReaderResult with _$ImageReaderResult {
+  const factory ImageReaderResult({
+    ImageResult? image,
+    ImageResult? largerImage,
+    ImageResult? rawImage,
+    String? uploadTime,
+    String? source,
+    String? rating,
+    double? score,
+    List<TagResult>? badges,
+    List<TagResult>? tags,
+    List<CommentResult>? comments,
+    bool? isSuccess,
+    String? failMessage,
+    List<EnvResult>? env,
+  }) = _ImageReaderResult;
+
+  factory ImageReaderResult.fromJson(Map<String, dynamic> json) =>
+      _$ImageReaderResultFromJson(json);
+}
+
+@freezed
+class ListParserResultItem with _$ListParserResultItem {
+  const factory ListParserResultItem({
+    String? title,
+    String? subtitle,
+    String? uploadTime,
+    double? star,
+    int? imgCount,
+    ImageResult? previewImg,
+  }) = _ListParserResultItem;
+
+  factory ListParserResultItem.fromJson(Map<String, dynamic> json) =>
+      _$ListParserResultItemFromJson(json);
+}
+
+@freezed
+class ListParserResult with _$ListParserResult {
+  const factory ListParserResult({
+    List<ListParserResultItem>? items,
+    String? nextPage,
+    bool? isSuccess,
+    String? failMessage,
+    List<EnvResult>? env,
+  }) = _ListParserResult;
+
+  factory ListParserResult.fromJson(Map<String, dynamic> json) =>
+      _$ListParserResultFromJson(json);
 }

@@ -2,6 +2,8 @@ import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/ffi/models.dart';
 import 'package:catweb/data/models/ffi/parser_result.dart';
+import 'package:catweb/data/models/ffi/result/base.dart';
+import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
@@ -34,14 +36,14 @@ class GalleryBaseData {
 
 /// Gallery带预览的加载项目
 class GalleryImageWithPreview
-    extends ImageWithPreviewModel<GalleryParserResultItem> {
+    extends ImageWithPreviewModel<DetailPreviewItem> {
   GalleryImageWithPreview(super.previewModel);
 
   @override
-  ImageRspModel get previewImage => previewModel.previewImg;
+  ImageResult get previewImage => previewModel.previewImg;
 
   @override
-  GalleryParserResultItem get value => previewModel;
+  DetailPreviewItem get value => previewModel;
 
   @override
   String? get idCode => value.target;

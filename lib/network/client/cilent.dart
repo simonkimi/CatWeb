@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/models/ffi/parser_result.dart';
+import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/site_blue_map.dart';
@@ -119,7 +119,7 @@ class NetClient {
     throw UnimplementedError();
   }
 
-  Future<GalleryParserResult> getGallery({
+  Future<DetailParserResult> getDetail({
     required String url,
     required SitePage model,
     required SiteEnvStore localEnv,
@@ -161,7 +161,7 @@ class NetClient {
     throw UnimplementedError();
   }
 
-  Future<ImageReaderParserResult> getReadImage({
+  Future<ImageReaderResult> getReadImage({
     required String url,
     required SitePage model,
     required SiteEnvStore localEnv,
@@ -202,7 +202,7 @@ class NetClient {
     throw UnimplementedError();
   }
 
-  Future<AutoCompleteParserResult> getAutoComplete({
+  Future<AutoCompleteResult> getAutoComplete({
     required String url,
     required SitePage model,
     required SiteEnvStore localEnv,

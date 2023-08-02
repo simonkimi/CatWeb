@@ -1,5 +1,6 @@
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
+import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
@@ -25,7 +26,7 @@ abstract class ImageWithPreviewModel<T>
   String? get idCode;
 
   /// 大图的数据
-  Rx<ImageReaderParserResult?> imageModel = Rx(null);
+  Rx<ImageReaderResult?> imageModel = Rx(null);
   Rx<DioImageProvider?> imageProvider = Rx(null);
 
   /// 加载模型
