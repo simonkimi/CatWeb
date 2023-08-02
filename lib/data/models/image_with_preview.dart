@@ -1,6 +1,5 @@
 import 'package:catweb/data/controller/site_service.dart';
-import 'package:catweb/data/models/ffi/models.dart';
-import 'package:catweb/data/models/ffi/parser_result.dart';
+import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
@@ -20,7 +19,7 @@ abstract class ImageWithPreviewModel<T>
   /// 预览图的数据, 初始状态下就能拿到
   T previewModel;
 
-  ImageRspModel? get previewImage;
+  ImageResult? get previewImage;
 
   /// 从初始
   String? get idCode;
