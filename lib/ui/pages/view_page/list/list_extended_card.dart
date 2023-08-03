@@ -85,7 +85,7 @@ class ListExtendedCard extends StatelessWidget {
 
   Widget _buildLeftImage() {
     final child = ImageLoader(
-      model: model.previewImg,
+      model: model.previewImage,
       concurrency: concurrency,
       innerImageBuilder: (context, child) {
         return Container(
@@ -112,9 +112,9 @@ class ListExtendedCard extends StatelessWidget {
       constraints: const BoxConstraints(maxHeight: 160, minHeight: 140),
       child: SizedBox(
         width: 110,
-        child: model.previewImg.width != null && model.previewImg.height != null
+        child: model.previewImage.width != null && model.previewImage.height != null
             ? AspectRatio(
-                aspectRatio: model.previewImg.width! / model.previewImg.height!,
+                aspectRatio: model.previewImage.width! / model.previewImage.height!,
                 child: child,
               )
             : child,
@@ -171,11 +171,11 @@ class ListExtendedCard extends StatelessWidget {
                             CupertinoColors.secondaryLabel.resolveFrom(context),
                       ),
                     ),
-                  if (model.imgCount != null)
+                  if (model.imageCount != null)
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: Text(
-                        '${model.imgCount}P',
+                        '${model.imageCount}P',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 12.5,

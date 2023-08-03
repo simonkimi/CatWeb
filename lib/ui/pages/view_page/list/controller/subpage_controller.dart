@@ -62,7 +62,7 @@ class ListItemModel extends ImageWithPreviewModel<ListParserResultItem> {
   ListItemModel(super.previewModel);
 
   @override
-  ImageRspModel get previewImage => previewModel.previewImg;
+  ImageRspModel get previewImage => previewModel.previewImage;
 
   @override
   ListParserResultItem get value => previewModel;

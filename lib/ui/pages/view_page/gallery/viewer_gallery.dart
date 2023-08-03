@@ -117,7 +117,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                               model: previewController.successiveItems
                                   .toList()[index]
                                   .value
-                                  .previewImg,
+                                  .previewImage,
                               innerImageBuilder: (context, child) {
                                 return ClipRRect(
                                   borderRadius: BorderRadius.circular(5),
@@ -260,7 +260,7 @@ class ViewerGalleryFragment extends StatelessWidget {
 
   Widget _buildLeftImage() {
     if (previewController.baseData?.image == null &&
-        previewController.detailModel?.coverImg == null) {
+        previewController.detailModel?.coverImage == null) {
       return const SizedBox();
     }
     return Padding(
@@ -270,7 +270,7 @@ class ViewerGalleryFragment extends StatelessWidget {
         child: ImageLoader(
           concurrency: previewController.previewConcurrency,
           model: (previewController.baseData?.image ??
-              previewController.detailModel?.coverImg)!,
+              previewController.detailModel?.coverImage)!,
           innerImageBuilder: (context, child) {
             return Container(
               clipBehavior: Clip.antiAlias,

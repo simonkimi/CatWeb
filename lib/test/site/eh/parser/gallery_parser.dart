@@ -33,7 +33,7 @@ final ehGalleryParser = GalleryParser(
       type: ScriptFieldType.replace,
     ),
   ),
-  imgCount: Selector(
+  imageCount: Selector(
     selector: '#gdd tr:nth-child(6)>.gdt2',
     function: SelectorFunctionType.text,
     regex: r'\d+',
@@ -132,7 +132,7 @@ final ehGalleryParser = GalleryParser(
     param: 'href',
     regex: r'\/s\/(.+)',
   ),
-  coverImg: ImageSelector(
+  coverImage: ImageSelector(
     imgUrl: Selector(
       selector: '#gd1 div',
       function: SelectorFunctionType.attr,

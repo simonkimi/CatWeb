@@ -75,7 +75,7 @@ class GalleryParserEditor extends HookWidget {
       const SettingDivider(),
       ParserTile(
         title: I.of(context).image_count,
-        selector: model.value.imgCount,
+        selector: model.value.imageCount,
       ),
       const SettingDivider(),
       ParserTile(
@@ -97,27 +97,27 @@ class GalleryParserEditor extends HookWidget {
       SettingGroupTitle(I.of(context).cover),
       ParserTile(
         title: I.of(context).cover_img,
-        selector: model.value.coverImg.imgUrl,
+        selector: model.value.coverImage.imgUrl,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).cover_width,
-        selector: model.value.coverImg.imgWidth,
+        selector: model.value.coverImage.imgWidth,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).cover_height,
-        selector: model.value.coverImg.imgHeight,
+        selector: model.value.coverImage.imgHeight,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).cover_x,
-        selector: model.value.coverImg.imgX,
+        selector: model.value.coverImage.imgX,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).cover_y,
-        selector: model.value.coverImg.imgY,
+        selector: model.value.coverImage.imgY,
       ),
     ];
   }

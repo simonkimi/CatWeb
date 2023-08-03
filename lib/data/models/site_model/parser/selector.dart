@@ -81,7 +81,10 @@ class Selector {
         defaultValue: json['defaultValue'] as String,
       );
 
-  bool get isEmpty => selector.value.isEmpty && param.value.isEmpty && defaultValue.value.isEmpty;
+  bool get isEmpty =>
+      selector.value.isEmpty &&
+      param.value.isEmpty &&
+      defaultValue.value.isEmpty;
 }
 
 class ImageSelector {
@@ -111,8 +114,7 @@ class ImageSelector {
         'imgY': imgY.toJson(),
       };
 
-  factory ImageSelector.fromJson(Map<String, dynamic> json) =>
-      ImageSelector(
+  factory ImageSelector.fromJson(Map<String, dynamic> json) => ImageSelector(
         imgUrl: Selector.fromJson(json['imgUrl']),
         imgWidth: Selector.fromJson(json['imgWidth']),
         imgHeight: Selector.fromJson(json['imgHeight']),
@@ -177,10 +179,35 @@ class ExtraSelector {
         'global': global,
       };
 
-  factory ExtraSelector.fromJson(Map<String, dynamic> json) =>
-      ExtraSelector(
+  factory ExtraSelector.fromJson(Map<String, dynamic> json) => ExtraSelector(
         selector: Selector.fromJson(json['selector']),
         id: json['id'],
         global: json['global'],
+      );
+}
+
+class TagSelector {
+  final Selector text;
+  final Selector color;
+  final Selector category;
+
+  TagSelector({
+    Selector? text,
+    Selector? color,
+    Selector? category,
+  })  : text = text ?? Selector(),
+        color = color ?? Selector(),
+        category = category ?? Selector();
+
+  Map<String, dynamic> toJson() => {
+        'text': text.toJson(),
+        'color': color.toJson(),
+        'category': category.toJson(),
+      };
+
+  factory TagSelector.fromJson(Map<String, dynamic> json) => TagSelector(
+        text: Selector.fromJson(json['text']),
+        color: Selector.fromJson(json['color']),
+        category: Selector.fromJson(json['category']),
       );
 }

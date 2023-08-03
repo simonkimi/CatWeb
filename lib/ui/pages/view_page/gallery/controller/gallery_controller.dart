@@ -40,7 +40,7 @@ class GalleryImageWithPreview
   GalleryImageWithPreview(super.previewModel);
 
   @override
-  ImageResult get previewImage => previewModel.previewImg;
+  ImageResult get previewImage => previewModel.previewImage;
 
   @override
   DetailPreviewItem get value => previewModel;
