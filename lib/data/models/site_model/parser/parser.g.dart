@@ -68,7 +68,7 @@ Map<String, dynamic> _$ImageReaderParserToJson(ImageReaderParser instance) =>
     <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,
-      'extra': instance.extra,
+      'extra': const ExtraListConverter().toJson(instance.extra),
       'id': instance.id,
       'image': instance.image,
       'largerImage': instance.largerImage,
@@ -179,7 +179,7 @@ Map<String, dynamic> _$DetailParserToJson(DetailParser instance) =>
     <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,
-      'extra': instance.extra,
+      'extra': const ExtraListConverter().toJson(instance.extra),
       'title': instance.title,
       'subtitle': instance.subtitle,
       'uploadTime': instance.uploadTime,
@@ -276,7 +276,7 @@ Map<String, dynamic> _$ListViewParserToJson(ListViewParser instance) =>
     <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,
-      'extra': instance.extra,
+      'extra': const ExtraListConverter().toJson(instance.extra),
       'itemSelector': instance.itemSelector,
       'successSelector': instance.successSelector,
       'failedSelector': instance.failedSelector,
@@ -328,7 +328,7 @@ Map<String, dynamic> _$AutoCompleteParserToJson(AutoCompleteParser instance) =>
     <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,
-      'extra': instance.extra,
+      'extra': const ExtraListConverter().toJson(instance.extra),
       'itemSelector': instance.itemSelector,
       'itemComplete': instance.itemComplete,
       'itemTitle': instance.itemTitle,

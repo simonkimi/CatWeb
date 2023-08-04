@@ -25,6 +25,7 @@ abstract class IParserBase {
   final String uuid;
   final ParserType parserType;
 
+  @ExtraListConverter()
   final RxList<ExtraSelector> extra;
 
   Map<String, dynamic> toJson();
@@ -50,7 +51,9 @@ class ImageReaderParser implements IParserBase {
   final String uuid;
   @override
   final ParserType parserType;
+
   @override
+  @ExtraListConverter()
   final RxList<ExtraSelector> extra;
 
   final Selector id;
@@ -125,6 +128,7 @@ class DetailParser implements IParserBase {
   @override
   final ParserType parserType;
   @override
+  @ExtraListConverter()
   final RxList<ExtraSelector> extra;
 
   final Selector title;
@@ -229,6 +233,7 @@ class ListViewParser implements IParserBase {
   @override
   final ParserType parserType;
   @override
+  @ExtraListConverter()
   final RxList<ExtraSelector> extra;
 
   final Selector itemSelector;
@@ -310,6 +315,7 @@ class AutoCompleteParser implements IParserBase {
   @override
   final ParserType parserType;
   @override
+  @ExtraListConverter()
   final RxList<ExtraSelector> extra;
 
   final Selector itemSelector;
@@ -343,4 +349,20 @@ class AutoCompleteParser implements IParserBase {
 
   factory AutoCompleteParser.fromJson(Map<String, dynamic> json) =>
       _$AutoCompleteParserFromJson(json);
+}
+
+class ExtraListConverter
+    implements
+        JsonConverter<RxList<ExtraSelector>, List<Map<String, dynamic>>> {
+  const ExtraListConverter();
+
+  @override
+  RxList<ExtraSelector> fromJson(List<Map<String, dynamic>> json) {
+    return json.map((e) => ExtraSelector.fromJson(e)).toList().obs;
+  }
+
+  @override
+  List<Map<String, dynamic>> toJson(RxList<ExtraSelector> object) {
+    return object.map((e) => e.toJson()).toList();
+  }
 }
