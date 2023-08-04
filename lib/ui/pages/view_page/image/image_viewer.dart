@@ -1,4 +1,4 @@
-import 'package:catweb/data/models/ffi/models.dart';
+import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
 import 'package:catweb/ui/widgets/cupertino_progress_bar.dart';
@@ -69,17 +69,20 @@ class _ImageViewerState extends State<ImageViewer> {
         _defaultImageBuilder(
           context,
           model!.imageProvider.value!,
-          model!.imageModel.value!.image,
+          model!.imageModel.value!.image!,
         ));
   }
 
   Widget _defaultImageBuilder(
     BuildContext context,
     DioImageProvider imageProvider,
-    ImageRspModel model,
+    ImageResult model,
   ) {
     late Widget child;
-    if (model.imgX != null && model.imgY != null && model.width != null && model.height != null) {
+    if (model.x != null &&
+        model.y != null &&
+        model.width != null &&
+        model.height != null) {
       child = ExtendedImage(
         width: model.width,
         height: model.height,
@@ -94,8 +97,8 @@ class _ImageViewerState extends State<ImageViewer> {
               height: model.height,
               fit: BoxFit.fill,
               sourceRect: Rect.fromLTWH(
-                model.imgX ?? 0,
-                model.imgY ?? 0,
+                model.x ?? 0,
+                model.y ?? 0,
                 model.width!,
                 model.height!,
               ),

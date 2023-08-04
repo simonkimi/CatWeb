@@ -20,7 +20,7 @@ class CommentListPage extends StatelessWidget {
         child: SafeArea(
           child: ListView.builder(
             physics: const ClampingScrollPhysics(),
-            itemCount: previewController.detailModel!.comments.length,
+            itemCount: previewController.detailModel!.comments?.length ?? 0,
             padding: const EdgeInsets.only(
               left: 5,
               right: 5,
@@ -30,7 +30,7 @@ class CommentListPage extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: CommentItem(
-                    model: previewController.detailModel!.comments[index]),
+                    model: previewController.detailModel!.comments![index]),
               );
             },
           ),

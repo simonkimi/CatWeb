@@ -94,17 +94,22 @@ class NewImageParserEditor extends StatelessWidget {
       const SettingGroupTitle('标签'),
       ParserTile(
         title: '标签项目',
-        selector: parser.badgeSelector,
+        selector: parser.tagSelector,
       ),
       const SettingDivider(),
       ParserTile(
-        title: '徽章内容',
-        selector: parser.badgeText,
+        title: '标签内容',
+        selector: parser.tagItem.text,
       ),
       const SettingDivider(),
       ParserTile(
-        title: '徽章类型',
-        selector: parser.badgeCategory,
+        title: '标签类型',
+        selector: parser.tagItem.category,
+      ),
+      const SettingDivider(),
+      ParserTile(
+        title: '标签颜色',
+        selector: parser.tagItem.color,
       ),
     ];
   }

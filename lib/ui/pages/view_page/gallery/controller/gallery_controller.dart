@@ -1,7 +1,5 @@
 import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
-import 'package:catweb/data/models/ffi/models.dart';
-import 'package:catweb/data/models/ffi/parser_result.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
@@ -14,16 +12,16 @@ import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:get/get.dart';
 
-class GalleryBaseData {
+class DetailBaseData {
   final String? title;
   final String? subtitle;
   final String? language;
   final double? star;
-  final TagRspModel? tag;
-  final ImageRspModel? image;
+  final List<TagResult>? tag;
+  final ImageResult? image;
   final int? imageCount;
 
-  GalleryBaseData({
+  DetailBaseData({
     this.title,
     this.subtitle,
     this.tag,
@@ -34,13 +32,12 @@ class GalleryBaseData {
   });
 }
 
-/// Gallery带预览的加载项目
-class GalleryImageWithPreview
-    extends ImageWithPreviewModel<DetailPreviewItem> {
-  GalleryImageWithPreview(super.previewModel);
+/// Detail带预览的加载项目
+class DetailImageWithPreview extends ImageWithPreviewModel<DetailPreviewItem> {
+  DetailImageWithPreview(super.previewModel);
 
   @override
-  ImageResult get previewImage => previewModel.previewImage;
+  ImageResult get previewImage => previewModel.previewImage!;
 
   @override
   DetailPreviewItem get value => previewModel;
@@ -49,26 +46,26 @@ class GalleryImageWithPreview
   String? get idCode => value.target;
 }
 
-class GalleryLoadMore extends LoadMorePage<GalleryParserResult,
-    GalleryParserResultItem, GalleryImageWithPreview> {
-  GalleryLoadMore(super.pageData);
+class DetailLoadMore extends LoadMorePage<DetailParserResult, DetailPreviewItem,
+    DetailImageWithPreview> {
+  DetailLoadMore(super.pageData);
 
   @override
-  List<GalleryParserResultItem> get items => pageData.items;
+  List<DetailPreviewItem> get items => pageData.previews ?? [];
 
   @override
-  List<GalleryImageWithPreview> genModel() =>
-      items.map((e) => GalleryImageWithPreview(e)).toList();
+  List<DetailImageWithPreview> genModel() =>
+      items.map((e) => DetailImageWithPreview(e)).toList();
 }
 
-class GalleryPreviewController extends LoadMoreLoader<GalleryParserResult,
-    GalleryParserResultItem, GalleryImageWithPreview>
-    implements ReaderInfo<GalleryParserResultItem, GalleryImageWithPreview> {
+class GalleryPreviewController extends LoadMoreLoader<DetailParserResult,
+        DetailPreviewItem, DetailImageWithPreview>
+    implements ReaderInfo<DetailPreviewItem, DetailImageWithPreview> {
   GalleryPreviewController({
     required this.blueprint,
     SiteEnvStore? outerEnv,
     Object? base,
-    GalleryParserResult? detailModel,
+    DetailParserResult? detailModel,
   })  : localEnv = SiteEnvStore(outerEnv?.env),
         baseData = GalleryPreviewController.fromModel(base),
         _detailModel = Rx(detailModel) {
@@ -80,16 +77,16 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryParserResult,
   final SiteEnvStore localEnv;
 
   // 信息
-  final Rx<GalleryParserResult?> _detailModel;
-  GalleryBaseData? baseData;
+  final Rx<DetailParserResult?> _detailModel;
+  DetailBaseData? baseData;
   final Rx<int> lastReadIndex = 0.obs;
 
   final global = Get.find<SiteService>();
 
   @override
-  final previewConcurrency = ImageListConcurrency();  // 预览图片内容的加载器
+  final previewConcurrency = ImageListConcurrency(); // 预览图片内容的加载器
 
-  GalleryParserResult? get detailModel => _detailModel.value;
+  DetailParserResult? get detailModel => _detailModel.value;
 
   String get idCode => localEnv.apply(blueprint.url.value);
 
@@ -110,7 +107,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryParserResult,
   }
 
   @override
-  Future<GalleryLoadMore> netWorkLoadPage(int page) async {
+  Future<DetailLoadMore> netWorkLoadPage(int page) async {
     var baseUrl = blueprint.url.value;
     if (hasPageExpression(baseUrl) || page == 0) {
       // 有面数
@@ -126,7 +123,7 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryParserResult,
     }
     baseUrl = localEnv.apply(baseUrl);
 
-    final detail = await global.website.client.getGallery(
+    final detail = await global.website.client.getDetail(
       url: baseUrl,
       model: blueprint,
       localEnv: localEnv,
@@ -138,25 +135,24 @@ class GalleryPreviewController extends LoadMoreLoader<GalleryParserResult,
       stateLoadNoData();
     }
 
-    return GalleryLoadMore(detail);
+    return DetailLoadMore(detail);
   }
 
-  static GalleryBaseData? fromModel(Object? model) {
+  static DetailBaseData? fromModel(Object? model) {
     if (model != null && model is ListParserResultItem) {
-      return GalleryBaseData(
+      return DetailBaseData(
         title: model.title,
         subtitle: model.subtitle,
-        tag: model.tag,
-        image: model.previewImg,
-        imageCount: model.imgCount,
+        tag: model.tags,
+        image: model.previewImage,
+        imageCount: model.imageCount,
         language: model.language,
       );
     }
     return null;
   }
 
-  TemplateGallery get extra =>
-      blueprint.template as TemplateGallery;
+  TemplateGallery get extra => blueprint.template as TemplateGallery;
 
   bool get fillRemaining =>
       (state.isLoading && successiveItems.isEmpty) || errorMessage != null;

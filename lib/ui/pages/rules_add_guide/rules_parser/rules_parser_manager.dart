@@ -111,7 +111,7 @@ class RulesParserManager extends GetWidget<RulesEditController> {
       cancelText: '取消',
       items: const [
         SelectTileItem(title: '列表页', value: ParserType.listView),
-        SelectTileItem(title: '详情页', value: ParserType.gallery),
+        SelectTileItem(title: '详情页', value: ParserType.detail),
         SelectTileItem(title: '图片页', value: ParserType.imageReader),
         SelectTileItem(title: '补全页', value: ParserType.autoComplete),
       ],
@@ -124,8 +124,8 @@ class RulesParserManager extends GetWidget<RulesEditController> {
     switch (selection) {
       case ParserType.listView:
         return ListViewParser(name: name, uuid: uuid);
-      case ParserType.gallery:
-        return GalleryParser(name: name, uuid: uuid);
+      case ParserType.detail:
+        return DetailParser(name: name, uuid: uuid);
       case ParserType.imageReader:
         return ImageReaderParser(name: name, uuid: uuid);
       case ParserType.autoComplete:

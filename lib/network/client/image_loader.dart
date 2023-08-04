@@ -1,6 +1,6 @@
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/loaders/load_more_mixin.dart';
-import 'package:catweb/data/models/ffi/models.dart';
+import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:get/get.dart';
@@ -11,7 +11,7 @@ class ImageLoadModel {
     required this.dio,
   });
 
-  final ImageRspModel model;
+  final ImageResult model;
   final Dio dio;
 
   final Rx<ImageLoadState> _state = ImageLoadState.waiting().obs;
@@ -24,7 +24,7 @@ class ImageLoadModel {
 
   double get progress => _progress.value;
 
-  String get key => model.cacheKey ?? model.url;
+  String get key => model.cacheKey ?? model.url!;
 
   bool get needLoad => _state.value.isWaiting && _handleWidget.value > 0;
 
@@ -50,7 +50,7 @@ class ImageLoadModel {
     try {
       _state.value = ImageLoadState.loading();
       final rsp = await dio.get<Uint8List>(
-        model.url,
+        model.url!,
         onReceiveProgress: (r, t) => _progress.value = r / t,
         options: Get.find<SettingService>()
             .imageCacheOption

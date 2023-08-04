@@ -80,7 +80,7 @@ class SitePage {
     return switch(template.type) {
       TemplateType.imageList || TemplateType.imageWaterFall => ParserType.listView,
       TemplateType.autoComplete => ParserType.autoComplete,
-      TemplateType.gallery => ParserType.gallery,
+      TemplateType.gallery => ParserType.detail,
       TemplateType.imageViewer => ParserType.imageReader,
     };
   }

@@ -1,4 +1,4 @@
-import 'package:catweb/data/models/ffi/parser_result.dart';
+import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -6,7 +6,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 class CommentItem extends StatelessWidget {
   const CommentItem({super.key, required this.model});
 
-  final GalleryParserResultComment model;
+  final CommentResult model;
 
   @override
   Widget build(BuildContext context) {

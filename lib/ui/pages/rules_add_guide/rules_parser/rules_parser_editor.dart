@@ -37,7 +37,7 @@ class RulesParserEditor extends StatelessWidget {
       children: [
         _buildEditor(context),
         ExtraParserEditor(
-          parser: GalleryParser(
+          parser: DetailParser(
             name: '123123',
             uuid: '12132',
           ),
@@ -61,8 +61,8 @@ class RulesParserEditor extends StatelessWidget {
 
   Widget _buildEditor(BuildContext context) {
     switch (model.parserType) {
-      case ParserType.gallery:
-        return GalleryParserEditor(parser: model as GalleryParser);
+      case ParserType.detail:
+        return DetailParserEditor(parser: model as DetailParser);
       case ParserType.listView:
         return ListParserEditor(parser: model as ListViewParser);
       case ParserType.autoComplete:

@@ -1,4 +1,4 @@
-import 'package:catweb/data/models/ffi/parser_result.dart';
+import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:catweb/ui/theme/colors.dart';
@@ -34,7 +34,7 @@ class SimpleCard extends StatelessWidget {
               color: FixColor.title.resolveFrom(context),
             ),
           ),
-        if (model.badges.isNotEmpty) _buildTagList()
+        if (model.badges?.isNotEmpty == true) _buildTagList()
       ],
     );
 
@@ -56,7 +56,7 @@ class SimpleCard extends StatelessWidget {
   }
 
   SizedBox _buildTagList() {
-    final tags = model.badges.where((e) => e.text != null).toList();
+    final tags = model.badges!.where((e) => e.text != null).toList();
     return SizedBox(
       height: 20,
       child: Padding(
@@ -66,13 +66,13 @@ class SimpleCard extends StatelessWidget {
           itemCount: tags.length,
           itemBuilder: (context, index) {
             final e = tags[index];
+            final tagBackground = parseColorString(e.color);
             return Center(
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: e.color != null
-                      ? e.color?.color
-                      : (isDarkMode(context)
+                  color: tagBackground ??
+                      (isDarkMode(context)
                           ? const Color(0xFF312F32)
                           : const Color(0xFFEFEEF1)),
                 ),
@@ -83,8 +83,8 @@ class SimpleCard extends StatelessWidget {
                     style: TextStyle(
                       height: 1,
                       fontSize: 11,
-                      color: e.color != null && e.color!.color != null
-                          ? e.color!.color!.isDark
+                      color: tagBackground != null
+                          ? tagBackground.isDark
                               ? Colors.white
                               : Colors.black
                           : isDarkMode(context)
@@ -130,7 +130,7 @@ class SimpleCard extends StatelessWidget {
             bottom: 0,
             child: _buildPaper(context),
           ),
-        if (model.tag != null)
+        if (model.tags != null)
           Positioned(
             right: 0,
             child: _buildCategory(context),

@@ -3,7 +3,7 @@ import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/data/models/site_model/parser/selector.dart';
 import 'package:uuid/uuid.dart';
 
-final ehGalleryParser = GalleryParser(
+final ehGalleryParser = DetailParser(
   name: '画廊',
   uuid: const Uuid().v4().toString(),
   title: Selector(
@@ -43,29 +43,36 @@ final ehGalleryParser = GalleryParser(
     function: SelectorFunctionType.text,
     regex: r'Average: (.+)',
   ),
-  tag: Selector(
+  tagSelector: Selector(
     selector: '.cs',
     function: SelectorFunctionType.text,
   ),
-  tagColor: Selector(
-    selector: '.cs',
-    function: SelectorFunctionType.attr,
-    param: 'class',
-    regex: 'ct.',
-    script: ScriptField(
-      script:
-          r'{"ct1":"#8a8a8a","ct2":"#f66158","ct3":"#f09e19","ct4":"#d2d303","ct5":"#0fa911","ct6":"#4f5ce6","ct7":"#9030df","ct8":"#f38af2","ct9":"#0bbfd3","cta":"#2fd92c"}',
-      type: ScriptFieldType.replace,
+  tagItem: TagSelector(
+    text: Selector(
+      function: SelectorFunctionType.text,
+    ),
+    color: Selector(
+      selector: '.cs',
+      function: SelectorFunctionType.attr,
+      param: 'class',
+      regex: 'ct.',
+      script: ScriptField(
+        script:
+            r'{"ct1":"#8a8a8a","ct2":"#f66158","ct3":"#f09e19","ct4":"#d2d303","ct5":"#0fa911","ct6":"#4f5ce6","ct7":"#9030df","ct8":"#f38af2","ct9":"#0bbfd3","cta":"#2fd92c"}',
+        type: ScriptFieldType.replace,
+      ),
     ),
   ),
   badgeSelector: Selector(selector: '.gt,.gtl'),
-  badgeText: Selector(
-    function: SelectorFunctionType.text,
-  ),
-  badgeCategory: Selector(
-    function: SelectorFunctionType.attr,
-    param: 'id',
-    regex: 'td_(.+?):',
+  badgeItem: TagSelector(
+    text: Selector(
+      function: SelectorFunctionType.text,
+    ),
+    category: Selector(
+      function: SelectorFunctionType.attr,
+      param: 'id',
+      regex: 'td_(.+?):',
+    ),
   ),
   description: Selector(
     selector:

@@ -54,7 +54,7 @@ class ViewerGalleryImages extends StatelessWidget {
                                   child: ImageLoader(
                                     concurrency:
                                         previewController.previewConcurrency,
-                                    model: list[index].value.previewImage,
+                                    model: list[index].value.previewImage!,
                                     imageWidgetBuilder: (context, child) {
                                       return FittedBox(
                                         fit: BoxFit.contain,

@@ -1,4 +1,3 @@
-import 'package:catweb/data/models/ffi/models.dart';
 import 'package:flutter/cupertino.dart';
 
 class FixColor {
@@ -52,12 +51,13 @@ bool isDarkMode(BuildContext context) =>
 
 extension ColorHelper on Color {
   bool get isDark => red * 0.299 + green * 0.578 + blue * 0.114 <= 192;
-
-  ColorRspModel get rpc => ColorRspModel(a: alpha, b: blue, g: green, r: red);
 }
 
-Color? parseColorString(String colorString) {
+Color? parseColorString(String? colorString) {
   try {
+    if (colorString == null) {
+      return null;
+    }
     final result = colorString.toLowerCase();
 
     if (result.startsWith('0x') && result.length == 8) {

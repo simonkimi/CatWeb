@@ -117,7 +117,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                               model: previewController.successiveItems
                                   .toList()[index]
                                   .value
-                                  .previewImage,
+                                  .previewImage!,
                               innerImageBuilder: (context, child) {
                                 return ClipRRect(
                                   borderRadius: BorderRadius.circular(5),
@@ -154,10 +154,11 @@ class ViewerGalleryFragment extends StatelessWidget {
               ),
             const Expanded(child: SizedBox()),
             _buildShowMore(context, () {
-              Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ViewerGalleryImages(
-                previewController: previewController,
-                onOpenPage: _openReadPage,
-              )));
+              Navigator.of(context).push(CupertinoPageRoute(
+                  builder: (context) => ViewerGalleryImages(
+                        previewController: previewController,
+                        onOpenPage: _openReadPage,
+                      )));
             }),
           ],
         ),
@@ -209,14 +210,15 @@ class ViewerGalleryFragment extends StatelessWidget {
   }
 
   Widget _buildTagList(BuildContext context) {
-    if (previewController.detailModel?.badges.isEmpty ?? true) {
+    if (previewController.detailModel?.badges?.isEmpty ?? true) {
       return const SizedBox();
     }
     final tagMaps = <String, List<String>>{'_': []};
 
-    for (final tag in previewController.detailModel!.badges) {
+    for (final tag in previewController.detailModel!.badges!) {
       tagMaps[tag.category?.isEmpty == true ? '_' : tag.category!] ??= [];
-      tagMaps[tag.category?.isEmpty == true ? '_' : tag.category]!.add(tag.text ?? '');
+      tagMaps[tag.category?.isEmpty == true ? '_' : tag.category]!
+          .add(tag.text ?? '');
     }
 
     return Column(
@@ -306,7 +308,7 @@ class ViewerGalleryFragment extends StatelessWidget {
               _buildTitle(context),
               const SizedBox(height: 5),
               _buildSubtitle(context),
-              if (previewController.detailModel?.comments.isEmpty ?? true) ...[
+              if (previewController.detailModel?.comments?.isEmpty ?? true) ...[
                 const SizedBox(height: 5),
                 _buildStarBar(context),
               ]
@@ -353,8 +355,8 @@ class ViewerGalleryFragment extends StatelessWidget {
   }
 
   Widget _buildStarBar(BuildContext context) {
-    final star = previewController.baseData?.star ??
-        previewController.detailModel?.star;
+    final star =
+        previewController.baseData?.star ?? previewController.detailModel?.star;
     if (star == null) return const SizedBox();
     return Row(
       children: [
@@ -500,7 +502,7 @@ class ViewerGalleryFragment extends StatelessWidget {
   }
 
   Widget _buildCommentList(BuildContext context) {
-    if (!(previewController.detailModel?.comments.isNotEmpty ?? false)) {
+    if (!(previewController.detailModel?.comments?.isNotEmpty ?? false)) {
       return const SizedBox();
     }
     return Column(
@@ -512,7 +514,7 @@ class ViewerGalleryFragment extends StatelessWidget {
             const Expanded(child: SizedBox()),
             IconText(
               icon: Icons.message_outlined,
-              text: '${previewController.detailModel!.comments.length}',
+              text: '${previewController.detailModel!.comments?.length}',
               iconColor: CupertinoColors.secondaryLabel.resolveFrom(context),
               style: TextStyle(
                 fontSize: 13,
@@ -523,14 +525,14 @@ class ViewerGalleryFragment extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         Column(
-          children: previewController.detailModel!.comments.take(2).map((e) {
+          children: previewController.detailModel!.comments!.take(2).map((e) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: CommentItem(model: e),
             );
           }).toList(),
         ),
-        if ((previewController.detailModel?.comments.length ?? 0) > 2)
+        if ((previewController.detailModel?.comments!.length ?? 0) > 2)
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

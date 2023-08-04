@@ -1,4 +1,4 @@
-import 'package:catweb/data/models/ffi/parser_result.dart';
+import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
@@ -78,14 +78,14 @@ class ListExtendedCard extends StatelessWidget {
             ),
           ),
         const SizedBox(height: 3),
-        if (model.badges.isNotEmpty) _buildBadgesWrap(context),
+        if (model.badges?.isNotEmpty ?? false) _buildBadgesWrap(context),
       ],
     );
   }
 
   Widget _buildLeftImage() {
     final child = ImageLoader(
-      model: model.previewImage,
+      model: model.previewImage!,
       concurrency: concurrency,
       innerImageBuilder: (context, child) {
         return Container(
@@ -112,9 +112,11 @@ class ListExtendedCard extends StatelessWidget {
       constraints: const BoxConstraints(maxHeight: 160, minHeight: 140),
       child: SizedBox(
         width: 110,
-        child: model.previewImage.width != null && model.previewImage.height != null
+        child: model.previewImage!.width != null &&
+                model.previewImage!.height != null
             ? AspectRatio(
-                aspectRatio: model.previewImage.width! / model.previewImage.height!,
+                aspectRatio:
+                    model.previewImage!.width! / model.previewImage!.height!,
                 child: child,
               )
             : child,
@@ -126,9 +128,9 @@ class ListExtendedCard extends StatelessWidget {
     return Wrap(
       spacing: 2,
       runSpacing: 2,
-      children: model.badges.where((e) => e.text != null).map((e) {
+      children: model.badges!.where((e) => e.text != null).map((e) {
         return SlimBadge(
-          color: e.color?.color,
+          color: parseColorString(e.color),
           text: e.text!,
           fontSize: 11,
           padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
@@ -149,7 +151,7 @@ class ListExtendedCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               if (model.star != null) _buildStar(context),
-              if (model.tag != null) _buildTag(context),
+              if (model.tags != null) _buildTag(context),
             ],
           ),
           Column(
@@ -232,11 +234,12 @@ class ListExtendedCard extends StatelessWidget {
   }
 
   Widget _buildTag(BuildContext context) {
+    final tag = model.tags!.first;
     return Padding(
       padding: const EdgeInsets.only(top: 2),
       child: SlimBadge(
-        color: model.tag!.color!.color,
-        text: model.tag!.text!,
+        color: parseColorString(tag.color),
+        text: tag.text!,
         fontSize: 11,
         padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
         borderRadius: 5,

@@ -1,5 +1,5 @@
 import 'package:catweb/data/controller/site_service.dart';
-import 'package:catweb/data/models/ffi/parser_result.dart';
+import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/pages/template_auto_complete.dart';
@@ -21,7 +21,7 @@ class SearchListController {
   late final SitePage? blueprint;
 
   final isLoading = false.obs;
-  final suggestions = RxList<AutoCompleteParserResultItem>();
+  final suggestions = RxList<AutoCompleteResultItem>();
 
   String get splitChar =>
       extra.splitChar.value.isEmpty ? ' ' : extra.splitChar.value;
@@ -76,14 +76,17 @@ class SearchListController {
           'search': keyword,
         }),
       );
+      if (result.items?.isEmpty ?? true) {
+        return;
+      }
       suggestions.clear();
-      suggestions.addAll(result.items);
+      suggestions.addAll(result.items!);
     } finally {
       isLoading.value = false;
     }
   }
 
-  void onSuggestionSelected(AutoCompleteParserResultItem item) {
+  void onSuggestionSelected(AutoCompleteResultItem item) {
     final keyWords = textController.text.split(splitChar);
     keyWords.removeLast();
     keyWords.add(item.complete!);

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:catweb/data/controller/site_service.dart';
-import 'package:catweb/data/models/ffi/models.dart';
-import 'package:catweb/data/models/ffi/parser_result.dart';
+import 'package:catweb/data/models/ffi/result/base.dart';
+import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
@@ -51,7 +51,7 @@ class ListPageItem extends LoadMorePage<ListParserResult, ListParserResultItem,
   ListPageItem(super.pageData);
 
   @override
-  List<ListParserResultItem> get items => pageData.items;
+  List<ListParserResultItem> get items => pageData.items!;
 
   @override
   List<ListItemModel> genModel() => items.map((e) => ListItemModel(e)).toList();
@@ -62,7 +62,7 @@ class ListItemModel extends ImageWithPreviewModel<ListParserResultItem> {
   ListItemModel(super.previewModel);
 
   @override
-  ImageRspModel get previewImage => previewModel.previewImage;
+  ImageResult get previewImage => previewModel.previewImage!;
 
   @override
   ListParserResultItem get value => previewModel;
@@ -81,8 +81,9 @@ class SubListController extends LoadMoreLoader<
   }) : localEnv =
             SiteEnvStore(subPageModel != null && subPageModel.value.isNotEmpty
                 ? {
-                    subPageModel.key.value.isNotEmpty ? subPageModel.key.value : 'subKey':
-                        subPageModel.value.value,
+                    subPageModel.key.value.isNotEmpty
+                        ? subPageModel.key.value
+                        : 'subKey': subPageModel.value.value,
                   }
                 : null);
 
@@ -134,7 +135,12 @@ class SubListController extends LoadMoreLoader<
         if (maxPage == null) {
           throw Exception('No page loaded? WTF?');
         }
-        baseUrl = pages[maxPage]!.pageData.nextPage;
+        if (pages[maxPage]!.pageData.nextPage?.isEmpty ?? true) {
+          print('hasPageExpression loadNoData()');
+          stateLoadNoData();
+          return ListPageItem(pages[maxPage]!.pageData);
+        }
+        baseUrl = pages[maxPage]!.pageData.nextPage!;
       }
     }
     baseUrl = localEnv.apply(baseUrl);
@@ -153,7 +159,7 @@ class SubListController extends LoadMoreLoader<
     );
 
     if (!hasPageExpression(baseUrl) &&
-        (data.nextPage == baseUrl || data.nextPage.isEmpty)) {
+        (data.nextPage == baseUrl || data.nextPage!.isEmpty)) {
       print('hasPageExpression loadNoData()');
       stateLoadNoData();
     }

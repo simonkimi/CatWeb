@@ -68,13 +68,18 @@ class ListParserEditor extends StatelessWidget {
         children: [
           ParserTile(
             title: '徽章选择器',
-            selector: parser.badgeText,
+            selector: parser.badgeSelector,
             onlySelector: true,
           ),
           const SettingDivider(),
           ParserTile(
+            title: '徽章文本',
+            selector: parser.badgeItem.category,
+          ),
+          const SettingDivider(),
+          ParserTile(
             title: '徽章颜色',
-            selector: parser.badgeColor,
+            selector: parser.badgeItem.color,
           ),
         ],
       ),
@@ -93,8 +98,18 @@ class ListParserEditor extends StatelessWidget {
           ),
           const SettingDivider(),
           ParserTile(
+            title: '标签文本',
+            selector: parser.tagItem.text,
+          ),
+          const SettingDivider(),
+          ParserTile(
+            title: '标签类型',
+            selector: parser.tagItem.category,
+          ),
+          const SettingDivider(),
+          ParserTile(
             title: '标签颜色',
-            selector: parser.tagColor,
+            selector: parser.tagItem.color,
           ),
         ],
       ),
@@ -108,28 +123,28 @@ class ListParserEditor extends StatelessWidget {
         children: [
           ParserTile(
             title: '封面地址',
-            selector: parser.previewImg.imgUrl,
+            selector: parser.previewImage.imgUrl,
           ),
           const SettingDivider(),
           ParserTile(
             title: '封面宽度',
-            selector: parser.previewImg.imgWidth,
+            selector: parser.previewImage.imgWidth,
           ),
           const SettingDivider(),
           ParserTile(
             title: '封面高度',
-            selector: parser.previewImg.imgHeight,
+            selector: parser.previewImage.imgHeight,
           ),
           const SettingDivider(),
           ParserTile(
             title: '封面X偏移',
-            selector: parser.previewImg.imgX,
+            selector: parser.previewImage.imgX,
             onlySelector: true,
           ),
           const SettingDivider(),
           ParserTile(
             title: '封面Y偏移',
-            selector: parser.previewImg.imgY,
+            selector: parser.previewImage.imgY,
             onlySelector: true,
           ),
         ],
@@ -184,7 +199,7 @@ class ListParserEditor extends StatelessWidget {
           const SettingDivider(),
           ParserTile(
             title: '面数',
-            selector: parser.imgCount,
+            selector: parser.imageCount,
           ),
           const SettingDivider(),
           ParserTile(

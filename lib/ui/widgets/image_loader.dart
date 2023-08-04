@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:catweb/data/models/ffi/models.dart';
+import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/widgets/dark_image.dart';
@@ -47,7 +47,7 @@ class ImageLoader extends StatefulWidget {
   });
 
   final ImageListConcurrency concurrency;
-  final ImageRspModel model;
+  final ImageResult model;
   final ImageWidgetBuilder? imageBuilder;
   final LoadingWidgetBuilder? loadingBuilder;
   final ErrorBuilder? errorBuilder;
@@ -135,8 +135,8 @@ class _ImageLoaderState extends State<ImageLoader> {
               height: model.height,
               fit: BoxFit.fill,
               sourceRect: Rect.fromLTWH(
-                model.imgX ?? 0,
-                model.imgY ?? 0,
+                model.x ?? 0,
+                model.y ?? 0,
                 model.width!,
                 model.height!,
               ),
@@ -165,7 +165,7 @@ class _ImageLoaderState extends State<ImageLoader> {
 
     return widget.enableHero
         ? Hero(
-            tag: widget.model.key,
+            tag: widget.model.cacheKey ?? widget.model.url!,
             child: DarkWidget(
               child: child,
             ),
@@ -218,5 +218,5 @@ class _ImageLoaderState extends State<ImageLoader> {
     );
   }
 
-  ImageRspModel get model => widget.model;
+  ImageResult get model => widget.model;
 }

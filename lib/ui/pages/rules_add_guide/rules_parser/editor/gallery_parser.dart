@@ -6,239 +6,246 @@ import 'package:flutter/cupertino.dart';
 import 'package:catweb/i18n.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class GalleryParserEditor extends HookWidget {
-  const GalleryParserEditor({Key? key, required this.parser}) : super(key: key);
+class DetailParserEditor extends HookWidget {
+  const DetailParserEditor({Key? key, required this.parser}) : super(key: key);
 
-  final GalleryParser parser;
+  final DetailParser parser;
 
   @override
   Widget build(BuildContext context) {
-    final model = useState(parser);
-
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
       children: [
-        ..._buildInfoList(model, context),
-        ..._buildCoverList(model, context),
-        ..._buildTagList(model, context),
-        ..._buildCommentList(model, context),
-        ..._buildThumbnailList(model, context),
-        ..._buildFlagList(model, context),
+        ..._buildInfoList(context),
+        ..._buildCoverList(context),
+        ..._buildTagList(context),
+        ..._buildCommentList(context),
+        ..._buildThumbnailList(context),
+        ..._buildFlagList(context),
       ],
     );
   }
 
-  List<Widget> _buildInfoList(
-      ValueNotifier<GalleryParser> model, BuildContext context) {
+  List<Widget> _buildInfoList(BuildContext context) {
     return [
       const SizedBox(height: 5),
       SettingGroupTitle(I.of(context).basic_setting),
       ParserTile(
         title: I.of(context).title,
-        selector: model.value.title,
+        selector: parser.title,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).subtitle,
-        selector: model.value.subtitle,
+        selector: parser.subtitle,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).upload_time,
-        selector: model.value.uploadTime,
+        selector: parser.uploadTime,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).star,
-        selector: model.value.star,
+        selector: parser.star,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).language,
-        selector: model.value.language,
+        selector: parser.language,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).description,
-        selector: model.value.description,
-      ),
-      const SettingDivider(),
-      ParserTile(
-        title: I.of(context).tag,
-        selector: model.value.tag,
-      ),
-      const SettingDivider(),
-      ParserTile(
-        title: I.of(context).tag_color,
-        selector: model.value.tagColor,
+        selector: parser.description,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).image_count,
-        selector: model.value.imageCount,
+        selector: parser.imageCount,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).page_count,
-        selector: model.value.pageCount,
+        selector: parser.pageCount,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).image_pre_page,
-        selector: model.value.countPrePage,
+        selector: parser.countPrePage,
+      ),
+      const SettingDivider(),
+      ParserTile(
+        title: '徽章选择器',
+        selector: parser.badgeSelector,
+      ),
+      const SettingDivider(),
+      ParserTile(
+        title: '徽章内容',
+        selector: parser.badgeItem.text,
+      ),
+      const SettingDivider(),
+      ParserTile(
+        title: '徽章颜色',
+        selector: parser.badgeItem.color,
       ),
     ];
   }
 
-  List<Widget> _buildCoverList(
-      ValueNotifier<GalleryParser> model, BuildContext context) {
+  List<Widget> _buildCoverList(BuildContext context) {
     return [
       const SizedBox(height: 5),
       SettingGroupTitle(I.of(context).cover),
       ParserTile(
         title: I.of(context).cover_img,
-        selector: model.value.coverImage.imgUrl,
+        selector: parser.coverImage.imgUrl,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).cover_width,
-        selector: model.value.coverImage.imgWidth,
+        selector: parser.coverImage.imgWidth,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).cover_height,
-        selector: model.value.coverImage.imgHeight,
+        selector: parser.coverImage.imgHeight,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).cover_x,
-        selector: model.value.coverImage.imgX,
+        selector: parser.coverImage.imgX,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).cover_y,
-        selector: model.value.coverImage.imgY,
+        selector: parser.coverImage.imgY,
       ),
     ];
   }
 
-  List<Widget> _buildTagList(
-      ValueNotifier<GalleryParser> model, BuildContext context) {
+  List<Widget> _buildTagList(BuildContext context) {
     return [
       const SizedBox(height: 5),
       SettingGroupTitle(I.of(context).badge),
       ParserTile(
         title: I.of(context).badge_item,
         onlySelector: true,
-        selector: model.value.badgeSelector,
+        selector: parser.badgeSelector,
       ),
       const SettingDivider(),
       ParserTile(
-        title: I.of(context).badge_content,
-        selector: model.value.badgeText,
+        title: '标签选择器',
+        selector: parser.tagSelector,
       ),
       const SettingDivider(),
       ParserTile(
-        title: I.of(context).badge_type,
-        selector: model.value.badgeCategory,
+        title: '标签内容',
+        selector: parser.tagItem.text,
+      ),
+      const SettingDivider(),
+      ParserTile(
+        title: '标签颜色',
+        selector: parser.tagItem.color,
+      ),
+      const SettingDivider(),
+      ParserTile(
+        title: '标签分类',
+        selector: parser.tagItem.category,
       ),
     ];
   }
 
-  List<Widget> _buildCommentList(
-      ValueNotifier<GalleryParser> model, BuildContext context) {
+  List<Widget> _buildCommentList(BuildContext context) {
     return [
       const SizedBox(height: 5),
       SettingGroupTitle(I.of(context).comment),
       ParserTile(
         title: I.of(context).comment_item,
         onlySelector: true,
-        selector: model.value.commentSelector,
+        selector: parser.commentSelector,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).comment_content,
-        selector: model.value.comments.content,
+        selector: parser.comments.content,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).username,
-        selector: model.value.comments.username,
+        selector: parser.comments.username,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).comment_time,
-        selector: model.value.comments.time,
+        selector: parser.comments.time,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).comment_score,
-        selector: model.value.comments.score,
+        selector: parser.comments.score,
       ),
     ];
   }
 
-  List<Widget> _buildThumbnailList(
-      ValueNotifier<GalleryParser> model, BuildContext context) {
+  List<Widget> _buildThumbnailList(BuildContext context) {
     return [
       const SizedBox(height: 5),
       SettingGroupTitle(I.of(context).thumbnail),
       ParserTile(
         title: I.of(context).thumbnail_selector,
-        selector: model.value.thumbnailSelector,
+        selector: parser.thumbnailSelector,
         onlySelector: true,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).thumbnail_target,
-        selector: model.value.target,
+        selector: parser.target,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).thumbnail_img,
-        selector: model.value.thumbnail.imgUrl,
+        selector: parser.thumbnail.imgUrl,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).thumbnail_width,
-        selector: model.value.thumbnail.imgWidth,
+        selector: parser.thumbnail.imgWidth,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).thumbnail_height,
-        selector: model.value.thumbnail.imgHeight,
+        selector: parser.thumbnail.imgHeight,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).thumbnail_x,
-        selector: model.value.thumbnail.imgX,
+        selector: parser.thumbnail.imgX,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).thumbnail_y,
-        selector: model.value.thumbnail.imgY,
+        selector: parser.thumbnail.imgY,
       ),
     ];
   }
 
-  List<Widget> _buildFlagList(
-      ValueNotifier<GalleryParser> model, BuildContext context) {
+  List<Widget> _buildFlagList(BuildContext context) {
     return [
       const SizedBox(height: 5),
       const SettingGroupTitle('元数据'),
       ParserTile(
         title: I.of(context).next_page,
-        selector: model.value.nextPage,
+        selector: parser.nextPage,
       ),
       const SettingDivider(),
       ParserTile(
         title: '成功标志',
-        selector: model.value.successSelector,
+        selector: parser.successSelector,
       ),
       const SettingDivider(),
       ParserTile(
         title: '失败标志',
-        selector: model.value.failedSelector,
+        selector: parser.failedSelector,
       ),
     ];
   }

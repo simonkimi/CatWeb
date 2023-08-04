@@ -7,14 +7,14 @@ part 'result.freezed.dart';
 part 'result.g.dart';
 
 @freezed
-class DetailPreviewItem with _$PreviewItem {
+class DetailPreviewItem with _$DetailPreviewItem {
   const factory DetailPreviewItem({
     ImageResult? previewImage,
     String? target,
   }) = _PreviewItem;
 
   factory DetailPreviewItem.fromJson(Map<String, dynamic> json) =>
-      _$PreviewItemFromJson(json);
+      _$DetailPreviewItemFromJson(json);
 }
 
 @freezed
@@ -97,8 +97,13 @@ class ListParserResultItem with _$ListParserResultItem {
     String? subtitle,
     String? uploadTime,
     double? star,
-    int? imgCount,
-    ImageResult? previewImg,
+    int? imageCount,
+    ImageResult? previewImage,
+    List<TagResult>? badges,
+    List<TagResult>? tags,
+    String? target,
+    String? language,
+    String? paper,
   }) = _ListParserResultItem;
 
   factory ListParserResultItem.fromJson(Map<String, dynamic> json) =>

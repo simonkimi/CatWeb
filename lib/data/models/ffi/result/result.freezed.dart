@@ -1711,8 +1711,13 @@ mixin _$ListParserResultItem {
   String? get subtitle => throw _privateConstructorUsedError;
   String? get uploadTime => throw _privateConstructorUsedError;
   double? get star => throw _privateConstructorUsedError;
-  int? get imgCount => throw _privateConstructorUsedError;
-  ImageResult? get previewImg => throw _privateConstructorUsedError;
+  int? get imageCount => throw _privateConstructorUsedError;
+  ImageResult? get previewImage => throw _privateConstructorUsedError;
+  List<TagResult>? get badges => throw _privateConstructorUsedError;
+  List<TagResult>? get tags => throw _privateConstructorUsedError;
+  String? get target => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
+  String? get paper => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1731,10 +1736,15 @@ abstract class $ListParserResultItemCopyWith<$Res> {
       String? subtitle,
       String? uploadTime,
       double? star,
-      int? imgCount,
-      ImageResult? previewImg});
+      int? imageCount,
+      ImageResult? previewImage,
+      List<TagResult>? badges,
+      List<TagResult>? tags,
+      String? target,
+      String? language,
+      String? paper});
 
-  $ImageResultCopyWith<$Res>? get previewImg;
+  $ImageResultCopyWith<$Res>? get previewImage;
 }
 
 /// @nodoc
@@ -1755,8 +1765,13 @@ class _$ListParserResultItemCopyWithImpl<$Res,
     Object? subtitle = freezed,
     Object? uploadTime = freezed,
     Object? star = freezed,
-    Object? imgCount = freezed,
-    Object? previewImg = freezed,
+    Object? imageCount = freezed,
+    Object? previewImage = freezed,
+    Object? badges = freezed,
+    Object? tags = freezed,
+    Object? target = freezed,
+    Object? language = freezed,
+    Object? paper = freezed,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
@@ -1775,26 +1790,46 @@ class _$ListParserResultItemCopyWithImpl<$Res,
           ? _value.star
           : star // ignore: cast_nullable_to_non_nullable
               as double?,
-      imgCount: freezed == imgCount
-          ? _value.imgCount
-          : imgCount // ignore: cast_nullable_to_non_nullable
+      imageCount: freezed == imageCount
+          ? _value.imageCount
+          : imageCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      previewImg: freezed == previewImg
-          ? _value.previewImg
-          : previewImg // ignore: cast_nullable_to_non_nullable
+      previewImage: freezed == previewImage
+          ? _value.previewImage
+          : previewImage // ignore: cast_nullable_to_non_nullable
               as ImageResult?,
+      badges: freezed == badges
+          ? _value.badges
+          : badges // ignore: cast_nullable_to_non_nullable
+              as List<TagResult>?,
+      tags: freezed == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<TagResult>?,
+      target: freezed == target
+          ? _value.target
+          : target // ignore: cast_nullable_to_non_nullable
+              as String?,
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paper: freezed == paper
+          ? _value.paper
+          : paper // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageResultCopyWith<$Res>? get previewImg {
-    if (_value.previewImg == null) {
+  $ImageResultCopyWith<$Res>? get previewImage {
+    if (_value.previewImage == null) {
       return null;
     }
 
-    return $ImageResultCopyWith<$Res>(_value.previewImg!, (value) {
-      return _then(_value.copyWith(previewImg: value) as $Val);
+    return $ImageResultCopyWith<$Res>(_value.previewImage!, (value) {
+      return _then(_value.copyWith(previewImage: value) as $Val);
     });
   }
 }
@@ -1812,11 +1847,16 @@ abstract class _$$_ListParserResultItemCopyWith<$Res>
       String? subtitle,
       String? uploadTime,
       double? star,
-      int? imgCount,
-      ImageResult? previewImg});
+      int? imageCount,
+      ImageResult? previewImage,
+      List<TagResult>? badges,
+      List<TagResult>? tags,
+      String? target,
+      String? language,
+      String? paper});
 
   @override
-  $ImageResultCopyWith<$Res>? get previewImg;
+  $ImageResultCopyWith<$Res>? get previewImage;
 }
 
 /// @nodoc
@@ -1834,8 +1874,13 @@ class __$$_ListParserResultItemCopyWithImpl<$Res>
     Object? subtitle = freezed,
     Object? uploadTime = freezed,
     Object? star = freezed,
-    Object? imgCount = freezed,
-    Object? previewImg = freezed,
+    Object? imageCount = freezed,
+    Object? previewImage = freezed,
+    Object? badges = freezed,
+    Object? tags = freezed,
+    Object? target = freezed,
+    Object? language = freezed,
+    Object? paper = freezed,
   }) {
     return _then(_$_ListParserResultItem(
       title: freezed == title
@@ -1854,14 +1899,34 @@ class __$$_ListParserResultItemCopyWithImpl<$Res>
           ? _value.star
           : star // ignore: cast_nullable_to_non_nullable
               as double?,
-      imgCount: freezed == imgCount
-          ? _value.imgCount
-          : imgCount // ignore: cast_nullable_to_non_nullable
+      imageCount: freezed == imageCount
+          ? _value.imageCount
+          : imageCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      previewImg: freezed == previewImg
-          ? _value.previewImg
-          : previewImg // ignore: cast_nullable_to_non_nullable
+      previewImage: freezed == previewImage
+          ? _value.previewImage
+          : previewImage // ignore: cast_nullable_to_non_nullable
               as ImageResult?,
+      badges: freezed == badges
+          ? _value._badges
+          : badges // ignore: cast_nullable_to_non_nullable
+              as List<TagResult>?,
+      tags: freezed == tags
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<TagResult>?,
+      target: freezed == target
+          ? _value.target
+          : target // ignore: cast_nullable_to_non_nullable
+              as String?,
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paper: freezed == paper
+          ? _value.paper
+          : paper // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1876,8 +1941,15 @@ class _$_ListParserResultItem
       this.subtitle,
       this.uploadTime,
       this.star,
-      this.imgCount,
-      this.previewImg});
+      this.imageCount,
+      this.previewImage,
+      final List<TagResult>? badges,
+      final List<TagResult>? tags,
+      this.target,
+      this.language,
+      this.paper})
+      : _badges = badges,
+        _tags = tags;
 
   factory _$_ListParserResultItem.fromJson(Map<String, dynamic> json) =>
       _$$_ListParserResultItemFromJson(json);
@@ -1891,13 +1963,39 @@ class _$_ListParserResultItem
   @override
   final double? star;
   @override
-  final int? imgCount;
+  final int? imageCount;
   @override
-  final ImageResult? previewImg;
+  final ImageResult? previewImage;
+  final List<TagResult>? _badges;
+  @override
+  List<TagResult>? get badges {
+    final value = _badges;
+    if (value == null) return null;
+    if (_badges is EqualUnmodifiableListView) return _badges;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<TagResult>? _tags;
+  @override
+  List<TagResult>? get tags {
+    final value = _tags;
+    if (value == null) return null;
+    if (_tags is EqualUnmodifiableListView) return _tags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final String? target;
+  @override
+  final String? language;
+  @override
+  final String? paper;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ListParserResultItem(title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imgCount: $imgCount, previewImg: $previewImg)';
+    return 'ListParserResultItem(title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imageCount: $imageCount, previewImage: $previewImage, badges: $badges, tags: $tags, target: $target, language: $language, paper: $paper)';
   }
 
   @override
@@ -1909,8 +2007,13 @@ class _$_ListParserResultItem
       ..add(DiagnosticsProperty('subtitle', subtitle))
       ..add(DiagnosticsProperty('uploadTime', uploadTime))
       ..add(DiagnosticsProperty('star', star))
-      ..add(DiagnosticsProperty('imgCount', imgCount))
-      ..add(DiagnosticsProperty('previewImg', previewImg));
+      ..add(DiagnosticsProperty('imageCount', imageCount))
+      ..add(DiagnosticsProperty('previewImage', previewImage))
+      ..add(DiagnosticsProperty('badges', badges))
+      ..add(DiagnosticsProperty('tags', tags))
+      ..add(DiagnosticsProperty('target', target))
+      ..add(DiagnosticsProperty('language', language))
+      ..add(DiagnosticsProperty('paper', paper));
   }
 
   @override
@@ -1924,16 +2027,33 @@ class _$_ListParserResultItem
             (identical(other.uploadTime, uploadTime) ||
                 other.uploadTime == uploadTime) &&
             (identical(other.star, star) || other.star == star) &&
-            (identical(other.imgCount, imgCount) ||
-                other.imgCount == imgCount) &&
-            (identical(other.previewImg, previewImg) ||
-                other.previewImg == previewImg));
+            (identical(other.imageCount, imageCount) ||
+                other.imageCount == imageCount) &&
+            (identical(other.previewImage, previewImage) ||
+                other.previewImage == previewImage) &&
+            const DeepCollectionEquality().equals(other._badges, _badges) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.target, target) || other.target == target) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
+            (identical(other.paper, paper) || other.paper == paper));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, title, subtitle, uploadTime, star, imgCount, previewImg);
+      runtimeType,
+      title,
+      subtitle,
+      uploadTime,
+      star,
+      imageCount,
+      previewImage,
+      const DeepCollectionEquality().hash(_badges),
+      const DeepCollectionEquality().hash(_tags),
+      target,
+      language,
+      paper);
 
   @JsonKey(ignore: true)
   @override
@@ -1956,8 +2076,13 @@ abstract class _ListParserResultItem implements ListParserResultItem {
       final String? subtitle,
       final String? uploadTime,
       final double? star,
-      final int? imgCount,
-      final ImageResult? previewImg}) = _$_ListParserResultItem;
+      final int? imageCount,
+      final ImageResult? previewImage,
+      final List<TagResult>? badges,
+      final List<TagResult>? tags,
+      final String? target,
+      final String? language,
+      final String? paper}) = _$_ListParserResultItem;
 
   factory _ListParserResultItem.fromJson(Map<String, dynamic> json) =
       _$_ListParserResultItem.fromJson;
@@ -1971,9 +2096,19 @@ abstract class _ListParserResultItem implements ListParserResultItem {
   @override
   double? get star;
   @override
-  int? get imgCount;
+  int? get imageCount;
   @override
-  ImageResult? get previewImg;
+  ImageResult? get previewImage;
+  @override
+  List<TagResult>? get badges;
+  @override
+  List<TagResult>? get tags;
+  @override
+  String? get target;
+  @override
+  String? get language;
+  @override
+  String? get paper;
   @override
   @JsonKey(ignore: true)
   _$$_ListParserResultItemCopyWith<_$_ListParserResultItem> get copyWith =>

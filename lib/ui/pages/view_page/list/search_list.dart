@@ -1,4 +1,4 @@
-import 'package:catweb/data/models/ffi/parser_result.dart';
+import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/i18n.dart';
@@ -115,7 +115,7 @@ class _SearchListState extends State<SearchList> {
   }
 
   Widget _buildSuggestionItem(
-    AutoCompleteParserResultItem model,
+    AutoCompleteResultItem model,
     BuildContext context,
   ) {
     return GestureDetector(

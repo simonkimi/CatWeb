@@ -46,7 +46,7 @@ abstract class ImageWithPreviewModel<T>
         localEnv: env,
       );
       imageProvider.value = DioImageProvider(
-        rpcModel: imageModel.value!.image,
+        imageModel: imageModel.value!.image!,
         dio: global.website.client.imageDio,
       );
       imageProvider.value?.resolve(const ImageConfiguration());

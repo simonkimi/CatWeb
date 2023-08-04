@@ -1,11 +1,15 @@
 import 'package:catweb/data/models/site_model/parser/selector.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get/get.dart';
 
+part 'parser.g.dart';
+
+@JsonEnum(valueField: 'value')
 enum ParserType {
   imageReader('ImageReader'),
   listView('ListValue'),
   autoComplete('AutoComplete'),
-  gallery('Gallery');
+  detail('Detail');
 
   const ParserType(this.value);
 
@@ -33,11 +37,12 @@ abstract class IParserBase {
       ParserType.imageReader => ImageReaderParser.fromJson(json),
       ParserType.listView => ListViewParser.fromJson(json),
       ParserType.autoComplete => AutoCompleteParser.fromJson(json),
-      ParserType.gallery => DetailParser.fromJson(json)
+      ParserType.detail => DetailParser.fromJson(json)
     };
   }
 }
 
+@JsonSerializable()
 class ImageReaderParser implements IParserBase {
   @override
   final String name;
@@ -64,8 +69,54 @@ class ImageReaderParser implements IParserBase {
   final TagSelector tagItem;
   final Selector commentSelector;
   final CommentSelector commentItem;
+
+  ImageReaderParser({
+    required this.name,
+    required this.uuid,
+    List<ExtraSelector>? extra,
+    Selector? id,
+    ImageSelector? image,
+    Selector? largerImage,
+    Selector? rawImage,
+    Selector? rating,
+    Selector? score,
+    Selector? source,
+    Selector? uploadTime,
+    Selector? successSelector,
+    Selector? failedSelector,
+    Selector? badgeSelector,
+    TagSelector? badgeItem,
+    Selector? tagSelector,
+    TagSelector? tagItem,
+    Selector? commentSelector,
+    CommentSelector? commentItem,
+  })  : extra = extra?.obs ?? RxList<ExtraSelector>(),
+        id = id ?? Selector(),
+        image = image ?? ImageSelector(),
+        largerImage = largerImage ?? Selector(),
+        rawImage = rawImage ?? Selector(),
+        rating = rating ?? Selector(),
+        score = score ?? Selector(),
+        source = source ?? Selector(),
+        uploadTime = uploadTime ?? Selector(),
+        successSelector = successSelector ?? Selector(),
+        failedSelector = failedSelector ?? Selector(),
+        badgeSelector = badgeSelector ?? Selector(),
+        badgeItem = badgeItem ?? TagSelector(),
+        tagSelector = tagSelector ?? Selector(),
+        tagItem = tagItem ?? TagSelector(),
+        commentSelector = commentSelector ?? Selector(),
+        commentItem = commentItem ?? CommentSelector(),
+        parserType = ParserType.imageReader;
+
+  factory ImageReaderParser.fromJson(Map<String, dynamic> json) =>
+      _$ImageReaderParserFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ImageReaderParserToJson(this);
 }
 
+@JsonSerializable()
 class DetailParser implements IParserBase {
   @override
   final String name;
@@ -102,8 +153,74 @@ class DetailParser implements IParserBase {
   final ImageSelector chapterCover;
   final Selector nextPage;
   final Selector countPrePage;
+
+  DetailParser({
+    required this.name,
+    required this.uuid,
+    List<ExtraSelector>? extra,
+    Selector? title,
+    Selector? subtitle,
+    Selector? uploadTime,
+    Selector? star,
+    Selector? imageCount,
+    Selector? pageCount,
+    Selector? language,
+    ImageSelector? coverImage,
+    Selector? description,
+    Selector? successSelector,
+    Selector? failedSelector,
+    Selector? thumbnailSelector,
+    ImageSelector? thumbnail,
+    Selector? target,
+    Selector? commentSelector,
+    CommentSelector? comments,
+    Selector? badgeSelector,
+    TagSelector? badgeItem,
+    Selector? tagSelector,
+    TagSelector? tagItem,
+    Selector? chapterSelector,
+    Selector? chapterTitle,
+    Selector? chapterSubtitle,
+    ImageSelector? chapterCover,
+    Selector? nextPage,
+    Selector? countPrePage,
+  })  : extra = extra?.obs ?? RxList<ExtraSelector>(),
+        title = title ?? Selector(),
+        subtitle = subtitle ?? Selector(),
+        uploadTime = uploadTime ?? Selector(),
+        star = star ?? Selector(),
+        imageCount = imageCount ?? Selector(),
+        pageCount = pageCount ?? Selector(),
+        language = language ?? Selector(),
+        coverImage = coverImage ?? ImageSelector(),
+        description = description ?? Selector(),
+        successSelector = successSelector ?? Selector(),
+        failedSelector = failedSelector ?? Selector(),
+        thumbnailSelector = thumbnailSelector ?? Selector(),
+        thumbnail = thumbnail ?? ImageSelector(),
+        target = target ?? Selector(),
+        commentSelector = commentSelector ?? Selector(),
+        comments = comments ?? CommentSelector(),
+        badgeSelector = badgeSelector ?? Selector(),
+        badgeItem = badgeItem ?? TagSelector(),
+        tagSelector = tagSelector ?? Selector(),
+        tagItem = tagItem ?? TagSelector(),
+        chapterSelector = chapterSelector ?? Selector(),
+        chapterTitle = chapterTitle ?? Selector(),
+        chapterSubtitle = chapterSubtitle ?? Selector(),
+        chapterCover = chapterCover ?? ImageSelector(),
+        nextPage = nextPage ?? Selector(),
+        countPrePage = countPrePage ?? Selector(),
+        parserType = ParserType.detail;
+
+  factory DetailParser.fromJson(Map<String, dynamic> json) =>
+      _$DetailParserFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$DetailParserToJson(this);
 }
 
+@JsonSerializable()
 class ListViewParser implements IParserBase {
   @override
   final String name;
@@ -132,8 +249,59 @@ class ListViewParser implements IParserBase {
   final Selector paper;
   final Selector idCode;
   final Selector nextPage;
+
+  ListViewParser({
+    required this.name,
+    required this.uuid,
+    List<ExtraSelector>? extra,
+    Selector? itemSelector,
+    Selector? itemComplete,
+    Selector? successSelector,
+    Selector? failedSelector,
+    Selector? title,
+    Selector? subtitle,
+    Selector? uploadTime,
+    Selector? star,
+    Selector? imageCount,
+    Selector? language,
+    ImageSelector? previewImage,
+    Selector? target,
+    Selector? badgeSelector,
+    TagSelector? badgeItem,
+    Selector? tag,
+    TagSelector? tagItem,
+    Selector? paper,
+    Selector? idCode,
+    Selector? nextPage,
+  })  : itemSelector = itemSelector ?? Selector(),
+        successSelector = successSelector ?? Selector(),
+        failedSelector = failedSelector ?? Selector(),
+        title = title ?? Selector(),
+        subtitle = subtitle ?? Selector(),
+        uploadTime = uploadTime ?? Selector(),
+        star = star ?? Selector(),
+        imageCount = imageCount ?? Selector(),
+        language = language ?? Selector(),
+        previewImage = previewImage ?? ImageSelector(),
+        target = target ?? Selector(),
+        badgeSelector = badgeSelector ?? Selector(),
+        badgeItem = badgeItem ?? TagSelector(),
+        tag = tag ?? Selector(),
+        tagItem = tagItem ?? TagSelector(),
+        paper = paper ?? Selector(),
+        idCode = idCode ?? Selector(),
+        nextPage = nextPage ?? Selector(),
+        extra = extra?.obs ?? <ExtraSelector>[].obs,
+        parserType = ParserType.listView;
+
+  @override
+  Map<String, dynamic> toJson() => _$ListViewParserToJson(this);
+
+  factory ListViewParser.fromJson(Map<String, dynamic> json) =>
+      _$ListViewParserFromJson(json);
 }
 
+@JsonSerializable()
 class AutoCompleteParser implements IParserBase {
   @override
   final String name;
@@ -171,39 +339,8 @@ class AutoCompleteParser implements IParserBase {
         parserType = ParserType.autoComplete;
 
   @override
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'uuid': uuid,
-      'parserType': parserType.value,
-      'extra': extra.map((e) => e.toJson()).toList(),
-      'itemSelector': itemSelector.toJson(),
-      'itemComplete': itemComplete.toJson(),
-      'itemTitle': itemTitle.toJson(),
-      'itemSubtitle': itemSubtitle.toJson(),
-      'successSelector': successSelector.toJson(),
-      'failedSelector': failedSelector.toJson(),
-    };
-  }
+  Map<String, dynamic> toJson() => _$AutoCompleteParserToJson(this);
 
-  factory AutoCompleteParser.fromJson(Map<String, dynamic> json) {
-    return AutoCompleteParser(
-        name: json['name'] as String,
-        uuid: json['uuid'] as String,
-        extra: (json['extra'] as List<dynamic>)
-            .map((e) => ExtraSelector.fromJson(e))
-            .toList()
-            .obs,
-        itemSelector:
-            Selector.fromJson(json['itemSelector'] as Map<String, dynamic>),
-        itemComplete:
-            Selector.fromJson(json['itemComplete'] as Map<String, dynamic>),
-        itemTitle: Selector.fromJson(json['itemTitle'] as Map<String, dynamic>),
-        itemSubtitle:
-            Selector.fromJson(json['itemSubtitle'] as Map<String, dynamic>),
-        successSelector:
-            Selector.fromJson(json['successSelector'] as Map<String, dynamic>),
-        failedSelector:
-            Selector.fromJson(json['failedSelector'] as Map<String, dynamic>));
-  }
+  factory AutoCompleteParser.fromJson(Map<String, dynamic> json) =>
+      _$AutoCompleteParserFromJson(json);
 }
