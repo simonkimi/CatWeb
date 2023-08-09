@@ -123,28 +123,28 @@ class ListParserEditor extends StatelessWidget {
         children: [
           ParserTile(
             title: '封面地址',
-            selector: parser.previewImage.imgUrl,
+            selector: parser.previewImage.url,
           ),
           const SettingDivider(),
           ParserTile(
             title: '封面宽度',
-            selector: parser.previewImage.imgWidth,
+            selector: parser.previewImage.width,
           ),
           const SettingDivider(),
           ParserTile(
             title: '封面高度',
-            selector: parser.previewImage.imgHeight,
+            selector: parser.previewImage.height,
           ),
           const SettingDivider(),
           ParserTile(
             title: '封面X偏移',
-            selector: parser.previewImage.imgX,
+            selector: parser.previewImage.x,
             onlySelector: true,
           ),
           const SettingDivider(),
           ParserTile(
             title: '封面Y偏移',
-            selector: parser.previewImage.imgY,
+            selector: parser.previewImage.y,
             onlySelector: true,
           ),
         ],

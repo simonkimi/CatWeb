@@ -84,26 +84,30 @@ final ehListParser = ListViewParser(
     param: 'style',
     regex: r'background-position:-?(\d+)px -?(\d+)px',
     replace: r'5-$1/16-($2-1)/40',
+    script: ScriptField(
+      script: 'eval(\$arg)',
+      type: ScriptFieldType.js,
+    )
   ),
   uploadTime: Selector(
-    selector: '.glnew,.glfc',
+    selector: '.gl2c>div:nth-child(3),.glnew,.gl3e>div:nth-child(2)',
     function: SelectorFunctionType.text,
   ),
   previewImage: ImageSelector(
-    imgUrl: Selector(
+    url: Selector(
       selector: '.gl2c img,.glthumb img,.gl1e img,.gl3t img',
       function: SelectorFunctionType.attr,
       param: 'data-src,src',
       regex: r'https:\/\/\w+?\.\w+\/(.+)',
       replace: r'https://ehgt.org/$1',
     ),
-    imgWidth: Selector(
+    width: Selector(
       selector: '.gl2c img,.glthumb img,.gl1e img,.gl3t img',
       function: SelectorFunctionType.attr,
       param: 'style',
       regex: r'width:(\d+)',
     ),
-    imgHeight: Selector(
+    height: Selector(
       selector: '.gl2c img,.glthumb img,.gl1e img,.gl3t img',
       function: SelectorFunctionType.attr,
       param: 'style',
@@ -111,7 +115,7 @@ final ehListParser = ListViewParser(
     ),
   ),
   nextPage: Selector(
-    selector: '.ptb td:last-child a',
+    selector: '#unext',
     function: SelectorFunctionType.attr,
     param: 'href',
   ),
@@ -206,10 +210,9 @@ final ehListParser = ListViewParser(
     ExtraSelector(
       id: 'from',
       selector: Selector(
-        selector: '.ptb td:last-child a',
+        selector: '#unext',
         function: SelectorFunctionType.text,
         param: 'href',
-        regex: r'from=(\d+)',
       ),
     ),
   ],

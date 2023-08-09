@@ -27,27 +27,27 @@ class NewImageParserEditor extends StatelessWidget {
       const SettingGroupTitle('缩略图'),
       ParserTile(
         title: '图片地址',
-        selector: parser.image.imgUrl,
+        selector: parser.image.url,
       ),
       const SettingDivider(),
       ParserTile(
         title: '图片宽度',
-        selector: parser.image.imgWidth,
+        selector: parser.image.width,
       ),
       const SettingDivider(),
       ParserTile(
         title: '图片高度',
-        selector: parser.image.imgHeight,
+        selector: parser.image.height,
       ),
       const SettingDivider(),
       ParserTile(
         title: '图片X偏移',
-        selector: parser.image.imgX,
+        selector: parser.image.x,
       ),
       const SettingDivider(),
       ParserTile(
         title: '图片Y偏移',
-        selector: parser.image.imgY,
+        selector: parser.image.y,
       ),
     ];
   }

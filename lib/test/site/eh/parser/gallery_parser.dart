@@ -9,7 +9,7 @@ final ehGalleryParser = DetailParser(
   title: Selector(
     selector: '//h1[@id="gj"]/text() | //h1[@id="gn"]/text()',
     type: SelectorType.xpath,
-    function: SelectorFunctionType.attr,
+    function: SelectorFunctionType.text,
   ),
   failedSelector: Selector(
       selector: '//*[contains(text(), "IP address has")]',
@@ -106,27 +106,27 @@ final ehGalleryParser = DetailParser(
   ),
   thumbnailSelector: Selector(selector: '.gdtm, .gdtl'),
   thumbnail: ImageSelector(
-    imgWidth: Selector(
+    width: Selector(
       selector: 'img',
       function: SelectorFunctionType.attr,
       param: 'style',
       regex: r'width:(\d+)px',
       defaultValue: '200',
     ),
-    imgHeight: Selector(
+    height: Selector(
       selector: 'img',
       function: SelectorFunctionType.attr,
       param: 'style',
       regex: r'height:(\d+)px',
       defaultValue: '283',
     ),
-    imgX: Selector(
+    x: Selector(
       selector: 'div',
       function: SelectorFunctionType.attr,
       param: 'style',
       regex: r'-(\d+)px 0 no-repeat',
     ),
-    imgUrl: Selector(
+    url: Selector(
       selector: 'div, img',
       function: SelectorFunctionType.attr,
       param: 'src,style',
@@ -140,19 +140,19 @@ final ehGalleryParser = DetailParser(
     regex: r'\/s\/(.+)',
   ),
   coverImage: ImageSelector(
-    imgUrl: Selector(
+    url: Selector(
       selector: '#gd1 div',
       function: SelectorFunctionType.attr,
       param: 'style',
       regex: r'url\((.+)\)',
     ),
-    imgWidth: Selector(
+    width: Selector(
       selector: '#gd1 div',
       function: SelectorFunctionType.attr,
       param: 'style',
       regex: r'width:(\d+)px',
     ),
-    imgHeight: Selector(
+    height: Selector(
       selector: '#gd1 div',
       function: SelectorFunctionType.attr,
       param: 'style',

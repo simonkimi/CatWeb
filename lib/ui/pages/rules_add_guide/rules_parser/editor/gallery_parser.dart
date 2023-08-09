@@ -98,27 +98,27 @@ class DetailParserEditor extends HookWidget {
       SettingGroupTitle(I.of(context).cover),
       ParserTile(
         title: I.of(context).cover_img,
-        selector: parser.coverImage.imgUrl,
+        selector: parser.coverImage.url,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).cover_width,
-        selector: parser.coverImage.imgWidth,
+        selector: parser.coverImage.width,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).cover_height,
-        selector: parser.coverImage.imgHeight,
+        selector: parser.coverImage.height,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).cover_x,
-        selector: parser.coverImage.imgX,
+        selector: parser.coverImage.x,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).cover_y,
-        selector: parser.coverImage.imgY,
+        selector: parser.coverImage.y,
       ),
     ];
   }
@@ -204,27 +204,27 @@ class DetailParserEditor extends HookWidget {
       const SettingDivider(),
       ParserTile(
         title: I.of(context).thumbnail_img,
-        selector: parser.thumbnail.imgUrl,
+        selector: parser.thumbnail.url,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).thumbnail_width,
-        selector: parser.thumbnail.imgWidth,
+        selector: parser.thumbnail.width,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).thumbnail_height,
-        selector: parser.thumbnail.imgHeight,
+        selector: parser.thumbnail.height,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).thumbnail_x,
-        selector: parser.thumbnail.imgX,
+        selector: parser.thumbnail.x,
       ),
       const SettingDivider(),
       ParserTile(
         title: I.of(context).thumbnail_y,
-        selector: parser.thumbnail.imgY,
+        selector: parser.thumbnail.y,
       ),
     ];
   }

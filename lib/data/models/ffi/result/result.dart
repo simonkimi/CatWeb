@@ -36,7 +36,8 @@ class DetailParserResult with _$DetailParserResult {
     String? nextPage,
     bool? isSuccess,
     String? failMessage,
-    List<EnvResult>? env,
+    required List<EnvResult> env,
+    required List<ParserError> errors,
   }) = _DetailParserResult;
 
   factory DetailParserResult.fromJson(Map<String, dynamic> json) =>
@@ -61,7 +62,8 @@ class AutoCompleteResult with _$AutoCompleteResult {
     List<AutoCompleteResultItem>? items,
     bool? isSuccess,
     String? failMessage,
-    List<EnvResult>? env,
+    required List<EnvResult> env,
+    required List<ParserError> errors,
   }) = _AutoCompleteResult;
 
   factory AutoCompleteResult.fromJson(Map<String, dynamic> json) =>
@@ -83,7 +85,8 @@ class ImageReaderResult with _$ImageReaderResult {
     List<CommentResult>? comments,
     bool? isSuccess,
     String? failMessage,
-    List<EnvResult>? env,
+    required List<EnvResult> env,
+    required List<ParserError> errors,
   }) = _ImageReaderResult;
 
   factory ImageReaderResult.fromJson(Map<String, dynamic> json) =>
@@ -117,7 +120,8 @@ class ListParserResult with _$ListParserResult {
     String? nextPage,
     bool? isSuccess,
     String? failMessage,
-    List<EnvResult>? env,
+    required List<EnvResult> env,
+    required List<ParserError> errors,
   }) = _ListParserResult;
 
   factory ListParserResult.fromJson(Map<String, dynamic> json) =>

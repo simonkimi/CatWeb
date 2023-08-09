@@ -71,3 +71,15 @@ Map<String, dynamic> _$$_EnvResultToJson(_$_EnvResult instance) =>
       'global': instance.global,
       'value': instance.value,
     };
+
+_$_ParserError _$$_ParserErrorFromJson(Map<String, dynamic> json) =>
+    _$_ParserError(
+      code: json['code'] as String,
+      message: json['message'] as String,
+    );
+
+Map<String, dynamic> _$$_ParserErrorToJson(_$_ParserError instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+    };

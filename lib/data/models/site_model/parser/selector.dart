@@ -2,6 +2,7 @@ import 'package:catweb/data/models/site_model/parser/field.dart';
 import 'package:get/get.dart';
 
 enum SelectorType {
+  self('self'),
   css('css'),
   xpath('xpath'),
   jsonPath('json path');
@@ -16,7 +17,6 @@ enum SelectorType {
 }
 
 enum SelectorFunctionType {
-  none('auto'),
   text('text'),
   attr('attr'),
   raw('raw');
@@ -88,38 +88,43 @@ class Selector {
 }
 
 class ImageSelector {
-  final Selector imgUrl;
-  final Selector imgWidth;
-  final Selector imgHeight;
-  final Selector imgX;
-  final Selector imgY;
+  final Selector url;
+  final Selector width;
+  final Selector height;
+  final Selector x;
+  final Selector y;
+  final Selector cacheKey;
 
   ImageSelector({
-    Selector? imgUrl,
-    Selector? imgWidth,
-    Selector? imgHeight,
-    Selector? imgX,
-    Selector? imgY,
-  })  : imgUrl = imgUrl ?? Selector(),
-        imgWidth = imgWidth ?? Selector(),
-        imgHeight = imgHeight ?? Selector(),
-        imgX = imgX ?? Selector(),
-        imgY = imgY ?? Selector();
+    Selector? url,
+    Selector? width,
+    Selector? height,
+    Selector? x,
+    Selector? y,
+    Selector? cacheKey,
+  })  : url = url ?? Selector(),
+        width = width ?? Selector(),
+        height = height ?? Selector(),
+        x = x ?? Selector(),
+        y = y ?? Selector(),
+        cacheKey = cacheKey ?? Selector();
 
   Map<String, dynamic> toJson() => {
-        'imgUrl': imgUrl.toJson(),
-        'imgWidth': imgWidth.toJson(),
-        'imgHeight': imgHeight.toJson(),
-        'imgX': imgX.toJson(),
-        'imgY': imgY.toJson(),
+        'url': url.toJson(),
+        'width': width.toJson(),
+        'height': height.toJson(),
+        'x': x.toJson(),
+        'y': y.toJson(),
+        'cacheKey': cacheKey.toJson(),
       };
 
   factory ImageSelector.fromJson(Map<String, dynamic> json) => ImageSelector(
-        imgUrl: Selector.fromJson(json['imgUrl']),
-        imgWidth: Selector.fromJson(json['imgWidth']),
-        imgHeight: Selector.fromJson(json['imgHeight']),
-        imgX: Selector.fromJson(json['imgX']),
-        imgY: Selector.fromJson(json['imgY']),
+        url: Selector.fromJson(json['url']),
+        width: Selector.fromJson(json['width']),
+        height: Selector.fromJson(json['height']),
+        x: Selector.fromJson(json['x']),
+        y: Selector.fromJson(json['y']),
+        cacheKey: Selector.fromJson(json['cacheKey']),
       );
 }
 

@@ -216,7 +216,8 @@ mixin _$DetailParserResult {
   String? get nextPage => throw _privateConstructorUsedError;
   bool? get isSuccess => throw _privateConstructorUsedError;
   String? get failMessage => throw _privateConstructorUsedError;
-  List<EnvResult>? get env => throw _privateConstructorUsedError;
+  List<EnvResult> get env => throw _privateConstructorUsedError;
+  List<ParserError> get errors => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -247,7 +248,8 @@ abstract class $DetailParserResultCopyWith<$Res> {
       String? nextPage,
       bool? isSuccess,
       String? failMessage,
-      List<EnvResult>? env});
+      List<EnvResult> env,
+      List<ParserError> errors});
 
   $ImageResultCopyWith<$Res>? get coverImage;
 }
@@ -281,7 +283,8 @@ class _$DetailParserResultCopyWithImpl<$Res, $Val extends DetailParserResult>
     Object? nextPage = freezed,
     Object? isSuccess = freezed,
     Object? failMessage = freezed,
-    Object? env = freezed,
+    Object? env = null,
+    Object? errors = null,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
@@ -348,10 +351,14 @@ class _$DetailParserResultCopyWithImpl<$Res, $Val extends DetailParserResult>
           ? _value.failMessage
           : failMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      env: freezed == env
+      env: null == env
           ? _value.env
           : env // ignore: cast_nullable_to_non_nullable
-              as List<EnvResult>?,
+              as List<EnvResult>,
+      errors: null == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ParserError>,
     ) as $Val);
   }
 
@@ -393,7 +400,8 @@ abstract class _$$_DetailParserResultCopyWith<$Res>
       String? nextPage,
       bool? isSuccess,
       String? failMessage,
-      List<EnvResult>? env});
+      List<EnvResult> env,
+      List<ParserError> errors});
 
   @override
   $ImageResultCopyWith<$Res>? get coverImage;
@@ -426,7 +434,8 @@ class __$$_DetailParserResultCopyWithImpl<$Res>
     Object? nextPage = freezed,
     Object? isSuccess = freezed,
     Object? failMessage = freezed,
-    Object? env = freezed,
+    Object? env = null,
+    Object? errors = null,
   }) {
     return _then(_$_DetailParserResult(
       title: freezed == title
@@ -493,10 +502,14 @@ class __$$_DetailParserResultCopyWithImpl<$Res>
           ? _value.failMessage
           : failMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      env: freezed == env
+      env: null == env
           ? _value._env
           : env // ignore: cast_nullable_to_non_nullable
-              as List<EnvResult>?,
+              as List<EnvResult>,
+      errors: null == errors
+          ? _value._errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ParserError>,
     ));
   }
 }
@@ -523,12 +536,14 @@ class _$_DetailParserResult
       this.nextPage,
       this.isSuccess,
       this.failMessage,
-      final List<EnvResult>? env})
+      required final List<EnvResult> env,
+      required final List<ParserError> errors})
       : _previews = previews,
         _badges = badges,
         _tags = tags,
         _comments = comments,
-        _env = env;
+        _env = env,
+        _errors = errors;
 
   factory _$_DetailParserResult.fromJson(Map<String, dynamic> json) =>
       _$$_DetailParserResultFromJson(json);
@@ -597,19 +612,25 @@ class _$_DetailParserResult
   final bool? isSuccess;
   @override
   final String? failMessage;
-  final List<EnvResult>? _env;
+  final List<EnvResult> _env;
   @override
-  List<EnvResult>? get env {
-    final value = _env;
-    if (value == null) return null;
+  List<EnvResult> get env {
     if (_env is EqualUnmodifiableListView) return _env;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_env);
+  }
+
+  final List<ParserError> _errors;
+  @override
+  List<ParserError> get errors {
+    if (_errors is EqualUnmodifiableListView) return _errors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_errors);
   }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DetailParserResult(title: $title, subtitle: $subtitle, language: $language, imageCount: $imageCount, uploadTime: $uploadTime, countPrePage: $countPrePage, description: $description, star: $star, previews: $previews, coverImage: $coverImage, badges: $badges, tags: $tags, comments: $comments, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, env: $env)';
+    return 'DetailParserResult(title: $title, subtitle: $subtitle, language: $language, imageCount: $imageCount, uploadTime: $uploadTime, countPrePage: $countPrePage, description: $description, star: $star, previews: $previews, coverImage: $coverImage, badges: $badges, tags: $tags, comments: $comments, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, env: $env, errors: $errors)';
   }
 
   @override
@@ -633,7 +654,8 @@ class _$_DetailParserResult
       ..add(DiagnosticsProperty('nextPage', nextPage))
       ..add(DiagnosticsProperty('isSuccess', isSuccess))
       ..add(DiagnosticsProperty('failMessage', failMessage))
-      ..add(DiagnosticsProperty('env', env));
+      ..add(DiagnosticsProperty('env', env))
+      ..add(DiagnosticsProperty('errors', errors));
   }
 
   @override
@@ -667,7 +689,8 @@ class _$_DetailParserResult
                 other.isSuccess == isSuccess) &&
             (identical(other.failMessage, failMessage) ||
                 other.failMessage == failMessage) &&
-            const DeepCollectionEquality().equals(other._env, _env));
+            const DeepCollectionEquality().equals(other._env, _env) &&
+            const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
   @JsonKey(ignore: true)
@@ -690,7 +713,8 @@ class _$_DetailParserResult
       nextPage,
       isSuccess,
       failMessage,
-      const DeepCollectionEquality().hash(_env));
+      const DeepCollectionEquality().hash(_env),
+      const DeepCollectionEquality().hash(_errors));
 
   @JsonKey(ignore: true)
   @override
@@ -725,7 +749,8 @@ abstract class _DetailParserResult implements DetailParserResult {
       final String? nextPage,
       final bool? isSuccess,
       final String? failMessage,
-      final List<EnvResult>? env}) = _$_DetailParserResult;
+      required final List<EnvResult> env,
+      required final List<ParserError> errors}) = _$_DetailParserResult;
 
   factory _DetailParserResult.fromJson(Map<String, dynamic> json) =
       _$_DetailParserResult.fromJson;
@@ -763,7 +788,9 @@ abstract class _DetailParserResult implements DetailParserResult {
   @override
   String? get failMessage;
   @override
-  List<EnvResult>? get env;
+  List<EnvResult> get env;
+  @override
+  List<ParserError> get errors;
   @override
   @JsonKey(ignore: true)
   _$$_DetailParserResultCopyWith<_$_DetailParserResult> get copyWith =>
@@ -968,7 +995,8 @@ mixin _$AutoCompleteResult {
   List<AutoCompleteResultItem>? get items => throw _privateConstructorUsedError;
   bool? get isSuccess => throw _privateConstructorUsedError;
   String? get failMessage => throw _privateConstructorUsedError;
-  List<EnvResult>? get env => throw _privateConstructorUsedError;
+  List<EnvResult> get env => throw _privateConstructorUsedError;
+  List<ParserError> get errors => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -986,7 +1014,8 @@ abstract class $AutoCompleteResultCopyWith<$Res> {
       {List<AutoCompleteResultItem>? items,
       bool? isSuccess,
       String? failMessage,
-      List<EnvResult>? env});
+      List<EnvResult> env,
+      List<ParserError> errors});
 }
 
 /// @nodoc
@@ -1005,7 +1034,8 @@ class _$AutoCompleteResultCopyWithImpl<$Res, $Val extends AutoCompleteResult>
     Object? items = freezed,
     Object? isSuccess = freezed,
     Object? failMessage = freezed,
-    Object? env = freezed,
+    Object? env = null,
+    Object? errors = null,
   }) {
     return _then(_value.copyWith(
       items: freezed == items
@@ -1020,10 +1050,14 @@ class _$AutoCompleteResultCopyWithImpl<$Res, $Val extends AutoCompleteResult>
           ? _value.failMessage
           : failMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      env: freezed == env
+      env: null == env
           ? _value.env
           : env // ignore: cast_nullable_to_non_nullable
-              as List<EnvResult>?,
+              as List<EnvResult>,
+      errors: null == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ParserError>,
     ) as $Val);
   }
 }
@@ -1040,7 +1074,8 @@ abstract class _$$_AutoCompleteResultCopyWith<$Res>
       {List<AutoCompleteResultItem>? items,
       bool? isSuccess,
       String? failMessage,
-      List<EnvResult>? env});
+      List<EnvResult> env,
+      List<ParserError> errors});
 }
 
 /// @nodoc
@@ -1057,7 +1092,8 @@ class __$$_AutoCompleteResultCopyWithImpl<$Res>
     Object? items = freezed,
     Object? isSuccess = freezed,
     Object? failMessage = freezed,
-    Object? env = freezed,
+    Object? env = null,
+    Object? errors = null,
   }) {
     return _then(_$_AutoCompleteResult(
       items: freezed == items
@@ -1072,10 +1108,14 @@ class __$$_AutoCompleteResultCopyWithImpl<$Res>
           ? _value.failMessage
           : failMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      env: freezed == env
+      env: null == env
           ? _value._env
           : env // ignore: cast_nullable_to_non_nullable
-              as List<EnvResult>?,
+              as List<EnvResult>,
+      errors: null == errors
+          ? _value._errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ParserError>,
     ));
   }
 }
@@ -1089,9 +1129,11 @@ class _$_AutoCompleteResult
       {final List<AutoCompleteResultItem>? items,
       this.isSuccess,
       this.failMessage,
-      final List<EnvResult>? env})
+      required final List<EnvResult> env,
+      required final List<ParserError> errors})
       : _items = items,
-        _env = env;
+        _env = env,
+        _errors = errors;
 
   factory _$_AutoCompleteResult.fromJson(Map<String, dynamic> json) =>
       _$$_AutoCompleteResultFromJson(json);
@@ -1110,19 +1152,25 @@ class _$_AutoCompleteResult
   final bool? isSuccess;
   @override
   final String? failMessage;
-  final List<EnvResult>? _env;
+  final List<EnvResult> _env;
   @override
-  List<EnvResult>? get env {
-    final value = _env;
-    if (value == null) return null;
+  List<EnvResult> get env {
     if (_env is EqualUnmodifiableListView) return _env;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_env);
+  }
+
+  final List<ParserError> _errors;
+  @override
+  List<ParserError> get errors {
+    if (_errors is EqualUnmodifiableListView) return _errors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_errors);
   }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AutoCompleteResult(items: $items, isSuccess: $isSuccess, failMessage: $failMessage, env: $env)';
+    return 'AutoCompleteResult(items: $items, isSuccess: $isSuccess, failMessage: $failMessage, env: $env, errors: $errors)';
   }
 
   @override
@@ -1133,7 +1181,8 @@ class _$_AutoCompleteResult
       ..add(DiagnosticsProperty('items', items))
       ..add(DiagnosticsProperty('isSuccess', isSuccess))
       ..add(DiagnosticsProperty('failMessage', failMessage))
-      ..add(DiagnosticsProperty('env', env));
+      ..add(DiagnosticsProperty('env', env))
+      ..add(DiagnosticsProperty('errors', errors));
   }
 
   @override
@@ -1146,7 +1195,8 @@ class _$_AutoCompleteResult
                 other.isSuccess == isSuccess) &&
             (identical(other.failMessage, failMessage) ||
                 other.failMessage == failMessage) &&
-            const DeepCollectionEquality().equals(other._env, _env));
+            const DeepCollectionEquality().equals(other._env, _env) &&
+            const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
   @JsonKey(ignore: true)
@@ -1156,7 +1206,8 @@ class _$_AutoCompleteResult
       const DeepCollectionEquality().hash(_items),
       isSuccess,
       failMessage,
-      const DeepCollectionEquality().hash(_env));
+      const DeepCollectionEquality().hash(_env),
+      const DeepCollectionEquality().hash(_errors));
 
   @JsonKey(ignore: true)
   @override
@@ -1178,7 +1229,8 @@ abstract class _AutoCompleteResult implements AutoCompleteResult {
       {final List<AutoCompleteResultItem>? items,
       final bool? isSuccess,
       final String? failMessage,
-      final List<EnvResult>? env}) = _$_AutoCompleteResult;
+      required final List<EnvResult> env,
+      required final List<ParserError> errors}) = _$_AutoCompleteResult;
 
   factory _AutoCompleteResult.fromJson(Map<String, dynamic> json) =
       _$_AutoCompleteResult.fromJson;
@@ -1190,7 +1242,9 @@ abstract class _AutoCompleteResult implements AutoCompleteResult {
   @override
   String? get failMessage;
   @override
-  List<EnvResult>? get env;
+  List<EnvResult> get env;
+  @override
+  List<ParserError> get errors;
   @override
   @JsonKey(ignore: true)
   _$$_AutoCompleteResultCopyWith<_$_AutoCompleteResult> get copyWith =>
@@ -1215,7 +1269,8 @@ mixin _$ImageReaderResult {
   List<CommentResult>? get comments => throw _privateConstructorUsedError;
   bool? get isSuccess => throw _privateConstructorUsedError;
   String? get failMessage => throw _privateConstructorUsedError;
-  List<EnvResult>? get env => throw _privateConstructorUsedError;
+  List<EnvResult> get env => throw _privateConstructorUsedError;
+  List<ParserError> get errors => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1242,7 +1297,8 @@ abstract class $ImageReaderResultCopyWith<$Res> {
       List<CommentResult>? comments,
       bool? isSuccess,
       String? failMessage,
-      List<EnvResult>? env});
+      List<EnvResult> env,
+      List<ParserError> errors});
 
   $ImageResultCopyWith<$Res>? get image;
   $ImageResultCopyWith<$Res>? get largerImage;
@@ -1274,7 +1330,8 @@ class _$ImageReaderResultCopyWithImpl<$Res, $Val extends ImageReaderResult>
     Object? comments = freezed,
     Object? isSuccess = freezed,
     Object? failMessage = freezed,
-    Object? env = freezed,
+    Object? env = null,
+    Object? errors = null,
   }) {
     return _then(_value.copyWith(
       image: freezed == image
@@ -1325,10 +1382,14 @@ class _$ImageReaderResultCopyWithImpl<$Res, $Val extends ImageReaderResult>
           ? _value.failMessage
           : failMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      env: freezed == env
+      env: null == env
           ? _value.env
           : env // ignore: cast_nullable_to_non_nullable
-              as List<EnvResult>?,
+              as List<EnvResult>,
+      errors: null == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ParserError>,
     ) as $Val);
   }
 
@@ -1390,7 +1451,8 @@ abstract class _$$_ImageReaderResultCopyWith<$Res>
       List<CommentResult>? comments,
       bool? isSuccess,
       String? failMessage,
-      List<EnvResult>? env});
+      List<EnvResult> env,
+      List<ParserError> errors});
 
   @override
   $ImageResultCopyWith<$Res>? get image;
@@ -1423,7 +1485,8 @@ class __$$_ImageReaderResultCopyWithImpl<$Res>
     Object? comments = freezed,
     Object? isSuccess = freezed,
     Object? failMessage = freezed,
-    Object? env = freezed,
+    Object? env = null,
+    Object? errors = null,
   }) {
     return _then(_$_ImageReaderResult(
       image: freezed == image
@@ -1474,10 +1537,14 @@ class __$$_ImageReaderResultCopyWithImpl<$Res>
           ? _value.failMessage
           : failMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      env: freezed == env
+      env: null == env
           ? _value._env
           : env // ignore: cast_nullable_to_non_nullable
-              as List<EnvResult>?,
+              as List<EnvResult>,
+      errors: null == errors
+          ? _value._errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ParserError>,
     ));
   }
 }
@@ -1500,11 +1567,13 @@ class _$_ImageReaderResult
       final List<CommentResult>? comments,
       this.isSuccess,
       this.failMessage,
-      final List<EnvResult>? env})
+      required final List<EnvResult> env,
+      required final List<ParserError> errors})
       : _badges = badges,
         _tags = tags,
         _comments = comments,
-        _env = env;
+        _env = env,
+        _errors = errors;
 
   factory _$_ImageReaderResult.fromJson(Map<String, dynamic> json) =>
       _$$_ImageReaderResultFromJson(json);
@@ -1557,19 +1626,25 @@ class _$_ImageReaderResult
   final bool? isSuccess;
   @override
   final String? failMessage;
-  final List<EnvResult>? _env;
+  final List<EnvResult> _env;
   @override
-  List<EnvResult>? get env {
-    final value = _env;
-    if (value == null) return null;
+  List<EnvResult> get env {
     if (_env is EqualUnmodifiableListView) return _env;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_env);
+  }
+
+  final List<ParserError> _errors;
+  @override
+  List<ParserError> get errors {
+    if (_errors is EqualUnmodifiableListView) return _errors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_errors);
   }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ImageReaderResult(image: $image, largerImage: $largerImage, rawImage: $rawImage, uploadTime: $uploadTime, source: $source, rating: $rating, score: $score, badges: $badges, tags: $tags, comments: $comments, isSuccess: $isSuccess, failMessage: $failMessage, env: $env)';
+    return 'ImageReaderResult(image: $image, largerImage: $largerImage, rawImage: $rawImage, uploadTime: $uploadTime, source: $source, rating: $rating, score: $score, badges: $badges, tags: $tags, comments: $comments, isSuccess: $isSuccess, failMessage: $failMessage, env: $env, errors: $errors)';
   }
 
   @override
@@ -1589,7 +1664,8 @@ class _$_ImageReaderResult
       ..add(DiagnosticsProperty('comments', comments))
       ..add(DiagnosticsProperty('isSuccess', isSuccess))
       ..add(DiagnosticsProperty('failMessage', failMessage))
-      ..add(DiagnosticsProperty('env', env));
+      ..add(DiagnosticsProperty('env', env))
+      ..add(DiagnosticsProperty('errors', errors));
   }
 
   @override
@@ -1614,7 +1690,8 @@ class _$_ImageReaderResult
                 other.isSuccess == isSuccess) &&
             (identical(other.failMessage, failMessage) ||
                 other.failMessage == failMessage) &&
-            const DeepCollectionEquality().equals(other._env, _env));
+            const DeepCollectionEquality().equals(other._env, _env) &&
+            const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
   @JsonKey(ignore: true)
@@ -1633,7 +1710,8 @@ class _$_ImageReaderResult
       const DeepCollectionEquality().hash(_comments),
       isSuccess,
       failMessage,
-      const DeepCollectionEquality().hash(_env));
+      const DeepCollectionEquality().hash(_env),
+      const DeepCollectionEquality().hash(_errors));
 
   @JsonKey(ignore: true)
   @override
@@ -1664,7 +1742,8 @@ abstract class _ImageReaderResult implements ImageReaderResult {
       final List<CommentResult>? comments,
       final bool? isSuccess,
       final String? failMessage,
-      final List<EnvResult>? env}) = _$_ImageReaderResult;
+      required final List<EnvResult> env,
+      required final List<ParserError> errors}) = _$_ImageReaderResult;
 
   factory _ImageReaderResult.fromJson(Map<String, dynamic> json) =
       _$_ImageReaderResult.fromJson;
@@ -1694,7 +1773,9 @@ abstract class _ImageReaderResult implements ImageReaderResult {
   @override
   String? get failMessage;
   @override
-  List<EnvResult>? get env;
+  List<EnvResult> get env;
+  @override
+  List<ParserError> get errors;
   @override
   @JsonKey(ignore: true)
   _$$_ImageReaderResultCopyWith<_$_ImageReaderResult> get copyWith =>
@@ -2125,7 +2206,8 @@ mixin _$ListParserResult {
   String? get nextPage => throw _privateConstructorUsedError;
   bool? get isSuccess => throw _privateConstructorUsedError;
   String? get failMessage => throw _privateConstructorUsedError;
-  List<EnvResult>? get env => throw _privateConstructorUsedError;
+  List<EnvResult> get env => throw _privateConstructorUsedError;
+  List<ParserError> get errors => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2144,7 +2226,8 @@ abstract class $ListParserResultCopyWith<$Res> {
       String? nextPage,
       bool? isSuccess,
       String? failMessage,
-      List<EnvResult>? env});
+      List<EnvResult> env,
+      List<ParserError> errors});
 }
 
 /// @nodoc
@@ -2164,7 +2247,8 @@ class _$ListParserResultCopyWithImpl<$Res, $Val extends ListParserResult>
     Object? nextPage = freezed,
     Object? isSuccess = freezed,
     Object? failMessage = freezed,
-    Object? env = freezed,
+    Object? env = null,
+    Object? errors = null,
   }) {
     return _then(_value.copyWith(
       items: freezed == items
@@ -2183,10 +2267,14 @@ class _$ListParserResultCopyWithImpl<$Res, $Val extends ListParserResult>
           ? _value.failMessage
           : failMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      env: freezed == env
+      env: null == env
           ? _value.env
           : env // ignore: cast_nullable_to_non_nullable
-              as List<EnvResult>?,
+              as List<EnvResult>,
+      errors: null == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ParserError>,
     ) as $Val);
   }
 }
@@ -2204,7 +2292,8 @@ abstract class _$$_ListParserResultCopyWith<$Res>
       String? nextPage,
       bool? isSuccess,
       String? failMessage,
-      List<EnvResult>? env});
+      List<EnvResult> env,
+      List<ParserError> errors});
 }
 
 /// @nodoc
@@ -2222,7 +2311,8 @@ class __$$_ListParserResultCopyWithImpl<$Res>
     Object? nextPage = freezed,
     Object? isSuccess = freezed,
     Object? failMessage = freezed,
-    Object? env = freezed,
+    Object? env = null,
+    Object? errors = null,
   }) {
     return _then(_$_ListParserResult(
       items: freezed == items
@@ -2241,10 +2331,14 @@ class __$$_ListParserResultCopyWithImpl<$Res>
           ? _value.failMessage
           : failMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      env: freezed == env
+      env: null == env
           ? _value._env
           : env // ignore: cast_nullable_to_non_nullable
-              as List<EnvResult>?,
+              as List<EnvResult>,
+      errors: null == errors
+          ? _value._errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ParserError>,
     ));
   }
 }
@@ -2259,9 +2353,11 @@ class _$_ListParserResult
       this.nextPage,
       this.isSuccess,
       this.failMessage,
-      final List<EnvResult>? env})
+      required final List<EnvResult> env,
+      required final List<ParserError> errors})
       : _items = items,
-        _env = env;
+        _env = env,
+        _errors = errors;
 
   factory _$_ListParserResult.fromJson(Map<String, dynamic> json) =>
       _$$_ListParserResultFromJson(json);
@@ -2282,19 +2378,25 @@ class _$_ListParserResult
   final bool? isSuccess;
   @override
   final String? failMessage;
-  final List<EnvResult>? _env;
+  final List<EnvResult> _env;
   @override
-  List<EnvResult>? get env {
-    final value = _env;
-    if (value == null) return null;
+  List<EnvResult> get env {
     if (_env is EqualUnmodifiableListView) return _env;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_env);
+  }
+
+  final List<ParserError> _errors;
+  @override
+  List<ParserError> get errors {
+    if (_errors is EqualUnmodifiableListView) return _errors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_errors);
   }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ListParserResult(items: $items, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, env: $env)';
+    return 'ListParserResult(items: $items, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, env: $env, errors: $errors)';
   }
 
   @override
@@ -2306,7 +2408,8 @@ class _$_ListParserResult
       ..add(DiagnosticsProperty('nextPage', nextPage))
       ..add(DiagnosticsProperty('isSuccess', isSuccess))
       ..add(DiagnosticsProperty('failMessage', failMessage))
-      ..add(DiagnosticsProperty('env', env));
+      ..add(DiagnosticsProperty('env', env))
+      ..add(DiagnosticsProperty('errors', errors));
   }
 
   @override
@@ -2321,7 +2424,8 @@ class _$_ListParserResult
                 other.isSuccess == isSuccess) &&
             (identical(other.failMessage, failMessage) ||
                 other.failMessage == failMessage) &&
-            const DeepCollectionEquality().equals(other._env, _env));
+            const DeepCollectionEquality().equals(other._env, _env) &&
+            const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
   @JsonKey(ignore: true)
@@ -2332,7 +2436,8 @@ class _$_ListParserResult
       nextPage,
       isSuccess,
       failMessage,
-      const DeepCollectionEquality().hash(_env));
+      const DeepCollectionEquality().hash(_env),
+      const DeepCollectionEquality().hash(_errors));
 
   @JsonKey(ignore: true)
   @override
@@ -2354,7 +2459,8 @@ abstract class _ListParserResult implements ListParserResult {
       final String? nextPage,
       final bool? isSuccess,
       final String? failMessage,
-      final List<EnvResult>? env}) = _$_ListParserResult;
+      required final List<EnvResult> env,
+      required final List<ParserError> errors}) = _$_ListParserResult;
 
   factory _ListParserResult.fromJson(Map<String, dynamic> json) =
       _$_ListParserResult.fromJson;
@@ -2368,7 +2474,9 @@ abstract class _ListParserResult implements ListParserResult {
   @override
   String? get failMessage;
   @override
-  List<EnvResult>? get env;
+  List<EnvResult> get env;
+  @override
+  List<ParserError> get errors;
   @override
   @JsonKey(ignore: true)
   _$$_ListParserResultCopyWith<_$_ListParserResult> get copyWith =>

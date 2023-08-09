@@ -12,18 +12,18 @@ final ehImageParser = ImageReaderParser(
     regex: r's\/(.+)',
   ),
   image: ImageSelector(
-    imgUrl: Selector(
+    url: Selector(
       selector: '#i3 img',
       function: SelectorFunctionType.attr,
       param: 'src',
     ),
-    imgWidth: Selector(
+    width: Selector(
       selector: '#i3 img',
       function: SelectorFunctionType.attr,
       param: 'style',
       regex: r'width: (\d+)px',
     ),
-    imgHeight: Selector(
+    height: Selector(
       selector: '#i3 img',
       function: SelectorFunctionType.attr,
       param: 'style',

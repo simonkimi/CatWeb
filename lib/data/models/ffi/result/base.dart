@@ -57,3 +57,14 @@ class EnvResult with _$EnvResult {
   factory EnvResult.fromJson(Map<String, dynamic> json) =>
       _$EnvResultFromJson(json);
 }
+
+@freezed
+class ParserError with _$ParserError {
+  const factory ParserError({
+    required String code,
+    required String message,
+  }) = _ParserError;
+
+  factory ParserError.fromJson(Map<String, dynamic> json) =>
+      _$ParserErrorFromJson(json);
+}

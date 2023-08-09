@@ -869,3 +869,166 @@ abstract class _EnvResult implements EnvResult {
   _$$_EnvResultCopyWith<_$_EnvResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ParserError _$ParserErrorFromJson(Map<String, dynamic> json) {
+  return _ParserError.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ParserError {
+  String get code => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ParserErrorCopyWith<ParserError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ParserErrorCopyWith<$Res> {
+  factory $ParserErrorCopyWith(
+          ParserError value, $Res Function(ParserError) then) =
+      _$ParserErrorCopyWithImpl<$Res, ParserError>;
+  @useResult
+  $Res call({String code, String message});
+}
+
+/// @nodoc
+class _$ParserErrorCopyWithImpl<$Res, $Val extends ParserError>
+    implements $ParserErrorCopyWith<$Res> {
+  _$ParserErrorCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = null,
+    Object? message = null,
+  }) {
+    return _then(_value.copyWith(
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ParserErrorCopyWith<$Res>
+    implements $ParserErrorCopyWith<$Res> {
+  factory _$$_ParserErrorCopyWith(
+          _$_ParserError value, $Res Function(_$_ParserError) then) =
+      __$$_ParserErrorCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String code, String message});
+}
+
+/// @nodoc
+class __$$_ParserErrorCopyWithImpl<$Res>
+    extends _$ParserErrorCopyWithImpl<$Res, _$_ParserError>
+    implements _$$_ParserErrorCopyWith<$Res> {
+  __$$_ParserErrorCopyWithImpl(
+      _$_ParserError _value, $Res Function(_$_ParserError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = null,
+    Object? message = null,
+  }) {
+    return _then(_$_ParserError(
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ParserError with DiagnosticableTreeMixin implements _ParserError {
+  const _$_ParserError({required this.code, required this.message});
+
+  factory _$_ParserError.fromJson(Map<String, dynamic> json) =>
+      _$$_ParserErrorFromJson(json);
+
+  @override
+  final String code;
+  @override
+  final String message;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ParserError(code: $code, message: $message)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ParserError'))
+      ..add(DiagnosticsProperty('code', code))
+      ..add(DiagnosticsProperty('message', message));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ParserError &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, code, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ParserErrorCopyWith<_$_ParserError> get copyWith =>
+      __$$_ParserErrorCopyWithImpl<_$_ParserError>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ParserErrorToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ParserError implements ParserError {
+  const factory _ParserError(
+      {required final String code,
+      required final String message}) = _$_ParserError;
+
+  factory _ParserError.fromJson(Map<String, dynamic> json) =
+      _$_ParserError.fromJson;
+
+  @override
+  String get code;
+  @override
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ParserErrorCopyWith<_$_ParserError> get copyWith =>
+      throw _privateConstructorUsedError;
+}

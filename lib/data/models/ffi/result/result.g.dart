@@ -49,8 +49,11 @@ _$_DetailParserResult _$$_DetailParserResultFromJson(
       nextPage: json['nextPage'] as String?,
       isSuccess: json['isSuccess'] as bool?,
       failMessage: json['failMessage'] as String?,
-      env: (json['env'] as List<dynamic>?)
-          ?.map((e) => EnvResult.fromJson(e as Map<String, dynamic>))
+      env: (json['env'] as List<dynamic>)
+          .map((e) => EnvResult.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      errors: (json['errors'] as List<dynamic>)
+          .map((e) => ParserError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -74,6 +77,7 @@ Map<String, dynamic> _$$_DetailParserResultToJson(
       'isSuccess': instance.isSuccess,
       'failMessage': instance.failMessage,
       'env': instance.env,
+      'errors': instance.errors,
     };
 
 _$_AutoCompleteResultItem _$$_AutoCompleteResultItemFromJson(
@@ -101,8 +105,11 @@ _$_AutoCompleteResult _$$_AutoCompleteResultFromJson(
           .toList(),
       isSuccess: json['isSuccess'] as bool?,
       failMessage: json['failMessage'] as String?,
-      env: (json['env'] as List<dynamic>?)
-          ?.map((e) => EnvResult.fromJson(e as Map<String, dynamic>))
+      env: (json['env'] as List<dynamic>)
+          .map((e) => EnvResult.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      errors: (json['errors'] as List<dynamic>)
+          .map((e) => ParserError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -113,6 +120,7 @@ Map<String, dynamic> _$$_AutoCompleteResultToJson(
       'isSuccess': instance.isSuccess,
       'failMessage': instance.failMessage,
       'env': instance.env,
+      'errors': instance.errors,
     };
 
 _$_ImageReaderResult _$$_ImageReaderResultFromJson(Map<String, dynamic> json) =>
@@ -141,8 +149,11 @@ _$_ImageReaderResult _$$_ImageReaderResultFromJson(Map<String, dynamic> json) =>
           .toList(),
       isSuccess: json['isSuccess'] as bool?,
       failMessage: json['failMessage'] as String?,
-      env: (json['env'] as List<dynamic>?)
-          ?.map((e) => EnvResult.fromJson(e as Map<String, dynamic>))
+      env: (json['env'] as List<dynamic>)
+          .map((e) => EnvResult.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      errors: (json['errors'] as List<dynamic>)
+          .map((e) => ParserError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -162,6 +173,7 @@ Map<String, dynamic> _$$_ImageReaderResultToJson(
       'isSuccess': instance.isSuccess,
       'failMessage': instance.failMessage,
       'env': instance.env,
+      'errors': instance.errors,
     };
 
 _$_ListParserResultItem _$$_ListParserResultItemFromJson(
@@ -210,8 +222,11 @@ _$_ListParserResult _$$_ListParserResultFromJson(Map<String, dynamic> json) =>
       nextPage: json['nextPage'] as String?,
       isSuccess: json['isSuccess'] as bool?,
       failMessage: json['failMessage'] as String?,
-      env: (json['env'] as List<dynamic>?)
-          ?.map((e) => EnvResult.fromJson(e as Map<String, dynamic>))
+      env: (json['env'] as List<dynamic>)
+          .map((e) => EnvResult.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      errors: (json['errors'] as List<dynamic>)
+          .map((e) => ParserError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -222,4 +237,5 @@ Map<String, dynamic> _$$_ListParserResultToJson(_$_ListParserResult instance) =>
       'isSuccess': instance.isSuccess,
       'failMessage': instance.failMessage,
       'env': instance.env,
+      'errors': instance.errors,
     };
