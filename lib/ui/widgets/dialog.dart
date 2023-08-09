@@ -261,11 +261,14 @@ Future<String?> showCupertinoInputDialog(
     builder: (context) {
       return CupertinoAlertDialog(
         title: Text(title ?? '请输入'),
-        content: CupertinoTextField(
-          controller: controller,
-          autofocus: true,
-          keyboardType: keyboardType,
-          inputFormatters: inputFormatters,
+        content: Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: CupertinoTextField(
+            controller: controller,
+            autofocus: true,
+            keyboardType: keyboardType,
+            inputFormatters: inputFormatters,
+          ),
         ),
         actions: [
           CupertinoButton(

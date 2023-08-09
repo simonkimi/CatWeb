@@ -71,9 +71,9 @@ dependencies:
   freezed_annotation: ^2.2.0
 
   # parser
-  catweb_parser:
-    git:
-      url: https://github.com/simonkimi/catweb-parser.git
+#  catweb_parser:
+#    git:
+#      url: https://github.com/simonkimi/catweb-parser.git
 
 
 

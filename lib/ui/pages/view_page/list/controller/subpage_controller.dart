@@ -15,7 +15,6 @@ import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/replace_utils.dart';
-import 'package:catweb_parser/catweb_parser.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -194,10 +193,7 @@ class SubListController extends LoadMoreLoader<
     }
 
     final json = jsonEncode(map);
-    final result = await compute(
-        NativeBinder.runJs
-            as ComputeCallback<Tuple2<ScriptField, String>, String>,
-        Tuple2(extra.script, json));
+    final result = "";
     if (result.startsWith('{')) {
       try {
         Map<String, dynamic> json2 = jsonDecode(result);
