@@ -29,7 +29,6 @@ class DetailParserEditor extends HookWidget {
     return CupertinoListSection.insetGrouped(
       header: SettingGroupTitle(I.of(context).basic_setting),
       hasLeading: false,
-      dividerMargin: 6,
       children: [
         ParserTile(
           title: I.of(context).title,
@@ -87,7 +86,6 @@ class DetailParserEditor extends HookWidget {
     return CupertinoListSection.insetGrouped(
       header: SettingGroupTitle(I.of(context).cover),
       hasLeading: false,
-      dividerMargin: 6,
       children: [
         ParserTile(
           title: I.of(context).cover_img,
@@ -117,7 +115,6 @@ class DetailParserEditor extends HookWidget {
     return CupertinoListSection.insetGrouped(
       header: SettingGroupTitle(I.of(context).badge),
       hasLeading: false,
-      dividerMargin: 6,
       children: [
         ParserTile(
           title: I.of(context).badge_item,
@@ -148,7 +145,6 @@ class DetailParserEditor extends HookWidget {
     return CupertinoListSection.insetGrouped(
       header: SettingGroupTitle(I.of(context).comment),
       hasLeading: false,
-      dividerMargin: 6,
       children: [
         ParserTile(
           title: I.of(context).comment_item,
@@ -179,7 +175,6 @@ class DetailParserEditor extends HookWidget {
     return CupertinoListSection.insetGrouped(
       header: SettingGroupTitle(I.of(context).thumbnail),
       hasLeading: false,
-      dividerMargin: 6,
       children: [
         ParserTile(
           title: I.of(context).thumbnail_selector,
@@ -218,7 +213,6 @@ class DetailParserEditor extends HookWidget {
     return CupertinoListSection.insetGrouped(
       header: const SettingGroupTitle('元数据'),
       hasLeading: false,
-      dividerMargin: 6,
       children: [
         ParserTile(
           title: I.of(context).next_page,

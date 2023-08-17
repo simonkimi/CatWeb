@@ -75,12 +75,13 @@ class SettingTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoListTile(
+    return CupertinoListTile.notched(
       title: Text(title),
       onTap: onTap,
       leading: icon != null && color != null
           ? Container(
-              padding: const EdgeInsets.all(3),
+              width: double.infinity,
+              height: double.infinity,
               decoration: BoxDecoration(
                 color: color,
                 borderRadius: BorderRadius.circular(3),
@@ -93,15 +94,8 @@ class SettingTile extends StatelessWidget {
             )
           : null,
       trailing: trailing ??
-          (trailingText != null
-              ? SettingTileTrailing(text: trailingText!)
-              : autoImplyTrailing
-                  ? const Icon(
-                      CupertinoIcons.forward,
-                      size: 18,
-                      color: CupertinoColors.inactiveGray,
-                    )
-                  : null),
+          (autoImplyTrailing ? const CupertinoListTileChevron() : null),
+      additionalInfo: trailingText != null ? Text(trailingText!) : null,
     );
   }
 }

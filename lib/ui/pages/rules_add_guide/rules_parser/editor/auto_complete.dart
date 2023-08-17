@@ -16,7 +16,6 @@ class AutoCompleteParserEditor extends StatelessWidget {
         CupertinoListSection.insetGrouped(
           header: const SettingGroupTitle('基础信息'),
           hasLeading: false,
-          dividerMargin: 6,
           children: [
             ParserTile(
               title: '项目选择器',

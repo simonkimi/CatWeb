@@ -22,7 +22,6 @@ class NewImageParserEditor extends StatelessWidget {
   Widget _buildImage(BuildContext context) {
     return CupertinoListSection.insetGrouped(
       header: const SettingGroupTitle('图片'),
-      dividerMargin: 6,
       hasLeading: false,
       children: [
         ParserTile(
@@ -52,7 +51,6 @@ class NewImageParserEditor extends StatelessWidget {
   Widget _buildMetaInfo(BuildContext context) {
     return CupertinoListSection.insetGrouped(
       header: const SettingGroupTitle('图片信息'),
-      dividerMargin: 6,
       hasLeading: false,
       children: [
         ParserTile(
@@ -86,7 +84,6 @@ class NewImageParserEditor extends StatelessWidget {
   Widget _buildBadgeList(BuildContext context) {
     return CupertinoListSection.insetGrouped(
       header: const SettingGroupTitle('标签'),
-      dividerMargin: 6,
       hasLeading: false,
       children: [
         ParserTile(

@@ -25,6 +25,7 @@ class DisplaySettingPage extends GetView<SettingService> {
       children: [
         CupertinoListSection.insetGrouped(
           header: SettingGroupTitle(I.of(context).preview),
+          hasLeading: false,
           children: [
             SettingTile(
               title: I.of(context).dark_mask,
@@ -46,6 +47,7 @@ class DisplaySettingPage extends GetView<SettingService> {
         ),
         CupertinoListSection.insetGrouped(
           header: SettingGroupTitle(I.of(context).read),
+          hasLeading: false,
           children: [
             SettingSelectionTile(
               title: I.of(context).pre_load_count,

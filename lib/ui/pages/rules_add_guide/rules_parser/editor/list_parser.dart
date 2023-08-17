@@ -27,7 +27,6 @@ class ListParserEditor extends StatelessWidget {
     return CupertinoListSection.insetGrouped(
       hasLeading: false,
       header: const SettingGroupTitle('标志位'),
-      dividerMargin: 6,
       children: [
         ParserTile(
           title: '请求成功',
@@ -46,7 +45,6 @@ class ListParserEditor extends StatelessWidget {
   Widget _buildIndexList() {
     return CupertinoListSection.insetGrouped(
       header: const SettingGroupTitle('索引'),
-      dividerMargin: 6,
       hasLeading: false,
       children: [
         ParserTile(
@@ -61,7 +59,6 @@ class ListParserEditor extends StatelessWidget {
   Widget _buildBadgeList() {
     return CupertinoListSection.insetGrouped(
       header: const SettingGroupTitle('徽章'),
-      dividerMargin: 6,
       hasLeading: false,
       children: [
         ParserTile(
@@ -84,7 +81,6 @@ class ListParserEditor extends StatelessWidget {
   Widget _buildTagList() {
     return CupertinoListSection.insetGrouped(
       header: const SettingGroupTitle('标签'),
-      dividerMargin: 6,
       hasLeading: false,
       children: [
         ParserTile(
@@ -111,7 +107,6 @@ class ListParserEditor extends StatelessWidget {
   Widget _buildCoverList() {
     return CupertinoListSection.insetGrouped(
       header: const SettingGroupTitle('封面设置'),
-      dividerMargin: 6,
       hasLeading: false,
       children: [
         ParserTile(
@@ -142,7 +137,6 @@ class ListParserEditor extends StatelessWidget {
 
   Widget _buildBaseList() {
     return CupertinoListSection.insetGrouped(
-      dividerMargin: 6,
       hasLeading: false,
       header: const SettingGroupTitle('基础信息'),
       children: [
@@ -158,7 +152,6 @@ class ListParserEditor extends StatelessWidget {
   Widget _buildInfoList() {
     return CupertinoListSection.insetGrouped(
         header: const SettingGroupTitle('信息设置'),
-        dividerMargin: 6,
         hasLeading: false,
         children: [
           ParserTile(

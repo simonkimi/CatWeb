@@ -97,20 +97,21 @@ class _SettingSelectionPage<T> extends StatelessWidget {
       ),
       child: ListView(
         children: [
-          Obx(() => CupertinoListSection.insetGrouped(
-                children: items
-                    .map((e) => SettingTile(
-                          title: e.title,
-                          trailing: value.value == e.value
-                              ? const Icon(CupertinoIcons.checkmark, size: 18)
-                              : const SizedBox(),
-                          onTap: () {
-                            value.value = e.value;
-                            Navigator.of(context).pop();
-                          },
-                        ))
-                    .toList(),
-              )),
+          CupertinoListSection.insetGrouped(
+            hasLeading: false,
+            children: items
+                .map((e) => SettingTile(
+                      title: e.title,
+                      trailing: value.value == e.value
+                          ? const Icon(CupertinoIcons.checkmark, size: 18)
+                          : const SizedBox(),
+                      onTap: () {
+                        value.value = e.value;
+                        Navigator.of(context).pop();
+                      },
+                    ))
+                .toList(),
+          ),
         ],
       ),
     );
