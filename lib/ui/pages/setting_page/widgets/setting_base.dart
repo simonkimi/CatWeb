@@ -16,6 +16,7 @@ class SettingScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+      backgroundColor: CupertinoColors.systemGroupedBackground,
       navigationBar: CupertinoNavigationBar(
         middle: Text(title),
         previousPageTitle: fromSetting ? I.of(context).setting : null,

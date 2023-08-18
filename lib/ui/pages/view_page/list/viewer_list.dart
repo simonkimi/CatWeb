@@ -125,7 +125,14 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
       onPressed: () {
         showCupertinoModalSheet(
           context: context,
-          builder: (context) => const SiteManager(),
+          builder: (context) => Navigator(
+            observers: [HeroController()],
+            onGenerateRoute: (settings) => CupertinoPageRoute(
+              builder: ((context) {
+                return const SiteManager();
+              }),
+            ),
+          ),
         );
       },
     );

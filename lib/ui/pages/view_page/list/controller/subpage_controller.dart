@@ -9,16 +9,13 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/pages/subpage.dart';
 import 'package:catweb/data/models/site_model/pages/template_list.dart';
-import 'package:catweb/data/models/site_model/parser/field.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:tuple/tuple.dart';
 
 class FilterObx {
   FilterObx(TemplateListFilterItem raw)

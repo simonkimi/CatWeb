@@ -5,6 +5,7 @@ import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/ui/pages/view_page/viewer_main.dart';
+import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -70,7 +71,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         I.delegate
       ],
       onGenerateRoute: (settings) {
-        return CupertinoPageRoute(
+        return CupertinoModalSheetRoute(
           builder: (context) => const ViewerMain(),
           settings: settings,
         );

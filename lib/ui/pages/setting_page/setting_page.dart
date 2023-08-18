@@ -22,7 +22,6 @@ class SettingsPage extends StatelessWidget {
               padding: kAppbarPadding,
               largeTitle: Text(I.of(context).setting)
             ),
-
             SliverToBoxAdapter(
               child: CupertinoListSection.insetGrouped(
                 children: [

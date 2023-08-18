@@ -3,10 +3,8 @@ import 'dart:math';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:dio/dio.dart';
-import 'package:event_bus/event_bus.dart';
 import 'package:get/get.dart';
 import 'package:synchronized/synchronized.dart';
-import 'load_more_actions.dart';
 import 'load_more_mixin.dart';
 
 /// 加载中每一个数据的内部值
@@ -40,7 +38,6 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
       <int, LoadMorePage<T, E, V>>{}.obs;
   final RxInt _currentPage = (-1).obs; // 下一面，上一面要用的
   final RxInt _startPage = (0).obs;
-  final event = EventBus();
 
   /// 检查加载的数据是否已经超出范围
   bool checkIfOutOfRange(int page) {
@@ -65,7 +62,6 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
     try {
       if (!checkIfOutOfRange(_currentPage.value)) {
         await _loadPageData(_currentPage.value + 1);
-        event.fire(LoaderNextPageEvent());
         _currentPage.value += 1;
         stateLoadComplete();
         if (checkIfOutOfRange(_currentPage.value)) {
@@ -89,7 +85,6 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
     _currentPage.value = -1;
     stateLoadRefresh();
     await onLoadMore();
-    event.fire(LoaderRefreshEvent());
   }
 
   final loadIndexLock = Lock();
