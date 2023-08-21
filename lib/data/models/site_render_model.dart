@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:catweb/data/database/cookie_jar_storage.dart';
 import 'package:catweb/data/database/database.dart';
+import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/pages/template.dart';
@@ -60,13 +61,16 @@ class SiteRenderConfigModel {
           .contains(e.template.type))
       .toList();
 
-  void updateGlobalEnv(Map<String, String> env) async {
+  void updateGlobalEnv(Iterable<EnvResult> envs) async {
     var didUpdate = false;
-    for (final entity in env.entries) {
-      if (!globalEnv.env.containsKey(entity.key) ||
-          globalEnv.env[entity.key] != entity.value) {
+    for (final env in envs.where((e) =>
+        e.global == true &&
+        e.id?.isNotEmpty == true &&
+        e.value?.isNotEmpty == true)) {
+      if (!globalEnv.env.containsKey(env.id) ||
+          globalEnv.env[env.id] != env.value) {
         didUpdate = true;
-        globalEnv.env[entity.key] = entity.value;
+        globalEnv.env[env.id!] = env.value!;
       }
     }
     if (didUpdate) {

@@ -1,14 +1,18 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/controller/setting_service.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
+import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
+import 'package:catweb_parser/catweb_parser.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
@@ -17,12 +21,22 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:dio_http_formatter/dio_http_formatter.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:get/get.dart' hide Response;
-import 'package:catweb/i18n.dart';
 
 class FlagException implements Exception {
   final String message;
 
   FlagException(this.message);
+}
+
+enum ParserType {
+  list('ListParser'),
+  detail('DetailParser'),
+  image('ImageReaderParser'),
+  autoComplete('AutoCompleteParser');
+
+  final String value;
+
+  const ParserType(this.value);
 }
 
 class NetClient {
@@ -55,30 +69,27 @@ class NetClient {
     final form = localEnv.apply(model.formData.value);
     final url2 = localEnv.apply(url);
 
-    switch (model.action.value) {
-      case SiteNetType.delete:
-        return dio.delete(url2, options: options);
-      case SiteNetType.get:
-        return await dio.get<String>(url2, options: options);
-      case SiteNetType.post:
-        return await dio.post<String>(url2, data: form, options: options);
-      case SiteNetType.put:
-        return await dio.put<String>(url2, data: form, options: options);
+    final req = switch (model.action.value) {
+      SiteNetType.delete => dio.delete<String>(url2, options: options),
+      SiteNetType.get => dio.get<String>(url2, options: options),
+      SiteNetType.post => dio.post<String>(url2, data: form, options: options),
+      SiteNetType.put => dio.put<String>(url2, data: form, options: options)
+    };
+
+    final rsp = await req;
+
+    if (rsp.data == null) {
+      throw Exception('data is null');
     }
+    return rsp;
   }
 
-  void _checkSuccessFlag({
-    required bool enableSuccess,
-    required bool enableFail,
-    required bool isSuccess,
-    required String failedMessage,
-  }) {
-    if (enableFail && failedMessage.isNotEmpty) {
-      throw FlagException(failedMessage);
+  void _checkSuccessFlag(bool? isSuccess, String? failMessage) {
+    if (failMessage?.isNotEmpty == true) {
+      throw FlagException(failMessage!);
     }
-
-    if (enableSuccess && !isSuccess) {
-      throw FlagException(I.g.network_not_success_flag);
+    if (isSuccess == false) {
+      throw FlagException('Success flag is not true');
     }
   }
 
@@ -87,36 +98,24 @@ class NetClient {
     required SitePage model,
     required SiteEnvStore localEnv,
   }) async {
-    final rsp = await _buildRequest(
+    final parser = blueMap.getParserById<ListViewParser>(model.parserId.value);
+
+    final req = await _buildRequest(
       url: url,
       model: model,
       localEnv: localEnv,
     );
-    if (rsp.data == null) {
-      throw Exception('data is null');
-    }
 
-    // final buffer = await ParserFFi(
-    //   parser: blueMap.getListParser(model.baseParser.value).toPb(),
-    //   source: rsp.data!,
-    //   env: Get.find<SiteService>().website.globalEnv,
-    //   type: RpcType.RPC_TYPE_LIST_VIEW_PARSER,
-    // ).send();
-    //
-    // final result = ListRpcModel.fromBuffer(buffer);
-    //
-    // _checkSuccessFlag(
-    //   enableSuccess: result.enableSuccess,
-    //   enableFail: result.enableFail,
-    //   isSuccess: result.isSuccess,
-    //   failedMessage: result.failedMessage,
-    // );
-    //
-    // localEnv.mergeMap(result.localEnv);
-    // Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
+    final rsp = await parseHtmlAsync(
+      req.data!,
+      ParserType.list.value,
+      jsonEncode(parser.toJson()),
+    );
 
-
-    throw UnimplementedError();
+    final result = ListParserResult.fromJson(jsonDecode(rsp));
+    _checkSuccessFlag(result.isSuccess, result.failMessage);
+    Get.find<SiteService>().website.updateGlobalEnv(result.env);
+    return result;
   }
 
   Future<DetailParserResult> getDetail({
@@ -124,6 +123,8 @@ class NetClient {
     required SitePage model,
     required SiteEnvStore localEnv,
   }) async {
+    final parser = blueMap.getParserById<DetailParser>(model.parserId.value);
+
     final options = Get.find<SettingService>()
         .cacheOptions
         .copyWith(policy: CachePolicy.forceCache)
@@ -136,29 +137,16 @@ class NetClient {
       options: options,
     );
 
-    if (rsp.data == null) {
-      throw Exception('data is null');
-    }
+    final parseRsp = await parseHtmlAsync(
+      rsp.data!,
+      ParserType.detail.value,
+      jsonEncode(parser.toJson()),
+    );
 
-    // final buffer = await ParserFFi(
-    //   parser: blueMap.getGalleryParser(model.baseParser.value).toPb(),
-    //   source: rsp.data!,
-    //   env: Get.find<SiteService>().website.globalEnv,
-    //   type: RpcType.RPC_TYPE_GALLERY_PARSER,
-    // ).send();
-    //
-    // final result = GalleryRpcModel.fromBuffer(buffer);
-    //
-    // _checkSuccessFlag(
-    //   enableSuccess: result.enableSuccess,
-    //   enableFail: result.enableFail,
-    //   isSuccess: result.isSuccess,
-    //   failedMessage: result.failedMessage,
-    // );
-    //
-    // localEnv.mergeMap(result.localEnv);
-    // Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
-    throw UnimplementedError();
+    final result = DetailParserResult.fromJson(jsonDecode(parseRsp));
+    _checkSuccessFlag(result.isSuccess, result.failMessage);
+    Get.find<SiteService>().website.updateGlobalEnv(result.env);
+    return result;
   }
 
   Future<ImageReaderResult> getReadImage({
@@ -166,40 +154,31 @@ class NetClient {
     required SitePage model,
     required SiteEnvStore localEnv,
   }) async {
-    // final options = Get.find<SettingService>()
-    //     .imageCacheOption
-    //     .copyWith(policy: CachePolicy.forceCache)
-    //     .toOptions();
-    //
-    // final rsp = await _buildRequest(
-    //   url: url,
-    //   model: model,
-    //   localEnv: localEnv,
-    //   options: options,
-    // );
-    // if (rsp.data == null) {
-    //   throw Exception('data is null');
-    // }
-    //
-    // final buffer = await ParserFFi(
-    //   parser: blueMap.getImageParser(model.baseParser.value).toPb(),
-    //   source: rsp.data!,
-    //   env: Get.find<SiteService>().website.globalEnv,
-    //   type: RpcType.RPC_TYPE_IMAGE_PARSER,
-    // ).send();
-    //
-    // final result = ImageReaderRpcModel.fromBuffer(buffer);
-    //
-    // _checkSuccessFlag(
-    //   enableSuccess: result.enableSuccess,
-    //   enableFail: result.enableFail,
-    //   isSuccess: result.isSuccess,
-    //   failedMessage: result.failedMessage,
-    // );
-    //
-    // localEnv.mergeMap(result.localEnv);
-    // Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
-    throw UnimplementedError();
+    final parser =
+        blueMap.getParserById<ImageReaderParser>(model.parserId.value);
+
+    final options = Get.find<SettingService>()
+        .imageCacheOption
+        .copyWith(policy: CachePolicy.forceCache)
+        .toOptions();
+
+    final rsp = await _buildRequest(
+      url: url,
+      model: model,
+      localEnv: localEnv,
+      options: options,
+    );
+
+    final parserRsq = await parseHtmlAsync(
+      rsp.data!,
+      ParserType.image.value,
+      jsonEncode(parser.toJson()),
+    );
+
+    final result = ImageReaderResult.fromJson(jsonDecode(parserRsq));
+    _checkSuccessFlag(result.isSuccess, result.failMessage);
+    Get.find<SiteService>().website.updateGlobalEnv(result.env);
+    return result;
   }
 
   Future<AutoCompleteResult> getAutoComplete({
@@ -207,30 +186,21 @@ class NetClient {
     required SitePage model,
     required SiteEnvStore localEnv,
   }) async {
-    // final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
-    // if (rsp.data == null) {
-    //   throw Exception('data is null');
-    // }
-    //
-    // final buffer = await ParserFFi(
-    //   parser: blueMap.getAutoCompleteParser(model.baseParser.value).toPb(),
-    //   source: rsp.data!,
-    //   env: Get.find<SiteService>().website.globalEnv,
-    //   type: RpcType.RPC_TYPE_AUTO_COMPLETE,
-    // ).send();
-    //
-    // final result = AutoCompleteRpcModel.fromBuffer(buffer);
-    //
-    // _checkSuccessFlag(
-    //   enableSuccess: result.enableSuccess,
-    //   enableFail: result.enableFail,
-    //   isSuccess: result.isSuccess,
-    //   failedMessage: result.failedMessage,
-    // );
-    //
-    // localEnv.mergeMap(result.localEnv);
-    // Get.find<SiteService>().website.updateGlobalEnv(result.globalEnv);
-    throw UnimplementedError();
+    final parser =
+        blueMap.getParserById<AutoCompleteParser>(model.parserId.value);
+
+    final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
+
+    final parseRsp = await parseHtmlAsync(
+      rsp.data!,
+      ParserType.autoComplete.value,
+      jsonEncode(parser.toJson()),
+    );
+
+    final result = AutoCompleteResult.fromJson(jsonDecode(parseRsp));
+    _checkSuccessFlag(result.isSuccess, result.failMessage);
+    Get.find<SiteService>().website.updateGlobalEnv(result.env);
+    return result;
   }
 }
 
@@ -277,8 +247,8 @@ Dio _buildDio({
   }
 
   if (model.containsFlag(Flag.ignoreCertificate)) {
-    (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient =
-        () => HttpClient()
+    (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () =>
+        HttpClient()
           ..badCertificateCallback =
               (X509Certificate cert, String host, int port) => true;
   }

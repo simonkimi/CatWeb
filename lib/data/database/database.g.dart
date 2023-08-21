@@ -55,16 +55,13 @@ class $WebTableTable extends WebTable
   static const VerificationMeta _securityModelMeta =
       const VerificationMeta('securityModel');
   @override
-  late final GeneratedColumn<bool> securityModel =
-      GeneratedColumn<bool>('security_model', aliasedName, false,
-          type: DriftSqlType.bool,
-          requiredDuringInsert: false,
-          defaultConstraints: GeneratedColumn.constraintsDependsOnDialect({
-            SqlDialect.sqlite: 'CHECK ("security_model" IN (0, 1))',
-            SqlDialect.mysql: '',
-            SqlDialect.postgres: '',
-          }),
-          clientDefault: () => true);
+  late final GeneratedColumn<bool> securityModel = GeneratedColumn<bool>(
+      'security_model', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("security_model" IN (0, 1))'),
+      clientDefault: () => true);
   static const VerificationMeta _loginCookiesMeta =
       const VerificationMeta('loginCookies');
   @override

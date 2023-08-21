@@ -93,6 +93,7 @@ class ImageReaderParser implements IParserBase {
     TagSelector? tagItem,
     Selector? commentSelector,
     CommentSelector? commentItem,
+    this.parserType = ParserType.imageReader,
   })  : extra = extra?.obs ?? RxList<ExtraSelector>(),
         id = id ?? Selector(),
         image = image ?? ImageSelector(),
@@ -110,7 +111,7 @@ class ImageReaderParser implements IParserBase {
         tagItem = tagItem ?? TagSelector(),
         commentSelector = commentSelector ?? Selector(),
         commentItem = commentItem ?? CommentSelector(),
-        parserType = ParserType.imageReader;
+        assert(parserType == ParserType.imageReader);
 
   factory ImageReaderParser.fromJson(Map<String, dynamic> json) =>
       _$ImageReaderParserFromJson(json);
@@ -188,6 +189,7 @@ class DetailParser implements IParserBase {
     ImageSelector? chapterCover,
     Selector? nextPage,
     Selector? countPrePage,
+    this.parserType = ParserType.detail,
   })  : extra = extra?.obs ?? RxList<ExtraSelector>(),
         title = title ?? Selector(),
         subtitle = subtitle ?? Selector(),
@@ -215,7 +217,7 @@ class DetailParser implements IParserBase {
         chapterCover = chapterCover ?? ImageSelector(),
         nextPage = nextPage ?? Selector(),
         countPrePage = countPrePage ?? Selector(),
-        parserType = ParserType.detail;
+        assert(parserType == ParserType.detail);
 
   factory DetailParser.fromJson(Map<String, dynamic> json) =>
       _$DetailParserFromJson(json);
@@ -278,6 +280,7 @@ class ListViewParser implements IParserBase {
     Selector? paper,
     Selector? idCode,
     Selector? nextPage,
+    this.parserType = ParserType.listView,
   })  : itemSelector = itemSelector ?? Selector(),
         successSelector = successSelector ?? Selector(),
         failedSelector = failedSelector ?? Selector(),
@@ -297,7 +300,7 @@ class ListViewParser implements IParserBase {
         idCode = idCode ?? Selector(),
         nextPage = nextPage ?? Selector(),
         extra = extra?.obs ?? <ExtraSelector>[].obs,
-        parserType = ParserType.listView;
+        assert(parserType == ParserType.listView);
 
   @override
   Map<String, dynamic> toJson() => _$ListViewParserToJson(this);
@@ -335,6 +338,7 @@ class AutoCompleteParser implements IParserBase {
     Selector? itemSubtitle,
     Selector? successSelector,
     Selector? failedSelector,
+    this.parserType = ParserType.autoComplete,
   })  : itemSelector = itemSelector ?? Selector(),
         itemComplete = itemComplete ?? Selector(),
         itemTitle = itemTitle ?? Selector(),
@@ -342,7 +346,7 @@ class AutoCompleteParser implements IParserBase {
         successSelector = successSelector ?? Selector(),
         failedSelector = failedSelector ?? Selector(),
         extra = extra?.obs ?? <ExtraSelector>[].obs,
-        parserType = ParserType.autoComplete;
+        assert(parserType == ParserType.autoComplete);
 
   @override
   Map<String, dynamic> toJson() => _$AutoCompleteParserToJson(this);

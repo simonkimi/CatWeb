@@ -62,12 +62,16 @@ ImageReaderParser _$ImageReaderParserFromJson(Map<String, dynamic> json) =>
           ? null
           : CommentSelector.fromJson(
               json['commentItem'] as Map<String, dynamic>),
+      parserType: json['parserType'] == null
+          ? ParserType.imageReader
+          : ParserType.fromJson(json['parserType'] as String),
     );
 
 Map<String, dynamic> _$ImageReaderParserToJson(ImageReaderParser instance) =>
     <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,
+      'parserType': _$ParserTypeEnumMap[instance.parserType]!,
       'extra': const ExtraListConverter().toJson(instance.extra),
       'id': instance.id,
       'image': instance.image,
@@ -86,6 +90,13 @@ Map<String, dynamic> _$ImageReaderParserToJson(ImageReaderParser instance) =>
       'commentSelector': instance.commentSelector,
       'commentItem': instance.commentItem,
     };
+
+const _$ParserTypeEnumMap = {
+  ParserType.imageReader: 'ImageReader',
+  ParserType.listView: 'ListValue',
+  ParserType.autoComplete: 'AutoComplete',
+  ParserType.detail: 'Detail',
+};
 
 DetailParser _$DetailParserFromJson(Map<String, dynamic> json) => DetailParser(
       name: json['name'] as String,
@@ -173,12 +184,16 @@ DetailParser _$DetailParserFromJson(Map<String, dynamic> json) => DetailParser(
       countPrePage: json['countPrePage'] == null
           ? null
           : Selector.fromJson(json['countPrePage'] as Map<String, dynamic>),
+      parserType: json['parserType'] == null
+          ? ParserType.detail
+          : ParserType.fromJson(json['parserType'] as String),
     );
 
 Map<String, dynamic> _$DetailParserToJson(DetailParser instance) =>
     <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,
+      'parserType': _$ParserTypeEnumMap[instance.parserType]!,
       'extra': const ExtraListConverter().toJson(instance.extra),
       'title': instance.title,
       'subtitle': instance.subtitle,
@@ -270,12 +285,16 @@ ListViewParser _$ListViewParserFromJson(Map<String, dynamic> json) =>
       nextPage: json['nextPage'] == null
           ? null
           : Selector.fromJson(json['nextPage'] as Map<String, dynamic>),
+      parserType: json['parserType'] == null
+          ? ParserType.listView
+          : ParserType.fromJson(json['parserType'] as String),
     );
 
 Map<String, dynamic> _$ListViewParserToJson(ListViewParser instance) =>
     <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,
+      'parserType': _$ParserTypeEnumMap[instance.parserType]!,
       'extra': const ExtraListConverter().toJson(instance.extra),
       'itemSelector': instance.itemSelector,
       'successSelector': instance.successSelector,
@@ -322,12 +341,16 @@ AutoCompleteParser _$AutoCompleteParserFromJson(Map<String, dynamic> json) =>
       failedSelector: json['failedSelector'] == null
           ? null
           : Selector.fromJson(json['failedSelector'] as Map<String, dynamic>),
+      parserType: json['parserType'] == null
+          ? ParserType.autoComplete
+          : ParserType.fromJson(json['parserType'] as String),
     );
 
 Map<String, dynamic> _$AutoCompleteParserToJson(AutoCompleteParser instance) =>
     <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,
+      'parserType': _$ParserTypeEnumMap[instance.parserType]!,
       'extra': const ExtraListConverter().toJson(instance.extra),
       'itemSelector': instance.itemSelector,
       'itemComplete': instance.itemComplete,

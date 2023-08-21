@@ -24,7 +24,6 @@ class RegField {
 enum ScriptFieldType {
   output('output'),
   js('js'),
-  computed('computed'),
   replace('replace');
 
   const ScriptFieldType(this.value);

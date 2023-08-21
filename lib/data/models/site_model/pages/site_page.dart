@@ -77,8 +77,10 @@ class SitePage {
   final RxString parserId;
 
   ParserType acceptParserType() {
-    return switch(template.type) {
-      TemplateType.imageList || TemplateType.imageWaterFall => ParserType.listView,
+    return switch (template.type) {
+      TemplateType.imageList ||
+      TemplateType.imageWaterFall =>
+        ParserType.listView,
       TemplateType.autoComplete => ParserType.autoComplete,
       TemplateType.gallery => ParserType.detail,
       TemplateType.imageViewer => ParserType.imageReader,
@@ -97,7 +99,7 @@ class SitePage {
   }
 
   Map<String, dynamic> toJson() => {
-        'name': name,
+        'name': name.value,
         'uuid': uuid,
         'url': url.value,
         'action': action.value.value,

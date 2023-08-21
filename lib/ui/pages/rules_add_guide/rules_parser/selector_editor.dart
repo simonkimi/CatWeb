@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:catweb/data/models/site_model/parser/field.dart';
 import 'package:catweb/data/models/site_model/parser/selector.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
@@ -109,8 +107,7 @@ class SelectorEditor extends StatelessWidget {
             value: selector.script.type,
           )),
       Obx(() {
-        if (selector.script.type.value == ScriptFieldType.output ||
-            selector.script.type.value == ScriptFieldType.computed) {
+        if (selector.script.type.value == ScriptFieldType.output) {
           return const SizedBox();
         }
         return Column(

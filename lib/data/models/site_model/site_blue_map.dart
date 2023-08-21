@@ -1,6 +1,7 @@
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/parser/field.dart';
 import 'package:catweb/data/models/site_model/parser/parser.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:get/get.dart';
 
 class SiteBlueMap {
@@ -75,8 +76,14 @@ class SiteBlueMap {
       upgradeUrl: json['upgradeUrl'] ?? '',
       flag: json['flag'] ?? '',
       readme: json['readme'] ?? '',
-      headers: json['headers'] ?? [],
-      cookies: json['cookies'] ?? [],
+      headers: (json['headers'] as List<dynamic>? ?? [])
+          .map((e) => RegField.fromJson(e))
+          .toList()
+          .obs,
+      cookies: (json['cookies'] as List<dynamic>? ?? [])
+          .map((e) => RegField.fromJson(e))
+          .toList()
+          .obs,
       parserList: (json['parserList'] as List<dynamic>? ?? [])
           .map((e) => IParserBase.fromJson(e))
           .toList()
@@ -95,5 +102,13 @@ class SiteBlueMap {
       }
     }
     return false;
+  }
+
+  T getParserById<T extends IParserBase>(String parseId) {
+    final parser = parserList.get((e) => e.uuid == parseId);
+    if (parser == null || parser is! T) {
+      throw Exception('Parser not found');
+    }
+    return parser;
   }
 }
