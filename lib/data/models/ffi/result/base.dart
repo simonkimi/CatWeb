@@ -61,7 +61,7 @@ class EnvResult with _$EnvResult {
 @freezed
 class ParserError with _$ParserError {
   const factory ParserError({
-    required String code,
+    required int code,
     required String message,
   }) = _ParserError;
 

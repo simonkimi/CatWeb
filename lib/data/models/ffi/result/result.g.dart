@@ -49,7 +49,7 @@ _$_DetailParserResult _$$_DetailParserResultFromJson(
       nextPage: json['nextPage'] as String?,
       isSuccess: json['isSuccess'] as bool?,
       failMessage: json['failMessage'] as String?,
-      env: (json['env'] as List<dynamic>)
+      envs: (json['envs'] as List<dynamic>)
           .map((e) => EnvResult.fromJson(e as Map<String, dynamic>))
           .toList(),
       errors: (json['errors'] as List<dynamic>)
@@ -76,7 +76,7 @@ Map<String, dynamic> _$$_DetailParserResultToJson(
       'nextPage': instance.nextPage,
       'isSuccess': instance.isSuccess,
       'failMessage': instance.failMessage,
-      'env': instance.env,
+      'envs': instance.envs,
       'errors': instance.errors,
     };
 
@@ -105,7 +105,7 @@ _$_AutoCompleteResult _$$_AutoCompleteResultFromJson(
           .toList(),
       isSuccess: json['isSuccess'] as bool?,
       failMessage: json['failMessage'] as String?,
-      env: (json['env'] as List<dynamic>)
+      envs: (json['envs'] as List<dynamic>)
           .map((e) => EnvResult.fromJson(e as Map<String, dynamic>))
           .toList(),
       errors: (json['errors'] as List<dynamic>)
@@ -119,7 +119,7 @@ Map<String, dynamic> _$$_AutoCompleteResultToJson(
       'items': instance.items,
       'isSuccess': instance.isSuccess,
       'failMessage': instance.failMessage,
-      'env': instance.env,
+      'envs': instance.envs,
       'errors': instance.errors,
     };
 
@@ -149,7 +149,7 @@ _$_ImageReaderResult _$$_ImageReaderResultFromJson(Map<String, dynamic> json) =>
           .toList(),
       isSuccess: json['isSuccess'] as bool?,
       failMessage: json['failMessage'] as String?,
-      env: (json['env'] as List<dynamic>)
+      envs: (json['envs'] as List<dynamic>)
           .map((e) => EnvResult.fromJson(e as Map<String, dynamic>))
           .toList(),
       errors: (json['errors'] as List<dynamic>)
@@ -172,7 +172,7 @@ Map<String, dynamic> _$$_ImageReaderResultToJson(
       'comments': instance.comments,
       'isSuccess': instance.isSuccess,
       'failMessage': instance.failMessage,
-      'env': instance.env,
+      'envs': instance.envs,
       'errors': instance.errors,
     };
 
@@ -222,7 +222,7 @@ _$_ListParserResult _$$_ListParserResultFromJson(Map<String, dynamic> json) =>
       nextPage: json['nextPage'] as String?,
       isSuccess: json['isSuccess'] as bool?,
       failMessage: json['failMessage'] as String?,
-      env: (json['env'] as List<dynamic>)
+      envs: (json['envs'] as List<dynamic>)
           .map((e) => EnvResult.fromJson(e as Map<String, dynamic>))
           .toList(),
       errors: (json['errors'] as List<dynamic>)
@@ -236,6 +236,6 @@ Map<String, dynamic> _$$_ListParserResultToJson(_$_ListParserResult instance) =>
       'nextPage': instance.nextPage,
       'isSuccess': instance.isSuccess,
       'failMessage': instance.failMessage,
-      'env': instance.env,
+      'envs': instance.envs,
       'errors': instance.errors,
     };

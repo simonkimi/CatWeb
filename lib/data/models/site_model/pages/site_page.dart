@@ -27,19 +27,15 @@ enum SiteNetType {
 enum SiteDisplayType {
   show('show'),
   hide('hide'),
-  shrink('shrink');
+  shrink('shrink'),
+  login('login');
 
   final String value;
 
   const SiteDisplayType(this.value);
 
   static SiteDisplayType fromJson(String value) {
-    return switch (value) {
-      'show' => SiteDisplayType.show,
-      'hide' => SiteDisplayType.hide,
-      'shrink' => SiteDisplayType.shrink,
-      _ => SiteDisplayType.show
-    };
+    return SiteDisplayType.values.firstWhere((e) => e.value == value);
   }
 }
 

@@ -876,7 +876,7 @@ ParserError _$ParserErrorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ParserError {
-  String get code => throw _privateConstructorUsedError;
+  int get code => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -891,7 +891,7 @@ abstract class $ParserErrorCopyWith<$Res> {
           ParserError value, $Res Function(ParserError) then) =
       _$ParserErrorCopyWithImpl<$Res, ParserError>;
   @useResult
-  $Res call({String code, String message});
+  $Res call({int code, String message});
 }
 
 /// @nodoc
@@ -914,7 +914,7 @@ class _$ParserErrorCopyWithImpl<$Res, $Val extends ParserError>
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -931,7 +931,7 @@ abstract class _$$_ParserErrorCopyWith<$Res>
       __$$_ParserErrorCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String code, String message});
+  $Res call({int code, String message});
 }
 
 /// @nodoc
@@ -952,7 +952,7 @@ class __$$_ParserErrorCopyWithImpl<$Res>
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -970,7 +970,7 @@ class _$_ParserError with DiagnosticableTreeMixin implements _ParserError {
       _$$_ParserErrorFromJson(json);
 
   @override
-  final String code;
+  final int code;
   @override
   final String message;
 
@@ -1017,14 +1017,14 @@ class _$_ParserError with DiagnosticableTreeMixin implements _ParserError {
 
 abstract class _ParserError implements ParserError {
   const factory _ParserError(
-      {required final String code,
+      {required final int code,
       required final String message}) = _$_ParserError;
 
   factory _ParserError.fromJson(Map<String, dynamic> json) =
       _$_ParserError.fromJson;
 
   @override
-  String get code;
+  int get code;
   @override
   String get message;
   @override

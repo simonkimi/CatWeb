@@ -151,7 +151,11 @@ class ListExtendedCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               if (model.star != null) _buildStar(context),
-              if (model.tags != null) _buildTag(context),
+              if (model.tags
+                      ?.where((e) => e.text?.isNotEmpty == true)
+                      .isNotEmpty ==
+                  true)
+                _buildTag(context),
             ],
           ),
           Column(
@@ -234,7 +238,7 @@ class ListExtendedCard extends StatelessWidget {
   }
 
   Widget _buildTag(BuildContext context) {
-    final tag = model.tags!.first;
+    final tag = model.tags!.firstWhere((e) => e.text?.isNotEmpty == true);
     return Padding(
       padding: const EdgeInsets.only(top: 2),
       child: SlimBadge(

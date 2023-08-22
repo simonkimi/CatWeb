@@ -135,7 +135,7 @@ packages:
       path: "../catweb_parser"
       relative: true
     source: path
-    version: "0.0.4"
+    version: "0.0.6"
   characters:
     dependency: transitive
     description:

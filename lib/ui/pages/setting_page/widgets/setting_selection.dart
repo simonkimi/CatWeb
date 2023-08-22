@@ -1,5 +1,4 @@
 import 'package:catweb/ui/widgets/dialog.dart';
-import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';

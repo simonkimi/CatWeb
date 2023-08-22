@@ -74,7 +74,7 @@ Map<String, dynamic> _$$_EnvResultToJson(_$_EnvResult instance) =>
 
 _$_ParserError _$$_ParserErrorFromJson(Map<String, dynamic> json) =>
     _$_ParserError(
-      code: json['code'] as String,
+      code: json['code'] as int,
       message: json['message'] as String,
     );
 

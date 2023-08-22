@@ -36,7 +36,7 @@ class DetailParserResult with _$DetailParserResult {
     String? nextPage,
     bool? isSuccess,
     String? failMessage,
-    required List<EnvResult> env,
+    required List<EnvResult> envs,
     required List<ParserError> errors,
   }) = _DetailParserResult;
 
@@ -62,7 +62,7 @@ class AutoCompleteResult with _$AutoCompleteResult {
     List<AutoCompleteResultItem>? items,
     bool? isSuccess,
     String? failMessage,
-    required List<EnvResult> env,
+    required List<EnvResult> envs,
     required List<ParserError> errors,
   }) = _AutoCompleteResult;
 
@@ -85,7 +85,7 @@ class ImageReaderResult with _$ImageReaderResult {
     List<CommentResult>? comments,
     bool? isSuccess,
     String? failMessage,
-    required List<EnvResult> env,
+    required List<EnvResult> envs,
     required List<ParserError> errors,
   }) = _ImageReaderResult;
 
@@ -120,7 +120,7 @@ class ListParserResult with _$ListParserResult {
     String? nextPage,
     bool? isSuccess,
     String? failMessage,
-    required List<EnvResult> env,
+    required List<EnvResult> envs,
     required List<ParserError> errors,
   }) = _ListParserResult;
 

@@ -114,7 +114,7 @@ class NetClient {
 
     final result = ListParserResult.fromJson(jsonDecode(rsp));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    Get.find<SiteService>().website.updateGlobalEnv(result.env);
+    Get.find<SiteService>().website.updateGlobalEnv(result.envs);
     return result;
   }
 
@@ -145,7 +145,7 @@ class NetClient {
 
     final result = DetailParserResult.fromJson(jsonDecode(parseRsp));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    Get.find<SiteService>().website.updateGlobalEnv(result.env);
+    Get.find<SiteService>().website.updateGlobalEnv(result.envs);
     return result;
   }
 
@@ -177,7 +177,7 @@ class NetClient {
 
     final result = ImageReaderResult.fromJson(jsonDecode(parserRsq));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    Get.find<SiteService>().website.updateGlobalEnv(result.env);
+    Get.find<SiteService>().website.updateGlobalEnv(result.envs);
     return result;
   }
 
@@ -199,7 +199,7 @@ class NetClient {
 
     final result = AutoCompleteResult.fromJson(jsonDecode(parseRsp));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    Get.find<SiteService>().website.updateGlobalEnv(result.env);
+    Get.find<SiteService>().website.updateGlobalEnv(result.envs);
     return result;
   }
 }

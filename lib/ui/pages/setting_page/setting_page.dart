@@ -1,12 +1,9 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/security_setting.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
-import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -19,9 +16,8 @@ class SettingsPage extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             CupertinoSliverNavigationBar(
-              padding: kAppbarPadding,
-              largeTitle: Text(I.of(context).setting)
-            ),
+                padding: kAppbarPadding,
+                largeTitle: Text(I.of(context).setting)),
             SliverToBoxAdapter(
               child: CupertinoListSection.insetGrouped(
                 children: [

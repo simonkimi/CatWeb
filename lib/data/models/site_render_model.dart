@@ -53,10 +53,10 @@ class SiteRenderConfigModel {
   Future<void> updateCookies() async {}
 
   List<SitePage> get displayPage => blueMap.pageList
-      .where((p0) => p0.displayType.value == SiteDisplayType.show)
-      .where((e) => e.containsFlag('requireLogin')
-          ? dbEntity.loginCookies.isNotEmpty
-          : true)
+      .where((p0) =>
+          p0.displayType.value == SiteDisplayType.show ||
+          (p0.displayType.value == SiteDisplayType.login &&
+              dbEntity.loginCookies.isNotEmpty))
       .where((e) => [TemplateType.imageList, TemplateType.imageWaterFall]
           .contains(e.template.type))
       .toList();

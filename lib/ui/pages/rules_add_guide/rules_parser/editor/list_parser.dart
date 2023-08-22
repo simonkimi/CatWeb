@@ -1,6 +1,5 @@
 import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser_tile.dart';
-import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
 

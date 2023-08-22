@@ -74,6 +74,7 @@ final ehTestSite = SiteBlueMap(
       url: r'?page={page:0}${search:&f_search={search}}${filter:&{filter}}',
       parserId: ehListParser.uuid,
       displayType: SiteDisplayType.show,
+      icon: 'home',
       template: TemplateList(
           targetItem: _detailUuid,
           targetAutoComplete: _autoCompleteUuid,
@@ -190,7 +191,6 @@ final ehTestSite = SiteBlueMap(
               script:
                   'function hook(n){var a=JSON.parse(n),r=0,i=0,o=["misc","doujinshi","manga","artistcg","gamecg","imageset","cosplay","asianporn","nonh","western"];for(var s in o)r+=a["b_"+o[s]]?0:1<<i,i+=1;var e=["advsearch=1"];for(var s in 0!=r&&e.push("f_cats="+r),a)-1!=s.indexOf("f")&&a[s]&&e.push(s+"=on");return e.join("&")}',
               type: ScriptFieldType.js)),
-      icon: 'home',
     ),
     SitePage(
       name: '热门',
@@ -206,17 +206,16 @@ final ehTestSite = SiteBlueMap(
       url: 'watched?page={page:0}',
       uuid: const Uuid().v4().toString(),
       parserId: ehListParser.uuid,
-      displayType: SiteDisplayType.show,
+      displayType: SiteDisplayType.login,
       template: TemplateList(targetItem: _detailUuid),
       icon: 'eye',
-      flag: 'requireLogin',
     ),
     SitePage(
       name: '收藏',
       url: r'favorites.php?page={page:0}${favcat:&favcat={favcat}}',
       uuid: const Uuid().v4().toString(),
       parserId: ehListParser.uuid,
-      displayType: SiteDisplayType.show,
+      displayType: SiteDisplayType.login,
       template: TemplateList(subPages: [
         TemplateListSubPage(name: '全部'),
         TemplateListSubPage(
@@ -271,7 +270,6 @@ final ehTestSite = SiteBlueMap(
         ),
       ]),
       icon: 'heart',
-      flag: 'requireLogin',
     ),
   ],
 );

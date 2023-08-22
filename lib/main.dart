@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/db_service.dart';
+import 'package:catweb/data/controller/navigator_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/theme/themes.dart';
@@ -22,6 +23,7 @@ Future<void> initGetX() async {
 
   Get.put(DbService(), permanent: true);
   Get.put(SiteService(), permanent: true);
+  Get.put(NavigatorService(), permanent: true);
 }
 
 Future<void> main() async {
