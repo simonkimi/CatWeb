@@ -104,7 +104,7 @@ class ListParserResultItem with _$ListParserResultItem {
     ImageResult? previewImage,
     List<TagResult>? badges,
     List<TagResult>? tags,
-    String? target,
+    String? idCode,
     String? language,
     String? paper,
   }) = _ListParserResultItem;

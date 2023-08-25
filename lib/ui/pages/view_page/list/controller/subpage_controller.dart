@@ -64,7 +64,7 @@ class ListItemModel extends ImageWithPreviewModel<ListParserResultItem> {
   ListParserResultItem get value => previewModel;
 
   @override
-  String? get idCode => value.target;
+  String? get idCode => value.idCode;
 }
 
 class SubListController extends LoadMoreLoader<

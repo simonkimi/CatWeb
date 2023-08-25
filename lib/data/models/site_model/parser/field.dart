@@ -23,8 +23,7 @@ class RegField {
 
 enum ScriptFieldType {
   output('output'),
-  js('js'),
-  replace('replace');
+  js('js');
 
   const ScriptFieldType(this.value);
 

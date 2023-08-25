@@ -261,9 +261,6 @@ ListViewParser _$ListViewParserFromJson(Map<String, dynamic> json) =>
           ? null
           : ImageSelector.fromJson(
               json['previewImage'] as Map<String, dynamic>),
-      target: json['target'] == null
-          ? null
-          : Selector.fromJson(json['target'] as Map<String, dynamic>),
       badgeSelector: json['badgeSelector'] == null
           ? null
           : Selector.fromJson(json['badgeSelector'] as Map<String, dynamic>),
@@ -306,7 +303,6 @@ Map<String, dynamic> _$ListViewParserToJson(ListViewParser instance) =>
       'imageCount': instance.imageCount,
       'language': instance.language,
       'previewImage': instance.previewImage,
-      'target': instance.target,
       'badgeSelector': instance.badgeSelector,
       'badgeItem': instance.badgeItem,
       'tag': instance.tag,

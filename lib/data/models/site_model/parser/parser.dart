@@ -248,7 +248,6 @@ class ListViewParser implements IParserBase {
   final Selector imageCount;
   final Selector language;
   final ImageSelector previewImage;
-  final Selector target;
   final Selector badgeSelector;
   final TagSelector badgeItem;
   final Selector tag;
@@ -291,7 +290,6 @@ class ListViewParser implements IParserBase {
         imageCount = imageCount ?? Selector(),
         language = language ?? Selector(),
         previewImage = previewImage ?? ImageSelector(),
-        target = target ?? Selector(),
         badgeSelector = badgeSelector ?? Selector(),
         badgeItem = badgeItem ?? TagSelector(),
         tag = tag ?? Selector(),

@@ -34,8 +34,8 @@ final ehListParser = ListViewParser(
     function: SelectorFunctionType.text,
     script: ScriptField(
       script:
-          '{"chinese":"中文","english":"英语","french":"法语","german":"德语","japanese":"日语","korean":"韩语","russian":"俄语","spanish":"西班牙语","speechless":"无字","italian":"意大利语"}',
-      type: ScriptFieldType.replace,
+          r'a={chinese:"中文",english:"英语",french:"法语",german:"德语",japanese:"日语",korean:"韩语",russian:"俄语",spanish:"西班牙语",speechless:"无字",italian:"意大利语"};a[$arg.toLowerCase()]',
+      type: ScriptFieldType.js,
     ),
   ),
   imageCount: Selector(
@@ -67,13 +67,12 @@ final ehListParser = ListViewParser(
   ),
   tagItem: TagSelector(
     color: Selector(
-      selector: '.cn, .cs',
       function: SelectorFunctionType.attr,
       param: 'class',
       regex: 'ct.',
       script: ScriptField(
         script:
-            r"function hook(t){return{ct2:'#f66158',ct3:'#f09e19',ct4:'#d2d303',ct5:'#0fa911',cta:'#2fd92c',ct9:'#0bbfd3',ct6:'#4f5ce6',ct7:'#9030df',ct8:'#f38af2',ct1:'#8a8a8a'}[t]}",
+            r'a={ct2:"#f66158",ct3:"#f09e19",ct4:"#d2d303",ct5:"#0fa911",cta:"#2fd92c",ct9:"#0bbfd3",ct6:"#4f5ce6",ct7:"#9030df",ct8:"#f38af2",ct1:"#8a8a8a"},a[$arg];',
         type: ScriptFieldType.js,
       ),
     ),
@@ -85,9 +84,9 @@ final ehListParser = ListViewParser(
     regex: r'background-position:-?(\d+)px -?(\d+)px',
     replace: r'5-$1/16-($2-1)/40',
     script: ScriptField(
-      script: 'eval(\$arg)',
+      script: r'eval($arg)',
       type: ScriptFieldType.js,
-    )
+    ),
   ),
   uploadTime: Selector(
     selector: '.gl2c>div:nth-child(3),.glnew,.gl3e>div:nth-child(2)',

@@ -11,13 +11,13 @@ final ehAutoCompleteParser = AutoCompleteParser(
     selector: '',
     script: ScriptField(
         script:
-            r"""function hook(n){var t=JSON.parse(n),l=null!=t.mtn?t.mtn:t.tn,m=null!=t.mns?t.mns:t.ns;return-1!=l.indexOf(" ")&&(l='"'+l+'$"'),m+":"+l}""",
+            r"""var t=JSON.parse($args),l=null!=t.mtn?t.mtn:t.tn,m=null!=t.mns?t.mns:t.ns;-1!=l.indexOf(" ")&&(l='"'+l+'$"');""",
         type: ScriptFieldType.js),
   ),
   itemTitle: Selector(
     selector: '',
     script: ScriptField(
-      script: r'''function hook(n){var r=JSON.parse(n);return r.ns+":"+r.tn}''',
+      script: r'''var r=JSON.parse($args);r.ns+":"+r.tn''',
       type: ScriptFieldType.js,
     ),
   ),
@@ -25,7 +25,7 @@ final ehAutoCompleteParser = AutoCompleteParser(
     selector: '',
     script: ScriptField(
         script:
-            r'''function hook(n){var r=JSON.parse(n);return"temp"==r.ns?"=> "+r.mns+":"+r.mtn:""}''',
+            r'''var r=JSON.parse($arg);"temp"==r.ns?"=> "+r.mns+":"+r.mtn:""''',
         type: ScriptFieldType.js),
   ),
 );

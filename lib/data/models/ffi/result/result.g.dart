@@ -193,7 +193,7 @@ _$_ListParserResultItem _$$_ListParserResultItemFromJson(
       tags: (json['tags'] as List<dynamic>?)
           ?.map((e) => TagResult.fromJson(e as Map<String, dynamic>))
           .toList(),
-      target: json['target'] as String?,
+      idCode: json['idCode'] as String?,
       language: json['language'] as String?,
       paper: json['paper'] as String?,
     );
@@ -209,7 +209,7 @@ Map<String, dynamic> _$$_ListParserResultItemToJson(
       'previewImage': instance.previewImage,
       'badges': instance.badges,
       'tags': instance.tags,
-      'target': instance.target,
+      'idCode': instance.idCode,
       'language': instance.language,
       'paper': instance.paper,
     };

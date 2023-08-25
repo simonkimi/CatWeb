@@ -45,7 +45,7 @@ class _LoadModelTask extends AsyncTask<void> {
     if (model == null) {
       await readerInfo.loadIndexModel(index);
       if (model == null) {
-        logger.wtf('加载$index后仍然为空');
+        logger.f('加载$index后仍然为空');
         throw Exception('加载$index后仍然为空');
       }
     }
@@ -95,7 +95,8 @@ class ReaderLoaderController {
         .where((e) =>
             !items.has(e) ||
             (items[e]?.state.isComplete ?? false)) // 过滤掉已经完成的任务
-        .where((e) => !_loadModelPool.containsTaskId(e.toString())) // 过滤掉任务中已经存在的
+        .where(
+            (e) => !_loadModelPool.containsTaskId(e.toString())) // 过滤掉任务中已经存在的
         .map((e) => _LoadModelTask(
               blueprint: blueprint,
               localEnv: localEnv,

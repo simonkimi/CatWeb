@@ -27,10 +27,9 @@ final ehGalleryParser = DetailParser(
     selector: '#gdd tr:nth-child(4)>.gdt2',
     function: SelectorFunctionType.text,
     script: ScriptField(
-      script: '{"Chinese":"中文","English":"英语","French":"法语","German":"德语",'
-          '"Japanese":"日语","Korean":"韩语","Russian":"俄语","Spanish":"西班牙语",'
-          '"Speechless":"无字","Italian":"意大利语"}',
-      type: ScriptFieldType.replace,
+      script:
+          'a={chinese:"中文",english:"英语",french:"法语",german:"德语",japanese:"日语",korean:"韩语",russian:"俄语",spanish:"西班牙语",speechless:"无字",italian:"意大利语"};a[\$arg.toLowerCase()]',
+      type: ScriptFieldType.js,
     ),
   ),
   imageCount: Selector(
@@ -58,8 +57,8 @@ final ehGalleryParser = DetailParser(
       regex: 'ct.',
       script: ScriptField(
         script:
-            r'{"ct1":"#8a8a8a","ct2":"#f66158","ct3":"#f09e19","ct4":"#d2d303","ct5":"#0fa911","ct6":"#4f5ce6","ct7":"#9030df","ct8":"#f38af2","ct9":"#0bbfd3","cta":"#2fd92c"}',
-        type: ScriptFieldType.replace,
+            r'a={ct2:"#f66158",ct3:"#f09e19",ct4:"#d2d303",ct5:"#0fa911",cta:"#2fd92c",ct9:"#0bbfd3",ct6:"#4f5ce6",ct7:"#9030df",ct8:"#f38af2",ct1:"#8a8a8a"},a[$arg];',
+        type: ScriptFieldType.js,
       ),
     ),
   ),

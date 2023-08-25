@@ -44,7 +44,7 @@ class ViewerMain extends GetView<SiteService> {
         items: website.displayPage.map((e) {
           return BottomNavigationBarItem(
             icon: Icon(
-              cupertinoIcons[e.icon] ?? CupertinoIcons.circle,
+              cupertinoIcons[e.icon.value] ?? CupertinoIcons.circle,
               size: 22,
             ),
             label: e.name.value,

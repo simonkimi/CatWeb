@@ -79,7 +79,7 @@ class LoggerHelper {
     _logger.w(_genMessage(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
   }
 
-  void wtf(Object? p1,
+  void f(Object? p1,
       [Object? p2,
       Object? p3,
       Object? p4,
@@ -89,7 +89,7 @@ class LoggerHelper {
       Object? p8,
       Object? p9,
       Object? p10]) {
-    _logger.wtf(_genMessage(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    _logger.f(_genMessage(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
   }
 
   String _genMessage(Object? p1,

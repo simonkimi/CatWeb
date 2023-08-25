@@ -1796,7 +1796,7 @@ mixin _$ListParserResultItem {
   ImageResult? get previewImage => throw _privateConstructorUsedError;
   List<TagResult>? get badges => throw _privateConstructorUsedError;
   List<TagResult>? get tags => throw _privateConstructorUsedError;
-  String? get target => throw _privateConstructorUsedError;
+  String? get idCode => throw _privateConstructorUsedError;
   String? get language => throw _privateConstructorUsedError;
   String? get paper => throw _privateConstructorUsedError;
 
@@ -1821,7 +1821,7 @@ abstract class $ListParserResultItemCopyWith<$Res> {
       ImageResult? previewImage,
       List<TagResult>? badges,
       List<TagResult>? tags,
-      String? target,
+      String? idCode,
       String? language,
       String? paper});
 
@@ -1850,7 +1850,7 @@ class _$ListParserResultItemCopyWithImpl<$Res,
     Object? previewImage = freezed,
     Object? badges = freezed,
     Object? tags = freezed,
-    Object? target = freezed,
+    Object? idCode = freezed,
     Object? language = freezed,
     Object? paper = freezed,
   }) {
@@ -1887,9 +1887,9 @@ class _$ListParserResultItemCopyWithImpl<$Res,
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<TagResult>?,
-      target: freezed == target
-          ? _value.target
-          : target // ignore: cast_nullable_to_non_nullable
+      idCode: freezed == idCode
+          ? _value.idCode
+          : idCode // ignore: cast_nullable_to_non_nullable
               as String?,
       language: freezed == language
           ? _value.language
@@ -1932,7 +1932,7 @@ abstract class _$$_ListParserResultItemCopyWith<$Res>
       ImageResult? previewImage,
       List<TagResult>? badges,
       List<TagResult>? tags,
-      String? target,
+      String? idCode,
       String? language,
       String? paper});
 
@@ -1959,7 +1959,7 @@ class __$$_ListParserResultItemCopyWithImpl<$Res>
     Object? previewImage = freezed,
     Object? badges = freezed,
     Object? tags = freezed,
-    Object? target = freezed,
+    Object? idCode = freezed,
     Object? language = freezed,
     Object? paper = freezed,
   }) {
@@ -1996,9 +1996,9 @@ class __$$_ListParserResultItemCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<TagResult>?,
-      target: freezed == target
-          ? _value.target
-          : target // ignore: cast_nullable_to_non_nullable
+      idCode: freezed == idCode
+          ? _value.idCode
+          : idCode // ignore: cast_nullable_to_non_nullable
               as String?,
       language: freezed == language
           ? _value.language
@@ -2026,7 +2026,7 @@ class _$_ListParserResultItem
       this.previewImage,
       final List<TagResult>? badges,
       final List<TagResult>? tags,
-      this.target,
+      this.idCode,
       this.language,
       this.paper})
       : _badges = badges,
@@ -2068,7 +2068,7 @@ class _$_ListParserResultItem
   }
 
   @override
-  final String? target;
+  final String? idCode;
   @override
   final String? language;
   @override
@@ -2076,7 +2076,7 @@ class _$_ListParserResultItem
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ListParserResultItem(title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imageCount: $imageCount, previewImage: $previewImage, badges: $badges, tags: $tags, target: $target, language: $language, paper: $paper)';
+    return 'ListParserResultItem(title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imageCount: $imageCount, previewImage: $previewImage, badges: $badges, tags: $tags, idCode: $idCode, language: $language, paper: $paper)';
   }
 
   @override
@@ -2092,7 +2092,7 @@ class _$_ListParserResultItem
       ..add(DiagnosticsProperty('previewImage', previewImage))
       ..add(DiagnosticsProperty('badges', badges))
       ..add(DiagnosticsProperty('tags', tags))
-      ..add(DiagnosticsProperty('target', target))
+      ..add(DiagnosticsProperty('idCode', idCode))
       ..add(DiagnosticsProperty('language', language))
       ..add(DiagnosticsProperty('paper', paper));
   }
@@ -2114,7 +2114,7 @@ class _$_ListParserResultItem
                 other.previewImage == previewImage) &&
             const DeepCollectionEquality().equals(other._badges, _badges) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
-            (identical(other.target, target) || other.target == target) &&
+            (identical(other.idCode, idCode) || other.idCode == idCode) &&
             (identical(other.language, language) ||
                 other.language == language) &&
             (identical(other.paper, paper) || other.paper == paper));
@@ -2132,7 +2132,7 @@ class _$_ListParserResultItem
       previewImage,
       const DeepCollectionEquality().hash(_badges),
       const DeepCollectionEquality().hash(_tags),
-      target,
+      idCode,
       language,
       paper);
 
@@ -2161,7 +2161,7 @@ abstract class _ListParserResultItem implements ListParserResultItem {
       final ImageResult? previewImage,
       final List<TagResult>? badges,
       final List<TagResult>? tags,
-      final String? target,
+      final String? idCode,
       final String? language,
       final String? paper}) = _$_ListParserResultItem;
 
@@ -2185,7 +2185,7 @@ abstract class _ListParserResultItem implements ListParserResultItem {
   @override
   List<TagResult>? get tags;
   @override
-  String? get target;
+  String? get idCode;
   @override
   String? get language;
   @override

@@ -12,6 +12,7 @@ import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
+import 'package:catweb/utils/debug.dart';
 import 'package:catweb_parser/catweb_parser.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
@@ -106,7 +107,7 @@ class NetClient {
       localEnv: localEnv,
     );
 
-    final rsp = await parseHtmlAsync(
+    final rsp = await callFFiParser(
       req.data!,
       ParserType.list.value,
       jsonEncode(parser.toJson()),
@@ -137,7 +138,7 @@ class NetClient {
       options: options,
     );
 
-    final parseRsp = await parseHtmlAsync(
+    final parseRsp = await callFFiParser(
       rsp.data!,
       ParserType.detail.value,
       jsonEncode(parser.toJson()),
@@ -169,7 +170,7 @@ class NetClient {
       options: options,
     );
 
-    final parserRsq = await parseHtmlAsync(
+    final parserRsq = await callFFiParser(
       rsp.data!,
       ParserType.image.value,
       jsonEncode(parser.toJson()),
@@ -191,7 +192,7 @@ class NetClient {
 
     final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
 
-    final parseRsp = await parseHtmlAsync(
+    final parseRsp = await callFFiParser(
       rsp.data!,
       ParserType.autoComplete.value,
       jsonEncode(parser.toJson()),
@@ -239,7 +240,7 @@ Dio _buildDio({
 
   if (!isImage) {
     dio.interceptors.add(DioCacheInterceptor(options: setting.cacheOptions));
-    dio.interceptors.add(HttpFormatter(includeResponseBody: true));
+    dio.interceptors.add(HttpFormatter(includeResponseBody: false));
   } else {
     dio.interceptors.add(
       DioCacheInterceptor(options: setting.imageCacheOption),
@@ -254,4 +255,13 @@ Dio _buildDio({
   }
 
   return dio;
+}
+
+Future<String> callFFiParser(
+    String content, String parserType, String parser) async {
+  logger.d(
+      'Call FFI Parser $parserType len:${content.length} parser:${parser.length}');
+  final rsp = await parseHtmlAsync(content, parserType, parser);
+  logger.d('FFI Parser Result: ${rsp.length}');
+  return rsp;
 }

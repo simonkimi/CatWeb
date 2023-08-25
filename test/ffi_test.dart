@@ -1,17 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:catweb/data/models/site_model/pages/site_page.dart';
-import 'package:catweb/data/models/site_model/pages/template.dart';
-import 'package:catweb/test/site/eh/eh_rules.dart';
+import 'package:catweb/network/client/cilent.dart';
 import 'package:catweb/test/site/eh/parser/list_parser.dart';
+import 'package:catweb_parser/catweb_parser.dart';
 
-void main() {
-  final displays = ehTestSite.pageList
-      .where((p0) => p0.displayType.value == SiteDisplayType.show)
-      .where((e) => true)
-      .where((e) => [TemplateType.imageList, TemplateType.imageWaterFall]
-          .contains(e.template.type))
-      .toList();
-  print(displays.length);
+void main() async {
+  final file = File('test/list.htm');
+  final html = file.readAsStringSync();
+
+  var parser = jsonEncode(ehListParser.toJson());
+  File('test/list_parser.json').writeAsStringSync(parser);
+
+  final rsp = await parseHtmlAsync(html, ParserType.list.value, parser);
+
+  print(rsp);
 }

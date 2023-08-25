@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/controller/navigator_service.dart';
 import 'package:catweb/data/models/site_env_model.dart';
@@ -97,6 +98,10 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
                 model: model.previewModel,
                 concurrency: controller.previewConcurrency,
                 onTap: () {
+                  if (model.idCode?.isEmpty == true) {
+                    BotToast.showText(text: '跳转目标为空');
+                    return;
+                  }
                   NavigatorService.push(
                     targetName: (controller.blueprint.template as TemplateList)
                         .targetItem
