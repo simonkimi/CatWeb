@@ -5,7 +5,7 @@ import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/data/models/site_render_model.dart';
-import 'package:catweb/network/client/cilent.dart';
+import 'package:catweb/network/client/client.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:get/get.dart';
 

@@ -8,7 +8,7 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/data/models/site_model/site_blue_map.dart';
-import 'package:catweb/network/client/cilent.dart';
+import 'package:catweb/network/client/client.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:get/get.dart';
 

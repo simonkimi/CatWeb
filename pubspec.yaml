@@ -18,11 +18,11 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_linkify: ^6.0.0
   flutter_highlight: ^0.7.0
-  cupertino_icons: ^1.0.4
+  cupertino_icons: ^1.0.6
   flutter_swipe_action_cell: ^3.1.2
-  extended_image: ^8.0.2
+  extended_image: ^8.1.1
   cupertino_modal_sheet: ^1.1.0
-  bot_toast: ^4.0.2
+  bot_toast: ^4.0.4
   scrollable_positioned_list: ^0.3.8
   photo_view: ^0.14.0
 
@@ -32,37 +32,37 @@ dependencies:
   # network
   brotli: ^0.6.0
   dio: ^5.3.2
-  dio_cache_interceptor: ^3.4.0
+  dio_cache_interceptor: ^3.4.2
   dio_cache_interceptor_db_store: ^5.1.0
   dio_smart_retry: ^5.0.0
   cookie_jar: ^4.0.8
   dio_cookie_manager: ^3.1.0+1
   dio_http_formatter: ^3.1.0
 
-  flutter_inappwebview: ^5.3.2
+  flutter_inappwebview: ^5.7.2+3
   webview_cookie_manager: ^2.0.6
 
   # state
-  get: ^4.6.5
-  flutter_hooks: ^0.20.0
+  get: ^4.6.6
+  flutter_hooks: ^0.20.1
   event_bus: ^2.0.0
 
   # database
-  drift: ^2.11.0
-  shared_preferences: ^2.2.0
-  sqlite3_flutter_libs: ^0.5.14
-  path_provider: any
-  path: any
+  drift: ^2.11.1
+  shared_preferences: ^2.2.1
+  sqlite3_flutter_libs: ^0.5.16
+  path_provider: ^2.1.1
+  path: ^1.8.3
 
   # tools
-  intl: ^0.18.0
+  intl: ^0.18.1
   synchronized: ^3.1.0
-  uuid: ^3.0.5
-  rxdart: ^0.27.4
-  logger: ^2.0.1
+  uuid: ^4.0.0
+  rxdart: ^0.27.7
+  logger: ^2.0.2
   yaml: ^3.1.2
   json_annotation: ^4.8.1
-  freezed_annotation: ^2.2.0
+  freezed_annotation: ^2.4.1
 
   # parser
   catweb_parser:
@@ -70,17 +70,19 @@ dependencies:
 
 
 dependency_overrides:
-  logger: ^2.0.1
+  logger: ^2.0.2
+  analyzer: ^6.2.0
+  uuid: ^4.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.1
-  drift_dev: ^2.5.2
-  freezed: ^2.3.3
-  json_serializable: ^6.6.2
-  build_runner: ^2.4.4
+  flutter_lints: ^2.0.3
+  drift_dev: ^2.11.2
+  freezed: ^2.4.2
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.6
 
 
 flutter:
