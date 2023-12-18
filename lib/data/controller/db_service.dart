@@ -2,10 +2,11 @@ import 'package:catweb/data/database/daos/cookie_jar_dao.dart';
 import 'package:catweb/data/database/daos/reader_history_dao.dart';
 import 'package:catweb/data/database/daos/web_dao.dart';
 import 'package:catweb/data/database/database.dart';
-import 'package:get/get.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DbService extends GetxService {
-  static DbService get to => Get.find();
+final dbProvider = Provider((ref) => DbService());
+
+class DbService {
   final AppDataBase _database = AppDataBase();
 
   WebDao get webDao => _database.webDao;

@@ -1,45 +1,29 @@
 import 'dart:ui';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:catweb/data/controller/db_service.dart';
-import 'package:catweb/data/controller/navigator_service.dart';
-import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/ui/pages/view_page/viewer_main.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/get.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'data/controller/setting_service.dart';
 import 'navigator.dart';
 
-Future<void> initGetX() async {
-  await Get.putAsync(() async {
-    final service = SettingService();
-    await service.init();
-    return service;
-  }, permanent: true);
-
-  Get.put(DbService(), permanent: true);
-  Get.put(SiteService(), permanent: true);
-  Get.put(NavigatorService(), permanent: true);
-}
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initGetX();
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  ConsumerState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+class _MyAppState extends ConsumerState with WidgetsBindingObserver {
   var _needBlur = false;
 
   @override
@@ -50,9 +34,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (SettingService.to.blurWhenBackground.isTrue) {
-      final newState = state != AppLifecycleState.resumed &&
-          Get.find<SettingService>().blurWhenBackground.isTrue;
+    if (ref.read<SettingProvider>(settingProvider).blurWhenBackground.value) {
+      final newState = state != AppLifecycleState.resumed;
       if (newState != _needBlur) {
         setState(() {
           _needBlur = newState;
@@ -63,7 +46,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return GetCupertinoApp(
+    return CupertinoApp(
       title: 'CatWeb',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [

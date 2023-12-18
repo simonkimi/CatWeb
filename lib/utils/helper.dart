@@ -3,7 +3,6 @@ import 'dart:core';
 import 'dart:math' as math;
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';
 

@@ -1,23 +1,20 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:catweb/data/controller/db_service.dart';
-import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/network/client/client.dart';
-import 'package:catweb/utils/helper.dart';
-import 'package:get/get.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SiteService extends GetxService {
-  static SiteService get to => Get.find();
+final siteProvider = Provider((ref) => SiteService());
+
+class SiteService {
   late final StreamSubscription<List<WebTableData>> siteDbChangeListener;
 
   var lastClickBack = DateTime.now().millisecondsSinceEpoch;
 
   final site = Rx<SiteRenderConfigModel?>(null);
-
-  final db = DbService.to;
 
   SiteRenderConfigModel get website {
     assert(site.value != null);

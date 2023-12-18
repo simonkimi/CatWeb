@@ -3,6 +3,7 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   plugins:
     - dart_code_metrics
+    - custom_lint
   errors:
     invalid_annotation_target: ignore
   exclude:
