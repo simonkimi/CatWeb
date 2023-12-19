@@ -1,7 +1,8 @@
 import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/data/models/site_model/parser/parser.dart';
-import 'package:get/get.dart';
+import 'package:catweb/utils/obs_helper.dart';
+import 'package:flutter/cupertino.dart';
 
 enum SiteNetType {
   get('get'),
@@ -60,17 +61,17 @@ class SitePage {
         flag = flag.obs,
         parserId = parserId.obs;
 
-  final RxString name;
+  final ValueNotifier<String> name;
   final String uuid;
   final ITemplate template;
 
-  final RxString url;
-  final Rx<SiteNetType> action;
-  final RxString formData;
-  final RxString icon;
-  final Rx<SiteDisplayType> displayType;
-  final RxString flag;
-  final RxString parserId;
+  final ValueNotifier<String> url;
+  final ValueNotifier<SiteNetType> action;
+  final ValueNotifier<String> formData;
+  final ValueNotifier<String> icon;
+  final ValueNotifier<SiteDisplayType> displayType;
+  final ValueNotifier<String> flag;
+  final ValueNotifier<String> parserId;
 
   ParserType acceptParserType() {
     return switch (template.type) {
@@ -121,7 +122,7 @@ class SitePage {
       );
 
   bool containsFlag(String flag) {
-    for (final flag in this.flag.split('|')) {
+    for (final flag in this.flag.value.split('|')) {
       if (flag.toLowerCase() == flag.toLowerCase()) {
         return true;
       }

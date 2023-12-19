@@ -106,7 +106,7 @@ class SettingNumberTile extends StatelessWidget {
   });
 
   final String title;
-  final RxInt value;
+  final ValueNotifier<int> value;
 
   @override
   Widget build(BuildContext context) {

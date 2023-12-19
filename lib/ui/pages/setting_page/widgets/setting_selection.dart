@@ -16,7 +16,7 @@ class SettingSelectionTile<T> extends StatelessWidget {
 
   static SettingSelectionTile<int> number({
     required String title,
-    required RxInt value,
+    required ValueNotifier<int> value,
     required List<int> items,
     bool useDialog = false,
     String? previousPageTitle,
@@ -31,7 +31,7 @@ class SettingSelectionTile<T> extends StatelessWidget {
 
   final String title;
   final Iterable<SelectTileItem<T>> items;
-  final Rx<T> value;
+  final ValueNotifier<T> value;
   final String? previousPageTitle;
   final bool useDialog;
 
@@ -79,7 +79,7 @@ class _SettingSelectionPage<T> extends StatelessWidget {
 
   final String title;
   final Iterable<SelectTileItem<T>> items;
-  final Rx<T> value;
+  final ValueNotifier<T> value;
   final String? previousPageTitle;
 
   @override

@@ -1,15 +1,17 @@
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:catweb/i18n.dart';
-
 import 'package:catweb/ui/pages/view_page/viewer_subpage_scaffold.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 
+import 'package:catweb/navigator.dart';
 
 /// 路由管理器，通过管理预览的深度进行状态管理
 class NavigatorService {
   var _depth = 0;
+
   String get depth => 'NavStack-$_depth';
 
   /// 打开一个新的界面
@@ -20,7 +22,10 @@ class NavigatorService {
     SiteEnvStore? envModel,
     Object? model,
   }) async {
-    final target = SiteService.to.website.blueMap.pageList
+    final target = get<SiteService>()
+        .website
+        .blueMap
+        .pageList
         .get((e) => e.uuid == targetName);
     if (target == null) {
       throw Exception('NavigatorService: $targetName not exist');
@@ -30,7 +35,7 @@ class NavigatorService {
         .contains(target.template.type);
 
     if (add) {
-      to._depth += 1;
+      _depth += 1;
     }
 
     await Navigator.of(I.context).push(CupertinoPageRoute(

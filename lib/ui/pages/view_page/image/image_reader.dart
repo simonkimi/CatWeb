@@ -44,7 +44,7 @@ class _ImageReaderViewerState extends State<ImageReader>
   late final Animation<Offset> hideToolbarAni;
   late final Animation<Offset> hideTabBarAni;
 
-  final settings = Get.find<SettingService>();
+  final settings = get<SettingService>();
 
   @override
   void initState() {
@@ -310,7 +310,7 @@ class _ImageReaderViewerState extends State<ImageReader>
                   color: CupertinoColors.white,
                 ),
                 onPressed: () {
-                  final setting = Get.find<SettingService>();
+                  final setting = get<SettingService>();
                   switch (readController.displayType) {
                     case ReaderDisplayType.single:
                       setting.displayType.value = ReaderDisplayType.double;

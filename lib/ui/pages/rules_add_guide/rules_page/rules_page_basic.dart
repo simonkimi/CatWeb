@@ -165,7 +165,7 @@ class RulesPageBasic extends GetWidget<RulesEditController> {
   }
 
   Future<void> _onParserTap(BuildContext context) async {
-    final controller = Get.find<RulesEditController>();
+    final controller = get<RulesEditController>();
     final result = await showCupertinoSelectDialog<String>(
       title: I.of(context).select_parser,
       context: context,

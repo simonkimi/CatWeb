@@ -6,10 +6,10 @@ import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/widgets/cupertino_obs_swiitch.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
-import 'package:get/get.dart';
 
 class ListFilterEditor extends HookWidget {
   const ListFilterEditor({
@@ -84,18 +84,20 @@ class ListFilterEditor extends HookWidget {
               ColoredBox(
                 color: CupertinoColors.systemGroupedBackground
                     .resolveFrom(context),
-                child: Obx(() => Column(
-                      children: templateBase.filters.asMap().entries.map((e) {
-                        return CupertinoDeletableTile(
-                            index: e.key,
-                            controller: filterController,
-                            text: '${e.value.name} - ${e.value.key}',
-                            onDelete: (index) {
-                              templateBase.filters.removeAt(index);
-                            },
-                            onTap: () => _editFilter(context, e.value));
-                      }).toList(),
-                    )),
+                child: templateBase.filters.obx(() {
+                  return Column(
+                    children: templateBase.filters.asMap().entries.map((e) {
+                      return CupertinoDeletableTile(
+                          index: e.key,
+                          controller: filterController,
+                          text: '${e.value.name} - ${e.value.key}',
+                          onDelete: (index) {
+                            templateBase.filters.removeAt(index);
+                          },
+                          onTap: () => _editFilter(context, e.value));
+                    }).toList(),
+                  );
+                }),
               ),
               CupertinoClassicalListTile(
                 icon: Icon(

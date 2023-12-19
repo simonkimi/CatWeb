@@ -1,5 +1,6 @@
 import 'dart:ui';
-import 'package:get/get.dart';
+import 'package:catweb/utils/obs_helper.dart';
+import 'package:flutter/cupertino.dart';
 
 class RegField {
   RegField({
@@ -7,8 +8,8 @@ class RegField {
     String value = '',
   })  : reg = reg.obs,
         value = value.obs;
-  final RxString reg;
-  final RxString value;
+  final ValueNotifier<String> reg;
+  final ValueNotifier<String> value;
 
   Map<String, dynamic> toJson() => {
         'reg': reg.value,
@@ -35,8 +36,8 @@ enum ScriptFieldType {
 }
 
 class ScriptField {
-  final RxString script;
-  final Rx<ScriptFieldType> type;
+  final ValueNotifier<String> script;
+  final ValueNotifier<ScriptFieldType> type;
 
   ScriptField({
     String script = '',
@@ -66,10 +67,10 @@ class ColorField {
         g = g.obs,
         b = b.obs;
 
-  final RxInt a;
-  final RxInt r;
-  final RxInt g;
-  final RxInt b;
+  final ValueNotifier<int> a;
+  final ValueNotifier<int> r;
+  final ValueNotifier<int> g;
+  final ValueNotifier<int> b;
 
   Color get color => Color.fromARGB(a.value, r.value, g.value, b.value);
 

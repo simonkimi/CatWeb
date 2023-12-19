@@ -47,7 +47,7 @@ class SiteManager extends GetWidget<SiteService> {
                   ),
                   child: StreamBuilder<List<WebTableData>>(
                     initialData: const [],
-                    stream: Get.find<DbService>().webDao.getAllStream(),
+                    stream: get<DbService>().webDao.getAllStream(),
                     builder: (context, snapshot) {
                       return _buildListView(snapshot, context);
                     },
@@ -192,7 +192,7 @@ class SiteManager extends GetWidget<SiteService> {
         content: I.of(context).logout_check,
       );
       if (isReload == true) {
-        await Get.find<DbService>()
+        await get<DbService>()
             .webDao
             .replace(db.copyWith(loginCookies: ''));
         Get.back();
@@ -201,7 +201,7 @@ class SiteManager extends GetWidget<SiteService> {
       // 登录
       if (Uri.tryParse(entity.baseUrl.value)?.host !=
           Uri.tryParse(entity.loginUrl.value)?.host) {
-        if (!Get.find<SettingService>().protectCookie.value ||
+        if (!get<SettingService>().protectCookie.value ||
             !db.securityModel) {
           final w = await showCupertinoConfirmDialog(
             context: context,
@@ -235,7 +235,7 @@ class SiteManager extends GetWidget<SiteService> {
 
       if (cookies != null) {
         final cookieStr = cookies.map((e) => '${e.name}=${e.value}').join('; ');
-        await Get.find<DbService>()
+        await get<DbService>()
             .webDao
             .replace(db.copyWith(loginCookies: cookieStr));
         BotToast.showText(text: I.of(context).login_success);
@@ -256,7 +256,7 @@ class SiteManager extends GetWidget<SiteService> {
           confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
         ) ==
         true) {
-      Get.find<DbService>().webDao.remove(db);
+      get<DbService>().webDao.remove(db);
     }
   }
 

@@ -1,4 +1,9 @@
-enum CardSize {
+
+abstract interface class IEnumValue {
+  int get value;
+}
+
+enum CardSize implements IEnumValue{
   small(100),
   medium(150),
   large(200),
@@ -7,6 +12,9 @@ enum CardSize {
   final int size;
 
   const CardSize(this.size);
+
+  @override
+  int get value => size;
 
   static CardSize from(int value) {
     return switch (value) {
@@ -19,7 +27,7 @@ enum CardSize {
   }
 }
 
-enum ReaderDirection {
+enum ReaderDirection implements IEnumValue{
   ltr(0),
   rtl(1),
   ttb(2);
@@ -27,6 +35,9 @@ enum ReaderDirection {
   final int direction;
 
   const ReaderDirection(this.direction);
+
+  @override
+  int get value => direction;
 
   static ReaderDirection from(int value) {
     return switch (value) {
@@ -38,11 +49,12 @@ enum ReaderDirection {
   }
 }
 
-enum ReaderDisplayType {
+enum ReaderDisplayType implements IEnumValue {
   single(0), // 单面情况
   double(1), // 双面情况
   doubleCover(2); // 封面单独占一面的双面情况
 
+  @override
   final int value;
 
   const ReaderDisplayType(this.value);

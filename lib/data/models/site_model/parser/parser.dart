@@ -1,6 +1,7 @@
 import 'package:catweb/data/models/site_model/parser/selector.dart';
+import 'package:catweb/utils/obs_helper.dart';
+import 'package:catweb/utils/rx_list.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:get/get.dart';
 
 part 'parser.g.dart';
 

@@ -107,7 +107,7 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
     return SizedBox(
       height: 50,
       child: Obx(() => ListView.builder(
-            reverse: Get.find<SettingService>().readerDirectory.value ==
+            reverse: get<SettingService>().readerDirectory.value ==
                 ReaderDirection.rtl,
             key: listGlobalKey,
             controller: scrollController,

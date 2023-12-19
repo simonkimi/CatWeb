@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:catweb/utils/debug.dart';
-import 'package:catweb/utils/helper.dart';
+import 'package:catweb/utils/obs_helper.dart';
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:synchronized/synchronized.dart';
 import 'load_more_mixin.dart';
 
@@ -36,8 +36,8 @@ abstract class LoadMoreLoader<T, E, V extends LoadMoreItem<E>>
     extends LoadMoreBase {
   final RxMap<int, LoadMorePage<T, E, V>> pages =
       <int, LoadMorePage<T, E, V>>{}.obs;
-  final RxInt _currentPage = (-1).obs; // 下一面，上一面要用的
-  final RxInt _startPage = (0).obs;
+  final ValueNotifier<int> _currentPage = (-1).obs; // 下一面，上一面要用的
+  final ValueNotifier<int> _startPage = (0).obs;
 
   /// 检查加载的数据是否已经超出范围
   bool checkIfOutOfRange(int page) {

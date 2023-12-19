@@ -6,23 +6,23 @@ part of 'result.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PreviewItem _$$_PreviewItemFromJson(Map<String, dynamic> json) =>
-    _$_PreviewItem(
+_$PreviewItemImpl _$$PreviewItemImplFromJson(Map<String, dynamic> json) =>
+    _$PreviewItemImpl(
       previewImage: json['previewImage'] == null
           ? null
           : ImageResult.fromJson(json['previewImage'] as Map<String, dynamic>),
       target: json['target'] as String?,
     );
 
-Map<String, dynamic> _$$_PreviewItemToJson(_$_PreviewItem instance) =>
+Map<String, dynamic> _$$PreviewItemImplToJson(_$PreviewItemImpl instance) =>
     <String, dynamic>{
       'previewImage': instance.previewImage,
       'target': instance.target,
     };
 
-_$_DetailParserResult _$$_DetailParserResultFromJson(
+_$DetailParserResultImpl _$$DetailParserResultImplFromJson(
         Map<String, dynamic> json) =>
-    _$_DetailParserResult(
+    _$DetailParserResultImpl(
       title: json['title'] as String?,
       subtitle: json['subtitle'] as String?,
       language: json['language'] as String?,
@@ -57,8 +57,8 @@ _$_DetailParserResult _$$_DetailParserResultFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$_DetailParserResultToJson(
-        _$_DetailParserResult instance) =>
+Map<String, dynamic> _$$DetailParserResultImplToJson(
+        _$DetailParserResultImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'subtitle': instance.subtitle,
@@ -80,25 +80,25 @@ Map<String, dynamic> _$$_DetailParserResultToJson(
       'errors': instance.errors,
     };
 
-_$_AutoCompleteResultItem _$$_AutoCompleteResultItemFromJson(
+_$AutoCompleteResultItemImpl _$$AutoCompleteResultItemImplFromJson(
         Map<String, dynamic> json) =>
-    _$_AutoCompleteResultItem(
+    _$AutoCompleteResultItemImpl(
       title: json['title'] as String?,
       subtitle: json['subtitle'] as String?,
       complete: json['complete'] as String?,
     );
 
-Map<String, dynamic> _$$_AutoCompleteResultItemToJson(
-        _$_AutoCompleteResultItem instance) =>
+Map<String, dynamic> _$$AutoCompleteResultItemImplToJson(
+        _$AutoCompleteResultItemImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'subtitle': instance.subtitle,
       'complete': instance.complete,
     };
 
-_$_AutoCompleteResult _$$_AutoCompleteResultFromJson(
+_$AutoCompleteResultImpl _$$AutoCompleteResultImplFromJson(
         Map<String, dynamic> json) =>
-    _$_AutoCompleteResult(
+    _$AutoCompleteResultImpl(
       items: (json['items'] as List<dynamic>?)
           ?.map(
               (e) => AutoCompleteResultItem.fromJson(e as Map<String, dynamic>))
@@ -113,8 +113,8 @@ _$_AutoCompleteResult _$$_AutoCompleteResultFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$_AutoCompleteResultToJson(
-        _$_AutoCompleteResult instance) =>
+Map<String, dynamic> _$$AutoCompleteResultImplToJson(
+        _$AutoCompleteResultImpl instance) =>
     <String, dynamic>{
       'items': instance.items,
       'isSuccess': instance.isSuccess,
@@ -123,8 +123,9 @@ Map<String, dynamic> _$$_AutoCompleteResultToJson(
       'errors': instance.errors,
     };
 
-_$_ImageReaderResult _$$_ImageReaderResultFromJson(Map<String, dynamic> json) =>
-    _$_ImageReaderResult(
+_$ImageReaderResultImpl _$$ImageReaderResultImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ImageReaderResultImpl(
       image: json['image'] == null
           ? null
           : ImageResult.fromJson(json['image'] as Map<String, dynamic>),
@@ -157,8 +158,8 @@ _$_ImageReaderResult _$$_ImageReaderResultFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_ImageReaderResultToJson(
-        _$_ImageReaderResult instance) =>
+Map<String, dynamic> _$$ImageReaderResultImplToJson(
+        _$ImageReaderResultImpl instance) =>
     <String, dynamic>{
       'image': instance.image,
       'largerImage': instance.largerImage,
@@ -176,9 +177,9 @@ Map<String, dynamic> _$$_ImageReaderResultToJson(
       'errors': instance.errors,
     };
 
-_$_ListParserResultItem _$$_ListParserResultItemFromJson(
+_$ListParserResultItemImpl _$$ListParserResultItemImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ListParserResultItem(
+    _$ListParserResultItemImpl(
       title: json['title'] as String?,
       subtitle: json['subtitle'] as String?,
       uploadTime: json['uploadTime'] as String?,
@@ -198,8 +199,8 @@ _$_ListParserResultItem _$$_ListParserResultItemFromJson(
       paper: json['paper'] as String?,
     );
 
-Map<String, dynamic> _$$_ListParserResultItemToJson(
-        _$_ListParserResultItem instance) =>
+Map<String, dynamic> _$$ListParserResultItemImplToJson(
+        _$ListParserResultItemImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'subtitle': instance.subtitle,
@@ -214,8 +215,9 @@ Map<String, dynamic> _$$_ListParserResultItemToJson(
       'paper': instance.paper,
     };
 
-_$_ListParserResult _$$_ListParserResultFromJson(Map<String, dynamic> json) =>
-    _$_ListParserResult(
+_$ListParserResultImpl _$$ListParserResultImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ListParserResultImpl(
       items: (json['items'] as List<dynamic>?)
           ?.map((e) => ListParserResultItem.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -230,7 +232,8 @@ _$_ListParserResult _$$_ListParserResultFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_ListParserResultToJson(_$_ListParserResult instance) =>
+Map<String, dynamic> _$$ListParserResultImplToJson(
+        _$ListParserResultImpl instance) =>
     <String, dynamic>{
       'items': instance.items,
       'nextPage': instance.nextPage,

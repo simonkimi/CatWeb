@@ -8,15 +8,15 @@ import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller
 import 'package:catweb/ui/pages/rules_add_guide/rules_basic/rules_basic.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page_manager.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_manager.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
 class RulesEditPage extends StatelessWidget {
   RulesEditPage({
     super.key,
     SiteBlueMap? blueMap,
     WebTableData? db,
-  }) : controller = Get.put(RulesEditController(blueprint: blueMap, db: db));
+  }) : controller = RulesEditController(blueprint: blueMap, db: db);
 
   final RulesEditController controller;
 
@@ -33,11 +33,11 @@ class RulesEditPage extends StatelessWidget {
             CupertinoTab(I.of(context).parser),
             CupertinoTab(I.of(context).identity),
           ],
-          children: const [
-            RulesBasic(),
-            RulesPageManager(),
-            RulesParserManager(),
-            RulesAdvance(),
+          children: [
+            RulesBasic(controller),
+            RulesPageManager(controller),
+            RulesParserManager(controller),
+            RulesAdvance(controller),
           ],
         ),
       ),
@@ -50,7 +50,9 @@ class RulesEditPage extends StatelessWidget {
       leading: CupertinoButton(
         onPressed: () {
           _showExitConfine(context).then((value) {
-            if (value) Get.back();
+            if (value) {
+              context.pop();
+            }
           });
         },
         padding: EdgeInsets.zero,
@@ -79,7 +81,7 @@ class RulesEditPage extends StatelessWidget {
   }
 
   Future<void> _save(BuildContext context) async {
-    if (controller.blueprint.name.isEmpty) {
+    if (controller.blueprint.name.value.isEmpty) {
       showCupertinoConfirmDialog(
         context: context,
         title: I.of(context).title,
@@ -88,7 +90,7 @@ class RulesEditPage extends StatelessWidget {
       );
       return;
     }
-    if (controller.blueprint.baseUrl.isEmpty) {
+    if (controller.blueprint.baseUrl.value.isEmpty) {
       showCupertinoConfirmDialog(
         context: context,
         title: I.of(context).website,
@@ -99,6 +101,6 @@ class RulesEditPage extends StatelessWidget {
     }
 
     await controller.save();
-    Get.back();
+    context.pop();
   }
 }

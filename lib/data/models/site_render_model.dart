@@ -8,9 +8,11 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/data/models/site_model/site_blue_map.dart';
+import 'package:catweb/navigator.dart';
 import 'package:catweb/network/client/client.dart';
+import 'package:catweb/utils/obs_helper.dart';
 import 'package:cookie_jar/cookie_jar.dart';
-import 'package:get/get.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../controller/db_service.dart';
 
@@ -20,8 +22,9 @@ class SiteRenderConfigModel {
     required this.blueMap,
     required this.dbEntity,
   })  : globalEnv = SiteEnvStore.fromJson(jsonDecode(dbEntity.env)),
-        favicon =
-            dbEntity.favicon.isNotEmpty ? dbEntity.favicon.obs : Rx(null) {
+        favicon = dbEntity.favicon.isNotEmpty
+            ? dbEntity.favicon.obs
+            : ValueNotifier<Uint8List?>(null) {
     client = NetClient(
       blueMap: blueMap,
       db: dbEntity,
@@ -39,7 +42,7 @@ class SiteRenderConfigModel {
   // 储存字段
   final SiteEnvStore globalEnv;
   final SiteBlueMap blueMap;
-  final Rx<Uint8List?> favicon;
+  final ValueNotifier<Uint8List?> favicon;
 
   String get name => blueMap.name.value;
 
@@ -47,7 +50,7 @@ class SiteRenderConfigModel {
 
   Future<void> setFavicon(Uint8List bin) async {
     favicon.value = bin;
-    await Get.find<DbService>().webDao.replace(dbEntity.copyWith(favicon: bin));
+    await get<DbService>().webDao.replace(dbEntity.copyWith(favicon: bin));
   }
 
   Future<void> updateCookies() async {}
@@ -74,7 +77,7 @@ class SiteRenderConfigModel {
       }
     }
     if (didUpdate) {
-      await Get.find<DbService>()
+      await get<DbService>()
           .webDao
           .replace(dbEntity.copyWith(env: globalEnv.toJsonString()));
     }

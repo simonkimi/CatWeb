@@ -85,7 +85,7 @@ class CupertinoInput extends StatelessWidget {
   });
 
   final String labelText;
-  final RxString value;
+  final ValueNotifier<String> value;
 
   final int minLine;
   final String? hintText;
@@ -155,7 +155,7 @@ class CupertinoFormInput extends StatelessWidget {
 
   final BoxDecoration? decoration;
   final double? width;
-  final RxString value;
+  final ValueNotifier<String> value;
   final String? label;
 
   @override
@@ -200,7 +200,7 @@ class CupertinoSelectInput<T> extends StatelessWidget {
     this.selectionConverter,
   });
 
-  final Rx<T> field;
+  final ValueNotifier<T> field;
   final String labelText;
   final String Function(T)? selectionConverter;
   final Iterable<T> items;
@@ -240,7 +240,7 @@ class CupertinoNumberInput extends StatelessWidget {
   });
 
   final String labelText;
-  final RxInt value;
+  final ValueNotifier<int> value;
 
   final int minLine;
   final String? hintText;

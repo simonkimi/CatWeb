@@ -1,9 +1,12 @@
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/loaders/load_more_mixin.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
+import 'package:catweb/utils/obs_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
-import 'package:get/get.dart';
+import 'package:flutter/cupertino.dart';
+
+import '../../navigator.dart';
 
 class ImageLoadModel {
   ImageLoadModel({
@@ -14,9 +17,9 @@ class ImageLoadModel {
   final ImageResult model;
   final Dio dio;
 
-  final Rx<ImageLoadState> _state = ImageLoadState.waiting().obs;
-  final RxDouble _progress = 0.0.obs;
-  final RxInt _handleWidget = 1.obs;
+  final ValueNotifier<ImageLoadState> _state = ImageLoadState.waiting().obs;
+  final ValueNotifier<double> _progress = 0.0.obs;
+  final ValueNotifier<int> _handleWidget = 1.obs;
 
   Uint8List? _data;
 
@@ -38,7 +41,7 @@ class ImageLoadModel {
 
   Future<void> loadCache() async {
     if (state.isCached || state.isWaiting) {
-      final db = Get.find<SettingService>().dbCacheStore;
+      final db = get<SettingService>().dbCacheStore;
       final cache = await db.get(key);
       if (cache != null) {
         await load();
@@ -52,7 +55,7 @@ class ImageLoadModel {
       final rsp = await dio.get<Uint8List>(
         model.url!,
         onReceiveProgress: (r, t) => _progress.value = r / t,
-        options: Get.find<SettingService>()
+        options: get<SettingService>()
             .imageCacheOption
             .copyWith(keyBuilder: (req) => key)
             .toOptions()
@@ -97,6 +100,6 @@ class ImageLoadModel {
     _state.value = ImageLoadState.error(e);
     _progress.value = 0.0;
     _data = null;
-    Get.find<SettingService>().dbCacheStore.delete(key);
+    get<SettingService>().dbCacheStore.delete(key);
   }
 }

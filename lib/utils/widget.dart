@@ -25,3 +25,43 @@ Size boundingTextSize({
   )..layout(maxWidth: maxWidth);
   return textPainter.size;
 }
+
+extension ListenableWrap on Listenable {
+  Widget obx(Widget Function() builder) {
+    return ListenableBuilder(
+      listenable: this,
+      builder: (context, child) {
+        return builder();
+      },
+    );
+  }
+
+  Widget obxc(Widget Function(BuildContext context) builder) {
+    return ListenableBuilder(
+      listenable: this,
+      builder: (context, child) {
+        return builder(context);
+      },
+    );
+  }
+}
+
+extension ValueListenableWrap<T> on ValueNotifier<T> {
+  Widget obx(Widget Function(T value) builder) {
+    return ValueListenableBuilder<T>(
+      valueListenable: this,
+      builder: (context, value, child) {
+        return builder(value);
+      },
+    );
+  }
+
+  Widget obxc(Widget Function(BuildContext context, T value) builder) {
+    return ValueListenableBuilder<T>(
+      valueListenable: this,
+      builder: (context, value, child) {
+        return builder(context, value);
+      },
+    );
+  }
+}

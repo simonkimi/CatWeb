@@ -16,10 +16,13 @@ enum _MenuSelect {
   delete,
 }
 
-class RulesPageManager extends GetView<RulesEditController> {
-  const RulesPageManager({
+class RulesPageManager extends StatelessWidget {
+  const RulesPageManager(
+    this.controller, {
     super.key,
   });
+
+  final RulesEditController controller;
 
   SiteBlueMap get blueprint => controller.blueprint;
 

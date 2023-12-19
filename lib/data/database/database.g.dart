@@ -82,9 +82,10 @@ class $WebTableTable extends WebTable
         loginCookies
       ];
   @override
-  String get aliasedName => _alias ?? 'web_table';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'web_table';
+  String get actualTableName => $name;
+  static const String $name = 'web_table';
   @override
   VerificationContext validateIntegrity(Insertable<WebTableData> instance,
       {bool isInserting = false}) {
@@ -441,9 +442,10 @@ class $ReaderHistoryTableTable extends ReaderHistoryTable
   @override
   List<GeneratedColumn> get $columns => [id, uuid, idCode, pageIndex];
   @override
-  String get aliasedName => _alias ?? 'reader_history_table';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'reader_history_table';
+  String get actualTableName => $name;
+  static const String $name = 'reader_history_table';
   @override
   VerificationContext validateIntegrity(
       Insertable<ReaderHistoryTableData> instance,
@@ -681,9 +683,10 @@ class $CookieJarTableTable extends CookieJarTable
   @override
   List<GeneratedColumn> get $columns => [webUuid, key, value];
   @override
-  String get aliasedName => _alias ?? 'cookie_jar_table';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'cookie_jar_table';
+  String get actualTableName => $name;
+  static const String $name = 'cookie_jar_table';
   @override
   VerificationContext validateIntegrity(Insertable<CookieJarTableData> instance,
       {bool isInserting = false}) {

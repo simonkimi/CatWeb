@@ -3,6 +3,7 @@ import 'dart:core';
 import 'dart:math' as math;
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/navigator.dart';
 
 import 'package:flutter/material.dart';
 
@@ -96,16 +97,6 @@ extension AnimationControllerUtils on AnimationController {
   bool get isEnd => value == 1.0;
 }
 
-extension THas<T> on T {
-  T? has(bool Function()? has) => (has?.call() ?? false) ? this : null;
-}
-
-extension UnWrap on core.double {
-  double get nan2zero => isNaN ? 0 : this;
-
-  double? get nan2null => isNaN ? null : this;
-}
-
 T? iterableMax<T extends num>(Iterable<T> iter) {
   if (iter.isEmpty) return null;
   return iter.reduce(math.max);
@@ -119,6 +110,5 @@ T? iterableMin<T extends num>(Iterable<T> iter) {
 extension EnvString on String {
   String env(SiteEnvStore env) => env.apply(this);
 
-  String globalEnv() =>
-      Get.find<SiteService>().website.globalEnv.apply(this);
+  String globalEnv() => get<SiteService>().website.globalEnv.apply(this);
 }

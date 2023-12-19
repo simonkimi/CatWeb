@@ -1,5 +1,6 @@
 import 'package:catweb/data/models/site_model/parser/field.dart';
-import 'package:get/get.dart';
+import 'package:catweb/utils/obs_helper.dart';
+import 'package:flutter/cupertino.dart';
 
 enum SelectorType {
   self('self'),
@@ -31,15 +32,15 @@ enum SelectorFunctionType {
 }
 
 class Selector {
-  final RxString selector;
+  final ValueNotifier<String> selector;
 
-  final Rx<SelectorType> type;
-  final Rx<SelectorFunctionType> function;
-  final RxString param;
-  final RxString regex;
-  final RxString replace;
+  final ValueNotifier<SelectorType> type;
+  final ValueNotifier<SelectorFunctionType> function;
+  final ValueNotifier<String> param;
+  final ValueNotifier<String> regex;
+  final ValueNotifier<String> replace;
   final ScriptField script;
-  final RxString defaultValue;
+  final ValueNotifier<String> defaultValue;
 
   Selector({
     String selector = '',

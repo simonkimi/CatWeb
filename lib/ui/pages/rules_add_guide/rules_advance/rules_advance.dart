@@ -4,14 +4,17 @@ import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
-import 'package:get/get.dart';
 
-class RulesAdvance extends GetWidget<RulesEditController> {
-  const RulesAdvance({
+class RulesAdvance extends StatelessWidget {
+  const RulesAdvance(
+    this.controller, {
     super.key,
   });
+
+  final RulesEditController controller;
 
   SiteBlueMap get model => controller.blueprint;
 
@@ -35,21 +38,26 @@ class RulesAdvance extends GetWidget<RulesEditController> {
           ),
           child: Column(
             children: [
-              Obx(() => Column(
-                    children: model.headers.asMap().entries.map((e) {
-                      return CupertinoDeletableTile(
-                          index: e.key,
-                          controller: headerController,
-                          text: '${e.value.reg}: ${e.value.value}',
-                          onDelete: (index) {
-                            model.headers.removeAt(index);
-                          },
-                          onTap: () async {
-                            var newReg = await _editRegField(context, e.value);
-                            model.headers[e.key] = newReg;
-                          });
-                    }).toList(),
-                  )),
+              ListenableBuilder(
+                  listenable: model.headers,
+                  builder: (context, child) {
+                    return Column(
+                      children: model.headers.asMap().entries.map((e) {
+                        return CupertinoDeletableTile(
+                            index: e.key,
+                            controller: headerController,
+                            text: '${e.value.reg}: ${e.value.value}',
+                            onDelete: (index) {
+                              model.headers.removeAt(index);
+                            },
+                            onTap: () async {
+                              var newReg =
+                                  await _editRegField(context, e.value);
+                              model.headers[e.key] = newReg;
+                            });
+                      }).toList(),
+                    );
+                  }),
               CupertinoClassicalListTile(
                 icon: Icon(
                   CupertinoIcons.add_circled_solid,
@@ -76,22 +84,27 @@ class RulesAdvance extends GetWidget<RulesEditController> {
           ),
           child: Column(
             children: [
-              Obx(() => Column(
-                children: model.cookies.asMap().entries.map((e) {
-                  return CupertinoDeletableTile(
-                      index: e.key,
-                      controller: cookieController,
-                      text:
-                      '${e.value.reg.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
-                      onDelete: (index) {
-                        model.cookies.removeAt(index);
-                      },
-                      onTap: () async {
-                        var newReg = await _editRegField(context, e.value);
-                        model.cookies[e.key] = newReg;
-                      });
-                }).toList(),
-              )),
+              ListenableBuilder(
+                  listenable: model.cookies,
+                  builder: (context, child) {
+                    return Column(
+                      children: model.cookies.asMap().entries.map((e) {
+                        return CupertinoDeletableTile(
+                            index: e.key,
+                            controller: cookieController,
+                            text:
+                                '${e.value.reg.value.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
+                            onDelete: (index) {
+                              model.cookies.removeAt(index);
+                            },
+                            onTap: () async {
+                              var newReg =
+                                  await _editRegField(context, e.value);
+                              model.cookies[e.key] = newReg;
+                            });
+                      }).toList(),
+                    );
+                  }),
               CupertinoClassicalListTile(
                 icon: Icon(
                   CupertinoIcons.add_circled_solid,
@@ -118,7 +131,7 @@ class RulesAdvance extends GetWidget<RulesEditController> {
             actions: [
               CupertinoButton(
                 child: Text(I.of(context).positive),
-                onPressed: () => Get.back(),
+                onPressed: () => context.pop(),
               )
             ],
             content: Column(

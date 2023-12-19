@@ -48,7 +48,7 @@ class DioImageProvider extends ImageProvider<DioImageProvider> {
         cumulativeBytesLoaded: r,
         expectedTotalBytes: t,
       )),
-      options: Get.find<SettingService>()
+      options: get<SettingService>()
           .imageCacheOption
           .toOptions()
           .copyWith(responseType: ResponseType.bytes),

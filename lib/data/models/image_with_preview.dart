@@ -6,8 +6,8 @@ import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 
+import '../../navigator.dart';
 import '../loaders/load_more_mixin.dart';
 import '../loaders/load_more_model.dart';
 
@@ -26,8 +26,8 @@ abstract class ImageWithPreviewModel<T>
   String? get idCode;
 
   /// 大图的数据
-  Rx<ImageReaderResult?> imageModel = Rx(null);
-  Rx<DioImageProvider?> imageProvider = Rx(null);
+  ValueNotifier<ImageReaderResult?> imageModel = ValueNotifier<ImageReaderResult?>(null);
+  ValueNotifier<DioImageProvider?> imageProvider = ValueNotifier<DioImageProvider?>(null);
 
   /// 加载模型
   Future<void> loadReaderModel({
@@ -37,8 +37,8 @@ abstract class ImageWithPreviewModel<T>
     try {
       if (imageModel.value != null || state.isLoading) return;
       loadStart();
-      final url = blueprint.url.isEmpty ? idCode! : blueprint.url.value;
-      final global = Get.find<SiteService>();
+      final url = blueprint.url.value.isEmpty ? idCode! : blueprint.url.value;
+      final global = get<SiteService>();
       final env = localEnv.clone()..['idCode'] = idCode!;
       imageModel.value = await global.website.client.getReadImage(
         url: url,

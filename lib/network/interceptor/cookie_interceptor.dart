@@ -25,7 +25,7 @@ class HeaderCookieInterceptor extends Interceptor {
     final cookie = _parseCookies(baseCookies);
 
     // Cookies
-    for (final regField in model.cookies) {
+    for (final regField in model.cookies.value) {
       if (regField.reg.value.isEmpty ||
           RegExp(regField.reg.value).hasMatch(uri)) {
         cookie.addEntries(_parseCookies(regField.value.value).entries);
@@ -50,7 +50,7 @@ class HeaderCookieInterceptor extends Interceptor {
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0';
 
     // Headers
-    for (final regField in model.headers) {
+    for (final regField in model.headers.value) {
       if (RegExp(regField.reg.value).hasMatch(uri)) {
         options.headers.addAll(_parseHeaders(regField.value.value));
       }

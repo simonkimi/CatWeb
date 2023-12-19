@@ -1,8 +1,8 @@
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
+import 'package:catweb/navigator.dart';
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 
 import 'image_loader.dart';
 
@@ -12,8 +12,8 @@ class ImageListConcurrency {
     Dio? dio,
     int? concurrency,
   })  : concurrency =
-            concurrency ?? Get.find<SettingService>().concurrencyCount.value,
-        dio = dio ?? Get.find<SiteService>().website.client.imageDio;
+            concurrency ?? get<SettingService>().concurrencyCount.value,
+        dio = dio ?? get<SiteService>().website.client.imageDio;
 
   final Dio dio;
   final int concurrency;

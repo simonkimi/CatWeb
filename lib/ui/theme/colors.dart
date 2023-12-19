@@ -46,9 +46,6 @@ class FixColor {
   );
 }
 
-bool isDarkMode(BuildContext context) =>
-    MediaQuery.of(context).platformBrightness == Brightness.dark;
-
 extension ColorHelper on Color {
   bool get isDark => red * 0.299 + green * 0.578 + blue * 0.114 <= 192;
 }

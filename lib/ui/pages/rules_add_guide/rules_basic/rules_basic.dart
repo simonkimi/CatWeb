@@ -4,12 +4,14 @@ import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class RulesBasic extends GetWidget<RulesEditController> {
-  const RulesBasic({
+class RulesBasic extends StatelessWidget {
+  const RulesBasic(
+    this.controller, {
     super.key,
   });
+
+  final RulesEditController controller;
 
   SiteBlueMap get blueprint => controller.blueprint;
 

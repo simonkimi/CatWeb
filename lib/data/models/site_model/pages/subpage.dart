@@ -1,5 +1,6 @@
 import 'package:catweb/data/models/site_model/parser/field.dart';
-import 'package:get/get.dart';
+import 'package:catweb/utils/obs_helper.dart';
+import 'package:flutter/cupertino.dart';
 
 class TemplateListSubPage {
   TemplateListSubPage({
@@ -10,9 +11,9 @@ class TemplateListSubPage {
         key = key.obs,
         value = value.obs;
 
-  final RxString name;
-  final RxString key;
-  final RxString value;
+  final ValueNotifier<String> name;
+  final ValueNotifier<String> key;
+  final ValueNotifier<String> value;
 
   Map<String, dynamic> toJson() => {
         'name': name.value,
@@ -62,11 +63,11 @@ class TemplateListFilterItem {
         type = type.obs,
         color = color ?? ColorField();
 
-  final RxString name;
-  final RxString key;
-  final RxString value;
+  final ValueNotifier<String> name;
+  final ValueNotifier<String> key;
+  final ValueNotifier<String> value;
   final ColorField color;
-  final Rx<FilterType> type;
+  final ValueNotifier<FilterType> type;
 
   Map<String, dynamic> toJson() => {
         'name': name.value,

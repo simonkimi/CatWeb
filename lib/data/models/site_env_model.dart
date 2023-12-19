@@ -133,5 +133,5 @@ class SiteEnvStore {
 //   String env(SiteEnvModel env) => env.replace(this);
 //
 //   String globalEnv() =>
-//       Get.find<SiteService>().website.globalEnv.replace(this);
+//       get<SiteService>().website.globalEnv.replace(this);
 // }

@@ -77,11 +77,11 @@ class GalleryPreviewController extends LoadMoreLoader<DetailParserResult,
   final SiteEnvStore localEnv;
 
   // 信息
-  final Rx<DetailParserResult?> _detailModel;
+  final ValueNotifier<DetailParserResult?> _detailModel;
   DetailBaseData? baseData;
-  final Rx<int> lastReadIndex = 0.obs;
+  final ValueNotifier<int> lastReadIndex = 0.obs;
 
-  final global = Get.find<SiteService>();
+  final global = get<SiteService>();
 
   @override
   final previewConcurrency = ImageListConcurrency(); // 预览图片内容的加载器
@@ -92,7 +92,7 @@ class GalleryPreviewController extends LoadMoreLoader<DetailParserResult,
 
   /// 从数据库中取出上次加载进度
   Future<void> loadLastRead() async {
-    final db = Get.find<DbService>().readerHistoryDao;
+    final db = get<DbService>().readerHistoryDao;
     final entity = await db.get(uuid: blueprint.uuid, idCode: idCode);
     if (entity != null) {
       lastReadIndex.value = entity.pageIndex;
@@ -174,7 +174,7 @@ class GalleryPreviewController extends LoadMoreLoader<DetailParserResult,
 
   @override
   Future<void> onReaderIndexChanged(int index) async {
-    final db = Get.find<DbService>().readerHistoryDao;
+    final db = get<DbService>().readerHistoryDao;
     final entity = await db.get(
       uuid: blueprint.uuid,
       idCode: idCode,

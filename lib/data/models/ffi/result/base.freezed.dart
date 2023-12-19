@@ -98,11 +98,11 @@ class _$ImageResultCopyWithImpl<$Res, $Val extends ImageResult>
 }
 
 /// @nodoc
-abstract class _$$_ImageResultCopyWith<$Res>
+abstract class _$$ImageResultImplCopyWith<$Res>
     implements $ImageResultCopyWith<$Res> {
-  factory _$$_ImageResultCopyWith(
-          _$_ImageResult value, $Res Function(_$_ImageResult) then) =
-      __$$_ImageResultCopyWithImpl<$Res>;
+  factory _$$ImageResultImplCopyWith(
+          _$ImageResultImpl value, $Res Function(_$ImageResultImpl) then) =
+      __$$ImageResultImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -115,11 +115,11 @@ abstract class _$$_ImageResultCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ImageResultCopyWithImpl<$Res>
-    extends _$ImageResultCopyWithImpl<$Res, _$_ImageResult>
-    implements _$$_ImageResultCopyWith<$Res> {
-  __$$_ImageResultCopyWithImpl(
-      _$_ImageResult _value, $Res Function(_$_ImageResult) _then)
+class __$$ImageResultImplCopyWithImpl<$Res>
+    extends _$ImageResultCopyWithImpl<$Res, _$ImageResultImpl>
+    implements _$$ImageResultImplCopyWith<$Res> {
+  __$$ImageResultImplCopyWithImpl(
+      _$ImageResultImpl _value, $Res Function(_$ImageResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -132,7 +132,7 @@ class __$$_ImageResultCopyWithImpl<$Res>
     Object? x = freezed,
     Object? y = freezed,
   }) {
-    return _then(_$_ImageResult(
+    return _then(_$ImageResultImpl(
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -163,12 +163,12 @@ class __$$_ImageResultCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ImageResult with DiagnosticableTreeMixin implements _ImageResult {
-  const _$_ImageResult(
+class _$ImageResultImpl with DiagnosticableTreeMixin implements _ImageResult {
+  const _$ImageResultImpl(
       {this.url, this.cacheKey, this.width, this.height, this.x, this.y});
 
-  factory _$_ImageResult.fromJson(Map<String, dynamic> json) =>
-      _$$_ImageResultFromJson(json);
+  factory _$ImageResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageResultImplFromJson(json);
 
   @override
   final String? url;
@@ -202,10 +202,10 @@ class _$_ImageResult with DiagnosticableTreeMixin implements _ImageResult {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageResult &&
+            other is _$ImageResultImpl &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.cacheKey, cacheKey) ||
                 other.cacheKey == cacheKey) &&
@@ -223,12 +223,12 @@ class _$_ImageResult with DiagnosticableTreeMixin implements _ImageResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImageResultCopyWith<_$_ImageResult> get copyWith =>
-      __$$_ImageResultCopyWithImpl<_$_ImageResult>(this, _$identity);
+  _$$ImageResultImplCopyWith<_$ImageResultImpl> get copyWith =>
+      __$$ImageResultImplCopyWithImpl<_$ImageResultImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ImageResultToJson(
+    return _$$ImageResultImplToJson(
       this,
     );
   }
@@ -241,10 +241,10 @@ abstract class _ImageResult implements ImageResult {
       final double? width,
       final double? height,
       final double? x,
-      final double? y}) = _$_ImageResult;
+      final double? y}) = _$ImageResultImpl;
 
   factory _ImageResult.fromJson(Map<String, dynamic> json) =
-      _$_ImageResult.fromJson;
+      _$ImageResultImpl.fromJson;
 
   @override
   String? get url;
@@ -260,7 +260,7 @@ abstract class _ImageResult implements ImageResult {
   double? get y;
   @override
   @JsonKey(ignore: true)
-  _$$_ImageResultCopyWith<_$_ImageResult> get copyWith =>
+  _$$ImageResultImplCopyWith<_$ImageResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -355,11 +355,11 @@ class _$CommentResultCopyWithImpl<$Res, $Val extends CommentResult>
 }
 
 /// @nodoc
-abstract class _$$_CommentResultCopyWith<$Res>
+abstract class _$$CommentResultImplCopyWith<$Res>
     implements $CommentResultCopyWith<$Res> {
-  factory _$$_CommentResultCopyWith(
-          _$_CommentResult value, $Res Function(_$_CommentResult) then) =
-      __$$_CommentResultCopyWithImpl<$Res>;
+  factory _$$CommentResultImplCopyWith(
+          _$CommentResultImpl value, $Res Function(_$CommentResultImpl) then) =
+      __$$CommentResultImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -374,11 +374,11 @@ abstract class _$$_CommentResultCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CommentResultCopyWithImpl<$Res>
-    extends _$CommentResultCopyWithImpl<$Res, _$_CommentResult>
-    implements _$$_CommentResultCopyWith<$Res> {
-  __$$_CommentResultCopyWithImpl(
-      _$_CommentResult _value, $Res Function(_$_CommentResult) _then)
+class __$$CommentResultImplCopyWithImpl<$Res>
+    extends _$CommentResultCopyWithImpl<$Res, _$CommentResultImpl>
+    implements _$$CommentResultImplCopyWith<$Res> {
+  __$$CommentResultImplCopyWithImpl(
+      _$CommentResultImpl _value, $Res Function(_$CommentResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -390,7 +390,7 @@ class __$$_CommentResultCopyWithImpl<$Res>
     Object? score = freezed,
     Object? avatar = freezed,
   }) {
-    return _then(_$_CommentResult(
+    return _then(_$CommentResultImpl(
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -417,12 +417,14 @@ class __$$_CommentResultCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CommentResult with DiagnosticableTreeMixin implements _CommentResult {
-  const _$_CommentResult(
+class _$CommentResultImpl
+    with DiagnosticableTreeMixin
+    implements _CommentResult {
+  const _$CommentResultImpl(
       {this.username, this.content, this.time, this.score, this.avatar});
 
-  factory _$_CommentResult.fromJson(Map<String, dynamic> json) =>
-      _$$_CommentResultFromJson(json);
+  factory _$CommentResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CommentResultImplFromJson(json);
 
   @override
   final String? username;
@@ -453,10 +455,10 @@ class _$_CommentResult with DiagnosticableTreeMixin implements _CommentResult {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CommentResult &&
+            other is _$CommentResultImpl &&
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.content, content) || other.content == content) &&
@@ -473,12 +475,12 @@ class _$_CommentResult with DiagnosticableTreeMixin implements _CommentResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CommentResultCopyWith<_$_CommentResult> get copyWith =>
-      __$$_CommentResultCopyWithImpl<_$_CommentResult>(this, _$identity);
+  _$$CommentResultImplCopyWith<_$CommentResultImpl> get copyWith =>
+      __$$CommentResultImplCopyWithImpl<_$CommentResultImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CommentResultToJson(
+    return _$$CommentResultImplToJson(
       this,
     );
   }
@@ -490,10 +492,10 @@ abstract class _CommentResult implements CommentResult {
       final String? content,
       final String? time,
       final String? score,
-      final ImageResult? avatar}) = _$_CommentResult;
+      final ImageResult? avatar}) = _$CommentResultImpl;
 
   factory _CommentResult.fromJson(Map<String, dynamic> json) =
-      _$_CommentResult.fromJson;
+      _$CommentResultImpl.fromJson;
 
   @override
   String? get username;
@@ -507,7 +509,7 @@ abstract class _CommentResult implements CommentResult {
   ImageResult? get avatar;
   @override
   @JsonKey(ignore: true)
-  _$$_CommentResultCopyWith<_$_CommentResult> get copyWith =>
+  _$$CommentResultImplCopyWith<_$CommentResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -570,21 +572,22 @@ class _$TagResultCopyWithImpl<$Res, $Val extends TagResult>
 }
 
 /// @nodoc
-abstract class _$$_TagResultCopyWith<$Res> implements $TagResultCopyWith<$Res> {
-  factory _$$_TagResultCopyWith(
-          _$_TagResult value, $Res Function(_$_TagResult) then) =
-      __$$_TagResultCopyWithImpl<$Res>;
+abstract class _$$TagResultImplCopyWith<$Res>
+    implements $TagResultCopyWith<$Res> {
+  factory _$$TagResultImplCopyWith(
+          _$TagResultImpl value, $Res Function(_$TagResultImpl) then) =
+      __$$TagResultImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? text, String? color, String? category});
 }
 
 /// @nodoc
-class __$$_TagResultCopyWithImpl<$Res>
-    extends _$TagResultCopyWithImpl<$Res, _$_TagResult>
-    implements _$$_TagResultCopyWith<$Res> {
-  __$$_TagResultCopyWithImpl(
-      _$_TagResult _value, $Res Function(_$_TagResult) _then)
+class __$$TagResultImplCopyWithImpl<$Res>
+    extends _$TagResultCopyWithImpl<$Res, _$TagResultImpl>
+    implements _$$TagResultImplCopyWith<$Res> {
+  __$$TagResultImplCopyWithImpl(
+      _$TagResultImpl _value, $Res Function(_$TagResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -594,7 +597,7 @@ class __$$_TagResultCopyWithImpl<$Res>
     Object? color = freezed,
     Object? category = freezed,
   }) {
-    return _then(_$_TagResult(
+    return _then(_$TagResultImpl(
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -613,11 +616,11 @@ class __$$_TagResultCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TagResult with DiagnosticableTreeMixin implements _TagResult {
-  const _$_TagResult({this.text, this.color, this.category});
+class _$TagResultImpl with DiagnosticableTreeMixin implements _TagResult {
+  const _$TagResultImpl({this.text, this.color, this.category});
 
-  factory _$_TagResult.fromJson(Map<String, dynamic> json) =>
-      _$$_TagResultFromJson(json);
+  factory _$TagResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TagResultImplFromJson(json);
 
   @override
   final String? text;
@@ -642,10 +645,10 @@ class _$_TagResult with DiagnosticableTreeMixin implements _TagResult {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TagResult &&
+            other is _$TagResultImpl &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.category, category) ||
@@ -659,12 +662,12 @@ class _$_TagResult with DiagnosticableTreeMixin implements _TagResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TagResultCopyWith<_$_TagResult> get copyWith =>
-      __$$_TagResultCopyWithImpl<_$_TagResult>(this, _$identity);
+  _$$TagResultImplCopyWith<_$TagResultImpl> get copyWith =>
+      __$$TagResultImplCopyWithImpl<_$TagResultImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TagResultToJson(
+    return _$$TagResultImplToJson(
       this,
     );
   }
@@ -674,10 +677,10 @@ abstract class _TagResult implements TagResult {
   const factory _TagResult(
       {final String? text,
       final String? color,
-      final String? category}) = _$_TagResult;
+      final String? category}) = _$TagResultImpl;
 
   factory _TagResult.fromJson(Map<String, dynamic> json) =
-      _$_TagResult.fromJson;
+      _$TagResultImpl.fromJson;
 
   @override
   String? get text;
@@ -687,7 +690,7 @@ abstract class _TagResult implements TagResult {
   String? get category;
   @override
   @JsonKey(ignore: true)
-  _$$_TagResultCopyWith<_$_TagResult> get copyWith =>
+  _$$TagResultImplCopyWith<_$TagResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -750,21 +753,22 @@ class _$EnvResultCopyWithImpl<$Res, $Val extends EnvResult>
 }
 
 /// @nodoc
-abstract class _$$_EnvResultCopyWith<$Res> implements $EnvResultCopyWith<$Res> {
-  factory _$$_EnvResultCopyWith(
-          _$_EnvResult value, $Res Function(_$_EnvResult) then) =
-      __$$_EnvResultCopyWithImpl<$Res>;
+abstract class _$$EnvResultImplCopyWith<$Res>
+    implements $EnvResultCopyWith<$Res> {
+  factory _$$EnvResultImplCopyWith(
+          _$EnvResultImpl value, $Res Function(_$EnvResultImpl) then) =
+      __$$EnvResultImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, bool? global, String? value});
 }
 
 /// @nodoc
-class __$$_EnvResultCopyWithImpl<$Res>
-    extends _$EnvResultCopyWithImpl<$Res, _$_EnvResult>
-    implements _$$_EnvResultCopyWith<$Res> {
-  __$$_EnvResultCopyWithImpl(
-      _$_EnvResult _value, $Res Function(_$_EnvResult) _then)
+class __$$EnvResultImplCopyWithImpl<$Res>
+    extends _$EnvResultCopyWithImpl<$Res, _$EnvResultImpl>
+    implements _$$EnvResultImplCopyWith<$Res> {
+  __$$EnvResultImplCopyWithImpl(
+      _$EnvResultImpl _value, $Res Function(_$EnvResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -774,7 +778,7 @@ class __$$_EnvResultCopyWithImpl<$Res>
     Object? global = freezed,
     Object? value = freezed,
   }) {
-    return _then(_$_EnvResult(
+    return _then(_$EnvResultImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -793,11 +797,11 @@ class __$$_EnvResultCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_EnvResult with DiagnosticableTreeMixin implements _EnvResult {
-  const _$_EnvResult({this.id, this.global, this.value});
+class _$EnvResultImpl with DiagnosticableTreeMixin implements _EnvResult {
+  const _$EnvResultImpl({this.id, this.global, this.value});
 
-  factory _$_EnvResult.fromJson(Map<String, dynamic> json) =>
-      _$$_EnvResultFromJson(json);
+  factory _$EnvResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EnvResultImplFromJson(json);
 
   @override
   final String? id;
@@ -822,10 +826,10 @@ class _$_EnvResult with DiagnosticableTreeMixin implements _EnvResult {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_EnvResult &&
+            other is _$EnvResultImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.global, global) || other.global == global) &&
             (identical(other.value, value) || other.value == value));
@@ -838,12 +842,12 @@ class _$_EnvResult with DiagnosticableTreeMixin implements _EnvResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EnvResultCopyWith<_$_EnvResult> get copyWith =>
-      __$$_EnvResultCopyWithImpl<_$_EnvResult>(this, _$identity);
+  _$$EnvResultImplCopyWith<_$EnvResultImpl> get copyWith =>
+      __$$EnvResultImplCopyWithImpl<_$EnvResultImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_EnvResultToJson(
+    return _$$EnvResultImplToJson(
       this,
     );
   }
@@ -853,10 +857,10 @@ abstract class _EnvResult implements EnvResult {
   const factory _EnvResult(
       {final String? id,
       final bool? global,
-      final String? value}) = _$_EnvResult;
+      final String? value}) = _$EnvResultImpl;
 
   factory _EnvResult.fromJson(Map<String, dynamic> json) =
-      _$_EnvResult.fromJson;
+      _$EnvResultImpl.fromJson;
 
   @override
   String? get id;
@@ -866,7 +870,7 @@ abstract class _EnvResult implements EnvResult {
   String? get value;
   @override
   @JsonKey(ignore: true)
-  _$$_EnvResultCopyWith<_$_EnvResult> get copyWith =>
+  _$$EnvResultImplCopyWith<_$EnvResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -924,22 +928,22 @@ class _$ParserErrorCopyWithImpl<$Res, $Val extends ParserError>
 }
 
 /// @nodoc
-abstract class _$$_ParserErrorCopyWith<$Res>
+abstract class _$$ParserErrorImplCopyWith<$Res>
     implements $ParserErrorCopyWith<$Res> {
-  factory _$$_ParserErrorCopyWith(
-          _$_ParserError value, $Res Function(_$_ParserError) then) =
-      __$$_ParserErrorCopyWithImpl<$Res>;
+  factory _$$ParserErrorImplCopyWith(
+          _$ParserErrorImpl value, $Res Function(_$ParserErrorImpl) then) =
+      __$$ParserErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int code, String message});
 }
 
 /// @nodoc
-class __$$_ParserErrorCopyWithImpl<$Res>
-    extends _$ParserErrorCopyWithImpl<$Res, _$_ParserError>
-    implements _$$_ParserErrorCopyWith<$Res> {
-  __$$_ParserErrorCopyWithImpl(
-      _$_ParserError _value, $Res Function(_$_ParserError) _then)
+class __$$ParserErrorImplCopyWithImpl<$Res>
+    extends _$ParserErrorCopyWithImpl<$Res, _$ParserErrorImpl>
+    implements _$$ParserErrorImplCopyWith<$Res> {
+  __$$ParserErrorImplCopyWithImpl(
+      _$ParserErrorImpl _value, $Res Function(_$ParserErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -948,7 +952,7 @@ class __$$_ParserErrorCopyWithImpl<$Res>
     Object? code = null,
     Object? message = null,
   }) {
-    return _then(_$_ParserError(
+    return _then(_$ParserErrorImpl(
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -963,11 +967,11 @@ class __$$_ParserErrorCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ParserError with DiagnosticableTreeMixin implements _ParserError {
-  const _$_ParserError({required this.code, required this.message});
+class _$ParserErrorImpl with DiagnosticableTreeMixin implements _ParserError {
+  const _$ParserErrorImpl({required this.code, required this.message});
 
-  factory _$_ParserError.fromJson(Map<String, dynamic> json) =>
-      _$$_ParserErrorFromJson(json);
+  factory _$ParserErrorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ParserErrorImplFromJson(json);
 
   @override
   final int code;
@@ -989,10 +993,10 @@ class _$_ParserError with DiagnosticableTreeMixin implements _ParserError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ParserError &&
+            other is _$ParserErrorImpl &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.message, message) || other.message == message));
   }
@@ -1004,12 +1008,12 @@ class _$_ParserError with DiagnosticableTreeMixin implements _ParserError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ParserErrorCopyWith<_$_ParserError> get copyWith =>
-      __$$_ParserErrorCopyWithImpl<_$_ParserError>(this, _$identity);
+  _$$ParserErrorImplCopyWith<_$ParserErrorImpl> get copyWith =>
+      __$$ParserErrorImplCopyWithImpl<_$ParserErrorImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ParserErrorToJson(
+    return _$$ParserErrorImplToJson(
       this,
     );
   }
@@ -1018,10 +1022,10 @@ class _$_ParserError with DiagnosticableTreeMixin implements _ParserError {
 abstract class _ParserError implements ParserError {
   const factory _ParserError(
       {required final int code,
-      required final String message}) = _$_ParserError;
+      required final String message}) = _$ParserErrorImpl;
 
   factory _ParserError.fromJson(Map<String, dynamic> json) =
-      _$_ParserError.fromJson;
+      _$ParserErrorImpl.fromJson;
 
   @override
   int get code;
@@ -1029,6 +1033,6 @@ abstract class _ParserError implements ParserError {
   String get message;
   @override
   @JsonKey(ignore: true)
-  _$$_ParserErrorCopyWith<_$_ParserError> get copyWith =>
+  _$$ParserErrorImplCopyWith<_$ParserErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

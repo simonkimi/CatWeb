@@ -20,9 +20,9 @@ class ImagePageController {
   final listController = ItemScrollController();
   final listPositionsListener = ItemPositionsListener.create();
 
-  final settings = Get.find<SettingService>();
+  final settings = get<SettingService>();
 
-  final Rx<int> _currentPage;
+  final ValueNotifier<int> _currentPage;
 
   var _isForwardDirection = 0;
 
@@ -166,7 +166,7 @@ class ImagePageController {
 
   int get currentPage => _currentPage.value;
 
-  Rx<int> get rxPage => _currentPage;
+  ValueNotifier<int> get rxPage => _currentPage;
 
   bool get isForwardDirection => _isForwardDirection >= 0;
 }

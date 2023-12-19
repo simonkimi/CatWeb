@@ -1,5 +1,6 @@
 import 'package:catweb/data/models/site_model/pages/template.dart';
-import 'package:get/get.dart';
+import 'package:catweb/utils/obs_helper.dart';
+import 'package:flutter/cupertino.dart';
 
 class TemplateGallery implements ITemplate {
   TemplateGallery({
@@ -7,7 +8,7 @@ class TemplateGallery implements ITemplate {
   })  : targetReader = targetReader.obs,
         type = TemplateType.gallery;
 
-  final RxString targetReader;
+  final ValueNotifier<String> targetReader;
   @override
   final TemplateType type;
 

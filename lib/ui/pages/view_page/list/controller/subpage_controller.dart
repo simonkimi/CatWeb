@@ -36,7 +36,7 @@ class FilterObx {
   final String key;
   final FilterType type;
 
-  final RxString value;
+  final ValueNotifier<String> value;
   final Color color;
 
   FilterObx copyWith() => FilterObx.from(this);
@@ -86,7 +86,7 @@ class SubListController extends LoadMoreLoader<
   final SitePage blueprint;
   final TemplateListSubPage? subPageModel;
   final SiteEnvStore localEnv;
-  final global = Get.find<SiteService>();
+  final global = get<SiteService>();
 
   late final filter = extra.filters.map((e) => FilterObx(e)).toList().obs;
   late final currentFilter = filter.map((e) => e.copyWith()).toList();

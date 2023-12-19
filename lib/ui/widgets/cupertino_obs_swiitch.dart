@@ -11,7 +11,7 @@ class CupertinoObxSwitch extends StatelessWidget {
     this.onChange,
   });
 
-  final RxBool value;
+  final ValueNotifier<bool> value;
   final double? scale;
   final FutureOr<bool> Function(bool value)? onChange;
 

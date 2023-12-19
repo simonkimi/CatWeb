@@ -2,7 +2,9 @@ import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/parser/field.dart';
 import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/utils/helper.dart';
-import 'package:get/get.dart';
+import 'package:catweb/utils/obs_helper.dart';
+import 'package:catweb/utils/rx_list.dart';
+import 'package:flutter/cupertino.dart';
 
 class SiteBlueMap {
   SiteBlueMap({
@@ -33,15 +35,15 @@ class SiteBlueMap {
         parserList = parserList.obs,
         pageList = pageList.obs;
 
-  final RxString name;
-  final RxString baseUrl;
-  final RxString loginUrl;
-  final RxString loginCookieReg;
-  final RxString loginCookieDescription;
-  final RxString version;
-  final RxString upgradeUrl;
-  final RxString flag;
-  final RxString readme;
+  final ValueNotifier<String> name;
+  final ValueNotifier<String> baseUrl;
+  final ValueNotifier<String> loginUrl;
+  final ValueNotifier<String> loginCookieReg;
+  final ValueNotifier<String> loginCookieDescription;
+  final ValueNotifier<String> version;
+  final ValueNotifier<String> upgradeUrl;
+  final ValueNotifier<String> flag;
+  final ValueNotifier<String> readme;
   final RxList<RegField> headers;
   final RxList<RegField> cookies;
   final RxList<IParserBase> parserList;
@@ -78,25 +80,21 @@ class SiteBlueMap {
       readme: json['readme'] ?? '',
       headers: (json['headers'] as List<dynamic>? ?? [])
           .map((e) => RegField.fromJson(e))
-          .toList()
-          .obs,
+          .toList(),
       cookies: (json['cookies'] as List<dynamic>? ?? [])
           .map((e) => RegField.fromJson(e))
-          .toList()
-          .obs,
+          .toList(),
       parserList: (json['parserList'] as List<dynamic>? ?? [])
           .map((e) => IParserBase.fromJson(e))
-          .toList()
-          .obs,
+          .toList(),
       pageList: (json['pageList'] as List<dynamic>? ?? [])
           .map((e) => SitePage.fromJson(e))
-          .toList()
-          .obs,
+          .toList(),
     );
   }
 
   bool containsFlag(String flag) {
-    for (final flag in this.flag.split('|')) {
+    for (final flag in this.flag.value.split('|')) {
       if (flag.toLowerCase() == flag.toLowerCase()) {
         return true;
       }

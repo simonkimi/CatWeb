@@ -10,9 +10,11 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/data/models/site_model/site_blue_map.dart';
+import 'package:catweb/navigator.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
 import 'package:catweb/utils/debug.dart';
+import 'package:catweb/utils/num_helper.dart';
 import 'package:catweb_parser/catweb_parser.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
@@ -21,7 +23,6 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:dio_http_formatter/dio_http_formatter.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
-import 'package:get/get.dart' hide Response;
 
 class FlagException implements Exception {
   final String message;
@@ -115,7 +116,7 @@ class NetClient {
 
     final result = ListParserResult.fromJson(jsonDecode(rsp));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    Get.find<SiteService>().website.updateGlobalEnv(result.envs);
+    get<SiteService>().website.updateGlobalEnv(result.envs);
     return result;
   }
 
@@ -126,7 +127,7 @@ class NetClient {
   }) async {
     final parser = blueMap.getParserById<DetailParser>(model.parserId.value);
 
-    final options = Get.find<SettingService>()
+    final options = get<SettingService>()
         .cacheOptions
         .copyWith(policy: CachePolicy.forceCache)
         .toOptions();
@@ -146,7 +147,7 @@ class NetClient {
 
     final result = DetailParserResult.fromJson(jsonDecode(parseRsp));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    Get.find<SiteService>().website.updateGlobalEnv(result.envs);
+    get<SiteService>().website.updateGlobalEnv(result.envs);
     return result;
   }
 
@@ -158,7 +159,7 @@ class NetClient {
     final parser =
         blueMap.getParserById<ImageReaderParser>(model.parserId.value);
 
-    final options = Get.find<SettingService>()
+    final options = get<SettingService>()
         .imageCacheOption
         .copyWith(policy: CachePolicy.forceCache)
         .toOptions();
@@ -178,7 +179,7 @@ class NetClient {
 
     final result = ImageReaderResult.fromJson(jsonDecode(parserRsq));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    Get.find<SiteService>().website.updateGlobalEnv(result.envs);
+    get<SiteService>().website.updateGlobalEnv(result.envs);
     return result;
   }
 
@@ -200,7 +201,7 @@ class NetClient {
 
     final result = AutoCompleteResult.fromJson(jsonDecode(parseRsp));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    Get.find<SiteService>().website.updateGlobalEnv(result.envs);
+    get<SiteService>().website.updateGlobalEnv(result.envs);
     return result;
   }
 }
@@ -218,12 +219,12 @@ Dio _buildDio({
     ..receiveTimeout = (5 * 60).seconds
     ..sendTimeout = 60.seconds;
 
-  if (model.baseUrl.isNotEmpty) {
+  if (model.baseUrl.value.isNotEmpty) {
     dio.options.baseUrl = model.baseUrl.value;
   }
 
   dio.transformer = EncodeTransformer();
-  final setting = Get.find<SettingService>();
+  final setting = get<SettingService>();
 
   dio.interceptors.add(CookieManager(cookieJar));
   dio.interceptors.add(HeaderCookieInterceptor(model: model, db: db));

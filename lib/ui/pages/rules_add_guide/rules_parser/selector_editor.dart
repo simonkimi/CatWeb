@@ -152,7 +152,7 @@ class _SelectorText extends StatelessWidget {
     this.multiline = false,
   }) : super(key: key);
 
-  final RxString value;
+  final ValueNotifier<String> value;
   final String prefix;
   final bool multiline;
 
@@ -189,7 +189,7 @@ class _SelectorSelectPopup<T> extends StatelessWidget {
     required this.value,
   }) : super(key: key);
 
-  final Rx<T> value;
+  final ValueNotifier<T> value;
   final String prefix;
   final List<SelectTileItem<T>> items;
   final String text;

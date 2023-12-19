@@ -1,7 +1,9 @@
 import 'package:catweb/data/models/site_model/pages/subpage.dart';
 import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/data/models/site_model/parser/field.dart';
-import 'package:get/get.dart';
+import 'package:catweb/utils/obs_helper.dart';
+import 'package:catweb/utils/rx_list.dart';
+import 'package:flutter/cupertino.dart';
 
 class TemplateList implements ITemplate {
   TemplateList({
@@ -23,13 +25,13 @@ class TemplateList implements ITemplate {
 
   @override
   final TemplateType type;
-  final RxString name;
+  final ValueNotifier<String> name;
   final RxList<TemplateListSubPage> subPages;
   final RxList<TemplateListFilterItem> filters;
   final ScriptField script;
-  final RxBool disableUnchanged;
-  final RxString targetItem;
-  final RxString targetAutoComplete;
+  final ValueNotifier<bool> disableUnchanged;
+  final ValueNotifier<String> targetItem;
+  final ValueNotifier<String> targetAutoComplete;
 
   @override
   Map<String, dynamic> toJson() {

@@ -1,14 +1,12 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/a11y-dark.dart';
 import 'package:flutter_highlight/themes/a11y-light.dart';
-import 'package:get/get.dart';
-
-import 'package:catweb/ui/theme/colors.dart';
 
 class JavaScriptEditor extends StatefulWidget {
   const JavaScriptEditor({
@@ -16,16 +14,16 @@ class JavaScriptEditor extends StatefulWidget {
     required this.script,
   });
 
-  final RxString script;
+  final ValueNotifier<String> script;
 
   @override
   State<JavaScriptEditor> createState() => _JavaScriptEditorState();
 }
 
 class _JavaScriptEditorState extends State<JavaScriptEditor> {
-  var isEdit = false;
+  var isEditor = false;
   late final TextEditingController inputController;
-  late var lastInput = widget.script.value;
+  late var currentScript = widget.script.value;
 
   @override
   void initState() {
@@ -35,20 +33,19 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        if (isEdit) {
+    return PopScope(
+      canPop: !isEditor,
+      onPopInvoked: (didPop) {
+        if (!didPop && isEditor) {
           setState(() {
-            isEdit = false;
+            isEditor = false;
           });
-          return false;
         }
-        return true;
       },
       child: CupertinoPageScaffold(
         navigationBar: _buildAppbar(context),
         child: SafeArea(
-          child: isEdit ? _buildInput(context) : _buildHighlightView(),
+          child: isEditor ? _buildInput(context) : _buildHighlightView(),
         ),
       ),
     );
@@ -58,7 +55,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
     return CupertinoNavigationBar(
       leading: CupertinoButton(
         onPressed: () {
-          Get.back();
+          Navigator.of(context).pop();
         },
         padding: EdgeInsets.zero,
         minSize: 0,
@@ -88,12 +85,12 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
           CupertinoButton(
             onPressed: () {
               setState(() {
-                isEdit = !isEdit;
+                isEditor = !isEditor;
               });
             },
             padding: EdgeInsets.zero,
             minSize: 0,
-            child: isEdit ? const Icon(Icons.check) : const Icon(Icons.edit),
+            child: isEditor ? const Icon(Icons.check) : const Icon(Icons.edit),
           ),
         ],
       ),
@@ -101,15 +98,19 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
   }
 
   Widget _buildHighlightView() {
-    return Obx(() => SizedBox(
-          width: double.infinity,
-          child: HighlightView(
-            widget.script.value,
-            language: 'javascript',
-            theme: isDarkMode(context) ? a11yDarkTheme : a11yLightTheme,
-            tabSize: 2,
-          ),
-        ));
+    return ValueListenableBuilder(
+        valueListenable: widget.script,
+        builder: (context, value, child) {
+          return SizedBox(
+            width: double.infinity,
+            child: HighlightView(
+              value,
+              language: 'javascript',
+              theme: context.isDarkMode ? a11yDarkTheme : a11yLightTheme,
+              tabSize: 2,
+            ),
+          );
+        });
   }
 
   void _onTextChange(String _) {
@@ -121,7 +122,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
 
     if (preText.isNotEmpty &&
         preText.codeUnits.last == 10 &&
-        inputController.text.length > lastInput.length) {
+        inputController.text.length > currentScript.length) {
       final reg = RegExp(r'[\n\r]');
       final preLines = reg.allMatches(preText).toList();
       final nextLines = reg.allMatches(nextText).toList();
@@ -163,7 +164,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
       );
     }
 
-    lastInput = inputController.text;
+    currentScript = inputController.text;
     widget.script.value = inputController.text;
   }
 

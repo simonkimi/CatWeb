@@ -1,6 +1,7 @@
 import 'package:catweb/data/models/site_model/pages/template.dart';
 import 'package:catweb/data/models/site_model/parser/field.dart';
-import 'package:get/get.dart';
+import 'package:catweb/utils/obs_helper.dart';
+import 'package:flutter/cupertino.dart';
 
 class TemplateAutoComplete implements ITemplate {
   TemplateAutoComplete({
@@ -14,8 +15,8 @@ class TemplateAutoComplete implements ITemplate {
 
   @override
   final TemplateType type;
-  final RxString splitChar;
-  final RxInt timeout;
+  final ValueNotifier<String> splitChar;
+  final ValueNotifier<int> timeout;
   final ScriptField script;
 
   @override

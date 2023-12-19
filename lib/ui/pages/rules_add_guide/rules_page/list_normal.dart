@@ -3,9 +3,9 @@ import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
-import 'package:get/get.dart';
 
 class ListNormalSubPage extends StatelessWidget {
   const ListNormalSubPage({
@@ -32,33 +32,39 @@ class ListNormalSubPage extends StatelessWidget {
                 color: CupertinoColors.separator.resolveFrom(context),
               )),
             ),
-            child: Obx(() => Column(
-              children: [
-                ...templateBase.subPages.asMap().entries.map((e) {
-                  return CupertinoDeletableTile(
-                      index: e.key,
-                      controller: cookieController,
-                      text:
-                      '${e.value.name} - { ${e.value.key}: ${e.value.value} }',
-                      onDelete: (index) {
-                        templateBase.subPages.removeAt(index);
-                      },
-                      onTap: () async {
-                        await _editSubPage(context, e.value);
-                      });
-                }),
-                CupertinoClassicalListTile(
-                  icon: Icon(
-                    CupertinoIcons.add_circled_solid,
-                    color: CupertinoColors.systemGreen.resolveFrom(context),
-                  ),
-                  text: I.of(context).add,
-                  onTap: () {
-                    templateBase.subPages.add(TemplateListSubPage());
-                  },
+            child: ListenableBuilder(
+              listenable: templateBase.subPages,
+              child: CupertinoClassicalListTile(
+                icon: Icon(
+                  CupertinoIcons.add_circled_solid,
+                  color: CupertinoColors.systemGreen.resolveFrom(context),
                 ),
-              ],
-            )),
+                text: I.of(context).add,
+                onTap: () {
+                  templateBase.subPages.add(TemplateListSubPage());
+                },
+              ),
+              builder: (context, child) {
+                return Column(
+                  children: [
+                    ...templateBase.subPages.asMap().entries.map((e) {
+                      return CupertinoDeletableTile(
+                          index: e.key,
+                          controller: cookieController,
+                          text:
+                              '${e.value.name} - { ${e.value.key}: ${e.value.value} }',
+                          onDelete: (index) {
+                            templateBase.subPages.removeAt(index);
+                          },
+                          onTap: () async {
+                            await _editSubPage(context, e.value);
+                          });
+                    }),
+                    child!,
+                  ],
+                );
+              },
+            ),
           )
         ],
       ),
@@ -77,7 +83,7 @@ class ListNormalSubPage extends StatelessWidget {
             actions: [
               CupertinoButton(
                 child: Text(I.of(context).positive),
-                onPressed: () => Get.back(),
+                onPressed: () => context.pop(),
               )
             ],
             content: Column(

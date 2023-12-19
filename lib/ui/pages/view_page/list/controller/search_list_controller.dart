@@ -16,7 +16,7 @@ class SearchListController {
   final Handler handler = Handler();
 
   final TextEditingController textController = TextEditingController();
-  final website = Get.find<SiteService>().website;
+  final website = get<SiteService>().website;
 
   late final SitePage? blueprint;
 

@@ -1,29 +1,52 @@
 import 'dart:ui';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/ui/pages/view_page/viewer_main.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'data/controller/db_service.dart';
+import 'data/controller/navigator_service.dart';
 import 'data/controller/setting_service.dart';
 import 'navigator.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const ProviderScope(child: MyApp()));
+Future<void> setup() async {
+  getIt.registerSingletonAsync(() async {
+    return SharedPreferences.getInstance();
+  });
+  getIt.registerSingletonAsync(() async {
+    final service = SettingService();
+    await service.init();
+    return service;
+  });
+  getIt.registerSingleton(() => DbService());
+  getIt.registerSingleton(() => NavigatorService());
+  getIt.registerSingletonAsync(() async {
+    final service = SiteService();
+    await service.init();
+    return service;
+  });
+  await getIt.allReady();
 }
 
-class MyApp extends ConsumerStatefulWidget {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setup();
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  ConsumerState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends ConsumerState with WidgetsBindingObserver {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   var _needBlur = false;
 
   @override
@@ -34,7 +57,7 @@ class _MyAppState extends ConsumerState with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (ref.read<SettingProvider>(settingProvider).blurWhenBackground.value) {
+    if (getIt.get<SettingService>().blurWhenBackground.value) {
       final newState = state != AppLifecycleState.resumed;
       if (newState != _needBlur) {
         setState(() {

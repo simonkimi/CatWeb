@@ -86,7 +86,7 @@ class ReaderLoaderController {
   Future<void> onIndexChanged(int index, bool isForward) async {
     readerIsForward = isForward;
     currentIndex = index;
-    final preloadCount = Get.find<SettingService>().preloadCount.value;
+    final preloadCount = get<SettingService>().preloadCount.value;
     final items = readerInfo.items.toList();
     final needLoadItem = List.generate(
             preloadCount + 1, // 加载预加载页面+1, e为index
