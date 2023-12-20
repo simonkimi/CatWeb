@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 extension WidgetWrap on Widget {
@@ -46,7 +47,7 @@ extension ListenableWrap on Listenable {
   }
 }
 
-extension ValueListenableWrap<T> on ValueNotifier<T> {
+extension ValueListenableWrap<T> on ValueListenable<T> {
   Widget obx(Widget Function(T value) builder) {
     return ValueListenableBuilder<T>(
       valueListenable: this,

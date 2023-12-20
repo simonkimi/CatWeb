@@ -40,54 +40,30 @@ class LoadListStatue {
 }
 
 mixin LoadListStateMixin {
-  final _state = LoadListStatue.idle().obs;
+  final state = LoadListStatue.idle().obs;
 
-  LoadListStatue get state => _state.value;
+  @protected
+  void stateLoadStart() => state.value = LoadListStatue.loading();
 
-  void stateLoadStart() => _state.value = LoadListStatue.loading();
+  @protected
+  void stateLoadNoData() => state.value = LoadListStatue.complete();
 
-  void stateLoadNoData() => _state.value = LoadListStatue.complete();
-
+  @protected
   void stateLoadComplete() =>
-      state.isRunning ? _state.value = LoadListStatue.idle() : null;
+      state.value.isRunning ? state.value = LoadListStatue.idle() : null;
 
+  @protected
   void stateLoadError(Exception error) {
     if (error is DioException && CancelToken.isCancel(error)) {
       return;
     }
-    _state.value = LoadListStatue.error(error);
+    state.value = LoadListStatue.error(error);
   }
 
-  void stateLoadRefresh() => _state.value = LoadListStatue.refresh();
+  @protected
+  void stateLoadRefresh() => state.value = LoadListStatue.refresh();
 
   String? get errorMessage => state.error?.toString();
-}
-
-class LoadStatue {
-  final bool isIdle;
-  final bool isLoading;
-  final bool isError;
-  final Exception? error;
-  final bool isComplete;
-
-  LoadStatue._({
-    this.isLoading = false,
-    this.isError = false,
-    this.isIdle = false,
-    this.isComplete = false,
-    this.error,
-  });
-
-  factory LoadStatue.idle() => LoadStatue._(isIdle: true);
-
-  factory LoadStatue.loading() => LoadStatue._(isLoading: true);
-
-  factory LoadStatue.error(Exception error) => LoadStatue._(
-        isError: true,
-        error: error,
-      );
-
-  factory LoadStatue.complete() => LoadStatue._(isComplete: true);
 }
 
 mixin LoadStateMixin {
@@ -141,52 +117,5 @@ abstract class LoadMoreBase with LoadListStateMixin {
 
   void dispose() {
     refreshController.dispose();
-  }
-}
-
-class ImageLoadState {
-  ImageLoadState._({
-    this.isCached = false,
-    this.isWaiting = false,
-    this.isFinish = false,
-    this.isError = false,
-    this.isLoading = false,
-    this.error,
-  });
-
-  final bool isCached;
-  final bool isWaiting;
-  final bool isFinish;
-  final bool isError;
-  final bool isLoading;
-  Exception? error;
-
-  bool get isIdle => isWaiting || isCached;
-
-  factory ImageLoadState.cached() => ImageLoadState._(isCached: true);
-
-  factory ImageLoadState.waiting() => ImageLoadState._(isWaiting: true);
-
-  factory ImageLoadState.finish() => ImageLoadState._(isFinish: true);
-
-  factory ImageLoadState.loading() => ImageLoadState._(isLoading: true);
-
-  factory ImageLoadState.error([Exception? error]) =>
-      ImageLoadState._(isError: true, error: error);
-
-  @override
-  String toString() {
-    if (isCached) {
-      return 'ImageLoadState.cached';
-    } else if (isWaiting) {
-      return 'ImageLoadState.waiting';
-    } else if (isFinish) {
-      return 'ImageLoadState.finish';
-    } else if (isError) {
-      return 'ImageLoadState.error';
-    } else if (isLoading) {
-      return 'ImageLoadState.loading';
-    }
-    return 'ImageLoadState.idle';
   }
 }

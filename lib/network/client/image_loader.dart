@@ -8,6 +8,53 @@ import 'package:flutter/cupertino.dart';
 
 import '../../navigator.dart';
 
+class ImageLoadState {
+  ImageLoadState._({
+    this.isCached = false,
+    this.isWaiting = false,
+    this.isFinish = false,
+    this.isError = false,
+    this.isLoading = false,
+    this.error,
+  });
+
+  final bool isCached;
+  final bool isWaiting;
+  final bool isFinish;
+  final bool isError;
+  final bool isLoading;
+  Exception? error;
+
+  bool get isIdle => isWaiting || isCached;
+
+  factory ImageLoadState.cached() => ImageLoadState._(isCached: true);
+
+  factory ImageLoadState.waiting() => ImageLoadState._(isWaiting: true);
+
+  factory ImageLoadState.finish() => ImageLoadState._(isFinish: true);
+
+  factory ImageLoadState.loading() => ImageLoadState._(isLoading: true);
+
+  factory ImageLoadState.error([Exception? error]) =>
+      ImageLoadState._(isError: true, error: error);
+
+  @override
+  String toString() {
+    if (isCached) {
+      return 'ImageLoadState.cached';
+    } else if (isWaiting) {
+      return 'ImageLoadState.waiting';
+    } else if (isFinish) {
+      return 'ImageLoadState.finish';
+    } else if (isError) {
+      return 'ImageLoadState.error';
+    } else if (isLoading) {
+      return 'ImageLoadState.loading';
+    }
+    return 'ImageLoadState.idle';
+  }
+}
+
 class ImageLoadModel {
   ImageLoadModel({
     required this.model,

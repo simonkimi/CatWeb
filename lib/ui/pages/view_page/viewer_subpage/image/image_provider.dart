@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
+import 'package:catweb/navigator.dart';
+import 'package:catweb/utils/obs_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
 import 'dart:ui' as ui;
 
 class DioImageProvider extends ImageProvider<DioImageProvider> {

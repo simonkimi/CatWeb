@@ -1,4 +1,5 @@
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -143,7 +144,7 @@ class CupertinoCardTile extends HookWidget {
   }
 
   Color _buildColor(BuildContext context) {
-    return isDarkMode(context)
+    return context.isDarkMode
         ? CupertinoColors.systemGrey6
         : CupertinoColors.black;
   }

@@ -1,4 +1,4 @@
-import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +18,8 @@ class CupertinoDivider extends StatelessWidget {
       padding: padding,
       child: Divider(
         height: height,
-        thickness: isDarkMode(context) ? 0.6 : 0.4,
-        color: isDarkMode(context)
+        thickness: context.isDarkMode ? 0.6 : 0.4,
+        color: context.isDarkMode
             ? CupertinoColors.separator.darkColor
             : CupertinoColors.separator.color,
       ),

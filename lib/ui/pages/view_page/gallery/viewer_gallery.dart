@@ -22,7 +22,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'comment_item.dart';
 import 'comment_list.dart';
 import 'controller/gallery_controller.dart';
-import 'package:get/get.dart';
 
 class ViewerGalleryFragment extends StatelessWidget {
   ViewerGalleryFragment({
@@ -31,13 +30,10 @@ class ViewerGalleryFragment extends StatelessWidget {
     required Object? model,
     required SiteEnvStore env,
   }) {
-    previewController = Get.put(
-      GalleryPreviewController(
-        blueprint: target,
-        base: model,
-        outerEnv: env,
-      ),
-      tag: NavigatorService.depth,
+    previewController = GalleryPreviewController(
+      blueprint: target,
+      base: model,
+      outerEnv: env,
     );
   }
 
@@ -538,11 +534,12 @@ class ViewerGalleryFragment extends StatelessWidget {
             children: [
               _buildShowMore(context, () {
                 showCupertinoModalSheet(
-                    context: context,
-                    builder: (context) {
-                      return CommentListPage(
-                          previewController: previewController);
-                    });
+                  context: context,
+                  builder: (context) {
+                    return CommentListPage(
+                        previewController: previewController);
+                  },
+                );
               }),
             ],
           ),

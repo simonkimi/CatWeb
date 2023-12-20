@@ -5,9 +5,9 @@ import 'package:catweb/ui/pages/rules_add_guide/rules_parser/editor/gallery_pars
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/editor/image_parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/editor/list_parser.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class RulesParserEditor extends StatelessWidget {
   const RulesParserEditor({
@@ -49,7 +49,7 @@ class RulesParserEditor extends StatelessWidget {
   CupertinoNavigationBar _buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
       leading: CupertinoButton(
-        onPressed: () => Get.back(),
+        onPressed: () => context.pop(),
         padding: EdgeInsets.zero,
         minSize: 0,
         child: const Icon(CupertinoIcons.back),

@@ -4,30 +4,9 @@ import 'dart:math' as math;
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/navigator.dart';
+import 'package:catweb/utils/iter_helper.dart';
 
 import 'package:flutter/material.dart';
-
-extension IterableUtils<T> on Iterable<T> {
-  T? get(bool Function(T e) test) {
-    for (final e in this) {
-      if (test(e)) return e;
-    }
-    return null;
-  }
-
-  Iterable<T> replace(int index, T newValue) sync* {
-    final iter = iterator;
-    var i = 0;
-    while (iter.moveNext()) {
-      if (i == index) {
-        yield newValue;
-      } else {
-        yield iter.current;
-      }
-      i++;
-    }
-  }
-}
 
 extension DoubleUtils on num {
   T nearList<T extends num>(List<T> nums) {
@@ -110,5 +89,5 @@ T? iterableMin<T extends num>(Iterable<T> iter) {
 extension EnvString on String {
   String env(SiteEnvStore env) => env.apply(this);
 
-  String globalEnv() => get<SiteService>().website.globalEnv.apply(this);
+  String globalEnv() => get<SiteService>().site.value!.globalEnv.apply(this);
 }

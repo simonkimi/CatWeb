@@ -94,7 +94,7 @@ class ListExtendedCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             boxShadow: [
               BoxShadow(
-                color: isDarkMode(context)
+                color: context.isDarkMode
                     ? CupertinoColors.white.withOpacity(0.2)
                     : CupertinoColors.black.withOpacity(0.1),
                 blurRadius: 10,

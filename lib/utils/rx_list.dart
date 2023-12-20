@@ -57,6 +57,14 @@ class RxList<T> extends ChangeNotifier {
   Iterable<T> where(bool Function(T element) test) {
     return _value.where(test);
   }
+
+  T? index(int index) => index < length && index >= 0 ? _value[index] : null;
+
+  bool get isEmpty => _value.isEmpty;
+
+  bool get isNotEmpty => _value.isNotEmpty;
+
+  int get length => _value.length;
 }
 
 class RxMap<K, V> extends ChangeNotifier {
@@ -65,6 +73,17 @@ class RxMap<K, V> extends ChangeNotifier {
   var _value = <K, V>{};
 
   Map<K, V> get value => _value;
+
+  get entries => _value.entries;
+
+  bool get isNotEmpty => _value.isNotEmpty;
+
+  operator [](K key) => _value[key];
+
+  operator []=(K key, V value) {
+    _value[key] = value;
+    notifyListeners();
+  }
 
   set value(Map<K, V> newValue) {
     _value = newValue;
@@ -78,6 +97,13 @@ class RxMap<K, V> extends ChangeNotifier {
 
   void remove(K key) {
     _value.remove(key);
+    notifyListeners();
+  }
+
+  bool containsKey(int page) => _value.containsKey(page);
+
+  void clear() {
+    _value.clear();
     notifyListeners();
   }
 }

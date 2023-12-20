@@ -1,7 +1,7 @@
 import 'package:catweb/ui/widgets/dialog.dart';
+import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
 import 'package:catweb/ui/theme/colors.dart';
 
@@ -207,23 +207,23 @@ class CupertinoSelectInput<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => CupertinoReadOnlyInput(
-          labelText: labelText,
-          value: selectionConverter?.call(field.value) ?? field.value.toString(),
-          onTap: () async {
-            final result = await showCupertinoSelectDialog<T>(
-              title: labelText,
-              items: items.map((e) => SelectTileItem(
-                    title: selectionConverter?.call(e) ?? e.toString(),
-                    value: e,
-                  )),
-              context: context,
-            );
-            if (result != null) {
-              field.value = result;
-            }
-          },
-        ));
+    return field.obx((value) => CupertinoReadOnlyInput(
+      labelText: labelText,
+      value: selectionConverter?.call(value) ?? value.toString(),
+      onTap: () async {
+        final result = await showCupertinoSelectDialog<T>(
+          title: labelText,
+          items: items.map((e) => SelectTileItem(
+            title: selectionConverter?.call(e) ?? e.toString(),
+            value: e,
+          )),
+          context: context,
+        );
+        if (result != null) {
+          field.value = result;
+        }
+      },
+    ));
   }
 }
 

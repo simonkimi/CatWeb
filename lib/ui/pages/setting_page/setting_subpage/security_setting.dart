@@ -1,14 +1,16 @@
+import 'dart:io';
+
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/i18n.dart';
+import 'package:catweb/navigator.dart';
 import 'package:catweb/ui/widgets/cupertino_obs_swiitch.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_base.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
-class SecuritySettingPage extends GetView<SettingService> {
+class SecuritySettingPage extends StatelessWidget {
   const SecuritySettingPage({
     super.key,
     this.fromSetting = true,
@@ -18,6 +20,7 @@ class SecuritySettingPage extends GetView<SettingService> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = get<SettingService>();
     return SettingScaffold(
       title: I.of(context).security,
       children: [
@@ -29,7 +32,7 @@ class SecuritySettingPage extends GetView<SettingService> {
                 scale: 0.9,
                 value: controller.blurWhenBackground,
                 onChange: (value) async {
-                  if (GetPlatform.isAndroid && value) {
+                  if (Platform.isAndroid && value) {
                     showCupertinoConfirmDialog(
                       context: context,
                       title: '提示',
@@ -74,27 +77,27 @@ class SecuritySettingPage extends GetView<SettingService> {
     );
   }
 
-  SettingTile _buildSecuritySwitch(BuildContext context) {
-    return SettingTile(
-      title: '启用安全模式',
-      trailing: CupertinoObxSwitch(
-        scale: 0.9,
-        value: controller.protectCookie,
-        onChange: (value) async {
-          if (!value) {
-            return (await showCupertinoConfirmDialog(
-                  context: context,
-                  content: '此开关为全局安全模式开关, 若您想为莫规则单独关闭, 请前往设置主页',
-                  confineText: '关闭',
-                  confineTextColor:
-                      CupertinoColors.systemRed.resolveFrom(context),
-                ) !=
-                true);
-          } else {
-            return value;
-          }
-        },
-      ),
-    );
-  }
+  // SettingTile _buildSecuritySwitch(BuildContext context) {
+  //   return SettingTile(
+  //     title: '启用安全模式',
+  //     trailing: CupertinoObxSwitch(
+  //       scale: 0.9,
+  //       value: controller.protectCookie,
+  //       onChange: (value) async {
+  //         if (!value) {
+  //           return (await showCupertinoConfirmDialog(
+  //                 context: context,
+  //                 content: '此开关为全局安全模式开关, 若您想为莫规则单独关闭, 请前往设置主页',
+  //                 confineText: '关闭',
+  //                 confineTextColor:
+  //                     CupertinoColors.systemRed.resolveFrom(context),
+  //               ) !=
+  //               true);
+  //         } else {
+  //           return value;
+  //         }
+  //       },
+  //     ),
+  //   );
+  // }
 }

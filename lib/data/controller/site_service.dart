@@ -17,11 +17,6 @@ class SiteService {
 
   final site = ValueNotifier<SiteRenderConfigModel?>(null);
 
-  SiteRenderConfigModel get website {
-    assert(site.value != null);
-    return site.value!;
-  }
-
   Future<void> setNewSite([WebTableData? db]) async {
     if (db != null) {
       site.value = SiteRenderConfigModel(
@@ -62,8 +57,8 @@ class SiteService {
       // 检测当前网站的配置是否被更新
       final currentNewSite = event.get((e) => e.id == id);
       if (currentNewSite != null) {
-        if (currentNewSite.loginCookies != website.dbEntity.loginCookies ||
-            currentNewSite.blueprint != website.dbEntity.blueprint) {
+        if (currentNewSite.loginCookies != site.value!.dbEntity.loginCookies ||
+            currentNewSite.blueprint != site.value!.dbEntity.blueprint) {
           setNewSite(currentNewSite);
           return;
         }

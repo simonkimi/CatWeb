@@ -46,13 +46,13 @@ class ListFilterButton extends StatelessWidget {
           actions: [
             CupertinoDialogAction(
               child: Text(I.of(context).back),
-              onPressed: () => Get.back(),
+              onPressed: () => context.pop(),
             ),
             CupertinoDialogAction(
               child: Text(I.of(context).apply),
               onPressed: () {
                 controller.applyFilter(true);
-                Get.back();
+                context.pop();
               },
             ),
           ],

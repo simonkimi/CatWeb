@@ -1,7 +1,8 @@
 import 'dart:async';
 
+import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
 
 class CupertinoObxSwitch extends StatelessWidget {
   const CupertinoObxSwitch({
@@ -17,10 +18,10 @@ class CupertinoObxSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final child = Obx(() => SizedBox(
+    final child = value.obx((v) => SizedBox(
           height: 20,
           child: CupertinoSwitch(
-            value: value.value,
+            value: v,
             onChanged: (value) async {
               this.value.value =
                   onChange != null ? await onChange!(value) : value;

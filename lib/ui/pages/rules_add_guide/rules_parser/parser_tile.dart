@@ -1,10 +1,10 @@
 import 'package:catweb/data/models/site_model/parser/selector.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/selector_editor.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
+import 'package:catweb/utils/widget.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ParserTile extends StatelessWidget {
   const ParserTile({
@@ -32,7 +32,7 @@ class ParserTile extends StatelessWidget {
           ),
         );
       },
-      trailing: Obx(() => selector.isEmpty
+      trailing: selector.notifier.obx(() => selector.isEmpty
           ? const Icon(
               CupertinoIcons.add,
               size: 18,
@@ -75,17 +75,18 @@ class ExtraParserTile extends StatelessWidget {
           ),
         );
       },
-      trailing: Obx(() => extraSelector.selector.isEmpty
-          ? const Icon(
-              CupertinoIcons.add,
-              size: 18,
-              color: CupertinoColors.inactiveGray,
-            )
-          : Icon(
-              Icons.edit,
-              size: 18,
-              color: CupertinoColors.activeGreen.resolveFrom(context),
-            )),
+      trailing: extraSelector.selector.notifier
+          .obx(() => extraSelector.selector.isEmpty
+              ? const Icon(
+                  CupertinoIcons.add,
+                  size: 18,
+                  color: CupertinoColors.inactiveGray,
+                )
+              : Icon(
+                  Icons.edit,
+                  size: 18,
+                  color: CupertinoColors.activeGreen.resolveFrom(context),
+                )),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -189,7 +190,7 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: isDarkMode(context)
+                color: context.isDarkMode
                     ? const Color(0xff2b2b2b)
                     : const Color(0x4d000000),
                 width: 0.3,

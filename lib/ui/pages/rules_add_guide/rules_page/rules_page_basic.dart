@@ -8,17 +8,18 @@ import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/theme/colors.dart';
-import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/icons.dart';
+import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
-class RulesPageBasic extends GetWidget<RulesEditController> {
+class RulesPageBasic extends StatelessWidget {
   const RulesPageBasic({
     super.key,
+    required this.controller,
     required this.sitePage,
   });
 
+  final RulesEditController controller;
   final SitePage sitePage;
 
   @override
@@ -41,8 +42,8 @@ class RulesPageBasic extends GetWidget<RulesEditController> {
             items: SiteNetType.values,
             selectionConverter: (value) => value.value,
           ),
-          Obx(() {
-            if (sitePage.action.value == SiteNetType.post) {
+          sitePage.action.obx((v) {
+            if (v == SiteNetType.post) {
               return CupertinoInput(
                 labelText: I.of(context).form,
                 value: sitePage.formData,
@@ -51,20 +52,22 @@ class RulesPageBasic extends GetWidget<RulesEditController> {
             }
             return const SizedBox();
           }),
-          Obx(() => CupertinoReadOnlyInput(
-                labelText: I.of(context).parser,
-                value: controller.blueprint.parserList
-                        .get((e) => e.uuid == sitePage.parserId.value)
-                        ?.name ??
-                    'No parser',
-                onTap: () => _onParserTap(context),
-              )),
+          controller.blueprint.parserList.obx(() {
+            return CupertinoReadOnlyInput(
+              labelText: I.of(context).parser,
+              value: controller.blueprint.parserList
+                      .get((e) => e.uuid == sitePage.parserId.value)
+                      ?.name ??
+                  'No parser',
+              onTap: () => _onParserTap(context),
+            );
+          }),
           const CupertinoDivider(height: 20),
           if ([TemplateType.imageWaterFall, TemplateType.imageList]
               .contains(sitePage.template.type))
-            Obx(() => CupertinoReadOnlyInput(
+            sitePage.displayType.obx((v) => CupertinoReadOnlyInput(
                   labelText: I.of(context).display_type,
-                  value: sitePage.displayType.value.value,
+                  value: v.value,
                   onTap: () => _onDisplayTap(context),
                 )),
           _buildIcon(context),
@@ -92,7 +95,7 @@ class RulesPageBasic extends GetWidget<RulesEditController> {
           _buildOpenWidget(context,
               labelText: I.of(context).item_jump_to,
               target: extra.targetItem.value, onTargetChanged: (value) {
-                extra.targetItem.value = value ?? '';
+            extra.targetItem.value = value ?? '';
           }),
           _buildOpenWidget(context,
               labelText: I.of(context).auto_complete_jump_to,
@@ -146,8 +149,8 @@ class RulesPageBasic extends GetWidget<RulesEditController> {
                 color: CupertinoColors.systemGroupedBackground
                     .resolveFrom(context),
                 padding: EdgeInsets.zero,
-                child: Obx(() => Icon(
-                      cupertinoIcons[sitePage.icon.value] ?? CupertinoIcons.app,
+                child: sitePage.icon.obx((v) => Icon(
+                      cupertinoIcons[v] ?? CupertinoIcons.app,
                       color: CupertinoColors.systemBlue.resolveFrom(context),
                     )),
                 onPressed: () async {
@@ -165,7 +168,6 @@ class RulesPageBasic extends GetWidget<RulesEditController> {
   }
 
   Future<void> _onParserTap(BuildContext context) async {
-    final controller = get<RulesEditController>();
     final result = await showCupertinoSelectDialog<String>(
       title: I.of(context).select_parser,
       context: context,
@@ -187,7 +189,7 @@ class RulesPageBasic extends GetWidget<RulesEditController> {
     bool Function(SitePage)? filter,
     required void Function(String?) onTargetChanged,
   }) {
-    return Obx(() => CupertinoReadOnlyInput(
+    return controller.blueprint.pageList.obx(() => CupertinoReadOnlyInput(
           labelText: labelText,
           value: controller.blueprint.pageList
                   .get((e) => e.uuid == target)

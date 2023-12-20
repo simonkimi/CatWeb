@@ -1,4 +1,5 @@
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 
 class SettingGroupSliver extends StatelessWidget {
@@ -17,7 +18,7 @@ class SettingGroupSliver extends StatelessWidget {
         child: Container(
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: isDarkMode(context)
+            color: context.isDarkMode
                 ? const Color(0xff1c1c1e)
                 : CupertinoColors.systemBackground,
             borderRadius: BorderRadius.circular(10),
@@ -67,7 +68,7 @@ class SettingGroupWidget extends StatelessWidget {
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          color: isDarkMode(context)
+          color: context.isDarkMode
               ? const Color(0xff1c1c1e)
               : CupertinoColors.systemBackground,
           borderRadius: BorderRadius.circular(10),

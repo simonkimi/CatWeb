@@ -1,4 +1,5 @@
 import 'package:catweb/data/models/ffi/result/result.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:catweb/ui/theme/colors.dart';
@@ -41,7 +42,7 @@ class SimpleCard extends StatelessWidget {
     return useCard
         ? Card(
             clipBehavior: Clip.antiAlias,
-            color: isDarkMode(context)
+            color: context.isDarkMode
                 ? CupertinoColors.systemGrey6.darkColor
                 : CupertinoColors.systemBackground,
             child: child,
@@ -72,7 +73,7 @@ class SimpleCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: tagBackground ??
-                      (isDarkMode(context)
+                      (context.isDarkMode
                           ? const Color(0xFF312F32)
                           : const Color(0xFFEFEEF1)),
                 ),
@@ -87,7 +88,7 @@ class SimpleCard extends StatelessWidget {
                           ? tagBackground.isDark
                               ? Colors.white
                               : Colors.black
-                          : isDarkMode(context)
+                          : context.isDarkMode
                               ? Colors.white
                               : Colors.black,
                     ),
@@ -145,7 +146,7 @@ class SimpleCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(1),
         decoration: BoxDecoration(
-          color: isDarkMode(context) ? Colors.black38 : Colors.black38,
+          color: context.isDarkMode ? Colors.black38 : Colors.black38,
           borderRadius: BorderRadius.circular(2),
         ),
         child: Text(

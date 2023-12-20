@@ -9,10 +9,10 @@ import 'package:catweb/ui/pages/view_page/list/controller/subpage_controller.dar
 import 'package:catweb/ui/pages/view_page/list/subpage_list.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
+import 'package:catweb/utils/obs_helper.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ViewerListFragment extends StatefulWidget {
   const ViewerListFragment({

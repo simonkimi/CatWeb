@@ -1,8 +1,8 @@
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
+import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
 class SettingIconDivider extends StatelessWidget {
   const SettingIconDivider({super.key});
@@ -110,13 +110,13 @@ class SettingNumberTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => SettingTile(
+    return value.obx((v) => SettingTile(
           title: title,
-          trailingText: value.string,
+          trailingText: v.toString(),
           onTap: () {
             showCupertinoInputDialog(
               context,
-              initialValue: value.string,
+              initialValue: v.toString(),
               keyboardType: TextInputType.number,
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,

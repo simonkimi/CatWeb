@@ -1,6 +1,7 @@
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:catweb/i18n.dart';
+import 'package:catweb/navigator.dart';
 import 'package:catweb/ui/widgets/cupertino_obs_swiitch.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
@@ -8,9 +9,8 @@ import 'package:catweb/ui/pages/setting_page/widgets/setting_base.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_selection.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
-class DisplaySettingPage extends GetView<SettingService> {
+class DisplaySettingPage extends StatelessWidget {
   const DisplaySettingPage({
     super.key,
     this.fromSetting = true,
@@ -20,6 +20,7 @@ class DisplaySettingPage extends GetView<SettingService> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = get<SettingService>();
     return SettingScaffold(
       title: I.of(context).display,
       children: [
@@ -59,7 +60,7 @@ class DisplaySettingPage extends GetView<SettingService> {
                   SelectTileItem(value: i, title: '$i'),
               ],
             ),
-            SettingSelectionTile<int>(
+            SettingSelectionTile<ReaderDirection>(
               title: I.of(context).read_direction,
               previousPageTitle: I.of(context).display,
               value: controller.readerDirectory,

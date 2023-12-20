@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:ui';
+import 'package:catweb/utils/dispose.dart';
 import 'package:catweb/utils/obs_helper.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -35,7 +37,7 @@ enum ScriptFieldType {
   }
 }
 
-class ScriptField {
+class ScriptField implements IDisposable{
   final ValueNotifier<String> script;
   final ValueNotifier<ScriptFieldType> type;
 
@@ -54,6 +56,12 @@ class ScriptField {
         script: json['script'] as String,
         type: ScriptFieldType.fromValue(json['type'] as String),
       );
+
+  @override
+  FutureOr dispose() {
+    script.dispose();
+    type.dispose();
+  }
 }
 
 class ColorField {

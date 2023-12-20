@@ -23,7 +23,8 @@ class NavigatorService {
     Object? model,
   }) async {
     final target = get<SiteService>()
-        .website
+        .site
+        .value!
         .blueMap
         .pageList
         .get((e) => e.uuid == targetName);

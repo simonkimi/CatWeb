@@ -1,9 +1,9 @@
 import 'package:catweb/i18n.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
 class SelectTileItem<T> {
   const SelectTileItem({
@@ -231,7 +231,7 @@ Future<String?> showCupertinoIconDialog(BuildContext context) async {
                                 padding: EdgeInsets.zero,
                                 child: Icon(e.value),
                                 onPressed: () {
-                                  Get.back(result: e.key);
+                                  context.pop(e.key);
                                 },
                               ),
                             ))
@@ -274,7 +274,7 @@ Future<String?> showCupertinoInputDialog(
           CupertinoButton(
             child: const Text('取消'),
             onPressed: () {
-              Get.back();
+              context.pop();
             },
           ),
           CupertinoButton(

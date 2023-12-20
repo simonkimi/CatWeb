@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/db_service.dart';
 import 'package:catweb/data/controller/setting_service.dart';
@@ -7,16 +6,18 @@ import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/i18n.dart';
+import 'package:catweb/navigator.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
 import 'package:catweb/ui/pages/setting_page/setting_page.dart';
 import 'package:catweb/ui/pages/webview_login_in/webview_login_in.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:catweb/utils/debug.dart';
+import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:get/get.dart';
 
 enum _MenuSelect {
   edit,
@@ -25,7 +26,7 @@ enum _MenuSelect {
   login,
 }
 
-class SiteManager extends GetWidget<SiteService> {
+class SiteManager extends StatelessWidget {
   const SiteManager({super.key});
 
   static const routeName = 'SiteManager';
@@ -60,8 +61,8 @@ class SiteManager extends GetWidget<SiteService> {
               children: [
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.add),
-                  onPressed: () =>
-                      _toEditPage(Navigator.of(context), entity: null, db: null),
+                  onPressed: () => _toEditPage(Navigator.of(context),
+                      entity: null, db: null),
                 ),
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.qrcode_viewfinder),
@@ -83,22 +84,13 @@ class SiteManager extends GetWidget<SiteService> {
   }
 
   Widget _buildSiteItem(BuildContext context, WebTableData e) {
+    final controller = get<SiteService>();
     final model = SiteBlueMap.fromJson(jsonDecode(e.blueprint));
-    return Obx(() => CupertinoCardTile(
-          selected: controller.id == e.id,
+    return controller.site.obx((site) => CupertinoCardTile(
+          selected: site?.id == e.id,
           title: Text(model.name.value),
           subtitle: Text(model.baseUrl.value),
           trailing: const Icon(Icons.more_horiz),
-          // leading: Center(
-          //   child: SizedBox(
-          //     width: 20,
-          //     height: 20,
-          //     child: Image.asset(
-          //       'assets/images/gelbooru.ico',
-          //       fit: BoxFit.fill,
-          //     ),
-          //   ),
-          // ),
           onTrailingTap: () => _onTrailingTap(context, e, model),
           onTap: () => controller.setNewSite(
             controller.id == e.id ? null : e,
@@ -122,9 +114,7 @@ class SiteManager extends GetWidget<SiteService> {
     }
     return ListView(
       physics: const ClampingScrollPhysics(),
-      children: [
-        ...snapshot.data!.map((e) => _buildSiteItem(context, e)),
-      ],
+      children: snapshot.data!.map((e) => _buildSiteItem(context, e)).toList(),
     );
   }
 
@@ -132,7 +122,7 @@ class SiteManager extends GetWidget<SiteService> {
     return CupertinoNavigationBar(
       padding: const EdgeInsetsDirectional.only(start: 10),
       leading: CupertinoButton(
-        onPressed: () => Get.back(),
+        onPressed: () => context.pop(),
         padding: EdgeInsets.zero,
         minSize: 0,
         child: const Icon(CupertinoIcons.back),
@@ -192,17 +182,14 @@ class SiteManager extends GetWidget<SiteService> {
         content: I.of(context).logout_check,
       );
       if (isReload == true) {
-        await get<DbService>()
-            .webDao
-            .replace(db.copyWith(loginCookies: ''));
-        Get.back();
+        await get<DbService>().webDao.replace(db.copyWith(loginCookies: ''));
+        context.pop();
       }
     } else {
       // 登录
       if (Uri.tryParse(entity.baseUrl.value)?.host !=
           Uri.tryParse(entity.loginUrl.value)?.host) {
-        if (!get<SettingService>().protectCookie.value ||
-            !db.securityModel) {
+        if (!get<SettingService>().protectCookie.value || !db.securityModel) {
           final w = await showCupertinoConfirmDialog(
             context: context,
             title: I.of(context).login,
@@ -266,6 +253,5 @@ class SiteManager extends GetWidget<SiteService> {
     WebTableData? db,
   }) =>
       navigator.push(CupertinoPageRoute(
-          builder: (context) =>
-              RulesEditPage(blueMap: entity, db: db)));
+          builder: (context) => RulesEditPage(blueMap: entity, db: db)));
 }

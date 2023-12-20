@@ -1,3 +1,4 @@
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:catweb/ui/theme/colors.dart';
@@ -19,7 +20,7 @@ class RulesCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Container(
         decoration: BoxDecoration(
-          color: isDarkMode(context)
+          color: context.isDarkMode
               ? CupertinoColors.systemGrey6.darkColor
               : CupertinoColors.systemGrey6,
           borderRadius: BorderRadius.circular(5),
@@ -40,7 +41,7 @@ class RulesCard extends StatelessWidget {
               padding: const EdgeInsets.all(5),
               child: Container(
                 decoration: BoxDecoration(
-                  color: isDarkMode(context)
+                  color: context.isDarkMode
                       ? CupertinoColors.systemBackground.darkColor
                       : CupertinoColors.systemBackground,
                   borderRadius: BorderRadius.circular(5),

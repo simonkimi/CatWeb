@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:catweb/data/models/site_model/parser/field.dart';
+import 'package:catweb/utils/dispose.dart';
 import 'package:catweb/utils/obs_helper.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -31,7 +34,7 @@ enum SelectorFunctionType {
   }
 }
 
-class Selector {
+class Selector implements IDisposable {
   final ValueNotifier<String> selector;
 
   final ValueNotifier<SelectorType> type;
@@ -86,9 +89,23 @@ class Selector {
       selector.value.isEmpty &&
       param.value.isEmpty &&
       defaultValue.value.isEmpty;
+
+  Listenable get notifier => Listenable.merge([selector, param, defaultValue]);
+
+  @override
+  FutureOr dispose() {
+    selector.dispose();
+    type.dispose();
+    function.dispose();
+    param.dispose();
+    regex.dispose();
+    replace.dispose();
+    script.dispose();
+    defaultValue.dispose();
+  }
 }
 
-class ImageSelector {
+class ImageSelector implements IDisposable {
   final Selector url;
   final Selector width;
   final Selector height;
@@ -127,6 +144,16 @@ class ImageSelector {
         y: Selector.fromJson(json['y']),
         cacheKey: Selector.fromJson(json['cacheKey']),
       );
+
+  @override
+  FutureOr dispose() {
+    url.dispose();
+    width.dispose();
+    height.dispose();
+    x.dispose();
+    y.dispose();
+    cacheKey.dispose();
+  }
 }
 
 class CommentSelector {
@@ -216,4 +243,5 @@ class TagSelector {
         color: Selector.fromJson(json['color']),
         category: Selector.fromJson(json['category']),
       );
+
 }

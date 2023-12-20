@@ -5,7 +5,6 @@ import 'package:catweb/ui/widgets/cupertino_progress_bar.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
 import 'controller/image_load_controller.dart';
 

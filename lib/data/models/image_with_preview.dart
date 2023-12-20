@@ -7,9 +7,9 @@ import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.da
 import 'package:catweb/utils/debug.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../navigator.dart';
-import '../loaders/load_more_mixin.dart';
-import '../loaders/load_more_model.dart';
+import 'package:catweb/navigator.dart';
+import 'package:catweb/data/loaders/load_more_mixin.dart';
+import 'package:catweb/data/loaders/load_more_model.dart';
 
 /// 带预览的图片，此model可用于列表与瀑布流
 abstract class ImageWithPreviewModel<T>
@@ -40,14 +40,14 @@ abstract class ImageWithPreviewModel<T>
       final url = blueprint.url.value.isEmpty ? idCode! : blueprint.url.value;
       final global = get<SiteService>();
       final env = localEnv.clone()..['idCode'] = idCode!;
-      imageModel.value = await global.website.client.getReadImage(
+      imageModel.value = await global.site.value!.client.getReadImage(
         url: url,
         model: blueprint,
         localEnv: env,
       );
       imageProvider.value = DioImageProvider(
         imageModel: imageModel.value!.image!,
-        dio: global.website.client.imageDio,
+        dio: global.site.value!.client.imageDio,
       );
       imageProvider.value?.resolve(const ImageConfiguration());
       loadComplete();

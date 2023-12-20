@@ -1,22 +1,17 @@
 import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../navigator.dart';
 
-class PrefValue<T> extends ChangeNotifier {
-  PrefValue(this._key, this._value, {this.converter});
+class PrefValue<T> extends ValueNotifier<T> {
+  PrefValue(this._key, this._value, {this.converter}) : super(_value);
 
   final _pref = get<SharedPreferences>();
   final String _key;
   final T Function(int)? converter;
   T _value;
-
-  void setValue(T value) {
-    _value = value;
-    save();
-    notifyListeners();
-  }
 
   void initValue() {
     switch (_value) {
@@ -60,6 +55,13 @@ class PrefValue<T> extends ChangeNotifier {
     }
   }
 
+  @override
   T get value => _value;
-  set value(T value) => setValue(value);
+
+  @override
+  set value(T value) {
+    _value = value;
+    save();
+    notifyListeners();
+  }
 }

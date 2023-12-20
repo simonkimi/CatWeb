@@ -6,6 +6,8 @@ import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/widgets/cupertino_obs_swiitch.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/utils/context_helper.dart';
+import 'package:catweb/utils/obs_helper.dart';
 import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -127,7 +129,7 @@ class ListFilterEditor extends HookWidget {
             actions: [
               CupertinoButton(
                 child: Text(I.of(context).positive),
-                onPressed: () => Get.back(),
+                onPressed: () => context.pop(),
               )
             ],
             content: Column(

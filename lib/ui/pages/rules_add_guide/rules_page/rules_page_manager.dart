@@ -8,7 +8,6 @@ import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller
 import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
 enum _MenuSelect {
@@ -118,6 +117,7 @@ class RulesPageManager extends StatelessWidget {
     await Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
       return RulesPageEdit(
         baseModel: input,
+        controller: controller,
       );
     }));
   }

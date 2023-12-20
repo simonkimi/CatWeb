@@ -4,6 +4,7 @@ import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_editor.dart';
+import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
@@ -27,22 +28,24 @@ class RulesParserManager extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       children: [
-        Obx(() => Column(
-              mainAxisSize: MainAxisSize.min,
-              children: parserList.map((e) {
-                return CupertinoCardTile(
-                  title: Text(e.name),
-                  subtitle: Text(e.parserType.value),
-                  trailing: CupertinoButton(
-                    padding: EdgeInsets.zero,
-                    minSize: 10,
-                    child: const Icon(Icons.more_horiz_outlined),
-                    onPressed: () => _onTrailingTap(context, e),
-                  ),
-                  onTap: () => _editRules(context, e),
-                );
-              }).toList(),
-            )),
+        parserList.obx(() {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: parserList.map((e) {
+              return CupertinoCardTile(
+                title: Text(e.name),
+                subtitle: Text(e.parserType.value),
+                trailing: CupertinoButton(
+                  padding: EdgeInsets.zero,
+                  minSize: 10,
+                  child: const Icon(Icons.more_horiz_outlined),
+                  onPressed: () => _onTrailingTap(context, e),
+                ),
+                onTap: () => _editRules(context, e),
+              );
+            }).toList(),
+          );
+        }),
         CupertinoCardTile(
           title: const Text('添加'),
           leading: const Icon(Icons.add),
@@ -85,7 +88,6 @@ class RulesParserManager extends StatelessWidget {
     IParserBase model,
   ) {
     final using = controller.blueprint.pageList
-        .value
         .where((p0) => p0.parserId.value == model.uuid)
         .map((e) => e.name)
         .toList();

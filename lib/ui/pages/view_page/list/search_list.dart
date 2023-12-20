@@ -69,7 +69,7 @@ class _SearchListState extends State<SearchList> {
                   onPressed: () async {
                     _onWillPop().then((value) {
                       if (value) {
-                        Get.back();
+                        context.pop();
                       }
                     });
                   },

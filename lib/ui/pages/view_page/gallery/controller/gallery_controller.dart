@@ -7,10 +7,12 @@ import 'package:catweb/data/loaders/load_more_model.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/site_page.dart';
 import 'package:catweb/data/models/site_model/pages/template_gallery.dart';
+import 'package:catweb/navigator.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
+import 'package:catweb/utils/obs_helper.dart';
 import 'package:catweb/utils/replace_utils.dart';
-import 'package:get/get.dart';
+import 'package:flutter/cupertino.dart';
 
 class DetailBaseData {
   final String? title;
@@ -68,7 +70,7 @@ class GalleryPreviewController extends LoadMoreLoader<DetailParserResult,
     DetailParserResult? detailModel,
   })  : localEnv = SiteEnvStore(outerEnv?.env),
         baseData = GalleryPreviewController.fromModel(base),
-        _detailModel = Rx(detailModel) {
+        _detailModel = ValueNotifier<DetailParserResult?>(detailModel) {
     onLoadMore();
     loadLastRead();
   }
@@ -123,7 +125,7 @@ class GalleryPreviewController extends LoadMoreLoader<DetailParserResult,
     }
     baseUrl = localEnv.apply(baseUrl);
 
-    final detail = await global.website.client.getDetail(
+    final detail = await global.site.value!.client.getDetail(
       url: baseUrl,
       model: blueprint,
       localEnv: localEnv,
