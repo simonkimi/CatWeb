@@ -116,7 +116,7 @@ class NetClient {
 
     final result = ListParserResult.fromJson(jsonDecode(rsp));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    get<SiteService>().website.updateGlobalEnv(result.envs);
+    get<SiteService>().site.value?.updateGlobalEnv(result.envs);
     return result;
   }
 
@@ -147,7 +147,7 @@ class NetClient {
 
     final result = DetailParserResult.fromJson(jsonDecode(parseRsp));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    get<SiteService>().website.updateGlobalEnv(result.envs);
+    get<SiteService>().site.value!.updateGlobalEnv(result.envs);
     return result;
   }
 
@@ -262,7 +262,8 @@ Future<String> callFFiParser(
     String content, String parserType, String parser) async {
   logger.d(
       'Call FFI Parser $parserType len:${content.length} parser:${parser.length}');
-  final rsp = await parseHtmlAsync(content, parserType, parser);
-  logger.d('FFI Parser Result: ${rsp.length}');
-  return rsp;
+  // final rsp = await parseHtmlAsync(content, parserType, parser);
+  // logger.d('FFI Parser Result: ${rsp.length}');
+  // return rsp;
+  return '';
 }

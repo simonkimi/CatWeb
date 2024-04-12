@@ -18,9 +18,8 @@ class DarkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return get<SettingService>().imageMaskInDarkMode.obx(() {
-      final useDark =
-          get<SettingService>().imageMaskInDarkMode.value && context.isDarkMode;
+    return get<SettingService>().imageMaskInDarkMode.obx((value) {
+      final useDark = value && context.isDarkMode;
       return useDark
           ? ColorFiltered(
               colorFilter: const ColorFilter.mode(

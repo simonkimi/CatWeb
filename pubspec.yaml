@@ -31,7 +31,7 @@ dependencies:
 
   # network
   brotli: ^0.6.0
-  dio: ^5.4.0
+  dio: ^5.4.2+1
   dio_cache_interceptor: ^3.5.0
   dio_cache_interceptor_db_store: ^5.1.1
   dio_smart_retry: ^6.0.0
@@ -43,8 +43,12 @@ dependencies:
   webview_cookie_manager: ^2.0.6
 
   # state
-  flutter_hooks: ^0.20.3
+  flutter_hooks: ^0.20.5
   get_it: ^7.6.4
+  riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+  hooks_riverpod: ^2.5.1
+
 
   # database
   drift: ^2.14.1
@@ -64,11 +68,10 @@ dependencies:
   freezed_annotation: ^2.4.1
 
   # parser
-  catweb_parser:
-    path: ../catweb_parser_go
+  # catweb_parser:
+  #   path: ../catweb_parser_go
 
 
-dependency_overrides:
 
 dev_dependencies:
   flutter_test:
@@ -80,6 +83,7 @@ dev_dependencies:
   json_serializable: ^6.7.1
   build_runner: ^2.4.7
   custom_lint: ^0.5.7
+  riverpod_generator: ^2.4.0
 
 
 

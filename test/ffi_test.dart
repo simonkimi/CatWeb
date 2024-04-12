@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:catweb/network/client/client.dart';
 import 'package:catweb/test/site/eh/parser/list_parser.dart';
-import 'package:catweb_parser/catweb_parser.dart';
+// import 'package:catweb_parser/catweb_parser.dart';
 
 void main() async {
   final file = File('test/list.htm');
@@ -12,7 +12,7 @@ void main() async {
   var parser = jsonEncode(ehListParser.toJson());
   File('test/list_parser.json').writeAsStringSync(parser);
 
-  final rsp = await parseHtmlAsync(html, ParserType.list.value, parser);
+  // final rsp = await parseHtmlAsync(html, ParserType.list.value, parser);
 
-  print(rsp);
+  // print(rsp);
 }
