@@ -14,10 +14,10 @@ class PagingState<TItem> with _$PagingState<TItem> {
   const PagingState._();
 
   const factory PagingState({
-    @Default({}) required Map<int, BasePageData<TItem>> pageData,
-    @Default(0) required int currentPage,
-    @Default(0) required int startPage,
-    @Default(false) required bool isEnd,
+    @Default({}) Map<int, BasePageData<TItem>> pageData,
+    @Default(0) int currentPage,
+    @Default(0) int startPage,
+    @Default(false) bool isEnd,
   }) = _PagingState;
 }
 
@@ -36,7 +36,9 @@ abstract class BaseDataLoader<TItem> extends AsyncNotifier<PagingState<TItem>> {
     );
   }
 
-  Future<void> loadNextPage() async {}
+  Future<void> loadNextPage() async {
+
+  }
 
   Future<void> _loadPageData(int page) async {
     if (state.value?.pageData.containsKey(page) == true) return;

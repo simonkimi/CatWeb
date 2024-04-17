@@ -133,13 +133,14 @@ class __$$PagingStateImplCopyWithImpl<TItem, $Res>
 
 /// @nodoc
 
-class _$PagingStateImpl<TItem> implements _PagingState<TItem> {
+class _$PagingStateImpl<TItem> extends _PagingState<TItem> {
   const _$PagingStateImpl(
-      {required final Map<int, BasePageData<TItem>> pageData = const {},
-      required this.currentPage = 0,
-      required this.startPage = 0,
-      required this.isEnd = false})
-      : _pageData = pageData;
+      {final Map<int, BasePageData<TItem>> pageData = const {},
+      this.currentPage = 0,
+      this.startPage = 0,
+      this.isEnd = false})
+      : _pageData = pageData,
+        super._();
 
   final Map<int, BasePageData<TItem>> _pageData;
   @override
@@ -194,12 +195,13 @@ class _$PagingStateImpl<TItem> implements _PagingState<TItem> {
           this, _$identity);
 }
 
-abstract class _PagingState<TItem> implements PagingState<TItem> {
+abstract class _PagingState<TItem> extends PagingState<TItem> {
   const factory _PagingState(
-      {required final Map<int, BasePageData<TItem>> pageData,
-      required final int currentPage,
-      required final int startPage,
-      required final bool isEnd}) = _$PagingStateImpl<TItem>;
+      {final Map<int, BasePageData<TItem>> pageData,
+      final int currentPage,
+      final int startPage,
+      final bool isEnd}) = _$PagingStateImpl<TItem>;
+  const _PagingState._() : super._();
 
   @override
   Map<int, BasePageData<TItem>> get pageData;

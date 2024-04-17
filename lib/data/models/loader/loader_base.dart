@@ -1,55 +1,45 @@
 import 'dart:math';
 
-import 'loader_state.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/iter_helper.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:synchronized/synchronized.dart';
 
-abstract base class LoaderPage<TPageModel, TSubpageItem> {
-  final TPageModel pageData;
-  final List<TSubpageItem> items;
+import 'loader_state.dart';
 
-  LoaderPage(this.pageData, this.items);
+abstract base class LoaderPage<TPageItem> {
+  List<TPageItem> get items;
 }
 
-abstract base class LoadPageLoaderBase<TPageModel, TSubpageItem>
-    extends ChangeNotifier with ListLoaderStateMixin {
-  final Map<int, LoaderPage<TPageModel, TSubpageItem>> _pages = {};
+abstract base class LoadPageLoaderBase<TPageItem> extends ChangeNotifier {
+  final Map<int, LoaderPage<TPageItem>> _pages = {};
 
   final _lock = Lock();
   var _nextPagePointer = -1;
   var _startPage = 0;
+  var _state = const LoaderState.idle();
 
-  Future<LoaderPage<TPageModel, TSubpageItem>> loadPage(int page);
+  LoaderState get state => _state;
+
+  Future<LoaderPage<TPageItem>> loadPage(int page);
 
   Future<void> loadNextPage() async {
-    try {
-      // 检测是否在范围内
+    _state = const LoaderState.loading();
+    _state = await LoaderState.guard(() async {
       if (_checkIfOutOfRange(_nextPagePointer + 1)) {
         logger.d('下一面${_nextPagePointer + 1}超出范围, 没有更多');
-        stateLoadNoMoreValue();
         return;
       }
-
-      var hasValue = await _loadPageData(_nextPagePointer + 1);
+      await _loadPageData(_nextPagePointer + 1);
       _nextPagePointer += 1;
-      if (hasValue) {
-        notifyListeners();
-      }
       if (_checkIfOutOfRange(_nextPagePointer + 1)) {
         logger.d('下一面${_nextPagePointer + 1}超出范围, 没有更多', _nextPagePointer);
-        stateLoadNoMoreValue();
         return;
       }
-      stateLoadComplete();
-    } on DioException catch (e) {
-      stateLoadError(e);
-    } on Exception catch (e) {
-      stateLoadError(e);
-    }
+    });
+
+    notifyListeners();
   }
 
   Future<void> jumpPage(int page) async {
@@ -58,19 +48,18 @@ abstract base class LoadPageLoaderBase<TPageModel, TSubpageItem>
     await loadNextPage();
   }
 
-  Iterable<TSubpageItem?> get items => chunkSize == null
+  Iterable<TPageItem?> get items => chunkSize == null
       ? successivePages.expand((e) => e.items)
       : _subpageItems;
 
-  Iterable<LoaderPage<TPageModel, TSubpageItem>> get successivePages =>
-      _pages.entries
-          .where((e) => e.key >= _startPage)
-          .sort((a, b) => a.key - b.key)
-          .toList()
-          .getSuccessive((e) => e.key)
-          .map((e) => e.value);
+  Iterable<LoaderPage<TPageItem>> get successivePages => _pages.entries
+      .where((e) => e.key >= _startPage)
+      .sort((a, b) => a.key - b.key)
+      .toList()
+      .getSuccessive((e) => e.key)
+      .map((e) => e.value);
 
-  Iterable<TSubpageItem?> get _subpageItems sync* {
+  Iterable<TPageItem?> get _subpageItems sync* {
     assert(chunkSize != null);
     if (totalCount != null) {
       // 如果有总数, 加载所有数据
