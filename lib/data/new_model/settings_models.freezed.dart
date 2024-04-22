@@ -16,23 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SettingModel {
-  @HiveField(0)
   int get defaultSite => throw _privateConstructorUsedError;
-  @HiveField(1)
   bool get imageMaskInDarkMode => throw _privateConstructorUsedError;
-  @HiveField(2)
   CardSize get cardSize => throw _privateConstructorUsedError;
-  @HiveField(3)
   int get preloadCount => throw _privateConstructorUsedError;
-  @HiveField(4)
   ReaderDirection get readerDirectory => throw _privateConstructorUsedError;
-  @HiveField(5)
   ReaderDisplayType get displayType => throw _privateConstructorUsedError;
-  @HiveField(6)
   int get concurrencyCount => throw _privateConstructorUsedError;
-  @HiveField(7)
   bool get protectCookie => throw _privateConstructorUsedError;
-  @HiveField(8)
   bool get blurWhenBackground => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -47,15 +38,15 @@ abstract class $SettingModelCopyWith<$Res> {
       _$SettingModelCopyWithImpl<$Res, SettingModel>;
   @useResult
   $Res call(
-      {@HiveField(0) int defaultSite,
-      @HiveField(1) bool imageMaskInDarkMode,
-      @HiveField(2) CardSize cardSize,
-      @HiveField(3) int preloadCount,
-      @HiveField(4) ReaderDirection readerDirectory,
-      @HiveField(5) ReaderDisplayType displayType,
-      @HiveField(6) int concurrencyCount,
-      @HiveField(7) bool protectCookie,
-      @HiveField(8) bool blurWhenBackground});
+      {int defaultSite,
+      bool imageMaskInDarkMode,
+      CardSize cardSize,
+      int preloadCount,
+      ReaderDirection readerDirectory,
+      ReaderDisplayType displayType,
+      int concurrencyCount,
+      bool protectCookie,
+      bool blurWhenBackground});
 }
 
 /// @nodoc
@@ -131,15 +122,15 @@ abstract class _$$SettingModelsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) int defaultSite,
-      @HiveField(1) bool imageMaskInDarkMode,
-      @HiveField(2) CardSize cardSize,
-      @HiveField(3) int preloadCount,
-      @HiveField(4) ReaderDirection readerDirectory,
-      @HiveField(5) ReaderDisplayType displayType,
-      @HiveField(6) int concurrencyCount,
-      @HiveField(7) bool protectCookie,
-      @HiveField(8) bool blurWhenBackground});
+      {int defaultSite,
+      bool imageMaskInDarkMode,
+      CardSize cardSize,
+      int preloadCount,
+      ReaderDirection readerDirectory,
+      ReaderDisplayType displayType,
+      int concurrencyCount,
+      bool protectCookie,
+      bool blurWhenBackground});
 }
 
 /// @nodoc
@@ -206,55 +197,45 @@ class __$$SettingModelsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-@HiveType(typeId: 0)
 class _$SettingModelsImpl extends _SettingModels {
   const _$SettingModelsImpl(
-      {@HiveField(0) this.defaultSite = -1,
-      @HiveField(1) this.imageMaskInDarkMode = true,
-      @HiveField(2) this.cardSize = CardSize.medium,
-      @HiveField(3) this.preloadCount = 3,
-      @HiveField(4) this.readerDirectory = ReaderDirection.rtl,
-      @HiveField(5) this.displayType = ReaderDisplayType.single,
-      @HiveField(6) this.concurrencyCount = 3,
-      @HiveField(7) this.protectCookie = true,
-      @HiveField(8) this.blurWhenBackground = false})
+      {this.defaultSite = -1,
+      this.imageMaskInDarkMode = true,
+      this.cardSize = CardSize.medium,
+      this.preloadCount = 3,
+      this.readerDirectory = ReaderDirection.rtl,
+      this.displayType = ReaderDisplayType.single,
+      this.concurrencyCount = 3,
+      this.protectCookie = true,
+      this.blurWhenBackground = false})
       : super._();
 
   @override
   @JsonKey()
-  @HiveField(0)
   final int defaultSite;
   @override
   @JsonKey()
-  @HiveField(1)
   final bool imageMaskInDarkMode;
   @override
   @JsonKey()
-  @HiveField(2)
   final CardSize cardSize;
   @override
   @JsonKey()
-  @HiveField(3)
   final int preloadCount;
   @override
   @JsonKey()
-  @HiveField(4)
   final ReaderDirection readerDirectory;
   @override
   @JsonKey()
-  @HiveField(5)
   final ReaderDisplayType displayType;
   @override
   @JsonKey()
-  @HiveField(6)
   final int concurrencyCount;
   @override
   @JsonKey()
-  @HiveField(7)
   final bool protectCookie;
   @override
   @JsonKey()
-  @HiveField(8)
   final bool blurWhenBackground;
 
   @override
@@ -309,43 +290,34 @@ class _$SettingModelsImpl extends _SettingModels {
 
 abstract class _SettingModels extends SettingModel {
   const factory _SettingModels(
-      {@HiveField(0) final int defaultSite,
-      @HiveField(1) final bool imageMaskInDarkMode,
-      @HiveField(2) final CardSize cardSize,
-      @HiveField(3) final int preloadCount,
-      @HiveField(4) final ReaderDirection readerDirectory,
-      @HiveField(5) final ReaderDisplayType displayType,
-      @HiveField(6) final int concurrencyCount,
-      @HiveField(7) final bool protectCookie,
-      @HiveField(8) final bool blurWhenBackground}) = _$SettingModelsImpl;
+      {final int defaultSite,
+      final bool imageMaskInDarkMode,
+      final CardSize cardSize,
+      final int preloadCount,
+      final ReaderDirection readerDirectory,
+      final ReaderDisplayType displayType,
+      final int concurrencyCount,
+      final bool protectCookie,
+      final bool blurWhenBackground}) = _$SettingModelsImpl;
   const _SettingModels._() : super._();
 
   @override
-  @HiveField(0)
   int get defaultSite;
   @override
-  @HiveField(1)
   bool get imageMaskInDarkMode;
   @override
-  @HiveField(2)
   CardSize get cardSize;
   @override
-  @HiveField(3)
   int get preloadCount;
   @override
-  @HiveField(4)
   ReaderDirection get readerDirectory;
   @override
-  @HiveField(5)
   ReaderDisplayType get displayType;
   @override
-  @HiveField(6)
   int get concurrencyCount;
   @override
-  @HiveField(7)
   bool get protectCookie;
   @override
-  @HiveField(8)
   bool get blurWhenBackground;
   @override
   @JsonKey(ignore: true)
