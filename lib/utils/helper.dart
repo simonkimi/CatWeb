@@ -1,7 +1,6 @@
 import 'dart:core' as core;
 import 'dart:core';
 import 'dart:math' as math;
-import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/navigator.dart';
 import 'package:catweb/utils/iter_helper.dart';
@@ -86,8 +85,8 @@ T? iterableMin<T extends num>(Iterable<T> iter) {
   return iter.reduce(math.min);
 }
 
-extension EnvString on String {
-  String env(SiteEnvStore env) => env.apply(this);
-
-  String globalEnv() => get<SiteService>().site.value!.globalEnv.apply(this);
-}
+// extension EnvString on String {
+//   String env(SiteEnvStore env) => env.apply(this);
+//
+//   String globalEnv() => get<SiteService>().site.value!.globalEnv.apply(this);
+// }

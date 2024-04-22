@@ -1,78 +1,48 @@
 import 'dart:ui';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:catweb/data/controller/site_service.dart';
+import 'package:catweb/data/controller/settings.dart';
+import 'package:catweb/data/controller/site_provider.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/ui/pages/view_page/viewer_main.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hive/hive.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'data/controller/db_service.dart';
-import 'data/controller/navigator_service.dart';
-import 'data/controller/setting_service.dart';
 import 'navigator.dart';
 
-Future<void> setup() async {
-  getIt.registerSingletonAsync(() async {
-    return SharedPreferences.getInstance();
-  });
-  getIt.registerSingletonAsync(() async {
-    final service = SettingService();
-    await service.init();
-    return service;
-  });
+Future<void> initializeApp(WidgetRef ref) async {
   getIt.registerSingleton(() => DbService());
-  getIt.registerSingleton(() => NavigatorService());
-  getIt.registerSingletonAsync(() async {
-    final service = SiteService();
-    await service.init();
-    return service;
-  });
-  await getIt.allReady();
+
+  await Future.wait([
+    ref.read(settingsProvider.notifier).loadSettings(),
+    ref.read(siteProvider.notifier).init(),
+    getIt.allReady(),
+  ]);
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Hive.init((await getApplicationDocumentsDirectory()).path);
-  await setup();
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends HookConsumerWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  var _needBlur = false;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (getIt.get<SettingService>().blurWhenBackground.value) {
-      final newState = state != AppLifecycleState.resumed;
-      if (newState != _needBlur) {
-        setState(() {
-          _needBlur = newState;
-        });
+  Widget build(BuildContext context, WidgetRef ref) {
+    final needBlur = useState(false);
+    useOnAppLifecycleStateChange((previous, current) {
+      if (ref.read(settingsProvider).blurWhenBackground) {
+        final newState = current != AppLifecycleState.resumed;
+        if (newState != needBlur.value) {
+          needBlur.value = newState;
+        }
       }
-    }
-  }
+    });
 
-  @override
-  Widget build(BuildContext context) {
     return CupertinoApp(
       title: 'CatWeb',
       debugShowCheckedModeBanner: false,
@@ -89,30 +59,32 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         );
       },
       builder: (context, child) {
-        child = Stack(
+        final root = Stack(
           textDirection: TextDirection.ltr,
           children: [
             child ?? const SizedBox(),
-            if (_needBlur)
+            if (needBlur.value)
               BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                 child: const SizedBox(),
               ),
           ],
         );
-        child = BotToastInit()(context, child);
-        return child;
+        final botRoot = BotToastInit()(context, root);
+        return FutureBuilder(
+          future: initializeApp(ref),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return botRoot;
+            }
+            return const SizedBox();
+          },
+        );
       },
       supportedLocales: I.supportedLocales,
       navigatorKey: AppNavigator().key,
       navigatorObservers: [BotToastNavigatorObserver()],
       theme: defaultTheme(),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    WidgetsBinding.instance.removeObserver(this);
   }
 }

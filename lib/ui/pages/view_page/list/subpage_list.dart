@@ -102,7 +102,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
                     BotToast.showText(text: '跳转目标为空');
                     return;
                   }
-                  NavigatorService.push(
+                  NavigatorNotifier.push(
                     targetName: (controller.blueprint.template as TemplateList)
                         .targetItem
                         .value,

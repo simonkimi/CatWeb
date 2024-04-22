@@ -414,7 +414,7 @@ class ViewerGalleryFragment extends StatelessWidget {
     if (startPage != null) {
       previewController.lastReadIndex.value = startPage;
     }
-    await NavigatorService.push(
+    await NavigatorNotifier.push(
       targetName: previewController.extra.targetReader.value,
       envModel: previewController.localEnv.clone(),
       model: previewController,

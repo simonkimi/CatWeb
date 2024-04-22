@@ -37,4 +37,49 @@ class SettingsNotifier extends StateNotifier<SettingModel> {
     await prefs.setBool('protectCookie', state.protectCookie);
     await prefs.setBool('blurWhenBackground', state.blurWhenBackground);
   }
+
+  void setDefaultSite(int site) {
+    state = state.copyWith(defaultSite: site);
+    saveSettings();
+  }
+
+  void setImageMaskInDarkMode(bool value) {
+    state = state.copyWith(imageMaskInDarkMode: value);
+    saveSettings();
+  }
+
+  void setCardSize(CardSize size) {
+    state = state.copyWith(cardSize: size);
+    saveSettings();
+  }
+
+  void setPreloadCount(int count) {
+    state = state.copyWith(preloadCount: count);
+    saveSettings();
+  }
+
+  void setReaderDirectory(ReaderDirection direction) {
+    state = state.copyWith(readerDirectory: direction);
+    saveSettings();
+  }
+
+  void setDisplayType(ReaderDisplayType type) {
+    state = state.copyWith(displayType: type);
+    saveSettings();
+  }
+
+  void setConcurrencyCount(int count) {
+    state = state.copyWith(concurrencyCount: count);
+    saveSettings();
+  }
+
+  void setProtectCookie(bool value) {
+    state = state.copyWith(protectCookie: value);
+    saveSettings();
+  }
+
+  void setBlurWhenBackground(bool value) {
+    state = state.copyWith(blurWhenBackground: value);
+    saveSettings();
+  }
 }
