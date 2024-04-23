@@ -1,5 +1,5 @@
 import 'package:catweb/data/controller/site.dart';
-import 'package:catweb/data/models/site_model/pages/template.dart';
+import 'package:catweb/data/models/site/template.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage_scaffold.dart';
@@ -26,14 +26,12 @@ class NavigatorNotifier extends StateNotifier<int> {
     SiteEnvStore? envModel,
     Object? model,
   }) async {
-    final target =
-        site.state!.blueMap.pageList.get((e) => e.uuid == targetName);
+    final target = site.state!.blueMap.getPageById(targetName);
     if (target == null) {
       throw Exception('NavigatorService: $targetName not exist');
     }
 
-    var add = [TemplateType.imageList, TemplateType.imageWaterFall]
-        .contains(target.template.type);
+    final add = target.template is PageTemplateList;
 
     if (add) {
       state += 1;

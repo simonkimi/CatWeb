@@ -1,4 +1,4 @@
-import 'package:catweb/data/models/new_site/field.dart';
+import 'package:catweb/data/models/site/field.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'selector.freezed.dart';

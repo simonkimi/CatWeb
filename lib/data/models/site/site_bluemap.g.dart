@@ -25,6 +25,14 @@ _$SiteBlueMapImpl _$$SiteBlueMapImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => RegField.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      parserList: (json['parserList'] as List<dynamic>?)
+              ?.map((e) => ParserModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      pageList: (json['pageList'] as List<dynamic>?)
+              ?.map((e) => SitePage.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$SiteBlueMapImplToJson(_$SiteBlueMapImpl instance) =>
@@ -40,4 +48,6 @@ Map<String, dynamic> _$$SiteBlueMapImplToJson(_$SiteBlueMapImpl instance) =>
       'readme': instance.readme,
       'headers': instance.headers,
       'cookies': instance.cookies,
+      'parserList': instance.parserList,
+      'pageList': instance.pageList,
     };

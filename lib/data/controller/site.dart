@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/models/site_model/site_blue_map.dart';
+import 'package:catweb/data/models/site/site_bluemap.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/utils/iter_helper.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

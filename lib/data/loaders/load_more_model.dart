@@ -9,8 +9,8 @@ import 'package:synchronized/synchronized.dart';
 import 'load_more_mixin.dart';
 
 /// 加载中每一个数据的内部值
-abstract class LoadMoreItem<E> {
-  E get value;
+abstract class LoadMoreItem<TItem> {
+  TItem get value;
 }
 
 /// 用于加载一面一面数据

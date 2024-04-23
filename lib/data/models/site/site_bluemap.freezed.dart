@@ -31,6 +31,8 @@ mixin _$SiteBlueMap {
   String get readme => throw _privateConstructorUsedError;
   List<RegField> get headers => throw _privateConstructorUsedError;
   List<RegField> get cookies => throw _privateConstructorUsedError;
+  List<ParserModel> get parserList => throw _privateConstructorUsedError;
+  List<SitePage> get pageList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +57,9 @@ abstract class $SiteBlueMapCopyWith<$Res> {
       String flag,
       String readme,
       List<RegField> headers,
-      List<RegField> cookies});
+      List<RegField> cookies,
+      List<ParserModel> parserList,
+      List<SitePage> pageList});
 }
 
 /// @nodoc
@@ -82,6 +86,8 @@ class _$SiteBlueMapCopyWithImpl<$Res, $Val extends SiteBlueMap>
     Object? readme = null,
     Object? headers = null,
     Object? cookies = null,
+    Object? parserList = null,
+    Object? pageList = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -128,6 +134,14 @@ class _$SiteBlueMapCopyWithImpl<$Res, $Val extends SiteBlueMap>
           ? _value.cookies
           : cookies // ignore: cast_nullable_to_non_nullable
               as List<RegField>,
+      parserList: null == parserList
+          ? _value.parserList
+          : parserList // ignore: cast_nullable_to_non_nullable
+              as List<ParserModel>,
+      pageList: null == pageList
+          ? _value.pageList
+          : pageList // ignore: cast_nullable_to_non_nullable
+              as List<SitePage>,
     ) as $Val);
   }
 }
@@ -151,7 +165,9 @@ abstract class _$$SiteBlueMapImplCopyWith<$Res>
       String flag,
       String readme,
       List<RegField> headers,
-      List<RegField> cookies});
+      List<RegField> cookies,
+      List<ParserModel> parserList,
+      List<SitePage> pageList});
 }
 
 /// @nodoc
@@ -176,6 +192,8 @@ class __$$SiteBlueMapImplCopyWithImpl<$Res>
     Object? readme = null,
     Object? headers = null,
     Object? cookies = null,
+    Object? parserList = null,
+    Object? pageList = null,
   }) {
     return _then(_$SiteBlueMapImpl(
       name: null == name
@@ -222,13 +240,21 @@ class __$$SiteBlueMapImplCopyWithImpl<$Res>
           ? _value._cookies
           : cookies // ignore: cast_nullable_to_non_nullable
               as List<RegField>,
+      parserList: null == parserList
+          ? _value._parserList
+          : parserList // ignore: cast_nullable_to_non_nullable
+              as List<ParserModel>,
+      pageList: null == pageList
+          ? _value._pageList
+          : pageList // ignore: cast_nullable_to_non_nullable
+              as List<SitePage>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SiteBlueMapImpl implements _SiteBlueMap {
+class _$SiteBlueMapImpl extends _SiteBlueMap {
   const _$SiteBlueMapImpl(
       {this.name = '',
       this.baseUrl = '',
@@ -240,9 +266,14 @@ class _$SiteBlueMapImpl implements _SiteBlueMap {
       this.flag = '',
       this.readme = '',
       final List<RegField> headers = const [],
-      final List<RegField> cookies = const []})
+      final List<RegField> cookies = const [],
+      final List<ParserModel> parserList = const [],
+      final List<SitePage> pageList = const []})
       : _headers = headers,
-        _cookies = cookies;
+        _cookies = cookies,
+        _parserList = parserList,
+        _pageList = pageList,
+        super._();
 
   factory _$SiteBlueMapImpl.fromJson(Map<String, dynamic> json) =>
       _$$SiteBlueMapImplFromJson(json);
@@ -292,9 +323,27 @@ class _$SiteBlueMapImpl implements _SiteBlueMap {
     return EqualUnmodifiableListView(_cookies);
   }
 
+  final List<ParserModel> _parserList;
+  @override
+  @JsonKey()
+  List<ParserModel> get parserList {
+    if (_parserList is EqualUnmodifiableListView) return _parserList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parserList);
+  }
+
+  final List<SitePage> _pageList;
+  @override
+  @JsonKey()
+  List<SitePage> get pageList {
+    if (_pageList is EqualUnmodifiableListView) return _pageList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_pageList);
+  }
+
   @override
   String toString() {
-    return 'SiteBlueMap(name: $name, baseUrl: $baseUrl, loginUrl: $loginUrl, loginCookieReg: $loginCookieReg, loginCookieDescription: $loginCookieDescription, version: $version, upgradeUrl: $upgradeUrl, flag: $flag, readme: $readme, headers: $headers, cookies: $cookies)';
+    return 'SiteBlueMap(name: $name, baseUrl: $baseUrl, loginUrl: $loginUrl, loginCookieReg: $loginCookieReg, loginCookieDescription: $loginCookieDescription, version: $version, upgradeUrl: $upgradeUrl, flag: $flag, readme: $readme, headers: $headers, cookies: $cookies, parserList: $parserList, pageList: $pageList)';
   }
 
   @override
@@ -316,7 +365,10 @@ class _$SiteBlueMapImpl implements _SiteBlueMap {
             (identical(other.flag, flag) || other.flag == flag) &&
             (identical(other.readme, readme) || other.readme == readme) &&
             const DeepCollectionEquality().equals(other._headers, _headers) &&
-            const DeepCollectionEquality().equals(other._cookies, _cookies));
+            const DeepCollectionEquality().equals(other._cookies, _cookies) &&
+            const DeepCollectionEquality()
+                .equals(other._parserList, _parserList) &&
+            const DeepCollectionEquality().equals(other._pageList, _pageList));
   }
 
   @JsonKey(ignore: true)
@@ -333,7 +385,9 @@ class _$SiteBlueMapImpl implements _SiteBlueMap {
       flag,
       readme,
       const DeepCollectionEquality().hash(_headers),
-      const DeepCollectionEquality().hash(_cookies));
+      const DeepCollectionEquality().hash(_cookies),
+      const DeepCollectionEquality().hash(_parserList),
+      const DeepCollectionEquality().hash(_pageList));
 
   @JsonKey(ignore: true)
   @override
@@ -349,7 +403,7 @@ class _$SiteBlueMapImpl implements _SiteBlueMap {
   }
 }
 
-abstract class _SiteBlueMap implements SiteBlueMap {
+abstract class _SiteBlueMap extends SiteBlueMap {
   const factory _SiteBlueMap(
       {final String name,
       final String baseUrl,
@@ -361,7 +415,10 @@ abstract class _SiteBlueMap implements SiteBlueMap {
       final String flag,
       final String readme,
       final List<RegField> headers,
-      final List<RegField> cookies}) = _$SiteBlueMapImpl;
+      final List<RegField> cookies,
+      final List<ParserModel> parserList,
+      final List<SitePage> pageList}) = _$SiteBlueMapImpl;
+  const _SiteBlueMap._() : super._();
 
   factory _SiteBlueMap.fromJson(Map<String, dynamic> json) =
       _$SiteBlueMapImpl.fromJson;
@@ -388,6 +445,10 @@ abstract class _SiteBlueMap implements SiteBlueMap {
   List<RegField> get headers;
   @override
   List<RegField> get cookies;
+  @override
+  List<ParserModel> get parserList;
+  @override
+  List<SitePage> get pageList;
   @override
   @JsonKey(ignore: true)
   _$$SiteBlueMapImplCopyWith<_$SiteBlueMapImpl> get copyWith =>

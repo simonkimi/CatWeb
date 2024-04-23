@@ -1,34 +1,36 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:catweb/data/controller/site_service.dart';
-import 'package:catweb/data/models/site_model/pages/site_page.dart';
+import 'package:catweb/data/controller/site.dart';
+import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/navigator.dart';
 import 'package:catweb/ui/pages/view_page/empty/empty.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage_scaffold.dart';
 import 'package:catweb/utils/context_helper.dart';
 import 'package:catweb/utils/icons.dart';
-import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ViewerMain extends StatelessWidget {
+class ViewerMain extends HookConsumerWidget {
   const ViewerMain({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final controller = get<SiteService>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch(siteProvider);
+    final lastClickBack = useState<int>(0);
+
     return PopScope(
       canPop: false,
       onPopInvoked: (canPop) {
-        if (controller.lastClickBack + 1000 <
+        if (lastClickBack.value + 1000 <
             DateTime.now().millisecondsSinceEpoch) {
-          controller.lastClickBack = DateTime.now().millisecondsSinceEpoch;
+          lastClickBack.value = DateTime.now().millisecondsSinceEpoch;
           BotToast.showText(text: I.of(context).press_again_to_exist);
           return;
         }
         context.pop();
       },
-      child: controller.site.obx((site) => _buildBody(context, site)),
+      child: _buildBody(context, controller),
     );
   }
 
@@ -47,10 +49,10 @@ class ViewerMain extends StatelessWidget {
         items: website.displayPage.map((e) {
           return BottomNavigationBarItem(
             icon: Icon(
-              cupertinoIcons[e.icon.value] ?? CupertinoIcons.circle,
+              cupertinoIcons[e.icon] ?? CupertinoIcons.circle,
               size: 22,
             ),
-            label: e.name.value,
+            label: e.name,
           );
         }).toList(),
       ),

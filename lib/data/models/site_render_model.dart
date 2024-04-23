@@ -4,10 +4,10 @@ import 'dart:typed_data';
 import 'package:catweb/data/database/cookie_jar_storage.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
+import 'package:catweb/data/models/site/page.dart';
+import 'package:catweb/data/models/site/site_bluemap.dart';
+import 'package:catweb/data/models/site/template.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/data/models/site_model/pages/site_page.dart';
-import 'package:catweb/data/models/site_model/pages/template.dart';
-import 'package:catweb/data/models/site_model/site_blue_map.dart';
 import 'package:catweb/get.dart';
 import 'package:catweb/network/client/client.dart';
 import 'package:catweb/utils/obs_helper.dart';
@@ -44,7 +44,7 @@ class SiteRenderConfigModel {
   final SiteBlueMap blueMap;
   final ValueNotifier<Uint8List?> favicon;
 
-  String get name => blueMap.name.value;
+  String get name => blueMap.name;
 
   int get id => dbEntity.id;
 
@@ -56,12 +56,12 @@ class SiteRenderConfigModel {
   Future<void> updateCookies() async {}
 
   List<SitePage> get displayPage => blueMap.pageList
-      .where((p0) =>
-          p0.displayType.value == SiteDisplayType.show ||
-          (p0.displayType.value == SiteDisplayType.login &&
-              dbEntity.loginCookies.isNotEmpty))
-      .where((e) => [TemplateType.imageList, TemplateType.imageWaterFall]
-          .contains(e.template.type))
+      .where((p0) {
+        return p0.displayType == SiteDisplayType.show ||
+            (p0.displayType == SiteDisplayType.login &&
+                dbEntity.loginCookies.isNotEmpty);
+      })
+      .where((e) => e.template is PageTemplateList)
       .toList();
 
   void updateGlobalEnv(Iterable<EnvResult> envs) async {
