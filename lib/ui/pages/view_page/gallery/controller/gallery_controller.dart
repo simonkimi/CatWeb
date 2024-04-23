@@ -1,4 +1,4 @@
-import 'package:catweb/data/controller/db_service.dart';
+import 'package:catweb/data/controller/db.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/data/models/ffi/result/result.dart';

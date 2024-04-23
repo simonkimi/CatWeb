@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:catweb/data/controller/db_service.dart';
+import 'package:catweb/data/controller/db.dart';
 import 'package:catweb/data/controller/setting_service.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';

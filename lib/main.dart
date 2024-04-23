@@ -1,7 +1,8 @@
 import 'dart:ui';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:catweb/data/controller/global.dart';
 import 'package:catweb/data/controller/settings.dart';
-import 'package:catweb/data/controller/site_provider.dart';
+import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/theme/themes.dart';
 import 'package:catweb/ui/pages/view_page/viewer_main.dart';
@@ -10,22 +11,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'data/controller/db_service.dart';
 import 'navigator.dart';
 
 Future<void> initializeApp(WidgetRef ref) async {
-  getIt.registerSingleton(() => DbService());
-
   await Future.wait([
     ref.read(settingsProvider.notifier).loadSettings(),
     ref.read(siteProvider.notifier).init(),
+    ref.read(globalProvider).init(),
     getIt.allReady(),
   ]);
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const ProviderScope(child: MyApp()));
+  final container = ProviderContainer();
+  getIt.registerSingleton(() => container);
+  runApp(UncontrolledProviderScope(
+    container: container,
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends HookConsumerWidget {

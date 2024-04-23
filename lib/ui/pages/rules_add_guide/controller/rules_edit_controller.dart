@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:catweb/data/controller/db_service.dart';
+import 'package:catweb/data/controller/db.dart';
 import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site_model/site_blue_map.dart';
@@ -15,7 +15,6 @@ class RulesEditController {
 
   SiteBlueMap blueprint;
   final WebTableData? db;
-
 
   Future<void> save() async {
     if (db == null) {
