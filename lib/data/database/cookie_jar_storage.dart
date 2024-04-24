@@ -8,7 +8,7 @@ class CookieJarStorage implements Storage {
 
   final String uuid;
 
-  final _cookieJarDao = inject(dbProvider).cookieJarDao;
+  final _cookieJarDao = inject<DbService>().cookieJarDao;
 
   @override
   Future<void> delete(String key) => _cookieJarDao.remove(uuid, key);

@@ -1,6 +1,5 @@
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
-import 'package:catweb/ui/pages/view_page/viewer_subpage/image/image_provider.dart';
 import 'package:catweb/ui/widgets/cupertino_progress_bar.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:extended_image/extended_image.dart';

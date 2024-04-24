@@ -86,7 +86,7 @@ class SiteManager extends StatelessWidget {
   Widget _buildSiteItem(BuildContext context, WebTableData e) {
     final controller = get<SiteService>();
     final model = SiteBlueMap.fromJson(jsonDecode(e.blueprint));
-    return controller.site.obx((site) => CupertinoCardTile(
+    return controller.siteService.obx((site) => CupertinoCardTile(
           selected: site?.id == e.id,
           title: Text(model.name.value),
           subtitle: Text(model.baseUrl.value),

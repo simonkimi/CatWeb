@@ -35,7 +35,7 @@ class DetailBaseData {
 }
 
 /// Detail带预览的加载项目
-class DetailImageWithPreview extends ImageWithPreviewModel<DetailPreviewItem> {
+class DetailImageWithPreview extends ImageWithPreviewModel {
   DetailImageWithPreview(super.previewModel);
 
   @override
@@ -125,7 +125,7 @@ class GalleryPreviewController extends LoadMoreLoader<DetailParserResult,
     }
     baseUrl = localEnv.apply(baseUrl);
 
-    final detail = await global.site.value!.client.getDetail(
+    final detail = await global.siteService.value!.client.getDetail(
       url: baseUrl,
       model: blueprint,
       localEnv: localEnv,

@@ -2,19 +2,16 @@ import 'dart:io';
 
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 
-final globalProvider = Provider((ref) => GlobalState());
-
-class GlobalState {
+class GlobalService {
   late final CacheOptions imageCacheOption;
   late final CacheOptions cacheOptions;
 
   late final DbCacheStore dbCacheStore;
   late final MemCacheStore memCacheStore;
 
-  Future init() async {
+  Future<GlobalService> init() async {
     dbCacheStore = DbCacheStore(
       databasePath: await getDocumentDir(),
     );
@@ -37,6 +34,7 @@ class GlobalState {
       policy: CachePolicy.noCache,
       maxStale: const Duration(days: 1),
     );
+    return this;
   }
 
   Future<String> getDocumentDir() async {

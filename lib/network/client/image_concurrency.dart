@@ -6,9 +6,8 @@ import 'package:dio/dio.dart';
 
 import 'image_loader.dart';
 
-/// 用于加载图片, 同url公用用一个imageProvider
-class ImageListConcurrency {
-  ImageListConcurrency({
+class ImageLoaderQueue {
+  ImageLoaderQueue({
     Dio? dio,
     int? concurrency,
   })  : concurrency = concurrency ?? inject(settingsProvider).concurrencyCount,
@@ -16,47 +15,18 @@ class ImageListConcurrency {
 
   final Dio dio;
   final int concurrency;
+  final _container = <String, ImageLoadNotifier>{};
 
-  final _globalCancelToken = CancelToken();
+  ImageLoadNotifier insert(ImageResult model) {
+    final key = model.cacheKey ?? model.url!;
 
-  final _imageMap = <String, ImageLoadModel>{};
-
-  List<ImageLoadModel> get activeImage =>
-      _imageMap.values.where((e) => e.needLoad).toList();
-
-  ImageLoadModel create(ImageResult model) {
-    late ImageLoadModel exist;
-
-    final cacheKey = model.cacheKey ?? model.url!;
-
-    if (_imageMap.containsKey(cacheKey)) {
-      exist = _imageMap[cacheKey]!..handle();
+    late ImageLoadNotifier exist;
+    if (_container.containsKey(key)) {
+      exist = _container[key]!;
     } else {
-      exist = ImageLoadModel(model: model, dio: dio);
-      _imageMap[cacheKey] = exist;
+      exist = ImageLoadNotifier(model: model, dio: dio);
+      _container[key] = exist;
     }
-
-    _trigger();
-    exist.loadCache().whenComplete(() => _trigger());
     return exist;
-  }
-
-  void reload(ImageLoadModel model) {
-    model.reset();
-    _trigger();
-  }
-
-  void dispose() {
-    _globalCancelToken.cancel();
-    _imageMap.forEach((key, value) {
-      value.dispose();
-    });
-  }
-
-  void _trigger() {
-    while ((activeImage.length < concurrency || concurrency == 0) &&
-        activeImage.isNotEmpty) {
-      activeImage.first.load().whenComplete(_trigger);
-    }
   }
 }

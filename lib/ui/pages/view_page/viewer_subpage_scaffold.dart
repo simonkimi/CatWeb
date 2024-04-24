@@ -4,12 +4,11 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/ui/pages/view_page/image/image_reader.dart';
 import 'package:catweb/ui/pages/view_page/list/viewer_list.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'gallery/viewer_gallery.dart';
 import 'image/controller/image_load_controller.dart';
 
-class ViewerPage extends ConsumerWidget {
+class ViewerPage extends StatelessWidget {
   const ViewerPage({
     super.key,
     required this.target,
@@ -22,7 +21,7 @@ class ViewerPage extends ConsumerWidget {
   final Object? model;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return _buildFragment(context);
   }
 

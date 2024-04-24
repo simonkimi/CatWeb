@@ -1,85 +1,116 @@
-import 'package:catweb/data/new_model/settings_models.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:catweb/utils/obs_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final settingsProvider = StateNotifierProvider<SettingsNotifier, SettingModel>(
-  (ref) => SettingsNotifier(),
-);
+class SettingService {
+  late SharedPreferences _prefs;
 
-class SettingsNotifier extends StateNotifier<SettingModel> {
-  SettingsNotifier() : super(const SettingModel());
+  final defaultSiteNotifier = (-1).obs;
+  final imageMaskInDarkModeNotifier = true.obs;
+  final cardSizeNotifier = CardSize.medium.obs;
+  final preloadCountNotifier = 3.obs;
+  final readerDirectoryNotifier = ReaderDirection.rtl.obs;
+  final displayTypeNotifier = ReaderDisplayType.single.obs;
+  final concurrencyCountNotifier = 3.obs;
+  final protectCookieNotifier = true.obs;
+  final blurWhenBackgroundNotifier = false.obs;
 
-  Future<void> loadSettings() async {
-    final prefs = await SharedPreferences.getInstance();
-    state = SettingModel(
-      defaultSite: prefs.getInt('defaultSite') ?? -1,
-      imageMaskInDarkMode: prefs.getBool('imageMaskInDarkMode') ?? true,
-      cardSize: CardSize.values[prefs.getInt('cardSize') ?? 1],
-      preloadCount: prefs.getInt('preloadCount') ?? 3,
-      readerDirectory:
-          ReaderDirection.values[prefs.getInt('readerDirectory') ?? 1],
-      displayType: ReaderDisplayType.values[prefs.getInt('displayType') ?? 0],
-      concurrencyCount: prefs.getInt('concurrencyCount') ?? 3,
-      protectCookie: prefs.getBool('protectCookie') ?? true,
-      blurWhenBackground: prefs.getBool('blurWhenBackground') ?? false,
-    );
+  Future<SettingService> init() async {
+    _prefs = await SharedPreferences.getInstance();
+    defaultSiteNotifier.value = _prefs.getInt('defaultSite') ?? -1;
+    imageMaskInDarkModeNotifier.value =
+        _prefs.getBool('imageMaskInDarkMode') ?? true;
+    cardSizeNotifier.value = CardSize.values[_prefs.getInt('cardSize') ?? 1];
+    preloadCountNotifier.value = _prefs.getInt('preloadCount') ?? 3;
+    readerDirectoryNotifier.value =
+        ReaderDirection.values[_prefs.getInt('readerDirectory') ?? 1];
+    displayTypeNotifier.value =
+        ReaderDisplayType.values[_prefs.getInt('displayType') ?? 0];
+    concurrencyCountNotifier.value = _prefs.getInt('concurrencyCount') ?? 3;
+    protectCookieNotifier.value = _prefs.getBool('protectCookie') ?? true;
+    blurWhenBackgroundNotifier.value =
+        _prefs.getBool('blurWhenBackground') ?? false;
+    return this;
   }
 
-  Future<void> saveSettings() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('defaultSite', state.defaultSite);
-    await prefs.setBool('imageMaskInDarkMode', state.imageMaskInDarkMode);
-    await prefs.setInt('cardSize', state.cardSize.index);
-    await prefs.setInt('preloadCount', state.preloadCount);
-    await prefs.setInt('readerDirectory', state.readerDirectory.index);
-    await prefs.setInt('displayType', state.displayType.index);
-    await prefs.setInt('concurrencyCount', state.concurrencyCount);
-    await prefs.setBool('protectCookie', state.protectCookie);
-    await prefs.setBool('blurWhenBackground', state.blurWhenBackground);
-  }
+  int get defaultSite => defaultSiteNotifier.value;
 
-  void setDefaultSite(int site) {
-    state = state.copyWith(defaultSite: site);
-    saveSettings();
+  bool get imageMaskInDarkMode => imageMaskInDarkModeNotifier.value;
+
+  CardSize get cardSize => cardSizeNotifier.value;
+
+  int get preloadCount => preloadCountNotifier.value;
+
+  ReaderDirection get readerDirectory => readerDirectoryNotifier.value;
+
+  ReaderDisplayType get displayType => displayTypeNotifier.value;
+
+  int get concurrencyCount => concurrencyCountNotifier.value;
+
+  bool get protectCookie => protectCookieNotifier.value;
+
+  bool get blurWhenBackground => blurWhenBackgroundNotifier.value;
+
+  void setDefaultSite(int value) {
+    _prefs.setInt('defaultSite', value);
+    defaultSiteNotifier.value = value;
   }
 
   void setImageMaskInDarkMode(bool value) {
-    state = state.copyWith(imageMaskInDarkMode: value);
-    saveSettings();
+    _prefs.setBool('imageMaskInDarkMode', value);
+    imageMaskInDarkModeNotifier.value = value;
   }
 
-  void setCardSize(CardSize size) {
-    state = state.copyWith(cardSize: size);
-    saveSettings();
+  void setCardSize(CardSize value) {
+    _prefs.setInt('cardSize', value.index);
+    cardSizeNotifier.value = value;
   }
 
-  void setPreloadCount(int count) {
-    state = state.copyWith(preloadCount: count);
-    saveSettings();
+  void setPreloadCount(int value) {
+    _prefs.setInt('preloadCount', value);
+    preloadCountNotifier.value = value;
   }
 
-  void setReaderDirectory(ReaderDirection direction) {
-    state = state.copyWith(readerDirectory: direction);
-    saveSettings();
+  void setReaderDirectory(ReaderDirection value) {
+    _prefs.setInt('readerDirectory', value.index);
+    readerDirectoryNotifier.value = value;
   }
 
-  void setDisplayType(ReaderDisplayType type) {
-    state = state.copyWith(displayType: type);
-    saveSettings();
+  void setDisplayType(ReaderDisplayType value) {
+    _prefs.setInt('displayType', value.index);
+    displayTypeNotifier.value = value;
   }
 
-  void setConcurrencyCount(int count) {
-    state = state.copyWith(concurrencyCount: count);
-    saveSettings();
+  void setConcurrencyCount(int value) {
+    _prefs.setInt('concurrencyCount', value);
+    concurrencyCountNotifier.value = value;
   }
 
   void setProtectCookie(bool value) {
-    state = state.copyWith(protectCookie: value);
-    saveSettings();
+    _prefs.setBool('protectCookie', value);
+    protectCookieNotifier.value = value;
   }
 
   void setBlurWhenBackground(bool value) {
-    state = state.copyWith(blurWhenBackground: value);
-    saveSettings();
+    _prefs.setBool('blurWhenBackground', value);
+    blurWhenBackgroundNotifier.value = value;
   }
+}
+
+enum CardSize {
+  small,
+  medium,
+  large,
+  huge;
+}
+
+enum ReaderDirection {
+  ltr,
+  rtl,
+  ttb;
+}
+
+enum ReaderDisplayType {
+  single,
+  double,
+  doubleCover;
 }

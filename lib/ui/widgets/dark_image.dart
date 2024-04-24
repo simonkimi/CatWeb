@@ -1,9 +1,9 @@
 import 'package:catweb/data/controller/settings.dart';
+import 'package:catweb/get.dart';
 import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DarkImage extends ConsumerWidget {
+class DarkImage extends StatelessWidget {
   const DarkImage({
     super.key,
     required this.image,
@@ -16,25 +16,30 @@ class DarkImage extends ConsumerWidget {
   final ImageLoadingBuilder? loadingBuilder;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final setting = ref.watch(settingsProvider);
-    return setting.imageMaskInDarkMode && context.isDarkMode
-        ? ColorFiltered(
-            colorFilter: const ColorFilter.mode(
-              Colors.black26,
-              BlendMode.dstOut,
-            ),
-            child: Image(
-              image: image,
-              fit: fit,
-              loadingBuilder: loadingBuilder,
-            ),
-          )
-        : Image(
-            image: image,
-            fit: fit,
-            loadingBuilder: loadingBuilder,
-          );
+  Widget build(BuildContext context) {
+    SettingService setting = inject();
+    return ValueListenableBuilder(
+      valueListenable: setting.imageMaskInDarkModeNotifier,
+      builder: (context, value, _) {
+        return value && context.isDarkMode
+            ? ColorFiltered(
+                colorFilter: const ColorFilter.mode(
+                  Colors.black26,
+                  BlendMode.dstOut,
+                ),
+                child: Image(
+                  image: image,
+                  fit: fit,
+                  loadingBuilder: loadingBuilder,
+                ),
+              )
+            : Image(
+                image: image,
+                fit: fit,
+                loadingBuilder: loadingBuilder,
+              );
+      },
+    );
   }
 }
 

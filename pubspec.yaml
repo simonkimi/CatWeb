@@ -45,9 +45,7 @@ dependencies:
   # state
   flutter_hooks: ^0.20.5
   get_it: ^7.6.4
-  riverpod: ^2.5.1
-  riverpod_annotation: ^2.3.5
-  hooks_riverpod: ^2.5.1
+  provider: ^6.1.2
 
 
   # database
@@ -83,7 +81,6 @@ dev_dependencies:
   json_serializable: ^6.7.1
   build_runner: ^2.4.7
   custom_lint: ^0.5.7
-  riverpod_generator: ^2.4.0
 
 
 

@@ -146,7 +146,7 @@ class NetClient {
 
     final result = DetailParserResult.fromJson(jsonDecode(parseRsp));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    inject(siteProvider)!.updateGlobalEnv(result.envs);
+    inject<SiteService>().updateGlobalEnv(result.envs);
     return result;
   }
 
@@ -158,7 +158,7 @@ class NetClient {
     final parser =
         blueMap.getParserById<ParserModelImageReader>(model.parserId);
 
-    final options = inject(globalProvider)
+    final options = inject<GlobalService>()
         .imageCacheOption
         .copyWith(policy: CachePolicy.forceCache)
         .toOptions();
@@ -178,7 +178,7 @@ class NetClient {
 
     final result = ImageReaderResult.fromJson(jsonDecode(parserRsq));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    inject(siteProvider)!.updateGlobalEnv(result.envs);
+    inject<SiteService>()!.updateGlobalEnv(result.envs);
     return result;
   }
 

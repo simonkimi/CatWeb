@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/models/site_model/site_blue_map.dart';
+import 'package:catweb/data/models/site/site_bluemap.dart';
 import 'package:dio/dio.dart';
 
 class HeaderCookieInterceptor extends Interceptor {
@@ -26,18 +26,18 @@ class HeaderCookieInterceptor extends Interceptor {
 
     // Cookies
     for (final regField in model.cookies) {
-      if (regField.reg.value.isEmpty ||
-          RegExp(regField.reg.value).hasMatch(uri)) {
-        cookie.addEntries(_parseCookies(regField.value.value).entries);
+      if (regField.reg.isEmpty ||
+          RegExp(regField.reg).hasMatch(uri)) {
+        cookie.addEntries(_parseCookies(regField.value).entries);
       }
     }
 
     // 登录Cookies
     if (db.loginCookies.isNotEmpty) {
-      if (model.loginCookieReg.value.isEmpty ||
-          RegExp(model.loginCookieReg.value).hasMatch(uri)) {
+      if (model.loginCookieReg.isEmpty ||
+          RegExp(model.loginCookieReg).hasMatch(uri)) {
         if (db.securityModel &&
-            options.uri.host == Uri.tryParse(model.baseUrl.value)?.host) {
+            options.uri.host == Uri.tryParse(model.baseUrl)?.host) {
           cookie.addEntries(_parseCookies(db.loginCookies).entries);
         } else if (!db.securityModel) {
           cookie.addEntries(_parseCookies(db.loginCookies).entries);
@@ -50,9 +50,9 @@ class HeaderCookieInterceptor extends Interceptor {
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0';
 
     // Headers
-    for (final regField in model.headers.value) {
-      if (RegExp(regField.reg.value).hasMatch(uri)) {
-        options.headers.addAll(_parseHeaders(regField.value.value));
+    for (final regField in model.headers) {
+      if (RegExp(regField.reg).hasMatch(uri)) {
+        options.headers.addAll(_parseHeaders(regField.value));
       }
     }
 

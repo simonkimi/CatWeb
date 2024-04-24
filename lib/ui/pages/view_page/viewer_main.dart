@@ -1,5 +1,4 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/i18n.dart';
@@ -9,14 +8,12 @@ import 'package:catweb/utils/context_helper.dart';
 import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ViewerMain extends HookConsumerWidget {
+class ViewerMain extends HookWidget {
   const ViewerMain({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(siteProvider);
+  Widget build(BuildContext context) {
     final lastClickBack = useState<int>(0);
 
     return PopScope(

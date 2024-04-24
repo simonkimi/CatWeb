@@ -50,7 +50,7 @@ class SiteRenderConfigModel {
 
   Future<void> setFavicon(Uint8List bin) async {
     favicon.value = bin;
-    await inject(dbProvider).webDao.replace(dbEntity.copyWith(favicon: bin));
+    await inject<DbService>().webDao.replace(dbEntity.copyWith(favicon: bin));
   }
 
   Future<void> updateCookies() async {}
@@ -77,7 +77,7 @@ class SiteRenderConfigModel {
       }
     }
     if (didUpdate) {
-      await inject(dbProvider)
+      await inject<DbService>()
           .webDao
           .replace(dbEntity.copyWith(env: globalEnv.toJsonString()));
     }

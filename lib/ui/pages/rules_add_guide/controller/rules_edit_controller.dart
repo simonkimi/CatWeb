@@ -27,7 +27,7 @@ class RulesEditController {
       await get<DbService>().webDao.replace(newDb);
       // 检测是否为当前配置
       final controller = get<SiteService>();
-      if (controller.site.value?.id == db!.id) {
+      if (controller.siteService.value?.id == db!.id) {
         controller.setNewSite(newDb);
       }
     }

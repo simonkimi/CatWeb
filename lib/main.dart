@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:catweb/data/controller/db.dart';
 import 'package:catweb/data/controller/global.dart';
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/controller/site.dart';
@@ -10,36 +11,36 @@ import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:provider/provider.dart';
 import 'navigator.dart';
 
-Future<void> initializeApp(WidgetRef ref) async {
-  await Future.wait([
-    ref.read(settingsProvider.notifier).loadSettings(),
-    ref.read(siteProvider.notifier).init(),
-    ref.read(globalProvider).init(),
-    getIt.allReady(),
-  ]);
+Future<void> initializeApp() async {
+  getIt.registerSingletonAsync(() => SettingService().init());
+  getIt.registerSingletonAsync(() => GlobalService().init());
+  getIt.registerSingleton(() => DbService());
+  await getIt.allReady();
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final container = ProviderContainer();
-  getIt.registerSingleton(() => container);
-  runApp(UncontrolledProviderScope(
-    container: container,
+  await initializeApp();
+  runApp(MultiProvider(
+    providers: [
+      Provider(create: (_) => SiteService()),
+    ],
     child: const MyApp(),
   ));
 }
 
-class MyApp extends HookConsumerWidget {
+class MyApp extends HookWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
+    final setting = getIt.get<SettingService>();
     final needBlur = useState(false);
     useOnAppLifecycleStateChange((previous, current) {
-      if (ref.read(settingsProvider).blurWhenBackground) {
+      if (setting.blurWhenBackground) {
         final newState = current != AppLifecycleState.resumed;
         if (newState != needBlur.value) {
           needBlur.value = newState;
@@ -76,7 +77,7 @@ class MyApp extends HookConsumerWidget {
         );
         final botRoot = BotToastInit()(context, root);
         return FutureBuilder(
-          future: initializeApp(ref),
+          future: initializeApp(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return botRoot;

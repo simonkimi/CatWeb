@@ -36,7 +36,6 @@ class ImageLoader extends StatefulWidget {
     required this.concurrency,
     required this.model,
     this.imageBuilder,
-    this.loadingBuilder,
     this.errorBuilder,
     this.hasSize = false,
     this.loadingWidgetBuilder,
@@ -48,7 +47,6 @@ class ImageLoader extends StatefulWidget {
   final ImageListConcurrency concurrency;
   final ImageResult model;
   final ImageWidgetBuilder? imageBuilder;
-  final LoadingWidgetBuilder? loadingBuilder;
   final ErrorBuilder? errorBuilder;
   final bool hasSize;
   final bool enableHero;
@@ -72,7 +70,6 @@ class _ImageLoaderState extends State<ImageLoader> {
 
   @override
   void initState() {
-    loadingBuilder = widget.loadingBuilder ?? _defaultLoadingBuilder;
     imageBuilder = widget.imageBuilder ?? _defaultImageBuilder;
     errorBuilder = widget.errorBuilder ?? _defaultErrorBuilder;
     _imageLoadModel = widget.concurrency.create(widget.model);
@@ -127,33 +124,33 @@ class _ImageLoaderState extends State<ImageLoader> {
         height: model.height,
         image: MemoryImage(imgData),
         loadStateChanged: (state) {
-          if (state.extendedImageLoadState == LoadState.completed) {
-            final img = ExtendedRawImage(
-              image: state.extendedImageInfo?.image,
-              width: model.width,
-              height: model.height,
-              fit: BoxFit.fill,
-              sourceRect: Rect.fromLTWH(
-                model.x ?? 0,
-                model.y ?? 0,
-                model.width!,
-                model.height!,
-              ),
-              scale: 0.2,
-            );
-
-            if (model.width != null && model.height != null) {
-              return AspectRatio(
-                aspectRatio: model.width! / model.height!,
-                child: FittedBox(
-                  fit: BoxFit.contain,
-                  child: innerImageBuilder(context, img),
-                ),
-              );
-            }
-            return innerImageBuilder(context, img);
+          if (state.extendedImageLoadState != LoadState.completed) {
+            return null;
           }
-          return null;
+          final img = ExtendedRawImage(
+            image: state.extendedImageInfo?.image,
+            width: model.width,
+            height: model.height,
+            fit: BoxFit.fill,
+            sourceRect: Rect.fromLTWH(
+              model.x ?? 0,
+              model.y ?? 0,
+              model.width!,
+              model.height!,
+            ),
+            scale: 0.2,
+          );
+
+          if (model.width != null && model.height != null) {
+            return AspectRatio(
+              aspectRatio: model.width! / model.height!,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: innerImageBuilder(context, img),
+              ),
+            );
+          }
+          return innerImageBuilder(context, img);
         },
       );
     } else {

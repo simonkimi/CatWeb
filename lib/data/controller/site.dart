@@ -1,50 +1,43 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site/site_bluemap.dart';
 import 'package:catweb/data/models/site_render_model.dart';
+import 'package:catweb/get.dart';
 import 'package:catweb/utils/iter_helper.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import 'package:flutter/cupertino.dart';
 import 'db.dart';
 
-final siteProvider =
-    StateNotifierProvider<SiteNotifier, SiteRenderConfigModel?>(
-  (ref) => SiteNotifier(
-    setting: ref.watch(settingsProvider.notifier),
-    db: ref.read(dbProvider),
-  ),
-);
+class SiteService {
+  final ValueNotifier<SiteRenderConfigModel?> _currentSite =
+      ValueNotifier(null);
 
-class SiteNotifier extends StateNotifier<SiteRenderConfigModel?> {
-  SiteNotifier({
-    required this.setting,
-    required this.db,
-  }) : super(null);
+  SiteRenderConfigModel? get currentSite => _currentSite.value;
+
+  set currentSite(SiteRenderConfigModel? v) => _currentSite.value = v;
 
   late final StreamSubscription<List<WebTableData>> siteDbChangeListener;
 
-  final SettingsNotifier setting;
-  final DbService db;
+  final SettingService setting = inject();
+  final DbService db = inject();
 
   Future setNewSite([WebTableData? db]) async {
     if (db == null) {
-      state = null;
+      currentSite = null;
       return;
     }
 
-    state = SiteRenderConfigModel(
+    currentSite = SiteRenderConfigModel(
       dbEntity: db,
       blueMap: SiteBlueMap.fromJson(jsonDecode(db.blueprint)),
     );
-    setting.setDefaultSite(state!.id);
+    setting.setDefaultSite(currentSite!.id);
   }
 
   Future setDefaultSite() async {
     final sites = await db.webDao.getAll();
-    final df = sites.get((e) => e.id == setting.state.defaultSite);
+    final df = sites.get((e) => e.id == setting.defaultSite);
     await setNewSite(df);
   }
 
@@ -70,8 +63,8 @@ class SiteNotifier extends StateNotifier<SiteRenderConfigModel?> {
     // 检测当前网站的配置是否被更新
     final currentNewSite = event.get((e) => e.id == id);
     if (currentNewSite != null) {
-      if (currentNewSite.loginCookies != state!.dbEntity.loginCookies ||
-          currentNewSite.blueprint != state!.dbEntity.blueprint) {
+      if (currentNewSite.loginCookies != currentSite!.dbEntity.loginCookies ||
+          currentNewSite.blueprint != currentSite!.dbEntity.blueprint) {
         setNewSite(currentNewSite);
         return;
       }
@@ -83,11 +76,11 @@ class SiteNotifier extends StateNotifier<SiteRenderConfigModel?> {
       return;
     }
 
-    if (state == null && event.isNotEmpty) {
+    if (currentSite == null && event.isNotEmpty) {
       autoSelectNewSite();
       return;
     }
   }
 
-  int? get id => state?.id;
+  int? get id => currentSite?.id;
 }
