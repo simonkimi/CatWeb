@@ -10,7 +10,7 @@ class HeaderCookieInterceptor extends Interceptor {
     required this.db,
   });
 
-  final SiteBlueMap model;
+  final SiteBlueprint model;
   final WebTableData db;
 
   @override

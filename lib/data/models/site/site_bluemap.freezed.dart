@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-SiteBlueMap _$SiteBlueMapFromJson(Map<String, dynamic> json) {
+SiteBlueprint _$SiteBlueMapFromJson(Map<String, dynamic> json) {
   return _SiteBlueMap.fromJson(json);
 }
 
@@ -36,15 +36,15 @@ mixin _$SiteBlueMap {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SiteBlueMapCopyWith<SiteBlueMap> get copyWith =>
+  $SiteBlueMapCopyWith<SiteBlueprint> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SiteBlueMapCopyWith<$Res> {
   factory $SiteBlueMapCopyWith(
-          SiteBlueMap value, $Res Function(SiteBlueMap) then) =
-      _$SiteBlueMapCopyWithImpl<$Res, SiteBlueMap>;
+          SiteBlueprint value, $Res Function(SiteBlueprint) then) =
+      _$SiteBlueMapCopyWithImpl<$Res, SiteBlueprint>;
   @useResult
   $Res call(
       {String name,
@@ -63,7 +63,7 @@ abstract class $SiteBlueMapCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SiteBlueMapCopyWithImpl<$Res, $Val extends SiteBlueMap>
+class _$SiteBlueMapCopyWithImpl<$Res, $Val extends SiteBlueprint>
     implements $SiteBlueMapCopyWith<$Res> {
   _$SiteBlueMapCopyWithImpl(this._value, this._then);
 
@@ -403,7 +403,7 @@ class _$SiteBlueMapImpl extends _SiteBlueMap {
   }
 }
 
-abstract class _SiteBlueMap extends SiteBlueMap {
+abstract class _SiteBlueMap extends SiteBlueprint {
   const factory _SiteBlueMap(
       {final String name,
       final String baseUrl,

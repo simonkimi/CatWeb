@@ -1,27 +1,21 @@
-import 'package:catweb/data/models/site_model/parser/field.dart';
-import 'package:catweb/data/models/site_model/site_blue_map.dart';
+import 'package:catweb/data/models/site/field.dart';
 import 'package:catweb/i18n.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_editor_notifier.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
-import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
+import 'package:provider/provider.dart';
 
 class RulesAdvance extends StatelessWidget {
-  const RulesAdvance(
-    this.controller, {
-    super.key,
-  });
-
-  final RulesEditController controller;
-
-  SiteBlueMap get model => controller.blueprint;
+  const RulesAdvance({super.key});
 
   @override
   Widget build(BuildContext context) {
     final headerController = SwipeActionController();
     final cookieController = SwipeActionController();
+    final notifier = context.read<RulesEditorNotifier>();
 
     return ListView(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -38,26 +32,27 @@ class RulesAdvance extends StatelessWidget {
           ),
           child: Column(
             children: [
-              ListenableBuilder(
-                  listenable: model.headers,
-                  builder: (context, child) {
-                    return Column(
-                      children: model.headers.asMap().entries.map((e) {
-                        return CupertinoDeletableTile(
-                            index: e.key,
-                            controller: headerController,
-                            text: '${e.value.reg}: ${e.value.value}',
-                            onDelete: (index) {
-                              model.headers.removeAt(index);
-                            },
-                            onTap: () async {
-                              var newReg =
-                                  await _editRegField(context, e.value);
-                              model.headers[e.key] = newReg;
-                            });
-                      }).toList(),
-                    );
-                  }),
+              Selector<RulesEditorNotifier, List<RegField>>(
+                selector: (_, notifier) => notifier.blueprint.headers,
+                builder: (_, value, __) {
+                  return Column(
+                    children: value.asMap().entries.map((e) {
+                      return CupertinoDeletableTile(
+                        index: e.key,
+                        controller: headerController,
+                        text: '${e.value.reg}: ${e.value.value}',
+                        onDelete: (index) {
+                          notifier.removeHeader(index);
+                        },
+                        onTap: () async {
+                          var newReg = await _editRegField(context, e.value);
+                          notifier.updateHeader(e.key, newReg);
+                        },
+                      );
+                    }).toList(),
+                  );
+                },
+              ),
               CupertinoClassicalListTile(
                 icon: Icon(
                   CupertinoIcons.add_circled_solid,
@@ -65,7 +60,7 @@ class RulesAdvance extends StatelessWidget {
                 ),
                 text: I.of(context).add,
                 onTap: () {
-                  model.headers.add(RegField(reg: '*', value: ''));
+                  notifier.addHeader(const RegField(reg: '*', value: ''));
                 },
               ),
             ],
@@ -84,27 +79,27 @@ class RulesAdvance extends StatelessWidget {
           ),
           child: Column(
             children: [
-              ListenableBuilder(
-                  listenable: model.cookies,
-                  builder: (context, child) {
-                    return Column(
-                      children: model.cookies.asMap().entries.map((e) {
-                        return CupertinoDeletableTile(
-                            index: e.key,
-                            controller: cookieController,
-                            text:
-                                '${e.value.reg.value.isEmpty ? '*' : e.value.reg}: ${e.value.value}',
-                            onDelete: (index) {
-                              model.cookies.removeAt(index);
-                            },
-                            onTap: () async {
-                              var newReg =
-                                  await _editRegField(context, e.value);
-                              model.cookies[e.key] = newReg;
-                            });
-                      }).toList(),
-                    );
-                  }),
+              Selector<RulesEditorNotifier, List<RegField>>(
+                selector: (_, notifier) => notifier.blueprint.cookies,
+                builder: (_, value, __) {
+                  return Column(
+                    children: value.asMap().entries.map((e) {
+                      return CupertinoDeletableTile(
+                        index: e.key,
+                        controller: cookieController,
+                        text: '${e.value.reg}: ${e.value.value}',
+                        onDelete: (index) {
+                          notifier.removeCookie(index);
+                        },
+                        onTap: () async {
+                          var newReg = await _editRegField(context, e.value);
+                          notifier.updateCookie(e.key, newReg);
+                        },
+                      );
+                    }).toList(),
+                  );
+                },
+              ),
               CupertinoClassicalListTile(
                 icon: Icon(
                   CupertinoIcons.add_circled_solid,
@@ -112,7 +107,7 @@ class RulesAdvance extends StatelessWidget {
                 ),
                 text: I.of(context).add,
                 onTap: () {
-                  model.cookies.add(RegField(reg: '*', value: ''));
+                  notifier.addCookie(const RegField(reg: '*', value: ''));
                 },
               ),
             ],
@@ -123,31 +118,37 @@ class RulesAdvance extends StatelessWidget {
   }
 
   Future<RegField> _editRegField(BuildContext context, RegField field) async {
+    final reg = ValueNotifier(field.reg);
+    final value = ValueNotifier(field.value);
+
     await showCupertinoDialog(
-        barrierDismissible: true,
-        context: context,
-        builder: (context) {
-          return CupertinoAlertDialog(
-            actions: [
-              CupertinoButton(
-                child: Text(I.of(context).positive),
-                onPressed: () => context.pop(),
-              )
+      barrierDismissible: true,
+      context: context,
+      builder: (context) {
+        return CupertinoAlertDialog(
+          actions: [
+            CupertinoButton(
+              child: Text(I.of(context).positive),
+              onPressed: () => context.pop(),
+            )
+          ],
+          content: Column(
+            children: [
+              CupertinoVnTextInput(
+                labelText: I.of(context).reg,
+                value: reg,
+              ),
+              CupertinoVnTextInput(
+                labelText: I.of(context).content,
+                value: value,
+              ),
             ],
-            content: Column(
-              children: [
-                CupertinoInput(
-                  labelText: I.of(context).reg,
-                  value: field.reg,
-                ),
-                CupertinoInput(
-                  labelText: I.of(context).content,
-                  value: field.value,
-                ),
-              ],
-            ),
-          );
-        });
+          ),
+        );
+      },
+    );
+    reg.dispose();
+    value.dispose();
     return field;
   }
 
@@ -157,8 +158,9 @@ class RulesAdvance extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-            fontSize: 14,
-            color: CupertinoColors.secondaryLabel.resolveFrom(context)),
+          fontSize: 14,
+          color: CupertinoColors.secondaryLabel.resolveFrom(context),
+        ),
       ),
     );
   }

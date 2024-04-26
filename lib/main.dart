@@ -17,6 +17,7 @@ import 'navigator.dart';
 Future<void> initializeApp() async {
   getIt.registerSingletonAsync(() => SettingService().init());
   getIt.registerSingletonAsync(() => GlobalService().init());
+  getIt.registerSingleton(() => SiteService());
   getIt.registerSingleton(() => DbService());
   await getIt.allReady();
 }
@@ -25,9 +26,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeApp();
   runApp(MultiProvider(
-    providers: [
-      Provider(create: (_) => SiteService()),
-    ],
+    providers: const [],
     child: const MyApp(),
   ));
 }

@@ -28,11 +28,11 @@ class RulesPageBasic extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         children: [
-          CupertinoInput(
+          CupertinoVnTextInput(
             labelText: I.of(context).name,
             value: sitePage.name,
           ),
-          CupertinoInput(
+          CupertinoVnTextInput(
             labelText: I.of(context).website,
             value: sitePage.url,
           ),
@@ -44,7 +44,7 @@ class RulesPageBasic extends StatelessWidget {
           ),
           sitePage.action.obx((v) {
             if (v == SiteNetType.post) {
-              return CupertinoInput(
+              return CupertinoVnTextInput(
                 labelText: I.of(context).form,
                 value: sitePage.formData,
                 minLine: 4,

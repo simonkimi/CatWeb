@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/db.dart';
-import 'package:catweb/data/controller/setting_service.dart';
-import 'package:catweb/data/controller/site_service.dart';
+import 'package:catweb/data/controller/settings.dart';
+import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/models/site_model/site_blue_map.dart';
+import 'package:catweb/data/models/site/site_bluemap.dart';
+import 'package:catweb/get.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/navigator.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
@@ -31,6 +31,12 @@ class SiteManager extends StatelessWidget {
 
   static const routeName = 'SiteManager';
 
+  DbService get dbService => inject();
+
+  SettingService get settingService => inject();
+
+  SiteService get siteService => inject();
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -48,7 +54,7 @@ class SiteManager extends StatelessWidget {
                   ),
                   child: StreamBuilder<List<WebTableData>>(
                     initialData: const [],
-                    stream: get<DbService>().webDao.getAllStream(),
+                    stream: dbService.webDao.getAllStream(),
                     builder: (context, snapshot) {
                       return _buildListView(snapshot, context);
                     },
@@ -84,18 +90,19 @@ class SiteManager extends StatelessWidget {
   }
 
   Widget _buildSiteItem(BuildContext context, WebTableData e) {
-    final controller = get<SiteService>();
-    final model = SiteBlueMap.fromJson(jsonDecode(e.blueprint));
-    return controller.siteService.obx((site) => CupertinoCardTile(
-          selected: site?.id == e.id,
-          title: Text(model.name.value),
-          subtitle: Text(model.baseUrl.value),
-          trailing: const Icon(Icons.more_horiz),
-          onTrailingTap: () => _onTrailingTap(context, e, model),
-          onTap: () => controller.setNewSite(
-            controller.id == e.id ? null : e,
-          ),
-        ));
+    final model = SiteBlueprint.fromJson(jsonDecode(e.blueprint));
+    return siteService.currentSiteNotifier.obx((site) {
+      return CupertinoCardTile(
+        selected: site?.id == e.id,
+        title: Text(model.name),
+        subtitle: Text(model.baseUrl),
+        trailing: const Icon(Icons.more_horiz),
+        onTrailingTap: () => _onTrailingTap(context, e, model),
+        onTap: () => siteService.setNewSite(
+          siteService.id == e.id ? null : e,
+        ),
+      );
+    });
   }
 
   Widget _buildListView(
@@ -135,7 +142,7 @@ class SiteManager extends StatelessWidget {
   Future<void> _onTrailingTap(
     BuildContext context,
     WebTableData db,
-    SiteBlueMap entity,
+    SiteBlueprint entity,
   ) async {
     final navigator = Navigator.of(context);
     final result = await showCupertinoSelectDialog<_MenuSelect>(
@@ -172,7 +179,7 @@ class SiteManager extends StatelessWidget {
   Future<void> _loginIn(
     BuildContext context,
     WebTableData db,
-    SiteBlueMap entity,
+    SiteBlueprint entity,
   ) async {
     if (db.loginCookies.isNotEmpty) {
       // 注销登录
@@ -182,20 +189,20 @@ class SiteManager extends StatelessWidget {
         content: I.of(context).logout_check,
       );
       if (isReload == true) {
-        await get<DbService>().webDao.replace(db.copyWith(loginCookies: ''));
+        await dbService.webDao.replace(db.copyWith(loginCookies: ''));
         context.pop();
       }
     } else {
       // 登录
-      if (Uri.tryParse(entity.baseUrl.value)?.host !=
-          Uri.tryParse(entity.loginUrl.value)?.host) {
-        if (!get<SettingService>().protectCookie.value || !db.securityModel) {
+      if (Uri.tryParse(entity.baseUrl)?.host !=
+          Uri.tryParse(entity.loginUrl)?.host) {
+        if (!settingService.protectCookie || !db.securityModel) {
           final w = await showCupertinoConfirmDialog(
             context: context,
             title: I.of(context).login,
             content: I
                 .of(context)
-                .login_without_security(entity.loginCookieDescription.value),
+                .login_without_security(entity.loginCookieDescription),
           );
           if (w == false) {
             return;
@@ -215,16 +222,14 @@ class SiteManager extends StatelessWidget {
       final List<Cookie>? cookies = await Navigator.of(context).push(
         CupertinoPageRoute(
           builder: (context) => WebViewLoginIn(
-            url: entity.loginUrl.value,
+            url: entity.loginUrl,
           ),
         ),
       );
 
       if (cookies != null) {
         final cookieStr = cookies.map((e) => '${e.name}=${e.value}').join('; ');
-        await get<DbService>()
-            .webDao
-            .replace(db.copyWith(loginCookies: cookieStr));
+        await dbService.webDao.replace(db.copyWith(loginCookies: cookieStr));
         BotToast.showText(text: I.of(context).login_success);
         logger.i('Login success, cookies: $cookieStr');
       }
@@ -234,24 +239,25 @@ class SiteManager extends StatelessWidget {
   Future<void> _share() async {}
 
   Future<void> _onDelete(
-      BuildContext context, WebTableData db, SiteBlueMap entity) async {
+      BuildContext context, WebTableData db, SiteBlueprint entity) async {
     if (await showCupertinoConfirmDialog(
           context: context,
-          content: I.of(context).delete_confirm(entity.name.value),
+          content: I.of(context).delete_confirm(entity.name),
           title: I.of(context).delete,
           confineText: I.of(context).delete,
           confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
         ) ==
         true) {
-      get<DbService>().webDao.remove(db);
+      dbService.webDao.remove(db);
     }
   }
 
   void _toEditPage(
     NavigatorState navigator, {
-    SiteBlueMap? entity,
+    SiteBlueprint? entity,
     WebTableData? db,
   }) =>
       navigator.push(CupertinoPageRoute(
-          builder: (context) => RulesEditPage(blueMap: entity, db: db)));
+        builder: (context) => RulesEditPage(blueprint: entity, db: db),
+      ));
 }

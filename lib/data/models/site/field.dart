@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'field.freezed.dart';
@@ -44,4 +46,13 @@ class ColorField with _$ColorField {
 
   factory ColorField.fromJson(Map<String, dynamic> json) =>
       _$ColorFieldFromJson(json);
+
+  factory ColorField.fromColor(Color color) {
+    return ColorField(
+      a: color.alpha,
+      r: color.red,
+      g: color.green,
+      b: color.blue,
+    );
+  }
 }

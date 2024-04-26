@@ -59,7 +59,7 @@ class NetClient {
 
   final Dio dio;
   final Dio imageDio;
-  final SiteBlueMap blueMap;
+  final SiteBlueprint blueMap;
 
   Future<Response<String>> _buildRequest({
     required String url,
@@ -206,7 +206,7 @@ class NetClient {
 }
 
 Dio _buildDio({
-  required SiteBlueMap model,
+  required SiteBlueprint model,
   required CookieJar cookieJar,
   required WebTableData db,
   bool isImage = false,

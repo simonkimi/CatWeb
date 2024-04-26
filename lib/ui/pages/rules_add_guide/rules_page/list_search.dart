@@ -134,11 +134,11 @@ class ListFilterEditor extends HookWidget {
             ],
             content: Column(
               children: [
-                CupertinoInput(
+                CupertinoVnTextInput(
                   labelText: I.of(context).name,
                   value: field.name,
                 ),
-                CupertinoInput(
+                CupertinoVnTextInput(
                   labelText: I.of(context).key,
                   value: field.key,
                 ),
@@ -163,7 +163,7 @@ class ListFilterEditor extends HookWidget {
                 if (field.type.value == FilterType.boolCard)
                   StatefulBuilder(
                     builder: (context, setState) {
-                      return CupertinoInput(
+                      return CupertinoVnTextInput(
                         labelText: I.of(context).color,
                         value: ''.obs,
                         prefix: Padding(
@@ -180,7 +180,7 @@ class ListFilterEditor extends HookWidget {
                       );
                     },
                   ),
-                CupertinoInput(
+                CupertinoVnTextInput(
                   labelText: I.of(context).default_value,
                   value: field.value,
                 ),

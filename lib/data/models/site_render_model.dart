@@ -41,7 +41,7 @@ class SiteRenderConfigModel {
 
   // 储存字段
   final SiteEnvStore globalEnv;
-  final SiteBlueMap blueMap;
+  final SiteBlueprint blueMap;
   final ValueNotifier<Uint8List?> favicon;
 
   String get name => blueMap.name;

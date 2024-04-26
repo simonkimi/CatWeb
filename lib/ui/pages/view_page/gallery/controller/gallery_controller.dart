@@ -60,8 +60,7 @@ class DetailLoadMore extends LoadMorePage<DetailParserResult, DetailPreviewItem,
       items.map((e) => DetailImageWithPreview(e)).toList();
 }
 
-class GalleryPreviewController extends LoadMoreLoader<DetailParserResult,
-        DetailPreviewItem, DetailImageWithPreview>
+class GalleryPreviewController extends LoadMoreLoader<DetailParserResult, DetailPreviewItem, DetailImageWithPreview>
     implements ReaderInfo<DetailPreviewItem, DetailImageWithPreview> {
   GalleryPreviewController({
     required this.blueprint,

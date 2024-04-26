@@ -5,6 +5,8 @@ class RxList<T> extends ChangeNotifier {
 
   var _value = <T>[];
 
+  List<T> get value => _value;
+
   set value(List<T> newValue) {
     _value = newValue;
     notifyListeners();

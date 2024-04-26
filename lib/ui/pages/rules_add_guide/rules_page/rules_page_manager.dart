@@ -16,14 +16,7 @@ enum _MenuSelect {
 }
 
 class RulesPageManager extends StatelessWidget {
-  const RulesPageManager(
-    this.controller, {
-    super.key,
-  });
-
-  final RulesEditController controller;
-
-  SiteBlueMap get blueprint => controller.blueprint;
+  const RulesPageManager({super.key});
 
   @override
   Widget build(BuildContext context) {

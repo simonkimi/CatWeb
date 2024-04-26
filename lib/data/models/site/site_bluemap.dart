@@ -9,10 +9,10 @@ part 'site_bluemap.freezed.dart';
 part 'site_bluemap.g.dart';
 
 @freezed
-class SiteBlueMap with _$SiteBlueMap {
-  const SiteBlueMap._();
+class SiteBlueprint with _$SiteBlueMap {
+  const SiteBlueprint._();
 
-  const factory SiteBlueMap({
+  const factory SiteBlueprint({
     @Default('') String name,
     @Default('') String baseUrl,
     @Default('') String loginUrl,
@@ -28,7 +28,7 @@ class SiteBlueMap with _$SiteBlueMap {
     @Default([]) List<SitePage> pageList,
   }) = _SiteBlueMap;
 
-  factory SiteBlueMap.fromJson(Map<String, dynamic> json) =>
+  factory SiteBlueprint.fromJson(Map<String, dynamic> json) =>
       _$SiteBlueMapFromJson(json);
 
   T getParserById<T extends ParserModel>(String parseId) {

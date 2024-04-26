@@ -1,44 +1,51 @@
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/models/site_model/site_blue_map.dart';
+import 'package:catweb/data/models/site/site_bluemap.dart';
 import 'package:catweb/i18n.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_editor_notifier.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_advance/rules_advance.dart';
-import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_basic/rules_basic.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page_manager.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_manager.dart';
 import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class RulesEditPage extends StatelessWidget {
-  RulesEditPage({
+  const RulesEditPage({
     super.key,
-    SiteBlueMap? blueMap,
-    WebTableData? db,
-  }) : controller = RulesEditController(blueprint: blueMap, db: db);
+    this.db,
+    this.blueprint,
+  });
 
-  final RulesEditController controller;
+  final WebTableData? db;
+  final SiteBlueprint? blueprint;
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => _showExitConfine(context),
-      child: CupertinoPageScaffold(
-        navigationBar: _buildAppbar(context),
-        child: CupertinoTabBarView(
-          tabs: [
-            CupertinoTab(I.of(context).basic_setting),
-            CupertinoTab(I.of(context).page_manager),
-            CupertinoTab(I.of(context).parser),
-            CupertinoTab(I.of(context).identity),
-          ],
-          children: [
-            RulesBasic(controller),
-            RulesPageManager(controller),
-            RulesParserManager(controller),
-            RulesAdvance(controller),
-          ],
+    return Provider(
+      create: (_) => ChangeNotifierProvider(
+        create: (_) => RulesEditorNotifier(blueprint ?? const SiteBlueprint()),
+      ),
+      child: WillPopScope(
+        onWillPop: () => _showExitConfine(context),
+        child: CupertinoPageScaffold(
+          navigationBar: _buildAppbar(context),
+          child: CupertinoTabBarView(
+            tabs: [
+              CupertinoTab(I.of(context).basic_setting),
+              CupertinoTab(I.of(context).page_manager),
+              CupertinoTab(I.of(context).parser),
+              CupertinoTab(I.of(context).identity),
+            ],
+            children: const [
+              RulesBasic(),
+              RulesPageManager(),
+              RulesParserManager(),
+              RulesAdvance(),
+            ],
+          ),
         ),
       ),
     );
@@ -81,7 +88,8 @@ class RulesEditPage extends StatelessWidget {
   }
 
   Future<void> _save(BuildContext context) async {
-    if (controller.blueprint.name.value.isEmpty) {
+    final notifier = context.read<RulesEditorNotifier>();
+    if (notifier.blueprint.name.isEmpty) {
       showCupertinoConfirmDialog(
         context: context,
         title: I.of(context).title,
@@ -90,7 +98,7 @@ class RulesEditPage extends StatelessWidget {
       );
       return;
     }
-    if (controller.blueprint.baseUrl.value.isEmpty) {
+    if (notifier.blueprint.baseUrl.isEmpty) {
       showCupertinoConfirmDialog(
         context: context,
         title: I.of(context).website,
@@ -100,7 +108,7 @@ class RulesEditPage extends StatelessWidget {
       return;
     }
 
-    await controller.save();
+    await notifier.save();
     context.pop();
   }
 }

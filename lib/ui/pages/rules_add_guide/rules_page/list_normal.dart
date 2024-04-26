@@ -88,15 +88,15 @@ class ListNormalSubPage extends StatelessWidget {
             ],
             content: Column(
               children: [
-                CupertinoInput(
+                CupertinoVnTextInput(
                   labelText: I.of(context).name,
                   value: field.name,
                 ),
-                CupertinoInput(
+                CupertinoVnTextInput(
                   labelText: I.of(context).key,
                   value: field.key,
                 ),
-                CupertinoInput(
+                CupertinoVnTextInput(
                   labelText: I.of(context).value,
                   value: field.value,
                 ),

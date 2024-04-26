@@ -70,8 +70,8 @@ class CupertinoReadOnlyInput extends StatelessWidget {
   }
 }
 
-class CupertinoInput extends StatelessWidget {
-  const CupertinoInput({
+class CupertinoVnTextInput extends StatelessWidget {
+  const CupertinoVnTextInput({
     super.key,
     required this.labelText,
     required this.value,
@@ -208,22 +208,22 @@ class CupertinoSelectInput<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return field.obx((value) => CupertinoReadOnlyInput(
-      labelText: labelText,
-      value: selectionConverter?.call(value) ?? value.toString(),
-      onTap: () async {
-        final result = await showCupertinoSelectDialog<T>(
-          title: labelText,
-          items: items.map((e) => SelectTileItem(
-            title: selectionConverter?.call(e) ?? e.toString(),
-            value: e,
-          )),
-          context: context,
-        );
-        if (result != null) {
-          field.value = result;
-        }
-      },
-    ));
+          labelText: labelText,
+          value: selectionConverter?.call(value) ?? value.toString(),
+          onTap: () async {
+            final result = await showCupertinoSelectDialog<T>(
+              title: labelText,
+              items: items.map((e) => SelectTileItem(
+                    title: selectionConverter?.call(e) ?? e.toString(),
+                    value: e,
+                  )),
+              context: context,
+            );
+            if (result != null) {
+              field.value = result;
+            }
+          },
+        ));
   }
 }
 
@@ -280,6 +280,76 @@ class CupertinoNumberInput extends StatelessWidget {
               FilteringTextInputFormatter.digitsOnly,
             ],
             keyboardType: TextInputType.number,
+          ),
+          if (description != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: Text(
+                description!,
+                style: TextStyle(
+                  color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                  fontSize: 13,
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class CupertinoTextInput extends StatelessWidget {
+  const CupertinoTextInput({
+    super.key,
+    required this.labelText,
+    required this.value,
+    this.minLine,
+    this.hintText,
+    this.description,
+    this.prefix,
+    this.inputFormatters,
+    this.keyboardType,
+    this.onSubmitted,
+  });
+
+  final String labelText;
+  final String value;
+
+  final int? minLine;
+  final String? hintText;
+  final String? description;
+  final Widget? prefix;
+
+  final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
+  final ValueChanged<String>? onSubmitted;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            labelText,
+            style: TextStyle(
+                color: FixColor.title.resolveFrom(context), fontSize: 13),
+          ),
+          const SizedBox(height: 3),
+          CupertinoTextField(
+            decoration: BoxDecoration(
+              border: const Border(),
+              color: CupertinoColors.systemGrey6,
+              borderRadius: BorderRadius.circular(5),
+            ),
+            minLines: minLine ?? 1,
+            maxLines: minLine,
+            onSubmitted: onSubmitted,
+            prefix: prefix,
+            inputFormatters: inputFormatters,
+            keyboardType: keyboardType,
           ),
           if (description != null)
             Padding(

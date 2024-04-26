@@ -17,7 +17,7 @@ class TemplateAutoCompleteEditor extends HookWidget {
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         children: [
-          CupertinoInput(
+          CupertinoVnTextInput(
             labelText: '分隔符',
             value: templateBase.splitChar,
             description: '默认为空格',

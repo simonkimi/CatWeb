@@ -10,12 +10,14 @@ import 'package:flutter/cupertino.dart';
 import 'db.dart';
 
 class SiteService {
-  final ValueNotifier<SiteRenderConfigModel?> _currentSite =
+  final ValueNotifier<SiteRenderConfigModel?> currentSiteNotifier =
       ValueNotifier(null);
 
-  SiteRenderConfigModel? get currentSite => _currentSite.value;
+  SiteRenderConfigModel? get currentSite => currentSiteNotifier.value;
 
-  set currentSite(SiteRenderConfigModel? v) => _currentSite.value = v;
+  set currentSite(SiteRenderConfigModel? v) => currentSiteNotifier.value = v;
+
+
 
   late final StreamSubscription<List<WebTableData>> siteDbChangeListener;
 
@@ -30,7 +32,7 @@ class SiteService {
 
     currentSite = SiteRenderConfigModel(
       dbEntity: db,
-      blueMap: SiteBlueMap.fromJson(jsonDecode(db.blueprint)),
+      blueMap: SiteBlueprint.fromJson(jsonDecode(db.blueprint)),
     );
     setting.setDefaultSite(currentSite!.id);
   }
