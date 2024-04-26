@@ -6,19 +6,112 @@ part of 'selector.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$SelectorQuerySelfImpl _$$SelectorQuerySelfImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SelectorQuerySelfImpl(
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$SelectorQuerySelfImplToJson(
+        _$SelectorQuerySelfImpl instance) =>
+    <String, dynamic>{
+      'runtimeType': instance.$type,
+    };
+
+_$SelectorQueryCssImpl _$$SelectorQueryCssImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SelectorQueryCssImpl(
+      cssSelector: json['cssSelector'] as String? ?? '',
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$SelectorQueryCssImplToJson(
+        _$SelectorQueryCssImpl instance) =>
+    <String, dynamic>{
+      'cssSelector': instance.cssSelector,
+      'runtimeType': instance.$type,
+    };
+
+_$SelectorQueryXpathImpl _$$SelectorQueryXpathImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SelectorQueryXpathImpl(
+      xpath: json['xpath'] as String? ?? '',
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$SelectorQueryXpathImplToJson(
+        _$SelectorQueryXpathImpl instance) =>
+    <String, dynamic>{
+      'xpath': instance.xpath,
+      'runtimeType': instance.$type,
+    };
+
+_$SelectorQueryJsonPathImpl _$$SelectorQueryJsonPathImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SelectorQueryJsonPathImpl(
+      jsonPath: json['jsonPath'] as String? ?? '',
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$SelectorQueryJsonPathImplToJson(
+        _$SelectorQueryJsonPathImpl instance) =>
+    <String, dynamic>{
+      'jsonPath': instance.jsonPath,
+      'runtimeType': instance.$type,
+    };
+
+_$SelectorFunctionTextImpl _$$SelectorFunctionTextImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SelectorFunctionTextImpl(
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$SelectorFunctionTextImplToJson(
+        _$SelectorFunctionTextImpl instance) =>
+    <String, dynamic>{
+      'runtimeType': instance.$type,
+    };
+
+_$SelectorFunctionAttrImpl _$$SelectorFunctionAttrImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SelectorFunctionAttrImpl(
+      attr: json['attr'] as String? ?? '',
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$SelectorFunctionAttrImplToJson(
+        _$SelectorFunctionAttrImpl instance) =>
+    <String, dynamic>{
+      'attr': instance.attr,
+      'runtimeType': instance.$type,
+    };
+
+_$SelectorFunctionRawImpl _$$SelectorFunctionRawImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SelectorFunctionRawImpl(
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$SelectorFunctionRawImplToJson(
+        _$SelectorFunctionRawImpl instance) =>
+    <String, dynamic>{
+      'runtimeType': instance.$type,
+    };
+
 _$SelectorModelImpl _$$SelectorModelImplFromJson(Map<String, dynamic> json) =>
     _$SelectorModelImpl(
       selector: json['selector'] as String? ?? '',
-      type: $enumDecodeNullable(_$SelectorTypeEnumMap, json['type']) ??
-          SelectorType.css,
-      function: $enumDecodeNullable(
-              _$SelectorFunctionTypeEnumMap, json['function']) ??
-          SelectorFunctionType.text,
+      type: json['type'] == null
+          ? const SelectorQuery.css()
+          : SelectorQuery.fromJson(json['type'] as Map<String, dynamic>),
+      function: json['function'] == null
+          ? const SelectorFunction.text()
+          : SelectorFunction.fromJson(json['function'] as Map<String, dynamic>),
       param: json['param'] as String? ?? '',
       regex: json['regex'] as String? ?? '',
       replace: json['replace'] as String? ?? '',
       script: json['script'] == null
-          ? const ScriptField()
+          ? const ScriptField.output()
           : ScriptField.fromJson(json['script'] as Map<String, dynamic>),
       defaultValue: json['defaultValue'] as String? ?? '',
     );
@@ -26,27 +119,14 @@ _$SelectorModelImpl _$$SelectorModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$SelectorModelImplToJson(_$SelectorModelImpl instance) =>
     <String, dynamic>{
       'selector': instance.selector,
-      'type': _$SelectorTypeEnumMap[instance.type]!,
-      'function': _$SelectorFunctionTypeEnumMap[instance.function]!,
+      'type': instance.type,
+      'function': instance.function,
       'param': instance.param,
       'regex': instance.regex,
       'replace': instance.replace,
       'script': instance.script,
       'defaultValue': instance.defaultValue,
     };
-
-const _$SelectorTypeEnumMap = {
-  SelectorType.self: 'self',
-  SelectorType.css: 'css',
-  SelectorType.xpath: 'xpath',
-  SelectorType.jsonPath: 'jsonPath',
-};
-
-const _$SelectorFunctionTypeEnumMap = {
-  SelectorFunctionType.text: 'text',
-  SelectorFunctionType.attr: 'attr',
-  SelectorFunctionType.raw: 'raw',
-};
 
 _$ImageSelectorModelImpl _$$ImageSelectorModelImplFromJson(
         Map<String, dynamic> json) =>

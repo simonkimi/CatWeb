@@ -7,6 +7,8 @@ part 'page.g.dart';
 
 @freezed
 class SitePage with _$SitePage {
+  const SitePage._();
+
   const factory SitePage({
     @Default('') String name,
     required String uuid,
@@ -22,6 +24,15 @@ class SitePage with _$SitePage {
 
   factory SitePage.fromJson(Map<String, dynamic> json) =>
       _$SitePageFromJson(json);
+
+  List<String> getDependPage() {
+    switch (template) {
+      case PageTemplateList(:final targetItem, :final targetAutoComplete):
+        return [targetItem, targetAutoComplete];
+      default:
+        return [];
+    }
+  }
 }
 
 enum SiteNetType {

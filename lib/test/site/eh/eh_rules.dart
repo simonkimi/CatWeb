@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:catweb/data/models/site/field.dart';
 import 'package:catweb/data/models/site/page.dart';
-import 'package:catweb/data/models/site/site_bluemap.dart';
+import 'package:catweb/data/models/site/site_blueprint.dart';
 import 'package:catweb/data/models/site/subpage.dart';
 import 'package:catweb/data/models/site/template.dart';
 import 'package:catweb/test/site/eh/parser/auto_complete_parser.dart';

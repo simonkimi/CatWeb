@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:catweb/utils/enum_helper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'field.freezed.dart';
@@ -17,22 +19,52 @@ class RegField with _$RegField {
       _$RegFieldFromJson(json);
 }
 
-enum ScriptFieldType {
-  @JsonValue('output')
-  output,
-  @JsonValue('js')
-  js,
-}
-
 @freezed
 class ScriptField with _$ScriptField {
-  const factory ScriptField({
+  const factory ScriptField.output() = ScriptFieldOutput;
+
+  const factory ScriptField.replace({
+    @Default({}) Map<String, String> replace,
+  }) = ScriptFieldReplace;
+
+  const factory ScriptField.js({
     @Default('') String script,
-    @Default(ScriptFieldType.output) ScriptFieldType type,
-  }) = _ScriptField;
+  }) = ScriptFieldJs;
 
   factory ScriptField.fromJson(Map<String, dynamic> json) =>
       _$ScriptFieldFromJson(json);
+
+  static ScriptField fromType(ScriptFieldType type) {
+    return switch (type) {
+      ScriptFieldType.output => const ScriptField.output(),
+      ScriptFieldType.replace => const ScriptField.replace(),
+      ScriptFieldType.js => const ScriptField.js()
+    };
+  }
+
+  ScriptFieldType toType() {
+    return switch (this) {
+      ScriptField.output => ScriptFieldType.output,
+      ScriptField.replace => ScriptFieldType.replace,
+      ScriptField.js => ScriptFieldType.js,
+      _ => throw Exception('Unknown ScriptField: $this')
+    };
+  }
+}
+
+enum ScriptFieldType implements IEnumDescription {
+  output,
+  replace,
+  js;
+
+  @override
+  String getDescription(BuildContext context) {
+    return switch (this) {
+      ScriptFieldType.output => '输出',
+      ScriptFieldType.replace => '替换',
+      ScriptFieldType.js => 'Js脚本'
+    };
+  }
 }
 
 @freezed

@@ -1,13 +1,12 @@
-import 'package:catweb/data/models/site_model/pages/site_page.dart';
-import 'package:catweb/data/models/site_model/pages/template.dart';
-import 'package:catweb/data/models/site_model/site_blue_map.dart';
+import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/i18n.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_editor_notifier.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
-import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 enum _MenuSelect {
@@ -23,21 +22,26 @@ class RulesPageManager extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: blueprint.pageList.map((e) {
-            return CupertinoCardTile(
-              title: Text(e.name.value),
-              subtitle: Text(e.template.type.value),
-              trailing: CupertinoButton(
-                padding: EdgeInsets.zero,
-                minSize: 10,
-                child: const Icon(Icons.more_horiz_outlined),
-                onPressed: () => _onTrailingTap(context, e),
-              ),
-              onTap: () => _toRulesPageEdit(context, e),
+        Selector<RulesEditorNotifier, List<SitePage>>(
+          selector: (_, n) => n.blueprint.pageList,
+          builder: (_, pageList, __) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: pageList.map((e) {
+                return CupertinoCardTile(
+                  title: Text(e.name),
+                  subtitle: Text(e.template.getDescription(context)),
+                  trailing: CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    minSize: 10,
+                    child: const Icon(Icons.more_horiz_outlined),
+                    onPressed: () => _onTrailingTap(context, e),
+                  ),
+                  onTap: () => _toRulesPageEdit(context, e),
+                );
+              }).toList(),
             );
-          }).toList(),
+          },
         ),
         CupertinoCardTile(
           title: Text(I.of(context).add),
@@ -79,7 +83,9 @@ class RulesPageManager extends StatelessWidget {
   }
 
   void _onPageDelete(BuildContext context, SitePage model) {
-    final using = blueprint.pageList
+    final notifier = context.read<RulesEditorNotifier>();
+    final pageList = notifier.blueprint.pageList;
+    final using = pageList
         .where(
             (p0) => p0.getDependPage().any((element) => element == model.uuid))
         .map((e) => e.name)
@@ -92,13 +98,13 @@ class RulesPageManager extends StatelessWidget {
     } else {
       showCupertinoConfirmDialog(
         context: context,
-        content: I.of(context).delete_confirm(model.name.value),
+        content: I.of(context).delete_confirm(model.name),
         title: I.of(context).cancel,
         confineText: I.of(context).delete,
         confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
       ).then((value) {
         if (value == true) {
-          blueprint.pageList.remove(model);
+          notifier.removePage(model);
         }
       });
     }
@@ -108,10 +114,7 @@ class RulesPageManager extends StatelessWidget {
     final input = model ?? await _genRules(context);
     if (input == null) return;
     await Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
-      return RulesPageEdit(
-        baseModel: input,
-        controller: controller,
-      );
+      return RulesPageEdit(baseModel: input);
     }));
   }
 

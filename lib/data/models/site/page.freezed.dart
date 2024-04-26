@@ -227,7 +227,7 @@ class __$$SitePageImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SitePageImpl implements _SitePage {
+class _$SitePageImpl extends _SitePage {
   const _$SitePageImpl(
       {this.name = '',
       required this.uuid,
@@ -238,7 +238,8 @@ class _$SitePageImpl implements _SitePage {
       this.icon = '',
       this.displayType = SiteDisplayType.show,
       this.flag = '',
-      this.parserId = ''});
+      this.parserId = ''})
+      : super._();
 
   factory _$SitePageImpl.fromJson(Map<String, dynamic> json) =>
       _$$SitePageImplFromJson(json);
@@ -317,7 +318,7 @@ class _$SitePageImpl implements _SitePage {
   }
 }
 
-abstract class _SitePage implements SitePage {
+abstract class _SitePage extends SitePage {
   const factory _SitePage(
       {final String name,
       required final String uuid,
@@ -329,6 +330,7 @@ abstract class _SitePage implements SitePage {
       final SiteDisplayType displayType,
       final String flag,
       final String parserId}) = _$SitePageImpl;
+  const _SitePage._() : super._();
 
   factory _SitePage.fromJson(Map<String, dynamic> json) =
       _$SitePageImpl.fromJson;

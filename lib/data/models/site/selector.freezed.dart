@@ -14,6 +14,1240 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+SelectorQuery _$SelectorQueryFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'self':
+      return SelectorQuerySelf.fromJson(json);
+    case 'css':
+      return SelectorQueryCss.fromJson(json);
+    case 'xpath':
+      return SelectorQueryXpath.fromJson(json);
+    case 'jsonPath':
+      return SelectorQueryJsonPath.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'SelectorQuery',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
+/// @nodoc
+mixin _$SelectorQuery {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() self,
+    required TResult Function(String cssSelector) css,
+    required TResult Function(String xpath) xpath,
+    required TResult Function(String jsonPath) jsonPath,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? self,
+    TResult? Function(String cssSelector)? css,
+    TResult? Function(String xpath)? xpath,
+    TResult? Function(String jsonPath)? jsonPath,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? self,
+    TResult Function(String cssSelector)? css,
+    TResult Function(String xpath)? xpath,
+    TResult Function(String jsonPath)? jsonPath,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectorQuerySelf value) self,
+    required TResult Function(SelectorQueryCss value) css,
+    required TResult Function(SelectorQueryXpath value) xpath,
+    required TResult Function(SelectorQueryJsonPath value) jsonPath,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectorQuerySelf value)? self,
+    TResult? Function(SelectorQueryCss value)? css,
+    TResult? Function(SelectorQueryXpath value)? xpath,
+    TResult? Function(SelectorQueryJsonPath value)? jsonPath,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectorQuerySelf value)? self,
+    TResult Function(SelectorQueryCss value)? css,
+    TResult Function(SelectorQueryXpath value)? xpath,
+    TResult Function(SelectorQueryJsonPath value)? jsonPath,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SelectorQueryCopyWith<$Res> {
+  factory $SelectorQueryCopyWith(
+          SelectorQuery value, $Res Function(SelectorQuery) then) =
+      _$SelectorQueryCopyWithImpl<$Res, SelectorQuery>;
+}
+
+/// @nodoc
+class _$SelectorQueryCopyWithImpl<$Res, $Val extends SelectorQuery>
+    implements $SelectorQueryCopyWith<$Res> {
+  _$SelectorQueryCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$SelectorQuerySelfImplCopyWith<$Res> {
+  factory _$$SelectorQuerySelfImplCopyWith(_$SelectorQuerySelfImpl value,
+          $Res Function(_$SelectorQuerySelfImpl) then) =
+      __$$SelectorQuerySelfImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SelectorQuerySelfImplCopyWithImpl<$Res>
+    extends _$SelectorQueryCopyWithImpl<$Res, _$SelectorQuerySelfImpl>
+    implements _$$SelectorQuerySelfImplCopyWith<$Res> {
+  __$$SelectorQuerySelfImplCopyWithImpl(_$SelectorQuerySelfImpl _value,
+      $Res Function(_$SelectorQuerySelfImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SelectorQuerySelfImpl extends SelectorQuerySelf {
+  const _$SelectorQuerySelfImpl({final String? $type})
+      : $type = $type ?? 'self',
+        super._();
+
+  factory _$SelectorQuerySelfImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SelectorQuerySelfImplFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'SelectorQuery.self()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SelectorQuerySelfImpl);
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() self,
+    required TResult Function(String cssSelector) css,
+    required TResult Function(String xpath) xpath,
+    required TResult Function(String jsonPath) jsonPath,
+  }) {
+    return self();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? self,
+    TResult? Function(String cssSelector)? css,
+    TResult? Function(String xpath)? xpath,
+    TResult? Function(String jsonPath)? jsonPath,
+  }) {
+    return self?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? self,
+    TResult Function(String cssSelector)? css,
+    TResult Function(String xpath)? xpath,
+    TResult Function(String jsonPath)? jsonPath,
+    required TResult orElse(),
+  }) {
+    if (self != null) {
+      return self();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectorQuerySelf value) self,
+    required TResult Function(SelectorQueryCss value) css,
+    required TResult Function(SelectorQueryXpath value) xpath,
+    required TResult Function(SelectorQueryJsonPath value) jsonPath,
+  }) {
+    return self(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectorQuerySelf value)? self,
+    TResult? Function(SelectorQueryCss value)? css,
+    TResult? Function(SelectorQueryXpath value)? xpath,
+    TResult? Function(SelectorQueryJsonPath value)? jsonPath,
+  }) {
+    return self?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectorQuerySelf value)? self,
+    TResult Function(SelectorQueryCss value)? css,
+    TResult Function(SelectorQueryXpath value)? xpath,
+    TResult Function(SelectorQueryJsonPath value)? jsonPath,
+    required TResult orElse(),
+  }) {
+    if (self != null) {
+      return self(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SelectorQuerySelfImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class SelectorQuerySelf extends SelectorQuery {
+  const factory SelectorQuerySelf() = _$SelectorQuerySelfImpl;
+  const SelectorQuerySelf._() : super._();
+
+  factory SelectorQuerySelf.fromJson(Map<String, dynamic> json) =
+      _$SelectorQuerySelfImpl.fromJson;
+}
+
+/// @nodoc
+abstract class _$$SelectorQueryCssImplCopyWith<$Res> {
+  factory _$$SelectorQueryCssImplCopyWith(_$SelectorQueryCssImpl value,
+          $Res Function(_$SelectorQueryCssImpl) then) =
+      __$$SelectorQueryCssImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String cssSelector});
+}
+
+/// @nodoc
+class __$$SelectorQueryCssImplCopyWithImpl<$Res>
+    extends _$SelectorQueryCopyWithImpl<$Res, _$SelectorQueryCssImpl>
+    implements _$$SelectorQueryCssImplCopyWith<$Res> {
+  __$$SelectorQueryCssImplCopyWithImpl(_$SelectorQueryCssImpl _value,
+      $Res Function(_$SelectorQueryCssImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cssSelector = null,
+  }) {
+    return _then(_$SelectorQueryCssImpl(
+      cssSelector: null == cssSelector
+          ? _value.cssSelector
+          : cssSelector // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SelectorQueryCssImpl extends SelectorQueryCss {
+  const _$SelectorQueryCssImpl({this.cssSelector = '', final String? $type})
+      : $type = $type ?? 'css',
+        super._();
+
+  factory _$SelectorQueryCssImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SelectorQueryCssImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String cssSelector;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'SelectorQuery.css(cssSelector: $cssSelector)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectorQueryCssImpl &&
+            (identical(other.cssSelector, cssSelector) ||
+                other.cssSelector == cssSelector));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, cssSelector);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectorQueryCssImplCopyWith<_$SelectorQueryCssImpl> get copyWith =>
+      __$$SelectorQueryCssImplCopyWithImpl<_$SelectorQueryCssImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() self,
+    required TResult Function(String cssSelector) css,
+    required TResult Function(String xpath) xpath,
+    required TResult Function(String jsonPath) jsonPath,
+  }) {
+    return css(cssSelector);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? self,
+    TResult? Function(String cssSelector)? css,
+    TResult? Function(String xpath)? xpath,
+    TResult? Function(String jsonPath)? jsonPath,
+  }) {
+    return css?.call(cssSelector);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? self,
+    TResult Function(String cssSelector)? css,
+    TResult Function(String xpath)? xpath,
+    TResult Function(String jsonPath)? jsonPath,
+    required TResult orElse(),
+  }) {
+    if (css != null) {
+      return css(cssSelector);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectorQuerySelf value) self,
+    required TResult Function(SelectorQueryCss value) css,
+    required TResult Function(SelectorQueryXpath value) xpath,
+    required TResult Function(SelectorQueryJsonPath value) jsonPath,
+  }) {
+    return css(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectorQuerySelf value)? self,
+    TResult? Function(SelectorQueryCss value)? css,
+    TResult? Function(SelectorQueryXpath value)? xpath,
+    TResult? Function(SelectorQueryJsonPath value)? jsonPath,
+  }) {
+    return css?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectorQuerySelf value)? self,
+    TResult Function(SelectorQueryCss value)? css,
+    TResult Function(SelectorQueryXpath value)? xpath,
+    TResult Function(SelectorQueryJsonPath value)? jsonPath,
+    required TResult orElse(),
+  }) {
+    if (css != null) {
+      return css(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SelectorQueryCssImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class SelectorQueryCss extends SelectorQuery {
+  const factory SelectorQueryCss({final String cssSelector}) =
+      _$SelectorQueryCssImpl;
+  const SelectorQueryCss._() : super._();
+
+  factory SelectorQueryCss.fromJson(Map<String, dynamic> json) =
+      _$SelectorQueryCssImpl.fromJson;
+
+  String get cssSelector;
+  @JsonKey(ignore: true)
+  _$$SelectorQueryCssImplCopyWith<_$SelectorQueryCssImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectorQueryXpathImplCopyWith<$Res> {
+  factory _$$SelectorQueryXpathImplCopyWith(_$SelectorQueryXpathImpl value,
+          $Res Function(_$SelectorQueryXpathImpl) then) =
+      __$$SelectorQueryXpathImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String xpath});
+}
+
+/// @nodoc
+class __$$SelectorQueryXpathImplCopyWithImpl<$Res>
+    extends _$SelectorQueryCopyWithImpl<$Res, _$SelectorQueryXpathImpl>
+    implements _$$SelectorQueryXpathImplCopyWith<$Res> {
+  __$$SelectorQueryXpathImplCopyWithImpl(_$SelectorQueryXpathImpl _value,
+      $Res Function(_$SelectorQueryXpathImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? xpath = null,
+  }) {
+    return _then(_$SelectorQueryXpathImpl(
+      xpath: null == xpath
+          ? _value.xpath
+          : xpath // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SelectorQueryXpathImpl extends SelectorQueryXpath {
+  const _$SelectorQueryXpathImpl({this.xpath = '', final String? $type})
+      : $type = $type ?? 'xpath',
+        super._();
+
+  factory _$SelectorQueryXpathImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SelectorQueryXpathImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String xpath;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'SelectorQuery.xpath(xpath: $xpath)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectorQueryXpathImpl &&
+            (identical(other.xpath, xpath) || other.xpath == xpath));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, xpath);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectorQueryXpathImplCopyWith<_$SelectorQueryXpathImpl> get copyWith =>
+      __$$SelectorQueryXpathImplCopyWithImpl<_$SelectorQueryXpathImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() self,
+    required TResult Function(String cssSelector) css,
+    required TResult Function(String xpath) xpath,
+    required TResult Function(String jsonPath) jsonPath,
+  }) {
+    return xpath(this.xpath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? self,
+    TResult? Function(String cssSelector)? css,
+    TResult? Function(String xpath)? xpath,
+    TResult? Function(String jsonPath)? jsonPath,
+  }) {
+    return xpath?.call(this.xpath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? self,
+    TResult Function(String cssSelector)? css,
+    TResult Function(String xpath)? xpath,
+    TResult Function(String jsonPath)? jsonPath,
+    required TResult orElse(),
+  }) {
+    if (xpath != null) {
+      return xpath(this.xpath);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectorQuerySelf value) self,
+    required TResult Function(SelectorQueryCss value) css,
+    required TResult Function(SelectorQueryXpath value) xpath,
+    required TResult Function(SelectorQueryJsonPath value) jsonPath,
+  }) {
+    return xpath(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectorQuerySelf value)? self,
+    TResult? Function(SelectorQueryCss value)? css,
+    TResult? Function(SelectorQueryXpath value)? xpath,
+    TResult? Function(SelectorQueryJsonPath value)? jsonPath,
+  }) {
+    return xpath?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectorQuerySelf value)? self,
+    TResult Function(SelectorQueryCss value)? css,
+    TResult Function(SelectorQueryXpath value)? xpath,
+    TResult Function(SelectorQueryJsonPath value)? jsonPath,
+    required TResult orElse(),
+  }) {
+    if (xpath != null) {
+      return xpath(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SelectorQueryXpathImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class SelectorQueryXpath extends SelectorQuery {
+  const factory SelectorQueryXpath({final String xpath}) =
+      _$SelectorQueryXpathImpl;
+  const SelectorQueryXpath._() : super._();
+
+  factory SelectorQueryXpath.fromJson(Map<String, dynamic> json) =
+      _$SelectorQueryXpathImpl.fromJson;
+
+  String get xpath;
+  @JsonKey(ignore: true)
+  _$$SelectorQueryXpathImplCopyWith<_$SelectorQueryXpathImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectorQueryJsonPathImplCopyWith<$Res> {
+  factory _$$SelectorQueryJsonPathImplCopyWith(
+          _$SelectorQueryJsonPathImpl value,
+          $Res Function(_$SelectorQueryJsonPathImpl) then) =
+      __$$SelectorQueryJsonPathImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String jsonPath});
+}
+
+/// @nodoc
+class __$$SelectorQueryJsonPathImplCopyWithImpl<$Res>
+    extends _$SelectorQueryCopyWithImpl<$Res, _$SelectorQueryJsonPathImpl>
+    implements _$$SelectorQueryJsonPathImplCopyWith<$Res> {
+  __$$SelectorQueryJsonPathImplCopyWithImpl(_$SelectorQueryJsonPathImpl _value,
+      $Res Function(_$SelectorQueryJsonPathImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? jsonPath = null,
+  }) {
+    return _then(_$SelectorQueryJsonPathImpl(
+      jsonPath: null == jsonPath
+          ? _value.jsonPath
+          : jsonPath // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SelectorQueryJsonPathImpl extends SelectorQueryJsonPath {
+  const _$SelectorQueryJsonPathImpl({this.jsonPath = '', final String? $type})
+      : $type = $type ?? 'jsonPath',
+        super._();
+
+  factory _$SelectorQueryJsonPathImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SelectorQueryJsonPathImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String jsonPath;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'SelectorQuery.jsonPath(jsonPath: $jsonPath)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectorQueryJsonPathImpl &&
+            (identical(other.jsonPath, jsonPath) ||
+                other.jsonPath == jsonPath));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, jsonPath);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectorQueryJsonPathImplCopyWith<_$SelectorQueryJsonPathImpl>
+      get copyWith => __$$SelectorQueryJsonPathImplCopyWithImpl<
+          _$SelectorQueryJsonPathImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() self,
+    required TResult Function(String cssSelector) css,
+    required TResult Function(String xpath) xpath,
+    required TResult Function(String jsonPath) jsonPath,
+  }) {
+    return jsonPath(this.jsonPath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? self,
+    TResult? Function(String cssSelector)? css,
+    TResult? Function(String xpath)? xpath,
+    TResult? Function(String jsonPath)? jsonPath,
+  }) {
+    return jsonPath?.call(this.jsonPath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? self,
+    TResult Function(String cssSelector)? css,
+    TResult Function(String xpath)? xpath,
+    TResult Function(String jsonPath)? jsonPath,
+    required TResult orElse(),
+  }) {
+    if (jsonPath != null) {
+      return jsonPath(this.jsonPath);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectorQuerySelf value) self,
+    required TResult Function(SelectorQueryCss value) css,
+    required TResult Function(SelectorQueryXpath value) xpath,
+    required TResult Function(SelectorQueryJsonPath value) jsonPath,
+  }) {
+    return jsonPath(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectorQuerySelf value)? self,
+    TResult? Function(SelectorQueryCss value)? css,
+    TResult? Function(SelectorQueryXpath value)? xpath,
+    TResult? Function(SelectorQueryJsonPath value)? jsonPath,
+  }) {
+    return jsonPath?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectorQuerySelf value)? self,
+    TResult Function(SelectorQueryCss value)? css,
+    TResult Function(SelectorQueryXpath value)? xpath,
+    TResult Function(SelectorQueryJsonPath value)? jsonPath,
+    required TResult orElse(),
+  }) {
+    if (jsonPath != null) {
+      return jsonPath(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SelectorQueryJsonPathImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class SelectorQueryJsonPath extends SelectorQuery {
+  const factory SelectorQueryJsonPath({final String jsonPath}) =
+      _$SelectorQueryJsonPathImpl;
+  const SelectorQueryJsonPath._() : super._();
+
+  factory SelectorQueryJsonPath.fromJson(Map<String, dynamic> json) =
+      _$SelectorQueryJsonPathImpl.fromJson;
+
+  String get jsonPath;
+  @JsonKey(ignore: true)
+  _$$SelectorQueryJsonPathImplCopyWith<_$SelectorQueryJsonPathImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+SelectorFunction _$SelectorFunctionFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'text':
+      return SelectorFunctionText.fromJson(json);
+    case 'attr':
+      return SelectorFunctionAttr.fromJson(json);
+    case 'raw':
+      return SelectorFunctionRaw.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'SelectorFunction',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
+/// @nodoc
+mixin _$SelectorFunction {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() text,
+    required TResult Function(String attr) attr,
+    required TResult Function() raw,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? text,
+    TResult? Function(String attr)? attr,
+    TResult? Function()? raw,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? text,
+    TResult Function(String attr)? attr,
+    TResult Function()? raw,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectorFunctionText value) text,
+    required TResult Function(SelectorFunctionAttr value) attr,
+    required TResult Function(SelectorFunctionRaw value) raw,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectorFunctionText value)? text,
+    TResult? Function(SelectorFunctionAttr value)? attr,
+    TResult? Function(SelectorFunctionRaw value)? raw,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectorFunctionText value)? text,
+    TResult Function(SelectorFunctionAttr value)? attr,
+    TResult Function(SelectorFunctionRaw value)? raw,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SelectorFunctionCopyWith<$Res> {
+  factory $SelectorFunctionCopyWith(
+          SelectorFunction value, $Res Function(SelectorFunction) then) =
+      _$SelectorFunctionCopyWithImpl<$Res, SelectorFunction>;
+}
+
+/// @nodoc
+class _$SelectorFunctionCopyWithImpl<$Res, $Val extends SelectorFunction>
+    implements $SelectorFunctionCopyWith<$Res> {
+  _$SelectorFunctionCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$SelectorFunctionTextImplCopyWith<$Res> {
+  factory _$$SelectorFunctionTextImplCopyWith(_$SelectorFunctionTextImpl value,
+          $Res Function(_$SelectorFunctionTextImpl) then) =
+      __$$SelectorFunctionTextImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SelectorFunctionTextImplCopyWithImpl<$Res>
+    extends _$SelectorFunctionCopyWithImpl<$Res, _$SelectorFunctionTextImpl>
+    implements _$$SelectorFunctionTextImplCopyWith<$Res> {
+  __$$SelectorFunctionTextImplCopyWithImpl(_$SelectorFunctionTextImpl _value,
+      $Res Function(_$SelectorFunctionTextImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SelectorFunctionTextImpl extends SelectorFunctionText {
+  const _$SelectorFunctionTextImpl({final String? $type})
+      : $type = $type ?? 'text',
+        super._();
+
+  factory _$SelectorFunctionTextImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SelectorFunctionTextImplFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'SelectorFunction.text()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectorFunctionTextImpl);
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() text,
+    required TResult Function(String attr) attr,
+    required TResult Function() raw,
+  }) {
+    return text();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? text,
+    TResult? Function(String attr)? attr,
+    TResult? Function()? raw,
+  }) {
+    return text?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? text,
+    TResult Function(String attr)? attr,
+    TResult Function()? raw,
+    required TResult orElse(),
+  }) {
+    if (text != null) {
+      return text();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectorFunctionText value) text,
+    required TResult Function(SelectorFunctionAttr value) attr,
+    required TResult Function(SelectorFunctionRaw value) raw,
+  }) {
+    return text(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectorFunctionText value)? text,
+    TResult? Function(SelectorFunctionAttr value)? attr,
+    TResult? Function(SelectorFunctionRaw value)? raw,
+  }) {
+    return text?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectorFunctionText value)? text,
+    TResult Function(SelectorFunctionAttr value)? attr,
+    TResult Function(SelectorFunctionRaw value)? raw,
+    required TResult orElse(),
+  }) {
+    if (text != null) {
+      return text(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SelectorFunctionTextImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class SelectorFunctionText extends SelectorFunction {
+  const factory SelectorFunctionText() = _$SelectorFunctionTextImpl;
+  const SelectorFunctionText._() : super._();
+
+  factory SelectorFunctionText.fromJson(Map<String, dynamic> json) =
+      _$SelectorFunctionTextImpl.fromJson;
+}
+
+/// @nodoc
+abstract class _$$SelectorFunctionAttrImplCopyWith<$Res> {
+  factory _$$SelectorFunctionAttrImplCopyWith(_$SelectorFunctionAttrImpl value,
+          $Res Function(_$SelectorFunctionAttrImpl) then) =
+      __$$SelectorFunctionAttrImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String attr});
+}
+
+/// @nodoc
+class __$$SelectorFunctionAttrImplCopyWithImpl<$Res>
+    extends _$SelectorFunctionCopyWithImpl<$Res, _$SelectorFunctionAttrImpl>
+    implements _$$SelectorFunctionAttrImplCopyWith<$Res> {
+  __$$SelectorFunctionAttrImplCopyWithImpl(_$SelectorFunctionAttrImpl _value,
+      $Res Function(_$SelectorFunctionAttrImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? attr = null,
+  }) {
+    return _then(_$SelectorFunctionAttrImpl(
+      attr: null == attr
+          ? _value.attr
+          : attr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SelectorFunctionAttrImpl extends SelectorFunctionAttr {
+  const _$SelectorFunctionAttrImpl({this.attr = '', final String? $type})
+      : $type = $type ?? 'attr',
+        super._();
+
+  factory _$SelectorFunctionAttrImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SelectorFunctionAttrImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String attr;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'SelectorFunction.attr(attr: $attr)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectorFunctionAttrImpl &&
+            (identical(other.attr, attr) || other.attr == attr));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, attr);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectorFunctionAttrImplCopyWith<_$SelectorFunctionAttrImpl>
+      get copyWith =>
+          __$$SelectorFunctionAttrImplCopyWithImpl<_$SelectorFunctionAttrImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() text,
+    required TResult Function(String attr) attr,
+    required TResult Function() raw,
+  }) {
+    return attr(this.attr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? text,
+    TResult? Function(String attr)? attr,
+    TResult? Function()? raw,
+  }) {
+    return attr?.call(this.attr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? text,
+    TResult Function(String attr)? attr,
+    TResult Function()? raw,
+    required TResult orElse(),
+  }) {
+    if (attr != null) {
+      return attr(this.attr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectorFunctionText value) text,
+    required TResult Function(SelectorFunctionAttr value) attr,
+    required TResult Function(SelectorFunctionRaw value) raw,
+  }) {
+    return attr(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectorFunctionText value)? text,
+    TResult? Function(SelectorFunctionAttr value)? attr,
+    TResult? Function(SelectorFunctionRaw value)? raw,
+  }) {
+    return attr?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectorFunctionText value)? text,
+    TResult Function(SelectorFunctionAttr value)? attr,
+    TResult Function(SelectorFunctionRaw value)? raw,
+    required TResult orElse(),
+  }) {
+    if (attr != null) {
+      return attr(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SelectorFunctionAttrImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class SelectorFunctionAttr extends SelectorFunction {
+  const factory SelectorFunctionAttr({final String attr}) =
+      _$SelectorFunctionAttrImpl;
+  const SelectorFunctionAttr._() : super._();
+
+  factory SelectorFunctionAttr.fromJson(Map<String, dynamic> json) =
+      _$SelectorFunctionAttrImpl.fromJson;
+
+  String get attr;
+  @JsonKey(ignore: true)
+  _$$SelectorFunctionAttrImplCopyWith<_$SelectorFunctionAttrImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectorFunctionRawImplCopyWith<$Res> {
+  factory _$$SelectorFunctionRawImplCopyWith(_$SelectorFunctionRawImpl value,
+          $Res Function(_$SelectorFunctionRawImpl) then) =
+      __$$SelectorFunctionRawImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SelectorFunctionRawImplCopyWithImpl<$Res>
+    extends _$SelectorFunctionCopyWithImpl<$Res, _$SelectorFunctionRawImpl>
+    implements _$$SelectorFunctionRawImplCopyWith<$Res> {
+  __$$SelectorFunctionRawImplCopyWithImpl(_$SelectorFunctionRawImpl _value,
+      $Res Function(_$SelectorFunctionRawImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SelectorFunctionRawImpl extends SelectorFunctionRaw {
+  const _$SelectorFunctionRawImpl({final String? $type})
+      : $type = $type ?? 'raw',
+        super._();
+
+  factory _$SelectorFunctionRawImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SelectorFunctionRawImplFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'SelectorFunction.raw()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectorFunctionRawImpl);
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() text,
+    required TResult Function(String attr) attr,
+    required TResult Function() raw,
+  }) {
+    return raw();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? text,
+    TResult? Function(String attr)? attr,
+    TResult? Function()? raw,
+  }) {
+    return raw?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? text,
+    TResult Function(String attr)? attr,
+    TResult Function()? raw,
+    required TResult orElse(),
+  }) {
+    if (raw != null) {
+      return raw();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectorFunctionText value) text,
+    required TResult Function(SelectorFunctionAttr value) attr,
+    required TResult Function(SelectorFunctionRaw value) raw,
+  }) {
+    return raw(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectorFunctionText value)? text,
+    TResult? Function(SelectorFunctionAttr value)? attr,
+    TResult? Function(SelectorFunctionRaw value)? raw,
+  }) {
+    return raw?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectorFunctionText value)? text,
+    TResult Function(SelectorFunctionAttr value)? attr,
+    TResult Function(SelectorFunctionRaw value)? raw,
+    required TResult orElse(),
+  }) {
+    if (raw != null) {
+      return raw(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SelectorFunctionRawImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class SelectorFunctionRaw extends SelectorFunction {
+  const factory SelectorFunctionRaw() = _$SelectorFunctionRawImpl;
+  const SelectorFunctionRaw._() : super._();
+
+  factory SelectorFunctionRaw.fromJson(Map<String, dynamic> json) =
+      _$SelectorFunctionRawImpl.fromJson;
+}
+
 SelectorModel _$SelectorModelFromJson(Map<String, dynamic> json) {
   return _SelectorModel.fromJson(json);
 }
@@ -21,8 +1255,8 @@ SelectorModel _$SelectorModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SelectorModel {
   String get selector => throw _privateConstructorUsedError;
-  SelectorType get type => throw _privateConstructorUsedError;
-  SelectorFunctionType get function => throw _privateConstructorUsedError;
+  SelectorQuery get type => throw _privateConstructorUsedError;
+  SelectorFunction get function => throw _privateConstructorUsedError;
   String get param => throw _privateConstructorUsedError;
   String get regex => throw _privateConstructorUsedError;
   String get replace => throw _privateConstructorUsedError;
@@ -43,14 +1277,16 @@ abstract class $SelectorModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String selector,
-      SelectorType type,
-      SelectorFunctionType function,
+      SelectorQuery type,
+      SelectorFunction function,
       String param,
       String regex,
       String replace,
       ScriptField script,
       String defaultValue});
 
+  $SelectorQueryCopyWith<$Res> get type;
+  $SelectorFunctionCopyWith<$Res> get function;
   $ScriptFieldCopyWith<$Res> get script;
 }
 
@@ -84,11 +1320,11 @@ class _$SelectorModelCopyWithImpl<$Res, $Val extends SelectorModel>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SelectorType,
+              as SelectorQuery,
       function: null == function
           ? _value.function
           : function // ignore: cast_nullable_to_non_nullable
-              as SelectorFunctionType,
+              as SelectorFunction,
       param: null == param
           ? _value.param
           : param // ignore: cast_nullable_to_non_nullable
@@ -114,6 +1350,22 @@ class _$SelectorModelCopyWithImpl<$Res, $Val extends SelectorModel>
 
   @override
   @pragma('vm:prefer-inline')
+  $SelectorQueryCopyWith<$Res> get type {
+    return $SelectorQueryCopyWith<$Res>(_value.type, (value) {
+      return _then(_value.copyWith(type: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorFunctionCopyWith<$Res> get function {
+    return $SelectorFunctionCopyWith<$Res>(_value.function, (value) {
+      return _then(_value.copyWith(function: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $ScriptFieldCopyWith<$Res> get script {
     return $ScriptFieldCopyWith<$Res>(_value.script, (value) {
       return _then(_value.copyWith(script: value) as $Val);
@@ -131,14 +1383,18 @@ abstract class _$$SelectorModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String selector,
-      SelectorType type,
-      SelectorFunctionType function,
+      SelectorQuery type,
+      SelectorFunction function,
       String param,
       String regex,
       String replace,
       ScriptField script,
       String defaultValue});
 
+  @override
+  $SelectorQueryCopyWith<$Res> get type;
+  @override
+  $SelectorFunctionCopyWith<$Res> get function;
   @override
   $ScriptFieldCopyWith<$Res> get script;
 }
@@ -171,11 +1427,11 @@ class __$$SelectorModelImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SelectorType,
+              as SelectorQuery,
       function: null == function
           ? _value.function
           : function // ignore: cast_nullable_to_non_nullable
-              as SelectorFunctionType,
+              as SelectorFunction,
       param: null == param
           ? _value.param
           : param // ignore: cast_nullable_to_non_nullable
@@ -202,16 +1458,17 @@ class __$$SelectorModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SelectorModelImpl implements _SelectorModel {
+class _$SelectorModelImpl extends _SelectorModel {
   const _$SelectorModelImpl(
       {this.selector = '',
-      this.type = SelectorType.css,
-      this.function = SelectorFunctionType.text,
+      this.type = const SelectorQuery.css(),
+      this.function = const SelectorFunction.text(),
       this.param = '',
       this.regex = '',
       this.replace = '',
-      this.script = const ScriptField(),
-      this.defaultValue = ''});
+      this.script = const ScriptField.output(),
+      this.defaultValue = ''})
+      : super._();
 
   factory _$SelectorModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SelectorModelImplFromJson(json);
@@ -221,10 +1478,10 @@ class _$SelectorModelImpl implements _SelectorModel {
   final String selector;
   @override
   @JsonKey()
-  final SelectorType type;
+  final SelectorQuery type;
   @override
   @JsonKey()
-  final SelectorFunctionType function;
+  final SelectorFunction function;
   @override
   @JsonKey()
   final String param;
@@ -283,16 +1540,17 @@ class _$SelectorModelImpl implements _SelectorModel {
   }
 }
 
-abstract class _SelectorModel implements SelectorModel {
+abstract class _SelectorModel extends SelectorModel {
   const factory _SelectorModel(
       {final String selector,
-      final SelectorType type,
-      final SelectorFunctionType function,
+      final SelectorQuery type,
+      final SelectorFunction function,
       final String param,
       final String regex,
       final String replace,
       final ScriptField script,
       final String defaultValue}) = _$SelectorModelImpl;
+  const _SelectorModel._() : super._();
 
   factory _SelectorModel.fromJson(Map<String, dynamic> json) =
       _$SelectorModelImpl.fromJson;
@@ -300,9 +1558,9 @@ abstract class _SelectorModel implements SelectorModel {
   @override
   String get selector;
   @override
-  SelectorType get type;
+  SelectorQuery get type;
   @override
-  SelectorFunctionType get function;
+  SelectorFunction get function;
   @override
   String get param;
   @override

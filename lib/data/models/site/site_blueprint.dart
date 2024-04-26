@@ -4,12 +4,12 @@ import 'package:catweb/data/models/site/parser.dart';
 import 'package:catweb/utils/iter_helper.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'site_bluemap.freezed.dart';
+part 'site_blueprint.freezed.dart';
 
-part 'site_bluemap.g.dart';
+part 'site_blueprint.g.dart';
 
 @freezed
-class SiteBlueprint with _$SiteBlueMap {
+class SiteBlueprint with _$SiteBlueprint {
   const SiteBlueprint._();
 
   const factory SiteBlueprint({
@@ -29,7 +29,7 @@ class SiteBlueprint with _$SiteBlueMap {
   }) = _SiteBlueMap;
 
   factory SiteBlueprint.fromJson(Map<String, dynamic> json) =>
-      _$SiteBlueMapFromJson(json);
+      _$SiteBlueprintFromJson(json);
 
   T getParserById<T extends ParserModel>(String parseId) {
     for (var parser in parserList) {

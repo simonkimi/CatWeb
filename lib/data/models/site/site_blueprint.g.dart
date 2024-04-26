@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'site_bluemap.dart';
+part of 'site_blueprint.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

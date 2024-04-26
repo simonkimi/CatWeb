@@ -18,23 +18,46 @@ Map<String, dynamic> _$$RegFieldImplToJson(_$RegFieldImpl instance) =>
       'value': instance.value,
     };
 
-_$ScriptFieldImpl _$$ScriptFieldImplFromJson(Map<String, dynamic> json) =>
-    _$ScriptFieldImpl(
-      script: json['script'] as String? ?? '',
-      type: $enumDecodeNullable(_$ScriptFieldTypeEnumMap, json['type']) ??
-          ScriptFieldType.output,
+_$ScriptFieldOutputImpl _$$ScriptFieldOutputImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ScriptFieldOutputImpl(
+      $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ScriptFieldImplToJson(_$ScriptFieldImpl instance) =>
+Map<String, dynamic> _$$ScriptFieldOutputImplToJson(
+        _$ScriptFieldOutputImpl instance) =>
     <String, dynamic>{
-      'script': instance.script,
-      'type': _$ScriptFieldTypeEnumMap[instance.type]!,
+      'runtimeType': instance.$type,
     };
 
-const _$ScriptFieldTypeEnumMap = {
-  ScriptFieldType.output: 'output',
-  ScriptFieldType.js: 'js',
-};
+_$ScriptFieldReplaceImpl _$$ScriptFieldReplaceImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ScriptFieldReplaceImpl(
+      replace: (json['replace'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k, e as String),
+          ) ??
+          const {},
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$ScriptFieldReplaceImplToJson(
+        _$ScriptFieldReplaceImpl instance) =>
+    <String, dynamic>{
+      'replace': instance.replace,
+      'runtimeType': instance.$type,
+    };
+
+_$ScriptFieldJsImpl _$$ScriptFieldJsImplFromJson(Map<String, dynamic> json) =>
+    _$ScriptFieldJsImpl(
+      script: json['script'] as String? ?? '',
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$ScriptFieldJsImplToJson(_$ScriptFieldJsImpl instance) =>
+    <String, dynamic>{
+      'script': instance.script,
+      'runtimeType': instance.$type,
+    };
 
 _$ColorFieldImpl _$$ColorFieldImplFromJson(Map<String, dynamic> json) =>
     _$ColorFieldImpl(

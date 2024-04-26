@@ -4,10 +4,7 @@ import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
 
 class AutoCompleteParserEditor extends StatelessWidget {
-  const AutoCompleteParserEditor({Key? key, required this.parser})
-      : super(key: key);
-
-  final AutoCompleteParser parser;
+  const AutoCompleteParserEditor({super.key});
 
   @override
   Widget build(BuildContext context) {

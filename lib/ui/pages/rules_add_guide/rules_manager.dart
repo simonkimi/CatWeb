@@ -4,7 +4,7 @@ import 'package:catweb/data/controller/db.dart';
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/models/site/site_bluemap.dart';
+import 'package:catweb/data/models/site/site_blueprint.dart';
 import 'package:catweb/get.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';

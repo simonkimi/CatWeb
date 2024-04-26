@@ -1,14 +1,5 @@
-abstract class EnumWithValue {
-  final int value;
+import 'package:flutter/cupertino.dart';
 
-  EnumWithValue(this.value);
-}
-
-T enumFromValue<T extends EnumWithValue>(List<T> values, int value) {
-  for (var item in values) {
-    if (item.value == value) {
-      return item;
-    }
-  }
-  throw Exception('Unknown value: $value');
+abstract interface class IEnumDescription {
+  String getDescription(BuildContext context);
 }

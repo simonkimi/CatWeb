@@ -1,5 +1,5 @@
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/models/site/site_bluemap.dart';
+import 'package:catweb/data/models/site/site_blueprint.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_editor_notifier.dart';
 import 'package:catweb/ui/widgets/dialog.dart';

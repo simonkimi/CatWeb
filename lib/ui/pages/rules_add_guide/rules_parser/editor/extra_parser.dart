@@ -9,12 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ExtraParserEditor extends StatelessWidget {
-  const ExtraParserEditor({
-    super.key,
-    required this.parser,
-  });
-
-  final IParserBase parser;
+  const ExtraParserEditor({super.key});
 
   @override
   Widget build(BuildContext context) {

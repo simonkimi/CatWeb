@@ -169,18 +169,67 @@ abstract class _RegField implements RegField {
 }
 
 ScriptField _$ScriptFieldFromJson(Map<String, dynamic> json) {
-  return _ScriptField.fromJson(json);
+  switch (json['runtimeType']) {
+    case 'output':
+      return ScriptFieldOutput.fromJson(json);
+    case 'replace':
+      return ScriptFieldReplace.fromJson(json);
+    case 'js':
+      return ScriptFieldJs.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'ScriptField',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
 mixin _$ScriptField {
-  String get script => throw _privateConstructorUsedError;
-  ScriptFieldType get type => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ScriptFieldCopyWith<ScriptField> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() output,
+    required TResult Function(Map<String, String> replace) replace,
+    required TResult Function(String script) js,
+  }) =>
       throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? output,
+    TResult? Function(Map<String, String> replace)? replace,
+    TResult? Function(String script)? js,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? output,
+    TResult Function(Map<String, String> replace)? replace,
+    TResult Function(String script)? js,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ScriptFieldOutput value) output,
+    required TResult Function(ScriptFieldReplace value) replace,
+    required TResult Function(ScriptFieldJs value) js,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ScriptFieldOutput value)? output,
+    TResult? Function(ScriptFieldReplace value)? replace,
+    TResult? Function(ScriptFieldJs value)? js,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ScriptFieldOutput value)? output,
+    TResult Function(ScriptFieldReplace value)? replace,
+    TResult Function(ScriptFieldJs value)? js,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -188,8 +237,6 @@ abstract class $ScriptFieldCopyWith<$Res> {
   factory $ScriptFieldCopyWith(
           ScriptField value, $Res Function(ScriptField) then) =
       _$ScriptFieldCopyWithImpl<$Res, ScriptField>;
-  @useResult
-  $Res call({String script, ScriptFieldType type});
 }
 
 /// @nodoc
@@ -201,126 +248,457 @@ class _$ScriptFieldCopyWithImpl<$Res, $Val extends ScriptField>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
 
-  @pragma('vm:prefer-inline')
+/// @nodoc
+abstract class _$$ScriptFieldOutputImplCopyWith<$Res> {
+  factory _$$ScriptFieldOutputImplCopyWith(_$ScriptFieldOutputImpl value,
+          $Res Function(_$ScriptFieldOutputImpl) then) =
+      __$$ScriptFieldOutputImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ScriptFieldOutputImplCopyWithImpl<$Res>
+    extends _$ScriptFieldCopyWithImpl<$Res, _$ScriptFieldOutputImpl>
+    implements _$$ScriptFieldOutputImplCopyWith<$Res> {
+  __$$ScriptFieldOutputImplCopyWithImpl(_$ScriptFieldOutputImpl _value,
+      $Res Function(_$ScriptFieldOutputImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ScriptFieldOutputImpl implements ScriptFieldOutput {
+  const _$ScriptFieldOutputImpl({final String? $type})
+      : $type = $type ?? 'output';
+
+  factory _$ScriptFieldOutputImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ScriptFieldOutputImplFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
-  $Res call({
-    Object? script = null,
-    Object? type = null,
+  String toString() {
+    return 'ScriptField.output()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ScriptFieldOutputImpl);
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() output,
+    required TResult Function(Map<String, String> replace) replace,
+    required TResult Function(String script) js,
   }) {
-    return _then(_value.copyWith(
-      script: null == script
-          ? _value.script
-          : script // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ScriptFieldType,
-    ) as $Val);
+    return output();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? output,
+    TResult? Function(Map<String, String> replace)? replace,
+    TResult? Function(String script)? js,
+  }) {
+    return output?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? output,
+    TResult Function(Map<String, String> replace)? replace,
+    TResult Function(String script)? js,
+    required TResult orElse(),
+  }) {
+    if (output != null) {
+      return output();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ScriptFieldOutput value) output,
+    required TResult Function(ScriptFieldReplace value) replace,
+    required TResult Function(ScriptFieldJs value) js,
+  }) {
+    return output(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ScriptFieldOutput value)? output,
+    TResult? Function(ScriptFieldReplace value)? replace,
+    TResult? Function(ScriptFieldJs value)? js,
+  }) {
+    return output?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ScriptFieldOutput value)? output,
+    TResult Function(ScriptFieldReplace value)? replace,
+    TResult Function(ScriptFieldJs value)? js,
+    required TResult orElse(),
+  }) {
+    if (output != null) {
+      return output(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ScriptFieldOutputImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract class _$$ScriptFieldImplCopyWith<$Res>
-    implements $ScriptFieldCopyWith<$Res> {
-  factory _$$ScriptFieldImplCopyWith(
-          _$ScriptFieldImpl value, $Res Function(_$ScriptFieldImpl) then) =
-      __$$ScriptFieldImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String script, ScriptFieldType type});
+abstract class ScriptFieldOutput implements ScriptField {
+  const factory ScriptFieldOutput() = _$ScriptFieldOutputImpl;
+
+  factory ScriptFieldOutput.fromJson(Map<String, dynamic> json) =
+      _$ScriptFieldOutputImpl.fromJson;
 }
 
 /// @nodoc
-class __$$ScriptFieldImplCopyWithImpl<$Res>
-    extends _$ScriptFieldCopyWithImpl<$Res, _$ScriptFieldImpl>
-    implements _$$ScriptFieldImplCopyWith<$Res> {
-  __$$ScriptFieldImplCopyWithImpl(
-      _$ScriptFieldImpl _value, $Res Function(_$ScriptFieldImpl) _then)
+abstract class _$$ScriptFieldReplaceImplCopyWith<$Res> {
+  factory _$$ScriptFieldReplaceImplCopyWith(_$ScriptFieldReplaceImpl value,
+          $Res Function(_$ScriptFieldReplaceImpl) then) =
+      __$$ScriptFieldReplaceImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, String> replace});
+}
+
+/// @nodoc
+class __$$ScriptFieldReplaceImplCopyWithImpl<$Res>
+    extends _$ScriptFieldCopyWithImpl<$Res, _$ScriptFieldReplaceImpl>
+    implements _$$ScriptFieldReplaceImplCopyWith<$Res> {
+  __$$ScriptFieldReplaceImplCopyWithImpl(_$ScriptFieldReplaceImpl _value,
+      $Res Function(_$ScriptFieldReplaceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? script = null,
-    Object? type = null,
+    Object? replace = null,
   }) {
-    return _then(_$ScriptFieldImpl(
-      script: null == script
-          ? _value.script
-          : script // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ScriptFieldType,
+    return _then(_$ScriptFieldReplaceImpl(
+      replace: null == replace
+          ? _value._replace
+          : replace // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ScriptFieldImpl implements _ScriptField {
-  const _$ScriptFieldImpl(
-      {this.script = '', this.type = ScriptFieldType.output});
+class _$ScriptFieldReplaceImpl implements ScriptFieldReplace {
+  const _$ScriptFieldReplaceImpl(
+      {final Map<String, String> replace = const {}, final String? $type})
+      : _replace = replace,
+        $type = $type ?? 'replace';
 
-  factory _$ScriptFieldImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ScriptFieldImplFromJson(json);
+  factory _$ScriptFieldReplaceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ScriptFieldReplaceImplFromJson(json);
 
+  final Map<String, String> _replace;
   @override
   @JsonKey()
-  final String script;
-  @override
-  @JsonKey()
-  final ScriptFieldType type;
+  Map<String, String> get replace {
+    if (_replace is EqualUnmodifiableMapView) return _replace;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_replace);
+  }
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
-    return 'ScriptField(script: $script, type: $type)';
+    return 'ScriptField.replace(replace: $replace)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScriptFieldImpl &&
-            (identical(other.script, script) || other.script == script) &&
-            (identical(other.type, type) || other.type == type));
+            other is _$ScriptFieldReplaceImpl &&
+            const DeepCollectionEquality().equals(other._replace, _replace));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, script, type);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_replace));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ScriptFieldImplCopyWith<_$ScriptFieldImpl> get copyWith =>
-      __$$ScriptFieldImplCopyWithImpl<_$ScriptFieldImpl>(this, _$identity);
+  _$$ScriptFieldReplaceImplCopyWith<_$ScriptFieldReplaceImpl> get copyWith =>
+      __$$ScriptFieldReplaceImplCopyWithImpl<_$ScriptFieldReplaceImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() output,
+    required TResult Function(Map<String, String> replace) replace,
+    required TResult Function(String script) js,
+  }) {
+    return replace(this.replace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? output,
+    TResult? Function(Map<String, String> replace)? replace,
+    TResult? Function(String script)? js,
+  }) {
+    return replace?.call(this.replace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? output,
+    TResult Function(Map<String, String> replace)? replace,
+    TResult Function(String script)? js,
+    required TResult orElse(),
+  }) {
+    if (replace != null) {
+      return replace(this.replace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ScriptFieldOutput value) output,
+    required TResult Function(ScriptFieldReplace value) replace,
+    required TResult Function(ScriptFieldJs value) js,
+  }) {
+    return replace(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ScriptFieldOutput value)? output,
+    TResult? Function(ScriptFieldReplace value)? replace,
+    TResult? Function(ScriptFieldJs value)? js,
+  }) {
+    return replace?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ScriptFieldOutput value)? output,
+    TResult Function(ScriptFieldReplace value)? replace,
+    TResult Function(ScriptFieldJs value)? js,
+    required TResult orElse(),
+  }) {
+    if (replace != null) {
+      return replace(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ScriptFieldImplToJson(
+    return _$$ScriptFieldReplaceImplToJson(
       this,
     );
   }
 }
 
-abstract class _ScriptField implements ScriptField {
-  const factory _ScriptField(
-      {final String script, final ScriptFieldType type}) = _$ScriptFieldImpl;
+abstract class ScriptFieldReplace implements ScriptField {
+  const factory ScriptFieldReplace({final Map<String, String> replace}) =
+      _$ScriptFieldReplaceImpl;
 
-  factory _ScriptField.fromJson(Map<String, dynamic> json) =
-      _$ScriptFieldImpl.fromJson;
+  factory ScriptFieldReplace.fromJson(Map<String, dynamic> json) =
+      _$ScriptFieldReplaceImpl.fromJson;
 
-  @override
-  String get script;
-  @override
-  ScriptFieldType get type;
-  @override
+  Map<String, String> get replace;
   @JsonKey(ignore: true)
-  _$$ScriptFieldImplCopyWith<_$ScriptFieldImpl> get copyWith =>
+  _$$ScriptFieldReplaceImplCopyWith<_$ScriptFieldReplaceImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ScriptFieldJsImplCopyWith<$Res> {
+  factory _$$ScriptFieldJsImplCopyWith(
+          _$ScriptFieldJsImpl value, $Res Function(_$ScriptFieldJsImpl) then) =
+      __$$ScriptFieldJsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String script});
+}
+
+/// @nodoc
+class __$$ScriptFieldJsImplCopyWithImpl<$Res>
+    extends _$ScriptFieldCopyWithImpl<$Res, _$ScriptFieldJsImpl>
+    implements _$$ScriptFieldJsImplCopyWith<$Res> {
+  __$$ScriptFieldJsImplCopyWithImpl(
+      _$ScriptFieldJsImpl _value, $Res Function(_$ScriptFieldJsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? script = null,
+  }) {
+    return _then(_$ScriptFieldJsImpl(
+      script: null == script
+          ? _value.script
+          : script // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ScriptFieldJsImpl implements ScriptFieldJs {
+  const _$ScriptFieldJsImpl({this.script = '', final String? $type})
+      : $type = $type ?? 'js';
+
+  factory _$ScriptFieldJsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ScriptFieldJsImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String script;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'ScriptField.js(script: $script)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ScriptFieldJsImpl &&
+            (identical(other.script, script) || other.script == script));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, script);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ScriptFieldJsImplCopyWith<_$ScriptFieldJsImpl> get copyWith =>
+      __$$ScriptFieldJsImplCopyWithImpl<_$ScriptFieldJsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() output,
+    required TResult Function(Map<String, String> replace) replace,
+    required TResult Function(String script) js,
+  }) {
+    return js(script);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? output,
+    TResult? Function(Map<String, String> replace)? replace,
+    TResult? Function(String script)? js,
+  }) {
+    return js?.call(script);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? output,
+    TResult Function(Map<String, String> replace)? replace,
+    TResult Function(String script)? js,
+    required TResult orElse(),
+  }) {
+    if (js != null) {
+      return js(script);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ScriptFieldOutput value) output,
+    required TResult Function(ScriptFieldReplace value) replace,
+    required TResult Function(ScriptFieldJs value) js,
+  }) {
+    return js(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ScriptFieldOutput value)? output,
+    TResult? Function(ScriptFieldReplace value)? replace,
+    TResult? Function(ScriptFieldJs value)? js,
+  }) {
+    return js?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ScriptFieldOutput value)? output,
+    TResult Function(ScriptFieldReplace value)? replace,
+    TResult Function(ScriptFieldJs value)? js,
+    required TResult orElse(),
+  }) {
+    if (js != null) {
+      return js(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ScriptFieldJsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class ScriptFieldJs implements ScriptField {
+  const factory ScriptFieldJs({final String script}) = _$ScriptFieldJsImpl;
+
+  factory ScriptFieldJs.fromJson(Map<String, dynamic> json) =
+      _$ScriptFieldJsImpl.fromJson;
+
+  String get script;
+  @JsonKey(ignore: true)
+  _$$ScriptFieldJsImplCopyWith<_$ScriptFieldJsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

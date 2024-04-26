@@ -12,7 +12,7 @@ _$PageTemplateAutoCompleteImpl _$$PageTemplateAutoCompleteImplFromJson(
       splitChar: json['splitChar'] as String? ?? '',
       timeout: json['timeout'] as int? ?? 0,
       script: json['script'] == null
-          ? const ScriptField()
+          ? const ScriptField.output()
           : ScriptField.fromJson(json['script'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
@@ -55,7 +55,7 @@ _$PageTemplateListImpl _$$PageTemplateListImplFromJson(
               .toList() ??
           const [],
       script: json['script'] == null
-          ? const ScriptField()
+          ? const ScriptField.output()
           : ScriptField.fromJson(json['script'] as Map<String, dynamic>),
       disableUnchanged: json['disableUnchanged'] as bool? ?? false,
       targetItem: json['targetItem'] as String? ?? '',

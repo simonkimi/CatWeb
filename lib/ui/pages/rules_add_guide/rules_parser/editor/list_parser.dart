@@ -4,8 +4,7 @@ import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
 
 class ListParserEditor extends StatelessWidget {
-  const ListParserEditor({Key? key, required this.parser}) : super(key: key);
-  final ListViewParser parser;
+  const ListParserEditor({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,63 +1,64 @@
-import 'package:catweb/data/models/site_model/parser/parser.dart';
+import 'package:catweb/data/models/site/parser.dart';
 import 'package:catweb/i18n.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_editor_notifier.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
-import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_editor.dart';
-import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
-
-import 'package:catweb/utils/rx_list.dart';
 
 enum _MenuSelect {
   edit,
   delete,
 }
 
+enum _ParserType {
+  list,
+  detail,
+  image,
+  autoComplete;
+}
+
 class RulesParserManager extends StatelessWidget {
-  const RulesParserManager(this.controller, {super.key});
-
-  final RulesEditController controller;
-
-  RxList<IParserBase> get parserList => controller.blueprint.parserList;
+  const RulesParserManager({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      children: [
-        parserList.obx(() {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: parserList.map((e) {
-              return CupertinoCardTile(
-                title: Text(e.name),
-                subtitle: Text(e.parserType.value),
+    return Selector<RulesEditorNotifier, List<ParserModel>>(
+      selector: (_, n) => n.blueprint.parserList,
+      child: CupertinoCardTile(
+        title: const Text('添加'),
+        leading: const Icon(Icons.add),
+        onTap: () => _editRules(context),
+      ),
+      builder: (_, parserList, child) {
+        return ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          children: [
+            for (final model in parserList)
+              CupertinoCardTile(
+                title: Text(model.name),
+                subtitle: Text(model.getDescription(context)),
                 trailing: CupertinoButton(
                   padding: EdgeInsets.zero,
                   minSize: 10,
                   child: const Icon(Icons.more_horiz_outlined),
-                  onPressed: () => _onTrailingTap(context, e),
+                  onPressed: () => _onTrailingTap(context, model),
                 ),
-                onTap: () => _editRules(context, e),
-              );
-            }).toList(),
-          );
-        }),
-        CupertinoCardTile(
-          title: const Text('添加'),
-          leading: const Icon(Icons.add),
-          onTap: () => _editRules(context),
-        ),
-      ],
+                onTap: () => _editRules(context, model),
+              ),
+            child!,
+          ],
+        );
+      },
     );
   }
 
   Future<void> _onTrailingTap(
     BuildContext context,
-    IParserBase model,
+    ParserModel model,
   ) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: '取消',
@@ -83,12 +84,10 @@ class RulesParserManager extends StatelessWidget {
     }
   }
 
-  void _onParserDelete(
-    BuildContext context,
-    IParserBase model,
-  ) {
-    final using = controller.blueprint.pageList
-        .where((p0) => p0.parserId.value == model.uuid)
+  void _onParserDelete(BuildContext context, ParserModel model) {
+    final notifier = context.read<RulesEditorNotifier>();
+    final using = notifier.blueprint.pageList
+        .where((p0) => p0.parserId == model.uuid)
         .map((e) => e.name)
         .toList();
     if (using.isNotEmpty) {
@@ -103,22 +102,22 @@ class RulesParserManager extends StatelessWidget {
         confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
       ).then((value) {
         if (value == true) {
-          parserList.remove(model);
+          notifier.removeParser(model.uuid);
         }
       });
     }
   }
 
-  Future<IParserBase?> _genParser(BuildContext context) async {
-    final selection = await showCupertinoSelectDialog<ParserType>(
+  Future<ParserModel?> _genParser(BuildContext context) async {
+    final selection = await showCupertinoSelectDialog<_ParserType>(
       context: context,
       title: '规则类型',
       cancelText: '取消',
       items: const [
-        SelectTileItem(title: '列表页', value: ParserType.listView),
-        SelectTileItem(title: '详情页', value: ParserType.detail),
-        SelectTileItem(title: '图片页', value: ParserType.imageReader),
-        SelectTileItem(title: '补全页', value: ParserType.autoComplete),
+        SelectTileItem(title: '列表页', value: _ParserType.list),
+        SelectTileItem(title: '详情页', value: _ParserType.detail),
+        SelectTileItem(title: '图片页', value: _ParserType.image),
+        SelectTileItem(title: '补全页', value: _ParserType.autoComplete),
       ],
     );
     if (selection == null) return null;
@@ -127,31 +126,34 @@ class RulesParserManager extends StatelessWidget {
 
     final uuid = const Uuid().v4().toString();
     switch (selection) {
-      case ParserType.listView:
-        return ListViewParser(name: name, uuid: uuid);
-      case ParserType.detail:
-        return DetailParser(name: name, uuid: uuid);
-      case ParserType.imageReader:
-        return ImageReaderParser(name: name, uuid: uuid);
-      case ParserType.autoComplete:
-        return AutoCompleteParser(name: name, uuid: uuid);
+      case _ParserType.list:
+        return ParserModel.list(name: name, uuid: uuid);
+      case _ParserType.detail:
+        return ParserModel.detail(name: name, uuid: uuid);
+      case _ParserType.image:
+        return ParserModel.imageReader(name: name, uuid: uuid);
+      case _ParserType.autoComplete:
+        return ParserModel.autoComplete(name: name, uuid: uuid);
     }
   }
 
-  Future<void> _editRules(
-    BuildContext context, [
-    IParserBase? model,
-  ]) async {
+  Future<void> _editRules(BuildContext context, [ParserModel? model]) async {
     final input = model ?? await _genParser(context);
-    if (input == null) return;
-    await Navigator.of(context).push(
+    if (input == null) {
+      return;
+    }
+
+    ParserModel? newModel = await Navigator.of(context).push(
       CupertinoPageRoute(builder: (BuildContext context) {
         return RulesParserEditor(model: input);
       }),
     );
 
-    if (model == null) {
-      parserList.add(input);
+    if (newModel == null) {
+      return;
     }
+
+    final notifier = context.read<RulesEditorNotifier>();
+    notifier.editParser(newModel);
   }
 }

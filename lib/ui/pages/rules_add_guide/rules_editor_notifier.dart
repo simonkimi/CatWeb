@@ -1,5 +1,7 @@
 import 'package:catweb/data/models/site/field.dart';
-import 'package:catweb/data/models/site/site_bluemap.dart';
+import 'package:catweb/data/models/site/page.dart';
+import 'package:catweb/data/models/site/parser.dart';
+import 'package:catweb/data/models/site/site_blueprint.dart';
 
 import 'package:flutter/cupertino.dart';
 
@@ -78,6 +80,35 @@ class RulesEditorNotifier extends ChangeNotifier {
   void addCookie(RegField regField) {
     blueprint = blueprint.copyWith(
       cookies: List.from(blueprint.cookies)..add(regField),
+    );
+    notifyListeners();
+  }
+
+  void removePage(SitePage model) {
+    blueprint = blueprint.copyWith(
+      pageList: List.from(blueprint.pageList)..remove(model),
+    );
+    notifyListeners();
+  }
+
+  void removeParser(String uuid) {
+    blueprint = blueprint.copyWith(
+      parserList: List.from(blueprint.parserList)
+        ..removeWhere((e) => e.uuid == uuid),
+    );
+    notifyListeners();
+  }
+
+  void editParser(ParserModel model) {
+    final newParserList = List<ParserModel>.from(blueprint.parserList);
+    if (newParserList.any((e) => e.uuid == model.uuid)) {
+      newParserList[newParserList.indexWhere((e) => e.uuid == model.uuid)] =
+          model;
+    } else {
+      newParserList.add(model);
+    }
+    blueprint = blueprint.copyWith(
+      parserList: newParserList,
     );
     notifyListeners();
   }

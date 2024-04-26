@@ -1,12 +1,9 @@
-import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser_tile.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
 
 class NewImageParserEditor extends StatelessWidget {
-  const NewImageParserEditor({Key? key, required this.parser})
-      : super(key: key);
-  final ImageReaderParser parser;
+  const NewImageParserEditor({super.key});
 
   @override
   Widget build(BuildContext context) {

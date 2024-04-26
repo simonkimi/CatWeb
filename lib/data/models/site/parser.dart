@@ -1,4 +1,5 @@
 import 'package:catweb/data/models/site/selector.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'parser.freezed.dart';
@@ -7,6 +8,8 @@ part 'parser.g.dart';
 
 @freezed
 class ParserModel with _$ParserModel {
+  const ParserModel._();
+
   @override
   String get name;
 
@@ -107,4 +110,14 @@ class ParserModel with _$ParserModel {
 
   factory ParserModel.fromJson(Map<String, dynamic> json) =>
       _$ParserModelFromJson(json);
+
+  String getDescription(BuildContext context) {
+    return switch (this) {
+      ParserModel.autoComplete => '自动完成',
+      ParserModel.detail => '详情页',
+      ParserModel.imageReader => '图片阅读器',
+      ParserModel.list => '列表页',
+      _ => throw UnimplementedError('未知的ParserModel类型 $runtimeType'),
+    };
+  }
 }

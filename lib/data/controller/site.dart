@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/models/site/site_bluemap.dart';
+import 'package:catweb/data/models/site/site_blueprint.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/get.dart';
 import 'package:catweb/utils/iter_helper.dart';

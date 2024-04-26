@@ -8,7 +8,7 @@ import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/parser.dart';
-import 'package:catweb/data/models/site/site_bluemap.dart';
+import 'package:catweb/data/models/site/site_blueprint.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/get.dart';
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
@@ -27,17 +27,6 @@ class FlagException implements Exception {
   final String message;
 
   FlagException(this.message);
-}
-
-enum ParserType {
-  list('ListParser'),
-  detail('DetailParser'),
-  image('ImageReaderParser'),
-  autoComplete('AutoCompleteParser');
-
-  final String value;
-
-  const ParserType(this.value);
 }
 
 class NetClient {

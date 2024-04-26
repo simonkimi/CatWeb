@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'site_bluemap.dart';
+part of 'site_blueprint.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-SiteBlueprint _$SiteBlueMapFromJson(Map<String, dynamic> json) {
+SiteBlueprint _$SiteBlueprintFromJson(Map<String, dynamic> json) {
   return _SiteBlueMap.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SiteBlueMap {
+mixin _$SiteBlueprint {
   String get name => throw _privateConstructorUsedError;
   String get baseUrl => throw _privateConstructorUsedError;
   String get loginUrl => throw _privateConstructorUsedError;
@@ -36,15 +36,15 @@ mixin _$SiteBlueMap {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SiteBlueMapCopyWith<SiteBlueprint> get copyWith =>
+  $SiteBlueprintCopyWith<SiteBlueprint> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SiteBlueMapCopyWith<$Res> {
-  factory $SiteBlueMapCopyWith(
+abstract class $SiteBlueprintCopyWith<$Res> {
+  factory $SiteBlueprintCopyWith(
           SiteBlueprint value, $Res Function(SiteBlueprint) then) =
-      _$SiteBlueMapCopyWithImpl<$Res, SiteBlueprint>;
+      _$SiteBlueprintCopyWithImpl<$Res, SiteBlueprint>;
   @useResult
   $Res call(
       {String name,
@@ -63,9 +63,9 @@ abstract class $SiteBlueMapCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SiteBlueMapCopyWithImpl<$Res, $Val extends SiteBlueprint>
-    implements $SiteBlueMapCopyWith<$Res> {
-  _$SiteBlueMapCopyWithImpl(this._value, this._then);
+class _$SiteBlueprintCopyWithImpl<$Res, $Val extends SiteBlueprint>
+    implements $SiteBlueprintCopyWith<$Res> {
+  _$SiteBlueprintCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -148,7 +148,7 @@ class _$SiteBlueMapCopyWithImpl<$Res, $Val extends SiteBlueprint>
 
 /// @nodoc
 abstract class _$$SiteBlueMapImplCopyWith<$Res>
-    implements $SiteBlueMapCopyWith<$Res> {
+    implements $SiteBlueprintCopyWith<$Res> {
   factory _$$SiteBlueMapImplCopyWith(
           _$SiteBlueMapImpl value, $Res Function(_$SiteBlueMapImpl) then) =
       __$$SiteBlueMapImplCopyWithImpl<$Res>;
@@ -172,7 +172,7 @@ abstract class _$$SiteBlueMapImplCopyWith<$Res>
 
 /// @nodoc
 class __$$SiteBlueMapImplCopyWithImpl<$Res>
-    extends _$SiteBlueMapCopyWithImpl<$Res, _$SiteBlueMapImpl>
+    extends _$SiteBlueprintCopyWithImpl<$Res, _$SiteBlueMapImpl>
     implements _$$SiteBlueMapImplCopyWith<$Res> {
   __$$SiteBlueMapImplCopyWithImpl(
       _$SiteBlueMapImpl _value, $Res Function(_$SiteBlueMapImpl) _then)
@@ -343,7 +343,7 @@ class _$SiteBlueMapImpl extends _SiteBlueMap {
 
   @override
   String toString() {
-    return 'SiteBlueMap(name: $name, baseUrl: $baseUrl, loginUrl: $loginUrl, loginCookieReg: $loginCookieReg, loginCookieDescription: $loginCookieDescription, version: $version, upgradeUrl: $upgradeUrl, flag: $flag, readme: $readme, headers: $headers, cookies: $cookies, parserList: $parserList, pageList: $pageList)';
+    return 'SiteBlueprint(name: $name, baseUrl: $baseUrl, loginUrl: $loginUrl, loginCookieReg: $loginCookieReg, loginCookieDescription: $loginCookieDescription, version: $version, upgradeUrl: $upgradeUrl, flag: $flag, readme: $readme, headers: $headers, cookies: $cookies, parserList: $parserList, pageList: $pageList)';
   }
 
   @override

@@ -5,7 +5,7 @@ import 'package:catweb/data/database/cookie_jar_storage.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/data/models/site/page.dart';
-import 'package:catweb/data/models/site/site_bluemap.dart';
+import 'package:catweb/data/models/site/site_blueprint.dart';
 import 'package:catweb/data/models/site/template.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/get.dart';

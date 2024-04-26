@@ -6,9 +6,7 @@ import 'package:catweb/i18n.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class DetailParserEditor extends HookWidget {
-  const DetailParserEditor({Key? key, required this.parser}) : super(key: key);
-
-  final DetailParser parser;
+  const DetailParserEditor({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -186,13 +186,14 @@ class __$$PageTemplateAutoCompleteImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PageTemplateAutoCompleteImpl implements PageTemplateAutoComplete {
+class _$PageTemplateAutoCompleteImpl extends PageTemplateAutoComplete {
   const _$PageTemplateAutoCompleteImpl(
       {this.splitChar = '',
       this.timeout = 0,
-      this.script = const ScriptField(),
+      this.script = const ScriptField.output(),
       final String? $type})
-      : $type = $type ?? 'autoComplete';
+      : $type = $type ?? 'autoComplete',
+        super._();
 
   factory _$PageTemplateAutoCompleteImpl.fromJson(Map<String, dynamic> json) =>
       _$$PageTemplateAutoCompleteImplFromJson(json);
@@ -346,11 +347,12 @@ class _$PageTemplateAutoCompleteImpl implements PageTemplateAutoComplete {
   }
 }
 
-abstract class PageTemplateAutoComplete implements PageTemplate {
+abstract class PageTemplateAutoComplete extends PageTemplate {
   const factory PageTemplateAutoComplete(
       {final String splitChar,
       final int timeout,
       final ScriptField script}) = _$PageTemplateAutoCompleteImpl;
+  const PageTemplateAutoComplete._() : super._();
 
   factory PageTemplateAutoComplete.fromJson(Map<String, dynamic> json) =
       _$PageTemplateAutoCompleteImpl.fromJson;
@@ -396,9 +398,10 @@ class __$$PageTemplateGalleryImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PageTemplateGalleryImpl implements PageTemplateGallery {
+class _$PageTemplateGalleryImpl extends PageTemplateGallery {
   const _$PageTemplateGalleryImpl({this.targetReader = '', final String? $type})
-      : $type = $type ?? 'gallery';
+      : $type = $type ?? 'gallery',
+        super._();
 
   factory _$PageTemplateGalleryImpl.fromJson(Map<String, dynamic> json) =>
       _$$PageTemplateGalleryImplFromJson(json);
@@ -544,9 +547,10 @@ class _$PageTemplateGalleryImpl implements PageTemplateGallery {
   }
 }
 
-abstract class PageTemplateGallery implements PageTemplate {
+abstract class PageTemplateGallery extends PageTemplate {
   const factory PageTemplateGallery({final String targetReader}) =
       _$PageTemplateGalleryImpl;
+  const PageTemplateGallery._() : super._();
 
   factory PageTemplateGallery.fromJson(Map<String, dynamic> json) =
       _$PageTemplateGalleryImpl.fromJson;
@@ -637,19 +641,20 @@ class __$$PageTemplateListImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PageTemplateListImpl implements PageTemplateList {
+class _$PageTemplateListImpl extends PageTemplateList {
   const _$PageTemplateListImpl(
       {this.name = '',
       final List<TemplateListSubPage> subPages = const [],
       final List<TemplateListFilterItem> filters = const [],
-      this.script = const ScriptField(),
+      this.script = const ScriptField.output(),
       this.disableUnchanged = false,
       this.targetItem = '',
       this.targetAutoComplete = '',
       final String? $type})
       : _subPages = subPages,
         _filters = filters,
-        $type = $type ?? 'list';
+        $type = $type ?? 'list',
+        super._();
 
   factory _$PageTemplateListImpl.fromJson(Map<String, dynamic> json) =>
       _$$PageTemplateListImplFromJson(json);
@@ -844,7 +849,7 @@ class _$PageTemplateListImpl implements PageTemplateList {
   }
 }
 
-abstract class PageTemplateList implements PageTemplate {
+abstract class PageTemplateList extends PageTemplate {
   const factory PageTemplateList(
       {final String name,
       final List<TemplateListSubPage> subPages,
@@ -853,6 +858,7 @@ abstract class PageTemplateList implements PageTemplate {
       final bool disableUnchanged,
       final String targetItem,
       final String targetAutoComplete}) = _$PageTemplateListImpl;
+  const PageTemplateList._() : super._();
 
   factory PageTemplateList.fromJson(Map<String, dynamic> json) =
       _$PageTemplateListImpl.fromJson;
@@ -889,9 +895,10 @@ class __$$PageTemplateImageViewerImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PageTemplateImageViewerImpl implements PageTemplateImageViewer {
+class _$PageTemplateImageViewerImpl extends PageTemplateImageViewer {
   const _$PageTemplateImageViewerImpl({final String? $type})
-      : $type = $type ?? 'imageViewer';
+      : $type = $type ?? 'imageViewer',
+        super._();
 
   factory _$PageTemplateImageViewerImpl.fromJson(Map<String, dynamic> json) =>
       _$$PageTemplateImageViewerImplFromJson(json);
@@ -1024,8 +1031,9 @@ class _$PageTemplateImageViewerImpl implements PageTemplateImageViewer {
   }
 }
 
-abstract class PageTemplateImageViewer implements PageTemplate {
+abstract class PageTemplateImageViewer extends PageTemplate {
   const factory PageTemplateImageViewer() = _$PageTemplateImageViewerImpl;
+  const PageTemplateImageViewer._() : super._();
 
   factory PageTemplateImageViewer.fromJson(Map<String, dynamic> json) =
       _$PageTemplateImageViewerImpl.fromJson;

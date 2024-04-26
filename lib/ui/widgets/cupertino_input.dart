@@ -326,6 +326,7 @@ class CupertinoTextInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = TextEditingController(text: value);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
@@ -339,6 +340,7 @@ class CupertinoTextInput extends StatelessWidget {
           ),
           const SizedBox(height: 3),
           CupertinoTextField(
+            controller: controller,
             decoration: BoxDecoration(
               border: const Border(),
               color: CupertinoColors.systemGrey6,
@@ -346,7 +348,9 @@ class CupertinoTextInput extends StatelessWidget {
             ),
             minLines: minLine ?? 1,
             maxLines: minLine,
-            onSubmitted: onSubmitted,
+            onEditingComplete: () {
+              onSubmitted?.call(controller.text);
+            },
             prefix: prefix,
             inputFormatters: inputFormatters,
             keyboardType: keyboardType,

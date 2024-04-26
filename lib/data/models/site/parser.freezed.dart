@@ -691,7 +691,7 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ParserModelImageReaderImpl implements ParserModelImageReader {
+class _$ParserModelImageReaderImpl extends ParserModelImageReader {
   const _$ParserModelImageReaderImpl(
       {this.name = '',
       this.uuid = '',
@@ -714,7 +714,8 @@ class _$ParserModelImageReaderImpl implements ParserModelImageReader {
       this.commentItem = const CommentSelectorModel(),
       final String? $type})
       : _extra = extra,
-        $type = $type ?? 'imageReader';
+        $type = $type ?? 'imageReader',
+        super._();
 
   factory _$ParserModelImageReaderImpl.fromJson(Map<String, dynamic> json) =>
       _$$ParserModelImageReaderImplFromJson(json);
@@ -1241,7 +1242,7 @@ class _$ParserModelImageReaderImpl implements ParserModelImageReader {
   }
 }
 
-abstract class ParserModelImageReader implements ParserModel {
+abstract class ParserModelImageReader extends ParserModel {
   const factory ParserModelImageReader(
       {final String name,
       final String uuid,
@@ -1262,6 +1263,7 @@ abstract class ParserModelImageReader implements ParserModel {
       final TagSelectorModel tagItem,
       final SelectorModel commentSelector,
       final CommentSelectorModel commentItem}) = _$ParserModelImageReaderImpl;
+  const ParserModelImageReader._() : super._();
 
   factory ParserModelImageReader.fromJson(Map<String, dynamic> json) =
       _$ParserModelImageReaderImpl.fromJson;
@@ -1721,7 +1723,7 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ParserModelDetailImpl implements ParserModelDetail {
+class _$ParserModelDetailImpl extends ParserModelDetail {
   const _$ParserModelDetailImpl(
       {this.name = '',
       this.uuid = '',
@@ -1754,7 +1756,8 @@ class _$ParserModelDetailImpl implements ParserModelDetail {
       this.countPrePage = const SelectorModel(),
       final String? $type})
       : _extra = extra,
-        $type = $type ?? 'detail';
+        $type = $type ?? 'detail',
+        super._();
 
   factory _$ParserModelDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$ParserModelDetailImplFromJson(json);
@@ -2373,7 +2376,7 @@ class _$ParserModelDetailImpl implements ParserModelDetail {
   }
 }
 
-abstract class ParserModelDetail implements ParserModel {
+abstract class ParserModelDetail extends ParserModel {
   const factory ParserModelDetail(
       {final String name,
       final String uuid,
@@ -2404,6 +2407,7 @@ abstract class ParserModelDetail implements ParserModel {
       final ImageSelectorModel chapterCover,
       final SelectorModel nextPage,
       final SelectorModel countPrePage}) = _$ParserModelDetailImpl;
+  const ParserModelDetail._() : super._();
 
   factory ParserModelDetail.fromJson(Map<String, dynamic> json) =
       _$ParserModelDetailImpl.fromJson;
@@ -2768,7 +2772,7 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ParserModelListImpl implements ParserModelList {
+class _$ParserModelListImpl extends ParserModelList {
   const _$ParserModelListImpl(
       {this.name = '',
       this.uuid = '',
@@ -2794,7 +2798,8 @@ class _$ParserModelListImpl implements ParserModelList {
       this.nextPage = const SelectorModel(),
       final String? $type})
       : _extra = extra,
-        $type = $type ?? 'list';
+        $type = $type ?? 'list',
+        super._();
 
   factory _$ParserModelListImpl.fromJson(Map<String, dynamic> json) =>
       _$$ParserModelListImplFromJson(json);
@@ -3347,7 +3352,7 @@ class _$ParserModelListImpl implements ParserModelList {
   }
 }
 
-abstract class ParserModelList implements ParserModel {
+abstract class ParserModelList extends ParserModel {
   const factory ParserModelList(
       {final String name,
       final String uuid,
@@ -3371,6 +3376,7 @@ abstract class ParserModelList implements ParserModel {
       final SelectorModel paper,
       final SelectorModel idCode,
       final SelectorModel nextPage}) = _$ParserModelListImpl;
+  const ParserModelList._() : super._();
 
   factory ParserModelList.fromJson(Map<String, dynamic> json) =
       _$ParserModelListImpl.fromJson;
@@ -3505,7 +3511,7 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ParserModelAutoCompleteImpl implements ParserModelAutoComplete {
+class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
   const _$ParserModelAutoCompleteImpl(
       {this.name = '',
       this.uuid = '',
@@ -3516,7 +3522,8 @@ class _$ParserModelAutoCompleteImpl implements ParserModelAutoComplete {
       this.failedSelector = const SelectorModel(),
       final String? $type})
       : _extra = extra,
-        $type = $type ?? 'autoComplete';
+        $type = $type ?? 'autoComplete',
+        super._();
 
   factory _$ParserModelAutoCompleteImpl.fromJson(Map<String, dynamic> json) =>
       _$$ParserModelAutoCompleteImplFromJson(json);
@@ -3922,7 +3929,7 @@ class _$ParserModelAutoCompleteImpl implements ParserModelAutoComplete {
   }
 }
 
-abstract class ParserModelAutoComplete implements ParserModel {
+abstract class ParserModelAutoComplete extends ParserModel {
   const factory ParserModelAutoComplete(
       {final String name,
       final String uuid,
@@ -3931,6 +3938,7 @@ abstract class ParserModelAutoComplete implements ParserModel {
       final SelectorModel itemComplete,
       final SelectorModel successSelector,
       final SelectorModel failedSelector}) = _$ParserModelAutoCompleteImpl;
+  const ParserModelAutoComplete._() : super._();
 
   factory ParserModelAutoComplete.fromJson(Map<String, dynamic> json) =
       _$ParserModelAutoCompleteImpl.fromJson;
