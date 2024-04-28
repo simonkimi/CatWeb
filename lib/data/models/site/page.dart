@@ -6,10 +6,10 @@ part 'page.freezed.dart';
 part 'page.g.dart';
 
 @freezed
-class SitePage with _$SitePage {
-  const SitePage._();
+class SitePageRule with _$SitePageRule {
+  const SitePageRule._();
 
-  const factory SitePage({
+  const factory SitePageRule({
     @Default('') String name,
     required String uuid,
     required PageTemplate template,
@@ -22,8 +22,8 @@ class SitePage with _$SitePage {
     @Default('') String parserId,
   }) = _SitePage;
 
-  factory SitePage.fromJson(Map<String, dynamic> json) =>
-      _$SitePageFromJson(json);
+  factory SitePageRule.fromJson(Map<String, dynamic> json) =>
+      _$SitePageRuleFromJson(json);
 
   List<String> getDependPage() {
     switch (template) {

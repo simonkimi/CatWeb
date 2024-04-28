@@ -30,7 +30,7 @@ _$SiteBlueMapImpl _$$SiteBlueMapImplFromJson(Map<String, dynamic> json) =>
               .toList() ??
           const [],
       pageList: (json['pageList'] as List<dynamic>?)
-              ?.map((e) => SitePage.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => SitePageRule.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );

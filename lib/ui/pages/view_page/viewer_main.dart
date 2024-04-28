@@ -60,7 +60,7 @@ class ViewerMain extends HookWidget {
   }
 
   Widget _buildSitePage(
-      BuildContext context, SiteRenderConfigModel website, SitePage target) {
+      BuildContext context, SiteRenderConfigModel website, SitePageRule target) {
     return ViewerPage(
       target: target,
       model: website.displayPage.length > 1 ? Object() : null,

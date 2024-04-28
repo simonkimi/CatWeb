@@ -25,7 +25,7 @@ class SiteBlueprint with _$SiteBlueprint {
     @Default([]) List<RegField> headers,
     @Default([]) List<RegField> cookies,
     @Default([]) List<ParserModel> parserList,
-    @Default([]) List<SitePage> pageList,
+    @Default([]) List<SitePageRule> pageList,
   }) = _SiteBlueMap;
 
   factory SiteBlueprint.fromJson(Map<String, dynamic> json) =>
@@ -40,7 +40,7 @@ class SiteBlueprint with _$SiteBlueprint {
     throw Exception('Parser not found');
   }
 
-  SitePage? getPageById(String pageId) {
+  SitePageRule? getPageById(String pageId) {
     for (var page in pageList) {
       if (page.uuid == pageId) {
         return page;

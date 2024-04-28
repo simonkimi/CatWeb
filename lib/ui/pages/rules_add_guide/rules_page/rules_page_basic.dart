@@ -13,14 +13,7 @@ import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 
 class RulesPageBasic extends StatelessWidget {
-  const RulesPageBasic({
-    super.key,
-    required this.controller,
-    required this.sitePage,
-  });
-
-  final RulesEditController controller;
-  final SitePage sitePage;
+  const RulesPageBasic({super.key});
 
   @override
   Widget build(BuildContext context) {

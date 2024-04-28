@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-SitePage _$SitePageFromJson(Map<String, dynamic> json) {
+SitePageRule _$SitePageRuleFromJson(Map<String, dynamic> json) {
   return _SitePage.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SitePage {
+mixin _$SitePageRule {
   String get name => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
   PageTemplate get template => throw _privateConstructorUsedError;
@@ -33,14 +33,15 @@ mixin _$SitePage {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SitePageCopyWith<SitePage> get copyWith =>
+  $SitePageRuleCopyWith<SitePageRule> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SitePageCopyWith<$Res> {
-  factory $SitePageCopyWith(SitePage value, $Res Function(SitePage) then) =
-      _$SitePageCopyWithImpl<$Res, SitePage>;
+abstract class $SitePageRuleCopyWith<$Res> {
+  factory $SitePageRuleCopyWith(
+          SitePageRule value, $Res Function(SitePageRule) then) =
+      _$SitePageRuleCopyWithImpl<$Res, SitePageRule>;
   @useResult
   $Res call(
       {String name,
@@ -58,9 +59,9 @@ abstract class $SitePageCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SitePageCopyWithImpl<$Res, $Val extends SitePage>
-    implements $SitePageCopyWith<$Res> {
-  _$SitePageCopyWithImpl(this._value, this._then);
+class _$SitePageRuleCopyWithImpl<$Res, $Val extends SitePageRule>
+    implements $SitePageRuleCopyWith<$Res> {
+  _$SitePageRuleCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -136,7 +137,7 @@ class _$SitePageCopyWithImpl<$Res, $Val extends SitePage>
 
 /// @nodoc
 abstract class _$$SitePageImplCopyWith<$Res>
-    implements $SitePageCopyWith<$Res> {
+    implements $SitePageRuleCopyWith<$Res> {
   factory _$$SitePageImplCopyWith(
           _$SitePageImpl value, $Res Function(_$SitePageImpl) then) =
       __$$SitePageImplCopyWithImpl<$Res>;
@@ -160,7 +161,7 @@ abstract class _$$SitePageImplCopyWith<$Res>
 
 /// @nodoc
 class __$$SitePageImplCopyWithImpl<$Res>
-    extends _$SitePageCopyWithImpl<$Res, _$SitePageImpl>
+    extends _$SitePageRuleCopyWithImpl<$Res, _$SitePageImpl>
     implements _$$SitePageImplCopyWith<$Res> {
   __$$SitePageImplCopyWithImpl(
       _$SitePageImpl _value, $Res Function(_$SitePageImpl) _then)
@@ -275,7 +276,7 @@ class _$SitePageImpl extends _SitePage {
 
   @override
   String toString() {
-    return 'SitePage(name: $name, uuid: $uuid, template: $template, url: $url, action: $action, formData: $formData, icon: $icon, displayType: $displayType, flag: $flag, parserId: $parserId)';
+    return 'SitePageRule(name: $name, uuid: $uuid, template: $template, url: $url, action: $action, formData: $formData, icon: $icon, displayType: $displayType, flag: $flag, parserId: $parserId)';
   }
 
   @override
@@ -318,7 +319,7 @@ class _$SitePageImpl extends _SitePage {
   }
 }
 
-abstract class _SitePage extends SitePage {
+abstract class _SitePage extends SitePageRule {
   const factory _SitePage(
       {final String name,
       required final String uuid,

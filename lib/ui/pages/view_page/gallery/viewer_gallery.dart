@@ -24,7 +24,7 @@ import 'controller/gallery_controller.dart';
 class ViewerGalleryFragment extends StatelessWidget {
   ViewerGalleryFragment({
     super.key,
-    required SitePage target,
+    required SitePageRule target,
     required Object? model,
     required SiteEnvStore env,
   }) {

@@ -21,7 +21,7 @@ abstract class ImageWithPreviewModel {
       ValueNotifier(const AsyncValue.idle());
 
   Future<void> load({
-    required SitePage blueprint,
+    required SitePageRule blueprint,
     required SiteEnvStore localEnv,
   }) async {
     imageModel.value = const AsyncValue.loading();

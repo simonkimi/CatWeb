@@ -84,7 +84,7 @@ class RulesEditorNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removePage(SitePage model) {
+  void removePage(SitePageRule model) {
     blueprint = blueprint.copyWith(
       pageList: List.from(blueprint.pageList)..remove(model),
     );

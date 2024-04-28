@@ -32,7 +32,7 @@ mixin _$SiteBlueprint {
   List<RegField> get headers => throw _privateConstructorUsedError;
   List<RegField> get cookies => throw _privateConstructorUsedError;
   List<ParserModel> get parserList => throw _privateConstructorUsedError;
-  List<SitePage> get pageList => throw _privateConstructorUsedError;
+  List<SitePageRule> get pageList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,7 +59,7 @@ abstract class $SiteBlueprintCopyWith<$Res> {
       List<RegField> headers,
       List<RegField> cookies,
       List<ParserModel> parserList,
-      List<SitePage> pageList});
+      List<SitePageRule> pageList});
 }
 
 /// @nodoc
@@ -141,7 +141,7 @@ class _$SiteBlueprintCopyWithImpl<$Res, $Val extends SiteBlueprint>
       pageList: null == pageList
           ? _value.pageList
           : pageList // ignore: cast_nullable_to_non_nullable
-              as List<SitePage>,
+              as List<SitePageRule>,
     ) as $Val);
   }
 }
@@ -167,7 +167,7 @@ abstract class _$$SiteBlueMapImplCopyWith<$Res>
       List<RegField> headers,
       List<RegField> cookies,
       List<ParserModel> parserList,
-      List<SitePage> pageList});
+      List<SitePageRule> pageList});
 }
 
 /// @nodoc
@@ -247,7 +247,7 @@ class __$$SiteBlueMapImplCopyWithImpl<$Res>
       pageList: null == pageList
           ? _value._pageList
           : pageList // ignore: cast_nullable_to_non_nullable
-              as List<SitePage>,
+              as List<SitePageRule>,
     ));
   }
 }
@@ -268,7 +268,7 @@ class _$SiteBlueMapImpl extends _SiteBlueMap {
       final List<RegField> headers = const [],
       final List<RegField> cookies = const [],
       final List<ParserModel> parserList = const [],
-      final List<SitePage> pageList = const []})
+      final List<SitePageRule> pageList = const []})
       : _headers = headers,
         _cookies = cookies,
         _parserList = parserList,
@@ -332,10 +332,10 @@ class _$SiteBlueMapImpl extends _SiteBlueMap {
     return EqualUnmodifiableListView(_parserList);
   }
 
-  final List<SitePage> _pageList;
+  final List<SitePageRule> _pageList;
   @override
   @JsonKey()
-  List<SitePage> get pageList {
+  List<SitePageRule> get pageList {
     if (_pageList is EqualUnmodifiableListView) return _pageList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_pageList);
@@ -417,7 +417,7 @@ abstract class _SiteBlueMap extends SiteBlueprint {
       final List<RegField> headers,
       final List<RegField> cookies,
       final List<ParserModel> parserList,
-      final List<SitePage> pageList}) = _$SiteBlueMapImpl;
+      final List<SitePageRule> pageList}) = _$SiteBlueMapImpl;
   const _SiteBlueMap._() : super._();
 
   factory _SiteBlueMap.fromJson(Map<String, dynamic> json) =
@@ -448,7 +448,7 @@ abstract class _SiteBlueMap extends SiteBlueprint {
   @override
   List<ParserModel> get parserList;
   @override
-  List<SitePage> get pageList;
+  List<SitePageRule> get pageList;
   @override
   @JsonKey(ignore: true)
   _$$SiteBlueMapImplCopyWith<_$SiteBlueMapImpl> get copyWith =>

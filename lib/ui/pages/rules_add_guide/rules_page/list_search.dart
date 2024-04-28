@@ -1,5 +1,3 @@
-import 'package:catweb/data/models/site_model/pages/subpage.dart';
-import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
@@ -8,18 +6,12 @@ import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/utils/context_helper.dart';
 import 'package:catweb/utils/obs_helper.dart';
-import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 
 class ListFilterEditor extends HookWidget {
-  const ListFilterEditor({
-    super.key,
-    required this.templateBase,
-  });
-
-  final TemplateList templateBase;
+  const ListFilterEditor({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:catweb/data/loaders/async_progress_value.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/network/client/image_loader.dart';
@@ -6,29 +7,18 @@ import 'package:catweb/ui/widgets/dark_image.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:dio/dio.dart';
 import 'package:extended_image/extended_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 typedef ImageWidgetBuilder = Widget Function(
-  BuildContext context,
-  Uint8List imgData,
-);
+    BuildContext context, Uint8List imgData);
 
 typedef LoadingWidgetBuilder = Widget Function(
-  BuildContext context,
-  double progress,
-);
+    BuildContext context, double progress);
 
 typedef ErrorBuilder = Widget Function(
-  BuildContext context,
-  Object? err,
-  VoidCallback reload,
-);
+    BuildContext context, Object? err, VoidCallback reload);
 
-typedef WidgetBuilder = Widget Function(
-  BuildContext context,
-  Widget child,
-);
+typedef WidgetBuilder = Widget Function(BuildContext context, Widget child);
 
 class ImageLoader extends StatefulWidget {
   const ImageLoader({
@@ -44,7 +34,7 @@ class ImageLoader extends StatefulWidget {
     this.enableHero = true,
   });
 
-  final ImageListConcurrency concurrency;
+  final ImageLoaderQueue concurrency;
   final ImageResult model;
   final ImageWidgetBuilder? imageBuilder;
   final ErrorBuilder? errorBuilder;
@@ -60,7 +50,7 @@ class ImageLoader extends StatefulWidget {
 }
 
 class _ImageLoaderState extends State<ImageLoader> {
-  late final ImageLoadModel _imageLoadModel;
+  late final ImageLoadNotifier _imageLoadNotifier;
   late final ErrorBuilder errorBuilder;
   late final LoadingWidgetBuilder loadingBuilder;
   late final ImageWidgetBuilder imageBuilder;
@@ -72,7 +62,7 @@ class _ImageLoaderState extends State<ImageLoader> {
   void initState() {
     imageBuilder = widget.imageBuilder ?? _defaultImageBuilder;
     errorBuilder = widget.errorBuilder ?? _defaultErrorBuilder;
-    _imageLoadModel = widget.concurrency.create(widget.model);
+    _imageLoadNotifier = widget.concurrency.create(widget.model);
     loadingWidgetBuilder = widget.loadingWidgetBuilder ?? _defaultWidgetBuilder;
     imageWidgetBuilder = widget.imageWidgetBuilder ?? _defaultWidgetBuilder;
     innerImageBuilder = widget.innerImageBuilder ?? _defaultWidgetBuilder;
@@ -81,35 +71,27 @@ class _ImageLoaderState extends State<ImageLoader> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final state = _imageLoadModel.state;
-
-      if (state.isWaiting || state.isCached) {
+    switch (_imageLoadNotifier.value) {
+      case AsyncProgressValue.idle:
         return loadingWidgetBuilder(context, loadingBuilder(context, 0));
-      } else if (state.isError) {
-        return errorBuilder(context, state.error, _onReload);
-      } else if (state.isLoading) {
-        return loadingWidgetBuilder(
-          context,
-          loadingBuilder(context, _imageLoadModel.progress),
-        );
-      } else if (state.isFinish) {
-        return imageWidgetBuilder(
-          context,
-          imageBuilder(context, _imageLoadModel.data!),
-        );
-      }
-      throw Exception('Unknown state');
-    });
+      case AsyncProgressLoading(:final progress):
+        return loadingWidgetBuilder(context, loadingBuilder(context, progress));
+      case AsyncProgressError(:final error):
+        return errorBuilder(context, error, _onReload);
+      case AsyncProgressData(:final value):
+        return imageWidgetBuilder(context, imageBuilder(context, value));
+    }
+    throw UnimplementedError();
   }
 
   void _onReload() {
-    widget.concurrency.reload(_imageLoadModel);
+    _imageLoadNotifier.free();
+    widget.concurrency.trigger();
   }
 
   @override
   void dispose() {
-    _imageLoadModel.dispose();
+    _imageLoadNotifier.handleUnMounted();
     super.dispose();
   }
 
@@ -169,16 +151,6 @@ class _ImageLoaderState extends State<ImageLoader> {
         : DarkWidget(
             child: child,
           );
-  }
-
-  Widget _defaultLoadingBuilder(BuildContext context, double progress) {
-    return const Center(
-      child: SizedBox(
-        width: 24,
-        height: 24,
-        child: CupertinoActivityIndicator(),
-      ),
-    );
   }
 
   Widget _defaultErrorBuilder(

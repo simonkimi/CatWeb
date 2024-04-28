@@ -107,7 +107,9 @@ class CupertinoVnTextInput extends StatelessWidget {
           Text(
             labelText,
             style: TextStyle(
-                color: FixColor.title.resolveFrom(context), fontSize: 13),
+              color: FixColor.title.resolveFrom(context),
+              fontSize: 13,
+            ),
           ),
           const SizedBox(height: 3),
           CupertinoTextField(
@@ -232,68 +234,32 @@ class CupertinoNumberInput extends StatelessWidget {
     super.key,
     required this.labelText,
     required this.value,
-    this.minLine = 1,
     this.hintText,
     this.padding = true,
     this.description,
     this.prefix,
+    this.onSubmitted,
   });
 
   final String labelText;
-  final ValueNotifier<int> value;
+  final int value;
 
-  final int minLine;
   final String? hintText;
   final bool padding;
   final String? description;
   final Widget? prefix;
+  final ValueChanged<int>? onSubmitted;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            labelText,
-            style: TextStyle(
-                color: FixColor.title.resolveFrom(context), fontSize: 13),
-          ),
-          const SizedBox(height: 3),
-          CupertinoTextField(
-            controller: TextEditingController(text: value.value.toString())
-              ..selection = TextSelection.collapsed(
-                offset: value.value.toString().length,
-              ),
-            decoration: BoxDecoration(
-              border: const Border(),
-              color: CupertinoColors.systemGrey6,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            minLines: minLine,
-            maxLines: minLine,
-            onChanged: (v) => value.value = int.tryParse(v) ?? 0,
-            prefix: prefix,
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-            keyboardType: TextInputType.number,
-          ),
-          if (description != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: Text(
-                description!,
-                style: TextStyle(
-                  color: CupertinoColors.secondaryLabel.resolveFrom(context),
-                  fontSize: 13,
-                ),
-              ),
-            ),
-        ],
-      ),
+    return CupertinoTextInput(
+      labelText: labelText,
+      value: value.toString(),
+      prefix: prefix,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      keyboardType: TextInputType.number,
+      description: description,
+      onSubmitted: (v) => onSubmitted?.call(int.parse(v)),
     );
   }
 }

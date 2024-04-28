@@ -10,14 +10,18 @@ class ImageLoaderQueue {
   ImageLoaderQueue({
     Dio? dio,
     int? concurrency,
-  })  : concurrency = concurrency ?? inject(settingsProvider).concurrencyCount,
-        dio = dio ?? inject(siteProvider)!.client.imageDio;
+  })  : concurrency = concurrency ?? settingsService.concurrencyCount,
+        dio = dio ?? siteService.currentSite!.client.imageDio;
 
   final Dio dio;
   final int concurrency;
   final _container = <String, ImageLoadNotifier>{};
+  final CancelToken cancelToken = CancelToken();
 
-  ImageLoadNotifier insert(ImageResult model) {
+  List<ImageLoadNotifier> get activeImage =>
+      _container.values.where((e) => e.needLoad).toList();
+
+  ImageLoadNotifier create(ImageResult model) {
     final key = model.cacheKey ?? model.url!;
 
     late ImageLoadNotifier exist;
@@ -27,6 +31,27 @@ class ImageLoaderQueue {
       exist = ImageLoadNotifier(model: model, dio: dio);
       _container[key] = exist;
     }
+    exist.handleMounted();
+    trigger();
     return exist;
   }
+
+  void dispose() {
+    cancelToken.cancel();
+    for (final notifier in _container.values) {
+      notifier.dispose();
+    }
+    _container.clear();
+  }
+
+  void trigger() {
+    while ((activeImage.length < concurrency || concurrency == 0) &&
+        activeImage.isNotEmpty) {
+      activeImage.first.load(cancelToken).whenComplete(trigger);
+    }
+  }
+
+  static SettingService get settingsService => inject();
+
+  static SiteService get siteService => inject();
 }

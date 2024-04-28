@@ -1,5 +1,3 @@
-import 'package:catweb/data/models/site_model/pages/subpage.dart';
-import 'package:catweb/data/models/site_model/pages/template_list.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
@@ -10,10 +8,7 @@ import 'package:flutter_swipe_action_cell/core/controller.dart';
 class ListNormalSubPage extends StatelessWidget {
   const ListNormalSubPage({
     super.key,
-    required this.templateBase,
   });
-
-  final TemplateList templateBase;
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +20,42 @@ class ListNormalSubPage extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               color: CupertinoColors.systemBackground.resolveFrom(context),
               border: Border.symmetric(
-                  horizontal: BorderSide(
-                width: 0.4,
-                color: CupertinoColors.separator.resolveFrom(context),
-              )),
+                horizontal: BorderSide(
+                  width: 0.4,
+                  color: CupertinoColors.separator.resolveFrom(context),
+                ),
+              ),
             ),
             child: ListenableBuilder(
               listenable: templateBase.subPages,

@@ -55,7 +55,7 @@ class SiteRenderConfigModel {
 
   Future<void> updateCookies() async {}
 
-  List<SitePage> get displayPage => blueMap.pageList
+  List<SitePageRule> get displayPage => blueMap.pageList
       .where((p0) {
         return p0.displayType == SiteDisplayType.show ||
             (p0.displayType == SiteDisplayType.login &&

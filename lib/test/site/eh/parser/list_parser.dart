@@ -120,7 +120,7 @@ final ehListParser = ListViewParser(
   ),
   extra: [
     ExtraSelector(
-      global: true,
+      globalService: true,
       id: 'fav0Tag',
       selector: Selector(
         selector: '.fp:nth-child(1) div:nth-child(3)',
@@ -128,7 +128,7 @@ final ehListParser = ListViewParser(
       ),
     ),
     ExtraSelector(
-      global: true,
+      globalService: true,
       id: 'fav1Tag',
       selector: Selector(
         selector: '.fp:nth-child(2) div:nth-child(3)',
@@ -136,7 +136,7 @@ final ehListParser = ListViewParser(
       ),
     ),
     ExtraSelector(
-      global: true,
+      globalService: true,
       id: 'fav2Tag',
       selector: Selector(
         selector: '.fp:nth-child(3) div:nth-child(3)',
@@ -144,7 +144,7 @@ final ehListParser = ListViewParser(
       ),
     ),
     ExtraSelector(
-      global: true,
+      globalService: true,
       id: 'fav3Tag',
       selector: Selector(
         selector: '.fp:nth-child(4) div:nth-child(3)',
@@ -152,7 +152,7 @@ final ehListParser = ListViewParser(
       ),
     ),
     ExtraSelector(
-      global: true,
+      globalService: true,
       id: 'fav4Tag',
       selector: Selector(
         selector: '.fp:nth-child(5) div:nth-child(3)',
@@ -160,7 +160,7 @@ final ehListParser = ListViewParser(
       ),
     ),
     ExtraSelector(
-      global: true,
+      globalService: true,
       id: 'fav5Tag',
       selector: Selector(
         selector: '.fp:nth-child(6) div:nth-child(3)',
@@ -168,7 +168,7 @@ final ehListParser = ListViewParser(
       ),
     ),
     ExtraSelector(
-      global: true,
+      globalService: true,
       id: 'fav6Tag',
       selector: Selector(
         selector: '.fp:nth-child(7) div:nth-child(3)',
@@ -176,7 +176,7 @@ final ehListParser = ListViewParser(
       ),
     ),
     ExtraSelector(
-      global: true,
+      globalService: true,
       id: 'fav7Tag',
       selector: Selector(
         selector: '.fp:nth-child(8) div:nth-child(3)',
@@ -184,7 +184,7 @@ final ehListParser = ListViewParser(
       ),
     ),
     ExtraSelector(
-      global: true,
+      globalService: true,
       id: 'fav8Tag',
       selector: Selector(
         selector: '.fp:nth-child(9) div:nth-child(3)',
@@ -192,7 +192,7 @@ final ehListParser = ListViewParser(
       ),
     ),
     ExtraSelector(
-      global: true,
+      globalService: true,
       id: 'fav9Tag',
       selector: Selector(
         selector: '.fp:nth-child(10) div:nth-child(3)',

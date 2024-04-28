@@ -3,7 +3,7 @@ import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_editor_notifier.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page_editor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +22,7 @@ class RulesPageManager extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       children: [
-        Selector<RulesEditorNotifier, List<SitePage>>(
+        Selector<RulesEditorNotifier, List<SitePageRule>>(
           selector: (_, n) => n.blueprint.pageList,
           builder: (_, pageList, __) {
             return Column(
@@ -56,7 +56,7 @@ class RulesPageManager extends StatelessWidget {
 
   Future<void> _onTrailingTap(
     BuildContext context,
-    SitePage model,
+    SitePageRule model,
   ) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: I.of(context).cancel,
@@ -82,7 +82,7 @@ class RulesPageManager extends StatelessWidget {
     }
   }
 
-  void _onPageDelete(BuildContext context, SitePage model) {
+  void _onPageDelete(BuildContext context, SitePageRule model) {
     final notifier = context.read<RulesEditorNotifier>();
     final pageList = notifier.blueprint.pageList;
     final using = pageList
@@ -110,15 +110,15 @@ class RulesPageManager extends StatelessWidget {
     }
   }
 
-  Future<void> _toRulesPageEdit(BuildContext context, [SitePage? model]) async {
+  Future<void> _toRulesPageEdit(BuildContext context, [SitePageRule? model]) async {
     final input = model ?? await _genRules(context);
     if (input == null) return;
     await Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
-      return RulesPageEdit(baseModel: input);
+      return RulesPageEdit(pageRule: input);
     }));
   }
 
-  Future<SitePage?> _genRules(BuildContext context) async {
+  Future<SitePageRule?> _genRules(BuildContext context) async {
     final name = await showCupertinoInputDialog(
       context,
       title: I.of(context).name,
@@ -136,7 +136,7 @@ class RulesPageManager extends StatelessWidget {
     if (select == null) {
       return null;
     }
-    return SitePage(
+    return SitePageRule(
       name: name,
       uuid: const Uuid().v4().toString(),
       template: ITemplate.create(select),

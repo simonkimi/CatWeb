@@ -52,7 +52,7 @@ class NetClient {
 
   Future<Response<String>> _buildRequest({
     required String url,
-    required SitePage model,
+    required SitePageRule model,
     required SiteEnvStore localEnv,
     Options? options,
   }) async {
@@ -85,7 +85,7 @@ class NetClient {
 
   Future<ListParserResult> getList({
     required String url,
-    required SitePage model,
+    required SitePageRule model,
     required SiteEnvStore localEnv,
   }) async {
     final parser = blueMap.getParserById<ParserModelList>(model.parserId);
@@ -98,24 +98,24 @@ class NetClient {
 
     final rsp = await callFFiParser(
       req.data!,
-      ParserType.list.value,
+      'ParserType.list.value',
       jsonEncode(parser.toJson()),
     );
 
     final result = ListParserResult.fromJson(jsonDecode(rsp));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    inject(siteProvider)?.updateGlobalEnv(result.envs);
+    siteService.currentSite?.updateGlobalEnv(result.envs);
     return result;
   }
 
   Future<DetailParserResult> getDetail({
     required String url,
-    required SitePage model,
+    required SitePageRule model,
     required SiteEnvStore localEnv,
   }) async {
     final parser = blueMap.getParserById<ParserModelDetail>(model.parserId);
 
-    final options = inject(globalProvider)
+    final options = globalService
         .cacheOptions
         .copyWith(policy: CachePolicy.forceCache)
         .toOptions();
@@ -129,19 +129,19 @@ class NetClient {
 
     final parseRsp = await callFFiParser(
       rsp.data!,
-      ParserType.detail.value,
+      '',
       jsonEncode(parser.toJson()),
     );
 
     final result = DetailParserResult.fromJson(jsonDecode(parseRsp));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    inject<SiteService>().updateGlobalEnv(result.envs);
+    siteService.currentSite?.updateGlobalEnv(result.envs);
     return result;
   }
 
   Future<ImageReaderResult> getReadImage({
     required String url,
-    required SitePage model,
+    required SitePageRule model,
     required SiteEnvStore localEnv,
   }) async {
     final parser =
@@ -161,19 +161,19 @@ class NetClient {
 
     final parserRsq = await callFFiParser(
       rsp.data!,
-      ParserType.image.value,
+      'ParserType.image.value',
       jsonEncode(parser.toJson()),
     );
 
     final result = ImageReaderResult.fromJson(jsonDecode(parserRsq));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    inject<SiteService>()!.updateGlobalEnv(result.envs);
+    siteService.currentSite?.updateGlobalEnv(result.envs);
     return result;
   }
 
   Future<AutoCompleteResult> getAutoComplete({
     required String url,
-    required SitePage model,
+    required SitePageRule model,
     required SiteEnvStore localEnv,
   }) async {
     final parser =
@@ -183,71 +183,77 @@ class NetClient {
 
     final parseRsp = await callFFiParser(
       rsp.data!,
-      ParserType.autoComplete.value,
+      'ParserType.autoComplete.value',
       jsonEncode(parser.toJson()),
     );
 
     final result = AutoCompleteResult.fromJson(jsonDecode(parseRsp));
     _checkSuccessFlag(result.isSuccess, result.failMessage);
-    inject(siteProvider)!.updateGlobalEnv(result.envs);
+    siteService.currentSite?.updateGlobalEnv(result.envs);
     return result;
   }
-}
 
-Dio _buildDio({
-  required SiteBlueprint model,
-  required CookieJar cookieJar,
-  required WebTableData db,
-  bool isImage = false,
-}) {
-  final dio = Dio();
+  static Dio _buildDio({
+    required SiteBlueprint model,
+    required CookieJar cookieJar,
+    required WebTableData db,
+    bool isImage = false,
+  }) {
+    final dio = Dio();
 
-  dio.options
-    ..connectTimeout = 60.seconds
-    ..receiveTimeout = (5 * 60).seconds
-    ..sendTimeout = 60.seconds;
+    dio.options
+      ..connectTimeout = 60.seconds
+      ..receiveTimeout = (5 * 60).seconds
+      ..sendTimeout = 60.seconds;
 
-  if (model.baseUrl.isNotEmpty) {
-    dio.options.baseUrl = model.baseUrl;
+    if (model.baseUrl.isNotEmpty) {
+      dio.options.baseUrl = model.baseUrl;
+    }
+
+    dio.transformer = EncodeTransformer();
+
+    dio.interceptors.add(CookieManager(cookieJar));
+    dio.interceptors.add(HeaderCookieInterceptor(model: model, db: db));
+    dio.interceptors.add(RetryInterceptor(
+      dio: dio,
+      logPrint: print,
+      retries: 3,
+      retryDelays: const [
+        Duration(seconds: 1),
+        Duration(seconds: 2),
+        Duration(seconds: 3),
+      ],
+    ));
+
+    if (!isImage) {
+      dio.interceptors.add(DioCacheInterceptor(options: globalService.cacheOptions));
+      dio.interceptors.add(HttpFormatter(includeResponseBody: false));
+    } else {
+      dio.interceptors.add(
+        DioCacheInterceptor(options: globalService.imageCacheOption),
+      );
+    }
+
+    if (model.containsFlag(Flag.ignoreCertificate)) {
+      (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () =>
+          HttpClient()
+            ..badCertificateCallback =
+                (X509Certificate cert, String host, int port) => true;
+    }
+
+    return dio;
   }
 
-  dio.transformer = EncodeTransformer();
-  final global = inject(globalProvider);
+  static GlobalService get globalService => inject();
 
-  dio.interceptors.add(CookieManager(cookieJar));
-  dio.interceptors.add(HeaderCookieInterceptor(model: model, db: db));
-  dio.interceptors.add(RetryInterceptor(
-    dio: dio,
-    logPrint: print,
-    retries: 3,
-    retryDelays: const [
-      Duration(seconds: 1),
-      Duration(seconds: 2),
-      Duration(seconds: 3),
-    ],
-  ));
-
-  if (!isImage) {
-    dio.interceptors.add(DioCacheInterceptor(options: global.cacheOptions));
-    dio.interceptors.add(HttpFormatter(includeResponseBody: false));
-  } else {
-    dio.interceptors.add(
-      DioCacheInterceptor(options: global.imageCacheOption),
-    );
-  }
-
-  if (model.containsFlag(Flag.ignoreCertificate)) {
-    (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () =>
-        HttpClient()
-          ..badCertificateCallback =
-              (X509Certificate cert, String host, int port) => true;
-  }
-
-  return dio;
+  static SiteService get siteService => inject();
 }
 
 Future<String> callFFiParser(
-    String content, String parserType, String parser) async {
+  String content,
+  String parserType,
+  String parser,
+) async {
   logger.d(
       'Call FFI Parser $parserType len:${content.length} parser:${parser.length}');
   // final rsp = await parseHtmlAsync(content, parserType, parser);

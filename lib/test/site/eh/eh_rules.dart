@@ -37,7 +37,7 @@ final ehTestSite = SiteBlueprint(
     RegField(reg: '104.20.134.21', value: 'nw=1'),
   ],
   pageList: [
-    SitePage(
+    SitePageRule(
         name: '搜索补全',
         uuid: _autoCompleteUuid,
         url: 'https://api.e-hentai.org/api.php',
@@ -48,14 +48,14 @@ final ehTestSite = SiteBlueprint(
           splitChar: ' ',
           timeout: 2000,
         )),
-    SitePage(
+    SitePageRule(
       name: '图片显示器',
       url: 's/{idCode}',
       uuid: _readerUuid,
       parserId: ehImageParser.uuid,
       template: const PageTemplate.imageViewer(),
     ),
-    SitePage(
+    SitePageRule(
       name: '画廊',
       uuid: _detailUuid,
       template: PageTemplate.gallery(
@@ -64,7 +64,7 @@ final ehTestSite = SiteBlueprint(
       parserId: ehGalleryParser.uuid,
       url: 'g/{idCode}/?p={page:0}',
     ),
-    SitePage(
+    SitePageRule(
       name: '主页',
       uuid: const Uuid().v4().toString(),
       url: r'?page={page:0}${search:&f_search={search}}${filter:&{filter}}',
@@ -188,7 +188,7 @@ final ehTestSite = SiteBlueprint(
                   'function hook(n){var a=JSON.parse(n),r=0,i=0,o=["misc","doujinshi","manga","artistcg","gamecg","imageset","cosplay","asianporn","nonh","western"];for(var s in o)r+=a["b_"+o[s]]?0:1<<i,i+=1;var e=["advsearch=1"];for(var s in 0!=r&&e.push("f_cats="+r),a)-1!=s.indexOf("f")&&a[s]&&e.push(s+"=on");return e.join("&")}',
               type: ScriptFieldType.js)),
     ),
-    SitePage(
+    SitePageRule(
       name: '热门',
       uuid: const Uuid().v4().toString(),
       url: 'popular?page={page:0}',
@@ -197,7 +197,7 @@ final ehTestSite = SiteBlueprint(
       template: PageTemplate.list(targetItem: _detailUuid),
       icon: 'whatshot',
     ),
-    SitePage(
+    SitePageRule(
       name: '关注',
       url: 'watched?page={page:0}',
       uuid: const Uuid().v4().toString(),
@@ -206,7 +206,7 @@ final ehTestSite = SiteBlueprint(
       template: PageTemplate.list(targetItem: _detailUuid),
       icon: 'eye',
     ),
-    SitePage(
+    SitePageRule(
       name: '收藏',
       url: r'favorites.php?page={page:0}${favcat:&favcat={favcat}}',
       uuid: const Uuid().v4().toString(),

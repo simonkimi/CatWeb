@@ -1,15 +1,9 @@
-import 'package:catweb/data/models/site_model/pages/template_auto_complete.dart';
-import 'package:catweb/ui/widgets/cupertino_input.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_page/site_page_notifier.dart';
+import 'package:catweb/ui/widgets/notifier_selector.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
-class TemplateAutoCompleteEditor extends HookWidget {
-  const TemplateAutoCompleteEditor({
-    super.key,
-    required this.templateBase,
-  });
-
-  final TemplateAutoComplete templateBase;
+class TemplateAutoCompleteEditor extends StatelessWidget {
+  const TemplateAutoCompleteEditor({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +11,24 @@ class TemplateAutoCompleteEditor extends HookWidget {
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         children: [
-          CupertinoVnTextInput(
+          SelectorTextField<SitePageNotifier>(
             labelText: '分隔符',
-            value: templateBase.splitChar,
-            description: '默认为空格',
+            selector: (n) => n.templateAutoComplete.splitChar,
+            onChanged: (n, value) {
+              n.updateTemplate(
+                n.templateAutoComplete.copyWith(splitChar: value),
+              );
+            },
           ),
-          CupertinoNumberInput(
+          SelectorNumberField<SitePageNotifier>(
             labelText: '开始搜索时间',
-            value: templateBase.timeout,
-            description: '当输入等待多久后, 开始搜索 (默认1000毫秒)',
-          ),
+            selector: (n) => n.templateAutoComplete.timeout,
+            onChanged: (n, value) {
+              n.updateTemplate(
+                n.templateAutoComplete.copyWith(timeout: value),
+              );
+            },
+          )
         ],
       ),
     );

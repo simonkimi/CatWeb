@@ -16,7 +16,7 @@ class ViewerPage extends StatelessWidget {
     this.env,
   });
 
-  final SitePage target;
+  final SitePageRule target;
   final SiteEnvStore? env;
   final Object? model;
 
