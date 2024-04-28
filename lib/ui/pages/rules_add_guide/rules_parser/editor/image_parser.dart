@@ -21,25 +21,40 @@ class NewImageParserEditor extends StatelessWidget {
       header: const SettingGroupTitle('图片'),
       hasLeading: false,
       children: [
-        ParserTile(
+        ParserTileConsumer(
           title: '图片地址',
-          selector: parser.image.url,
+          selector: (n) => n.image.image.url,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(
+            image: n.image.image.copyWith(url: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '图片宽度',
-          selector: parser.image.width,
+          selector: (n) => n.image.image.width,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(
+            image: n.image.image.copyWith(width: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '图片高度',
-          selector: parser.image.height,
+          selector: (n) => n.image.image.height,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(
+            image: n.image.image.copyWith(height: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '图片X偏移',
-          selector: parser.image.x,
+          selector: (n) => n.image.image.x,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(
+            image: n.image.image.copyWith(x: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '图片Y偏移',
-          selector: parser.image.y,
+          selector: (n) => n.image.image.y,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(
+            image: n.image.image.copyWith(y: v),
+          )),
         ),
       ],
     );
@@ -50,29 +65,59 @@ class NewImageParserEditor extends StatelessWidget {
       header: const SettingGroupTitle('图片信息'),
       hasLeading: false,
       children: [
-        ParserTile(
+        // ParserTile(
+        //   title: '大图地址',
+        //   selector: parser.largerImage,
+        // ),
+        // ParserTile(
+        //   title: '原图地址',
+        //   selector: parser.rawImage,
+        // ),
+        // ParserTile(
+        //   title: '级别',
+        //   selector: parser.rating,
+        // ),
+        // ParserTile(
+        //   title: '评分',
+        //   selector: parser.score,
+        // ),
+        // ParserTile(
+        //   title: '来源',
+        //   selector: parser.source,
+        // ),
+        // ParserTile(
+        //   title: '上传时间',
+        //   selector: parser.uploadTime,
+        // ),
+        ParserTileConsumer(
           title: '大图地址',
-          selector: parser.largerImage,
+          selector: (n) => n.image.largerImage,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(largerImage: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '原图地址',
-          selector: parser.rawImage,
+          selector: (n) => n.image.rawImage,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(rawImage: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '级别',
-          selector: parser.rating,
+          selector: (n) => n.image.rating,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(rating: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '评分',
-          selector: parser.score,
+          selector: (n) => n.image.score,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(score: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '来源',
-          selector: parser.source,
+          selector: (n) => n.image.source,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(source: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '上传时间',
-          selector: parser.uploadTime,
+          selector: (n) => n.image.uploadTime,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(uploadTime: v)),
         ),
       ],
     );
@@ -83,21 +128,31 @@ class NewImageParserEditor extends StatelessWidget {
       header: const SettingGroupTitle('标签'),
       hasLeading: false,
       children: [
-        ParserTile(
+        ParserTileConsumer(
           title: '标签项目',
-          selector: parser.tagSelector,
+          selector: (n) => n.image.tagSelector,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(tagSelector: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '标签内容',
-          selector: parser.tagItem.text,
+          selector: (n) => n.image.tagItem.text,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(
+            tagItem: n.image.tagItem.copyWith(text: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '标签类型',
-          selector: parser.tagItem.category,
+          selector: (n) => n.image.tagItem.category,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(
+            tagItem: n.image.tagItem.copyWith(category: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '标签颜色',
-          selector: parser.tagItem.color,
+          selector: (n) => n.image.tagItem.color,
+          onChanged: (n, v) => n.updateParser(n.image.copyWith(
+            tagItem: n.image.tagItem.copyWith(color: v),
+          )),
         ),
       ],
     );

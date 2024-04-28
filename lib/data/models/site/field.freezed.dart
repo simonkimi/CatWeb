@@ -268,9 +268,10 @@ class __$$ScriptFieldOutputImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ScriptFieldOutputImpl implements ScriptFieldOutput {
+class _$ScriptFieldOutputImpl extends ScriptFieldOutput {
   const _$ScriptFieldOutputImpl({final String? $type})
-      : $type = $type ?? 'output';
+      : $type = $type ?? 'output',
+        super._();
 
   factory _$ScriptFieldOutputImpl.fromJson(Map<String, dynamic> json) =>
       _$$ScriptFieldOutputImplFromJson(json);
@@ -369,8 +370,9 @@ class _$ScriptFieldOutputImpl implements ScriptFieldOutput {
   }
 }
 
-abstract class ScriptFieldOutput implements ScriptField {
+abstract class ScriptFieldOutput extends ScriptField {
   const factory ScriptFieldOutput() = _$ScriptFieldOutputImpl;
+  const ScriptFieldOutput._() : super._();
 
   factory ScriptFieldOutput.fromJson(Map<String, dynamic> json) =
       _$ScriptFieldOutputImpl.fromJson;
@@ -409,11 +411,12 @@ class __$$ScriptFieldReplaceImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ScriptFieldReplaceImpl implements ScriptFieldReplace {
+class _$ScriptFieldReplaceImpl extends ScriptFieldReplace {
   const _$ScriptFieldReplaceImpl(
       {final Map<String, String> replace = const {}, final String? $type})
       : _replace = replace,
-        $type = $type ?? 'replace';
+        $type = $type ?? 'replace',
+        super._();
 
   factory _$ScriptFieldReplaceImpl.fromJson(Map<String, dynamic> json) =>
       _$$ScriptFieldReplaceImplFromJson(json);
@@ -531,9 +534,10 @@ class _$ScriptFieldReplaceImpl implements ScriptFieldReplace {
   }
 }
 
-abstract class ScriptFieldReplace implements ScriptField {
+abstract class ScriptFieldReplace extends ScriptField {
   const factory ScriptFieldReplace({final Map<String, String> replace}) =
       _$ScriptFieldReplaceImpl;
+  const ScriptFieldReplace._() : super._();
 
   factory ScriptFieldReplace.fromJson(Map<String, dynamic> json) =
       _$ScriptFieldReplaceImpl.fromJson;
@@ -577,9 +581,10 @@ class __$$ScriptFieldJsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ScriptFieldJsImpl implements ScriptFieldJs {
+class _$ScriptFieldJsImpl extends ScriptFieldJs {
   const _$ScriptFieldJsImpl({this.script = '', final String? $type})
-      : $type = $type ?? 'js';
+      : $type = $type ?? 'js',
+        super._();
 
   factory _$ScriptFieldJsImpl.fromJson(Map<String, dynamic> json) =>
       _$$ScriptFieldJsImplFromJson(json);
@@ -690,8 +695,9 @@ class _$ScriptFieldJsImpl implements ScriptFieldJs {
   }
 }
 
-abstract class ScriptFieldJs implements ScriptField {
+abstract class ScriptFieldJs extends ScriptField {
   const factory ScriptFieldJs({final String script}) = _$ScriptFieldJsImpl;
+  const ScriptFieldJs._() : super._();
 
   factory ScriptFieldJs.fromJson(Map<String, dynamic> json) =
       _$ScriptFieldJsImpl.fromJson;

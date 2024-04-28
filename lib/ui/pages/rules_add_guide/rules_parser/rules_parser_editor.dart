@@ -43,12 +43,7 @@ class RulesParserEditor extends StatelessWidget {
       ],
       children: [
         _buildEditor(context),
-        ExtraParserEditor(
-          parser: DetailParser(
-            name: '123123',
-            uuid: '12132',
-          ),
-        ),
+        const ExtraParserEditor(),
       ],
     );
   }

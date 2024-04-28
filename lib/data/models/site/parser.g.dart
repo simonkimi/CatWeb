@@ -361,6 +361,13 @@ _$ParserModelAutoCompleteImpl _$$ParserModelAutoCompleteImplFromJson(
           ? const SelectorModel()
           : SelectorModel.fromJson(
               json['itemComplete'] as Map<String, dynamic>),
+      itemTitle: json['itemTitle'] == null
+          ? const SelectorModel()
+          : SelectorModel.fromJson(json['itemTitle'] as Map<String, dynamic>),
+      itemSubtitle: json['itemSubtitle'] == null
+          ? const SelectorModel()
+          : SelectorModel.fromJson(
+              json['itemSubtitle'] as Map<String, dynamic>),
       successSelector: json['successSelector'] == null
           ? const SelectorModel()
           : SelectorModel.fromJson(
@@ -380,6 +387,8 @@ Map<String, dynamic> _$$ParserModelAutoCompleteImplToJson(
       'extra': instance.extra,
       'itemSelector': instance.itemSelector,
       'itemComplete': instance.itemComplete,
+      'itemTitle': instance.itemTitle,
+      'itemSubtitle': instance.itemSubtitle,
       'successSelector': instance.successSelector,
       'failedSelector': instance.failedSelector,
       'runtimeType': instance.$type,

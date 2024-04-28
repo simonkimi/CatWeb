@@ -1,4 +1,3 @@
-import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser_tile.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,15 +25,17 @@ class ListParserEditor extends StatelessWidget {
       hasLeading: false,
       header: const SettingGroupTitle('标志位'),
       children: [
-        ParserTile(
+        ParserTileConsumer(
           title: '请求成功',
-          selector: parser.successSelector,
-          onlySelector: true,
+          selector: (n) => n.list.successSelector,
+          onChanged: (n, v) =>
+              n.updateParser(n.list.copyWith(successSelector: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '请求失败',
-          selector: parser.failedSelector,
-          onlySelector: true,
+          selector: (n) => n.list.failedSelector,
+          onChanged: (n, v) =>
+              n.updateParser(n.list.copyWith(failedSelector: v)),
         ),
       ],
     );
@@ -45,10 +46,10 @@ class ListParserEditor extends StatelessWidget {
       header: const SettingGroupTitle('索引'),
       hasLeading: false,
       children: [
-        ParserTile(
+        ParserTileConsumer(
           title: '下一面地址',
-          selector: parser.nextPage,
-          onlySelector: true,
+          selector: (n) => n.list.nextPage,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(nextPage: v)),
         ),
       ],
     );
@@ -59,18 +60,25 @@ class ListParserEditor extends StatelessWidget {
       header: const SettingGroupTitle('徽章'),
       hasLeading: false,
       children: [
-        ParserTile(
+        ParserTileConsumer(
           title: '徽章选择器',
-          selector: parser.badgeSelector,
-          onlySelector: true,
+          selector: (n) => n.list.badgeSelector,
+          onChanged: (n, v) =>
+              n.updateParser(n.list.copyWith(badgeSelector: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '徽章文本',
-          selector: parser.badgeItem.category,
+          selector: (n) => n.list.badgeItem.category,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(
+            badgeItem: n.list.badgeItem.copyWith(category: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '徽章颜色',
-          selector: parser.badgeItem.color,
+          selector: (n) => n.list.badgeItem.color,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(
+            badgeItem: n.list.badgeItem.copyWith(color: v),
+          )),
         ),
       ],
     );
@@ -81,22 +89,32 @@ class ListParserEditor extends StatelessWidget {
       header: const SettingGroupTitle('标签'),
       hasLeading: false,
       children: [
-        ParserTile(
+        ParserTileConsumer(
           title: '标签选择器',
-          selector: parser.tag,
+          selector: (n) => n.list.tag,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(tag: v)),
           onlySelector: true,
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '标签文本',
-          selector: parser.tagItem.text,
+          selector: (n) => n.list.tagItem.text,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(
+            tagItem: n.list.tagItem.copyWith(text: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '标签类型',
-          selector: parser.tagItem.category,
+          selector: (n) => n.list.tagItem.category,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(
+            tagItem: n.list.tagItem.copyWith(category: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '标签颜色',
-          selector: parser.tagItem.color,
+          selector: (n) => n.list.tagItem.color,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(
+            tagItem: n.list.tagItem.copyWith(color: v),
+          )),
         ),
       ],
     );
@@ -107,27 +125,40 @@ class ListParserEditor extends StatelessWidget {
       header: const SettingGroupTitle('封面设置'),
       hasLeading: false,
       children: [
-        ParserTile(
+        ParserTileConsumer(
           title: '封面地址',
-          selector: parser.previewImage.url,
+          selector: (n) => n.list.previewImage.url,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(
+            previewImage: n.list.previewImage.copyWith(url: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '封面宽度',
-          selector: parser.previewImage.width,
+          selector: (n) => n.list.previewImage.width,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(
+            previewImage: n.list.previewImage.copyWith(width: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '封面高度',
-          selector: parser.previewImage.height,
+          selector: (n) => n.list.previewImage.height,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(
+            previewImage: n.list.previewImage.copyWith(height: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '封面X偏移',
-          selector: parser.previewImage.x,
-          onlySelector: true,
+          selector: (n) => n.list.previewImage.x,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(
+            previewImage: n.list.previewImage.copyWith(x: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '封面Y偏移',
-          selector: parser.previewImage.y,
-          onlySelector: true,
+          selector: (n) => n.list.previewImage.y,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(
+            previewImage: n.list.previewImage.copyWith(y: v),
+          )),
         ),
       ],
     );
@@ -138,10 +169,10 @@ class ListParserEditor extends StatelessWidget {
       hasLeading: false,
       header: const SettingGroupTitle('基础信息'),
       children: [
-        ParserTile(
+        ParserTileConsumer(
           title: '项目选择器',
-          selector: parser.itemSelector,
-          onlySelector: true,
+          selector: (n) => n.list.itemSelector,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(itemSelector: v)),
         ),
       ],
     );
@@ -149,37 +180,45 @@ class ListParserEditor extends StatelessWidget {
 
   Widget _buildInfoList() {
     return CupertinoListSection.insetGrouped(
-        header: const SettingGroupTitle('信息设置'),
-        hasLeading: false,
-        children: [
-          ParserTile(
-            title: 'idCode',
-            selector: parser.idCode,
-          ),
-          ParserTile(
-            title: '标题',
-            selector: parser.title,
-          ),
-          ParserTile(
-            title: '副标题',
-            selector: parser.subtitle,
-          ),
-          ParserTile(
-            title: '上传时间',
-            selector: parser.uploadTime,
-          ),
-          ParserTile(
-            title: '评分',
-            selector: parser.star,
-          ),
-          ParserTile(
-            title: '面数',
-            selector: parser.imageCount,
-          ),
-          ParserTile(
-            title: '语言',
-            selector: parser.language,
-          ),
-        ]);
+      header: const SettingGroupTitle('信息设置'),
+      hasLeading: false,
+      children: [
+        ParserTileConsumer(
+          title: 'idCode',
+          selector: (n) => n.list.idCode,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(idCode: v)),
+        ),
+        ParserTileConsumer(
+          title: '标题',
+          selector: (n) => n.list.title,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(title: v)),
+        ),
+        ParserTileConsumer(
+          title: '副标题',
+          selector: (n) => n.list.subtitle,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(subtitle: v)),
+        ),
+        ParserTileConsumer(
+          title: '上传时间',
+          selector: (n) => n.list.uploadTime,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(uploadTime: v)),
+        ),
+        ParserTileConsumer(
+          title: '评分',
+          selector: (n) => n.list.star,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(star: v)),
+        ),
+        ParserTileConsumer(
+          title: '面数',
+          selector: (n) => n.list.imageCount,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(imageCount: v)),
+        ),
+        ParserTileConsumer(
+          title: '语言',
+          selector: (n) => n.list.language,
+          onChanged: (n, v) => n.updateParser(n.list.copyWith(language: v)),
+        ),
+      ],
+    );
   }
 }

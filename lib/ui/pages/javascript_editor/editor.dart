@@ -196,18 +196,6 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
             children: [
               _buildInputHint(
                 context: context,
-                child: const Icon(CupertinoIcons.layers),
-                input: 'function hook(group) {\n    return group;\n}',
-                position: -2,
-              ),
-              _buildInputHint(
-                context: context,
-                child: const Icon(CupertinoIcons.function),
-                input: 'function () {}',
-                position: 0 - '() {}'.length,
-              ),
-              _buildInputHint(
-                context: context,
                 child: const Icon(CupertinoIcons.arrow_turn_down_left),
                 input: '\n',
               ),

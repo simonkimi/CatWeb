@@ -1,4 +1,3 @@
-import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser_tile.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,53 +26,73 @@ class DetailParserEditor extends HookWidget {
       header: SettingGroupTitle(I.of(context).basic_setting),
       hasLeading: false,
       children: [
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).title,
-          selector: parser.title,
+          selector: (n) => n.detail.title,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(title: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).subtitle,
-          selector: parser.subtitle,
+          selector: (n) => n.detail.subtitle,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(subtitle: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).upload_time,
-          selector: parser.uploadTime,
+          selector: (n) => n.detail.uploadTime,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(uploadTime: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).star,
-          selector: parser.star,
+          selector: (n) => n.detail.star,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(star: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).language,
-          selector: parser.language,
+          selector: (n) => n.detail.language,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(language: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).description,
-          selector: parser.description,
+          selector: (n) => n.detail.description,
+          onChanged: (n, v) =>
+              n.updateParser(n.detail.copyWith(description: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).image_count,
-          selector: parser.imageCount,
+          selector: (n) => n.detail.imageCount,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(imageCount: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).page_count,
-          selector: parser.pageCount,
+          selector: (n) => n.detail.pageCount,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(pageCount: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).image_pre_page,
-          selector: parser.countPrePage,
+          selector: (n) => n.detail.countPrePage,
+          onChanged: (n, v) =>
+              n.updateParser(n.detail.copyWith(countPrePage: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '徽章选择器',
-          selector: parser.badgeSelector,
+          selector: (n) => n.detail.badgeSelector,
+          onlySelector: true,
+          onChanged: (n, v) =>
+              n.updateParser(n.detail.copyWith(badgeSelector: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '徽章内容',
-          selector: parser.badgeItem.text,
+          selector: (n) => n.detail.badgeItem.text,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            badgeItem: n.detail.badgeItem.copyWith(text: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '徽章颜色',
-          selector: parser.badgeItem.color,
+          selector: (n) => n.detail.badgeItem.color,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            badgeItem: n.detail.badgeItem.copyWith(color: v),
+          )),
         ),
       ],
     );
@@ -84,25 +103,40 @@ class DetailParserEditor extends HookWidget {
       header: SettingGroupTitle(I.of(context).cover),
       hasLeading: false,
       children: [
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).cover_img,
-          selector: parser.coverImage.url,
+          selector: (n) => n.detail.coverImage.url,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            coverImage: n.detail.coverImage.copyWith(url: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).cover_width,
-          selector: parser.coverImage.width,
+          selector: (n) => n.detail.coverImage.width,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            coverImage: n.detail.coverImage.copyWith(width: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).cover_height,
-          selector: parser.coverImage.height,
+          selector: (n) => n.detail.coverImage.height,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            coverImage: n.detail.coverImage.copyWith(height: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).cover_x,
-          selector: parser.coverImage.x,
+          selector: (n) => n.detail.coverImage.x,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            coverImage: n.detail.coverImage.copyWith(x: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).cover_y,
-          selector: parser.coverImage.y,
+          selector: (n) => n.detail.coverImage.y,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            coverImage: n.detail.coverImage.copyWith(y: v),
+          )),
         ),
       ],
     );
@@ -113,26 +147,33 @@ class DetailParserEditor extends HookWidget {
       header: SettingGroupTitle(I.of(context).badge),
       hasLeading: false,
       children: [
-        ParserTile(
-          title: I.of(context).badge_item,
-          onlySelector: true,
-          selector: parser.badgeSelector,
-        ),
-        ParserTile(
+        ParserTileConsumer(
           title: '标签选择器',
-          selector: parser.tagSelector,
+          selector: (n) => n.detail.tagSelector,
+          onlySelector: true,
+          onChanged: (n, v) =>
+              n.updateParser(n.detail.copyWith(tagSelector: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '标签内容',
-          selector: parser.tagItem.text,
+          selector: (n) => n.detail.tagItem.text,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            tagItem: n.detail.tagItem.copyWith(text: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '标签颜色',
-          selector: parser.tagItem.color,
+          selector: (n) => n.detail.tagItem.color,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            tagItem: n.detail.tagItem.copyWith(color: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '标签分类',
-          selector: parser.tagItem.category,
+          selector: (n) => n.detail.tagItem.category,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            tagItem: n.detail.tagItem.copyWith(category: v),
+          )),
         ),
       ],
     );
@@ -143,26 +184,33 @@ class DetailParserEditor extends HookWidget {
       header: SettingGroupTitle(I.of(context).comment),
       hasLeading: false,
       children: [
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).comment_item,
+          selector: (n) => n.detail.commentSelector,
           onlySelector: true,
-          selector: parser.commentSelector,
+          onChanged: (n, v) =>
+              n.updateParser(n.detail.copyWith(commentSelector: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).comment_content,
-          selector: parser.comments.content,
+          selector: (n) => n.detail.comments.content,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            comments: n.detail.comments.copyWith(content: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).username,
-          selector: parser.comments.username,
+          selector: (n) => n.detail.comments.username,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            comments: n.detail.comments.copyWith(username: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).comment_time,
-          selector: parser.comments.time,
-        ),
-        ParserTile(
-          title: I.of(context).comment_score,
-          selector: parser.comments.score,
+          selector: (n) => n.detail.comments.time,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            comments: n.detail.comments.copyWith(time: v),
+          )),
         ),
       ],
     );
@@ -173,34 +221,81 @@ class DetailParserEditor extends HookWidget {
       header: SettingGroupTitle(I.of(context).thumbnail),
       hasLeading: false,
       children: [
-        ParserTile(
+        // ParserTile(
+        //   title: I.of(context).thumbnail_selector,
+        //   selector: parser.thumbnailSelector,
+        //   onlySelector: true,
+        // ),
+        // ParserTile(
+        //   title: I.of(context).thumbnail_target,
+        //   selector: parser.target,
+        // ),
+        // ParserTile(
+        //   title: I.of(context).thumbnail_img,
+        //   selector: parser.thumbnail.url,
+        // ),
+        // ParserTile(
+        //   title: I.of(context).thumbnail_width,
+        //   selector: parser.thumbnail.width,
+        // ),
+        // ParserTile(
+        //   title: I.of(context).thumbnail_height,
+        //   selector: parser.thumbnail.height,
+        // ),
+        // ParserTile(
+        //   title: I.of(context).thumbnail_x,
+        //   selector: parser.thumbnail.x,
+        // ),
+        // ParserTile(
+        //   title: I.of(context).thumbnail_y,
+        //   selector: parser.thumbnail.y,
+        // ),
+        ParserTileConsumer(
           title: I.of(context).thumbnail_selector,
-          selector: parser.thumbnailSelector,
+          selector: (n) => n.detail.thumbnailSelector,
           onlySelector: true,
+          onChanged: (n, v) =>
+              n.updateParser(n.detail.copyWith(thumbnailSelector: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).thumbnail_target,
-          selector: parser.target,
+          selector: (n) => n.detail.target,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(target: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).thumbnail_img,
-          selector: parser.thumbnail.url,
+          selector: (n) => n.detail.thumbnail.url,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            thumbnail: n.detail.thumbnail.copyWith(url: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).thumbnail_width,
-          selector: parser.thumbnail.width,
+          selector: (n) => n.detail.thumbnail.width,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            thumbnail: n.detail.thumbnail.copyWith(width: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).thumbnail_height,
-          selector: parser.thumbnail.height,
+          selector: (n) => n.detail.thumbnail.height,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            thumbnail: n.detail.thumbnail.copyWith(height: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).thumbnail_x,
-          selector: parser.thumbnail.x,
+          selector: (n) => n.detail.thumbnail.x,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            thumbnail: n.detail.thumbnail.copyWith(x: v),
+          )),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).thumbnail_y,
-          selector: parser.thumbnail.y,
+          selector: (n) => n.detail.thumbnail.y,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
+            thumbnail: n.detail.thumbnail.copyWith(y: v),
+          )),
         ),
       ],
     );
@@ -211,17 +306,22 @@ class DetailParserEditor extends HookWidget {
       header: const SettingGroupTitle('元数据'),
       hasLeading: false,
       children: [
-        ParserTile(
+        ParserTileConsumer(
           title: I.of(context).next_page,
-          selector: parser.nextPage,
+          selector: (n) => n.detail.nextPage,
+          onChanged: (n, v) => n.updateParser(n.detail.copyWith(nextPage: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '成功标志',
-          selector: parser.successSelector,
+          selector: (n) => n.detail.successSelector,
+          onChanged: (n, v) =>
+              n.updateParser(n.detail.copyWith(successSelector: v)),
         ),
-        ParserTile(
+        ParserTileConsumer(
           title: '失败标志',
-          selector: parser.failedSelector,
+          selector: (n) => n.detail.failedSelector,
+          onChanged: (n, v) =>
+              n.updateParser(n.detail.copyWith(failedSelector: v)),
         ),
       ],
     );

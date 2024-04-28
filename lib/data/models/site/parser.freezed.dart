@@ -122,6 +122,8 @@ mixin _$ParserModel {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)
         autoComplete,
@@ -211,6 +213,8 @@ mixin _$ParserModel {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)?
         autoComplete,
@@ -300,6 +304,8 @@ mixin _$ParserModel {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)?
         autoComplete,
@@ -945,6 +951,8 @@ class _$ParserModelImageReaderImpl extends ParserModelImageReader {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)
         autoComplete,
@@ -1056,6 +1064,8 @@ class _$ParserModelImageReaderImpl extends ParserModelImageReader {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)?
         autoComplete,
@@ -1167,6 +1177,8 @@ class _$ParserModelImageReaderImpl extends ParserModelImageReader {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)?
         autoComplete,
@@ -2049,6 +2061,8 @@ class _$ParserModelDetailImpl extends ParserModelDetail {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)
         autoComplete,
@@ -2170,6 +2184,8 @@ class _$ParserModelDetailImpl extends ParserModelDetail {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)?
         autoComplete,
@@ -2291,6 +2307,8 @@ class _$ParserModelDetailImpl extends ParserModelDetail {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)?
         autoComplete,
@@ -3046,6 +3064,8 @@ class _$ParserModelListImpl extends ParserModelList {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)
         autoComplete,
@@ -3160,6 +3180,8 @@ class _$ParserModelListImpl extends ParserModelList {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)?
         autoComplete,
@@ -3274,6 +3296,8 @@ class _$ParserModelListImpl extends ParserModelList {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)?
         autoComplete,
@@ -3429,11 +3453,15 @@ abstract class _$$ParserModelAutoCompleteImplCopyWith<$Res>
       List<ExtraSelectorModel> extra,
       SelectorModel itemSelector,
       SelectorModel itemComplete,
+      SelectorModel itemTitle,
+      SelectorModel itemSubtitle,
       SelectorModel successSelector,
       SelectorModel failedSelector});
 
   $SelectorModelCopyWith<$Res> get itemSelector;
   $SelectorModelCopyWith<$Res> get itemComplete;
+  $SelectorModelCopyWith<$Res> get itemTitle;
+  $SelectorModelCopyWith<$Res> get itemSubtitle;
   @override
   $SelectorModelCopyWith<$Res> get successSelector;
   @override
@@ -3457,6 +3485,8 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
     Object? extra = null,
     Object? itemSelector = null,
     Object? itemComplete = null,
+    Object? itemTitle = null,
+    Object? itemSubtitle = null,
     Object? successSelector = null,
     Object? failedSelector = null,
   }) {
@@ -3480,6 +3510,14 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
       itemComplete: null == itemComplete
           ? _value.itemComplete
           : itemComplete // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      itemTitle: null == itemTitle
+          ? _value.itemTitle
+          : itemTitle // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      itemSubtitle: null == itemSubtitle
+          ? _value.itemSubtitle
+          : itemSubtitle // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       successSelector: null == successSelector
           ? _value.successSelector
@@ -3507,6 +3545,22 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
       return _then(_value.copyWith(itemComplete: value));
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get itemTitle {
+    return $SelectorModelCopyWith<$Res>(_value.itemTitle, (value) {
+      return _then(_value.copyWith(itemTitle: value));
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get itemSubtitle {
+    return $SelectorModelCopyWith<$Res>(_value.itemSubtitle, (value) {
+      return _then(_value.copyWith(itemSubtitle: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -3518,6 +3572,8 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
       final List<ExtraSelectorModel> extra = const [],
       this.itemSelector = const SelectorModel(),
       this.itemComplete = const SelectorModel(),
+      this.itemTitle = const SelectorModel(),
+      this.itemSubtitle = const SelectorModel(),
       this.successSelector = const SelectorModel(),
       this.failedSelector = const SelectorModel(),
       final String? $type})
@@ -3551,6 +3607,12 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
   final SelectorModel itemComplete;
   @override
   @JsonKey()
+  final SelectorModel itemTitle;
+  @override
+  @JsonKey()
+  final SelectorModel itemSubtitle;
+  @override
+  @JsonKey()
   final SelectorModel successSelector;
   @override
   @JsonKey()
@@ -3561,7 +3623,7 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
 
   @override
   String toString() {
-    return 'ParserModel.autoComplete(name: $name, uuid: $uuid, extra: $extra, itemSelector: $itemSelector, itemComplete: $itemComplete, successSelector: $successSelector, failedSelector: $failedSelector)';
+    return 'ParserModel.autoComplete(name: $name, uuid: $uuid, extra: $extra, itemSelector: $itemSelector, itemComplete: $itemComplete, itemTitle: $itemTitle, itemSubtitle: $itemSubtitle, successSelector: $successSelector, failedSelector: $failedSelector)';
   }
 
   @override
@@ -3576,6 +3638,10 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
                 other.itemSelector == itemSelector) &&
             (identical(other.itemComplete, itemComplete) ||
                 other.itemComplete == itemComplete) &&
+            (identical(other.itemTitle, itemTitle) ||
+                other.itemTitle == itemTitle) &&
+            (identical(other.itemSubtitle, itemSubtitle) ||
+                other.itemSubtitle == itemSubtitle) &&
             (identical(other.successSelector, successSelector) ||
                 other.successSelector == successSelector) &&
             (identical(other.failedSelector, failedSelector) ||
@@ -3591,6 +3657,8 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
       const DeepCollectionEquality().hash(_extra),
       itemSelector,
       itemComplete,
+      itemTitle,
+      itemSubtitle,
       successSelector,
       failedSelector);
 
@@ -3686,12 +3754,14 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)
         autoComplete,
   }) {
     return autoComplete(name, uuid, extra, itemSelector, itemComplete,
-        successSelector, failedSelector);
+        itemTitle, itemSubtitle, successSelector, failedSelector);
   }
 
   @override
@@ -3779,12 +3849,14 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)?
         autoComplete,
   }) {
     return autoComplete?.call(name, uuid, extra, itemSelector, itemComplete,
-        successSelector, failedSelector);
+        itemTitle, itemSubtitle, successSelector, failedSelector);
   }
 
   @override
@@ -3872,6 +3944,8 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
             List<ExtraSelectorModel> extra,
             SelectorModel itemSelector,
             SelectorModel itemComplete,
+            SelectorModel itemTitle,
+            SelectorModel itemSubtitle,
             SelectorModel successSelector,
             SelectorModel failedSelector)?
         autoComplete,
@@ -3879,7 +3953,7 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
   }) {
     if (autoComplete != null) {
       return autoComplete(name, uuid, extra, itemSelector, itemComplete,
-          successSelector, failedSelector);
+          itemTitle, itemSubtitle, successSelector, failedSelector);
     }
     return orElse();
   }
@@ -3936,6 +4010,8 @@ abstract class ParserModelAutoComplete extends ParserModel {
       final List<ExtraSelectorModel> extra,
       final SelectorModel itemSelector,
       final SelectorModel itemComplete,
+      final SelectorModel itemTitle,
+      final SelectorModel itemSubtitle,
       final SelectorModel successSelector,
       final SelectorModel failedSelector}) = _$ParserModelAutoCompleteImpl;
   const ParserModelAutoComplete._() : super._();
@@ -3951,6 +4027,8 @@ abstract class ParserModelAutoComplete extends ParserModel {
   List<ExtraSelectorModel> get extra;
   SelectorModel get itemSelector;
   SelectorModel get itemComplete;
+  SelectorModel get itemTitle;
+  SelectorModel get itemSubtitle;
   @override
   SelectorModel get successSelector;
   @override

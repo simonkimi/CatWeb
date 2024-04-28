@@ -104,6 +104,8 @@ class ParserModel with _$ParserModel {
     @Default([]) List<ExtraSelectorModel> extra,
     @Default(SelectorModel()) SelectorModel itemSelector,
     @Default(SelectorModel()) SelectorModel itemComplete,
+    @Default(SelectorModel()) SelectorModel itemTitle,
+    @Default(SelectorModel()) SelectorModel itemSubtitle,
     @Default(SelectorModel()) SelectorModel successSelector,
     @Default(SelectorModel()) SelectorModel failedSelector,
   }) = ParserModelAutoComplete;

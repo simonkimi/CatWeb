@@ -21,6 +21,8 @@ class RegField with _$RegField {
 
 @freezed
 class ScriptField with _$ScriptField {
+  const ScriptField._();
+
   const factory ScriptField.output() = ScriptFieldOutput;
 
   const factory ScriptField.replace({

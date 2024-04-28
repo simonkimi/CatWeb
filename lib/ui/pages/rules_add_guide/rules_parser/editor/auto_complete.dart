@@ -1,4 +1,3 @@
-import 'package:catweb/data/models/site_model/parser/parser.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser_tile.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,22 +13,33 @@ class AutoCompleteParserEditor extends StatelessWidget {
           header: const SettingGroupTitle('基础信息'),
           hasLeading: false,
           children: [
-            ParserTile(
+            ParserTileConsumer(
               title: '项目选择器',
-              selector: parser.itemSelector,
-              onlySelector: true,
+              selector: (n) => n.autoComplete.itemSelector,
+              onChanged: (n, v) => {
+                n.parser = n.autoComplete.copyWith(itemSelector: v),
+              },
             ),
-            ParserTile(
+            ParserTileConsumer(
               title: '标题',
-              selector: parser.itemTitle,
+              selector: (n) => n.autoComplete.itemTitle,
+              onChanged: (n, v) => {
+                n.updateParser(n.autoComplete.copyWith(itemTitle: v))
+              },
             ),
-            ParserTile(
+            ParserTileConsumer(
               title: '副标题',
-              selector: parser.itemSubtitle,
+              selector: (n) => n.autoComplete.itemSubtitle,
+              onChanged: (n, v) => {
+                n.updateParser(n.autoComplete.copyWith(itemSubtitle: v))
+              },
             ),
-            ParserTile(
+            ParserTileConsumer(
               title: '补全内容',
-              selector: parser.itemComplete,
+              selector: (n) => n.autoComplete.itemComplete,
+              onChanged: (n, v) => {
+                n.updateParser(n.autoComplete.copyWith(itemComplete: v))
+              },
             ),
           ],
         )
