@@ -1,13 +1,17 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site_render_model.dart';
+import 'package:catweb/get.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/view_page/empty/empty.dart';
+import 'package:catweb/ui/pages/view_page/viewer_provider.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage_scaffold.dart';
 import 'package:catweb/utils/context_helper.dart';
 import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:provider/provider.dart';
 
 class ViewerMain extends HookWidget {
   const ViewerMain({super.key});
@@ -27,15 +31,22 @@ class ViewerMain extends HookWidget {
         }
         context.pop();
       },
-      child: _buildBody(context, controller),
+      child: ValueListenableBuilder(
+        valueListenable: inject<SiteService>().currentSiteNotifier,
+        builder: (BuildContext context, SiteRenderConfigModel? website, _) {
+          if (website == null) {
+            return const EmptyFragment();
+          }
+          return Provider(
+            create: (_) => ViewerConfig(website: website),
+            child: _buildBody(context, website),
+          );
+        },
+      ),
     );
   }
 
-  Widget _buildBody(BuildContext context, SiteRenderConfigModel? website) {
-    if (website == null) {
-      return const EmptyFragment();
-    }
-
+  Widget _buildBody(BuildContext context, SiteRenderConfigModel website) {
     if (website.displayPage.length <= 1) {
       return _buildSitePage(context, website, website.displayPage.first);
     }
@@ -60,10 +71,13 @@ class ViewerMain extends HookWidget {
   }
 
   Widget _buildSitePage(
-      BuildContext context, SiteRenderConfigModel website, SitePageRule target) {
-    return ViewerPage(
-      target: target,
-      model: website.displayPage.length > 1 ? Object() : null,
+    BuildContext context,
+    SiteRenderConfigModel website,
+    SitePageRule target,
+  ) {
+    return Provider(
+      create: (_) => PageConfig(pageRule: target),
+      child: const ViewerPage(),
     );
   }
 }

@@ -24,10 +24,8 @@ class RulesEditPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (_) => ChangeNotifierProvider(
-        create: (_) => RulesEditorNotifier(blueprint ?? const SiteBlueprint()),
-      ),
+    return ChangeNotifierProvider(
+      create: (_) => RulesEditorNotifier(blueprint ?? const SiteBlueprint()),
       child: WillPopScope(
         onWillPop: () => _showExitConfine(context),
         child: CupertinoPageScaffold(

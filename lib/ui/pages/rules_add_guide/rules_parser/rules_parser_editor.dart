@@ -21,10 +21,8 @@ class RulesParserEditor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (_) => ChangeNotifierProvider(
-        create: (_) => RuleParserNotifier(model),
-      ),
+    return ChangeNotifierProvider(
+      create: (_) => RuleParserNotifier(model),
       child: DefaultTabController(
         length: 3,
         child: CupertinoPageScaffold(

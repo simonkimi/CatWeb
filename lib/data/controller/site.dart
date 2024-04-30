@@ -17,8 +17,6 @@ class SiteService {
 
   set currentSite(SiteRenderConfigModel? v) => currentSiteNotifier.value = v;
 
-
-
   late final StreamSubscription<List<WebTableData>> siteDbChangeListener;
 
   final SettingService setting = inject();

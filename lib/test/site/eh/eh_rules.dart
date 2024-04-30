@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:catweb/data/models/site/field.dart';
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/site_blueprint.dart';
@@ -76,75 +74,59 @@ final ehTestSite = SiteBlueprint(
           targetAutoComplete: _autoCompleteUuid,
           disableUnchanged: true,
           filters: [
-            TemplateListFilterItem(
+            const TemplateListFilterItem(
               name: '同人志',
               key: 'b_doujinshi',
-              type: FilterType.boolCard,
+              type: FilterType.bool,
               value: 'true',
-              color: ColorField.fromColor(const Color(0xfff76057)),
             ),
-            TemplateListFilterItem(
+            const TemplateListFilterItem(
               name: '漫画',
               key: 'b_manga',
-              type: FilterType.boolCard,
+              type: FilterType.bool,
               value: 'true',
-              color: ColorField.fromColor(const Color(0xfff09c19)),
             ),
-            TemplateListFilterItem(
+            const TemplateListFilterItem(
               name: '游戏CG',
               key: 'b_gamecg',
-              type: FilterType.boolCard,
+              type: FilterType.bool,
               value: 'true',
-              color: ColorField.fromColor(const Color(0xff0faa11)),
             ),
-            TemplateListFilterItem(
+            const TemplateListFilterItem(
               name: '图片集',
               key: 'b_imageset',
-              type: FilterType.boolCard,
+              type: FilterType.bool,
               value: 'true',
-              color: ColorField.fromColor(const Color(0xff455bd6)),
             ),
-            TemplateListFilterItem(
+            const TemplateListFilterItem(
               name: '画师CG',
               key: 'b_artistcg',
-              type: FilterType.boolCard,
+              type: FilterType.bool,
               value: 'true',
-              color: ColorField.fromColor(const Color(0xffd5d703)),
             ),
-            TemplateListFilterItem(
+            const TemplateListFilterItem(
               name: 'Cosplay',
               key: 'b_cosplay',
-              type: FilterType.boolCard,
+              type: FilterType.bool,
               value: 'true',
-              color: ColorField.fromColor(const Color(0xff9133e1)),
             ),
-            TemplateListFilterItem(
+            const TemplateListFilterItem(
               name: '西方',
               key: 'b_western',
-              type: FilterType.boolCard,
+              type: FilterType.bool,
               value: 'true',
-              color: ColorField.fromColor(const Color(0xff38d42f)),
             ),
-            TemplateListFilterItem(
-              name: '亚洲色情',
-              key: 'b_asianporn',
-              type: FilterType.boolCard,
-              value: 'true',
-              color: ColorField.fromColor(const Color(0xffe77fe3)),
-            ),
-            TemplateListFilterItem(
+            const TemplateListFilterItem(
               name: '无H',
               key: 'b_nonh',
-              type: FilterType.boolCard,
+              type: FilterType.bool,
               value: 'true',
-              color: ColorField.fromColor(const Color(0xff0cb9cf)),
             ),
-            TemplateListFilterItem(
+            const TemplateListFilterItem(
               name: '杂项',
               key: 'b_misc',
-              type: FilterType.boolCard,
+              type: FilterType.bool,
               value: 'true',
-              color: ColorField.fromColor(const Color(0xff858585)),
             ),
             const TemplateListFilterItem(
               name: '搜索画廊名称',
@@ -183,10 +165,10 @@ final ehTestSite = SiteBlueprint(
               value: 'false',
             ),
           ],
-          script: const ScriptField(
-              script:
-                  'function hook(n){var a=JSON.parse(n),r=0,i=0,o=["misc","doujinshi","manga","artistcg","gamecg","imageset","cosplay","asianporn","nonh","western"];for(var s in o)r+=a["b_"+o[s]]?0:1<<i,i+=1;var e=["advsearch=1"];for(var s in 0!=r&&e.push("f_cats="+r),a)-1!=s.indexOf("f")&&a[s]&&e.push(s+"=on");return e.join("&")}',
-              type: ScriptFieldType.js)),
+          script: const ScriptField.js(
+            script:
+                'function hook(n){var a=JSON.parse(n),r=0,i=0,o=["misc","doujinshi","manga","artistcg","gamecg","imageset","cosplay","asianporn","nonh","western"];for(var s in o)r+=a["b_"+o[s]]?0:1<<i,i+=1;var e=["advsearch=1"];for(var s in 0!=r&&e.push("f_cats="+r),a)-1!=s.indexOf("f")&&a[s]&&e.push(s+"=on");return e.join("&")}',
+          )),
     ),
     SitePageRule(
       name: '热门',
@@ -202,7 +184,8 @@ final ehTestSite = SiteBlueprint(
       url: 'watched?page={page:0}',
       uuid: const Uuid().v4().toString(),
       parserId: ehListParser.uuid,
-      displayType: SiteDisplayType.login,
+      displayType: SiteDisplayType.show,
+      flag: 'requireLogin',
       template: PageTemplate.list(targetItem: _detailUuid),
       icon: 'eye',
     ),
@@ -211,7 +194,8 @@ final ehTestSite = SiteBlueprint(
       url: r'favorites.php?page={page:0}${favcat:&favcat={favcat}}',
       uuid: const Uuid().v4().toString(),
       parserId: ehListParser.uuid,
-      displayType: SiteDisplayType.login,
+      displayType: SiteDisplayType.show,
+      flag: 'requireLogin',
       template: const PageTemplate.list(subPages: [
         TemplateListSubPage(name: '全部'),
         TemplateListSubPage(

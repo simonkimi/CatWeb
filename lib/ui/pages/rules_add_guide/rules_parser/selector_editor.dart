@@ -22,12 +22,8 @@ class SelectorEditor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (_) => ChangeNotifierProvider(
-        create: (_) => SelectorEditorNotifier(
-          selector: selector,
-        ),
-      ),
+    return ChangeNotifierProvider(
+      create: (_) => SelectorEditorNotifier(selector: selector),
       child: CupertinoPageScaffold(
         navigationBar: _buildAppbar(context),
         child: SafeArea(

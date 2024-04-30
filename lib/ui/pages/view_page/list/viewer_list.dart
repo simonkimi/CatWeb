@@ -15,14 +15,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ViewerListFragment extends StatefulWidget {
-  const ViewerListFragment({
-    super.key,
-    required this.blueprint,
-    this.hasToolBar = false,
-  });
-
-  final SitePage blueprint;
-  final bool hasToolBar;
+  const ViewerListFragment({super.key});
 
   @override
   State<ViewerListFragment> createState() => _ViewerListFragmentState();
@@ -30,19 +23,19 @@ class ViewerListFragment extends StatefulWidget {
 
 class _ViewerListFragmentState extends State<ViewerListFragment>
     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
-  late final blueprint = widget.blueprint;
-  late final extra = widget.blueprint.template as TemplateList;
-
-  bool get useSingleWidget =>
-      extra.subPages.isEmpty || extra.subPages.length == 1;
-
-  late List<SubListController> subListController;
+  // late final blueprint = widget.blueprint;
+  // late final extra = widget.blueprint.template as TemplateList;
+  //
+  // bool get useSingleWidget =>
+  //     extra.subPages.isEmpty || extra.subPages.length == 1;
+  //
+  // late List<SubListController> subListController;
+  //
+  // bool get hasSearch => widget.blueprint.url.contains('{search}');
+  //
+  // bool get hasFilter => extra.filters.isNotEmpty && !hasSearch;
 
   late final TabController tabController;
-
-  bool get hasSearch => widget.blueprint.url.contains('{search}');
-
-  bool get hasFilter => extra.filters.isNotEmpty && !hasSearch;
 
   @override
   void initState() {

@@ -22,10 +22,8 @@ class RulesPageEdit extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (_) => ChangeNotifierProvider(
-        create: (_) => SitePageNotifier(pageRule),
-      ),
+    return ChangeNotifierProvider(
+      create: (_) => SitePageNotifier(pageRule),
       child: CupertinoPageScaffold(
         navigationBar: _buildAppbar(context),
         child: CupertinoTabBarView(
