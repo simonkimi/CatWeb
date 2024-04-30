@@ -58,8 +58,7 @@ class SiteRenderConfigModel {
   List<SitePageRule> get displayPage => blueMap.pageList
       .where((p0) {
         return p0.displayType == SiteDisplayType.show ||
-            (p0.displayType == SiteDisplayType.login &&
-                dbEntity.loginCookies.isNotEmpty);
+            (p0.containsFlag('requireLog') && dbEntity.loginCookies.isNotEmpty);
       })
       .where((e) => e.template is PageTemplateList)
       .toList();

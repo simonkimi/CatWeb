@@ -1,5 +1,6 @@
 import 'package:catweb/data/models/site/field.dart';
 import 'package:catweb/data/models/site/subpage.dart';
+import 'package:catweb/utils/enum_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -37,12 +38,42 @@ class PageTemplate with _$PageTemplate {
       _$PageTemplateFromJson(json);
 
   String getDescription(BuildContext context) {
+    return type.getDescription(context);
+  }
+
+  PageTemplateType get type {
     return switch (this) {
-      PageTemplate.autoComplete => '自动补全',
-      PageTemplate.gallery => '图库',
-      PageTemplate.list => '列表',
-      PageTemplate.imageViewer => '图片查看器',
+      PageTemplate.autoComplete => PageTemplateType.autoComplete,
+      PageTemplate.gallery => PageTemplateType.gallery,
+      PageTemplate.list => PageTemplateType.list,
+      PageTemplate.imageViewer => PageTemplateType.imageViewer,
       _ => throw UnimplementedError('Unknown template type: $this'),
+    };
+  }
+
+  static PageTemplate fromType(PageTemplateType type) {
+    return switch (type) {
+      PageTemplateType.autoComplete => const PageTemplate.autoComplete(),
+      PageTemplateType.gallery => const PageTemplate.gallery(),
+      PageTemplateType.list => const PageTemplate.list(),
+      PageTemplateType.imageViewer => const PageTemplate.imageViewer(),
+    };
+  }
+}
+
+enum PageTemplateType implements IEnumDescription {
+  autoComplete,
+  gallery,
+  list,
+  imageViewer;
+
+  @override
+  String getDescription(BuildContext context) {
+    return switch (this) {
+      PageTemplateType.autoComplete => '自动补全',
+      PageTemplateType.gallery => '图库',
+      PageTemplateType.list => '列表',
+      PageTemplateType.imageViewer => '图片查看器',
     };
   }
 }

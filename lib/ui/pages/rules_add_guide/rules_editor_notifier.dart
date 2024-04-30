@@ -5,98 +5,84 @@ import 'package:catweb/data/models/site/site_blueprint.dart';
 
 import 'package:flutter/cupertino.dart';
 
-class RulesEditorNotifier extends ChangeNotifier {
-  RulesEditorNotifier(this.blueprint);
+class RulesEditorNotifier extends ValueNotifier<SiteBlueprint> {
+  RulesEditorNotifier(super.blueprint);
 
-  SiteBlueprint blueprint;
+  SiteBlueprint get blueprint => value;
 
   void setName(String name) {
-    blueprint = blueprint.copyWith(name: name);
-    notifyListeners();
+    value = blueprint.copyWith(name: name);
   }
 
   void setBaseUrl(String baseUrl) {
-    blueprint = blueprint.copyWith(baseUrl: baseUrl);
-    notifyListeners();
+    value = blueprint.copyWith(baseUrl: baseUrl);
   }
 
   void setFlag(String flag) {
-    blueprint = blueprint.copyWith(flag: flag);
-    notifyListeners();
+    value = blueprint.copyWith(flag: flag);
   }
 
   void setLoginUrl(String loginUrl) {
-    blueprint = blueprint.copyWith(loginUrl: loginUrl);
-    notifyListeners();
+    value = blueprint.copyWith(loginUrl: loginUrl);
   }
 
   void setLoginCookieReg(String loginCookieReg) {
-    blueprint = blueprint.copyWith(loginCookieReg: loginCookieReg);
-    notifyListeners();
+    value = blueprint.copyWith(loginCookieReg: loginCookieReg);
   }
 
   void setLoginCookieDescription(String loginCookieDescription) {
-    blueprint = blueprint.copyWith(
+    value = blueprint.copyWith(
       loginCookieDescription: loginCookieDescription,
     );
-    notifyListeners();
   }
 
   void removeHeader(int index) {
-    blueprint = blueprint.copyWith(
+    value = blueprint.copyWith(
       headers: List.from(blueprint.headers)..removeAt(index),
     );
-    notifyListeners();
   }
 
   void updateHeader(int index, RegField regField) {
-    blueprint = blueprint.copyWith(
+    value = blueprint.copyWith(
       headers: List.from(blueprint.headers)..[index] = regField,
     );
-    notifyListeners();
   }
 
   void addHeader(RegField regField) {
-    blueprint = blueprint.copyWith(
+    value = blueprint.copyWith(
       headers: List.from(blueprint.headers)..add(regField),
     );
-    notifyListeners();
   }
 
   void removeCookie(int index) {
-    blueprint = blueprint.copyWith(
+    value = blueprint.copyWith(
       cookies: List.from(blueprint.cookies)..removeAt(index),
     );
-    notifyListeners();
   }
 
   void updateCookie(int index, RegField regField) {
-    blueprint = blueprint.copyWith(
+    value = blueprint.copyWith(
       cookies: List.from(blueprint.cookies)..[index] = regField,
     );
-    notifyListeners();
   }
 
   void addCookie(RegField regField) {
-    blueprint = blueprint.copyWith(
+    value = blueprint.copyWith(
       cookies: List.from(blueprint.cookies)..add(regField),
     );
-    notifyListeners();
   }
 
   void removePage(SitePageRule model) {
-    blueprint = blueprint.copyWith(
+    value = blueprint.copyWith(
       pageList: List.from(blueprint.pageList)..remove(model),
     );
-    notifyListeners();
   }
 
   void removeParser(String uuid) {
-    blueprint = blueprint.copyWith(
+    value = blueprint.copyWith(
       parserList: List.from(blueprint.parserList)
         ..removeWhere((e) => e.uuid == uuid),
     );
-    notifyListeners();
   }
 
   void editParser(ParserModel model) {
@@ -107,7 +93,7 @@ class RulesEditorNotifier extends ChangeNotifier {
     } else {
       newParserList.add(model);
     }
-    blueprint = blueprint.copyWith(
+    value = blueprint.copyWith(
       parserList: newParserList,
     );
     notifyListeners();

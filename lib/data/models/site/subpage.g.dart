@@ -30,9 +30,6 @@ _$TemplateListFilterItemImpl _$$TemplateListFilterItemImplFromJson(
       value: json['value'] as String? ?? '',
       type: $enumDecodeNullable(_$FilterTypeEnumMap, json['type']) ??
           FilterType.string,
-      color: json['color'] == null
-          ? const ColorField()
-          : ColorField.fromJson(json['color'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TemplateListFilterItemImplToJson(
@@ -41,13 +38,11 @@ Map<String, dynamic> _$$TemplateListFilterItemImplToJson(
       'name': instance.name,
       'key': instance.key,
       'value': instance.value,
-      'type': _$FilterTypeEnumMap[instance.type],
-      'color': instance.color,
+      'type': _$FilterTypeEnumMap[instance.type]!,
     };
 
 const _$FilterTypeEnumMap = {
   FilterType.number: 'number',
   FilterType.string: 'string',
   FilterType.bool: 'bool',
-  FilterType.boolCard: 'boolCard',
 };

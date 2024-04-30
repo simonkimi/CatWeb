@@ -1,4 +1,5 @@
 import 'package:catweb/data/models/site/page.dart';
+import 'package:catweb/data/models/site/template.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_editor_notifier.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
@@ -126,11 +127,11 @@ class RulesPageManager extends StatelessWidget {
     if (name == null) {
       return null;
     }
-    final select = await showCupertinoSelectDialog<TemplateType>(
+    final select = await showCupertinoSelectDialog<PageTemplateType>(
       title: '选择模板',
       context: context,
-      items: TemplateType.values
-          .map((e) => SelectTileItem(title: e.value, value: e))
+      items: PageTemplateType.values
+          .map((e) => SelectTileItem(title: e.getDescription(context), value: e))
           .toList(),
     );
     if (select == null) {
@@ -139,7 +140,7 @@ class RulesPageManager extends StatelessWidget {
     return SitePageRule(
       name: name,
       uuid: const Uuid().v4().toString(),
-      template: ITemplate.create(select),
+      template: PageTemplate.fromType(select),
     );
   }
 }

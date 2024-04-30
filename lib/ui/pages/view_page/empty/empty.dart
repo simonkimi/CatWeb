@@ -46,10 +46,11 @@ class EmptyFragment extends StatelessWidget {
         Center(
           child: CupertinoButton(
             onPressed: () {
-              Navigator.of(context).push(CupertinoPageRoute(
-                  builder: (context) => RulesEditPage(
-                        blueMap: ehTestSite,
-                      )));
+              Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
+                return RulesEditPage(
+                  blueprint: ehTestSite,
+                );
+              }));
             },
             color: FixColor.groupedColor,
             child: Row(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,7 +7,7 @@ import 'package:flutter/services.dart';
 
 import 'package:catweb/ui/theme/colors.dart';
 
-class CupertinoReadOnlyInput extends StatelessWidget {
+class TripleReadonlyTextField extends StatelessWidget {
   final String labelText;
   final String value;
 
@@ -16,7 +18,7 @@ class CupertinoReadOnlyInput extends StatelessWidget {
 
   final VoidCallback? onTap;
 
-  const CupertinoReadOnlyInput({
+  const TripleReadonlyTextField({
     super.key,
     required this.labelText,
     required this.value,
@@ -38,7 +40,9 @@ class CupertinoReadOnlyInput extends StatelessWidget {
           Text(
             labelText,
             style: TextStyle(
-                color: FixColor.title.resolveFrom(context), fontSize: 13),
+              color: FixColor.title.resolveFrom(context),
+              fontSize: 13,
+            ),
           ),
           const SizedBox(height: 3),
           CupertinoTextField(
@@ -70,8 +74,8 @@ class CupertinoReadOnlyInput extends StatelessWidget {
   }
 }
 
-class CupertinoVnTextInput extends StatelessWidget {
-  const CupertinoVnTextInput({
+class TripleVnTextField extends StatelessWidget {
+  const TripleVnTextField({
     super.key,
     required this.labelText,
     required this.value,
@@ -146,55 +150,8 @@ class CupertinoVnTextInput extends StatelessWidget {
   }
 }
 
-class CupertinoFormInput extends StatelessWidget {
-  const CupertinoFormInput({
-    super.key,
-    this.label,
-    required this.value,
-    this.width,
-    this.decoration,
-  });
-
-  final BoxDecoration? decoration;
-  final double? width;
-  final ValueNotifier<String> value;
-  final String? label;
-
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoTextField(
-      controller: TextEditingController(text: value.value)
-        ..selection = TextSelection(
-          baseOffset: value.value.length,
-          extentOffset: value.value.length,
-        ),
-      decoration: decoration ??
-          const BoxDecoration(
-            border: Border(),
-          ),
-      onChanged: (v) => value.value = v,
-      style: const TextStyle(fontSize: 14),
-      prefix: label != null
-          ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: SizedBox(
-                width: width,
-                child: Text(
-                  label!,
-                  style: TextStyle(
-                    color: FixColor.title.resolveFrom(context),
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            )
-          : null,
-    );
-  }
-}
-
-class CupertinoSelectInput<T> extends StatelessWidget {
-  const CupertinoSelectInput({
+class TripleVnEnumField<T> extends StatelessWidget {
+  const TripleVnEnumField({
     super.key,
     required this.field,
     required this.labelText,
@@ -209,7 +166,7 @@ class CupertinoSelectInput<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return field.obx((value) => CupertinoReadOnlyInput(
+    return field.obx((value) => TripleReadonlyTextField(
           labelText: labelText,
           value: selectionConverter?.call(value) ?? value.toString(),
           onTap: () async {
@@ -229,8 +186,8 @@ class CupertinoSelectInput<T> extends StatelessWidget {
   }
 }
 
-class CupertinoNumberInput extends StatelessWidget {
-  const CupertinoNumberInput({
+class TripleVnNumberField extends StatelessWidget {
+  const TripleVnNumberField({
     super.key,
     required this.labelText,
     required this.value,
@@ -252,7 +209,7 @@ class CupertinoNumberInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoTextInput(
+    return TripleTextField(
       labelText: labelText,
       value: value.toString(),
       prefix: prefix,
@@ -264,8 +221,8 @@ class CupertinoNumberInput extends StatelessWidget {
   }
 }
 
-class CupertinoTextInput extends StatelessWidget {
-  const CupertinoTextInput({
+class TripleTextField extends StatelessWidget {
+  const TripleTextField({
     super.key,
     required this.labelText,
     required this.value,
@@ -335,5 +292,40 @@ class CupertinoTextInput extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class VnSwitchField extends StatelessWidget {
+  const VnSwitchField({
+    super.key,
+    required this.value,
+    this.scale,
+    this.onChanged,
+  });
+
+  final ValueNotifier<bool> value;
+  final double? scale;
+  final FutureOr<bool> Function(bool)? onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final child = SizedBox(
+      height: 20,
+      child: CupertinoSwitch(
+        value: value.value,
+        onChanged: (v) async {
+          final result = await onChanged?.call(v);
+          value.value = result ?? v;
+        },
+      ),
+    );
+    if (scale != null) {
+      return Transform.scale(
+        alignment: Alignment.centerRight,
+        scale: scale,
+        child: child,
+      );
+    }
+    return child;
   }
 }

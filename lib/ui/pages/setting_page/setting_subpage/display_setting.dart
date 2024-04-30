@@ -1,8 +1,7 @@
-import 'package:catweb/data/controller/setting_service.dart';
-import 'package:catweb/data/controller/setting_enum.dart';
+import 'package:catweb/data/controller/settings.dart';
+import 'package:catweb/get.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/navigator.dart';
-import 'package:catweb/ui/widgets/cupertino_obs_swiitch.dart';
+import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_base.dart';
@@ -18,9 +17,10 @@ class DisplaySettingPage extends StatelessWidget {
 
   final bool fromSetting;
 
+  SettingService get controller => inject();
+
   @override
   Widget build(BuildContext context) {
-    final controller = get<SettingService>();
     return SettingScaffold(
       title: I.of(context).display,
       children: [
@@ -30,14 +30,14 @@ class DisplaySettingPage extends StatelessWidget {
           children: [
             SettingTile(
               title: I.of(context).dark_mask,
-              trailing: CupertinoObxSwitch(
+              trailing: VnSwitchField(
                 scale: 0.8,
-                value: controller.imageMaskInDarkMode,
+                value: controller.imageMaskInDarkModeNotifier,
               ),
             ),
             SettingSelectionTile(
               title: I.of(context).image_concurrency,
-              value: controller.concurrencyCount,
+              value: controller.concurrencyCountNotifier,
               items: [
                 SelectTileItem(value: -1, title: I.of(context).no_limit),
                 for (var i = 1; i <= 10; i += 2)
@@ -52,7 +52,7 @@ class DisplaySettingPage extends StatelessWidget {
           children: [
             SettingSelectionTile(
               title: I.of(context).pre_load_count,
-              value: controller.preloadCount,
+              value: controller.preloadCountNotifier,
               items: [
                 SelectTileItem(
                     value: 0, title: I.of(context).disable), // 0禁用, 只加载自己
@@ -63,7 +63,7 @@ class DisplaySettingPage extends StatelessWidget {
             SettingSelectionTile<ReaderDirection>(
               title: I.of(context).read_direction,
               previousPageTitle: I.of(context).display,
-              value: controller.readerDirectory,
+              value: controller.readerDirectoryNotifier,
               items: [
                 SelectTileItem(
                     value: ReaderDirection.ltr, title: I.of(context).ltr),

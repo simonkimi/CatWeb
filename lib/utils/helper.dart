@@ -48,11 +48,11 @@ extension ListUtils<T> on List<T> {
   }
 
   List<T> replaceAt(int index, T newValue) {
-    return replace(index, newValue).toList();
+    return List.of(this)..[index] = newValue;
   }
 
   List<T> exceptAt(int index) {
-    return [...this]..removeAt(index);
+    return List.of(this)..removeAt(index);
   }
 }
 
@@ -85,8 +85,4 @@ T? iterableMin<T extends num>(Iterable<T> iter) {
   return iter.reduce(math.min);
 }
 
-// extension EnvString on String {
-//   String env(SiteEnvStore env) => env.apply(this);
-//
-//   String globalEnv() => get<SiteService>().site.value!.globalEnv.apply(this);
-// }
+

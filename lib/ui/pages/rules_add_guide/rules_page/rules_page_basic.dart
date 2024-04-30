@@ -1,16 +1,18 @@
-import 'package:catweb/data/models/site_model/pages/site_page.dart';
-import 'package:catweb/data/models/site_model/pages/template.dart';
-import 'package:catweb/data/models/site_model/pages/template_gallery.dart';
-import 'package:catweb/data/models/site_model/pages/template_list.dart';
+import 'package:catweb/data/models/site/page.dart';
+import 'package:catweb/data/models/site/parser.dart';
+import 'package:catweb/data/models/site/template.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/pages/rules_add_guide/controller/rules_edit_controller.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_editor_notifier.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_page/site_page_notifier.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/ui/widgets/notifier_selector.dart';
 import 'package:catweb/utils/icons.dart';
-import 'package:catweb/utils/widget.dart';
+import 'package:catweb/utils/iter_helper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class RulesPageBasic extends StatelessWidget {
   const RulesPageBasic({super.key});
@@ -21,48 +23,69 @@ class RulesPageBasic extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         children: [
-          CupertinoVnTextInput(
+          NotifierTripleTextField<SitePageNotifier>(
             labelText: I.of(context).name,
-            value: sitePage.name,
+            selector: (n) => n.rule.name,
+            save: (n) => n.updateSiteName,
           ),
-          CupertinoVnTextInput(
+          NotifierTripleTextField<SitePageNotifier>(
             labelText: I.of(context).website,
-            value: sitePage.url,
+            selector: (n) => n.rule.url,
+            save: (n) => n.updateSiteUrl,
           ),
-          CupertinoSelectInput(
-            field: sitePage.action,
+          NotifierTripleEnumField<SitePageNotifier, SiteNetType>(
+            selector: (n) => n.rule.action,
             labelText: I.of(context).net_action,
-            items: SiteNetType.values,
-            selectionConverter: (value) => value.value,
+            save: (n) => n.updateSiteAction,
+            items: SiteNetType.values.map((e) {
+              return SelectTileItem(title: e.getDescription(context), value: e);
+            }),
           ),
-          sitePage.action.obx((v) {
-            if (v == SiteNetType.post) {
-              return CupertinoVnTextInput(
-                labelText: I.of(context).form,
-                value: sitePage.formData,
-                minLine: 4,
+          Selector<SitePageNotifier, SiteNetType>(
+            selector: (_, n) => n.rule.action,
+            child: NotifierTripleTextField<SitePageNotifier>(
+              labelText: I.of(context).form,
+              selector: (n) => n.rule.formData,
+              save: (n) => n.updateSiteFormData,
+            ),
+            builder: (_, action, child) {
+              return switch (action) {
+                SiteNetType.post || SiteNetType.put => child!,
+                _ => const SizedBox(),
+              };
+            },
+          ),
+          Selector2<
+              SitePageNotifier,
+              RulesEditorNotifier,
+              ({
+                List<ParserModel> parserList,
+                String parserId,
+              })>(
+            selector: (_, pageNotifier, ruleNotifier) => (
+              parserList: ruleNotifier.blueprint.parserList,
+              parserId: pageNotifier.rule.parserId,
+            ),
+            builder: (_, value, __) {
+              return TripleReadonlyTextField(
+                labelText: I.of(context).parser,
+                value: value.parserList
+                        .get((e) => e.uuid == value.parserId)
+                        ?.name ??
+                    'No parser',
+                onTap: () => _onParserTap(context),
               );
-            }
-            return const SizedBox();
-          }),
-          controller.blueprint.parserList.obx(() {
-            return CupertinoReadOnlyInput(
-              labelText: I.of(context).parser,
-              value: controller.blueprint.parserList
-                      .get((e) => e.uuid == sitePage.parserId.value)
-                      ?.name ??
-                  'No parser',
-              onTap: () => _onParserTap(context),
-            );
-          }),
+            },
+          ),
           const CupertinoDivider(height: 20),
-          if ([TemplateType.imageWaterFall, TemplateType.imageList]
-              .contains(sitePage.template.type))
-            sitePage.displayType.obx((v) => CupertinoReadOnlyInput(
-                  labelText: I.of(context).display_type,
-                  value: v.value,
-                  onTap: () => _onDisplayTap(context),
-                )),
+          NotifierTripleEnumField<SitePageNotifier, SiteDisplayType>(
+            selector: (n) => n.rule.displayType,
+            labelText: I.of(context).display_type,
+            items: SiteDisplayType.values.map((e) {
+              return SelectTileItem(title: e.getDescription(context), value: e);
+            }),
+            save: (n) => n.updateSiteDisplayType,
+          ),
           _buildIcon(context),
           _buildOpenNewPage(context),
         ],
@@ -73,53 +96,44 @@ class RulesPageBasic extends StatelessWidget {
   Widget _buildOpenNewPage(
     BuildContext context,
   ) {
-    late final List<Widget> body;
-
-    switch (sitePage.template.type) {
-      case TemplateType.autoComplete:
-      case TemplateType.imageViewer:
-        body = [];
-        break;
-
-      case TemplateType.imageList:
-      case TemplateType.imageWaterFall:
-        final extra = sitePage.template as TemplateList;
-        body = [
-          _buildOpenWidget(context,
-              labelText: I.of(context).item_jump_to,
-              target: extra.targetItem.value, onTargetChanged: (value) {
-            extra.targetItem.value = value ?? '';
-          }),
-          _buildOpenWidget(context,
-              labelText: I.of(context).auto_complete_jump_to,
-              target: extra.targetAutoComplete.value,
-              filter: (item) => item.template.type == TemplateType.autoComplete,
-              onTargetChanged: (value) {
-                extra.targetAutoComplete.value = value ?? '';
-              }),
-        ];
-        break;
-      case TemplateType.gallery:
-        final extra = sitePage.template as TemplateGallery;
-        body = [
-          _buildOpenWidget(context,
-              labelText: I.of(context).read_jump_to,
-              target: extra.targetReader.value,
-              filter: (item) => item.template.type == TemplateType.imageViewer,
-              onTargetChanged: (value) {
-                extra.targetReader.value = value ?? '';
-              }),
-        ];
-        break;
-    }
+    final notifier = context.read<SitePageNotifier>();
+    List<Widget> body = switch (notifier.rule.template) {
+      PageTemplate.autoComplete || PageTemplate.imageViewer => [],
+      PageTemplateList(:final targetItem, :final targetAutoComplete) => [
+          _OpenPageSelector(
+            labelText: I.of(context).item_jump_to,
+            target: targetItem,
+            onTargetChanged: (value) {
+              notifier.updateListTemplateTargetItem(value ?? '');
+            },
+          ),
+          _OpenPageSelector(
+            labelText: I.of(context).auto_complete_jump_to,
+            target: targetAutoComplete,
+            filter: (item) => item.template is PageTemplateAutoComplete,
+            onTargetChanged: (value) {
+              notifier.updateListTemplateTargetAutoComplete(value ?? '');
+            },
+          ),
+        ],
+      PageTemplateGallery(:final targetReader) => [
+          _OpenPageSelector(
+            labelText: I.of(context).read_jump_to,
+            target: targetReader,
+            filter: (item) => item.template is PageTemplateImageViewer,
+            onTargetChanged: (value) {
+              notifier.updateGalleryTargetReader(value ?? '');
+            },
+          ),
+        ],
+      PageTemplate() => throw UnimplementedError(),
+    };
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ...body,
-        ],
+        children: body,
       ),
     );
   }
@@ -133,7 +147,9 @@ class RulesPageBasic extends StatelessWidget {
           Text(
             I.of(context).icon,
             style: TextStyle(
-                color: FixColor.title.resolveFrom(context), fontSize: 13),
+              color: FixColor.title.resolveFrom(context),
+              fontSize: 13,
+            ),
           ),
           const SizedBox(height: 3),
           Row(
@@ -142,14 +158,20 @@ class RulesPageBasic extends StatelessWidget {
                 color: CupertinoColors.systemGroupedBackground
                     .resolveFrom(context),
                 padding: EdgeInsets.zero,
-                child: sitePage.icon.obx((v) => Icon(
-                      cupertinoIcons[v] ?? CupertinoIcons.app,
+                child: Selector<SitePageNotifier, String>(
+                  selector: (_, n) => n.rule.icon,
+                  builder: (_, icon, __) {
+                    return Icon(
+                      cupertinoIcons[icon] ?? CupertinoIcons.app,
                       color: CupertinoColors.systemBlue.resolveFrom(context),
-                    )),
+                    );
+                  },
+                ),
                 onPressed: () async {
                   final result = await showCupertinoIconDialog(context);
                   if (result != null && result.isNotEmpty) {
-                    sitePage.icon.value = result;
+                    final notifier = context.read<SitePageNotifier>();
+                    notifier.updateSiteIcon(result);
                   }
                 },
               )
@@ -161,63 +183,63 @@ class RulesPageBasic extends StatelessWidget {
   }
 
   Future<void> _onParserTap(BuildContext context) async {
+    final rulesEditorNotifier = context.read<RulesEditorNotifier>();
+    final sitePageNotifier = context.read<SitePageNotifier>();
+
     final result = await showCupertinoSelectDialog<String>(
       title: I.of(context).select_parser,
       context: context,
-      items: controller.blueprint.parserList
-          .where((e) => e.parserType == sitePage.acceptParserType())
+      items: rulesEditorNotifier.value.parserList
+          .where((e) => e.type == sitePageNotifier.rule.acceptParserType())
           .map((e) => SelectTileItem(title: e.name, value: e.uuid))
           .toList(),
       cancelText: I.of(context).negative,
     );
     if (result != null) {
-      sitePage.parserId.value = result;
+      sitePageNotifier.updateSiteParserId(result);
     }
   }
+}
 
-  Widget _buildOpenWidget(
-    BuildContext context, {
-    required String labelText,
-    required String target,
-    bool Function(SitePage)? filter,
-    required void Function(String?) onTargetChanged,
-  }) {
-    return controller.blueprint.pageList.obx(() => CupertinoReadOnlyInput(
+class _OpenPageSelector extends StatelessWidget {
+  const _OpenPageSelector({
+    required this.labelText,
+    required this.target,
+    this.filter,
+    required this.onTargetChanged,
+  });
+
+  final String labelText;
+  final String target;
+  final bool Function(SitePageRule)? filter;
+  final void Function(String?) onTargetChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Selector<RulesEditorNotifier, List<SitePageRule>>(
+      selector: (_, n) => n.blueprint.pageList,
+      builder: (_, pageList, __) {
+        return TripleReadonlyTextField(
           labelText: labelText,
-          value: controller.blueprint.pageList
-                  .get((e) => e.uuid == target)
-                  ?.name
-                  .value ??
-              I.of(context).none,
-          onTap: () => showCupertinoSelectDialog(
-            context: context,
-            items: [
-              ...controller.blueprint.pageList
-                  .where((e) => filter != null ? filter(e) : true)
-                  .map((e) => SelectTileItem(
-                        title: e.name.value,
-                        value: e.uuid,
-                      )),
-              SelectTileItem(title: I.of(context).none, value: ''),
-            ],
-          ).then((value) {
-            onTargetChanged(value);
-          }),
-        ));
-  }
-
-  Future<void> _onDisplayTap(BuildContext context) async {
-    final result = await showCupertinoSelectDialog<SiteDisplayType>(
-      title: I.of(context).display_type,
-      context: context,
-      items: SiteDisplayType.values
-          .map((e) => SelectTileItem<SiteDisplayType>(title: e.value, value: e))
-          .toList(),
-      cancelText: I.of(context).negative,
+          value:
+              pageList.get((e) => e.uuid == target)?.name ?? I.of(context).none,
+          onTap: () async {
+            final result = await showCupertinoSelectDialog(
+              context: context,
+              items: [
+                ...pageList.where((e) => filter?.call(e) ?? true).map((e) {
+                  return SelectTileItem(
+                    title: e.name,
+                    value: e.uuid,
+                  );
+                }),
+                SelectTileItem(title: I.of(context).none, value: ''),
+              ],
+            );
+            onTargetChanged(result);
+          },
+        );
+      },
     );
-
-    if (result != null) {
-      sitePage.displayType.value = result;
-    }
   }
 }

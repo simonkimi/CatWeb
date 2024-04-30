@@ -134,11 +134,11 @@ class RulesAdvance extends StatelessWidget {
           ],
           content: Column(
             children: [
-              CupertinoVnTextInput(
+              TripleVnTextField(
                 labelText: I.of(context).reg,
                 value: reg,
               ),
-              CupertinoVnTextInput(
+              TripleVnTextField(
                 labelText: I.of(context).content,
                 value: value,
               ),

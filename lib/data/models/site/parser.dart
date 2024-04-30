@@ -113,6 +113,25 @@ class ParserModel with _$ParserModel {
   factory ParserModel.fromJson(Map<String, dynamic> json) =>
       _$ParserModelFromJson(json);
 
+  ParserModelType get type {
+    return switch (this) {
+      ParserModel.autoComplete => ParserModelType.autoComplete,
+      ParserModel.detail => ParserModelType.detail,
+      ParserModel.imageReader => ParserModelType.imageReader,
+      ParserModel.list => ParserModelType.list,
+      _ => throw UnimplementedError('未知的ParserModel类型 $runtimeType'),
+    };
+  }
+
+  static ParserModel fromType(ParserModelType type) {
+    return switch (type) {
+      ParserModelType.autoComplete => const ParserModel.autoComplete(),
+      ParserModelType.detail => const ParserModel.detail(),
+      ParserModelType.imageReader => const ParserModel.imageReader(),
+      ParserModelType.list => const ParserModel.list(),
+    };
+  }
+
   String getDescription(BuildContext context) {
     return switch (this) {
       ParserModel.autoComplete => '自动完成',
@@ -122,4 +141,11 @@ class ParserModel with _$ParserModel {
       _ => throw UnimplementedError('未知的ParserModel类型 $runtimeType'),
     };
   }
+}
+
+enum ParserModelType {
+  autoComplete,
+  detail,
+  imageReader,
+  list,
 }

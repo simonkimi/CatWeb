@@ -20,9 +20,9 @@ TemplateListSubPage _$TemplateListSubPageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TemplateListSubPage {
-  String? get name => throw _privateConstructorUsedError;
-  String? get key => throw _privateConstructorUsedError;
-  String? get value => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get key => throw _privateConstructorUsedError;
+  String get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $TemplateListSubPageCopyWith<$Res> {
           TemplateListSubPage value, $Res Function(TemplateListSubPage) then) =
       _$TemplateListSubPageCopyWithImpl<$Res, TemplateListSubPage>;
   @useResult
-  $Res call({String? name, String? key, String? value});
+  $Res call({String name, String key, String value});
 }
 
 /// @nodoc
@@ -52,23 +52,23 @@ class _$TemplateListSubPageCopyWithImpl<$Res, $Val extends TemplateListSubPage>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? key = freezed,
-    Object? value = freezed,
+    Object? name = null,
+    Object? key = null,
+    Object? value = null,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      key: freezed == key
+              as String,
+      key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
-              as String?,
-      value: freezed == value
+              as String,
+      value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -81,7 +81,7 @@ abstract class _$$TemplateListSubPageImplCopyWith<$Res>
       __$$TemplateListSubPageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? name, String? key, String? value});
+  $Res call({String name, String key, String value});
 }
 
 /// @nodoc
@@ -95,23 +95,23 @@ class __$$TemplateListSubPageImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? key = freezed,
-    Object? value = freezed,
+    Object? name = null,
+    Object? key = null,
+    Object? value = null,
   }) {
     return _then(_$TemplateListSubPageImpl(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      key: freezed == key
+              as String,
+      key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
-              as String?,
-      value: freezed == value
+              as String,
+      value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -127,13 +127,13 @@ class _$TemplateListSubPageImpl implements _TemplateListSubPage {
 
   @override
   @JsonKey()
-  final String? name;
+  final String name;
   @override
   @JsonKey()
-  final String? key;
+  final String key;
   @override
   @JsonKey()
-  final String? value;
+  final String value;
 
   @override
   String toString() {
@@ -171,19 +171,19 @@ class _$TemplateListSubPageImpl implements _TemplateListSubPage {
 
 abstract class _TemplateListSubPage implements TemplateListSubPage {
   const factory _TemplateListSubPage(
-      {final String? name,
-      final String? key,
-      final String? value}) = _$TemplateListSubPageImpl;
+      {final String name,
+      final String key,
+      final String value}) = _$TemplateListSubPageImpl;
 
   factory _TemplateListSubPage.fromJson(Map<String, dynamic> json) =
       _$TemplateListSubPageImpl.fromJson;
 
   @override
-  String? get name;
+  String get name;
   @override
-  String? get key;
+  String get key;
   @override
-  String? get value;
+  String get value;
   @override
   @JsonKey(ignore: true)
   _$$TemplateListSubPageImplCopyWith<_$TemplateListSubPageImpl> get copyWith =>
@@ -197,11 +197,10 @@ TemplateListFilterItem _$TemplateListFilterItemFromJson(
 
 /// @nodoc
 mixin _$TemplateListFilterItem {
-  String? get name => throw _privateConstructorUsedError;
-  String? get key => throw _privateConstructorUsedError;
-  String? get value => throw _privateConstructorUsedError;
-  FilterType? get type => throw _privateConstructorUsedError;
-  ColorField? get color => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get key => throw _privateConstructorUsedError;
+  String get value => throw _privateConstructorUsedError;
+  FilterType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -215,14 +214,7 @@ abstract class $TemplateListFilterItemCopyWith<$Res> {
           $Res Function(TemplateListFilterItem) then) =
       _$TemplateListFilterItemCopyWithImpl<$Res, TemplateListFilterItem>;
   @useResult
-  $Res call(
-      {String? name,
-      String? key,
-      String? value,
-      FilterType? type,
-      ColorField? color});
-
-  $ColorFieldCopyWith<$Res>? get color;
+  $Res call({String name, String key, String value, FilterType type});
 }
 
 /// @nodoc
@@ -239,46 +231,29 @@ class _$TemplateListFilterItemCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? key = freezed,
-    Object? value = freezed,
-    Object? type = freezed,
-    Object? color = freezed,
+    Object? name = null,
+    Object? key = null,
+    Object? value = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      key: freezed == key
+              as String,
+      key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
-              as String?,
-      value: freezed == value
+              as String,
+      value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
+              as String,
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as FilterType?,
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as ColorField?,
+              as FilterType,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ColorFieldCopyWith<$Res>? get color {
-    if (_value.color == null) {
-      return null;
-    }
-
-    return $ColorFieldCopyWith<$Res>(_value.color!, (value) {
-      return _then(_value.copyWith(color: value) as $Val);
-    });
   }
 }
 
@@ -291,15 +266,7 @@ abstract class _$$TemplateListFilterItemImplCopyWith<$Res>
       __$$TemplateListFilterItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? name,
-      String? key,
-      String? value,
-      FilterType? type,
-      ColorField? color});
-
-  @override
-  $ColorFieldCopyWith<$Res>? get color;
+  $Res call({String name, String key, String value, FilterType type});
 }
 
 /// @nodoc
@@ -315,69 +282,61 @@ class __$$TemplateListFilterItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? key = freezed,
-    Object? value = freezed,
-    Object? type = freezed,
-    Object? color = freezed,
+    Object? name = null,
+    Object? key = null,
+    Object? value = null,
+    Object? type = null,
   }) {
     return _then(_$TemplateListFilterItemImpl(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      key: freezed == key
+              as String,
+      key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
-              as String?,
-      value: freezed == value
+              as String,
+      value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
+              as String,
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as FilterType?,
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as ColorField?,
+              as FilterType,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TemplateListFilterItemImpl implements _TemplateListFilterItem {
+class _$TemplateListFilterItemImpl extends _TemplateListFilterItem {
   const _$TemplateListFilterItemImpl(
       {this.name = '',
       this.key = '',
       this.value = '',
-      this.type = FilterType.string,
-      this.color = const ColorField()});
+      this.type = FilterType.string})
+      : super._();
 
   factory _$TemplateListFilterItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$TemplateListFilterItemImplFromJson(json);
 
   @override
   @JsonKey()
-  final String? name;
+  final String name;
   @override
   @JsonKey()
-  final String? key;
+  final String key;
   @override
   @JsonKey()
-  final String? value;
+  final String value;
   @override
   @JsonKey()
-  final FilterType? type;
-  @override
-  @JsonKey()
-  final ColorField? color;
+  final FilterType type;
 
   @override
   String toString() {
-    return 'TemplateListFilterItem(name: $name, key: $key, value: $value, type: $type, color: $color)';
+    return 'TemplateListFilterItem(name: $name, key: $key, value: $value, type: $type)';
   }
 
   @override
@@ -388,13 +347,12 @@ class _$TemplateListFilterItemImpl implements _TemplateListFilterItem {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.value, value) || other.value == value) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.color, color) || other.color == color));
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, key, value, type, color);
+  int get hashCode => Object.hash(runtimeType, name, key, value, type);
 
   @JsonKey(ignore: true)
   @override
@@ -411,27 +369,25 @@ class _$TemplateListFilterItemImpl implements _TemplateListFilterItem {
   }
 }
 
-abstract class _TemplateListFilterItem implements TemplateListFilterItem {
+abstract class _TemplateListFilterItem extends TemplateListFilterItem {
   const factory _TemplateListFilterItem(
-      {final String? name,
-      final String? key,
-      final String? value,
-      final FilterType? type,
-      final ColorField? color}) = _$TemplateListFilterItemImpl;
+      {final String name,
+      final String key,
+      final String value,
+      final FilterType type}) = _$TemplateListFilterItemImpl;
+  const _TemplateListFilterItem._() : super._();
 
   factory _TemplateListFilterItem.fromJson(Map<String, dynamic> json) =
       _$TemplateListFilterItemImpl.fromJson;
 
   @override
-  String? get name;
+  String get name;
   @override
-  String? get key;
+  String get key;
   @override
-  String? get value;
+  String get value;
   @override
-  FilterType? get type;
-  @override
-  ColorField? get color;
+  FilterType get type;
   @override
   @JsonKey(ignore: true)
   _$$TemplateListFilterItemImplCopyWith<_$TemplateListFilterItemImpl>

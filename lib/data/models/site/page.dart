@@ -1,4 +1,7 @@
+import 'package:catweb/data/models/site/parser.dart';
 import 'package:catweb/data/models/site/template.dart';
+import 'package:catweb/utils/enum_helper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'page.freezed.dart';
@@ -33,9 +36,23 @@ class SitePageRule with _$SitePageRule {
         return [];
     }
   }
+
+  ParserModelType acceptParserType() {
+    return switch (template) {
+      PageTemplate.list => ParserModelType.list,
+      PageTemplate.gallery => ParserModelType.detail,
+      PageTemplate.imageViewer => ParserModelType.imageReader,
+      PageTemplate.autoComplete => ParserModelType.autoComplete,
+      _ => throw UnimplementedError('$template not implemented'),
+    };
+  }
+
+  bool containsFlag(String flag) {
+    return this.flag.contains(flag);
+  }
 }
 
-enum SiteNetType {
+enum SiteNetType implements IEnumDescription {
   @JsonValue('get')
   get,
   @JsonValue('post')
@@ -43,16 +60,33 @@ enum SiteNetType {
   @JsonValue('put')
   put,
   @JsonValue('delete')
-  delete,
+  delete;
+
+  @override
+  String getDescription(BuildContext context) {
+    return switch (this) {
+      SiteNetType.get => 'GET',
+      SiteNetType.post => 'POST',
+      SiteNetType.put => 'PUT',
+      SiteNetType.delete => 'DELETE'
+    };
+  }
 }
 
-enum SiteDisplayType {
+enum SiteDisplayType implements IEnumDescription {
   @JsonValue('show')
   show,
   @JsonValue('hide')
   hide,
   @JsonValue('shrink')
-  shrink,
-  @JsonValue('login')
-  login,
+  shrink;
+
+  @override
+  String getDescription(BuildContext context) {
+    return switch (this) {
+      SiteDisplayType.show => '显示',
+      SiteDisplayType.hide => '隐藏',
+      SiteDisplayType.shrink => '折叠',
+    };
+  }
 }
