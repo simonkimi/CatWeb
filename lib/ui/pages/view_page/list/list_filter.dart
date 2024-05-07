@@ -1,38 +1,31 @@
-import 'package:catweb/data/models/site_model/pages/subpage.dart';
+import 'package:catweb/data/models/site/subpage.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
 import 'controller/subpage_controller.dart';
 
 class ListFilterButton extends StatelessWidget {
-  const ListFilterButton({
-    super.key,
-    required this.controller,
-  });
-
-  final SubListController controller;
+  const ListFilterButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
       padding: EdgeInsets.zero,
       minSize: 0,
-      child: Obx(() => AnimatedSwitcher(
-            duration: 200.milliseconds,
-            transitionBuilder: (child, animation) => ScaleTransition(
-              scale: animation,
-              child: child,
-            ),
-            child: controller.useFilter
-                ? const Icon(Icons.filter_alt, key: ValueKey('enable'))
-                : const Icon(Icons.filter_alt_outlined,
-                    key: ValueKey('disable')),
-          )),
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 200),
+        transitionBuilder: (child, animation) => ScaleTransition(
+          scale: animation,
+          child: child,
+        ),
+        child: controller.useFilter
+            ? const Icon(Icons.filter_alt, key: ValueKey('enable'))
+            : const Icon(Icons.filter_alt_outlined, key: ValueKey('disable')),
+      ),
       onPressed: () => _showFilterDialog(context),
     );
   }
@@ -46,13 +39,13 @@ class ListFilterButton extends StatelessWidget {
           actions: [
             CupertinoDialogAction(
               child: Text(I.of(context).back),
-              onPressed: () => context.pop(),
+              onPressed: () => Navigator.of(context).pop(),
             ),
             CupertinoDialogAction(
               child: Text(I.of(context).apply),
               onPressed: () {
-                controller.applyFilter(true);
-                context.pop();
+                controller.applyFilter();
+                Navigator.of(context).pop();
               },
             ),
           ],

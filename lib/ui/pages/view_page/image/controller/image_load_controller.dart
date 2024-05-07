@@ -48,7 +48,7 @@ class _LoadModelTask extends AsyncTask<void> {
       }
     }
     await model.loadReaderModel(
-      blueprint: blueprint,
+      siteRule: blueprint,
       localEnv: localEnv,
     );
   }

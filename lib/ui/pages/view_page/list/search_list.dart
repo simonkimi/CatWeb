@@ -1,45 +1,59 @@
 import 'package:catweb/data/models/ffi/result/result.dart';
-import 'package:catweb/data/models/site_model/pages/site_page.dart';
-import 'package:catweb/data/models/site_model/pages/template_list.dart';
+import 'package:catweb/data/models/site/page.dart';
+import 'package:catweb/data/models/site/template.dart';
 import 'package:catweb/i18n.dart';
+import 'package:catweb/ui/pages/view_page/viewer_provider.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
-import 'package:catweb/ui/pages/view_page/list/controller/search_list_controller.dart';
-import 'package:catweb/ui/pages/view_page/list/controller/subpage_controller.dart';
 import 'package:catweb/ui/pages/view_page/list/subpage_list.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import 'list_filter.dart';
 
-class SearchList extends StatefulWidget {
-  const SearchList({
+class SearchPage extends StatelessWidget {
+  const SearchPage({
     super.key,
-    required this.blueprint,
+    this.onSearch,
   });
 
-  final SitePage blueprint;
+  final ValueChanged<String>? onSearch;
 
   @override
-  State<SearchList> createState() => _SearchListState();
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
 }
 
-class _SearchListState extends State<SearchList> {
-  late SitePage blueprint = widget.blueprint;
-  late SubListController controller;
-  late final extra = blueprint.template as TemplateList;
-  late final SearchListController inputController;
-  var isSearchMode = true;
+class _SearchList extends StatefulWidget {
+  const _SearchList({
+    super.key,
+    this.onSearch,
+  });
+
+  final ValueChanged<String>? onSearch;
 
   @override
-  void initState() {
-    super.initState();
+  State<_SearchList> createState() => _SearchListState();
+}
+
+class _SearchListState extends State<_SearchList> {
+  var isSearchMode = true;
+  var isInit = false;
+
+  SitePageRule get siteRule => context.read<PageConfig>().pageRule;
+
+  PageTemplateList get template => siteRule.templateList;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (isInit) return;
     inputController = SearchListController(model: extra, onSearch: onSearch);
-    controller = SubListController(blueprint: widget.blueprint);
+    isInit = true;
   }
 
   void onSearch(String value) {
-    controller.onNewSearch(value);
     setState(() {
       isSearchMode = false;
     });
@@ -62,25 +76,24 @@ class _SearchListState extends State<SearchList> {
       onWillPop: _onWillPop,
       child: CupertinoPageScaffold(
         child: CupertinoScrollbar(
-          child: Obx(() => CupertinoAppBar(
-                canHide: controller.items.isNotEmpty,
-                title: I.of(context).search,
-                leading: CupertinoBackLeading(
-                  onPressed: () async {
-                    _onWillPop().then((value) {
-                      if (value) {
-                        context.pop();
-                      }
-                    });
-                  },
-                ),
-                tabBar: _buildSearchInput(context),
-                tabBarHeight: 40,
-                actions: _buildAction(context),
-                child: isSearchMode
-                    ? _buildSearchList(context)
-                    : _buildList(context),
-              )),
+          child: CupertinoAppBar(
+            canHide: controller.items.isNotEmpty,
+            title: I.of(context).search,
+            leading: CupertinoBackLeading(
+              onPressed: () async {
+                _onWillPop().then((value) {
+                  if (value) {
+                    context.pop();
+                  }
+                });
+              },
+            ),
+            tabBar: _buildSearchInput(context),
+            tabBarHeight: 40,
+            actions: _buildAction(context),
+            child:
+                isSearchMode ? _buildSearchList(context) : _buildList(context),
+          ),
         ),
       ),
     );
@@ -96,22 +109,22 @@ class _SearchListState extends State<SearchList> {
   }
 
   Widget _buildSearchList(BuildContext context) {
-    return Obx(() => CustomScrollView(
-          slivers: [
-            const SliverPullToRefresh(
-              extraHeight: 40,
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  final model = inputController.suggestions[index];
-                  return _buildSuggestionItem(model, context);
-                },
-                childCount: inputController.suggestions.length,
-              ),
-            ),
-          ],
-        ));
+    return CustomScrollView(
+      slivers: [
+        const SliverPullToRefresh(
+          extraHeight: 40,
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              final model = inputController.suggestions[index];
+              return _buildSuggestionItem(model, context);
+            },
+            childCount: inputController.suggestions.length,
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _buildSuggestionItem(
@@ -167,7 +180,7 @@ class _SearchListState extends State<SearchList> {
   }
 
   List<Widget> _buildAction(BuildContext context) {
-    return [if (hasFilter) ListFilterButton(controller: controller)];
+    return [if (hasFilter) const ListFilterButton()];
   }
 
   Widget _buildSearchInput(BuildContext context) {

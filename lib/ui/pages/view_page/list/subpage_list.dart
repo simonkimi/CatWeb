@@ -39,36 +39,36 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
   Widget build(BuildContext context) {
     super.build(context);
     return AppBarScrollNotifier(
-      child: Obx(() => CupertinoScrollbar(
+      child: CupertinoScrollbar(
+        controller: controller.scrollController,
+        child: SmartRefresher(
+          controller: controller.refreshController,
+          enablePullDown: false,
+          enablePullUp: !controller.state.isRefresh,
+          onLoading: () => controller.onLoadMore(),
+          footer: LoadMoreFooter(
+            hasToolBar: widget.hasToolBar,
+          ),
+          child: CustomScrollView(
             controller: controller.scrollController,
-            child: SmartRefresher(
-              controller: controller.refreshController,
-              enablePullDown: false,
-              enablePullUp: !controller.state.isRefresh,
-              onLoading: () => controller.onLoadMore(),
-              footer: LoadMoreFooter(
-                hasToolBar: widget.hasToolBar,
-              ),
-              child: CustomScrollView(
-                controller: controller.scrollController,
-                cacheExtent: 300,
-                physics: (controller.state.isRefresh ||
-                            controller.state.isLoading) &&
+            cacheExtent: 300,
+            physics:
+                (controller.state.isRefresh || controller.state.isLoading) &&
                         controller.items.isEmpty
                     ? const NeverScrollableScrollPhysics()
                     : null,
-                slivers: [
-                  SliverPullToRefresh(
-                    onRefresh: () => controller.onRefresh(),
-                    extraHeight: widget.hasTabBar
-                        ? widget.tabBarHeight ?? kCupertinoTabBarHeight
-                        : 0,
-                  ),
-                  _buildBody(context),
-                ],
+            slivers: [
+              SliverPullToRefresh(
+                onRefresh: () => controller.onRefresh(),
+                extraHeight: widget.hasTabBar
+                    ? widget.tabBarHeight ?? kCupertinoTabBarHeight
+                    : 0,
               ),
-            ),
-          )),
+              _buildBody(context),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -103,7 +103,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
                     return;
                   }
                   NavigatorNotifier.push(
-                    targetName: (controller.blueprint.template as TemplateList)
+                    targetName: (controller.siteRule.template as TemplateList)
                         .targetItem
                         .value,
                     envModel: SiteEnvStore({

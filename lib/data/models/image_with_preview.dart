@@ -9,8 +9,6 @@ import 'package:flutter/widgets.dart';
 
 /// 一个图片, 只包含预览图, 大图需要额外加载
 abstract class ImageWithPreviewModel {
-  ImageWithPreviewModel();
-
   ImageResult? get previewImage;
 
   /// 从初始

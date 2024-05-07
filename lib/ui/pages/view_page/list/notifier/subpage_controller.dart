@@ -1,22 +1,21 @@
 import 'dart:convert';
 
-import 'package:catweb/data/controller/site_service.dart';
+import 'package:catweb/data/controller/site.dart';
+import 'package:catweb/data/loaders/page_loader.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
-import 'package:catweb/data/loaders/load_more_model.dart';
+import 'package:catweb/data/models/page_loader_state.dart';
+import 'package:catweb/data/models/site/page.dart';
+import 'package:catweb/data/models/site/subpage.dart';
+import 'package:catweb/data/models/site/template.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/data/models/site_model/pages/site_page.dart';
-import 'package:catweb/data/models/site_model/pages/subpage.dart';
-import 'package:catweb/data/models/site_model/pages/template_list.dart';
-import 'package:catweb/navigator.dart';
-import 'package:catweb/network/client/image_concurrency.dart';
+import 'package:catweb/get.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
 class FilterObx {
   FilterObx(TemplateListFilterItem raw)
@@ -43,71 +42,60 @@ class FilterObx {
   FilterObx copyWith() => FilterObx.from(this);
 }
 
-class ListPageItem extends LoadMorePage<ListParserResult, ListParserResultItem,
-    ListItemModel> {
-  ListPageItem(super.pageData);
+class ListPageData extends BasePageData<ListItemModel> {
+  ListPageData(this.pageData);
+
+  final ListParserResult pageData;
 
   @override
-  List<ListParserResultItem> get items => pageData.items!;
-
-  @override
-  List<ListItemModel> genModel() => items.map((e) => ListItemModel(e)).toList();
+  List<ListItemModel> get items =>
+      pageData.items!.map((e) => ListItemModel(e)).toList();
 }
 
 /// List带预览加载的项目
-class ListItemModel extends ImageWithPreviewModel<ListParserResultItem> {
-  ListItemModel(super.previewModel);
+class ListItemModel extends ImageWithPreviewModel {
+  ListItemModel(this.previewModel);
+
+  final ListParserResultItem previewModel;
 
   @override
   ImageResult get previewImage => previewModel.previewImage!;
 
   @override
-  ListParserResultItem get value => previewModel;
-
-  @override
-  String? get idCode => value.idCode;
+  String? get idCode => previewModel.idCode;
 }
 
-class SubListController extends LoadMoreLoader<
-    ListParserResult,
-    ListParserResultItem,
-    ListItemModel> implements ReaderInfo<ListParserResultItem, ListItemModel> {
+class SubListController extends BasePageLoader<ListItemModel, ListPageData>
+    implements ReaderInfo<ListItemModel, ListItemModel> {
   SubListController({
-    required this.blueprint,
+    required this.siteRule,
     this.subPageModel,
   }) : localEnv =
             SiteEnvStore(subPageModel != null && subPageModel.value.isNotEmpty
                 ? {
-                    subPageModel.key.value.isNotEmpty
-                        ? subPageModel.key.value
-                        : 'subKey': subPageModel.value.value,
+                    subPageModel.key.isNotEmpty ? subPageModel.key : 'subKey':
+                        subPageModel.value,
                   }
                 : null);
 
-  final SitePage blueprint;
+  final SitePageRule siteRule;
   final TemplateListSubPage? subPageModel;
   final SiteEnvStore localEnv;
-  final global = get<SiteService>();
-
-  late final filter = extra.filters.map((e) => FilterObx(e)).toList().obs;
-  late final currentFilter = filter.map((e) => e.copyWith()).toList();
-
-  var filterKeys = <String>{};
 
   final scrollController = ScrollController();
 
-  Future<void> applyFilter([bool refresh = false]) async {
-    currentFilter.clear();
+  late var currentFilter =
+      siteRule.templateList.filters.map((e) => e.copyWith()).toList();
+  var filterKeys = <String>{};
+
+  Future<void> applyFilter(List<TemplateListFilterItem> filter) async {
+    currentFilter = filter;
     if (useFilter) {
-      currentFilter.addAll(filter.map((e) => e.copyWith()));
       final map = await resolveFilter();
       filterKeys.addAll(map.keys);
       localEnv.mergeMap(map);
     } else {
       localEnv.removeKeys(filterKeys);
-    }
-    if (refresh) {
-      await onRefresh();
     }
   }
 
@@ -118,74 +106,68 @@ class SubListController extends LoadMoreLoader<
   }
 
   @override
-  Future<ListPageItem> netWorkLoadPage(
-    int page,
-  ) async {
-    var baseUrl = blueprint.url.value;
+  Future<ListPageData> loadPageImpl(int page) async {
+    var baseUrl = siteRule.url;
     if (hasPageExpression(baseUrl) || page == 0) {
       // 有面数
       baseUrl = pageReplace(baseUrl, page);
     } else {
       // 无面数, 最后一个为面数
-      if (pages.isNotEmpty) {
-        final maxPage = iterableMax(pages.keys);
+      if (pageData.isNotEmpty) {
+        final maxPage = iterableMax(pageData.keys);
         if (maxPage == null) {
           throw Exception('No page loaded? WTF?');
         }
-        if (pages[maxPage]!.pageData.nextPage?.isEmpty ?? true) {
+        if (pageData[maxPage]!.pageData.nextPage?.isEmpty ?? true) {
           print('hasPageExpression loadNoData()');
-          stateLoadNoData();
-          return ListPageItem(pages[maxPage]!.pageData);
+          state.value = const PageLoaderState.end();
+          return ListPageData(pageData[maxPage]!.pageData);
         }
-        baseUrl = pages[maxPage]!.pageData.nextPage!;
+        baseUrl = pageData[maxPage]!.pageData.nextPage!;
       }
     }
     baseUrl = localEnv.apply(baseUrl);
     // 添加缓存
     if (subPageModel != null && subPageModel!.key.isNotEmpty) {
       localEnv.mergeMap({
-        subPageModel!.key.value: subPageModel!.value.value,
+        subPageModel!.key: subPageModel!.value,
       });
     }
 
     logger.d('加载网址: $baseUrl');
-    final data = await global.website.client.getList(
+    final data = await global.currentSite!.client.getList(
       url: baseUrl,
-      model: blueprint,
+      model: siteRule,
       localEnv: localEnv,
     );
 
     if (!hasPageExpression(baseUrl) &&
         (data.nextPage == baseUrl || data.nextPage!.isEmpty)) {
       print('hasPageExpression loadNoData()');
-      stateLoadNoData();
+      state.value = const PageLoaderState.end();
     }
-    return ListPageItem(data);
+    return ListPageData(data);
   }
 
   void resetFilter() {
     for (var i = 0; i < filter.length; i++) {
       filter[i].value.value = extra.filters[i].value.value;
     }
+
+
+
   }
 
   Future<Map<String, String>> resolveFilter() async {
     final map = <String, dynamic>{};
     for (final item in currentFilter) {
       if (item.key.isNotEmpty) {
-        dynamic value;
-        switch (item.type) {
-          case FilterType.boolCard:
-          case FilterType.bool:
-            value = item.value.value.trim().toLowerCase() == 'true';
-            break;
-          case FilterType.number:
-            value = int.tryParse(item.value.value);
-            break;
-          case FilterType.string:
-            value = item.value.value;
-            break;
-        }
+        dynamic value = switch (item.type) {
+          FilterType.bool =>
+            ['true', 'ok', '1'].contains(item.value.trim().toLowerCase()),
+          FilterType.number => int.tryParse(item.value),
+          FilterType.string => item.value
+        };
         map[item.key] = value;
       }
     }
@@ -207,7 +189,7 @@ class SubListController extends LoadMoreLoader<
 
   SiteEnvStore get env => global.website.globalEnv.create(localEnv);
 
-  TemplateList get extra => blueprint.template as TemplateList;
+  TemplateList get extra => siteRule.template as TemplateList;
 
   bool get useFilter => List.generate(extra.filters.length, (i) => i)
       .any((e) => filter[e].value.value != extra.filters[e].value.value);
@@ -251,4 +233,6 @@ class SubListController extends LoadMoreLoader<
     dio: global.client!.imageDio,
     concurrency: 4,
   );
+
+  SiteService get global => inject();
 }

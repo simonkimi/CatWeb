@@ -50,6 +50,34 @@ class SitePageRule with _$SitePageRule {
   bool containsFlag(String flag) {
     return this.flag.contains(flag);
   }
+
+  PageTemplateList get templateList {
+    if (template is PageTemplateList) {
+      return template as PageTemplateList;
+    }
+    throw UnimplementedError('template is not PageTemplateList');
+  }
+
+  PageTemplateGallery get templateGallery {
+    if (template is PageTemplateGallery) {
+      return template as PageTemplateGallery;
+    }
+    throw UnimplementedError('template is not PageTemplateGallery');
+  }
+
+  PageTemplateImageViewer get templateImageViewer {
+    if (template is PageTemplateImageViewer) {
+      return template as PageTemplateImageViewer;
+    }
+    throw UnimplementedError('template is not PageTemplateImageViewer');
+  }
+
+  PageTemplateAutoComplete get templateAutoComplete {
+    if (template is PageTemplateAutoComplete) {
+      return template as PageTemplateAutoComplete;
+    }
+    throw UnimplementedError('template is not PageTemplateAutoComplete');
+  }
 }
 
 enum SiteNetType implements IEnumDescription {

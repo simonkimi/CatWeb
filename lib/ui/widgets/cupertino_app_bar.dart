@@ -289,9 +289,9 @@ class AppBarScrollNotifier extends StatelessWidget {
 
 class AppBarScrollNotification extends ScrollNotification {
   AppBarScrollNotification({
-    required BuildContext context,
-    required ScrollMetrics metrics,
-  }) : super(context: context, metrics: metrics);
+    super.context,
+    required super.metrics,
+  });
 }
 
 class OffsetCupertinoAppBar extends StatelessWidget
