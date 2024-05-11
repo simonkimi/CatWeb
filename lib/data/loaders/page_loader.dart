@@ -11,14 +11,14 @@ abstract class BasePageData<TItem> {
   List<TItem> get items;
 }
 
-abstract class BasePageLoader<TItems, TPage extends BasePageData<TItems>>
+abstract class BasePageLoaderNotifier<TItems, TPage extends BasePageData<TItems>>
     with ChangeNotifier {
   final pageData = <int, TPage>{};
 
   int _currentPage = -1;
   int _startPage = 0;
 
-  ValueNotifier<PageLoaderState> state = const PageLoaderState.idle().obs;
+  PageLoaderState state = const PageLoaderState.idle();
 
   int? get chunkSize; // 每块图片数量, 如果为null则只能一面一面跳页
   int? get totalSize; // 一共有多少图片, 为null则不允许跳页
@@ -27,14 +27,16 @@ abstract class BasePageLoader<TItems, TPage extends BasePageData<TItems>>
 
   Future<void> loadNextPage() async {
     if (checkIfOutOfRange(_currentPage)) {
-      state.value = const PageLoaderState.end();
+      state = const PageLoaderState.end();
+      notifyListeners();
       return;
     }
     await _loadPageData(_currentPage + 1);
     _currentPage += 1;
     if (checkIfOutOfRange(_currentPage + 1)) {
       logger.d('下一面 $_currentPage 超出范围, 没有更多');
-      state.value = const PageLoaderState.end();
+      state = const PageLoaderState.end();
+      notifyListeners();
     }
   }
 
@@ -58,7 +60,8 @@ abstract class BasePageLoader<TItems, TPage extends BasePageData<TItems>>
   Future<void> _loadPageData(int page) async {
     if (pageData.containsKey(page)) return;
     logger.d('当前页面', _currentPage, '准备加载页面', page);
-    state.value = const PageLoaderState.loading();
+    state = const PageLoaderState.loading();
+    notifyListeners();
     try {
       final data = await loadPageImpl(page);
       pageData[page] = data;
@@ -66,7 +69,8 @@ abstract class BasePageLoader<TItems, TPage extends BasePageData<TItems>>
       notifyListeners();
     } catch (e, stack) {
       logger.e('加载', page, '失败', e, stack);
-      state.value = PageLoaderState.error(e, stack);
+      state = PageLoaderState.error(e, stack);
+      notifyListeners();
     }
   }
 

@@ -12,7 +12,7 @@ abstract base class LoaderPage<TPageItem> {
   List<TPageItem> get items;
 }
 
-abstract base class LoadPageLoaderBase<TPageItem> extends ChangeNotifier {
+abstract base class LoadPageLoaderBase<TPageItem> with ChangeNotifier {
   final Map<int, LoaderPage<TPageItem>> _pages = {};
 
   final _lock = Lock();

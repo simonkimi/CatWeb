@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'controller/subpage_controller.dart';
+import 'controller/subpage_notifier.dart';
 
 class ListFilterButton extends StatelessWidget {
   const ListFilterButton({super.key});

@@ -7,10 +7,9 @@ import 'package:catweb/utils/delay_task.dart';
 import 'package:catweb/utils/iter_helper.dart';
 import 'package:flutter/cupertino.dart';
 
-class SearchListNotifier extends ChangeNotifier {
+class SearchListNotifier with ChangeNotifier {
   SearchListNotifier({
     required this.listRule,
-    required this.onSearch,
     required this.website,
   }) {
     autoCompleteRule = website.blueMap.pageList
@@ -32,7 +31,6 @@ class SearchListNotifier extends ChangeNotifier {
   }
 
   final SitePageRule listRule;
-  final ValueChanged<String> onSearch;
   final SiteRenderConfigModel website;
 
   final textController = TextEditingController();
@@ -45,7 +43,6 @@ class SearchListNotifier extends ChangeNotifier {
 
   void onSubmitted(String value) {
     dailyTask.cancel();
-    onSearch(value);
     logger.d('NewSearch: $value');
   }
 
@@ -99,4 +96,6 @@ class SearchListNotifier extends ChangeNotifier {
     suggestions.clear();
     notifyListeners();
   }
+
+  bool get hasFilter => listRule.templateList.filters.isNotEmpty;
 }

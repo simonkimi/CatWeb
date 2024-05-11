@@ -1,15 +1,18 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/controller/navigator_service.dart';
+import 'package:catweb/data/models/page_loader_state.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_model/pages/template_list.dart';
+import 'package:catweb/ui/pages/view_page/list/notifier/subpage_notifier.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/load_more_footer.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
-import 'package:catweb/ui/pages/view_page/list/controller/subpage_controller.dart';
+import 'package:catweb/ui/pages/view_page/list/controller/subpage_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'list_extended_card.dart';
 
@@ -22,7 +25,6 @@ class SubPageListFragment extends StatefulWidget {
     this.tabBarHeight,
   });
 
-  final SubListController controller;
   final bool hasTabBar;
   final bool hasToolBar;
   final double? tabBarHeight;
@@ -33,39 +35,50 @@ class SubPageListFragment extends StatefulWidget {
 
 class _SubPageListFragmentState extends State<SubPageListFragment>
     with AutomaticKeepAliveClientMixin {
-  SubListController get controller => widget.controller;
+  SubListNotifier get notifier => context.read();
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return AppBarScrollNotifier(
       child: CupertinoScrollbar(
-        controller: controller.scrollController,
+        controller: notifier.scrollController,
         child: SmartRefresher(
-          controller: controller.refreshController,
+          controller: notifier.refreshController,
           enablePullDown: false,
-          enablePullUp: !controller.state.isRefresh,
-          onLoading: () => controller.onLoadMore(),
+          enablePullUp: true,
+          onLoading: notifier.loadNextPage,
           footer: LoadMoreFooter(
             hasToolBar: widget.hasToolBar,
           ),
-          child: CustomScrollView(
-            controller: controller.scrollController,
-            cacheExtent: 300,
-            physics:
-                (controller.state.isRefresh || controller.state.isLoading) &&
-                        controller.items.isEmpty
+          child: Selector<
+              SubListNotifier,
+              ({
+                PageLoaderState state,
+                Iterable<ListItemModel?> items,
+              })>(
+            selector: (_, notifier) => (
+              state: notifier.state,
+              items: notifier.items,
+            ),
+            builder: (_, value, __) {
+              return CustomScrollView(
+                controller: notifier.scrollController,
+                cacheExtent: 300,
+                physics: (value.state.isLoading && value.items.isEmpty)
                     ? const NeverScrollableScrollPhysics()
                     : null,
-            slivers: [
-              SliverPullToRefresh(
-                onRefresh: () => controller.onRefresh(),
-                extraHeight: widget.hasTabBar
-                    ? widget.tabBarHeight ?? kCupertinoTabBarHeight
-                    : 0,
-              ),
-              _buildBody(context),
-            ],
+                slivers: [
+                  SliverPullToRefresh(
+                    onRefresh: () => controller.onRefresh(),
+                    extraHeight: widget.hasTabBar
+                        ? widget.tabBarHeight ?? kCupertinoTabBarHeight
+                        : 0,
+                  ),
+                  _buildBody(context),
+                ],
+              );
+            },
           ),
         ),
       ),

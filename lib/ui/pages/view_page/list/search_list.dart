@@ -1,110 +1,46 @@
 import 'package:catweb/data/models/ffi/result/result.dart';
-import 'package:catweb/data/models/site/page.dart';
-import 'package:catweb/data/models/site/template.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/view_page/viewer_provider.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
-import 'package:catweb/ui/pages/view_page/list/subpage_list.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import 'list_filter.dart';
+import 'notifier/search_list_notifier.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({
-    super.key,
-    this.onSearch,
-  });
+  const SearchPage({super.key, required this.searchKey});
 
-  final ValueChanged<String>? onSearch;
+  final String searchKey;
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-class _SearchList extends StatefulWidget {
-  const _SearchList({
-    super.key,
-    this.onSearch,
-  });
-
-  final ValueChanged<String>? onSearch;
-
-  @override
-  State<_SearchList> createState() => _SearchListState();
-}
-
-class _SearchListState extends State<_SearchList> {
-  var isSearchMode = true;
-  var isInit = false;
-
-  SitePageRule get siteRule => context.read<PageConfig>().pageRule;
-
-  PageTemplateList get template => siteRule.templateList;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (isInit) return;
-    inputController = SearchListController(model: extra, onSearch: onSearch);
-    isInit = true;
-  }
-
-  void onSearch(String value) {
-    setState(() {
-      isSearchMode = false;
-    });
-  }
-
-  Future<bool> _onWillPop() async {
-    if (isSearchMode && controller.items.isNotEmpty) {
-      setState(() {
-        isSearchMode = false;
-      });
-      inputController.focusNode.unfocus();
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _onWillPop,
+    PageConfig pageConfig = context.read();
+    ViewerConfig viewerConfig = context.read();
+    return ChangeNotifierProvider(
+      create: (_) => SearchListNotifier(
+        listRule: pageConfig.pageRule,
+        website: viewerConfig.website,
+      ),
       child: CupertinoPageScaffold(
         child: CupertinoScrollbar(
           child: CupertinoAppBar(
-            canHide: controller.items.isNotEmpty,
+            canHide: false,
             title: I.of(context).search,
             leading: CupertinoBackLeading(
               onPressed: () async {
-                _onWillPop().then((value) {
-                  if (value) {
-                    context.pop();
-                  }
-                });
+                context.pop();
               },
             ),
             tabBar: _buildSearchInput(context),
             tabBarHeight: 40,
             actions: _buildAction(context),
-            child:
-                isSearchMode ? _buildSearchList(context) : _buildList(context),
+            child: _buildSearchList(context),
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildList(BuildContext context) {
-    return SubPageListFragment(
-      controller: controller,
-      hasTabBar: true,
-      hasToolBar: true,
-      tabBarHeight: 40,
     );
   }
 
@@ -114,14 +50,18 @@ class _SearchListState extends State<_SearchList> {
         const SliverPullToRefresh(
           extraHeight: 40,
         ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              final model = inputController.suggestions[index];
-              return _buildSuggestionItem(model, context);
-            },
-            childCount: inputController.suggestions.length,
-          ),
+        Selector<SearchListNotifier, List<AutoCompleteResultItem>>(
+          selector: (context, notifier) => notifier.suggestions,
+          builder: (context, suggestions, child) {
+            return SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return _buildSuggestionItem(suggestions[index], context);
+                },
+                childCount: suggestions.length,
+              ),
+            );
+          },
         ),
       ],
     );
@@ -131,10 +71,11 @@ class _SearchListState extends State<_SearchList> {
     AutoCompleteResultItem model,
     BuildContext context,
   ) {
+    SearchListNotifier notifier = context.read();
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        inputController.onSuggestionSelected(model);
+        notifier.onSuggestionSelected(model);
       },
       child: SizedBox(
         height: 50,
@@ -180,17 +121,18 @@ class _SearchListState extends State<_SearchList> {
   }
 
   List<Widget> _buildAction(BuildContext context) {
-    return [if (hasFilter) const ListFilterButton()];
+    SearchListNotifier notifier = context.read();
+    return [if (notifier.hasFilter) const ListFilterButton()];
   }
 
   Widget _buildSearchInput(BuildContext context) {
+    SearchListNotifier notifier = context.read();
     return SizedBox(
       height: 40,
       child: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
         child: CupertinoTextField(
-          controller: inputController.textController,
-          focusNode: inputController.focusNode,
+          controller: notifier.textController,
           decoration: BoxDecoration(
             color: CupertinoColors.systemGroupedBackground.resolveFrom(context),
             borderRadius: BorderRadius.circular(50),
@@ -199,32 +141,31 @@ class _SearchListState extends State<_SearchList> {
           placeholderStyle: TextStyle(
             color: CupertinoColors.placeholderText.resolveFrom(context),
           ),
-          onChanged: inputController.onTextChanged,
           clearButtonMode: OverlayVisibilityMode.editing,
           prefix: Padding(
             padding: const EdgeInsets.only(left: 10),
             child: SizedBox(
               width: 18,
               height: 18,
-              child: Obx(() => inputController.isLoading.value
-                  ? const CupertinoActivityIndicator()
-                  : const Icon(
-                      CupertinoIcons.search,
-                      color: CupertinoColors.systemGrey,
-                      size: 18,
-                    )),
+              child: Selector<SearchListNotifier, bool>(
+                selector: (context, notifier) => notifier.isLoading,
+                builder: (context, isLoading, child) {
+                  return notifier.isLoading
+                      ? const CupertinoActivityIndicator()
+                      : const Icon(
+                          CupertinoIcons.search,
+                          color: CupertinoColors.systemGrey,
+                          size: 18,
+                        );
+                },
+              ),
             ),
           ),
-          onSubmitted: inputController.onSubmitted,
-          onTap: () {
-            setState(() {
-              isSearchMode = true;
-            });
+          onSubmitted: (value) {
+            context.pop(value);
           },
         ),
       ),
     );
   }
-
-  bool get hasFilter => extra.filters.isNotEmpty;
 }

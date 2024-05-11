@@ -2,7 +2,7 @@ import 'package:catweb/data/models/site/field.dart';
 import 'package:catweb/data/models/site/selector.dart';
 import 'package:flutter/cupertino.dart';
 
-class SelectorEditorNotifier extends ChangeNotifier {
+class SelectorEditorNotifier with ChangeNotifier {
   SelectorEditorNotifier({required this.selector});
 
   SelectorModel selector;

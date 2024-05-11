@@ -6,7 +6,7 @@ import 'package:catweb/ui/widgets/tab_bar.dart';
 
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
 import 'package:catweb/ui/pages/view_page/list/search_list.dart';
-import 'package:catweb/ui/pages/view_page/list/notifier/subpage_controller.dart';
+import 'package:catweb/ui/pages/view_page/list/notifier/subpage_notifier.dart';
 import 'package:catweb/ui/pages/view_page/list/subpage_list.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
@@ -24,7 +24,7 @@ class ViewerListFragment extends StatefulWidget {
 class _ViewerListFragmentState extends State<ViewerListFragment>
     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
   late final TabController tabController;
-  late List<SubListController> subListController;
+  late List<SubListNotifier> subListNotifierList;
   bool isInit = false;
 
   bool get isSingleTab =>
@@ -45,16 +45,16 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
     tabController =
         TabController(length: template.subPages.length, vsync: this);
 
-    subListController = template.subPages.map((e) {
-      return SubListController(
+    subListNotifierList = template.subPages.map((e) {
+      return SubListNotifier(
         siteRule: pageRule,
         subPageModel: e,
       );
     }).toList();
     tabController.addListener(() {
-      subListController[tabController.index].requestFirstLoad();
+      subListNotifierList[tabController.index].requestFirstLoad();
     });
-    subListController.first.requestFirstLoad();
+    subListNotifierList.first.requestFirstLoad();
     isInit = true;
   }
 
@@ -79,7 +79,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
       actions: _buildActions(context),
       child: TabBarView(
         controller: tabController,
-        children: subListController.map((e) {
+        children: subListNotifierList.map((e) {
           return ChangeNotifierProvider.value(
             value: e,
             child: SubPageListFragment(
@@ -95,12 +95,12 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
 
   Widget _buildSingleViewer(BuildContext context) {
     return CupertinoAppBar(
-      canHide: subListController.first.items.isNotEmpty,
+      canHide: subListNotifierList.first.items.isNotEmpty,
       title: pageRule.name,
       leading: _buildLeading(context),
       actions: _buildActions(context),
       child: SubPageListFragment(
-        controller: subListController.first,
+        controller: subListNotifierList.first,
         hasTabBar: !isSingleTab,
         hasToolBar: hasToolBar,
       ),
@@ -137,7 +137,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
           child: const Icon(CupertinoIcons.search),
           onPressed: () {
             Navigator.of(context).push(
-                CupertinoPageRoute(builder: (context) => const SearchList()));
+                CupertinoPageRoute(builder: (context) => const SearchPage(searchKey: searchKey)));
           },
         ),
       if (template.filters.isNotEmpty)
@@ -156,7 +156,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
   @override
   void dispose() {
     super.dispose();
-    for (var value in subListController) {
+    for (var value in subListNotifierList) {
       value.dispose();
     }
   }

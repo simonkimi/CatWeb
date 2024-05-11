@@ -8,7 +8,6 @@ import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/models/page_loader_state.dart';
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/subpage.dart';
-import 'package:catweb/data/models/site/template.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/get.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
@@ -16,31 +15,7 @@ import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:flutter/cupertino.dart';
-
-class FilterObx {
-  FilterObx(TemplateListFilterItem raw)
-      : name = raw.name.value,
-        key = raw.key.value,
-        type = raw.type.value,
-        value = raw.value,
-        color = raw.color.color;
-
-  FilterObx.from(FilterObx raw)
-      : name = raw.name,
-        key = raw.key,
-        type = raw.type,
-        value = raw.value.value.obs,
-        color = raw.color;
-
-  final String name;
-  final String key;
-  final FilterType type;
-
-  final ValueNotifier<String> value;
-  final Color color;
-
-  FilterObx copyWith() => FilterObx.from(this);
-}
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ListPageData extends BasePageData<ListItemModel> {
   ListPageData(this.pageData);
@@ -65,9 +40,10 @@ class ListItemModel extends ImageWithPreviewModel {
   String? get idCode => previewModel.idCode;
 }
 
-class SubListController extends BasePageLoader<ListItemModel, ListPageData>
+class SubListNotifier
+    extends BasePageLoaderNotifier<ListItemModel, ListPageData>
     implements ReaderInfo<ListItemModel, ListItemModel> {
-  SubListController({
+  SubListNotifier({
     required this.siteRule,
     this.subPageModel,
   }) : localEnv =
@@ -76,17 +52,22 @@ class SubListController extends BasePageLoader<ListItemModel, ListPageData>
                     subPageModel.key.isNotEmpty ? subPageModel.key : 'subKey':
                         subPageModel.value,
                   }
-                : null);
+                : null) {
+    currentFilter =
+        siteRule.templateList.filters.map((e) => e.copyWith()).toList();
+  }
 
   final SitePageRule siteRule;
   final TemplateListSubPage? subPageModel;
   final SiteEnvStore localEnv;
 
-  final scrollController = ScrollController();
+  final ScrollController scrollController = ScrollController();
+  final RefreshController refreshController = RefreshController();
 
-  late var currentFilter =
-      siteRule.templateList.filters.map((e) => e.copyWith()).toList();
-  var filterKeys = <String>{};
+  /// 当前正在使用的过滤器
+  late List<TemplateListFilterItem> currentFilter;
+
+  Set<String> filterKeys = {};
 
   Future<void> applyFilter(List<TemplateListFilterItem> filter) async {
     currentFilter = filter;
@@ -153,22 +134,19 @@ class SubListController extends BasePageLoader<ListItemModel, ListPageData>
     for (var i = 0; i < filter.length; i++) {
       filter[i].value.value = extra.filters[i].value.value;
     }
-
-
-
   }
 
   Future<Map<String, String>> resolveFilter() async {
     final map = <String, dynamic>{};
-    for (final item in currentFilter) {
-      if (item.key.isNotEmpty) {
-        dynamic value = switch (item.type) {
+    for (final filter in currentFilter) {
+      if (filter.key.isNotEmpty) {
+        dynamic value = switch (filter.type) {
           FilterType.bool =>
-            ['true', 'ok', '1'].contains(item.value.trim().toLowerCase()),
-          FilterType.number => int.tryParse(item.value),
-          FilterType.string => item.value
+            ['true', 'ok', '1'].contains(filter.value.trim().toLowerCase()),
+          FilterType.number => int.tryParse(filter.value),
+          FilterType.string => filter.value
         };
-        map[item.key] = value;
+        map[filter.key] = value;
       }
     }
 

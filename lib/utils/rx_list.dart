@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class RxList<T> extends ChangeNotifier {
+class RxList<T> with ChangeNotifier {
   RxList([List<T>? initial]) : _value = initial ?? [];
 
   var _value = <T>[];
@@ -69,7 +69,7 @@ class RxList<T> extends ChangeNotifier {
   int get length => _value.length;
 }
 
-class RxMap<K, V> extends ChangeNotifier {
+class RxMap<K, V> with ChangeNotifier {
   RxMap([Map<K, V>? initial]) : _value = initial ?? {};
 
   var _value = <K, V>{};

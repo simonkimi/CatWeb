@@ -2,7 +2,7 @@ import 'package:catweb/data/models/site/parser.dart';
 import 'package:catweb/data/models/site/selector.dart';
 import 'package:flutter/cupertino.dart';
 
-class RuleParserNotifier extends ChangeNotifier {
+class RuleParserNotifier with ChangeNotifier {
   RuleParserNotifier(this.parser);
 
   ParserModel parser;
