@@ -192,16 +192,106 @@ abstract class _TemplateListSubPage implements TemplateListSubPage {
 
 TemplateListFilterItem _$TemplateListFilterItemFromJson(
     Map<String, dynamic> json) {
-  return _TemplateListFilterItem.fromJson(json);
+  switch (json['runtimeType']) {
+    case 'string':
+      return TemplateListFilterItemString.fromJson(json);
+    case 'int':
+      return TemplateListFilterItemNumber.fromJson(json);
+    case 'float':
+      return TemplateListFilterItemFloat.fromJson(json);
+    case 'bool':
+      return TemplateListFilterItemBool.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(
+          json,
+          'runtimeType',
+          'TemplateListFilterItem',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
 mixin _$TemplateListFilterItem {
   String get name => throw _privateConstructorUsedError;
   String get key => throw _privateConstructorUsedError;
-  String get value => throw _privateConstructorUsedError;
-  FilterType get type => throw _privateConstructorUsedError;
-
+  Object get value => throw _privateConstructorUsedError;
+  Object get defaultValue => throw _privateConstructorUsedError;
+  bool get disabledUnchanged => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name, String key, String value,
+            String defaultValue, bool disabledUnchanged)
+        string,
+    required TResult Function(String name, String key, int value,
+            int defaultValue, bool disabledUnchanged)
+        int,
+    required TResult Function(String name, String key, double value,
+            double defaultValue, bool disabledUnchanged)
+        float,
+    required TResult Function(String name, String key, bool value,
+            bool defaultValue, bool disabledUnchanged)
+        bool,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String name, String key, String value,
+            String defaultValue, bool disabledUnchanged)?
+        string,
+    TResult? Function(String name, String key, int value, int defaultValue,
+            bool disabledUnchanged)?
+        int,
+    TResult? Function(String name, String key, double value,
+            double defaultValue, bool disabledUnchanged)?
+        float,
+    TResult? Function(String name, String key, bool value, bool defaultValue,
+            bool disabledUnchanged)?
+        bool,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name, String key, String value, String defaultValue,
+            bool disabledUnchanged)?
+        string,
+    TResult Function(String name, String key, int value, int defaultValue,
+            bool disabledUnchanged)?
+        int,
+    TResult Function(String name, String key, double value, double defaultValue,
+            bool disabledUnchanged)?
+        float,
+    TResult Function(String name, String key, bool value, bool defaultValue,
+            bool disabledUnchanged)?
+        bool,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TemplateListFilterItemString value) string,
+    required TResult Function(TemplateListFilterItemNumber value) int,
+    required TResult Function(TemplateListFilterItemFloat value) float,
+    required TResult Function(TemplateListFilterItemBool value) bool,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TemplateListFilterItemString value)? string,
+    TResult? Function(TemplateListFilterItemNumber value)? int,
+    TResult? Function(TemplateListFilterItemFloat value)? float,
+    TResult? Function(TemplateListFilterItemBool value)? bool,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TemplateListFilterItemString value)? string,
+    TResult Function(TemplateListFilterItemNumber value)? int,
+    TResult Function(TemplateListFilterItemFloat value)? float,
+    TResult Function(TemplateListFilterItemBool value)? bool,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TemplateListFilterItemCopyWith<TemplateListFilterItem> get copyWith =>
@@ -214,7 +304,7 @@ abstract class $TemplateListFilterItemCopyWith<$Res> {
           $Res Function(TemplateListFilterItem) then) =
       _$TemplateListFilterItemCopyWithImpl<$Res, TemplateListFilterItem>;
   @useResult
-  $Res call({String name, String key, String value, FilterType type});
+  $Res call({String name, String key, bool disabledUnchanged});
 }
 
 /// @nodoc
@@ -233,8 +323,7 @@ class _$TemplateListFilterItemCopyWithImpl<$Res,
   $Res call({
     Object? name = null,
     Object? key = null,
-    Object? value = null,
-    Object? type = null,
+    Object? disabledUnchanged = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -245,38 +334,39 @@ class _$TemplateListFilterItemCopyWithImpl<$Res,
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as FilterType,
+      disabledUnchanged: null == disabledUnchanged
+          ? _value.disabledUnchanged
+          : disabledUnchanged // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$TemplateListFilterItemImplCopyWith<$Res>
+abstract class _$$TemplateListFilterItemStringImplCopyWith<$Res>
     implements $TemplateListFilterItemCopyWith<$Res> {
-  factory _$$TemplateListFilterItemImplCopyWith(
-          _$TemplateListFilterItemImpl value,
-          $Res Function(_$TemplateListFilterItemImpl) then) =
-      __$$TemplateListFilterItemImplCopyWithImpl<$Res>;
+  factory _$$TemplateListFilterItemStringImplCopyWith(
+          _$TemplateListFilterItemStringImpl value,
+          $Res Function(_$TemplateListFilterItemStringImpl) then) =
+      __$$TemplateListFilterItemStringImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String key, String value, FilterType type});
+  $Res call(
+      {String name,
+      String key,
+      String value,
+      String defaultValue,
+      bool disabledUnchanged});
 }
 
 /// @nodoc
-class __$$TemplateListFilterItemImplCopyWithImpl<$Res>
+class __$$TemplateListFilterItemStringImplCopyWithImpl<$Res>
     extends _$TemplateListFilterItemCopyWithImpl<$Res,
-        _$TemplateListFilterItemImpl>
-    implements _$$TemplateListFilterItemImplCopyWith<$Res> {
-  __$$TemplateListFilterItemImplCopyWithImpl(
-      _$TemplateListFilterItemImpl _value,
-      $Res Function(_$TemplateListFilterItemImpl) _then)
+        _$TemplateListFilterItemStringImpl>
+    implements _$$TemplateListFilterItemStringImplCopyWith<$Res> {
+  __$$TemplateListFilterItemStringImplCopyWithImpl(
+      _$TemplateListFilterItemStringImpl _value,
+      $Res Function(_$TemplateListFilterItemStringImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -285,9 +375,10 @@ class __$$TemplateListFilterItemImplCopyWithImpl<$Res>
     Object? name = null,
     Object? key = null,
     Object? value = null,
-    Object? type = null,
+    Object? defaultValue = null,
+    Object? disabledUnchanged = null,
   }) {
-    return _then(_$TemplateListFilterItemImpl(
+    return _then(_$TemplateListFilterItemStringImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -300,26 +391,34 @@ class __$$TemplateListFilterItemImplCopyWithImpl<$Res>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as FilterType,
+      defaultValue: null == defaultValue
+          ? _value.defaultValue
+          : defaultValue // ignore: cast_nullable_to_non_nullable
+              as String,
+      disabledUnchanged: null == disabledUnchanged
+          ? _value.disabledUnchanged
+          : disabledUnchanged // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TemplateListFilterItemImpl extends _TemplateListFilterItem {
-  const _$TemplateListFilterItemImpl(
+class _$TemplateListFilterItemStringImpl extends TemplateListFilterItemString {
+  const _$TemplateListFilterItemStringImpl(
       {this.name = '',
       this.key = '',
       this.value = '',
-      this.type = FilterType.string})
-      : super._();
+      this.defaultValue = '',
+      this.disabledUnchanged = false,
+      final String? $type})
+      : $type = $type ?? 'string',
+        super._();
 
-  factory _$TemplateListFilterItemImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TemplateListFilterItemImplFromJson(json);
+  factory _$TemplateListFilterItemStringImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TemplateListFilterItemStringImplFromJson(json);
 
   @override
   @JsonKey()
@@ -332,53 +431,163 @@ class _$TemplateListFilterItemImpl extends _TemplateListFilterItem {
   final String value;
   @override
   @JsonKey()
-  final FilterType type;
+  final String defaultValue;
+  @override
+  @JsonKey()
+  final bool disabledUnchanged;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
-    return 'TemplateListFilterItem(name: $name, key: $key, value: $value, type: $type)';
+    return 'TemplateListFilterItem.string(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TemplateListFilterItemImpl &&
+            other is _$TemplateListFilterItemStringImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.value, value) || other.value == value) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.defaultValue, defaultValue) ||
+                other.defaultValue == defaultValue) &&
+            (identical(other.disabledUnchanged, disabledUnchanged) ||
+                other.disabledUnchanged == disabledUnchanged));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, key, value, type);
+  int get hashCode => Object.hash(
+      runtimeType, name, key, value, defaultValue, disabledUnchanged);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TemplateListFilterItemImplCopyWith<_$TemplateListFilterItemImpl>
-      get copyWith => __$$TemplateListFilterItemImplCopyWithImpl<
-          _$TemplateListFilterItemImpl>(this, _$identity);
+  _$$TemplateListFilterItemStringImplCopyWith<
+          _$TemplateListFilterItemStringImpl>
+      get copyWith => __$$TemplateListFilterItemStringImplCopyWithImpl<
+          _$TemplateListFilterItemStringImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name, String key, String value,
+            String defaultValue, bool disabledUnchanged)
+        string,
+    required TResult Function(String name, String key, int value,
+            int defaultValue, bool disabledUnchanged)
+        int,
+    required TResult Function(String name, String key, double value,
+            double defaultValue, bool disabledUnchanged)
+        float,
+    required TResult Function(String name, String key, bool value,
+            bool defaultValue, bool disabledUnchanged)
+        bool,
+  }) {
+    return string(name, key, value, defaultValue, disabledUnchanged);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String name, String key, String value,
+            String defaultValue, bool disabledUnchanged)?
+        string,
+    TResult? Function(String name, String key, int value, int defaultValue,
+            bool disabledUnchanged)?
+        int,
+    TResult? Function(String name, String key, double value,
+            double defaultValue, bool disabledUnchanged)?
+        float,
+    TResult? Function(String name, String key, bool value, bool defaultValue,
+            bool disabledUnchanged)?
+        bool,
+  }) {
+    return string?.call(name, key, value, defaultValue, disabledUnchanged);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name, String key, String value, String defaultValue,
+            bool disabledUnchanged)?
+        string,
+    TResult Function(String name, String key, int value, int defaultValue,
+            bool disabledUnchanged)?
+        int,
+    TResult Function(String name, String key, double value, double defaultValue,
+            bool disabledUnchanged)?
+        float,
+    TResult Function(String name, String key, bool value, bool defaultValue,
+            bool disabledUnchanged)?
+        bool,
+    required TResult orElse(),
+  }) {
+    if (string != null) {
+      return string(name, key, value, defaultValue, disabledUnchanged);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TemplateListFilterItemString value) string,
+    required TResult Function(TemplateListFilterItemNumber value) int,
+    required TResult Function(TemplateListFilterItemFloat value) float,
+    required TResult Function(TemplateListFilterItemBool value) bool,
+  }) {
+    return string(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TemplateListFilterItemString value)? string,
+    TResult? Function(TemplateListFilterItemNumber value)? int,
+    TResult? Function(TemplateListFilterItemFloat value)? float,
+    TResult? Function(TemplateListFilterItemBool value)? bool,
+  }) {
+    return string?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TemplateListFilterItemString value)? string,
+    TResult Function(TemplateListFilterItemNumber value)? int,
+    TResult Function(TemplateListFilterItemFloat value)? float,
+    TResult Function(TemplateListFilterItemBool value)? bool,
+    required TResult orElse(),
+  }) {
+    if (string != null) {
+      return string(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TemplateListFilterItemImplToJson(
+    return _$$TemplateListFilterItemStringImplToJson(
       this,
     );
   }
 }
 
-abstract class _TemplateListFilterItem extends TemplateListFilterItem {
-  const factory _TemplateListFilterItem(
+abstract class TemplateListFilterItemString extends TemplateListFilterItem {
+  const factory TemplateListFilterItemString(
       {final String name,
       final String key,
       final String value,
-      final FilterType type}) = _$TemplateListFilterItemImpl;
-  const _TemplateListFilterItem._() : super._();
+      final String defaultValue,
+      final bool disabledUnchanged}) = _$TemplateListFilterItemStringImpl;
+  const TemplateListFilterItemString._() : super._();
 
-  factory _TemplateListFilterItem.fromJson(Map<String, dynamic> json) =
-      _$TemplateListFilterItemImpl.fromJson;
+  factory TemplateListFilterItemString.fromJson(Map<String, dynamic> json) =
+      _$TemplateListFilterItemStringImpl.fromJson;
 
   @override
   String get name;
@@ -387,9 +596,800 @@ abstract class _TemplateListFilterItem extends TemplateListFilterItem {
   @override
   String get value;
   @override
-  FilterType get type;
+  String get defaultValue;
+  @override
+  bool get disabledUnchanged;
   @override
   @JsonKey(ignore: true)
-  _$$TemplateListFilterItemImplCopyWith<_$TemplateListFilterItemImpl>
+  _$$TemplateListFilterItemStringImplCopyWith<
+          _$TemplateListFilterItemStringImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TemplateListFilterItemNumberImplCopyWith<$Res>
+    implements $TemplateListFilterItemCopyWith<$Res> {
+  factory _$$TemplateListFilterItemNumberImplCopyWith(
+          _$TemplateListFilterItemNumberImpl value,
+          $Res Function(_$TemplateListFilterItemNumberImpl) then) =
+      __$$TemplateListFilterItemNumberImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String name,
+      String key,
+      int value,
+      int defaultValue,
+      bool disabledUnchanged});
+}
+
+/// @nodoc
+class __$$TemplateListFilterItemNumberImplCopyWithImpl<$Res>
+    extends _$TemplateListFilterItemCopyWithImpl<$Res,
+        _$TemplateListFilterItemNumberImpl>
+    implements _$$TemplateListFilterItemNumberImplCopyWith<$Res> {
+  __$$TemplateListFilterItemNumberImplCopyWithImpl(
+      _$TemplateListFilterItemNumberImpl _value,
+      $Res Function(_$TemplateListFilterItemNumberImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? key = null,
+    Object? value = null,
+    Object? defaultValue = null,
+    Object? disabledUnchanged = null,
+  }) {
+    return _then(_$TemplateListFilterItemNumberImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as int,
+      defaultValue: null == defaultValue
+          ? _value.defaultValue
+          : defaultValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      disabledUnchanged: null == disabledUnchanged
+          ? _value.disabledUnchanged
+          : disabledUnchanged // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TemplateListFilterItemNumberImpl extends TemplateListFilterItemNumber {
+  const _$TemplateListFilterItemNumberImpl(
+      {this.name = '',
+      this.key = '',
+      this.value = 0,
+      this.defaultValue = 0,
+      this.disabledUnchanged = false,
+      final String? $type})
+      : $type = $type ?? 'int',
+        super._();
+
+  factory _$TemplateListFilterItemNumberImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TemplateListFilterItemNumberImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String name;
+  @override
+  @JsonKey()
+  final String key;
+  @override
+  @JsonKey()
+  final int value;
+  @override
+  @JsonKey()
+  final int defaultValue;
+  @override
+  @JsonKey()
+  final bool disabledUnchanged;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'TemplateListFilterItem.int(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TemplateListFilterItemNumberImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.defaultValue, defaultValue) ||
+                other.defaultValue == defaultValue) &&
+            (identical(other.disabledUnchanged, disabledUnchanged) ||
+                other.disabledUnchanged == disabledUnchanged));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, name, key, value, defaultValue, disabledUnchanged);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TemplateListFilterItemNumberImplCopyWith<
+          _$TemplateListFilterItemNumberImpl>
+      get copyWith => __$$TemplateListFilterItemNumberImplCopyWithImpl<
+          _$TemplateListFilterItemNumberImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name, String key, String value,
+            String defaultValue, bool disabledUnchanged)
+        string,
+    required TResult Function(String name, String key, int value,
+            int defaultValue, bool disabledUnchanged)
+        int,
+    required TResult Function(String name, String key, double value,
+            double defaultValue, bool disabledUnchanged)
+        float,
+    required TResult Function(String name, String key, bool value,
+            bool defaultValue, bool disabledUnchanged)
+        bool,
+  }) {
+    return int(name, key, value, defaultValue, disabledUnchanged);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String name, String key, String value,
+            String defaultValue, bool disabledUnchanged)?
+        string,
+    TResult? Function(String name, String key, int value, int defaultValue,
+            bool disabledUnchanged)?
+        int,
+    TResult? Function(String name, String key, double value,
+            double defaultValue, bool disabledUnchanged)?
+        float,
+    TResult? Function(String name, String key, bool value, bool defaultValue,
+            bool disabledUnchanged)?
+        bool,
+  }) {
+    return int?.call(name, key, value, defaultValue, disabledUnchanged);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name, String key, String value, String defaultValue,
+            bool disabledUnchanged)?
+        string,
+    TResult Function(String name, String key, int value, int defaultValue,
+            bool disabledUnchanged)?
+        int,
+    TResult Function(String name, String key, double value, double defaultValue,
+            bool disabledUnchanged)?
+        float,
+    TResult Function(String name, String key, bool value, bool defaultValue,
+            bool disabledUnchanged)?
+        bool,
+    required TResult orElse(),
+  }) {
+    if (int != null) {
+      return int(name, key, value, defaultValue, disabledUnchanged);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TemplateListFilterItemString value) string,
+    required TResult Function(TemplateListFilterItemNumber value) int,
+    required TResult Function(TemplateListFilterItemFloat value) float,
+    required TResult Function(TemplateListFilterItemBool value) bool,
+  }) {
+    return int(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TemplateListFilterItemString value)? string,
+    TResult? Function(TemplateListFilterItemNumber value)? int,
+    TResult? Function(TemplateListFilterItemFloat value)? float,
+    TResult? Function(TemplateListFilterItemBool value)? bool,
+  }) {
+    return int?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TemplateListFilterItemString value)? string,
+    TResult Function(TemplateListFilterItemNumber value)? int,
+    TResult Function(TemplateListFilterItemFloat value)? float,
+    TResult Function(TemplateListFilterItemBool value)? bool,
+    required TResult orElse(),
+  }) {
+    if (int != null) {
+      return int(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TemplateListFilterItemNumberImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class TemplateListFilterItemNumber extends TemplateListFilterItem {
+  const factory TemplateListFilterItemNumber(
+      {final String name,
+      final String key,
+      final int value,
+      final int defaultValue,
+      final bool disabledUnchanged}) = _$TemplateListFilterItemNumberImpl;
+  const TemplateListFilterItemNumber._() : super._();
+
+  factory TemplateListFilterItemNumber.fromJson(Map<String, dynamic> json) =
+      _$TemplateListFilterItemNumberImpl.fromJson;
+
+  @override
+  String get name;
+  @override
+  String get key;
+  @override
+  int get value;
+  @override
+  int get defaultValue;
+  @override
+  bool get disabledUnchanged;
+  @override
+  @JsonKey(ignore: true)
+  _$$TemplateListFilterItemNumberImplCopyWith<
+          _$TemplateListFilterItemNumberImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TemplateListFilterItemFloatImplCopyWith<$Res>
+    implements $TemplateListFilterItemCopyWith<$Res> {
+  factory _$$TemplateListFilterItemFloatImplCopyWith(
+          _$TemplateListFilterItemFloatImpl value,
+          $Res Function(_$TemplateListFilterItemFloatImpl) then) =
+      __$$TemplateListFilterItemFloatImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String name,
+      String key,
+      double value,
+      double defaultValue,
+      bool disabledUnchanged});
+}
+
+/// @nodoc
+class __$$TemplateListFilterItemFloatImplCopyWithImpl<$Res>
+    extends _$TemplateListFilterItemCopyWithImpl<$Res,
+        _$TemplateListFilterItemFloatImpl>
+    implements _$$TemplateListFilterItemFloatImplCopyWith<$Res> {
+  __$$TemplateListFilterItemFloatImplCopyWithImpl(
+      _$TemplateListFilterItemFloatImpl _value,
+      $Res Function(_$TemplateListFilterItemFloatImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? key = null,
+    Object? value = null,
+    Object? defaultValue = null,
+    Object? disabledUnchanged = null,
+  }) {
+    return _then(_$TemplateListFilterItemFloatImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as double,
+      defaultValue: null == defaultValue
+          ? _value.defaultValue
+          : defaultValue // ignore: cast_nullable_to_non_nullable
+              as double,
+      disabledUnchanged: null == disabledUnchanged
+          ? _value.disabledUnchanged
+          : disabledUnchanged // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TemplateListFilterItemFloatImpl extends TemplateListFilterItemFloat {
+  const _$TemplateListFilterItemFloatImpl(
+      {this.name = '',
+      this.key = '',
+      this.value = 0.0,
+      this.defaultValue = 0.0,
+      this.disabledUnchanged = false,
+      final String? $type})
+      : $type = $type ?? 'float',
+        super._();
+
+  factory _$TemplateListFilterItemFloatImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TemplateListFilterItemFloatImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String name;
+  @override
+  @JsonKey()
+  final String key;
+  @override
+  @JsonKey()
+  final double value;
+  @override
+  @JsonKey()
+  final double defaultValue;
+  @override
+  @JsonKey()
+  final bool disabledUnchanged;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'TemplateListFilterItem.float(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TemplateListFilterItemFloatImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.defaultValue, defaultValue) ||
+                other.defaultValue == defaultValue) &&
+            (identical(other.disabledUnchanged, disabledUnchanged) ||
+                other.disabledUnchanged == disabledUnchanged));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, name, key, value, defaultValue, disabledUnchanged);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TemplateListFilterItemFloatImplCopyWith<_$TemplateListFilterItemFloatImpl>
+      get copyWith => __$$TemplateListFilterItemFloatImplCopyWithImpl<
+          _$TemplateListFilterItemFloatImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name, String key, String value,
+            String defaultValue, bool disabledUnchanged)
+        string,
+    required TResult Function(String name, String key, int value,
+            int defaultValue, bool disabledUnchanged)
+        int,
+    required TResult Function(String name, String key, double value,
+            double defaultValue, bool disabledUnchanged)
+        float,
+    required TResult Function(String name, String key, bool value,
+            bool defaultValue, bool disabledUnchanged)
+        bool,
+  }) {
+    return float(name, key, value, defaultValue, disabledUnchanged);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String name, String key, String value,
+            String defaultValue, bool disabledUnchanged)?
+        string,
+    TResult? Function(String name, String key, int value, int defaultValue,
+            bool disabledUnchanged)?
+        int,
+    TResult? Function(String name, String key, double value,
+            double defaultValue, bool disabledUnchanged)?
+        float,
+    TResult? Function(String name, String key, bool value, bool defaultValue,
+            bool disabledUnchanged)?
+        bool,
+  }) {
+    return float?.call(name, key, value, defaultValue, disabledUnchanged);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name, String key, String value, String defaultValue,
+            bool disabledUnchanged)?
+        string,
+    TResult Function(String name, String key, int value, int defaultValue,
+            bool disabledUnchanged)?
+        int,
+    TResult Function(String name, String key, double value, double defaultValue,
+            bool disabledUnchanged)?
+        float,
+    TResult Function(String name, String key, bool value, bool defaultValue,
+            bool disabledUnchanged)?
+        bool,
+    required TResult orElse(),
+  }) {
+    if (float != null) {
+      return float(name, key, value, defaultValue, disabledUnchanged);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TemplateListFilterItemString value) string,
+    required TResult Function(TemplateListFilterItemNumber value) int,
+    required TResult Function(TemplateListFilterItemFloat value) float,
+    required TResult Function(TemplateListFilterItemBool value) bool,
+  }) {
+    return float(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TemplateListFilterItemString value)? string,
+    TResult? Function(TemplateListFilterItemNumber value)? int,
+    TResult? Function(TemplateListFilterItemFloat value)? float,
+    TResult? Function(TemplateListFilterItemBool value)? bool,
+  }) {
+    return float?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TemplateListFilterItemString value)? string,
+    TResult Function(TemplateListFilterItemNumber value)? int,
+    TResult Function(TemplateListFilterItemFloat value)? float,
+    TResult Function(TemplateListFilterItemBool value)? bool,
+    required TResult orElse(),
+  }) {
+    if (float != null) {
+      return float(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TemplateListFilterItemFloatImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class TemplateListFilterItemFloat extends TemplateListFilterItem {
+  const factory TemplateListFilterItemFloat(
+      {final String name,
+      final String key,
+      final double value,
+      final double defaultValue,
+      final bool disabledUnchanged}) = _$TemplateListFilterItemFloatImpl;
+  const TemplateListFilterItemFloat._() : super._();
+
+  factory TemplateListFilterItemFloat.fromJson(Map<String, dynamic> json) =
+      _$TemplateListFilterItemFloatImpl.fromJson;
+
+  @override
+  String get name;
+  @override
+  String get key;
+  @override
+  double get value;
+  @override
+  double get defaultValue;
+  @override
+  bool get disabledUnchanged;
+  @override
+  @JsonKey(ignore: true)
+  _$$TemplateListFilterItemFloatImplCopyWith<_$TemplateListFilterItemFloatImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TemplateListFilterItemBoolImplCopyWith<$Res>
+    implements $TemplateListFilterItemCopyWith<$Res> {
+  factory _$$TemplateListFilterItemBoolImplCopyWith(
+          _$TemplateListFilterItemBoolImpl value,
+          $Res Function(_$TemplateListFilterItemBoolImpl) then) =
+      __$$TemplateListFilterItemBoolImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String name,
+      String key,
+      bool value,
+      bool defaultValue,
+      bool disabledUnchanged});
+}
+
+/// @nodoc
+class __$$TemplateListFilterItemBoolImplCopyWithImpl<$Res>
+    extends _$TemplateListFilterItemCopyWithImpl<$Res,
+        _$TemplateListFilterItemBoolImpl>
+    implements _$$TemplateListFilterItemBoolImplCopyWith<$Res> {
+  __$$TemplateListFilterItemBoolImplCopyWithImpl(
+      _$TemplateListFilterItemBoolImpl _value,
+      $Res Function(_$TemplateListFilterItemBoolImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? key = null,
+    Object? value = null,
+    Object? defaultValue = null,
+    Object? disabledUnchanged = null,
+  }) {
+    return _then(_$TemplateListFilterItemBoolImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as bool,
+      defaultValue: null == defaultValue
+          ? _value.defaultValue
+          : defaultValue // ignore: cast_nullable_to_non_nullable
+              as bool,
+      disabledUnchanged: null == disabledUnchanged
+          ? _value.disabledUnchanged
+          : disabledUnchanged // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TemplateListFilterItemBoolImpl extends TemplateListFilterItemBool {
+  const _$TemplateListFilterItemBoolImpl(
+      {this.name = '',
+      this.key = '',
+      this.value = false,
+      this.defaultValue = false,
+      this.disabledUnchanged = false,
+      final String? $type})
+      : $type = $type ?? 'bool',
+        super._();
+
+  factory _$TemplateListFilterItemBoolImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TemplateListFilterItemBoolImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String name;
+  @override
+  @JsonKey()
+  final String key;
+  @override
+  @JsonKey()
+  final bool value;
+  @override
+  @JsonKey()
+  final bool defaultValue;
+  @override
+  @JsonKey()
+  final bool disabledUnchanged;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'TemplateListFilterItem.bool(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TemplateListFilterItemBoolImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.defaultValue, defaultValue) ||
+                other.defaultValue == defaultValue) &&
+            (identical(other.disabledUnchanged, disabledUnchanged) ||
+                other.disabledUnchanged == disabledUnchanged));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, name, key, value, defaultValue, disabledUnchanged);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TemplateListFilterItemBoolImplCopyWith<_$TemplateListFilterItemBoolImpl>
+      get copyWith => __$$TemplateListFilterItemBoolImplCopyWithImpl<
+          _$TemplateListFilterItemBoolImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name, String key, String value,
+            String defaultValue, bool disabledUnchanged)
+        string,
+    required TResult Function(String name, String key, int value,
+            int defaultValue, bool disabledUnchanged)
+        int,
+    required TResult Function(String name, String key, double value,
+            double defaultValue, bool disabledUnchanged)
+        float,
+    required TResult Function(String name, String key, bool value,
+            bool defaultValue, bool disabledUnchanged)
+        bool,
+  }) {
+    return bool(name, key, value, defaultValue, disabledUnchanged);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String name, String key, String value,
+            String defaultValue, bool disabledUnchanged)?
+        string,
+    TResult? Function(String name, String key, int value, int defaultValue,
+            bool disabledUnchanged)?
+        int,
+    TResult? Function(String name, String key, double value,
+            double defaultValue, bool disabledUnchanged)?
+        float,
+    TResult? Function(String name, String key, bool value, bool defaultValue,
+            bool disabledUnchanged)?
+        bool,
+  }) {
+    return bool?.call(name, key, value, defaultValue, disabledUnchanged);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name, String key, String value, String defaultValue,
+            bool disabledUnchanged)?
+        string,
+    TResult Function(String name, String key, int value, int defaultValue,
+            bool disabledUnchanged)?
+        int,
+    TResult Function(String name, String key, double value, double defaultValue,
+            bool disabledUnchanged)?
+        float,
+    TResult Function(String name, String key, bool value, bool defaultValue,
+            bool disabledUnchanged)?
+        bool,
+    required TResult orElse(),
+  }) {
+    if (bool != null) {
+      return bool(name, key, value, defaultValue, disabledUnchanged);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TemplateListFilterItemString value) string,
+    required TResult Function(TemplateListFilterItemNumber value) int,
+    required TResult Function(TemplateListFilterItemFloat value) float,
+    required TResult Function(TemplateListFilterItemBool value) bool,
+  }) {
+    return bool(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TemplateListFilterItemString value)? string,
+    TResult? Function(TemplateListFilterItemNumber value)? int,
+    TResult? Function(TemplateListFilterItemFloat value)? float,
+    TResult? Function(TemplateListFilterItemBool value)? bool,
+  }) {
+    return bool?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TemplateListFilterItemString value)? string,
+    TResult Function(TemplateListFilterItemNumber value)? int,
+    TResult Function(TemplateListFilterItemFloat value)? float,
+    TResult Function(TemplateListFilterItemBool value)? bool,
+    required TResult orElse(),
+  }) {
+    if (bool != null) {
+      return bool(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TemplateListFilterItemBoolImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class TemplateListFilterItemBool extends TemplateListFilterItem {
+  const factory TemplateListFilterItemBool(
+      {final String name,
+      final String key,
+      final bool value,
+      final bool defaultValue,
+      final bool disabledUnchanged}) = _$TemplateListFilterItemBoolImpl;
+  const TemplateListFilterItemBool._() : super._();
+
+  factory TemplateListFilterItemBool.fromJson(Map<String, dynamic> json) =
+      _$TemplateListFilterItemBoolImpl.fromJson;
+
+  @override
+  String get name;
+  @override
+  String get key;
+  @override
+  bool get value;
+  @override
+  bool get defaultValue;
+  @override
+  bool get disabledUnchanged;
+  @override
+  @JsonKey(ignore: true)
+  _$$TemplateListFilterItemBoolImplCopyWith<_$TemplateListFilterItemBoolImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

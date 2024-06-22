@@ -57,7 +57,6 @@ _$PageTemplateListImpl _$$PageTemplateListImplFromJson(
       script: json['script'] == null
           ? const ScriptField.output()
           : ScriptField.fromJson(json['script'] as Map<String, dynamic>),
-      disableUnchanged: json['disableUnchanged'] as bool? ?? false,
       targetItem: json['targetItem'] as String? ?? '',
       targetAutoComplete: json['targetAutoComplete'] as String? ?? '',
       $type: json['runtimeType'] as String?,
@@ -70,7 +69,6 @@ Map<String, dynamic> _$$PageTemplateListImplToJson(
       'subPages': instance.subPages,
       'filters': instance.filters,
       'script': instance.script,
-      'disableUnchanged': instance.disableUnchanged,
       'targetItem': instance.targetItem,
       'targetAutoComplete': instance.targetAutoComplete,
       'runtimeType': instance.$type,

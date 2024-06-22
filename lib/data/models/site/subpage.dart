@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:catweb/data/models/site/field.dart';
 import 'package:catweb/utils/enum_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -25,15 +22,42 @@ class TemplateListSubPage with _$TemplateListSubPage {
 class TemplateListFilterItem with _$TemplateListFilterItem {
   const TemplateListFilterItem._();
 
-  const factory TemplateListFilterItem({
+  const factory TemplateListFilterItem.string({
     @Default('') String name,
     @Default('') String key,
     @Default('') String value,
-    @Default(FilterType.string) FilterType type,
-  }) = _TemplateListFilterItem;
+    @Default('') String defaultValue,
+    @Default(false) bool disabledUnchanged,
+  }) = TemplateListFilterItemString;
+
+  const factory TemplateListFilterItem.int({
+    @Default('') String name,
+    @Default('') String key,
+    @Default(0) int value,
+    @Default(0) int defaultValue,
+    @Default(false) bool disabledUnchanged,
+  }) = TemplateListFilterItemNumber;
+
+  const factory TemplateListFilterItem.float({
+    @Default('') String name,
+    @Default('') String key,
+    @Default(0.0) double value,
+    @Default(0.0) double defaultValue,
+    @Default(false) bool disabledUnchanged,
+  }) = TemplateListFilterItemFloat;
+
+  const factory TemplateListFilterItem.bool({
+    @Default('') String name,
+    @Default('') String key,
+    @Default(false) bool value,
+    @Default(false) bool defaultValue,
+    @Default(false) bool disabledUnchanged,
+  }) = TemplateListFilterItemBool;
 
   factory TemplateListFilterItem.fromJson(Map<String, dynamic> json) =>
       _$TemplateListFilterItemFromJson(json);
+
+  bool get isChanged => value != defaultValue;
 }
 
 enum FilterType implements IEnumDescription {

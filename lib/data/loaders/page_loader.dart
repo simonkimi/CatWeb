@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:catweb/data/models/page_loader_state.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
-import 'package:catweb/utils/obs_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 

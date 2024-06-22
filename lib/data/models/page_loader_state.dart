@@ -28,4 +28,9 @@ class PageLoaderState with _$PageLoaderState {
     PageLoaderState.loading => true,
     _ => false,
   };
+
+  bool get isError => switch (this) {
+    PageLoaderState.error => true,
+    _ => false,
+  };
 }

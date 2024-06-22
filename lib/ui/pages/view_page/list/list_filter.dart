@@ -1,18 +1,19 @@
 import 'package:catweb/data/models/site/subpage.dart';
 import 'package:catweb/i18n.dart';
+import 'package:catweb/ui/pages/view_page/list/notifier/subpage_notifier.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'controller/subpage_notifier.dart';
+import 'package:provider/provider.dart';
 
 class ListFilterButton extends StatelessWidget {
   const ListFilterButton({super.key});
 
   @override
   Widget build(BuildContext context) {
+    SubListNotifier notifier = context.watch();
     return CupertinoButton(
       padding: EdgeInsets.zero,
       minSize: 0,
@@ -22,7 +23,7 @@ class ListFilterButton extends StatelessWidget {
           scale: animation,
           child: child,
         ),
-        child: controller.useFilter
+        child: notifier.isFilterChanged
             ? const Icon(Icons.filter_alt, key: ValueKey('enable'))
             : const Icon(Icons.filter_alt_outlined, key: ValueKey('disable')),
       ),

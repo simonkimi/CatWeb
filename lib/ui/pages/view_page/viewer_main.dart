@@ -1,6 +1,5 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/site.dart';
-import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/get.dart';
 import 'package:catweb/i18n.dart';
@@ -38,7 +37,7 @@ class ViewerMain extends HookWidget {
             return const EmptyFragment();
           }
           return Provider(
-            create: (_) => ViewerConfig(website: website),
+            create: (_) => ViewerConfigProvider(website: website),
             child: _buildBody(context, website),
           );
         },
@@ -48,7 +47,7 @@ class ViewerMain extends HookWidget {
 
   Widget _buildBody(BuildContext context, SiteRenderConfigModel website) {
     if (website.displayPage.length <= 1) {
-      return _buildSitePage(context, website, website.displayPage.first);
+      return ViewerPage(sitePageRule: website.displayPage.first);
     }
 
     return CupertinoTabScaffold(
@@ -65,19 +64,8 @@ class ViewerMain extends HookWidget {
         }).toList(),
       ),
       tabBuilder: (BuildContext context, int index) {
-        return _buildSitePage(context, website, website.displayPage[index]);
+        return ViewerPage(sitePageRule: website.displayPage[index]);
       },
-    );
-  }
-
-  Widget _buildSitePage(
-    BuildContext context,
-    SiteRenderConfigModel website,
-    SitePageRule target,
-  ) {
-    return Provider(
-      create: (_) => PageConfig(pageRule: target),
-      child: const ViewerPage(),
     );
   }
 }

@@ -66,24 +66,22 @@ class SubListNotifier
 
   /// 当前正在使用的过滤器
   late List<TemplateListFilterItem> currentFilter;
+  String searchKeywords = '';
 
-  Set<String> filterKeys = {};
-
-  Future<void> applyFilter(List<TemplateListFilterItem> filter) async {
-    currentFilter = filter;
-    if (useFilter) {
-      final map = await resolveFilter();
-      filterKeys.addAll(map.keys);
-      localEnv.mergeMap(map);
-    } else {
-      localEnv.removeKeys(filterKeys);
-    }
+  /// 开始一个新的搜索, 用户点击搜索按钮触发
+  Future<void> onNewSearch(String keywords) async {
+    searchKeywords = searchKeywords;
+    localEnv.mergeMap({'search': keywords.trim()});
+    await refresh();
   }
 
-  Future<void> onNewSearch(String keywords) async {
-    await applyFilter();
-    localEnv.mergeMap({'search': keywords.trim()});
-    await onRefresh();
+  /// 应用过滤器
+  Future<void> applyFilter(List<TemplateListFilterItem> filter) async {
+    currentFilter = filter;
+    var filterKeys = filter.map((e) => e.key);
+    localEnv.removeKeys(filterKeys);
+    var result = await resolveFilter();
+    localEnv.mergeMap(result);
   }
 
   @override
@@ -139,15 +137,9 @@ class SubListNotifier
   Future<Map<String, String>> resolveFilter() async {
     final map = <String, dynamic>{};
     for (final filter in currentFilter) {
-      if (filter.key.isNotEmpty) {
-        dynamic value = switch (filter.type) {
-          FilterType.bool =>
-            ['true', 'ok', '1'].contains(filter.value.trim().toLowerCase()),
-          FilterType.number => int.tryParse(filter.value),
-          FilterType.string => filter.value
-        };
-        map[filter.key] = value;
-      }
+      if (filter.key.isEmpty) continue;
+      if (!filter.isChanged && filter.disabledUnchanged) continue;
+      map[filter.key] = filter.value;
     }
 
     final json = jsonEncode(map);
@@ -167,14 +159,14 @@ class SubListNotifier
 
   SiteEnvStore get env => global.website.globalEnv.create(localEnv);
 
-  TemplateList get extra => siteRule.template as TemplateList;
+  // bool get useFilter => List.generate(extra.filters.length, (i) => i)
+  //     .any((e) => filter[e].value.value != extra.filters[e].value.value);
 
-  bool get useFilter => List.generate(extra.filters.length, (i) => i)
-      .any((e) => filter[e].value.value != extra.filters[e].value.value);
+  bool get isFullScreenLoading => items.isEmpty && state.isError;
 
-  bool get isFullScreenLoading => items.isEmpty && state.isLoading;
+  bool get isFullScreenError => items.isEmpty && state.isError;
 
-  bool get isFullScreenError => items.isEmpty && errorMessage != null;
+  bool get isFilterChanged => currentFilter.any((e) => e.isChanged);
 
   @override
   void dispose() {

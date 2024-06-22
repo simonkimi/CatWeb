@@ -72,97 +72,81 @@ final ehTestSite = SiteBlueprint(
       template: PageTemplate.list(
           targetItem: _detailUuid,
           targetAutoComplete: _autoCompleteUuid,
-          disableUnchanged: true,
           filters: [
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '同人志',
               key: 'b_doujinshi',
-              type: FilterType.bool,
-              value: 'true',
+              defaultValue: true,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '漫画',
               key: 'b_manga',
-              type: FilterType.bool,
-              value: 'true',
+              defaultValue: true,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '游戏CG',
               key: 'b_gamecg',
-              type: FilterType.bool,
-              value: 'true',
+              defaultValue: true,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '图片集',
               key: 'b_imageset',
-              type: FilterType.bool,
-              value: 'true',
+              defaultValue: true,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '画师CG',
               key: 'b_artistcg',
-              type: FilterType.bool,
-              value: 'true',
+              defaultValue: true,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: 'Cosplay',
               key: 'b_cosplay',
-              type: FilterType.bool,
-              value: 'true',
+              defaultValue: true,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '西方',
               key: 'b_western',
-              type: FilterType.bool,
-              value: 'true',
+              defaultValue: true,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '无H',
               key: 'b_nonh',
-              type: FilterType.bool,
-              value: 'true',
+              defaultValue: true,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '杂项',
               key: 'b_misc',
-              type: FilterType.bool,
-              value: 'true',
+              defaultValue: true,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '搜索画廊名称',
               key: 'f_sname',
-              type: FilterType.bool,
-              value: 'true',
+              defaultValue: true,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '搜索画廊标签',
               key: 'f_stags',
-              type: FilterType.bool,
-              value: 'true',
+              defaultValue: true,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '搜索画廊种子',
               key: 'f_storr',
-              type: FilterType.bool,
-              value: 'false',
+              defaultValue: false,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '搜索低愿力标签',
               key: 'f_sdt1',
-              type: FilterType.bool,
-              value: 'false',
+              defaultValue: false,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '搜索画廊描述',
               key: 'f_sdesc',
-              type: FilterType.bool,
-              value: 'false',
+              defaultValue: false,
             ),
-            const TemplateListFilterItem(
+            const TemplateListFilterItem.bool(
               name: '显示删除的画廊',
               key: 'f_sh',
-              type: FilterType.bool,
-              value: 'false',
+              defaultValue: false,
             ),
           ],
           script: const ScriptField.js(

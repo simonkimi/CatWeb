@@ -17,8 +17,8 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PageConfig pageConfig = context.read();
-    ViewerConfig viewerConfig = context.read();
+    PageConfigProvider pageConfig = context.read();
+    ViewerConfigProvider viewerConfig = context.read();
     return ChangeNotifierProvider(
       create: (_) => SearchListNotifier(
         listRule: pageConfig.pageRule,

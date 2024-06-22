@@ -48,5 +48,4 @@ const _$SiteDisplayTypeEnumMap = {
   SiteDisplayType.show: 'show',
   SiteDisplayType.hide: 'hide',
   SiteDisplayType.shrink: 'shrink',
-  SiteDisplayType.login: 'login',
 };

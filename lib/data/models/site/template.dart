@@ -27,7 +27,6 @@ class PageTemplate with _$PageTemplate {
     @Default([]) List<TemplateListSubPage> subPages,
     @Default([]) List<TemplateListFilterItem> filters,
     @Default(ScriptField.output()) ScriptField script,
-    @Default(false) bool disableUnchanged,
     @Default('') String targetItem,
     @Default('') String targetAutoComplete,
   }) = PageTemplateList;
