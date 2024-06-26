@@ -10,6 +10,7 @@ import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/subpage.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/get.dart';
+import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
@@ -64,8 +65,7 @@ class SubListNotifier
   final ScrollController scrollController = ScrollController();
   final RefreshController refreshController = RefreshController();
 
-  /// 当前正在使用的过滤器
-  late List<TemplateListFilterItem> currentFilter;
+
   String searchKeywords = '';
 
   /// 开始一个新的搜索, 用户点击搜索按钮触发
@@ -75,14 +75,7 @@ class SubListNotifier
     await refresh();
   }
 
-  /// 应用过滤器
-  Future<void> applyFilter(List<TemplateListFilterItem> filter) async {
-    currentFilter = filter;
-    var filterKeys = filter.map((e) => e.key);
-    localEnv.removeKeys(filterKeys);
-    var result = await resolveFilter();
-    localEnv.mergeMap(result);
-  }
+
 
   @override
   Future<ListPageData> loadPageImpl(int page) async {
@@ -99,7 +92,7 @@ class SubListNotifier
         }
         if (pageData[maxPage]!.pageData.nextPage?.isEmpty ?? true) {
           print('hasPageExpression loadNoData()');
-          state.value = const PageLoaderState.end();
+          state = const PageLoaderState.end();
           return ListPageData(pageData[maxPage]!.pageData);
         }
         baseUrl = pageData[maxPage]!.pageData.nextPage!;
@@ -123,16 +116,12 @@ class SubListNotifier
     if (!hasPageExpression(baseUrl) &&
         (data.nextPage == baseUrl || data.nextPage!.isEmpty)) {
       print('hasPageExpression loadNoData()');
-      state.value = const PageLoaderState.end();
+      state = const PageLoaderState.end();
     }
     return ListPageData(data);
   }
 
-  void resetFilter() {
-    for (var i = 0; i < filter.length; i++) {
-      filter[i].value.value = extra.filters[i].value.value;
-    }
-  }
+
 
   Future<Map<String, String>> resolveFilter() async {
     final map = <String, dynamic>{};
@@ -199,8 +188,8 @@ class SubListNotifier
   void onReaderIndexChanged(int index) {}
 
   @override
-  late final previewConcurrency = ImageListConcurrency(
-    dio: global.client!.imageDio,
+  late final previewConcurrency = ImageLoaderQueue(
+    dio: global.currentSite!.client.imageDio,
     concurrency: 4,
   );
 

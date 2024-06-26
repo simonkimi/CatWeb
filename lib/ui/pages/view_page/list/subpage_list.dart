@@ -1,7 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/page_loader_state.dart';
-import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/ui/pages/view_page/list/notifier/subpage_notifier.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
@@ -65,7 +64,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
                     : null,
                 slivers: [
                   SliverPullToRefresh(
-                    onRefresh: () => controller.onRefresh(),
+                    onRefresh: () => notifier.refresh(),
                     extraHeight: widget.hasTabBar
                         ? widget.tabBarHeight ?? kCupertinoTabBarHeight
                         : 0,
@@ -81,57 +80,64 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
   }
 
   Widget _buildBody(BuildContext context) {
-    return Obx(() {
-      if (controller.isFullScreenLoading) {
-        return const LoadingSliver();
-      } else if (controller.isFullScreenError) {
-        return ExceptionSliver(errMsg: controller.errorMessage!.toString());
-      }
-      return _buildSliverList(context);
-    });
+    return Selector<
+        SubListNotifier,
+        ({
+          PageLoaderState state,
+          Iterable<ListItemModel?> items,
+        })>(
+      selector: (_, n) => (state: n.state, items: n.items),
+      builder: (_, value, __) {
+        return switch (value.state) {
+          PageLoaderState.loading when value.items.isEmpty =>
+            const LoadingSliver(),
+          PageLoaderStateError(:final error) when value.items.isEmpty =>
+            ExceptionSliver(errMsg: error.toString()),
+          _ => _buildSliverList(context)
+        };
+      },
+    );
   }
 
   Widget _buildSliverList(BuildContext context) {
-    return Obx(() {
-      return SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (context, index) {
-            if (index.isOdd) {
-              return const ImageListDivider();
-            }
-            final ListItemModel model = controller.items.toList()[index ~/ 2]!;
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-              child: ListExtendedCard(
-                model: model.previewModel,
-                concurrency: controller.previewConcurrency,
-                onTap: () {
-                  if (model.idCode?.isEmpty == true) {
-                    BotToast.showText(text: '跳转目标为空');
-                    return;
-                  }
-                  NavigatorNotifier.push(
-                    targetName: (controller.siteRule.template as TemplateList)
-                        .targetItem
-                        .value,
-                    envModel: SiteEnvStore({
-                      'idCode': model.idCode ?? '',
-                    }),
-                    model: model,
-                  );
-                },
-              ),
-            );
-          },
-          childCount: controller.items.length * 2,
-        ),
-      );
-    });
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          if (index.isOdd) {
+            return const ImageListDivider();
+          }
+          final ListItemModel model = notifier.items.toList()[index ~/ 2]!;
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+            child: ListExtendedCard(
+              model: model.previewModel,
+              queue: notifier.previewConcurrency,
+              onTap: () {
+                if (model.idCode?.isEmpty == true) {
+                  BotToast.showText(text: '跳转目标为空');
+                  return;
+                }
+                // TODO 跳转到详情界面
+                // NavigatorNotifier.push(
+                //   targetName: (controller.siteRule.template as TemplateList)
+                //       .targetItem
+                //       .value,
+                //   envModel: SiteEnvStore({
+                //     'idCode': model.idCode ?? '',
+                //   }),
+                //   model: model,
+                // );
+              },
+            ),
+          );
+        },
+        childCount: notifier.items.length * 2,
+      ),
+    );
   }
 
   @override
   void dispose() {
-    controller.dispose();
     super.dispose();
   }
 

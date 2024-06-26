@@ -7,8 +7,8 @@ import 'package:catweb/utils/delay_task.dart';
 import 'package:catweb/utils/iter_helper.dart';
 import 'package:flutter/cupertino.dart';
 
-class SearchListNotifier with ChangeNotifier {
-  SearchListNotifier({
+class SearchNotifier with ChangeNotifier {
+  SearchNotifier({
     required this.listRule,
     required this.website,
   }) {

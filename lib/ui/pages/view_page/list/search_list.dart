@@ -20,7 +20,7 @@ class SearchPage extends StatelessWidget {
     PageConfigProvider pageConfig = context.read();
     ViewerConfigProvider viewerConfig = context.read();
     return ChangeNotifierProvider(
-      create: (_) => SearchListNotifier(
+      create: (_) => SearchNotifier(
         listRule: pageConfig.pageRule,
         website: viewerConfig.website,
       ),
@@ -50,7 +50,7 @@ class SearchPage extends StatelessWidget {
         const SliverPullToRefresh(
           extraHeight: 40,
         ),
-        Selector<SearchListNotifier, List<AutoCompleteResultItem>>(
+        Selector<SearchNotifier, List<AutoCompleteResultItem>>(
           selector: (context, notifier) => notifier.suggestions,
           builder: (context, suggestions, child) {
             return SliverList(
@@ -71,7 +71,7 @@ class SearchPage extends StatelessWidget {
     AutoCompleteResultItem model,
     BuildContext context,
   ) {
-    SearchListNotifier notifier = context.read();
+    SearchNotifier notifier = context.read();
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
@@ -121,12 +121,12 @@ class SearchPage extends StatelessWidget {
   }
 
   List<Widget> _buildAction(BuildContext context) {
-    SearchListNotifier notifier = context.read();
+    SearchNotifier notifier = context.read();
     return [if (notifier.hasFilter) const ListFilterButton()];
   }
 
   Widget _buildSearchInput(BuildContext context) {
-    SearchListNotifier notifier = context.read();
+    SearchNotifier notifier = context.read();
     return SizedBox(
       height: 40,
       child: Padding(
@@ -147,7 +147,7 @@ class SearchPage extends StatelessWidget {
             child: SizedBox(
               width: 18,
               height: 18,
-              child: Selector<SearchListNotifier, bool>(
+              child: Selector<SearchNotifier, bool>(
                 selector: (context, notifier) => notifier.isLoading,
                 builder: (context, isLoading, child) {
                   return notifier.isLoading

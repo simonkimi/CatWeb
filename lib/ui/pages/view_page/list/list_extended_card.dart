@@ -3,6 +3,7 @@ import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -12,12 +13,12 @@ class ListExtendedCard extends StatelessWidget {
     super.key,
     required this.model,
     required this.onTap,
-    required this.concurrency,
+    required this.queue,
   });
 
   final ListParserResultItem model;
   final VoidCallback onTap;
-  final ImageListConcurrency concurrency;
+  final ImageLoaderQueue queue;
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +87,7 @@ class ListExtendedCard extends StatelessWidget {
   Widget _buildLeftImage() {
     final child = ImageLoader(
       model: model.previewImage!,
-      concurrency: concurrency,
+      queue: queue,
       innerImageBuilder: (context, child) {
         return Container(
           clipBehavior: Clip.antiAlias,

@@ -46,7 +46,7 @@ mixin _$PageLoaderState {
     required TResult Function(_Idle value) idle,
     required TResult Function(_Running value) loading,
     required TResult Function(_End value) end,
-    required TResult Function(_Error value) error,
+    required TResult Function(PageLoaderStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,7 +54,7 @@ mixin _$PageLoaderState {
     TResult? Function(_Idle value)? idle,
     TResult? Function(_Running value)? loading,
     TResult? Function(_End value)? end,
-    TResult? Function(_Error value)? error,
+    TResult? Function(PageLoaderStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +62,7 @@ mixin _$PageLoaderState {
     TResult Function(_Idle value)? idle,
     TResult Function(_Running value)? loading,
     TResult Function(_End value)? end,
-    TResult Function(_Error value)? error,
+    TResult Function(PageLoaderStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,7 +163,7 @@ class _$IdleImpl extends _Idle {
     required TResult Function(_Idle value) idle,
     required TResult Function(_Running value) loading,
     required TResult Function(_End value) end,
-    required TResult Function(_Error value) error,
+    required TResult Function(PageLoaderStateError value) error,
   }) {
     return idle(this);
   }
@@ -174,7 +174,7 @@ class _$IdleImpl extends _Idle {
     TResult? Function(_Idle value)? idle,
     TResult? Function(_Running value)? loading,
     TResult? Function(_End value)? end,
-    TResult? Function(_Error value)? error,
+    TResult? Function(PageLoaderStateError value)? error,
   }) {
     return idle?.call(this);
   }
@@ -185,7 +185,7 @@ class _$IdleImpl extends _Idle {
     TResult Function(_Idle value)? idle,
     TResult Function(_Running value)? loading,
     TResult Function(_End value)? end,
-    TResult Function(_Error value)? error,
+    TResult Function(PageLoaderStateError value)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -278,7 +278,7 @@ class _$RunningImpl extends _Running {
     required TResult Function(_Idle value) idle,
     required TResult Function(_Running value) loading,
     required TResult Function(_End value) end,
-    required TResult Function(_Error value) error,
+    required TResult Function(PageLoaderStateError value) error,
   }) {
     return loading(this);
   }
@@ -289,7 +289,7 @@ class _$RunningImpl extends _Running {
     TResult? Function(_Idle value)? idle,
     TResult? Function(_Running value)? loading,
     TResult? Function(_End value)? end,
-    TResult? Function(_Error value)? error,
+    TResult? Function(PageLoaderStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -300,7 +300,7 @@ class _$RunningImpl extends _Running {
     TResult Function(_Idle value)? idle,
     TResult Function(_Running value)? loading,
     TResult Function(_End value)? end,
-    TResult Function(_Error value)? error,
+    TResult Function(PageLoaderStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -391,7 +391,7 @@ class _$EndImpl extends _End {
     required TResult Function(_Idle value) idle,
     required TResult Function(_Running value) loading,
     required TResult Function(_End value) end,
-    required TResult Function(_Error value) error,
+    required TResult Function(PageLoaderStateError value) error,
   }) {
     return end(this);
   }
@@ -402,7 +402,7 @@ class _$EndImpl extends _End {
     TResult? Function(_Idle value)? idle,
     TResult? Function(_Running value)? loading,
     TResult? Function(_End value)? end,
-    TResult? Function(_Error value)? error,
+    TResult? Function(PageLoaderStateError value)? error,
   }) {
     return end?.call(this);
   }
@@ -413,7 +413,7 @@ class _$EndImpl extends _End {
     TResult Function(_Idle value)? idle,
     TResult Function(_Running value)? loading,
     TResult Function(_End value)? end,
-    TResult Function(_Error value)? error,
+    TResult Function(PageLoaderStateError value)? error,
     required TResult orElse(),
   }) {
     if (end != null) {
@@ -429,20 +429,20 @@ abstract class _End extends PageLoaderState {
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
+abstract class _$$PageLoaderStateErrorImplCopyWith<$Res> {
+  factory _$$PageLoaderStateErrorImplCopyWith(_$PageLoaderStateErrorImpl value,
+          $Res Function(_$PageLoaderStateErrorImpl) then) =
+      __$$PageLoaderStateErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Object error, StackTrace stackTrace});
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$PageLoaderStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
+class __$$PageLoaderStateErrorImplCopyWithImpl<$Res>
+    extends _$PageLoaderStateCopyWithImpl<$Res, _$PageLoaderStateErrorImpl>
+    implements _$$PageLoaderStateErrorImplCopyWith<$Res> {
+  __$$PageLoaderStateErrorImplCopyWithImpl(_$PageLoaderStateErrorImpl _value,
+      $Res Function(_$PageLoaderStateErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -451,7 +451,7 @@ class __$$ErrorImplCopyWithImpl<$Res>
     Object? error = null,
     Object? stackTrace = null,
   }) {
-    return _then(_$ErrorImpl(
+    return _then(_$PageLoaderStateErrorImpl(
       null == error ? _value.error : error,
       null == stackTrace
           ? _value.stackTrace
@@ -463,8 +463,8 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl extends _Error {
-  const _$ErrorImpl(this.error, this.stackTrace) : super._();
+class _$PageLoaderStateErrorImpl extends PageLoaderStateError {
+  const _$PageLoaderStateErrorImpl(this.error, this.stackTrace) : super._();
 
   @override
   final Object error;
@@ -480,7 +480,7 @@ class _$ErrorImpl extends _Error {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
+            other is _$PageLoaderStateErrorImpl &&
             const DeepCollectionEquality().equals(other.error, error) &&
             (identical(other.stackTrace, stackTrace) ||
                 other.stackTrace == stackTrace));
@@ -493,8 +493,10 @@ class _$ErrorImpl extends _Error {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
+  _$$PageLoaderStateErrorImplCopyWith<_$PageLoaderStateErrorImpl>
+      get copyWith =>
+          __$$PageLoaderStateErrorImplCopyWithImpl<_$PageLoaderStateErrorImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -539,7 +541,7 @@ class _$ErrorImpl extends _Error {
     required TResult Function(_Idle value) idle,
     required TResult Function(_Running value) loading,
     required TResult Function(_End value) end,
-    required TResult Function(_Error value) error,
+    required TResult Function(PageLoaderStateError value) error,
   }) {
     return error(this);
   }
@@ -550,7 +552,7 @@ class _$ErrorImpl extends _Error {
     TResult? Function(_Idle value)? idle,
     TResult? Function(_Running value)? loading,
     TResult? Function(_End value)? end,
-    TResult? Function(_Error value)? error,
+    TResult? Function(PageLoaderStateError value)? error,
   }) {
     return error?.call(this);
   }
@@ -561,7 +563,7 @@ class _$ErrorImpl extends _Error {
     TResult Function(_Idle value)? idle,
     TResult Function(_Running value)? loading,
     TResult Function(_End value)? end,
-    TResult Function(_Error value)? error,
+    TResult Function(PageLoaderStateError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -571,14 +573,15 @@ class _$ErrorImpl extends _Error {
   }
 }
 
-abstract class _Error extends PageLoaderState {
-  const factory _Error(final Object error, final StackTrace stackTrace) =
-      _$ErrorImpl;
-  const _Error._() : super._();
+abstract class PageLoaderStateError extends PageLoaderState {
+  const factory PageLoaderStateError(
+          final Object error, final StackTrace stackTrace) =
+      _$PageLoaderStateErrorImpl;
+  const PageLoaderStateError._() : super._();
 
   Object get error;
   StackTrace get stackTrace;
   @JsonKey(ignore: true)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PageLoaderStateErrorImplCopyWith<_$PageLoaderStateErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

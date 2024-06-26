@@ -13,7 +13,7 @@ class PageLoaderState with _$PageLoaderState {
   const factory PageLoaderState.end() = _End;
 
   const factory PageLoaderState.error(Object error, StackTrace stackTrace) =
-      _Error;
+      PageLoaderStateError;
 
   static Future<PageLoaderState> guard<T>(T Function() f) async {
     try {
@@ -25,12 +25,12 @@ class PageLoaderState with _$PageLoaderState {
   }
 
   bool get isLoading => switch (this) {
-    PageLoaderState.loading => true,
-    _ => false,
-  };
+        PageLoaderState.loading => true,
+        _ => false,
+      };
 
   bool get isError => switch (this) {
-    PageLoaderState.error => true,
-    _ => false,
-  };
+        PageLoaderState.error => true,
+        _ => false,
+      };
 }

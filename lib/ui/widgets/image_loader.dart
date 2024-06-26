@@ -23,7 +23,7 @@ typedef WidgetBuilder = Widget Function(BuildContext context, Widget child);
 class ImageLoader extends StatefulWidget {
   const ImageLoader({
     super.key,
-    required this.concurrency,
+    required this.queue,
     required this.model,
     this.imageBuilder,
     this.errorBuilder,
@@ -34,7 +34,7 @@ class ImageLoader extends StatefulWidget {
     this.enableHero = true,
   });
 
-  final ImageLoaderQueue concurrency;
+  final ImageLoaderQueue queue;
   final ImageResult model;
   final ImageWidgetBuilder? imageBuilder;
   final ErrorBuilder? errorBuilder;
@@ -62,7 +62,7 @@ class _ImageLoaderState extends State<ImageLoader> {
   void initState() {
     imageBuilder = widget.imageBuilder ?? _defaultImageBuilder;
     errorBuilder = widget.errorBuilder ?? _defaultErrorBuilder;
-    _imageLoadNotifier = widget.concurrency.create(widget.model);
+    _imageLoadNotifier = widget.queue.create(widget.model);
     loadingWidgetBuilder = widget.loadingWidgetBuilder ?? _defaultWidgetBuilder;
     imageWidgetBuilder = widget.imageWidgetBuilder ?? _defaultWidgetBuilder;
     innerImageBuilder = widget.innerImageBuilder ?? _defaultWidgetBuilder;
@@ -86,7 +86,7 @@ class _ImageLoaderState extends State<ImageLoader> {
 
   void _onReload() {
     _imageLoadNotifier.free();
-    widget.concurrency.trigger();
+    widget.queue.trigger();
   }
 
   @override
