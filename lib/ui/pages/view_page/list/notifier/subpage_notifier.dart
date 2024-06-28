@@ -53,10 +53,7 @@ class SubListNotifier
                     subPageModel.key.isNotEmpty ? subPageModel.key : 'subKey':
                         subPageModel.value,
                   }
-                : null) {
-    currentFilter =
-        siteRule.templateList.filters.map((e) => e.copyWith()).toList();
-  }
+                : null);
 
   final SitePageRule siteRule;
   final TemplateListSubPage? subPageModel;
@@ -64,7 +61,6 @@ class SubListNotifier
 
   final ScrollController scrollController = ScrollController();
   final RefreshController refreshController = RefreshController();
-
 
   String searchKeywords = '';
 
@@ -74,8 +70,6 @@ class SubListNotifier
     localEnv.mergeMap({'search': keywords.trim()});
     await refresh();
   }
-
-
 
   @override
   Future<ListPageData> loadPageImpl(int page) async {
@@ -121,31 +115,6 @@ class SubListNotifier
     return ListPageData(data);
   }
 
-
-
-  Future<Map<String, String>> resolveFilter() async {
-    final map = <String, dynamic>{};
-    for (final filter in currentFilter) {
-      if (filter.key.isEmpty) continue;
-      if (!filter.isChanged && filter.disabledUnchanged) continue;
-      map[filter.key] = filter.value;
-    }
-
-    final json = jsonEncode(map);
-    final result = "";
-    if (result.startsWith('{')) {
-      try {
-        Map<String, dynamic> json2 = jsonDecode(result);
-        return json2.map((key, value) => MapEntry(key, value.toString()));
-      } catch (e) {
-        logger.e('解析过滤器失败: $e');
-        return {};
-      }
-    } else {
-      return {'filter': result};
-    }
-  }
-
   SiteEnvStore get env => global.website.globalEnv.create(localEnv);
 
   // bool get useFilter => List.generate(extra.filters.length, (i) => i)
@@ -154,8 +123,6 @@ class SubListNotifier
   bool get isFullScreenLoading => items.isEmpty && state.isError;
 
   bool get isFullScreenError => items.isEmpty && state.isError;
-
-  bool get isFilterChanged => currentFilter.any((e) => e.isChanged);
 
   @override
   void dispose() {

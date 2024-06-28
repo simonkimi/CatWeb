@@ -1,33 +1,48 @@
 import 'package:catweb/data/models/site/subpage.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/pages/view_page/list/notifier/subpage_notifier.dart';
-import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'notifier/filter_notifier.dart';
+
 class ListFilterButton extends StatelessWidget {
-  const ListFilterButton({super.key});
+  const ListFilterButton({
+    super.key,
+    required this.initFilter,
+    required this.onFilterChanged,
+  });
+
+  final List<TemplateListFilterItem> initFilter;
+  final ValueChanged<List<TemplateListFilterItem>> onFilterChanged;
 
   @override
   Widget build(BuildContext context) {
-    SubListNotifier notifier = context.watch();
-    return CupertinoButton(
-      padding: EdgeInsets.zero,
-      minSize: 0,
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 200),
-        transitionBuilder: (child, animation) => ScaleTransition(
-          scale: animation,
-          child: child,
+    return ChangeNotifierProvider(
+      create: (_) => FilterNotifier(initFilter: initFilter),
+      child: CupertinoButton(
+        padding: EdgeInsets.zero,
+        minSize: 0,
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          transitionBuilder: (child, animation) =>
+              ScaleTransition(
+                scale: animation,
+                child: child,
+              ),
+          child: Consumer<FilterNotifier>(
+            builder: (context, controller, child) {
+              return controller.isFilterChanged
+                  ? const Icon(Icons.filter_alt, key: ValueKey('enable'))
+                  : const Icon(Icons.filter_alt_outlined,
+                  key: ValueKey('disable'));
+            },
+          ),
         ),
-        child: notifier.isFilterChanged
-            ? const Icon(Icons.filter_alt, key: ValueKey('enable'))
-            : const Icon(Icons.filter_alt_outlined, key: ValueKey('disable')),
+        onPressed: () => _showFilterDialog(context),
       ),
-      onPressed: () => _showFilterDialog(context),
     );
   }
 
@@ -39,13 +54,17 @@ class ListFilterButton extends StatelessWidget {
         return CupertinoAlertDialog(
           actions: [
             CupertinoDialogAction(
-              child: Text(I.of(context).back),
+              child: Text(I
+                  .of(context)
+                  .back),
               onPressed: () => Navigator.of(context).pop(),
             ),
             CupertinoDialogAction(
-              child: Text(I.of(context).apply),
+              child: Text(I
+                  .of(context)
+                  .apply),
               onPressed: () {
-                controller.applyFilter();
+                context.read<FilterNotifier>().applyFilter();
                 Navigator.of(context).pop();
               },
             ),
@@ -53,17 +72,19 @@ class ListFilterButton extends StatelessWidget {
           content: StatefulBuilder(
             builder: (context, setState) {
               return SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _buildDialogHeader(context, setState),
-                    const SizedBox(height: 5),
-                    const CupertinoDivider(),
-                    _buildColorButton(context),
-                    for (final item in controller.filter)
-                      if (item.type != FilterType.boolCard)
-                        _buildFilterItem(context, item),
-                  ],
+                child: Consumer<FilterNotifier>(
+                  builder: (context, controller, _) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _buildDialogHeader(context, setState),
+                        const SizedBox(height: 5),
+                        const CupertinoDivider(),
+                        for (final item in controller.currentFilter)
+                          _buildFilterItem(context, item),
+                      ],
+                    );
+                  },
                 ),
               );
             },
@@ -73,74 +94,13 @@ class ListFilterButton extends StatelessWidget {
     );
   }
 
-  Widget _buildColorButton(BuildContext context) {
-    final items = controller.filter
-        .where((p0) => p0.type == FilterType.boolCard)
-        .toList();
-
-    void onLongPress(int index) {
-      final item = items.elementAt(index);
-      var newValue = !(item.value.value == 'true') ? 'true' : 'false';
-      final rawIndex = controller.filter.indexOf(item);
-
-      for (var i = 0; i < rawIndex; i++) {
-        if (controller.filter[i].type == FilterType.boolCard) {
-          controller.filter[i].value.value = newValue;
-        } else {
-          break;
-        }
-      }
-
-      for (var i = rawIndex + 1; i < controller.filter.length; i++) {
-        if (controller.filter[i].type == FilterType.boolCard) {
-          controller.filter[i].value.value = newValue;
-        } else {
-          break;
-        }
-      }
-    }
-
-    return Column(
-      children: [
-        for (var i = 0; i < items.length; i += 2)
-          Row(
-            children: [
-              for (var j = 0; j < 2; j++)
-                if (i + j < items.length)
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => items.elementAt(i + j).value.value =
-                          items.elementAt(i + j).value.value.toLowerCase() ==
-                                  'true'
-                              ? 'false'
-                              : 'true',
-                      onLongPress: () => onLongPress(i + j),
-                      child: Padding(
-                        padding: const EdgeInsets.all(2),
-                        child: Obx(() => SlimBadge(
-                              disable: items
-                                      .elementAt(i + j)
-                                      .value
-                                      .value
-                                      .toLowerCase() !=
-                                  'true',
-                              text: items.elementAt(i + j).name,
-                              color: items.elementAt(i + j).color,
-                            )),
-                      ),
-                    ),
-                  ),
-            ],
-          ),
-      ],
-    );
-  }
-
   Widget _buildDialogHeader(BuildContext context, StateSetter setState) {
     return Row(
       children: [
         Text(
-          I.of(context).filter,
+          I
+              .of(context)
+              .filter,
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -151,7 +111,7 @@ class ListFilterButton extends StatelessWidget {
           padding: EdgeInsets.zero,
           minSize: 0,
           onPressed: () {
-            controller.resetFilter();
+            context.read<FilterNotifier>().resetFilter();
             setState(() {});
           },
           child: const Icon(CupertinoIcons.refresh),
@@ -160,30 +120,54 @@ class ListFilterButton extends StatelessWidget {
     );
   }
 
-  Widget _buildFilterItem(BuildContext context, FilterObx item) {
+  Widget _buildFilterItem(BuildContext context, TemplateListFilterItem item) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 1),
       child: Row(
         children: [
           Text(item.name),
           const Expanded(child: SizedBox()),
-          if (item.type == FilterType.bool)
+
+          switch(item) {
+            TemplateListFilterItemBool item =>
+                SizedBox(
+                  height: 30,
+                  child: Transform.scale(
+                    scale: 0.8,
+                    alignment: Alignment.centerRight,
+                    child: CupertinoSwitch(
+                      value: item.value.value.toLowerCase().trim() == 'true',
+                      onChanged: (value) {
+                        item.value.value =
+                        item.value.value.toLowerCase() == 'true'
+                            ? 'false'
+                            : 'true';
+                      },
+                    ),
+                  ),
+                ),
+            TemplateListFilterItem() => throw UnimplementedError(),
+          }
+
+
+          if (item is TemplateListFilterItemBool)
             SizedBox(
               height: 30,
               child: Transform.scale(
                 scale: 0.8,
                 alignment: Alignment.centerRight,
-                child: Obx(() => CupertinoSwitch(
-                      value: item.value.value.toLowerCase().trim() == 'true',
-                      onChanged: (value) {
-                        item.value.value =
-                            item.value.value.toLowerCase() == 'true'
-                                ? 'false'
-                                : 'true';
-                      },
-                    )),
+                child: CupertinoSwitch(
+                  value: item.value.value.toLowerCase().trim() == 'true',
+                  onChanged: (value) {
+                    item.value.value = item.value.value.toLowerCase() == 'true'
+                        ? 'false'
+                        : 'true';
+                  },
+                ),
               ),
             ),
+
+
           if (item.type == FilterType.string || item.type == FilterType.number)
             SizedBox(
               height: 30,

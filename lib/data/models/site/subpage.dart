@@ -58,6 +58,20 @@ class TemplateListFilterItem with _$TemplateListFilterItem {
       _$TemplateListFilterItemFromJson(json);
 
   bool get isChanged => value != defaultValue;
+
+  TemplateListFilterItem reset() {
+    return switch (this) {
+      TemplateListFilterItemString item =>
+        item.copyWith(value: item.defaultValue),
+      TemplateListFilterItemNumber item =>
+        item.copyWith(value: item.defaultValue),
+      TemplateListFilterItemFloat item =>
+        item.copyWith(value: item.defaultValue),
+      TemplateListFilterItemBool item =>
+        item.copyWith(value: item.defaultValue),
+      _ => throw UnimplementedError()
+    };
+  }
 }
 
 enum FilterType implements IEnumDescription {
