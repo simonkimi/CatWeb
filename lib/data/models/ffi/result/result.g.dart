@@ -26,9 +26,9 @@ _$DetailParserResultImpl _$$DetailParserResultImplFromJson(
       title: json['title'] as String?,
       subtitle: json['subtitle'] as String?,
       language: json['language'] as String?,
-      imageCount: json['imageCount'] as int?,
+      imageCount: (json['imageCount'] as num?)?.toInt(),
       uploadTime: json['uploadTime'] as String?,
-      countPrePage: json['countPrePage'] as int?,
+      countPrePage: (json['countPrePage'] as num?)?.toInt(),
       description: json['description'] as String?,
       star: (json['star'] as num?)?.toDouble(),
       previews: (json['previews'] as List<dynamic>?)
@@ -184,7 +184,7 @@ _$ListParserResultItemImpl _$$ListParserResultItemImplFromJson(
       subtitle: json['subtitle'] as String?,
       uploadTime: json['uploadTime'] as String?,
       star: (json['star'] as num?)?.toDouble(),
-      imageCount: json['imageCount'] as int?,
+      imageCount: (json['imageCount'] as num?)?.toInt(),
       previewImage: json['previewImage'] == null
           ? null
           : ImageResult.fromJson(json['previewImage'] as Map<String, dynamic>),

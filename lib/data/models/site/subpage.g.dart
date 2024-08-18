@@ -49,8 +49,8 @@ _$TemplateListFilterItemNumberImpl _$$TemplateListFilterItemNumberImplFromJson(
     _$TemplateListFilterItemNumberImpl(
       name: json['name'] as String? ?? '',
       key: json['key'] as String? ?? '',
-      value: json['value'] as int? ?? 0,
-      defaultValue: json['defaultValue'] as int? ?? 0,
+      value: (json['value'] as num?)?.toInt() ?? 0,
+      defaultValue: (json['defaultValue'] as num?)?.toInt() ?? 0,
       disabledUnchanged: json['disabledUnchanged'] as bool? ?? false,
       $type: json['runtimeType'] as String?,
     );

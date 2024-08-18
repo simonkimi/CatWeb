@@ -31,8 +31,12 @@ mixin _$SitePageRule {
   String get flag => throw _privateConstructorUsedError;
   String get parserId => throw _privateConstructorUsedError;
 
+  /// Serializes this SitePageRule to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SitePageRule
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SitePageRuleCopyWith<SitePageRule> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -68,6 +72,8 @@ class _$SitePageRuleCopyWithImpl<$Res, $Val extends SitePageRule>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SitePageRule
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -126,6 +132,8 @@ class _$SitePageRuleCopyWithImpl<$Res, $Val extends SitePageRule>
     ) as $Val);
   }
 
+  /// Create a copy of SitePageRule
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageTemplateCopyWith<$Res> get template {
@@ -167,6 +175,8 @@ class __$$SitePageImplCopyWithImpl<$Res>
       _$SitePageImpl _value, $Res Function(_$SitePageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SitePageRule
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -300,12 +310,14 @@ class _$SitePageImpl extends _SitePage {
                 other.parserId == parserId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, uuid, template, url,
       action, formData, icon, displayType, flag, parserId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SitePageRule
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SitePageImplCopyWith<_$SitePageImpl> get copyWith =>
@@ -356,8 +368,11 @@ abstract class _SitePage extends SitePageRule {
   String get flag;
   @override
   String get parserId;
+
+  /// Create a copy of SitePageRule
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SitePageImplCopyWith<_$SitePageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

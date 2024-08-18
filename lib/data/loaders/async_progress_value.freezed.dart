@@ -85,6 +85,9 @@ class _$AsyncProgressValueCopyWithImpl<T, $Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AsyncProgressValue
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -102,6 +105,9 @@ class __$$AsyncProgressIdleImplCopyWithImpl<T, $Res>
   __$$AsyncProgressIdleImplCopyWithImpl(_$AsyncProgressIdleImpl<T> _value,
       $Res Function(_$AsyncProgressIdleImpl<T>) _then)
       : super(_value, _then);
+
+  /// Create a copy of AsyncProgressValue
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -222,6 +228,8 @@ class __$$AsyncProgressDataImplCopyWithImpl<T, $Res>
       $Res Function(_$AsyncProgressDataImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of AsyncProgressValue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -261,7 +269,9 @@ class _$AsyncProgressDataImpl<T> extends AsyncProgressData<T> {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AsyncProgressValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AsyncProgressDataImplCopyWith<T, _$AsyncProgressDataImpl<T>>
@@ -349,7 +359,10 @@ abstract class AsyncProgressData<T> extends AsyncProgressValue<T> {
   const AsyncProgressData._() : super._();
 
   T get value;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AsyncProgressValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AsyncProgressDataImplCopyWith<T, _$AsyncProgressDataImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -373,6 +386,8 @@ class __$$AsyncProgressLoadingImplCopyWithImpl<T, $Res>
       $Res Function(_$AsyncProgressLoadingImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of AsyncProgressValue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -412,7 +427,9 @@ class _$AsyncProgressLoadingImpl<T> extends AsyncProgressLoading<T> {
   @override
   int get hashCode => Object.hash(runtimeType, progress);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AsyncProgressValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AsyncProgressLoadingImplCopyWith<T, _$AsyncProgressLoadingImpl<T>>
@@ -500,7 +517,10 @@ abstract class AsyncProgressLoading<T> extends AsyncProgressValue<T> {
   const AsyncProgressLoading._() : super._();
 
   double get progress;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AsyncProgressValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AsyncProgressLoadingImplCopyWith<T, _$AsyncProgressLoadingImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -523,6 +543,8 @@ class __$$AsyncProgressErrorImplCopyWithImpl<T, $Res>
       $Res Function(_$AsyncProgressErrorImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of AsyncProgressValue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -568,7 +590,9 @@ class _$AsyncProgressErrorImpl<T> extends AsyncProgressError<T> {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AsyncProgressValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AsyncProgressErrorImplCopyWith<T, _$AsyncProgressErrorImpl<T>>
@@ -658,7 +682,10 @@ abstract class AsyncProgressError<T> extends AsyncProgressValue<T> {
 
   Object get error;
   StackTrace get stackTrace;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AsyncProgressValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AsyncProgressErrorImplCopyWith<T, _$AsyncProgressErrorImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }

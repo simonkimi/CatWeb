@@ -257,6 +257,23 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
         securityModel: securityModel ?? this.securityModel,
         loginCookies: loginCookies ?? this.loginCookies,
       );
+  WebTableData copyWithCompanion(WebTableCompanion data) {
+    return WebTableData(
+      id: data.id.present ? data.id.value : this.id,
+      uuid: data.uuid.present ? data.uuid.value : this.uuid,
+      blueprint: data.blueprint.present ? data.blueprint.value : this.blueprint,
+      env: data.env.present ? data.env.value : this.env,
+      favicon: data.favicon.present ? data.favicon.value : this.favicon,
+      lastOpen: data.lastOpen.present ? data.lastOpen.value : this.lastOpen,
+      securityModel: data.securityModel.present
+          ? data.securityModel.value
+          : this.securityModel,
+      loginCookies: data.loginCookies.present
+          ? data.loginCookies.value
+          : this.loginCookies,
+    );
+  }
+
   @override
   String toString() {
     return (StringBuffer('WebTableData(')
@@ -558,6 +575,15 @@ class ReaderHistoryTableData extends DataClass
         idCode: idCode ?? this.idCode,
         pageIndex: pageIndex ?? this.pageIndex,
       );
+  ReaderHistoryTableData copyWithCompanion(ReaderHistoryTableCompanion data) {
+    return ReaderHistoryTableData(
+      id: data.id.present ? data.id.value : this.id,
+      uuid: data.uuid.present ? data.uuid.value : this.uuid,
+      idCode: data.idCode.present ? data.idCode.value : this.idCode,
+      pageIndex: data.pageIndex.present ? data.pageIndex.value : this.pageIndex,
+    );
+  }
+
   @override
   String toString() {
     return (StringBuffer('ReaderHistoryTableData(')
@@ -783,6 +809,14 @@ class CookieJarTableData extends DataClass
         key: key ?? this.key,
         value: value ?? this.value,
       );
+  CookieJarTableData copyWithCompanion(CookieJarTableCompanion data) {
+    return CookieJarTableData(
+      webUuid: data.webUuid.present ? data.webUuid.value : this.webUuid,
+      key: data.key.present ? data.key.value : this.key,
+      value: data.value.present ? data.value.value : this.value,
+    );
+  }
+
   @override
   String toString() {
     return (StringBuffer('CookieJarTableData(')
@@ -882,6 +916,7 @@ class CookieJarTableCompanion extends UpdateCompanion<CookieJarTableData> {
 
 abstract class _$AppDataBase extends GeneratedDatabase {
   _$AppDataBase(QueryExecutor e) : super(e);
+  $AppDataBaseManager get managers => $AppDataBaseManager(this);
   late final $WebTableTable webTable = $WebTableTable(this);
   late final $ReaderHistoryTableTable readerHistoryTable =
       $ReaderHistoryTableTable(this);
@@ -896,4 +931,456 @@ abstract class _$AppDataBase extends GeneratedDatabase {
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
       [webTable, readerHistoryTable, cookieJarTable];
+}
+
+typedef $$WebTableTableCreateCompanionBuilder = WebTableCompanion Function({
+  Value<int> id,
+  Value<String> uuid,
+  required String blueprint,
+  required String env,
+  Value<Uint8List> favicon,
+  Value<int> lastOpen,
+  Value<bool> securityModel,
+  Value<String> loginCookies,
+});
+typedef $$WebTableTableUpdateCompanionBuilder = WebTableCompanion Function({
+  Value<int> id,
+  Value<String> uuid,
+  Value<String> blueprint,
+  Value<String> env,
+  Value<Uint8List> favicon,
+  Value<int> lastOpen,
+  Value<bool> securityModel,
+  Value<String> loginCookies,
+});
+
+class $$WebTableTableFilterComposer
+    extends FilterComposer<_$AppDataBase, $WebTableTable> {
+  $$WebTableTableFilterComposer(super.$state);
+  ColumnFilters<int> get id => $state.composableBuilder(
+      column: $state.table.id,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<String> get uuid => $state.composableBuilder(
+      column: $state.table.uuid,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<String> get blueprint => $state.composableBuilder(
+      column: $state.table.blueprint,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<String> get env => $state.composableBuilder(
+      column: $state.table.env,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<Uint8List> get favicon => $state.composableBuilder(
+      column: $state.table.favicon,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<int> get lastOpen => $state.composableBuilder(
+      column: $state.table.lastOpen,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<bool> get securityModel => $state.composableBuilder(
+      column: $state.table.securityModel,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<String> get loginCookies => $state.composableBuilder(
+      column: $state.table.loginCookies,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+}
+
+class $$WebTableTableOrderingComposer
+    extends OrderingComposer<_$AppDataBase, $WebTableTable> {
+  $$WebTableTableOrderingComposer(super.$state);
+  ColumnOrderings<int> get id => $state.composableBuilder(
+      column: $state.table.id,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get uuid => $state.composableBuilder(
+      column: $state.table.uuid,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get blueprint => $state.composableBuilder(
+      column: $state.table.blueprint,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get env => $state.composableBuilder(
+      column: $state.table.env,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<Uint8List> get favicon => $state.composableBuilder(
+      column: $state.table.favicon,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<int> get lastOpen => $state.composableBuilder(
+      column: $state.table.lastOpen,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<bool> get securityModel => $state.composableBuilder(
+      column: $state.table.securityModel,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get loginCookies => $state.composableBuilder(
+      column: $state.table.loginCookies,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+}
+
+class $$WebTableTableTableManager extends RootTableManager<
+    _$AppDataBase,
+    $WebTableTable,
+    WebTableData,
+    $$WebTableTableFilterComposer,
+    $$WebTableTableOrderingComposer,
+    $$WebTableTableCreateCompanionBuilder,
+    $$WebTableTableUpdateCompanionBuilder,
+    (WebTableData, BaseReferences<_$AppDataBase, $WebTableTable, WebTableData>),
+    WebTableData,
+    PrefetchHooks Function()> {
+  $$WebTableTableTableManager(_$AppDataBase db, $WebTableTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          filteringComposer:
+              $$WebTableTableFilterComposer(ComposerState(db, table)),
+          orderingComposer:
+              $$WebTableTableOrderingComposer(ComposerState(db, table)),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<String> uuid = const Value.absent(),
+            Value<String> blueprint = const Value.absent(),
+            Value<String> env = const Value.absent(),
+            Value<Uint8List> favicon = const Value.absent(),
+            Value<int> lastOpen = const Value.absent(),
+            Value<bool> securityModel = const Value.absent(),
+            Value<String> loginCookies = const Value.absent(),
+          }) =>
+              WebTableCompanion(
+            id: id,
+            uuid: uuid,
+            blueprint: blueprint,
+            env: env,
+            favicon: favicon,
+            lastOpen: lastOpen,
+            securityModel: securityModel,
+            loginCookies: loginCookies,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<String> uuid = const Value.absent(),
+            required String blueprint,
+            required String env,
+            Value<Uint8List> favicon = const Value.absent(),
+            Value<int> lastOpen = const Value.absent(),
+            Value<bool> securityModel = const Value.absent(),
+            Value<String> loginCookies = const Value.absent(),
+          }) =>
+              WebTableCompanion.insert(
+            id: id,
+            uuid: uuid,
+            blueprint: blueprint,
+            env: env,
+            favicon: favicon,
+            lastOpen: lastOpen,
+            securityModel: securityModel,
+            loginCookies: loginCookies,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$WebTableTableProcessedTableManager = ProcessedTableManager<
+    _$AppDataBase,
+    $WebTableTable,
+    WebTableData,
+    $$WebTableTableFilterComposer,
+    $$WebTableTableOrderingComposer,
+    $$WebTableTableCreateCompanionBuilder,
+    $$WebTableTableUpdateCompanionBuilder,
+    (WebTableData, BaseReferences<_$AppDataBase, $WebTableTable, WebTableData>),
+    WebTableData,
+    PrefetchHooks Function()>;
+typedef $$ReaderHistoryTableTableCreateCompanionBuilder
+    = ReaderHistoryTableCompanion Function({
+  Value<int> id,
+  required String uuid,
+  required String idCode,
+  required int pageIndex,
+});
+typedef $$ReaderHistoryTableTableUpdateCompanionBuilder
+    = ReaderHistoryTableCompanion Function({
+  Value<int> id,
+  Value<String> uuid,
+  Value<String> idCode,
+  Value<int> pageIndex,
+});
+
+class $$ReaderHistoryTableTableFilterComposer
+    extends FilterComposer<_$AppDataBase, $ReaderHistoryTableTable> {
+  $$ReaderHistoryTableTableFilterComposer(super.$state);
+  ColumnFilters<int> get id => $state.composableBuilder(
+      column: $state.table.id,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<String> get uuid => $state.composableBuilder(
+      column: $state.table.uuid,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<String> get idCode => $state.composableBuilder(
+      column: $state.table.idCode,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<int> get pageIndex => $state.composableBuilder(
+      column: $state.table.pageIndex,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+}
+
+class $$ReaderHistoryTableTableOrderingComposer
+    extends OrderingComposer<_$AppDataBase, $ReaderHistoryTableTable> {
+  $$ReaderHistoryTableTableOrderingComposer(super.$state);
+  ColumnOrderings<int> get id => $state.composableBuilder(
+      column: $state.table.id,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get uuid => $state.composableBuilder(
+      column: $state.table.uuid,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get idCode => $state.composableBuilder(
+      column: $state.table.idCode,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<int> get pageIndex => $state.composableBuilder(
+      column: $state.table.pageIndex,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+}
+
+class $$ReaderHistoryTableTableTableManager extends RootTableManager<
+    _$AppDataBase,
+    $ReaderHistoryTableTable,
+    ReaderHistoryTableData,
+    $$ReaderHistoryTableTableFilterComposer,
+    $$ReaderHistoryTableTableOrderingComposer,
+    $$ReaderHistoryTableTableCreateCompanionBuilder,
+    $$ReaderHistoryTableTableUpdateCompanionBuilder,
+    (
+      ReaderHistoryTableData,
+      BaseReferences<_$AppDataBase, $ReaderHistoryTableTable,
+          ReaderHistoryTableData>
+    ),
+    ReaderHistoryTableData,
+    PrefetchHooks Function()> {
+  $$ReaderHistoryTableTableTableManager(
+      _$AppDataBase db, $ReaderHistoryTableTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          filteringComposer:
+              $$ReaderHistoryTableTableFilterComposer(ComposerState(db, table)),
+          orderingComposer: $$ReaderHistoryTableTableOrderingComposer(
+              ComposerState(db, table)),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<String> uuid = const Value.absent(),
+            Value<String> idCode = const Value.absent(),
+            Value<int> pageIndex = const Value.absent(),
+          }) =>
+              ReaderHistoryTableCompanion(
+            id: id,
+            uuid: uuid,
+            idCode: idCode,
+            pageIndex: pageIndex,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            required String uuid,
+            required String idCode,
+            required int pageIndex,
+          }) =>
+              ReaderHistoryTableCompanion.insert(
+            id: id,
+            uuid: uuid,
+            idCode: idCode,
+            pageIndex: pageIndex,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$ReaderHistoryTableTableProcessedTableManager = ProcessedTableManager<
+    _$AppDataBase,
+    $ReaderHistoryTableTable,
+    ReaderHistoryTableData,
+    $$ReaderHistoryTableTableFilterComposer,
+    $$ReaderHistoryTableTableOrderingComposer,
+    $$ReaderHistoryTableTableCreateCompanionBuilder,
+    $$ReaderHistoryTableTableUpdateCompanionBuilder,
+    (
+      ReaderHistoryTableData,
+      BaseReferences<_$AppDataBase, $ReaderHistoryTableTable,
+          ReaderHistoryTableData>
+    ),
+    ReaderHistoryTableData,
+    PrefetchHooks Function()>;
+typedef $$CookieJarTableTableCreateCompanionBuilder = CookieJarTableCompanion
+    Function({
+  required String webUuid,
+  required String key,
+  required String value,
+  Value<int> rowid,
+});
+typedef $$CookieJarTableTableUpdateCompanionBuilder = CookieJarTableCompanion
+    Function({
+  Value<String> webUuid,
+  Value<String> key,
+  Value<String> value,
+  Value<int> rowid,
+});
+
+class $$CookieJarTableTableFilterComposer
+    extends FilterComposer<_$AppDataBase, $CookieJarTableTable> {
+  $$CookieJarTableTableFilterComposer(super.$state);
+  ColumnFilters<String> get webUuid => $state.composableBuilder(
+      column: $state.table.webUuid,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<String> get key => $state.composableBuilder(
+      column: $state.table.key,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<String> get value => $state.composableBuilder(
+      column: $state.table.value,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+}
+
+class $$CookieJarTableTableOrderingComposer
+    extends OrderingComposer<_$AppDataBase, $CookieJarTableTable> {
+  $$CookieJarTableTableOrderingComposer(super.$state);
+  ColumnOrderings<String> get webUuid => $state.composableBuilder(
+      column: $state.table.webUuid,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get key => $state.composableBuilder(
+      column: $state.table.key,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get value => $state.composableBuilder(
+      column: $state.table.value,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+}
+
+class $$CookieJarTableTableTableManager extends RootTableManager<
+    _$AppDataBase,
+    $CookieJarTableTable,
+    CookieJarTableData,
+    $$CookieJarTableTableFilterComposer,
+    $$CookieJarTableTableOrderingComposer,
+    $$CookieJarTableTableCreateCompanionBuilder,
+    $$CookieJarTableTableUpdateCompanionBuilder,
+    (
+      CookieJarTableData,
+      BaseReferences<_$AppDataBase, $CookieJarTableTable, CookieJarTableData>
+    ),
+    CookieJarTableData,
+    PrefetchHooks Function()> {
+  $$CookieJarTableTableTableManager(
+      _$AppDataBase db, $CookieJarTableTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          filteringComposer:
+              $$CookieJarTableTableFilterComposer(ComposerState(db, table)),
+          orderingComposer:
+              $$CookieJarTableTableOrderingComposer(ComposerState(db, table)),
+          updateCompanionCallback: ({
+            Value<String> webUuid = const Value.absent(),
+            Value<String> key = const Value.absent(),
+            Value<String> value = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              CookieJarTableCompanion(
+            webUuid: webUuid,
+            key: key,
+            value: value,
+            rowid: rowid,
+          ),
+          createCompanionCallback: ({
+            required String webUuid,
+            required String key,
+            required String value,
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              CookieJarTableCompanion.insert(
+            webUuid: webUuid,
+            key: key,
+            value: value,
+            rowid: rowid,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$CookieJarTableTableProcessedTableManager = ProcessedTableManager<
+    _$AppDataBase,
+    $CookieJarTableTable,
+    CookieJarTableData,
+    $$CookieJarTableTableFilterComposer,
+    $$CookieJarTableTableOrderingComposer,
+    $$CookieJarTableTableCreateCompanionBuilder,
+    $$CookieJarTableTableUpdateCompanionBuilder,
+    (
+      CookieJarTableData,
+      BaseReferences<_$AppDataBase, $CookieJarTableTable, CookieJarTableData>
+    ),
+    CookieJarTableData,
+    PrefetchHooks Function()>;
+
+class $AppDataBaseManager {
+  final _$AppDataBase _db;
+  $AppDataBaseManager(this._db);
+  $$WebTableTableTableManager get webTable =>
+      $$WebTableTableTableManager(_db, _db.webTable);
+  $$ReaderHistoryTableTableTableManager get readerHistoryTable =>
+      $$ReaderHistoryTableTableTableManager(_db, _db.readerHistoryTable);
+  $$CookieJarTableTableTableManager get cookieJarTable =>
+      $$CookieJarTableTableTableManager(_db, _db.cookieJarTable);
 }

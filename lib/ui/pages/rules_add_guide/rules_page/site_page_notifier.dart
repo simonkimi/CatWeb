@@ -106,7 +106,8 @@ mixin _ListTemplateUpdater on ValueNotifier<SitePageRule> {
   void addListTemplateFilter() {
     value = value.copyWith(
       template: templateList.copyWith(
-        filters: templateList.filters..add(const TemplateListFilterItem()),
+        filters: templateList.filters
+          ..add(const TemplateListFilterItem.string()),
       ),
     );
   }

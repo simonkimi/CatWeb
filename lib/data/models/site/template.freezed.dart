@@ -42,6 +42,7 @@ mixin _$PageTemplate {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)
@@ -58,6 +59,7 @@ mixin _$PageTemplate {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)?
@@ -74,6 +76,7 @@ mixin _$PageTemplate {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)?
@@ -107,6 +110,8 @@ mixin _$PageTemplate {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this PageTemplate to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -126,6 +131,9 @@ class _$PageTemplateCopyWithImpl<$Res, $Val extends PageTemplate>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -149,6 +157,8 @@ class __$$PageTemplateAutoCompleteImplCopyWithImpl<$Res>
       $Res Function(_$PageTemplateAutoCompleteImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -172,6 +182,8 @@ class __$$PageTemplateAutoCompleteImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ScriptFieldCopyWith<$Res> get script {
@@ -224,11 +236,13 @@ class _$PageTemplateAutoCompleteImpl extends PageTemplateAutoComplete {
             (identical(other.script, script) || other.script == script));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, splitChar, timeout, script);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageTemplateAutoCompleteImplCopyWith<_$PageTemplateAutoCompleteImpl>
@@ -245,6 +259,7 @@ class _$PageTemplateAutoCompleteImpl extends PageTemplateAutoComplete {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)
@@ -264,6 +279,7 @@ class _$PageTemplateAutoCompleteImpl extends PageTemplateAutoComplete {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)?
@@ -283,6 +299,7 @@ class _$PageTemplateAutoCompleteImpl extends PageTemplateAutoComplete {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)?
@@ -354,7 +371,10 @@ abstract class PageTemplateAutoComplete extends PageTemplate {
   String get splitChar;
   int get timeout;
   ScriptField get script;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageTemplateAutoCompleteImplCopyWith<_$PageTemplateAutoCompleteImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -376,6 +396,8 @@ class __$$PageTemplateGalleryImplCopyWithImpl<$Res>
       $Res Function(_$PageTemplateGalleryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -421,11 +443,13 @@ class _$PageTemplateGalleryImpl extends PageTemplateGallery {
                 other.targetReader == targetReader));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, targetReader);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageTemplateGalleryImplCopyWith<_$PageTemplateGalleryImpl> get copyWith =>
@@ -442,6 +466,7 @@ class _$PageTemplateGalleryImpl extends PageTemplateGallery {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)
@@ -461,6 +486,7 @@ class _$PageTemplateGalleryImpl extends PageTemplateGallery {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)?
@@ -480,6 +506,7 @@ class _$PageTemplateGalleryImpl extends PageTemplateGallery {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)?
@@ -547,7 +574,10 @@ abstract class PageTemplateGallery extends PageTemplate {
       _$PageTemplateGalleryImpl.fromJson;
 
   String get targetReader;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageTemplateGalleryImplCopyWith<_$PageTemplateGalleryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -562,6 +592,7 @@ abstract class _$$PageTemplateListImplCopyWith<$Res> {
       {String name,
       List<TemplateListSubPage> subPages,
       List<TemplateListFilterItem> filters,
+      bool disableUnchanged,
       ScriptField script,
       String targetItem,
       String targetAutoComplete});
@@ -577,12 +608,15 @@ class __$$PageTemplateListImplCopyWithImpl<$Res>
       $Res Function(_$PageTemplateListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = null,
     Object? subPages = null,
     Object? filters = null,
+    Object? disableUnchanged = null,
     Object? script = null,
     Object? targetItem = null,
     Object? targetAutoComplete = null,
@@ -600,6 +634,10 @@ class __$$PageTemplateListImplCopyWithImpl<$Res>
           ? _value._filters
           : filters // ignore: cast_nullable_to_non_nullable
               as List<TemplateListFilterItem>,
+      disableUnchanged: null == disableUnchanged
+          ? _value.disableUnchanged
+          : disableUnchanged // ignore: cast_nullable_to_non_nullable
+              as bool,
       script: null == script
           ? _value.script
           : script // ignore: cast_nullable_to_non_nullable
@@ -615,6 +653,8 @@ class __$$PageTemplateListImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ScriptFieldCopyWith<$Res> get script {
@@ -631,6 +671,7 @@ class _$PageTemplateListImpl extends PageTemplateList {
       {this.name = '',
       final List<TemplateListSubPage> subPages = const [],
       final List<TemplateListFilterItem> filters = const [],
+      this.disableUnchanged = false,
       this.script = const ScriptField.output(),
       this.targetItem = '',
       this.targetAutoComplete = '',
@@ -666,6 +707,9 @@ class _$PageTemplateListImpl extends PageTemplateList {
 
   @override
   @JsonKey()
+  final bool disableUnchanged;
+  @override
+  @JsonKey()
   final ScriptField script;
   @override
   @JsonKey()
@@ -679,7 +723,7 @@ class _$PageTemplateListImpl extends PageTemplateList {
 
   @override
   String toString() {
-    return 'PageTemplate.list(name: $name, subPages: $subPages, filters: $filters, script: $script, targetItem: $targetItem, targetAutoComplete: $targetAutoComplete)';
+    return 'PageTemplate.list(name: $name, subPages: $subPages, filters: $filters, disableUnchanged: $disableUnchanged, script: $script, targetItem: $targetItem, targetAutoComplete: $targetAutoComplete)';
   }
 
   @override
@@ -690,6 +734,8 @@ class _$PageTemplateListImpl extends PageTemplateList {
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._subPages, _subPages) &&
             const DeepCollectionEquality().equals(other._filters, _filters) &&
+            (identical(other.disableUnchanged, disableUnchanged) ||
+                other.disableUnchanged == disableUnchanged) &&
             (identical(other.script, script) || other.script == script) &&
             (identical(other.targetItem, targetItem) ||
                 other.targetItem == targetItem) &&
@@ -697,18 +743,21 @@ class _$PageTemplateListImpl extends PageTemplateList {
                 other.targetAutoComplete == targetAutoComplete));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       name,
       const DeepCollectionEquality().hash(_subPages),
       const DeepCollectionEquality().hash(_filters),
+      disableUnchanged,
       script,
       targetItem,
       targetAutoComplete);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageTemplateListImplCopyWith<_$PageTemplateListImpl> get copyWith =>
@@ -725,14 +774,15 @@ class _$PageTemplateListImpl extends PageTemplateList {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)
         list,
     required TResult Function() imageViewer,
   }) {
-    return list(
-        name, subPages, filters, script, targetItem, targetAutoComplete);
+    return list(name, subPages, filters, disableUnchanged, script, targetItem,
+        targetAutoComplete);
   }
 
   @override
@@ -745,14 +795,15 @@ class _$PageTemplateListImpl extends PageTemplateList {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)?
         list,
     TResult? Function()? imageViewer,
   }) {
-    return list?.call(
-        name, subPages, filters, script, targetItem, targetAutoComplete);
+    return list?.call(name, subPages, filters, disableUnchanged, script,
+        targetItem, targetAutoComplete);
   }
 
   @override
@@ -765,6 +816,7 @@ class _$PageTemplateListImpl extends PageTemplateList {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)?
@@ -773,8 +825,8 @@ class _$PageTemplateListImpl extends PageTemplateList {
     required TResult orElse(),
   }) {
     if (list != null) {
-      return list(
-          name, subPages, filters, script, targetItem, targetAutoComplete);
+      return list(name, subPages, filters, disableUnchanged, script, targetItem,
+          targetAutoComplete);
     }
     return orElse();
   }
@@ -829,6 +881,7 @@ abstract class PageTemplateList extends PageTemplate {
       {final String name,
       final List<TemplateListSubPage> subPages,
       final List<TemplateListFilterItem> filters,
+      final bool disableUnchanged,
       final ScriptField script,
       final String targetItem,
       final String targetAutoComplete}) = _$PageTemplateListImpl;
@@ -840,10 +893,14 @@ abstract class PageTemplateList extends PageTemplate {
   String get name;
   List<TemplateListSubPage> get subPages;
   List<TemplateListFilterItem> get filters;
+  bool get disableUnchanged;
   ScriptField get script;
   String get targetItem;
   String get targetAutoComplete;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageTemplateListImplCopyWith<_$PageTemplateListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -864,6 +921,9 @@ class __$$PageTemplateImageViewerImplCopyWithImpl<$Res>
       _$PageTemplateImageViewerImpl _value,
       $Res Function(_$PageTemplateImageViewerImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageTemplate
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -891,7 +951,7 @@ class _$PageTemplateImageViewerImpl extends PageTemplateImageViewer {
             other is _$PageTemplateImageViewerImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -905,6 +965,7 @@ class _$PageTemplateImageViewerImpl extends PageTemplateImageViewer {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)
@@ -924,6 +985,7 @@ class _$PageTemplateImageViewerImpl extends PageTemplateImageViewer {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)?
@@ -943,6 +1005,7 @@ class _$PageTemplateImageViewerImpl extends PageTemplateImageViewer {
             String name,
             List<TemplateListSubPage> subPages,
             List<TemplateListFilterItem> filters,
+            bool disableUnchanged,
             ScriptField script,
             String targetItem,
             String targetAutoComplete)?

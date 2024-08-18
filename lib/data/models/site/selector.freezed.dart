@@ -83,6 +83,8 @@ mixin _$SelectorQuery {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this SelectorQuery to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -102,6 +104,9 @@ class _$SelectorQueryCopyWithImpl<$Res, $Val extends SelectorQuery>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -118,6 +123,9 @@ class __$$SelectorQuerySelfImplCopyWithImpl<$Res>
   __$$SelectorQuerySelfImplCopyWithImpl(_$SelectorQuerySelfImpl _value,
       $Res Function(_$SelectorQuerySelfImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -144,7 +152,7 @@ class _$SelectorQuerySelfImpl extends SelectorQuerySelf {
         (other.runtimeType == runtimeType && other is _$SelectorQuerySelfImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -255,6 +263,8 @@ class __$$SelectorQueryCssImplCopyWithImpl<$Res>
       $Res Function(_$SelectorQueryCssImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -300,11 +310,13 @@ class _$SelectorQueryCssImpl extends SelectorQueryCss {
                 other.cssSelector == cssSelector));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, cssSelector);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectorQueryCssImplCopyWith<_$SelectorQueryCssImpl> get copyWith =>
@@ -402,7 +414,10 @@ abstract class SelectorQueryCss extends SelectorQuery {
       _$SelectorQueryCssImpl.fromJson;
 
   String get cssSelector;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectorQueryCssImplCopyWith<_$SelectorQueryCssImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -424,6 +439,8 @@ class __$$SelectorQueryXpathImplCopyWithImpl<$Res>
       $Res Function(_$SelectorQueryXpathImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -468,11 +485,13 @@ class _$SelectorQueryXpathImpl extends SelectorQueryXpath {
             (identical(other.xpath, xpath) || other.xpath == xpath));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, xpath);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectorQueryXpathImplCopyWith<_$SelectorQueryXpathImpl> get copyWith =>
@@ -570,7 +589,10 @@ abstract class SelectorQueryXpath extends SelectorQuery {
       _$SelectorQueryXpathImpl.fromJson;
 
   String get xpath;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectorQueryXpathImplCopyWith<_$SelectorQueryXpathImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -593,6 +615,8 @@ class __$$SelectorQueryJsonPathImplCopyWithImpl<$Res>
       $Res Function(_$SelectorQueryJsonPathImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -638,11 +662,13 @@ class _$SelectorQueryJsonPathImpl extends SelectorQueryJsonPath {
                 other.jsonPath == jsonPath));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, jsonPath);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectorQueryJsonPathImplCopyWith<_$SelectorQueryJsonPathImpl>
@@ -740,7 +766,10 @@ abstract class SelectorQueryJsonPath extends SelectorQuery {
       _$SelectorQueryJsonPathImpl.fromJson;
 
   String get jsonPath;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectorQueryJsonPathImplCopyWith<_$SelectorQueryJsonPathImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -806,6 +835,8 @@ mixin _$SelectorFunction {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this SelectorFunction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -825,6 +856,9 @@ class _$SelectorFunctionCopyWithImpl<$Res, $Val extends SelectorFunction>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SelectorFunction
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -841,6 +875,9 @@ class __$$SelectorFunctionTextImplCopyWithImpl<$Res>
   __$$SelectorFunctionTextImplCopyWithImpl(_$SelectorFunctionTextImpl _value,
       $Res Function(_$SelectorFunctionTextImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SelectorFunction
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -868,7 +905,7 @@ class _$SelectorFunctionTextImpl extends SelectorFunctionText {
             other is _$SelectorFunctionTextImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -973,6 +1010,8 @@ class __$$SelectorFunctionAttrImplCopyWithImpl<$Res>
       $Res Function(_$SelectorFunctionAttrImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectorFunction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1017,11 +1056,13 @@ class _$SelectorFunctionAttrImpl extends SelectorFunctionAttr {
             (identical(other.attr, attr) || other.attr == attr));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, attr);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectorFunction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectorFunctionAttrImplCopyWith<_$SelectorFunctionAttrImpl>
@@ -1114,7 +1155,10 @@ abstract class SelectorFunctionAttr extends SelectorFunction {
       _$SelectorFunctionAttrImpl.fromJson;
 
   String get attr;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SelectorFunction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectorFunctionAttrImplCopyWith<_$SelectorFunctionAttrImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1133,6 +1177,9 @@ class __$$SelectorFunctionRawImplCopyWithImpl<$Res>
   __$$SelectorFunctionRawImplCopyWithImpl(_$SelectorFunctionRawImpl _value,
       $Res Function(_$SelectorFunctionRawImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SelectorFunction
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1160,7 +1207,7 @@ class _$SelectorFunctionRawImpl extends SelectorFunctionRaw {
             other is _$SelectorFunctionRawImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -1263,8 +1310,12 @@ mixin _$SelectorModel {
   ScriptField get script => throw _privateConstructorUsedError;
   String get defaultValue => throw _privateConstructorUsedError;
 
+  /// Serializes this SelectorModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SelectorModelCopyWith<SelectorModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1300,6 +1351,8 @@ class _$SelectorModelCopyWithImpl<$Res, $Val extends SelectorModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1348,6 +1401,8 @@ class _$SelectorModelCopyWithImpl<$Res, $Val extends SelectorModel>
     ) as $Val);
   }
 
+  /// Create a copy of SelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorQueryCopyWith<$Res> get type {
@@ -1356,6 +1411,8 @@ class _$SelectorModelCopyWithImpl<$Res, $Val extends SelectorModel>
     });
   }
 
+  /// Create a copy of SelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorFunctionCopyWith<$Res> get function {
@@ -1364,6 +1421,8 @@ class _$SelectorModelCopyWithImpl<$Res, $Val extends SelectorModel>
     });
   }
 
+  /// Create a copy of SelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ScriptFieldCopyWith<$Res> get script {
@@ -1407,6 +1466,8 @@ class __$$SelectorModelImplCopyWithImpl<$Res>
       _$SelectorModelImpl _value, $Res Function(_$SelectorModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1521,12 +1582,14 @@ class _$SelectorModelImpl extends _SelectorModel {
                 other.defaultValue == defaultValue));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, selector, type, function, param,
       regex, replace, script, defaultValue);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectorModelImplCopyWith<_$SelectorModelImpl> get copyWith =>
@@ -1571,8 +1634,11 @@ abstract class _SelectorModel extends SelectorModel {
   ScriptField get script;
   @override
   String get defaultValue;
+
+  /// Create a copy of SelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectorModelImplCopyWith<_$SelectorModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1590,8 +1656,12 @@ mixin _$ImageSelectorModel {
   SelectorModel get y => throw _privateConstructorUsedError;
   SelectorModel get cacheKey => throw _privateConstructorUsedError;
 
+  /// Serializes this ImageSelectorModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImageSelectorModelCopyWith<ImageSelectorModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1628,6 +1698,8 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1666,6 +1738,8 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
     ) as $Val);
   }
 
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get url {
@@ -1674,6 +1748,8 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
     });
   }
 
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get width {
@@ -1682,6 +1758,8 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
     });
   }
 
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get height {
@@ -1690,6 +1768,8 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
     });
   }
 
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get x {
@@ -1698,6 +1778,8 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
     });
   }
 
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get y {
@@ -1706,6 +1788,8 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
     });
   }
 
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get cacheKey {
@@ -1753,6 +1837,8 @@ class __$$ImageSelectorModelImplCopyWithImpl<$Res>
       $Res Function(_$ImageSelectorModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1844,12 +1930,14 @@ class _$ImageSelectorModelImpl implements _ImageSelectorModel {
                 other.cacheKey == cacheKey));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, url, width, height, x, y, cacheKey);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImageSelectorModelImplCopyWith<_$ImageSelectorModelImpl> get copyWith =>
@@ -1888,8 +1976,11 @@ abstract class _ImageSelectorModel implements ImageSelectorModel {
   SelectorModel get y;
   @override
   SelectorModel get cacheKey;
+
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImageSelectorModelImplCopyWith<_$ImageSelectorModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1905,8 +1996,12 @@ mixin _$CommentSelectorModel {
   SelectorModel get content => throw _privateConstructorUsedError;
   SelectorModel get avatar => throw _privateConstructorUsedError;
 
+  /// Serializes this CommentSelectorModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CommentSelectorModelCopyWith<CommentSelectorModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1940,6 +2035,8 @@ class _$CommentSelectorModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1968,6 +2065,8 @@ class _$CommentSelectorModelCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get username {
@@ -1976,6 +2075,8 @@ class _$CommentSelectorModelCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get time {
@@ -1984,6 +2085,8 @@ class _$CommentSelectorModelCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get content {
@@ -1992,6 +2095,8 @@ class _$CommentSelectorModelCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get avatar {
@@ -2033,6 +2138,8 @@ class __$$CommentSelectorModelImplCopyWithImpl<$Res>
       $Res Function(_$CommentSelectorModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2104,11 +2211,13 @@ class _$CommentSelectorModelImpl implements _CommentSelectorModel {
             (identical(other.avatar, avatar) || other.avatar == avatar));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, username, time, content, avatar);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CommentSelectorModelImplCopyWith<_$CommentSelectorModelImpl>
@@ -2142,8 +2251,11 @@ abstract class _CommentSelectorModel implements CommentSelectorModel {
   SelectorModel get content;
   @override
   SelectorModel get avatar;
+
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CommentSelectorModelImplCopyWith<_$CommentSelectorModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2158,8 +2270,12 @@ mixin _$ExtraSelectorModel {
   String get id => throw _privateConstructorUsedError;
   bool get persistence => throw _privateConstructorUsedError;
 
+  /// Serializes this ExtraSelectorModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ExtraSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ExtraSelectorModelCopyWith<ExtraSelectorModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2185,6 +2301,8 @@ class _$ExtraSelectorModelCopyWithImpl<$Res, $Val extends ExtraSelectorModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ExtraSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2208,6 +2326,8 @@ class _$ExtraSelectorModelCopyWithImpl<$Res, $Val extends ExtraSelectorModel>
     ) as $Val);
   }
 
+  /// Create a copy of ExtraSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get selector {
@@ -2239,6 +2359,8 @@ class __$$ExtraSelectorModelImplCopyWithImpl<$Res>
       $Res Function(_$ExtraSelectorModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ExtraSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2301,11 +2423,13 @@ class _$ExtraSelectorModelImpl implements _ExtraSelectorModel {
                 other.persistence == persistence));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, selector, id, persistence);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ExtraSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ExtraSelectorModelImplCopyWith<_$ExtraSelectorModelImpl> get copyWith =>
@@ -2335,8 +2459,11 @@ abstract class _ExtraSelectorModel implements ExtraSelectorModel {
   String get id;
   @override
   bool get persistence;
+
+  /// Create a copy of ExtraSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ExtraSelectorModelImplCopyWith<_$ExtraSelectorModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2351,8 +2478,12 @@ mixin _$TagSelectorModel {
   SelectorModel get color => throw _privateConstructorUsedError;
   SelectorModel get category => throw _privateConstructorUsedError;
 
+  /// Serializes this TagSelectorModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TagSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TagSelectorModelCopyWith<TagSelectorModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2380,6 +2511,8 @@ class _$TagSelectorModelCopyWithImpl<$Res, $Val extends TagSelectorModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TagSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2403,6 +2536,8 @@ class _$TagSelectorModelCopyWithImpl<$Res, $Val extends TagSelectorModel>
     ) as $Val);
   }
 
+  /// Create a copy of TagSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get text {
@@ -2411,6 +2546,8 @@ class _$TagSelectorModelCopyWithImpl<$Res, $Val extends TagSelectorModel>
     });
   }
 
+  /// Create a copy of TagSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get color {
@@ -2419,6 +2556,8 @@ class _$TagSelectorModelCopyWithImpl<$Res, $Val extends TagSelectorModel>
     });
   }
 
+  /// Create a copy of TagSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get category {
@@ -2454,6 +2593,8 @@ class __$$TagSelectorModelImplCopyWithImpl<$Res>
       $Res Function(_$TagSelectorModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TagSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2515,11 +2656,13 @@ class _$TagSelectorModelImpl implements _TagSelectorModel {
                 other.category == category));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, text, color, category);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TagSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TagSelectorModelImplCopyWith<_$TagSelectorModelImpl> get copyWith =>
@@ -2549,8 +2692,11 @@ abstract class _TagSelectorModel implements TagSelectorModel {
   SelectorModel get color;
   @override
   SelectorModel get category;
+
+  /// Create a copy of TagSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TagSelectorModelImplCopyWith<_$TagSelectorModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

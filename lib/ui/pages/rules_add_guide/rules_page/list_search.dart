@@ -8,7 +8,6 @@ import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/widgets/notifier_selector.dart';
 import 'package:catweb/utils/context_helper.dart';
 import 'package:catweb/utils/obs_helper.dart';
-import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:provider/provider.dart';
@@ -94,71 +93,15 @@ class ListFilterEditor extends StatelessWidget {
     BuildContext context,
     TemplateListFilterItem field,
   ) async {
-    final nameNotifier = field.name.obs;
-    final keyNotifier = field.key.obs;
-    final valueNotifier = field.value.obs;
-    final typeNotifier = field.type.obs;
-
     final result = await showCupertinoDialog(
       barrierDismissible: true,
       context: context,
       builder: (context) {
-        return CupertinoAlertDialog(
-          actions: [
-            CupertinoDialogAction(
-              child: Text(I.of(context).save),
-              onPressed: () => context.pop(true),
-            ),
-            CupertinoDialogAction(
-              isDestructiveAction: true,
-              onPressed: () => context.pop(false),
-              child: Text(I.of(context).negative),
-            ),
-          ],
-          content: Column(
-            children: [
-              TripleVnTextField(
-                labelText: I.of(context).name,
-                value: nameNotifier,
-              ),
-              TripleVnTextField(
-                labelText: I.of(context).key,
-                value: keyNotifier,
-              ),
-              typeNotifier.obx((type) {
-                return TripleReadonlyTextField(
-                  labelText: I.of(context).type,
-                  value: type.getDescription(context),
-                  onTap: () => showCupertinoSelectDialog<FilterType>(
-                    context: context,
-                    items: FilterType.values.map((e) {
-                      return SelectTileItem(
-                        title: e.getDescription(context),
-                        value: e,
-                      );
-                    }).toList(),
-                    cancelText: I.of(context).negative,
-                  ).then((value) {
-                    if (value != null) {
-                      typeNotifier.value = value;
-                    }
-                  }),
-                );
-              }),
-              TripleVnTextField(
-                labelText: I.of(context).default_value,
-                value: valueNotifier,
-              ),
-            ],
-          ),
-        );
+        return
       },
     );
 
-    nameNotifier.dispose();
-    keyNotifier.dispose();
-    valueNotifier.dispose();
-    typeNotifier.dispose();
+
 
     if (result != true) {
       return null;

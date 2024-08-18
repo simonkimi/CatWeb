@@ -23,8 +23,12 @@ mixin _$RegField {
   String get reg => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
 
+  /// Serializes this RegField to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RegField
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RegFieldCopyWith<RegField> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$RegFieldCopyWithImpl<$Res, $Val extends RegField>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RegField
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,6 +91,8 @@ class __$$RegFieldImplCopyWithImpl<$Res>
       _$RegFieldImpl _value, $Res Function(_$RegFieldImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegField
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,11 +141,13 @@ class _$RegFieldImpl implements _RegField {
             (identical(other.value, value) || other.value == value));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, reg, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegField
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RegFieldImplCopyWith<_$RegFieldImpl> get copyWith =>
@@ -162,8 +172,11 @@ abstract class _RegField implements RegField {
   String get reg;
   @override
   String get value;
+
+  /// Create a copy of RegField
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RegFieldImplCopyWith<_$RegFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -229,6 +242,8 @@ mixin _$ScriptField {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this ScriptField to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -248,6 +263,9 @@ class _$ScriptFieldCopyWithImpl<$Res, $Val extends ScriptField>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ScriptField
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -264,6 +282,9 @@ class __$$ScriptFieldOutputImplCopyWithImpl<$Res>
   __$$ScriptFieldOutputImplCopyWithImpl(_$ScriptFieldOutputImpl _value,
       $Res Function(_$ScriptFieldOutputImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ScriptField
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -290,7 +311,7 @@ class _$ScriptFieldOutputImpl extends ScriptFieldOutput {
         (other.runtimeType == runtimeType && other is _$ScriptFieldOutputImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -395,6 +416,8 @@ class __$$ScriptFieldReplaceImplCopyWithImpl<$Res>
       $Res Function(_$ScriptFieldReplaceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ScriptField
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -446,12 +469,14 @@ class _$ScriptFieldReplaceImpl extends ScriptFieldReplace {
             const DeepCollectionEquality().equals(other._replace, _replace));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_replace));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ScriptField
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ScriptFieldReplaceImplCopyWith<_$ScriptFieldReplaceImpl> get copyWith =>
@@ -543,7 +568,10 @@ abstract class ScriptFieldReplace extends ScriptField {
       _$ScriptFieldReplaceImpl.fromJson;
 
   Map<String, String> get replace;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ScriptField
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ScriptFieldReplaceImplCopyWith<_$ScriptFieldReplaceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -565,6 +593,8 @@ class __$$ScriptFieldJsImplCopyWithImpl<$Res>
       _$ScriptFieldJsImpl _value, $Res Function(_$ScriptFieldJsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ScriptField
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -609,11 +639,13 @@ class _$ScriptFieldJsImpl extends ScriptFieldJs {
             (identical(other.script, script) || other.script == script));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, script);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ScriptField
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ScriptFieldJsImplCopyWith<_$ScriptFieldJsImpl> get copyWith =>
@@ -703,7 +735,10 @@ abstract class ScriptFieldJs extends ScriptField {
       _$ScriptFieldJsImpl.fromJson;
 
   String get script;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ScriptField
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ScriptFieldJsImplCopyWith<_$ScriptFieldJsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -719,8 +754,12 @@ mixin _$ColorField {
   int get g => throw _privateConstructorUsedError;
   int get b => throw _privateConstructorUsedError;
 
+  /// Serializes this ColorField to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ColorField
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ColorFieldCopyWith<ColorField> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -744,6 +783,8 @@ class _$ColorFieldCopyWithImpl<$Res, $Val extends ColorField>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ColorField
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -792,6 +833,8 @@ class __$$ColorFieldImplCopyWithImpl<$Res>
       _$ColorFieldImpl _value, $Res Function(_$ColorFieldImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ColorField
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -858,11 +901,13 @@ class _$ColorFieldImpl implements _ColorField {
             (identical(other.b, b) || other.b == b));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, a, r, g, b);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ColorField
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ColorFieldImplCopyWith<_$ColorFieldImpl> get copyWith =>
@@ -891,8 +936,11 @@ abstract class _ColorField implements ColorField {
   int get g;
   @override
   int get b;
+
+  /// Create a copy of ColorField
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ColorFieldImplCopyWith<_$ColorFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

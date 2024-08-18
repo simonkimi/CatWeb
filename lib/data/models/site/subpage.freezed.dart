@@ -24,8 +24,12 @@ mixin _$TemplateListSubPage {
   String get key => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
 
+  /// Serializes this TemplateListSubPage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TemplateListSubPage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TemplateListSubPageCopyWith<TemplateListSubPage> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$TemplateListSubPageCopyWithImpl<$Res, $Val extends TemplateListSubPage>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TemplateListSubPage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$TemplateListSubPageImplCopyWithImpl<$Res>
       $Res Function(_$TemplateListSubPageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TemplateListSubPage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -150,11 +158,13 @@ class _$TemplateListSubPageImpl implements _TemplateListSubPage {
             (identical(other.value, value) || other.value == value));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, key, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TemplateListSubPage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TemplateListSubPageImplCopyWith<_$TemplateListSubPageImpl> get copyWith =>
@@ -184,8 +194,11 @@ abstract class _TemplateListSubPage implements TemplateListSubPage {
   String get key;
   @override
   String get value;
+
+  /// Create a copy of TemplateListSubPage
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TemplateListSubPageImplCopyWith<_$TemplateListSubPageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -292,8 +305,13 @@ mixin _$TemplateListFilterItem {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this TemplateListFilterItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TemplateListFilterItemCopyWith<TemplateListFilterItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -318,6 +336,8 @@ class _$TemplateListFilterItemCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -369,6 +389,8 @@ class __$$TemplateListFilterItemStringImplCopyWithImpl<$Res>
       $Res Function(_$TemplateListFilterItemStringImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -458,12 +480,14 @@ class _$TemplateListFilterItemStringImpl extends TemplateListFilterItemString {
                 other.disabledUnchanged == disabledUnchanged));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, name, key, value, defaultValue, disabledUnchanged);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TemplateListFilterItemStringImplCopyWith<
@@ -599,8 +623,11 @@ abstract class TemplateListFilterItemString extends TemplateListFilterItem {
   String get defaultValue;
   @override
   bool get disabledUnchanged;
+
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TemplateListFilterItemStringImplCopyWith<
           _$TemplateListFilterItemStringImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -633,6 +660,8 @@ class __$$TemplateListFilterItemNumberImplCopyWithImpl<$Res>
       $Res Function(_$TemplateListFilterItemNumberImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -722,12 +751,14 @@ class _$TemplateListFilterItemNumberImpl extends TemplateListFilterItemNumber {
                 other.disabledUnchanged == disabledUnchanged));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, name, key, value, defaultValue, disabledUnchanged);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TemplateListFilterItemNumberImplCopyWith<
@@ -863,8 +894,11 @@ abstract class TemplateListFilterItemNumber extends TemplateListFilterItem {
   int get defaultValue;
   @override
   bool get disabledUnchanged;
+
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TemplateListFilterItemNumberImplCopyWith<
           _$TemplateListFilterItemNumberImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -897,6 +931,8 @@ class __$$TemplateListFilterItemFloatImplCopyWithImpl<$Res>
       $Res Function(_$TemplateListFilterItemFloatImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -986,12 +1022,14 @@ class _$TemplateListFilterItemFloatImpl extends TemplateListFilterItemFloat {
                 other.disabledUnchanged == disabledUnchanged));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, name, key, value, defaultValue, disabledUnchanged);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TemplateListFilterItemFloatImplCopyWith<_$TemplateListFilterItemFloatImpl>
@@ -1126,8 +1164,11 @@ abstract class TemplateListFilterItemFloat extends TemplateListFilterItem {
   double get defaultValue;
   @override
   bool get disabledUnchanged;
+
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TemplateListFilterItemFloatImplCopyWith<_$TemplateListFilterItemFloatImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1159,6 +1200,8 @@ class __$$TemplateListFilterItemBoolImplCopyWithImpl<$Res>
       $Res Function(_$TemplateListFilterItemBoolImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1248,12 +1291,14 @@ class _$TemplateListFilterItemBoolImpl extends TemplateListFilterItemBool {
                 other.disabledUnchanged == disabledUnchanged));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, name, key, value, defaultValue, disabledUnchanged);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TemplateListFilterItemBoolImplCopyWith<_$TemplateListFilterItemBoolImpl>
@@ -1388,8 +1433,11 @@ abstract class TemplateListFilterItemBool extends TemplateListFilterItem {
   bool get defaultValue;
   @override
   bool get disabledUnchanged;
+
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TemplateListFilterItemBoolImplCopyWith<_$TemplateListFilterItemBoolImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

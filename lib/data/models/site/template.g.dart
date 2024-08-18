@@ -10,7 +10,7 @@ _$PageTemplateAutoCompleteImpl _$$PageTemplateAutoCompleteImplFromJson(
         Map<String, dynamic> json) =>
     _$PageTemplateAutoCompleteImpl(
       splitChar: json['splitChar'] as String? ?? '',
-      timeout: json['timeout'] as int? ?? 0,
+      timeout: (json['timeout'] as num?)?.toInt() ?? 0,
       script: json['script'] == null
           ? const ScriptField.output()
           : ScriptField.fromJson(json['script'] as Map<String, dynamic>),
@@ -54,6 +54,7 @@ _$PageTemplateListImpl _$$PageTemplateListImplFromJson(
                   TemplateListFilterItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      disableUnchanged: json['disableUnchanged'] as bool? ?? false,
       script: json['script'] == null
           ? const ScriptField.output()
           : ScriptField.fromJson(json['script'] as Map<String, dynamic>),
@@ -68,6 +69,7 @@ Map<String, dynamic> _$$PageTemplateListImplToJson(
       'name': instance.name,
       'subPages': instance.subPages,
       'filters': instance.filters,
+      'disableUnchanged': instance.disableUnchanged,
       'script': instance.script,
       'targetItem': instance.targetItem,
       'targetAutoComplete': instance.targetAutoComplete,

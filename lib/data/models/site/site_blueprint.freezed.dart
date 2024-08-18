@@ -34,8 +34,12 @@ mixin _$SiteBlueprint {
   List<ParserModel> get parserList => throw _privateConstructorUsedError;
   List<SitePageRule> get pageList => throw _privateConstructorUsedError;
 
+  /// Serializes this SiteBlueprint to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SiteBlueprint
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SiteBlueprintCopyWith<SiteBlueprint> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -72,6 +76,8 @@ class _$SiteBlueprintCopyWithImpl<$Res, $Val extends SiteBlueprint>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SiteBlueprint
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -178,6 +184,8 @@ class __$$SiteBlueMapImplCopyWithImpl<$Res>
       _$SiteBlueMapImpl _value, $Res Function(_$SiteBlueMapImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SiteBlueprint
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -371,7 +379,7 @@ class _$SiteBlueMapImpl extends _SiteBlueMap {
             const DeepCollectionEquality().equals(other._pageList, _pageList));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -389,7 +397,9 @@ class _$SiteBlueMapImpl extends _SiteBlueMap {
       const DeepCollectionEquality().hash(_parserList),
       const DeepCollectionEquality().hash(_pageList));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SiteBlueprint
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SiteBlueMapImplCopyWith<_$SiteBlueMapImpl> get copyWith =>
@@ -449,8 +459,11 @@ abstract class _SiteBlueMap extends SiteBlueprint {
   List<ParserModel> get parserList;
   @override
   List<SitePageRule> get pageList;
+
+  /// Create a copy of SiteBlueprint
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SiteBlueMapImplCopyWith<_$SiteBlueMapImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

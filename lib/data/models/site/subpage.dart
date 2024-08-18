@@ -72,11 +72,21 @@ class TemplateListFilterItem with _$TemplateListFilterItem {
       _ => throw UnimplementedError()
     };
   }
+
+  FilterType get type => switch (this) {
+        TemplateListFilterItemString _ => FilterType.string,
+        TemplateListFilterItemNumber _ => FilterType.int,
+        TemplateListFilterItemFloat _ => FilterType.float,
+        TemplateListFilterItemBool _ => FilterType.bool,
+        _ => throw UnimplementedError()
+      };
 }
 
 enum FilterType implements IEnumDescription {
-  @JsonValue('number')
-  number,
+  @JsonValue('int')
+  int,
+  @JsonValue('float')
+  float,
   @JsonValue('string')
   string,
   @JsonValue('bool')
@@ -85,7 +95,8 @@ enum FilterType implements IEnumDescription {
   @override
   String getDescription(BuildContext context) {
     return switch (this) {
-      FilterType.number => '数字',
+      FilterType.int => '整数',
+      FilterType.float => '小数',
       FilterType.string => '字符串',
       FilterType.bool => '单选',
     };

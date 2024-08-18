@@ -61,10 +61,10 @@ Map<String, dynamic> _$$ScriptFieldJsImplToJson(_$ScriptFieldJsImpl instance) =>
 
 _$ColorFieldImpl _$$ColorFieldImplFromJson(Map<String, dynamic> json) =>
     _$ColorFieldImpl(
-      a: json['a'] as int? ?? 0,
-      r: json['r'] as int? ?? 0,
-      g: json['g'] as int? ?? 0,
-      b: json['b'] as int? ?? 0,
+      a: (json['a'] as num?)?.toInt() ?? 0,
+      r: (json['r'] as num?)?.toInt() ?? 0,
+      g: (json['g'] as num?)?.toInt() ?? 0,
+      b: (json['b'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$ColorFieldImplToJson(_$ColorFieldImpl instance) =>

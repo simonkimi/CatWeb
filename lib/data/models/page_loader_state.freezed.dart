@@ -84,6 +84,9 @@ class _$PageLoaderStateCopyWithImpl<$Res, $Val extends PageLoaderState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PageLoaderState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -99,6 +102,9 @@ class __$$IdleImplCopyWithImpl<$Res>
     implements _$$IdleImplCopyWith<$Res> {
   __$$IdleImplCopyWithImpl(_$IdleImpl _value, $Res Function(_$IdleImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageLoaderState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -214,6 +220,9 @@ class __$$RunningImplCopyWithImpl<$Res>
   __$$RunningImplCopyWithImpl(
       _$RunningImpl _value, $Res Function(_$RunningImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageLoaderState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -327,6 +336,9 @@ class __$$EndImplCopyWithImpl<$Res>
     implements _$$EndImplCopyWith<$Res> {
   __$$EndImplCopyWithImpl(_$EndImpl _value, $Res Function(_$EndImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PageLoaderState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -445,6 +457,8 @@ class __$$PageLoaderStateErrorImplCopyWithImpl<$Res>
       $Res Function(_$PageLoaderStateErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageLoaderState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -490,7 +504,9 @@ class _$PageLoaderStateErrorImpl extends PageLoaderStateError {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageLoaderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageLoaderStateErrorImplCopyWith<_$PageLoaderStateErrorImpl>
@@ -581,7 +597,10 @@ abstract class PageLoaderStateError extends PageLoaderState {
 
   Object get error;
   StackTrace get stackTrace;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PageLoaderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageLoaderStateErrorImplCopyWith<_$PageLoaderStateErrorImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

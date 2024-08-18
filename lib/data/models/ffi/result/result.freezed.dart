@@ -23,8 +23,12 @@ mixin _$DetailPreviewItem {
   ImageResult? get previewImage => throw _privateConstructorUsedError;
   String? get target => throw _privateConstructorUsedError;
 
+  /// Serializes this DetailPreviewItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DetailPreviewItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DetailPreviewItemCopyWith<DetailPreviewItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$DetailPreviewItemCopyWithImpl<$Res, $Val extends DetailPreviewItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DetailPreviewItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -68,6 +74,8 @@ class _$DetailPreviewItemCopyWithImpl<$Res, $Val extends DetailPreviewItem>
     ) as $Val);
   }
 
+  /// Create a copy of DetailPreviewItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageResultCopyWith<$Res>? get previewImage {
@@ -103,6 +111,8 @@ class __$$PreviewItemImplCopyWithImpl<$Res>
       _$PreviewItemImpl _value, $Res Function(_$PreviewItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetailPreviewItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -159,11 +169,13 @@ class _$PreviewItemImpl with DiagnosticableTreeMixin implements _PreviewItem {
             (identical(other.target, target) || other.target == target));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, previewImage, target);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetailPreviewItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PreviewItemImplCopyWith<_$PreviewItemImpl> get copyWith =>
@@ -189,8 +201,11 @@ abstract class _PreviewItem implements DetailPreviewItem {
   ImageResult? get previewImage;
   @override
   String? get target;
+
+  /// Create a copy of DetailPreviewItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PreviewItemImplCopyWith<_$PreviewItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -220,8 +235,12 @@ mixin _$DetailParserResult {
   List<EnvResult> get envs => throw _privateConstructorUsedError;
   List<ParserError> get errors => throw _privateConstructorUsedError;
 
+  /// Serializes this DetailParserResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DetailParserResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DetailParserResultCopyWith<DetailParserResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -265,6 +284,8 @@ class _$DetailParserResultCopyWithImpl<$Res, $Val extends DetailParserResult>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DetailParserResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -363,6 +384,8 @@ class _$DetailParserResultCopyWithImpl<$Res, $Val extends DetailParserResult>
     ) as $Val);
   }
 
+  /// Create a copy of DetailParserResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageResultCopyWith<$Res>? get coverImage {
@@ -416,6 +439,8 @@ class __$$DetailParserResultImplCopyWithImpl<$Res>
       $Res Function(_$DetailParserResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetailParserResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -694,7 +719,7 @@ class _$DetailParserResultImpl
             const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -717,7 +742,9 @@ class _$DetailParserResultImpl
       const DeepCollectionEquality().hash(_envs),
       const DeepCollectionEquality().hash(_errors));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetailParserResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DetailParserResultImplCopyWith<_$DetailParserResultImpl> get copyWith =>
@@ -792,8 +819,11 @@ abstract class _DetailParserResult implements DetailParserResult {
   List<EnvResult> get envs;
   @override
   List<ParserError> get errors;
+
+  /// Create a copy of DetailParserResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DetailParserResultImplCopyWith<_$DetailParserResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -809,8 +839,12 @@ mixin _$AutoCompleteResultItem {
   String? get subtitle => throw _privateConstructorUsedError;
   String? get complete => throw _privateConstructorUsedError;
 
+  /// Serializes this AutoCompleteResultItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AutoCompleteResultItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AutoCompleteResultItemCopyWith<AutoCompleteResultItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -835,6 +869,8 @@ class _$AutoCompleteResultItemCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AutoCompleteResultItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -881,6 +917,8 @@ class __$$AutoCompleteResultItemImplCopyWithImpl<$Res>
       $Res Function(_$AutoCompleteResultItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AutoCompleteResultItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -950,11 +988,13 @@ class _$AutoCompleteResultItemImpl
                 other.complete == complete));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, title, subtitle, complete);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AutoCompleteResultItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AutoCompleteResultItemImplCopyWith<_$AutoCompleteResultItemImpl>
@@ -984,8 +1024,11 @@ abstract class _AutoCompleteResultItem implements AutoCompleteResultItem {
   String? get subtitle;
   @override
   String? get complete;
+
+  /// Create a copy of AutoCompleteResultItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AutoCompleteResultItemImplCopyWith<_$AutoCompleteResultItemImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1002,8 +1045,12 @@ mixin _$AutoCompleteResult {
   List<EnvResult> get envs => throw _privateConstructorUsedError;
   List<ParserError> get errors => throw _privateConstructorUsedError;
 
+  /// Serializes this AutoCompleteResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AutoCompleteResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AutoCompleteResultCopyWith<AutoCompleteResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1032,6 +1079,8 @@ class _$AutoCompleteResultCopyWithImpl<$Res, $Val extends AutoCompleteResult>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AutoCompleteResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1090,6 +1139,8 @@ class __$$AutoCompleteResultImplCopyWithImpl<$Res>
       $Res Function(_$AutoCompleteResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AutoCompleteResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1203,7 +1254,7 @@ class _$AutoCompleteResultImpl
             const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1213,7 +1264,9 @@ class _$AutoCompleteResultImpl
       const DeepCollectionEquality().hash(_envs),
       const DeepCollectionEquality().hash(_errors));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AutoCompleteResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AutoCompleteResultImplCopyWith<_$AutoCompleteResultImpl> get copyWith =>
@@ -1249,8 +1302,11 @@ abstract class _AutoCompleteResult implements AutoCompleteResult {
   List<EnvResult> get envs;
   @override
   List<ParserError> get errors;
+
+  /// Create a copy of AutoCompleteResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AutoCompleteResultImplCopyWith<_$AutoCompleteResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1276,8 +1332,12 @@ mixin _$ImageReaderResult {
   List<EnvResult> get envs => throw _privateConstructorUsedError;
   List<ParserError> get errors => throw _privateConstructorUsedError;
 
+  /// Serializes this ImageReaderResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImageReaderResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImageReaderResultCopyWith<ImageReaderResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1319,6 +1379,8 @@ class _$ImageReaderResultCopyWithImpl<$Res, $Val extends ImageReaderResult>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImageReaderResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1397,6 +1459,8 @@ class _$ImageReaderResultCopyWithImpl<$Res, $Val extends ImageReaderResult>
     ) as $Val);
   }
 
+  /// Create a copy of ImageReaderResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageResultCopyWith<$Res>? get image {
@@ -1409,6 +1473,8 @@ class _$ImageReaderResultCopyWithImpl<$Res, $Val extends ImageReaderResult>
     });
   }
 
+  /// Create a copy of ImageReaderResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageResultCopyWith<$Res>? get largerImage {
@@ -1421,6 +1487,8 @@ class _$ImageReaderResultCopyWithImpl<$Res, $Val extends ImageReaderResult>
     });
   }
 
+  /// Create a copy of ImageReaderResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageResultCopyWith<$Res>? get rawImage {
@@ -1474,6 +1542,8 @@ class __$$ImageReaderResultImplCopyWithImpl<$Res>
       $Res Function(_$ImageReaderResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImageReaderResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1698,7 +1768,7 @@ class _$ImageReaderResultImpl
             const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1717,7 +1787,9 @@ class _$ImageReaderResultImpl
       const DeepCollectionEquality().hash(_envs),
       const DeepCollectionEquality().hash(_errors));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImageReaderResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImageReaderResultImplCopyWith<_$ImageReaderResultImpl> get copyWith =>
@@ -1780,8 +1852,11 @@ abstract class _ImageReaderResult implements ImageReaderResult {
   List<EnvResult> get envs;
   @override
   List<ParserError> get errors;
+
+  /// Create a copy of ImageReaderResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImageReaderResultImplCopyWith<_$ImageReaderResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1804,8 +1879,12 @@ mixin _$ListParserResultItem {
   String? get language => throw _privateConstructorUsedError;
   String? get paper => throw _privateConstructorUsedError;
 
+  /// Serializes this ListParserResultItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ListParserResultItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ListParserResultItemCopyWith<ListParserResultItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1843,6 +1922,8 @@ class _$ListParserResultItemCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ListParserResultItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1906,6 +1987,8 @@ class _$ListParserResultItemCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ListParserResultItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageResultCopyWith<$Res>? get previewImage {
@@ -1952,6 +2035,8 @@ class __$$ListParserResultItemImplCopyWithImpl<$Res>
       $Res Function(_$ListParserResultItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ListParserResultItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2124,7 +2209,7 @@ class _$ListParserResultItemImpl
             (identical(other.paper, paper) || other.paper == paper));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2140,7 +2225,9 @@ class _$ListParserResultItemImpl
       language,
       paper);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ListParserResultItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ListParserResultItemImplCopyWith<_$ListParserResultItemImpl>
@@ -2195,8 +2282,11 @@ abstract class _ListParserResultItem implements ListParserResultItem {
   String? get language;
   @override
   String? get paper;
+
+  /// Create a copy of ListParserResultItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ListParserResultItemImplCopyWith<_$ListParserResultItemImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2214,8 +2304,12 @@ mixin _$ListParserResult {
   List<EnvResult> get envs => throw _privateConstructorUsedError;
   List<ParserError> get errors => throw _privateConstructorUsedError;
 
+  /// Serializes this ListParserResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ListParserResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ListParserResultCopyWith<ListParserResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2245,6 +2339,8 @@ class _$ListParserResultCopyWithImpl<$Res, $Val extends ListParserResult>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ListParserResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2309,6 +2405,8 @@ class __$$ListParserResultImplCopyWithImpl<$Res>
       $Res Function(_$ListParserResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ListParserResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2433,7 +2531,7 @@ class _$ListParserResultImpl
             const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2444,7 +2542,9 @@ class _$ListParserResultImpl
       const DeepCollectionEquality().hash(_envs),
       const DeepCollectionEquality().hash(_errors));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ListParserResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ListParserResultImplCopyWith<_$ListParserResultImpl> get copyWith =>
@@ -2483,8 +2583,11 @@ abstract class _ListParserResult implements ListParserResult {
   List<EnvResult> get envs;
   @override
   List<ParserError> get errors;
+
+  /// Create a copy of ListParserResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ListParserResultImplCopyWith<_$ListParserResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

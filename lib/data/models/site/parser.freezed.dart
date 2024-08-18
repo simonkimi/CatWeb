@@ -337,8 +337,13 @@ mixin _$ParserModel {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this ParserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ParserModelCopyWith<ParserModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -370,6 +375,8 @@ class _$ParserModelCopyWithImpl<$Res, $Val extends ParserModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -403,6 +410,8 @@ class _$ParserModelCopyWithImpl<$Res, $Val extends ParserModel>
     ) as $Val);
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get successSelector {
@@ -411,6 +420,8 @@ class _$ParserModelCopyWithImpl<$Res, $Val extends ParserModel>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get failedSelector {
@@ -479,6 +490,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
       $Res Function(_$ParserModelImageReaderImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -582,6 +595,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get id {
@@ -590,6 +605,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageSelectorModelCopyWith<$Res> get image {
@@ -598,6 +615,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get largerImage {
@@ -606,6 +625,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get rawImage {
@@ -614,6 +635,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get rating {
@@ -622,6 +645,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get score {
@@ -630,6 +655,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get source {
@@ -638,6 +665,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get uploadTime {
@@ -646,6 +675,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get badgeSelector {
@@ -654,6 +685,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TagSelectorModelCopyWith<$Res> get badgeItem {
@@ -662,6 +695,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get tagSelector {
@@ -670,6 +705,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TagSelectorModelCopyWith<$Res> get tagItem {
@@ -678,6 +715,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get commentSelector {
@@ -686,6 +725,8 @@ class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CommentSelectorModelCopyWith<$Res> get commentItem {
@@ -834,7 +875,7 @@ class _$ParserModelImageReaderImpl extends ParserModelImageReader {
                 other.commentItem == commentItem));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -859,7 +900,9 @@ class _$ParserModelImageReaderImpl extends ParserModelImageReader {
         commentItem
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ParserModelImageReaderImplCopyWith<_$ParserModelImageReaderImpl>
@@ -1304,8 +1347,11 @@ abstract class ParserModelImageReader extends ParserModel {
   TagSelectorModel get tagItem;
   SelectorModel get commentSelector;
   CommentSelectorModel get commentItem;
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ParserModelImageReaderImplCopyWith<_$ParserModelImageReaderImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1387,6 +1433,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
       $Res Function(_$ParserModelDetailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1540,6 +1588,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get title {
@@ -1548,6 +1598,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get subtitle {
@@ -1556,6 +1608,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get uploadTime {
@@ -1564,6 +1618,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get star {
@@ -1572,6 +1628,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get imageCount {
@@ -1580,6 +1638,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get pageCount {
@@ -1588,6 +1648,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get language {
@@ -1596,6 +1658,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageSelectorModelCopyWith<$Res> get coverImage {
@@ -1604,6 +1668,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get description {
@@ -1612,6 +1678,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get thumbnailSelector {
@@ -1620,6 +1688,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageSelectorModelCopyWith<$Res> get thumbnail {
@@ -1628,6 +1698,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get target {
@@ -1636,6 +1708,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get commentSelector {
@@ -1644,6 +1718,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CommentSelectorModelCopyWith<$Res> get comments {
@@ -1652,6 +1728,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get badgeSelector {
@@ -1660,6 +1738,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TagSelectorModelCopyWith<$Res> get badgeItem {
@@ -1668,6 +1748,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get tagSelector {
@@ -1676,6 +1758,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TagSelectorModelCopyWith<$Res> get tagItem {
@@ -1684,6 +1768,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get chapterSelector {
@@ -1692,6 +1778,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get chapterTitle {
@@ -1700,6 +1788,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get chapterSubtitle {
@@ -1708,6 +1798,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageSelectorModelCopyWith<$Res> get chapterCover {
@@ -1716,6 +1808,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get nextPage {
@@ -1724,6 +1818,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get countPrePage {
@@ -1934,7 +2030,7 @@ class _$ParserModelDetailImpl extends ParserModelDetail {
                 other.countPrePage == countPrePage));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1969,7 +2065,9 @@ class _$ParserModelDetailImpl extends ParserModelDetail {
         countPrePage
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ParserModelDetailImplCopyWith<_$ParserModelDetailImpl> get copyWith =>
@@ -2464,8 +2562,11 @@ abstract class ParserModelDetail extends ParserModel {
   ImageSelectorModel get chapterCover;
   SelectorModel get nextPage;
   SelectorModel get countPrePage;
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ParserModelDetailImplCopyWith<_$ParserModelDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2533,6 +2634,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
       _$ParserModelListImpl _value, $Res Function(_$ParserModelListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2651,6 +2754,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get itemSelector {
@@ -2659,6 +2764,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get itemComplete {
@@ -2667,6 +2774,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get title {
@@ -2675,6 +2784,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get subtitle {
@@ -2683,6 +2794,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get uploadTime {
@@ -2691,6 +2804,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get star {
@@ -2699,6 +2814,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get imageCount {
@@ -2707,6 +2824,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get language {
@@ -2715,6 +2834,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageSelectorModelCopyWith<$Res> get previewImage {
@@ -2723,6 +2844,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get target {
@@ -2731,6 +2854,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get badgeSelector {
@@ -2739,6 +2864,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TagSelectorModelCopyWith<$Res> get badgeItem {
@@ -2747,6 +2874,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get tag {
@@ -2755,6 +2884,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TagSelectorModelCopyWith<$Res> get tagItem {
@@ -2763,6 +2894,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get paper {
@@ -2771,6 +2904,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get idCode {
@@ -2779,6 +2914,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get nextPage {
@@ -2944,7 +3081,7 @@ class _$ParserModelListImpl extends ParserModelList {
                 other.nextPage == nextPage));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -2972,7 +3109,9 @@ class _$ParserModelListImpl extends ParserModelList {
         nextPage
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ParserModelListImplCopyWith<_$ParserModelListImpl> get copyWith =>
@@ -3432,8 +3571,11 @@ abstract class ParserModelList extends ParserModel {
   SelectorModel get paper;
   SelectorModel get idCode;
   SelectorModel get nextPage;
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ParserModelListImplCopyWith<_$ParserModelListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3477,6 +3619,8 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
       $Res Function(_$ParserModelAutoCompleteImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3530,6 +3674,8 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get itemSelector {
@@ -3538,6 +3684,8 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get itemComplete {
@@ -3546,6 +3694,8 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get itemTitle {
@@ -3554,6 +3704,8 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get itemSubtitle {
@@ -3648,7 +3800,7 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
                 other.failedSelector == failedSelector));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3662,7 +3814,9 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
       successSelector,
       failedSelector);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ParserModelAutoCompleteImplCopyWith<_$ParserModelAutoCompleteImpl>
@@ -4033,8 +4187,11 @@ abstract class ParserModelAutoComplete extends ParserModel {
   SelectorModel get successSelector;
   @override
   SelectorModel get failedSelector;
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ParserModelAutoCompleteImplCopyWith<_$ParserModelAutoCompleteImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
