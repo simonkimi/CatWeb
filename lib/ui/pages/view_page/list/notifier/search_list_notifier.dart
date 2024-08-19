@@ -98,4 +98,10 @@ class SearchNotifier with ChangeNotifier {
   }
 
   bool get hasFilter => listRule.templateList.filters.isNotEmpty;
+
+  @override
+  void dispose() {
+    super.dispose();
+    textController.dispose();
+  }
 }

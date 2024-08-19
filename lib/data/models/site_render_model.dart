@@ -10,7 +10,6 @@ import 'package:catweb/data/models/site/template.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/get.dart';
 import 'package:catweb/network/client/client.dart';
-import 'package:catweb/utils/obs_helper.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -23,7 +22,7 @@ class SiteRenderConfigModel {
     required this.dbEntity,
   })  : globalEnv = SiteEnvStore.fromJson(jsonDecode(dbEntity.env)),
         favicon = dbEntity.favicon.isNotEmpty
-            ? dbEntity.favicon.obs
+            ? ValueNotifier<Uint8List?>(dbEntity.favicon)
             : ValueNotifier<Uint8List?>(null) {
     client = NetClient(
       blueMap: blueMap,

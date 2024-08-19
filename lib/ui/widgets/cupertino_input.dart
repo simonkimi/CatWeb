@@ -74,7 +74,7 @@ class TripleTextField extends StatelessWidget {
   const TripleTextField({
     super.key,
     required this.labelText,
-    required this.value,
+    this.value,
     this.minLine,
     this.hintText,
     this.description,
@@ -86,7 +86,7 @@ class TripleTextField extends StatelessWidget {
   });
 
   final String labelText;
-  final String value;
+  final String? value;
 
   final int? minLine;
   final String? hintText;

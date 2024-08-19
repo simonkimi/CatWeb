@@ -91,7 +91,7 @@ class NotifierTripleNumberField<T extends ChangeNotifier>
     return Selector<T, int>(
       selector: (_, notifier) => selector(notifier),
       builder: (_, value, __) {
-        return TripleVnNumberField(
+        return TripleIntField(
           labelText: labelText,
           value: value,
           hintText: hintText,

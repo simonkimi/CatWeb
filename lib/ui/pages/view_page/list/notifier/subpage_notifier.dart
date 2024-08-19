@@ -63,6 +63,13 @@ class SubListNotifier
   final RefreshController refreshController = RefreshController();
 
   String searchKeywords = '';
+  List<TemplateListFilterItem> currentFilter = [];
+
+  /// 应用一个新的过滤器
+  void setNewFilter(List<TemplateListFilterItem> filter) {
+    currentFilter = filter;
+    notifyListeners();
+  }
 
   /// 开始一个新的搜索, 用户点击搜索按钮触发
   Future<void> onNewSearch(String keywords) async {
@@ -115,7 +122,7 @@ class SubListNotifier
     return ListPageData(data);
   }
 
-  SiteEnvStore get env => global.website.globalEnv.create(localEnv);
+  SiteEnvStore get env => global.currentSite!.globalEnv.create(localEnv);
 
   // bool get useFilter => List.generate(extra.filters.length, (i) => i)
   //     .any((e) => filter[e].value.value != extra.filters[e].value.value);

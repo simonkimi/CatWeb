@@ -7,13 +7,11 @@ import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
-import 'list_filter.dart';
 import 'notifier/search_list_notifier.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({super.key, required this.searchKey});
+  const SearchPage({super.key});
 
-  final String searchKey;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +34,6 @@ class SearchPage extends StatelessWidget {
             ),
             tabBar: _buildSearchInput(context),
             tabBarHeight: 40,
-            actions: _buildAction(context),
             child: _buildSearchList(context),
           ),
         ),
@@ -118,11 +115,6 @@ class SearchPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  List<Widget> _buildAction(BuildContext context) {
-    SearchNotifier notifier = context.read();
-    return [if (notifier.hasFilter) const ListFilterButton()];
   }
 
   Widget _buildSearchInput(BuildContext context) {

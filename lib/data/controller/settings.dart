@@ -1,18 +1,20 @@
-import 'package:catweb/utils/obs_helper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingService {
   late SharedPreferences _prefs;
 
-  final defaultSiteNotifier = (-1).obs;
-  final imageMaskInDarkModeNotifier = true.obs;
-  final cardSizeNotifier = CardSize.medium.obs;
-  final preloadCountNotifier = 3.obs;
-  final readerDirectoryNotifier = ReaderDirection.rtl.obs;
-  final displayTypeNotifier = ReaderDisplayType.single.obs;
-  final concurrencyCountNotifier = 3.obs;
-  final protectCookieNotifier = true.obs;
-  final blurWhenBackgroundNotifier = false.obs;
+  final defaultSiteNotifier = ValueNotifier<int>(-1);
+  final imageMaskInDarkModeNotifier = ValueNotifier<bool>(true);
+  final cardSizeNotifier = ValueNotifier<CardSize>(CardSize.medium);
+  final preloadCountNotifier = ValueNotifier<int>(3);
+  final readerDirectoryNotifier =
+      ValueNotifier<ReaderDirection>(ReaderDirection.rtl);
+  final displayTypeNotifier =
+      ValueNotifier<ReaderDisplayType>(ReaderDisplayType.single);
+  final concurrencyCountNotifier = ValueNotifier<int>(3);
+  final protectCookieNotifier = ValueNotifier<bool>(true);
+  final blurWhenBackgroundNotifier = ValueNotifier<bool>(false);
 
   Future<SettingService> init() async {
     _prefs = await SharedPreferences.getInstance();

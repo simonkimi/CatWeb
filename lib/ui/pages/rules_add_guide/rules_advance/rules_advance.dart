@@ -118,8 +118,8 @@ class RulesAdvance extends StatelessWidget {
   }
 
   Future<RegField> _editRegField(BuildContext context, RegField field) async {
-    final reg = ValueNotifier(field.reg);
-    final value = ValueNotifier(field.value);
+    final regController = TextEditingController(text: field.reg);
+    final valueController = TextEditingController(text: field.value);
 
     await showCupertinoDialog(
       barrierDismissible: true,
@@ -134,22 +134,24 @@ class RulesAdvance extends StatelessWidget {
           ],
           content: Column(
             children: [
-              TripleVnTextField(
+              TripleTextField(
                 labelText: I.of(context).reg,
-                value: reg,
+                controller: regController,
               ),
-              TripleVnTextField(
+              TripleTextField(
                 labelText: I.of(context).content,
-                value: value,
+                controller: valueController,
               ),
             ],
           ),
         );
       },
     );
-    reg.dispose();
-    value.dispose();
-    return field;
+
+    return RegField(
+      reg: regController.text,
+      value: valueController.text,
+    );
   }
 
   Widget _buildSubTitle(BuildContext context, String text) {

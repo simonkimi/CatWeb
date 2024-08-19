@@ -3,7 +3,6 @@ import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'notifier/filter_notifier.dart';

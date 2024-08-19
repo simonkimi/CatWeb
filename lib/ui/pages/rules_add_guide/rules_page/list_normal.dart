@@ -4,8 +4,8 @@ import 'package:catweb/ui/pages/rules_add_guide/rules_page/site_page_notifier.da
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/utils/context_helper.dart';
-import 'package:catweb/utils/obs_helper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:provider/provider.dart';
 
@@ -55,58 +55,64 @@ class ListNormalSubPage extends StatelessWidget {
   }
 
   Future<TemplateListSubPage?> _editSubPage(
-      BuildContext context, TemplateListSubPage field) async {
-    final name = field.name.obs;
-    final key = field.key.obs;
-    final value = field.value.obs;
-
-    final result = await showCupertinoDialog(
+    BuildContext context,
+    TemplateListSubPage field,
+  ) async {
+    return await showCupertinoDialog<TemplateListSubPage?>(
       barrierDismissible: true,
       context: context,
       builder: (context) {
-        return CupertinoAlertDialog(
-          actions: [
-            CupertinoDialogAction(
-              child: Text(I.of(context).save),
-              onPressed: () => context.pop(true),
-            ),
-            CupertinoDialogAction(
-              isDestructiveAction: true,
-              onPressed: () => context.pop(false),
-              child: Text(I.of(context).cancel),
-            ),
-          ],
-          content: Column(
-            children: [
-              TripleVnTextField(
-                labelText: I.of(context).name,
-                value: name,
-              ),
-              TripleVnTextField(
-                labelText: I.of(context).key,
-                value: key,
-              ),
-              TripleVnTextField(
-                labelText: I.of(context).value,
-                value: value,
-              ),
-            ],
-          ),
-        );
+        return SubPageDialog(subPage: field);
       },
     );
+  }
+}
 
-    name.dispose();
-    key.dispose();
-    value.dispose();
+class SubPageDialog extends HookWidget {
+  const SubPageDialog({super.key, required this.subPage});
 
-    if (result != true) {
-      return null;
-    }
-    return TemplateListSubPage(
-      name: name.value,
-      key: key.value,
-      value: value.value,
+  final TemplateListSubPage subPage;
+
+  @override
+  Widget build(BuildContext context) {
+    final nameController = useTextEditingController(text: subPage.name);
+    final keyController = useTextEditingController(text: subPage.key);
+    final valueController = useTextEditingController(text: subPage.value);
+
+    return CupertinoAlertDialog(
+      actions: [
+        CupertinoDialogAction(
+          child: Text(I.of(context).save),
+          onPressed: () => context.pop(
+            TemplateListSubPage(
+              name: nameController.text,
+              key: keyController.text,
+              value: valueController.text,
+            ),
+          ),
+        ),
+        CupertinoDialogAction(
+          isDestructiveAction: true,
+          onPressed: () => context.pop(null),
+          child: Text(I.of(context).cancel),
+        ),
+      ],
+      content: Column(
+        children: [
+          TripleTextField(
+            labelText: I.of(context).name,
+            controller: nameController,
+          ),
+          TripleTextField(
+            labelText: I.of(context).key,
+            controller: keyController,
+          ),
+          TripleTextField(
+            labelText: I.of(context).value,
+            controller: valueController,
+          ),
+        ],
+      ),
     );
   }
 }
