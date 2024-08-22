@@ -60,14 +60,17 @@ class RulesParserEditor extends StatelessWidget {
   }
 
   Widget _buildEditor(BuildContext context) {
-    final notifier = context.watch<RuleParserNotifier>();
-
-    return switch (notifier.parser) {
-      ParserModel.detail => const DetailParserEditor(),
-      ParserModel.list => const ListParserEditor(),
-      ParserModel.autoComplete => const AutoCompleteParserEditor(),
-      ParserModel.imageReader => const NewImageParserEditor(),
-      _ => throw UnimplementedError('Unknown parser type: ${notifier.parser}'),
-    };
+    return Selector<RuleParserNotifier, ParserModel>(
+      selector: (context, n) => n.parser,
+      builder: (context, parser, child) {
+        return switch (parser) {
+          ParserModel.detail => const DetailParserEditor(),
+          ParserModel.list => const ListParserEditor(),
+          ParserModel.autoComplete => const AutoCompleteParserEditor(),
+          ParserModel.imageReader => const NewImageParserEditor(),
+          _ => throw UnimplementedError('Unknown parser type: $parser'),
+        };
+      },
+    );
   }
 }

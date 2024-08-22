@@ -25,9 +25,7 @@ class PageTemplate with _$PageTemplate {
   const factory PageTemplate.list({
     @Default('') String name,
     @Default([]) List<TemplateListSubPage> subPages,
-    @Default([]) List<TemplateListFilterItem> filters,
-    @Default(false) bool disableUnchanged,
-    @Default(ScriptField.output()) ScriptField script,
+    @Default(TemplateListFilter()) TemplateListFilter filter,
     @Default('') String targetItem,
     @Default('') String targetAutoComplete,
   }) = PageTemplateList;

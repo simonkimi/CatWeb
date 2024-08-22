@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/loaders/page_loader.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
@@ -18,14 +16,24 @@ import 'package:catweb/utils/replace_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+/// List中每一页的数据
 class ListPageData extends BasePageData<ListItemModel> {
-  ListPageData(this.pageData);
+  ListPageData(this.pageData)
+      : _items = pageData.items!.map((e) => ListItemModel(e)).toList();
 
   final ListParserResult pageData;
 
+  final List<ListItemModel> _items;
+
   @override
-  List<ListItemModel> get items =>
-      pageData.items!.map((e) => ListItemModel(e)).toList();
+  List<ListItemModel> get items => _items;
+
+  @override
+  void dispose() {
+    for (var item in _items) {
+      item.dispose();
+    }
+  }
 }
 
 /// List带预览加载的项目
@@ -63,18 +71,21 @@ class SubListNotifier
   final RefreshController refreshController = RefreshController();
 
   String searchKeywords = '';
-  List<TemplateListFilterItem> currentFilter = [];
+  Map<String, String> currentFilter = {};
 
   /// 应用一个新的过滤器
-  void setNewFilter(List<TemplateListFilterItem> filter) {
+  Future setNewFilter(
+      List<String> filterKeys, Map<String, String> filter) async {
     currentFilter = filter;
-    notifyListeners();
+    localEnv.removeKeys(filterKeys);
+    localEnv.mergeMap(filter);
+    refresh();
   }
 
   /// 开始一个新的搜索, 用户点击搜索按钮触发
   Future<void> onNewSearch(String keywords) async {
-    searchKeywords = searchKeywords;
-    localEnv.mergeMap({'search': keywords.trim()});
+    searchKeywords = keywords.trim();
+    localEnv.mergeMap({'search': searchKeywords});
     await refresh();
   }
 
@@ -124,9 +135,6 @@ class SubListNotifier
 
   SiteEnvStore get env => global.currentSite!.globalEnv.create(localEnv);
 
-  // bool get useFilter => List.generate(extra.filters.length, (i) => i)
-  //     .any((e) => filter[e].value.value != extra.filters[e].value.value);
-
   bool get isFullScreenLoading => items.isEmpty && state.isError;
 
   bool get isFullScreenError => items.isEmpty && state.isError;
@@ -135,12 +143,7 @@ class SubListNotifier
   void dispose() {
     super.dispose();
     scrollController.dispose();
-  }
-
-  Future<void> requestFirstLoad() async {
-    if (pages.isEmpty && state.isIdle) {
-      await onLoadMore();
-    }
+    refreshController.dispose();
   }
 
   @override

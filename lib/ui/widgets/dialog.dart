@@ -4,6 +4,7 @@ import 'package:catweb/utils/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 class SelectTileItem<T> {
   const SelectTileItem({
@@ -254,37 +255,61 @@ Future<String?> showCupertinoInputDialog(
   TextInputType? keyboardType,
   List<TextInputFormatter>? inputFormatters,
 }) async {
-  final controller = TextEditingController(text: initialValue);
   return await showCupertinoDialog(
     barrierDismissible: true,
     context: context,
     builder: (context) {
-      return CupertinoAlertDialog(
-        title: Text(title ?? '请输入'),
-        content: Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: CupertinoTextField(
-            controller: controller,
-            autofocus: true,
-            keyboardType: keyboardType,
-            inputFormatters: inputFormatters,
-          ),
-        ),
-        actions: [
-          CupertinoButton(
-            child: const Text('取消'),
-            onPressed: () {
-              context.pop();
-            },
-          ),
-          CupertinoButton(
-            child: const Text('确定'),
-            onPressed: () {
-              Navigator.of(context).pop(controller.text);
-            },
-          ),
-        ],
+      return _CupertinoInputDialog(
+        initialValue: initialValue,
+        title: title,
+        keyboardType: keyboardType,
+        inputFormatters: inputFormatters,
       );
     },
   );
+}
+
+class _CupertinoInputDialog extends HookWidget {
+  const _CupertinoInputDialog({
+    this.initialValue,
+    this.title,
+    this.keyboardType,
+    this.inputFormatters,
+  });
+
+  final String? initialValue;
+  final String? title;
+  final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = useTextEditingController(text: initialValue);
+    return CupertinoAlertDialog(
+      title: Text(title ?? '请输入'),
+      content: Padding(
+        padding: const EdgeInsets.only(top: 15),
+        child: CupertinoTextField(
+          controller: controller,
+          autofocus: true,
+          keyboardType: keyboardType,
+          inputFormatters: inputFormatters,
+        ),
+      ),
+      actions: [
+        CupertinoButton(
+          child: const Text('取消'),
+          onPressed: () {
+            context.pop();
+          },
+        ),
+        CupertinoButton(
+          child: const Text('确定'),
+          onPressed: () {
+            Navigator.of(context).pop(controller.text);
+          },
+        ),
+      ],
+    );
+  }
 }

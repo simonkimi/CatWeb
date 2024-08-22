@@ -32,6 +32,12 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    inputController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: !isEditor,

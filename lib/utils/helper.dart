@@ -86,3 +86,6 @@ T? iterableMin<T extends num>(Iterable<T> iter) {
 }
 
 
+List<T> replaceAt<T>(List<T> list, int index, T newValue) {
+  return List.of(list)..[index] = newValue;
+}

@@ -5,25 +5,24 @@ import 'package:catweb/ui/pages/rules_add_guide/rules_page/site_page_notifier.da
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
-import 'package:catweb/ui/widgets/notifier_selector.dart';
 import 'package:catweb/utils/context_helper.dart';
+import 'package:catweb/utils/hook_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:provider/provider.dart';
 
-class ListFilterEditor extends StatelessWidget {
+class ListFilterEditor extends HookWidget {
   const ListFilterEditor({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final filterController = SwipeActionController();
+    final filterController = useSwipeActionController();
     final notifier = context.read<SitePageNotifier>();
 
     return ListView(
       children: [
         Selector<SitePageNotifier, ScriptField>(
-          selector: (_, n) => n.templateList.script,
+          selector: (_, n) => n.templateList.filter.script,
           builder: (_, script, __) {
             return TripleReadonlyTextField(
               labelText: I.of(context).script,
@@ -31,17 +30,6 @@ class ListFilterEditor extends StatelessWidget {
               onTap: () {},
             );
           },
-        ),
-        Row(
-          children: [
-            const Text('过滤器未改变时禁用', style: TextStyle(fontSize: 15)),
-            const Expanded(child: SizedBox()),
-            NotifierSwitchField<SitePageNotifier>(
-              selector: (n) => n.templateList.disableUnchanged,
-              scale: 0.8,
-              save: (n) => n.updateListTemplateDisableUnchanged,
-            ),
-          ],
         ),
         const SizedBox(height: 20),
         Padding(
@@ -52,7 +40,7 @@ class ListFilterEditor extends StatelessWidget {
           ),
         ),
         Selector<SitePageNotifier, List<TemplateListFilterItem>>(
-          selector: (_, n) => n.templateList.filters,
+          selector: (_, n) => n.templateList.filter.items,
           builder: (_, filters, __) {
             return Column(
               mainAxisSize: MainAxisSize.min,
@@ -180,28 +168,28 @@ class RulesFilterDialog extends HookWidget {
           switch (type.value) {
             FilterType.int => TripleIntField(
                 labelText: I.of(context).default_value,
-                value: defaultValue.value as int,
+                initialValue: defaultValue.value as int,
                 onSubmitted: (value) {
                   defaultValue.value = value;
                 },
               ),
             FilterType.float => TripleDoubleField(
                 labelText: I.of(context).default_value,
-                value: defaultValue.value as double,
+                initialValue: defaultValue.value as double,
                 onSubmitted: (value) {
                   defaultValue.value = value;
                 },
               ),
             FilterType.string => TripleTextField(
                 labelText: I.of(context).default_value,
-                value: defaultValue.value as String,
+                initialValue: defaultValue.value as String,
                 onSubmitted: (value) {
                   defaultValue.value = value;
                 },
               ),
             FilterType.bool => TripleBoolField(
                 labelText: I.of(context).default_value,
-                value: defaultValue.value as bool,
+                initialValue: defaultValue.value as bool,
                 onSubmitted: (value) {
                   defaultValue.value = value;
                 },

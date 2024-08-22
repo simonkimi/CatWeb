@@ -20,30 +20,23 @@ class RulesPageManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final pageList =
+        context.select((RulesEditorNotifier n) => n.blueprint.pageList);
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       children: [
-        Selector<RulesEditorNotifier, List<SitePageRule>>(
-          selector: (_, n) => n.blueprint.pageList,
-          builder: (_, pageList, __) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: pageList.map((e) {
-                return CupertinoCardTile(
-                  title: Text(e.name),
-                  subtitle: Text(e.template.getDescription(context)),
-                  trailing: CupertinoButton(
-                    padding: EdgeInsets.zero,
-                    minSize: 10,
-                    child: const Icon(Icons.more_horiz_outlined),
-                    onPressed: () => _onTrailingTap(context, e),
-                  ),
-                  onTap: () => _toRulesPageEdit(context, e),
-                );
-              }).toList(),
-            );
-          },
-        ),
+        for (final page in pageList)
+          CupertinoCardTile(
+            title: Text(page.name),
+            subtitle: Text(page.template.getDescription(context)),
+            trailing: CupertinoButton(
+              padding: EdgeInsets.zero,
+              minSize: 10,
+              child: const Icon(Icons.more_horiz_outlined),
+              onPressed: () => _onTrailingTap(context, page),
+            ),
+            onTap: () => _toRulesPageEdit(context, page),
+          ),
         CupertinoCardTile(
           title: Text(I.of(context).add),
           leading: const Icon(Icons.add),
@@ -111,7 +104,8 @@ class RulesPageManager extends StatelessWidget {
     }
   }
 
-  Future<void> _toRulesPageEdit(BuildContext context, [SitePageRule? model]) async {
+  Future<void> _toRulesPageEdit(BuildContext context,
+      [SitePageRule? model]) async {
     final input = model ?? await _genRules(context);
     if (input == null) return;
     await Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
@@ -131,7 +125,8 @@ class RulesPageManager extends StatelessWidget {
       title: '选择模板',
       context: context,
       items: PageTemplateType.values
-          .map((e) => SelectTileItem(title: e.getDescription(context), value: e))
+          .map(
+              (e) => SelectTileItem(title: e.getDescription(context), value: e))
           .toList(),
     );
     if (select == null) {

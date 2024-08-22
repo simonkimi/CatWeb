@@ -7,16 +7,16 @@ import 'package:flutter/cupertino.dart';
 class FilterNotifier extends ChangeNotifier {
   FilterNotifier({
     required this.initFilter,
-  }) : currentFilter = initFilter.map((e) => e.copyWith()).toList();
+  }) : currentFilter = initFilter.copyWith();
 
-  final List<TemplateListFilterItem> initFilter;
+  final TemplateListFilter initFilter;
 
   /// 当前正在使用的过滤器
-  List<TemplateListFilterItem> currentFilter;
+  TemplateListFilter currentFilter;
 
   void resetFilter() {
-    for (var i = 0; i < currentFilter.length; i++) {
-      currentFilter[i] = currentFilter[i].reset();
+    for (var i = 0; i < currentFilter.items.length; i++) {
+      currentFilter.items[i] = currentFilter.items[i].reset();
     }
   }
 
@@ -31,7 +31,7 @@ class FilterNotifier extends ChangeNotifier {
 
   Future<Map<String, String>> resolveFilter() async {
     final map = <String, dynamic>{};
-    for (final filter in currentFilter) {
+    for (final filter in currentFilter.items) {
       if (filter.key.isEmpty) continue;
       if (!filter.isChanged && filter.disabledUnchanged) continue;
       map[filter.key] = filter.value;
@@ -52,5 +52,5 @@ class FilterNotifier extends ChangeNotifier {
     }
   }
 
-  bool get isFilterChanged => currentFilter.any((e) => e.isChanged);
+  bool get isFilterChanged => currentFilter.items.any((e) => e.isChanged);
 }

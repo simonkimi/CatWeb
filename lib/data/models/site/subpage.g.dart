@@ -22,6 +22,26 @@ Map<String, dynamic> _$$TemplateListSubPageImplToJson(
       'value': instance.value,
     };
 
+_$TemplateListFilterImpl _$$TemplateListFilterImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TemplateListFilterImpl(
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) =>
+                  TemplateListFilterItem.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      script: json['script'] == null
+          ? const ScriptField.output()
+          : ScriptField.fromJson(json['script'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$TemplateListFilterImplToJson(
+        _$TemplateListFilterImpl instance) =>
+    <String, dynamic>{
+      'items': instance.items,
+      'script': instance.script,
+    };
+
 _$TemplateListFilterItemStringImpl _$$TemplateListFilterItemStringImplFromJson(
         Map<String, dynamic> json) =>
     _$TemplateListFilterItemStringImpl(

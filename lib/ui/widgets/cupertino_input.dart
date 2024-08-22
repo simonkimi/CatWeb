@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 import 'package:catweb/ui/theme/colors.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 class TripleReadonlyTextField extends StatelessWidget {
   final String labelText;
@@ -27,6 +28,12 @@ class TripleReadonlyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = useTextEditingController(text: value);
+    useEffect(() {
+      controller.text = value;
+      return null;
+    }, [value]);
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
@@ -42,7 +49,7 @@ class TripleReadonlyTextField extends StatelessWidget {
           ),
           const SizedBox(height: 3),
           CupertinoTextField(
-            controller: TextEditingController(text: value),
+            controller: controller,
             decoration: BoxDecoration(
               border: const Border(),
               color: CupertinoColors.systemGrey6,
@@ -70,11 +77,13 @@ class TripleReadonlyTextField extends StatelessWidget {
   }
 }
 
-class TripleTextField extends StatelessWidget {
+
+
+class TripleTextField extends HookWidget {
   const TripleTextField({
     super.key,
     required this.labelText,
-    this.value,
+    this.initialValue,
     this.minLine,
     this.hintText,
     this.description,
@@ -82,11 +91,15 @@ class TripleTextField extends StatelessWidget {
     this.inputFormatters,
     this.keyboardType,
     this.onSubmitted,
-    this.controller,
-  });
+    TextEditingController? controller,
+  })  : outerController = controller,
+        assert(initialValue == null || controller == null,
+            'Cannot provide both value and controller'),
+        assert(initialValue != null || controller != null,
+            'Must provide either value or controller');
 
   final String labelText;
-  final String? value;
+  final String? initialValue;
 
   final int? minLine;
   final String? hintText;
@@ -96,11 +109,26 @@ class TripleTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
   final ValueChanged<String>? onSubmitted;
-  final TextEditingController? controller;
+  final TextEditingController? outerController;
 
   @override
   Widget build(BuildContext context) {
-    var c = controller ?? TextEditingController(text: value);
+    var controller = useMemoized(
+        () => outerController ?? TextEditingController(text: initialValue),
+        [outerController, initialValue]);
+
+    useEffect(() {
+      if (outerController == null) {
+        controller.text = initialValue!;
+      }
+
+      return () {
+        if (outerController == null) {
+          controller.dispose();
+        }
+      };
+    }, [outerController, initialValue]);
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
@@ -110,11 +138,13 @@ class TripleTextField extends StatelessWidget {
           Text(
             labelText,
             style: TextStyle(
-                color: FixColor.title.resolveFrom(context), fontSize: 13),
+              color: FixColor.title.resolveFrom(context),
+              fontSize: 13,
+            ),
           ),
           const SizedBox(height: 3),
           CupertinoTextField(
-            controller: c,
+            controller: controller,
             decoration: BoxDecoration(
               border: const Border(),
               color: CupertinoColors.systemGrey6,
@@ -123,7 +153,7 @@ class TripleTextField extends StatelessWidget {
             minLines: minLine ?? 1,
             maxLines: minLine,
             onEditingComplete: () {
-              onSubmitted?.call(c.text);
+              onSubmitted?.call(controller.text);
             },
             prefix: prefix,
             inputFormatters: inputFormatters,
@@ -146,31 +176,34 @@ class TripleTextField extends StatelessWidget {
   }
 }
 
-class TripleIntField extends StatelessWidget {
+class TripleIntField extends HookWidget {
   const TripleIntField({
     super.key,
     required this.labelText,
-    required this.value,
+    required this.initialValue,
     this.hintText,
     this.description,
     this.prefix,
     this.onSubmitted,
-    this.controller,
   });
 
   final String labelText;
-  final int value;
+  final int initialValue;
 
   final String? hintText;
   final String? description;
   final Widget? prefix;
 
   final ValueChanged<int>? onSubmitted;
-  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
-    var c = controller ?? TextEditingController(text: value.toString());
+    final controller = useTextEditingController(text: initialValue.toString());
+    useEffect(() {
+      controller.text = initialValue.toString();
+      return null;
+    }, [initialValue]);
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
@@ -184,7 +217,7 @@ class TripleIntField extends StatelessWidget {
           ),
           const SizedBox(height: 3),
           CupertinoTextField(
-            controller: c,
+            controller: controller,
             decoration: BoxDecoration(
               border: const Border(),
               color: CupertinoColors.systemGrey6,
@@ -192,7 +225,7 @@ class TripleIntField extends StatelessWidget {
             ),
             minLines: 1,
             onEditingComplete: () {
-              onSubmitted?.call(int.parse(c.text));
+              onSubmitted?.call(int.parse(controller.text));
             },
             prefix: prefix,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -219,27 +252,29 @@ class TripleDoubleField extends StatelessWidget {
   const TripleDoubleField({
     super.key,
     required this.labelText,
-    required this.value,
+    required this.initialValue,
     this.hintText,
     this.description,
     this.prefix,
     this.onSubmitted,
-    this.controller,
   });
 
   final String labelText;
-  final double value;
+  final double initialValue;
 
   final String? hintText;
   final String? description;
   final Widget? prefix;
 
   final ValueChanged<double>? onSubmitted;
-  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
-    var c = controller ?? TextEditingController(text: value.toString());
+    final controller = useTextEditingController(text: initialValue.toString());
+    useEffect(() {
+      controller.text = initialValue.toString();
+      return null;
+    }, [initialValue]);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
@@ -253,7 +288,7 @@ class TripleDoubleField extends StatelessWidget {
           ),
           const SizedBox(height: 3),
           CupertinoTextField(
-            controller: c,
+            controller: controller,
             decoration: BoxDecoration(
               border: const Border(),
               color: CupertinoColors.systemGrey6,
@@ -261,7 +296,7 @@ class TripleDoubleField extends StatelessWidget {
             ),
             minLines: 1,
             onEditingComplete: () {
-              onSubmitted?.call(double.tryParse(c.text) ?? 0);
+              onSubmitted?.call(double.tryParse(controller.text) ?? 0);
             },
             prefix: prefix,
             inputFormatters: [
@@ -290,13 +325,13 @@ class TripleBoolField extends StatelessWidget {
   const TripleBoolField({
     super.key,
     required this.labelText,
-    required this.value,
+    required this.initialValue,
     this.description,
     this.onSubmitted,
   });
 
   final String labelText;
-  final bool value;
+  final bool initialValue;
 
   final String? description;
   final ValueChanged<bool>? onSubmitted;
@@ -316,7 +351,7 @@ class TripleBoolField extends StatelessWidget {
           ),
           const SizedBox(height: 3),
           CupertinoSwitch(
-            value: value,
+            value: initialValue,
             onChanged: (value) {
               onSubmitted?.call(value);
             },
@@ -334,6 +369,62 @@ class TripleBoolField extends StatelessWidget {
             ),
         ],
       ),
+    );
+  }
+}
+
+class CupertinoText extends HookWidget {
+  const CupertinoText({
+    super.key,
+    this.initialValue,
+    TextEditingController? controller,
+    this.decoration,
+    this.padding,
+    this.style,
+    this.textDirection,
+    this.onSubmitted,
+    this.prefix,
+    this.onEditingComplete,
+  }) : outerController = controller;
+
+  final String? initialValue;
+  final TextEditingController? outerController;
+  final BoxDecoration? decoration;
+  final EdgeInsetsGeometry? padding;
+  final TextStyle? style;
+  final TextDirection? textDirection;
+  final ValueChanged<String>? onSubmitted;
+  final VoidCallback? onEditingComplete;
+  final Widget? prefix;
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = useMemoized(
+        () => outerController ?? TextEditingController(text: initialValue),
+        [outerController, initialValue]);
+    useEffect(() {
+      if (outerController == null) {
+        controller.text = initialValue!;
+      }
+
+      return () {
+        if (outerController == null) {
+          controller.dispose();
+        }
+      };
+    }, [outerController, initialValue]);
+
+    return CupertinoTextField(
+      controller: controller,
+      decoration: decoration,
+      padding: padding ?? const EdgeInsets.all(7.0),
+      style: style,
+      textDirection: textDirection,
+      prefix: prefix,
+      onEditingComplete: () {
+        onEditingComplete?.call();
+        onSubmitted?.call(controller.text);
+      },
     );
   }
 }

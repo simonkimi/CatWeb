@@ -38,10 +38,10 @@ class NotifierTripleTextField<T extends ChangeNotifier>
   Widget build(BuildContext context) {
     return Selector<T, String>(
       selector: (_, notifier) => selector(notifier),
-      builder: (_, value, __) {
+      builder: (context, value, __) {
         return TripleTextField(
           labelText: labelText,
-          value: value,
+          initialValue: value,
           minLine: minLine,
           hintText: hintText,
           description: description,
@@ -90,10 +90,10 @@ class NotifierTripleNumberField<T extends ChangeNotifier>
   Widget build(BuildContext context) {
     return Selector<T, int>(
       selector: (_, notifier) => selector(notifier),
-      builder: (_, value, __) {
+      builder: (context, value, __) {
         return TripleIntField(
           labelText: labelText,
-          value: value,
+          initialValue: value,
           hintText: hintText,
           description: description,
           prefix: prefix,

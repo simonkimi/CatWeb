@@ -23,23 +23,20 @@ class AutoCompleteParserEditor extends StatelessWidget {
             ParserTileConsumer(
               title: '标题',
               selector: (n) => n.autoComplete.itemTitle,
-              onChanged: (n, v) => {
-                n.updateParser(n.autoComplete.copyWith(itemTitle: v))
-              },
+              onChanged: (n, v) =>
+                  n.updateParser(n.autoComplete.copyWith(itemTitle: v)),
             ),
             ParserTileConsumer(
               title: '副标题',
               selector: (n) => n.autoComplete.itemSubtitle,
-              onChanged: (n, v) => {
-                n.updateParser(n.autoComplete.copyWith(itemSubtitle: v))
-              },
+              onChanged: (n, v) =>
+                  n.updateParser(n.autoComplete.copyWith(itemSubtitle: v)),
             ),
             ParserTileConsumer(
               title: '补全内容',
               selector: (n) => n.autoComplete.itemComplete,
-              onChanged: (n, v) => {
-                n.updateParser(n.autoComplete.copyWith(itemComplete: v))
-              },
+              onChanged: (n, v) =>
+                  n.updateParser(n.autoComplete.copyWith(itemComplete: v)),
             ),
           ],
         )

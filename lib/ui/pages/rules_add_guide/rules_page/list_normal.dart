@@ -4,53 +4,48 @@ import 'package:catweb/ui/pages/rules_add_guide/rules_page/site_page_notifier.da
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/utils/context_helper.dart';
+import 'package:catweb/utils/hook_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:provider/provider.dart';
 
-class ListNormalSubPage extends StatelessWidget {
+class ListNormalSubPage extends HookWidget {
   const ListNormalSubPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final cookieController = SwipeActionController();
+    final cookieController = useSwipeActionController();
 
-    final notifier = context.watch<SitePageNotifier>();
-
-    return Selector<SitePageNotifier, List<TemplateListSubPage>>(
-      selector: (_, n) => n.templateList.subPages,
-      builder: (_, subpage, child) {
-        return Column(
-          children: [
-            for (final MapEntry(:key, :value) in subpage.asMap().entries)
-              CupertinoDeletableTile(
-                index: key,
-                controller: cookieController,
-                text: '${value.name} - { ${value.key}: ${value.value} }',
-                onDelete: (_) {
-                  notifier.removeListTemplate(key);
-                },
-                onTap: () async {
-                  final result = await _editSubPage(context, value);
-                  if (result == null) return;
-                  notifier.updateListTemplateSubpage(key, result);
-                },
-              ),
-            child!,
-          ],
-        );
-      },
-      child: CupertinoClassicalListTile(
-        icon: Icon(
-          CupertinoIcons.add_circled_solid,
-          color: CupertinoColors.systemGreen.resolveFrom(context),
+    SitePageNotifier notifier = context.read();
+    final subpages =
+        context.select((SitePageNotifier n) => n.templateList.subPages);
+    return Column(
+      children: [
+        for (final MapEntry(:key, :value) in subpages.asMap().entries)
+          CupertinoDeletableTile(
+            index: key,
+            controller: cookieController,
+            text: '${value.name} - { ${value.key}: ${value.value} }',
+            onDelete: (_) {
+              notifier.removeListTemplate(key);
+            },
+            onTap: () async {
+              final result = await _editSubPage(context, value);
+              if (result == null) return;
+              notifier.updateListTemplateSubpage(key, result);
+            },
+          ),
+        CupertinoClassicalListTile(
+          icon: Icon(
+            CupertinoIcons.add_circled_solid,
+            color: CupertinoColors.systemGreen.resolveFrom(context),
+          ),
+          text: I.of(context).add,
+          onTap: () {
+            notifier.addListTemplate();
+          },
         ),
-        text: I.of(context).add,
-        onTap: () {
-          notifier.addListTemplate();
-        },
-      ),
+      ],
     );
   }
 

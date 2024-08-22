@@ -4,18 +4,21 @@ import 'package:catweb/ui/pages/rules_add_guide/rules_editor_notifier.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/utils/context_helper.dart';
+import 'package:catweb/utils/hook_helper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_swipe_action_cell/core/controller.dart';
 import 'package:provider/provider.dart';
 
-class RulesAdvance extends StatelessWidget {
+class RulesAdvance extends HookWidget {
   const RulesAdvance({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final headerController = SwipeActionController();
-    final cookieController = SwipeActionController();
     final notifier = context.read<RulesEditorNotifier>();
+
+    final cookieController = useSwipeActionController();
+    final headerController = useSwipeActionController();
 
     return ListView(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -32,27 +35,7 @@ class RulesAdvance extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Selector<RulesEditorNotifier, List<RegField>>(
-                selector: (_, notifier) => notifier.blueprint.headers,
-                builder: (_, value, __) {
-                  return Column(
-                    children: value.asMap().entries.map((e) {
-                      return CupertinoDeletableTile(
-                        index: e.key,
-                        controller: headerController,
-                        text: '${e.value.reg}: ${e.value.value}',
-                        onDelete: (index) {
-                          notifier.removeHeader(index);
-                        },
-                        onTap: () async {
-                          var newReg = await _editRegField(context, e.value);
-                          notifier.updateHeader(e.key, newReg);
-                        },
-                      );
-                    }).toList(),
-                  );
-                },
-              ),
+              _buildRegFieldList(context, headerController),
               CupertinoClassicalListTile(
                 icon: Icon(
                   CupertinoIcons.add_circled_solid,
@@ -79,27 +62,7 @@ class RulesAdvance extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Selector<RulesEditorNotifier, List<RegField>>(
-                selector: (_, notifier) => notifier.blueprint.cookies,
-                builder: (_, value, __) {
-                  return Column(
-                    children: value.asMap().entries.map((e) {
-                      return CupertinoDeletableTile(
-                        index: e.key,
-                        controller: cookieController,
-                        text: '${e.value.reg}: ${e.value.value}',
-                        onDelete: (index) {
-                          notifier.removeCookie(index);
-                        },
-                        onTap: () async {
-                          var newReg = await _editRegField(context, e.value);
-                          notifier.updateCookie(e.key, newReg);
-                        },
-                      );
-                    }).toList(),
-                  );
-                },
-              ),
+              _buildCookieList(context, cookieController),
               CupertinoClassicalListTile(
                 icon: Icon(
                   CupertinoIcons.add_circled_solid,
@@ -117,40 +80,65 @@ class RulesAdvance extends StatelessWidget {
     );
   }
 
-  Future<RegField> _editRegField(BuildContext context, RegField field) async {
-    final regController = TextEditingController(text: field.reg);
-    final valueController = TextEditingController(text: field.value);
-
-    await showCupertinoDialog(
-      barrierDismissible: true,
-      context: context,
-      builder: (context) {
-        return CupertinoAlertDialog(
-          actions: [
-            CupertinoButton(
-              child: Text(I.of(context).positive),
-              onPressed: () => context.pop(),
-            )
-          ],
-          content: Column(
-            children: [
-              TripleTextField(
-                labelText: I.of(context).reg,
-                controller: regController,
-              ),
-              TripleTextField(
-                labelText: I.of(context).content,
-                controller: valueController,
-              ),
-            ],
-          ),
-        );
-      },
+  Widget _buildRegFieldList(
+      BuildContext context, SwipeActionController controller) {
+    final notifier = context.read<RulesEditorNotifier>();
+    final headers = context.select(
+      (RulesEditorNotifier notifier) => notifier.blueprint.headers,
     );
 
-    return RegField(
-      reg: regController.text,
-      value: valueController.text,
+    return Column(
+      children: headers.asMap().entries.map((e) {
+        return CupertinoDeletableTile(
+          index: e.key,
+          controller: controller,
+          text: '${e.value.reg}: ${e.value.value}',
+          onDelete: (index) {
+            notifier.removeHeader(index);
+          },
+          onTap: () async {
+            var newReg = await _editRegField(context, e.value);
+            if (newReg == null) return;
+            notifier.updateHeader(e.key, newReg);
+          },
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildCookieList(
+    BuildContext context,
+    SwipeActionController controller,
+  ) {
+    final notifier = context.read<RulesEditorNotifier>();
+    final cookies = context.select(
+      (RulesEditorNotifier notifier) => notifier.blueprint.cookies,
+    );
+
+    return Column(
+      children: cookies.asMap().entries.map((e) {
+        return CupertinoDeletableTile(
+          index: e.key,
+          controller: controller,
+          text: '${e.value.reg}: ${e.value.value}',
+          onDelete: (index) {
+            notifier.removeCookie(index);
+          },
+          onTap: () async {
+            var newReg = await _editRegField(context, e.value);
+            if (newReg == null) return;
+            notifier.updateCookie(e.key, newReg);
+          },
+        );
+      }).toList(),
+    );
+  }
+
+  Future<RegField?> _editRegField(BuildContext context, RegField field) async {
+    return await showCupertinoDialog<RegField?>(
+      barrierDismissible: true,
+      context: context,
+      builder: (context) => const RegFieldDialog(),
     );
   }
 
@@ -163,6 +151,44 @@ class RulesAdvance extends StatelessWidget {
           fontSize: 14,
           color: CupertinoColors.secondaryLabel.resolveFrom(context),
         ),
+      ),
+    );
+  }
+}
+
+class RegFieldDialog extends HookWidget {
+  const RegFieldDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final regController = useTextEditingController();
+    final valueController = useTextEditingController();
+
+    return CupertinoAlertDialog(
+      actions: [
+        CupertinoButton(
+          child: Text(I.of(context).cancel),
+          onPressed: () => context.pop(),
+        ),
+        CupertinoButton(
+          child: Text(I.of(context).positive),
+          onPressed: () => context.pop(RegField(
+            reg: regController.text,
+            value: valueController.text,
+          )),
+        )
+      ],
+      content: Column(
+        children: [
+          TripleTextField(
+            labelText: I.of(context).reg,
+            controller: regController,
+          ),
+          TripleTextField(
+            labelText: I.of(context).content,
+            controller: valueController,
+          ),
+        ],
       ),
     );
   }

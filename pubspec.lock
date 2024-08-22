@@ -322,10 +322,10 @@ packages:
     dependency: "direct dev"
     description:
       name: drift_dev
-      sha256: "7344855322e32eb68e356fbf1eb0f788f0344bd1cdd35609c4f38486fc148ba1"
+      sha256: b9ec6159a731288e805a44225ccbebad507dd84d52ab71352c52584f13199d2d
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.20.0"
+    version: "2.20.1"
   extended_image:
     dependency: "direct main"
     description:
@@ -436,10 +436,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_swipe_action_cell
-      sha256: "5cea4d8c3d333c5610ffa4bc39a30561927f90857be19ba33a8322fdc856d335"
+      sha256: "4bf7d8bb62fe515131afce3057d1d36a34d8d56897ad8a67f693955734d3b827"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.1.3"
+    version: "3.1.4"
   flutter_test:
     dependency: "direct dev"
     description: flutter

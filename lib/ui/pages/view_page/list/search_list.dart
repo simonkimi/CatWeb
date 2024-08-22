@@ -12,7 +12,6 @@ import 'notifier/search_list_notifier.dart';
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     PageConfigProvider pageConfig = context.read();
@@ -42,23 +41,19 @@ class SearchPage extends StatelessWidget {
   }
 
   Widget _buildSearchList(BuildContext context) {
+    final suggestions = context.select((SearchNotifier n) => n.suggestions);
     return CustomScrollView(
       slivers: [
         const SliverPullToRefresh(
           extraHeight: 40,
         ),
-        Selector<SearchNotifier, List<AutoCompleteResultItem>>(
-          selector: (context, notifier) => notifier.suggestions,
-          builder: (context, suggestions, child) {
-            return SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  return _buildSuggestionItem(suggestions[index], context);
-                },
-                childCount: suggestions.length,
-              ),
-            );
-          },
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              return _buildSuggestionItem(suggestions[index], context);
+            },
+            childCount: suggestions.length,
+          ),
         ),
       ],
     );

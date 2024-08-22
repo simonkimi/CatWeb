@@ -1,3 +1,4 @@
+import 'package:catweb/data/models/site/field.dart';
 import 'package:catweb/utils/enum_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,6 +17,25 @@ class TemplateListSubPage with _$TemplateListSubPage {
 
   factory TemplateListSubPage.fromJson(Map<String, dynamic> json) =>
       _$TemplateListSubPageFromJson(json);
+}
+
+@freezed
+class TemplateListFilter with _$TemplateListFilter {
+  const TemplateListFilter._();
+
+  const factory TemplateListFilter({
+    @Default([]) List<TemplateListFilterItem> items,
+    @Default(ScriptField.output()) ScriptField script,
+  }) = _TemplateListFilter;
+
+  factory TemplateListFilter.fromJson(Map<String, dynamic> json) =>
+      _$TemplateListFilterFromJson(json);
+
+  bool get isFilterChanged => items.any((e) => e.isChanged);
+
+  TemplateListFilter reset() {
+    return copyWith(items: items.map((e) => e.reset()).toList());
+  }
 }
 
 @freezed

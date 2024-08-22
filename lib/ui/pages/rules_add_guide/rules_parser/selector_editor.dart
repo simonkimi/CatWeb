@@ -1,9 +1,11 @@
 import 'package:catweb/data/models/site/field.dart';
 import 'package:catweb/data/models/site/selector.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
+import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/utils/enum_helper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 
 import 'editor/selector_editor_notifier.dart';
@@ -153,7 +155,7 @@ class SelectorEditor extends StatelessWidget {
   }
 }
 
-class _CupertinoTextField extends StatelessWidget {
+class _CupertinoTextField extends HookWidget {
   const _CupertinoTextField({
     required this.prefix,
     required this.value,
@@ -166,9 +168,8 @@ class _CupertinoTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
-    return CupertinoTextField(
-      controller: controller..text = value,
+    return CupertinoText(
+      initialValue: value,
       prefix: Text(
         prefix,
         style: TextStyle(
@@ -177,14 +178,14 @@ class _CupertinoTextField extends StatelessWidget {
         ),
       ),
       padding: const EdgeInsets.all(10),
-      onEditingComplete: () {
-        onChanged(controller.text);
+      onSubmitted: (value) {
+        onChanged(value);
       },
     );
   }
 }
 
-class _SelectorText extends StatelessWidget {
+class _SelectorText extends HookWidget {
   const _SelectorText({
     required this.prefix,
     required this.selector,
@@ -197,12 +198,11 @@ class _SelectorText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
     return Selector<SelectorEditorNotifier, String>(
       selector: (_, n) => selector(n),
       builder: (_, value, __) {
-        return CupertinoTextField(
-          controller: controller..text = value,
+        return CupertinoText(
+          initialValue: value,
           prefix: Text(
             prefix,
             style: TextStyle(
@@ -211,8 +211,8 @@ class _SelectorText extends StatelessWidget {
             ),
           ),
           padding: const EdgeInsets.all(10),
-          onEditingComplete: () {
-            save(context.read<SelectorEditorNotifier>())(controller.text);
+          onSubmitted: (value) {
+            save(context.read<SelectorEditorNotifier>())(value);
           },
         );
       },
@@ -266,7 +266,7 @@ class _SelectorFactoryPopup<T, E extends IEnumDescription>
   }
 }
 
-class _ReadonlyTextField extends StatelessWidget {
+class _ReadonlyTextField extends HookWidget {
   const _ReadonlyTextField({
     required this.prefix,
     required this.value,
@@ -279,6 +279,12 @@ class _ReadonlyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = useTextEditingController();
+    useEffect(() {
+      controller.text = value;
+      return null;
+    }, [value]);
+
     return CupertinoTextField.borderless(
       prefix: Text(
         prefix,
@@ -287,7 +293,7 @@ class _ReadonlyTextField extends StatelessWidget {
           fontSize: 12,
         ),
       ),
-      controller: TextEditingController()..text = value,
+      controller: controller,
       padding: const EdgeInsets.all(10),
       readOnly: true,
       onTap: onTap,

@@ -1,57 +1,54 @@
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_input.dart';
+import 'package:catweb/ui/pages/rules_add_guide/rules_editor_notifier.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
+import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:flutter/material.dart';
-
-
+import 'package:provider/provider.dart';
 
 class RulesBasic extends StatelessWidget {
   const RulesBasic({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final notifier = context.read<RulesEditorNotifier>();
+
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       children: [
-        RulesTextField(
+        TripleTextField(
           labelText: I.of(context).name,
-          selector: (notifier) => notifier.blueprint.name,
-          save: (notifier) => notifier.setName,
+          initialValue: notifier.blueprint.name,
+          onSubmitted: notifier.setName,
         ),
-        RulesTextField(
+        TripleTextField(
           labelText: I.of(context).base_url,
-          selector: (notifier) => notifier.blueprint.baseUrl,
-          save: (notifier) => notifier.setBaseUrl,
+          initialValue: notifier.blueprint.baseUrl,
+          onSubmitted: notifier.setBaseUrl,
         ),
-        RulesTextField(
+        TripleTextField(
           labelText: '标志',
-          selector: (notifier) => notifier.blueprint.flag,
-          save: (notifier) => notifier.setFlag,
+          initialValue: notifier.blueprint.flag,
+          onSubmitted: notifier.setFlag,
         ),
         const CupertinoDivider(height: 30),
-        RulesTextField(
+        TripleTextField(
           labelText: I.of(context).login_url,
-          selector: (notifier) => notifier.blueprint.loginUrl,
-          save: (notifier) => notifier.setLoginUrl,
+          initialValue: notifier.blueprint.loginUrl,
+          onSubmitted: notifier.setLoginUrl,
         ),
-        RulesTextField(
+        TripleTextField(
           labelText: I.of(context).login_url_reg,
-          selector: (notifier) => notifier.blueprint.loginCookieReg,
-          save: (notifier) => notifier.setLoginCookieReg,
+          initialValue: notifier.blueprint.loginCookieReg,
           hintText: '.*',
+          onSubmitted: notifier.setLoginCookieReg,
         ),
-        RulesTextField(
+        TripleTextField(
           labelText: 'Cookie跨域说明',
-          selector: (notifier) => notifier.blueprint.loginCookieDescription,
-          save: (notifier) => notifier.setLoginCookieDescription,
+          initialValue: notifier.blueprint.loginCookieDescription,
           minLine: 3,
+          onSubmitted: notifier.setLoginCookieDescription,
         ),
-        // const CupertinoDivider(height: 30),
-        // RulesTextField(
-        //   labelText: I.of(context).check_upgrade_url,
-        //   selector: (notifier) => notifier.blueprint.upgradeUrl,
-        //   save: (notifier) => notifier.setUpgradeUrl,
-        // ),
+        const CupertinoDivider(height: 30),
       ],
     );
   }

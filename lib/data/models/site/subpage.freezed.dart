@@ -203,6 +203,201 @@ abstract class _TemplateListSubPage implements TemplateListSubPage {
       throw _privateConstructorUsedError;
 }
 
+TemplateListFilter _$TemplateListFilterFromJson(Map<String, dynamic> json) {
+  return _TemplateListFilter.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TemplateListFilter {
+  List<TemplateListFilterItem> get items => throw _privateConstructorUsedError;
+  ScriptField get script => throw _privateConstructorUsedError;
+
+  /// Serializes this TemplateListFilter to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of TemplateListFilter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $TemplateListFilterCopyWith<TemplateListFilter> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TemplateListFilterCopyWith<$Res> {
+  factory $TemplateListFilterCopyWith(
+          TemplateListFilter value, $Res Function(TemplateListFilter) then) =
+      _$TemplateListFilterCopyWithImpl<$Res, TemplateListFilter>;
+  @useResult
+  $Res call({List<TemplateListFilterItem> items, ScriptField script});
+
+  $ScriptFieldCopyWith<$Res> get script;
+}
+
+/// @nodoc
+class _$TemplateListFilterCopyWithImpl<$Res, $Val extends TemplateListFilter>
+    implements $TemplateListFilterCopyWith<$Res> {
+  _$TemplateListFilterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of TemplateListFilter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? items = null,
+    Object? script = null,
+  }) {
+    return _then(_value.copyWith(
+      items: null == items
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<TemplateListFilterItem>,
+      script: null == script
+          ? _value.script
+          : script // ignore: cast_nullable_to_non_nullable
+              as ScriptField,
+    ) as $Val);
+  }
+
+  /// Create a copy of TemplateListFilter
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ScriptFieldCopyWith<$Res> get script {
+    return $ScriptFieldCopyWith<$Res>(_value.script, (value) {
+      return _then(_value.copyWith(script: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$TemplateListFilterImplCopyWith<$Res>
+    implements $TemplateListFilterCopyWith<$Res> {
+  factory _$$TemplateListFilterImplCopyWith(_$TemplateListFilterImpl value,
+          $Res Function(_$TemplateListFilterImpl) then) =
+      __$$TemplateListFilterImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<TemplateListFilterItem> items, ScriptField script});
+
+  @override
+  $ScriptFieldCopyWith<$Res> get script;
+}
+
+/// @nodoc
+class __$$TemplateListFilterImplCopyWithImpl<$Res>
+    extends _$TemplateListFilterCopyWithImpl<$Res, _$TemplateListFilterImpl>
+    implements _$$TemplateListFilterImplCopyWith<$Res> {
+  __$$TemplateListFilterImplCopyWithImpl(_$TemplateListFilterImpl _value,
+      $Res Function(_$TemplateListFilterImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TemplateListFilter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? items = null,
+    Object? script = null,
+  }) {
+    return _then(_$TemplateListFilterImpl(
+      items: null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<TemplateListFilterItem>,
+      script: null == script
+          ? _value.script
+          : script // ignore: cast_nullable_to_non_nullable
+              as ScriptField,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TemplateListFilterImpl implements _TemplateListFilter {
+  const _$TemplateListFilterImpl(
+      {final List<TemplateListFilterItem> items = const [],
+      this.script = const ScriptField.output()})
+      : _items = items;
+
+  factory _$TemplateListFilterImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TemplateListFilterImplFromJson(json);
+
+  final List<TemplateListFilterItem> _items;
+  @override
+  @JsonKey()
+  List<TemplateListFilterItem> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
+
+  @override
+  @JsonKey()
+  final ScriptField script;
+
+  @override
+  String toString() {
+    return 'TemplateListFilter(items: $items, script: $script)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TemplateListFilterImpl &&
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.script, script) || other.script == script));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_items), script);
+
+  /// Create a copy of TemplateListFilter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TemplateListFilterImplCopyWith<_$TemplateListFilterImpl> get copyWith =>
+      __$$TemplateListFilterImplCopyWithImpl<_$TemplateListFilterImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TemplateListFilterImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TemplateListFilter implements TemplateListFilter {
+  const factory _TemplateListFilter(
+      {final List<TemplateListFilterItem> items,
+      final ScriptField script}) = _$TemplateListFilterImpl;
+
+  factory _TemplateListFilter.fromJson(Map<String, dynamic> json) =
+      _$TemplateListFilterImpl.fromJson;
+
+  @override
+  List<TemplateListFilterItem> get items;
+  @override
+  ScriptField get script;
+
+  /// Create a copy of TemplateListFilter
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TemplateListFilterImplCopyWith<_$TemplateListFilterImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 TemplateListFilterItem _$TemplateListFilterItemFromJson(
     Map<String, dynamic> json) {
   switch (json['runtimeType']) {

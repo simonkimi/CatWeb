@@ -6,12 +6,19 @@ import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
+/// 一页的数据
 abstract class BasePageData<TItem> {
+  /// 每一页中的每一项数据
   List<TItem> get items;
+
+  void dispose();
 }
 
-abstract class BasePageLoaderNotifier<TItems, TPage extends BasePageData<TItems>>
-    with ChangeNotifier {
+/// 页面数据加载Notifier
+/// TItems: 每一项数据
+/// TPage: 一页的数据
+abstract class BasePageLoaderNotifier<TItems,
+    TPage extends BasePageData<TItems>> with ChangeNotifier {
   final pageData = <int, TPage>{};
 
   int _currentPage = -1;
@@ -113,4 +120,12 @@ abstract class BasePageLoaderNotifier<TItems, TPage extends BasePageData<TItems>
       successivePages.expand((e) => e.items);
 
   Iterable<TItems?> get items => chunkSize == null ? successiveItems : allItems;
+
+  @override
+  void dispose() {
+    super.dispose();
+    for (final page in pageData.values) {
+      page.dispose();
+    }
+  }
 }

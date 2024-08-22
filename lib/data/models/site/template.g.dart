@@ -49,15 +49,9 @@ _$PageTemplateListImpl _$$PageTemplateListImplFromJson(
                   TemplateListSubPage.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      filters: (json['filters'] as List<dynamic>?)
-              ?.map((e) =>
-                  TemplateListFilterItem.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      disableUnchanged: json['disableUnchanged'] as bool? ?? false,
-      script: json['script'] == null
-          ? const ScriptField.output()
-          : ScriptField.fromJson(json['script'] as Map<String, dynamic>),
+      filter: json['filter'] == null
+          ? const TemplateListFilter()
+          : TemplateListFilter.fromJson(json['filter'] as Map<String, dynamic>),
       targetItem: json['targetItem'] as String? ?? '',
       targetAutoComplete: json['targetAutoComplete'] as String? ?? '',
       $type: json['runtimeType'] as String?,
@@ -68,9 +62,7 @@ Map<String, dynamic> _$$PageTemplateListImplToJson(
     <String, dynamic>{
       'name': instance.name,
       'subPages': instance.subPages,
-      'filters': instance.filters,
-      'disableUnchanged': instance.disableUnchanged,
-      'script': instance.script,
+      'filter': instance.filter,
       'targetItem': instance.targetItem,
       'targetAutoComplete': instance.targetAutoComplete,
       'runtimeType': instance.$type,

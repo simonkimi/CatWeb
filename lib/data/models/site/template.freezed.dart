@@ -41,9 +41,7 @@ mixin _$PageTemplate {
     required TResult Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)
         list,
@@ -58,9 +56,7 @@ mixin _$PageTemplate {
     TResult? Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)?
         list,
@@ -75,9 +71,7 @@ mixin _$PageTemplate {
     TResult Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)?
         list,
@@ -258,9 +252,7 @@ class _$PageTemplateAutoCompleteImpl extends PageTemplateAutoComplete {
     required TResult Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)
         list,
@@ -278,9 +270,7 @@ class _$PageTemplateAutoCompleteImpl extends PageTemplateAutoComplete {
     TResult? Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)?
         list,
@@ -298,9 +288,7 @@ class _$PageTemplateAutoCompleteImpl extends PageTemplateAutoComplete {
     TResult Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)?
         list,
@@ -465,9 +453,7 @@ class _$PageTemplateGalleryImpl extends PageTemplateGallery {
     required TResult Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)
         list,
@@ -485,9 +471,7 @@ class _$PageTemplateGalleryImpl extends PageTemplateGallery {
     TResult? Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)?
         list,
@@ -505,9 +489,7 @@ class _$PageTemplateGalleryImpl extends PageTemplateGallery {
     TResult Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)?
         list,
@@ -591,13 +573,11 @@ abstract class _$$PageTemplateListImplCopyWith<$Res> {
   $Res call(
       {String name,
       List<TemplateListSubPage> subPages,
-      List<TemplateListFilterItem> filters,
-      bool disableUnchanged,
-      ScriptField script,
+      TemplateListFilter filter,
       String targetItem,
       String targetAutoComplete});
 
-  $ScriptFieldCopyWith<$Res> get script;
+  $TemplateListFilterCopyWith<$Res> get filter;
 }
 
 /// @nodoc
@@ -615,9 +595,7 @@ class __$$PageTemplateListImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? subPages = null,
-    Object? filters = null,
-    Object? disableUnchanged = null,
-    Object? script = null,
+    Object? filter = null,
     Object? targetItem = null,
     Object? targetAutoComplete = null,
   }) {
@@ -630,18 +608,10 @@ class __$$PageTemplateListImplCopyWithImpl<$Res>
           ? _value._subPages
           : subPages // ignore: cast_nullable_to_non_nullable
               as List<TemplateListSubPage>,
-      filters: null == filters
-          ? _value._filters
-          : filters // ignore: cast_nullable_to_non_nullable
-              as List<TemplateListFilterItem>,
-      disableUnchanged: null == disableUnchanged
-          ? _value.disableUnchanged
-          : disableUnchanged // ignore: cast_nullable_to_non_nullable
-              as bool,
-      script: null == script
-          ? _value.script
-          : script // ignore: cast_nullable_to_non_nullable
-              as ScriptField,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as TemplateListFilter,
       targetItem: null == targetItem
           ? _value.targetItem
           : targetItem // ignore: cast_nullable_to_non_nullable
@@ -657,9 +627,9 @@ class __$$PageTemplateListImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ScriptFieldCopyWith<$Res> get script {
-    return $ScriptFieldCopyWith<$Res>(_value.script, (value) {
-      return _then(_value.copyWith(script: value));
+  $TemplateListFilterCopyWith<$Res> get filter {
+    return $TemplateListFilterCopyWith<$Res>(_value.filter, (value) {
+      return _then(_value.copyWith(filter: value));
     });
   }
 }
@@ -670,14 +640,11 @@ class _$PageTemplateListImpl extends PageTemplateList {
   const _$PageTemplateListImpl(
       {this.name = '',
       final List<TemplateListSubPage> subPages = const [],
-      final List<TemplateListFilterItem> filters = const [],
-      this.disableUnchanged = false,
-      this.script = const ScriptField.output(),
+      this.filter = const TemplateListFilter(),
       this.targetItem = '',
       this.targetAutoComplete = '',
       final String? $type})
       : _subPages = subPages,
-        _filters = filters,
         $type = $type ?? 'list',
         super._();
 
@@ -696,21 +663,9 @@ class _$PageTemplateListImpl extends PageTemplateList {
     return EqualUnmodifiableListView(_subPages);
   }
 
-  final List<TemplateListFilterItem> _filters;
   @override
   @JsonKey()
-  List<TemplateListFilterItem> get filters {
-    if (_filters is EqualUnmodifiableListView) return _filters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_filters);
-  }
-
-  @override
-  @JsonKey()
-  final bool disableUnchanged;
-  @override
-  @JsonKey()
-  final ScriptField script;
+  final TemplateListFilter filter;
   @override
   @JsonKey()
   final String targetItem;
@@ -723,7 +678,7 @@ class _$PageTemplateListImpl extends PageTemplateList {
 
   @override
   String toString() {
-    return 'PageTemplate.list(name: $name, subPages: $subPages, filters: $filters, disableUnchanged: $disableUnchanged, script: $script, targetItem: $targetItem, targetAutoComplete: $targetAutoComplete)';
+    return 'PageTemplate.list(name: $name, subPages: $subPages, filter: $filter, targetItem: $targetItem, targetAutoComplete: $targetAutoComplete)';
   }
 
   @override
@@ -733,10 +688,7 @@ class _$PageTemplateListImpl extends PageTemplateList {
             other is _$PageTemplateListImpl &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._subPages, _subPages) &&
-            const DeepCollectionEquality().equals(other._filters, _filters) &&
-            (identical(other.disableUnchanged, disableUnchanged) ||
-                other.disableUnchanged == disableUnchanged) &&
-            (identical(other.script, script) || other.script == script) &&
+            (identical(other.filter, filter) || other.filter == filter) &&
             (identical(other.targetItem, targetItem) ||
                 other.targetItem == targetItem) &&
             (identical(other.targetAutoComplete, targetAutoComplete) ||
@@ -749,9 +701,7 @@ class _$PageTemplateListImpl extends PageTemplateList {
       runtimeType,
       name,
       const DeepCollectionEquality().hash(_subPages),
-      const DeepCollectionEquality().hash(_filters),
-      disableUnchanged,
-      script,
+      filter,
       targetItem,
       targetAutoComplete);
 
@@ -773,16 +723,13 @@ class _$PageTemplateListImpl extends PageTemplateList {
     required TResult Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)
         list,
     required TResult Function() imageViewer,
   }) {
-    return list(name, subPages, filters, disableUnchanged, script, targetItem,
-        targetAutoComplete);
+    return list(name, subPages, filter, targetItem, targetAutoComplete);
   }
 
   @override
@@ -794,16 +741,13 @@ class _$PageTemplateListImpl extends PageTemplateList {
     TResult? Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)?
         list,
     TResult? Function()? imageViewer,
   }) {
-    return list?.call(name, subPages, filters, disableUnchanged, script,
-        targetItem, targetAutoComplete);
+    return list?.call(name, subPages, filter, targetItem, targetAutoComplete);
   }
 
   @override
@@ -815,9 +759,7 @@ class _$PageTemplateListImpl extends PageTemplateList {
     TResult Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)?
         list,
@@ -825,8 +767,7 @@ class _$PageTemplateListImpl extends PageTemplateList {
     required TResult orElse(),
   }) {
     if (list != null) {
-      return list(name, subPages, filters, disableUnchanged, script, targetItem,
-          targetAutoComplete);
+      return list(name, subPages, filter, targetItem, targetAutoComplete);
     }
     return orElse();
   }
@@ -880,9 +821,7 @@ abstract class PageTemplateList extends PageTemplate {
   const factory PageTemplateList(
       {final String name,
       final List<TemplateListSubPage> subPages,
-      final List<TemplateListFilterItem> filters,
-      final bool disableUnchanged,
-      final ScriptField script,
+      final TemplateListFilter filter,
       final String targetItem,
       final String targetAutoComplete}) = _$PageTemplateListImpl;
   const PageTemplateList._() : super._();
@@ -892,9 +831,7 @@ abstract class PageTemplateList extends PageTemplate {
 
   String get name;
   List<TemplateListSubPage> get subPages;
-  List<TemplateListFilterItem> get filters;
-  bool get disableUnchanged;
-  ScriptField get script;
+  TemplateListFilter get filter;
   String get targetItem;
   String get targetAutoComplete;
 
@@ -964,9 +901,7 @@ class _$PageTemplateImageViewerImpl extends PageTemplateImageViewer {
     required TResult Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)
         list,
@@ -984,9 +919,7 @@ class _$PageTemplateImageViewerImpl extends PageTemplateImageViewer {
     TResult? Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)?
         list,
@@ -1004,9 +937,7 @@ class _$PageTemplateImageViewerImpl extends PageTemplateImageViewer {
     TResult Function(
             String name,
             List<TemplateListSubPage> subPages,
-            List<TemplateListFilterItem> filters,
-            bool disableUnchanged,
-            ScriptField script,
+            TemplateListFilter filter,
             String targetItem,
             String targetAutoComplete)?
         list,

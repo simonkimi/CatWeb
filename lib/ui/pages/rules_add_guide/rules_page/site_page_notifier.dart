@@ -77,12 +77,6 @@ mixin _ListTemplateUpdater on ValueNotifier<SitePageRule> {
     );
   }
 
-  void updateListTemplateDisableUnchanged(bool disableUnchanged) {
-    value = value.copyWith(
-      template: templateList.copyWith(disableUnchanged: disableUnchanged),
-    );
-  }
-
   void updateListTemplateTargetItem(String targetItem) {
     value = value.copyWith(
       template: templateList.copyWith(targetItem: targetItem),
@@ -98,7 +92,8 @@ mixin _ListTemplateUpdater on ValueNotifier<SitePageRule> {
   void updateListTemplateFilter(int key, TemplateListFilterItem result) {
     value = value.copyWith(
       template: templateList.copyWith(
-        filters: templateList.filters..[key] = result,
+        filter: templateList.filter
+            .copyWith(items: templateList.filter.items.replaceAt(key, result)),
       ),
     );
   }
@@ -106,8 +101,12 @@ mixin _ListTemplateUpdater on ValueNotifier<SitePageRule> {
   void addListTemplateFilter() {
     value = value.copyWith(
       template: templateList.copyWith(
-        filters: templateList.filters
-          ..add(const TemplateListFilterItem.string()),
+        filter: templateList.filter.copyWith(
+          items: [
+            ...templateList.filter.items,
+            const TemplateListFilterItem.string()
+          ],
+        ),
       ),
     );
   }
@@ -115,7 +114,9 @@ mixin _ListTemplateUpdater on ValueNotifier<SitePageRule> {
   void removeListTemplateFilter(int index) {
     value = value.copyWith(
       template: templateList.copyWith(
-        filters: templateList.filters.exceptAt(index),
+        filter: templateList.filter.copyWith(
+          items: templateList.filter.items.exceptAt(index),
+        ),
       ),
     );
   }

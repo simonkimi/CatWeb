@@ -18,7 +18,6 @@ class LoggerHelper {
   final _logger = Logger(
     printer: PrettyPrinter(
       colors: true,
-      printTime: false,
       methodCount: 0,
       noBoxingByDefault: false,
       printEmojis: true,

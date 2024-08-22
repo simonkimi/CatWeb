@@ -97,7 +97,7 @@ class SearchNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  bool get hasFilter => listRule.templateList.filters.isNotEmpty;
+  bool get hasFilter => listRule.templateList.filter.items.isNotEmpty;
 
   @override
   void dispose() {
