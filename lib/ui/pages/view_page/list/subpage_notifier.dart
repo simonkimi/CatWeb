@@ -1,12 +1,10 @@
 import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/loaders/page_loader.dart';
-import 'package:catweb/data/models/ffi/result/base.dart';
-import 'package:catweb/data/models/ffi/result/result.dart';
-import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/models/page_loader_state.dart';
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/subpage.dart';
 import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/data/models/subpage_models.dart';
 import 'package:catweb/get.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
@@ -16,38 +14,7 @@ import 'package:catweb/utils/replace_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-/// List中每一页的数据
-class ListPageData extends BasePageData<ListItemModel> {
-  ListPageData(this.pageData)
-      : _items = pageData.items!.map((e) => ListItemModel(e)).toList();
 
-  final ListParserResult pageData;
-
-  final List<ListItemModel> _items;
-
-  @override
-  List<ListItemModel> get items => _items;
-
-  @override
-  void dispose() {
-    for (var item in _items) {
-      item.dispose();
-    }
-  }
-}
-
-/// List带预览加载的项目
-class ListItemModel extends ImageWithPreviewModel {
-  ListItemModel(this.previewModel);
-
-  final ListParserResultItem previewModel;
-
-  @override
-  ImageResult get previewImage => previewModel.previewImage!;
-
-  @override
-  String? get idCode => previewModel.idCode;
-}
 
 class SubListNotifier
     extends BasePageLoaderNotifier<ListItemModel, ListPageData>

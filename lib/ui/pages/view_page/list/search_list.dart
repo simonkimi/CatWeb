@@ -7,7 +7,7 @@ import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
-import 'notifier/search_list_notifier.dart';
+import 'search_list_notifier.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});

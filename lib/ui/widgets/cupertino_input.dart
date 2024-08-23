@@ -77,8 +77,6 @@ class TripleReadonlyTextField extends StatelessWidget {
   }
 }
 
-
-
 class TripleTextField extends HookWidget {
   const TripleTextField({
     super.key,
@@ -425,6 +423,123 @@ class CupertinoText extends HookWidget {
         onEditingComplete?.call();
         onSubmitted?.call(controller.text);
       },
+    );
+  }
+}
+
+class CupertinoIntInput extends HookWidget {
+  const CupertinoIntInput({
+    super.key,
+    required this.initialValue,
+    required this.onSubmitted,
+    this.decoration,
+    this.height,
+    this.width,
+  });
+
+  final int initialValue;
+  final ValueChanged<int> onSubmitted;
+  final BoxDecoration? decoration;
+  final double? height;
+  final double? width;
+
+  Widget _buildTextField(ValueNotifier<bool> displayError) {
+    final text = CupertinoText(
+      initialValue: initialValue.toString(),
+      onSubmitted: (value) {
+        final parsed = int.tryParse(value);
+        displayError.value = parsed == null;
+        if (parsed != null) {
+          onSubmitted(parsed);
+        }
+      },
+      decoration: decoration,
+    );
+    if (height != null || width != null) {
+      return SizedBox(
+        width: width,
+        height: height,
+        child: text,
+      );
+    }
+    return text;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final displayError = useState(false);
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _buildTextField(displayError),
+        if (displayError.value)
+          Text(
+            '数字输入错误',
+            style: TextStyle(
+              color: CupertinoColors.systemRed.resolveFrom(context),
+              fontSize: 13,
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class CupertinoDoubleInput extends HookWidget {
+  const CupertinoDoubleInput({
+    super.key,
+    required this.initialValue,
+    required this.onSubmitted,
+    this.decoration,
+    this.height,
+    this.width,
+  });
+
+  final double? height;
+  final double? width;
+  final double initialValue;
+  final ValueChanged<double> onSubmitted;
+  final BoxDecoration? decoration;
+
+  Widget _buildTextField(ValueNotifier<bool> displayError) {
+    final text = CupertinoText(
+      initialValue: initialValue.toString(),
+      onSubmitted: (value) {
+        final parsed = double.tryParse(value);
+        displayError.value = parsed == null;
+        if (parsed != null) {
+          onSubmitted(parsed);
+        }
+      },
+      decoration: decoration,
+    );
+    if (height != null || width != null) {
+      return SizedBox(
+        width: width,
+        height: height,
+        child: text,
+      );
+    }
+    return text;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final displayError = useState(false);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _buildTextField(displayError),
+        if (displayError.value)
+          Text(
+            '数字输入错误',
+            style: TextStyle(
+              color: CupertinoColors.systemRed.resolveFrom(context),
+              fontSize: 13,
+            ),
+          ),
+      ],
     );
   }
 }

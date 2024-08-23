@@ -6,9 +6,6 @@ import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:provider/provider.dart';
-
-import 'notifier/filter_notifier.dart';
 
 class ListFilterButton extends StatelessWidget {
   const ListFilterButton({
@@ -72,7 +69,7 @@ class FilterDialog extends HookWidget {
         CupertinoDialogAction(
           child: Text(I.of(context).apply),
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.of(context).pop(currentFilter.value);
           },
         ),
       ],
@@ -137,9 +134,39 @@ class FilterDialog extends HookWidget {
     );
   }
 
-  Widget _buildIntFilter(TemplateListFilterItemNumber item) {}
+  Widget _buildIntFilter(
+    BuildContext context,
+    TemplateListFilterItemNumber item,
+    ValueChanged<int> onSubmitted,
+  ) {
+    return CupertinoIntInput(
+      height: 30,
+      width: 60,
+      decoration: BoxDecoration(
+        color: CupertinoColors.systemGroupedBackground.resolveFrom(context),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      initialValue: item.value,
+      onSubmitted: onSubmitted,
+    );
+  }
 
-  Widget _buildFloatFilter(TemplateListFilterItemFloat item) {}
+  Widget _buildFloatFilter(
+    BuildContext context,
+    TemplateListFilterItemFloat item,
+    ValueChanged<double> onSubmitted,
+  ) {
+    return CupertinoDoubleInput(
+      height: 30,
+      width: 60,
+      decoration: BoxDecoration(
+        color: CupertinoColors.systemGroupedBackground.resolveFrom(context),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      initialValue: item.value,
+      onSubmitted: onSubmitted,
+    );
+  }
 
   Widget _buildBoolFilter(bool value, ValueChanged<bool> onChanged) {
     return SizedBox(
@@ -175,8 +202,20 @@ class FilterDialog extends HookWidget {
                       .replaceAt(index, item.copyWith(value: value)),
                 );
               }),
-            TemplateListFilterItemNumber item => _buildIntFilter(item),
-            TemplateListFilterItemFloat item => _buildFloatFilter(item),
+            TemplateListFilterItemNumber item =>
+              _buildIntFilter(context, item, (value) {
+                currentFilter.value = currentFilter.value.copyWith(
+                  items: currentFilter.value.items
+                      .replaceAt(index, item.copyWith(value: value)),
+                );
+              }),
+            TemplateListFilterItemFloat item =>
+              _buildFloatFilter(context, item, (value) {
+                currentFilter.value = currentFilter.value.copyWith(
+                  items: currentFilter.value.items
+                      .replaceAt(index, item.copyWith(value: value)),
+                );
+              }),
             TemplateListFilterItemBool item =>
               _buildBoolFilter(item.value, (value) {
                 currentFilter.value = currentFilter.value.copyWith(
@@ -189,79 +228,5 @@ class FilterDialog extends HookWidget {
         ],
       ),
     );
-
-    // return Padding(
-    //   padding: const EdgeInsets.symmetric(vertical: 1),
-    //   child: Row(
-    //     children: [
-    //       Text(item.name),
-    //       const Expanded(child: SizedBox()),
-    //
-    //       switch(item) {
-    //         TemplateListFilterItemBool item =>
-    //             SizedBox(
-    //               height: 30,
-    //               child: Transform.scale(
-    //                 scale: 0.8,
-    //                 alignment: Alignment.centerRight,
-    //                 child: CupertinoSwitch(
-    //                   value: item.value.value.toLowerCase().trim() == 'true',
-    //                   onChanged: (value) {
-    //                     item.value.value =
-    //                     item.value.value.toLowerCase() == 'true'
-    //                         ? 'false'
-    //                         : 'true';
-    //                   },
-    //                 ),
-    //               ),
-    //             ),
-    //         TemplateListFilterItem() => throw UnimplementedError(),
-    //       }
-    //
-    //
-    //       if (item is TemplateListFilterItemBool)
-    //         SizedBox(
-    //           height: 30,
-    //           child: Transform.scale(
-    //             scale: 0.8,
-    //             alignment: Alignment.centerRight,
-    //             child: CupertinoSwitch(
-    //               value: item.value.value.toLowerCase().trim() == 'true',
-    //               onChanged: (value) {
-    //                 item.value.value = item.value.value.toLowerCase() == 'true'
-    //                     ? 'false'
-    //                     : 'true';
-    //               },
-    //             ),
-    //           ),
-    //         ),
-    //
-    //
-    //       if (item.type == FilterType.string || item.type == FilterType.number)
-    //         SizedBox(
-    //           height: 30,
-    //           width: 60,
-    //           child: CupertinoTextField(
-    //             controller: TextEditingController(text: item.value.value),
-    //             decoration: BoxDecoration(
-    //               color: CupertinoColors.systemGroupedBackground
-    //                   .resolveFrom(context),
-    //               borderRadius: BorderRadius.circular(10),
-    //             ),
-    //             inputFormatters: [
-    //               if (item.type == FilterType.number)
-    //                 FilteringTextInputFormatter.digitsOnly
-    //             ],
-    //             keyboardType: item.type == FilterType.number
-    //                 ? TextInputType.number
-    //                 : null,
-    //             onChanged: (value) {
-    //               item.value.value = value;
-    //             },
-    //           ),
-    //         ),
-    //     ],
-    //   ),
-    // );
   }
 }

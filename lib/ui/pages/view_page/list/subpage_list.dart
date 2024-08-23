@@ -1,15 +1,16 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/models/page_loader_state.dart';
-import 'package:catweb/ui/pages/view_page/list/notifier/subpage_notifier.dart';
+import 'package:catweb/data/models/subpage_models.dart';
+import 'package:catweb/ui/pages/view_page/list/subpage_notifier.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
+import 'package:catweb/ui/widgets/list_extended_card.dart';
 import 'package:catweb/ui/widgets/load_more_footer.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'list_extended_card.dart';
 
 class SubPageListFragment extends StatefulWidget {
   const SubPageListFragment({

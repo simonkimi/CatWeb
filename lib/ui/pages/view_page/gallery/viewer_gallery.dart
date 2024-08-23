@@ -17,7 +17,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'comment_item.dart';
+import '../../../widgets/comment_item.dart';
 import 'comment_list.dart';
 import 'controller/gallery_controller.dart';
 

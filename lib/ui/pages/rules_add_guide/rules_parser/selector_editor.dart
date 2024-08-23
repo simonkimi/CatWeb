@@ -155,7 +155,7 @@ class SelectorEditor extends StatelessWidget {
   }
 }
 
-class _CupertinoTextField extends HookWidget {
+class _CupertinoTextField extends StatelessWidget {
   const _CupertinoTextField({
     required this.prefix,
     required this.value,
@@ -185,7 +185,7 @@ class _CupertinoTextField extends HookWidget {
   }
 }
 
-class _SelectorText extends HookWidget {
+class _SelectorText extends StatelessWidget {
   const _SelectorText({
     required this.prefix,
     required this.selector,

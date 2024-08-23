@@ -6,7 +6,7 @@ import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 
-abstract class ReaderInfo<T, V extends ImageWithPreviewModel<T>> {
+abstract class ReaderInfo<T, V extends ImageWithPreviewModel> {
   /// 获取项目模型
   Iterable<V?> get items;
 

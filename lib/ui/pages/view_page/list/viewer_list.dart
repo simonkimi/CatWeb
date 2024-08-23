@@ -10,7 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 
-import 'notifier/subpage_notifier.dart';
+import 'subpage_notifier.dart';
 
 class ViewerListFragment extends HookWidget {
   const ViewerListFragment({super.key});

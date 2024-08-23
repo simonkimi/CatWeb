@@ -3,8 +3,6 @@ import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'comment_item.dart';
-import 'controller/gallery_controller.dart';
 
 class CommentListPage extends StatelessWidget {
   const CommentListPage({super.key, required this.previewController});

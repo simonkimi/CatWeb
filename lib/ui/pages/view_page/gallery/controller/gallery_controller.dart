@@ -1,5 +1,4 @@
 import 'package:catweb/data/controller/db.dart';
-import 'package:catweb/data/controller/site_service.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
@@ -28,21 +27,6 @@ class DetailBaseData {
   });
 }
 
-/// Detail带预览的加载项目
-class DetailImageWithPreview extends ImageWithPreviewModel {
-  DetailImageWithPreview(this.previewModel);
-
-  final DetailPreviewItem previewModel;
-
-  @override
-  ImageResult get previewImage => previewModel.previewImage!;
-
-  @override
-  DetailPreviewItem get value => previewModel;
-
-  @override
-  String? get idCode => value.target;
-}
 
 class DetailLoadMore extends LoadMorePage<DetailParserResult, DetailPreviewItem,
     DetailImageWithPreview> {
