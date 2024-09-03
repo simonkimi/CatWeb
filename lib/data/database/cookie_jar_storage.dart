@@ -1,4 +1,4 @@
-import 'package:catweb/get.dart';
+
 import 'package:cookie_jar/cookie_jar.dart';
 
 import '../controller/db.dart';
@@ -8,7 +8,7 @@ class CookieJarStorage implements Storage {
 
   final String uuid;
 
-  final _cookieJarDao = inject<DbService>().cookieJarDao;
+  final _cookieJarDao = getIt.get<DbService>().cookieJarDao;
 
   @override
   Future<void> delete(String key) => _cookieJarDao.remove(uuid, key);

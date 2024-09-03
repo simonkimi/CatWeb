@@ -8,7 +8,8 @@ import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/site_blueprint.dart';
 import 'package:catweb/data/models/site/template.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/get.dart';
+
+import 'package:catweb/navigator.dart';
 import 'package:catweb/network/client/client.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:flutter/cupertino.dart';
@@ -49,7 +50,7 @@ class SiteRenderConfigModel {
 
   Future<void> setFavicon(Uint8List bin) async {
     favicon.value = bin;
-    await inject<DbService>().webDao.replace(dbEntity.copyWith(favicon: bin));
+    await getIt.get<DbService>().webDao.replace(dbEntity.copyWith(favicon: bin));
   }
 
   Future<void> updateCookies() async {}
@@ -75,7 +76,7 @@ class SiteRenderConfigModel {
       }
     }
     if (didUpdate) {
-      await inject<DbService>()
+      await getIt.get<DbService>()
           .webDao
           .replace(dbEntity.copyWith(env: globalEnv.toJsonString()));
     }

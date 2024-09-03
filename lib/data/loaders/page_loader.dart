@@ -44,6 +44,9 @@ abstract class BasePageLoaderNotifier<TItems,
       state = const PageLoaderState.end();
       notifyListeners();
     }
+    if (state.isLoading) {
+      state = const PageLoaderState.idle();
+    }
   }
 
   Future<void> refresh() async {
@@ -60,6 +63,9 @@ abstract class BasePageLoaderNotifier<TItems,
     } else {
       final pageIndex = (index / chunkSize!).floor();
       await _loadPageData(pageIndex);
+    }
+    if (state.isLoading) {
+      state = const PageLoaderState.idle();
     }
   }
 

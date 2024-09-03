@@ -1,7 +1,7 @@
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
-import 'package:catweb/get.dart';
+
 import 'package:dio/dio.dart';
 
 import 'image_loader.dart';
@@ -51,7 +51,7 @@ class ImageLoaderQueue {
     }
   }
 
-  static SettingService get settingsService => inject();
+  static SettingService get settingsService => getIt.get();
 
-  static SiteService get siteService => inject();
+  static SiteService get siteService => getIt.get();
 }

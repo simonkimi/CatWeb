@@ -4,7 +4,7 @@ import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/get.dart';
+
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
 
@@ -26,7 +26,7 @@ abstract class ImageWithPreviewModel extends ChangeNotifier {
     notifyListeners();
     imageModel = await AsyncValue.guard(() async {
       final url = blueprint.url.isEmpty ? idCode! : blueprint.url;
-      SiteService siteService = inject();
+      SiteService siteService = getIt.get();
       return siteService.currentSite!.client.getReadImage(
         url: url,
         model: blueprint,

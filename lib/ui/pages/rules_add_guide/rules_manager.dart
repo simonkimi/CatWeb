@@ -5,7 +5,7 @@ import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site/site_blueprint.dart';
-import 'package:catweb/get.dart';
+
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
@@ -31,11 +31,11 @@ class SiteManager extends StatelessWidget {
 
   static const routeName = 'SiteManager';
 
-  DbService get dbService => inject();
+  DbService get dbService => getIt.get();
 
-  SettingService get settingService => inject();
+  SettingService get settingService => getIt.get();
 
-  SiteService get siteService => inject();
+  SiteService get siteService => getIt.get();
 
   @override
   Widget build(BuildContext context) {

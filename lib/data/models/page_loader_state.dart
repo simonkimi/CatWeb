@@ -33,4 +33,9 @@ class PageLoaderState with _$PageLoaderState {
         PageLoaderState.error => true,
         _ => false,
       };
+
+  bool get isEnd => switch (this) {
+        PageLoaderState.end => true,
+        _ => false,
+      };
 }

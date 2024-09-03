@@ -5,7 +5,7 @@ import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/subpage.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/subpage_models.dart';
-import 'package:catweb/get.dart';
+
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
 import 'package:catweb/utils/debug.dart';
@@ -137,5 +137,5 @@ class SubListNotifier
     concurrency: 4,
   );
 
-  SiteService get global => inject();
+  SiteService get global => getIt.get();
 }

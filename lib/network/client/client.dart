@@ -10,7 +10,7 @@ import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/parser.dart';
 import 'package:catweb/data/models/site/site_blueprint.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/get.dart';
+
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
 import 'package:catweb/utils/debug.dart';
@@ -147,7 +147,7 @@ class NetClient {
     final parser =
         blueMap.getParserById<ParserModelImageReader>(model.parserId);
 
-    final options = inject<GlobalService>()
+    final options = getIt.get<GlobalService>()
         .imageCacheOption
         .copyWith(policy: CachePolicy.forceCache)
         .toOptions();
@@ -244,9 +244,9 @@ class NetClient {
     return dio;
   }
 
-  static GlobalService get globalService => inject();
+  static GlobalService get globalService => getIt.get();
 
-  static SiteService get siteService => inject();
+  static SiteService get siteService => getIt.get();
 }
 
 Future<String> callFFiParser(

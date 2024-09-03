@@ -1,5 +1,5 @@
 import 'package:catweb/data/controller/settings.dart';
-import 'package:catweb/get.dart';
+
 import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class DarkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SettingService setting = inject();
+    SettingService setting = getIt.get();
     return ValueListenableBuilder(
       valueListenable: setting.imageMaskInDarkModeNotifier,
       builder: (context, value, _) {

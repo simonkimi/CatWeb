@@ -1,7 +1,8 @@
 import 'package:catweb/data/controller/global.dart';
 import 'package:catweb/data/loaders/async_progress_value.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
-import 'package:catweb/get.dart';
+import 'package:catweb/navigator.dart';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -56,5 +57,5 @@ class ImageLoadNotifier extends ValueNotifier<AsyncProgressValue<Uint8List>> {
     }
   }
 
-  GlobalService get global => inject();
+  GlobalService get global => getIt.get();
 }
