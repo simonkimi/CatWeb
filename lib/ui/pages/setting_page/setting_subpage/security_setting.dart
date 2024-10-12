@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:catweb/data/controller/settings.dart';
 
 import 'package:catweb/i18n.dart';
+import 'package:catweb/navigator.dart';
 import 'package:catweb/ui/widgets/cupertino_vn_input.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';

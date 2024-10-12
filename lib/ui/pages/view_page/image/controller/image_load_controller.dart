@@ -6,23 +6,7 @@ import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 
-abstract class ReaderInfo<T, V extends ImageWithPreviewModel> {
-  /// 获取项目模型
-  Iterable<V?> get items;
 
-  /// 一共有多少项目
-  int? get itemsCount;
-
-  /// 告知上级去加载[index]的数据
-  Future<void> loadIndexModel(int index);
-
-  /// 初始界面的index
-  int? get startReadIndex;
-
-  void onReaderIndexChanged(int index) {}
-
-  ImageListConcurrency get previewConcurrency;
-}
 
 class _LoadModelTask extends AsyncTask<void> {
   _LoadModelTask({

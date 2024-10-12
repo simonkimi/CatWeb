@@ -1,10 +1,10 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:catweb/data/controller/setting_service.dart';
-import 'package:catweb/data/controller/setting_enum.dart';
+import 'package:catweb/data/controller/settings.dart';
+import 'package:catweb/data/models/site/site_blueprint.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/data/models/site_model/pages/site_page.dart';
+import 'package:catweb/navigator.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/zoom.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
@@ -13,7 +13,6 @@ import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import 'package:get/get.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'controller/image_load_controller.dart';
 import 'image_preview_slider.dart';
@@ -29,7 +28,7 @@ class ImageReader extends StatefulWidget {
   });
 
   final ReaderInfo readerInfo;
-  final SitePage blueprint;
+  final SiteBlueprint blueprint;
 
   @override
   State<ImageReader> createState() => _ImageReaderViewerState();
@@ -44,7 +43,7 @@ class _ImageReaderViewerState extends State<ImageReader>
   late final Animation<Offset> hideToolbarAni;
   late final Animation<Offset> hideTabBarAni;
 
-  final settings = get<SettingService>();
+  SettingService settings = getIt.get();
 
   @override
   void initState() {
@@ -86,49 +85,47 @@ class _ImageReaderViewerState extends State<ImageReader>
         ),
       ),
       backgroundColor: CupertinoColors.darkBackgroundGray,
-      child: Obx(() => Stack(
-            children: [
-              if (settings.readerDirectory.value == ReaderDirection.ttb)
-                // 垂直方向阅读
-                Obx(() => GestureDetector(
-                      onTap: () {},
-                      onTapUp: _onImageTap,
-                      child: ScrollablePositionedList.builder(
-                        itemScrollController: readController.listController,
-                        itemCount: readController.displayPageCount,
-                        itemPositionsListener:
-                            readController.listPositionsListener,
-                        initialScrollIndex: readController.currentPage,
-                        itemBuilder: (context, index) {
-                          return ImageViewer(
-                            readerInfo: controller.readerInfo,
-                            index: index,
-                          );
-                        },
-                      ),
-                    ))
-              else
-                // 水平方向阅读
-                Builder(builder: (context) {
-                  Future.delayed(const Duration(milliseconds: 100), () {
-                    readController.onPageViewBuild();
-                  });
-                  return Obx(() => PhotoViewGallery.builder(
-                        reverse: settings.readerDirectory.value ==
-                            ReaderDirection.rtl,
-                        pageController: readController.pageController,
-                        itemCount: readController.displayPageCount,
-                        onPageChanged: readController.onPageIndexChanged,
-                        builder: (context, index) {
-                          return readController.isSingleWidget(index)
-                              ? _buildSinglePageImage(context, index)
-                              : _buildDoublePageImage(context, index);
-                        },
-                      ));
-                }),
-              _buildSlider(context),
-            ],
-          )),
+      child: Stack(
+        children: [
+          switch (settings.readerDirectory) {
+            ReaderDirection.ltr ||
+            ReaderDirection.rtl =>
+              Builder(builder: (context) {
+                Future.delayed(const Duration(milliseconds: 100), () {
+                  readController.onPageViewBuild();
+                });
+                return PhotoViewGallery.builder(
+                  reverse: settings.readerDirectory == ReaderDirection.rtl,
+                  pageController: readController.pageController,
+                  itemCount: readController.displayPageCount,
+                  onPageChanged: readController.onPageIndexChanged,
+                  builder: (context, index) {
+                    return readController.isSingleWidget(index)
+                        ? _buildSinglePageImage(context, index)
+                        : _buildDoublePageImage(context, index);
+                  },
+                );
+              }),
+            ReaderDirection.ttb => GestureDetector(
+                onTap: () {},
+                onTapUp: _onImageTap,
+                child: ScrollablePositionedList.builder(
+                  itemScrollController: readController.listController,
+                  itemCount: readController.displayPageCount,
+                  itemPositionsListener: readController.listPositionsListener,
+                  initialScrollIndex: readController.currentPage,
+                  itemBuilder: (context, index) {
+                    return ImageViewer(
+                      readerInfo: controller.readerInfo,
+                      index: index,
+                    );
+                  },
+                ),
+              ),
+          },
+          _buildSlider(context),
+        ],
+      ),
     );
   }
 
@@ -153,13 +150,13 @@ class _ImageReaderViewerState extends State<ImageReader>
                     ),
                     SizedBox(
                       height: 50,
-                      child: Obx(() => CupertinoImageSlider(
-                            value: readController.currentPage,
-                            pageCount: controller.readerInfo.items.length,
-                            onChanged: (value) {
-                              readController.jumpToPage(value);
-                            },
-                          )),
+                      child: CupertinoImageSlider(
+                        value: readController.currentPage,
+                        pageCount: controller.readerInfo.items.length,
+                        onChanged: (value) {
+                          readController.jumpToPage(value);
+                        },
+                      ),
                     )
                   ],
                 ),

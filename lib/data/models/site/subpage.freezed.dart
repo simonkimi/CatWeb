@@ -319,11 +319,12 @@ class __$$TemplateListFilterImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TemplateListFilterImpl implements _TemplateListFilter {
+class _$TemplateListFilterImpl extends _TemplateListFilter {
   const _$TemplateListFilterImpl(
       {final List<TemplateListFilterItem> items = const [],
       this.script = const ScriptField.output()})
-      : _items = items;
+      : _items = items,
+        super._();
 
   factory _$TemplateListFilterImpl.fromJson(Map<String, dynamic> json) =>
       _$$TemplateListFilterImplFromJson(json);
@@ -377,10 +378,11 @@ class _$TemplateListFilterImpl implements _TemplateListFilter {
   }
 }
 
-abstract class _TemplateListFilter implements TemplateListFilter {
+abstract class _TemplateListFilter extends TemplateListFilter {
   const factory _TemplateListFilter(
       {final List<TemplateListFilterItem> items,
       final ScriptField script}) = _$TemplateListFilterImpl;
+  const _TemplateListFilter._() : super._();
 
   factory _TemplateListFilter.fromJson(Map<String, dynamic> json) =
       _$TemplateListFilterImpl.fromJson;

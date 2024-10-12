@@ -1,6 +1,7 @@
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
+import 'package:catweb/navigator.dart';
 
 import 'package:dio/dio.dart';
 

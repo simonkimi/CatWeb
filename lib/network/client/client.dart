@@ -10,6 +10,7 @@ import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/parser.dart';
 import 'package:catweb/data/models/site/site_blueprint.dart';
 import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/navigator.dart';
 
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';

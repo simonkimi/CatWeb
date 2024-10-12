@@ -1,10 +1,7 @@
-import 'package:catweb/data/controller/setting_service.dart';
-import 'package:catweb/data/controller/setting_enum.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'dart:math' as math;
 
-import 'package:get/get.dart';
 import 'image_load_controller.dart';
 
 class ImagePageController {
