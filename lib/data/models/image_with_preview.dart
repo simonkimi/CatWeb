@@ -1,5 +1,5 @@
 import 'package:catweb/data/controller/site.dart';
-import 'package:catweb/data/loaders/async_value.dart';
+import 'package:catweb/data/loaders/async_progress_value.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/site/page.dart';
@@ -7,7 +7,6 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/navigator.dart';
 
 import 'package:flutter/widgets.dart';
-import 'package:get_it/get_it.dart';
 
 /// 一个图片, 只包含预览图和一个大图, 大图需要调用load进行异步加载
 abstract class ImageWithPreviewModel extends ChangeNotifier {
@@ -17,20 +16,21 @@ abstract class ImageWithPreviewModel extends ChangeNotifier {
   String? get idCode;
 
   /// 大图的数据
-  AsyncValue<ImageReaderResult?> imageModel = const AsyncValue.idle();
+  AsyncProgressValue<ImageReaderResult?> imageModel =
+      const AsyncProgressValue.idle();
 
   Future<void> load({
-    required SitePageRule blueprint,
+    required SitePageRule pageRule,
     required SiteEnvStore localEnv,
   }) async {
-    imageModel = const AsyncValue.loading();
+    imageModel = const AsyncProgressValue.loading(0);
     notifyListeners();
-    imageModel = await AsyncValue.guard(() async {
-      final url = blueprint.url.isEmpty ? idCode! : blueprint.url;
+    imageModel = await AsyncProgressValue.guard(() async {
+      final url = pageRule.url.isEmpty ? idCode! : pageRule.url;
       SiteService siteService = getIt.get();
       return siteService.currentSite!.client.getReadImage(
         url: url,
-        model: blueprint,
+        model: pageRule,
         localEnv: localEnv,
       );
     });

@@ -8,18 +8,16 @@ import 'package:catweb/data/models/subpage_models.dart';
 import 'package:catweb/navigator.dart';
 
 import 'package:catweb/network/client/image_concurrency.dart';
-import 'package:catweb/ui/pages/view_page/image/controller/image_load_controller.dart';
+import 'package:catweb/ui/pages/view_page/image/controller/reader_load_notifier.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-
-
 class SubListNotifier
     extends BasePageLoaderNotifier<ListItemModel, ListPageData>
-    implements ReaderInfo<ListItemModel, ListItemModel> {
+    implements ReaderInfo<ListItemModel> {
   SubListNotifier({
     required this.siteRule,
     this.subPageModel,
@@ -128,9 +126,6 @@ class SubListNotifier
 
   @override
   int? get startReadIndex => null;
-
-  @override
-  void onReaderIndexChanged(int index) {}
 
   @override
   late final previewConcurrency = ImageLoaderQueue(

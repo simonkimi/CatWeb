@@ -5,7 +5,7 @@ import 'package:catweb/utils/helper.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'controller/image_load_controller.dart';
+import 'controller/reader_load_notifier.dart';
 
 class ImageViewer extends StatefulWidget {
   const ImageViewer({

@@ -1,33 +1,23 @@
 import 'dart:math';
 
-import 'package:catweb/data/controller/setting_service.dart';
-import 'package:catweb/data/controller/setting_enum.dart';
+import 'package:catweb/data/controller/settings.dart';
+import 'package:catweb/navigator.dart';
+import 'package:catweb/ui/pages/view_page/image/controller/image_read_notifier.dart';
+import 'package:catweb/ui/pages/view_page/image/controller/reader_load_notifier.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-
-import 'controller/image_load_controller.dart';
-import 'controller/image_read_controller.dart';
+import 'package:provider/provider.dart';
 
 class ImagePreviewSlider extends StatefulWidget {
   const ImagePreviewSlider({
     super.key,
-    required this.controller,
-    required this.readController,
   });
-
-  final ReaderLoaderController controller;
-  final ImagePageController readController;
 
   @override
   State<ImagePreviewSlider> createState() => _ImagePreviewSliderState();
 }
 
 class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
-  ReaderLoaderController get controller => widget.controller;
-
-  ImagePageController get readController => widget.readController;
-
   late final GlobalKey listGlobalKey;
   late final ScrollController scrollController;
 
@@ -37,66 +27,71 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
     listGlobalKey = GlobalKey();
     scrollController = ScrollController();
     _onScroll();
-    readController.rxPage.listen((index) {
-      if (scrollController.hasClients) {
-        final box =
-            listGlobalKey.currentContext?.findRenderObject() as RenderBox?;
-        final boxSize = box?.size;
-        if (boxSize != null) {
-          if (readController.isForwardDirection) {
-            final offset = (index - 1) * (boxSize.height * 0.618 + 2);
 
-            if ((offset - scrollController.offset).abs() >
-                boxSize.width * 1.5) {
-              scrollController.jumpTo(offset);
-            }
+    final ReaderNotifier controller = context.watch();
+    const aniDuration = Duration(milliseconds: 300);
 
-            if (offset > scrollController.position.maxScrollExtent) {
-              scrollController.animateTo(
-                  scrollController.position.maxScrollExtent,
-                  duration: 300.milliseconds,
-                  curve: Curves.ease);
-              return;
-            }
+    controller.addListener(() {
+      if (!scrollController.hasClients) {
+        return;
+      }
+      final RenderBox? box =
+          listGlobalKey.currentContext?.findRenderObject() as RenderBox?;
+      final boxSize = box?.size;
+      if (boxSize == null) {
+        return;
+      }
+      if (controller.isForwardDirection) {
+        final offset =
+            (controller.currentPage - 1) * (boxSize.height * 0.618 + 2);
 
-            scrollController.animateTo(offset,
-                duration: 300.milliseconds, curve: Curves.ease);
-          } else {
-            final offset =
-                (index + 2) * (boxSize.height * 0.618 + 2) - boxSize.width;
-
-            if ((offset - scrollController.offset).abs() >
-                boxSize.width * 1.5) {
-              scrollController.jumpTo(offset);
-            }
-
-            if (offset < 0) {
-              scrollController.animateTo(0,
-                  duration: 300.milliseconds, curve: Curves.ease);
-              return;
-            }
-
-            scrollController.animateTo(offset,
-                duration: 300.milliseconds, curve: Curves.ease);
-          }
+        if ((offset - scrollController.offset).abs() > boxSize.width * 1.5) {
+          scrollController.jumpTo(offset);
         }
+
+        if (offset > scrollController.position.maxScrollExtent) {
+          scrollController.animateTo(scrollController.position.maxScrollExtent,
+              duration: aniDuration, curve: Curves.ease);
+          return;
+        }
+
+        scrollController.animateTo(offset,
+            duration: aniDuration, curve: Curves.ease);
+      } else {
+        final offset =
+            (controller.currentPage + 2) * (boxSize.height * 0.618 + 2) -
+                boxSize.width;
+
+        if ((offset - scrollController.offset).abs() > boxSize.width * 1.5) {
+          scrollController.jumpTo(offset);
+        }
+
+        if (offset < 0) {
+          scrollController.animateTo(0,
+              duration: aniDuration, curve: Curves.ease);
+          return;
+        }
+
+        scrollController.animateTo(offset,
+            duration: aniDuration, curve: Curves.ease);
       }
     });
   }
 
   void _onScroll() {
+    final ReaderNotifier controller = context.read();
     scrollController.addListener(() {
       final box =
           listGlobalKey.currentContext?.findRenderObject() as RenderBox?;
       final boxSize = box?.size;
       if (boxSize != null) {
         final offset = scrollController.offset;
-        final end = min(controller.readerInfo.items.length,
+        final end = min(controller.imageLoadNotifier.readerInfo.items.length,
             ((offset + boxSize.width) / (boxSize.height * 0.618 + 2)).ceil());
         final start = (offset / (boxSize.height * 0.618 + 2)).floor();
 
         for (var i = max(start, 0); i < end; i++) {
-          controller.readerInfo.loadIndexModel(i);
+          controller.imageLoadNotifier.readerInfo.loadIndexModel(i);
         }
       }
     });
@@ -104,26 +99,33 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
 
   @override
   Widget build(BuildContext context) {
+    final ReaderNotifier controller = context.read();
+
     return SizedBox(
       height: 50,
-      child: Obx(() => ListView.builder(
-            reverse: get<SettingService>().readerDirectory.value ==
-                ReaderDirection.rtl,
+      child: ValueListenableBuilder(
+        valueListenable: settingService.readerDirectoryNotifier,
+        builder: (context, directory, child) {
+          return ListView.builder(
+            reverse: directory == ReaderDirection.rtl,
             key: listGlobalKey,
             controller: scrollController,
             scrollDirection: Axis.horizontal,
-            itemCount: controller.readerInfo.items.length,
+            itemCount: controller.imageLoadNotifier.readerInfo.items.length,
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: () => readController.jumpToPage(index),
+                onTap: () => controller.jumpToPage(index),
                 child: Padding(
                   key: ValueKey(index),
                   padding: const EdgeInsets.symmetric(horizontal: 1),
-                  child: Obx(() => AnimatedContainer(
+                  child: Selector<ReaderNotifier, int>(
+                    selector: (c, v) => v.currentPage,
+                    builder: (context, currentPage, child) {
+                      return AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(3),
-                          border: readController.currentPage == index
+                          border: currentPage == index
                               ? Border.all(
                                   color: CupertinoColors.white,
                                   width: 1,
@@ -132,19 +134,14 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
                         ),
                         child: AspectRatio(
                           aspectRatio: 0.618,
-                          child: Obx(() => controller.readerInfo.items
-                                      .toList()[index]
-                                      ?.previewImage !=
-                                  null
-                              ? ImageLoader(
-                                  concurrency:
-                                      controller.readerInfo.previewConcurrency,
-                                  model: controller.readerInfo.items
-                                      .toList()[index]!
-                                      .previewImage!,
-                                  enableHero: false,
-                                )
-                              : Center(
+                          child: AnimatedBuilder(
+                            animation: controller.imageLoadNotifier.readerInfo,
+                            builder: (context, child) {
+                              final item = controller
+                                  .imageLoadNotifier.readerInfo.items
+                                  .toList()[index];
+                              if (item == null) {
+                                return Center(
                                   child: Text(
                                     '${index + 1}',
                                     style: const TextStyle(
@@ -152,13 +149,37 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
                                       fontSize: 12,
                                     ),
                                   ),
-                                )),
+                                );
+                              }
+                              return ImageLoader(
+                                queue: controller.imageLoadNotifier.readerInfo
+                                    .previewConcurrency,
+                                model: controller
+                                    .imageLoadNotifier.readerInfo.items
+                                    .toList()[index]!
+                                    .previewImage!,
+                                enableHero: false,
+                              );
+                            },
+                          ),
                         ),
-                      )),
+                      );
+                    },
+                  ),
                 ),
               );
             },
-          )),
+          );
+        },
+      ),
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
+  }
+
+  SettingService get settingService => getIt.get();
 }

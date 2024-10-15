@@ -58,7 +58,7 @@ class PriorityTaskQuery<T extends PriorityTask> {
       HeapPriorityQueue<_TaskPriority>();
   final Map<int, _TaskPriority<T>> _waitQueueMap = {};
 
-  final _workQueue = Queue<T>();
+  final _workQueue = Queue<PriorityTask>();
   final _workQueueIds = <int>{};
 
   void add(int priority, T task) {
