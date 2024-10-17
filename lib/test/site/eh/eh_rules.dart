@@ -70,89 +70,92 @@ final ehTestSite = SiteBlueprint(
       displayType: SiteDisplayType.show,
       icon: 'home',
       template: PageTemplate.list(
-          targetItem: _detailUuid,
-          targetAutoComplete: _autoCompleteUuid,
-          filters: [
-            const TemplateListFilterItem.bool(
+        targetItem: _detailUuid,
+        targetAutoComplete: _autoCompleteUuid,
+        filter: const TemplateListFilter(
+          items: [
+            TemplateListFilterItem.bool(
               name: '同人志',
               key: 'b_doujinshi',
               defaultValue: true,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '漫画',
               key: 'b_manga',
               defaultValue: true,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '游戏CG',
               key: 'b_gamecg',
               defaultValue: true,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '图片集',
               key: 'b_imageset',
               defaultValue: true,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '画师CG',
               key: 'b_artistcg',
               defaultValue: true,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: 'Cosplay',
               key: 'b_cosplay',
               defaultValue: true,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '西方',
               key: 'b_western',
               defaultValue: true,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '无H',
               key: 'b_nonh',
               defaultValue: true,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '杂项',
               key: 'b_misc',
               defaultValue: true,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '搜索画廊名称',
               key: 'f_sname',
               defaultValue: true,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '搜索画廊标签',
               key: 'f_stags',
               defaultValue: true,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '搜索画廊种子',
               key: 'f_storr',
               defaultValue: false,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '搜索低愿力标签',
               key: 'f_sdt1',
               defaultValue: false,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '搜索画廊描述',
               key: 'f_sdesc',
               defaultValue: false,
             ),
-            const TemplateListFilterItem.bool(
+            TemplateListFilterItem.bool(
               name: '显示删除的画廊',
               key: 'f_sh',
               defaultValue: false,
             ),
           ],
-          script: const ScriptField.js(
+          script: ScriptField.js(
             script:
                 'function hook(n){var a=JSON.parse(n),r=0,i=0,o=["misc","doujinshi","manga","artistcg","gamecg","imageset","cosplay","asianporn","nonh","western"];for(var s in o)r+=a["b_"+o[s]]?0:1<<i,i+=1;var e=["advsearch=1"];for(var s in 0!=r&&e.push("f_cats="+r),a)-1!=s.indexOf("f")&&a[s]&&e.push(s+"=on");return e.join("&")}',
-          )),
+          ),
+        ),
+      ),
     ),
     SitePageRule(
       name: '热门',

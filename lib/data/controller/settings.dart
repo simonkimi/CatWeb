@@ -15,6 +15,8 @@ class SettingService {
   final concurrencyCountNotifier = ValueNotifier<int>(3);
   final protectCookieNotifier = ValueNotifier<bool>(true);
   final blurWhenBackgroundNotifier = ValueNotifier<bool>(false);
+  final imageQualityNotifier =
+      ValueNotifier<ImageQuality>(ImageQuality.defaultQ);
 
   Future<SettingService> init() async {
     _prefs = await SharedPreferences.getInstance();
@@ -31,6 +33,8 @@ class SettingService {
     protectCookieNotifier.value = _prefs.getBool('protectCookie') ?? true;
     blurWhenBackgroundNotifier.value =
         _prefs.getBool('blurWhenBackground') ?? false;
+    imageQualityNotifier.value =
+        ImageQuality.values[_prefs.getInt('imageQuality') ?? 0];
     return this;
   }
 
@@ -51,6 +55,8 @@ class SettingService {
   bool get protectCookie => protectCookieNotifier.value;
 
   bool get blurWhenBackground => blurWhenBackgroundNotifier.value;
+
+  ImageQuality get imageQuality => imageQualityNotifier.value;
 
   void setDefaultSite(int value) {
     _prefs.setInt('defaultSite', value);
@@ -96,6 +102,11 @@ class SettingService {
     _prefs.setBool('blurWhenBackground', value);
     blurWhenBackgroundNotifier.value = value;
   }
+
+  void setImageQuality(ImageQuality value) {
+    _prefs.setInt('imageQuality', value.index);
+    imageQualityNotifier.value = value;
+  }
 }
 
 enum CardSize {
@@ -115,4 +126,10 @@ enum ReaderDisplayType {
   single,
   double,
   doubleCover;
+}
+
+enum ImageQuality {
+  defaultQ,
+  larger,
+  original;
 }

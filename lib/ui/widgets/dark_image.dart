@@ -1,4 +1,5 @@
 import 'package:catweb/data/controller/settings.dart';
+import 'package:catweb/navigator.dart';
 
 import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/material.dart';

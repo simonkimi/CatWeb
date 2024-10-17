@@ -9,8 +9,8 @@ import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dar
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/zoom.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -140,6 +140,7 @@ class _ImageReaderState extends State<ImageReader>
   Widget _buildBody(BuildContext context) {
     final readController = context.read<ReaderNotifier>();
     final loader = context.read<ReaderLoaderNotifier>();
+    final itemList = loader.readerInfo.items.toList();
     if (readerDirectory == ReaderDirection.ttb) {
       return GestureDetector(
         onTap: () {},
@@ -151,8 +152,8 @@ class _ImageReaderState extends State<ImageReader>
           initialScrollIndex: readController.currentPage,
           itemBuilder: (context, index) {
             return ImageViewer(
-              readerInfo: loader.readerInfo,
               index: index,
+              imageWithPreviewModel: itemList.index(index),
             );
           },
         ),
@@ -181,7 +182,7 @@ class _ImageReaderState extends State<ImageReader>
       ReaderDisplayType.doubleCover => max((index - 1) * 2 + 1, 0),
       ReaderDisplayType.single => index,
     };
-
+    final itemList = loader.readerInfo.items.toList();
     return PhotoViewGalleryPageOptions.customChild(
       minScale: 1.0,
       maxScale: 5.0,
@@ -191,8 +192,8 @@ class _ImageReaderState extends State<ImageReader>
         onTapUp: (detail) => _onImageTap(context, detail),
         child: ImageViewer(
           // TODO 空检查
-          readerInfo: loader.readerInfo,
           index: readIndex,
+          imageWithPreviewModel: itemList.index(readIndex),
           imageWrapBuilder: (context, child) {
             return ZoomWidget(
               controller: controller.photoViewController,
@@ -219,18 +220,19 @@ class _ImageReaderState extends State<ImageReader>
       ReaderDisplayType.single => throw ArgumentError('displayType is single'),
     };
 
+    final notifier = context.read<ReaderNotifier>();
     final loader = context.read<ReaderLoaderNotifier>();
-    final zoomController = PhotoViewController();
+    final itemList = loader.readerInfo.items.toList();
 
     return PhotoViewGalleryPageOptions.customChild(
       minScale: 1.0,
       maxScale: 5.0,
-      controller: zoomController,
+      controller: notifier.photoViewController,
       child: GestureDetector(
         onTap: () {},
         onTapUp: (detail) => _onImageTap(context, detail),
         child: ZoomWidget(
-          controller: zoomController,
+          controller: notifier.photoViewController,
           animation: ZoomAnimation(
             this,
             duration: const Duration(milliseconds: 200),
@@ -241,13 +243,13 @@ class _ImageReaderState extends State<ImageReader>
               // TODO 空检查
               Expanded(
                 child: ImageViewer(
-                  readerInfo: loader.readerInfo,
+                  imageWithPreviewModel: itemList.index(realIndex),
                   index: realIndex,
                 ),
               ),
               Expanded(
                 child: ImageViewer(
-                  readerInfo: loader.readerInfo,
+                  imageWithPreviewModel: itemList.index(realIndex + 1),
                   index: realIndex + 1,
                 ),
               ),

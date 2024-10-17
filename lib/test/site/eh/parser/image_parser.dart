@@ -1,38 +1,38 @@
-import 'package:catweb/data/models/site_model/parser/parser.dart';
-import 'package:catweb/data/models/site_model/parser/selector.dart';
+import 'package:catweb/data/models/site/parser.dart';
+import 'package:catweb/data/models/site/selector.dart';
 import 'package:uuid/uuid.dart';
 
-final ehImageParser = ImageReaderParser(
+final ehImageParser = ParserModelImageReader(
   name: '画廊查看器',
   uuid: const Uuid().v4().toString(),
-  id: Selector(
+  id: const SelectorModel(
     selector: '#i2 .sn a:nth-child(1)',
-    function: SelectorFunctionType.attr,
+    function: SelectorFunction.attr(),
     param: 'href',
     regex: r's\/(.+)',
   ),
-  image: ImageSelector(
-    url: Selector(
+  image: const ImageSelectorModel(
+    url: SelectorModel(
       selector: '#i3 img',
-      function: SelectorFunctionType.attr,
+      function: SelectorFunction.attr(),
       param: 'src',
     ),
-    width: Selector(
+    width: SelectorModel(
       selector: '#i3 img',
-      function: SelectorFunctionType.attr,
+      function: SelectorFunction.attr(),
       param: 'style',
       regex: r'width: (\d+)px',
     ),
-    height: Selector(
+    height: SelectorModel(
       selector: '#i3 img',
-      function: SelectorFunctionType.attr,
+      function: SelectorFunction.attr(),
       param: 'style',
       regex: r'height: (\d+)px',
     ),
   ),
-  rawImage: Selector(
+  rawImage: const SelectorModel(
     selector: '#i7 a',
-    function: SelectorFunctionType.attr,
+    function: SelectorFunction.attr(),
     param: 'href',
   ),
 );
