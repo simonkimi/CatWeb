@@ -23,17 +23,11 @@ class _WebViewLoginInState extends State<WebViewLoginIn> {
   final CookieManager _cookieManager = CookieManager.instance();
   Uri? currentUri;
 
-  InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
-    crossPlatform: InAppWebViewOptions(
-      useShouldOverrideUrlLoading: true,
-      mediaPlaybackRequiresUserGesture: false,
-    ),
-    android: AndroidInAppWebViewOptions(
-      useHybridComposition: true,
-    ),
-    ios: IOSInAppWebViewOptions(
-      allowsInlineMediaPlayback: true,
-    ),
+  InAppWebViewSettings settings = InAppWebViewSettings(
+    allowsInlineMediaPlayback: true,
+    useHybridComposition: true,
+    useShouldOverrideUrlLoading: true,
+    mediaPlaybackRequiresUserGesture: false,
   );
 
   @override
@@ -54,22 +48,23 @@ class _WebViewLoginInState extends State<WebViewLoginIn> {
           children: [
             InAppWebView(
               key: webViewKey,
-              initialOptions: options,
+              initialSettings: settings,
               onWebViewCreated: (controller) {
                 webViewController = controller;
               },
-              initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
+              initialUrlRequest:
+                  URLRequest(url: WebUri.uri(Uri.parse(widget.url))),
               onLoadStart: (controller, url) {
                 currentUri = url;
               },
               onLoadStop: (controller, url) {
                 currentUri = url;
               },
-              androidOnPermissionRequest:
-                  (controller, origin, resources) async {
-                return PermissionRequestResponse(
-                    resources: resources,
-                    action: PermissionRequestResponseAction.GRANT);
+              onPermissionRequest: (controller, permissionRequest) async {
+                return PermissionResponse(
+                  action: PermissionResponseAction.GRANT,
+                  resources: permissionRequest.resources,
+                );
               },
             ),
             Align(
@@ -137,6 +132,5 @@ class _WebViewLoginInState extends State<WebViewLoginIn> {
     });
   }
 
-  Future<List<Cookie>> _getCookies() =>
-      _cookieManager.getCookies(url: currentUri ?? Uri.base);
+  Future<List<Cookie>> _getCookies() => _cookieManager.getCookies(url: WebUri.uri(currentUri ?? Uri.base));
 }

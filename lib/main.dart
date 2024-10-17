@@ -11,23 +11,26 @@ import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
 import 'navigator.dart';
 
 Future<void> initializeApp() async {
   getIt.registerSingletonAsync(() => SettingService().init());
   getIt.registerSingletonAsync(() => GlobalService().init());
-  getIt.registerSingleton(() => SiteService());
-  getIt.registerSingleton(() => DbService());
+  getIt.registerSingleton(DbService());
+  getIt.registerSingletonWithDependencies(
+    () => SiteService(
+      setting: getIt.get<SettingService>(),
+      db: getIt.get<DbService>(),
+    ),
+    dependsOn: [SettingService],
+  );
   await getIt.allReady();
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MultiProvider(
-    providers: const [],
-    child: const MyApp(),
-  ));
+  await initializeApp();
+  runApp(const MyApp());
 }
 
 class MyApp extends HookWidget {
@@ -73,16 +76,7 @@ class MyApp extends HookWidget {
               ),
           ],
         );
-        final botRoot = BotToastInit()(context, root);
-        return FutureBuilder(
-          future: initializeApp(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return botRoot;
-            }
-            return const SizedBox();
-          },
-        );
+        return BotToastInit()(context, root);
       },
       supportedLocales: I.supportedLocales,
       navigatorKey: AppNavigator().key,

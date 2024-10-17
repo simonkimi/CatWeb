@@ -11,6 +11,11 @@ import 'package:flutter/cupertino.dart';
 import 'db.dart';
 
 class SiteService {
+  final SettingService setting;
+  final DbService db;
+
+  SiteService({required this.setting, required this.db});
+
   final ValueNotifier<SiteRenderConfigModel?> currentSiteNotifier =
       ValueNotifier(null);
 
@@ -19,9 +24,6 @@ class SiteService {
   set currentSite(SiteRenderConfigModel? v) => currentSiteNotifier.value = v;
 
   late final StreamSubscription<List<WebTableData>> siteDbChangeListener;
-
-  final SettingService setting = getIt.get();
-  final DbService db = getIt.get();
 
   Future setNewSite([WebTableData? db]) async {
     if (db == null) {
