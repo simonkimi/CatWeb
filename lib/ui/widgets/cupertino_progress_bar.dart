@@ -70,9 +70,9 @@ class CupertinoProgress extends ImplicitlyAnimatedWidget {
   const CupertinoProgress({
     super.key,
     required this.progress,
-    Duration duration = const Duration(milliseconds: 200),
+    super.duration = const Duration(milliseconds: 200),
     this.size,
-  }) : super(duration: duration);
+  });
 
   final double progress;
   final double? size;

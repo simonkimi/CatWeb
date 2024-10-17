@@ -6,7 +6,7 @@ part 'web_dao.g.dart';
 
 @DriftAccessor(tables: [WebTable])
 class WebDao extends DatabaseAccessor<AppDataBase> with _$WebDaoMixin {
-  WebDao(AppDataBase attachedDatabase) : super(attachedDatabase);
+  WebDao(super.attachedDatabase);
 
   Stream<List<WebTableData>> getAllStream() => select(webTable).watch();
 

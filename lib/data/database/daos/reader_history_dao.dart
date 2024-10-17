@@ -7,7 +7,7 @@ part 'reader_history_dao.g.dart';
 @DriftAccessor(tables: [ReaderHistoryTable])
 class ReaderHistoryDao extends DatabaseAccessor<AppDataBase>
     with _$ReaderHistoryDaoMixin {
-  ReaderHistoryDao(AppDataBase attachedDatabase) : super(attachedDatabase);
+  ReaderHistoryDao(super.attachedDatabase);
 
   Future<ReaderHistoryTableData?> get({
     required String uuid,

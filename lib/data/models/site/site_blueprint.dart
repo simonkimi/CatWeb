@@ -1,7 +1,6 @@
 import 'package:catweb/data/models/site/field.dart';
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/parser.dart';
-import 'package:catweb/utils/iter_helper.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'site_blueprint.freezed.dart';

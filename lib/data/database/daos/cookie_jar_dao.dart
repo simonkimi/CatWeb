@@ -7,7 +7,7 @@ part 'cookie_jar_dao.g.dart';
 @DriftAccessor(tables: [CookieJarTable])
 class CookieJarDao extends DatabaseAccessor<AppDataBase>
     with _$CookieJarDaoMixin {
-  CookieJarDao(AppDataBase attachedDatabase) : super(attachedDatabase);
+  CookieJarDao(super.attachedDatabase);
 
   Future<void> write(String uuid, String key, String value) async {
     final entity = await (select(cookieJarTable)

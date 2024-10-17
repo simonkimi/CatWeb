@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/navigator.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_read_notifier.dart';
-import 'package:catweb/ui/pages/view_page/image/controller/reader_load_notifier.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';

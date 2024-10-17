@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:catweb/network/client/client.dart';
 import 'package:catweb/test/site/eh/parser/list_parser.dart';
 // import 'package:catweb_parser/catweb_parser.dart';
 

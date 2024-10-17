@@ -28,11 +28,6 @@ class LoaderStateIdle extends LoaderState {
     this.stackTrace,
   }) : super._();
 
-  const LoaderStateIdle._(
-    this.error,
-    this.stackTrace,
-  ) : super._();
-
   @override
   bool get isLoading => false;
 
@@ -44,8 +39,6 @@ class LoaderStateIdle extends LoaderState {
 }
 
 class LoaderStateLoading extends LoaderState {
-  const LoaderStateLoading._() : super._();
-
   const LoaderStateLoading() : super._();
 
   @override
