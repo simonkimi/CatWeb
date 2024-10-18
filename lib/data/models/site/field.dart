@@ -1,4 +1,3 @@
-
 import 'package:catweb/utils/enum_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -45,9 +44,9 @@ class ScriptField with _$ScriptField {
 
   ScriptFieldType toType() {
     return switch (this) {
-      ScriptField.output => ScriptFieldType.output,
-      ScriptField.replace => ScriptFieldType.replace,
-      ScriptField.js => ScriptFieldType.js,
+      ScriptFieldOutput() => ScriptFieldType.output,
+      ScriptFieldReplace() => ScriptFieldType.replace,
+      ScriptFieldJs() => ScriptFieldType.js,
       _ => throw Exception('Unknown ScriptField: $this')
     };
   }

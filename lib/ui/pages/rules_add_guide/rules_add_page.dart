@@ -26,26 +26,28 @@ class RulesEditPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => RulesEditorNotifier(blueprint ?? const SiteBlueprint()),
-      child: WillPopScope(
-        onWillPop: () => _showExitConfine(context),
-        child: CupertinoPageScaffold(
-          navigationBar: _buildAppbar(context),
-          child: CupertinoTabBarView(
-            tabs: [
-              CupertinoTab(I.of(context).basic_setting),
-              CupertinoTab(I.of(context).page_manager),
-              CupertinoTab(I.of(context).parser),
-              CupertinoTab(I.of(context).identity),
-            ],
-            children: const [
-              RulesBasic(),
-              RulesPageManager(),
-              RulesParserManager(),
-              RulesAdvance(),
-            ],
+      builder: (context, child) {
+        return WillPopScope(
+          onWillPop: () => _showExitConfine(context),
+          child: CupertinoPageScaffold(
+            navigationBar: _buildAppbar(context),
+            child: CupertinoTabBarView(
+              tabs: [
+                CupertinoTab(I.of(context).basic_setting),
+                CupertinoTab(I.of(context).page_manager),
+                CupertinoTab(I.of(context).parser),
+                CupertinoTab(I.of(context).identity),
+              ],
+              children: const [
+                RulesBasic(),
+                RulesPageManager(),
+                RulesParserManager(),
+                RulesAdvance(),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 

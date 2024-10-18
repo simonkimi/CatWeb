@@ -64,10 +64,10 @@ class RulesParserEditor extends StatelessWidget {
       selector: (context, n) => n.parser,
       builder: (context, parser, child) {
         return switch (parser) {
-          ParserModel.detail => const DetailParserEditor(),
-          ParserModel.list => const ListParserEditor(),
-          ParserModel.autoComplete => const AutoCompleteParserEditor(),
-          ParserModel.imageReader => const NewImageParserEditor(),
+          ParserModelDetail() => const DetailParserEditor(),
+          ParserModelList() => const ListParserEditor(),
+          ParserModelAutoComplete() => const AutoCompleteParserEditor(),
+          ParserModelImageReader() => const NewImageParserEditor(),
           _ => throw UnimplementedError('Unknown parser type: $parser'),
         };
       },

@@ -108,8 +108,12 @@ class RulesPageManager extends StatelessWidget {
       [SitePageRule? model]) async {
     final input = model ?? await _genRules(context);
     if (input == null) return;
-    await Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
-      return RulesPageEdit(pageRule: input);
+    final notifier = context.read<RulesEditorNotifier>();
+    await Navigator.of(context).push(CupertinoPageRoute(builder: (_) {
+      return ChangeNotifierProvider.value(
+        value: notifier,
+        builder: (context, child) => RulesPageEdit(pageRule: input),
+      );
     }));
   }
 

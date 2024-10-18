@@ -72,7 +72,7 @@ class _ImageLoaderState extends State<ImageLoader> {
   @override
   Widget build(BuildContext context) {
     switch (_imageLoadNotifier.value) {
-      case AsyncProgressValue.idle:
+      case AsyncProgressIdle():
         return loadingWidgetBuilder(context, loadingBuilder(context, 0));
       case AsyncProgressLoading(:final progress):
         return loadingWidgetBuilder(context, loadingBuilder(context, progress));

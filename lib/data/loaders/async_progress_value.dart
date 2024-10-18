@@ -17,7 +17,7 @@ class AsyncProgressValue<T> with _$AsyncProgressValue<T> {
       AsyncProgressError<T>;
 
   bool get isLoading => switch (this) {
-        AsyncProgressValue.loading => true,
+        AsyncProgressLoading() => true,
         _ => false,
       };
 
@@ -27,7 +27,7 @@ class AsyncProgressValue<T> with _$AsyncProgressValue<T> {
       };
 
   bool get hasValue => switch (this) {
-        AsyncProgressValue.data => true,
+        AsyncProgressData() => true,
         _ => false,
       };
 

@@ -115,10 +115,10 @@ class ParserModel with _$ParserModel {
 
   ParserModelType get type {
     return switch (this) {
-      ParserModel.autoComplete => ParserModelType.autoComplete,
-      ParserModel.detail => ParserModelType.detail,
-      ParserModel.imageReader => ParserModelType.imageReader,
-      ParserModel.list => ParserModelType.list,
+      ParserModelAutoComplete() => ParserModelType.autoComplete,
+      ParserModelDetail() => ParserModelType.detail,
+      ParserModelImageReader() => ParserModelType.imageReader,
+      ParserModelList() => ParserModelType.list,
       _ => throw UnimplementedError('未知的ParserModel类型 $runtimeType'),
     };
   }
@@ -134,10 +134,10 @@ class ParserModel with _$ParserModel {
 
   String getDescription(BuildContext context) {
     return switch (this) {
-      ParserModel.autoComplete => '自动完成',
-      ParserModel.detail => '详情页',
-      ParserModel.imageReader => '图片阅读器',
-      ParserModel.list => '列表页',
+      ParserModelAutoComplete() => '自动完成',
+      ParserModelDetail() => '详情页',
+      ParserModelImageReader() => '图片阅读器',
+      ParserModelList() => '列表页',
       _ => throw UnimplementedError('未知的ParserModel类型 $runtimeType'),
     };
   }

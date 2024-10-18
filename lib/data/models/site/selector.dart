@@ -39,11 +39,11 @@ class SelectorQuery with _$SelectorQuery {
 
   SelectorQueryType toType() {
     return switch (this) {
-      SelectorQuery.self => SelectorQueryType.self,
-      SelectorQuery.css => SelectorQueryType.css,
-      SelectorQuery.xpath => SelectorQueryType.xpath,
-      SelectorQuery.jsonPath => SelectorQueryType.jsonPath,
-      _ => throw Exception('Unknown SelectorQuery: $this')
+      SelectorQuerySelf() => SelectorQueryType.self,
+      SelectorQueryCss() => SelectorQueryType.css,
+      SelectorQueryXpath() => SelectorQueryType.xpath,
+      SelectorQueryJsonPath() => SelectorQueryType.jsonPath,
+      _ => throw UnimplementedError('Unknown SelectorQuery: $this')
     };
   }
 }

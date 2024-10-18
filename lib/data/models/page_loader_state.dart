@@ -25,17 +25,17 @@ class PageLoaderState with _$PageLoaderState {
   }
 
   bool get isLoading => switch (this) {
-        PageLoaderState.loading => true,
+        _Running() => true,
         _ => false,
       };
 
   bool get isError => switch (this) {
-        PageLoaderState.error => true,
+        PageLoaderStateError() => true,
         _ => false,
       };
 
   bool get isEnd => switch (this) {
-        PageLoaderState.end => true,
+        _End() => true,
         _ => false,
       };
 }

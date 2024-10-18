@@ -955,91 +955,107 @@ typedef $$WebTableTableUpdateCompanionBuilder = WebTableCompanion Function({
 });
 
 class $$WebTableTableFilterComposer
-    extends FilterComposer<_$AppDataBase, $WebTableTable> {
-  $$WebTableTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDataBase, $WebTableTable> {
+  $$WebTableTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get uuid => $state.composableBuilder(
-      column: $state.table.uuid,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get uuid => $composableBuilder(
+      column: $table.uuid, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get blueprint => $state.composableBuilder(
-      column: $state.table.blueprint,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get blueprint => $composableBuilder(
+      column: $table.blueprint, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get env => $state.composableBuilder(
-      column: $state.table.env,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get env => $composableBuilder(
+      column: $table.env, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<Uint8List> get favicon => $state.composableBuilder(
-      column: $state.table.favicon,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<Uint8List> get favicon => $composableBuilder(
+      column: $table.favicon, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<int> get lastOpen => $state.composableBuilder(
-      column: $state.table.lastOpen,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<int> get lastOpen => $composableBuilder(
+      column: $table.lastOpen, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<bool> get securityModel => $state.composableBuilder(
-      column: $state.table.securityModel,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<bool> get securityModel => $composableBuilder(
+      column: $table.securityModel, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get loginCookies => $state.composableBuilder(
-      column: $state.table.loginCookies,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get loginCookies => $composableBuilder(
+      column: $table.loginCookies, builder: (column) => ColumnFilters(column));
 }
 
 class $$WebTableTableOrderingComposer
-    extends OrderingComposer<_$AppDataBase, $WebTableTable> {
-  $$WebTableTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDataBase, $WebTableTable> {
+  $$WebTableTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get uuid => $state.composableBuilder(
-      column: $state.table.uuid,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get uuid => $composableBuilder(
+      column: $table.uuid, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get blueprint => $state.composableBuilder(
-      column: $state.table.blueprint,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get blueprint => $composableBuilder(
+      column: $table.blueprint, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get env => $state.composableBuilder(
-      column: $state.table.env,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get env => $composableBuilder(
+      column: $table.env, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<Uint8List> get favicon => $state.composableBuilder(
-      column: $state.table.favicon,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<Uint8List> get favicon => $composableBuilder(
+      column: $table.favicon, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<int> get lastOpen => $state.composableBuilder(
-      column: $state.table.lastOpen,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<int> get lastOpen => $composableBuilder(
+      column: $table.lastOpen, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<bool> get securityModel => $state.composableBuilder(
-      column: $state.table.securityModel,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<bool> get securityModel => $composableBuilder(
+      column: $table.securityModel,
+      builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get loginCookies => $state.composableBuilder(
-      column: $state.table.loginCookies,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get loginCookies => $composableBuilder(
+      column: $table.loginCookies,
+      builder: (column) => ColumnOrderings(column));
+}
+
+class $$WebTableTableAnnotationComposer
+    extends Composer<_$AppDataBase, $WebTableTable> {
+  $$WebTableTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get uuid =>
+      $composableBuilder(column: $table.uuid, builder: (column) => column);
+
+  GeneratedColumn<String> get blueprint =>
+      $composableBuilder(column: $table.blueprint, builder: (column) => column);
+
+  GeneratedColumn<String> get env =>
+      $composableBuilder(column: $table.env, builder: (column) => column);
+
+  GeneratedColumn<Uint8List> get favicon =>
+      $composableBuilder(column: $table.favicon, builder: (column) => column);
+
+  GeneratedColumn<int> get lastOpen =>
+      $composableBuilder(column: $table.lastOpen, builder: (column) => column);
+
+  GeneratedColumn<bool> get securityModel => $composableBuilder(
+      column: $table.securityModel, builder: (column) => column);
+
+  GeneratedColumn<String> get loginCookies => $composableBuilder(
+      column: $table.loginCookies, builder: (column) => column);
 }
 
 class $$WebTableTableTableManager extends RootTableManager<
@@ -1048,6 +1064,7 @@ class $$WebTableTableTableManager extends RootTableManager<
     WebTableData,
     $$WebTableTableFilterComposer,
     $$WebTableTableOrderingComposer,
+    $$WebTableTableAnnotationComposer,
     $$WebTableTableCreateCompanionBuilder,
     $$WebTableTableUpdateCompanionBuilder,
     (WebTableData, BaseReferences<_$AppDataBase, $WebTableTable, WebTableData>),
@@ -1057,10 +1074,12 @@ class $$WebTableTableTableManager extends RootTableManager<
       : super(TableManagerState(
           db: db,
           table: table,
-          filteringComposer:
-              $$WebTableTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$WebTableTableOrderingComposer(ComposerState(db, table)),
+          createFilteringComposer: () =>
+              $$WebTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$WebTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$WebTableTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback: ({
             Value<int> id = const Value.absent(),
             Value<String> uuid = const Value.absent(),
@@ -1114,6 +1133,7 @@ typedef $$WebTableTableProcessedTableManager = ProcessedTableManager<
     WebTableData,
     $$WebTableTableFilterComposer,
     $$WebTableTableOrderingComposer,
+    $$WebTableTableAnnotationComposer,
     $$WebTableTableCreateCompanionBuilder,
     $$WebTableTableUpdateCompanionBuilder,
     (WebTableData, BaseReferences<_$AppDataBase, $WebTableTable, WebTableData>),
@@ -1135,51 +1155,69 @@ typedef $$ReaderHistoryTableTableUpdateCompanionBuilder
 });
 
 class $$ReaderHistoryTableTableFilterComposer
-    extends FilterComposer<_$AppDataBase, $ReaderHistoryTableTable> {
-  $$ReaderHistoryTableTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDataBase, $ReaderHistoryTableTable> {
+  $$ReaderHistoryTableTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get uuid => $state.composableBuilder(
-      column: $state.table.uuid,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get uuid => $composableBuilder(
+      column: $table.uuid, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get idCode => $state.composableBuilder(
-      column: $state.table.idCode,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get idCode => $composableBuilder(
+      column: $table.idCode, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<int> get pageIndex => $state.composableBuilder(
-      column: $state.table.pageIndex,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<int> get pageIndex => $composableBuilder(
+      column: $table.pageIndex, builder: (column) => ColumnFilters(column));
 }
 
 class $$ReaderHistoryTableTableOrderingComposer
-    extends OrderingComposer<_$AppDataBase, $ReaderHistoryTableTable> {
-  $$ReaderHistoryTableTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDataBase, $ReaderHistoryTableTable> {
+  $$ReaderHistoryTableTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get uuid => $state.composableBuilder(
-      column: $state.table.uuid,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get uuid => $composableBuilder(
+      column: $table.uuid, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get idCode => $state.composableBuilder(
-      column: $state.table.idCode,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get idCode => $composableBuilder(
+      column: $table.idCode, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<int> get pageIndex => $state.composableBuilder(
-      column: $state.table.pageIndex,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<int> get pageIndex => $composableBuilder(
+      column: $table.pageIndex, builder: (column) => ColumnOrderings(column));
+}
+
+class $$ReaderHistoryTableTableAnnotationComposer
+    extends Composer<_$AppDataBase, $ReaderHistoryTableTable> {
+  $$ReaderHistoryTableTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get uuid =>
+      $composableBuilder(column: $table.uuid, builder: (column) => column);
+
+  GeneratedColumn<String> get idCode =>
+      $composableBuilder(column: $table.idCode, builder: (column) => column);
+
+  GeneratedColumn<int> get pageIndex =>
+      $composableBuilder(column: $table.pageIndex, builder: (column) => column);
 }
 
 class $$ReaderHistoryTableTableTableManager extends RootTableManager<
@@ -1188,6 +1226,7 @@ class $$ReaderHistoryTableTableTableManager extends RootTableManager<
     ReaderHistoryTableData,
     $$ReaderHistoryTableTableFilterComposer,
     $$ReaderHistoryTableTableOrderingComposer,
+    $$ReaderHistoryTableTableAnnotationComposer,
     $$ReaderHistoryTableTableCreateCompanionBuilder,
     $$ReaderHistoryTableTableUpdateCompanionBuilder,
     (
@@ -1202,10 +1241,13 @@ class $$ReaderHistoryTableTableTableManager extends RootTableManager<
       : super(TableManagerState(
           db: db,
           table: table,
-          filteringComposer:
-              $$ReaderHistoryTableTableFilterComposer(ComposerState(db, table)),
-          orderingComposer: $$ReaderHistoryTableTableOrderingComposer(
-              ComposerState(db, table)),
+          createFilteringComposer: () =>
+              $$ReaderHistoryTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ReaderHistoryTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ReaderHistoryTableTableAnnotationComposer(
+                  $db: db, $table: table),
           updateCompanionCallback: ({
             Value<int> id = const Value.absent(),
             Value<String> uuid = const Value.absent(),
@@ -1243,6 +1285,7 @@ typedef $$ReaderHistoryTableTableProcessedTableManager = ProcessedTableManager<
     ReaderHistoryTableData,
     $$ReaderHistoryTableTableFilterComposer,
     $$ReaderHistoryTableTableOrderingComposer,
+    $$ReaderHistoryTableTableAnnotationComposer,
     $$ReaderHistoryTableTableCreateCompanionBuilder,
     $$ReaderHistoryTableTableUpdateCompanionBuilder,
     (
@@ -1268,41 +1311,60 @@ typedef $$CookieJarTableTableUpdateCompanionBuilder = CookieJarTableCompanion
 });
 
 class $$CookieJarTableTableFilterComposer
-    extends FilterComposer<_$AppDataBase, $CookieJarTableTable> {
-  $$CookieJarTableTableFilterComposer(super.$state);
-  ColumnFilters<String> get webUuid => $state.composableBuilder(
-      column: $state.table.webUuid,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDataBase, $CookieJarTableTable> {
+  $$CookieJarTableTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get webUuid => $composableBuilder(
+      column: $table.webUuid, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get key => $state.composableBuilder(
-      column: $state.table.key,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get key => $composableBuilder(
+      column: $table.key, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get value => $state.composableBuilder(
-      column: $state.table.value,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get value => $composableBuilder(
+      column: $table.value, builder: (column) => ColumnFilters(column));
 }
 
 class $$CookieJarTableTableOrderingComposer
-    extends OrderingComposer<_$AppDataBase, $CookieJarTableTable> {
-  $$CookieJarTableTableOrderingComposer(super.$state);
-  ColumnOrderings<String> get webUuid => $state.composableBuilder(
-      column: $state.table.webUuid,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDataBase, $CookieJarTableTable> {
+  $$CookieJarTableTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get webUuid => $composableBuilder(
+      column: $table.webUuid, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get key => $state.composableBuilder(
-      column: $state.table.key,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get key => $composableBuilder(
+      column: $table.key, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get value => $state.composableBuilder(
-      column: $state.table.value,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get value => $composableBuilder(
+      column: $table.value, builder: (column) => ColumnOrderings(column));
+}
+
+class $$CookieJarTableTableAnnotationComposer
+    extends Composer<_$AppDataBase, $CookieJarTableTable> {
+  $$CookieJarTableTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get webUuid =>
+      $composableBuilder(column: $table.webUuid, builder: (column) => column);
+
+  GeneratedColumn<String> get key =>
+      $composableBuilder(column: $table.key, builder: (column) => column);
+
+  GeneratedColumn<String> get value =>
+      $composableBuilder(column: $table.value, builder: (column) => column);
 }
 
 class $$CookieJarTableTableTableManager extends RootTableManager<
@@ -1311,6 +1373,7 @@ class $$CookieJarTableTableTableManager extends RootTableManager<
     CookieJarTableData,
     $$CookieJarTableTableFilterComposer,
     $$CookieJarTableTableOrderingComposer,
+    $$CookieJarTableTableAnnotationComposer,
     $$CookieJarTableTableCreateCompanionBuilder,
     $$CookieJarTableTableUpdateCompanionBuilder,
     (
@@ -1324,10 +1387,12 @@ class $$CookieJarTableTableTableManager extends RootTableManager<
       : super(TableManagerState(
           db: db,
           table: table,
-          filteringComposer:
-              $$CookieJarTableTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$CookieJarTableTableOrderingComposer(ComposerState(db, table)),
+          createFilteringComposer: () =>
+              $$CookieJarTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$CookieJarTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$CookieJarTableTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback: ({
             Value<String> webUuid = const Value.absent(),
             Value<String> key = const Value.absent(),
@@ -1365,6 +1430,7 @@ typedef $$CookieJarTableTableProcessedTableManager = ProcessedTableManager<
     CookieJarTableData,
     $$CookieJarTableTableFilterComposer,
     $$CookieJarTableTableOrderingComposer,
+    $$CookieJarTableTableAnnotationComposer,
     $$CookieJarTableTableCreateCompanionBuilder,
     $$CookieJarTableTableUpdateCompanionBuilder,
     (

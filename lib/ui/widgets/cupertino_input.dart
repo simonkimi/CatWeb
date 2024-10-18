@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class TripleReadonlyTextField extends StatelessWidget {
+class TripleReadonlyTextField extends HookWidget {
   final String labelText;
   final String value;
 
@@ -246,7 +246,7 @@ class TripleIntField extends HookWidget {
   }
 }
 
-class TripleDoubleField extends StatelessWidget {
+class TripleDoubleField extends HookWidget {
   const TripleDoubleField({
     super.key,
     required this.labelText,

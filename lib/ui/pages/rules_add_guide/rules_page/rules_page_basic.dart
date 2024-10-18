@@ -98,7 +98,7 @@ class RulesPageBasic extends StatelessWidget {
   ) {
     final notifier = context.read<SitePageNotifier>();
     List<Widget> body = switch (notifier.rule.template) {
-      PageTemplate.autoComplete || PageTemplate.imageViewer => [],
+      PageTemplateAutoComplete() || PageTemplateImageViewer() => [],
       PageTemplateList(:final targetItem, :final targetAutoComplete) => [
           _OpenPageSelector(
             labelText: I.of(context).item_jump_to,

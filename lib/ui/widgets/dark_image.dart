@@ -2,6 +2,7 @@ import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/navigator.dart';
 
 import 'package:catweb/utils/context_helper.dart';
+import 'package:catweb/utils/widget.dart';
 import 'package:flutter/material.dart';
 
 class DarkImage extends StatelessWidget {
@@ -22,23 +23,24 @@ class DarkImage extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: setting.imageMaskInDarkModeNotifier,
       builder: (context, value, _) {
-        return value && context.isDarkMode
-            ? ColorFiltered(
-                colorFilter: const ColorFilter.mode(
-                  Colors.black26,
-                  BlendMode.dstOut,
-                ),
-                child: Image(
-                  image: image,
-                  fit: fit,
-                  loadingBuilder: loadingBuilder,
-                ),
-              )
-            : Image(
-                image: image,
-                fit: fit,
-                loadingBuilder: loadingBuilder,
-              );
+        if (value && context.isDarkMode) {
+          return ColorFiltered(
+            colorFilter: const ColorFilter.mode(
+              Colors.black26,
+              BlendMode.dstOut,
+            ),
+            child: Image(
+              image: image,
+              fit: fit,
+              loadingBuilder: loadingBuilder,
+            ),
+          );
+        }
+        return Image(
+          image: image,
+          fit: fit,
+          loadingBuilder: loadingBuilder,
+        );
       },
     );
   }
@@ -58,14 +60,15 @@ class DarkWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return context.isDarkMode
-        ? ColorFiltered(
-            colorFilter: const ColorFilter.mode(
-              Colors.black26,
-              BlendMode.dstOut,
-            ),
-            child: child,
-          )
-        : child;
+    if (!context.isDarkMode) {
+      return child;
+    }
+    return ColorFiltered(
+      colorFilter: const ColorFilter.mode(
+        Colors.black26,
+        BlendMode.dstOut,
+      ),
+      child: child,
+    );
   }
 }

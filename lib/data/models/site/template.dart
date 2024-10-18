@@ -41,10 +41,10 @@ class PageTemplate with _$PageTemplate {
 
   PageTemplateType get type {
     return switch (this) {
-      PageTemplate.autoComplete => PageTemplateType.autoComplete,
-      PageTemplate.gallery => PageTemplateType.gallery,
-      PageTemplate.list => PageTemplateType.list,
-      PageTemplate.imageViewer => PageTemplateType.imageViewer,
+      PageTemplateAutoComplete() => PageTemplateType.autoComplete,
+      PageTemplateGallery() => PageTemplateType.gallery,
+      PageTemplateList() => PageTemplateType.list,
+      PageTemplateImageViewer() => PageTemplateType.imageViewer,
       _ => throw UnimplementedError('Unknown template type: $this'),
     };
   }

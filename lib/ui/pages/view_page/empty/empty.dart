@@ -19,14 +19,7 @@ class EmptyFragment extends StatelessWidget {
           onPressed: () {
             showCupertinoModalSheet(
               context: context,
-              builder: (context) => Navigator(
-                observers: [HeroController()],
-                onGenerateRoute: (settings) => CupertinoPageRoute(
-                  builder: ((context) {
-                    return const SiteManager();
-                  }),
-                ),
-              ),
+              builder: (context) => const SiteManager(),
             );
           },
           padding: EdgeInsets.zero,

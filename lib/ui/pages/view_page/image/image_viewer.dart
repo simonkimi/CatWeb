@@ -33,12 +33,12 @@ class ImageViewer extends StatelessWidget {
       animation: imageWithPreviewModel!,
       builder: (context, child) {
         return switch (imageWithPreviewModel!.imageModel) {
-          AsyncProgressValue.idle ||
-          AsyncProgressValue.loading =>
+          AsyncProgressIdle() ||
+          AsyncProgressLoading() =>
             _buildInfProgressBar(context),
           AsyncProgressError(:final error, :final stackTrace) =>
             _buildError(context, error, stackTrace),
-          AsyncProgressValue.data =>
+          AsyncProgressData() =>
             _defaultImageBuilder(context, imageWithPreviewModel!.getImage()),
           _ => throw UnimplementedError()
         };

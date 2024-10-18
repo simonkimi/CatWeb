@@ -39,10 +39,10 @@ class SitePageRule with _$SitePageRule {
 
   ParserModelType acceptParserType() {
     return switch (template) {
-      PageTemplate.list => ParserModelType.list,
-      PageTemplate.gallery => ParserModelType.detail,
-      PageTemplate.imageViewer => ParserModelType.imageReader,
-      PageTemplate.autoComplete => ParserModelType.autoComplete,
+      PageTemplateList() => ParserModelType.list,
+      PageTemplateGallery() => ParserModelType.detail,
+      PageTemplateImageViewer() => ParserModelType.imageReader,
+      PageTemplateAutoComplete() => ParserModelType.autoComplete,
       _ => throw UnimplementedError('$template not implemented'),
     };
   }
