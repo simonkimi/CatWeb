@@ -1,7 +1,13 @@
+import 'dart:convert';
+
+import 'package:catweb/data/controller/db.dart';
+import 'package:catweb/data/controller/site.dart';
+import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site/field.dart';
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/parser.dart';
 import 'package:catweb/data/models/site/site_blueprint.dart';
+import 'package:catweb/navigator.dart';
 
 import 'package:flutter/cupertino.dart';
 
@@ -99,19 +105,23 @@ class RulesEditorNotifier extends ValueNotifier<SiteBlueprint> {
     notifyListeners();
   }
 
-  Future<void> save() async {
-    // if (db == null) {
-    //   await dbService.webDao.insert(WebTableCompanion.insert(
-    //     blueprint: jsonEncode(blueprint.toJson()),
-    //     env: '{}',
-    //   ));
-    // } else {
-    //   final newDb = db!.copyWith(blueprint: jsonEncode(blueprint.toJson()));
-    //   await dbService.webDao.replace(newDb);
-    //   // 检测是否为当前配置
-    //   if (siteService.currentSite?.id == db!.id) {
-    //     siteService.setNewSite(newDb);
-    //   }
-    // }
+  Future<void> save(WebTableData? oldConfig) async {
+    DbService dbService = getIt.get();
+    SiteService siteService = getIt.get();
+
+    if (oldConfig == null) {
+      await dbService.webDao.insert(WebTableCompanion.insert(
+        blueprint: jsonEncode(blueprint.toJson()),
+        env: '{}',
+      ));
+      return;
+    }
+
+    final newConfig =
+        oldConfig.copyWith(blueprint: jsonEncode(blueprint.toJson()));
+    await dbService.webDao.replace(newConfig);
+    if (siteService.currentSite?.id == oldConfig.id) {
+      siteService.setNewSite(newConfig);
+    }
   }
 }

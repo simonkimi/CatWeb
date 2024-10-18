@@ -25,7 +25,7 @@ class ViewerListFragment extends HookWidget {
     return ChangeNotifierProvider(
       create: (_) => SubListNotifier(
         siteRule: pageRule,
-        subPageModel: template.subPages.first,
+        subPageModel: template.subPages.firstOrNull,
       ),
       builder: (context, _) {
         return CupertinoPageScaffold(

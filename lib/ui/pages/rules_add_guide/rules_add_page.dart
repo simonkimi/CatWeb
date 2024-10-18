@@ -108,7 +108,7 @@ class RulesEditPage extends StatelessWidget {
       return;
     }
 
-    await notifier.save();
+    await notifier.save(db);
     context.pop();
   }
 }
