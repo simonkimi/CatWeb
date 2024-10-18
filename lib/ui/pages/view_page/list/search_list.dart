@@ -21,22 +21,24 @@ class SearchPage extends StatelessWidget {
         listRule: pageConfig.pageRule,
         website: viewerConfig.website,
       ),
-      child: CupertinoPageScaffold(
-        child: CupertinoScrollbar(
-          child: CupertinoAppBar(
-            canHide: false,
-            title: I.of(context).search,
-            leading: CupertinoBackLeading(
-              onPressed: () async {
-                context.pop();
-              },
+      builder: (context, child) {
+        return CupertinoPageScaffold(
+          child: CupertinoScrollbar(
+            child: CupertinoAppBar(
+              canHide: false,
+              title: I.of(context).search,
+              leading: CupertinoBackLeading(
+                onPressed: () async {
+                  context.pop();
+                },
+              ),
+              tabBar: _buildSearchInput(context),
+              tabBarHeight: 40,
+              child: _buildSearchList(context),
             ),
-            tabBar: _buildSearchInput(context),
-            tabBarHeight: 40,
-            child: _buildSearchList(context),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
