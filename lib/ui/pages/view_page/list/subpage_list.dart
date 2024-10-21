@@ -9,10 +9,11 @@ import 'package:catweb/ui/widgets/list_extended_card.dart';
 import 'package:catweb/ui/widgets/load_more_footer.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class SubPageListFragment extends StatefulWidget {
+class SubPageListFragment extends HookWidget {
   const SubPageListFragment({
     super.key,
     required this.hasTabBar,
@@ -25,16 +26,9 @@ class SubPageListFragment extends StatefulWidget {
   final double? tabBarHeight;
 
   @override
-  State<SubPageListFragment> createState() => _SubPageListFragmentState();
-}
-
-class _SubPageListFragmentState extends State<SubPageListFragment>
-    with AutomaticKeepAliveClientMixin {
-  SubListNotifier get notifier => context.read();
-
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
+    useAutomaticKeepAlive(wantKeepAlive: true);
+    final SubListNotifier notifier = context.read();
     return AppBarScrollNotifier(
       child: CupertinoScrollbar(
         controller: notifier.scrollController,
@@ -44,7 +38,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
           enablePullUp: true,
           onLoading: notifier.loadNextPage,
           footer: LoadMoreFooter(
-            hasToolBar: widget.hasToolBar,
+            hasToolBar: hasToolBar,
           ),
           child: Selector<
               SubListNotifier,
@@ -66,9 +60,8 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
                 slivers: [
                   SliverPullToRefresh(
                     onRefresh: () => notifier.refresh(),
-                    extraHeight: widget.hasTabBar
-                        ? widget.tabBarHeight ?? kCupertinoTabBarHeight
-                        : 0,
+                    extraHeight:
+                        hasTabBar ? tabBarHeight ?? kCupertinoTabBarHeight : 0,
                   ),
                   _buildBody(context),
                 ],
@@ -101,6 +94,7 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
   }
 
   Widget _buildSliverList(BuildContext context) {
+    final SubListNotifier notifier = context.read();
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
@@ -136,12 +130,4 @@ class _SubPageListFragmentState extends State<SubPageListFragment>
       ),
     );
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  bool get wantKeepAlive => true;
 }

@@ -5,6 +5,8 @@ import 'package:catweb/ui/pages/setting_page/setting_subpage/security_setting.da
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'package:catweb/navigator.dart';
+
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
@@ -26,8 +28,7 @@ class SettingsPage extends StatelessWidget {
                     color: CupertinoColors.systemBlue.resolveFrom(context),
                     icon: CupertinoIcons.book,
                     onTap: () {
-                      Navigator.of(context).push(CupertinoPageRoute(
-                          builder: (context) => const DisplaySettingPage()));
+                      context.to(const DisplaySettingPage());
                     },
                   ),
                   SettingTile(
@@ -39,8 +40,7 @@ class SettingsPage extends StatelessWidget {
                     title: I.of(context).security,
                     color: CupertinoColors.systemRed.resolveFrom(context),
                     icon: CupertinoIcons.lock,
-                    onTap: () => Navigator.of(context).push(CupertinoPageRoute(
-                        builder: (context) => const SecuritySettingPage())),
+                    onTap: () => context.to(const SecuritySettingPage()),
                   ),
                   SettingTile(
                     title: I.of(context).advanced,

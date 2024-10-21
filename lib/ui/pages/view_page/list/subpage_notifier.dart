@@ -55,6 +55,12 @@ class SubListNotifier
     await refresh();
   }
 
+  Future<void> requireFirstLoad() async {
+    if (state == const PageLoaderState.idle() && pageData.isEmpty) {
+      await loadNextPage();
+    }
+  }
+
   @override
   Future<ListPageData> loadPageImpl(int page) async {
     var baseUrl = siteRule.url;

@@ -134,6 +134,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "8.9.2"
+  catweb_parser:
+    dependency: "direct main"
+    description:
+      path: "../catweb_parser_go"
+      relative: true
+    source: path
+    version: "0.0.8"
   characters:
     dependency: transitive
     description:

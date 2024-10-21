@@ -302,11 +302,7 @@ class _ImageReaderState extends State<ImageReader>
             color: CupertinoColors.white,
           ),
           onPressed: () {
-            Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
-              return const DisplaySettingPage(
-                fromSetting: false,
-              );
-            }));
+            context.to(const DisplaySettingPage(fromSetting: false));
           },
         ),
       ],

@@ -66,10 +66,8 @@ dependencies:
   freezed_annotation: ^2.4.4
   collection: ^1.18.0
 
-  # parser
-  # catweb_parser:
-  #   path: ../catweb_parser_go
-
+  parser:
+    path: /parser
 
 
 dev_dependencies:

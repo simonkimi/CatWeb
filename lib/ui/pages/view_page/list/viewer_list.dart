@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:catweb/navigator.dart';
 import 'subpage_notifier.dart';
 
 class ViewerListFragment extends StatefulWidget {
@@ -38,6 +39,10 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
               SubListNotifier(siteRule: pageConfig.pageRule, subPageModel: e))
           .toList();
     }
+    sublistNotifiers.first.requireFirstLoad();
+    tabController?.addListener(() {
+      sublistNotifiers[tabController!.index].requireFirstLoad();
+    });
   }
 
   @override
@@ -60,14 +65,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
         showCupertinoModalSheet(
           context: context,
           builder: (_) {
-            return Navigator(
-              observers: [HeroController()],
-              onGenerateRoute: (settings) {
-                return CupertinoPageRoute(builder: ((_) {
-                  return const SiteManager();
-                }));
-              },
-            );
+            return const SiteManager();
           },
         );
       },
@@ -82,18 +80,13 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
           minSize: 0,
           child: const Icon(CupertinoIcons.search),
           onPressed: () {
-            Navigator.of(context).push(CupertinoPageRoute(builder: (_) {
-              return MultiProvider(
-                providers: [
-                  Provider.value(value: pageRule),
-                  Provider.value(value: viewerConfig),
-                  Provider.value(value: context.read<PageConfigProvider>()),
-                  ChangeNotifierProvider.value(
-                      value: context.read<SubListNotifier>())
-                ],
-                child: const SearchPage(),
-              );
-            }));
+            context.to(const SearchPage(), [
+              Provider.value(value: pageRule),
+              Provider.value(value: viewerConfig),
+              Provider.value(value: context.read<PageConfigProvider>()),
+              ChangeNotifierProvider.value(
+                  value: context.read<SubListNotifier>())
+            ]);
           },
         ),
       // if (template.filter.items.isNotEmpty)

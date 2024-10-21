@@ -116,8 +116,7 @@ class NetClient {
   }) async {
     final parser = blueMap.getParserById<ParserModelDetail>(model.parserId);
 
-    final options = globalService
-        .cacheOptions
+    final options = globalService.cacheOptions
         .copyWith(policy: CachePolicy.forceCache)
         .toOptions();
 
@@ -148,7 +147,8 @@ class NetClient {
     final parser =
         blueMap.getParserById<ParserModelImageReader>(model.parserId);
 
-    final options = getIt.get<GlobalService>()
+    final options = getIt
+        .get<GlobalService>()
         .imageCacheOption
         .copyWith(policy: CachePolicy.forceCache)
         .toOptions();
@@ -227,7 +227,8 @@ class NetClient {
     ));
 
     if (!isImage) {
-      dio.interceptors.add(DioCacheInterceptor(options: globalService.cacheOptions));
+      dio.interceptors
+          .add(DioCacheInterceptor(options: globalService.cacheOptions));
       dio.interceptors.add(HttpFormatter(includeResponseBody: false));
     } else {
       dio.interceptors.add(

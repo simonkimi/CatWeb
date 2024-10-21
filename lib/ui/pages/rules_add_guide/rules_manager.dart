@@ -78,8 +78,7 @@ class SiteManager extends StatelessWidget {
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.settings),
                   onPressed: () {
-                    Navigator.of(context).push(CupertinoPageRoute(
-                        builder: (context) => const SettingsPage()));
+                    context.to(const SettingsPage());
                   },
                 ),
               ],
@@ -220,13 +219,9 @@ class SiteManager extends StatelessWidget {
         }
       }
 
-      final List<Cookie>? cookies = await Navigator.of(context).push(
-        CupertinoPageRoute(
-          builder: (context) => WebViewLoginIn(
-            url: entity.loginUrl,
-          ),
-        ),
-      );
+      final List<Cookie>? cookies = await context.to(WebViewLoginIn(
+        url: entity.loginUrl,
+      ));
 
       if (cookies != null) {
         final cookieStr = cookies.map((e) => '${e.name}=${e.value}').join('; ');
@@ -257,8 +252,5 @@ class SiteManager extends StatelessWidget {
     NavigatorState navigator, {
     SiteBlueprint? entity,
     WebTableData? db,
-  }) =>
-      navigator.push(CupertinoPageRoute(
-        builder: (context) => RulesEditPage(blueprint: entity, db: db),
-      ));
+  }) => navigator.to(RulesEditPage(blueprint: entity, db: db));
 }
