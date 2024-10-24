@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:catweb/data/controller/global.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
-import 'package:catweb/navigator.dart';
+import 'package:catweb/app.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';

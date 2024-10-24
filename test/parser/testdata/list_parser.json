@@ -1,0 +1,740 @@
+{
+  "name" : "通用列表",
+  "uuid" : "548a0ab4-eb6c-5e10-b81c-a63e84750617",
+  "extra" : [ {
+    "selector" : {
+      "selector" : ".fp:nth-child(1) div:nth-child(3)",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "id" : "fav0Tag",
+    "persistence" : true
+  }, {
+    "selector" : {
+      "selector" : ".fp:nth-child(2) div:nth-child(3)",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "id" : "fav1Tag",
+    "persistence" : true
+  }, {
+    "selector" : {
+      "selector" : ".fp:nth-child(3) div:nth-child(3)",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "id" : "fav2Tag",
+    "persistence" : true
+  }, {
+    "selector" : {
+      "selector" : ".fp:nth-child(4) div:nth-child(3)",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "id" : "fav3Tag",
+    "persistence" : true
+  }, {
+    "selector" : {
+      "selector" : ".fp:nth-child(5) div:nth-child(3)",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "id" : "fav4Tag",
+    "persistence" : true
+  }, {
+    "selector" : {
+      "selector" : ".fp:nth-child(6) div:nth-child(3)",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "id" : "fav5Tag",
+    "persistence" : true
+  }, {
+    "selector" : {
+      "selector" : ".fp:nth-child(7) div:nth-child(3)",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "id" : "fav6Tag",
+    "persistence" : true
+  }, {
+    "selector" : {
+      "selector" : ".fp:nth-child(8) div:nth-child(3)",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "id" : "fav7Tag",
+    "persistence" : true
+  }, {
+    "selector" : {
+      "selector" : ".fp:nth-child(9) div:nth-child(3)",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "id" : "fav8Tag",
+    "persistence" : true
+  }, {
+    "selector" : {
+      "selector" : ".fp:nth-child(10) div:nth-child(3)",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "id" : "fav9Tag",
+    "persistence" : true
+  }, {
+    "selector" : {
+      "selector" : "#eventpane",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "id" : "#dialog",
+    "persistence" : false
+  }, {
+    "selector" : {
+      "selector" : "#unext",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "href",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "id" : "from",
+    "persistence" : false
+  } ],
+  "itemSelector" : {
+    "selector" : "//div[@class='gl1t'] | //*[starts-with(@class, 'gl2')]/..",
+    "type" : {
+      "xpath" : "",
+      "runtimeType" : "xpath"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "itemComplete" : {
+    "selector" : "",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "successSelector" : {
+    "selector" : "",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "failedSelector" : {
+    "selector" : "//*[contains(text(), \"IP address has\")]",
+    "type" : {
+      "xpath" : "",
+      "runtimeType" : "xpath"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "title" : {
+    "selector" : ".glink",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "subtitle" : {
+    "selector" : ".gl5m a, .gl4c a, .gl3e a",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "uploadTime" : {
+    "selector" : ".gl2c>div:nth-child(3),.glnew,.gl3e>div:nth-child(2)",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "star" : {
+    "selector" : ".ir",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "attr" : "",
+      "runtimeType" : "attr"
+    },
+    "param" : "style",
+    "regex" : "background-position:-?(\\d+)px -?(\\d+)px",
+    "replace" : "5-$1/16-($2-1)/40",
+    "script" : {
+      "script" : "eval($arg)",
+      "runtimeType" : "js"
+    },
+    "defaultValue" : ""
+  },
+  "imageCount" : {
+    "selector" : "//div[@class='glthumb']/*[2]/*[2]|//div[@class='gl3e']/*[5]|//div[@class='gl5t']/*[2]/*[2]",
+    "type" : {
+      "xpath" : "",
+      "runtimeType" : "xpath"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "\\d+",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "language" : {
+    "selector" : ".gt[title^=language]",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "script" : "a={chinese:\"中文\",english:\"英语\",french:\"法语\",german:\"德语\",japanese:\"日语\",korean:\"韩语\",russian:\"俄语\",spanish:\"西班牙语\",speechless:\"无字\",italian:\"意大利语\"};a[$arg.toLowerCase()]",
+      "runtimeType" : "js"
+    },
+    "defaultValue" : ""
+  },
+  "previewImage" : {
+    "url" : {
+      "selector" : ".gl2c img,.glthumb img,.gl1e img,.gl3t img",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "attr" : "",
+        "runtimeType" : "attr"
+      },
+      "param" : "data-src,src",
+      "regex" : "https:\\/\\/\\w+?\\.\\w+\\/(.+)",
+      "replace" : "https://ehgt.org/$1",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "width" : {
+      "selector" : ".gl2c img,.glthumb img,.gl1e img,.gl3t img",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "attr" : "",
+        "runtimeType" : "attr"
+      },
+      "param" : "style",
+      "regex" : "width:(\\d+)",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "height" : {
+      "selector" : ".gl2c img,.glthumb img,.gl1e img,.gl3t img",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "attr" : "",
+        "runtimeType" : "attr"
+      },
+      "param" : "style",
+      "regex" : "height:(\\d+)",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "x" : {
+      "selector" : "",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "y" : {
+      "selector" : "",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "cacheKey" : {
+      "selector" : "",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    }
+  },
+  "target" : {
+    "selector" : "",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "badgeSelector" : {
+    "selector" : ".gt, .gtl",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "badgeItem" : {
+    "text" : {
+      "selector" : "",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "attr" : "",
+        "runtimeType" : "attr"
+      },
+      "param" : "title",
+      "regex" : "(\\w).+?:(.*)",
+      "replace" : "$1:$2",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "color" : {
+      "selector" : "",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "attr" : "",
+        "runtimeType" : "attr"
+      },
+      "param" : "style",
+      "regex" : "(#[0-9a-fA-F]{6})\\)",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "category" : {
+      "selector" : "",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    }
+  },
+  "tag" : {
+    "selector" : ".cn, .cs",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "tagItem" : {
+    "text" : {
+      "selector" : "",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    },
+    "color" : {
+      "selector" : "",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "attr" : "",
+        "runtimeType" : "attr"
+      },
+      "param" : "class",
+      "regex" : "ct.",
+      "replace" : "",
+      "script" : {
+        "script" : "a={ct2:\"#f66158\",ct3:\"#f09e19\",ct4:\"#d2d303\",ct5:\"#0fa911\",cta:\"#2fd92c\",ct9:\"#0bbfd3\",ct6:\"#4f5ce6\",ct7:\"#9030df\",ct8:\"#f38af2\",ct1:\"#8a8a8a\"},a[$arg];",
+        "runtimeType" : "js"
+      },
+      "defaultValue" : ""
+    },
+    "category" : {
+      "selector" : "",
+      "type" : {
+        "cssSelector" : "",
+        "runtimeType" : "css"
+      },
+      "function" : {
+        "runtimeType" : "text"
+      },
+      "param" : "",
+      "regex" : "",
+      "replace" : "",
+      "script" : {
+        "runtimeType" : "output"
+      },
+      "defaultValue" : ""
+    }
+  },
+  "paper" : {
+    "selector" : "",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "runtimeType" : "text"
+    },
+    "param" : "",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "idCode" : {
+    "selector" : ".glname a, .gl1e a, .gl3t a",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "attr" : "",
+      "runtimeType" : "attr"
+    },
+    "param" : "href",
+    "regex" : "g\\/(\\d+\\/\\w+)",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "nextPage" : {
+    "selector" : "#unext",
+    "type" : {
+      "cssSelector" : "",
+      "runtimeType" : "css"
+    },
+    "function" : {
+      "attr" : "",
+      "runtimeType" : "attr"
+    },
+    "param" : "href",
+    "regex" : "",
+    "replace" : "",
+    "script" : {
+      "runtimeType" : "output"
+    },
+    "defaultValue" : ""
+  },
+  "runtimeType" : "list"
+}

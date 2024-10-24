@@ -149,3 +149,14 @@ enum ParserModelType {
   imageReader,
   list,
 }
+
+extension ParserModelTypeExtension on ParserModelType {
+  String get type {
+    return switch (this) {
+      ParserModelType.autoComplete => 'AutoCompleteParser',
+      ParserModelType.detail => 'DetailParser',
+      ParserModelType.imageReader => 'ImageReaderParser',
+      ParserModelType.list => 'ListParser',
+    };
+  }
+}

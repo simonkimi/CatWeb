@@ -5,7 +5,7 @@ import 'package:catweb/ui/pages/setting_page/setting_subpage/security_setting.da
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:catweb/navigator.dart';
+import 'package:catweb/app.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

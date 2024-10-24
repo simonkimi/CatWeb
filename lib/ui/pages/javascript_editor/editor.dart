@@ -184,44 +184,44 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
           keyboardType: TextInputType.multiline,
           onChanged: _onTextChange,
         ),
-        _buildToolBar(context),
+        Positioned(
+          bottom: 1,
+          child: _buildToolBar(context),
+        ),
       ],
     );
   }
 
-  Positioned _buildToolBar(BuildContext context) {
-    return Positioned(
-      bottom: 1,
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: kSuggestInputHeight,
-        child: ColoredBox(
-          color: CupertinoColors.systemGrey6.resolveFrom(context),
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              _buildInputHint(
-                context: context,
-                child: const Icon(CupertinoIcons.arrow_turn_down_left),
-                input: '\n',
-              ),
-              _buildInputHint(
-                context: context,
-                child: const Icon(CupertinoIcons.arrow_right_to_line_alt),
-                input: '    ',
-              ),
-              _buildInputHint(context: context, display: '('),
-              _buildInputHint(context: context, display: ')'),
-              _buildInputHint(context: context, display: '{'),
-              _buildInputHint(context: context, display: '}'),
-              _buildInputHint(context: context, display: '['),
-              _buildInputHint(context: context, display: ']'),
-              _buildInputHint(context: context, display: "'"),
-              _buildInputHint(context: context, display: '"'),
-              _buildInputHint(context: context, display: ';'),
-              _buildInputHint(context: context, display: '!'),
-            ],
-          ),
+  Widget _buildToolBar(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: kSuggestInputHeight,
+      child: ColoredBox(
+        color: CupertinoColors.systemGrey6.resolveFrom(context),
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            _buildInputHint(
+              context: context,
+              child: const Icon(CupertinoIcons.arrow_turn_down_left),
+              input: '\n',
+            ),
+            _buildInputHint(
+              context: context,
+              child: const Icon(CupertinoIcons.arrow_right_to_line_alt),
+              input: '    ',
+            ),
+            _buildInputHint(context: context, display: '('),
+            _buildInputHint(context: context, display: ')'),
+            _buildInputHint(context: context, display: '{'),
+            _buildInputHint(context: context, display: '}'),
+            _buildInputHint(context: context, display: '['),
+            _buildInputHint(context: context, display: ']'),
+            _buildInputHint(context: context, display: "'"),
+            _buildInputHint(context: context, display: '"'),
+            _buildInputHint(context: context, display: ';'),
+            _buildInputHint(context: context, display: '!'),
+          ],
         ),
       ),
     );

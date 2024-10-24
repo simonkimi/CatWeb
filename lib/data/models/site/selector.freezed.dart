@@ -36,7 +36,7 @@ mixin _$SelectorQuery {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() self,
-    required TResult Function(String cssSelector) css,
+    required TResult Function(String css) css,
     required TResult Function(String xpath) xpath,
     required TResult Function(String jsonPath) jsonPath,
   }) =>
@@ -44,7 +44,7 @@ mixin _$SelectorQuery {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? self,
-    TResult? Function(String cssSelector)? css,
+    TResult? Function(String css)? css,
     TResult? Function(String xpath)? xpath,
     TResult? Function(String jsonPath)? jsonPath,
   }) =>
@@ -52,7 +52,7 @@ mixin _$SelectorQuery {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? self,
-    TResult Function(String cssSelector)? css,
+    TResult Function(String css)? css,
     TResult Function(String xpath)? xpath,
     TResult Function(String jsonPath)? jsonPath,
     required TResult orElse(),
@@ -160,7 +160,7 @@ class _$SelectorQuerySelfImpl extends SelectorQuerySelf {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() self,
-    required TResult Function(String cssSelector) css,
+    required TResult Function(String css) css,
     required TResult Function(String xpath) xpath,
     required TResult Function(String jsonPath) jsonPath,
   }) {
@@ -171,7 +171,7 @@ class _$SelectorQuerySelfImpl extends SelectorQuerySelf {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? self,
-    TResult? Function(String cssSelector)? css,
+    TResult? Function(String css)? css,
     TResult? Function(String xpath)? xpath,
     TResult? Function(String jsonPath)? jsonPath,
   }) {
@@ -182,7 +182,7 @@ class _$SelectorQuerySelfImpl extends SelectorQuerySelf {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? self,
-    TResult Function(String cssSelector)? css,
+    TResult Function(String css)? css,
     TResult Function(String xpath)? xpath,
     TResult Function(String jsonPath)? jsonPath,
     required TResult orElse(),
@@ -252,7 +252,7 @@ abstract class _$$SelectorQueryCssImplCopyWith<$Res> {
           $Res Function(_$SelectorQueryCssImpl) then) =
       __$$SelectorQueryCssImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String cssSelector});
+  $Res call({String css});
 }
 
 /// @nodoc
@@ -268,12 +268,12 @@ class __$$SelectorQueryCssImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cssSelector = null,
+    Object? css = null,
   }) {
     return _then(_$SelectorQueryCssImpl(
-      cssSelector: null == cssSelector
-          ? _value.cssSelector
-          : cssSelector // ignore: cast_nullable_to_non_nullable
+      css: null == css
+          ? _value.css
+          : css // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -282,7 +282,7 @@ class __$$SelectorQueryCssImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SelectorQueryCssImpl extends SelectorQueryCss {
-  const _$SelectorQueryCssImpl({this.cssSelector = '', final String? $type})
+  const _$SelectorQueryCssImpl({this.css = '', final String? $type})
       : $type = $type ?? 'css',
         super._();
 
@@ -291,14 +291,14 @@ class _$SelectorQueryCssImpl extends SelectorQueryCss {
 
   @override
   @JsonKey()
-  final String cssSelector;
+  final String css;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'SelectorQuery.css(cssSelector: $cssSelector)';
+    return 'SelectorQuery.css(css: $css)';
   }
 
   @override
@@ -306,13 +306,12 @@ class _$SelectorQueryCssImpl extends SelectorQueryCss {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SelectorQueryCssImpl &&
-            (identical(other.cssSelector, cssSelector) ||
-                other.cssSelector == cssSelector));
+            (identical(other.css, css) || other.css == css));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, cssSelector);
+  int get hashCode => Object.hash(runtimeType, css);
 
   /// Create a copy of SelectorQuery
   /// with the given fields replaced by the non-null parameter values.
@@ -327,35 +326,35 @@ class _$SelectorQueryCssImpl extends SelectorQueryCss {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() self,
-    required TResult Function(String cssSelector) css,
+    required TResult Function(String css) css,
     required TResult Function(String xpath) xpath,
     required TResult Function(String jsonPath) jsonPath,
   }) {
-    return css(cssSelector);
+    return css(this.css);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? self,
-    TResult? Function(String cssSelector)? css,
+    TResult? Function(String css)? css,
     TResult? Function(String xpath)? xpath,
     TResult? Function(String jsonPath)? jsonPath,
   }) {
-    return css?.call(cssSelector);
+    return css?.call(this.css);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? self,
-    TResult Function(String cssSelector)? css,
+    TResult Function(String css)? css,
     TResult Function(String xpath)? xpath,
     TResult Function(String jsonPath)? jsonPath,
     required TResult orElse(),
   }) {
     if (css != null) {
-      return css(cssSelector);
+      return css(this.css);
     }
     return orElse();
   }
@@ -406,14 +405,13 @@ class _$SelectorQueryCssImpl extends SelectorQueryCss {
 }
 
 abstract class SelectorQueryCss extends SelectorQuery {
-  const factory SelectorQueryCss({final String cssSelector}) =
-      _$SelectorQueryCssImpl;
+  const factory SelectorQueryCss({final String css}) = _$SelectorQueryCssImpl;
   const SelectorQueryCss._() : super._();
 
   factory SelectorQueryCss.fromJson(Map<String, dynamic> json) =
       _$SelectorQueryCssImpl.fromJson;
 
-  String get cssSelector;
+  String get css;
 
   /// Create a copy of SelectorQuery
   /// with the given fields replaced by the non-null parameter values.
@@ -502,7 +500,7 @@ class _$SelectorQueryXpathImpl extends SelectorQueryXpath {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() self,
-    required TResult Function(String cssSelector) css,
+    required TResult Function(String css) css,
     required TResult Function(String xpath) xpath,
     required TResult Function(String jsonPath) jsonPath,
   }) {
@@ -513,7 +511,7 @@ class _$SelectorQueryXpathImpl extends SelectorQueryXpath {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? self,
-    TResult? Function(String cssSelector)? css,
+    TResult? Function(String css)? css,
     TResult? Function(String xpath)? xpath,
     TResult? Function(String jsonPath)? jsonPath,
   }) {
@@ -524,7 +522,7 @@ class _$SelectorQueryXpathImpl extends SelectorQueryXpath {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? self,
-    TResult Function(String cssSelector)? css,
+    TResult Function(String css)? css,
     TResult Function(String xpath)? xpath,
     TResult Function(String jsonPath)? jsonPath,
     required TResult orElse(),
@@ -679,7 +677,7 @@ class _$SelectorQueryJsonPathImpl extends SelectorQueryJsonPath {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() self,
-    required TResult Function(String cssSelector) css,
+    required TResult Function(String css) css,
     required TResult Function(String xpath) xpath,
     required TResult Function(String jsonPath) jsonPath,
   }) {
@@ -690,7 +688,7 @@ class _$SelectorQueryJsonPathImpl extends SelectorQueryJsonPath {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? self,
-    TResult? Function(String cssSelector)? css,
+    TResult? Function(String css)? css,
     TResult? Function(String xpath)? xpath,
     TResult? Function(String jsonPath)? jsonPath,
   }) {
@@ -701,7 +699,7 @@ class _$SelectorQueryJsonPathImpl extends SelectorQueryJsonPath {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? self,
-    TResult Function(String cssSelector)? css,
+    TResult Function(String css)? css,
     TResult Function(String xpath)? xpath,
     TResult Function(String jsonPath)? jsonPath,
     required TResult orElse(),

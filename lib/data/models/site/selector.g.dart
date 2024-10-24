@@ -21,14 +21,14 @@ Map<String, dynamic> _$$SelectorQuerySelfImplToJson(
 _$SelectorQueryCssImpl _$$SelectorQueryCssImplFromJson(
         Map<String, dynamic> json) =>
     _$SelectorQueryCssImpl(
-      cssSelector: json['cssSelector'] as String? ?? '',
+      css: json['css'] as String? ?? '',
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$SelectorQueryCssImplToJson(
         _$SelectorQueryCssImpl instance) =>
     <String, dynamic>{
-      'cssSelector': instance.cssSelector,
+      'css': instance.css,
       'runtimeType': instance.$type,
     };
 

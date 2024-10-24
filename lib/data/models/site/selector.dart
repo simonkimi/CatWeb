@@ -14,7 +14,7 @@ class SelectorQuery with _$SelectorQuery {
   const factory SelectorQuery.self() = SelectorQuerySelf;
 
   const factory SelectorQuery.css({
-    @Default('') String cssSelector,
+    @Default('') String css,
   }) = SelectorQueryCss;
 
   const factory SelectorQuery.xpath({

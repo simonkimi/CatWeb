@@ -2,7 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/navigator.dart';
+import 'package:catweb/app.dart';
 import 'package:catweb/ui/pages/view_page/empty/empty.dart';
 import 'package:catweb/ui/pages/view_page/viewer_provider.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage_scaffold.dart';

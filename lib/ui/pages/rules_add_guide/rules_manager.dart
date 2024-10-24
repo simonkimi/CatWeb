@@ -7,7 +7,7 @@ import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/models/site/site_blueprint.dart';
 
 import 'package:catweb/i18n.dart';
-import 'package:catweb/navigator.dart';
+import 'package:catweb/app.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';

@@ -11,7 +11,7 @@ import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 class SubPageListFragment extends HookWidget {
   const SubPageListFragment({

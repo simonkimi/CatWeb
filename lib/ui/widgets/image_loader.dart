@@ -7,6 +7,7 @@ import 'package:catweb/ui/widgets/dark_image.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:dio/dio.dart';
 import 'package:extended_image/extended_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 typedef ImageWidgetBuilder = Widget Function(
@@ -28,7 +29,7 @@ class ImageLoader extends StatefulWidget {
     this.imageBuilder,
     this.errorBuilder,
     this.hasSize = false,
-    this.loadingWidgetBuilder,
+    this.loadingBuilder,
     this.imageWidgetBuilder,
     this.innerImageBuilder,
     this.enableHero = true,
@@ -41,7 +42,7 @@ class ImageLoader extends StatefulWidget {
   final bool hasSize;
   final bool enableHero;
 
-  final WidgetBuilder? loadingWidgetBuilder;
+  final LoadingWidgetBuilder? loadingBuilder;
   final WidgetBuilder? imageWidgetBuilder;
   final WidgetBuilder? innerImageBuilder;
 
@@ -54,16 +55,15 @@ class _ImageLoaderState extends State<ImageLoader> {
   late final ErrorBuilder errorBuilder;
   late final LoadingWidgetBuilder loadingBuilder;
   late final ImageWidgetBuilder imageBuilder;
-  late final WidgetBuilder loadingWidgetBuilder;
   late final WidgetBuilder imageWidgetBuilder;
   late final WidgetBuilder innerImageBuilder;
 
   @override
   void initState() {
+    loadingBuilder = widget.loadingBuilder ?? _defaultLoadingBuilder;
     imageBuilder = widget.imageBuilder ?? _defaultImageBuilder;
     errorBuilder = widget.errorBuilder ?? _defaultErrorBuilder;
     _imageLoadNotifier = widget.queue.create(widget.model);
-    loadingWidgetBuilder = widget.loadingWidgetBuilder ?? _defaultWidgetBuilder;
     imageWidgetBuilder = widget.imageWidgetBuilder ?? _defaultWidgetBuilder;
     innerImageBuilder = widget.innerImageBuilder ?? _defaultWidgetBuilder;
     super.initState();
@@ -73,9 +73,9 @@ class _ImageLoaderState extends State<ImageLoader> {
   Widget build(BuildContext context) {
     switch (_imageLoadNotifier.value) {
       case AsyncProgressIdle():
-        return loadingWidgetBuilder(context, loadingBuilder(context, 0));
+        return loadingBuilder(context, 0);
       case AsyncProgressLoading(:final progress):
-        return loadingWidgetBuilder(context, loadingBuilder(context, progress));
+        return loadingBuilder(context, progress);
       case AsyncProgressError(:final error):
         return errorBuilder(context, error, _onReload);
       case AsyncProgressData(:final value):
@@ -94,8 +94,6 @@ class _ImageLoaderState extends State<ImageLoader> {
     _imageLoadNotifier.handleUnMounted();
     super.dispose();
   }
-
-  Widget _defaultWidgetBuilder(BuildContext context, Widget widget) => widget;
 
   Widget _defaultImageBuilder(BuildContext context, Uint8List imgData) {
     late Widget child;
@@ -153,38 +151,50 @@ class _ImageLoaderState extends State<ImageLoader> {
           );
   }
 
-  Widget _defaultErrorBuilder(
-    BuildContext context,
-    Object? err,
-    VoidCallback reload,
-  ) {
-    if (err is DioException) {
-      logger.e(
-          '图片网路错误: \n url: <${err.requestOptions.path}>\n path: <${err.requestOptions.path}>');
-    } else {
-      logger.e('图片加载错误', err);
-    }
+  ImageResult get model => widget.model;
+}
 
-    return GestureDetector(
-      onTap: () => reload(),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.info),
-          Padding(
-            padding: const EdgeInsets.only(right: 5, left: 5, top: 5),
-            child: Text(
-              err?.toString() ?? '',
-              maxLines: 5,
-              style: const TextStyle(
-                fontSize: 12,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+Widget _defaultWidgetBuilder(BuildContext context, Widget widget) => widget;
+
+Widget _defaultErrorBuilder(
+  BuildContext context,
+  Object? err,
+  VoidCallback reload,
+) {
+  if (err is DioException) {
+    logger.e(
+        '图片网路错误: \n url: <${err.requestOptions.path}>\n path: <${err.requestOptions.path}>');
+  } else {
+    logger.e('图片加载错误', err);
   }
 
-  ImageResult get model => widget.model;
+  return GestureDetector(
+    onTap: () => reload(),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(Icons.info),
+        Padding(
+          padding: const EdgeInsets.only(right: 5, left: 5, top: 5),
+          child: Text(
+            err?.toString() ?? '',
+            maxLines: 5,
+            style: const TextStyle(
+              fontSize: 12,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget _defaultLoadingBuilder(BuildContext context, double progress) {
+  return const Center(
+    child: SizedBox(
+      width: 24,
+      height: 24,
+      child: CupertinoActivityIndicator(),
+    ),
+  );
 }

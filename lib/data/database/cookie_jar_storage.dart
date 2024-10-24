@@ -1,5 +1,5 @@
 
-import 'package:catweb/navigator.dart';
+import 'package:catweb/app.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 
 import '../controller/db.dart';

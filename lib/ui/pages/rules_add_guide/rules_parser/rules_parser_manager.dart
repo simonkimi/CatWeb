@@ -14,13 +14,6 @@ enum _MenuSelect {
   delete,
 }
 
-enum _ParserType {
-  list,
-  detail,
-  image,
-  autoComplete;
-}
-
 class RulesParserManager extends StatelessWidget {
   const RulesParserManager({super.key});
 
@@ -109,15 +102,15 @@ class RulesParserManager extends StatelessWidget {
   }
 
   Future<ParserModel?> _genParser(BuildContext context) async {
-    final selection = await showCupertinoSelectDialog<_ParserType>(
+    final selection = await showCupertinoSelectDialog<ParserModelType>(
       context: context,
       title: '规则类型',
       cancelText: '取消',
       items: const [
-        SelectTileItem(title: '列表页', value: _ParserType.list),
-        SelectTileItem(title: '详情页', value: _ParserType.detail),
-        SelectTileItem(title: '图片页', value: _ParserType.image),
-        SelectTileItem(title: '补全页', value: _ParserType.autoComplete),
+        SelectTileItem(title: '列表页', value: ParserModelType.list),
+        SelectTileItem(title: '详情页', value: ParserModelType.detail),
+        SelectTileItem(title: '图片页', value: ParserModelType.imageReader),
+        SelectTileItem(title: '补全页', value: ParserModelType.autoComplete),
       ],
     );
     if (selection == null) return null;
@@ -126,13 +119,13 @@ class RulesParserManager extends StatelessWidget {
 
     final uuid = const Uuid().v4().toString();
     switch (selection) {
-      case _ParserType.list:
+      case ParserModelType.list:
         return ParserModel.list(name: name, uuid: uuid);
-      case _ParserType.detail:
+      case ParserModelType.detail:
         return ParserModel.detail(name: name, uuid: uuid);
-      case _ParserType.image:
+      case ParserModelType.imageReader:
         return ParserModel.imageReader(name: name, uuid: uuid);
-      case _ParserType.autoComplete:
+      case ParserModelType.autoComplete:
         return ParserModel.autoComplete(name: name, uuid: uuid);
     }
   }

@@ -1,1 +1,0 @@
-var r=JSON.parse($arg);"temp"==r.ns?"=> "+r.mns+":"+r.mtn:""

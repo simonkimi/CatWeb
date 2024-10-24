@@ -5,7 +5,7 @@ import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/subpage.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/subpage_models.dart';
-import 'package:catweb/navigator.dart';
+import 'package:catweb/app.dart';
 
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/reader_load_notifier.dart';
@@ -13,7 +13,7 @@ import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/replace_utils.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 class SubListNotifier
     extends BasePageLoaderNotifier<ListItemModel, ListPageData>

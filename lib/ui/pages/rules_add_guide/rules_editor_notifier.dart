@@ -7,7 +7,7 @@ import 'package:catweb/data/models/site/field.dart';
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site/parser.dart';
 import 'package:catweb/data/models/site/site_blueprint.dart';
-import 'package:catweb/navigator.dart';
+import 'package:catweb/app.dart';
 
 import 'package:flutter/cupertino.dart';
 

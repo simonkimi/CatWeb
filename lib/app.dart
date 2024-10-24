@@ -5,12 +5,12 @@ import 'package:provider/single_child_widget.dart';
 
 final getIt = GetIt.instance;
 
-class AppNavigator {
-  factory AppNavigator() => _appNavigator;
+class App {
+  factory App() => _appNavigator;
 
-  AppNavigator._();
+  App._();
 
-  static final AppNavigator _appNavigator = AppNavigator._();
+  static final App _appNavigator = App._();
   final GlobalKey<NavigatorState> _key = GlobalKey(debugLabel: 'navigate_key');
 
   GlobalKey<NavigatorState> get key => _key;
@@ -34,7 +34,7 @@ extension NavigatorExt on NavigatorState {
   ]) {
     return push(CupertinoPageRoute(
       builder: (context) {
-        if (providers == null || providers.isNotEmpty) {
+        if (providers == null || providers.isEmpty) {
           return child;
         }
         return MultiProvider(

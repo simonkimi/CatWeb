@@ -1,8 +1,7 @@
 import 'package:catweb/data/controller/settings.dart';
-import 'package:catweb/navigator.dart';
+import 'package:catweb/app.dart';
 
 import 'package:catweb/utils/context_helper.dart';
-import 'package:catweb/utils/widget.dart';
 import 'package:flutter/material.dart';
 
 class DarkImage extends StatelessWidget {

@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site_env_model.dart';
-import 'package:catweb/navigator.dart';
+import 'package:catweb/app.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';

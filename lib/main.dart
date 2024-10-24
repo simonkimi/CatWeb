@@ -11,7 +11,7 @@ import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'navigator.dart';
+import 'app.dart';
 
 Future<void> initializeApp() async {
   getIt.registerSingletonAsync(() => SettingService().init());
@@ -79,7 +79,7 @@ class MyApp extends HookWidget {
         return BotToastInit()(context, root);
       },
       supportedLocales: I.supportedLocales,
-      navigatorKey: AppNavigator().key,
+      navigatorKey: App().key,
       navigatorObservers: [BotToastNavigatorObserver()],
       theme: defaultTheme(),
     );

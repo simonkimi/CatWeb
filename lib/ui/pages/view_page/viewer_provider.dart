@@ -1,8 +1,6 @@
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_render_model.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 
 class ViewerConfigProvider {
   ViewerConfigProvider({required this.website});

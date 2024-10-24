@@ -5,10 +5,10 @@ import 'package:catweb/data/models/page_loader_state.dart';
 import 'package:catweb/data/models/site/page.dart';
 import 'package:catweb/data/models/site_env_model.dart';
 
-import 'package:catweb/navigator.dart';
+import 'package:catweb/app.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/utils/replace_utils.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 class ViewerGalleryNotifier
     extends BasePageLoaderNotifier<GalleryItemModel, GalleryPageModel> {
