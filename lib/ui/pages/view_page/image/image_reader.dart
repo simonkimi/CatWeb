@@ -9,8 +9,8 @@ import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dar
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/zoom.dart';
-import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -22,7 +22,7 @@ import 'image_slider.dart';
 import 'image_viewer.dart';
 import 'image_zoom.dart';
 
-class ImageReader extends StatefulWidget {
+class ImageReader extends HookWidget {
   const ImageReader({
     super.key,
     required this.readerInfo,
@@ -33,51 +33,60 @@ class ImageReader extends StatefulWidget {
   final SitePageRule sitePageRule;
 
   @override
-  State<ImageReader> createState() => _ImageReaderState();
-}
-
-class _ImageReaderState extends State<ImageReader>
-    with TickerProviderStateMixin {
-  late final AnimationController hideToolbarAniController;
-  late final Animation<Offset> hideToolbarAni;
-  late final Animation<Offset> hideTabBarAni;
-
-  @override
-  void initState() {
-    super.initState();
-    hideToolbarAniController = AnimationController(
-      vsync: this,
+  Widget build(BuildContext context) {
+    final hideToolbarAniController = useAnimationController(
       duration: const Duration(milliseconds: 200),
     );
-    hideToolbarAni = Tween(
-      begin: const Offset(0, 0),
-      end: const Offset(0, -1),
-    ).animate(hideToolbarAniController);
-    hideTabBarAni = Tween(
-      begin: const Offset(0, 0),
-      end: const Offset(0, 1),
-    ).animate(hideToolbarAniController);
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => ReaderLoaderNotifier(
-        readerInfo: widget.readerInfo,
-        sitePageRule: widget.sitePageRule,
-        localEnv: SiteEnvStore(),
+    final hideToolbarAni = useMemoized(() => Tween(
+          begin: const Offset(0, 0),
+          end: const Offset(0, -1),
+        ).animate(hideToolbarAniController));
+
+    final hideTabBarAni = useMemoized(() => Tween(
+          begin: const Offset(0, 0),
+          end: const Offset(0, 1),
+        ).animate(hideToolbarAniController));
+
+    void onHideToolbar() {
+      if (hideToolbarAniController.isAnimating) return;
+      if (hideToolbarAniController.status == AnimationStatus.completed) {
+        hideToolbarAniController.reverse();
+      } else {
+        hideToolbarAniController.forward();
+      }
+    }
+
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ReaderLoaderNotifier(
+            readerInfo: readerInfo,
+            sitePageRule: sitePageRule,
+            localEnv: SiteEnvStore(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ReaderNotifier(
+            imageLoadNotifier: context.read<ReaderLoaderNotifier>(),
+          ),
+        ),
+      ],
+      builder: (context, _) => _buildScaffold(
+        context,
+        hideToolbarAni,
+        hideTabBarAni,
+        onHideToolbar,
       ),
-      builder: (context, child) {
-        return ChangeNotifierProvider(
-          create: (context) =>
-              ReaderNotifier(imageLoadNotifier: context.read()),
-          builder: (context, child) => _buildScaffold(context),
-        );
-      },
     );
   }
 
-  Widget _buildScaffold(BuildContext context) {
+  Widget _buildScaffold(
+    BuildContext context,
+    Animation<Offset> hideToolbarAni,
+    Animation<Offset> hideTabBarAni,
+    VoidCallback onHideToolbar,
+  ) {
     return CupertinoPageScaffold(
       navigationBar: OffsetCupertinoAppBar(
         offset: hideToolbarAni,
@@ -86,93 +95,125 @@ class _ImageReaderState extends State<ImageReader>
           leading: const CupertinoBackLeading(
             color: CupertinoColors.white,
           ),
-          trailing: _buildTrailing(context),
+          trailing: _ImageReaderTrailing(),
         ),
       ),
       backgroundColor: CupertinoColors.darkBackgroundGray,
       child: Stack(
         children: [
-          AnimatedBuilder(
-            animation: Listenable.merge([
-              settingService.readerDirectoryNotifier,
-              settingService.displayTypeNotifier
-            ]),
-            builder: (context, _) {
-              return _buildBody(context);
-            },
+          _ImageReaderImage(onImageCenterTap: onHideToolbar),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: SlideTransition(
+              position: hideTabBarAni,
+              child: _ImageReaderSlider(),
+            ),
           ),
-          _buildSlider(context),
         ],
       ),
     );
   }
+}
 
-  Widget _buildSlider(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: SlideTransition(
-        position: hideTabBarAni,
-        child: ClipRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(
-              color: FixColor.navigationBarBackground.darkColor,
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ImagePreviewSlider(),
-                    SizedBox(
-                      height: 50,
-                      child: CupertinoImageSlider(),
-                    )
-                  ],
-                ),
-              ),
+class _ImageReaderTrailing extends HookWidget {
+  const _ImageReaderTrailing();
+
+  @override
+  Widget build(BuildContext context) {
+    final readerDirectory =
+        useValueListenable(settingService.readerDirectoryNotifier);
+    final displayType = useValueListenable(settingService.displayTypeNotifier);
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        switch (readerDirectory) {
+          ReaderDirection.ttb => const SizedBox(),
+          ReaderDirection.ltr || ReaderDirection.rtl => CupertinoButton(
+              padding: EdgeInsets.zero,
+              minSize: 0,
+              child: Icon(switch (displayType) {
+                ReaderDisplayType.single => CupertinoIcons.square,
+                ReaderDisplayType.double => CupertinoIcons.square_split_2x1,
+                ReaderDisplayType.doubleCover =>
+                  CupertinoIcons.square_split_2x1_fill,
+              }),
+              onPressed: () {
+                settingService.displayTypeNotifier.value =
+                    switch (displayType) {
+                  ReaderDisplayType.single => ReaderDisplayType.double,
+                  ReaderDisplayType.double => ReaderDisplayType.doubleCover,
+                  ReaderDisplayType.doubleCover => ReaderDisplayType.single,
+                };
+              },
             ),
+        },
+        const SizedBox(width: 5),
+        CupertinoButton(
+          padding: EdgeInsets.zero,
+          minSize: 0,
+          child: const Icon(
+            CupertinoIcons.settings,
+            color: CupertinoColors.white,
           ),
+          onPressed: () {
+            context.to(const DisplaySettingPage(fromSetting: false));
+          },
         ),
-      ),
+      ],
     );
   }
 
-  Widget _buildBody(BuildContext context) {
+  SettingService get settingService => getIt.get();
+}
+
+class _ImageReaderImage extends HookWidget {
+  const _ImageReaderImage({required this.onImageCenterTap});
+
+  final VoidCallback onImageCenterTap;
+
+  @override
+  Widget build(BuildContext context) {
     final readController = context.read<ReaderNotifier>();
-    final loader = context.read<ReaderLoaderNotifier>();
-    final itemList = loader.readerInfo.items.toList();
-    if (readerDirectory == ReaderDirection.ttb) {
-      return GestureDetector(
-        onTap: () {},
-        onTapUp: (detail) => _onImageTap(context, detail),
-        child: ScrollablePositionedList.builder(
-          itemScrollController: readController.listController,
+    final itemList =
+        context.read<ReaderLoaderNotifier>().readerInfo.items.toList();
+    final ticker = useSingleTickerProvider();
+
+    final readerDirectory =
+        useValueListenable(settingService.readerDirectoryNotifier);
+
+    return switch (readerDirectory) {
+      ReaderDirection.ttb => GestureDetector(
+          onTap: () {},
+          onTapUp: (detail) => _onImageTap(context, detail),
+          child: ScrollablePositionedList.builder(
+            itemScrollController: readController.listController,
+            itemCount: readController.displayPageCount,
+            itemPositionsListener: readController.listPositionsListener,
+            initialScrollIndex: readController.currentPage,
+            itemBuilder: (context, index) {
+              return ImageViewer(
+                index: index,
+                imageWithPreviewModel: itemList.elementAtOrNull(index),
+              );
+            },
+          ),
+        ),
+      ReaderDirection.ltr || ReaderDirection.rtl => PhotoViewGallery.builder(
           itemCount: readController.displayPageCount,
-          itemPositionsListener: readController.listPositionsListener,
-          initialScrollIndex: readController.currentPage,
-          itemBuilder: (context, index) {
-            return ImageViewer(
-              index: index,
-              imageWithPreviewModel: itemList.elementAtOrNull(index),
-            );
+          builder: (context, index) {
+            return readController.isSingleWidget(index)
+                ? _buildSinglePageImage(context, index, ticker)
+                : _buildDoublePageImage(context, index, ticker);
           },
         ),
-      );
-    }
-
-    return PhotoViewGallery.builder(
-      itemCount: readController.displayPageCount,
-      builder: (context, index) {
-        return readController.isSingleWidget(index)
-            ? _buildSinglePageImage(context, index)
-            : _buildDoublePageImage(context, index);
-      },
-    );
+    };
   }
 
   PhotoViewGalleryPageOptions _buildSinglePageImage(
     BuildContext context,
     int index,
+    TickerProvider ticker,
   ) {
     final controller = context.read<ReaderNotifier>();
     final loader = context.read<ReaderLoaderNotifier>();
@@ -198,7 +239,7 @@ class _ImageReaderState extends State<ImageReader>
             return ZoomWidget(
               controller: controller.photoViewController,
               animation: ZoomAnimation(
-                this,
+                ticker,
                 duration: const Duration(milliseconds: 200),
               ),
               canZoom: true,
@@ -213,6 +254,7 @@ class _ImageReaderState extends State<ImageReader>
   PhotoViewGalleryPageOptions _buildDoublePageImage(
     BuildContext context,
     int index,
+    TickerProvider ticker,
   ) {
     final realIndex = switch (settingService.displayType) {
       ReaderDisplayType.double => index * 2,
@@ -234,7 +276,7 @@ class _ImageReaderState extends State<ImageReader>
         child: ZoomWidget(
           controller: notifier.photoViewController,
           animation: ZoomAnimation(
-            this,
+            ticker,
             duration: const Duration(milliseconds: 200),
           ),
           canZoom: true,
@@ -249,7 +291,8 @@ class _ImageReaderState extends State<ImageReader>
               ),
               Expanded(
                 child: ImageViewer(
-                  imageWithPreviewModel: itemList.elementAtOrNull(realIndex + 1),
+                  imageWithPreviewModel:
+                      itemList.elementAtOrNull(realIndex + 1),
                   index: realIndex + 1,
                 ),
               ),
@@ -257,55 +300,6 @@ class _ImageReaderState extends State<ImageReader>
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildTrailing(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        AnimatedBuilder(
-          animation: Listenable.merge([
-            settingService.readerDirectoryNotifier,
-            settingService.displayTypeNotifier
-          ]),
-          builder: (context, _) {
-            if (readerDirectory == ReaderDirection.ttb) {
-              return const SizedBox();
-            }
-            return CupertinoButton(
-              padding: EdgeInsets.zero,
-              minSize: 0,
-              child: Icon(switch (displayType) {
-                ReaderDisplayType.single => CupertinoIcons.square,
-                ReaderDisplayType.double => CupertinoIcons.square_split_2x1,
-                ReaderDisplayType.doubleCover =>
-                  CupertinoIcons.square_split_2x1_fill,
-              }),
-              onPressed: () {
-                settingService.displayTypeNotifier.value =
-                    switch (displayType) {
-                  ReaderDisplayType.single => ReaderDisplayType.double,
-                  ReaderDisplayType.double => ReaderDisplayType.doubleCover,
-                  ReaderDisplayType.doubleCover => ReaderDisplayType.single,
-                };
-              },
-            );
-          },
-        ),
-        const SizedBox(width: 5),
-        CupertinoButton(
-          padding: EdgeInsets.zero,
-          minSize: 0,
-          child: const Icon(
-            CupertinoIcons.settings,
-            color: CupertinoColors.white,
-          ),
-          onPressed: () {
-            context.to(const DisplaySettingPage(fromSetting: false));
-          },
-        ),
-      ],
     );
   }
 
@@ -318,7 +312,7 @@ class _ImageReaderState extends State<ImageReader>
     final tap = details.globalPosition.dx;
 
     if (left < tap && tap < right) {
-      _onHideToolbar();
+      onImageCenterTap();
     } else if (tap < left) {
       controller.toPreviousPage();
     } else {
@@ -326,20 +320,34 @@ class _ImageReaderState extends State<ImageReader>
     }
   }
 
-  void _onHideToolbar() {
-    if (hideToolbarAniController.isAnimating) {
-      return;
-    }
-    if (hideToolbarAniController.status == AnimationStatus.completed) {
-      hideToolbarAniController.reverse();
-    } else {
-      hideToolbarAniController.forward();
-    }
-  }
-
   SettingService get settingService => getIt.get();
+}
 
-  ReaderDisplayType get displayType => settingService.displayType;
+class _ImageReaderSlider extends StatelessWidget {
+  const _ImageReaderSlider();
 
-  ReaderDirection get readerDirectory => settingService.readerDirectory;
+  @override
+  Widget build(BuildContext context) {
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          color: FixColor.navigationBarBackground.darkColor,
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ImagePreviewSlider(),
+                SizedBox(
+                  height: 50,
+                  child: CupertinoImageSlider(),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
