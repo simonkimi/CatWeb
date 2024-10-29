@@ -22,6 +22,7 @@ mixin _$AsyncProgressValue<T> {
     required TResult Function(T value) data,
     required TResult Function(double progress) loading,
     required TResult Function(Object error, StackTrace stackTrace) error,
+    required TResult Function() cached,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$AsyncProgressValue<T> {
     TResult? Function(T value)? data,
     TResult? Function(double progress)? loading,
     TResult? Function(Object error, StackTrace stackTrace)? error,
+    TResult? Function()? cached,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$AsyncProgressValue<T> {
     TResult Function(T value)? data,
     TResult Function(double progress)? loading,
     TResult Function(Object error, StackTrace stackTrace)? error,
+    TResult Function()? cached,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$AsyncProgressValue<T> {
     required TResult Function(AsyncProgressData<T> value) data,
     required TResult Function(AsyncProgressLoading<T> value) loading,
     required TResult Function(AsyncProgressError<T> value) error,
+    required TResult Function(AsyncProgressCached<T> value) cached,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$AsyncProgressValue<T> {
     TResult? Function(AsyncProgressData<T> value)? data,
     TResult? Function(AsyncProgressLoading<T> value)? loading,
     TResult? Function(AsyncProgressError<T> value)? error,
+    TResult? Function(AsyncProgressCached<T> value)? cached,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$AsyncProgressValue<T> {
     TResult Function(AsyncProgressData<T> value)? data,
     TResult Function(AsyncProgressLoading<T> value)? loading,
     TResult Function(AsyncProgressError<T> value)? error,
+    TResult Function(AsyncProgressCached<T> value)? cached,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -137,6 +143,7 @@ class _$AsyncProgressIdleImpl<T> extends AsyncProgressIdle<T> {
     required TResult Function(T value) data,
     required TResult Function(double progress) loading,
     required TResult Function(Object error, StackTrace stackTrace) error,
+    required TResult Function() cached,
   }) {
     return idle();
   }
@@ -148,6 +155,7 @@ class _$AsyncProgressIdleImpl<T> extends AsyncProgressIdle<T> {
     TResult? Function(T value)? data,
     TResult? Function(double progress)? loading,
     TResult? Function(Object error, StackTrace stackTrace)? error,
+    TResult? Function()? cached,
   }) {
     return idle?.call();
   }
@@ -159,6 +167,7 @@ class _$AsyncProgressIdleImpl<T> extends AsyncProgressIdle<T> {
     TResult Function(T value)? data,
     TResult Function(double progress)? loading,
     TResult Function(Object error, StackTrace stackTrace)? error,
+    TResult Function()? cached,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -174,6 +183,7 @@ class _$AsyncProgressIdleImpl<T> extends AsyncProgressIdle<T> {
     required TResult Function(AsyncProgressData<T> value) data,
     required TResult Function(AsyncProgressLoading<T> value) loading,
     required TResult Function(AsyncProgressError<T> value) error,
+    required TResult Function(AsyncProgressCached<T> value) cached,
   }) {
     return idle(this);
   }
@@ -185,6 +195,7 @@ class _$AsyncProgressIdleImpl<T> extends AsyncProgressIdle<T> {
     TResult? Function(AsyncProgressData<T> value)? data,
     TResult? Function(AsyncProgressLoading<T> value)? loading,
     TResult? Function(AsyncProgressError<T> value)? error,
+    TResult? Function(AsyncProgressCached<T> value)? cached,
   }) {
     return idle?.call(this);
   }
@@ -196,6 +207,7 @@ class _$AsyncProgressIdleImpl<T> extends AsyncProgressIdle<T> {
     TResult Function(AsyncProgressData<T> value)? data,
     TResult Function(AsyncProgressLoading<T> value)? loading,
     TResult Function(AsyncProgressError<T> value)? error,
+    TResult Function(AsyncProgressCached<T> value)? cached,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -286,6 +298,7 @@ class _$AsyncProgressDataImpl<T> extends AsyncProgressData<T> {
     required TResult Function(T value) data,
     required TResult Function(double progress) loading,
     required TResult Function(Object error, StackTrace stackTrace) error,
+    required TResult Function() cached,
   }) {
     return data(value);
   }
@@ -297,6 +310,7 @@ class _$AsyncProgressDataImpl<T> extends AsyncProgressData<T> {
     TResult? Function(T value)? data,
     TResult? Function(double progress)? loading,
     TResult? Function(Object error, StackTrace stackTrace)? error,
+    TResult? Function()? cached,
   }) {
     return data?.call(value);
   }
@@ -308,6 +322,7 @@ class _$AsyncProgressDataImpl<T> extends AsyncProgressData<T> {
     TResult Function(T value)? data,
     TResult Function(double progress)? loading,
     TResult Function(Object error, StackTrace stackTrace)? error,
+    TResult Function()? cached,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -323,6 +338,7 @@ class _$AsyncProgressDataImpl<T> extends AsyncProgressData<T> {
     required TResult Function(AsyncProgressData<T> value) data,
     required TResult Function(AsyncProgressLoading<T> value) loading,
     required TResult Function(AsyncProgressError<T> value) error,
+    required TResult Function(AsyncProgressCached<T> value) cached,
   }) {
     return data(this);
   }
@@ -334,6 +350,7 @@ class _$AsyncProgressDataImpl<T> extends AsyncProgressData<T> {
     TResult? Function(AsyncProgressData<T> value)? data,
     TResult? Function(AsyncProgressLoading<T> value)? loading,
     TResult? Function(AsyncProgressError<T> value)? error,
+    TResult? Function(AsyncProgressCached<T> value)? cached,
   }) {
     return data?.call(this);
   }
@@ -345,6 +362,7 @@ class _$AsyncProgressDataImpl<T> extends AsyncProgressData<T> {
     TResult Function(AsyncProgressData<T> value)? data,
     TResult Function(AsyncProgressLoading<T> value)? loading,
     TResult Function(AsyncProgressError<T> value)? error,
+    TResult Function(AsyncProgressCached<T> value)? cached,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -443,6 +461,7 @@ class _$AsyncProgressLoadingImpl<T> extends AsyncProgressLoading<T> {
     required TResult Function(T value) data,
     required TResult Function(double progress) loading,
     required TResult Function(Object error, StackTrace stackTrace) error,
+    required TResult Function() cached,
   }) {
     return loading(progress);
   }
@@ -454,6 +473,7 @@ class _$AsyncProgressLoadingImpl<T> extends AsyncProgressLoading<T> {
     TResult? Function(T value)? data,
     TResult? Function(double progress)? loading,
     TResult? Function(Object error, StackTrace stackTrace)? error,
+    TResult? Function()? cached,
   }) {
     return loading?.call(progress);
   }
@@ -465,6 +485,7 @@ class _$AsyncProgressLoadingImpl<T> extends AsyncProgressLoading<T> {
     TResult Function(T value)? data,
     TResult Function(double progress)? loading,
     TResult Function(Object error, StackTrace stackTrace)? error,
+    TResult Function()? cached,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -480,6 +501,7 @@ class _$AsyncProgressLoadingImpl<T> extends AsyncProgressLoading<T> {
     required TResult Function(AsyncProgressData<T> value) data,
     required TResult Function(AsyncProgressLoading<T> value) loading,
     required TResult Function(AsyncProgressError<T> value) error,
+    required TResult Function(AsyncProgressCached<T> value) cached,
   }) {
     return loading(this);
   }
@@ -491,6 +513,7 @@ class _$AsyncProgressLoadingImpl<T> extends AsyncProgressLoading<T> {
     TResult? Function(AsyncProgressData<T> value)? data,
     TResult? Function(AsyncProgressLoading<T> value)? loading,
     TResult? Function(AsyncProgressError<T> value)? error,
+    TResult? Function(AsyncProgressCached<T> value)? cached,
   }) {
     return loading?.call(this);
   }
@@ -502,6 +525,7 @@ class _$AsyncProgressLoadingImpl<T> extends AsyncProgressLoading<T> {
     TResult Function(AsyncProgressData<T> value)? data,
     TResult Function(AsyncProgressLoading<T> value)? loading,
     TResult Function(AsyncProgressError<T> value)? error,
+    TResult Function(AsyncProgressCached<T> value)? cached,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -606,6 +630,7 @@ class _$AsyncProgressErrorImpl<T> extends AsyncProgressError<T> {
     required TResult Function(T value) data,
     required TResult Function(double progress) loading,
     required TResult Function(Object error, StackTrace stackTrace) error,
+    required TResult Function() cached,
   }) {
     return error(this.error, stackTrace);
   }
@@ -617,6 +642,7 @@ class _$AsyncProgressErrorImpl<T> extends AsyncProgressError<T> {
     TResult? Function(T value)? data,
     TResult? Function(double progress)? loading,
     TResult? Function(Object error, StackTrace stackTrace)? error,
+    TResult? Function()? cached,
   }) {
     return error?.call(this.error, stackTrace);
   }
@@ -628,6 +654,7 @@ class _$AsyncProgressErrorImpl<T> extends AsyncProgressError<T> {
     TResult Function(T value)? data,
     TResult Function(double progress)? loading,
     TResult Function(Object error, StackTrace stackTrace)? error,
+    TResult Function()? cached,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -643,6 +670,7 @@ class _$AsyncProgressErrorImpl<T> extends AsyncProgressError<T> {
     required TResult Function(AsyncProgressData<T> value) data,
     required TResult Function(AsyncProgressLoading<T> value) loading,
     required TResult Function(AsyncProgressError<T> value) error,
+    required TResult Function(AsyncProgressCached<T> value) cached,
   }) {
     return error(this);
   }
@@ -654,6 +682,7 @@ class _$AsyncProgressErrorImpl<T> extends AsyncProgressError<T> {
     TResult? Function(AsyncProgressData<T> value)? data,
     TResult? Function(AsyncProgressLoading<T> value)? loading,
     TResult? Function(AsyncProgressError<T> value)? error,
+    TResult? Function(AsyncProgressCached<T> value)? cached,
   }) {
     return error?.call(this);
   }
@@ -665,6 +694,7 @@ class _$AsyncProgressErrorImpl<T> extends AsyncProgressError<T> {
     TResult Function(AsyncProgressData<T> value)? data,
     TResult Function(AsyncProgressLoading<T> value)? loading,
     TResult Function(AsyncProgressError<T> value)? error,
+    TResult Function(AsyncProgressCached<T> value)? cached,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -688,4 +718,130 @@ abstract class AsyncProgressError<T> extends AsyncProgressValue<T> {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AsyncProgressErrorImplCopyWith<T, _$AsyncProgressErrorImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AsyncProgressCachedImplCopyWith<T, $Res> {
+  factory _$$AsyncProgressCachedImplCopyWith(_$AsyncProgressCachedImpl<T> value,
+          $Res Function(_$AsyncProgressCachedImpl<T>) then) =
+      __$$AsyncProgressCachedImplCopyWithImpl<T, $Res>;
+}
+
+/// @nodoc
+class __$$AsyncProgressCachedImplCopyWithImpl<T, $Res>
+    extends _$AsyncProgressValueCopyWithImpl<T, $Res,
+        _$AsyncProgressCachedImpl<T>>
+    implements _$$AsyncProgressCachedImplCopyWith<T, $Res> {
+  __$$AsyncProgressCachedImplCopyWithImpl(_$AsyncProgressCachedImpl<T> _value,
+      $Res Function(_$AsyncProgressCachedImpl<T>) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AsyncProgressValue
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AsyncProgressCachedImpl<T> extends AsyncProgressCached<T> {
+  const _$AsyncProgressCachedImpl() : super._();
+
+  @override
+  String toString() {
+    return 'AsyncProgressValue<$T>.cached()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AsyncProgressCachedImpl<T>);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function(T value) data,
+    required TResult Function(double progress) loading,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+    required TResult Function() cached,
+  }) {
+    return cached();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function(T value)? data,
+    TResult? Function(double progress)? loading,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+    TResult? Function()? cached,
+  }) {
+    return cached?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function(T value)? data,
+    TResult Function(double progress)? loading,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    TResult Function()? cached,
+    required TResult orElse(),
+  }) {
+    if (cached != null) {
+      return cached();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AsyncProgressIdle<T> value) idle,
+    required TResult Function(AsyncProgressData<T> value) data,
+    required TResult Function(AsyncProgressLoading<T> value) loading,
+    required TResult Function(AsyncProgressError<T> value) error,
+    required TResult Function(AsyncProgressCached<T> value) cached,
+  }) {
+    return cached(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AsyncProgressIdle<T> value)? idle,
+    TResult? Function(AsyncProgressData<T> value)? data,
+    TResult? Function(AsyncProgressLoading<T> value)? loading,
+    TResult? Function(AsyncProgressError<T> value)? error,
+    TResult? Function(AsyncProgressCached<T> value)? cached,
+  }) {
+    return cached?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AsyncProgressIdle<T> value)? idle,
+    TResult Function(AsyncProgressData<T> value)? data,
+    TResult Function(AsyncProgressLoading<T> value)? loading,
+    TResult Function(AsyncProgressError<T> value)? error,
+    TResult Function(AsyncProgressCached<T> value)? cached,
+    required TResult orElse(),
+  }) {
+    if (cached != null) {
+      return cached(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AsyncProgressCached<T> extends AsyncProgressValue<T> {
+  const factory AsyncProgressCached() = _$AsyncProgressCachedImpl<T>;
+  const AsyncProgressCached._() : super._();
 }

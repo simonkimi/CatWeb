@@ -6,6 +6,7 @@ import 'package:catweb/data/models/site/site_blueprint.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 
 import 'package:catweb/utils/iter_helper.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'db.dart';
 
@@ -39,7 +40,7 @@ class SiteService {
 
   Future setDefaultSite() async {
     final sites = await db.webDao.getAll();
-    final df = sites.get((e) => e.id == setting.defaultSite);
+    final df = sites.firstWhereOrNull((e) => e.id == setting.defaultSite);
     await setNewSite(df);
   }
 
@@ -63,7 +64,7 @@ class SiteService {
 
   void onDbChanged(List<WebTableData> event) {
     // 检测当前网站的配置是否被更新
-    final currentNewSite = event.get((e) => e.id == id);
+    final currentNewSite = event.firstWhereOrNull((e) => e.id == id);
     if (currentNewSite != null) {
       if (currentNewSite.loginCookies != currentSite!.dbEntity.loginCookies ||
           currentNewSite.blueprint != currentSite!.dbEntity.blueprint) {

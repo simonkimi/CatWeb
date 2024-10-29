@@ -65,7 +65,7 @@ abstract base class LoadPageLoaderBase<TPageItem> with ChangeNotifier {
       // 如果有总数, 加载所有数据
       for (var i = 0; i < totalCount!; i++) {
         final index = (i / chunkSize!).floor();
-        yield _pages[index]?.items.index(i % chunkSize!);
+        yield _pages[index]?.items.elementAtOrNull(i % chunkSize!);
       }
     } else {
       // 没有总数, 则数据是连续的

@@ -16,6 +16,8 @@ class AsyncProgressValue<T> with _$AsyncProgressValue<T> {
   const factory AsyncProgressValue.error(Object error, StackTrace stackTrace) =
       AsyncProgressError<T>;
 
+  const factory AsyncProgressValue.cached() = AsyncProgressCached<T>;
+
   bool get isLoading => switch (this) {
         AsyncProgressLoading() => true,
         _ => false,

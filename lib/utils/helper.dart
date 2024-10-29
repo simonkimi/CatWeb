@@ -18,10 +18,6 @@ extension ListUtils<T> on List<T> {
 
   bool has(int index) => length > index && index >= 0;
 
-  T? index(int index) {
-    return has(index) ? this[index] : null;
-  }
-
   List<T> addIfNotExist(Iterable<T> other) {
     addAll(other.where((e) => !contains(e)));
     return this;
@@ -29,6 +25,10 @@ extension ListUtils<T> on List<T> {
 
   T lastAt(int index) {
     return this[length - index];
+  }
+
+  Iterable<MapEntry<int, T>> withIndex() {
+    return asMap().entries;
   }
 
   Iterable<T> getSuccessive(int Function(T e) getKey) sync* {
@@ -82,7 +82,12 @@ T? iterableMin<T extends num>(Iterable<T> iter) {
   return iter.reduce(math.min);
 }
 
-
 List<T> replaceAt<T>(List<T> list, int index, T newValue) {
   return List.of(list)..[index] = newValue;
+}
+
+extension Let<T> on T {
+  R let<R>(R Function(T) block) {
+    return block(this);
+  }
 }

@@ -4,7 +4,7 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/delay_task.dart';
-import 'package:catweb/utils/iter_helper.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 
 class SearchNotifier with ChangeNotifier {
@@ -13,7 +13,7 @@ class SearchNotifier with ChangeNotifier {
     required this.website,
   }) {
     autoCompleteRule = website.blueMap.pageList
-        .get((e) => e.uuid == listRule.templateList.targetAutoComplete);
+        .firstWhereOrNull((e) => e.uuid == listRule.templateList.targetAutoComplete);
 
     if (autoCompleteRule != null) {
       textController.addListener(() {

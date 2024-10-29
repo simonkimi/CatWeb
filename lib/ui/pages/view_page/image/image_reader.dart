@@ -153,7 +153,7 @@ class _ImageReaderState extends State<ImageReader>
           itemBuilder: (context, index) {
             return ImageViewer(
               index: index,
-              imageWithPreviewModel: itemList.index(index),
+              imageWithPreviewModel: itemList.elementAtOrNull(index),
             );
           },
         ),
@@ -193,7 +193,7 @@ class _ImageReaderState extends State<ImageReader>
         child: ImageViewer(
           // TODO 空检查
           index: readIndex,
-          imageWithPreviewModel: itemList.index(readIndex),
+          imageWithPreviewModel: itemList.elementAtOrNull(readIndex),
           imageWrapBuilder: (context, child) {
             return ZoomWidget(
               controller: controller.photoViewController,
@@ -243,13 +243,13 @@ class _ImageReaderState extends State<ImageReader>
               // TODO 空检查
               Expanded(
                 child: ImageViewer(
-                  imageWithPreviewModel: itemList.index(realIndex),
+                  imageWithPreviewModel: itemList.elementAtOrNull(realIndex),
                   index: realIndex,
                 ),
               ),
               Expanded(
                 child: ImageViewer(
-                  imageWithPreviewModel: itemList.index(realIndex + 1),
+                  imageWithPreviewModel: itemList.elementAtOrNull(realIndex + 1),
                   index: realIndex + 1,
                 ),
               ),

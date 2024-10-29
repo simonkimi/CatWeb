@@ -2,6 +2,7 @@ import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:catweb/utils/iter_helper.dart';
 import 'package:catweb/utils/widget.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 
 class SettingSelectionTile<T> extends StatelessWidget {
@@ -39,7 +40,7 @@ class SettingSelectionTile<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return value.obx((v) => SettingTile(
           title: title,
-          trailingText: items.get((e) => e.value == v)?.title,
+          trailingText: items.firstWhereOrNull((e) => e.value == v)?.title,
           onTap: () => _onTap(context),
         ));
   }

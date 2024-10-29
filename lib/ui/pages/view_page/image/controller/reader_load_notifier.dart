@@ -43,7 +43,7 @@ class _LoadPageTask extends PriorityTask<void> {
 
   @override
   Future<void> run() async {
-    final model = readerInfo.items.toList().index(index);
+    final model = readerInfo.items.toList().elementAtOrNull(index);
     if (model == null) {
       await readerInfo.loadIndexModel(index);
       if (model == null) {

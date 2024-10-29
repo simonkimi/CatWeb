@@ -6,6 +6,7 @@ import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/utils/context_helper.dart';
+import 'package:catweb/utils/helper.dart';
 import 'package:catweb/utils/hook_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -45,7 +46,7 @@ class ListFilterEditor extends HookWidget {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                for (final MapEntry(:key, :value) in filters.asMap().entries)
+                for (final MapEntry(:key, :value) in filters.withIndex())
                   CupertinoDeletableTile(
                     index: key,
                     controller: filterController,

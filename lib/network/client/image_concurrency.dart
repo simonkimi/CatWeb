@@ -1,7 +1,10 @@
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/controller/site.dart';
+import 'package:catweb/data/loaders/async_progress_value.dart';
+import 'package:catweb/data/loaders/priority_task_query.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/app.dart';
+import 'package:collection/collection.dart';
 
 import 'package:dio/dio.dart';
 
@@ -19,8 +22,7 @@ class ImageLoaderQueue {
   final _container = <String, ImageLoadNotifier>{};
   final CancelToken cancelToken = CancelToken();
 
-  List<ImageLoadNotifier> get activeImage =>
-      _container.values.where((e) => e.needLoad).toList();
+  final Set<ImageLoadNotifier> _loadingQueue = {};
 
   ImageLoadNotifier create(ImageResult model) {
     final key = model.cacheKey ?? model.url!;
@@ -33,7 +35,12 @@ class ImageLoaderQueue {
       _container[key] = exist;
     }
     exist.handleMounted();
-    trigger();
+    if (exist.value is AsyncProgressCached) {
+      exist.load(cancelToken);
+    } else {
+      trigger();
+    }
+
     return exist;
   }
 
@@ -46,9 +53,16 @@ class ImageLoaderQueue {
   }
 
   void trigger() {
-    while ((activeImage.length < concurrency || concurrency == 0) &&
-        activeImage.isNotEmpty) {
-      activeImage.first.load(cancelToken).whenComplete(trigger);
+    while (_loadingQueue.length < concurrency || concurrency == 0) {
+      final img = _container.values.firstWhereOrNull((e) => e.needLoad);
+      if (img == null) {
+        break;
+      }
+      _loadingQueue.add(img);
+      img.load(cancelToken).whenComplete(() {
+        _loadingQueue.remove(img);
+        Future.microtask(trigger);
+      });
     }
   }
 

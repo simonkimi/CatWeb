@@ -108,7 +108,7 @@ abstract class BasePageLoaderNotifier<TItems,
     if (totalSize != null) {
       for (var i = 0; i < totalSize!; i++) {
         final index = (i / chunkSize!).floor();
-        yield pageData[index]?.items.index(i % chunkSize!);
+        yield pageData[index]?.items.elementAtOrNull(i % chunkSize!);
       }
     } else {
       final maxIndex = pageData.keys.fold(-1, max);

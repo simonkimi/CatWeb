@@ -115,7 +115,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                     aspectRatio: 200 / 282,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
-                      child: successiveItems.index(index) != null
+                      child: successiveItems.elementAtOrNull(index) != null
                           ? ImageLoader(
                               queue: notifier.imageQueue,
                               model: successiveItems[index].previewImage,

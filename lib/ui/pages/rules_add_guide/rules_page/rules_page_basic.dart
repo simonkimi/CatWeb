@@ -11,6 +11,7 @@ import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/widgets/notifier_selector.dart';
 import 'package:catweb/utils/icons.dart';
 import 'package:catweb/utils/iter_helper.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
@@ -70,7 +71,7 @@ class RulesPageBasic extends StatelessWidget {
               return TripleReadonlyTextField(
                 labelText: I.of(context).parser,
                 value: value.parserList
-                        .get((e) => e.uuid == value.parserId)
+                        .firstWhereOrNull((e) => e.uuid == value.parserId)
                         ?.name ??
                     'No parser',
                 onTap: () => _onParserTap(context),
@@ -221,8 +222,8 @@ class _OpenPageSelector extends StatelessWidget {
       builder: (_, pageList, __) {
         return TripleReadonlyTextField(
           labelText: labelText,
-          value:
-              pageList.get((e) => e.uuid == target)?.name ?? I.of(context).none,
+          value: pageList.firstWhereOrNull((e) => e.uuid == target)?.name ??
+              I.of(context).none,
           onTap: () async {
             final result = await showCupertinoSelectDialog(
               context: context,

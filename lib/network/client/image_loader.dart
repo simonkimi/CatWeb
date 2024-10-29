@@ -43,7 +43,7 @@ class ImageLoadNotifier extends ValueNotifier<AsyncProgressValue<Uint8List>> {
   }
 
   Future<void> free() async {
-    value = const AsyncProgressValue.idle();
+    value = const AsyncProgressValue.cached();
   }
 
   void handleMounted() {
