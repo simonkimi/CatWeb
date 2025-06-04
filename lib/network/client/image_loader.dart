@@ -4,6 +4,7 @@ import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/app.dart';
 
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/foundation.dart';
 
 class ImageLoadNotifier extends ValueNotifier<AsyncProgressValue<Uint8List>> {
@@ -30,7 +31,7 @@ class ImageLoadNotifier extends ValueNotifier<AsyncProgressValue<Uint8List>> {
         model.url!,
         onReceiveProgress: (r, t) => value = AsyncProgressValue.loading(r / t),
         options: global.imageCacheOption
-            .copyWith(keyBuilder: (req) => key)
+            .copyWith(keyBuilder: ({headers, required url}) => key)
             .toOptions()
             .copyWith(responseType: ResponseType.bytes),
         cancelToken: cancelToken,

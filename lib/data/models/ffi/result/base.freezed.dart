@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,196 +10,30 @@ part of 'base.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ImageResult _$ImageResultFromJson(Map<String, dynamic> json) {
-  return _ImageResult.fromJson(json);
-}
-
 /// @nodoc
-mixin _$ImageResult {
-  String? get url => throw _privateConstructorUsedError;
-  String? get cacheKey => throw _privateConstructorUsedError;
-  double? get width => throw _privateConstructorUsedError;
-  double? get height => throw _privateConstructorUsedError;
-  double? get x => throw _privateConstructorUsedError;
-  double? get y => throw _privateConstructorUsedError;
-
-  /// Serializes this ImageResult to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+mixin _$ImageResult implements DiagnosticableTreeMixin {
+  String? get url;
+  String? get cacheKey;
+  double? get width;
+  double? get height;
+  double? get x;
+  double? get y;
 
   /// Create a copy of ImageResult
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ImageResultCopyWith<ImageResult> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$ImageResultCopyWithImpl<ImageResult>(this as ImageResult, _$identity);
 
-/// @nodoc
-abstract class $ImageResultCopyWith<$Res> {
-  factory $ImageResultCopyWith(
-          ImageResult value, $Res Function(ImageResult) then) =
-      _$ImageResultCopyWithImpl<$Res, ImageResult>;
-  @useResult
-  $Res call(
-      {String? url,
-      String? cacheKey,
-      double? width,
-      double? height,
-      double? x,
-      double? y});
-}
-
-/// @nodoc
-class _$ImageResultCopyWithImpl<$Res, $Val extends ImageResult>
-    implements $ImageResultCopyWith<$Res> {
-  _$ImageResultCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ImageResult
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? url = freezed,
-    Object? cacheKey = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
-    Object? x = freezed,
-    Object? y = freezed,
-  }) {
-    return _then(_value.copyWith(
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      cacheKey: freezed == cacheKey
-          ? _value.cacheKey
-          : cacheKey // ignore: cast_nullable_to_non_nullable
-              as String?,
-      width: freezed == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as double?,
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as double?,
-      x: freezed == x
-          ? _value.x
-          : x // ignore: cast_nullable_to_non_nullable
-              as double?,
-      y: freezed == y
-          ? _value.y
-          : y // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ImageResultImplCopyWith<$Res>
-    implements $ImageResultCopyWith<$Res> {
-  factory _$$ImageResultImplCopyWith(
-          _$ImageResultImpl value, $Res Function(_$ImageResultImpl) then) =
-      __$$ImageResultImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String? url,
-      String? cacheKey,
-      double? width,
-      double? height,
-      double? x,
-      double? y});
-}
-
-/// @nodoc
-class __$$ImageResultImplCopyWithImpl<$Res>
-    extends _$ImageResultCopyWithImpl<$Res, _$ImageResultImpl>
-    implements _$$ImageResultImplCopyWith<$Res> {
-  __$$ImageResultImplCopyWithImpl(
-      _$ImageResultImpl _value, $Res Function(_$ImageResultImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ImageResult
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? url = freezed,
-    Object? cacheKey = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
-    Object? x = freezed,
-    Object? y = freezed,
-  }) {
-    return _then(_$ImageResultImpl(
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      cacheKey: freezed == cacheKey
-          ? _value.cacheKey
-          : cacheKey // ignore: cast_nullable_to_non_nullable
-              as String?,
-      width: freezed == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as double?,
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as double?,
-      x: freezed == x
-          ? _value.x
-          : x // ignore: cast_nullable_to_non_nullable
-              as double?,
-      y: freezed == y
-          ? _value.y
-          : y // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ImageResultImpl with DiagnosticableTreeMixin implements _ImageResult {
-  const _$ImageResultImpl(
-      {this.url, this.cacheKey, this.width, this.height, this.x, this.y});
-
-  factory _$ImageResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ImageResultImplFromJson(json);
-
-  @override
-  final String? url;
-  @override
-  final String? cacheKey;
-  @override
-  final double? width;
-  @override
-  final double? height;
-  @override
-  final double? x;
-  @override
-  final double? y;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ImageResult(url: $url, cacheKey: $cacheKey, width: $width, height: $height, x: $x, y: $y)';
-  }
+  /// Serializes this ImageResult to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ImageResult'))
       ..add(DiagnosticsProperty('url', url))
@@ -213,7 +48,7 @@ class _$ImageResultImpl with DiagnosticableTreeMixin implements _ImageResult {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ImageResultImpl &&
+            other is ImageResult &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.cacheKey, cacheKey) ||
                 other.cacheKey == cacheKey) &&
@@ -228,246 +63,234 @@ class _$ImageResultImpl with DiagnosticableTreeMixin implements _ImageResult {
   int get hashCode =>
       Object.hash(runtimeType, url, cacheKey, width, height, x, y);
 
-  /// Create a copy of ImageResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ImageResultImplCopyWith<_$ImageResultImpl> get copyWith =>
-      __$$ImageResultImplCopyWithImpl<_$ImageResultImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ImageResultImplToJson(
-      this,
-    );
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ImageResult(url: $url, cacheKey: $cacheKey, width: $width, height: $height, x: $x, y: $y)';
   }
 }
 
-abstract class _ImageResult implements ImageResult {
-  const factory _ImageResult(
-      {final String? url,
-      final String? cacheKey,
-      final double? width,
-      final double? height,
-      final double? x,
-      final double? y}) = _$ImageResultImpl;
-
-  factory _ImageResult.fromJson(Map<String, dynamic> json) =
-      _$ImageResultImpl.fromJson;
-
-  @override
-  String? get url;
-  @override
-  String? get cacheKey;
-  @override
-  double? get width;
-  @override
-  double? get height;
-  @override
-  double? get x;
-  @override
-  double? get y;
-
-  /// Create a copy of ImageResult
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ImageResultImplCopyWith<_$ImageResultImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-CommentResult _$CommentResultFromJson(Map<String, dynamic> json) {
-  return _CommentResult.fromJson(json);
-}
-
 /// @nodoc
-mixin _$CommentResult {
-  String? get username => throw _privateConstructorUsedError;
-  String? get content => throw _privateConstructorUsedError;
-  String? get time => throw _privateConstructorUsedError;
-  String? get score => throw _privateConstructorUsedError;
-  ImageResult? get avatar => throw _privateConstructorUsedError;
-
-  /// Serializes this CommentResult to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CommentResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CommentResultCopyWith<CommentResult> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CommentResultCopyWith<$Res> {
-  factory $CommentResultCopyWith(
-          CommentResult value, $Res Function(CommentResult) then) =
-      _$CommentResultCopyWithImpl<$Res, CommentResult>;
+abstract mixin class $ImageResultCopyWith<$Res> {
+  factory $ImageResultCopyWith(
+          ImageResult value, $Res Function(ImageResult) _then) =
+      _$ImageResultCopyWithImpl;
   @useResult
   $Res call(
-      {String? username,
-      String? content,
-      String? time,
-      String? score,
-      ImageResult? avatar});
-
-  $ImageResultCopyWith<$Res>? get avatar;
+      {String? url,
+      String? cacheKey,
+      double? width,
+      double? height,
+      double? x,
+      double? y});
 }
 
 /// @nodoc
-class _$CommentResultCopyWithImpl<$Res, $Val extends CommentResult>
-    implements $CommentResultCopyWith<$Res> {
-  _$CommentResultCopyWithImpl(this._value, this._then);
+class _$ImageResultCopyWithImpl<$Res> implements $ImageResultCopyWith<$Res> {
+  _$ImageResultCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ImageResult _self;
+  final $Res Function(ImageResult) _then;
 
-  /// Create a copy of CommentResult
+  /// Create a copy of ImageResult
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = freezed,
-    Object? content = freezed,
-    Object? time = freezed,
-    Object? score = freezed,
-    Object? avatar = freezed,
+    Object? url = freezed,
+    Object? cacheKey = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
+    Object? x = freezed,
+    Object? y = freezed,
   }) {
-    return _then(_value.copyWith(
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+    return _then(_self.copyWith(
+      url: freezed == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      cacheKey: freezed == cacheKey
+          ? _self.cacheKey
+          : cacheKey // ignore: cast_nullable_to_non_nullable
               as String?,
-      time: freezed == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String?,
-      score: freezed == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as String?,
-      avatar: freezed == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as ImageResult?,
-    ) as $Val);
-  }
-
-  /// Create a copy of CommentResult
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageResultCopyWith<$Res>? get avatar {
-    if (_value.avatar == null) {
-      return null;
-    }
-
-    return $ImageResultCopyWith<$Res>(_value.avatar!, (value) {
-      return _then(_value.copyWith(avatar: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$CommentResultImplCopyWith<$Res>
-    implements $CommentResultCopyWith<$Res> {
-  factory _$$CommentResultImplCopyWith(
-          _$CommentResultImpl value, $Res Function(_$CommentResultImpl) then) =
-      __$$CommentResultImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String? username,
-      String? content,
-      String? time,
-      String? score,
-      ImageResult? avatar});
-
-  @override
-  $ImageResultCopyWith<$Res>? get avatar;
-}
-
-/// @nodoc
-class __$$CommentResultImplCopyWithImpl<$Res>
-    extends _$CommentResultCopyWithImpl<$Res, _$CommentResultImpl>
-    implements _$$CommentResultImplCopyWith<$Res> {
-  __$$CommentResultImplCopyWithImpl(
-      _$CommentResultImpl _value, $Res Function(_$CommentResultImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CommentResult
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? username = freezed,
-    Object? content = freezed,
-    Object? time = freezed,
-    Object? score = freezed,
-    Object? avatar = freezed,
-  }) {
-    return _then(_$CommentResultImpl(
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      time: freezed == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String?,
-      score: freezed == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as String?,
-      avatar: freezed == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as ImageResult?,
+      width: freezed == width
+          ? _self.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as double?,
+      height: freezed == height
+          ? _self.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as double?,
+      x: freezed == x
+          ? _self.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as double?,
+      y: freezed == y
+          ? _self.y
+          : y // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CommentResultImpl
-    with DiagnosticableTreeMixin
-    implements _CommentResult {
-  const _$CommentResultImpl(
-      {this.username, this.content, this.time, this.score, this.avatar});
-
-  factory _$CommentResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CommentResultImplFromJson(json);
+class _ImageResult with DiagnosticableTreeMixin implements ImageResult {
+  const _ImageResult(
+      {this.url, this.cacheKey, this.width, this.height, this.x, this.y});
+  factory _ImageResult.fromJson(Map<String, dynamic> json) =>
+      _$ImageResultFromJson(json);
 
   @override
-  final String? username;
+  final String? url;
   @override
-  final String? content;
+  final String? cacheKey;
   @override
-  final String? time;
+  final double? width;
   @override
-  final String? score;
+  final double? height;
   @override
-  final ImageResult? avatar;
+  final double? x;
+  @override
+  final double? y;
+
+  /// Create a copy of ImageResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ImageResultCopyWith<_ImageResult> get copyWith =>
+      __$ImageResultCopyWithImpl<_ImageResult>(this, _$identity);
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CommentResult(username: $username, content: $content, time: $time, score: $score, avatar: $avatar)';
+  Map<String, dynamic> toJson() {
+    return _$ImageResultToJson(
+      this,
+    );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ImageResult'))
+      ..add(DiagnosticsProperty('url', url))
+      ..add(DiagnosticsProperty('cacheKey', cacheKey))
+      ..add(DiagnosticsProperty('width', width))
+      ..add(DiagnosticsProperty('height', height))
+      ..add(DiagnosticsProperty('x', x))
+      ..add(DiagnosticsProperty('y', y));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ImageResult &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.cacheKey, cacheKey) ||
+                other.cacheKey == cacheKey) &&
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.x, x) || other.x == x) &&
+            (identical(other.y, y) || other.y == y));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, url, cacheKey, width, height, x, y);
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ImageResult(url: $url, cacheKey: $cacheKey, width: $width, height: $height, x: $x, y: $y)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ImageResultCopyWith<$Res>
+    implements $ImageResultCopyWith<$Res> {
+  factory _$ImageResultCopyWith(
+          _ImageResult value, $Res Function(_ImageResult) _then) =
+      __$ImageResultCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String? url,
+      String? cacheKey,
+      double? width,
+      double? height,
+      double? x,
+      double? y});
+}
+
+/// @nodoc
+class __$ImageResultCopyWithImpl<$Res> implements _$ImageResultCopyWith<$Res> {
+  __$ImageResultCopyWithImpl(this._self, this._then);
+
+  final _ImageResult _self;
+  final $Res Function(_ImageResult) _then;
+
+  /// Create a copy of ImageResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? url = freezed,
+    Object? cacheKey = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
+    Object? x = freezed,
+    Object? y = freezed,
+  }) {
+    return _then(_ImageResult(
+      url: freezed == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cacheKey: freezed == cacheKey
+          ? _self.cacheKey
+          : cacheKey // ignore: cast_nullable_to_non_nullable
+              as String?,
+      width: freezed == width
+          ? _self.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as double?,
+      height: freezed == height
+          ? _self.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as double?,
+      x: freezed == x
+          ? _self.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as double?,
+      y: freezed == y
+          ? _self.y
+          : y // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$CommentResult implements DiagnosticableTreeMixin {
+  String? get username;
+  String? get content;
+  String? get time;
+  String? get score;
+  ImageResult? get avatar;
+
+  /// Create a copy of CommentResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CommentResultCopyWith<CommentResult> get copyWith =>
+      _$CommentResultCopyWithImpl<CommentResult>(
+          this as CommentResult, _$identity);
+
+  /// Serializes this CommentResult to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     properties
       ..add(DiagnosticsProperty('type', 'CommentResult'))
       ..add(DiagnosticsProperty('username', username))
@@ -481,7 +304,7 @@ class _$CommentResultImpl
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CommentResultImpl &&
+            other is CommentResult &&
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.content, content) || other.content == content) &&
@@ -495,184 +318,250 @@ class _$CommentResultImpl
   int get hashCode =>
       Object.hash(runtimeType, username, content, time, score, avatar);
 
-  /// Create a copy of CommentResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$CommentResultImplCopyWith<_$CommentResultImpl> get copyWith =>
-      __$$CommentResultImplCopyWithImpl<_$CommentResultImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CommentResultImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _CommentResult implements CommentResult {
-  const factory _CommentResult(
-      {final String? username,
-      final String? content,
-      final String? time,
-      final String? score,
-      final ImageResult? avatar}) = _$CommentResultImpl;
-
-  factory _CommentResult.fromJson(Map<String, dynamic> json) =
-      _$CommentResultImpl.fromJson;
-
-  @override
-  String? get username;
-  @override
-  String? get content;
-  @override
-  String? get time;
-  @override
-  String? get score;
-  @override
-  ImageResult? get avatar;
-
-  /// Create a copy of CommentResult
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CommentResultImplCopyWith<_$CommentResultImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-TagResult _$TagResultFromJson(Map<String, dynamic> json) {
-  return _TagResult.fromJson(json);
-}
-
-/// @nodoc
-mixin _$TagResult {
-  String? get text => throw _privateConstructorUsedError;
-  String? get color => throw _privateConstructorUsedError;
-  String? get category => throw _privateConstructorUsedError;
-
-  /// Serializes this TagResult to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TagResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TagResultCopyWith<TagResult> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TagResultCopyWith<$Res> {
-  factory $TagResultCopyWith(TagResult value, $Res Function(TagResult) then) =
-      _$TagResultCopyWithImpl<$Res, TagResult>;
-  @useResult
-  $Res call({String? text, String? color, String? category});
-}
-
-/// @nodoc
-class _$TagResultCopyWithImpl<$Res, $Val extends TagResult>
-    implements $TagResultCopyWith<$Res> {
-  _$TagResultCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of TagResult
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? text = freezed,
-    Object? color = freezed,
-    Object? category = freezed,
-  }) {
-    return _then(_value.copyWith(
-      text: freezed == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String?,
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-      category: freezed == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CommentResult(username: $username, content: $content, time: $time, score: $score, avatar: $avatar)';
   }
 }
 
 /// @nodoc
-abstract class _$$TagResultImplCopyWith<$Res>
-    implements $TagResultCopyWith<$Res> {
-  factory _$$TagResultImplCopyWith(
-          _$TagResultImpl value, $Res Function(_$TagResultImpl) then) =
-      __$$TagResultImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $CommentResultCopyWith<$Res> {
+  factory $CommentResultCopyWith(
+          CommentResult value, $Res Function(CommentResult) _then) =
+      _$CommentResultCopyWithImpl;
   @useResult
-  $Res call({String? text, String? color, String? category});
+  $Res call(
+      {String? username,
+      String? content,
+      String? time,
+      String? score,
+      ImageResult? avatar});
+
+  $ImageResultCopyWith<$Res>? get avatar;
 }
 
 /// @nodoc
-class __$$TagResultImplCopyWithImpl<$Res>
-    extends _$TagResultCopyWithImpl<$Res, _$TagResultImpl>
-    implements _$$TagResultImplCopyWith<$Res> {
-  __$$TagResultImplCopyWithImpl(
-      _$TagResultImpl _value, $Res Function(_$TagResultImpl) _then)
-      : super(_value, _then);
+class _$CommentResultCopyWithImpl<$Res>
+    implements $CommentResultCopyWith<$Res> {
+  _$CommentResultCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of TagResult
+  final CommentResult _self;
+  final $Res Function(CommentResult) _then;
+
+  /// Create a copy of CommentResult
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = freezed,
-    Object? color = freezed,
-    Object? category = freezed,
+    Object? username = freezed,
+    Object? content = freezed,
+    Object? time = freezed,
+    Object? score = freezed,
+    Object? avatar = freezed,
   }) {
-    return _then(_$TagResultImpl(
-      text: freezed == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+    return _then(_self.copyWith(
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      content: freezed == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
               as String?,
-      category: freezed == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
+      time: freezed == time
+          ? _self.time
+          : time // ignore: cast_nullable_to_non_nullable
               as String?,
+      score: freezed == score
+          ? _self.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatar: freezed == avatar
+          ? _self.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as ImageResult?,
     ));
+  }
+
+  /// Create a copy of CommentResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageResultCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+      return null;
+    }
+
+    return $ImageResultCopyWith<$Res>(_self.avatar!, (value) {
+      return _then(_self.copyWith(avatar: value));
+    });
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TagResultImpl with DiagnosticableTreeMixin implements _TagResult {
-  const _$TagResultImpl({this.text, this.color, this.category});
-
-  factory _$TagResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TagResultImplFromJson(json);
-
-  @override
-  final String? text;
-  @override
-  final String? color;
-  @override
-  final String? category;
+class _CommentResult with DiagnosticableTreeMixin implements CommentResult {
+  const _CommentResult(
+      {this.username, this.content, this.time, this.score, this.avatar});
+  factory _CommentResult.fromJson(Map<String, dynamic> json) =>
+      _$CommentResultFromJson(json);
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TagResult(text: $text, color: $color, category: $category)';
+  final String? username;
+  @override
+  final String? content;
+  @override
+  final String? time;
+  @override
+  final String? score;
+  @override
+  final ImageResult? avatar;
+
+  /// Create a copy of CommentResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$CommentResultCopyWith<_CommentResult> get copyWith =>
+      __$CommentResultCopyWithImpl<_CommentResult>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$CommentResultToJson(
+      this,
+    );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CommentResult'))
+      ..add(DiagnosticsProperty('username', username))
+      ..add(DiagnosticsProperty('content', content))
+      ..add(DiagnosticsProperty('time', time))
+      ..add(DiagnosticsProperty('score', score))
+      ..add(DiagnosticsProperty('avatar', avatar));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _CommentResult &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.score, score) || other.score == score) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, username, content, time, score, avatar);
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CommentResult(username: $username, content: $content, time: $time, score: $score, avatar: $avatar)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$CommentResultCopyWith<$Res>
+    implements $CommentResultCopyWith<$Res> {
+  factory _$CommentResultCopyWith(
+          _CommentResult value, $Res Function(_CommentResult) _then) =
+      __$CommentResultCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String? username,
+      String? content,
+      String? time,
+      String? score,
+      ImageResult? avatar});
+
+  @override
+  $ImageResultCopyWith<$Res>? get avatar;
+}
+
+/// @nodoc
+class __$CommentResultCopyWithImpl<$Res>
+    implements _$CommentResultCopyWith<$Res> {
+  __$CommentResultCopyWithImpl(this._self, this._then);
+
+  final _CommentResult _self;
+  final $Res Function(_CommentResult) _then;
+
+  /// Create a copy of CommentResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? username = freezed,
+    Object? content = freezed,
+    Object? time = freezed,
+    Object? score = freezed,
+    Object? avatar = freezed,
+  }) {
+    return _then(_CommentResult(
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      content: freezed == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String?,
+      time: freezed == time
+          ? _self.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      score: freezed == score
+          ? _self.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatar: freezed == avatar
+          ? _self.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as ImageResult?,
+    ));
+  }
+
+  /// Create a copy of CommentResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageResultCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+      return null;
+    }
+
+    return $ImageResultCopyWith<$Res>(_self.avatar!, (value) {
+      return _then(_self.copyWith(avatar: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$TagResult implements DiagnosticableTreeMixin {
+  String? get text;
+  String? get color;
+  String? get category;
+
+  /// Create a copy of TagResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TagResultCopyWith<TagResult> get copyWith =>
+      _$TagResultCopyWithImpl<TagResult>(this as TagResult, _$identity);
+
+  /// Serializes this TagResult to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     properties
       ..add(DiagnosticsProperty('type', 'TagResult'))
       ..add(DiagnosticsProperty('text', text))
@@ -684,7 +573,7 @@ class _$TagResultImpl with DiagnosticableTreeMixin implements _TagResult {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TagResultImpl &&
+            other is TagResult &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.category, category) ||
@@ -695,150 +584,48 @@ class _$TagResultImpl with DiagnosticableTreeMixin implements _TagResult {
   @override
   int get hashCode => Object.hash(runtimeType, text, color, category);
 
-  /// Create a copy of TagResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TagResultImplCopyWith<_$TagResultImpl> get copyWith =>
-      __$$TagResultImplCopyWithImpl<_$TagResultImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TagResultImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _TagResult implements TagResult {
-  const factory _TagResult(
-      {final String? text,
-      final String? color,
-      final String? category}) = _$TagResultImpl;
-
-  factory _TagResult.fromJson(Map<String, dynamic> json) =
-      _$TagResultImpl.fromJson;
-
-  @override
-  String? get text;
-  @override
-  String? get color;
-  @override
-  String? get category;
-
-  /// Create a copy of TagResult
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TagResultImplCopyWith<_$TagResultImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-EnvResult _$EnvResultFromJson(Map<String, dynamic> json) {
-  return _EnvResult.fromJson(json);
-}
-
-/// @nodoc
-mixin _$EnvResult {
-  String? get id => throw _privateConstructorUsedError;
-  bool? get global => throw _privateConstructorUsedError;
-  String? get value => throw _privateConstructorUsedError;
-
-  /// Serializes this EnvResult to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of EnvResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $EnvResultCopyWith<EnvResult> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $EnvResultCopyWith<$Res> {
-  factory $EnvResultCopyWith(EnvResult value, $Res Function(EnvResult) then) =
-      _$EnvResultCopyWithImpl<$Res, EnvResult>;
-  @useResult
-  $Res call({String? id, bool? global, String? value});
-}
-
-/// @nodoc
-class _$EnvResultCopyWithImpl<$Res, $Val extends EnvResult>
-    implements $EnvResultCopyWith<$Res> {
-  _$EnvResultCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of EnvResult
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? global = freezed,
-    Object? value = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      global: freezed == global
-          ? _value.global
-          : global // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TagResult(text: $text, color: $color, category: $category)';
   }
 }
 
 /// @nodoc
-abstract class _$$EnvResultImplCopyWith<$Res>
-    implements $EnvResultCopyWith<$Res> {
-  factory _$$EnvResultImplCopyWith(
-          _$EnvResultImpl value, $Res Function(_$EnvResultImpl) then) =
-      __$$EnvResultImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $TagResultCopyWith<$Res> {
+  factory $TagResultCopyWith(TagResult value, $Res Function(TagResult) _then) =
+      _$TagResultCopyWithImpl;
   @useResult
-  $Res call({String? id, bool? global, String? value});
+  $Res call({String? text, String? color, String? category});
 }
 
 /// @nodoc
-class __$$EnvResultImplCopyWithImpl<$Res>
-    extends _$EnvResultCopyWithImpl<$Res, _$EnvResultImpl>
-    implements _$$EnvResultImplCopyWith<$Res> {
-  __$$EnvResultImplCopyWithImpl(
-      _$EnvResultImpl _value, $Res Function(_$EnvResultImpl) _then)
-      : super(_value, _then);
+class _$TagResultCopyWithImpl<$Res> implements $TagResultCopyWith<$Res> {
+  _$TagResultCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of EnvResult
+  final TagResult _self;
+  final $Res Function(TagResult) _then;
+
+  /// Create a copy of TagResult
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? global = freezed,
-    Object? value = freezed,
+    Object? text = freezed,
+    Object? color = freezed,
+    Object? category = freezed,
   }) {
-    return _then(_$EnvResultImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+    return _then(_self.copyWith(
+      text: freezed == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
               as String?,
-      global: freezed == global
-          ? _value.global
-          : global // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+      color: freezed == color
+          ? _self.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String?,
+      category: freezed == category
+          ? _self.category
+          : category // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -846,27 +633,125 @@ class __$$EnvResultImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$EnvResultImpl with DiagnosticableTreeMixin implements _EnvResult {
-  const _$EnvResultImpl({this.id, this.global, this.value});
-
-  factory _$EnvResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$EnvResultImplFromJson(json);
-
-  @override
-  final String? id;
-  @override
-  final bool? global;
-  @override
-  final String? value;
+class _TagResult with DiagnosticableTreeMixin implements TagResult {
+  const _TagResult({this.text, this.color, this.category});
+  factory _TagResult.fromJson(Map<String, dynamic> json) =>
+      _$TagResultFromJson(json);
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EnvResult(id: $id, global: $global, value: $value)';
+  final String? text;
+  @override
+  final String? color;
+  @override
+  final String? category;
+
+  /// Create a copy of TagResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TagResultCopyWith<_TagResult> get copyWith =>
+      __$TagResultCopyWithImpl<_TagResult>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TagResultToJson(
+      this,
+    );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TagResult'))
+      ..add(DiagnosticsProperty('text', text))
+      ..add(DiagnosticsProperty('color', color))
+      ..add(DiagnosticsProperty('category', category));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _TagResult &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.category, category) ||
+                other.category == category));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, text, color, category);
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TagResult(text: $text, color: $color, category: $category)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$TagResultCopyWith<$Res>
+    implements $TagResultCopyWith<$Res> {
+  factory _$TagResultCopyWith(
+          _TagResult value, $Res Function(_TagResult) _then) =
+      __$TagResultCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? text, String? color, String? category});
+}
+
+/// @nodoc
+class __$TagResultCopyWithImpl<$Res> implements _$TagResultCopyWith<$Res> {
+  __$TagResultCopyWithImpl(this._self, this._then);
+
+  final _TagResult _self;
+  final $Res Function(_TagResult) _then;
+
+  /// Create a copy of TagResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? text = freezed,
+    Object? color = freezed,
+    Object? category = freezed,
+  }) {
+    return _then(_TagResult(
+      text: freezed == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String?,
+      color: freezed == color
+          ? _self.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String?,
+      category: freezed == category
+          ? _self.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$EnvResult implements DiagnosticableTreeMixin {
+  String? get id;
+  bool? get global;
+  String? get value;
+
+  /// Create a copy of EnvResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $EnvResultCopyWith<EnvResult> get copyWith =>
+      _$EnvResultCopyWithImpl<EnvResult>(this as EnvResult, _$identity);
+
+  /// Serializes this EnvResult to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     properties
       ..add(DiagnosticsProperty('type', 'EnvResult'))
       ..add(DiagnosticsProperty('id', id))
@@ -878,7 +763,7 @@ class _$EnvResultImpl with DiagnosticableTreeMixin implements _EnvResult {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EnvResultImpl &&
+            other is EnvResult &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.global, global) || other.global == global) &&
             (identical(other.value, value) || other.value == value));
@@ -888,166 +773,172 @@ class _$EnvResultImpl with DiagnosticableTreeMixin implements _EnvResult {
   @override
   int get hashCode => Object.hash(runtimeType, id, global, value);
 
-  /// Create a copy of EnvResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$EnvResultImplCopyWith<_$EnvResultImpl> get copyWith =>
-      __$$EnvResultImplCopyWithImpl<_$EnvResultImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$EnvResultImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _EnvResult implements EnvResult {
-  const factory _EnvResult(
-      {final String? id,
-      final bool? global,
-      final String? value}) = _$EnvResultImpl;
-
-  factory _EnvResult.fromJson(Map<String, dynamic> json) =
-      _$EnvResultImpl.fromJson;
-
-  @override
-  String? get id;
-  @override
-  bool? get global;
-  @override
-  String? get value;
-
-  /// Create a copy of EnvResult
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$EnvResultImplCopyWith<_$EnvResultImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-ParserError _$ParserErrorFromJson(Map<String, dynamic> json) {
-  return _ParserError.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ParserError {
-  int get code => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
-
-  /// Serializes this ParserError to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ParserError
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ParserErrorCopyWith<ParserError> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ParserErrorCopyWith<$Res> {
-  factory $ParserErrorCopyWith(
-          ParserError value, $Res Function(ParserError) then) =
-      _$ParserErrorCopyWithImpl<$Res, ParserError>;
-  @useResult
-  $Res call({int code, String message});
-}
-
-/// @nodoc
-class _$ParserErrorCopyWithImpl<$Res, $Val extends ParserError>
-    implements $ParserErrorCopyWith<$Res> {
-  _$ParserErrorCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ParserError
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? code = null,
-    Object? message = null,
-  }) {
-    return _then(_value.copyWith(
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as int,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'EnvResult(id: $id, global: $global, value: $value)';
   }
 }
 
 /// @nodoc
-abstract class _$$ParserErrorImplCopyWith<$Res>
-    implements $ParserErrorCopyWith<$Res> {
-  factory _$$ParserErrorImplCopyWith(
-          _$ParserErrorImpl value, $Res Function(_$ParserErrorImpl) then) =
-      __$$ParserErrorImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $EnvResultCopyWith<$Res> {
+  factory $EnvResultCopyWith(EnvResult value, $Res Function(EnvResult) _then) =
+      _$EnvResultCopyWithImpl;
   @useResult
-  $Res call({int code, String message});
+  $Res call({String? id, bool? global, String? value});
 }
 
 /// @nodoc
-class __$$ParserErrorImplCopyWithImpl<$Res>
-    extends _$ParserErrorCopyWithImpl<$Res, _$ParserErrorImpl>
-    implements _$$ParserErrorImplCopyWith<$Res> {
-  __$$ParserErrorImplCopyWithImpl(
-      _$ParserErrorImpl _value, $Res Function(_$ParserErrorImpl) _then)
-      : super(_value, _then);
+class _$EnvResultCopyWithImpl<$Res> implements $EnvResultCopyWith<$Res> {
+  _$EnvResultCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of ParserError
+  final EnvResult _self;
+  final $Res Function(EnvResult) _then;
+
+  /// Create a copy of EnvResult
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = null,
-    Object? message = null,
+    Object? id = freezed,
+    Object? global = freezed,
+    Object? value = freezed,
   }) {
-    return _then(_$ParserErrorImpl(
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as int,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_self.copyWith(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      global: freezed == global
+          ? _self.global
+          : global // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      value: freezed == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ParserErrorImpl with DiagnosticableTreeMixin implements _ParserError {
-  const _$ParserErrorImpl({required this.code, required this.message});
-
-  factory _$ParserErrorImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ParserErrorImplFromJson(json);
-
-  @override
-  final int code;
-  @override
-  final String message;
+class _EnvResult with DiagnosticableTreeMixin implements EnvResult {
+  const _EnvResult({this.id, this.global, this.value});
+  factory _EnvResult.fromJson(Map<String, dynamic> json) =>
+      _$EnvResultFromJson(json);
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ParserError(code: $code, message: $message)';
+  final String? id;
+  @override
+  final bool? global;
+  @override
+  final String? value;
+
+  /// Create a copy of EnvResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$EnvResultCopyWith<_EnvResult> get copyWith =>
+      __$EnvResultCopyWithImpl<_EnvResult>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$EnvResultToJson(
+      this,
+    );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'EnvResult'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('global', global))
+      ..add(DiagnosticsProperty('value', value));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _EnvResult &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.global, global) || other.global == global) &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, global, value);
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'EnvResult(id: $id, global: $global, value: $value)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$EnvResultCopyWith<$Res>
+    implements $EnvResultCopyWith<$Res> {
+  factory _$EnvResultCopyWith(
+          _EnvResult value, $Res Function(_EnvResult) _then) =
+      __$EnvResultCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? id, bool? global, String? value});
+}
+
+/// @nodoc
+class __$EnvResultCopyWithImpl<$Res> implements _$EnvResultCopyWith<$Res> {
+  __$EnvResultCopyWithImpl(this._self, this._then);
+
+  final _EnvResult _self;
+  final $Res Function(_EnvResult) _then;
+
+  /// Create a copy of EnvResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = freezed,
+    Object? global = freezed,
+    Object? value = freezed,
+  }) {
+    return _then(_EnvResult(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      global: freezed == global
+          ? _self.global
+          : global // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      value: freezed == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$ParserError implements DiagnosticableTreeMixin {
+  int get code;
+  String get message;
+
+  /// Create a copy of ParserError
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ParserErrorCopyWith<ParserError> get copyWith =>
+      _$ParserErrorCopyWithImpl<ParserError>(this as ParserError, _$identity);
+
+  /// Serializes this ParserError to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     properties
       ..add(DiagnosticsProperty('type', 'ParserError'))
       ..add(DiagnosticsProperty('code', code))
@@ -1058,7 +949,7 @@ class _$ParserErrorImpl with DiagnosticableTreeMixin implements _ParserError {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ParserErrorImpl &&
+            other is ParserError &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.message, message) || other.message == message));
   }
@@ -1067,39 +958,140 @@ class _$ParserErrorImpl with DiagnosticableTreeMixin implements _ParserError {
   @override
   int get hashCode => Object.hash(runtimeType, code, message);
 
-  /// Create a copy of ParserError
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ParserErrorImplCopyWith<_$ParserErrorImpl> get copyWith =>
-      __$$ParserErrorImplCopyWithImpl<_$ParserErrorImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ParserErrorImplToJson(
-      this,
-    );
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ParserError(code: $code, message: $message)';
   }
 }
 
-abstract class _ParserError implements ParserError {
-  const factory _ParserError(
-      {required final int code,
-      required final String message}) = _$ParserErrorImpl;
+/// @nodoc
+abstract mixin class $ParserErrorCopyWith<$Res> {
+  factory $ParserErrorCopyWith(
+          ParserError value, $Res Function(ParserError) _then) =
+      _$ParserErrorCopyWithImpl;
+  @useResult
+  $Res call({int code, String message});
+}
 
-  factory _ParserError.fromJson(Map<String, dynamic> json) =
-      _$ParserErrorImpl.fromJson;
+/// @nodoc
+class _$ParserErrorCopyWithImpl<$Res> implements $ParserErrorCopyWith<$Res> {
+  _$ParserErrorCopyWithImpl(this._self, this._then);
+
+  final ParserError _self;
+  final $Res Function(ParserError) _then;
+
+  /// Create a copy of ParserError
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = null,
+    Object? message = null,
+  }) {
+    return _then(_self.copyWith(
+      code: null == code
+          ? _self.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      message: null == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ParserError with DiagnosticableTreeMixin implements ParserError {
+  const _ParserError({required this.code, required this.message});
+  factory _ParserError.fromJson(Map<String, dynamic> json) =>
+      _$ParserErrorFromJson(json);
 
   @override
-  int get code;
+  final int code;
   @override
-  String get message;
+  final String message;
 
   /// Create a copy of ParserError
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ParserErrorImplCopyWith<_$ParserErrorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$ParserErrorCopyWith<_ParserError> get copyWith =>
+      __$ParserErrorCopyWithImpl<_ParserError>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ParserErrorToJson(
+      this,
+    );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'ParserError'))
+      ..add(DiagnosticsProperty('code', code))
+      ..add(DiagnosticsProperty('message', message));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ParserError &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, code, message);
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ParserError(code: $code, message: $message)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$ParserErrorCopyWith<$Res>
+    implements $ParserErrorCopyWith<$Res> {
+  factory _$ParserErrorCopyWith(
+          _ParserError value, $Res Function(_ParserError) _then) =
+      __$ParserErrorCopyWithImpl;
+  @override
+  @useResult
+  $Res call({int code, String message});
+}
+
+/// @nodoc
+class __$ParserErrorCopyWithImpl<$Res> implements _$ParserErrorCopyWith<$Res> {
+  __$ParserErrorCopyWithImpl(this._self, this._then);
+
+  final _ParserError _self;
+  final $Res Function(_ParserError) _then;
+
+  /// Create a copy of ParserError
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? code = null,
+    Object? message = null,
+  }) {
+    return _then(_ParserError(
+      code: null == code
+          ? _self.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      message: null == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+// dart format on

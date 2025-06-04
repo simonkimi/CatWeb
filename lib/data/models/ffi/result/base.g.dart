@@ -6,8 +6,7 @@ part of 'base.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ImageResultImpl _$$ImageResultImplFromJson(Map<String, dynamic> json) =>
-    _$ImageResultImpl(
+_ImageResult _$ImageResultFromJson(Map<String, dynamic> json) => _ImageResult(
       url: json['url'] as String?,
       cacheKey: json['cacheKey'] as String?,
       width: (json['width'] as num?)?.toDouble(),
@@ -16,7 +15,7 @@ _$ImageResultImpl _$$ImageResultImplFromJson(Map<String, dynamic> json) =>
       y: (json['y'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$$ImageResultImplToJson(_$ImageResultImpl instance) =>
+Map<String, dynamic> _$ImageResultToJson(_ImageResult instance) =>
     <String, dynamic>{
       'url': instance.url,
       'cacheKey': instance.cacheKey,
@@ -26,8 +25,8 @@ Map<String, dynamic> _$$ImageResultImplToJson(_$ImageResultImpl instance) =>
       'y': instance.y,
     };
 
-_$CommentResultImpl _$$CommentResultImplFromJson(Map<String, dynamic> json) =>
-    _$CommentResultImpl(
+_CommentResult _$CommentResultFromJson(Map<String, dynamic> json) =>
+    _CommentResult(
       username: json['username'] as String?,
       content: json['content'] as String?,
       time: json['time'] as String?,
@@ -37,7 +36,7 @@ _$CommentResultImpl _$$CommentResultImplFromJson(Map<String, dynamic> json) =>
           : ImageResult.fromJson(json['avatar'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$CommentResultImplToJson(_$CommentResultImpl instance) =>
+Map<String, dynamic> _$CommentResultToJson(_CommentResult instance) =>
     <String, dynamic>{
       'username': instance.username,
       'content': instance.content,
@@ -46,41 +45,38 @@ Map<String, dynamic> _$$CommentResultImplToJson(_$CommentResultImpl instance) =>
       'avatar': instance.avatar,
     };
 
-_$TagResultImpl _$$TagResultImplFromJson(Map<String, dynamic> json) =>
-    _$TagResultImpl(
+_TagResult _$TagResultFromJson(Map<String, dynamic> json) => _TagResult(
       text: json['text'] as String?,
       color: json['color'] as String?,
       category: json['category'] as String?,
     );
 
-Map<String, dynamic> _$$TagResultImplToJson(_$TagResultImpl instance) =>
+Map<String, dynamic> _$TagResultToJson(_TagResult instance) =>
     <String, dynamic>{
       'text': instance.text,
       'color': instance.color,
       'category': instance.category,
     };
 
-_$EnvResultImpl _$$EnvResultImplFromJson(Map<String, dynamic> json) =>
-    _$EnvResultImpl(
+_EnvResult _$EnvResultFromJson(Map<String, dynamic> json) => _EnvResult(
       id: json['id'] as String?,
       global: json['global'] as bool?,
       value: json['value'] as String?,
     );
 
-Map<String, dynamic> _$$EnvResultImplToJson(_$EnvResultImpl instance) =>
+Map<String, dynamic> _$EnvResultToJson(_EnvResult instance) =>
     <String, dynamic>{
       'id': instance.id,
       'global': instance.global,
       'value': instance.value,
     };
 
-_$ParserErrorImpl _$$ParserErrorImplFromJson(Map<String, dynamic> json) =>
-    _$ParserErrorImpl(
+_ParserError _$ParserErrorFromJson(Map<String, dynamic> json) => _ParserError(
       code: (json['code'] as num).toInt(),
       message: json['message'] as String,
     );
 
-Map<String, dynamic> _$$ParserErrorImplToJson(_$ParserErrorImpl instance) =>
+Map<String, dynamic> _$ParserErrorToJson(_ParserError instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

@@ -6,100 +6,93 @@ part of 'selector.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SelectorQuerySelfImpl _$$SelectorQuerySelfImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SelectorQuerySelfImpl(
+SelectorQuerySelf _$SelectorQuerySelfFromJson(Map<String, dynamic> json) =>
+    SelectorQuerySelf(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$SelectorQuerySelfImplToJson(
-        _$SelectorQuerySelfImpl instance) =>
+Map<String, dynamic> _$SelectorQuerySelfToJson(SelectorQuerySelf instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };
 
-_$SelectorQueryCssImpl _$$SelectorQueryCssImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SelectorQueryCssImpl(
+SelectorQueryCss _$SelectorQueryCssFromJson(Map<String, dynamic> json) =>
+    SelectorQueryCss(
       css: json['css'] as String? ?? '',
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$SelectorQueryCssImplToJson(
-        _$SelectorQueryCssImpl instance) =>
+Map<String, dynamic> _$SelectorQueryCssToJson(SelectorQueryCss instance) =>
     <String, dynamic>{
       'css': instance.css,
       'runtimeType': instance.$type,
     };
 
-_$SelectorQueryXpathImpl _$$SelectorQueryXpathImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SelectorQueryXpathImpl(
+SelectorQueryXpath _$SelectorQueryXpathFromJson(Map<String, dynamic> json) =>
+    SelectorQueryXpath(
       xpath: json['xpath'] as String? ?? '',
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$SelectorQueryXpathImplToJson(
-        _$SelectorQueryXpathImpl instance) =>
+Map<String, dynamic> _$SelectorQueryXpathToJson(SelectorQueryXpath instance) =>
     <String, dynamic>{
       'xpath': instance.xpath,
       'runtimeType': instance.$type,
     };
 
-_$SelectorQueryJsonPathImpl _$$SelectorQueryJsonPathImplFromJson(
+SelectorQueryJsonPath _$SelectorQueryJsonPathFromJson(
         Map<String, dynamic> json) =>
-    _$SelectorQueryJsonPathImpl(
+    SelectorQueryJsonPath(
       jsonPath: json['jsonPath'] as String? ?? '',
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$SelectorQueryJsonPathImplToJson(
-        _$SelectorQueryJsonPathImpl instance) =>
+Map<String, dynamic> _$SelectorQueryJsonPathToJson(
+        SelectorQueryJsonPath instance) =>
     <String, dynamic>{
       'jsonPath': instance.jsonPath,
       'runtimeType': instance.$type,
     };
 
-_$SelectorFunctionTextImpl _$$SelectorFunctionTextImplFromJson(
+SelectorFunctionText _$SelectorFunctionTextFromJson(
         Map<String, dynamic> json) =>
-    _$SelectorFunctionTextImpl(
+    SelectorFunctionText(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$SelectorFunctionTextImplToJson(
-        _$SelectorFunctionTextImpl instance) =>
+Map<String, dynamic> _$SelectorFunctionTextToJson(
+        SelectorFunctionText instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };
 
-_$SelectorFunctionAttrImpl _$$SelectorFunctionAttrImplFromJson(
+SelectorFunctionAttr _$SelectorFunctionAttrFromJson(
         Map<String, dynamic> json) =>
-    _$SelectorFunctionAttrImpl(
+    SelectorFunctionAttr(
       attr: json['attr'] as String? ?? '',
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$SelectorFunctionAttrImplToJson(
-        _$SelectorFunctionAttrImpl instance) =>
+Map<String, dynamic> _$SelectorFunctionAttrToJson(
+        SelectorFunctionAttr instance) =>
     <String, dynamic>{
       'attr': instance.attr,
       'runtimeType': instance.$type,
     };
 
-_$SelectorFunctionRawImpl _$$SelectorFunctionRawImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SelectorFunctionRawImpl(
+SelectorFunctionRaw _$SelectorFunctionRawFromJson(Map<String, dynamic> json) =>
+    SelectorFunctionRaw(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$SelectorFunctionRawImplToJson(
-        _$SelectorFunctionRawImpl instance) =>
+Map<String, dynamic> _$SelectorFunctionRawToJson(
+        SelectorFunctionRaw instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };
 
-_$SelectorModelImpl _$$SelectorModelImplFromJson(Map<String, dynamic> json) =>
-    _$SelectorModelImpl(
+_SelectorModel _$SelectorModelFromJson(Map<String, dynamic> json) =>
+    _SelectorModel(
       selector: json['selector'] as String? ?? '',
       type: json['type'] == null
           ? const SelectorQuery.css()
@@ -116,7 +109,7 @@ _$SelectorModelImpl _$$SelectorModelImplFromJson(Map<String, dynamic> json) =>
       defaultValue: json['defaultValue'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$SelectorModelImplToJson(_$SelectorModelImpl instance) =>
+Map<String, dynamic> _$SelectorModelToJson(_SelectorModel instance) =>
     <String, dynamic>{
       'selector': instance.selector,
       'type': instance.type,
@@ -128,9 +121,8 @@ Map<String, dynamic> _$$SelectorModelImplToJson(_$SelectorModelImpl instance) =>
       'defaultValue': instance.defaultValue,
     };
 
-_$ImageSelectorModelImpl _$$ImageSelectorModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ImageSelectorModelImpl(
+_ImageSelectorModel _$ImageSelectorModelFromJson(Map<String, dynamic> json) =>
+    _ImageSelectorModel(
       url: json['url'] == null
           ? const SelectorModel()
           : SelectorModel.fromJson(json['url'] as Map<String, dynamic>),
@@ -151,8 +143,7 @@ _$ImageSelectorModelImpl _$$ImageSelectorModelImplFromJson(
           : SelectorModel.fromJson(json['cacheKey'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ImageSelectorModelImplToJson(
-        _$ImageSelectorModelImpl instance) =>
+Map<String, dynamic> _$ImageSelectorModelToJson(_ImageSelectorModel instance) =>
     <String, dynamic>{
       'url': instance.url,
       'width': instance.width,
@@ -162,9 +153,9 @@ Map<String, dynamic> _$$ImageSelectorModelImplToJson(
       'cacheKey': instance.cacheKey,
     };
 
-_$CommentSelectorModelImpl _$$CommentSelectorModelImplFromJson(
+_CommentSelectorModel _$CommentSelectorModelFromJson(
         Map<String, dynamic> json) =>
-    _$CommentSelectorModelImpl(
+    _CommentSelectorModel(
       username: json['username'] == null
           ? const SelectorModel()
           : SelectorModel.fromJson(json['username'] as Map<String, dynamic>),
@@ -179,8 +170,8 @@ _$CommentSelectorModelImpl _$$CommentSelectorModelImplFromJson(
           : SelectorModel.fromJson(json['avatar'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$CommentSelectorModelImplToJson(
-        _$CommentSelectorModelImpl instance) =>
+Map<String, dynamic> _$CommentSelectorModelToJson(
+        _CommentSelectorModel instance) =>
     <String, dynamic>{
       'username': instance.username,
       'time': instance.time,
@@ -188,9 +179,8 @@ Map<String, dynamic> _$$CommentSelectorModelImplToJson(
       'avatar': instance.avatar,
     };
 
-_$ExtraSelectorModelImpl _$$ExtraSelectorModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ExtraSelectorModelImpl(
+_ExtraSelectorModel _$ExtraSelectorModelFromJson(Map<String, dynamic> json) =>
+    _ExtraSelectorModel(
       selector: json['selector'] == null
           ? const SelectorModel()
           : SelectorModel.fromJson(json['selector'] as Map<String, dynamic>),
@@ -198,17 +188,15 @@ _$ExtraSelectorModelImpl _$$ExtraSelectorModelImplFromJson(
       persistence: json['persistence'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$ExtraSelectorModelImplToJson(
-        _$ExtraSelectorModelImpl instance) =>
+Map<String, dynamic> _$ExtraSelectorModelToJson(_ExtraSelectorModel instance) =>
     <String, dynamic>{
       'selector': instance.selector,
       'id': instance.id,
       'persistence': instance.persistence,
     };
 
-_$TagSelectorModelImpl _$$TagSelectorModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TagSelectorModelImpl(
+_TagSelectorModel _$TagSelectorModelFromJson(Map<String, dynamic> json) =>
+    _TagSelectorModel(
       text: json['text'] == null
           ? const SelectorModel()
           : SelectorModel.fromJson(json['text'] as Map<String, dynamic>),
@@ -220,8 +208,7 @@ _$TagSelectorModelImpl _$$TagSelectorModelImplFromJson(
           : SelectorModel.fromJson(json['category'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$TagSelectorModelImplToJson(
-        _$TagSelectorModelImpl instance) =>
+Map<String, dynamic> _$TagSelectorModelToJson(_TagSelectorModel instance) =>
     <String, dynamic>{
       'text': instance.text,
       'color': instance.color,

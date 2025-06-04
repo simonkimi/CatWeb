@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'async_progress_value.freezed.dart';
 
 @freezed
-class AsyncProgressValue<T> with _$AsyncProgressValue<T> {
+sealed class AsyncProgressValue<T> with _$AsyncProgressValue<T> {
   const AsyncProgressValue._();
 
   const factory AsyncProgressValue.idle() = AsyncProgressIdle<T>;

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,11 +10,8 @@ part of 'parser.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 ParserModel _$ParserModelFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'imageReader':
@@ -33,326 +31,57 @@ ParserModel _$ParserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ParserModel {
-  String get name => throw _privateConstructorUsedError;
-  String get uuid => throw _privateConstructorUsedError;
-  List<ExtraSelectorModel> get extra => throw _privateConstructorUsedError;
-  SelectorModel get successSelector => throw _privateConstructorUsedError;
-  SelectorModel get failedSelector => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)
-        imageReader,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)
-        detail,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)
-        list,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)
-        autoComplete,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)?
-        imageReader,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)?
-        detail,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)?
-        list,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)?
-        autoComplete,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)?
-        imageReader,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)?
-        detail,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)?
-        list,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)?
-        autoComplete,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ParserModelImageReader value) imageReader,
-    required TResult Function(ParserModelDetail value) detail,
-    required TResult Function(ParserModelList value) list,
-    required TResult Function(ParserModelAutoComplete value) autoComplete,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ParserModelImageReader value)? imageReader,
-    TResult? Function(ParserModelDetail value)? detail,
-    TResult? Function(ParserModelList value)? list,
-    TResult? Function(ParserModelAutoComplete value)? autoComplete,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ParserModelImageReader value)? imageReader,
-    TResult Function(ParserModelDetail value)? detail,
-    TResult Function(ParserModelList value)? list,
-    TResult Function(ParserModelAutoComplete value)? autoComplete,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this ParserModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get name;
+  String get uuid;
+  List<ExtraSelectorModel> get extra;
+  SelectorModel get successSelector;
+  SelectorModel get failedSelector;
 
   /// Create a copy of ParserModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ParserModelCopyWith<ParserModel> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ParserModelCopyWithImpl<ParserModel>(this as ParserModel, _$identity);
+
+  /// Serializes this ParserModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ParserModel &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.uuid, uuid) || other.uuid == uuid) &&
+            const DeepCollectionEquality().equals(other.extra, extra) &&
+            (identical(other.successSelector, successSelector) ||
+                other.successSelector == successSelector) &&
+            (identical(other.failedSelector, failedSelector) ||
+                other.failedSelector == failedSelector));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      uuid,
+      const DeepCollectionEquality().hash(extra),
+      successSelector,
+      failedSelector);
+
+  @override
+  String toString() {
+    return 'ParserModel(name: $name, uuid: $uuid, extra: $extra, successSelector: $successSelector, failedSelector: $failedSelector)';
+  }
 }
 
 /// @nodoc
-abstract class $ParserModelCopyWith<$Res> {
+abstract mixin class $ParserModelCopyWith<$Res> {
   factory $ParserModelCopyWith(
-          ParserModel value, $Res Function(ParserModel) then) =
-      _$ParserModelCopyWithImpl<$Res, ParserModel>;
+          ParserModel value, $Res Function(ParserModel) _then) =
+      _$ParserModelCopyWithImpl;
   @useResult
   $Res call(
       {String name,
@@ -366,14 +95,11 @@ abstract class $ParserModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ParserModelCopyWithImpl<$Res, $Val extends ParserModel>
-    implements $ParserModelCopyWith<$Res> {
-  _$ParserModelCopyWithImpl(this._value, this._then);
+class _$ParserModelCopyWithImpl<$Res> implements $ParserModelCopyWith<$Res> {
+  _$ParserModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ParserModel _self;
+  final $Res Function(ParserModel) _then;
 
   /// Create a copy of ParserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -386,28 +112,28 @@ class _$ParserModelCopyWithImpl<$Res, $Val extends ParserModel>
     Object? successSelector = null,
     Object? failedSelector = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       uuid: null == uuid
-          ? _value.uuid
+          ? _self.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
       extra: null == extra
-          ? _value.extra
+          ? _self.extra
           : extra // ignore: cast_nullable_to_non_nullable
               as List<ExtraSelectorModel>,
       successSelector: null == successSelector
-          ? _value.successSelector
+          ? _self.successSelector
           : successSelector // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       failedSelector: null == failedSelector
-          ? _value.failedSelector
+          ? _self.failedSelector
           : failedSelector // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ParserModel
@@ -415,8 +141,8 @@ class _$ParserModelCopyWithImpl<$Res, $Val extends ParserModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get successSelector {
-    return $SelectorModelCopyWith<$Res>(_value.successSelector, (value) {
-      return _then(_value.copyWith(successSelector: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.successSelector, (value) {
+      return _then(_self.copyWith(successSelector: value));
     });
   }
 
@@ -425,321 +151,16 @@ class _$ParserModelCopyWithImpl<$Res, $Val extends ParserModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get failedSelector {
-    return $SelectorModelCopyWith<$Res>(_value.failedSelector, (value) {
-      return _then(_value.copyWith(failedSelector: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$ParserModelImageReaderImplCopyWith<$Res>
-    implements $ParserModelCopyWith<$Res> {
-  factory _$$ParserModelImageReaderImplCopyWith(
-          _$ParserModelImageReaderImpl value,
-          $Res Function(_$ParserModelImageReaderImpl) then) =
-      __$$ParserModelImageReaderImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String name,
-      String uuid,
-      List<ExtraSelectorModel> extra,
-      SelectorModel id,
-      ImageSelectorModel image,
-      SelectorModel largerImage,
-      SelectorModel rawImage,
-      SelectorModel rating,
-      SelectorModel score,
-      SelectorModel source,
-      SelectorModel uploadTime,
-      SelectorModel successSelector,
-      SelectorModel failedSelector,
-      SelectorModel badgeSelector,
-      TagSelectorModel badgeItem,
-      SelectorModel tagSelector,
-      TagSelectorModel tagItem,
-      SelectorModel commentSelector,
-      CommentSelectorModel commentItem});
-
-  $SelectorModelCopyWith<$Res> get id;
-  $ImageSelectorModelCopyWith<$Res> get image;
-  $SelectorModelCopyWith<$Res> get largerImage;
-  $SelectorModelCopyWith<$Res> get rawImage;
-  $SelectorModelCopyWith<$Res> get rating;
-  $SelectorModelCopyWith<$Res> get score;
-  $SelectorModelCopyWith<$Res> get source;
-  $SelectorModelCopyWith<$Res> get uploadTime;
-  @override
-  $SelectorModelCopyWith<$Res> get successSelector;
-  @override
-  $SelectorModelCopyWith<$Res> get failedSelector;
-  $SelectorModelCopyWith<$Res> get badgeSelector;
-  $TagSelectorModelCopyWith<$Res> get badgeItem;
-  $SelectorModelCopyWith<$Res> get tagSelector;
-  $TagSelectorModelCopyWith<$Res> get tagItem;
-  $SelectorModelCopyWith<$Res> get commentSelector;
-  $CommentSelectorModelCopyWith<$Res> get commentItem;
-}
-
-/// @nodoc
-class __$$ParserModelImageReaderImplCopyWithImpl<$Res>
-    extends _$ParserModelCopyWithImpl<$Res, _$ParserModelImageReaderImpl>
-    implements _$$ParserModelImageReaderImplCopyWith<$Res> {
-  __$$ParserModelImageReaderImplCopyWithImpl(
-      _$ParserModelImageReaderImpl _value,
-      $Res Function(_$ParserModelImageReaderImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? uuid = null,
-    Object? extra = null,
-    Object? id = null,
-    Object? image = null,
-    Object? largerImage = null,
-    Object? rawImage = null,
-    Object? rating = null,
-    Object? score = null,
-    Object? source = null,
-    Object? uploadTime = null,
-    Object? successSelector = null,
-    Object? failedSelector = null,
-    Object? badgeSelector = null,
-    Object? badgeItem = null,
-    Object? tagSelector = null,
-    Object? tagItem = null,
-    Object? commentSelector = null,
-    Object? commentItem = null,
-  }) {
-    return _then(_$ParserModelImageReaderImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      uuid: null == uuid
-          ? _value.uuid
-          : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
-      extra: null == extra
-          ? _value._extra
-          : extra // ignore: cast_nullable_to_non_nullable
-              as List<ExtraSelectorModel>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as ImageSelectorModel,
-      largerImage: null == largerImage
-          ? _value.largerImage
-          : largerImage // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      rawImage: null == rawImage
-          ? _value.rawImage
-          : rawImage // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      rating: null == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      score: null == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      source: null == source
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      uploadTime: null == uploadTime
-          ? _value.uploadTime
-          : uploadTime // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      successSelector: null == successSelector
-          ? _value.successSelector
-          : successSelector // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      failedSelector: null == failedSelector
-          ? _value.failedSelector
-          : failedSelector // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      badgeSelector: null == badgeSelector
-          ? _value.badgeSelector
-          : badgeSelector // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      badgeItem: null == badgeItem
-          ? _value.badgeItem
-          : badgeItem // ignore: cast_nullable_to_non_nullable
-              as TagSelectorModel,
-      tagSelector: null == tagSelector
-          ? _value.tagSelector
-          : tagSelector // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      tagItem: null == tagItem
-          ? _value.tagItem
-          : tagItem // ignore: cast_nullable_to_non_nullable
-              as TagSelectorModel,
-      commentSelector: null == commentSelector
-          ? _value.commentSelector
-          : commentSelector // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      commentItem: null == commentItem
-          ? _value.commentItem
-          : commentItem // ignore: cast_nullable_to_non_nullable
-              as CommentSelectorModel,
-    ));
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get id {
-    return $SelectorModelCopyWith<$Res>(_value.id, (value) {
-      return _then(_value.copyWith(id: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageSelectorModelCopyWith<$Res> get image {
-    return $ImageSelectorModelCopyWith<$Res>(_value.image, (value) {
-      return _then(_value.copyWith(image: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get largerImage {
-    return $SelectorModelCopyWith<$Res>(_value.largerImage, (value) {
-      return _then(_value.copyWith(largerImage: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get rawImage {
-    return $SelectorModelCopyWith<$Res>(_value.rawImage, (value) {
-      return _then(_value.copyWith(rawImage: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get rating {
-    return $SelectorModelCopyWith<$Res>(_value.rating, (value) {
-      return _then(_value.copyWith(rating: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get score {
-    return $SelectorModelCopyWith<$Res>(_value.score, (value) {
-      return _then(_value.copyWith(score: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get source {
-    return $SelectorModelCopyWith<$Res>(_value.source, (value) {
-      return _then(_value.copyWith(source: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get uploadTime {
-    return $SelectorModelCopyWith<$Res>(_value.uploadTime, (value) {
-      return _then(_value.copyWith(uploadTime: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get badgeSelector {
-    return $SelectorModelCopyWith<$Res>(_value.badgeSelector, (value) {
-      return _then(_value.copyWith(badgeSelector: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $TagSelectorModelCopyWith<$Res> get badgeItem {
-    return $TagSelectorModelCopyWith<$Res>(_value.badgeItem, (value) {
-      return _then(_value.copyWith(badgeItem: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get tagSelector {
-    return $SelectorModelCopyWith<$Res>(_value.tagSelector, (value) {
-      return _then(_value.copyWith(tagSelector: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $TagSelectorModelCopyWith<$Res> get tagItem {
-    return $TagSelectorModelCopyWith<$Res>(_value.tagItem, (value) {
-      return _then(_value.copyWith(tagItem: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get commentSelector {
-    return $SelectorModelCopyWith<$Res>(_value.commentSelector, (value) {
-      return _then(_value.copyWith(commentSelector: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CommentSelectorModelCopyWith<$Res> get commentItem {
-    return $CommentSelectorModelCopyWith<$Res>(_value.commentItem, (value) {
-      return _then(_value.copyWith(commentItem: value));
+    return $SelectorModelCopyWith<$Res>(_self.failedSelector, (value) {
+      return _then(_self.copyWith(failedSelector: value));
     });
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ParserModelImageReaderImpl extends ParserModelImageReader {
-  const _$ParserModelImageReaderImpl(
+class ParserModelImageReader extends ParserModel {
+  const ParserModelImageReader(
       {this.name = '',
       this.uuid = '',
       final List<ExtraSelectorModel> extra = const [],
@@ -763,9 +184,8 @@ class _$ParserModelImageReaderImpl extends ParserModelImageReader {
       : _extra = extra,
         $type = $type ?? 'imageReader',
         super._();
-
-  factory _$ParserModelImageReaderImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ParserModelImageReaderImplFromJson(json);
+  factory ParserModelImageReader.fromJson(Map<String, dynamic> json) =>
+      _$ParserModelImageReaderFromJson(json);
 
   @override
   @JsonKey()
@@ -782,28 +202,20 @@ class _$ParserModelImageReaderImpl extends ParserModelImageReader {
     return EqualUnmodifiableListView(_extra);
   }
 
-  @override
   @JsonKey()
   final SelectorModel id;
-  @override
   @JsonKey()
   final ImageSelectorModel image;
-  @override
   @JsonKey()
   final SelectorModel largerImage;
-  @override
   @JsonKey()
   final SelectorModel rawImage;
-  @override
   @JsonKey()
   final SelectorModel rating;
-  @override
   @JsonKey()
   final SelectorModel score;
-  @override
   @JsonKey()
   final SelectorModel source;
-  @override
   @JsonKey()
   final SelectorModel uploadTime;
   @override
@@ -812,38 +224,43 @@ class _$ParserModelImageReaderImpl extends ParserModelImageReader {
   @override
   @JsonKey()
   final SelectorModel failedSelector;
-  @override
   @JsonKey()
   final SelectorModel badgeSelector;
-  @override
   @JsonKey()
   final TagSelectorModel badgeItem;
-  @override
   @JsonKey()
   final SelectorModel tagSelector;
-  @override
   @JsonKey()
   final TagSelectorModel tagItem;
-  @override
   @JsonKey()
   final SelectorModel commentSelector;
-  @override
   @JsonKey()
   final CommentSelectorModel commentItem;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ParserModel.imageReader(name: $name, uuid: $uuid, extra: $extra, id: $id, image: $image, largerImage: $largerImage, rawImage: $rawImage, rating: $rating, score: $score, source: $source, uploadTime: $uploadTime, successSelector: $successSelector, failedSelector: $failedSelector, badgeSelector: $badgeSelector, badgeItem: $badgeItem, tagSelector: $tagSelector, tagItem: $tagItem, commentSelector: $commentSelector, commentItem: $commentItem)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ParserModelImageReaderCopyWith<ParserModelImageReader> get copyWith =>
+      _$ParserModelImageReaderCopyWithImpl<ParserModelImageReader>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ParserModelImageReaderToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ParserModelImageReaderImpl &&
+            other is ParserModelImageReader &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
             const DeepCollectionEquality().equals(other._extra, _extra) &&
@@ -900,691 +317,171 @@ class _$ParserModelImageReaderImpl extends ParserModelImageReader {
         commentItem
       ]);
 
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ParserModelImageReaderImplCopyWith<_$ParserModelImageReaderImpl>
-      get copyWith => __$$ParserModelImageReaderImplCopyWithImpl<
-          _$ParserModelImageReaderImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)
-        imageReader,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)
-        detail,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)
-        list,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)
-        autoComplete,
-  }) {
-    return imageReader(
-        name,
-        uuid,
-        extra,
-        id,
-        image,
-        largerImage,
-        rawImage,
-        rating,
-        score,
-        source,
-        uploadTime,
-        successSelector,
-        failedSelector,
-        badgeSelector,
-        badgeItem,
-        tagSelector,
-        tagItem,
-        commentSelector,
-        commentItem);
+  String toString() {
+    return 'ParserModel.imageReader(name: $name, uuid: $uuid, extra: $extra, id: $id, image: $image, largerImage: $largerImage, rawImage: $rawImage, rating: $rating, score: $score, source: $source, uploadTime: $uploadTime, successSelector: $successSelector, failedSelector: $failedSelector, badgeSelector: $badgeSelector, badgeItem: $badgeItem, tagSelector: $tagSelector, tagItem: $tagItem, commentSelector: $commentSelector, commentItem: $commentItem)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)?
-        imageReader,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)?
-        detail,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)?
-        list,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)?
-        autoComplete,
-  }) {
-    return imageReader?.call(
-        name,
-        uuid,
-        extra,
-        id,
-        image,
-        largerImage,
-        rawImage,
-        rating,
-        score,
-        source,
-        uploadTime,
-        successSelector,
-        failedSelector,
-        badgeSelector,
-        badgeItem,
-        tagSelector,
-        tagItem,
-        commentSelector,
-        commentItem);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)?
-        imageReader,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)?
-        detail,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)?
-        list,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)?
-        autoComplete,
-    required TResult orElse(),
-  }) {
-    if (imageReader != null) {
-      return imageReader(
-          name,
-          uuid,
-          extra,
-          id,
-          image,
-          largerImage,
-          rawImage,
-          rating,
-          score,
-          source,
-          uploadTime,
-          successSelector,
-          failedSelector,
-          badgeSelector,
-          badgeItem,
-          tagSelector,
-          tagItem,
-          commentSelector,
-          commentItem);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ParserModelImageReader value) imageReader,
-    required TResult Function(ParserModelDetail value) detail,
-    required TResult Function(ParserModelList value) list,
-    required TResult Function(ParserModelAutoComplete value) autoComplete,
-  }) {
-    return imageReader(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ParserModelImageReader value)? imageReader,
-    TResult? Function(ParserModelDetail value)? detail,
-    TResult? Function(ParserModelList value)? list,
-    TResult? Function(ParserModelAutoComplete value)? autoComplete,
-  }) {
-    return imageReader?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ParserModelImageReader value)? imageReader,
-    TResult Function(ParserModelDetail value)? detail,
-    TResult Function(ParserModelList value)? list,
-    TResult Function(ParserModelAutoComplete value)? autoComplete,
-    required TResult orElse(),
-  }) {
-    if (imageReader != null) {
-      return imageReader(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ParserModelImageReaderImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class ParserModelImageReader extends ParserModel {
-  const factory ParserModelImageReader(
-      {final String name,
-      final String uuid,
-      final List<ExtraSelectorModel> extra,
-      final SelectorModel id,
-      final ImageSelectorModel image,
-      final SelectorModel largerImage,
-      final SelectorModel rawImage,
-      final SelectorModel rating,
-      final SelectorModel score,
-      final SelectorModel source,
-      final SelectorModel uploadTime,
-      final SelectorModel successSelector,
-      final SelectorModel failedSelector,
-      final SelectorModel badgeSelector,
-      final TagSelectorModel badgeItem,
-      final SelectorModel tagSelector,
-      final TagSelectorModel tagItem,
-      final SelectorModel commentSelector,
-      final CommentSelectorModel commentItem}) = _$ParserModelImageReaderImpl;
-  const ParserModelImageReader._() : super._();
-
-  factory ParserModelImageReader.fromJson(Map<String, dynamic> json) =
-      _$ParserModelImageReaderImpl.fromJson;
-
-  @override
-  String get name;
-  @override
-  String get uuid;
-  @override
-  List<ExtraSelectorModel> get extra;
-  SelectorModel get id;
-  ImageSelectorModel get image;
-  SelectorModel get largerImage;
-  SelectorModel get rawImage;
-  SelectorModel get rating;
-  SelectorModel get score;
-  SelectorModel get source;
-  SelectorModel get uploadTime;
-  @override
-  SelectorModel get successSelector;
-  @override
-  SelectorModel get failedSelector;
-  SelectorModel get badgeSelector;
-  TagSelectorModel get badgeItem;
-  SelectorModel get tagSelector;
-  TagSelectorModel get tagItem;
-  SelectorModel get commentSelector;
-  CommentSelectorModel get commentItem;
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ParserModelImageReaderImplCopyWith<_$ParserModelImageReaderImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ParserModelDetailImplCopyWith<$Res>
+abstract mixin class $ParserModelImageReaderCopyWith<$Res>
     implements $ParserModelCopyWith<$Res> {
-  factory _$$ParserModelDetailImplCopyWith(_$ParserModelDetailImpl value,
-          $Res Function(_$ParserModelDetailImpl) then) =
-      __$$ParserModelDetailImplCopyWithImpl<$Res>;
+  factory $ParserModelImageReaderCopyWith(ParserModelImageReader value,
+          $Res Function(ParserModelImageReader) _then) =
+      _$ParserModelImageReaderCopyWithImpl;
   @override
   @useResult
   $Res call(
       {String name,
       String uuid,
       List<ExtraSelectorModel> extra,
-      SelectorModel title,
-      SelectorModel subtitle,
+      SelectorModel id,
+      ImageSelectorModel image,
+      SelectorModel largerImage,
+      SelectorModel rawImage,
+      SelectorModel rating,
+      SelectorModel score,
+      SelectorModel source,
       SelectorModel uploadTime,
-      SelectorModel star,
-      SelectorModel imageCount,
-      SelectorModel pageCount,
-      SelectorModel language,
-      ImageSelectorModel coverImage,
-      SelectorModel description,
       SelectorModel successSelector,
       SelectorModel failedSelector,
-      SelectorModel thumbnailSelector,
-      ImageSelectorModel thumbnail,
-      SelectorModel target,
-      SelectorModel commentSelector,
-      CommentSelectorModel comments,
       SelectorModel badgeSelector,
       TagSelectorModel badgeItem,
       SelectorModel tagSelector,
       TagSelectorModel tagItem,
-      SelectorModel chapterSelector,
-      SelectorModel chapterTitle,
-      SelectorModel chapterSubtitle,
-      ImageSelectorModel chapterCover,
-      SelectorModel nextPage,
-      SelectorModel countPrePage});
+      SelectorModel commentSelector,
+      CommentSelectorModel commentItem});
 
-  $SelectorModelCopyWith<$Res> get title;
-  $SelectorModelCopyWith<$Res> get subtitle;
+  $SelectorModelCopyWith<$Res> get id;
+  $ImageSelectorModelCopyWith<$Res> get image;
+  $SelectorModelCopyWith<$Res> get largerImage;
+  $SelectorModelCopyWith<$Res> get rawImage;
+  $SelectorModelCopyWith<$Res> get rating;
+  $SelectorModelCopyWith<$Res> get score;
+  $SelectorModelCopyWith<$Res> get source;
   $SelectorModelCopyWith<$Res> get uploadTime;
-  $SelectorModelCopyWith<$Res> get star;
-  $SelectorModelCopyWith<$Res> get imageCount;
-  $SelectorModelCopyWith<$Res> get pageCount;
-  $SelectorModelCopyWith<$Res> get language;
-  $ImageSelectorModelCopyWith<$Res> get coverImage;
-  $SelectorModelCopyWith<$Res> get description;
   @override
   $SelectorModelCopyWith<$Res> get successSelector;
   @override
   $SelectorModelCopyWith<$Res> get failedSelector;
-  $SelectorModelCopyWith<$Res> get thumbnailSelector;
-  $ImageSelectorModelCopyWith<$Res> get thumbnail;
-  $SelectorModelCopyWith<$Res> get target;
-  $SelectorModelCopyWith<$Res> get commentSelector;
-  $CommentSelectorModelCopyWith<$Res> get comments;
   $SelectorModelCopyWith<$Res> get badgeSelector;
   $TagSelectorModelCopyWith<$Res> get badgeItem;
   $SelectorModelCopyWith<$Res> get tagSelector;
   $TagSelectorModelCopyWith<$Res> get tagItem;
-  $SelectorModelCopyWith<$Res> get chapterSelector;
-  $SelectorModelCopyWith<$Res> get chapterTitle;
-  $SelectorModelCopyWith<$Res> get chapterSubtitle;
-  $ImageSelectorModelCopyWith<$Res> get chapterCover;
-  $SelectorModelCopyWith<$Res> get nextPage;
-  $SelectorModelCopyWith<$Res> get countPrePage;
+  $SelectorModelCopyWith<$Res> get commentSelector;
+  $CommentSelectorModelCopyWith<$Res> get commentItem;
 }
 
 /// @nodoc
-class __$$ParserModelDetailImplCopyWithImpl<$Res>
-    extends _$ParserModelCopyWithImpl<$Res, _$ParserModelDetailImpl>
-    implements _$$ParserModelDetailImplCopyWith<$Res> {
-  __$$ParserModelDetailImplCopyWithImpl(_$ParserModelDetailImpl _value,
-      $Res Function(_$ParserModelDetailImpl) _then)
-      : super(_value, _then);
+class _$ParserModelImageReaderCopyWithImpl<$Res>
+    implements $ParserModelImageReaderCopyWith<$Res> {
+  _$ParserModelImageReaderCopyWithImpl(this._self, this._then);
+
+  final ParserModelImageReader _self;
+  final $Res Function(ParserModelImageReader) _then;
 
   /// Create a copy of ParserModel
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? name = null,
     Object? uuid = null,
     Object? extra = null,
-    Object? title = null,
-    Object? subtitle = null,
+    Object? id = null,
+    Object? image = null,
+    Object? largerImage = null,
+    Object? rawImage = null,
+    Object? rating = null,
+    Object? score = null,
+    Object? source = null,
     Object? uploadTime = null,
-    Object? star = null,
-    Object? imageCount = null,
-    Object? pageCount = null,
-    Object? language = null,
-    Object? coverImage = null,
-    Object? description = null,
     Object? successSelector = null,
     Object? failedSelector = null,
-    Object? thumbnailSelector = null,
-    Object? thumbnail = null,
-    Object? target = null,
-    Object? commentSelector = null,
-    Object? comments = null,
     Object? badgeSelector = null,
     Object? badgeItem = null,
     Object? tagSelector = null,
     Object? tagItem = null,
-    Object? chapterSelector = null,
-    Object? chapterTitle = null,
-    Object? chapterSubtitle = null,
-    Object? chapterCover = null,
-    Object? nextPage = null,
-    Object? countPrePage = null,
+    Object? commentSelector = null,
+    Object? commentItem = null,
   }) {
-    return _then(_$ParserModelDetailImpl(
+    return _then(ParserModelImageReader(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       uuid: null == uuid
-          ? _value.uuid
+          ? _self.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
       extra: null == extra
-          ? _value._extra
+          ? _self._extra
           : extra // ignore: cast_nullable_to_non_nullable
               as List<ExtraSelectorModel>,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
-      subtitle: null == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
+      image: null == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as ImageSelectorModel,
+      largerImage: null == largerImage
+          ? _self.largerImage
+          : largerImage // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      rawImage: null == rawImage
+          ? _self.rawImage
+          : rawImage // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      rating: null == rating
+          ? _self.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      score: null == score
+          ? _self.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      source: null == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       uploadTime: null == uploadTime
-          ? _value.uploadTime
+          ? _self.uploadTime
           : uploadTime // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
-      star: null == star
-          ? _value.star
-          : star // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      imageCount: null == imageCount
-          ? _value.imageCount
-          : imageCount // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      pageCount: null == pageCount
-          ? _value.pageCount
-          : pageCount // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      language: null == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      coverImage: null == coverImage
-          ? _value.coverImage
-          : coverImage // ignore: cast_nullable_to_non_nullable
-              as ImageSelectorModel,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
       successSelector: null == successSelector
-          ? _value.successSelector
+          ? _self.successSelector
           : successSelector // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       failedSelector: null == failedSelector
-          ? _value.failedSelector
+          ? _self.failedSelector
           : failedSelector // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
-      thumbnailSelector: null == thumbnailSelector
-          ? _value.thumbnailSelector
-          : thumbnailSelector // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      thumbnail: null == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as ImageSelectorModel,
-      target: null == target
-          ? _value.target
-          : target // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      commentSelector: null == commentSelector
-          ? _value.commentSelector
-          : commentSelector // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      comments: null == comments
-          ? _value.comments
-          : comments // ignore: cast_nullable_to_non_nullable
-              as CommentSelectorModel,
       badgeSelector: null == badgeSelector
-          ? _value.badgeSelector
+          ? _self.badgeSelector
           : badgeSelector // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       badgeItem: null == badgeItem
-          ? _value.badgeItem
+          ? _self.badgeItem
           : badgeItem // ignore: cast_nullable_to_non_nullable
               as TagSelectorModel,
       tagSelector: null == tagSelector
-          ? _value.tagSelector
+          ? _self.tagSelector
           : tagSelector // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       tagItem: null == tagItem
-          ? _value.tagItem
+          ? _self.tagItem
           : tagItem // ignore: cast_nullable_to_non_nullable
               as TagSelectorModel,
-      chapterSelector: null == chapterSelector
-          ? _value.chapterSelector
-          : chapterSelector // ignore: cast_nullable_to_non_nullable
+      commentSelector: null == commentSelector
+          ? _self.commentSelector
+          : commentSelector // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
-      chapterTitle: null == chapterTitle
-          ? _value.chapterTitle
-          : chapterTitle // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      chapterSubtitle: null == chapterSubtitle
-          ? _value.chapterSubtitle
-          : chapterSubtitle // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      chapterCover: null == chapterCover
-          ? _value.chapterCover
-          : chapterCover // ignore: cast_nullable_to_non_nullable
-              as ImageSelectorModel,
-      nextPage: null == nextPage
-          ? _value.nextPage
-          : nextPage // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      countPrePage: null == countPrePage
-          ? _value.countPrePage
-          : countPrePage // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
+      commentItem: null == commentItem
+          ? _self.commentItem
+          : commentItem // ignore: cast_nullable_to_non_nullable
+              as CommentSelectorModel,
     ));
   }
 
@@ -1592,9 +489,9 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get title {
-    return $SelectorModelCopyWith<$Res>(_value.title, (value) {
-      return _then(_value.copyWith(title: value));
+  $SelectorModelCopyWith<$Res> get id {
+    return $SelectorModelCopyWith<$Res>(_self.id, (value) {
+      return _then(_self.copyWith(id: value));
     });
   }
 
@@ -1602,9 +499,59 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get subtitle {
-    return $SelectorModelCopyWith<$Res>(_value.subtitle, (value) {
-      return _then(_value.copyWith(subtitle: value));
+  $ImageSelectorModelCopyWith<$Res> get image {
+    return $ImageSelectorModelCopyWith<$Res>(_self.image, (value) {
+      return _then(_self.copyWith(image: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get largerImage {
+    return $SelectorModelCopyWith<$Res>(_self.largerImage, (value) {
+      return _then(_self.copyWith(largerImage: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get rawImage {
+    return $SelectorModelCopyWith<$Res>(_self.rawImage, (value) {
+      return _then(_self.copyWith(rawImage: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get rating {
+    return $SelectorModelCopyWith<$Res>(_self.rating, (value) {
+      return _then(_self.copyWith(rating: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get score {
+    return $SelectorModelCopyWith<$Res>(_self.score, (value) {
+      return _then(_self.copyWith(score: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get source {
+    return $SelectorModelCopyWith<$Res>(_self.source, (value) {
+      return _then(_self.copyWith(source: value));
     });
   }
 
@@ -1613,8 +560,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get uploadTime {
-    return $SelectorModelCopyWith<$Res>(_value.uploadTime, (value) {
-      return _then(_value.copyWith(uploadTime: value));
+    return $SelectorModelCopyWith<$Res>(_self.uploadTime, (value) {
+      return _then(_self.copyWith(uploadTime: value));
     });
   }
 
@@ -1622,9 +569,9 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get star {
-    return $SelectorModelCopyWith<$Res>(_value.star, (value) {
-      return _then(_value.copyWith(star: value));
+  $SelectorModelCopyWith<$Res> get successSelector {
+    return $SelectorModelCopyWith<$Res>(_self.successSelector, (value) {
+      return _then(_self.copyWith(successSelector: value));
     });
   }
 
@@ -1632,99 +579,9 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get imageCount {
-    return $SelectorModelCopyWith<$Res>(_value.imageCount, (value) {
-      return _then(_value.copyWith(imageCount: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get pageCount {
-    return $SelectorModelCopyWith<$Res>(_value.pageCount, (value) {
-      return _then(_value.copyWith(pageCount: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get language {
-    return $SelectorModelCopyWith<$Res>(_value.language, (value) {
-      return _then(_value.copyWith(language: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageSelectorModelCopyWith<$Res> get coverImage {
-    return $ImageSelectorModelCopyWith<$Res>(_value.coverImage, (value) {
-      return _then(_value.copyWith(coverImage: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get description {
-    return $SelectorModelCopyWith<$Res>(_value.description, (value) {
-      return _then(_value.copyWith(description: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get thumbnailSelector {
-    return $SelectorModelCopyWith<$Res>(_value.thumbnailSelector, (value) {
-      return _then(_value.copyWith(thumbnailSelector: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageSelectorModelCopyWith<$Res> get thumbnail {
-    return $ImageSelectorModelCopyWith<$Res>(_value.thumbnail, (value) {
-      return _then(_value.copyWith(thumbnail: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get target {
-    return $SelectorModelCopyWith<$Res>(_value.target, (value) {
-      return _then(_value.copyWith(target: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get commentSelector {
-    return $SelectorModelCopyWith<$Res>(_value.commentSelector, (value) {
-      return _then(_value.copyWith(commentSelector: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CommentSelectorModelCopyWith<$Res> get comments {
-    return $CommentSelectorModelCopyWith<$Res>(_value.comments, (value) {
-      return _then(_value.copyWith(comments: value));
+  $SelectorModelCopyWith<$Res> get failedSelector {
+    return $SelectorModelCopyWith<$Res>(_self.failedSelector, (value) {
+      return _then(_self.copyWith(failedSelector: value));
     });
   }
 
@@ -1733,8 +590,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get badgeSelector {
-    return $SelectorModelCopyWith<$Res>(_value.badgeSelector, (value) {
-      return _then(_value.copyWith(badgeSelector: value));
+    return $SelectorModelCopyWith<$Res>(_self.badgeSelector, (value) {
+      return _then(_self.copyWith(badgeSelector: value));
     });
   }
 
@@ -1743,8 +600,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $TagSelectorModelCopyWith<$Res> get badgeItem {
-    return $TagSelectorModelCopyWith<$Res>(_value.badgeItem, (value) {
-      return _then(_value.copyWith(badgeItem: value));
+    return $TagSelectorModelCopyWith<$Res>(_self.badgeItem, (value) {
+      return _then(_self.copyWith(badgeItem: value));
     });
   }
 
@@ -1753,8 +610,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get tagSelector {
-    return $SelectorModelCopyWith<$Res>(_value.tagSelector, (value) {
-      return _then(_value.copyWith(tagSelector: value));
+    return $SelectorModelCopyWith<$Res>(_self.tagSelector, (value) {
+      return _then(_self.copyWith(tagSelector: value));
     });
   }
 
@@ -1763,8 +620,8 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $TagSelectorModelCopyWith<$Res> get tagItem {
-    return $TagSelectorModelCopyWith<$Res>(_value.tagItem, (value) {
-      return _then(_value.copyWith(tagItem: value));
+    return $TagSelectorModelCopyWith<$Res>(_self.tagItem, (value) {
+      return _then(_self.copyWith(tagItem: value));
     });
   }
 
@@ -1772,9 +629,9 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get chapterSelector {
-    return $SelectorModelCopyWith<$Res>(_value.chapterSelector, (value) {
-      return _then(_value.copyWith(chapterSelector: value));
+  $SelectorModelCopyWith<$Res> get commentSelector {
+    return $SelectorModelCopyWith<$Res>(_self.commentSelector, (value) {
+      return _then(_self.copyWith(commentSelector: value));
     });
   }
 
@@ -1782,57 +639,17 @@ class __$$ParserModelDetailImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get chapterTitle {
-    return $SelectorModelCopyWith<$Res>(_value.chapterTitle, (value) {
-      return _then(_value.copyWith(chapterTitle: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get chapterSubtitle {
-    return $SelectorModelCopyWith<$Res>(_value.chapterSubtitle, (value) {
-      return _then(_value.copyWith(chapterSubtitle: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageSelectorModelCopyWith<$Res> get chapterCover {
-    return $ImageSelectorModelCopyWith<$Res>(_value.chapterCover, (value) {
-      return _then(_value.copyWith(chapterCover: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get nextPage {
-    return $SelectorModelCopyWith<$Res>(_value.nextPage, (value) {
-      return _then(_value.copyWith(nextPage: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get countPrePage {
-    return $SelectorModelCopyWith<$Res>(_value.countPrePage, (value) {
-      return _then(_value.copyWith(countPrePage: value));
+  $CommentSelectorModelCopyWith<$Res> get commentItem {
+    return $CommentSelectorModelCopyWith<$Res>(_self.commentItem, (value) {
+      return _then(_self.copyWith(commentItem: value));
     });
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ParserModelDetailImpl extends ParserModelDetail {
-  const _$ParserModelDetailImpl(
+class ParserModelDetail extends ParserModel {
+  const ParserModelDetail(
       {this.name = '',
       this.uuid = '',
       final List<ExtraSelectorModel> extra = const [],
@@ -1866,9 +683,8 @@ class _$ParserModelDetailImpl extends ParserModelDetail {
       : _extra = extra,
         $type = $type ?? 'detail',
         super._();
-
-  factory _$ParserModelDetailImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ParserModelDetailImplFromJson(json);
+  factory ParserModelDetail.fromJson(Map<String, dynamic> json) =>
+      _$ParserModelDetailFromJson(json);
 
   @override
   @JsonKey()
@@ -1885,31 +701,22 @@ class _$ParserModelDetailImpl extends ParserModelDetail {
     return EqualUnmodifiableListView(_extra);
   }
 
-  @override
   @JsonKey()
   final SelectorModel title;
-  @override
   @JsonKey()
   final SelectorModel subtitle;
-  @override
   @JsonKey()
   final SelectorModel uploadTime;
-  @override
   @JsonKey()
   final SelectorModel star;
-  @override
   @JsonKey()
   final SelectorModel imageCount;
-  @override
   @JsonKey()
   final SelectorModel pageCount;
-  @override
   @JsonKey()
   final SelectorModel language;
-  @override
   @JsonKey()
   final ImageSelectorModel coverImage;
-  @override
   @JsonKey()
   final SelectorModel description;
   @override
@@ -1918,65 +725,60 @@ class _$ParserModelDetailImpl extends ParserModelDetail {
   @override
   @JsonKey()
   final SelectorModel failedSelector;
-  @override
   @JsonKey()
   final SelectorModel thumbnailSelector;
-  @override
   @JsonKey()
   final ImageSelectorModel thumbnail;
-  @override
   @JsonKey()
   final SelectorModel target;
-  @override
   @JsonKey()
   final SelectorModel commentSelector;
-  @override
   @JsonKey()
   final CommentSelectorModel comments;
-  @override
   @JsonKey()
   final SelectorModel badgeSelector;
-  @override
   @JsonKey()
   final TagSelectorModel badgeItem;
-  @override
   @JsonKey()
   final SelectorModel tagSelector;
-  @override
   @JsonKey()
   final TagSelectorModel tagItem;
-  @override
   @JsonKey()
   final SelectorModel chapterSelector;
-  @override
   @JsonKey()
   final SelectorModel chapterTitle;
-  @override
   @JsonKey()
   final SelectorModel chapterSubtitle;
-  @override
   @JsonKey()
   final ImageSelectorModel chapterCover;
-  @override
   @JsonKey()
   final SelectorModel nextPage;
-  @override
   @JsonKey()
   final SelectorModel countPrePage;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ParserModel.detail(name: $name, uuid: $uuid, extra: $extra, title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imageCount: $imageCount, pageCount: $pageCount, language: $language, coverImage: $coverImage, description: $description, successSelector: $successSelector, failedSelector: $failedSelector, thumbnailSelector: $thumbnailSelector, thumbnail: $thumbnail, target: $target, commentSelector: $commentSelector, comments: $comments, badgeSelector: $badgeSelector, badgeItem: $badgeItem, tagSelector: $tagSelector, tagItem: $tagItem, chapterSelector: $chapterSelector, chapterTitle: $chapterTitle, chapterSubtitle: $chapterSubtitle, chapterCover: $chapterCover, nextPage: $nextPage, countPrePage: $countPrePage)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ParserModelDetailCopyWith<ParserModelDetail> get copyWith =>
+      _$ParserModelDetailCopyWithImpl<ParserModelDetail>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ParserModelDetailToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ParserModelDetailImpl &&
+            other is ParserModelDetail &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
             const DeepCollectionEquality().equals(other._extra, _extra) &&
@@ -2065,691 +867,240 @@ class _$ParserModelDetailImpl extends ParserModelDetail {
         countPrePage
       ]);
 
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ParserModelDetailImplCopyWith<_$ParserModelDetailImpl> get copyWith =>
-      __$$ParserModelDetailImplCopyWithImpl<_$ParserModelDetailImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)
-        imageReader,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)
-        detail,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)
-        list,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)
-        autoComplete,
-  }) {
-    return detail(
-        name,
-        uuid,
-        extra,
-        title,
-        subtitle,
-        uploadTime,
-        star,
-        imageCount,
-        pageCount,
-        language,
-        coverImage,
-        description,
-        successSelector,
-        failedSelector,
-        thumbnailSelector,
-        thumbnail,
-        target,
-        commentSelector,
-        comments,
-        badgeSelector,
-        badgeItem,
-        tagSelector,
-        tagItem,
-        chapterSelector,
-        chapterTitle,
-        chapterSubtitle,
-        chapterCover,
-        nextPage,
-        countPrePage);
+  String toString() {
+    return 'ParserModel.detail(name: $name, uuid: $uuid, extra: $extra, title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imageCount: $imageCount, pageCount: $pageCount, language: $language, coverImage: $coverImage, description: $description, successSelector: $successSelector, failedSelector: $failedSelector, thumbnailSelector: $thumbnailSelector, thumbnail: $thumbnail, target: $target, commentSelector: $commentSelector, comments: $comments, badgeSelector: $badgeSelector, badgeItem: $badgeItem, tagSelector: $tagSelector, tagItem: $tagItem, chapterSelector: $chapterSelector, chapterTitle: $chapterTitle, chapterSubtitle: $chapterSubtitle, chapterCover: $chapterCover, nextPage: $nextPage, countPrePage: $countPrePage)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)?
-        imageReader,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)?
-        detail,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)?
-        list,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)?
-        autoComplete,
-  }) {
-    return detail?.call(
-        name,
-        uuid,
-        extra,
-        title,
-        subtitle,
-        uploadTime,
-        star,
-        imageCount,
-        pageCount,
-        language,
-        coverImage,
-        description,
-        successSelector,
-        failedSelector,
-        thumbnailSelector,
-        thumbnail,
-        target,
-        commentSelector,
-        comments,
-        badgeSelector,
-        badgeItem,
-        tagSelector,
-        tagItem,
-        chapterSelector,
-        chapterTitle,
-        chapterSubtitle,
-        chapterCover,
-        nextPage,
-        countPrePage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)?
-        imageReader,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)?
-        detail,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)?
-        list,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)?
-        autoComplete,
-    required TResult orElse(),
-  }) {
-    if (detail != null) {
-      return detail(
-          name,
-          uuid,
-          extra,
-          title,
-          subtitle,
-          uploadTime,
-          star,
-          imageCount,
-          pageCount,
-          language,
-          coverImage,
-          description,
-          successSelector,
-          failedSelector,
-          thumbnailSelector,
-          thumbnail,
-          target,
-          commentSelector,
-          comments,
-          badgeSelector,
-          badgeItem,
-          tagSelector,
-          tagItem,
-          chapterSelector,
-          chapterTitle,
-          chapterSubtitle,
-          chapterCover,
-          nextPage,
-          countPrePage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ParserModelImageReader value) imageReader,
-    required TResult Function(ParserModelDetail value) detail,
-    required TResult Function(ParserModelList value) list,
-    required TResult Function(ParserModelAutoComplete value) autoComplete,
-  }) {
-    return detail(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ParserModelImageReader value)? imageReader,
-    TResult? Function(ParserModelDetail value)? detail,
-    TResult? Function(ParserModelList value)? list,
-    TResult? Function(ParserModelAutoComplete value)? autoComplete,
-  }) {
-    return detail?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ParserModelImageReader value)? imageReader,
-    TResult Function(ParserModelDetail value)? detail,
-    TResult Function(ParserModelList value)? list,
-    TResult Function(ParserModelAutoComplete value)? autoComplete,
-    required TResult orElse(),
-  }) {
-    if (detail != null) {
-      return detail(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ParserModelDetailImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class ParserModelDetail extends ParserModel {
-  const factory ParserModelDetail(
-      {final String name,
-      final String uuid,
-      final List<ExtraSelectorModel> extra,
-      final SelectorModel title,
-      final SelectorModel subtitle,
-      final SelectorModel uploadTime,
-      final SelectorModel star,
-      final SelectorModel imageCount,
-      final SelectorModel pageCount,
-      final SelectorModel language,
-      final ImageSelectorModel coverImage,
-      final SelectorModel description,
-      final SelectorModel successSelector,
-      final SelectorModel failedSelector,
-      final SelectorModel thumbnailSelector,
-      final ImageSelectorModel thumbnail,
-      final SelectorModel target,
-      final SelectorModel commentSelector,
-      final CommentSelectorModel comments,
-      final SelectorModel badgeSelector,
-      final TagSelectorModel badgeItem,
-      final SelectorModel tagSelector,
-      final TagSelectorModel tagItem,
-      final SelectorModel chapterSelector,
-      final SelectorModel chapterTitle,
-      final SelectorModel chapterSubtitle,
-      final ImageSelectorModel chapterCover,
-      final SelectorModel nextPage,
-      final SelectorModel countPrePage}) = _$ParserModelDetailImpl;
-  const ParserModelDetail._() : super._();
-
-  factory ParserModelDetail.fromJson(Map<String, dynamic> json) =
-      _$ParserModelDetailImpl.fromJson;
-
-  @override
-  String get name;
-  @override
-  String get uuid;
-  @override
-  List<ExtraSelectorModel> get extra;
-  SelectorModel get title;
-  SelectorModel get subtitle;
-  SelectorModel get uploadTime;
-  SelectorModel get star;
-  SelectorModel get imageCount;
-  SelectorModel get pageCount;
-  SelectorModel get language;
-  ImageSelectorModel get coverImage;
-  SelectorModel get description;
-  @override
-  SelectorModel get successSelector;
-  @override
-  SelectorModel get failedSelector;
-  SelectorModel get thumbnailSelector;
-  ImageSelectorModel get thumbnail;
-  SelectorModel get target;
-  SelectorModel get commentSelector;
-  CommentSelectorModel get comments;
-  SelectorModel get badgeSelector;
-  TagSelectorModel get badgeItem;
-  SelectorModel get tagSelector;
-  TagSelectorModel get tagItem;
-  SelectorModel get chapterSelector;
-  SelectorModel get chapterTitle;
-  SelectorModel get chapterSubtitle;
-  ImageSelectorModel get chapterCover;
-  SelectorModel get nextPage;
-  SelectorModel get countPrePage;
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ParserModelDetailImplCopyWith<_$ParserModelDetailImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ParserModelListImplCopyWith<$Res>
+abstract mixin class $ParserModelDetailCopyWith<$Res>
     implements $ParserModelCopyWith<$Res> {
-  factory _$$ParserModelListImplCopyWith(_$ParserModelListImpl value,
-          $Res Function(_$ParserModelListImpl) then) =
-      __$$ParserModelListImplCopyWithImpl<$Res>;
+  factory $ParserModelDetailCopyWith(
+          ParserModelDetail value, $Res Function(ParserModelDetail) _then) =
+      _$ParserModelDetailCopyWithImpl;
   @override
   @useResult
   $Res call(
       {String name,
       String uuid,
       List<ExtraSelectorModel> extra,
-      SelectorModel itemSelector,
-      SelectorModel itemComplete,
-      SelectorModel successSelector,
-      SelectorModel failedSelector,
       SelectorModel title,
       SelectorModel subtitle,
       SelectorModel uploadTime,
       SelectorModel star,
       SelectorModel imageCount,
+      SelectorModel pageCount,
       SelectorModel language,
-      ImageSelectorModel previewImage,
+      ImageSelectorModel coverImage,
+      SelectorModel description,
+      SelectorModel successSelector,
+      SelectorModel failedSelector,
+      SelectorModel thumbnailSelector,
+      ImageSelectorModel thumbnail,
       SelectorModel target,
+      SelectorModel commentSelector,
+      CommentSelectorModel comments,
       SelectorModel badgeSelector,
       TagSelectorModel badgeItem,
-      SelectorModel tag,
+      SelectorModel tagSelector,
       TagSelectorModel tagItem,
-      SelectorModel paper,
-      SelectorModel idCode,
-      SelectorModel nextPage});
+      SelectorModel chapterSelector,
+      SelectorModel chapterTitle,
+      SelectorModel chapterSubtitle,
+      ImageSelectorModel chapterCover,
+      SelectorModel nextPage,
+      SelectorModel countPrePage});
 
-  $SelectorModelCopyWith<$Res> get itemSelector;
-  $SelectorModelCopyWith<$Res> get itemComplete;
-  @override
-  $SelectorModelCopyWith<$Res> get successSelector;
-  @override
-  $SelectorModelCopyWith<$Res> get failedSelector;
   $SelectorModelCopyWith<$Res> get title;
   $SelectorModelCopyWith<$Res> get subtitle;
   $SelectorModelCopyWith<$Res> get uploadTime;
   $SelectorModelCopyWith<$Res> get star;
   $SelectorModelCopyWith<$Res> get imageCount;
+  $SelectorModelCopyWith<$Res> get pageCount;
   $SelectorModelCopyWith<$Res> get language;
-  $ImageSelectorModelCopyWith<$Res> get previewImage;
+  $ImageSelectorModelCopyWith<$Res> get coverImage;
+  $SelectorModelCopyWith<$Res> get description;
+  @override
+  $SelectorModelCopyWith<$Res> get successSelector;
+  @override
+  $SelectorModelCopyWith<$Res> get failedSelector;
+  $SelectorModelCopyWith<$Res> get thumbnailSelector;
+  $ImageSelectorModelCopyWith<$Res> get thumbnail;
   $SelectorModelCopyWith<$Res> get target;
+  $SelectorModelCopyWith<$Res> get commentSelector;
+  $CommentSelectorModelCopyWith<$Res> get comments;
   $SelectorModelCopyWith<$Res> get badgeSelector;
   $TagSelectorModelCopyWith<$Res> get badgeItem;
-  $SelectorModelCopyWith<$Res> get tag;
+  $SelectorModelCopyWith<$Res> get tagSelector;
   $TagSelectorModelCopyWith<$Res> get tagItem;
-  $SelectorModelCopyWith<$Res> get paper;
-  $SelectorModelCopyWith<$Res> get idCode;
+  $SelectorModelCopyWith<$Res> get chapterSelector;
+  $SelectorModelCopyWith<$Res> get chapterTitle;
+  $SelectorModelCopyWith<$Res> get chapterSubtitle;
+  $ImageSelectorModelCopyWith<$Res> get chapterCover;
   $SelectorModelCopyWith<$Res> get nextPage;
+  $SelectorModelCopyWith<$Res> get countPrePage;
 }
 
 /// @nodoc
-class __$$ParserModelListImplCopyWithImpl<$Res>
-    extends _$ParserModelCopyWithImpl<$Res, _$ParserModelListImpl>
-    implements _$$ParserModelListImplCopyWith<$Res> {
-  __$$ParserModelListImplCopyWithImpl(
-      _$ParserModelListImpl _value, $Res Function(_$ParserModelListImpl) _then)
-      : super(_value, _then);
+class _$ParserModelDetailCopyWithImpl<$Res>
+    implements $ParserModelDetailCopyWith<$Res> {
+  _$ParserModelDetailCopyWithImpl(this._self, this._then);
+
+  final ParserModelDetail _self;
+  final $Res Function(ParserModelDetail) _then;
 
   /// Create a copy of ParserModel
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? name = null,
     Object? uuid = null,
     Object? extra = null,
-    Object? itemSelector = null,
-    Object? itemComplete = null,
-    Object? successSelector = null,
-    Object? failedSelector = null,
     Object? title = null,
     Object? subtitle = null,
     Object? uploadTime = null,
     Object? star = null,
     Object? imageCount = null,
+    Object? pageCount = null,
     Object? language = null,
-    Object? previewImage = null,
+    Object? coverImage = null,
+    Object? description = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
+    Object? thumbnailSelector = null,
+    Object? thumbnail = null,
     Object? target = null,
+    Object? commentSelector = null,
+    Object? comments = null,
     Object? badgeSelector = null,
     Object? badgeItem = null,
-    Object? tag = null,
+    Object? tagSelector = null,
     Object? tagItem = null,
-    Object? paper = null,
-    Object? idCode = null,
+    Object? chapterSelector = null,
+    Object? chapterTitle = null,
+    Object? chapterSubtitle = null,
+    Object? chapterCover = null,
     Object? nextPage = null,
+    Object? countPrePage = null,
   }) {
-    return _then(_$ParserModelListImpl(
+    return _then(ParserModelDetail(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       uuid: null == uuid
-          ? _value.uuid
+          ? _self.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
       extra: null == extra
-          ? _value._extra
+          ? _self._extra
           : extra // ignore: cast_nullable_to_non_nullable
               as List<ExtraSelectorModel>,
-      itemSelector: null == itemSelector
-          ? _value.itemSelector
-          : itemSelector // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      itemComplete: null == itemComplete
-          ? _value.itemComplete
-          : itemComplete // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      successSelector: null == successSelector
-          ? _value.successSelector
-          : successSelector // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      failedSelector: null == failedSelector
-          ? _value.failedSelector
-          : failedSelector // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
       title: null == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       subtitle: null == subtitle
-          ? _value.subtitle
+          ? _self.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       uploadTime: null == uploadTime
-          ? _value.uploadTime
+          ? _self.uploadTime
           : uploadTime // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       star: null == star
-          ? _value.star
+          ? _self.star
           : star // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       imageCount: null == imageCount
-          ? _value.imageCount
+          ? _self.imageCount
           : imageCount // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
+      pageCount: null == pageCount
+          ? _self.pageCount
+          : pageCount // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
       language: null == language
-          ? _value.language
+          ? _self.language
           : language // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
-      previewImage: null == previewImage
-          ? _value.previewImage
-          : previewImage // ignore: cast_nullable_to_non_nullable
+      coverImage: null == coverImage
+          ? _self.coverImage
+          : coverImage // ignore: cast_nullable_to_non_nullable
+              as ImageSelectorModel,
+      description: null == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      successSelector: null == successSelector
+          ? _self.successSelector
+          : successSelector // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      failedSelector: null == failedSelector
+          ? _self.failedSelector
+          : failedSelector // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      thumbnailSelector: null == thumbnailSelector
+          ? _self.thumbnailSelector
+          : thumbnailSelector // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      thumbnail: null == thumbnail
+          ? _self.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
               as ImageSelectorModel,
       target: null == target
-          ? _value.target
+          ? _self.target
           : target // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
+      commentSelector: null == commentSelector
+          ? _self.commentSelector
+          : commentSelector // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      comments: null == comments
+          ? _self.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as CommentSelectorModel,
       badgeSelector: null == badgeSelector
-          ? _value.badgeSelector
+          ? _self.badgeSelector
           : badgeSelector // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       badgeItem: null == badgeItem
-          ? _value.badgeItem
+          ? _self.badgeItem
           : badgeItem // ignore: cast_nullable_to_non_nullable
               as TagSelectorModel,
-      tag: null == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
+      tagSelector: null == tagSelector
+          ? _self.tagSelector
+          : tagSelector // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       tagItem: null == tagItem
-          ? _value.tagItem
+          ? _self.tagItem
           : tagItem // ignore: cast_nullable_to_non_nullable
               as TagSelectorModel,
-      paper: null == paper
-          ? _value.paper
-          : paper // ignore: cast_nullable_to_non_nullable
+      chapterSelector: null == chapterSelector
+          ? _self.chapterSelector
+          : chapterSelector // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
-      idCode: null == idCode
-          ? _value.idCode
-          : idCode // ignore: cast_nullable_to_non_nullable
+      chapterTitle: null == chapterTitle
+          ? _self.chapterTitle
+          : chapterTitle // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
+      chapterSubtitle: null == chapterSubtitle
+          ? _self.chapterSubtitle
+          : chapterSubtitle // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      chapterCover: null == chapterCover
+          ? _self.chapterCover
+          : chapterCover // ignore: cast_nullable_to_non_nullable
+              as ImageSelectorModel,
       nextPage: null == nextPage
-          ? _value.nextPage
+          ? _self.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      countPrePage: null == countPrePage
+          ? _self.countPrePage
+          : countPrePage // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
     ));
   }
@@ -2758,29 +1109,9 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get itemSelector {
-    return $SelectorModelCopyWith<$Res>(_value.itemSelector, (value) {
-      return _then(_value.copyWith(itemSelector: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get itemComplete {
-    return $SelectorModelCopyWith<$Res>(_value.itemComplete, (value) {
-      return _then(_value.copyWith(itemComplete: value));
-    });
-  }
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get title {
-    return $SelectorModelCopyWith<$Res>(_value.title, (value) {
-      return _then(_value.copyWith(title: value));
+    return $SelectorModelCopyWith<$Res>(_self.title, (value) {
+      return _then(_self.copyWith(title: value));
     });
   }
 
@@ -2789,8 +1120,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get subtitle {
-    return $SelectorModelCopyWith<$Res>(_value.subtitle, (value) {
-      return _then(_value.copyWith(subtitle: value));
+    return $SelectorModelCopyWith<$Res>(_self.subtitle, (value) {
+      return _then(_self.copyWith(subtitle: value));
     });
   }
 
@@ -2799,8 +1130,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get uploadTime {
-    return $SelectorModelCopyWith<$Res>(_value.uploadTime, (value) {
-      return _then(_value.copyWith(uploadTime: value));
+    return $SelectorModelCopyWith<$Res>(_self.uploadTime, (value) {
+      return _then(_self.copyWith(uploadTime: value));
     });
   }
 
@@ -2809,8 +1140,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get star {
-    return $SelectorModelCopyWith<$Res>(_value.star, (value) {
-      return _then(_value.copyWith(star: value));
+    return $SelectorModelCopyWith<$Res>(_self.star, (value) {
+      return _then(_self.copyWith(star: value));
     });
   }
 
@@ -2819,8 +1150,18 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get imageCount {
-    return $SelectorModelCopyWith<$Res>(_value.imageCount, (value) {
-      return _then(_value.copyWith(imageCount: value));
+    return $SelectorModelCopyWith<$Res>(_self.imageCount, (value) {
+      return _then(_self.copyWith(imageCount: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get pageCount {
+    return $SelectorModelCopyWith<$Res>(_self.pageCount, (value) {
+      return _then(_self.copyWith(pageCount: value));
     });
   }
 
@@ -2829,8 +1170,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get language {
-    return $SelectorModelCopyWith<$Res>(_value.language, (value) {
-      return _then(_value.copyWith(language: value));
+    return $SelectorModelCopyWith<$Res>(_self.language, (value) {
+      return _then(_self.copyWith(language: value));
     });
   }
 
@@ -2838,9 +1179,59 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ImageSelectorModelCopyWith<$Res> get previewImage {
-    return $ImageSelectorModelCopyWith<$Res>(_value.previewImage, (value) {
-      return _then(_value.copyWith(previewImage: value));
+  $ImageSelectorModelCopyWith<$Res> get coverImage {
+    return $ImageSelectorModelCopyWith<$Res>(_self.coverImage, (value) {
+      return _then(_self.copyWith(coverImage: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get description {
+    return $SelectorModelCopyWith<$Res>(_self.description, (value) {
+      return _then(_self.copyWith(description: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get successSelector {
+    return $SelectorModelCopyWith<$Res>(_self.successSelector, (value) {
+      return _then(_self.copyWith(successSelector: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get failedSelector {
+    return $SelectorModelCopyWith<$Res>(_self.failedSelector, (value) {
+      return _then(_self.copyWith(failedSelector: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get thumbnailSelector {
+    return $SelectorModelCopyWith<$Res>(_self.thumbnailSelector, (value) {
+      return _then(_self.copyWith(thumbnailSelector: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageSelectorModelCopyWith<$Res> get thumbnail {
+    return $ImageSelectorModelCopyWith<$Res>(_self.thumbnail, (value) {
+      return _then(_self.copyWith(thumbnail: value));
     });
   }
 
@@ -2849,8 +1240,28 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get target {
-    return $SelectorModelCopyWith<$Res>(_value.target, (value) {
-      return _then(_value.copyWith(target: value));
+    return $SelectorModelCopyWith<$Res>(_self.target, (value) {
+      return _then(_self.copyWith(target: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get commentSelector {
+    return $SelectorModelCopyWith<$Res>(_self.commentSelector, (value) {
+      return _then(_self.copyWith(commentSelector: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CommentSelectorModelCopyWith<$Res> get comments {
+    return $CommentSelectorModelCopyWith<$Res>(_self.comments, (value) {
+      return _then(_self.copyWith(comments: value));
     });
   }
 
@@ -2859,8 +1270,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get badgeSelector {
-    return $SelectorModelCopyWith<$Res>(_value.badgeSelector, (value) {
-      return _then(_value.copyWith(badgeSelector: value));
+    return $SelectorModelCopyWith<$Res>(_self.badgeSelector, (value) {
+      return _then(_self.copyWith(badgeSelector: value));
     });
   }
 
@@ -2869,8 +1280,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $TagSelectorModelCopyWith<$Res> get badgeItem {
-    return $TagSelectorModelCopyWith<$Res>(_value.badgeItem, (value) {
-      return _then(_value.copyWith(badgeItem: value));
+    return $TagSelectorModelCopyWith<$Res>(_self.badgeItem, (value) {
+      return _then(_self.copyWith(badgeItem: value));
     });
   }
 
@@ -2878,9 +1289,9 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get tag {
-    return $SelectorModelCopyWith<$Res>(_value.tag, (value) {
-      return _then(_value.copyWith(tag: value));
+  $SelectorModelCopyWith<$Res> get tagSelector {
+    return $SelectorModelCopyWith<$Res>(_self.tagSelector, (value) {
+      return _then(_self.copyWith(tagSelector: value));
     });
   }
 
@@ -2889,8 +1300,8 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $TagSelectorModelCopyWith<$Res> get tagItem {
-    return $TagSelectorModelCopyWith<$Res>(_value.tagItem, (value) {
-      return _then(_value.copyWith(tagItem: value));
+    return $TagSelectorModelCopyWith<$Res>(_self.tagItem, (value) {
+      return _then(_self.copyWith(tagItem: value));
     });
   }
 
@@ -2898,9 +1309,9 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get paper {
-    return $SelectorModelCopyWith<$Res>(_value.paper, (value) {
-      return _then(_value.copyWith(paper: value));
+  $SelectorModelCopyWith<$Res> get chapterSelector {
+    return $SelectorModelCopyWith<$Res>(_self.chapterSelector, (value) {
+      return _then(_self.copyWith(chapterSelector: value));
     });
   }
 
@@ -2908,9 +1319,29 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get idCode {
-    return $SelectorModelCopyWith<$Res>(_value.idCode, (value) {
-      return _then(_value.copyWith(idCode: value));
+  $SelectorModelCopyWith<$Res> get chapterTitle {
+    return $SelectorModelCopyWith<$Res>(_self.chapterTitle, (value) {
+      return _then(_self.copyWith(chapterTitle: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get chapterSubtitle {
+    return $SelectorModelCopyWith<$Res>(_self.chapterSubtitle, (value) {
+      return _then(_self.copyWith(chapterSubtitle: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageSelectorModelCopyWith<$Res> get chapterCover {
+    return $ImageSelectorModelCopyWith<$Res>(_self.chapterCover, (value) {
+      return _then(_self.copyWith(chapterCover: value));
     });
   }
 
@@ -2919,16 +1350,26 @@ class __$$ParserModelListImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get nextPage {
-    return $SelectorModelCopyWith<$Res>(_value.nextPage, (value) {
-      return _then(_value.copyWith(nextPage: value));
+    return $SelectorModelCopyWith<$Res>(_self.nextPage, (value) {
+      return _then(_self.copyWith(nextPage: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get countPrePage {
+    return $SelectorModelCopyWith<$Res>(_self.countPrePage, (value) {
+      return _then(_self.copyWith(countPrePage: value));
     });
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ParserModelListImpl extends ParserModelList {
-  const _$ParserModelListImpl(
+class ParserModelList extends ParserModel {
+  const ParserModelList(
       {this.name = '',
       this.uuid = '',
       final List<ExtraSelectorModel> extra = const [],
@@ -2955,9 +1396,8 @@ class _$ParserModelListImpl extends ParserModelList {
       : _extra = extra,
         $type = $type ?? 'list',
         super._();
-
-  factory _$ParserModelListImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ParserModelListImplFromJson(json);
+  factory ParserModelList.fromJson(Map<String, dynamic> json) =>
+      _$ParserModelListFromJson(json);
 
   @override
   @JsonKey()
@@ -2974,10 +1414,8 @@ class _$ParserModelListImpl extends ParserModelList {
     return EqualUnmodifiableListView(_extra);
   }
 
-  @override
   @JsonKey()
   final SelectorModel itemSelector;
-  @override
   @JsonKey()
   final SelectorModel itemComplete;
   @override
@@ -2986,65 +1424,60 @@ class _$ParserModelListImpl extends ParserModelList {
   @override
   @JsonKey()
   final SelectorModel failedSelector;
-  @override
   @JsonKey()
   final SelectorModel title;
-  @override
   @JsonKey()
   final SelectorModel subtitle;
-  @override
   @JsonKey()
   final SelectorModel uploadTime;
-  @override
   @JsonKey()
   final SelectorModel star;
-  @override
   @JsonKey()
   final SelectorModel imageCount;
-  @override
   @JsonKey()
   final SelectorModel language;
-  @override
   @JsonKey()
   final ImageSelectorModel previewImage;
-  @override
   @JsonKey()
   final SelectorModel target;
-  @override
   @JsonKey()
   final SelectorModel badgeSelector;
-  @override
   @JsonKey()
   final TagSelectorModel badgeItem;
-  @override
   @JsonKey()
   final SelectorModel tag;
-  @override
   @JsonKey()
   final TagSelectorModel tagItem;
-  @override
   @JsonKey()
   final SelectorModel paper;
-  @override
   @JsonKey()
   final SelectorModel idCode;
-  @override
   @JsonKey()
   final SelectorModel nextPage;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ParserModel.list(name: $name, uuid: $uuid, extra: $extra, itemSelector: $itemSelector, itemComplete: $itemComplete, successSelector: $successSelector, failedSelector: $failedSelector, title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imageCount: $imageCount, language: $language, previewImage: $previewImage, target: $target, badgeSelector: $badgeSelector, badgeItem: $badgeItem, tag: $tag, tagItem: $tagItem, paper: $paper, idCode: $idCode, nextPage: $nextPage)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ParserModelListCopyWith<ParserModelList> get copyWith =>
+      _$ParserModelListCopyWithImpl<ParserModelList>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ParserModelListToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ParserModelListImpl &&
+            other is ParserModelList &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
             const DeepCollectionEquality().equals(other._extra, _extra) &&
@@ -3109,484 +1542,18 @@ class _$ParserModelListImpl extends ParserModelList {
         nextPage
       ]);
 
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ParserModelListImplCopyWith<_$ParserModelListImpl> get copyWith =>
-      __$$ParserModelListImplCopyWithImpl<_$ParserModelListImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)
-        imageReader,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)
-        detail,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)
-        list,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)
-        autoComplete,
-  }) {
-    return list(
-        name,
-        uuid,
-        extra,
-        itemSelector,
-        itemComplete,
-        successSelector,
-        failedSelector,
-        title,
-        subtitle,
-        uploadTime,
-        star,
-        imageCount,
-        language,
-        previewImage,
-        target,
-        badgeSelector,
-        badgeItem,
-        tag,
-        tagItem,
-        paper,
-        idCode,
-        nextPage);
+  String toString() {
+    return 'ParserModel.list(name: $name, uuid: $uuid, extra: $extra, itemSelector: $itemSelector, itemComplete: $itemComplete, successSelector: $successSelector, failedSelector: $failedSelector, title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imageCount: $imageCount, language: $language, previewImage: $previewImage, target: $target, badgeSelector: $badgeSelector, badgeItem: $badgeItem, tag: $tag, tagItem: $tagItem, paper: $paper, idCode: $idCode, nextPage: $nextPage)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)?
-        imageReader,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)?
-        detail,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)?
-        list,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)?
-        autoComplete,
-  }) {
-    return list?.call(
-        name,
-        uuid,
-        extra,
-        itemSelector,
-        itemComplete,
-        successSelector,
-        failedSelector,
-        title,
-        subtitle,
-        uploadTime,
-        star,
-        imageCount,
-        language,
-        previewImage,
-        target,
-        badgeSelector,
-        badgeItem,
-        tag,
-        tagItem,
-        paper,
-        idCode,
-        nextPage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)?
-        imageReader,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)?
-        detail,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)?
-        list,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)?
-        autoComplete,
-    required TResult orElse(),
-  }) {
-    if (list != null) {
-      return list(
-          name,
-          uuid,
-          extra,
-          itemSelector,
-          itemComplete,
-          successSelector,
-          failedSelector,
-          title,
-          subtitle,
-          uploadTime,
-          star,
-          imageCount,
-          language,
-          previewImage,
-          target,
-          badgeSelector,
-          badgeItem,
-          tag,
-          tagItem,
-          paper,
-          idCode,
-          nextPage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ParserModelImageReader value) imageReader,
-    required TResult Function(ParserModelDetail value) detail,
-    required TResult Function(ParserModelList value) list,
-    required TResult Function(ParserModelAutoComplete value) autoComplete,
-  }) {
-    return list(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ParserModelImageReader value)? imageReader,
-    TResult? Function(ParserModelDetail value)? detail,
-    TResult? Function(ParserModelList value)? list,
-    TResult? Function(ParserModelAutoComplete value)? autoComplete,
-  }) {
-    return list?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ParserModelImageReader value)? imageReader,
-    TResult Function(ParserModelDetail value)? detail,
-    TResult Function(ParserModelList value)? list,
-    TResult Function(ParserModelAutoComplete value)? autoComplete,
-    required TResult orElse(),
-  }) {
-    if (list != null) {
-      return list(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ParserModelListImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class ParserModelList extends ParserModel {
-  const factory ParserModelList(
-      {final String name,
-      final String uuid,
-      final List<ExtraSelectorModel> extra,
-      final SelectorModel itemSelector,
-      final SelectorModel itemComplete,
-      final SelectorModel successSelector,
-      final SelectorModel failedSelector,
-      final SelectorModel title,
-      final SelectorModel subtitle,
-      final SelectorModel uploadTime,
-      final SelectorModel star,
-      final SelectorModel imageCount,
-      final SelectorModel language,
-      final ImageSelectorModel previewImage,
-      final SelectorModel target,
-      final SelectorModel badgeSelector,
-      final TagSelectorModel badgeItem,
-      final SelectorModel tag,
-      final TagSelectorModel tagItem,
-      final SelectorModel paper,
-      final SelectorModel idCode,
-      final SelectorModel nextPage}) = _$ParserModelListImpl;
-  const ParserModelList._() : super._();
-
-  factory ParserModelList.fromJson(Map<String, dynamic> json) =
-      _$ParserModelListImpl.fromJson;
-
-  @override
-  String get name;
-  @override
-  String get uuid;
-  @override
-  List<ExtraSelectorModel> get extra;
-  SelectorModel get itemSelector;
-  SelectorModel get itemComplete;
-  @override
-  SelectorModel get successSelector;
-  @override
-  SelectorModel get failedSelector;
-  SelectorModel get title;
-  SelectorModel get subtitle;
-  SelectorModel get uploadTime;
-  SelectorModel get star;
-  SelectorModel get imageCount;
-  SelectorModel get language;
-  ImageSelectorModel get previewImage;
-  SelectorModel get target;
-  SelectorModel get badgeSelector;
-  TagSelectorModel get badgeItem;
-  SelectorModel get tag;
-  TagSelectorModel get tagItem;
-  SelectorModel get paper;
-  SelectorModel get idCode;
-  SelectorModel get nextPage;
-
-  /// Create a copy of ParserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ParserModelListImplCopyWith<_$ParserModelListImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ParserModelAutoCompleteImplCopyWith<$Res>
+abstract mixin class $ParserModelListCopyWith<$Res>
     implements $ParserModelCopyWith<$Res> {
-  factory _$$ParserModelAutoCompleteImplCopyWith(
-          _$ParserModelAutoCompleteImpl value,
-          $Res Function(_$ParserModelAutoCompleteImpl) then) =
-      __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>;
+  factory $ParserModelListCopyWith(
+          ParserModelList value, $Res Function(ParserModelList) _then) =
+      _$ParserModelListCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -3595,81 +1562,171 @@ abstract class _$$ParserModelAutoCompleteImplCopyWith<$Res>
       List<ExtraSelectorModel> extra,
       SelectorModel itemSelector,
       SelectorModel itemComplete,
-      SelectorModel itemTitle,
-      SelectorModel itemSubtitle,
       SelectorModel successSelector,
-      SelectorModel failedSelector});
+      SelectorModel failedSelector,
+      SelectorModel title,
+      SelectorModel subtitle,
+      SelectorModel uploadTime,
+      SelectorModel star,
+      SelectorModel imageCount,
+      SelectorModel language,
+      ImageSelectorModel previewImage,
+      SelectorModel target,
+      SelectorModel badgeSelector,
+      TagSelectorModel badgeItem,
+      SelectorModel tag,
+      TagSelectorModel tagItem,
+      SelectorModel paper,
+      SelectorModel idCode,
+      SelectorModel nextPage});
 
   $SelectorModelCopyWith<$Res> get itemSelector;
   $SelectorModelCopyWith<$Res> get itemComplete;
-  $SelectorModelCopyWith<$Res> get itemTitle;
-  $SelectorModelCopyWith<$Res> get itemSubtitle;
   @override
   $SelectorModelCopyWith<$Res> get successSelector;
   @override
   $SelectorModelCopyWith<$Res> get failedSelector;
+  $SelectorModelCopyWith<$Res> get title;
+  $SelectorModelCopyWith<$Res> get subtitle;
+  $SelectorModelCopyWith<$Res> get uploadTime;
+  $SelectorModelCopyWith<$Res> get star;
+  $SelectorModelCopyWith<$Res> get imageCount;
+  $SelectorModelCopyWith<$Res> get language;
+  $ImageSelectorModelCopyWith<$Res> get previewImage;
+  $SelectorModelCopyWith<$Res> get target;
+  $SelectorModelCopyWith<$Res> get badgeSelector;
+  $TagSelectorModelCopyWith<$Res> get badgeItem;
+  $SelectorModelCopyWith<$Res> get tag;
+  $TagSelectorModelCopyWith<$Res> get tagItem;
+  $SelectorModelCopyWith<$Res> get paper;
+  $SelectorModelCopyWith<$Res> get idCode;
+  $SelectorModelCopyWith<$Res> get nextPage;
 }
 
 /// @nodoc
-class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
-    extends _$ParserModelCopyWithImpl<$Res, _$ParserModelAutoCompleteImpl>
-    implements _$$ParserModelAutoCompleteImplCopyWith<$Res> {
-  __$$ParserModelAutoCompleteImplCopyWithImpl(
-      _$ParserModelAutoCompleteImpl _value,
-      $Res Function(_$ParserModelAutoCompleteImpl) _then)
-      : super(_value, _then);
+class _$ParserModelListCopyWithImpl<$Res>
+    implements $ParserModelListCopyWith<$Res> {
+  _$ParserModelListCopyWithImpl(this._self, this._then);
+
+  final ParserModelList _self;
+  final $Res Function(ParserModelList) _then;
 
   /// Create a copy of ParserModel
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? name = null,
     Object? uuid = null,
     Object? extra = null,
     Object? itemSelector = null,
     Object? itemComplete = null,
-    Object? itemTitle = null,
-    Object? itemSubtitle = null,
     Object? successSelector = null,
     Object? failedSelector = null,
+    Object? title = null,
+    Object? subtitle = null,
+    Object? uploadTime = null,
+    Object? star = null,
+    Object? imageCount = null,
+    Object? language = null,
+    Object? previewImage = null,
+    Object? target = null,
+    Object? badgeSelector = null,
+    Object? badgeItem = null,
+    Object? tag = null,
+    Object? tagItem = null,
+    Object? paper = null,
+    Object? idCode = null,
+    Object? nextPage = null,
   }) {
-    return _then(_$ParserModelAutoCompleteImpl(
+    return _then(ParserModelList(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       uuid: null == uuid
-          ? _value.uuid
+          ? _self.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
       extra: null == extra
-          ? _value._extra
+          ? _self._extra
           : extra // ignore: cast_nullable_to_non_nullable
               as List<ExtraSelectorModel>,
       itemSelector: null == itemSelector
-          ? _value.itemSelector
+          ? _self.itemSelector
           : itemSelector // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       itemComplete: null == itemComplete
-          ? _value.itemComplete
+          ? _self.itemComplete
           : itemComplete // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
-      itemTitle: null == itemTitle
-          ? _value.itemTitle
-          : itemTitle // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      itemSubtitle: null == itemSubtitle
-          ? _value.itemSubtitle
-          : itemSubtitle // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
       successSelector: null == successSelector
-          ? _value.successSelector
+          ? _self.successSelector
           : successSelector // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       failedSelector: null == failedSelector
-          ? _value.failedSelector
+          ? _self.failedSelector
           : failedSelector // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      title: null == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      subtitle: null == subtitle
+          ? _self.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      uploadTime: null == uploadTime
+          ? _self.uploadTime
+          : uploadTime // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      star: null == star
+          ? _self.star
+          : star // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      imageCount: null == imageCount
+          ? _self.imageCount
+          : imageCount // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      language: null == language
+          ? _self.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      previewImage: null == previewImage
+          ? _self.previewImage
+          : previewImage // ignore: cast_nullable_to_non_nullable
+              as ImageSelectorModel,
+      target: null == target
+          ? _self.target
+          : target // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      badgeSelector: null == badgeSelector
+          ? _self.badgeSelector
+          : badgeSelector // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      badgeItem: null == badgeItem
+          ? _self.badgeItem
+          : badgeItem // ignore: cast_nullable_to_non_nullable
+              as TagSelectorModel,
+      tag: null == tag
+          ? _self.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      tagItem: null == tagItem
+          ? _self.tagItem
+          : tagItem // ignore: cast_nullable_to_non_nullable
+              as TagSelectorModel,
+      paper: null == paper
+          ? _self.paper
+          : paper // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      idCode: null == idCode
+          ? _self.idCode
+          : idCode // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      nextPage: null == nextPage
+          ? _self.nextPage
+          : nextPage // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
     ));
   }
@@ -3679,8 +1736,8 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get itemSelector {
-    return $SelectorModelCopyWith<$Res>(_value.itemSelector, (value) {
-      return _then(_value.copyWith(itemSelector: value));
+    return $SelectorModelCopyWith<$Res>(_self.itemSelector, (value) {
+      return _then(_self.copyWith(itemSelector: value));
     });
   }
 
@@ -3689,8 +1746,8 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get itemComplete {
-    return $SelectorModelCopyWith<$Res>(_value.itemComplete, (value) {
-      return _then(_value.copyWith(itemComplete: value));
+    return $SelectorModelCopyWith<$Res>(_self.itemComplete, (value) {
+      return _then(_self.copyWith(itemComplete: value));
     });
   }
 
@@ -3698,9 +1755,9 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get itemTitle {
-    return $SelectorModelCopyWith<$Res>(_value.itemTitle, (value) {
-      return _then(_value.copyWith(itemTitle: value));
+  $SelectorModelCopyWith<$Res> get successSelector {
+    return $SelectorModelCopyWith<$Res>(_self.successSelector, (value) {
+      return _then(_self.copyWith(successSelector: value));
     });
   }
 
@@ -3708,17 +1765,167 @@ class __$$ParserModelAutoCompleteImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get itemSubtitle {
-    return $SelectorModelCopyWith<$Res>(_value.itemSubtitle, (value) {
-      return _then(_value.copyWith(itemSubtitle: value));
+  $SelectorModelCopyWith<$Res> get failedSelector {
+    return $SelectorModelCopyWith<$Res>(_self.failedSelector, (value) {
+      return _then(_self.copyWith(failedSelector: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get title {
+    return $SelectorModelCopyWith<$Res>(_self.title, (value) {
+      return _then(_self.copyWith(title: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get subtitle {
+    return $SelectorModelCopyWith<$Res>(_self.subtitle, (value) {
+      return _then(_self.copyWith(subtitle: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get uploadTime {
+    return $SelectorModelCopyWith<$Res>(_self.uploadTime, (value) {
+      return _then(_self.copyWith(uploadTime: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get star {
+    return $SelectorModelCopyWith<$Res>(_self.star, (value) {
+      return _then(_self.copyWith(star: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get imageCount {
+    return $SelectorModelCopyWith<$Res>(_self.imageCount, (value) {
+      return _then(_self.copyWith(imageCount: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get language {
+    return $SelectorModelCopyWith<$Res>(_self.language, (value) {
+      return _then(_self.copyWith(language: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageSelectorModelCopyWith<$Res> get previewImage {
+    return $ImageSelectorModelCopyWith<$Res>(_self.previewImage, (value) {
+      return _then(_self.copyWith(previewImage: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get target {
+    return $SelectorModelCopyWith<$Res>(_self.target, (value) {
+      return _then(_self.copyWith(target: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get badgeSelector {
+    return $SelectorModelCopyWith<$Res>(_self.badgeSelector, (value) {
+      return _then(_self.copyWith(badgeSelector: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TagSelectorModelCopyWith<$Res> get badgeItem {
+    return $TagSelectorModelCopyWith<$Res>(_self.badgeItem, (value) {
+      return _then(_self.copyWith(badgeItem: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get tag {
+    return $SelectorModelCopyWith<$Res>(_self.tag, (value) {
+      return _then(_self.copyWith(tag: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TagSelectorModelCopyWith<$Res> get tagItem {
+    return $TagSelectorModelCopyWith<$Res>(_self.tagItem, (value) {
+      return _then(_self.copyWith(tagItem: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get paper {
+    return $SelectorModelCopyWith<$Res>(_self.paper, (value) {
+      return _then(_self.copyWith(paper: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get idCode {
+    return $SelectorModelCopyWith<$Res>(_self.idCode, (value) {
+      return _then(_self.copyWith(idCode: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get nextPage {
+    return $SelectorModelCopyWith<$Res>(_self.nextPage, (value) {
+      return _then(_self.copyWith(nextPage: value));
     });
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
-  const _$ParserModelAutoCompleteImpl(
+class ParserModelAutoComplete extends ParserModel {
+  const ParserModelAutoComplete(
       {this.name = '',
       this.uuid = '',
       final List<ExtraSelectorModel> extra = const [],
@@ -3732,9 +1939,8 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
       : _extra = extra,
         $type = $type ?? 'autoComplete',
         super._();
-
-  factory _$ParserModelAutoCompleteImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ParserModelAutoCompleteImplFromJson(json);
+  factory ParserModelAutoComplete.fromJson(Map<String, dynamic> json) =>
+      _$ParserModelAutoCompleteFromJson(json);
 
   @override
   @JsonKey()
@@ -3751,16 +1957,12 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
     return EqualUnmodifiableListView(_extra);
   }
 
-  @override
   @JsonKey()
   final SelectorModel itemSelector;
-  @override
   @JsonKey()
   final SelectorModel itemComplete;
-  @override
   @JsonKey()
   final SelectorModel itemTitle;
-  @override
   @JsonKey()
   final SelectorModel itemSubtitle;
   @override
@@ -3773,16 +1975,27 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ParserModel.autoComplete(name: $name, uuid: $uuid, extra: $extra, itemSelector: $itemSelector, itemComplete: $itemComplete, itemTitle: $itemTitle, itemSubtitle: $itemSubtitle, successSelector: $successSelector, failedSelector: $failedSelector)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ParserModelAutoCompleteCopyWith<ParserModelAutoComplete> get copyWith =>
+      _$ParserModelAutoCompleteCopyWithImpl<ParserModelAutoComplete>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ParserModelAutoCompleteToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ParserModelAutoCompleteImpl &&
+            other is ParserModelAutoComplete &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
             const DeepCollectionEquality().equals(other._extra, _extra) &&
@@ -3814,384 +2027,163 @@ class _$ParserModelAutoCompleteImpl extends ParserModelAutoComplete {
       successSelector,
       failedSelector);
 
+  @override
+  String toString() {
+    return 'ParserModel.autoComplete(name: $name, uuid: $uuid, extra: $extra, itemSelector: $itemSelector, itemComplete: $itemComplete, itemTitle: $itemTitle, itemSubtitle: $itemSubtitle, successSelector: $successSelector, failedSelector: $failedSelector)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ParserModelAutoCompleteCopyWith<$Res>
+    implements $ParserModelCopyWith<$Res> {
+  factory $ParserModelAutoCompleteCopyWith(ParserModelAutoComplete value,
+          $Res Function(ParserModelAutoComplete) _then) =
+      _$ParserModelAutoCompleteCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String name,
+      String uuid,
+      List<ExtraSelectorModel> extra,
+      SelectorModel itemSelector,
+      SelectorModel itemComplete,
+      SelectorModel itemTitle,
+      SelectorModel itemSubtitle,
+      SelectorModel successSelector,
+      SelectorModel failedSelector});
+
+  $SelectorModelCopyWith<$Res> get itemSelector;
+  $SelectorModelCopyWith<$Res> get itemComplete;
+  $SelectorModelCopyWith<$Res> get itemTitle;
+  $SelectorModelCopyWith<$Res> get itemSubtitle;
+  @override
+  $SelectorModelCopyWith<$Res> get successSelector;
+  @override
+  $SelectorModelCopyWith<$Res> get failedSelector;
+}
+
+/// @nodoc
+class _$ParserModelAutoCompleteCopyWithImpl<$Res>
+    implements $ParserModelAutoCompleteCopyWith<$Res> {
+  _$ParserModelAutoCompleteCopyWithImpl(this._self, this._then);
+
+  final ParserModelAutoComplete _self;
+  final $Res Function(ParserModelAutoComplete) _then;
+
   /// Create a copy of ParserModel
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ParserModelAutoCompleteImplCopyWith<_$ParserModelAutoCompleteImpl>
-      get copyWith => __$$ParserModelAutoCompleteImplCopyWithImpl<
-          _$ParserModelAutoCompleteImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)
-        imageReader,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)
-        detail,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)
-        list,
-    required TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)
-        autoComplete,
+  $Res call({
+    Object? name = null,
+    Object? uuid = null,
+    Object? extra = null,
+    Object? itemSelector = null,
+    Object? itemComplete = null,
+    Object? itemTitle = null,
+    Object? itemSubtitle = null,
+    Object? successSelector = null,
+    Object? failedSelector = null,
   }) {
-    return autoComplete(name, uuid, extra, itemSelector, itemComplete,
-        itemTitle, itemSubtitle, successSelector, failedSelector);
+    return _then(ParserModelAutoComplete(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: null == uuid
+          ? _self.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
+      extra: null == extra
+          ? _self._extra
+          : extra // ignore: cast_nullable_to_non_nullable
+              as List<ExtraSelectorModel>,
+      itemSelector: null == itemSelector
+          ? _self.itemSelector
+          : itemSelector // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      itemComplete: null == itemComplete
+          ? _self.itemComplete
+          : itemComplete // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      itemTitle: null == itemTitle
+          ? _self.itemTitle
+          : itemTitle // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      itemSubtitle: null == itemSubtitle
+          ? _self.itemSubtitle
+          : itemSubtitle // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      successSelector: null == successSelector
+          ? _self.successSelector
+          : successSelector // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      failedSelector: null == failedSelector
+          ? _self.failedSelector
+          : failedSelector // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+    ));
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)?
-        imageReader,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)?
-        detail,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)?
-        list,
-    TResult? Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)?
-        autoComplete,
-  }) {
-    return autoComplete?.call(name, uuid, extra, itemSelector, itemComplete,
-        itemTitle, itemSubtitle, successSelector, failedSelector);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel id,
-            ImageSelectorModel image,
-            SelectorModel largerImage,
-            SelectorModel rawImage,
-            SelectorModel rating,
-            SelectorModel score,
-            SelectorModel source,
-            SelectorModel uploadTime,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel commentSelector,
-            CommentSelectorModel commentItem)?
-        imageReader,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel pageCount,
-            SelectorModel language,
-            ImageSelectorModel coverImage,
-            SelectorModel description,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel thumbnailSelector,
-            ImageSelectorModel thumbnail,
-            SelectorModel target,
-            SelectorModel commentSelector,
-            CommentSelectorModel comments,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tagSelector,
-            TagSelectorModel tagItem,
-            SelectorModel chapterSelector,
-            SelectorModel chapterTitle,
-            SelectorModel chapterSubtitle,
-            ImageSelectorModel chapterCover,
-            SelectorModel nextPage,
-            SelectorModel countPrePage)?
-        detail,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel successSelector,
-            SelectorModel failedSelector,
-            SelectorModel title,
-            SelectorModel subtitle,
-            SelectorModel uploadTime,
-            SelectorModel star,
-            SelectorModel imageCount,
-            SelectorModel language,
-            ImageSelectorModel previewImage,
-            SelectorModel target,
-            SelectorModel badgeSelector,
-            TagSelectorModel badgeItem,
-            SelectorModel tag,
-            TagSelectorModel tagItem,
-            SelectorModel paper,
-            SelectorModel idCode,
-            SelectorModel nextPage)?
-        list,
-    TResult Function(
-            String name,
-            String uuid,
-            List<ExtraSelectorModel> extra,
-            SelectorModel itemSelector,
-            SelectorModel itemComplete,
-            SelectorModel itemTitle,
-            SelectorModel itemSubtitle,
-            SelectorModel successSelector,
-            SelectorModel failedSelector)?
-        autoComplete,
-    required TResult orElse(),
-  }) {
-    if (autoComplete != null) {
-      return autoComplete(name, uuid, extra, itemSelector, itemComplete,
-          itemTitle, itemSubtitle, successSelector, failedSelector);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ParserModelImageReader value) imageReader,
-    required TResult Function(ParserModelDetail value) detail,
-    required TResult Function(ParserModelList value) list,
-    required TResult Function(ParserModelAutoComplete value) autoComplete,
-  }) {
-    return autoComplete(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ParserModelImageReader value)? imageReader,
-    TResult? Function(ParserModelDetail value)? detail,
-    TResult? Function(ParserModelList value)? list,
-    TResult? Function(ParserModelAutoComplete value)? autoComplete,
-  }) {
-    return autoComplete?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ParserModelImageReader value)? imageReader,
-    TResult Function(ParserModelDetail value)? detail,
-    TResult Function(ParserModelList value)? list,
-    TResult Function(ParserModelAutoComplete value)? autoComplete,
-    required TResult orElse(),
-  }) {
-    if (autoComplete != null) {
-      return autoComplete(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ParserModelAutoCompleteImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class ParserModelAutoComplete extends ParserModel {
-  const factory ParserModelAutoComplete(
-      {final String name,
-      final String uuid,
-      final List<ExtraSelectorModel> extra,
-      final SelectorModel itemSelector,
-      final SelectorModel itemComplete,
-      final SelectorModel itemTitle,
-      final SelectorModel itemSubtitle,
-      final SelectorModel successSelector,
-      final SelectorModel failedSelector}) = _$ParserModelAutoCompleteImpl;
-  const ParserModelAutoComplete._() : super._();
-
-  factory ParserModelAutoComplete.fromJson(Map<String, dynamic> json) =
-      _$ParserModelAutoCompleteImpl.fromJson;
-
-  @override
-  String get name;
-  @override
-  String get uuid;
-  @override
-  List<ExtraSelectorModel> get extra;
-  SelectorModel get itemSelector;
-  SelectorModel get itemComplete;
-  SelectorModel get itemTitle;
-  SelectorModel get itemSubtitle;
-  @override
-  SelectorModel get successSelector;
-  @override
-  SelectorModel get failedSelector;
 
   /// Create a copy of ParserModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ParserModelAutoCompleteImplCopyWith<_$ParserModelAutoCompleteImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get itemSelector {
+    return $SelectorModelCopyWith<$Res>(_self.itemSelector, (value) {
+      return _then(_self.copyWith(itemSelector: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get itemComplete {
+    return $SelectorModelCopyWith<$Res>(_self.itemComplete, (value) {
+      return _then(_self.copyWith(itemComplete: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get itemTitle {
+    return $SelectorModelCopyWith<$Res>(_self.itemTitle, (value) {
+      return _then(_self.copyWith(itemTitle: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get itemSubtitle {
+    return $SelectorModelCopyWith<$Res>(_self.itemSubtitle, (value) {
+      return _then(_self.copyWith(itemSubtitle: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get successSelector {
+    return $SelectorModelCopyWith<$Res>(_self.successSelector, (value) {
+      return _then(_self.copyWith(successSelector: value));
+    });
+  }
+
+  /// Create a copy of ParserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get failedSelector {
+    return $SelectorModelCopyWith<$Res>(_self.failedSelector, (value) {
+      return _then(_self.copyWith(failedSelector: value));
+    });
+  }
 }
+
+// dart format on

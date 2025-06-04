@@ -6,25 +6,23 @@ part of 'subpage.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TemplateListSubPageImpl _$$TemplateListSubPageImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TemplateListSubPageImpl(
+_TemplateListSubPage _$TemplateListSubPageFromJson(Map<String, dynamic> json) =>
+    _TemplateListSubPage(
       name: json['name'] as String? ?? '',
       key: json['key'] as String? ?? '',
       value: json['value'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$TemplateListSubPageImplToJson(
-        _$TemplateListSubPageImpl instance) =>
+Map<String, dynamic> _$TemplateListSubPageToJson(
+        _TemplateListSubPage instance) =>
     <String, dynamic>{
       'name': instance.name,
       'key': instance.key,
       'value': instance.value,
     };
 
-_$TemplateListFilterImpl _$$TemplateListFilterImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TemplateListFilterImpl(
+_TemplateListFilter _$TemplateListFilterFromJson(Map<String, dynamic> json) =>
+    _TemplateListFilter(
       items: (json['items'] as List<dynamic>?)
               ?.map((e) =>
                   TemplateListFilterItem.fromJson(e as Map<String, dynamic>))
@@ -35,16 +33,15 @@ _$TemplateListFilterImpl _$$TemplateListFilterImplFromJson(
           : ScriptField.fromJson(json['script'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$TemplateListFilterImplToJson(
-        _$TemplateListFilterImpl instance) =>
+Map<String, dynamic> _$TemplateListFilterToJson(_TemplateListFilter instance) =>
     <String, dynamic>{
       'items': instance.items,
       'script': instance.script,
     };
 
-_$TemplateListFilterItemStringImpl _$$TemplateListFilterItemStringImplFromJson(
+TemplateListFilterItemString _$TemplateListFilterItemStringFromJson(
         Map<String, dynamic> json) =>
-    _$TemplateListFilterItemStringImpl(
+    TemplateListFilterItemString(
       name: json['name'] as String? ?? '',
       key: json['key'] as String? ?? '',
       value: json['value'] as String? ?? '',
@@ -53,8 +50,8 @@ _$TemplateListFilterItemStringImpl _$$TemplateListFilterItemStringImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$TemplateListFilterItemStringImplToJson(
-        _$TemplateListFilterItemStringImpl instance) =>
+Map<String, dynamic> _$TemplateListFilterItemStringToJson(
+        TemplateListFilterItemString instance) =>
     <String, dynamic>{
       'name': instance.name,
       'key': instance.key,
@@ -64,9 +61,9 @@ Map<String, dynamic> _$$TemplateListFilterItemStringImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$TemplateListFilterItemNumberImpl _$$TemplateListFilterItemNumberImplFromJson(
+TemplateListFilterItemNumber _$TemplateListFilterItemNumberFromJson(
         Map<String, dynamic> json) =>
-    _$TemplateListFilterItemNumberImpl(
+    TemplateListFilterItemNumber(
       name: json['name'] as String? ?? '',
       key: json['key'] as String? ?? '',
       value: (json['value'] as num?)?.toInt() ?? 0,
@@ -75,8 +72,8 @@ _$TemplateListFilterItemNumberImpl _$$TemplateListFilterItemNumberImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$TemplateListFilterItemNumberImplToJson(
-        _$TemplateListFilterItemNumberImpl instance) =>
+Map<String, dynamic> _$TemplateListFilterItemNumberToJson(
+        TemplateListFilterItemNumber instance) =>
     <String, dynamic>{
       'name': instance.name,
       'key': instance.key,
@@ -86,9 +83,9 @@ Map<String, dynamic> _$$TemplateListFilterItemNumberImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$TemplateListFilterItemFloatImpl _$$TemplateListFilterItemFloatImplFromJson(
+TemplateListFilterItemFloat _$TemplateListFilterItemFloatFromJson(
         Map<String, dynamic> json) =>
-    _$TemplateListFilterItemFloatImpl(
+    TemplateListFilterItemFloat(
       name: json['name'] as String? ?? '',
       key: json['key'] as String? ?? '',
       value: (json['value'] as num?)?.toDouble() ?? 0.0,
@@ -97,8 +94,8 @@ _$TemplateListFilterItemFloatImpl _$$TemplateListFilterItemFloatImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$TemplateListFilterItemFloatImplToJson(
-        _$TemplateListFilterItemFloatImpl instance) =>
+Map<String, dynamic> _$TemplateListFilterItemFloatToJson(
+        TemplateListFilterItemFloat instance) =>
     <String, dynamic>{
       'name': instance.name,
       'key': instance.key,
@@ -108,9 +105,9 @@ Map<String, dynamic> _$$TemplateListFilterItemFloatImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$TemplateListFilterItemBoolImpl _$$TemplateListFilterItemBoolImplFromJson(
+TemplateListFilterItemBool _$TemplateListFilterItemBoolFromJson(
         Map<String, dynamic> json) =>
-    _$TemplateListFilterItemBoolImpl(
+    TemplateListFilterItemBool(
       name: json['name'] as String? ?? '',
       key: json['key'] as String? ?? '',
       value: json['value'] as bool? ?? false,
@@ -119,8 +116,8 @@ _$TemplateListFilterItemBoolImpl _$$TemplateListFilterItemBoolImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$TemplateListFilterItemBoolImplToJson(
-        _$TemplateListFilterItemBoolImpl instance) =>
+Map<String, dynamic> _$TemplateListFilterItemBoolToJson(
+        TemplateListFilterItemBool instance) =>
     <String, dynamic>{
       'name': instance.name,
       'key': instance.key,

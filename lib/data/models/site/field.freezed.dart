@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,134 +10,29 @@ part of 'field.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-RegField _$RegFieldFromJson(Map<String, dynamic> json) {
-  return _RegField.fromJson(json);
-}
 
 /// @nodoc
 mixin _$RegField {
-  String get reg => throw _privateConstructorUsedError;
-  String get value => throw _privateConstructorUsedError;
-
-  /// Serializes this RegField to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get reg;
+  String get value;
 
   /// Create a copy of RegField
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $RegFieldCopyWith<RegField> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$RegFieldCopyWithImpl<RegField>(this as RegField, _$identity);
 
-/// @nodoc
-abstract class $RegFieldCopyWith<$Res> {
-  factory $RegFieldCopyWith(RegField value, $Res Function(RegField) then) =
-      _$RegFieldCopyWithImpl<$Res, RegField>;
-  @useResult
-  $Res call({String reg, String value});
-}
-
-/// @nodoc
-class _$RegFieldCopyWithImpl<$Res, $Val extends RegField>
-    implements $RegFieldCopyWith<$Res> {
-  _$RegFieldCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of RegField
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? reg = null,
-    Object? value = null,
-  }) {
-    return _then(_value.copyWith(
-      reg: null == reg
-          ? _value.reg
-          : reg // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$RegFieldImplCopyWith<$Res>
-    implements $RegFieldCopyWith<$Res> {
-  factory _$$RegFieldImplCopyWith(
-          _$RegFieldImpl value, $Res Function(_$RegFieldImpl) then) =
-      __$$RegFieldImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String reg, String value});
-}
-
-/// @nodoc
-class __$$RegFieldImplCopyWithImpl<$Res>
-    extends _$RegFieldCopyWithImpl<$Res, _$RegFieldImpl>
-    implements _$$RegFieldImplCopyWith<$Res> {
-  __$$RegFieldImplCopyWithImpl(
-      _$RegFieldImpl _value, $Res Function(_$RegFieldImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of RegField
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? reg = null,
-    Object? value = null,
-  }) {
-    return _then(_$RegFieldImpl(
-      reg: null == reg
-          ? _value.reg
-          : reg // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$RegFieldImpl implements _RegField {
-  const _$RegFieldImpl({this.reg = '', this.value = ''});
-
-  factory _$RegFieldImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RegFieldImplFromJson(json);
-
-  @override
-  @JsonKey()
-  final String reg;
-  @override
-  @JsonKey()
-  final String value;
-
-  @override
-  String toString() {
-    return 'RegField(reg: $reg, value: $value)';
-  }
+  /// Serializes this RegField to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RegFieldImpl &&
+            other is RegField &&
             (identical(other.reg, reg) || other.reg == reg) &&
             (identical(other.value, value) || other.value == value));
   }
@@ -145,40 +41,132 @@ class _$RegFieldImpl implements _RegField {
   @override
   int get hashCode => Object.hash(runtimeType, reg, value);
 
-  /// Create a copy of RegField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$RegFieldImplCopyWith<_$RegFieldImpl> get copyWith =>
-      __$$RegFieldImplCopyWithImpl<_$RegFieldImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$RegFieldImplToJson(
-      this,
-    );
+  String toString() {
+    return 'RegField(reg: $reg, value: $value)';
   }
 }
 
-abstract class _RegField implements RegField {
-  const factory _RegField({final String reg, final String value}) =
-      _$RegFieldImpl;
+/// @nodoc
+abstract mixin class $RegFieldCopyWith<$Res> {
+  factory $RegFieldCopyWith(RegField value, $Res Function(RegField) _then) =
+      _$RegFieldCopyWithImpl;
+  @useResult
+  $Res call({String reg, String value});
+}
 
-  factory _RegField.fromJson(Map<String, dynamic> json) =
-      _$RegFieldImpl.fromJson;
+/// @nodoc
+class _$RegFieldCopyWithImpl<$Res> implements $RegFieldCopyWith<$Res> {
+  _$RegFieldCopyWithImpl(this._self, this._then);
+
+  final RegField _self;
+  final $Res Function(RegField) _then;
+
+  /// Create a copy of RegField
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? reg = null,
+    Object? value = null,
+  }) {
+    return _then(_self.copyWith(
+      reg: null == reg
+          ? _self.reg
+          : reg // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _RegField implements RegField {
+  const _RegField({this.reg = '', this.value = ''});
+  factory _RegField.fromJson(Map<String, dynamic> json) =>
+      _$RegFieldFromJson(json);
 
   @override
-  String get reg;
+  @JsonKey()
+  final String reg;
   @override
-  String get value;
+  @JsonKey()
+  final String value;
 
   /// Create a copy of RegField
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RegFieldImplCopyWith<_$RegFieldImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$RegFieldCopyWith<_RegField> get copyWith =>
+      __$RegFieldCopyWithImpl<_RegField>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$RegFieldToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _RegField &&
+            (identical(other.reg, reg) || other.reg == reg) &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, reg, value);
+
+  @override
+  String toString() {
+    return 'RegField(reg: $reg, value: $value)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$RegFieldCopyWith<$Res>
+    implements $RegFieldCopyWith<$Res> {
+  factory _$RegFieldCopyWith(_RegField value, $Res Function(_RegField) _then) =
+      __$RegFieldCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String reg, String value});
+}
+
+/// @nodoc
+class __$RegFieldCopyWithImpl<$Res> implements _$RegFieldCopyWith<$Res> {
+  __$RegFieldCopyWithImpl(this._self, this._then);
+
+  final _RegField _self;
+  final $Res Function(_RegField) _then;
+
+  /// Create a copy of RegField
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? reg = null,
+    Object? value = null,
+  }) {
+    return _then(_RegField(
+      reg: null == reg
+          ? _self.reg
+          : reg // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 ScriptField _$ScriptFieldFromJson(Map<String, dynamic> json) {
@@ -198,117 +186,13 @@ ScriptField _$ScriptFieldFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ScriptField {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() output,
-    required TResult Function(Map<String, String> replace) replace,
-    required TResult Function(String script) js,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? output,
-    TResult? Function(Map<String, String> replace)? replace,
-    TResult? Function(String script)? js,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? output,
-    TResult Function(Map<String, String> replace)? replace,
-    TResult Function(String script)? js,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScriptFieldOutput value) output,
-    required TResult Function(ScriptFieldReplace value) replace,
-    required TResult Function(ScriptFieldJs value) js,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScriptFieldOutput value)? output,
-    TResult? Function(ScriptFieldReplace value)? replace,
-    TResult? Function(ScriptFieldJs value)? js,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScriptFieldOutput value)? output,
-    TResult Function(ScriptFieldReplace value)? replace,
-    TResult Function(ScriptFieldJs value)? js,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
   /// Serializes this ScriptField to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ScriptFieldCopyWith<$Res> {
-  factory $ScriptFieldCopyWith(
-          ScriptField value, $Res Function(ScriptField) then) =
-      _$ScriptFieldCopyWithImpl<$Res, ScriptField>;
-}
-
-/// @nodoc
-class _$ScriptFieldCopyWithImpl<$Res, $Val extends ScriptField>
-    implements $ScriptFieldCopyWith<$Res> {
-  _$ScriptFieldCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ScriptField
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$ScriptFieldOutputImplCopyWith<$Res> {
-  factory _$$ScriptFieldOutputImplCopyWith(_$ScriptFieldOutputImpl value,
-          $Res Function(_$ScriptFieldOutputImpl) then) =
-      __$$ScriptFieldOutputImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ScriptFieldOutputImplCopyWithImpl<$Res>
-    extends _$ScriptFieldCopyWithImpl<$Res, _$ScriptFieldOutputImpl>
-    implements _$$ScriptFieldOutputImplCopyWith<$Res> {
-  __$$ScriptFieldOutputImplCopyWithImpl(_$ScriptFieldOutputImpl _value,
-      $Res Function(_$ScriptFieldOutputImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ScriptField
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ScriptFieldOutputImpl extends ScriptFieldOutput {
-  const _$ScriptFieldOutputImpl({final String? $type})
-      : $type = $type ?? 'output',
-        super._();
-
-  factory _$ScriptFieldOutputImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ScriptFieldOutputImplFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
-  @override
-  String toString() {
-    return 'ScriptField.output()';
-  }
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ScriptFieldOutputImpl);
+        (other.runtimeType == runtimeType && other is ScriptField);
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -316,136 +200,63 @@ class _$ScriptFieldOutputImpl extends ScriptFieldOutput {
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() output,
-    required TResult Function(Map<String, String> replace) replace,
-    required TResult Function(String script) js,
-  }) {
-    return output();
+  String toString() {
+    return 'ScriptField()';
   }
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? output,
-    TResult? Function(Map<String, String> replace)? replace,
-    TResult? Function(String script)? js,
-  }) {
-    return output?.call();
-  }
+/// @nodoc
+class $ScriptFieldCopyWith<$Res> {
+  $ScriptFieldCopyWith(ScriptField _, $Res Function(ScriptField) __);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? output,
-    TResult Function(Map<String, String> replace)? replace,
-    TResult Function(String script)? js,
-    required TResult orElse(),
-  }) {
-    if (output != null) {
-      return output();
-    }
-    return orElse();
-  }
+/// @nodoc
+@JsonSerializable()
+class ScriptFieldOutput extends ScriptField {
+  const ScriptFieldOutput({final String? $type})
+      : $type = $type ?? 'output',
+        super._();
+  factory ScriptFieldOutput.fromJson(Map<String, dynamic> json) =>
+      _$ScriptFieldOutputFromJson(json);
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScriptFieldOutput value) output,
-    required TResult Function(ScriptFieldReplace value) replace,
-    required TResult Function(ScriptFieldJs value) js,
-  }) {
-    return output(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScriptFieldOutput value)? output,
-    TResult? Function(ScriptFieldReplace value)? replace,
-    TResult? Function(ScriptFieldJs value)? js,
-  }) {
-    return output?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScriptFieldOutput value)? output,
-    TResult Function(ScriptFieldReplace value)? replace,
-    TResult Function(ScriptFieldJs value)? js,
-    required TResult orElse(),
-  }) {
-    if (output != null) {
-      return output(this);
-    }
-    return orElse();
-  }
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ScriptFieldOutputImplToJson(
+    return _$ScriptFieldOutputToJson(
       this,
     );
   }
-}
 
-abstract class ScriptFieldOutput extends ScriptField {
-  const factory ScriptFieldOutput() = _$ScriptFieldOutputImpl;
-  const ScriptFieldOutput._() : super._();
-
-  factory ScriptFieldOutput.fromJson(Map<String, dynamic> json) =
-      _$ScriptFieldOutputImpl.fromJson;
-}
-
-/// @nodoc
-abstract class _$$ScriptFieldReplaceImplCopyWith<$Res> {
-  factory _$$ScriptFieldReplaceImplCopyWith(_$ScriptFieldReplaceImpl value,
-          $Res Function(_$ScriptFieldReplaceImpl) then) =
-      __$$ScriptFieldReplaceImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Map<String, String> replace});
-}
-
-/// @nodoc
-class __$$ScriptFieldReplaceImplCopyWithImpl<$Res>
-    extends _$ScriptFieldCopyWithImpl<$Res, _$ScriptFieldReplaceImpl>
-    implements _$$ScriptFieldReplaceImplCopyWith<$Res> {
-  __$$ScriptFieldReplaceImplCopyWithImpl(_$ScriptFieldReplaceImpl _value,
-      $Res Function(_$ScriptFieldReplaceImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ScriptField
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? replace = null,
-  }) {
-    return _then(_$ScriptFieldReplaceImpl(
-      replace: null == replace
-          ? _value._replace
-          : replace // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-    ));
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ScriptFieldOutput);
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ScriptField.output()';
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ScriptFieldReplaceImpl extends ScriptFieldReplace {
-  const _$ScriptFieldReplaceImpl(
+class ScriptFieldReplace extends ScriptField {
+  const ScriptFieldReplace(
       {final Map<String, String> replace = const {}, final String? $type})
       : _replace = replace,
         $type = $type ?? 'replace',
         super._();
-
-  factory _$ScriptFieldReplaceImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ScriptFieldReplaceImplFromJson(json);
+  factory ScriptFieldReplace.fromJson(Map<String, dynamic> json) =>
+      _$ScriptFieldReplaceFromJson(json);
 
   final Map<String, String> _replace;
-  @override
   @JsonKey()
   Map<String, String> get replace {
     if (_replace is EqualUnmodifiableMapView) return _replace;
@@ -456,16 +267,25 @@ class _$ScriptFieldReplaceImpl extends ScriptFieldReplace {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ScriptField
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ScriptFieldReplaceCopyWith<ScriptFieldReplace> get copyWith =>
+      _$ScriptFieldReplaceCopyWithImpl<ScriptFieldReplace>(this, _$identity);
+
   @override
-  String toString() {
-    return 'ScriptField.replace(replace: $replace)';
+  Map<String, dynamic> toJson() {
+    return _$ScriptFieldReplaceToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScriptFieldReplaceImpl &&
+            other is ScriptFieldReplace &&
             const DeepCollectionEquality().equals(other._replace, _replace));
   }
 
@@ -474,168 +294,79 @@ class _$ScriptFieldReplaceImpl extends ScriptFieldReplace {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_replace));
 
-  /// Create a copy of ScriptField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ScriptFieldReplaceImplCopyWith<_$ScriptFieldReplaceImpl> get copyWith =>
-      __$$ScriptFieldReplaceImplCopyWithImpl<_$ScriptFieldReplaceImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() output,
-    required TResult Function(Map<String, String> replace) replace,
-    required TResult Function(String script) js,
-  }) {
-    return replace(this.replace);
+  String toString() {
+    return 'ScriptField.replace(replace: $replace)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? output,
-    TResult? Function(Map<String, String> replace)? replace,
-    TResult? Function(String script)? js,
-  }) {
-    return replace?.call(this.replace);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? output,
-    TResult Function(Map<String, String> replace)? replace,
-    TResult Function(String script)? js,
-    required TResult orElse(),
-  }) {
-    if (replace != null) {
-      return replace(this.replace);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScriptFieldOutput value) output,
-    required TResult Function(ScriptFieldReplace value) replace,
-    required TResult Function(ScriptFieldJs value) js,
-  }) {
-    return replace(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScriptFieldOutput value)? output,
-    TResult? Function(ScriptFieldReplace value)? replace,
-    TResult? Function(ScriptFieldJs value)? js,
-  }) {
-    return replace?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScriptFieldOutput value)? output,
-    TResult Function(ScriptFieldReplace value)? replace,
-    TResult Function(ScriptFieldJs value)? js,
-    required TResult orElse(),
-  }) {
-    if (replace != null) {
-      return replace(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ScriptFieldReplaceImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class ScriptFieldReplace extends ScriptField {
-  const factory ScriptFieldReplace({final Map<String, String> replace}) =
-      _$ScriptFieldReplaceImpl;
-  const ScriptFieldReplace._() : super._();
-
-  factory ScriptFieldReplace.fromJson(Map<String, dynamic> json) =
-      _$ScriptFieldReplaceImpl.fromJson;
-
-  Map<String, String> get replace;
-
-  /// Create a copy of ScriptField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ScriptFieldReplaceImplCopyWith<_$ScriptFieldReplaceImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ScriptFieldJsImplCopyWith<$Res> {
-  factory _$$ScriptFieldJsImplCopyWith(
-          _$ScriptFieldJsImpl value, $Res Function(_$ScriptFieldJsImpl) then) =
-      __$$ScriptFieldJsImplCopyWithImpl<$Res>;
+abstract mixin class $ScriptFieldReplaceCopyWith<$Res>
+    implements $ScriptFieldCopyWith<$Res> {
+  factory $ScriptFieldReplaceCopyWith(
+          ScriptFieldReplace value, $Res Function(ScriptFieldReplace) _then) =
+      _$ScriptFieldReplaceCopyWithImpl;
   @useResult
-  $Res call({String script});
+  $Res call({Map<String, String> replace});
 }
 
 /// @nodoc
-class __$$ScriptFieldJsImplCopyWithImpl<$Res>
-    extends _$ScriptFieldCopyWithImpl<$Res, _$ScriptFieldJsImpl>
-    implements _$$ScriptFieldJsImplCopyWith<$Res> {
-  __$$ScriptFieldJsImplCopyWithImpl(
-      _$ScriptFieldJsImpl _value, $Res Function(_$ScriptFieldJsImpl) _then)
-      : super(_value, _then);
+class _$ScriptFieldReplaceCopyWithImpl<$Res>
+    implements $ScriptFieldReplaceCopyWith<$Res> {
+  _$ScriptFieldReplaceCopyWithImpl(this._self, this._then);
+
+  final ScriptFieldReplace _self;
+  final $Res Function(ScriptFieldReplace) _then;
 
   /// Create a copy of ScriptField
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
-    Object? script = null,
+    Object? replace = null,
   }) {
-    return _then(_$ScriptFieldJsImpl(
-      script: null == script
-          ? _value.script
-          : script // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(ScriptFieldReplace(
+      replace: null == replace
+          ? _self._replace
+          : replace // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ScriptFieldJsImpl extends ScriptFieldJs {
-  const _$ScriptFieldJsImpl({this.script = '', final String? $type})
+class ScriptFieldJs extends ScriptField {
+  const ScriptFieldJs({this.script = '', final String? $type})
       : $type = $type ?? 'js',
         super._();
+  factory ScriptFieldJs.fromJson(Map<String, dynamic> json) =>
+      _$ScriptFieldJsFromJson(json);
 
-  factory _$ScriptFieldJsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ScriptFieldJsImplFromJson(json);
-
-  @override
   @JsonKey()
   final String script;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ScriptField
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ScriptFieldJsCopyWith<ScriptFieldJs> get copyWith =>
+      _$ScriptFieldJsCopyWithImpl<ScriptFieldJs>(this, _$identity);
+
   @override
-  String toString() {
-    return 'ScriptField.js(script: $script)';
+  Map<String, dynamic> toJson() {
+    return _$ScriptFieldJsToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScriptFieldJsImpl &&
+            other is ScriptFieldJs &&
             (identical(other.script, script) || other.script == script));
   }
 
@@ -643,195 +374,98 @@ class _$ScriptFieldJsImpl extends ScriptFieldJs {
   @override
   int get hashCode => Object.hash(runtimeType, script);
 
+  @override
+  String toString() {
+    return 'ScriptField.js(script: $script)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ScriptFieldJsCopyWith<$Res>
+    implements $ScriptFieldCopyWith<$Res> {
+  factory $ScriptFieldJsCopyWith(
+          ScriptFieldJs value, $Res Function(ScriptFieldJs) _then) =
+      _$ScriptFieldJsCopyWithImpl;
+  @useResult
+  $Res call({String script});
+}
+
+/// @nodoc
+class _$ScriptFieldJsCopyWithImpl<$Res>
+    implements $ScriptFieldJsCopyWith<$Res> {
+  _$ScriptFieldJsCopyWithImpl(this._self, this._then);
+
+  final ScriptFieldJs _self;
+  final $Res Function(ScriptFieldJs) _then;
+
   /// Create a copy of ScriptField
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$ScriptFieldJsImplCopyWith<_$ScriptFieldJsImpl> get copyWith =>
-      __$$ScriptFieldJsImplCopyWithImpl<_$ScriptFieldJsImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() output,
-    required TResult Function(Map<String, String> replace) replace,
-    required TResult Function(String script) js,
+  $Res call({
+    Object? script = null,
   }) {
-    return js(script);
+    return _then(ScriptFieldJs(
+      script: null == script
+          ? _self.script
+          : script // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? output,
-    TResult? Function(Map<String, String> replace)? replace,
-    TResult? Function(String script)? js,
-  }) {
-    return js?.call(script);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? output,
-    TResult Function(Map<String, String> replace)? replace,
-    TResult Function(String script)? js,
-    required TResult orElse(),
-  }) {
-    if (js != null) {
-      return js(script);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScriptFieldOutput value) output,
-    required TResult Function(ScriptFieldReplace value) replace,
-    required TResult Function(ScriptFieldJs value) js,
-  }) {
-    return js(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScriptFieldOutput value)? output,
-    TResult? Function(ScriptFieldReplace value)? replace,
-    TResult? Function(ScriptFieldJs value)? js,
-  }) {
-    return js?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScriptFieldOutput value)? output,
-    TResult Function(ScriptFieldReplace value)? replace,
-    TResult Function(ScriptFieldJs value)? js,
-    required TResult orElse(),
-  }) {
-    if (js != null) {
-      return js(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ScriptFieldJsImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class ScriptFieldJs extends ScriptField {
-  const factory ScriptFieldJs({final String script}) = _$ScriptFieldJsImpl;
-  const ScriptFieldJs._() : super._();
-
-  factory ScriptFieldJs.fromJson(Map<String, dynamic> json) =
-      _$ScriptFieldJsImpl.fromJson;
-
-  String get script;
-
-  /// Create a copy of ScriptField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ScriptFieldJsImplCopyWith<_$ScriptFieldJsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-ColorField _$ColorFieldFromJson(Map<String, dynamic> json) {
-  return _ColorField.fromJson(json);
 }
 
 /// @nodoc
 mixin _$ColorField {
-  int get a => throw _privateConstructorUsedError;
-  int get r => throw _privateConstructorUsedError;
-  int get g => throw _privateConstructorUsedError;
-  int get b => throw _privateConstructorUsedError;
-
-  /// Serializes this ColorField to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get a;
+  int get r;
+  int get g;
+  int get b;
 
   /// Create a copy of ColorField
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ColorFieldCopyWith<ColorField> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ColorFieldCopyWith<$Res> {
-  factory $ColorFieldCopyWith(
-          ColorField value, $Res Function(ColorField) then) =
-      _$ColorFieldCopyWithImpl<$Res, ColorField>;
-  @useResult
-  $Res call({int a, int r, int g, int b});
-}
-
-/// @nodoc
-class _$ColorFieldCopyWithImpl<$Res, $Val extends ColorField>
-    implements $ColorFieldCopyWith<$Res> {
-  _$ColorFieldCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ColorField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ColorFieldCopyWith<ColorField> get copyWith =>
+      _$ColorFieldCopyWithImpl<ColorField>(this as ColorField, _$identity);
+
+  /// Serializes this ColorField to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? a = null,
-    Object? r = null,
-    Object? g = null,
-    Object? b = null,
-  }) {
-    return _then(_value.copyWith(
-      a: null == a
-          ? _value.a
-          : a // ignore: cast_nullable_to_non_nullable
-              as int,
-      r: null == r
-          ? _value.r
-          : r // ignore: cast_nullable_to_non_nullable
-              as int,
-      g: null == g
-          ? _value.g
-          : g // ignore: cast_nullable_to_non_nullable
-              as int,
-      b: null == b
-          ? _value.b
-          : b // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ColorField &&
+            (identical(other.a, a) || other.a == a) &&
+            (identical(other.r, r) || other.r == r) &&
+            (identical(other.g, g) || other.g == g) &&
+            (identical(other.b, b) || other.b == b));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, a, r, g, b);
+
+  @override
+  String toString() {
+    return 'ColorField(a: $a, r: $r, g: $g, b: $b)';
   }
 }
 
 /// @nodoc
-abstract class _$$ColorFieldImplCopyWith<$Res>
-    implements $ColorFieldCopyWith<$Res> {
-  factory _$$ColorFieldImplCopyWith(
-          _$ColorFieldImpl value, $Res Function(_$ColorFieldImpl) then) =
-      __$$ColorFieldImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ColorFieldCopyWith<$Res> {
+  factory $ColorFieldCopyWith(
+          ColorField value, $Res Function(ColorField) _then) =
+      _$ColorFieldCopyWithImpl;
   @useResult
   $Res call({int a, int r, int g, int b});
 }
 
 /// @nodoc
-class __$$ColorFieldImplCopyWithImpl<$Res>
-    extends _$ColorFieldCopyWithImpl<$Res, _$ColorFieldImpl>
-    implements _$$ColorFieldImplCopyWith<$Res> {
-  __$$ColorFieldImplCopyWithImpl(
-      _$ColorFieldImpl _value, $Res Function(_$ColorFieldImpl) _then)
-      : super(_value, _then);
+class _$ColorFieldCopyWithImpl<$Res> implements $ColorFieldCopyWith<$Res> {
+  _$ColorFieldCopyWithImpl(this._self, this._then);
+
+  final ColorField _self;
+  final $Res Function(ColorField) _then;
 
   /// Create a copy of ColorField
   /// with the given fields replaced by the non-null parameter values.
@@ -843,21 +477,21 @@ class __$$ColorFieldImplCopyWithImpl<$Res>
     Object? g = null,
     Object? b = null,
   }) {
-    return _then(_$ColorFieldImpl(
+    return _then(_self.copyWith(
       a: null == a
-          ? _value.a
+          ? _self.a
           : a // ignore: cast_nullable_to_non_nullable
               as int,
       r: null == r
-          ? _value.r
+          ? _self.r
           : r // ignore: cast_nullable_to_non_nullable
               as int,
       g: null == g
-          ? _value.g
+          ? _self.g
           : g // ignore: cast_nullable_to_non_nullable
               as int,
       b: null == b
-          ? _value.b
+          ? _self.b
           : b // ignore: cast_nullable_to_non_nullable
               as int,
     ));
@@ -866,11 +500,10 @@ class __$$ColorFieldImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ColorFieldImpl implements _ColorField {
-  const _$ColorFieldImpl({this.a = 0, this.r = 0, this.g = 0, this.b = 0});
-
-  factory _$ColorFieldImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ColorFieldImplFromJson(json);
+class _ColorField implements ColorField {
+  const _ColorField({this.a = 0, this.r = 0, this.g = 0, this.b = 0});
+  factory _ColorField.fromJson(Map<String, dynamic> json) =>
+      _$ColorFieldFromJson(json);
 
   @override
   @JsonKey()
@@ -885,16 +518,26 @@ class _$ColorFieldImpl implements _ColorField {
   @JsonKey()
   final int b;
 
+  /// Create a copy of ColorField
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ColorField(a: $a, r: $r, g: $g, b: $b)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ColorFieldCopyWith<_ColorField> get copyWith =>
+      __$ColorFieldCopyWithImpl<_ColorField>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ColorFieldToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ColorFieldImpl &&
+            other is _ColorField &&
             (identical(other.a, a) || other.a == a) &&
             (identical(other.r, r) || other.r == r) &&
             (identical(other.g, g) || other.g == g) &&
@@ -905,42 +548,59 @@ class _$ColorFieldImpl implements _ColorField {
   @override
   int get hashCode => Object.hash(runtimeType, a, r, g, b);
 
-  /// Create a copy of ColorField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ColorFieldImplCopyWith<_$ColorFieldImpl> get copyWith =>
-      __$$ColorFieldImplCopyWithImpl<_$ColorFieldImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ColorFieldImplToJson(
-      this,
-    );
+  String toString() {
+    return 'ColorField(a: $a, r: $r, g: $g, b: $b)';
   }
 }
 
-abstract class _ColorField implements ColorField {
-  const factory _ColorField(
-      {final int a, final int r, final int g, final int b}) = _$ColorFieldImpl;
+/// @nodoc
+abstract mixin class _$ColorFieldCopyWith<$Res>
+    implements $ColorFieldCopyWith<$Res> {
+  factory _$ColorFieldCopyWith(
+          _ColorField value, $Res Function(_ColorField) _then) =
+      __$ColorFieldCopyWithImpl;
+  @override
+  @useResult
+  $Res call({int a, int r, int g, int b});
+}
 
-  factory _ColorField.fromJson(Map<String, dynamic> json) =
-      _$ColorFieldImpl.fromJson;
+/// @nodoc
+class __$ColorFieldCopyWithImpl<$Res> implements _$ColorFieldCopyWith<$Res> {
+  __$ColorFieldCopyWithImpl(this._self, this._then);
 
-  @override
-  int get a;
-  @override
-  int get r;
-  @override
-  int get g;
-  @override
-  int get b;
+  final _ColorField _self;
+  final $Res Function(_ColorField) _then;
 
   /// Create a copy of ColorField
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ColorFieldImplCopyWith<_$ColorFieldImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? a = null,
+    Object? r = null,
+    Object? g = null,
+    Object? b = null,
+  }) {
+    return _then(_ColorField(
+      a: null == a
+          ? _self.a
+          : a // ignore: cast_nullable_to_non_nullable
+              as int,
+      r: null == r
+          ? _self.r
+          : r // ignore: cast_nullable_to_non_nullable
+              as int,
+      g: null == g
+          ? _self.g
+          : g // ignore: cast_nullable_to_non_nullable
+              as int,
+      b: null == b
+          ? _self.b
+          : b // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
+
+// dart format on

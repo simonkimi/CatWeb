@@ -6,33 +6,28 @@ part of 'field.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$RegFieldImpl _$$RegFieldImplFromJson(Map<String, dynamic> json) =>
-    _$RegFieldImpl(
+_RegField _$RegFieldFromJson(Map<String, dynamic> json) => _RegField(
       reg: json['reg'] as String? ?? '',
       value: json['value'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$RegFieldImplToJson(_$RegFieldImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$RegFieldToJson(_RegField instance) => <String, dynamic>{
       'reg': instance.reg,
       'value': instance.value,
     };
 
-_$ScriptFieldOutputImpl _$$ScriptFieldOutputImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ScriptFieldOutputImpl(
+ScriptFieldOutput _$ScriptFieldOutputFromJson(Map<String, dynamic> json) =>
+    ScriptFieldOutput(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ScriptFieldOutputImplToJson(
-        _$ScriptFieldOutputImpl instance) =>
+Map<String, dynamic> _$ScriptFieldOutputToJson(ScriptFieldOutput instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };
 
-_$ScriptFieldReplaceImpl _$$ScriptFieldReplaceImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ScriptFieldReplaceImpl(
+ScriptFieldReplace _$ScriptFieldReplaceFromJson(Map<String, dynamic> json) =>
+    ScriptFieldReplace(
       replace: (json['replace'] as Map<String, dynamic>?)?.map(
             (k, e) => MapEntry(k, e as String),
           ) ??
@@ -40,34 +35,32 @@ _$ScriptFieldReplaceImpl _$$ScriptFieldReplaceImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ScriptFieldReplaceImplToJson(
-        _$ScriptFieldReplaceImpl instance) =>
+Map<String, dynamic> _$ScriptFieldReplaceToJson(ScriptFieldReplace instance) =>
     <String, dynamic>{
       'replace': instance.replace,
       'runtimeType': instance.$type,
     };
 
-_$ScriptFieldJsImpl _$$ScriptFieldJsImplFromJson(Map<String, dynamic> json) =>
-    _$ScriptFieldJsImpl(
+ScriptFieldJs _$ScriptFieldJsFromJson(Map<String, dynamic> json) =>
+    ScriptFieldJs(
       script: json['script'] as String? ?? '',
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ScriptFieldJsImplToJson(_$ScriptFieldJsImpl instance) =>
+Map<String, dynamic> _$ScriptFieldJsToJson(ScriptFieldJs instance) =>
     <String, dynamic>{
       'script': instance.script,
       'runtimeType': instance.$type,
     };
 
-_$ColorFieldImpl _$$ColorFieldImplFromJson(Map<String, dynamic> json) =>
-    _$ColorFieldImpl(
+_ColorField _$ColorFieldFromJson(Map<String, dynamic> json) => _ColorField(
       a: (json['a'] as num?)?.toInt() ?? 0,
       r: (json['r'] as num?)?.toInt() ?? 0,
       g: (json['g'] as num?)?.toInt() ?? 0,
       b: (json['b'] as num?)?.toInt() ?? 0,
     );
 
-Map<String, dynamic> _$$ColorFieldImplToJson(_$ColorFieldImpl instance) =>
+Map<String, dynamic> _$ColorFieldToJson(_ColorField instance) =>
     <String, dynamic>{
       'a': instance.a,
       'r': instance.r,

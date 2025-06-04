@@ -8,7 +8,7 @@ part 'site_blueprint.freezed.dart';
 part 'site_blueprint.g.dart';
 
 @freezed
-class SiteBlueprint with _$SiteBlueprint {
+sealed class SiteBlueprint with _$SiteBlueprint {
   const SiteBlueprint._();
 
   const factory SiteBlueprint({

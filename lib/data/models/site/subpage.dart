@@ -8,7 +8,7 @@ part 'subpage.freezed.dart';
 part 'subpage.g.dart';
 
 @freezed
-class TemplateListSubPage with _$TemplateListSubPage {
+sealed class TemplateListSubPage with _$TemplateListSubPage {
   const factory TemplateListSubPage({
     @Default('') String name,
     @Default('') String key,
@@ -20,7 +20,7 @@ class TemplateListSubPage with _$TemplateListSubPage {
 }
 
 @freezed
-class TemplateListFilter with _$TemplateListFilter {
+sealed class TemplateListFilter with _$TemplateListFilter {
   const TemplateListFilter._();
 
   const factory TemplateListFilter({
@@ -39,7 +39,7 @@ class TemplateListFilter with _$TemplateListFilter {
 }
 
 @freezed
-class TemplateListFilterItem with _$TemplateListFilterItem {
+sealed class TemplateListFilterItem with _$TemplateListFilterItem {
   const TemplateListFilterItem._();
 
   const factory TemplateListFilterItem.string({

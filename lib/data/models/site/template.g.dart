@@ -6,9 +6,9 @@ part of 'template.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PageTemplateAutoCompleteImpl _$$PageTemplateAutoCompleteImplFromJson(
+PageTemplateAutoComplete _$PageTemplateAutoCompleteFromJson(
         Map<String, dynamic> json) =>
-    _$PageTemplateAutoCompleteImpl(
+    PageTemplateAutoComplete(
       splitChar: json['splitChar'] as String? ?? '',
       timeout: (json['timeout'] as num?)?.toInt() ?? 0,
       script: json['script'] == null
@@ -17,8 +17,8 @@ _$PageTemplateAutoCompleteImpl _$$PageTemplateAutoCompleteImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PageTemplateAutoCompleteImplToJson(
-        _$PageTemplateAutoCompleteImpl instance) =>
+Map<String, dynamic> _$PageTemplateAutoCompleteToJson(
+        PageTemplateAutoComplete instance) =>
     <String, dynamic>{
       'splitChar': instance.splitChar,
       'timeout': instance.timeout,
@@ -26,23 +26,21 @@ Map<String, dynamic> _$$PageTemplateAutoCompleteImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$PageTemplateGalleryImpl _$$PageTemplateGalleryImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PageTemplateGalleryImpl(
+PageTemplateGallery _$PageTemplateGalleryFromJson(Map<String, dynamic> json) =>
+    PageTemplateGallery(
       targetReader: json['targetReader'] as String? ?? '',
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PageTemplateGalleryImplToJson(
-        _$PageTemplateGalleryImpl instance) =>
+Map<String, dynamic> _$PageTemplateGalleryToJson(
+        PageTemplateGallery instance) =>
     <String, dynamic>{
       'targetReader': instance.targetReader,
       'runtimeType': instance.$type,
     };
 
-_$PageTemplateListImpl _$$PageTemplateListImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PageTemplateListImpl(
+PageTemplateList _$PageTemplateListFromJson(Map<String, dynamic> json) =>
+    PageTemplateList(
       name: json['name'] as String? ?? '',
       subPages: (json['subPages'] as List<dynamic>?)
               ?.map((e) =>
@@ -57,8 +55,7 @@ _$PageTemplateListImpl _$$PageTemplateListImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PageTemplateListImplToJson(
-        _$PageTemplateListImpl instance) =>
+Map<String, dynamic> _$PageTemplateListToJson(PageTemplateList instance) =>
     <String, dynamic>{
       'name': instance.name,
       'subPages': instance.subPages,
@@ -68,14 +65,14 @@ Map<String, dynamic> _$$PageTemplateListImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$PageTemplateImageViewerImpl _$$PageTemplateImageViewerImplFromJson(
+PageTemplateImageViewer _$PageTemplateImageViewerFromJson(
         Map<String, dynamic> json) =>
-    _$PageTemplateImageViewerImpl(
+    PageTemplateImageViewer(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PageTemplateImageViewerImplToJson(
-        _$PageTemplateImageViewerImpl instance) =>
+Map<String, dynamic> _$PageTemplateImageViewerToJson(
+        PageTemplateImageViewer instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };

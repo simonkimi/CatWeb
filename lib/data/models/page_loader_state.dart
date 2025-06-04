@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'page_loader_state.freezed.dart';
 
 @freezed
-class PageLoaderState with _$PageLoaderState {
+sealed class PageLoaderState with _$PageLoaderState {
   const PageLoaderState._();
 
   const factory PageLoaderState.idle() = _Idle;

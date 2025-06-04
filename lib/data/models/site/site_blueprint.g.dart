@@ -6,8 +6,7 @@ part of 'site_blueprint.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SiteBlueMapImpl _$$SiteBlueMapImplFromJson(Map<String, dynamic> json) =>
-    _$SiteBlueMapImpl(
+_SiteBlueMap _$SiteBlueMapFromJson(Map<String, dynamic> json) => _SiteBlueMap(
       name: json['name'] as String? ?? '',
       baseUrl: json['baseUrl'] as String? ?? '',
       loginUrl: json['loginUrl'] as String? ?? '',
@@ -35,7 +34,7 @@ _$SiteBlueMapImpl _$$SiteBlueMapImplFromJson(Map<String, dynamic> json) =>
           const [],
     );
 
-Map<String, dynamic> _$$SiteBlueMapImplToJson(_$SiteBlueMapImpl instance) =>
+Map<String, dynamic> _$SiteBlueMapToJson(_SiteBlueMap instance) =>
     <String, dynamic>{
       'name': instance.name,
       'baseUrl': instance.baseUrl,

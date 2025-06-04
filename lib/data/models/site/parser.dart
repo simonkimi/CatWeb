@@ -7,7 +7,7 @@ part 'parser.freezed.dart';
 part 'parser.g.dart';
 
 @freezed
-class ParserModel with _$ParserModel {
+sealed class ParserModel with _$ParserModel {
   const ParserModel._();
 
   @override

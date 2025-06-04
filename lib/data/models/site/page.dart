@@ -9,7 +9,7 @@ part 'page.freezed.dart';
 part 'page.g.dart';
 
 @freezed
-class SitePageRule with _$SitePageRule {
+sealed class SitePageRule with _$SitePageRule {
   const SitePageRule._();
 
   const factory SitePageRule({

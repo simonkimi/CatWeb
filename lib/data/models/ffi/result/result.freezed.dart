@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,150 +10,30 @@ part of 'result.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 DetailPreviewItem _$DetailPreviewItemFromJson(Map<String, dynamic> json) {
   return _PreviewItem.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DetailPreviewItem {
-  ImageResult? get previewImage => throw _privateConstructorUsedError;
-  String? get target => throw _privateConstructorUsedError;
-
-  /// Serializes this DetailPreviewItem to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+mixin _$DetailPreviewItem implements DiagnosticableTreeMixin {
+  ImageResult? get previewImage;
+  String? get target;
 
   /// Create a copy of DetailPreviewItem
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $DetailPreviewItemCopyWith<DetailPreviewItem> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$DetailPreviewItemCopyWithImpl<DetailPreviewItem>(
+          this as DetailPreviewItem, _$identity);
 
-/// @nodoc
-abstract class $DetailPreviewItemCopyWith<$Res> {
-  factory $DetailPreviewItemCopyWith(
-          DetailPreviewItem value, $Res Function(DetailPreviewItem) then) =
-      _$DetailPreviewItemCopyWithImpl<$Res, DetailPreviewItem>;
-  @useResult
-  $Res call({ImageResult? previewImage, String? target});
-
-  $ImageResultCopyWith<$Res>? get previewImage;
-}
-
-/// @nodoc
-class _$DetailPreviewItemCopyWithImpl<$Res, $Val extends DetailPreviewItem>
-    implements $DetailPreviewItemCopyWith<$Res> {
-  _$DetailPreviewItemCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of DetailPreviewItem
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? previewImage = freezed,
-    Object? target = freezed,
-  }) {
-    return _then(_value.copyWith(
-      previewImage: freezed == previewImage
-          ? _value.previewImage
-          : previewImage // ignore: cast_nullable_to_non_nullable
-              as ImageResult?,
-      target: freezed == target
-          ? _value.target
-          : target // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-
-  /// Create a copy of DetailPreviewItem
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageResultCopyWith<$Res>? get previewImage {
-    if (_value.previewImage == null) {
-      return null;
-    }
-
-    return $ImageResultCopyWith<$Res>(_value.previewImage!, (value) {
-      return _then(_value.copyWith(previewImage: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$PreviewItemImplCopyWith<$Res>
-    implements $DetailPreviewItemCopyWith<$Res> {
-  factory _$$PreviewItemImplCopyWith(
-          _$PreviewItemImpl value, $Res Function(_$PreviewItemImpl) then) =
-      __$$PreviewItemImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({ImageResult? previewImage, String? target});
-
-  @override
-  $ImageResultCopyWith<$Res>? get previewImage;
-}
-
-/// @nodoc
-class __$$PreviewItemImplCopyWithImpl<$Res>
-    extends _$DetailPreviewItemCopyWithImpl<$Res, _$PreviewItemImpl>
-    implements _$$PreviewItemImplCopyWith<$Res> {
-  __$$PreviewItemImplCopyWithImpl(
-      _$PreviewItemImpl _value, $Res Function(_$PreviewItemImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DetailPreviewItem
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? previewImage = freezed,
-    Object? target = freezed,
-  }) {
-    return _then(_$PreviewItemImpl(
-      previewImage: freezed == previewImage
-          ? _value.previewImage
-          : previewImage // ignore: cast_nullable_to_non_nullable
-              as ImageResult?,
-      target: freezed == target
-          ? _value.target
-          : target // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$PreviewItemImpl with DiagnosticableTreeMixin implements _PreviewItem {
-  const _$PreviewItemImpl({this.previewImage, this.target});
-
-  factory _$PreviewItemImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PreviewItemImplFromJson(json);
-
-  @override
-  final ImageResult? previewImage;
-  @override
-  final String? target;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DetailPreviewItem(previewImage: $previewImage, target: $target)';
-  }
+  /// Serializes this DetailPreviewItem to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'DetailPreviewItem'))
       ..add(DiagnosticsProperty('previewImage', previewImage))
@@ -163,7 +44,7 @@ class _$PreviewItemImpl with DiagnosticableTreeMixin implements _PreviewItem {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PreviewItemImpl &&
+            other is DetailPreviewItem &&
             (identical(other.previewImage, previewImage) ||
                 other.previewImage == previewImage) &&
             (identical(other.target, target) || other.target == target));
@@ -173,83 +54,302 @@ class _$PreviewItemImpl with DiagnosticableTreeMixin implements _PreviewItem {
   @override
   int get hashCode => Object.hash(runtimeType, previewImage, target);
 
-  /// Create a copy of DetailPreviewItem
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$PreviewItemImplCopyWith<_$PreviewItemImpl> get copyWith =>
-      __$$PreviewItemImplCopyWithImpl<_$PreviewItemImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PreviewItemImplToJson(
-      this,
-    );
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'DetailPreviewItem(previewImage: $previewImage, target: $target)';
   }
 }
 
-abstract class _PreviewItem implements DetailPreviewItem {
-  const factory _PreviewItem(
-      {final ImageResult? previewImage,
-      final String? target}) = _$PreviewItemImpl;
+/// @nodoc
+abstract mixin class $DetailPreviewItemCopyWith<$Res> {
+  factory $DetailPreviewItemCopyWith(
+          DetailPreviewItem value, $Res Function(DetailPreviewItem) _then) =
+      _$DetailPreviewItemCopyWithImpl;
+  @useResult
+  $Res call({ImageResult? previewImage, String? target});
 
-  factory _PreviewItem.fromJson(Map<String, dynamic> json) =
-      _$PreviewItemImpl.fromJson;
+  $ImageResultCopyWith<$Res>? get previewImage;
+}
+
+/// @nodoc
+class _$DetailPreviewItemCopyWithImpl<$Res>
+    implements $DetailPreviewItemCopyWith<$Res> {
+  _$DetailPreviewItemCopyWithImpl(this._self, this._then);
+
+  final DetailPreviewItem _self;
+  final $Res Function(DetailPreviewItem) _then;
+
+  /// Create a copy of DetailPreviewItem
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? previewImage = freezed,
+    Object? target = freezed,
+  }) {
+    return _then(_self.copyWith(
+      previewImage: freezed == previewImage
+          ? _self.previewImage
+          : previewImage // ignore: cast_nullable_to_non_nullable
+              as ImageResult?,
+      target: freezed == target
+          ? _self.target
+          : target // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of DetailPreviewItem
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageResultCopyWith<$Res>? get previewImage {
+    if (_self.previewImage == null) {
+      return null;
+    }
+
+    return $ImageResultCopyWith<$Res>(_self.previewImage!, (value) {
+      return _then(_self.copyWith(previewImage: value));
+    });
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _PreviewItem with DiagnosticableTreeMixin implements DetailPreviewItem {
+  const _PreviewItem({this.previewImage, this.target});
+  factory _PreviewItem.fromJson(Map<String, dynamic> json) =>
+      _$PreviewItemFromJson(json);
 
   @override
-  ImageResult? get previewImage;
+  final ImageResult? previewImage;
   @override
-  String? get target;
+  final String? target;
 
   /// Create a copy of DetailPreviewItem
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PreviewItemImplCopyWith<_$PreviewItemImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+  @pragma('vm:prefer-inline')
+  _$PreviewItemCopyWith<_PreviewItem> get copyWith =>
+      __$PreviewItemCopyWithImpl<_PreviewItem>(this, _$identity);
 
-DetailParserResult _$DetailParserResultFromJson(Map<String, dynamic> json) {
-  return _DetailParserResult.fromJson(json);
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PreviewItemToJson(
+      this,
+    );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'DetailPreviewItem'))
+      ..add(DiagnosticsProperty('previewImage', previewImage))
+      ..add(DiagnosticsProperty('target', target));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _PreviewItem &&
+            (identical(other.previewImage, previewImage) ||
+                other.previewImage == previewImage) &&
+            (identical(other.target, target) || other.target == target));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, previewImage, target);
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'DetailPreviewItem(previewImage: $previewImage, target: $target)';
+  }
 }
 
 /// @nodoc
-mixin _$DetailParserResult {
-  String? get title => throw _privateConstructorUsedError;
-  String? get subtitle => throw _privateConstructorUsedError;
-  String? get language => throw _privateConstructorUsedError;
-  int? get imageCount => throw _privateConstructorUsedError;
-  String? get uploadTime => throw _privateConstructorUsedError;
-  int? get countPrePage => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  double? get star => throw _privateConstructorUsedError;
-  List<DetailPreviewItem>? get previews => throw _privateConstructorUsedError;
-  ImageResult? get coverImage => throw _privateConstructorUsedError;
-  List<TagResult>? get badges => throw _privateConstructorUsedError;
-  List<TagResult>? get tags => throw _privateConstructorUsedError;
-  List<CommentResult>? get comments => throw _privateConstructorUsedError;
-  String? get nextPage => throw _privateConstructorUsedError;
-  bool? get isSuccess => throw _privateConstructorUsedError;
-  String? get failMessage => throw _privateConstructorUsedError;
-  List<EnvResult> get envs => throw _privateConstructorUsedError;
-  List<ParserError> get errors => throw _privateConstructorUsedError;
+abstract mixin class _$PreviewItemCopyWith<$Res>
+    implements $DetailPreviewItemCopyWith<$Res> {
+  factory _$PreviewItemCopyWith(
+          _PreviewItem value, $Res Function(_PreviewItem) _then) =
+      __$PreviewItemCopyWithImpl;
+  @override
+  @useResult
+  $Res call({ImageResult? previewImage, String? target});
 
-  /// Serializes this DetailParserResult to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @override
+  $ImageResultCopyWith<$Res>? get previewImage;
+}
+
+/// @nodoc
+class __$PreviewItemCopyWithImpl<$Res> implements _$PreviewItemCopyWith<$Res> {
+  __$PreviewItemCopyWithImpl(this._self, this._then);
+
+  final _PreviewItem _self;
+  final $Res Function(_PreviewItem) _then;
+
+  /// Create a copy of DetailPreviewItem
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? previewImage = freezed,
+    Object? target = freezed,
+  }) {
+    return _then(_PreviewItem(
+      previewImage: freezed == previewImage
+          ? _self.previewImage
+          : previewImage // ignore: cast_nullable_to_non_nullable
+              as ImageResult?,
+      target: freezed == target
+          ? _self.target
+          : target // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of DetailPreviewItem
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageResultCopyWith<$Res>? get previewImage {
+    if (_self.previewImage == null) {
+      return null;
+    }
+
+    return $ImageResultCopyWith<$Res>(_self.previewImage!, (value) {
+      return _then(_self.copyWith(previewImage: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$DetailParserResult implements DiagnosticableTreeMixin {
+  String? get title;
+  String? get subtitle;
+  String? get language;
+  int? get imageCount;
+  String? get uploadTime;
+  int? get countPrePage;
+  String? get description;
+  double? get star;
+  List<DetailPreviewItem>? get previews;
+  ImageResult? get coverImage;
+  List<TagResult>? get badges;
+  List<TagResult>? get tags;
+  List<CommentResult>? get comments;
+  String? get nextPage;
+  bool? get isSuccess;
+  String? get failMessage;
+  List<EnvResult> get envs;
+  List<ParserError> get errors;
 
   /// Create a copy of DetailParserResult
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $DetailParserResultCopyWith<DetailParserResult> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$DetailParserResultCopyWithImpl<DetailParserResult>(
+          this as DetailParserResult, _$identity);
+
+  /// Serializes this DetailParserResult to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'DetailParserResult'))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('subtitle', subtitle))
+      ..add(DiagnosticsProperty('language', language))
+      ..add(DiagnosticsProperty('imageCount', imageCount))
+      ..add(DiagnosticsProperty('uploadTime', uploadTime))
+      ..add(DiagnosticsProperty('countPrePage', countPrePage))
+      ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('star', star))
+      ..add(DiagnosticsProperty('previews', previews))
+      ..add(DiagnosticsProperty('coverImage', coverImage))
+      ..add(DiagnosticsProperty('badges', badges))
+      ..add(DiagnosticsProperty('tags', tags))
+      ..add(DiagnosticsProperty('comments', comments))
+      ..add(DiagnosticsProperty('nextPage', nextPage))
+      ..add(DiagnosticsProperty('isSuccess', isSuccess))
+      ..add(DiagnosticsProperty('failMessage', failMessage))
+      ..add(DiagnosticsProperty('envs', envs))
+      ..add(DiagnosticsProperty('errors', errors));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DetailParserResult &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.subtitle, subtitle) ||
+                other.subtitle == subtitle) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
+            (identical(other.imageCount, imageCount) ||
+                other.imageCount == imageCount) &&
+            (identical(other.uploadTime, uploadTime) ||
+                other.uploadTime == uploadTime) &&
+            (identical(other.countPrePage, countPrePage) ||
+                other.countPrePage == countPrePage) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.star, star) || other.star == star) &&
+            const DeepCollectionEquality().equals(other.previews, previews) &&
+            (identical(other.coverImage, coverImage) ||
+                other.coverImage == coverImage) &&
+            const DeepCollectionEquality().equals(other.badges, badges) &&
+            const DeepCollectionEquality().equals(other.tags, tags) &&
+            const DeepCollectionEquality().equals(other.comments, comments) &&
+            (identical(other.nextPage, nextPage) ||
+                other.nextPage == nextPage) &&
+            (identical(other.isSuccess, isSuccess) ||
+                other.isSuccess == isSuccess) &&
+            (identical(other.failMessage, failMessage) ||
+                other.failMessage == failMessage) &&
+            const DeepCollectionEquality().equals(other.envs, envs) &&
+            const DeepCollectionEquality().equals(other.errors, errors));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      subtitle,
+      language,
+      imageCount,
+      uploadTime,
+      countPrePage,
+      description,
+      star,
+      const DeepCollectionEquality().hash(previews),
+      coverImage,
+      const DeepCollectionEquality().hash(badges),
+      const DeepCollectionEquality().hash(tags),
+      const DeepCollectionEquality().hash(comments),
+      nextPage,
+      isSuccess,
+      failMessage,
+      const DeepCollectionEquality().hash(envs),
+      const DeepCollectionEquality().hash(errors));
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'DetailParserResult(title: $title, subtitle: $subtitle, language: $language, imageCount: $imageCount, uploadTime: $uploadTime, countPrePage: $countPrePage, description: $description, star: $star, previews: $previews, coverImage: $coverImage, badges: $badges, tags: $tags, comments: $comments, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
+  }
 }
 
 /// @nodoc
-abstract class $DetailParserResultCopyWith<$Res> {
+abstract mixin class $DetailParserResultCopyWith<$Res> {
   factory $DetailParserResultCopyWith(
-          DetailParserResult value, $Res Function(DetailParserResult) then) =
-      _$DetailParserResultCopyWithImpl<$Res, DetailParserResult>;
+          DetailParserResult value, $Res Function(DetailParserResult) _then) =
+      _$DetailParserResultCopyWithImpl;
   @useResult
   $Res call(
       {String? title,
@@ -275,14 +375,12 @@ abstract class $DetailParserResultCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DetailParserResultCopyWithImpl<$Res, $Val extends DetailParserResult>
+class _$DetailParserResultCopyWithImpl<$Res>
     implements $DetailParserResultCopyWith<$Res> {
-  _$DetailParserResultCopyWithImpl(this._value, this._then);
+  _$DetailParserResultCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final DetailParserResult _self;
+  final $Res Function(DetailParserResult) _then;
 
   /// Create a copy of DetailParserResult
   /// with the given fields replaced by the non-null parameter values.
@@ -308,80 +406,80 @@ class _$DetailParserResultCopyWithImpl<$Res, $Val extends DetailParserResult>
     Object? envs = null,
     Object? errors = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       title: freezed == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
       subtitle: freezed == subtitle
-          ? _value.subtitle
+          ? _self.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
               as String?,
       language: freezed == language
-          ? _value.language
+          ? _self.language
           : language // ignore: cast_nullable_to_non_nullable
               as String?,
       imageCount: freezed == imageCount
-          ? _value.imageCount
+          ? _self.imageCount
           : imageCount // ignore: cast_nullable_to_non_nullable
               as int?,
       uploadTime: freezed == uploadTime
-          ? _value.uploadTime
+          ? _self.uploadTime
           : uploadTime // ignore: cast_nullable_to_non_nullable
               as String?,
       countPrePage: freezed == countPrePage
-          ? _value.countPrePage
+          ? _self.countPrePage
           : countPrePage // ignore: cast_nullable_to_non_nullable
               as int?,
       description: freezed == description
-          ? _value.description
+          ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
       star: freezed == star
-          ? _value.star
+          ? _self.star
           : star // ignore: cast_nullable_to_non_nullable
               as double?,
       previews: freezed == previews
-          ? _value.previews
+          ? _self.previews
           : previews // ignore: cast_nullable_to_non_nullable
               as List<DetailPreviewItem>?,
       coverImage: freezed == coverImage
-          ? _value.coverImage
+          ? _self.coverImage
           : coverImage // ignore: cast_nullable_to_non_nullable
               as ImageResult?,
       badges: freezed == badges
-          ? _value.badges
+          ? _self.badges
           : badges // ignore: cast_nullable_to_non_nullable
               as List<TagResult>?,
       tags: freezed == tags
-          ? _value.tags
+          ? _self.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<TagResult>?,
       comments: freezed == comments
-          ? _value.comments
+          ? _self.comments
           : comments // ignore: cast_nullable_to_non_nullable
               as List<CommentResult>?,
       nextPage: freezed == nextPage
-          ? _value.nextPage
+          ? _self.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
               as String?,
       isSuccess: freezed == isSuccess
-          ? _value.isSuccess
+          ? _self.isSuccess
           : isSuccess // ignore: cast_nullable_to_non_nullable
               as bool?,
       failMessage: freezed == failMessage
-          ? _value.failMessage
+          ? _self.failMessage
           : failMessage // ignore: cast_nullable_to_non_nullable
               as String?,
       envs: null == envs
-          ? _value.envs
+          ? _self.envs
           : envs // ignore: cast_nullable_to_non_nullable
               as List<EnvResult>,
       errors: null == errors
-          ? _value.errors
+          ? _self.errors
           : errors // ignore: cast_nullable_to_non_nullable
               as List<ParserError>,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of DetailParserResult
@@ -389,163 +487,22 @@ class _$DetailParserResultCopyWithImpl<$Res, $Val extends DetailParserResult>
   @override
   @pragma('vm:prefer-inline')
   $ImageResultCopyWith<$Res>? get coverImage {
-    if (_value.coverImage == null) {
+    if (_self.coverImage == null) {
       return null;
     }
 
-    return $ImageResultCopyWith<$Res>(_value.coverImage!, (value) {
-      return _then(_value.copyWith(coverImage: value) as $Val);
+    return $ImageResultCopyWith<$Res>(_self.coverImage!, (value) {
+      return _then(_self.copyWith(coverImage: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$DetailParserResultImplCopyWith<$Res>
-    implements $DetailParserResultCopyWith<$Res> {
-  factory _$$DetailParserResultImplCopyWith(_$DetailParserResultImpl value,
-          $Res Function(_$DetailParserResultImpl) then) =
-      __$$DetailParserResultImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String? title,
-      String? subtitle,
-      String? language,
-      int? imageCount,
-      String? uploadTime,
-      int? countPrePage,
-      String? description,
-      double? star,
-      List<DetailPreviewItem>? previews,
-      ImageResult? coverImage,
-      List<TagResult>? badges,
-      List<TagResult>? tags,
-      List<CommentResult>? comments,
-      String? nextPage,
-      bool? isSuccess,
-      String? failMessage,
-      List<EnvResult> envs,
-      List<ParserError> errors});
-
-  @override
-  $ImageResultCopyWith<$Res>? get coverImage;
-}
-
-/// @nodoc
-class __$$DetailParserResultImplCopyWithImpl<$Res>
-    extends _$DetailParserResultCopyWithImpl<$Res, _$DetailParserResultImpl>
-    implements _$$DetailParserResultImplCopyWith<$Res> {
-  __$$DetailParserResultImplCopyWithImpl(_$DetailParserResultImpl _value,
-      $Res Function(_$DetailParserResultImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DetailParserResult
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? title = freezed,
-    Object? subtitle = freezed,
-    Object? language = freezed,
-    Object? imageCount = freezed,
-    Object? uploadTime = freezed,
-    Object? countPrePage = freezed,
-    Object? description = freezed,
-    Object? star = freezed,
-    Object? previews = freezed,
-    Object? coverImage = freezed,
-    Object? badges = freezed,
-    Object? tags = freezed,
-    Object? comments = freezed,
-    Object? nextPage = freezed,
-    Object? isSuccess = freezed,
-    Object? failMessage = freezed,
-    Object? envs = null,
-    Object? errors = null,
-  }) {
-    return _then(_$DetailParserResultImpl(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      subtitle: freezed == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
-              as String?,
-      language: freezed == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageCount: freezed == imageCount
-          ? _value.imageCount
-          : imageCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      uploadTime: freezed == uploadTime
-          ? _value.uploadTime
-          : uploadTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      countPrePage: freezed == countPrePage
-          ? _value.countPrePage
-          : countPrePage // ignore: cast_nullable_to_non_nullable
-              as int?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      star: freezed == star
-          ? _value.star
-          : star // ignore: cast_nullable_to_non_nullable
-              as double?,
-      previews: freezed == previews
-          ? _value._previews
-          : previews // ignore: cast_nullable_to_non_nullable
-              as List<DetailPreviewItem>?,
-      coverImage: freezed == coverImage
-          ? _value.coverImage
-          : coverImage // ignore: cast_nullable_to_non_nullable
-              as ImageResult?,
-      badges: freezed == badges
-          ? _value._badges
-          : badges // ignore: cast_nullable_to_non_nullable
-              as List<TagResult>?,
-      tags: freezed == tags
-          ? _value._tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<TagResult>?,
-      comments: freezed == comments
-          ? _value._comments
-          : comments // ignore: cast_nullable_to_non_nullable
-              as List<CommentResult>?,
-      nextPage: freezed == nextPage
-          ? _value.nextPage
-          : nextPage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isSuccess: freezed == isSuccess
-          ? _value.isSuccess
-          : isSuccess // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      failMessage: freezed == failMessage
-          ? _value.failMessage
-          : failMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      envs: null == envs
-          ? _value._envs
-          : envs // ignore: cast_nullable_to_non_nullable
-              as List<EnvResult>,
-      errors: null == errors
-          ? _value._errors
-          : errors // ignore: cast_nullable_to_non_nullable
-              as List<ParserError>,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$DetailParserResultImpl
+class _DetailParserResult
     with DiagnosticableTreeMixin
-    implements _DetailParserResult {
-  const _$DetailParserResultImpl(
+    implements DetailParserResult {
+  const _DetailParserResult(
       {this.title,
       this.subtitle,
       this.language,
@@ -570,9 +527,8 @@ class _$DetailParserResultImpl
         _comments = comments,
         _envs = envs,
         _errors = errors;
-
-  factory _$DetailParserResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DetailParserResultImplFromJson(json);
+  factory _DetailParserResult.fromJson(Map<String, dynamic> json) =>
+      _$DetailParserResultFromJson(json);
 
   @override
   final String? title;
@@ -654,14 +610,23 @@ class _$DetailParserResultImpl
     return EqualUnmodifiableListView(_errors);
   }
 
+  /// Create a copy of DetailParserResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DetailParserResult(title: $title, subtitle: $subtitle, language: $language, imageCount: $imageCount, uploadTime: $uploadTime, countPrePage: $countPrePage, description: $description, star: $star, previews: $previews, coverImage: $coverImage, badges: $badges, tags: $tags, comments: $comments, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$DetailParserResultCopyWith<_DetailParserResult> get copyWith =>
+      __$DetailParserResultCopyWithImpl<_DetailParserResult>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$DetailParserResultToJson(
+      this,
+    );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'DetailParserResult'))
       ..add(DiagnosticsProperty('title', title))
@@ -688,7 +653,7 @@ class _$DetailParserResultImpl
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DetailParserResultImpl &&
+            other is _DetailParserResult &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle) &&
@@ -742,233 +707,186 @@ class _$DetailParserResultImpl
       const DeepCollectionEquality().hash(_envs),
       const DeepCollectionEquality().hash(_errors));
 
-  /// Create a copy of DetailParserResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DetailParserResultImplCopyWith<_$DetailParserResultImpl> get copyWith =>
-      __$$DetailParserResultImplCopyWithImpl<_$DetailParserResultImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$DetailParserResultImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _DetailParserResult implements DetailParserResult {
-  const factory _DetailParserResult(
-      {final String? title,
-      final String? subtitle,
-      final String? language,
-      final int? imageCount,
-      final String? uploadTime,
-      final int? countPrePage,
-      final String? description,
-      final double? star,
-      final List<DetailPreviewItem>? previews,
-      final ImageResult? coverImage,
-      final List<TagResult>? badges,
-      final List<TagResult>? tags,
-      final List<CommentResult>? comments,
-      final String? nextPage,
-      final bool? isSuccess,
-      final String? failMessage,
-      required final List<EnvResult> envs,
-      required final List<ParserError> errors}) = _$DetailParserResultImpl;
-
-  factory _DetailParserResult.fromJson(Map<String, dynamic> json) =
-      _$DetailParserResultImpl.fromJson;
-
-  @override
-  String? get title;
-  @override
-  String? get subtitle;
-  @override
-  String? get language;
-  @override
-  int? get imageCount;
-  @override
-  String? get uploadTime;
-  @override
-  int? get countPrePage;
-  @override
-  String? get description;
-  @override
-  double? get star;
-  @override
-  List<DetailPreviewItem>? get previews;
-  @override
-  ImageResult? get coverImage;
-  @override
-  List<TagResult>? get badges;
-  @override
-  List<TagResult>? get tags;
-  @override
-  List<CommentResult>? get comments;
-  @override
-  String? get nextPage;
-  @override
-  bool? get isSuccess;
-  @override
-  String? get failMessage;
-  @override
-  List<EnvResult> get envs;
-  @override
-  List<ParserError> get errors;
-
-  /// Create a copy of DetailParserResult
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DetailParserResultImplCopyWith<_$DetailParserResultImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-AutoCompleteResultItem _$AutoCompleteResultItemFromJson(
-    Map<String, dynamic> json) {
-  return _AutoCompleteResultItem.fromJson(json);
-}
-
-/// @nodoc
-mixin _$AutoCompleteResultItem {
-  String? get title => throw _privateConstructorUsedError;
-  String? get subtitle => throw _privateConstructorUsedError;
-  String? get complete => throw _privateConstructorUsedError;
-
-  /// Serializes this AutoCompleteResultItem to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of AutoCompleteResultItem
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $AutoCompleteResultItemCopyWith<AutoCompleteResultItem> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AutoCompleteResultItemCopyWith<$Res> {
-  factory $AutoCompleteResultItemCopyWith(AutoCompleteResultItem value,
-          $Res Function(AutoCompleteResultItem) then) =
-      _$AutoCompleteResultItemCopyWithImpl<$Res, AutoCompleteResultItem>;
-  @useResult
-  $Res call({String? title, String? subtitle, String? complete});
-}
-
-/// @nodoc
-class _$AutoCompleteResultItemCopyWithImpl<$Res,
-        $Val extends AutoCompleteResultItem>
-    implements $AutoCompleteResultItemCopyWith<$Res> {
-  _$AutoCompleteResultItemCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of AutoCompleteResultItem
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? title = freezed,
-    Object? subtitle = freezed,
-    Object? complete = freezed,
-  }) {
-    return _then(_value.copyWith(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      subtitle: freezed == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
-              as String?,
-      complete: freezed == complete
-          ? _value.complete
-          : complete // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$AutoCompleteResultItemImplCopyWith<$Res>
-    implements $AutoCompleteResultItemCopyWith<$Res> {
-  factory _$$AutoCompleteResultItemImplCopyWith(
-          _$AutoCompleteResultItemImpl value,
-          $Res Function(_$AutoCompleteResultItemImpl) then) =
-      __$$AutoCompleteResultItemImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String? title, String? subtitle, String? complete});
-}
-
-/// @nodoc
-class __$$AutoCompleteResultItemImplCopyWithImpl<$Res>
-    extends _$AutoCompleteResultItemCopyWithImpl<$Res,
-        _$AutoCompleteResultItemImpl>
-    implements _$$AutoCompleteResultItemImplCopyWith<$Res> {
-  __$$AutoCompleteResultItemImplCopyWithImpl(
-      _$AutoCompleteResultItemImpl _value,
-      $Res Function(_$AutoCompleteResultItemImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AutoCompleteResultItem
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? title = freezed,
-    Object? subtitle = freezed,
-    Object? complete = freezed,
-  }) {
-    return _then(_$AutoCompleteResultItemImpl(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      subtitle: freezed == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
-              as String?,
-      complete: freezed == complete
-          ? _value.complete
-          : complete // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$AutoCompleteResultItemImpl
-    with DiagnosticableTreeMixin
-    implements _AutoCompleteResultItem {
-  const _$AutoCompleteResultItemImpl(
-      {this.title, this.subtitle, this.complete});
-
-  factory _$AutoCompleteResultItemImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AutoCompleteResultItemImplFromJson(json);
-
-  @override
-  final String? title;
-  @override
-  final String? subtitle;
-  @override
-  final String? complete;
-
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AutoCompleteResultItem(title: $title, subtitle: $subtitle, complete: $complete)';
+    return 'DetailParserResult(title: $title, subtitle: $subtitle, language: $language, imageCount: $imageCount, uploadTime: $uploadTime, countPrePage: $countPrePage, description: $description, star: $star, previews: $previews, coverImage: $coverImage, badges: $badges, tags: $tags, comments: $comments, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
   }
+}
+
+/// @nodoc
+abstract mixin class _$DetailParserResultCopyWith<$Res>
+    implements $DetailParserResultCopyWith<$Res> {
+  factory _$DetailParserResultCopyWith(
+          _DetailParserResult value, $Res Function(_DetailParserResult) _then) =
+      __$DetailParserResultCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String? title,
+      String? subtitle,
+      String? language,
+      int? imageCount,
+      String? uploadTime,
+      int? countPrePage,
+      String? description,
+      double? star,
+      List<DetailPreviewItem>? previews,
+      ImageResult? coverImage,
+      List<TagResult>? badges,
+      List<TagResult>? tags,
+      List<CommentResult>? comments,
+      String? nextPage,
+      bool? isSuccess,
+      String? failMessage,
+      List<EnvResult> envs,
+      List<ParserError> errors});
+
+  @override
+  $ImageResultCopyWith<$Res>? get coverImage;
+}
+
+/// @nodoc
+class __$DetailParserResultCopyWithImpl<$Res>
+    implements _$DetailParserResultCopyWith<$Res> {
+  __$DetailParserResultCopyWithImpl(this._self, this._then);
+
+  final _DetailParserResult _self;
+  final $Res Function(_DetailParserResult) _then;
+
+  /// Create a copy of DetailParserResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? title = freezed,
+    Object? subtitle = freezed,
+    Object? language = freezed,
+    Object? imageCount = freezed,
+    Object? uploadTime = freezed,
+    Object? countPrePage = freezed,
+    Object? description = freezed,
+    Object? star = freezed,
+    Object? previews = freezed,
+    Object? coverImage = freezed,
+    Object? badges = freezed,
+    Object? tags = freezed,
+    Object? comments = freezed,
+    Object? nextPage = freezed,
+    Object? isSuccess = freezed,
+    Object? failMessage = freezed,
+    Object? envs = null,
+    Object? errors = null,
+  }) {
+    return _then(_DetailParserResult(
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subtitle: freezed == subtitle
+          ? _self.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      language: freezed == language
+          ? _self.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageCount: freezed == imageCount
+          ? _self.imageCount
+          : imageCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      uploadTime: freezed == uploadTime
+          ? _self.uploadTime
+          : uploadTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      countPrePage: freezed == countPrePage
+          ? _self.countPrePage
+          : countPrePage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      star: freezed == star
+          ? _self.star
+          : star // ignore: cast_nullable_to_non_nullable
+              as double?,
+      previews: freezed == previews
+          ? _self._previews
+          : previews // ignore: cast_nullable_to_non_nullable
+              as List<DetailPreviewItem>?,
+      coverImage: freezed == coverImage
+          ? _self.coverImage
+          : coverImage // ignore: cast_nullable_to_non_nullable
+              as ImageResult?,
+      badges: freezed == badges
+          ? _self._badges
+          : badges // ignore: cast_nullable_to_non_nullable
+              as List<TagResult>?,
+      tags: freezed == tags
+          ? _self._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<TagResult>?,
+      comments: freezed == comments
+          ? _self._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<CommentResult>?,
+      nextPage: freezed == nextPage
+          ? _self.nextPage
+          : nextPage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isSuccess: freezed == isSuccess
+          ? _self.isSuccess
+          : isSuccess // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      failMessage: freezed == failMessage
+          ? _self.failMessage
+          : failMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      envs: null == envs
+          ? _self._envs
+          : envs // ignore: cast_nullable_to_non_nullable
+              as List<EnvResult>,
+      errors: null == errors
+          ? _self._errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ParserError>,
+    ));
+  }
+
+  /// Create a copy of DetailParserResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageResultCopyWith<$Res>? get coverImage {
+    if (_self.coverImage == null) {
+      return null;
+    }
+
+    return $ImageResultCopyWith<$Res>(_self.coverImage!, (value) {
+      return _then(_self.copyWith(coverImage: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$AutoCompleteResultItem implements DiagnosticableTreeMixin {
+  String? get title;
+  String? get subtitle;
+  String? get complete;
+
+  /// Create a copy of AutoCompleteResultItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AutoCompleteResultItemCopyWith<AutoCompleteResultItem> get copyWith =>
+      _$AutoCompleteResultItemCopyWithImpl<AutoCompleteResultItem>(
+          this as AutoCompleteResultItem, _$identity);
+
+  /// Serializes this AutoCompleteResultItem to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'AutoCompleteResultItem'))
       ..add(DiagnosticsProperty('title', title))
@@ -980,7 +898,7 @@ class _$AutoCompleteResultItemImpl
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AutoCompleteResultItemImpl &&
+            other is AutoCompleteResultItem &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle) &&
@@ -992,136 +910,228 @@ class _$AutoCompleteResultItemImpl
   @override
   int get hashCode => Object.hash(runtimeType, title, subtitle, complete);
 
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AutoCompleteResultItem(title: $title, subtitle: $subtitle, complete: $complete)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $AutoCompleteResultItemCopyWith<$Res> {
+  factory $AutoCompleteResultItemCopyWith(AutoCompleteResultItem value,
+          $Res Function(AutoCompleteResultItem) _then) =
+      _$AutoCompleteResultItemCopyWithImpl;
+  @useResult
+  $Res call({String? title, String? subtitle, String? complete});
+}
+
+/// @nodoc
+class _$AutoCompleteResultItemCopyWithImpl<$Res>
+    implements $AutoCompleteResultItemCopyWith<$Res> {
+  _$AutoCompleteResultItemCopyWithImpl(this._self, this._then);
+
+  final AutoCompleteResultItem _self;
+  final $Res Function(AutoCompleteResultItem) _then;
+
   /// Create a copy of AutoCompleteResultItem
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$AutoCompleteResultItemImplCopyWith<_$AutoCompleteResultItemImpl>
-      get copyWith => __$$AutoCompleteResultItemImplCopyWithImpl<
-          _$AutoCompleteResultItemImpl>(this, _$identity);
+  @override
+  $Res call({
+    Object? title = freezed,
+    Object? subtitle = freezed,
+    Object? complete = freezed,
+  }) {
+    return _then(_self.copyWith(
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subtitle: freezed == subtitle
+          ? _self.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      complete: freezed == complete
+          ? _self.complete
+          : complete // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _AutoCompleteResultItem
+    with DiagnosticableTreeMixin
+    implements AutoCompleteResultItem {
+  const _AutoCompleteResultItem({this.title, this.subtitle, this.complete});
+  factory _AutoCompleteResultItem.fromJson(Map<String, dynamic> json) =>
+      _$AutoCompleteResultItemFromJson(json);
+
+  @override
+  final String? title;
+  @override
+  final String? subtitle;
+  @override
+  final String? complete;
+
+  /// Create a copy of AutoCompleteResultItem
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$AutoCompleteResultItemCopyWith<_AutoCompleteResultItem> get copyWith =>
+      __$AutoCompleteResultItemCopyWithImpl<_AutoCompleteResultItem>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AutoCompleteResultItemImplToJson(
+    return _$AutoCompleteResultItemToJson(
       this,
     );
   }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'AutoCompleteResultItem'))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('subtitle', subtitle))
+      ..add(DiagnosticsProperty('complete', complete));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _AutoCompleteResultItem &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.subtitle, subtitle) ||
+                other.subtitle == subtitle) &&
+            (identical(other.complete, complete) ||
+                other.complete == complete));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, title, subtitle, complete);
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AutoCompleteResultItem(title: $title, subtitle: $subtitle, complete: $complete)';
+  }
 }
 
-abstract class _AutoCompleteResultItem implements AutoCompleteResultItem {
-  const factory _AutoCompleteResultItem(
-      {final String? title,
-      final String? subtitle,
-      final String? complete}) = _$AutoCompleteResultItemImpl;
+/// @nodoc
+abstract mixin class _$AutoCompleteResultItemCopyWith<$Res>
+    implements $AutoCompleteResultItemCopyWith<$Res> {
+  factory _$AutoCompleteResultItemCopyWith(_AutoCompleteResultItem value,
+          $Res Function(_AutoCompleteResultItem) _then) =
+      __$AutoCompleteResultItemCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? title, String? subtitle, String? complete});
+}
 
-  factory _AutoCompleteResultItem.fromJson(Map<String, dynamic> json) =
-      _$AutoCompleteResultItemImpl.fromJson;
+/// @nodoc
+class __$AutoCompleteResultItemCopyWithImpl<$Res>
+    implements _$AutoCompleteResultItemCopyWith<$Res> {
+  __$AutoCompleteResultItemCopyWithImpl(this._self, this._then);
 
-  @override
-  String? get title;
-  @override
-  String? get subtitle;
-  @override
-  String? get complete;
+  final _AutoCompleteResultItem _self;
+  final $Res Function(_AutoCompleteResultItem) _then;
 
   /// Create a copy of AutoCompleteResultItem
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AutoCompleteResultItemImplCopyWith<_$AutoCompleteResultItemImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-AutoCompleteResult _$AutoCompleteResultFromJson(Map<String, dynamic> json) {
-  return _AutoCompleteResult.fromJson(json);
-}
-
-/// @nodoc
-mixin _$AutoCompleteResult {
-  List<AutoCompleteResultItem>? get items => throw _privateConstructorUsedError;
-  bool? get isSuccess => throw _privateConstructorUsedError;
-  String? get failMessage => throw _privateConstructorUsedError;
-  List<EnvResult> get envs => throw _privateConstructorUsedError;
-  List<ParserError> get errors => throw _privateConstructorUsedError;
-
-  /// Serializes this AutoCompleteResult to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of AutoCompleteResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $AutoCompleteResultCopyWith<AutoCompleteResult> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AutoCompleteResultCopyWith<$Res> {
-  factory $AutoCompleteResultCopyWith(
-          AutoCompleteResult value, $Res Function(AutoCompleteResult) then) =
-      _$AutoCompleteResultCopyWithImpl<$Res, AutoCompleteResult>;
-  @useResult
-  $Res call(
-      {List<AutoCompleteResultItem>? items,
-      bool? isSuccess,
-      String? failMessage,
-      List<EnvResult> envs,
-      List<ParserError> errors});
-}
-
-/// @nodoc
-class _$AutoCompleteResultCopyWithImpl<$Res, $Val extends AutoCompleteResult>
-    implements $AutoCompleteResultCopyWith<$Res> {
-  _$AutoCompleteResultCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of AutoCompleteResult
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
-    Object? items = freezed,
-    Object? isSuccess = freezed,
-    Object? failMessage = freezed,
-    Object? envs = null,
-    Object? errors = null,
+    Object? title = freezed,
+    Object? subtitle = freezed,
+    Object? complete = freezed,
   }) {
-    return _then(_value.copyWith(
-      items: freezed == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<AutoCompleteResultItem>?,
-      isSuccess: freezed == isSuccess
-          ? _value.isSuccess
-          : isSuccess // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      failMessage: freezed == failMessage
-          ? _value.failMessage
-          : failMessage // ignore: cast_nullable_to_non_nullable
+    return _then(_AutoCompleteResultItem(
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      envs: null == envs
-          ? _value.envs
-          : envs // ignore: cast_nullable_to_non_nullable
-              as List<EnvResult>,
-      errors: null == errors
-          ? _value.errors
-          : errors // ignore: cast_nullable_to_non_nullable
-              as List<ParserError>,
-    ) as $Val);
+      subtitle: freezed == subtitle
+          ? _self.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      complete: freezed == complete
+          ? _self.complete
+          : complete // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
-abstract class _$$AutoCompleteResultImplCopyWith<$Res>
-    implements $AutoCompleteResultCopyWith<$Res> {
-  factory _$$AutoCompleteResultImplCopyWith(_$AutoCompleteResultImpl value,
-          $Res Function(_$AutoCompleteResultImpl) then) =
-      __$$AutoCompleteResultImplCopyWithImpl<$Res>;
+mixin _$AutoCompleteResult implements DiagnosticableTreeMixin {
+  List<AutoCompleteResultItem>? get items;
+  bool? get isSuccess;
+  String? get failMessage;
+  List<EnvResult> get envs;
+  List<ParserError> get errors;
+
+  /// Create a copy of AutoCompleteResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AutoCompleteResultCopyWith<AutoCompleteResult> get copyWith =>
+      _$AutoCompleteResultCopyWithImpl<AutoCompleteResult>(
+          this as AutoCompleteResult, _$identity);
+
+  /// Serializes this AutoCompleteResult to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'AutoCompleteResult'))
+      ..add(DiagnosticsProperty('items', items))
+      ..add(DiagnosticsProperty('isSuccess', isSuccess))
+      ..add(DiagnosticsProperty('failMessage', failMessage))
+      ..add(DiagnosticsProperty('envs', envs))
+      ..add(DiagnosticsProperty('errors', errors));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AutoCompleteResult &&
+            const DeepCollectionEquality().equals(other.items, items) &&
+            (identical(other.isSuccess, isSuccess) ||
+                other.isSuccess == isSuccess) &&
+            (identical(other.failMessage, failMessage) ||
+                other.failMessage == failMessage) &&
+            const DeepCollectionEquality().equals(other.envs, envs) &&
+            const DeepCollectionEquality().equals(other.errors, errors));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(items),
+      isSuccess,
+      failMessage,
+      const DeepCollectionEquality().hash(envs),
+      const DeepCollectionEquality().hash(errors));
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AutoCompleteResult(items: $items, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $AutoCompleteResultCopyWith<$Res> {
+  factory $AutoCompleteResultCopyWith(
+          AutoCompleteResult value, $Res Function(AutoCompleteResult) _then) =
+      _$AutoCompleteResultCopyWithImpl;
   @useResult
   $Res call(
       {List<AutoCompleteResultItem>? items,
@@ -1132,12 +1142,12 @@ abstract class _$$AutoCompleteResultImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AutoCompleteResultImplCopyWithImpl<$Res>
-    extends _$AutoCompleteResultCopyWithImpl<$Res, _$AutoCompleteResultImpl>
-    implements _$$AutoCompleteResultImplCopyWith<$Res> {
-  __$$AutoCompleteResultImplCopyWithImpl(_$AutoCompleteResultImpl _value,
-      $Res Function(_$AutoCompleteResultImpl) _then)
-      : super(_value, _then);
+class _$AutoCompleteResultCopyWithImpl<$Res>
+    implements $AutoCompleteResultCopyWith<$Res> {
+  _$AutoCompleteResultCopyWithImpl(this._self, this._then);
+
+  final AutoCompleteResult _self;
+  final $Res Function(AutoCompleteResult) _then;
 
   /// Create a copy of AutoCompleteResult
   /// with the given fields replaced by the non-null parameter values.
@@ -1150,25 +1160,25 @@ class __$$AutoCompleteResultImplCopyWithImpl<$Res>
     Object? envs = null,
     Object? errors = null,
   }) {
-    return _then(_$AutoCompleteResultImpl(
+    return _then(_self.copyWith(
       items: freezed == items
-          ? _value._items
+          ? _self.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<AutoCompleteResultItem>?,
       isSuccess: freezed == isSuccess
-          ? _value.isSuccess
+          ? _self.isSuccess
           : isSuccess // ignore: cast_nullable_to_non_nullable
               as bool?,
       failMessage: freezed == failMessage
-          ? _value.failMessage
+          ? _self.failMessage
           : failMessage // ignore: cast_nullable_to_non_nullable
               as String?,
       envs: null == envs
-          ? _value._envs
+          ? _self.envs
           : envs // ignore: cast_nullable_to_non_nullable
               as List<EnvResult>,
       errors: null == errors
-          ? _value._errors
+          ? _self.errors
           : errors // ignore: cast_nullable_to_non_nullable
               as List<ParserError>,
     ));
@@ -1177,10 +1187,10 @@ class __$$AutoCompleteResultImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AutoCompleteResultImpl
+class _AutoCompleteResult
     with DiagnosticableTreeMixin
-    implements _AutoCompleteResult {
-  const _$AutoCompleteResultImpl(
+    implements AutoCompleteResult {
+  const _AutoCompleteResult(
       {final List<AutoCompleteResultItem>? items,
       this.isSuccess,
       this.failMessage,
@@ -1189,9 +1199,8 @@ class _$AutoCompleteResultImpl
       : _items = items,
         _envs = envs,
         _errors = errors;
-
-  factory _$AutoCompleteResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AutoCompleteResultImplFromJson(json);
+  factory _AutoCompleteResult.fromJson(Map<String, dynamic> json) =>
+      _$AutoCompleteResultFromJson(json);
 
   final List<AutoCompleteResultItem>? _items;
   @override
@@ -1223,14 +1232,23 @@ class _$AutoCompleteResultImpl
     return EqualUnmodifiableListView(_errors);
   }
 
+  /// Create a copy of AutoCompleteResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AutoCompleteResult(items: $items, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$AutoCompleteResultCopyWith<_AutoCompleteResult> get copyWith =>
+      __$AutoCompleteResultCopyWithImpl<_AutoCompleteResult>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$AutoCompleteResultToJson(
+      this,
+    );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'AutoCompleteResult'))
       ..add(DiagnosticsProperty('items', items))
@@ -1244,7 +1262,7 @@ class _$AutoCompleteResultImpl
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AutoCompleteResultImpl &&
+            other is _AutoCompleteResult &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.isSuccess, isSuccess) ||
                 other.isSuccess == isSuccess) &&
@@ -1264,89 +1282,176 @@ class _$AutoCompleteResultImpl
       const DeepCollectionEquality().hash(_envs),
       const DeepCollectionEquality().hash(_errors));
 
-  /// Create a copy of AutoCompleteResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$AutoCompleteResultImplCopyWith<_$AutoCompleteResultImpl> get copyWith =>
-      __$$AutoCompleteResultImplCopyWithImpl<_$AutoCompleteResultImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AutoCompleteResultImplToJson(
-      this,
-    );
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AutoCompleteResult(items: $items, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
   }
 }
 
-abstract class _AutoCompleteResult implements AutoCompleteResult {
-  const factory _AutoCompleteResult(
-      {final List<AutoCompleteResultItem>? items,
-      final bool? isSuccess,
-      final String? failMessage,
-      required final List<EnvResult> envs,
-      required final List<ParserError> errors}) = _$AutoCompleteResultImpl;
+/// @nodoc
+abstract mixin class _$AutoCompleteResultCopyWith<$Res>
+    implements $AutoCompleteResultCopyWith<$Res> {
+  factory _$AutoCompleteResultCopyWith(
+          _AutoCompleteResult value, $Res Function(_AutoCompleteResult) _then) =
+      __$AutoCompleteResultCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {List<AutoCompleteResultItem>? items,
+      bool? isSuccess,
+      String? failMessage,
+      List<EnvResult> envs,
+      List<ParserError> errors});
+}
 
-  factory _AutoCompleteResult.fromJson(Map<String, dynamic> json) =
-      _$AutoCompleteResultImpl.fromJson;
+/// @nodoc
+class __$AutoCompleteResultCopyWithImpl<$Res>
+    implements _$AutoCompleteResultCopyWith<$Res> {
+  __$AutoCompleteResultCopyWithImpl(this._self, this._then);
 
-  @override
-  List<AutoCompleteResultItem>? get items;
-  @override
-  bool? get isSuccess;
-  @override
-  String? get failMessage;
-  @override
-  List<EnvResult> get envs;
-  @override
-  List<ParserError> get errors;
+  final _AutoCompleteResult _self;
+  final $Res Function(_AutoCompleteResult) _then;
 
   /// Create a copy of AutoCompleteResult
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AutoCompleteResultImplCopyWith<_$AutoCompleteResultImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-ImageReaderResult _$ImageReaderResultFromJson(Map<String, dynamic> json) {
-  return _ImageReaderResult.fromJson(json);
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? items = freezed,
+    Object? isSuccess = freezed,
+    Object? failMessage = freezed,
+    Object? envs = null,
+    Object? errors = null,
+  }) {
+    return _then(_AutoCompleteResult(
+      items: freezed == items
+          ? _self._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<AutoCompleteResultItem>?,
+      isSuccess: freezed == isSuccess
+          ? _self.isSuccess
+          : isSuccess // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      failMessage: freezed == failMessage
+          ? _self.failMessage
+          : failMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      envs: null == envs
+          ? _self._envs
+          : envs // ignore: cast_nullable_to_non_nullable
+              as List<EnvResult>,
+      errors: null == errors
+          ? _self._errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ParserError>,
+    ));
+  }
 }
 
 /// @nodoc
-mixin _$ImageReaderResult {
-  ImageResult? get image => throw _privateConstructorUsedError;
-  ImageResult? get largerImage => throw _privateConstructorUsedError;
-  ImageResult? get rawImage => throw _privateConstructorUsedError;
-  String? get uploadTime => throw _privateConstructorUsedError;
-  String? get source => throw _privateConstructorUsedError;
-  String? get rating => throw _privateConstructorUsedError;
-  double? get score => throw _privateConstructorUsedError;
-  List<TagResult>? get badges => throw _privateConstructorUsedError;
-  List<TagResult>? get tags => throw _privateConstructorUsedError;
-  List<CommentResult>? get comments => throw _privateConstructorUsedError;
-  bool? get isSuccess => throw _privateConstructorUsedError;
-  String? get failMessage => throw _privateConstructorUsedError;
-  List<EnvResult> get envs => throw _privateConstructorUsedError;
-  List<ParserError> get errors => throw _privateConstructorUsedError;
-
-  /// Serializes this ImageReaderResult to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+mixin _$ImageReaderResult implements DiagnosticableTreeMixin {
+  ImageResult? get image;
+  ImageResult? get largerImage;
+  ImageResult? get rawImage;
+  String? get uploadTime;
+  String? get source;
+  String? get rating;
+  double? get score;
+  List<TagResult>? get badges;
+  List<TagResult>? get tags;
+  List<CommentResult>? get comments;
+  bool? get isSuccess;
+  String? get failMessage;
+  List<EnvResult> get envs;
+  List<ParserError> get errors;
 
   /// Create a copy of ImageReaderResult
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ImageReaderResultCopyWith<ImageReaderResult> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ImageReaderResultCopyWithImpl<ImageReaderResult>(
+          this as ImageReaderResult, _$identity);
+
+  /// Serializes this ImageReaderResult to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'ImageReaderResult'))
+      ..add(DiagnosticsProperty('image', image))
+      ..add(DiagnosticsProperty('largerImage', largerImage))
+      ..add(DiagnosticsProperty('rawImage', rawImage))
+      ..add(DiagnosticsProperty('uploadTime', uploadTime))
+      ..add(DiagnosticsProperty('source', source))
+      ..add(DiagnosticsProperty('rating', rating))
+      ..add(DiagnosticsProperty('score', score))
+      ..add(DiagnosticsProperty('badges', badges))
+      ..add(DiagnosticsProperty('tags', tags))
+      ..add(DiagnosticsProperty('comments', comments))
+      ..add(DiagnosticsProperty('isSuccess', isSuccess))
+      ..add(DiagnosticsProperty('failMessage', failMessage))
+      ..add(DiagnosticsProperty('envs', envs))
+      ..add(DiagnosticsProperty('errors', errors));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ImageReaderResult &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.largerImage, largerImage) ||
+                other.largerImage == largerImage) &&
+            (identical(other.rawImage, rawImage) ||
+                other.rawImage == rawImage) &&
+            (identical(other.uploadTime, uploadTime) ||
+                other.uploadTime == uploadTime) &&
+            (identical(other.source, source) || other.source == source) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.score, score) || other.score == score) &&
+            const DeepCollectionEquality().equals(other.badges, badges) &&
+            const DeepCollectionEquality().equals(other.tags, tags) &&
+            const DeepCollectionEquality().equals(other.comments, comments) &&
+            (identical(other.isSuccess, isSuccess) ||
+                other.isSuccess == isSuccess) &&
+            (identical(other.failMessage, failMessage) ||
+                other.failMessage == failMessage) &&
+            const DeepCollectionEquality().equals(other.envs, envs) &&
+            const DeepCollectionEquality().equals(other.errors, errors));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      image,
+      largerImage,
+      rawImage,
+      uploadTime,
+      source,
+      rating,
+      score,
+      const DeepCollectionEquality().hash(badges),
+      const DeepCollectionEquality().hash(tags),
+      const DeepCollectionEquality().hash(comments),
+      isSuccess,
+      failMessage,
+      const DeepCollectionEquality().hash(envs),
+      const DeepCollectionEquality().hash(errors));
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ImageReaderResult(image: $image, largerImage: $largerImage, rawImage: $rawImage, uploadTime: $uploadTime, source: $source, rating: $rating, score: $score, badges: $badges, tags: $tags, comments: $comments, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
+  }
 }
 
 /// @nodoc
-abstract class $ImageReaderResultCopyWith<$Res> {
+abstract mixin class $ImageReaderResultCopyWith<$Res> {
   factory $ImageReaderResultCopyWith(
-          ImageReaderResult value, $Res Function(ImageReaderResult) then) =
-      _$ImageReaderResultCopyWithImpl<$Res, ImageReaderResult>;
+          ImageReaderResult value, $Res Function(ImageReaderResult) _then) =
+      _$ImageReaderResultCopyWithImpl;
   @useResult
   $Res call(
       {ImageResult? image,
@@ -1370,14 +1475,12 @@ abstract class $ImageReaderResultCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ImageReaderResultCopyWithImpl<$Res, $Val extends ImageReaderResult>
+class _$ImageReaderResultCopyWithImpl<$Res>
     implements $ImageReaderResultCopyWith<$Res> {
-  _$ImageReaderResultCopyWithImpl(this._value, this._then);
+  _$ImageReaderResultCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ImageReaderResult _self;
+  final $Res Function(ImageReaderResult) _then;
 
   /// Create a copy of ImageReaderResult
   /// with the given fields replaced by the non-null parameter values.
@@ -1399,64 +1502,64 @@ class _$ImageReaderResultCopyWithImpl<$Res, $Val extends ImageReaderResult>
     Object? envs = null,
     Object? errors = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       image: freezed == image
-          ? _value.image
+          ? _self.image
           : image // ignore: cast_nullable_to_non_nullable
               as ImageResult?,
       largerImage: freezed == largerImage
-          ? _value.largerImage
+          ? _self.largerImage
           : largerImage // ignore: cast_nullable_to_non_nullable
               as ImageResult?,
       rawImage: freezed == rawImage
-          ? _value.rawImage
+          ? _self.rawImage
           : rawImage // ignore: cast_nullable_to_non_nullable
               as ImageResult?,
       uploadTime: freezed == uploadTime
-          ? _value.uploadTime
+          ? _self.uploadTime
           : uploadTime // ignore: cast_nullable_to_non_nullable
               as String?,
       source: freezed == source
-          ? _value.source
+          ? _self.source
           : source // ignore: cast_nullable_to_non_nullable
               as String?,
       rating: freezed == rating
-          ? _value.rating
+          ? _self.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String?,
       score: freezed == score
-          ? _value.score
+          ? _self.score
           : score // ignore: cast_nullable_to_non_nullable
               as double?,
       badges: freezed == badges
-          ? _value.badges
+          ? _self.badges
           : badges // ignore: cast_nullable_to_non_nullable
               as List<TagResult>?,
       tags: freezed == tags
-          ? _value.tags
+          ? _self.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<TagResult>?,
       comments: freezed == comments
-          ? _value.comments
+          ? _self.comments
           : comments // ignore: cast_nullable_to_non_nullable
               as List<CommentResult>?,
       isSuccess: freezed == isSuccess
-          ? _value.isSuccess
+          ? _self.isSuccess
           : isSuccess // ignore: cast_nullable_to_non_nullable
               as bool?,
       failMessage: freezed == failMessage
-          ? _value.failMessage
+          ? _self.failMessage
           : failMessage // ignore: cast_nullable_to_non_nullable
               as String?,
       envs: null == envs
-          ? _value.envs
+          ? _self.envs
           : envs // ignore: cast_nullable_to_non_nullable
               as List<EnvResult>,
       errors: null == errors
-          ? _value.errors
+          ? _self.errors
           : errors // ignore: cast_nullable_to_non_nullable
               as List<ParserError>,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ImageReaderResult
@@ -1464,12 +1567,12 @@ class _$ImageReaderResultCopyWithImpl<$Res, $Val extends ImageReaderResult>
   @override
   @pragma('vm:prefer-inline')
   $ImageResultCopyWith<$Res>? get image {
-    if (_value.image == null) {
+    if (_self.image == null) {
       return null;
     }
 
-    return $ImageResultCopyWith<$Res>(_value.image!, (value) {
-      return _then(_value.copyWith(image: value) as $Val);
+    return $ImageResultCopyWith<$Res>(_self.image!, (value) {
+      return _then(_self.copyWith(image: value));
     });
   }
 
@@ -1478,12 +1581,12 @@ class _$ImageReaderResultCopyWithImpl<$Res, $Val extends ImageReaderResult>
   @override
   @pragma('vm:prefer-inline')
   $ImageResultCopyWith<$Res>? get largerImage {
-    if (_value.largerImage == null) {
+    if (_self.largerImage == null) {
       return null;
     }
 
-    return $ImageResultCopyWith<$Res>(_value.largerImage!, (value) {
-      return _then(_value.copyWith(largerImage: value) as $Val);
+    return $ImageResultCopyWith<$Res>(_self.largerImage!, (value) {
+      return _then(_self.copyWith(largerImage: value));
     });
   }
 
@@ -1492,143 +1595,22 @@ class _$ImageReaderResultCopyWithImpl<$Res, $Val extends ImageReaderResult>
   @override
   @pragma('vm:prefer-inline')
   $ImageResultCopyWith<$Res>? get rawImage {
-    if (_value.rawImage == null) {
+    if (_self.rawImage == null) {
       return null;
     }
 
-    return $ImageResultCopyWith<$Res>(_value.rawImage!, (value) {
-      return _then(_value.copyWith(rawImage: value) as $Val);
+    return $ImageResultCopyWith<$Res>(_self.rawImage!, (value) {
+      return _then(_self.copyWith(rawImage: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ImageReaderResultImplCopyWith<$Res>
-    implements $ImageReaderResultCopyWith<$Res> {
-  factory _$$ImageReaderResultImplCopyWith(_$ImageReaderResultImpl value,
-          $Res Function(_$ImageReaderResultImpl) then) =
-      __$$ImageReaderResultImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {ImageResult? image,
-      ImageResult? largerImage,
-      ImageResult? rawImage,
-      String? uploadTime,
-      String? source,
-      String? rating,
-      double? score,
-      List<TagResult>? badges,
-      List<TagResult>? tags,
-      List<CommentResult>? comments,
-      bool? isSuccess,
-      String? failMessage,
-      List<EnvResult> envs,
-      List<ParserError> errors});
-
-  @override
-  $ImageResultCopyWith<$Res>? get image;
-  @override
-  $ImageResultCopyWith<$Res>? get largerImage;
-  @override
-  $ImageResultCopyWith<$Res>? get rawImage;
-}
-
-/// @nodoc
-class __$$ImageReaderResultImplCopyWithImpl<$Res>
-    extends _$ImageReaderResultCopyWithImpl<$Res, _$ImageReaderResultImpl>
-    implements _$$ImageReaderResultImplCopyWith<$Res> {
-  __$$ImageReaderResultImplCopyWithImpl(_$ImageReaderResultImpl _value,
-      $Res Function(_$ImageReaderResultImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ImageReaderResult
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? image = freezed,
-    Object? largerImage = freezed,
-    Object? rawImage = freezed,
-    Object? uploadTime = freezed,
-    Object? source = freezed,
-    Object? rating = freezed,
-    Object? score = freezed,
-    Object? badges = freezed,
-    Object? tags = freezed,
-    Object? comments = freezed,
-    Object? isSuccess = freezed,
-    Object? failMessage = freezed,
-    Object? envs = null,
-    Object? errors = null,
-  }) {
-    return _then(_$ImageReaderResultImpl(
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as ImageResult?,
-      largerImage: freezed == largerImage
-          ? _value.largerImage
-          : largerImage // ignore: cast_nullable_to_non_nullable
-              as ImageResult?,
-      rawImage: freezed == rawImage
-          ? _value.rawImage
-          : rawImage // ignore: cast_nullable_to_non_nullable
-              as ImageResult?,
-      uploadTime: freezed == uploadTime
-          ? _value.uploadTime
-          : uploadTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      source: freezed == source
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as String?,
-      rating: freezed == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as String?,
-      score: freezed == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as double?,
-      badges: freezed == badges
-          ? _value._badges
-          : badges // ignore: cast_nullable_to_non_nullable
-              as List<TagResult>?,
-      tags: freezed == tags
-          ? _value._tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<TagResult>?,
-      comments: freezed == comments
-          ? _value._comments
-          : comments // ignore: cast_nullable_to_non_nullable
-              as List<CommentResult>?,
-      isSuccess: freezed == isSuccess
-          ? _value.isSuccess
-          : isSuccess // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      failMessage: freezed == failMessage
-          ? _value.failMessage
-          : failMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      envs: null == envs
-          ? _value._envs
-          : envs // ignore: cast_nullable_to_non_nullable
-              as List<EnvResult>,
-      errors: null == errors
-          ? _value._errors
-          : errors // ignore: cast_nullable_to_non_nullable
-              as List<ParserError>,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$ImageReaderResultImpl
+class _ImageReaderResult
     with DiagnosticableTreeMixin
-    implements _ImageReaderResult {
-  const _$ImageReaderResultImpl(
+    implements ImageReaderResult {
+  const _ImageReaderResult(
       {this.image,
       this.largerImage,
       this.rawImage,
@@ -1648,9 +1630,8 @@ class _$ImageReaderResultImpl
         _comments = comments,
         _envs = envs,
         _errors = errors;
-
-  factory _$ImageReaderResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ImageReaderResultImplFromJson(json);
+  factory _ImageReaderResult.fromJson(Map<String, dynamic> json) =>
+      _$ImageReaderResultFromJson(json);
 
   @override
   final ImageResult? image;
@@ -1716,14 +1697,23 @@ class _$ImageReaderResultImpl
     return EqualUnmodifiableListView(_errors);
   }
 
+  /// Create a copy of ImageReaderResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ImageReaderResult(image: $image, largerImage: $largerImage, rawImage: $rawImage, uploadTime: $uploadTime, source: $source, rating: $rating, score: $score, badges: $badges, tags: $tags, comments: $comments, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ImageReaderResultCopyWith<_ImageReaderResult> get copyWith =>
+      __$ImageReaderResultCopyWithImpl<_ImageReaderResult>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ImageReaderResultToJson(
+      this,
+    );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ImageReaderResult'))
       ..add(DiagnosticsProperty('image', image))
@@ -1746,7 +1736,7 @@ class _$ImageReaderResultImpl
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ImageReaderResultImpl &&
+            other is _ImageReaderResult &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.largerImage, largerImage) ||
                 other.largerImage == largerImage) &&
@@ -1787,113 +1777,267 @@ class _$ImageReaderResultImpl
       const DeepCollectionEquality().hash(_envs),
       const DeepCollectionEquality().hash(_errors));
 
-  /// Create a copy of ImageReaderResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ImageReaderResultImplCopyWith<_$ImageReaderResultImpl> get copyWith =>
-      __$$ImageReaderResultImplCopyWithImpl<_$ImageReaderResultImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ImageReaderResultImplToJson(
-      this,
-    );
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ImageReaderResult(image: $image, largerImage: $largerImage, rawImage: $rawImage, uploadTime: $uploadTime, source: $source, rating: $rating, score: $score, badges: $badges, tags: $tags, comments: $comments, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
   }
 }
 
-abstract class _ImageReaderResult implements ImageReaderResult {
-  const factory _ImageReaderResult(
-      {final ImageResult? image,
-      final ImageResult? largerImage,
-      final ImageResult? rawImage,
-      final String? uploadTime,
-      final String? source,
-      final String? rating,
-      final double? score,
-      final List<TagResult>? badges,
-      final List<TagResult>? tags,
-      final List<CommentResult>? comments,
-      final bool? isSuccess,
-      final String? failMessage,
-      required final List<EnvResult> envs,
-      required final List<ParserError> errors}) = _$ImageReaderResultImpl;
+/// @nodoc
+abstract mixin class _$ImageReaderResultCopyWith<$Res>
+    implements $ImageReaderResultCopyWith<$Res> {
+  factory _$ImageReaderResultCopyWith(
+          _ImageReaderResult value, $Res Function(_ImageReaderResult) _then) =
+      __$ImageReaderResultCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {ImageResult? image,
+      ImageResult? largerImage,
+      ImageResult? rawImage,
+      String? uploadTime,
+      String? source,
+      String? rating,
+      double? score,
+      List<TagResult>? badges,
+      List<TagResult>? tags,
+      List<CommentResult>? comments,
+      bool? isSuccess,
+      String? failMessage,
+      List<EnvResult> envs,
+      List<ParserError> errors});
 
-  factory _ImageReaderResult.fromJson(Map<String, dynamic> json) =
-      _$ImageReaderResultImpl.fromJson;
+  @override
+  $ImageResultCopyWith<$Res>? get image;
+  @override
+  $ImageResultCopyWith<$Res>? get largerImage;
+  @override
+  $ImageResultCopyWith<$Res>? get rawImage;
+}
 
-  @override
-  ImageResult? get image;
-  @override
-  ImageResult? get largerImage;
-  @override
-  ImageResult? get rawImage;
-  @override
-  String? get uploadTime;
-  @override
-  String? get source;
-  @override
-  String? get rating;
-  @override
-  double? get score;
-  @override
-  List<TagResult>? get badges;
-  @override
-  List<TagResult>? get tags;
-  @override
-  List<CommentResult>? get comments;
-  @override
-  bool? get isSuccess;
-  @override
-  String? get failMessage;
-  @override
-  List<EnvResult> get envs;
-  @override
-  List<ParserError> get errors;
+/// @nodoc
+class __$ImageReaderResultCopyWithImpl<$Res>
+    implements _$ImageReaderResultCopyWith<$Res> {
+  __$ImageReaderResultCopyWithImpl(this._self, this._then);
+
+  final _ImageReaderResult _self;
+  final $Res Function(_ImageReaderResult) _then;
 
   /// Create a copy of ImageReaderResult
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ImageReaderResultImplCopyWith<_$ImageReaderResultImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? image = freezed,
+    Object? largerImage = freezed,
+    Object? rawImage = freezed,
+    Object? uploadTime = freezed,
+    Object? source = freezed,
+    Object? rating = freezed,
+    Object? score = freezed,
+    Object? badges = freezed,
+    Object? tags = freezed,
+    Object? comments = freezed,
+    Object? isSuccess = freezed,
+    Object? failMessage = freezed,
+    Object? envs = null,
+    Object? errors = null,
+  }) {
+    return _then(_ImageReaderResult(
+      image: freezed == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as ImageResult?,
+      largerImage: freezed == largerImage
+          ? _self.largerImage
+          : largerImage // ignore: cast_nullable_to_non_nullable
+              as ImageResult?,
+      rawImage: freezed == rawImage
+          ? _self.rawImage
+          : rawImage // ignore: cast_nullable_to_non_nullable
+              as ImageResult?,
+      uploadTime: freezed == uploadTime
+          ? _self.uploadTime
+          : uploadTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      source: freezed == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _self.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as String?,
+      score: freezed == score
+          ? _self.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as double?,
+      badges: freezed == badges
+          ? _self._badges
+          : badges // ignore: cast_nullable_to_non_nullable
+              as List<TagResult>?,
+      tags: freezed == tags
+          ? _self._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<TagResult>?,
+      comments: freezed == comments
+          ? _self._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<CommentResult>?,
+      isSuccess: freezed == isSuccess
+          ? _self.isSuccess
+          : isSuccess // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      failMessage: freezed == failMessage
+          ? _self.failMessage
+          : failMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      envs: null == envs
+          ? _self._envs
+          : envs // ignore: cast_nullable_to_non_nullable
+              as List<EnvResult>,
+      errors: null == errors
+          ? _self._errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ParserError>,
+    ));
+  }
 
-ListParserResultItem _$ListParserResultItemFromJson(Map<String, dynamic> json) {
-  return _ListParserResultItem.fromJson(json);
+  /// Create a copy of ImageReaderResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageResultCopyWith<$Res>? get image {
+    if (_self.image == null) {
+      return null;
+    }
+
+    return $ImageResultCopyWith<$Res>(_self.image!, (value) {
+      return _then(_self.copyWith(image: value));
+    });
+  }
+
+  /// Create a copy of ImageReaderResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageResultCopyWith<$Res>? get largerImage {
+    if (_self.largerImage == null) {
+      return null;
+    }
+
+    return $ImageResultCopyWith<$Res>(_self.largerImage!, (value) {
+      return _then(_self.copyWith(largerImage: value));
+    });
+  }
+
+  /// Create a copy of ImageReaderResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageResultCopyWith<$Res>? get rawImage {
+    if (_self.rawImage == null) {
+      return null;
+    }
+
+    return $ImageResultCopyWith<$Res>(_self.rawImage!, (value) {
+      return _then(_self.copyWith(rawImage: value));
+    });
+  }
 }
 
 /// @nodoc
-mixin _$ListParserResultItem {
-  String? get title => throw _privateConstructorUsedError;
-  String? get subtitle => throw _privateConstructorUsedError;
-  String? get uploadTime => throw _privateConstructorUsedError;
-  double? get star => throw _privateConstructorUsedError;
-  int? get imageCount => throw _privateConstructorUsedError;
-  ImageResult? get previewImage => throw _privateConstructorUsedError;
-  List<TagResult>? get badges => throw _privateConstructorUsedError;
-  List<TagResult>? get tags => throw _privateConstructorUsedError;
-  String? get idCode => throw _privateConstructorUsedError;
-  String? get language => throw _privateConstructorUsedError;
-  String? get paper => throw _privateConstructorUsedError;
-
-  /// Serializes this ListParserResultItem to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+mixin _$ListParserResultItem implements DiagnosticableTreeMixin {
+  String? get title;
+  String? get subtitle;
+  String? get uploadTime;
+  double? get star;
+  int? get imageCount;
+  ImageResult? get previewImage;
+  List<TagResult>? get badges;
+  List<TagResult>? get tags;
+  String? get idCode;
+  String? get language;
+  String? get paper;
 
   /// Create a copy of ListParserResultItem
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ListParserResultItemCopyWith<ListParserResultItem> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ListParserResultItemCopyWithImpl<ListParserResultItem>(
+          this as ListParserResultItem, _$identity);
+
+  /// Serializes this ListParserResultItem to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'ListParserResultItem'))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('subtitle', subtitle))
+      ..add(DiagnosticsProperty('uploadTime', uploadTime))
+      ..add(DiagnosticsProperty('star', star))
+      ..add(DiagnosticsProperty('imageCount', imageCount))
+      ..add(DiagnosticsProperty('previewImage', previewImage))
+      ..add(DiagnosticsProperty('badges', badges))
+      ..add(DiagnosticsProperty('tags', tags))
+      ..add(DiagnosticsProperty('idCode', idCode))
+      ..add(DiagnosticsProperty('language', language))
+      ..add(DiagnosticsProperty('paper', paper));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ListParserResultItem &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.subtitle, subtitle) ||
+                other.subtitle == subtitle) &&
+            (identical(other.uploadTime, uploadTime) ||
+                other.uploadTime == uploadTime) &&
+            (identical(other.star, star) || other.star == star) &&
+            (identical(other.imageCount, imageCount) ||
+                other.imageCount == imageCount) &&
+            (identical(other.previewImage, previewImage) ||
+                other.previewImage == previewImage) &&
+            const DeepCollectionEquality().equals(other.badges, badges) &&
+            const DeepCollectionEquality().equals(other.tags, tags) &&
+            (identical(other.idCode, idCode) || other.idCode == idCode) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
+            (identical(other.paper, paper) || other.paper == paper));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      subtitle,
+      uploadTime,
+      star,
+      imageCount,
+      previewImage,
+      const DeepCollectionEquality().hash(badges),
+      const DeepCollectionEquality().hash(tags),
+      idCode,
+      language,
+      paper);
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ListParserResultItem(title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imageCount: $imageCount, previewImage: $previewImage, badges: $badges, tags: $tags, idCode: $idCode, language: $language, paper: $paper)';
+  }
 }
 
 /// @nodoc
-abstract class $ListParserResultItemCopyWith<$Res> {
+abstract mixin class $ListParserResultItemCopyWith<$Res> {
   factory $ListParserResultItemCopyWith(ListParserResultItem value,
-          $Res Function(ListParserResultItem) then) =
-      _$ListParserResultItemCopyWithImpl<$Res, ListParserResultItem>;
+          $Res Function(ListParserResultItem) _then) =
+      _$ListParserResultItemCopyWithImpl;
   @useResult
   $Res call(
       {String? title,
@@ -1912,15 +2056,12 @@ abstract class $ListParserResultItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ListParserResultItemCopyWithImpl<$Res,
-        $Val extends ListParserResultItem>
+class _$ListParserResultItemCopyWithImpl<$Res>
     implements $ListParserResultItemCopyWith<$Res> {
-  _$ListParserResultItemCopyWithImpl(this._value, this._then);
+  _$ListParserResultItemCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ListParserResultItem _self;
+  final $Res Function(ListParserResultItem) _then;
 
   /// Create a copy of ListParserResultItem
   /// with the given fields replaced by the non-null parameter values.
@@ -1939,52 +2080,52 @@ class _$ListParserResultItemCopyWithImpl<$Res,
     Object? language = freezed,
     Object? paper = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       title: freezed == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
       subtitle: freezed == subtitle
-          ? _value.subtitle
+          ? _self.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
               as String?,
       uploadTime: freezed == uploadTime
-          ? _value.uploadTime
+          ? _self.uploadTime
           : uploadTime // ignore: cast_nullable_to_non_nullable
               as String?,
       star: freezed == star
-          ? _value.star
+          ? _self.star
           : star // ignore: cast_nullable_to_non_nullable
               as double?,
       imageCount: freezed == imageCount
-          ? _value.imageCount
+          ? _self.imageCount
           : imageCount // ignore: cast_nullable_to_non_nullable
               as int?,
       previewImage: freezed == previewImage
-          ? _value.previewImage
+          ? _self.previewImage
           : previewImage // ignore: cast_nullable_to_non_nullable
               as ImageResult?,
       badges: freezed == badges
-          ? _value.badges
+          ? _self.badges
           : badges // ignore: cast_nullable_to_non_nullable
               as List<TagResult>?,
       tags: freezed == tags
-          ? _value.tags
+          ? _self.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<TagResult>?,
       idCode: freezed == idCode
-          ? _value.idCode
+          ? _self.idCode
           : idCode // ignore: cast_nullable_to_non_nullable
               as String?,
       language: freezed == language
-          ? _value.language
+          ? _self.language
           : language // ignore: cast_nullable_to_non_nullable
               as String?,
       paper: freezed == paper
-          ? _value.paper
+          ? _self.paper
           : paper // ignore: cast_nullable_to_non_nullable
               as String?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ListParserResultItem
@@ -1992,121 +2133,22 @@ class _$ListParserResultItemCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $ImageResultCopyWith<$Res>? get previewImage {
-    if (_value.previewImage == null) {
+    if (_self.previewImage == null) {
       return null;
     }
 
-    return $ImageResultCopyWith<$Res>(_value.previewImage!, (value) {
-      return _then(_value.copyWith(previewImage: value) as $Val);
+    return $ImageResultCopyWith<$Res>(_self.previewImage!, (value) {
+      return _then(_self.copyWith(previewImage: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ListParserResultItemImplCopyWith<$Res>
-    implements $ListParserResultItemCopyWith<$Res> {
-  factory _$$ListParserResultItemImplCopyWith(_$ListParserResultItemImpl value,
-          $Res Function(_$ListParserResultItemImpl) then) =
-      __$$ListParserResultItemImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String? title,
-      String? subtitle,
-      String? uploadTime,
-      double? star,
-      int? imageCount,
-      ImageResult? previewImage,
-      List<TagResult>? badges,
-      List<TagResult>? tags,
-      String? idCode,
-      String? language,
-      String? paper});
-
-  @override
-  $ImageResultCopyWith<$Res>? get previewImage;
-}
-
-/// @nodoc
-class __$$ListParserResultItemImplCopyWithImpl<$Res>
-    extends _$ListParserResultItemCopyWithImpl<$Res, _$ListParserResultItemImpl>
-    implements _$$ListParserResultItemImplCopyWith<$Res> {
-  __$$ListParserResultItemImplCopyWithImpl(_$ListParserResultItemImpl _value,
-      $Res Function(_$ListParserResultItemImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ListParserResultItem
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? title = freezed,
-    Object? subtitle = freezed,
-    Object? uploadTime = freezed,
-    Object? star = freezed,
-    Object? imageCount = freezed,
-    Object? previewImage = freezed,
-    Object? badges = freezed,
-    Object? tags = freezed,
-    Object? idCode = freezed,
-    Object? language = freezed,
-    Object? paper = freezed,
-  }) {
-    return _then(_$ListParserResultItemImpl(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      subtitle: freezed == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
-              as String?,
-      uploadTime: freezed == uploadTime
-          ? _value.uploadTime
-          : uploadTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      star: freezed == star
-          ? _value.star
-          : star // ignore: cast_nullable_to_non_nullable
-              as double?,
-      imageCount: freezed == imageCount
-          ? _value.imageCount
-          : imageCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      previewImage: freezed == previewImage
-          ? _value.previewImage
-          : previewImage // ignore: cast_nullable_to_non_nullable
-              as ImageResult?,
-      badges: freezed == badges
-          ? _value._badges
-          : badges // ignore: cast_nullable_to_non_nullable
-              as List<TagResult>?,
-      tags: freezed == tags
-          ? _value._tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<TagResult>?,
-      idCode: freezed == idCode
-          ? _value.idCode
-          : idCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      language: freezed == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as String?,
-      paper: freezed == paper
-          ? _value.paper
-          : paper // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$ListParserResultItemImpl
+class _ListParserResultItem
     with DiagnosticableTreeMixin
-    implements _ListParserResultItem {
-  const _$ListParserResultItemImpl(
+    implements ListParserResultItem {
+  const _ListParserResultItem(
       {this.title,
       this.subtitle,
       this.uploadTime,
@@ -2120,9 +2162,8 @@ class _$ListParserResultItemImpl
       this.paper})
       : _badges = badges,
         _tags = tags;
-
-  factory _$ListParserResultItemImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ListParserResultItemImplFromJson(json);
+  factory _ListParserResultItem.fromJson(Map<String, dynamic> json) =>
+      _$ListParserResultItemFromJson(json);
 
   @override
   final String? title;
@@ -2163,14 +2204,24 @@ class _$ListParserResultItemImpl
   @override
   final String? paper;
 
+  /// Create a copy of ListParserResultItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ListParserResultItem(title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imageCount: $imageCount, previewImage: $previewImage, badges: $badges, tags: $tags, idCode: $idCode, language: $language, paper: $paper)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ListParserResultItemCopyWith<_ListParserResultItem> get copyWith =>
+      __$ListParserResultItemCopyWithImpl<_ListParserResultItem>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ListParserResultItemToJson(
+      this,
+    );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ListParserResultItem'))
       ..add(DiagnosticsProperty('title', title))
@@ -2190,7 +2241,7 @@ class _$ListParserResultItemImpl
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ListParserResultItemImpl &&
+            other is _ListParserResultItem &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle) &&
@@ -2225,168 +2276,195 @@ class _$ListParserResultItemImpl
       language,
       paper);
 
-  /// Create a copy of ListParserResultItem
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ListParserResultItemImplCopyWith<_$ListParserResultItemImpl>
-      get copyWith =>
-          __$$ListParserResultItemImplCopyWithImpl<_$ListParserResultItemImpl>(
-              this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ListParserResultItemImplToJson(
-      this,
-    );
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ListParserResultItem(title: $title, subtitle: $subtitle, uploadTime: $uploadTime, star: $star, imageCount: $imageCount, previewImage: $previewImage, badges: $badges, tags: $tags, idCode: $idCode, language: $language, paper: $paper)';
   }
 }
 
-abstract class _ListParserResultItem implements ListParserResultItem {
-  const factory _ListParserResultItem(
-      {final String? title,
-      final String? subtitle,
-      final String? uploadTime,
-      final double? star,
-      final int? imageCount,
-      final ImageResult? previewImage,
-      final List<TagResult>? badges,
-      final List<TagResult>? tags,
-      final String? idCode,
-      final String? language,
-      final String? paper}) = _$ListParserResultItemImpl;
+/// @nodoc
+abstract mixin class _$ListParserResultItemCopyWith<$Res>
+    implements $ListParserResultItemCopyWith<$Res> {
+  factory _$ListParserResultItemCopyWith(_ListParserResultItem value,
+          $Res Function(_ListParserResultItem) _then) =
+      __$ListParserResultItemCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String? title,
+      String? subtitle,
+      String? uploadTime,
+      double? star,
+      int? imageCount,
+      ImageResult? previewImage,
+      List<TagResult>? badges,
+      List<TagResult>? tags,
+      String? idCode,
+      String? language,
+      String? paper});
 
-  factory _ListParserResultItem.fromJson(Map<String, dynamic> json) =
-      _$ListParserResultItemImpl.fromJson;
+  @override
+  $ImageResultCopyWith<$Res>? get previewImage;
+}
 
-  @override
-  String? get title;
-  @override
-  String? get subtitle;
-  @override
-  String? get uploadTime;
-  @override
-  double? get star;
-  @override
-  int? get imageCount;
-  @override
-  ImageResult? get previewImage;
-  @override
-  List<TagResult>? get badges;
-  @override
-  List<TagResult>? get tags;
-  @override
-  String? get idCode;
-  @override
-  String? get language;
-  @override
-  String? get paper;
+/// @nodoc
+class __$ListParserResultItemCopyWithImpl<$Res>
+    implements _$ListParserResultItemCopyWith<$Res> {
+  __$ListParserResultItemCopyWithImpl(this._self, this._then);
+
+  final _ListParserResultItem _self;
+  final $Res Function(_ListParserResultItem) _then;
 
   /// Create a copy of ListParserResultItem
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ListParserResultItemImplCopyWith<_$ListParserResultItemImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? title = freezed,
+    Object? subtitle = freezed,
+    Object? uploadTime = freezed,
+    Object? star = freezed,
+    Object? imageCount = freezed,
+    Object? previewImage = freezed,
+    Object? badges = freezed,
+    Object? tags = freezed,
+    Object? idCode = freezed,
+    Object? language = freezed,
+    Object? paper = freezed,
+  }) {
+    return _then(_ListParserResultItem(
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subtitle: freezed == subtitle
+          ? _self.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uploadTime: freezed == uploadTime
+          ? _self.uploadTime
+          : uploadTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      star: freezed == star
+          ? _self.star
+          : star // ignore: cast_nullable_to_non_nullable
+              as double?,
+      imageCount: freezed == imageCount
+          ? _self.imageCount
+          : imageCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      previewImage: freezed == previewImage
+          ? _self.previewImage
+          : previewImage // ignore: cast_nullable_to_non_nullable
+              as ImageResult?,
+      badges: freezed == badges
+          ? _self._badges
+          : badges // ignore: cast_nullable_to_non_nullable
+              as List<TagResult>?,
+      tags: freezed == tags
+          ? _self._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<TagResult>?,
+      idCode: freezed == idCode
+          ? _self.idCode
+          : idCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      language: freezed == language
+          ? _self.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paper: freezed == paper
+          ? _self.paper
+          : paper // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 
-ListParserResult _$ListParserResultFromJson(Map<String, dynamic> json) {
-  return _ListParserResult.fromJson(json);
+  /// Create a copy of ListParserResultItem
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageResultCopyWith<$Res>? get previewImage {
+    if (_self.previewImage == null) {
+      return null;
+    }
+
+    return $ImageResultCopyWith<$Res>(_self.previewImage!, (value) {
+      return _then(_self.copyWith(previewImage: value));
+    });
+  }
 }
 
 /// @nodoc
-mixin _$ListParserResult {
-  List<ListParserResultItem>? get items => throw _privateConstructorUsedError;
-  String? get nextPage => throw _privateConstructorUsedError;
-  bool? get isSuccess => throw _privateConstructorUsedError;
-  String? get failMessage => throw _privateConstructorUsedError;
-  List<EnvResult> get envs => throw _privateConstructorUsedError;
-  List<ParserError> get errors => throw _privateConstructorUsedError;
+mixin _$ListParserResult implements DiagnosticableTreeMixin {
+  List<ListParserResultItem>? get items;
+  String? get nextPage;
+  bool? get isSuccess;
+  String? get failMessage;
+  List<EnvResult> get envs;
+  List<ParserError> get errors;
+
+  /// Create a copy of ListParserResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ListParserResultCopyWith<ListParserResult> get copyWith =>
+      _$ListParserResultCopyWithImpl<ListParserResult>(
+          this as ListParserResult, _$identity);
 
   /// Serializes this ListParserResult to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of ListParserResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ListParserResultCopyWith<ListParserResult> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ListParserResultCopyWith<$Res> {
-  factory $ListParserResultCopyWith(
-          ListParserResult value, $Res Function(ListParserResult) then) =
-      _$ListParserResultCopyWithImpl<$Res, ListParserResult>;
-  @useResult
-  $Res call(
-      {List<ListParserResultItem>? items,
-      String? nextPage,
-      bool? isSuccess,
-      String? failMessage,
-      List<EnvResult> envs,
-      List<ParserError> errors});
-}
-
-/// @nodoc
-class _$ListParserResultCopyWithImpl<$Res, $Val extends ListParserResult>
-    implements $ListParserResultCopyWith<$Res> {
-  _$ListParserResultCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ListParserResult
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? items = freezed,
-    Object? nextPage = freezed,
-    Object? isSuccess = freezed,
-    Object? failMessage = freezed,
-    Object? envs = null,
-    Object? errors = null,
-  }) {
-    return _then(_value.copyWith(
-      items: freezed == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<ListParserResultItem>?,
-      nextPage: freezed == nextPage
-          ? _value.nextPage
-          : nextPage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isSuccess: freezed == isSuccess
-          ? _value.isSuccess
-          : isSuccess // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      failMessage: freezed == failMessage
-          ? _value.failMessage
-          : failMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      envs: null == envs
-          ? _value.envs
-          : envs // ignore: cast_nullable_to_non_nullable
-              as List<EnvResult>,
-      errors: null == errors
-          ? _value.errors
-          : errors // ignore: cast_nullable_to_non_nullable
-              as List<ParserError>,
-    ) as $Val);
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'ListParserResult'))
+      ..add(DiagnosticsProperty('items', items))
+      ..add(DiagnosticsProperty('nextPage', nextPage))
+      ..add(DiagnosticsProperty('isSuccess', isSuccess))
+      ..add(DiagnosticsProperty('failMessage', failMessage))
+      ..add(DiagnosticsProperty('envs', envs))
+      ..add(DiagnosticsProperty('errors', errors));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ListParserResult &&
+            const DeepCollectionEquality().equals(other.items, items) &&
+            (identical(other.nextPage, nextPage) ||
+                other.nextPage == nextPage) &&
+            (identical(other.isSuccess, isSuccess) ||
+                other.isSuccess == isSuccess) &&
+            (identical(other.failMessage, failMessage) ||
+                other.failMessage == failMessage) &&
+            const DeepCollectionEquality().equals(other.envs, envs) &&
+            const DeepCollectionEquality().equals(other.errors, errors));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(items),
+      nextPage,
+      isSuccess,
+      failMessage,
+      const DeepCollectionEquality().hash(envs),
+      const DeepCollectionEquality().hash(errors));
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ListParserResult(items: $items, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
   }
 }
 
 /// @nodoc
-abstract class _$$ListParserResultImplCopyWith<$Res>
-    implements $ListParserResultCopyWith<$Res> {
-  factory _$$ListParserResultImplCopyWith(_$ListParserResultImpl value,
-          $Res Function(_$ListParserResultImpl) then) =
-      __$$ListParserResultImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ListParserResultCopyWith<$Res> {
+  factory $ListParserResultCopyWith(
+          ListParserResult value, $Res Function(ListParserResult) _then) =
+      _$ListParserResultCopyWithImpl;
   @useResult
   $Res call(
       {List<ListParserResultItem>? items,
@@ -2398,12 +2476,12 @@ abstract class _$$ListParserResultImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ListParserResultImplCopyWithImpl<$Res>
-    extends _$ListParserResultCopyWithImpl<$Res, _$ListParserResultImpl>
-    implements _$$ListParserResultImplCopyWith<$Res> {
-  __$$ListParserResultImplCopyWithImpl(_$ListParserResultImpl _value,
-      $Res Function(_$ListParserResultImpl) _then)
-      : super(_value, _then);
+class _$ListParserResultCopyWithImpl<$Res>
+    implements $ListParserResultCopyWith<$Res> {
+  _$ListParserResultCopyWithImpl(this._self, this._then);
+
+  final ListParserResult _self;
+  final $Res Function(ListParserResult) _then;
 
   /// Create a copy of ListParserResult
   /// with the given fields replaced by the non-null parameter values.
@@ -2417,29 +2495,29 @@ class __$$ListParserResultImplCopyWithImpl<$Res>
     Object? envs = null,
     Object? errors = null,
   }) {
-    return _then(_$ListParserResultImpl(
+    return _then(_self.copyWith(
       items: freezed == items
-          ? _value._items
+          ? _self.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<ListParserResultItem>?,
       nextPage: freezed == nextPage
-          ? _value.nextPage
+          ? _self.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
               as String?,
       isSuccess: freezed == isSuccess
-          ? _value.isSuccess
+          ? _self.isSuccess
           : isSuccess // ignore: cast_nullable_to_non_nullable
               as bool?,
       failMessage: freezed == failMessage
-          ? _value.failMessage
+          ? _self.failMessage
           : failMessage // ignore: cast_nullable_to_non_nullable
               as String?,
       envs: null == envs
-          ? _value._envs
+          ? _self.envs
           : envs // ignore: cast_nullable_to_non_nullable
               as List<EnvResult>,
       errors: null == errors
-          ? _value._errors
+          ? _self.errors
           : errors // ignore: cast_nullable_to_non_nullable
               as List<ParserError>,
     ));
@@ -2448,10 +2526,10 @@ class __$$ListParserResultImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ListParserResultImpl
+class _ListParserResult
     with DiagnosticableTreeMixin
-    implements _ListParserResult {
-  const _$ListParserResultImpl(
+    implements ListParserResult {
+  const _ListParserResult(
       {final List<ListParserResultItem>? items,
       this.nextPage,
       this.isSuccess,
@@ -2461,9 +2539,8 @@ class _$ListParserResultImpl
       : _items = items,
         _envs = envs,
         _errors = errors;
-
-  factory _$ListParserResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ListParserResultImplFromJson(json);
+  factory _ListParserResult.fromJson(Map<String, dynamic> json) =>
+      _$ListParserResultFromJson(json);
 
   final List<ListParserResultItem>? _items;
   @override
@@ -2497,14 +2574,23 @@ class _$ListParserResultImpl
     return EqualUnmodifiableListView(_errors);
   }
 
+  /// Create a copy of ListParserResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ListParserResult(items: $items, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ListParserResultCopyWith<_ListParserResult> get copyWith =>
+      __$ListParserResultCopyWithImpl<_ListParserResult>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ListParserResultToJson(
+      this,
+    );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ListParserResult'))
       ..add(DiagnosticsProperty('items', items))
@@ -2519,7 +2605,7 @@ class _$ListParserResultImpl
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ListParserResultImpl &&
+            other is _ListParserResult &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.nextPage, nextPage) ||
                 other.nextPage == nextPage) &&
@@ -2542,52 +2628,76 @@ class _$ListParserResultImpl
       const DeepCollectionEquality().hash(_envs),
       const DeepCollectionEquality().hash(_errors));
 
-  /// Create a copy of ListParserResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ListParserResultImplCopyWith<_$ListParserResultImpl> get copyWith =>
-      __$$ListParserResultImplCopyWithImpl<_$ListParserResultImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ListParserResultImplToJson(
-      this,
-    );
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ListParserResult(items: $items, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
   }
 }
 
-abstract class _ListParserResult implements ListParserResult {
-  const factory _ListParserResult(
-      {final List<ListParserResultItem>? items,
-      final String? nextPage,
-      final bool? isSuccess,
-      final String? failMessage,
-      required final List<EnvResult> envs,
-      required final List<ParserError> errors}) = _$ListParserResultImpl;
+/// @nodoc
+abstract mixin class _$ListParserResultCopyWith<$Res>
+    implements $ListParserResultCopyWith<$Res> {
+  factory _$ListParserResultCopyWith(
+          _ListParserResult value, $Res Function(_ListParserResult) _then) =
+      __$ListParserResultCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {List<ListParserResultItem>? items,
+      String? nextPage,
+      bool? isSuccess,
+      String? failMessage,
+      List<EnvResult> envs,
+      List<ParserError> errors});
+}
 
-  factory _ListParserResult.fromJson(Map<String, dynamic> json) =
-      _$ListParserResultImpl.fromJson;
+/// @nodoc
+class __$ListParserResultCopyWithImpl<$Res>
+    implements _$ListParserResultCopyWith<$Res> {
+  __$ListParserResultCopyWithImpl(this._self, this._then);
 
-  @override
-  List<ListParserResultItem>? get items;
-  @override
-  String? get nextPage;
-  @override
-  bool? get isSuccess;
-  @override
-  String? get failMessage;
-  @override
-  List<EnvResult> get envs;
-  @override
-  List<ParserError> get errors;
+  final _ListParserResult _self;
+  final $Res Function(_ListParserResult) _then;
 
   /// Create a copy of ListParserResult
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ListParserResultImplCopyWith<_$ListParserResultImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? items = freezed,
+    Object? nextPage = freezed,
+    Object? isSuccess = freezed,
+    Object? failMessage = freezed,
+    Object? envs = null,
+    Object? errors = null,
+  }) {
+    return _then(_ListParserResult(
+      items: freezed == items
+          ? _self._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<ListParserResultItem>?,
+      nextPage: freezed == nextPage
+          ? _self.nextPage
+          : nextPage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isSuccess: freezed == isSuccess
+          ? _self.isSuccess
+          : isSuccess // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      failMessage: freezed == failMessage
+          ? _self.failMessage
+          : failMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      envs: null == envs
+          ? _self._envs
+          : envs // ignore: cast_nullable_to_non_nullable
+              as List<EnvResult>,
+      errors: null == errors
+          ? _self._errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ParserError>,
+    ));
+  }
 }
+
+// dart format on

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,94 +10,62 @@ part of 'subpage.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-TemplateListSubPage _$TemplateListSubPageFromJson(Map<String, dynamic> json) {
-  return _TemplateListSubPage.fromJson(json);
-}
 
 /// @nodoc
 mixin _$TemplateListSubPage {
-  String get name => throw _privateConstructorUsedError;
-  String get key => throw _privateConstructorUsedError;
-  String get value => throw _privateConstructorUsedError;
-
-  /// Serializes this TemplateListSubPage to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get name;
+  String get key;
+  String get value;
 
   /// Create a copy of TemplateListSubPage
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $TemplateListSubPageCopyWith<TemplateListSubPage> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TemplateListSubPageCopyWith<$Res> {
-  factory $TemplateListSubPageCopyWith(
-          TemplateListSubPage value, $Res Function(TemplateListSubPage) then) =
-      _$TemplateListSubPageCopyWithImpl<$Res, TemplateListSubPage>;
-  @useResult
-  $Res call({String name, String key, String value});
-}
-
-/// @nodoc
-class _$TemplateListSubPageCopyWithImpl<$Res, $Val extends TemplateListSubPage>
-    implements $TemplateListSubPageCopyWith<$Res> {
-  _$TemplateListSubPageCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of TemplateListSubPage
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $TemplateListSubPageCopyWith<TemplateListSubPage> get copyWith =>
+      _$TemplateListSubPageCopyWithImpl<TemplateListSubPage>(
+          this as TemplateListSubPage, _$identity);
+
+  /// Serializes this TemplateListSubPage to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? name = null,
-    Object? key = null,
-    Object? value = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TemplateListSubPage &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, key, value);
+
+  @override
+  String toString() {
+    return 'TemplateListSubPage(name: $name, key: $key, value: $value)';
   }
 }
 
 /// @nodoc
-abstract class _$$TemplateListSubPageImplCopyWith<$Res>
-    implements $TemplateListSubPageCopyWith<$Res> {
-  factory _$$TemplateListSubPageImplCopyWith(_$TemplateListSubPageImpl value,
-          $Res Function(_$TemplateListSubPageImpl) then) =
-      __$$TemplateListSubPageImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $TemplateListSubPageCopyWith<$Res> {
+  factory $TemplateListSubPageCopyWith(
+          TemplateListSubPage value, $Res Function(TemplateListSubPage) _then) =
+      _$TemplateListSubPageCopyWithImpl;
   @useResult
   $Res call({String name, String key, String value});
 }
 
 /// @nodoc
-class __$$TemplateListSubPageImplCopyWithImpl<$Res>
-    extends _$TemplateListSubPageCopyWithImpl<$Res, _$TemplateListSubPageImpl>
-    implements _$$TemplateListSubPageImplCopyWith<$Res> {
-  __$$TemplateListSubPageImplCopyWithImpl(_$TemplateListSubPageImpl _value,
-      $Res Function(_$TemplateListSubPageImpl) _then)
-      : super(_value, _then);
+class _$TemplateListSubPageCopyWithImpl<$Res>
+    implements $TemplateListSubPageCopyWith<$Res> {
+  _$TemplateListSubPageCopyWithImpl(this._self, this._then);
+
+  final TemplateListSubPage _self;
+  final $Res Function(TemplateListSubPage) _then;
 
   /// Create a copy of TemplateListSubPage
   /// with the given fields replaced by the non-null parameter values.
@@ -107,17 +76,17 @@ class __$$TemplateListSubPageImplCopyWithImpl<$Res>
     Object? key = null,
     Object? value = null,
   }) {
-    return _then(_$TemplateListSubPageImpl(
+    return _then(_self.copyWith(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       key: null == key
-          ? _value.key
+          ? _self.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
-          ? _value.value
+          ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -126,12 +95,10 @@ class __$$TemplateListSubPageImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TemplateListSubPageImpl implements _TemplateListSubPage {
-  const _$TemplateListSubPageImpl(
-      {this.name = '', this.key = '', this.value = ''});
-
-  factory _$TemplateListSubPageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TemplateListSubPageImplFromJson(json);
+class _TemplateListSubPage implements TemplateListSubPage {
+  const _TemplateListSubPage({this.name = '', this.key = '', this.value = ''});
+  factory _TemplateListSubPage.fromJson(Map<String, dynamic> json) =>
+      _$TemplateListSubPageFromJson(json);
 
   @override
   @JsonKey()
@@ -143,16 +110,27 @@ class _$TemplateListSubPageImpl implements _TemplateListSubPage {
   @JsonKey()
   final String value;
 
+  /// Create a copy of TemplateListSubPage
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'TemplateListSubPage(name: $name, key: $key, value: $value)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TemplateListSubPageCopyWith<_TemplateListSubPage> get copyWith =>
+      __$TemplateListSubPageCopyWithImpl<_TemplateListSubPage>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TemplateListSubPageToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TemplateListSubPageImpl &&
+            other is _TemplateListSubPage &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.value, value) || other.value == value));
@@ -162,71 +140,98 @@ class _$TemplateListSubPageImpl implements _TemplateListSubPage {
   @override
   int get hashCode => Object.hash(runtimeType, name, key, value);
 
-  /// Create a copy of TemplateListSubPage
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TemplateListSubPageImplCopyWith<_$TemplateListSubPageImpl> get copyWith =>
-      __$$TemplateListSubPageImplCopyWithImpl<_$TemplateListSubPageImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TemplateListSubPageImplToJson(
-      this,
-    );
+  String toString() {
+    return 'TemplateListSubPage(name: $name, key: $key, value: $value)';
   }
 }
 
-abstract class _TemplateListSubPage implements TemplateListSubPage {
-  const factory _TemplateListSubPage(
-      {final String name,
-      final String key,
-      final String value}) = _$TemplateListSubPageImpl;
+/// @nodoc
+abstract mixin class _$TemplateListSubPageCopyWith<$Res>
+    implements $TemplateListSubPageCopyWith<$Res> {
+  factory _$TemplateListSubPageCopyWith(_TemplateListSubPage value,
+          $Res Function(_TemplateListSubPage) _then) =
+      __$TemplateListSubPageCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String name, String key, String value});
+}
 
-  factory _TemplateListSubPage.fromJson(Map<String, dynamic> json) =
-      _$TemplateListSubPageImpl.fromJson;
+/// @nodoc
+class __$TemplateListSubPageCopyWithImpl<$Res>
+    implements _$TemplateListSubPageCopyWith<$Res> {
+  __$TemplateListSubPageCopyWithImpl(this._self, this._then);
 
-  @override
-  String get name;
-  @override
-  String get key;
-  @override
-  String get value;
+  final _TemplateListSubPage _self;
+  final $Res Function(_TemplateListSubPage) _then;
 
   /// Create a copy of TemplateListSubPage
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TemplateListSubPageImplCopyWith<_$TemplateListSubPageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-TemplateListFilter _$TemplateListFilterFromJson(Map<String, dynamic> json) {
-  return _TemplateListFilter.fromJson(json);
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? name = null,
+    Object? key = null,
+    Object? value = null,
+  }) {
+    return _then(_TemplateListSubPage(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      key: null == key
+          ? _self.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 mixin _$TemplateListFilter {
-  List<TemplateListFilterItem> get items => throw _privateConstructorUsedError;
-  ScriptField get script => throw _privateConstructorUsedError;
-
-  /// Serializes this TemplateListFilter to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<TemplateListFilterItem> get items;
+  ScriptField get script;
 
   /// Create a copy of TemplateListFilter
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $TemplateListFilterCopyWith<TemplateListFilter> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$TemplateListFilterCopyWithImpl<TemplateListFilter>(
+          this as TemplateListFilter, _$identity);
+
+  /// Serializes this TemplateListFilter to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TemplateListFilter &&
+            const DeepCollectionEquality().equals(other.items, items) &&
+            (identical(other.script, script) || other.script == script));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(items), script);
+
+  @override
+  String toString() {
+    return 'TemplateListFilter(items: $items, script: $script)';
+  }
 }
 
 /// @nodoc
-abstract class $TemplateListFilterCopyWith<$Res> {
+abstract mixin class $TemplateListFilterCopyWith<$Res> {
   factory $TemplateListFilterCopyWith(
-          TemplateListFilter value, $Res Function(TemplateListFilter) then) =
-      _$TemplateListFilterCopyWithImpl<$Res, TemplateListFilter>;
+          TemplateListFilter value, $Res Function(TemplateListFilter) _then) =
+      _$TemplateListFilterCopyWithImpl;
   @useResult
   $Res call({List<TemplateListFilterItem> items, ScriptField script});
 
@@ -234,14 +239,12 @@ abstract class $TemplateListFilterCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TemplateListFilterCopyWithImpl<$Res, $Val extends TemplateListFilter>
+class _$TemplateListFilterCopyWithImpl<$Res>
     implements $TemplateListFilterCopyWith<$Res> {
-  _$TemplateListFilterCopyWithImpl(this._value, this._then);
+  _$TemplateListFilterCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TemplateListFilter _self;
+  final $Res Function(TemplateListFilter) _then;
 
   /// Create a copy of TemplateListFilter
   /// with the given fields replaced by the non-null parameter values.
@@ -251,16 +254,16 @@ class _$TemplateListFilterCopyWithImpl<$Res, $Val extends TemplateListFilter>
     Object? items = null,
     Object? script = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       items: null == items
-          ? _value.items
+          ? _self.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<TemplateListFilterItem>,
       script: null == script
-          ? _value.script
+          ? _self.script
           : script // ignore: cast_nullable_to_non_nullable
               as ScriptField,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of TemplateListFilter
@@ -268,66 +271,22 @@ class _$TemplateListFilterCopyWithImpl<$Res, $Val extends TemplateListFilter>
   @override
   @pragma('vm:prefer-inline')
   $ScriptFieldCopyWith<$Res> get script {
-    return $ScriptFieldCopyWith<$Res>(_value.script, (value) {
-      return _then(_value.copyWith(script: value) as $Val);
+    return $ScriptFieldCopyWith<$Res>(_self.script, (value) {
+      return _then(_self.copyWith(script: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$TemplateListFilterImplCopyWith<$Res>
-    implements $TemplateListFilterCopyWith<$Res> {
-  factory _$$TemplateListFilterImplCopyWith(_$TemplateListFilterImpl value,
-          $Res Function(_$TemplateListFilterImpl) then) =
-      __$$TemplateListFilterImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<TemplateListFilterItem> items, ScriptField script});
-
-  @override
-  $ScriptFieldCopyWith<$Res> get script;
-}
-
-/// @nodoc
-class __$$TemplateListFilterImplCopyWithImpl<$Res>
-    extends _$TemplateListFilterCopyWithImpl<$Res, _$TemplateListFilterImpl>
-    implements _$$TemplateListFilterImplCopyWith<$Res> {
-  __$$TemplateListFilterImplCopyWithImpl(_$TemplateListFilterImpl _value,
-      $Res Function(_$TemplateListFilterImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TemplateListFilter
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? items = null,
-    Object? script = null,
-  }) {
-    return _then(_$TemplateListFilterImpl(
-      items: null == items
-          ? _value._items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<TemplateListFilterItem>,
-      script: null == script
-          ? _value.script
-          : script // ignore: cast_nullable_to_non_nullable
-              as ScriptField,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$TemplateListFilterImpl extends _TemplateListFilter {
-  const _$TemplateListFilterImpl(
+class _TemplateListFilter extends TemplateListFilter {
+  const _TemplateListFilter(
       {final List<TemplateListFilterItem> items = const [],
       this.script = const ScriptField.output()})
       : _items = items,
         super._();
-
-  factory _$TemplateListFilterImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TemplateListFilterImplFromJson(json);
+  factory _TemplateListFilter.fromJson(Map<String, dynamic> json) =>
+      _$TemplateListFilterFromJson(json);
 
   final List<TemplateListFilterItem> _items;
   @override
@@ -342,16 +301,26 @@ class _$TemplateListFilterImpl extends _TemplateListFilter {
   @JsonKey()
   final ScriptField script;
 
+  /// Create a copy of TemplateListFilter
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'TemplateListFilter(items: $items, script: $script)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TemplateListFilterCopyWith<_TemplateListFilter> get copyWith =>
+      __$TemplateListFilterCopyWithImpl<_TemplateListFilter>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TemplateListFilterToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TemplateListFilterImpl &&
+            other is _TemplateListFilter &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.script, script) || other.script == script));
   }
@@ -361,43 +330,63 @@ class _$TemplateListFilterImpl extends _TemplateListFilter {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_items), script);
 
-  /// Create a copy of TemplateListFilter
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TemplateListFilterImplCopyWith<_$TemplateListFilterImpl> get copyWith =>
-      __$$TemplateListFilterImplCopyWithImpl<_$TemplateListFilterImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TemplateListFilterImplToJson(
-      this,
-    );
+  String toString() {
+    return 'TemplateListFilter(items: $items, script: $script)';
   }
 }
 
-abstract class _TemplateListFilter extends TemplateListFilter {
-  const factory _TemplateListFilter(
-      {final List<TemplateListFilterItem> items,
-      final ScriptField script}) = _$TemplateListFilterImpl;
-  const _TemplateListFilter._() : super._();
-
-  factory _TemplateListFilter.fromJson(Map<String, dynamic> json) =
-      _$TemplateListFilterImpl.fromJson;
+/// @nodoc
+abstract mixin class _$TemplateListFilterCopyWith<$Res>
+    implements $TemplateListFilterCopyWith<$Res> {
+  factory _$TemplateListFilterCopyWith(
+          _TemplateListFilter value, $Res Function(_TemplateListFilter) _then) =
+      __$TemplateListFilterCopyWithImpl;
+  @override
+  @useResult
+  $Res call({List<TemplateListFilterItem> items, ScriptField script});
 
   @override
-  List<TemplateListFilterItem> get items;
-  @override
-  ScriptField get script;
+  $ScriptFieldCopyWith<$Res> get script;
+}
+
+/// @nodoc
+class __$TemplateListFilterCopyWithImpl<$Res>
+    implements _$TemplateListFilterCopyWith<$Res> {
+  __$TemplateListFilterCopyWithImpl(this._self, this._then);
+
+  final _TemplateListFilter _self;
+  final $Res Function(_TemplateListFilter) _then;
 
   /// Create a copy of TemplateListFilter
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TemplateListFilterImplCopyWith<_$TemplateListFilterImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? items = null,
+    Object? script = null,
+  }) {
+    return _then(_TemplateListFilter(
+      items: null == items
+          ? _self._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<TemplateListFilterItem>,
+      script: null == script
+          ? _self.script
+          : script // ignore: cast_nullable_to_non_nullable
+              as ScriptField,
+    ));
+  }
+
+  /// Create a copy of TemplateListFilter
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ScriptFieldCopyWith<$Res> get script {
+    return $ScriptFieldCopyWith<$Res>(_self.script, (value) {
+      return _then(_self.copyWith(script: value));
+    });
+  }
 }
 
 TemplateListFilterItem _$TemplateListFilterItemFromJson(
@@ -423,115 +412,69 @@ TemplateListFilterItem _$TemplateListFilterItemFromJson(
 
 /// @nodoc
 mixin _$TemplateListFilterItem {
-  String get name => throw _privateConstructorUsedError;
-  String get key => throw _privateConstructorUsedError;
-  Object get value => throw _privateConstructorUsedError;
-  Object get defaultValue => throw _privateConstructorUsedError;
-  bool get disabledUnchanged => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String name, String key, String value,
-            String defaultValue, bool disabledUnchanged)
-        string,
-    required TResult Function(String name, String key, int value,
-            int defaultValue, bool disabledUnchanged)
-        int,
-    required TResult Function(String name, String key, double value,
-            double defaultValue, bool disabledUnchanged)
-        float,
-    required TResult Function(String name, String key, bool value,
-            bool defaultValue, bool disabledUnchanged)
-        bool,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, String key, String value,
-            String defaultValue, bool disabledUnchanged)?
-        string,
-    TResult? Function(String name, String key, int value, int defaultValue,
-            bool disabledUnchanged)?
-        int,
-    TResult? Function(String name, String key, double value,
-            double defaultValue, bool disabledUnchanged)?
-        float,
-    TResult? Function(String name, String key, bool value, bool defaultValue,
-            bool disabledUnchanged)?
-        bool,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String key, String value, String defaultValue,
-            bool disabledUnchanged)?
-        string,
-    TResult Function(String name, String key, int value, int defaultValue,
-            bool disabledUnchanged)?
-        int,
-    TResult Function(String name, String key, double value, double defaultValue,
-            bool disabledUnchanged)?
-        float,
-    TResult Function(String name, String key, bool value, bool defaultValue,
-            bool disabledUnchanged)?
-        bool,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TemplateListFilterItemString value) string,
-    required TResult Function(TemplateListFilterItemNumber value) int,
-    required TResult Function(TemplateListFilterItemFloat value) float,
-    required TResult Function(TemplateListFilterItemBool value) bool,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TemplateListFilterItemString value)? string,
-    TResult? Function(TemplateListFilterItemNumber value)? int,
-    TResult? Function(TemplateListFilterItemFloat value)? float,
-    TResult? Function(TemplateListFilterItemBool value)? bool,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TemplateListFilterItemString value)? string,
-    TResult Function(TemplateListFilterItemNumber value)? int,
-    TResult Function(TemplateListFilterItemFloat value)? float,
-    TResult Function(TemplateListFilterItemBool value)? bool,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this TemplateListFilterItem to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get name;
+  String get key;
+  Object get value;
+  Object get defaultValue;
+  bool get disabledUnchanged;
 
   /// Create a copy of TemplateListFilterItem
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $TemplateListFilterItemCopyWith<TemplateListFilterItem> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$TemplateListFilterItemCopyWithImpl<TemplateListFilterItem>(
+          this as TemplateListFilterItem, _$identity);
+
+  /// Serializes this TemplateListFilterItem to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TemplateListFilterItem &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.key, key) || other.key == key) &&
+            const DeepCollectionEquality().equals(other.value, value) &&
+            const DeepCollectionEquality()
+                .equals(other.defaultValue, defaultValue) &&
+            (identical(other.disabledUnchanged, disabledUnchanged) ||
+                other.disabledUnchanged == disabledUnchanged));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      key,
+      const DeepCollectionEquality().hash(value),
+      const DeepCollectionEquality().hash(defaultValue),
+      disabledUnchanged);
+
+  @override
+  String toString() {
+    return 'TemplateListFilterItem(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
+  }
 }
 
 /// @nodoc
-abstract class $TemplateListFilterItemCopyWith<$Res> {
+abstract mixin class $TemplateListFilterItemCopyWith<$Res> {
   factory $TemplateListFilterItemCopyWith(TemplateListFilterItem value,
-          $Res Function(TemplateListFilterItem) then) =
-      _$TemplateListFilterItemCopyWithImpl<$Res, TemplateListFilterItem>;
+          $Res Function(TemplateListFilterItem) _then) =
+      _$TemplateListFilterItemCopyWithImpl;
   @useResult
   $Res call({String name, String key, bool disabledUnchanged});
 }
 
 /// @nodoc
-class _$TemplateListFilterItemCopyWithImpl<$Res,
-        $Val extends TemplateListFilterItem>
+class _$TemplateListFilterItemCopyWithImpl<$Res>
     implements $TemplateListFilterItemCopyWith<$Res> {
-  _$TemplateListFilterItemCopyWithImpl(this._value, this._then);
+  _$TemplateListFilterItemCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TemplateListFilterItem _self;
+  final $Res Function(TemplateListFilterItem) _then;
 
   /// Create a copy of TemplateListFilterItem
   /// with the given fields replaced by the non-null parameter values.
@@ -542,80 +485,17 @@ class _$TemplateListFilterItemCopyWithImpl<$Res,
     Object? key = null,
     Object? disabledUnchanged = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       key: null == key
-          ? _value.key
+          ? _self.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
       disabledUnchanged: null == disabledUnchanged
-          ? _value.disabledUnchanged
-          : disabledUnchanged // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$TemplateListFilterItemStringImplCopyWith<$Res>
-    implements $TemplateListFilterItemCopyWith<$Res> {
-  factory _$$TemplateListFilterItemStringImplCopyWith(
-          _$TemplateListFilterItemStringImpl value,
-          $Res Function(_$TemplateListFilterItemStringImpl) then) =
-      __$$TemplateListFilterItemStringImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String name,
-      String key,
-      String value,
-      String defaultValue,
-      bool disabledUnchanged});
-}
-
-/// @nodoc
-class __$$TemplateListFilterItemStringImplCopyWithImpl<$Res>
-    extends _$TemplateListFilterItemCopyWithImpl<$Res,
-        _$TemplateListFilterItemStringImpl>
-    implements _$$TemplateListFilterItemStringImplCopyWith<$Res> {
-  __$$TemplateListFilterItemStringImplCopyWithImpl(
-      _$TemplateListFilterItemStringImpl _value,
-      $Res Function(_$TemplateListFilterItemStringImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TemplateListFilterItem
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? key = null,
-    Object? value = null,
-    Object? defaultValue = null,
-    Object? disabledUnchanged = null,
-  }) {
-    return _then(_$TemplateListFilterItemStringImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-      defaultValue: null == defaultValue
-          ? _value.defaultValue
-          : defaultValue // ignore: cast_nullable_to_non_nullable
-              as String,
-      disabledUnchanged: null == disabledUnchanged
-          ? _value.disabledUnchanged
+          ? _self.disabledUnchanged
           : disabledUnchanged // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
@@ -624,8 +504,8 @@ class __$$TemplateListFilterItemStringImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TemplateListFilterItemStringImpl extends TemplateListFilterItemString {
-  const _$TemplateListFilterItemStringImpl(
+class TemplateListFilterItemString extends TemplateListFilterItem {
+  const TemplateListFilterItemString(
       {this.name = '',
       this.key = '',
       this.value = '',
@@ -634,10 +514,8 @@ class _$TemplateListFilterItemStringImpl extends TemplateListFilterItemString {
       final String? $type})
       : $type = $type ?? 'string',
         super._();
-
-  factory _$TemplateListFilterItemStringImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$TemplateListFilterItemStringImplFromJson(json);
+  factory TemplateListFilterItemString.fromJson(Map<String, dynamic> json) =>
+      _$TemplateListFilterItemStringFromJson(json);
 
   @override
   @JsonKey()
@@ -658,16 +536,27 @@ class _$TemplateListFilterItemStringImpl extends TemplateListFilterItemString {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'TemplateListFilterItem.string(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TemplateListFilterItemStringCopyWith<TemplateListFilterItemString>
+      get copyWith => _$TemplateListFilterItemStringCopyWithImpl<
+          TemplateListFilterItemString>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TemplateListFilterItemStringToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TemplateListFilterItemStringImpl &&
+            other is TemplateListFilterItemString &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.value, value) || other.value == value) &&
@@ -682,185 +571,41 @@ class _$TemplateListFilterItemStringImpl extends TemplateListFilterItemString {
   int get hashCode => Object.hash(
       runtimeType, name, key, value, defaultValue, disabledUnchanged);
 
-  /// Create a copy of TemplateListFilterItem
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TemplateListFilterItemStringImplCopyWith<
-          _$TemplateListFilterItemStringImpl>
-      get copyWith => __$$TemplateListFilterItemStringImplCopyWithImpl<
-          _$TemplateListFilterItemStringImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String name, String key, String value,
-            String defaultValue, bool disabledUnchanged)
-        string,
-    required TResult Function(String name, String key, int value,
-            int defaultValue, bool disabledUnchanged)
-        int,
-    required TResult Function(String name, String key, double value,
-            double defaultValue, bool disabledUnchanged)
-        float,
-    required TResult Function(String name, String key, bool value,
-            bool defaultValue, bool disabledUnchanged)
-        bool,
-  }) {
-    return string(name, key, value, defaultValue, disabledUnchanged);
+  String toString() {
+    return 'TemplateListFilterItem.string(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, String key, String value,
-            String defaultValue, bool disabledUnchanged)?
-        string,
-    TResult? Function(String name, String key, int value, int defaultValue,
-            bool disabledUnchanged)?
-        int,
-    TResult? Function(String name, String key, double value,
-            double defaultValue, bool disabledUnchanged)?
-        float,
-    TResult? Function(String name, String key, bool value, bool defaultValue,
-            bool disabledUnchanged)?
-        bool,
-  }) {
-    return string?.call(name, key, value, defaultValue, disabledUnchanged);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String key, String value, String defaultValue,
-            bool disabledUnchanged)?
-        string,
-    TResult Function(String name, String key, int value, int defaultValue,
-            bool disabledUnchanged)?
-        int,
-    TResult Function(String name, String key, double value, double defaultValue,
-            bool disabledUnchanged)?
-        float,
-    TResult Function(String name, String key, bool value, bool defaultValue,
-            bool disabledUnchanged)?
-        bool,
-    required TResult orElse(),
-  }) {
-    if (string != null) {
-      return string(name, key, value, defaultValue, disabledUnchanged);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TemplateListFilterItemString value) string,
-    required TResult Function(TemplateListFilterItemNumber value) int,
-    required TResult Function(TemplateListFilterItemFloat value) float,
-    required TResult Function(TemplateListFilterItemBool value) bool,
-  }) {
-    return string(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TemplateListFilterItemString value)? string,
-    TResult? Function(TemplateListFilterItemNumber value)? int,
-    TResult? Function(TemplateListFilterItemFloat value)? float,
-    TResult? Function(TemplateListFilterItemBool value)? bool,
-  }) {
-    return string?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TemplateListFilterItemString value)? string,
-    TResult Function(TemplateListFilterItemNumber value)? int,
-    TResult Function(TemplateListFilterItemFloat value)? float,
-    TResult Function(TemplateListFilterItemBool value)? bool,
-    required TResult orElse(),
-  }) {
-    if (string != null) {
-      return string(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TemplateListFilterItemStringImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class TemplateListFilterItemString extends TemplateListFilterItem {
-  const factory TemplateListFilterItemString(
-      {final String name,
-      final String key,
-      final String value,
-      final String defaultValue,
-      final bool disabledUnchanged}) = _$TemplateListFilterItemStringImpl;
-  const TemplateListFilterItemString._() : super._();
-
-  factory TemplateListFilterItemString.fromJson(Map<String, dynamic> json) =
-      _$TemplateListFilterItemStringImpl.fromJson;
-
-  @override
-  String get name;
-  @override
-  String get key;
-  @override
-  String get value;
-  @override
-  String get defaultValue;
-  @override
-  bool get disabledUnchanged;
-
-  /// Create a copy of TemplateListFilterItem
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TemplateListFilterItemStringImplCopyWith<
-          _$TemplateListFilterItemStringImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$TemplateListFilterItemNumberImplCopyWith<$Res>
+abstract mixin class $TemplateListFilterItemStringCopyWith<$Res>
     implements $TemplateListFilterItemCopyWith<$Res> {
-  factory _$$TemplateListFilterItemNumberImplCopyWith(
-          _$TemplateListFilterItemNumberImpl value,
-          $Res Function(_$TemplateListFilterItemNumberImpl) then) =
-      __$$TemplateListFilterItemNumberImplCopyWithImpl<$Res>;
+  factory $TemplateListFilterItemStringCopyWith(
+          TemplateListFilterItemString value,
+          $Res Function(TemplateListFilterItemString) _then) =
+      _$TemplateListFilterItemStringCopyWithImpl;
   @override
   @useResult
   $Res call(
       {String name,
       String key,
-      int value,
-      int defaultValue,
+      String value,
+      String defaultValue,
       bool disabledUnchanged});
 }
 
 /// @nodoc
-class __$$TemplateListFilterItemNumberImplCopyWithImpl<$Res>
-    extends _$TemplateListFilterItemCopyWithImpl<$Res,
-        _$TemplateListFilterItemNumberImpl>
-    implements _$$TemplateListFilterItemNumberImplCopyWith<$Res> {
-  __$$TemplateListFilterItemNumberImplCopyWithImpl(
-      _$TemplateListFilterItemNumberImpl _value,
-      $Res Function(_$TemplateListFilterItemNumberImpl) _then)
-      : super(_value, _then);
+class _$TemplateListFilterItemStringCopyWithImpl<$Res>
+    implements $TemplateListFilterItemStringCopyWith<$Res> {
+  _$TemplateListFilterItemStringCopyWithImpl(this._self, this._then);
+
+  final TemplateListFilterItemString _self;
+  final $Res Function(TemplateListFilterItemString) _then;
 
   /// Create a copy of TemplateListFilterItem
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? name = null,
     Object? key = null,
@@ -868,25 +613,25 @@ class __$$TemplateListFilterItemNumberImplCopyWithImpl<$Res>
     Object? defaultValue = null,
     Object? disabledUnchanged = null,
   }) {
-    return _then(_$TemplateListFilterItemNumberImpl(
+    return _then(TemplateListFilterItemString(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       key: null == key
-          ? _value.key
+          ? _self.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
-          ? _value.value
+          ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       defaultValue: null == defaultValue
-          ? _value.defaultValue
+          ? _self.defaultValue
           : defaultValue // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       disabledUnchanged: null == disabledUnchanged
-          ? _value.disabledUnchanged
+          ? _self.disabledUnchanged
           : disabledUnchanged // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
@@ -895,8 +640,8 @@ class __$$TemplateListFilterItemNumberImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TemplateListFilterItemNumberImpl extends TemplateListFilterItemNumber {
-  const _$TemplateListFilterItemNumberImpl(
+class TemplateListFilterItemNumber extends TemplateListFilterItem {
+  const TemplateListFilterItemNumber(
       {this.name = '',
       this.key = '',
       this.value = 0,
@@ -905,10 +650,8 @@ class _$TemplateListFilterItemNumberImpl extends TemplateListFilterItemNumber {
       final String? $type})
       : $type = $type ?? 'int',
         super._();
-
-  factory _$TemplateListFilterItemNumberImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$TemplateListFilterItemNumberImplFromJson(json);
+  factory TemplateListFilterItemNumber.fromJson(Map<String, dynamic> json) =>
+      _$TemplateListFilterItemNumberFromJson(json);
 
   @override
   @JsonKey()
@@ -929,16 +672,27 @@ class _$TemplateListFilterItemNumberImpl extends TemplateListFilterItemNumber {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'TemplateListFilterItem.int(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TemplateListFilterItemNumberCopyWith<TemplateListFilterItemNumber>
+      get copyWith => _$TemplateListFilterItemNumberCopyWithImpl<
+          TemplateListFilterItemNumber>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TemplateListFilterItemNumberToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TemplateListFilterItemNumberImpl &&
+            other is TemplateListFilterItemNumber &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.value, value) || other.value == value) &&
@@ -953,185 +707,41 @@ class _$TemplateListFilterItemNumberImpl extends TemplateListFilterItemNumber {
   int get hashCode => Object.hash(
       runtimeType, name, key, value, defaultValue, disabledUnchanged);
 
-  /// Create a copy of TemplateListFilterItem
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TemplateListFilterItemNumberImplCopyWith<
-          _$TemplateListFilterItemNumberImpl>
-      get copyWith => __$$TemplateListFilterItemNumberImplCopyWithImpl<
-          _$TemplateListFilterItemNumberImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String name, String key, String value,
-            String defaultValue, bool disabledUnchanged)
-        string,
-    required TResult Function(String name, String key, int value,
-            int defaultValue, bool disabledUnchanged)
-        int,
-    required TResult Function(String name, String key, double value,
-            double defaultValue, bool disabledUnchanged)
-        float,
-    required TResult Function(String name, String key, bool value,
-            bool defaultValue, bool disabledUnchanged)
-        bool,
-  }) {
-    return int(name, key, value, defaultValue, disabledUnchanged);
+  String toString() {
+    return 'TemplateListFilterItem.int(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, String key, String value,
-            String defaultValue, bool disabledUnchanged)?
-        string,
-    TResult? Function(String name, String key, int value, int defaultValue,
-            bool disabledUnchanged)?
-        int,
-    TResult? Function(String name, String key, double value,
-            double defaultValue, bool disabledUnchanged)?
-        float,
-    TResult? Function(String name, String key, bool value, bool defaultValue,
-            bool disabledUnchanged)?
-        bool,
-  }) {
-    return int?.call(name, key, value, defaultValue, disabledUnchanged);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String key, String value, String defaultValue,
-            bool disabledUnchanged)?
-        string,
-    TResult Function(String name, String key, int value, int defaultValue,
-            bool disabledUnchanged)?
-        int,
-    TResult Function(String name, String key, double value, double defaultValue,
-            bool disabledUnchanged)?
-        float,
-    TResult Function(String name, String key, bool value, bool defaultValue,
-            bool disabledUnchanged)?
-        bool,
-    required TResult orElse(),
-  }) {
-    if (int != null) {
-      return int(name, key, value, defaultValue, disabledUnchanged);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TemplateListFilterItemString value) string,
-    required TResult Function(TemplateListFilterItemNumber value) int,
-    required TResult Function(TemplateListFilterItemFloat value) float,
-    required TResult Function(TemplateListFilterItemBool value) bool,
-  }) {
-    return int(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TemplateListFilterItemString value)? string,
-    TResult? Function(TemplateListFilterItemNumber value)? int,
-    TResult? Function(TemplateListFilterItemFloat value)? float,
-    TResult? Function(TemplateListFilterItemBool value)? bool,
-  }) {
-    return int?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TemplateListFilterItemString value)? string,
-    TResult Function(TemplateListFilterItemNumber value)? int,
-    TResult Function(TemplateListFilterItemFloat value)? float,
-    TResult Function(TemplateListFilterItemBool value)? bool,
-    required TResult orElse(),
-  }) {
-    if (int != null) {
-      return int(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TemplateListFilterItemNumberImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class TemplateListFilterItemNumber extends TemplateListFilterItem {
-  const factory TemplateListFilterItemNumber(
-      {final String name,
-      final String key,
-      final int value,
-      final int defaultValue,
-      final bool disabledUnchanged}) = _$TemplateListFilterItemNumberImpl;
-  const TemplateListFilterItemNumber._() : super._();
-
-  factory TemplateListFilterItemNumber.fromJson(Map<String, dynamic> json) =
-      _$TemplateListFilterItemNumberImpl.fromJson;
-
-  @override
-  String get name;
-  @override
-  String get key;
-  @override
-  int get value;
-  @override
-  int get defaultValue;
-  @override
-  bool get disabledUnchanged;
-
-  /// Create a copy of TemplateListFilterItem
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TemplateListFilterItemNumberImplCopyWith<
-          _$TemplateListFilterItemNumberImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$TemplateListFilterItemFloatImplCopyWith<$Res>
+abstract mixin class $TemplateListFilterItemNumberCopyWith<$Res>
     implements $TemplateListFilterItemCopyWith<$Res> {
-  factory _$$TemplateListFilterItemFloatImplCopyWith(
-          _$TemplateListFilterItemFloatImpl value,
-          $Res Function(_$TemplateListFilterItemFloatImpl) then) =
-      __$$TemplateListFilterItemFloatImplCopyWithImpl<$Res>;
+  factory $TemplateListFilterItemNumberCopyWith(
+          TemplateListFilterItemNumber value,
+          $Res Function(TemplateListFilterItemNumber) _then) =
+      _$TemplateListFilterItemNumberCopyWithImpl;
   @override
   @useResult
   $Res call(
       {String name,
       String key,
-      double value,
-      double defaultValue,
+      int value,
+      int defaultValue,
       bool disabledUnchanged});
 }
 
 /// @nodoc
-class __$$TemplateListFilterItemFloatImplCopyWithImpl<$Res>
-    extends _$TemplateListFilterItemCopyWithImpl<$Res,
-        _$TemplateListFilterItemFloatImpl>
-    implements _$$TemplateListFilterItemFloatImplCopyWith<$Res> {
-  __$$TemplateListFilterItemFloatImplCopyWithImpl(
-      _$TemplateListFilterItemFloatImpl _value,
-      $Res Function(_$TemplateListFilterItemFloatImpl) _then)
-      : super(_value, _then);
+class _$TemplateListFilterItemNumberCopyWithImpl<$Res>
+    implements $TemplateListFilterItemNumberCopyWith<$Res> {
+  _$TemplateListFilterItemNumberCopyWithImpl(this._self, this._then);
+
+  final TemplateListFilterItemNumber _self;
+  final $Res Function(TemplateListFilterItemNumber) _then;
 
   /// Create a copy of TemplateListFilterItem
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? name = null,
     Object? key = null,
@@ -1139,25 +749,25 @@ class __$$TemplateListFilterItemFloatImplCopyWithImpl<$Res>
     Object? defaultValue = null,
     Object? disabledUnchanged = null,
   }) {
-    return _then(_$TemplateListFilterItemFloatImpl(
+    return _then(TemplateListFilterItemNumber(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       key: null == key
-          ? _value.key
+          ? _self.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
-          ? _value.value
+          ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       defaultValue: null == defaultValue
-          ? _value.defaultValue
+          ? _self.defaultValue
           : defaultValue // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       disabledUnchanged: null == disabledUnchanged
-          ? _value.disabledUnchanged
+          ? _self.disabledUnchanged
           : disabledUnchanged // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
@@ -1166,8 +776,8 @@ class __$$TemplateListFilterItemFloatImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TemplateListFilterItemFloatImpl extends TemplateListFilterItemFloat {
-  const _$TemplateListFilterItemFloatImpl(
+class TemplateListFilterItemFloat extends TemplateListFilterItem {
+  const TemplateListFilterItemFloat(
       {this.name = '',
       this.key = '',
       this.value = 0.0,
@@ -1176,10 +786,8 @@ class _$TemplateListFilterItemFloatImpl extends TemplateListFilterItemFloat {
       final String? $type})
       : $type = $type ?? 'float',
         super._();
-
-  factory _$TemplateListFilterItemFloatImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$TemplateListFilterItemFloatImplFromJson(json);
+  factory TemplateListFilterItemFloat.fromJson(Map<String, dynamic> json) =>
+      _$TemplateListFilterItemFloatFromJson(json);
 
   @override
   @JsonKey()
@@ -1200,16 +808,27 @@ class _$TemplateListFilterItemFloatImpl extends TemplateListFilterItemFloat {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'TemplateListFilterItem.float(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TemplateListFilterItemFloatCopyWith<TemplateListFilterItemFloat>
+      get copyWith => _$TemplateListFilterItemFloatCopyWithImpl<
+          TemplateListFilterItemFloat>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TemplateListFilterItemFloatToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TemplateListFilterItemFloatImpl &&
+            other is TemplateListFilterItemFloat &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.value, value) || other.value == value) &&
@@ -1224,183 +843,41 @@ class _$TemplateListFilterItemFloatImpl extends TemplateListFilterItemFloat {
   int get hashCode => Object.hash(
       runtimeType, name, key, value, defaultValue, disabledUnchanged);
 
-  /// Create a copy of TemplateListFilterItem
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TemplateListFilterItemFloatImplCopyWith<_$TemplateListFilterItemFloatImpl>
-      get copyWith => __$$TemplateListFilterItemFloatImplCopyWithImpl<
-          _$TemplateListFilterItemFloatImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String name, String key, String value,
-            String defaultValue, bool disabledUnchanged)
-        string,
-    required TResult Function(String name, String key, int value,
-            int defaultValue, bool disabledUnchanged)
-        int,
-    required TResult Function(String name, String key, double value,
-            double defaultValue, bool disabledUnchanged)
-        float,
-    required TResult Function(String name, String key, bool value,
-            bool defaultValue, bool disabledUnchanged)
-        bool,
-  }) {
-    return float(name, key, value, defaultValue, disabledUnchanged);
+  String toString() {
+    return 'TemplateListFilterItem.float(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, String key, String value,
-            String defaultValue, bool disabledUnchanged)?
-        string,
-    TResult? Function(String name, String key, int value, int defaultValue,
-            bool disabledUnchanged)?
-        int,
-    TResult? Function(String name, String key, double value,
-            double defaultValue, bool disabledUnchanged)?
-        float,
-    TResult? Function(String name, String key, bool value, bool defaultValue,
-            bool disabledUnchanged)?
-        bool,
-  }) {
-    return float?.call(name, key, value, defaultValue, disabledUnchanged);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String key, String value, String defaultValue,
-            bool disabledUnchanged)?
-        string,
-    TResult Function(String name, String key, int value, int defaultValue,
-            bool disabledUnchanged)?
-        int,
-    TResult Function(String name, String key, double value, double defaultValue,
-            bool disabledUnchanged)?
-        float,
-    TResult Function(String name, String key, bool value, bool defaultValue,
-            bool disabledUnchanged)?
-        bool,
-    required TResult orElse(),
-  }) {
-    if (float != null) {
-      return float(name, key, value, defaultValue, disabledUnchanged);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TemplateListFilterItemString value) string,
-    required TResult Function(TemplateListFilterItemNumber value) int,
-    required TResult Function(TemplateListFilterItemFloat value) float,
-    required TResult Function(TemplateListFilterItemBool value) bool,
-  }) {
-    return float(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TemplateListFilterItemString value)? string,
-    TResult? Function(TemplateListFilterItemNumber value)? int,
-    TResult? Function(TemplateListFilterItemFloat value)? float,
-    TResult? Function(TemplateListFilterItemBool value)? bool,
-  }) {
-    return float?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TemplateListFilterItemString value)? string,
-    TResult Function(TemplateListFilterItemNumber value)? int,
-    TResult Function(TemplateListFilterItemFloat value)? float,
-    TResult Function(TemplateListFilterItemBool value)? bool,
-    required TResult orElse(),
-  }) {
-    if (float != null) {
-      return float(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TemplateListFilterItemFloatImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class TemplateListFilterItemFloat extends TemplateListFilterItem {
-  const factory TemplateListFilterItemFloat(
-      {final String name,
-      final String key,
-      final double value,
-      final double defaultValue,
-      final bool disabledUnchanged}) = _$TemplateListFilterItemFloatImpl;
-  const TemplateListFilterItemFloat._() : super._();
-
-  factory TemplateListFilterItemFloat.fromJson(Map<String, dynamic> json) =
-      _$TemplateListFilterItemFloatImpl.fromJson;
-
-  @override
-  String get name;
-  @override
-  String get key;
-  @override
-  double get value;
-  @override
-  double get defaultValue;
-  @override
-  bool get disabledUnchanged;
-
-  /// Create a copy of TemplateListFilterItem
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TemplateListFilterItemFloatImplCopyWith<_$TemplateListFilterItemFloatImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$TemplateListFilterItemBoolImplCopyWith<$Res>
+abstract mixin class $TemplateListFilterItemFloatCopyWith<$Res>
     implements $TemplateListFilterItemCopyWith<$Res> {
-  factory _$$TemplateListFilterItemBoolImplCopyWith(
-          _$TemplateListFilterItemBoolImpl value,
-          $Res Function(_$TemplateListFilterItemBoolImpl) then) =
-      __$$TemplateListFilterItemBoolImplCopyWithImpl<$Res>;
+  factory $TemplateListFilterItemFloatCopyWith(
+          TemplateListFilterItemFloat value,
+          $Res Function(TemplateListFilterItemFloat) _then) =
+      _$TemplateListFilterItemFloatCopyWithImpl;
   @override
   @useResult
   $Res call(
       {String name,
       String key,
-      bool value,
-      bool defaultValue,
+      double value,
+      double defaultValue,
       bool disabledUnchanged});
 }
 
 /// @nodoc
-class __$$TemplateListFilterItemBoolImplCopyWithImpl<$Res>
-    extends _$TemplateListFilterItemCopyWithImpl<$Res,
-        _$TemplateListFilterItemBoolImpl>
-    implements _$$TemplateListFilterItemBoolImplCopyWith<$Res> {
-  __$$TemplateListFilterItemBoolImplCopyWithImpl(
-      _$TemplateListFilterItemBoolImpl _value,
-      $Res Function(_$TemplateListFilterItemBoolImpl) _then)
-      : super(_value, _then);
+class _$TemplateListFilterItemFloatCopyWithImpl<$Res>
+    implements $TemplateListFilterItemFloatCopyWith<$Res> {
+  _$TemplateListFilterItemFloatCopyWithImpl(this._self, this._then);
+
+  final TemplateListFilterItemFloat _self;
+  final $Res Function(TemplateListFilterItemFloat) _then;
 
   /// Create a copy of TemplateListFilterItem
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? name = null,
     Object? key = null,
@@ -1408,25 +885,25 @@ class __$$TemplateListFilterItemBoolImplCopyWithImpl<$Res>
     Object? defaultValue = null,
     Object? disabledUnchanged = null,
   }) {
-    return _then(_$TemplateListFilterItemBoolImpl(
+    return _then(TemplateListFilterItemFloat(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       key: null == key
-          ? _value.key
+          ? _self.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
-          ? _value.value
+          ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as double,
       defaultValue: null == defaultValue
-          ? _value.defaultValue
+          ? _self.defaultValue
           : defaultValue // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as double,
       disabledUnchanged: null == disabledUnchanged
-          ? _value.disabledUnchanged
+          ? _self.disabledUnchanged
           : disabledUnchanged // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
@@ -1435,8 +912,8 @@ class __$$TemplateListFilterItemBoolImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TemplateListFilterItemBoolImpl extends TemplateListFilterItemBool {
-  const _$TemplateListFilterItemBoolImpl(
+class TemplateListFilterItemBool extends TemplateListFilterItem {
+  const TemplateListFilterItemBool(
       {this.name = '',
       this.key = '',
       this.value = false,
@@ -1445,10 +922,8 @@ class _$TemplateListFilterItemBoolImpl extends TemplateListFilterItemBool {
       final String? $type})
       : $type = $type ?? 'bool',
         super._();
-
-  factory _$TemplateListFilterItemBoolImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$TemplateListFilterItemBoolImplFromJson(json);
+  factory TemplateListFilterItemBool.fromJson(Map<String, dynamic> json) =>
+      _$TemplateListFilterItemBoolFromJson(json);
 
   @override
   @JsonKey()
@@ -1469,16 +944,28 @@ class _$TemplateListFilterItemBoolImpl extends TemplateListFilterItemBool {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of TemplateListFilterItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'TemplateListFilterItem.bool(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TemplateListFilterItemBoolCopyWith<TemplateListFilterItemBool>
+      get copyWith =>
+          _$TemplateListFilterItemBoolCopyWithImpl<TemplateListFilterItemBool>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TemplateListFilterItemBoolToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TemplateListFilterItemBoolImpl &&
+            other is TemplateListFilterItemBool &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.value, value) || other.value == value) &&
@@ -1493,148 +980,70 @@ class _$TemplateListFilterItemBoolImpl extends TemplateListFilterItemBool {
   int get hashCode => Object.hash(
       runtimeType, name, key, value, defaultValue, disabledUnchanged);
 
+  @override
+  String toString() {
+    return 'TemplateListFilterItem.bool(name: $name, key: $key, value: $value, defaultValue: $defaultValue, disabledUnchanged: $disabledUnchanged)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $TemplateListFilterItemBoolCopyWith<$Res>
+    implements $TemplateListFilterItemCopyWith<$Res> {
+  factory $TemplateListFilterItemBoolCopyWith(TemplateListFilterItemBool value,
+          $Res Function(TemplateListFilterItemBool) _then) =
+      _$TemplateListFilterItemBoolCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String name,
+      String key,
+      bool value,
+      bool defaultValue,
+      bool disabledUnchanged});
+}
+
+/// @nodoc
+class _$TemplateListFilterItemBoolCopyWithImpl<$Res>
+    implements $TemplateListFilterItemBoolCopyWith<$Res> {
+  _$TemplateListFilterItemBoolCopyWithImpl(this._self, this._then);
+
+  final TemplateListFilterItemBool _self;
+  final $Res Function(TemplateListFilterItemBool) _then;
+
   /// Create a copy of TemplateListFilterItem
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$TemplateListFilterItemBoolImplCopyWith<_$TemplateListFilterItemBoolImpl>
-      get copyWith => __$$TemplateListFilterItemBoolImplCopyWithImpl<
-          _$TemplateListFilterItemBoolImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String name, String key, String value,
-            String defaultValue, bool disabledUnchanged)
-        string,
-    required TResult Function(String name, String key, int value,
-            int defaultValue, bool disabledUnchanged)
-        int,
-    required TResult Function(String name, String key, double value,
-            double defaultValue, bool disabledUnchanged)
-        float,
-    required TResult Function(String name, String key, bool value,
-            bool defaultValue, bool disabledUnchanged)
-        bool,
+  $Res call({
+    Object? name = null,
+    Object? key = null,
+    Object? value = null,
+    Object? defaultValue = null,
+    Object? disabledUnchanged = null,
   }) {
-    return bool(name, key, value, defaultValue, disabledUnchanged);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, String key, String value,
-            String defaultValue, bool disabledUnchanged)?
-        string,
-    TResult? Function(String name, String key, int value, int defaultValue,
-            bool disabledUnchanged)?
-        int,
-    TResult? Function(String name, String key, double value,
-            double defaultValue, bool disabledUnchanged)?
-        float,
-    TResult? Function(String name, String key, bool value, bool defaultValue,
-            bool disabledUnchanged)?
-        bool,
-  }) {
-    return bool?.call(name, key, value, defaultValue, disabledUnchanged);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String key, String value, String defaultValue,
-            bool disabledUnchanged)?
-        string,
-    TResult Function(String name, String key, int value, int defaultValue,
-            bool disabledUnchanged)?
-        int,
-    TResult Function(String name, String key, double value, double defaultValue,
-            bool disabledUnchanged)?
-        float,
-    TResult Function(String name, String key, bool value, bool defaultValue,
-            bool disabledUnchanged)?
-        bool,
-    required TResult orElse(),
-  }) {
-    if (bool != null) {
-      return bool(name, key, value, defaultValue, disabledUnchanged);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TemplateListFilterItemString value) string,
-    required TResult Function(TemplateListFilterItemNumber value) int,
-    required TResult Function(TemplateListFilterItemFloat value) float,
-    required TResult Function(TemplateListFilterItemBool value) bool,
-  }) {
-    return bool(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TemplateListFilterItemString value)? string,
-    TResult? Function(TemplateListFilterItemNumber value)? int,
-    TResult? Function(TemplateListFilterItemFloat value)? float,
-    TResult? Function(TemplateListFilterItemBool value)? bool,
-  }) {
-    return bool?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TemplateListFilterItemString value)? string,
-    TResult Function(TemplateListFilterItemNumber value)? int,
-    TResult Function(TemplateListFilterItemFloat value)? float,
-    TResult Function(TemplateListFilterItemBool value)? bool,
-    required TResult orElse(),
-  }) {
-    if (bool != null) {
-      return bool(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TemplateListFilterItemBoolImplToJson(
-      this,
-    );
+    return _then(TemplateListFilterItemBool(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      key: null == key
+          ? _self.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as bool,
+      defaultValue: null == defaultValue
+          ? _self.defaultValue
+          : defaultValue // ignore: cast_nullable_to_non_nullable
+              as bool,
+      disabledUnchanged: null == disabledUnchanged
+          ? _self.disabledUnchanged
+          : disabledUnchanged // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
   }
 }
 
-abstract class TemplateListFilterItemBool extends TemplateListFilterItem {
-  const factory TemplateListFilterItemBool(
-      {final String name,
-      final String key,
-      final bool value,
-      final bool defaultValue,
-      final bool disabledUnchanged}) = _$TemplateListFilterItemBoolImpl;
-  const TemplateListFilterItemBool._() : super._();
-
-  factory TemplateListFilterItemBool.fromJson(Map<String, dynamic> json) =
-      _$TemplateListFilterItemBoolImpl.fromJson;
-
-  @override
-  String get name;
-  @override
-  String get key;
-  @override
-  bool get value;
-  @override
-  bool get defaultValue;
-  @override
-  bool get disabledUnchanged;
-
-  /// Create a copy of TemplateListFilterItem
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TemplateListFilterItemBoolImplCopyWith<_$TemplateListFilterItemBoolImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

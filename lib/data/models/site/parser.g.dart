@@ -6,9 +6,9 @@ part of 'parser.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ParserModelImageReaderImpl _$$ParserModelImageReaderImplFromJson(
+ParserModelImageReader _$ParserModelImageReaderFromJson(
         Map<String, dynamic> json) =>
-    _$ParserModelImageReaderImpl(
+    ParserModelImageReader(
       name: json['name'] as String? ?? '',
       uuid: json['uuid'] as String? ?? '',
       extra: (json['extra'] as List<dynamic>?)
@@ -73,8 +73,8 @@ _$ParserModelImageReaderImpl _$$ParserModelImageReaderImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ParserModelImageReaderImplToJson(
-        _$ParserModelImageReaderImpl instance) =>
+Map<String, dynamic> _$ParserModelImageReaderToJson(
+        ParserModelImageReader instance) =>
     <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,
@@ -98,9 +98,8 @@ Map<String, dynamic> _$$ParserModelImageReaderImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$ParserModelDetailImpl _$$ParserModelDetailImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ParserModelDetailImpl(
+ParserModelDetail _$ParserModelDetailFromJson(Map<String, dynamic> json) =>
+    ParserModelDetail(
       name: json['name'] as String? ?? '',
       uuid: json['uuid'] as String? ?? '',
       extra: (json['extra'] as List<dynamic>?)
@@ -203,8 +202,7 @@ _$ParserModelDetailImpl _$$ParserModelDetailImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ParserModelDetailImplToJson(
-        _$ParserModelDetailImpl instance) =>
+Map<String, dynamic> _$ParserModelDetailToJson(ParserModelDetail instance) =>
     <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,
@@ -238,9 +236,8 @@ Map<String, dynamic> _$$ParserModelDetailImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$ParserModelListImpl _$$ParserModelListImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ParserModelListImpl(
+ParserModelList _$ParserModelListFromJson(Map<String, dynamic> json) =>
+    ParserModelList(
       name: json['name'] as String? ?? '',
       uuid: json['uuid'] as String? ?? '',
       extra: (json['extra'] as List<dynamic>?)
@@ -315,8 +312,7 @@ _$ParserModelListImpl _$$ParserModelListImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ParserModelListImplToJson(
-        _$ParserModelListImpl instance) =>
+Map<String, dynamic> _$ParserModelListToJson(ParserModelList instance) =>
     <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,
@@ -343,9 +339,9 @@ Map<String, dynamic> _$$ParserModelListImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$ParserModelAutoCompleteImpl _$$ParserModelAutoCompleteImplFromJson(
+ParserModelAutoComplete _$ParserModelAutoCompleteFromJson(
         Map<String, dynamic> json) =>
-    _$ParserModelAutoCompleteImpl(
+    ParserModelAutoComplete(
       name: json['name'] as String? ?? '',
       uuid: json['uuid'] as String? ?? '',
       extra: (json['extra'] as List<dynamic>?)
@@ -379,8 +375,8 @@ _$ParserModelAutoCompleteImpl _$$ParserModelAutoCompleteImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ParserModelAutoCompleteImplToJson(
-        _$ParserModelAutoCompleteImpl instance) =>
+Map<String, dynamic> _$ParserModelAutoCompleteToJson(
+        ParserModelAutoComplete instance) =>
     <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,

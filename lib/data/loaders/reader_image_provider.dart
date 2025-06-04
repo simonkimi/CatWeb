@@ -5,6 +5,7 @@ import 'package:catweb/data/controller/global.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/app.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 

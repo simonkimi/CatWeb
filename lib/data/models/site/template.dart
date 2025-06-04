@@ -9,7 +9,7 @@ part 'template.freezed.dart';
 part 'template.g.dart';
 
 @freezed
-class PageTemplate with _$PageTemplate {
+sealed class PageTemplate with _$PageTemplate {
   const PageTemplate._();
 
   const factory PageTemplate.autoComplete({

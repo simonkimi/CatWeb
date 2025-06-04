@@ -7,7 +7,7 @@ part 'result.freezed.dart';
 part 'result.g.dart';
 
 @freezed
-class DetailPreviewItem with _$DetailPreviewItem {
+sealed class DetailPreviewItem with _$DetailPreviewItem {
   const factory DetailPreviewItem({
     ImageResult? previewImage,
     String? target,
@@ -18,7 +18,7 @@ class DetailPreviewItem with _$DetailPreviewItem {
 }
 
 @freezed
-class DetailParserResult with _$DetailParserResult {
+sealed class DetailParserResult with _$DetailParserResult {
   const factory DetailParserResult({
     String? title,
     String? subtitle,
@@ -45,7 +45,7 @@ class DetailParserResult with _$DetailParserResult {
 }
 
 @freezed
-class AutoCompleteResultItem with _$AutoCompleteResultItem {
+sealed class AutoCompleteResultItem with _$AutoCompleteResultItem {
   const factory AutoCompleteResultItem({
     String? title,
     String? subtitle,
@@ -57,7 +57,7 @@ class AutoCompleteResultItem with _$AutoCompleteResultItem {
 }
 
 @freezed
-class AutoCompleteResult with _$AutoCompleteResult {
+sealed class AutoCompleteResult with _$AutoCompleteResult {
   const factory AutoCompleteResult({
     List<AutoCompleteResultItem>? items,
     bool? isSuccess,
@@ -71,7 +71,7 @@ class AutoCompleteResult with _$AutoCompleteResult {
 }
 
 @freezed
-class ImageReaderResult with _$ImageReaderResult {
+sealed class ImageReaderResult with _$ImageReaderResult {
   const factory ImageReaderResult({
     ImageResult? image,
     ImageResult? largerImage,
@@ -94,7 +94,7 @@ class ImageReaderResult with _$ImageReaderResult {
 }
 
 @freezed
-class ListParserResultItem with _$ListParserResultItem {
+sealed class ListParserResultItem with _$ListParserResultItem {
   const factory ListParserResultItem({
     String? title,
     String? subtitle,
@@ -114,7 +114,7 @@ class ListParserResultItem with _$ListParserResultItem {
 }
 
 @freezed
-class ListParserResult with _$ListParserResult {
+sealed class ListParserResult with _$ListParserResult {
   const factory ListParserResult({
     List<ListParserResultItem>? items,
     String? nextPage,

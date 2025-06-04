@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,11 +10,8 @@ part of 'selector.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 SelectorQuery _$SelectorQueryFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'self':
@@ -33,123 +31,13 @@ SelectorQuery _$SelectorQueryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SelectorQuery {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() self,
-    required TResult Function(String css) css,
-    required TResult Function(String xpath) xpath,
-    required TResult Function(String jsonPath) jsonPath,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? self,
-    TResult? Function(String css)? css,
-    TResult? Function(String xpath)? xpath,
-    TResult? Function(String jsonPath)? jsonPath,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? self,
-    TResult Function(String css)? css,
-    TResult Function(String xpath)? xpath,
-    TResult Function(String jsonPath)? jsonPath,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectorQuerySelf value) self,
-    required TResult Function(SelectorQueryCss value) css,
-    required TResult Function(SelectorQueryXpath value) xpath,
-    required TResult Function(SelectorQueryJsonPath value) jsonPath,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectorQuerySelf value)? self,
-    TResult? Function(SelectorQueryCss value)? css,
-    TResult? Function(SelectorQueryXpath value)? xpath,
-    TResult? Function(SelectorQueryJsonPath value)? jsonPath,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectorQuerySelf value)? self,
-    TResult Function(SelectorQueryCss value)? css,
-    TResult Function(SelectorQueryXpath value)? xpath,
-    TResult Function(SelectorQueryJsonPath value)? jsonPath,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
   /// Serializes this SelectorQuery to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SelectorQueryCopyWith<$Res> {
-  factory $SelectorQueryCopyWith(
-          SelectorQuery value, $Res Function(SelectorQuery) then) =
-      _$SelectorQueryCopyWithImpl<$Res, SelectorQuery>;
-}
-
-/// @nodoc
-class _$SelectorQueryCopyWithImpl<$Res, $Val extends SelectorQuery>
-    implements $SelectorQueryCopyWith<$Res> {
-  _$SelectorQueryCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SelectorQuery
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$SelectorQuerySelfImplCopyWith<$Res> {
-  factory _$$SelectorQuerySelfImplCopyWith(_$SelectorQuerySelfImpl value,
-          $Res Function(_$SelectorQuerySelfImpl) then) =
-      __$$SelectorQuerySelfImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SelectorQuerySelfImplCopyWithImpl<$Res>
-    extends _$SelectorQueryCopyWithImpl<$Res, _$SelectorQuerySelfImpl>
-    implements _$$SelectorQuerySelfImplCopyWith<$Res> {
-  __$$SelectorQuerySelfImplCopyWithImpl(_$SelectorQuerySelfImpl _value,
-      $Res Function(_$SelectorQuerySelfImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SelectorQuery
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$SelectorQuerySelfImpl extends SelectorQuerySelf {
-  const _$SelectorQuerySelfImpl({final String? $type})
-      : $type = $type ?? 'self',
-        super._();
-
-  factory _$SelectorQuerySelfImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SelectorQuerySelfImplFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
-  @override
-  String toString() {
-    return 'SelectorQuery.self()';
-  }
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SelectorQuerySelfImpl);
+        (other.runtimeType == runtimeType && other is SelectorQuery);
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -157,122 +45,125 @@ class _$SelectorQuerySelfImpl extends SelectorQuerySelf {
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() self,
-    required TResult Function(String css) css,
-    required TResult Function(String xpath) xpath,
-    required TResult Function(String jsonPath) jsonPath,
-  }) {
-    return self();
+  String toString() {
+    return 'SelectorQuery()';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? self,
-    TResult? Function(String css)? css,
-    TResult? Function(String xpath)? xpath,
-    TResult? Function(String jsonPath)? jsonPath,
-  }) {
-    return self?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? self,
-    TResult Function(String css)? css,
-    TResult Function(String xpath)? xpath,
-    TResult Function(String jsonPath)? jsonPath,
-    required TResult orElse(),
-  }) {
-    if (self != null) {
-      return self();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectorQuerySelf value) self,
-    required TResult Function(SelectorQueryCss value) css,
-    required TResult Function(SelectorQueryXpath value) xpath,
-    required TResult Function(SelectorQueryJsonPath value) jsonPath,
-  }) {
-    return self(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectorQuerySelf value)? self,
-    TResult? Function(SelectorQueryCss value)? css,
-    TResult? Function(SelectorQueryXpath value)? xpath,
-    TResult? Function(SelectorQueryJsonPath value)? jsonPath,
-  }) {
-    return self?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectorQuerySelf value)? self,
-    TResult Function(SelectorQueryCss value)? css,
-    TResult Function(SelectorQueryXpath value)? xpath,
-    TResult Function(SelectorQueryJsonPath value)? jsonPath,
-    required TResult orElse(),
-  }) {
-    if (self != null) {
-      return self(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SelectorQuerySelfImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class SelectorQuerySelf extends SelectorQuery {
-  const factory SelectorQuerySelf() = _$SelectorQuerySelfImpl;
-  const SelectorQuerySelf._() : super._();
-
-  factory SelectorQuerySelf.fromJson(Map<String, dynamic> json) =
-      _$SelectorQuerySelfImpl.fromJson;
 }
 
 /// @nodoc
-abstract class _$$SelectorQueryCssImplCopyWith<$Res> {
-  factory _$$SelectorQueryCssImplCopyWith(_$SelectorQueryCssImpl value,
-          $Res Function(_$SelectorQueryCssImpl) then) =
-      __$$SelectorQueryCssImplCopyWithImpl<$Res>;
+class $SelectorQueryCopyWith<$Res> {
+  $SelectorQueryCopyWith(SelectorQuery _, $Res Function(SelectorQuery) __);
+}
+
+/// @nodoc
+@JsonSerializable()
+class SelectorQuerySelf extends SelectorQuery {
+  const SelectorQuerySelf({final String? $type})
+      : $type = $type ?? 'self',
+        super._();
+  factory SelectorQuerySelf.fromJson(Map<String, dynamic> json) =>
+      _$SelectorQuerySelfFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SelectorQuerySelfToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SelectorQuerySelf);
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'SelectorQuery.self()';
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class SelectorQueryCss extends SelectorQuery {
+  const SelectorQueryCss({this.css = '', final String? $type})
+      : $type = $type ?? 'css',
+        super._();
+  factory SelectorQueryCss.fromJson(Map<String, dynamic> json) =>
+      _$SelectorQueryCssFromJson(json);
+
+  @JsonKey()
+  final String css;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SelectorQueryCssCopyWith<SelectorQueryCss> get copyWith =>
+      _$SelectorQueryCssCopyWithImpl<SelectorQueryCss>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SelectorQueryCssToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SelectorQueryCss &&
+            (identical(other.css, css) || other.css == css));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, css);
+
+  @override
+  String toString() {
+    return 'SelectorQuery.css(css: $css)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $SelectorQueryCssCopyWith<$Res>
+    implements $SelectorQueryCopyWith<$Res> {
+  factory $SelectorQueryCssCopyWith(
+          SelectorQueryCss value, $Res Function(SelectorQueryCss) _then) =
+      _$SelectorQueryCssCopyWithImpl;
   @useResult
   $Res call({String css});
 }
 
 /// @nodoc
-class __$$SelectorQueryCssImplCopyWithImpl<$Res>
-    extends _$SelectorQueryCopyWithImpl<$Res, _$SelectorQueryCssImpl>
-    implements _$$SelectorQueryCssImplCopyWith<$Res> {
-  __$$SelectorQueryCssImplCopyWithImpl(_$SelectorQueryCssImpl _value,
-      $Res Function(_$SelectorQueryCssImpl) _then)
-      : super(_value, _then);
+class _$SelectorQueryCssCopyWithImpl<$Res>
+    implements $SelectorQueryCssCopyWith<$Res> {
+  _$SelectorQueryCssCopyWithImpl(this._self, this._then);
+
+  final SelectorQueryCss _self;
+  final $Res Function(SelectorQueryCss) _then;
 
   /// Create a copy of SelectorQuery
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? css = null,
   }) {
-    return _then(_$SelectorQueryCssImpl(
+    return _then(SelectorQueryCss(
       css: null == css
-          ? _value.css
+          ? _self.css
           : css // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -281,172 +172,78 @@ class __$$SelectorQueryCssImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SelectorQueryCssImpl extends SelectorQueryCss {
-  const _$SelectorQueryCssImpl({this.css = '', final String? $type})
-      : $type = $type ?? 'css',
+class SelectorQueryXpath extends SelectorQuery {
+  const SelectorQueryXpath({this.xpath = '', final String? $type})
+      : $type = $type ?? 'xpath',
         super._();
+  factory SelectorQueryXpath.fromJson(Map<String, dynamic> json) =>
+      _$SelectorQueryXpathFromJson(json);
 
-  factory _$SelectorQueryCssImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SelectorQueryCssImplFromJson(json);
-
-  @override
   @JsonKey()
-  final String css;
+  final String xpath;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SelectorQueryXpathCopyWith<SelectorQueryXpath> get copyWith =>
+      _$SelectorQueryXpathCopyWithImpl<SelectorQueryXpath>(this, _$identity);
+
   @override
-  String toString() {
-    return 'SelectorQuery.css(css: $css)';
+  Map<String, dynamic> toJson() {
+    return _$SelectorQueryXpathToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectorQueryCssImpl &&
-            (identical(other.css, css) || other.css == css));
+            other is SelectorQueryXpath &&
+            (identical(other.xpath, xpath) || other.xpath == xpath));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, css);
-
-  /// Create a copy of SelectorQuery
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SelectorQueryCssImplCopyWith<_$SelectorQueryCssImpl> get copyWith =>
-      __$$SelectorQueryCssImplCopyWithImpl<_$SelectorQueryCssImpl>(
-          this, _$identity);
+  int get hashCode => Object.hash(runtimeType, xpath);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() self,
-    required TResult Function(String css) css,
-    required TResult Function(String xpath) xpath,
-    required TResult Function(String jsonPath) jsonPath,
-  }) {
-    return css(this.css);
+  String toString() {
+    return 'SelectorQuery.xpath(xpath: $xpath)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? self,
-    TResult? Function(String css)? css,
-    TResult? Function(String xpath)? xpath,
-    TResult? Function(String jsonPath)? jsonPath,
-  }) {
-    return css?.call(this.css);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? self,
-    TResult Function(String css)? css,
-    TResult Function(String xpath)? xpath,
-    TResult Function(String jsonPath)? jsonPath,
-    required TResult orElse(),
-  }) {
-    if (css != null) {
-      return css(this.css);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectorQuerySelf value) self,
-    required TResult Function(SelectorQueryCss value) css,
-    required TResult Function(SelectorQueryXpath value) xpath,
-    required TResult Function(SelectorQueryJsonPath value) jsonPath,
-  }) {
-    return css(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectorQuerySelf value)? self,
-    TResult? Function(SelectorQueryCss value)? css,
-    TResult? Function(SelectorQueryXpath value)? xpath,
-    TResult? Function(SelectorQueryJsonPath value)? jsonPath,
-  }) {
-    return css?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectorQuerySelf value)? self,
-    TResult Function(SelectorQueryCss value)? css,
-    TResult Function(SelectorQueryXpath value)? xpath,
-    TResult Function(SelectorQueryJsonPath value)? jsonPath,
-    required TResult orElse(),
-  }) {
-    if (css != null) {
-      return css(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SelectorQueryCssImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class SelectorQueryCss extends SelectorQuery {
-  const factory SelectorQueryCss({final String css}) = _$SelectorQueryCssImpl;
-  const SelectorQueryCss._() : super._();
-
-  factory SelectorQueryCss.fromJson(Map<String, dynamic> json) =
-      _$SelectorQueryCssImpl.fromJson;
-
-  String get css;
-
-  /// Create a copy of SelectorQuery
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectorQueryCssImplCopyWith<_$SelectorQueryCssImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SelectorQueryXpathImplCopyWith<$Res> {
-  factory _$$SelectorQueryXpathImplCopyWith(_$SelectorQueryXpathImpl value,
-          $Res Function(_$SelectorQueryXpathImpl) then) =
-      __$$SelectorQueryXpathImplCopyWithImpl<$Res>;
+abstract mixin class $SelectorQueryXpathCopyWith<$Res>
+    implements $SelectorQueryCopyWith<$Res> {
+  factory $SelectorQueryXpathCopyWith(
+          SelectorQueryXpath value, $Res Function(SelectorQueryXpath) _then) =
+      _$SelectorQueryXpathCopyWithImpl;
   @useResult
   $Res call({String xpath});
 }
 
 /// @nodoc
-class __$$SelectorQueryXpathImplCopyWithImpl<$Res>
-    extends _$SelectorQueryCopyWithImpl<$Res, _$SelectorQueryXpathImpl>
-    implements _$$SelectorQueryXpathImplCopyWith<$Res> {
-  __$$SelectorQueryXpathImplCopyWithImpl(_$SelectorQueryXpathImpl _value,
-      $Res Function(_$SelectorQueryXpathImpl) _then)
-      : super(_value, _then);
+class _$SelectorQueryXpathCopyWithImpl<$Res>
+    implements $SelectorQueryXpathCopyWith<$Res> {
+  _$SelectorQueryXpathCopyWithImpl(this._self, this._then);
+
+  final SelectorQueryXpath _self;
+  final $Res Function(SelectorQueryXpath) _then;
 
   /// Create a copy of SelectorQuery
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? xpath = null,
   }) {
-    return _then(_$SelectorQueryXpathImpl(
+    return _then(SelectorQueryXpath(
       xpath: null == xpath
-          ? _value.xpath
+          ? _self.xpath
           : xpath // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -455,207 +252,39 @@ class __$$SelectorQueryXpathImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SelectorQueryXpathImpl extends SelectorQueryXpath {
-  const _$SelectorQueryXpathImpl({this.xpath = '', final String? $type})
-      : $type = $type ?? 'xpath',
-        super._();
-
-  factory _$SelectorQueryXpathImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SelectorQueryXpathImplFromJson(json);
-
-  @override
-  @JsonKey()
-  final String xpath;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
-  @override
-  String toString() {
-    return 'SelectorQuery.xpath(xpath: $xpath)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelectorQueryXpathImpl &&
-            (identical(other.xpath, xpath) || other.xpath == xpath));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, xpath);
-
-  /// Create a copy of SelectorQuery
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SelectorQueryXpathImplCopyWith<_$SelectorQueryXpathImpl> get copyWith =>
-      __$$SelectorQueryXpathImplCopyWithImpl<_$SelectorQueryXpathImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() self,
-    required TResult Function(String css) css,
-    required TResult Function(String xpath) xpath,
-    required TResult Function(String jsonPath) jsonPath,
-  }) {
-    return xpath(this.xpath);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? self,
-    TResult? Function(String css)? css,
-    TResult? Function(String xpath)? xpath,
-    TResult? Function(String jsonPath)? jsonPath,
-  }) {
-    return xpath?.call(this.xpath);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? self,
-    TResult Function(String css)? css,
-    TResult Function(String xpath)? xpath,
-    TResult Function(String jsonPath)? jsonPath,
-    required TResult orElse(),
-  }) {
-    if (xpath != null) {
-      return xpath(this.xpath);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectorQuerySelf value) self,
-    required TResult Function(SelectorQueryCss value) css,
-    required TResult Function(SelectorQueryXpath value) xpath,
-    required TResult Function(SelectorQueryJsonPath value) jsonPath,
-  }) {
-    return xpath(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectorQuerySelf value)? self,
-    TResult? Function(SelectorQueryCss value)? css,
-    TResult? Function(SelectorQueryXpath value)? xpath,
-    TResult? Function(SelectorQueryJsonPath value)? jsonPath,
-  }) {
-    return xpath?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectorQuerySelf value)? self,
-    TResult Function(SelectorQueryCss value)? css,
-    TResult Function(SelectorQueryXpath value)? xpath,
-    TResult Function(SelectorQueryJsonPath value)? jsonPath,
-    required TResult orElse(),
-  }) {
-    if (xpath != null) {
-      return xpath(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SelectorQueryXpathImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class SelectorQueryXpath extends SelectorQuery {
-  const factory SelectorQueryXpath({final String xpath}) =
-      _$SelectorQueryXpathImpl;
-  const SelectorQueryXpath._() : super._();
-
-  factory SelectorQueryXpath.fromJson(Map<String, dynamic> json) =
-      _$SelectorQueryXpathImpl.fromJson;
-
-  String get xpath;
-
-  /// Create a copy of SelectorQuery
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectorQueryXpathImplCopyWith<_$SelectorQueryXpathImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SelectorQueryJsonPathImplCopyWith<$Res> {
-  factory _$$SelectorQueryJsonPathImplCopyWith(
-          _$SelectorQueryJsonPathImpl value,
-          $Res Function(_$SelectorQueryJsonPathImpl) then) =
-      __$$SelectorQueryJsonPathImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String jsonPath});
-}
-
-/// @nodoc
-class __$$SelectorQueryJsonPathImplCopyWithImpl<$Res>
-    extends _$SelectorQueryCopyWithImpl<$Res, _$SelectorQueryJsonPathImpl>
-    implements _$$SelectorQueryJsonPathImplCopyWith<$Res> {
-  __$$SelectorQueryJsonPathImplCopyWithImpl(_$SelectorQueryJsonPathImpl _value,
-      $Res Function(_$SelectorQueryJsonPathImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SelectorQuery
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? jsonPath = null,
-  }) {
-    return _then(_$SelectorQueryJsonPathImpl(
-      jsonPath: null == jsonPath
-          ? _value.jsonPath
-          : jsonPath // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$SelectorQueryJsonPathImpl extends SelectorQueryJsonPath {
-  const _$SelectorQueryJsonPathImpl({this.jsonPath = '', final String? $type})
+class SelectorQueryJsonPath extends SelectorQuery {
+  const SelectorQueryJsonPath({this.jsonPath = '', final String? $type})
       : $type = $type ?? 'jsonPath',
         super._();
+  factory SelectorQueryJsonPath.fromJson(Map<String, dynamic> json) =>
+      _$SelectorQueryJsonPathFromJson(json);
 
-  factory _$SelectorQueryJsonPathImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SelectorQueryJsonPathImplFromJson(json);
-
-  @override
   @JsonKey()
   final String jsonPath;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of SelectorQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SelectorQueryJsonPathCopyWith<SelectorQueryJsonPath> get copyWith =>
+      _$SelectorQueryJsonPathCopyWithImpl<SelectorQueryJsonPath>(
+          this, _$identity);
+
   @override
-  String toString() {
-    return 'SelectorQuery.jsonPath(jsonPath: $jsonPath)';
+  Map<String, dynamic> toJson() {
+    return _$SelectorQueryJsonPathToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectorQueryJsonPathImpl &&
+            other is SelectorQueryJsonPath &&
             (identical(other.jsonPath, jsonPath) ||
                 other.jsonPath == jsonPath));
   }
@@ -664,112 +293,43 @@ class _$SelectorQueryJsonPathImpl extends SelectorQueryJsonPath {
   @override
   int get hashCode => Object.hash(runtimeType, jsonPath);
 
-  /// Create a copy of SelectorQuery
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$SelectorQueryJsonPathImplCopyWith<_$SelectorQueryJsonPathImpl>
-      get copyWith => __$$SelectorQueryJsonPathImplCopyWithImpl<
-          _$SelectorQueryJsonPathImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() self,
-    required TResult Function(String css) css,
-    required TResult Function(String xpath) xpath,
-    required TResult Function(String jsonPath) jsonPath,
-  }) {
-    return jsonPath(this.jsonPath);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? self,
-    TResult? Function(String css)? css,
-    TResult? Function(String xpath)? xpath,
-    TResult? Function(String jsonPath)? jsonPath,
-  }) {
-    return jsonPath?.call(this.jsonPath);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? self,
-    TResult Function(String css)? css,
-    TResult Function(String xpath)? xpath,
-    TResult Function(String jsonPath)? jsonPath,
-    required TResult orElse(),
-  }) {
-    if (jsonPath != null) {
-      return jsonPath(this.jsonPath);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectorQuerySelf value) self,
-    required TResult Function(SelectorQueryCss value) css,
-    required TResult Function(SelectorQueryXpath value) xpath,
-    required TResult Function(SelectorQueryJsonPath value) jsonPath,
-  }) {
-    return jsonPath(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectorQuerySelf value)? self,
-    TResult? Function(SelectorQueryCss value)? css,
-    TResult? Function(SelectorQueryXpath value)? xpath,
-    TResult? Function(SelectorQueryJsonPath value)? jsonPath,
-  }) {
-    return jsonPath?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectorQuerySelf value)? self,
-    TResult Function(SelectorQueryCss value)? css,
-    TResult Function(SelectorQueryXpath value)? xpath,
-    TResult Function(SelectorQueryJsonPath value)? jsonPath,
-    required TResult orElse(),
-  }) {
-    if (jsonPath != null) {
-      return jsonPath(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SelectorQueryJsonPathImplToJson(
-      this,
-    );
+  String toString() {
+    return 'SelectorQuery.jsonPath(jsonPath: $jsonPath)';
   }
 }
 
-abstract class SelectorQueryJsonPath extends SelectorQuery {
-  const factory SelectorQueryJsonPath({final String jsonPath}) =
-      _$SelectorQueryJsonPathImpl;
-  const SelectorQueryJsonPath._() : super._();
+/// @nodoc
+abstract mixin class $SelectorQueryJsonPathCopyWith<$Res>
+    implements $SelectorQueryCopyWith<$Res> {
+  factory $SelectorQueryJsonPathCopyWith(SelectorQueryJsonPath value,
+          $Res Function(SelectorQueryJsonPath) _then) =
+      _$SelectorQueryJsonPathCopyWithImpl;
+  @useResult
+  $Res call({String jsonPath});
+}
 
-  factory SelectorQueryJsonPath.fromJson(Map<String, dynamic> json) =
-      _$SelectorQueryJsonPathImpl.fromJson;
+/// @nodoc
+class _$SelectorQueryJsonPathCopyWithImpl<$Res>
+    implements $SelectorQueryJsonPathCopyWith<$Res> {
+  _$SelectorQueryJsonPathCopyWithImpl(this._self, this._then);
 
-  String get jsonPath;
+  final SelectorQueryJsonPath _self;
+  final $Res Function(SelectorQueryJsonPath) _then;
 
   /// Create a copy of SelectorQuery
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectorQueryJsonPathImplCopyWith<_$SelectorQueryJsonPathImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? jsonPath = null,
+  }) {
+    return _then(SelectorQueryJsonPath(
+      jsonPath: null == jsonPath
+          ? _self.jsonPath
+          : jsonPath // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 SelectorFunction _$SelectorFunctionFromJson(Map<String, dynamic> json) {
@@ -789,118 +349,13 @@ SelectorFunction _$SelectorFunctionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SelectorFunction {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() text,
-    required TResult Function(String attr) attr,
-    required TResult Function() raw,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? text,
-    TResult? Function(String attr)? attr,
-    TResult? Function()? raw,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? text,
-    TResult Function(String attr)? attr,
-    TResult Function()? raw,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectorFunctionText value) text,
-    required TResult Function(SelectorFunctionAttr value) attr,
-    required TResult Function(SelectorFunctionRaw value) raw,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectorFunctionText value)? text,
-    TResult? Function(SelectorFunctionAttr value)? attr,
-    TResult? Function(SelectorFunctionRaw value)? raw,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectorFunctionText value)? text,
-    TResult Function(SelectorFunctionAttr value)? attr,
-    TResult Function(SelectorFunctionRaw value)? raw,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
   /// Serializes this SelectorFunction to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SelectorFunctionCopyWith<$Res> {
-  factory $SelectorFunctionCopyWith(
-          SelectorFunction value, $Res Function(SelectorFunction) then) =
-      _$SelectorFunctionCopyWithImpl<$Res, SelectorFunction>;
-}
-
-/// @nodoc
-class _$SelectorFunctionCopyWithImpl<$Res, $Val extends SelectorFunction>
-    implements $SelectorFunctionCopyWith<$Res> {
-  _$SelectorFunctionCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SelectorFunction
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$SelectorFunctionTextImplCopyWith<$Res> {
-  factory _$$SelectorFunctionTextImplCopyWith(_$SelectorFunctionTextImpl value,
-          $Res Function(_$SelectorFunctionTextImpl) then) =
-      __$$SelectorFunctionTextImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SelectorFunctionTextImplCopyWithImpl<$Res>
-    extends _$SelectorFunctionCopyWithImpl<$Res, _$SelectorFunctionTextImpl>
-    implements _$$SelectorFunctionTextImplCopyWith<$Res> {
-  __$$SelectorFunctionTextImplCopyWithImpl(_$SelectorFunctionTextImpl _value,
-      $Res Function(_$SelectorFunctionTextImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SelectorFunction
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$SelectorFunctionTextImpl extends SelectorFunctionText {
-  const _$SelectorFunctionTextImpl({final String? $type})
-      : $type = $type ?? 'text',
-        super._();
-
-  factory _$SelectorFunctionTextImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SelectorFunctionTextImplFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
-  @override
-  String toString() {
-    return 'SelectorFunction.text()';
-  }
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelectorFunctionTextImpl);
+        (other.runtimeType == runtimeType && other is SelectorFunction);
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -908,116 +363,127 @@ class _$SelectorFunctionTextImpl extends SelectorFunctionText {
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() text,
-    required TResult Function(String attr) attr,
-    required TResult Function() raw,
-  }) {
-    return text();
+  String toString() {
+    return 'SelectorFunction()';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? text,
-    TResult? Function(String attr)? attr,
-    TResult? Function()? raw,
-  }) {
-    return text?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? text,
-    TResult Function(String attr)? attr,
-    TResult Function()? raw,
-    required TResult orElse(),
-  }) {
-    if (text != null) {
-      return text();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectorFunctionText value) text,
-    required TResult Function(SelectorFunctionAttr value) attr,
-    required TResult Function(SelectorFunctionRaw value) raw,
-  }) {
-    return text(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectorFunctionText value)? text,
-    TResult? Function(SelectorFunctionAttr value)? attr,
-    TResult? Function(SelectorFunctionRaw value)? raw,
-  }) {
-    return text?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectorFunctionText value)? text,
-    TResult Function(SelectorFunctionAttr value)? attr,
-    TResult Function(SelectorFunctionRaw value)? raw,
-    required TResult orElse(),
-  }) {
-    if (text != null) {
-      return text(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SelectorFunctionTextImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class SelectorFunctionText extends SelectorFunction {
-  const factory SelectorFunctionText() = _$SelectorFunctionTextImpl;
-  const SelectorFunctionText._() : super._();
-
-  factory SelectorFunctionText.fromJson(Map<String, dynamic> json) =
-      _$SelectorFunctionTextImpl.fromJson;
 }
 
 /// @nodoc
-abstract class _$$SelectorFunctionAttrImplCopyWith<$Res> {
-  factory _$$SelectorFunctionAttrImplCopyWith(_$SelectorFunctionAttrImpl value,
-          $Res Function(_$SelectorFunctionAttrImpl) then) =
-      __$$SelectorFunctionAttrImplCopyWithImpl<$Res>;
+class $SelectorFunctionCopyWith<$Res> {
+  $SelectorFunctionCopyWith(
+      SelectorFunction _, $Res Function(SelectorFunction) __);
+}
+
+/// @nodoc
+@JsonSerializable()
+class SelectorFunctionText extends SelectorFunction {
+  const SelectorFunctionText({final String? $type})
+      : $type = $type ?? 'text',
+        super._();
+  factory SelectorFunctionText.fromJson(Map<String, dynamic> json) =>
+      _$SelectorFunctionTextFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SelectorFunctionTextToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SelectorFunctionText);
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'SelectorFunction.text()';
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class SelectorFunctionAttr extends SelectorFunction {
+  const SelectorFunctionAttr({this.attr = '', final String? $type})
+      : $type = $type ?? 'attr',
+        super._();
+  factory SelectorFunctionAttr.fromJson(Map<String, dynamic> json) =>
+      _$SelectorFunctionAttrFromJson(json);
+
+  @JsonKey()
+  final String attr;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  /// Create a copy of SelectorFunction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SelectorFunctionAttrCopyWith<SelectorFunctionAttr> get copyWith =>
+      _$SelectorFunctionAttrCopyWithImpl<SelectorFunctionAttr>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SelectorFunctionAttrToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SelectorFunctionAttr &&
+            (identical(other.attr, attr) || other.attr == attr));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, attr);
+
+  @override
+  String toString() {
+    return 'SelectorFunction.attr(attr: $attr)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $SelectorFunctionAttrCopyWith<$Res>
+    implements $SelectorFunctionCopyWith<$Res> {
+  factory $SelectorFunctionAttrCopyWith(SelectorFunctionAttr value,
+          $Res Function(SelectorFunctionAttr) _then) =
+      _$SelectorFunctionAttrCopyWithImpl;
   @useResult
   $Res call({String attr});
 }
 
 /// @nodoc
-class __$$SelectorFunctionAttrImplCopyWithImpl<$Res>
-    extends _$SelectorFunctionCopyWithImpl<$Res, _$SelectorFunctionAttrImpl>
-    implements _$$SelectorFunctionAttrImplCopyWith<$Res> {
-  __$$SelectorFunctionAttrImplCopyWithImpl(_$SelectorFunctionAttrImpl _value,
-      $Res Function(_$SelectorFunctionAttrImpl) _then)
-      : super(_value, _then);
+class _$SelectorFunctionAttrCopyWithImpl<$Res>
+    implements $SelectorFunctionAttrCopyWith<$Res> {
+  _$SelectorFunctionAttrCopyWithImpl(this._self, this._then);
+
+  final SelectorFunctionAttr _self;
+  final $Res Function(SelectorFunctionAttr) _then;
 
   /// Create a copy of SelectorFunction
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? attr = null,
   }) {
-    return _then(_$SelectorFunctionAttrImpl(
+    return _then(SelectorFunctionAttr(
       attr: null == attr
-          ? _value.attr
+          ? _self.attr
           : attr // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -1026,183 +492,27 @@ class __$$SelectorFunctionAttrImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SelectorFunctionAttrImpl extends SelectorFunctionAttr {
-  const _$SelectorFunctionAttrImpl({this.attr = '', final String? $type})
-      : $type = $type ?? 'attr',
+class SelectorFunctionRaw extends SelectorFunction {
+  const SelectorFunctionRaw({final String? $type})
+      : $type = $type ?? 'raw',
         super._();
-
-  factory _$SelectorFunctionAttrImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SelectorFunctionAttrImplFromJson(json);
-
-  @override
-  @JsonKey()
-  final String attr;
+  factory SelectorFunctionRaw.fromJson(Map<String, dynamic> json) =>
+      _$SelectorFunctionRawFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
-
-  @override
-  String toString() {
-    return 'SelectorFunction.attr(attr: $attr)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelectorFunctionAttrImpl &&
-            (identical(other.attr, attr) || other.attr == attr));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, attr);
-
-  /// Create a copy of SelectorFunction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SelectorFunctionAttrImplCopyWith<_$SelectorFunctionAttrImpl>
-      get copyWith =>
-          __$$SelectorFunctionAttrImplCopyWithImpl<_$SelectorFunctionAttrImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() text,
-    required TResult Function(String attr) attr,
-    required TResult Function() raw,
-  }) {
-    return attr(this.attr);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? text,
-    TResult? Function(String attr)? attr,
-    TResult? Function()? raw,
-  }) {
-    return attr?.call(this.attr);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? text,
-    TResult Function(String attr)? attr,
-    TResult Function()? raw,
-    required TResult orElse(),
-  }) {
-    if (attr != null) {
-      return attr(this.attr);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectorFunctionText value) text,
-    required TResult Function(SelectorFunctionAttr value) attr,
-    required TResult Function(SelectorFunctionRaw value) raw,
-  }) {
-    return attr(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectorFunctionText value)? text,
-    TResult? Function(SelectorFunctionAttr value)? attr,
-    TResult? Function(SelectorFunctionRaw value)? raw,
-  }) {
-    return attr?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectorFunctionText value)? text,
-    TResult Function(SelectorFunctionAttr value)? attr,
-    TResult Function(SelectorFunctionRaw value)? raw,
-    required TResult orElse(),
-  }) {
-    if (attr != null) {
-      return attr(this);
-    }
-    return orElse();
-  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SelectorFunctionAttrImplToJson(
+    return _$SelectorFunctionRawToJson(
       this,
     );
-  }
-}
-
-abstract class SelectorFunctionAttr extends SelectorFunction {
-  const factory SelectorFunctionAttr({final String attr}) =
-      _$SelectorFunctionAttrImpl;
-  const SelectorFunctionAttr._() : super._();
-
-  factory SelectorFunctionAttr.fromJson(Map<String, dynamic> json) =
-      _$SelectorFunctionAttrImpl.fromJson;
-
-  String get attr;
-
-  /// Create a copy of SelectorFunction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectorFunctionAttrImplCopyWith<_$SelectorFunctionAttrImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SelectorFunctionRawImplCopyWith<$Res> {
-  factory _$$SelectorFunctionRawImplCopyWith(_$SelectorFunctionRawImpl value,
-          $Res Function(_$SelectorFunctionRawImpl) then) =
-      __$$SelectorFunctionRawImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SelectorFunctionRawImplCopyWithImpl<$Res>
-    extends _$SelectorFunctionCopyWithImpl<$Res, _$SelectorFunctionRawImpl>
-    implements _$$SelectorFunctionRawImplCopyWith<$Res> {
-  __$$SelectorFunctionRawImplCopyWithImpl(_$SelectorFunctionRawImpl _value,
-      $Res Function(_$SelectorFunctionRawImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SelectorFunction
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$SelectorFunctionRawImpl extends SelectorFunctionRaw {
-  const _$SelectorFunctionRawImpl({final String? $type})
-      : $type = $type ?? 'raw',
-        super._();
-
-  factory _$SelectorFunctionRawImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SelectorFunctionRawImplFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
-  @override
-  String toString() {
-    return 'SelectorFunction.raw()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelectorFunctionRawImpl);
+        (other.runtimeType == runtimeType && other is SelectorFunctionRaw);
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1210,119 +520,67 @@ class _$SelectorFunctionRawImpl extends SelectorFunctionRaw {
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() text,
-    required TResult Function(String attr) attr,
-    required TResult Function() raw,
-  }) {
-    return raw();
+  String toString() {
+    return 'SelectorFunction.raw()';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? text,
-    TResult? Function(String attr)? attr,
-    TResult? Function()? raw,
-  }) {
-    return raw?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? text,
-    TResult Function(String attr)? attr,
-    TResult Function()? raw,
-    required TResult orElse(),
-  }) {
-    if (raw != null) {
-      return raw();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectorFunctionText value) text,
-    required TResult Function(SelectorFunctionAttr value) attr,
-    required TResult Function(SelectorFunctionRaw value) raw,
-  }) {
-    return raw(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectorFunctionText value)? text,
-    TResult? Function(SelectorFunctionAttr value)? attr,
-    TResult? Function(SelectorFunctionRaw value)? raw,
-  }) {
-    return raw?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectorFunctionText value)? text,
-    TResult Function(SelectorFunctionAttr value)? attr,
-    TResult Function(SelectorFunctionRaw value)? raw,
-    required TResult orElse(),
-  }) {
-    if (raw != null) {
-      return raw(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SelectorFunctionRawImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class SelectorFunctionRaw extends SelectorFunction {
-  const factory SelectorFunctionRaw() = _$SelectorFunctionRawImpl;
-  const SelectorFunctionRaw._() : super._();
-
-  factory SelectorFunctionRaw.fromJson(Map<String, dynamic> json) =
-      _$SelectorFunctionRawImpl.fromJson;
-}
-
-SelectorModel _$SelectorModelFromJson(Map<String, dynamic> json) {
-  return _SelectorModel.fromJson(json);
 }
 
 /// @nodoc
 mixin _$SelectorModel {
-  String get selector => throw _privateConstructorUsedError;
-  SelectorQuery get type => throw _privateConstructorUsedError;
-  SelectorFunction get function => throw _privateConstructorUsedError;
-  String get param => throw _privateConstructorUsedError;
-  String get regex => throw _privateConstructorUsedError;
-  String get replace => throw _privateConstructorUsedError;
-  ScriptField get script => throw _privateConstructorUsedError;
-  String get defaultValue => throw _privateConstructorUsedError;
-
-  /// Serializes this SelectorModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get selector;
+  SelectorQuery get type;
+  SelectorFunction get function;
+  String get param;
+  String get regex;
+  String get replace;
+  ScriptField get script;
+  String get defaultValue;
 
   /// Create a copy of SelectorModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<SelectorModel> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$SelectorModelCopyWithImpl<SelectorModel>(
+          this as SelectorModel, _$identity);
+
+  /// Serializes this SelectorModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SelectorModel &&
+            (identical(other.selector, selector) ||
+                other.selector == selector) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.function, function) ||
+                other.function == function) &&
+            (identical(other.param, param) || other.param == param) &&
+            (identical(other.regex, regex) || other.regex == regex) &&
+            (identical(other.replace, replace) || other.replace == replace) &&
+            (identical(other.script, script) || other.script == script) &&
+            (identical(other.defaultValue, defaultValue) ||
+                other.defaultValue == defaultValue));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, selector, type, function, param,
+      regex, replace, script, defaultValue);
+
+  @override
+  String toString() {
+    return 'SelectorModel(selector: $selector, type: $type, function: $function, param: $param, regex: $regex, replace: $replace, script: $script, defaultValue: $defaultValue)';
+  }
 }
 
 /// @nodoc
-abstract class $SelectorModelCopyWith<$Res> {
+abstract mixin class $SelectorModelCopyWith<$Res> {
   factory $SelectorModelCopyWith(
-          SelectorModel value, $Res Function(SelectorModel) then) =
-      _$SelectorModelCopyWithImpl<$Res, SelectorModel>;
+          SelectorModel value, $Res Function(SelectorModel) _then) =
+      _$SelectorModelCopyWithImpl;
   @useResult
   $Res call(
       {String selector,
@@ -1340,14 +598,12 @@ abstract class $SelectorModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SelectorModelCopyWithImpl<$Res, $Val extends SelectorModel>
+class _$SelectorModelCopyWithImpl<$Res>
     implements $SelectorModelCopyWith<$Res> {
-  _$SelectorModelCopyWithImpl(this._value, this._then);
+  _$SelectorModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SelectorModel _self;
+  final $Res Function(SelectorModel) _then;
 
   /// Create a copy of SelectorModel
   /// with the given fields replaced by the non-null parameter values.
@@ -1363,40 +619,40 @@ class _$SelectorModelCopyWithImpl<$Res, $Val extends SelectorModel>
     Object? script = null,
     Object? defaultValue = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       selector: null == selector
-          ? _value.selector
+          ? _self.selector
           : selector // ignore: cast_nullable_to_non_nullable
               as String,
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as SelectorQuery,
       function: null == function
-          ? _value.function
+          ? _self.function
           : function // ignore: cast_nullable_to_non_nullable
               as SelectorFunction,
       param: null == param
-          ? _value.param
+          ? _self.param
           : param // ignore: cast_nullable_to_non_nullable
               as String,
       regex: null == regex
-          ? _value.regex
+          ? _self.regex
           : regex // ignore: cast_nullable_to_non_nullable
               as String,
       replace: null == replace
-          ? _value.replace
+          ? _self.replace
           : replace // ignore: cast_nullable_to_non_nullable
               as String,
       script: null == script
-          ? _value.script
+          ? _self.script
           : script // ignore: cast_nullable_to_non_nullable
               as ScriptField,
       defaultValue: null == defaultValue
-          ? _value.defaultValue
+          ? _self.defaultValue
           : defaultValue // ignore: cast_nullable_to_non_nullable
               as String,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of SelectorModel
@@ -1404,8 +660,8 @@ class _$SelectorModelCopyWithImpl<$Res, $Val extends SelectorModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorQueryCopyWith<$Res> get type {
-    return $SelectorQueryCopyWith<$Res>(_value.type, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
+    return $SelectorQueryCopyWith<$Res>(_self.type, (value) {
+      return _then(_self.copyWith(type: value));
     });
   }
 
@@ -1414,8 +670,8 @@ class _$SelectorModelCopyWithImpl<$Res, $Val extends SelectorModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorFunctionCopyWith<$Res> get function {
-    return $SelectorFunctionCopyWith<$Res>(_value.function, (value) {
-      return _then(_value.copyWith(function: value) as $Val);
+    return $SelectorFunctionCopyWith<$Res>(_self.function, (value) {
+      return _then(_self.copyWith(function: value));
     });
   }
 
@@ -1424,101 +680,16 @@ class _$SelectorModelCopyWithImpl<$Res, $Val extends SelectorModel>
   @override
   @pragma('vm:prefer-inline')
   $ScriptFieldCopyWith<$Res> get script {
-    return $ScriptFieldCopyWith<$Res>(_value.script, (value) {
-      return _then(_value.copyWith(script: value) as $Val);
+    return $ScriptFieldCopyWith<$Res>(_self.script, (value) {
+      return _then(_self.copyWith(script: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$SelectorModelImplCopyWith<$Res>
-    implements $SelectorModelCopyWith<$Res> {
-  factory _$$SelectorModelImplCopyWith(
-          _$SelectorModelImpl value, $Res Function(_$SelectorModelImpl) then) =
-      __$$SelectorModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String selector,
-      SelectorQuery type,
-      SelectorFunction function,
-      String param,
-      String regex,
-      String replace,
-      ScriptField script,
-      String defaultValue});
-
-  @override
-  $SelectorQueryCopyWith<$Res> get type;
-  @override
-  $SelectorFunctionCopyWith<$Res> get function;
-  @override
-  $ScriptFieldCopyWith<$Res> get script;
-}
-
-/// @nodoc
-class __$$SelectorModelImplCopyWithImpl<$Res>
-    extends _$SelectorModelCopyWithImpl<$Res, _$SelectorModelImpl>
-    implements _$$SelectorModelImplCopyWith<$Res> {
-  __$$SelectorModelImplCopyWithImpl(
-      _$SelectorModelImpl _value, $Res Function(_$SelectorModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SelectorModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? selector = null,
-    Object? type = null,
-    Object? function = null,
-    Object? param = null,
-    Object? regex = null,
-    Object? replace = null,
-    Object? script = null,
-    Object? defaultValue = null,
-  }) {
-    return _then(_$SelectorModelImpl(
-      selector: null == selector
-          ? _value.selector
-          : selector // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as SelectorQuery,
-      function: null == function
-          ? _value.function
-          : function // ignore: cast_nullable_to_non_nullable
-              as SelectorFunction,
-      param: null == param
-          ? _value.param
-          : param // ignore: cast_nullable_to_non_nullable
-              as String,
-      regex: null == regex
-          ? _value.regex
-          : regex // ignore: cast_nullable_to_non_nullable
-              as String,
-      replace: null == replace
-          ? _value.replace
-          : replace // ignore: cast_nullable_to_non_nullable
-              as String,
-      script: null == script
-          ? _value.script
-          : script // ignore: cast_nullable_to_non_nullable
-              as ScriptField,
-      defaultValue: null == defaultValue
-          ? _value.defaultValue
-          : defaultValue // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$SelectorModelImpl extends _SelectorModel {
-  const _$SelectorModelImpl(
+class _SelectorModel extends SelectorModel {
+  const _SelectorModel(
       {this.selector = '',
       this.type = const SelectorQuery.css(),
       this.function = const SelectorFunction.text(),
@@ -1528,9 +699,8 @@ class _$SelectorModelImpl extends _SelectorModel {
       this.script = const ScriptField.output(),
       this.defaultValue = ''})
       : super._();
-
-  factory _$SelectorModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SelectorModelImplFromJson(json);
+  factory _SelectorModel.fromJson(Map<String, dynamic> json) =>
+      _$SelectorModelFromJson(json);
 
   @override
   @JsonKey()
@@ -1557,16 +727,26 @@ class _$SelectorModelImpl extends _SelectorModel {
   @JsonKey()
   final String defaultValue;
 
+  /// Create a copy of SelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'SelectorModel(selector: $selector, type: $type, function: $function, param: $param, regex: $regex, replace: $replace, script: $script, defaultValue: $defaultValue)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SelectorModelCopyWith<_SelectorModel> get copyWith =>
+      __$SelectorModelCopyWithImpl<_SelectorModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SelectorModelToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectorModelImpl &&
+            other is _SelectorModel &&
             (identical(other.selector, selector) ||
                 other.selector == selector) &&
             (identical(other.type, type) || other.type == type) &&
@@ -1585,90 +765,177 @@ class _$SelectorModelImpl extends _SelectorModel {
   int get hashCode => Object.hash(runtimeType, selector, type, function, param,
       regex, replace, script, defaultValue);
 
-  /// Create a copy of SelectorModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$SelectorModelImplCopyWith<_$SelectorModelImpl> get copyWith =>
-      __$$SelectorModelImplCopyWithImpl<_$SelectorModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SelectorModelImplToJson(
-      this,
-    );
+  String toString() {
+    return 'SelectorModel(selector: $selector, type: $type, function: $function, param: $param, regex: $regex, replace: $replace, script: $script, defaultValue: $defaultValue)';
   }
 }
 
-abstract class _SelectorModel extends SelectorModel {
-  const factory _SelectorModel(
-      {final String selector,
-      final SelectorQuery type,
-      final SelectorFunction function,
-      final String param,
-      final String regex,
-      final String replace,
-      final ScriptField script,
-      final String defaultValue}) = _$SelectorModelImpl;
-  const _SelectorModel._() : super._();
+/// @nodoc
+abstract mixin class _$SelectorModelCopyWith<$Res>
+    implements $SelectorModelCopyWith<$Res> {
+  factory _$SelectorModelCopyWith(
+          _SelectorModel value, $Res Function(_SelectorModel) _then) =
+      __$SelectorModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String selector,
+      SelectorQuery type,
+      SelectorFunction function,
+      String param,
+      String regex,
+      String replace,
+      ScriptField script,
+      String defaultValue});
 
-  factory _SelectorModel.fromJson(Map<String, dynamic> json) =
-      _$SelectorModelImpl.fromJson;
+  @override
+  $SelectorQueryCopyWith<$Res> get type;
+  @override
+  $SelectorFunctionCopyWith<$Res> get function;
+  @override
+  $ScriptFieldCopyWith<$Res> get script;
+}
 
-  @override
-  String get selector;
-  @override
-  SelectorQuery get type;
-  @override
-  SelectorFunction get function;
-  @override
-  String get param;
-  @override
-  String get regex;
-  @override
-  String get replace;
-  @override
-  ScriptField get script;
-  @override
-  String get defaultValue;
+/// @nodoc
+class __$SelectorModelCopyWithImpl<$Res>
+    implements _$SelectorModelCopyWith<$Res> {
+  __$SelectorModelCopyWithImpl(this._self, this._then);
+
+  final _SelectorModel _self;
+  final $Res Function(_SelectorModel) _then;
 
   /// Create a copy of SelectorModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectorModelImplCopyWith<_$SelectorModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? selector = null,
+    Object? type = null,
+    Object? function = null,
+    Object? param = null,
+    Object? regex = null,
+    Object? replace = null,
+    Object? script = null,
+    Object? defaultValue = null,
+  }) {
+    return _then(_SelectorModel(
+      selector: null == selector
+          ? _self.selector
+          : selector // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as SelectorQuery,
+      function: null == function
+          ? _self.function
+          : function // ignore: cast_nullable_to_non_nullable
+              as SelectorFunction,
+      param: null == param
+          ? _self.param
+          : param // ignore: cast_nullable_to_non_nullable
+              as String,
+      regex: null == regex
+          ? _self.regex
+          : regex // ignore: cast_nullable_to_non_nullable
+              as String,
+      replace: null == replace
+          ? _self.replace
+          : replace // ignore: cast_nullable_to_non_nullable
+              as String,
+      script: null == script
+          ? _self.script
+          : script // ignore: cast_nullable_to_non_nullable
+              as ScriptField,
+      defaultValue: null == defaultValue
+          ? _self.defaultValue
+          : defaultValue // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 
-ImageSelectorModel _$ImageSelectorModelFromJson(Map<String, dynamic> json) {
-  return _ImageSelectorModel.fromJson(json);
+  /// Create a copy of SelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorQueryCopyWith<$Res> get type {
+    return $SelectorQueryCopyWith<$Res>(_self.type, (value) {
+      return _then(_self.copyWith(type: value));
+    });
+  }
+
+  /// Create a copy of SelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorFunctionCopyWith<$Res> get function {
+    return $SelectorFunctionCopyWith<$Res>(_self.function, (value) {
+      return _then(_self.copyWith(function: value));
+    });
+  }
+
+  /// Create a copy of SelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ScriptFieldCopyWith<$Res> get script {
+    return $ScriptFieldCopyWith<$Res>(_self.script, (value) {
+      return _then(_self.copyWith(script: value));
+    });
+  }
 }
 
 /// @nodoc
 mixin _$ImageSelectorModel {
-  SelectorModel get url => throw _privateConstructorUsedError;
-  SelectorModel get width => throw _privateConstructorUsedError;
-  SelectorModel get height => throw _privateConstructorUsedError;
-  SelectorModel get x => throw _privateConstructorUsedError;
-  SelectorModel get y => throw _privateConstructorUsedError;
-  SelectorModel get cacheKey => throw _privateConstructorUsedError;
-
-  /// Serializes this ImageSelectorModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  SelectorModel get url;
+  SelectorModel get width;
+  SelectorModel get height;
+  SelectorModel get x;
+  SelectorModel get y;
+  SelectorModel get cacheKey;
 
   /// Create a copy of ImageSelectorModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ImageSelectorModelCopyWith<ImageSelectorModel> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ImageSelectorModelCopyWithImpl<ImageSelectorModel>(
+          this as ImageSelectorModel, _$identity);
+
+  /// Serializes this ImageSelectorModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ImageSelectorModel &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.x, x) || other.x == x) &&
+            (identical(other.y, y) || other.y == y) &&
+            (identical(other.cacheKey, cacheKey) ||
+                other.cacheKey == cacheKey));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, url, width, height, x, y, cacheKey);
+
+  @override
+  String toString() {
+    return 'ImageSelectorModel(url: $url, width: $width, height: $height, x: $x, y: $y, cacheKey: $cacheKey)';
+  }
 }
 
 /// @nodoc
-abstract class $ImageSelectorModelCopyWith<$Res> {
+abstract mixin class $ImageSelectorModelCopyWith<$Res> {
   factory $ImageSelectorModelCopyWith(
-          ImageSelectorModel value, $Res Function(ImageSelectorModel) then) =
-      _$ImageSelectorModelCopyWithImpl<$Res, ImageSelectorModel>;
+          ImageSelectorModel value, $Res Function(ImageSelectorModel) _then) =
+      _$ImageSelectorModelCopyWithImpl;
   @useResult
   $Res call(
       {SelectorModel url,
@@ -1687,14 +954,12 @@ abstract class $ImageSelectorModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
+class _$ImageSelectorModelCopyWithImpl<$Res>
     implements $ImageSelectorModelCopyWith<$Res> {
-  _$ImageSelectorModelCopyWithImpl(this._value, this._then);
+  _$ImageSelectorModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ImageSelectorModel _self;
+  final $Res Function(ImageSelectorModel) _then;
 
   /// Create a copy of ImageSelectorModel
   /// with the given fields replaced by the non-null parameter values.
@@ -1708,32 +973,32 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
     Object? y = null,
     Object? cacheKey = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       url: null == url
-          ? _value.url
+          ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       width: null == width
-          ? _value.width
+          ? _self.width
           : width // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       height: null == height
-          ? _value.height
+          ? _self.height
           : height // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       x: null == x
-          ? _value.x
+          ? _self.x
           : x // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       y: null == y
-          ? _value.y
+          ? _self.y
           : y // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       cacheKey: null == cacheKey
-          ? _value.cacheKey
+          ? _self.cacheKey
           : cacheKey // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ImageSelectorModel
@@ -1741,8 +1006,8 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get url {
-    return $SelectorModelCopyWith<$Res>(_value.url, (value) {
-      return _then(_value.copyWith(url: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.url, (value) {
+      return _then(_self.copyWith(url: value));
     });
   }
 
@@ -1751,8 +1016,8 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get width {
-    return $SelectorModelCopyWith<$Res>(_value.width, (value) {
-      return _then(_value.copyWith(width: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.width, (value) {
+      return _then(_self.copyWith(width: value));
     });
   }
 
@@ -1761,8 +1026,8 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get height {
-    return $SelectorModelCopyWith<$Res>(_value.height, (value) {
-      return _then(_value.copyWith(height: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.height, (value) {
+      return _then(_self.copyWith(height: value));
     });
   }
 
@@ -1771,8 +1036,8 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get x {
-    return $SelectorModelCopyWith<$Res>(_value.x, (value) {
-      return _then(_value.copyWith(x: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.x, (value) {
+      return _then(_self.copyWith(x: value));
     });
   }
 
@@ -1781,8 +1046,8 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get y {
-    return $SelectorModelCopyWith<$Res>(_value.y, (value) {
-      return _then(_value.copyWith(y: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.y, (value) {
+      return _then(_self.copyWith(y: value));
     });
   }
 
@@ -1791,104 +1056,24 @@ class _$ImageSelectorModelCopyWithImpl<$Res, $Val extends ImageSelectorModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get cacheKey {
-    return $SelectorModelCopyWith<$Res>(_value.cacheKey, (value) {
-      return _then(_value.copyWith(cacheKey: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.cacheKey, (value) {
+      return _then(_self.copyWith(cacheKey: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ImageSelectorModelImplCopyWith<$Res>
-    implements $ImageSelectorModelCopyWith<$Res> {
-  factory _$$ImageSelectorModelImplCopyWith(_$ImageSelectorModelImpl value,
-          $Res Function(_$ImageSelectorModelImpl) then) =
-      __$$ImageSelectorModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {SelectorModel url,
-      SelectorModel width,
-      SelectorModel height,
-      SelectorModel x,
-      SelectorModel y,
-      SelectorModel cacheKey});
-
-  @override
-  $SelectorModelCopyWith<$Res> get url;
-  @override
-  $SelectorModelCopyWith<$Res> get width;
-  @override
-  $SelectorModelCopyWith<$Res> get height;
-  @override
-  $SelectorModelCopyWith<$Res> get x;
-  @override
-  $SelectorModelCopyWith<$Res> get y;
-  @override
-  $SelectorModelCopyWith<$Res> get cacheKey;
-}
-
-/// @nodoc
-class __$$ImageSelectorModelImplCopyWithImpl<$Res>
-    extends _$ImageSelectorModelCopyWithImpl<$Res, _$ImageSelectorModelImpl>
-    implements _$$ImageSelectorModelImplCopyWith<$Res> {
-  __$$ImageSelectorModelImplCopyWithImpl(_$ImageSelectorModelImpl _value,
-      $Res Function(_$ImageSelectorModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ImageSelectorModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? url = null,
-    Object? width = null,
-    Object? height = null,
-    Object? x = null,
-    Object? y = null,
-    Object? cacheKey = null,
-  }) {
-    return _then(_$ImageSelectorModelImpl(
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      width: null == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      height: null == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      x: null == x
-          ? _value.x
-          : x // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      y: null == y
-          ? _value.y
-          : y // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      cacheKey: null == cacheKey
-          ? _value.cacheKey
-          : cacheKey // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$ImageSelectorModelImpl implements _ImageSelectorModel {
-  const _$ImageSelectorModelImpl(
+class _ImageSelectorModel implements ImageSelectorModel {
+  const _ImageSelectorModel(
       {this.url = const SelectorModel(),
       this.width = const SelectorModel(),
       this.height = const SelectorModel(),
       this.x = const SelectorModel(),
       this.y = const SelectorModel(),
       this.cacheKey = const SelectorModel()});
-
-  factory _$ImageSelectorModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ImageSelectorModelImplFromJson(json);
+  factory _ImageSelectorModel.fromJson(Map<String, dynamic> json) =>
+      _$ImageSelectorModelFromJson(json);
 
   @override
   @JsonKey()
@@ -1909,16 +1094,26 @@ class _$ImageSelectorModelImpl implements _ImageSelectorModel {
   @JsonKey()
   final SelectorModel cacheKey;
 
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ImageSelectorModel(url: $url, width: $width, height: $height, x: $x, y: $y, cacheKey: $cacheKey)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ImageSelectorModelCopyWith<_ImageSelectorModel> get copyWith =>
+      __$ImageSelectorModelCopyWithImpl<_ImageSelectorModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ImageSelectorModelToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ImageSelectorModelImpl &&
+            other is _ImageSelectorModel &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.width, width) || other.width == width) &&
             (identical(other.height, height) || other.height == height) &&
@@ -1933,82 +1128,196 @@ class _$ImageSelectorModelImpl implements _ImageSelectorModel {
   int get hashCode =>
       Object.hash(runtimeType, url, width, height, x, y, cacheKey);
 
-  /// Create a copy of ImageSelectorModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ImageSelectorModelImplCopyWith<_$ImageSelectorModelImpl> get copyWith =>
-      __$$ImageSelectorModelImplCopyWithImpl<_$ImageSelectorModelImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ImageSelectorModelImplToJson(
-      this,
-    );
+  String toString() {
+    return 'ImageSelectorModel(url: $url, width: $width, height: $height, x: $x, y: $y, cacheKey: $cacheKey)';
   }
 }
 
-abstract class _ImageSelectorModel implements ImageSelectorModel {
-  const factory _ImageSelectorModel(
-      {final SelectorModel url,
-      final SelectorModel width,
-      final SelectorModel height,
-      final SelectorModel x,
-      final SelectorModel y,
-      final SelectorModel cacheKey}) = _$ImageSelectorModelImpl;
+/// @nodoc
+abstract mixin class _$ImageSelectorModelCopyWith<$Res>
+    implements $ImageSelectorModelCopyWith<$Res> {
+  factory _$ImageSelectorModelCopyWith(
+          _ImageSelectorModel value, $Res Function(_ImageSelectorModel) _then) =
+      __$ImageSelectorModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {SelectorModel url,
+      SelectorModel width,
+      SelectorModel height,
+      SelectorModel x,
+      SelectorModel y,
+      SelectorModel cacheKey});
 
-  factory _ImageSelectorModel.fromJson(Map<String, dynamic> json) =
-      _$ImageSelectorModelImpl.fromJson;
+  @override
+  $SelectorModelCopyWith<$Res> get url;
+  @override
+  $SelectorModelCopyWith<$Res> get width;
+  @override
+  $SelectorModelCopyWith<$Res> get height;
+  @override
+  $SelectorModelCopyWith<$Res> get x;
+  @override
+  $SelectorModelCopyWith<$Res> get y;
+  @override
+  $SelectorModelCopyWith<$Res> get cacheKey;
+}
 
-  @override
-  SelectorModel get url;
-  @override
-  SelectorModel get width;
-  @override
-  SelectorModel get height;
-  @override
-  SelectorModel get x;
-  @override
-  SelectorModel get y;
-  @override
-  SelectorModel get cacheKey;
+/// @nodoc
+class __$ImageSelectorModelCopyWithImpl<$Res>
+    implements _$ImageSelectorModelCopyWith<$Res> {
+  __$ImageSelectorModelCopyWithImpl(this._self, this._then);
+
+  final _ImageSelectorModel _self;
+  final $Res Function(_ImageSelectorModel) _then;
 
   /// Create a copy of ImageSelectorModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ImageSelectorModelImplCopyWith<_$ImageSelectorModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? url = null,
+    Object? width = null,
+    Object? height = null,
+    Object? x = null,
+    Object? y = null,
+    Object? cacheKey = null,
+  }) {
+    return _then(_ImageSelectorModel(
+      url: null == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      width: null == width
+          ? _self.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      height: null == height
+          ? _self.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      x: null == x
+          ? _self.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      y: null == y
+          ? _self.y
+          : y // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      cacheKey: null == cacheKey
+          ? _self.cacheKey
+          : cacheKey // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+    ));
+  }
 
-CommentSelectorModel _$CommentSelectorModelFromJson(Map<String, dynamic> json) {
-  return _CommentSelectorModel.fromJson(json);
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get url {
+    return $SelectorModelCopyWith<$Res>(_self.url, (value) {
+      return _then(_self.copyWith(url: value));
+    });
+  }
+
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get width {
+    return $SelectorModelCopyWith<$Res>(_self.width, (value) {
+      return _then(_self.copyWith(width: value));
+    });
+  }
+
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get height {
+    return $SelectorModelCopyWith<$Res>(_self.height, (value) {
+      return _then(_self.copyWith(height: value));
+    });
+  }
+
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get x {
+    return $SelectorModelCopyWith<$Res>(_self.x, (value) {
+      return _then(_self.copyWith(x: value));
+    });
+  }
+
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get y {
+    return $SelectorModelCopyWith<$Res>(_self.y, (value) {
+      return _then(_self.copyWith(y: value));
+    });
+  }
+
+  /// Create a copy of ImageSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get cacheKey {
+    return $SelectorModelCopyWith<$Res>(_self.cacheKey, (value) {
+      return _then(_self.copyWith(cacheKey: value));
+    });
+  }
 }
 
 /// @nodoc
 mixin _$CommentSelectorModel {
-  SelectorModel get username => throw _privateConstructorUsedError;
-  SelectorModel get time => throw _privateConstructorUsedError;
-  SelectorModel get content => throw _privateConstructorUsedError;
-  SelectorModel get avatar => throw _privateConstructorUsedError;
-
-  /// Serializes this CommentSelectorModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  SelectorModel get username;
+  SelectorModel get time;
+  SelectorModel get content;
+  SelectorModel get avatar;
 
   /// Create a copy of CommentSelectorModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $CommentSelectorModelCopyWith<CommentSelectorModel> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$CommentSelectorModelCopyWithImpl<CommentSelectorModel>(
+          this as CommentSelectorModel, _$identity);
+
+  /// Serializes this CommentSelectorModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CommentSelectorModel &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, username, time, content, avatar);
+
+  @override
+  String toString() {
+    return 'CommentSelectorModel(username: $username, time: $time, content: $content, avatar: $avatar)';
+  }
 }
 
 /// @nodoc
-abstract class $CommentSelectorModelCopyWith<$Res> {
+abstract mixin class $CommentSelectorModelCopyWith<$Res> {
   factory $CommentSelectorModelCopyWith(CommentSelectorModel value,
-          $Res Function(CommentSelectorModel) then) =
-      _$CommentSelectorModelCopyWithImpl<$Res, CommentSelectorModel>;
+          $Res Function(CommentSelectorModel) _then) =
+      _$CommentSelectorModelCopyWithImpl;
   @useResult
   $Res call(
       {SelectorModel username,
@@ -2023,15 +1332,12 @@ abstract class $CommentSelectorModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CommentSelectorModelCopyWithImpl<$Res,
-        $Val extends CommentSelectorModel>
+class _$CommentSelectorModelCopyWithImpl<$Res>
     implements $CommentSelectorModelCopyWith<$Res> {
-  _$CommentSelectorModelCopyWithImpl(this._value, this._then);
+  _$CommentSelectorModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final CommentSelectorModel _self;
+  final $Res Function(CommentSelectorModel) _then;
 
   /// Create a copy of CommentSelectorModel
   /// with the given fields replaced by the non-null parameter values.
@@ -2043,24 +1349,24 @@ class _$CommentSelectorModelCopyWithImpl<$Res,
     Object? content = null,
     Object? avatar = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       username: null == username
-          ? _value.username
+          ? _self.username
           : username // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       time: null == time
-          ? _value.time
+          ? _self.time
           : time // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       content: null == content
-          ? _value.content
+          ? _self.content
           : content // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       avatar: null == avatar
-          ? _value.avatar
+          ? _self.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of CommentSelectorModel
@@ -2068,8 +1374,8 @@ class _$CommentSelectorModelCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get username {
-    return $SelectorModelCopyWith<$Res>(_value.username, (value) {
-      return _then(_value.copyWith(username: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.username, (value) {
+      return _then(_self.copyWith(username: value));
     });
   }
 
@@ -2078,8 +1384,8 @@ class _$CommentSelectorModelCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get time {
-    return $SelectorModelCopyWith<$Res>(_value.time, (value) {
-      return _then(_value.copyWith(time: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.time, (value) {
+      return _then(_self.copyWith(time: value));
     });
   }
 
@@ -2088,8 +1394,8 @@ class _$CommentSelectorModelCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get content {
-    return $SelectorModelCopyWith<$Res>(_value.content, (value) {
-      return _then(_value.copyWith(content: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.content, (value) {
+      return _then(_self.copyWith(content: value));
     });
   }
 
@@ -2098,86 +1404,22 @@ class _$CommentSelectorModelCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get avatar {
-    return $SelectorModelCopyWith<$Res>(_value.avatar, (value) {
-      return _then(_value.copyWith(avatar: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.avatar, (value) {
+      return _then(_self.copyWith(avatar: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$CommentSelectorModelImplCopyWith<$Res>
-    implements $CommentSelectorModelCopyWith<$Res> {
-  factory _$$CommentSelectorModelImplCopyWith(_$CommentSelectorModelImpl value,
-          $Res Function(_$CommentSelectorModelImpl) then) =
-      __$$CommentSelectorModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {SelectorModel username,
-      SelectorModel time,
-      SelectorModel content,
-      SelectorModel avatar});
-
-  @override
-  $SelectorModelCopyWith<$Res> get username;
-  @override
-  $SelectorModelCopyWith<$Res> get time;
-  @override
-  $SelectorModelCopyWith<$Res> get content;
-  @override
-  $SelectorModelCopyWith<$Res> get avatar;
-}
-
-/// @nodoc
-class __$$CommentSelectorModelImplCopyWithImpl<$Res>
-    extends _$CommentSelectorModelCopyWithImpl<$Res, _$CommentSelectorModelImpl>
-    implements _$$CommentSelectorModelImplCopyWith<$Res> {
-  __$$CommentSelectorModelImplCopyWithImpl(_$CommentSelectorModelImpl _value,
-      $Res Function(_$CommentSelectorModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CommentSelectorModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? username = null,
-    Object? time = null,
-    Object? content = null,
-    Object? avatar = null,
-  }) {
-    return _then(_$CommentSelectorModelImpl(
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$CommentSelectorModelImpl implements _CommentSelectorModel {
-  const _$CommentSelectorModelImpl(
+class _CommentSelectorModel implements CommentSelectorModel {
+  const _CommentSelectorModel(
       {this.username = const SelectorModel(),
       this.time = const SelectorModel(),
       this.content = const SelectorModel(),
       this.avatar = const SelectorModel()});
-
-  factory _$CommentSelectorModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CommentSelectorModelImplFromJson(json);
+  factory _CommentSelectorModel.fromJson(Map<String, dynamic> json) =>
+      _$CommentSelectorModelFromJson(json);
 
   @override
   @JsonKey()
@@ -2192,16 +1434,27 @@ class _$CommentSelectorModelImpl implements _CommentSelectorModel {
   @JsonKey()
   final SelectorModel avatar;
 
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'CommentSelectorModel(username: $username, time: $time, content: $content, avatar: $avatar)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$CommentSelectorModelCopyWith<_CommentSelectorModel> get copyWith =>
+      __$CommentSelectorModelCopyWithImpl<_CommentSelectorModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$CommentSelectorModelToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CommentSelectorModelImpl &&
+            other is _CommentSelectorModel &&
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.time, time) || other.time == time) &&
@@ -2213,207 +1466,137 @@ class _$CommentSelectorModelImpl implements _CommentSelectorModel {
   @override
   int get hashCode => Object.hash(runtimeType, username, time, content, avatar);
 
-  /// Create a copy of CommentSelectorModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$CommentSelectorModelImplCopyWith<_$CommentSelectorModelImpl>
-      get copyWith =>
-          __$$CommentSelectorModelImplCopyWithImpl<_$CommentSelectorModelImpl>(
-              this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CommentSelectorModelImplToJson(
-      this,
-    );
+  String toString() {
+    return 'CommentSelectorModel(username: $username, time: $time, content: $content, avatar: $avatar)';
   }
 }
 
-abstract class _CommentSelectorModel implements CommentSelectorModel {
-  const factory _CommentSelectorModel(
-      {final SelectorModel username,
-      final SelectorModel time,
-      final SelectorModel content,
-      final SelectorModel avatar}) = _$CommentSelectorModelImpl;
-
-  factory _CommentSelectorModel.fromJson(Map<String, dynamic> json) =
-      _$CommentSelectorModelImpl.fromJson;
-
-  @override
-  SelectorModel get username;
-  @override
-  SelectorModel get time;
-  @override
-  SelectorModel get content;
-  @override
-  SelectorModel get avatar;
-
-  /// Create a copy of CommentSelectorModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CommentSelectorModelImplCopyWith<_$CommentSelectorModelImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-ExtraSelectorModel _$ExtraSelectorModelFromJson(Map<String, dynamic> json) {
-  return _ExtraSelectorModel.fromJson(json);
-}
-
 /// @nodoc
-mixin _$ExtraSelectorModel {
-  SelectorModel get selector => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
-  bool get persistence => throw _privateConstructorUsedError;
-
-  /// Serializes this ExtraSelectorModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ExtraSelectorModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ExtraSelectorModelCopyWith<ExtraSelectorModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ExtraSelectorModelCopyWith<$Res> {
-  factory $ExtraSelectorModelCopyWith(
-          ExtraSelectorModel value, $Res Function(ExtraSelectorModel) then) =
-      _$ExtraSelectorModelCopyWithImpl<$Res, ExtraSelectorModel>;
+abstract mixin class _$CommentSelectorModelCopyWith<$Res>
+    implements $CommentSelectorModelCopyWith<$Res> {
+  factory _$CommentSelectorModelCopyWith(_CommentSelectorModel value,
+          $Res Function(_CommentSelectorModel) _then) =
+      __$CommentSelectorModelCopyWithImpl;
+  @override
   @useResult
-  $Res call({SelectorModel selector, String id, bool persistence});
+  $Res call(
+      {SelectorModel username,
+      SelectorModel time,
+      SelectorModel content,
+      SelectorModel avatar});
 
-  $SelectorModelCopyWith<$Res> get selector;
+  @override
+  $SelectorModelCopyWith<$Res> get username;
+  @override
+  $SelectorModelCopyWith<$Res> get time;
+  @override
+  $SelectorModelCopyWith<$Res> get content;
+  @override
+  $SelectorModelCopyWith<$Res> get avatar;
 }
 
 /// @nodoc
-class _$ExtraSelectorModelCopyWithImpl<$Res, $Val extends ExtraSelectorModel>
-    implements $ExtraSelectorModelCopyWith<$Res> {
-  _$ExtraSelectorModelCopyWithImpl(this._value, this._then);
+class __$CommentSelectorModelCopyWithImpl<$Res>
+    implements _$CommentSelectorModelCopyWith<$Res> {
+  __$CommentSelectorModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final _CommentSelectorModel _self;
+  final $Res Function(_CommentSelectorModel) _then;
 
-  /// Create a copy of ExtraSelectorModel
+  /// Create a copy of CommentSelectorModel
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
-    Object? selector = null,
-    Object? id = null,
-    Object? persistence = null,
+    Object? username = null,
+    Object? time = null,
+    Object? content = null,
+    Object? avatar = null,
   }) {
-    return _then(_value.copyWith(
-      selector: null == selector
-          ? _value.selector
-          : selector // ignore: cast_nullable_to_non_nullable
+    return _then(_CommentSelectorModel(
+      username: null == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      persistence: null == persistence
-          ? _value.persistence
-          : persistence // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+      time: null == time
+          ? _self.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      content: null == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      avatar: null == avatar
+          ? _self.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+    ));
   }
 
-  /// Create a copy of ExtraSelectorModel
+  /// Create a copy of CommentSelectorModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SelectorModelCopyWith<$Res> get selector {
-    return $SelectorModelCopyWith<$Res>(_value.selector, (value) {
-      return _then(_value.copyWith(selector: value) as $Val);
+  $SelectorModelCopyWith<$Res> get username {
+    return $SelectorModelCopyWith<$Res>(_self.username, (value) {
+      return _then(_self.copyWith(username: value));
+    });
+  }
+
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get time {
+    return $SelectorModelCopyWith<$Res>(_self.time, (value) {
+      return _then(_self.copyWith(time: value));
+    });
+  }
+
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get content {
+    return $SelectorModelCopyWith<$Res>(_self.content, (value) {
+      return _then(_self.copyWith(content: value));
+    });
+  }
+
+  /// Create a copy of CommentSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get avatar {
+    return $SelectorModelCopyWith<$Res>(_self.avatar, (value) {
+      return _then(_self.copyWith(avatar: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ExtraSelectorModelImplCopyWith<$Res>
-    implements $ExtraSelectorModelCopyWith<$Res> {
-  factory _$$ExtraSelectorModelImplCopyWith(_$ExtraSelectorModelImpl value,
-          $Res Function(_$ExtraSelectorModelImpl) then) =
-      __$$ExtraSelectorModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({SelectorModel selector, String id, bool persistence});
-
-  @override
-  $SelectorModelCopyWith<$Res> get selector;
-}
-
-/// @nodoc
-class __$$ExtraSelectorModelImplCopyWithImpl<$Res>
-    extends _$ExtraSelectorModelCopyWithImpl<$Res, _$ExtraSelectorModelImpl>
-    implements _$$ExtraSelectorModelImplCopyWith<$Res> {
-  __$$ExtraSelectorModelImplCopyWithImpl(_$ExtraSelectorModelImpl _value,
-      $Res Function(_$ExtraSelectorModelImpl) _then)
-      : super(_value, _then);
+mixin _$ExtraSelectorModel {
+  SelectorModel get selector;
+  String get id;
+  bool get persistence;
 
   /// Create a copy of ExtraSelectorModel
   /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? selector = null,
-    Object? id = null,
-    Object? persistence = null,
-  }) {
-    return _then(_$ExtraSelectorModelImpl(
-      selector: null == selector
-          ? _value.selector
-          : selector // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      persistence: null == persistence
-          ? _value.persistence
-          : persistence // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
+  $ExtraSelectorModelCopyWith<ExtraSelectorModel> get copyWith =>
+      _$ExtraSelectorModelCopyWithImpl<ExtraSelectorModel>(
+          this as ExtraSelectorModel, _$identity);
 
-/// @nodoc
-@JsonSerializable()
-class _$ExtraSelectorModelImpl implements _ExtraSelectorModel {
-  const _$ExtraSelectorModelImpl(
-      {this.selector = const SelectorModel(),
-      this.id = '',
-      this.persistence = false});
-
-  factory _$ExtraSelectorModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ExtraSelectorModelImplFromJson(json);
-
-  @override
-  @JsonKey()
-  final SelectorModel selector;
-  @override
-  @JsonKey()
-  final String id;
-  @override
-  @JsonKey()
-  final bool persistence;
-
-  @override
-  String toString() {
-    return 'ExtraSelectorModel(selector: $selector, id: $id, persistence: $persistence)';
-  }
+  /// Serializes this ExtraSelectorModel to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ExtraSelectorModelImpl &&
+            other is ExtraSelectorModel &&
             (identical(other.selector, selector) ||
                 other.selector == selector) &&
             (identical(other.id, id) || other.id == id) &&
@@ -2425,72 +1608,225 @@ class _$ExtraSelectorModelImpl implements _ExtraSelectorModel {
   @override
   int get hashCode => Object.hash(runtimeType, selector, id, persistence);
 
-  /// Create a copy of ExtraSelectorModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ExtraSelectorModelImplCopyWith<_$ExtraSelectorModelImpl> get copyWith =>
-      __$$ExtraSelectorModelImplCopyWithImpl<_$ExtraSelectorModelImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ExtraSelectorModelImplToJson(
-      this,
-    );
+  String toString() {
+    return 'ExtraSelectorModel(selector: $selector, id: $id, persistence: $persistence)';
   }
 }
 
-abstract class _ExtraSelectorModel implements ExtraSelectorModel {
-  const factory _ExtraSelectorModel(
-      {final SelectorModel selector,
-      final String id,
-      final bool persistence}) = _$ExtraSelectorModelImpl;
+/// @nodoc
+abstract mixin class $ExtraSelectorModelCopyWith<$Res> {
+  factory $ExtraSelectorModelCopyWith(
+          ExtraSelectorModel value, $Res Function(ExtraSelectorModel) _then) =
+      _$ExtraSelectorModelCopyWithImpl;
+  @useResult
+  $Res call({SelectorModel selector, String id, bool persistence});
 
-  factory _ExtraSelectorModel.fromJson(Map<String, dynamic> json) =
-      _$ExtraSelectorModelImpl.fromJson;
+  $SelectorModelCopyWith<$Res> get selector;
+}
+
+/// @nodoc
+class _$ExtraSelectorModelCopyWithImpl<$Res>
+    implements $ExtraSelectorModelCopyWith<$Res> {
+  _$ExtraSelectorModelCopyWithImpl(this._self, this._then);
+
+  final ExtraSelectorModel _self;
+  final $Res Function(ExtraSelectorModel) _then;
+
+  /// Create a copy of ExtraSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selector = null,
+    Object? id = null,
+    Object? persistence = null,
+  }) {
+    return _then(_self.copyWith(
+      selector: null == selector
+          ? _self.selector
+          : selector // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      persistence: null == persistence
+          ? _self.persistence
+          : persistence // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+
+  /// Create a copy of ExtraSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get selector {
+    return $SelectorModelCopyWith<$Res>(_self.selector, (value) {
+      return _then(_self.copyWith(selector: value));
+    });
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ExtraSelectorModel implements ExtraSelectorModel {
+  const _ExtraSelectorModel(
+      {this.selector = const SelectorModel(),
+      this.id = '',
+      this.persistence = false});
+  factory _ExtraSelectorModel.fromJson(Map<String, dynamic> json) =>
+      _$ExtraSelectorModelFromJson(json);
 
   @override
-  SelectorModel get selector;
+  @JsonKey()
+  final SelectorModel selector;
   @override
-  String get id;
+  @JsonKey()
+  final String id;
   @override
-  bool get persistence;
+  @JsonKey()
+  final bool persistence;
 
   /// Create a copy of ExtraSelectorModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ExtraSelectorModelImplCopyWith<_$ExtraSelectorModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$ExtraSelectorModelCopyWith<_ExtraSelectorModel> get copyWith =>
+      __$ExtraSelectorModelCopyWithImpl<_ExtraSelectorModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ExtraSelectorModelToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ExtraSelectorModel &&
+            (identical(other.selector, selector) ||
+                other.selector == selector) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.persistence, persistence) ||
+                other.persistence == persistence));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, selector, id, persistence);
+
+  @override
+  String toString() {
+    return 'ExtraSelectorModel(selector: $selector, id: $id, persistence: $persistence)';
+  }
 }
 
-TagSelectorModel _$TagSelectorModelFromJson(Map<String, dynamic> json) {
-  return _TagSelectorModel.fromJson(json);
+/// @nodoc
+abstract mixin class _$ExtraSelectorModelCopyWith<$Res>
+    implements $ExtraSelectorModelCopyWith<$Res> {
+  factory _$ExtraSelectorModelCopyWith(
+          _ExtraSelectorModel value, $Res Function(_ExtraSelectorModel) _then) =
+      __$ExtraSelectorModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call({SelectorModel selector, String id, bool persistence});
+
+  @override
+  $SelectorModelCopyWith<$Res> get selector;
+}
+
+/// @nodoc
+class __$ExtraSelectorModelCopyWithImpl<$Res>
+    implements _$ExtraSelectorModelCopyWith<$Res> {
+  __$ExtraSelectorModelCopyWithImpl(this._self, this._then);
+
+  final _ExtraSelectorModel _self;
+  final $Res Function(_ExtraSelectorModel) _then;
+
+  /// Create a copy of ExtraSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? selector = null,
+    Object? id = null,
+    Object? persistence = null,
+  }) {
+    return _then(_ExtraSelectorModel(
+      selector: null == selector
+          ? _self.selector
+          : selector // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      persistence: null == persistence
+          ? _self.persistence
+          : persistence // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+
+  /// Create a copy of ExtraSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get selector {
+    return $SelectorModelCopyWith<$Res>(_self.selector, (value) {
+      return _then(_self.copyWith(selector: value));
+    });
+  }
 }
 
 /// @nodoc
 mixin _$TagSelectorModel {
-  SelectorModel get text => throw _privateConstructorUsedError;
-  SelectorModel get color => throw _privateConstructorUsedError;
-  SelectorModel get category => throw _privateConstructorUsedError;
-
-  /// Serializes this TagSelectorModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  SelectorModel get text;
+  SelectorModel get color;
+  SelectorModel get category;
 
   /// Create a copy of TagSelectorModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $TagSelectorModelCopyWith<TagSelectorModel> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$TagSelectorModelCopyWithImpl<TagSelectorModel>(
+          this as TagSelectorModel, _$identity);
+
+  /// Serializes this TagSelectorModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TagSelectorModel &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.category, category) ||
+                other.category == category));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, text, color, category);
+
+  @override
+  String toString() {
+    return 'TagSelectorModel(text: $text, color: $color, category: $category)';
+  }
 }
 
 /// @nodoc
-abstract class $TagSelectorModelCopyWith<$Res> {
+abstract mixin class $TagSelectorModelCopyWith<$Res> {
   factory $TagSelectorModelCopyWith(
-          TagSelectorModel value, $Res Function(TagSelectorModel) then) =
-      _$TagSelectorModelCopyWithImpl<$Res, TagSelectorModel>;
+          TagSelectorModel value, $Res Function(TagSelectorModel) _then) =
+      _$TagSelectorModelCopyWithImpl;
   @useResult
   $Res call({SelectorModel text, SelectorModel color, SelectorModel category});
 
@@ -2500,14 +1836,12 @@ abstract class $TagSelectorModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TagSelectorModelCopyWithImpl<$Res, $Val extends TagSelectorModel>
+class _$TagSelectorModelCopyWithImpl<$Res>
     implements $TagSelectorModelCopyWith<$Res> {
-  _$TagSelectorModelCopyWithImpl(this._value, this._then);
+  _$TagSelectorModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TagSelectorModel _self;
+  final $Res Function(TagSelectorModel) _then;
 
   /// Create a copy of TagSelectorModel
   /// with the given fields replaced by the non-null parameter values.
@@ -2518,20 +1852,20 @@ class _$TagSelectorModelCopyWithImpl<$Res, $Val extends TagSelectorModel>
     Object? color = null,
     Object? category = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       text: null == text
-          ? _value.text
+          ? _self.text
           : text // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       color: null == color
-          ? _value.color
+          ? _self.color
           : color // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
       category: null == category
-          ? _value.category
+          ? _self.category
           : category // ignore: cast_nullable_to_non_nullable
               as SelectorModel,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of TagSelectorModel
@@ -2539,8 +1873,8 @@ class _$TagSelectorModelCopyWithImpl<$Res, $Val extends TagSelectorModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get text {
-    return $SelectorModelCopyWith<$Res>(_value.text, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.text, (value) {
+      return _then(_self.copyWith(text: value));
     });
   }
 
@@ -2549,8 +1883,8 @@ class _$TagSelectorModelCopyWithImpl<$Res, $Val extends TagSelectorModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get color {
-    return $SelectorModelCopyWith<$Res>(_value.color, (value) {
-      return _then(_value.copyWith(color: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.color, (value) {
+      return _then(_self.copyWith(color: value));
     });
   }
 
@@ -2559,74 +1893,21 @@ class _$TagSelectorModelCopyWithImpl<$Res, $Val extends TagSelectorModel>
   @override
   @pragma('vm:prefer-inline')
   $SelectorModelCopyWith<$Res> get category {
-    return $SelectorModelCopyWith<$Res>(_value.category, (value) {
-      return _then(_value.copyWith(category: value) as $Val);
+    return $SelectorModelCopyWith<$Res>(_self.category, (value) {
+      return _then(_self.copyWith(category: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$TagSelectorModelImplCopyWith<$Res>
-    implements $TagSelectorModelCopyWith<$Res> {
-  factory _$$TagSelectorModelImplCopyWith(_$TagSelectorModelImpl value,
-          $Res Function(_$TagSelectorModelImpl) then) =
-      __$$TagSelectorModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({SelectorModel text, SelectorModel color, SelectorModel category});
-
-  @override
-  $SelectorModelCopyWith<$Res> get text;
-  @override
-  $SelectorModelCopyWith<$Res> get color;
-  @override
-  $SelectorModelCopyWith<$Res> get category;
-}
-
-/// @nodoc
-class __$$TagSelectorModelImplCopyWithImpl<$Res>
-    extends _$TagSelectorModelCopyWithImpl<$Res, _$TagSelectorModelImpl>
-    implements _$$TagSelectorModelImplCopyWith<$Res> {
-  __$$TagSelectorModelImplCopyWithImpl(_$TagSelectorModelImpl _value,
-      $Res Function(_$TagSelectorModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TagSelectorModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? text = null,
-    Object? color = null,
-    Object? category = null,
-  }) {
-    return _then(_$TagSelectorModelImpl(
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as SelectorModel,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$TagSelectorModelImpl implements _TagSelectorModel {
-  const _$TagSelectorModelImpl(
+class _TagSelectorModel implements TagSelectorModel {
+  const _TagSelectorModel(
       {this.text = const SelectorModel(),
       this.color = const SelectorModel(),
       this.category = const SelectorModel()});
-
-  factory _$TagSelectorModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TagSelectorModelImplFromJson(json);
+  factory _TagSelectorModel.fromJson(Map<String, dynamic> json) =>
+      _$TagSelectorModelFromJson(json);
 
   @override
   @JsonKey()
@@ -2638,16 +1919,26 @@ class _$TagSelectorModelImpl implements _TagSelectorModel {
   @JsonKey()
   final SelectorModel category;
 
+  /// Create a copy of TagSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'TagSelectorModel(text: $text, color: $color, category: $category)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TagSelectorModelCopyWith<_TagSelectorModel> get copyWith =>
+      __$TagSelectorModelCopyWithImpl<_TagSelectorModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TagSelectorModelToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TagSelectorModelImpl &&
+            other is _TagSelectorModel &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.category, category) ||
@@ -2658,43 +1949,92 @@ class _$TagSelectorModelImpl implements _TagSelectorModel {
   @override
   int get hashCode => Object.hash(runtimeType, text, color, category);
 
-  /// Create a copy of TagSelectorModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TagSelectorModelImplCopyWith<_$TagSelectorModelImpl> get copyWith =>
-      __$$TagSelectorModelImplCopyWithImpl<_$TagSelectorModelImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TagSelectorModelImplToJson(
-      this,
-    );
+  String toString() {
+    return 'TagSelectorModel(text: $text, color: $color, category: $category)';
   }
 }
 
-abstract class _TagSelectorModel implements TagSelectorModel {
-  const factory _TagSelectorModel(
-      {final SelectorModel text,
-      final SelectorModel color,
-      final SelectorModel category}) = _$TagSelectorModelImpl;
+/// @nodoc
+abstract mixin class _$TagSelectorModelCopyWith<$Res>
+    implements $TagSelectorModelCopyWith<$Res> {
+  factory _$TagSelectorModelCopyWith(
+          _TagSelectorModel value, $Res Function(_TagSelectorModel) _then) =
+      __$TagSelectorModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call({SelectorModel text, SelectorModel color, SelectorModel category});
 
-  factory _TagSelectorModel.fromJson(Map<String, dynamic> json) =
-      _$TagSelectorModelImpl.fromJson;
+  @override
+  $SelectorModelCopyWith<$Res> get text;
+  @override
+  $SelectorModelCopyWith<$Res> get color;
+  @override
+  $SelectorModelCopyWith<$Res> get category;
+}
 
-  @override
-  SelectorModel get text;
-  @override
-  SelectorModel get color;
-  @override
-  SelectorModel get category;
+/// @nodoc
+class __$TagSelectorModelCopyWithImpl<$Res>
+    implements _$TagSelectorModelCopyWith<$Res> {
+  __$TagSelectorModelCopyWithImpl(this._self, this._then);
+
+  final _TagSelectorModel _self;
+  final $Res Function(_TagSelectorModel) _then;
 
   /// Create a copy of TagSelectorModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TagSelectorModelImplCopyWith<_$TagSelectorModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? text = null,
+    Object? color = null,
+    Object? category = null,
+  }) {
+    return _then(_TagSelectorModel(
+      text: null == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      color: null == color
+          ? _self.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+      category: null == category
+          ? _self.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as SelectorModel,
+    ));
+  }
+
+  /// Create a copy of TagSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get text {
+    return $SelectorModelCopyWith<$Res>(_self.text, (value) {
+      return _then(_self.copyWith(text: value));
+    });
+  }
+
+  /// Create a copy of TagSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get color {
+    return $SelectorModelCopyWith<$Res>(_self.color, (value) {
+      return _then(_self.copyWith(color: value));
+    });
+  }
+
+  /// Create a copy of TagSelectorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectorModelCopyWith<$Res> get category {
+    return $SelectorModelCopyWith<$Res>(_self.category, (value) {
+      return _then(_self.copyWith(category: value));
+    });
+  }
 }
+
+// dart format on

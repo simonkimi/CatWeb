@@ -6,8 +6,7 @@ part of 'page.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SitePageImpl _$$SitePageImplFromJson(Map<String, dynamic> json) =>
-    _$SitePageImpl(
+_SitePage _$SitePageFromJson(Map<String, dynamic> json) => _SitePage(
       name: json['name'] as String? ?? '',
       uuid: json['uuid'] as String,
       template: PageTemplate.fromJson(json['template'] as Map<String, dynamic>),
@@ -23,8 +22,7 @@ _$SitePageImpl _$$SitePageImplFromJson(Map<String, dynamic> json) =>
       parserId: json['parserId'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$SitePageImplToJson(_$SitePageImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SitePageToJson(_SitePage instance) => <String, dynamic>{
       'name': instance.name,
       'uuid': instance.uuid,
       'template': instance.template,

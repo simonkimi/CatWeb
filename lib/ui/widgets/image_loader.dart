@@ -80,6 +80,8 @@ class _ImageLoaderState extends State<ImageLoader> {
         return errorBuilder(context, error, _onReload);
       case AsyncProgressData(:final value):
         return imageWidgetBuilder(context, imageBuilder(context, value));
+      case AsyncProgressCached<Uint8List>():
+        throw UnimplementedError();
     }
     throw UnimplementedError();
   }

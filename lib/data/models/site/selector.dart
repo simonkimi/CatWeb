@@ -8,7 +8,7 @@ part 'selector.freezed.dart';
 part 'selector.g.dart';
 
 @freezed
-class SelectorQuery with _$SelectorQuery {
+sealed class SelectorQuery with _$SelectorQuery {
   const SelectorQuery._();
 
   const factory SelectorQuery.self() = SelectorQuerySelf;
@@ -66,7 +66,7 @@ enum SelectorQueryType implements IEnumDescription {
 }
 
 @freezed
-class SelectorFunction with _$SelectorFunction {
+sealed class SelectorFunction with _$SelectorFunction {
   const SelectorFunction._();
 
   const factory SelectorFunction.text() = SelectorFunctionText;
@@ -114,7 +114,7 @@ enum SelectorFunctionType implements IEnumDescription {
 }
 
 @freezed
-class SelectorModel with _$SelectorModel {
+sealed class SelectorModel with _$SelectorModel {
   const SelectorModel._();
 
   const factory SelectorModel({
@@ -135,7 +135,7 @@ class SelectorModel with _$SelectorModel {
 }
 
 @freezed
-class ImageSelectorModel with _$ImageSelectorModel {
+sealed class ImageSelectorModel with _$ImageSelectorModel {
   const factory ImageSelectorModel({
     @Default(SelectorModel()) SelectorModel url,
     @Default(SelectorModel()) SelectorModel width,
@@ -150,7 +150,7 @@ class ImageSelectorModel with _$ImageSelectorModel {
 }
 
 @freezed
-class CommentSelectorModel with _$CommentSelectorModel {
+sealed class CommentSelectorModel with _$CommentSelectorModel {
   const factory CommentSelectorModel({
     @Default(SelectorModel()) SelectorModel username,
     @Default(SelectorModel()) SelectorModel time,
@@ -163,7 +163,7 @@ class CommentSelectorModel with _$CommentSelectorModel {
 }
 
 @freezed
-class ExtraSelectorModel with _$ExtraSelectorModel {
+sealed class ExtraSelectorModel with _$ExtraSelectorModel {
   const factory ExtraSelectorModel({
     @Default(SelectorModel()) SelectorModel selector,
     @Default('') String id,
@@ -175,7 +175,7 @@ class ExtraSelectorModel with _$ExtraSelectorModel {
 }
 
 @freezed
-class TagSelectorModel with _$TagSelectorModel {
+sealed class TagSelectorModel with _$TagSelectorModel {
   const factory TagSelectorModel({
     @Default(SelectorModel()) SelectorModel text,
     @Default(SelectorModel()) SelectorModel color,

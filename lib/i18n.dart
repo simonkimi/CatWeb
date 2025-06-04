@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'app.dart';
+import 'l10n/app_localizations.dart';
 
 class I {
   static List<Locale> supportedLocales = AppLocalizations.supportedLocales;

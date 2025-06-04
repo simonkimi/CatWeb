@@ -7,7 +7,7 @@ part 'field.freezed.dart';
 part 'field.g.dart';
 
 @freezed
-class RegField with _$RegField {
+sealed class RegField with _$RegField {
   const factory RegField({
     @Default('') String reg,
     @Default('') String value,
@@ -18,7 +18,7 @@ class RegField with _$RegField {
 }
 
 @freezed
-class ScriptField with _$ScriptField {
+sealed class ScriptField with _$ScriptField {
   const ScriptField._();
 
   const factory ScriptField.output() = ScriptFieldOutput;
@@ -68,7 +68,7 @@ enum ScriptFieldType implements IEnumDescription {
 }
 
 @freezed
-class ColorField with _$ColorField {
+sealed class ColorField with _$ColorField {
   const factory ColorField({
     @Default(0) int a,
     @Default(0) int r,

@@ -186,7 +186,7 @@ class SiteManager extends StatelessWidget {
       final isReload = await showCupertinoConfirmDialog(
         context: context,
         title: I.of(context).logout,
-        content: I.of(context).logout_check,
+        content: I.of(context).logout,
       );
       if (isReload == true) {
         await dbService.webDao.replace(db.copyWith(loginCookies: ''));

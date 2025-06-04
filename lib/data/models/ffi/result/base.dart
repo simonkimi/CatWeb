@@ -6,7 +6,7 @@ part 'base.freezed.dart';
 part 'base.g.dart';
 
 @freezed
-class ImageResult with _$ImageResult {
+sealed class ImageResult with _$ImageResult {
   const factory ImageResult({
     String? url,
     String? cacheKey,
@@ -21,7 +21,7 @@ class ImageResult with _$ImageResult {
 }
 
 @freezed
-class CommentResult with _$CommentResult {
+sealed class CommentResult with _$CommentResult {
   const factory CommentResult({
     String? username,
     String? content,
@@ -35,7 +35,7 @@ class CommentResult with _$CommentResult {
 }
 
 @freezed
-class TagResult with _$TagResult {
+sealed class TagResult with _$TagResult {
   const factory TagResult({
     String? text,
     String? color,
@@ -47,7 +47,7 @@ class TagResult with _$TagResult {
 }
 
 @freezed
-class EnvResult with _$EnvResult {
+sealed class EnvResult with _$EnvResult {
   const factory EnvResult({
     String? id,
     bool? global,
@@ -59,7 +59,7 @@ class EnvResult with _$EnvResult {
 }
 
 @freezed
-class ParserError with _$ParserError {
+sealed class ParserError with _$ParserError {
   const factory ParserError({
     required int code,
     required String message,
