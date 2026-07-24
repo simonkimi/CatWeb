@@ -29,10 +29,7 @@ class SettingDivider extends StatelessWidget {
 }
 
 class SettingTileTrailing extends StatelessWidget {
-  const SettingTileTrailing({
-    super.key,
-    required this.text,
-  });
+  const SettingTileTrailing({super.key, required this.text});
 
   final String text;
 
@@ -45,7 +42,7 @@ class SettingTileTrailing extends StatelessWidget {
           CupertinoIcons.forward,
           size: 18,
           color: CupertinoColors.inactiveGray,
-        )
+        ),
       ],
     );
   }
@@ -84,14 +81,11 @@ class SettingTile extends StatelessWidget {
                 color: color,
                 borderRadius: BorderRadius.circular(3),
               ),
-              child: Icon(
-                icon,
-                size: 18,
-                color: CupertinoColors.white,
-              ),
+              child: Icon(icon, size: 18, color: CupertinoColors.white),
             )
           : null,
-      trailing: trailing ??
+      trailing:
+          trailing ??
           (autoImplyTrailing ? const CupertinoListTileChevron() : null),
       additionalInfo: trailingText != null ? Text(trailingText!) : null,
     );
@@ -110,23 +104,23 @@ class SettingNumberTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return value.obx((v) => SettingTile(
-          title: title,
-          trailingText: v.toString(),
-          onTap: () {
-            showCupertinoInputDialog(
-              context,
-              initialValue: v.toString(),
-              keyboardType: TextInputType.number,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-            ).then((e) {
-              if (e != null) {
-                value.value = int.tryParse(e) ?? value.value;
-              }
-            });
-          },
-        ));
+    return value.obx(
+      (v) => SettingTile(
+        title: title,
+        trailingText: v.toString(),
+        onTap: () {
+          showCupertinoInputDialog(
+            context,
+            initialValue: v.toString(),
+            keyboardType: TextInputType.number,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+          ).then((e) {
+            if (e != null) {
+              value.value = int.tryParse(e) ?? value.value;
+            }
+          });
+        },
+      ),
+    );
   }
 }

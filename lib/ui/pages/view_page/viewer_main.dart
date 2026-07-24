@@ -21,7 +21,7 @@ class ViewerMain extends HookWidget {
 
     return PopScope(
       canPop: false,
-      onPopInvoked: (canPop) {
+      onPopInvokedWithResult: (didPop, result) {
         if (lastClickBack.value + 1000 <
             DateTime.now().millisecondsSinceEpoch) {
           lastClickBack.value = DateTime.now().millisecondsSinceEpoch;

@@ -13,10 +13,7 @@ import 'list_normal.dart';
 import 'list_search.dart';
 
 class RulesPageEdit extends HookWidget {
-  const RulesPageEdit({
-    super.key,
-    required this.pageRule,
-  });
+  const RulesPageEdit({super.key, required this.pageRule});
 
   final SitePageRule pageRule;
 
@@ -44,37 +41,25 @@ class RulesPageEdit extends HookWidget {
 
   List<CupertinoTab> _buildListTab(BuildContext context) {
     if (pageRule.template is! PageTemplateList) return const [];
-    return [
-      const CupertinoTab('子页面'),
-      CupertinoTab(I.of(context).filter),
-    ];
+    return [const CupertinoTab('子页面'), CupertinoTab(I.of(context).filter)];
   }
 
   List<Widget> _buildListPage(BuildContext context) {
     if (pageRule.template is! PageTemplateList) return const [];
-    return const [
-      ListNormalSubPage(),
-      ListFilterEditor(),
-    ];
+    return const [ListNormalSubPage(), ListFilterEditor()];
   }
 
   List<CupertinoTab> _buildAutoCompleteTab(BuildContext context) {
     if (pageRule.template is! PageTemplateAutoComplete) return const [];
-    return [
-      CupertinoTab(I.of(context).setting),
-    ];
+    return [CupertinoTab(I.of(context).setting)];
   }
 
   List<Widget> _buildAutoCompletePage(BuildContext context) {
     if (pageRule.template is! PageTemplateAutoComplete) return const [];
-    return const [
-      TemplateAutoCompleteEditor(),
-    ];
+    return const [TemplateAutoCompleteEditor()];
   }
 
-  CupertinoNavigationBar _buildAppbar(
-    BuildContext context,
-  ) {
+  CupertinoNavigationBar _buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
       padding: kAppbarPadding,
       leading: CupertinoButton(
@@ -82,7 +67,7 @@ class RulesPageEdit extends HookWidget {
           Navigator.of(context).pop();
         },
         padding: EdgeInsets.zero,
-        minSize: 0,
+        minimumSize: Size(0, 0),
         child: const Icon(CupertinoIcons.back),
       ),
       middle: Text(I.of(context).page),

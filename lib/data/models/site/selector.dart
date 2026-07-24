@@ -13,17 +13,13 @@ sealed class SelectorQuery with _$SelectorQuery {
 
   const factory SelectorQuery.self() = SelectorQuerySelf;
 
-  const factory SelectorQuery.css({
-    @Default('') String css,
-  }) = SelectorQueryCss;
+  const factory SelectorQuery.css({@Default('') String css}) = SelectorQueryCss;
 
-  const factory SelectorQuery.xpath({
-    @Default('') String xpath,
-  }) = SelectorQueryXpath;
+  const factory SelectorQuery.xpath({@Default('') String xpath}) =
+      SelectorQueryXpath;
 
-  const factory SelectorQuery.jsonPath({
-    @Default('') String jsonPath,
-  }) = SelectorQueryJsonPath;
+  const factory SelectorQuery.jsonPath({@Default('') String jsonPath}) =
+      SelectorQueryJsonPath;
 
   factory SelectorQuery.fromJson(Map<String, dynamic> json) =>
       _$SelectorQueryFromJson(json);
@@ -33,7 +29,7 @@ sealed class SelectorQuery with _$SelectorQuery {
       SelectorQueryType.self => const SelectorQuery.self(),
       SelectorQueryType.css => const SelectorQuery.css(),
       SelectorQueryType.xpath => const SelectorQuery.xpath(),
-      SelectorQueryType.jsonPath => const SelectorQuery.jsonPath()
+      SelectorQueryType.jsonPath => const SelectorQuery.jsonPath(),
     };
   }
 
@@ -43,7 +39,6 @@ sealed class SelectorQuery with _$SelectorQuery {
       SelectorQueryCss() => SelectorQueryType.css,
       SelectorQueryXpath() => SelectorQueryType.xpath,
       SelectorQueryJsonPath() => SelectorQueryType.jsonPath,
-      _ => throw UnimplementedError('Unknown SelectorQuery: $this')
     };
   }
 }
@@ -60,7 +55,7 @@ enum SelectorQueryType implements IEnumDescription {
       SelectorQueryType.self => 'self',
       SelectorQueryType.css => 'css',
       SelectorQueryType.xpath => 'xpath',
-      SelectorQueryType.jsonPath => 'jsonPath'
+      SelectorQueryType.jsonPath => 'jsonPath',
     };
   }
 }
@@ -71,9 +66,8 @@ sealed class SelectorFunction with _$SelectorFunction {
 
   const factory SelectorFunction.text() = SelectorFunctionText;
 
-  const factory SelectorFunction.attr({
-    @Default('') String attr,
-  }) = SelectorFunctionAttr;
+  const factory SelectorFunction.attr({@Default('') String attr}) =
+      SelectorFunctionAttr;
 
   const factory SelectorFunction.raw() = SelectorFunctionRaw;
 
@@ -84,7 +78,7 @@ sealed class SelectorFunction with _$SelectorFunction {
     return switch (type) {
       SelectorFunctionType.text => const SelectorFunction.text(),
       SelectorFunctionType.attr => const SelectorFunction.attr(),
-      SelectorFunctionType.raw => const SelectorFunction.raw()
+      SelectorFunctionType.raw => const SelectorFunction.raw(),
     };
   }
 
@@ -93,7 +87,7 @@ sealed class SelectorFunction with _$SelectorFunction {
       SelectorFunction.text => SelectorFunctionType.text,
       SelectorFunction.attr => SelectorFunctionType.attr,
       SelectorFunction.raw => SelectorFunctionType.raw,
-      _ => throw Exception('Unknown SelectorFunction: $this')
+      _ => throw Exception('Unknown SelectorFunction: $this'),
     };
   }
 }
@@ -108,7 +102,7 @@ enum SelectorFunctionType implements IEnumDescription {
     return switch (this) {
       SelectorFunctionType.text => 'text',
       SelectorFunctionType.attr => 'attr',
-      SelectorFunctionType.raw => 'raw'
+      SelectorFunctionType.raw => 'raw',
     };
   }
 }

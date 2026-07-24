@@ -7,28 +7,25 @@ part of 'field.dart';
 // **************************************************************************
 
 _RegField _$RegFieldFromJson(Map<String, dynamic> json) => _RegField(
-      reg: json['reg'] as String? ?? '',
-      value: json['value'] as String? ?? '',
-    );
+  reg: json['reg'] as String? ?? '',
+  value: json['value'] as String? ?? '',
+);
 
 Map<String, dynamic> _$RegFieldToJson(_RegField instance) => <String, dynamic>{
-      'reg': instance.reg,
-      'value': instance.value,
-    };
+  'reg': instance.reg,
+  'value': instance.value,
+};
 
 ScriptFieldOutput _$ScriptFieldOutputFromJson(Map<String, dynamic> json) =>
-    ScriptFieldOutput(
-      $type: json['runtimeType'] as String?,
-    );
+    ScriptFieldOutput($type: json['runtimeType'] as String?);
 
 Map<String, dynamic> _$ScriptFieldOutputToJson(ScriptFieldOutput instance) =>
-    <String, dynamic>{
-      'runtimeType': instance.$type,
-    };
+    <String, dynamic>{'runtimeType': instance.$type};
 
 ScriptFieldReplace _$ScriptFieldReplaceFromJson(Map<String, dynamic> json) =>
     ScriptFieldReplace(
-      replace: (json['replace'] as Map<String, dynamic>?)?.map(
+      replace:
+          (json['replace'] as Map<String, dynamic>?)?.map(
             (k, e) => MapEntry(k, e as String),
           ) ??
           const {},
@@ -48,17 +45,14 @@ ScriptFieldJs _$ScriptFieldJsFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ScriptFieldJsToJson(ScriptFieldJs instance) =>
-    <String, dynamic>{
-      'script': instance.script,
-      'runtimeType': instance.$type,
-    };
+    <String, dynamic>{'script': instance.script, 'runtimeType': instance.$type};
 
 _ColorField _$ColorFieldFromJson(Map<String, dynamic> json) => _ColorField(
-      a: (json['a'] as num?)?.toInt() ?? 0,
-      r: (json['r'] as num?)?.toInt() ?? 0,
-      g: (json['g'] as num?)?.toInt() ?? 0,
-      b: (json['b'] as num?)?.toInt() ?? 0,
-    );
+  a: (json['a'] as num?)?.toInt() ?? 0,
+  r: (json['r'] as num?)?.toInt() ?? 0,
+  g: (json['g'] as num?)?.toInt() ?? 0,
+  b: (json['b'] as num?)?.toInt() ?? 0,
+);
 
 Map<String, dynamic> _$ColorFieldToJson(_ColorField instance) =>
     <String, dynamic>{

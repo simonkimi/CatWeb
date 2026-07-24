@@ -28,9 +28,7 @@ class CommentListPage extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
-                child: CommentItem(
-                  model: comments[index],
-                ),
+                child: CommentItem(model: comments[index]),
               );
             },
           ),

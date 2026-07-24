@@ -7,13 +7,13 @@ part of 'base.dart';
 // **************************************************************************
 
 _ImageResult _$ImageResultFromJson(Map<String, dynamic> json) => _ImageResult(
-      url: json['url'] as String?,
-      cacheKey: json['cacheKey'] as String?,
-      width: (json['width'] as num?)?.toDouble(),
-      height: (json['height'] as num?)?.toDouble(),
-      x: (json['x'] as num?)?.toDouble(),
-      y: (json['y'] as num?)?.toDouble(),
-    );
+  url: json['url'] as String?,
+  cacheKey: json['cacheKey'] as String?,
+  width: (json['width'] as num?)?.toDouble(),
+  height: (json['height'] as num?)?.toDouble(),
+  x: (json['x'] as num?)?.toDouble(),
+  y: (json['y'] as num?)?.toDouble(),
+);
 
 Map<String, dynamic> _$ImageResultToJson(_ImageResult instance) =>
     <String, dynamic>{
@@ -46,10 +46,10 @@ Map<String, dynamic> _$CommentResultToJson(_CommentResult instance) =>
     };
 
 _TagResult _$TagResultFromJson(Map<String, dynamic> json) => _TagResult(
-      text: json['text'] as String?,
-      color: json['color'] as String?,
-      category: json['category'] as String?,
-    );
+  text: json['text'] as String?,
+  color: json['color'] as String?,
+  category: json['category'] as String?,
+);
 
 Map<String, dynamic> _$TagResultToJson(_TagResult instance) =>
     <String, dynamic>{
@@ -59,10 +59,10 @@ Map<String, dynamic> _$TagResultToJson(_TagResult instance) =>
     };
 
 _EnvResult _$EnvResultFromJson(Map<String, dynamic> json) => _EnvResult(
-      id: json['id'] as String?,
-      global: json['global'] as bool?,
-      value: json['value'] as String?,
-    );
+  id: json['id'] as String?,
+  global: json['global'] as bool?,
+  value: json['value'] as String?,
+);
 
 Map<String, dynamic> _$EnvResultToJson(_EnvResult instance) =>
     <String, dynamic>{
@@ -72,12 +72,9 @@ Map<String, dynamic> _$EnvResultToJson(_EnvResult instance) =>
     };
 
 _ParserError _$ParserErrorFromJson(Map<String, dynamic> json) => _ParserError(
-      code: (json['code'] as num).toInt(),
-      message: json['message'] as String,
-    );
+  code: (json['code'] as num).toInt(),
+  message: json['message'] as String,
+);
 
 Map<String, dynamic> _$ParserErrorToJson(_ParserError instance) =>
-    <String, dynamic>{
-      'code': instance.code,
-      'message': instance.message,
-    };
+    <String, dynamic>{'code': instance.code, 'message': instance.message};

@@ -8,10 +8,8 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/foundation.dart';
 
 class ImageLoadNotifier extends ValueNotifier<AsyncProgressValue<Uint8List>> {
-  ImageLoadNotifier({
-    required this.model,
-    required this.dio,
-  }) : super(const AsyncProgressValue.idle());
+  ImageLoadNotifier({required this.model, required this.dio})
+    : super(const AsyncProgressValue.idle());
 
   int _mountedCount = 0;
   final ImageResult model;
@@ -31,7 +29,7 @@ class ImageLoadNotifier extends ValueNotifier<AsyncProgressValue<Uint8List>> {
         model.url!,
         onReceiveProgress: (r, t) => value = AsyncProgressValue.loading(r / t),
         options: global.imageCacheOption
-            .copyWith(keyBuilder: ({headers, required url}) => key)
+            .copyWith(keyBuilder: ({headers, required url, body}) => key)
             .toOptions()
             .copyWith(responseType: ResponseType.bytes),
         cancelToken: cancelToken,

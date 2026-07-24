@@ -47,20 +47,19 @@ class SelectorEditor extends StatelessWidget {
       _SelectorText(
         prefix: '选择器',
         selector: (n) => n.selector.selector,
-        save: (n) => (v) => n.setSelectorValue,
+        save: (n) =>
+            (v) => n.setSelectorValue,
       ),
       const CupertinoDivider(height: 1),
       _SelectorFactoryPopup<SelectorQuery, SelectorQueryType>(
         prefix: '类型',
         selector: (n) => n.selector.type,
-        onChanged: (n) => (v) => n.setSelectorQuery(v),
+        onChanged: (n) =>
+            (v) => n.setSelectorQuery(v),
         factory: SelectorQuery.fromType,
         toEnum: (e) => e.toType(),
         items: SelectorQueryType.values.map((e) {
-          return SelectTileItem(
-            title: e.getDescription(context),
-            value: e,
-          );
+          return SelectTileItem(title: e.getDescription(context), value: e);
         }),
       ),
     ];
@@ -76,19 +75,17 @@ class SelectorEditor extends StatelessWidget {
       _SelectorFactoryPopup<SelectorFunction, SelectorFunctionType>(
         prefix: '函数',
         selector: (n) => n.selector.function,
-        onChanged: (n) => (v) => n.setSelectorFunction,
+        onChanged: (n) =>
+            (v) => n.setSelectorFunction,
         factory: SelectorFunction.fromType,
         toEnum: (e) => e.toType(),
         items: SelectorFunctionType.values.map((e) {
-          return SelectTileItem(
-            title: e.getDescription(context),
-            value: e,
-          );
+          return SelectTileItem(title: e.getDescription(context), value: e);
         }),
       ),
       Selector<SelectorEditorNotifier, SelectorFunction>(
         selector: (_, n) => n.selector.function,
-        builder: (context, value, __) {
+        builder: (context, value, _) {
           switch (value) {
             case SelectorFunctionAttr(:final attr):
               return _CupertinoTextField(
@@ -96,8 +93,8 @@ class SelectorEditor extends StatelessWidget {
                 prefix: '属性',
                 onChanged: (value) {
                   context.read<SelectorEditorNotifier>().setSelectorFunction(
-                        SelectorFunction.attr(attr: value),
-                      );
+                    SelectorFunction.attr(attr: value),
+                  );
                 },
               );
             default:
@@ -109,26 +106,26 @@ class SelectorEditor extends StatelessWidget {
       _SelectorText(
         prefix: '正则',
         selector: (n) => n.selector.regex,
-        save: (n) => (v) => n.setSelectorRegex,
+        save: (n) =>
+            (v) => n.setSelectorRegex,
       ),
       const CupertinoDivider(height: 1),
       _SelectorText(
         prefix: '替换',
         selector: (n) => n.selector.replace,
-        save: (n) => (v) => n.setSelectorReplace,
+        save: (n) =>
+            (v) => n.setSelectorReplace,
       ),
       const CupertinoDivider(height: 1),
       _SelectorFactoryPopup<ScriptField, ScriptFieldType>(
         prefix: '脚本',
         selector: (n) => n.selector.script,
-        onChanged: (n) => (v) => n.setSelectorScript,
+        onChanged: (n) =>
+            (v) => n.setSelectorScript,
         factory: ScriptField.fromType,
         toEnum: (e) => e.toType(),
         items: ScriptFieldType.values.map((e) {
-          return SelectTileItem(
-            title: e.getDescription(context),
-            value: e,
-          );
+          return SelectTileItem(title: e.getDescription(context), value: e);
         }),
       ),
       const CupertinoDivider(height: 1),
@@ -144,12 +141,12 @@ class SelectorEditor extends StatelessWidget {
       transitionBetweenRoutes: false,
       trailing: CupertinoButton(
         padding: const EdgeInsets.only(right: 10),
-        minSize: 0,
-        child: const Text('保存'),
         onPressed: () {
           final model = context.read<SelectorEditorNotifier>().selector;
           Navigator.of(context).pop(model);
         },
+        minimumSize: Size(0, 0),
+        child: const Text('保存'),
       ),
     );
   }
@@ -200,7 +197,7 @@ class _SelectorText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Selector<SelectorEditorNotifier, String>(
       selector: (_, n) => selector(n),
-      builder: (_, value, __) {
+      builder: (_, value, _) {
         return CupertinoText(
           initialValue: value,
           prefix: Text(
@@ -245,7 +242,7 @@ class _SelectorFactoryPopup<T, E extends IEnumDescription>
   Widget build(BuildContext context) {
     return Selector<SelectorEditorNotifier, T>(
       selector: (_, n) => selector(n),
-      builder: (_, value, __) {
+      builder: (_, value, _) {
         return _ReadonlyTextField(
           prefix: prefix,
           value: toEnum(value).getDescription(context),

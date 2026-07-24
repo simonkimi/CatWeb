@@ -39,9 +39,10 @@ class SlimBadge extends StatelessWidget {
         text,
         style: TextStyle(
           fontSize: fontSize,
-          color: textColor ??
+          color:
+              textColor ??
               (background.isDark
-                  ? Colors.white.withOpacity(0.9)
+                  ? Colors.white.withValues(alpha: 0.9)
                   : FixColor.text.color),
         ),
       ),

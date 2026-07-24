@@ -7,14 +7,10 @@ part of 'selector.dart';
 // **************************************************************************
 
 SelectorQuerySelf _$SelectorQuerySelfFromJson(Map<String, dynamic> json) =>
-    SelectorQuerySelf(
-      $type: json['runtimeType'] as String?,
-    );
+    SelectorQuerySelf($type: json['runtimeType'] as String?);
 
 Map<String, dynamic> _$SelectorQuerySelfToJson(SelectorQuerySelf instance) =>
-    <String, dynamic>{
-      'runtimeType': instance.$type,
-    };
+    <String, dynamic>{'runtimeType': instance.$type};
 
 SelectorQueryCss _$SelectorQueryCssFromJson(Map<String, dynamic> json) =>
     SelectorQueryCss(
@@ -23,10 +19,7 @@ SelectorQueryCss _$SelectorQueryCssFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$SelectorQueryCssToJson(SelectorQueryCss instance) =>
-    <String, dynamic>{
-      'css': instance.css,
-      'runtimeType': instance.$type,
-    };
+    <String, dynamic>{'css': instance.css, 'runtimeType': instance.$type};
 
 SelectorQueryXpath _$SelectorQueryXpathFromJson(Map<String, dynamic> json) =>
     SelectorQueryXpath(
@@ -35,61 +28,47 @@ SelectorQueryXpath _$SelectorQueryXpathFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$SelectorQueryXpathToJson(SelectorQueryXpath instance) =>
-    <String, dynamic>{
-      'xpath': instance.xpath,
-      'runtimeType': instance.$type,
-    };
+    <String, dynamic>{'xpath': instance.xpath, 'runtimeType': instance.$type};
 
 SelectorQueryJsonPath _$SelectorQueryJsonPathFromJson(
-        Map<String, dynamic> json) =>
-    SelectorQueryJsonPath(
-      jsonPath: json['jsonPath'] as String? ?? '',
-      $type: json['runtimeType'] as String?,
-    );
+  Map<String, dynamic> json,
+) => SelectorQueryJsonPath(
+  jsonPath: json['jsonPath'] as String? ?? '',
+  $type: json['runtimeType'] as String?,
+);
 
 Map<String, dynamic> _$SelectorQueryJsonPathToJson(
-        SelectorQueryJsonPath instance) =>
-    <String, dynamic>{
-      'jsonPath': instance.jsonPath,
-      'runtimeType': instance.$type,
-    };
+  SelectorQueryJsonPath instance,
+) => <String, dynamic>{
+  'jsonPath': instance.jsonPath,
+  'runtimeType': instance.$type,
+};
 
 SelectorFunctionText _$SelectorFunctionTextFromJson(
-        Map<String, dynamic> json) =>
-    SelectorFunctionText(
-      $type: json['runtimeType'] as String?,
-    );
+  Map<String, dynamic> json,
+) => SelectorFunctionText($type: json['runtimeType'] as String?);
 
 Map<String, dynamic> _$SelectorFunctionTextToJson(
-        SelectorFunctionText instance) =>
-    <String, dynamic>{
-      'runtimeType': instance.$type,
-    };
+  SelectorFunctionText instance,
+) => <String, dynamic>{'runtimeType': instance.$type};
 
 SelectorFunctionAttr _$SelectorFunctionAttrFromJson(
-        Map<String, dynamic> json) =>
-    SelectorFunctionAttr(
-      attr: json['attr'] as String? ?? '',
-      $type: json['runtimeType'] as String?,
-    );
+  Map<String, dynamic> json,
+) => SelectorFunctionAttr(
+  attr: json['attr'] as String? ?? '',
+  $type: json['runtimeType'] as String?,
+);
 
 Map<String, dynamic> _$SelectorFunctionAttrToJson(
-        SelectorFunctionAttr instance) =>
-    <String, dynamic>{
-      'attr': instance.attr,
-      'runtimeType': instance.$type,
-    };
+  SelectorFunctionAttr instance,
+) => <String, dynamic>{'attr': instance.attr, 'runtimeType': instance.$type};
 
 SelectorFunctionRaw _$SelectorFunctionRawFromJson(Map<String, dynamic> json) =>
-    SelectorFunctionRaw(
-      $type: json['runtimeType'] as String?,
-    );
+    SelectorFunctionRaw($type: json['runtimeType'] as String?);
 
 Map<String, dynamic> _$SelectorFunctionRawToJson(
-        SelectorFunctionRaw instance) =>
-    <String, dynamic>{
-      'runtimeType': instance.$type,
-    };
+  SelectorFunctionRaw instance,
+) => <String, dynamic>{'runtimeType': instance.$type};
 
 _SelectorModel _$SelectorModelFromJson(Map<String, dynamic> json) =>
     _SelectorModel(
@@ -154,30 +133,30 @@ Map<String, dynamic> _$ImageSelectorModelToJson(_ImageSelectorModel instance) =>
     };
 
 _CommentSelectorModel _$CommentSelectorModelFromJson(
-        Map<String, dynamic> json) =>
-    _CommentSelectorModel(
-      username: json['username'] == null
-          ? const SelectorModel()
-          : SelectorModel.fromJson(json['username'] as Map<String, dynamic>),
-      time: json['time'] == null
-          ? const SelectorModel()
-          : SelectorModel.fromJson(json['time'] as Map<String, dynamic>),
-      content: json['content'] == null
-          ? const SelectorModel()
-          : SelectorModel.fromJson(json['content'] as Map<String, dynamic>),
-      avatar: json['avatar'] == null
-          ? const SelectorModel()
-          : SelectorModel.fromJson(json['avatar'] as Map<String, dynamic>),
-    );
+  Map<String, dynamic> json,
+) => _CommentSelectorModel(
+  username: json['username'] == null
+      ? const SelectorModel()
+      : SelectorModel.fromJson(json['username'] as Map<String, dynamic>),
+  time: json['time'] == null
+      ? const SelectorModel()
+      : SelectorModel.fromJson(json['time'] as Map<String, dynamic>),
+  content: json['content'] == null
+      ? const SelectorModel()
+      : SelectorModel.fromJson(json['content'] as Map<String, dynamic>),
+  avatar: json['avatar'] == null
+      ? const SelectorModel()
+      : SelectorModel.fromJson(json['avatar'] as Map<String, dynamic>),
+);
 
 Map<String, dynamic> _$CommentSelectorModelToJson(
-        _CommentSelectorModel instance) =>
-    <String, dynamic>{
-      'username': instance.username,
-      'time': instance.time,
-      'content': instance.content,
-      'avatar': instance.avatar,
-    };
+  _CommentSelectorModel instance,
+) => <String, dynamic>{
+  'username': instance.username,
+  'time': instance.time,
+  'content': instance.content,
+  'avatar': instance.avatar,
+};
 
 _ExtraSelectorModel _$ExtraSelectorModelFromJson(Map<String, dynamic> json) =>
     _ExtraSelectorModel(

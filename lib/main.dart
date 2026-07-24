@@ -56,7 +56,7 @@ class MyApp extends HookWidget {
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        I.delegate
+        I.delegate,
       ],
       onGenerateRoute: (settings) {
         return CupertinoModalSheetRoute(

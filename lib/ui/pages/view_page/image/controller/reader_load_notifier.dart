@@ -6,7 +6,6 @@ import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/app.dart';
 import 'package:catweb/network/client/image_concurrency.dart';
 import 'package:catweb/utils/debug.dart';
-import 'package:catweb/utils/helper.dart';
 import 'package:flutter/cupertino.dart';
 
 abstract class ReaderInfo<T extends ImageWithPreviewModel> with ChangeNotifier {
@@ -61,8 +60,9 @@ class ReaderLoaderNotifier extends ChangeNotifier {
   final SiteEnvStore localEnv;
   final SettingService settingService = getIt.get();
 
-  final PriorityTaskQuery<_LoadPageTask> _loadPageQuery =
-      PriorityTaskQuery(maxConcurrency: 1);
+  final PriorityTaskQuery<_LoadPageTask> _loadPageQuery = PriorityTaskQuery(
+    maxConcurrency: 1,
+  );
 
   ReaderLoaderNotifier({
     required this.readerInfo,
@@ -78,20 +78,25 @@ class ReaderLoaderNotifier extends ChangeNotifier {
     readerIsForward = isForward;
     currentIndex = index;
     final items = readerInfo.items.toList();
-    final needLoadIndex = List.generate(preloadCount + 1,
-        (index) => (readerIsForward ? 1 : -1) * index + currentIndex);
+    final needLoadIndex = List.generate(
+      preloadCount + 1,
+      (index) => (readerIsForward ? 1 : -1) * index + currentIndex,
+    );
 
     final needLoadItem = needLoadIndex
         .where((i) => i > 0 && i < items.length)
         .where((i) => items[i]?.imageModel.hasValue ?? false)
-        .map((i) => MapEntry(
+        .map(
+          (i) => MapEntry(
             (currentIndex - i).abs(),
             _LoadPageTask(
               index: i,
               readerInfo: readerInfo,
               pageRule: sitePageRule,
               localEnv: localEnv,
-            )));
+            ),
+          ),
+        );
     _loadPageQuery.addAll(Map.fromEntries(needLoadItem));
   }
 

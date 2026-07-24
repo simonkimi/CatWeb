@@ -8,18 +8,17 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 
 class SearchNotifier with ChangeNotifier {
-  SearchNotifier({
-    required this.listRule,
-    required this.website,
-  }) {
-    autoCompleteRule = website.blueMap.pageList
-        .firstWhereOrNull((e) => e.uuid == listRule.templateList.targetAutoComplete);
+  SearchNotifier({required this.listRule, required this.website}) {
+    autoCompleteRule = website.blueMap.pageList.firstWhereOrNull(
+      (e) => e.uuid == listRule.templateList.targetAutoComplete,
+    );
 
     if (autoCompleteRule != null) {
       textController.addListener(() {
         if (textController.selection.baseOffset == textController.text.length) {
           final duration = Duration(
-              milliseconds: autoCompleteRule!.templateAutoComplete.timeout);
+            milliseconds: autoCompleteRule!.templateAutoComplete.timeout,
+          );
           dailyTask.post(duration, () {
             if (focusNode.hasFocus && textController.text.isNotEmpty) {
               _requestAutoComplete(textController.text);
@@ -65,9 +64,7 @@ class SearchNotifier with ChangeNotifier {
       final result = await website.client.getAutoComplete(
         url: listRule.url,
         model: listRule,
-        localEnv: SiteEnvStore({
-          'search': keyword,
-        }),
+        localEnv: SiteEnvStore({'search': keyword}),
       );
       if (result.items?.isEmpty ?? true) {
         return;
@@ -89,9 +86,7 @@ class SearchNotifier with ChangeNotifier {
     final text = keyWords.join(splitChar) + splitChar;
     textController.value = TextEditingValue(
       text: text,
-      selection: TextSelection.fromPosition(TextPosition(
-        offset: text.length,
-      )),
+      selection: TextSelection.fromPosition(TextPosition(offset: text.length)),
     );
     suggestions.clear();
     notifyListeners();

@@ -39,7 +39,7 @@ class AutoCompleteParserEditor extends StatelessWidget {
                   n.updateParser(n.autoComplete.copyWith(itemComplete: v)),
             ),
           ],
-        )
+        ),
       ],
     );
   }

@@ -69,16 +69,16 @@ class ListParserEditor extends StatelessWidget {
         ParserTileConsumer(
           title: '徽章文本',
           selector: (n) => n.list.badgeItem.category,
-          onChanged: (n, v) => n.updateParser(n.list.copyWith(
-            badgeItem: n.list.badgeItem.copyWith(category: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.list.copyWith(badgeItem: n.list.badgeItem.copyWith(category: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '徽章颜色',
           selector: (n) => n.list.badgeItem.color,
-          onChanged: (n, v) => n.updateParser(n.list.copyWith(
-            badgeItem: n.list.badgeItem.copyWith(color: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.list.copyWith(badgeItem: n.list.badgeItem.copyWith(color: v)),
+          ),
         ),
       ],
     );
@@ -98,23 +98,23 @@ class ListParserEditor extends StatelessWidget {
         ParserTileConsumer(
           title: '标签文本',
           selector: (n) => n.list.tagItem.text,
-          onChanged: (n, v) => n.updateParser(n.list.copyWith(
-            tagItem: n.list.tagItem.copyWith(text: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.list.copyWith(tagItem: n.list.tagItem.copyWith(text: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '标签类型',
           selector: (n) => n.list.tagItem.category,
-          onChanged: (n, v) => n.updateParser(n.list.copyWith(
-            tagItem: n.list.tagItem.copyWith(category: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.list.copyWith(tagItem: n.list.tagItem.copyWith(category: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '标签颜色',
           selector: (n) => n.list.tagItem.color,
-          onChanged: (n, v) => n.updateParser(n.list.copyWith(
-            tagItem: n.list.tagItem.copyWith(color: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.list.copyWith(tagItem: n.list.tagItem.copyWith(color: v)),
+          ),
         ),
       ],
     );
@@ -128,37 +128,41 @@ class ListParserEditor extends StatelessWidget {
         ParserTileConsumer(
           title: '封面地址',
           selector: (n) => n.list.previewImage.url,
-          onChanged: (n, v) => n.updateParser(n.list.copyWith(
-            previewImage: n.list.previewImage.copyWith(url: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.list.copyWith(previewImage: n.list.previewImage.copyWith(url: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '封面宽度',
           selector: (n) => n.list.previewImage.width,
-          onChanged: (n, v) => n.updateParser(n.list.copyWith(
-            previewImage: n.list.previewImage.copyWith(width: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.list.copyWith(
+              previewImage: n.list.previewImage.copyWith(width: v),
+            ),
+          ),
         ),
         ParserTileConsumer(
           title: '封面高度',
           selector: (n) => n.list.previewImage.height,
-          onChanged: (n, v) => n.updateParser(n.list.copyWith(
-            previewImage: n.list.previewImage.copyWith(height: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.list.copyWith(
+              previewImage: n.list.previewImage.copyWith(height: v),
+            ),
+          ),
         ),
         ParserTileConsumer(
           title: '封面X偏移',
           selector: (n) => n.list.previewImage.x,
-          onChanged: (n, v) => n.updateParser(n.list.copyWith(
-            previewImage: n.list.previewImage.copyWith(x: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.list.copyWith(previewImage: n.list.previewImage.copyWith(x: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '封面Y偏移',
           selector: (n) => n.list.previewImage.y,
-          onChanged: (n, v) => n.updateParser(n.list.copyWith(
-            previewImage: n.list.previewImage.copyWith(y: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.list.copyWith(previewImage: n.list.previewImage.copyWith(y: v)),
+          ),
         ),
       ],
     );

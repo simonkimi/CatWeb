@@ -9,10 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
-enum _MenuSelect {
-  edit,
-  delete,
-}
+enum _MenuSelect { edit, delete }
 
 class RulesParserManager extends StatelessWidget {
   const RulesParserManager({super.key});
@@ -36,9 +33,9 @@ class RulesParserManager extends StatelessWidget {
                 subtitle: Text(model.getDescription(context)),
                 trailing: CupertinoButton(
                   padding: EdgeInsets.zero,
-                  minSize: 10,
-                  child: const Icon(Icons.more_horiz_outlined),
                   onPressed: () => _onTrailingTap(context, model),
+                  minimumSize: Size(10, 10),
+                  child: const Icon(Icons.more_horiz_outlined),
                 ),
                 onTap: () => _editRules(context, model),
               ),
@@ -49,10 +46,7 @@ class RulesParserManager extends StatelessWidget {
     );
   }
 
-  Future<void> _onTrailingTap(
-    BuildContext context,
-    ParserModel model,
-  ) async {
+  Future<void> _onTrailingTap(BuildContext context, ParserModel model) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: '取消',
       context: context,
@@ -85,8 +79,9 @@ class RulesParserManager extends StatelessWidget {
         .toList();
     if (using.isNotEmpty) {
       showCupertinoConfirmDialog(
-          context: context,
-          content: '无法删除, 因下列页面正在使用此解析器:\n ${using.join(' ')}');
+        context: context,
+        content: '无法删除, 因下列页面正在使用此解析器:\n ${using.join(' ')}',
+      );
     } else {
       showCupertinoConfirmDialog(
         context: context,
@@ -137,9 +132,11 @@ class RulesParserManager extends StatelessWidget {
     }
 
     ParserModel? newModel = await Navigator.of(context).push(
-      CupertinoPageRoute(builder: (BuildContext context) {
-        return RulesParserEditor(model: input);
-      }),
+      CupertinoPageRoute(
+        builder: (BuildContext context) {
+          return RulesParserEditor(model: input);
+        },
+      ),
     );
 
     if (newModel == null) {

@@ -17,8 +17,9 @@ class ListNormalSubPage extends HookWidget {
     final cookieController = useSwipeActionController();
 
     SitePageNotifier notifier = context.read();
-    final subpages =
-        context.select((SitePageNotifier n) => n.templateList.subPages);
+    final subpages = context.select(
+      (SitePageNotifier n) => n.templateList.subPages,
+    );
     return Column(
       children: [
         for (final MapEntry(:key, :value) in subpages.asMap().entries)

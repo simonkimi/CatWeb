@@ -10,7 +10,6 @@ import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/widgets/notifier_selector.dart';
 import 'package:catweb/utils/icons.dart';
-import 'package:catweb/utils/iter_helper.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -57,20 +56,19 @@ class RulesPageBasic extends StatelessWidget {
             },
           ),
           Selector2<
-              SitePageNotifier,
-              RulesEditorNotifier,
-              ({
-                List<ParserModel> parserList,
-                String parserId,
-              })>(
+            SitePageNotifier,
+            RulesEditorNotifier,
+            ({List<ParserModel> parserList, String parserId})
+          >(
             selector: (_, pageNotifier, ruleNotifier) => (
               parserList: ruleNotifier.blueprint.parserList,
               parserId: pageNotifier.rule.parserId,
             ),
-            builder: (_, value, __) {
+            builder: (_, value, _) {
               return TripleReadonlyTextField(
                 labelText: I.of(context).parser,
-                value: value.parserList
+                value:
+                    value.parserList
                         .firstWhereOrNull((e) => e.uuid == value.parserId)
                         ?.name ??
                     'No parser',
@@ -94,40 +92,37 @@ class RulesPageBasic extends StatelessWidget {
     );
   }
 
-  Widget _buildOpenNewPage(
-    BuildContext context,
-  ) {
+  Widget _buildOpenNewPage(BuildContext context) {
     final notifier = context.read<SitePageNotifier>();
     List<Widget> body = switch (notifier.rule.template) {
       PageTemplateAutoComplete() || PageTemplateImageViewer() => [],
       PageTemplateList(:final targetItem, :final targetAutoComplete) => [
-          _OpenPageSelector(
-            labelText: I.of(context).item_jump_to,
-            target: targetItem,
-            onTargetChanged: (value) {
-              notifier.updateListTemplateTargetItem(value ?? '');
-            },
-          ),
-          _OpenPageSelector(
-            labelText: I.of(context).auto_complete_jump_to,
-            target: targetAutoComplete,
-            filter: (item) => item.template is PageTemplateAutoComplete,
-            onTargetChanged: (value) {
-              notifier.updateListTemplateTargetAutoComplete(value ?? '');
-            },
-          ),
-        ],
+        _OpenPageSelector(
+          labelText: I.of(context).item_jump_to,
+          target: targetItem,
+          onTargetChanged: (value) {
+            notifier.updateListTemplateTargetItem(value ?? '');
+          },
+        ),
+        _OpenPageSelector(
+          labelText: I.of(context).auto_complete_jump_to,
+          target: targetAutoComplete,
+          filter: (item) => item.template is PageTemplateAutoComplete,
+          onTargetChanged: (value) {
+            notifier.updateListTemplateTargetAutoComplete(value ?? '');
+          },
+        ),
+      ],
       PageTemplateGallery(:final targetReader) => [
-          _OpenPageSelector(
-            labelText: I.of(context).read_jump_to,
-            target: targetReader,
-            filter: (item) => item.template is PageTemplateImageViewer,
-            onTargetChanged: (value) {
-              notifier.updateGalleryTargetReader(value ?? '');
-            },
-          ),
-        ],
-      PageTemplate() => throw UnimplementedError(),
+        _OpenPageSelector(
+          labelText: I.of(context).read_jump_to,
+          target: targetReader,
+          filter: (item) => item.template is PageTemplateImageViewer,
+          onTargetChanged: (value) {
+            notifier.updateGalleryTargetReader(value ?? '');
+          },
+        ),
+      ],
     };
 
     return Padding(
@@ -156,12 +151,13 @@ class RulesPageBasic extends StatelessWidget {
           Row(
             children: [
               CupertinoButton(
-                color: CupertinoColors.systemGroupedBackground
-                    .resolveFrom(context),
+                color: CupertinoColors.systemGroupedBackground.resolveFrom(
+                  context,
+                ),
                 padding: EdgeInsets.zero,
                 child: Selector<SitePageNotifier, String>(
                   selector: (_, n) => n.rule.icon,
-                  builder: (_, icon, __) {
+                  builder: (_, icon, _) {
                     return Icon(
                       cupertinoIcons[icon] ?? CupertinoIcons.app,
                       color: CupertinoColors.systemBlue.resolveFrom(context),
@@ -175,9 +171,9 @@ class RulesPageBasic extends StatelessWidget {
                     notifier.updateSiteIcon(result);
                   }
                 },
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -219,20 +215,18 @@ class _OpenPageSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Selector<RulesEditorNotifier, List<SitePageRule>>(
       selector: (_, n) => n.blueprint.pageList,
-      builder: (_, pageList, __) {
+      builder: (_, pageList, _) {
         return TripleReadonlyTextField(
           labelText: labelText,
-          value: pageList.firstWhereOrNull((e) => e.uuid == target)?.name ??
+          value:
+              pageList.firstWhereOrNull((e) => e.uuid == target)?.name ??
               I.of(context).none,
           onTap: () async {
             final result = await showCupertinoSelectDialog(
               context: context,
               items: [
                 ...pageList.where((e) => filter?.call(e) ?? true).map((e) {
-                  return SelectTileItem(
-                    title: e.name,
-                    value: e.uuid,
-                  );
+                  return SelectTileItem(title: e.name, value: e.uuid);
                 }),
                 SelectTileItem(title: I.of(context).none, value: ''),
               ],

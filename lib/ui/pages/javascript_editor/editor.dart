@@ -9,10 +9,7 @@ import 'package:flutter_highlight/themes/a11y-dark.dart';
 import 'package:flutter_highlight/themes/a11y-light.dart';
 
 class JavaScriptEditor extends StatefulWidget {
-  const JavaScriptEditor({
-    super.key,
-    required this.script,
-  });
+  const JavaScriptEditor({super.key, required this.script});
 
   final ValueNotifier<String> script;
 
@@ -41,7 +38,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: !isEditor,
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (didPop, result) {
         if (!didPop && isEditor) {
           setState(() {
             isEditor = false;
@@ -64,7 +61,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
           Navigator.of(context).pop();
         },
         padding: EdgeInsets.zero,
-        minSize: 0,
+        minimumSize: Size(0, 0),
         child: const Icon(CupertinoIcons.back),
       ),
       middle: Text(I.of(context).script),
@@ -84,7 +81,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
               });
             },
             padding: EdgeInsets.zero,
-            minSize: 0,
+            minimumSize: Size(0, 0),
             child: const Icon(CupertinoIcons.clear),
           ),
           const SizedBox(width: 10),
@@ -95,7 +92,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
               });
             },
             padding: EdgeInsets.zero,
-            minSize: 0,
+            minimumSize: Size(0, 0),
             child: isEditor ? const Icon(Icons.check) : const Icon(Icons.edit),
           ),
         ],
@@ -105,18 +102,19 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
 
   Widget _buildHighlightView() {
     return ValueListenableBuilder(
-        valueListenable: widget.script,
-        builder: (context, value, child) {
-          return SizedBox(
-            width: double.infinity,
-            child: HighlightView(
-              value,
-              language: 'javascript',
-              theme: context.isDarkMode ? a11yDarkTheme : a11yLightTheme,
-              tabSize: 2,
-            ),
-          );
-        });
+      valueListenable: widget.script,
+      builder: (context, value, child) {
+        return SizedBox(
+          width: double.infinity,
+          child: HighlightView(
+            value,
+            language: 'javascript',
+            theme: context.isDarkMode ? a11yDarkTheme : a11yLightTheme,
+            tabSize: 2,
+          ),
+        );
+      },
+    );
   }
 
   void _onTextChange(String _) {
@@ -184,10 +182,7 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
           keyboardType: TextInputType.multiline,
           onChanged: _onTextChange,
         ),
-        Positioned(
-          bottom: 1,
-          child: _buildToolBar(context),
-        ),
+        Positioned(bottom: 1, child: _buildToolBar(context)),
       ],
     );
   }
@@ -238,22 +233,23 @@ class _JavaScriptEditorState extends State<JavaScriptEditor> {
     assert(display != null || input != null);
     return CupertinoButton(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      minSize: 0,
-      child: child ?? Text(display!),
       onPressed: () {
         final offset = inputController.selection.baseOffset == -1
             ? inputController.text.length
             : inputController.selection.baseOffset;
 
         final text = inputController.text;
-        inputController.text = text.substring(0, offset) +
+        inputController.text =
+            text.substring(0, offset) +
             (input ?? display!) +
             text.substring(offset);
         inputController.selection = TextSelection.collapsed(
-            offset:
-                offset + (input?.length ?? display!.length) + (position ?? 0));
+          offset: offset + (input?.length ?? display!.length) + (position ?? 0),
+        );
         _onTextChange('');
       },
+      minimumSize: Size(0, 0),
+      child: child ?? Text(display!),
     );
   }
 }

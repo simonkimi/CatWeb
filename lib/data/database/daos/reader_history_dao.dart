@@ -17,15 +17,14 @@ class ReaderHistoryDao extends DatabaseAccessor<AppDataBase>
             ..where((tbl) => tbl.uuid.equals(uuid) & tbl.idCode.equals(idCode)))
           .getSingleOrNull();
 
-  Future<void> add({
-    required String uuid,
-    required String idCode,
-  }) =>
-      into(readerHistoryTable).insert(ReaderHistoryTableCompanion.insert(
-        uuid: uuid,
-        idCode: idCode,
-        pageIndex: 0,
-      ));
+  Future<void> add({required String uuid, required String idCode}) =>
+      into(readerHistoryTable).insert(
+        ReaderHistoryTableCompanion.insert(
+          uuid: uuid,
+          idCode: idCode,
+          pageIndex: 0,
+        ),
+      );
 
   Future<void> replace(ReaderHistoryTableData entity) =>
       update(readerHistoryTable).replace(entity);

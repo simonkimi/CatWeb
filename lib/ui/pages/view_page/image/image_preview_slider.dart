@@ -8,9 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 class ImagePreviewSlider extends StatefulWidget {
-  const ImagePreviewSlider({
-    super.key,
-  });
+  const ImagePreviewSlider({super.key});
 
   @override
   State<ImagePreviewSlider> createState() => _ImagePreviewSliderState();
@@ -49,30 +47,42 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
         }
 
         if (offset > scrollController.position.maxScrollExtent) {
-          scrollController.animateTo(scrollController.position.maxScrollExtent,
-              duration: aniDuration, curve: Curves.ease);
+          scrollController.animateTo(
+            scrollController.position.maxScrollExtent,
+            duration: aniDuration,
+            curve: Curves.ease,
+          );
           return;
         }
 
-        scrollController.animateTo(offset,
-            duration: aniDuration, curve: Curves.ease);
+        scrollController.animateTo(
+          offset,
+          duration: aniDuration,
+          curve: Curves.ease,
+        );
       } else {
         final offset =
             (controller.currentPage + 2) * (boxSize.height * 0.618 + 2) -
-                boxSize.width;
+            boxSize.width;
 
         if ((offset - scrollController.offset).abs() > boxSize.width * 1.5) {
           scrollController.jumpTo(offset);
         }
 
         if (offset < 0) {
-          scrollController.animateTo(0,
-              duration: aniDuration, curve: Curves.ease);
+          scrollController.animateTo(
+            0,
+            duration: aniDuration,
+            curve: Curves.ease,
+          );
           return;
         }
 
-        scrollController.animateTo(offset,
-            duration: aniDuration, curve: Curves.ease);
+        scrollController.animateTo(
+          offset,
+          duration: aniDuration,
+          curve: Curves.ease,
+        );
       }
     });
   }
@@ -85,8 +95,10 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
       final boxSize = box?.size;
       if (boxSize != null) {
         final offset = scrollController.offset;
-        final end = min(controller.imageLoadNotifier.readerInfo.items.length,
-            ((offset + boxSize.width) / (boxSize.height * 0.618 + 2)).ceil());
+        final end = min(
+          controller.imageLoadNotifier.readerInfo.items.length,
+          ((offset + boxSize.width) / (boxSize.height * 0.618 + 2)).ceil(),
+        );
         final start = (offset / (boxSize.height * 0.618 + 2)).floor();
 
         for (var i = max(start, 0); i < end; i++) {
@@ -137,7 +149,9 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
                             animation: controller.imageLoadNotifier.readerInfo,
                             builder: (context, child) {
                               final item = controller
-                                  .imageLoadNotifier.readerInfo.items
+                                  .imageLoadNotifier
+                                  .readerInfo
+                                  .items
                                   .toList()[index];
                               if (item == null) {
                                 return Center(
@@ -151,10 +165,14 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
                                 );
                               }
                               return ImageLoader(
-                                queue: controller.imageLoadNotifier.readerInfo
+                                queue: controller
+                                    .imageLoadNotifier
+                                    .readerInfo
                                     .previewConcurrency,
                                 model: controller
-                                    .imageLoadNotifier.readerInfo.items
+                                    .imageLoadNotifier
+                                    .readerInfo
+                                    .items
                                     .toList()[index]!
                                     .previewImage!,
                                 enableHero: false,

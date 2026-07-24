@@ -35,23 +35,14 @@ class DarkImage extends StatelessWidget {
             ),
           );
         }
-        return Image(
-          image: image,
-          fit: fit,
-          loadingBuilder: loadingBuilder,
-        );
+        return Image(image: image, fit: fit, loadingBuilder: loadingBuilder);
       },
     );
   }
 }
 
 class DarkWidget extends StatelessWidget {
-  const DarkWidget({
-    super.key,
-    required this.child,
-    this.width,
-    this.height,
-  });
+  const DarkWidget({super.key, required this.child, this.width, this.height});
 
   final Widget child;
   final double? width;
@@ -63,10 +54,7 @@ class DarkWidget extends StatelessWidget {
       return child;
     }
     return ColorFiltered(
-      colorFilter: const ColorFilter.mode(
-        Colors.black26,
-        BlendMode.dstOut,
-      ),
+      colorFilter: const ColorFilter.mode(Colors.black26, BlendMode.dstOut),
       child: child,
     );
   }

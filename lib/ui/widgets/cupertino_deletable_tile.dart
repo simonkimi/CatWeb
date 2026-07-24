@@ -29,13 +29,14 @@ class CupertinoClassicalListTile extends StatelessWidget {
             icon,
             const SizedBox(width: 10),
             Expanded(
-                child: Text(
-              text,
-              style: TextStyle(
-                fontSize: 15,
-                color: FixColor.title.resolveFrom(context),
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: FixColor.title.resolveFrom(context),
+                ),
               ),
-            )),
+            ),
           ],
         ),
       ),
@@ -76,8 +77,9 @@ class CupertinoDeletableTile extends StatelessWidget {
           key: UniqueKey(),
           controller: controller,
           index: index,
-          backgroundColor:
-              CupertinoColors.systemBackground.resolveFrom(context),
+          backgroundColor: CupertinoColors.systemBackground.resolveFrom(
+            context,
+          ),
           trailingActions: <SwipeAction>[
             SwipeAction(
               widthSpace: 50,
@@ -99,17 +101,14 @@ class CupertinoDeletableTile extends StatelessWidget {
             padding: 15,
             icon: CupertinoButton(
               padding: EdgeInsets.zero,
-              minSize: 0,
+              onPressed: () {
+                controller.openCellAt(index: index, trailing: true);
+              },
+              minimumSize: Size(0, 0),
               child: Icon(
                 CupertinoIcons.minus_circle_fill,
                 color: CupertinoColors.systemRed.resolveFrom(context),
               ),
-              onPressed: () {
-                controller.openCellAt(
-                  index: index,
-                  trailing: true,
-                );
-              },
             ),
             body: Text(
               text,

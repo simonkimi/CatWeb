@@ -17,8 +17,11 @@ abstract class BasePageData<TItem> {
 /// 页面数据加载Notifier
 /// TItems: 每一项数据
 /// TPage: 一页的数据
-abstract class BasePageLoaderNotifier<TItems,
-    TPage extends BasePageData<TItems>> with ChangeNotifier {
+abstract class BasePageLoaderNotifier<
+  TItems,
+  TPage extends BasePageData<TItems>
+>
+    with ChangeNotifier {
   final pageData = <int, TPage>{};
 
   int _currentPage = -1;
@@ -113,8 +116,9 @@ abstract class BasePageLoaderNotifier<TItems,
     } else {
       final maxIndex = pageData.keys.fold(-1, max);
       for (var i = 0; i <= maxIndex; i++) {
-        final chunk =
-            i == maxIndex ? pageData[maxIndex]!.items.length : chunkSize!;
+        final chunk = i == maxIndex
+            ? pageData[maxIndex]!.items.length
+            : chunkSize!;
         for (var j = 0; j < chunk; j++) {
           yield pageData[i]?.items[j];
         }

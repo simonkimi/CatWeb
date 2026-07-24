@@ -8,10 +8,8 @@ part 'field.g.dart';
 
 @freezed
 sealed class RegField with _$RegField {
-  const factory RegField({
-    @Default('') String reg,
-    @Default('') String value,
-  }) = _RegField;
+  const factory RegField({@Default('') String reg, @Default('') String value}) =
+      _RegField;
 
   factory RegField.fromJson(Map<String, dynamic> json) =>
       _$RegFieldFromJson(json);
@@ -27,9 +25,7 @@ sealed class ScriptField with _$ScriptField {
     @Default({}) Map<String, String> replace,
   }) = ScriptFieldReplace;
 
-  const factory ScriptField.js({
-    @Default('') String script,
-  }) = ScriptFieldJs;
+  const factory ScriptField.js({@Default('') String script}) = ScriptFieldJs;
 
   factory ScriptField.fromJson(Map<String, dynamic> json) =>
       _$ScriptFieldFromJson(json);
@@ -38,7 +34,7 @@ sealed class ScriptField with _$ScriptField {
     return switch (type) {
       ScriptFieldType.output => const ScriptField.output(),
       ScriptFieldType.replace => const ScriptField.replace(),
-      ScriptFieldType.js => const ScriptField.js()
+      ScriptFieldType.js => const ScriptField.js(),
     };
   }
 
@@ -47,7 +43,6 @@ sealed class ScriptField with _$ScriptField {
       ScriptFieldOutput() => ScriptFieldType.output,
       ScriptFieldReplace() => ScriptFieldType.replace,
       ScriptFieldJs() => ScriptFieldType.js,
-      _ => throw Exception('Unknown ScriptField: $this')
     };
   }
 }
@@ -62,7 +57,7 @@ enum ScriptFieldType implements IEnumDescription {
     return switch (this) {
       ScriptFieldType.output => '输出',
       ScriptFieldType.replace => '替换',
-      ScriptFieldType.js => 'Js脚本'
+      ScriptFieldType.js => 'Js脚本',
     };
   }
 }
@@ -81,10 +76,10 @@ sealed class ColorField with _$ColorField {
 
   factory ColorField.fromColor(Color color) {
     return ColorField(
-      a: color.alpha,
-      r: color.red,
-      g: color.green,
-      b: color.blue,
+      a: (color.a * 255).round().clamp(0, 255),
+      r: (color.r * 255).round().clamp(0, 255),
+      g: (color.g * 255).round().clamp(0, 255),
+      b: (color.b * 255).round().clamp(0, 255),
     );
   }
 }

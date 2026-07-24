@@ -83,16 +83,16 @@ class DetailParserEditor extends HookWidget {
         ParserTileConsumer(
           title: '徽章内容',
           selector: (n) => n.detail.badgeItem.text,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            badgeItem: n.detail.badgeItem.copyWith(text: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(badgeItem: n.detail.badgeItem.copyWith(text: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '徽章颜色',
           selector: (n) => n.detail.badgeItem.color,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            badgeItem: n.detail.badgeItem.copyWith(color: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(badgeItem: n.detail.badgeItem.copyWith(color: v)),
+          ),
         ),
       ],
     );
@@ -106,37 +106,41 @@ class DetailParserEditor extends HookWidget {
         ParserTileConsumer(
           title: I.of(context).cover_img,
           selector: (n) => n.detail.coverImage.url,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            coverImage: n.detail.coverImage.copyWith(url: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(coverImage: n.detail.coverImage.copyWith(url: v)),
+          ),
         ),
         ParserTileConsumer(
           title: I.of(context).cover_width,
           selector: (n) => n.detail.coverImage.width,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            coverImage: n.detail.coverImage.copyWith(width: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(
+              coverImage: n.detail.coverImage.copyWith(width: v),
+            ),
+          ),
         ),
         ParserTileConsumer(
           title: I.of(context).cover_height,
           selector: (n) => n.detail.coverImage.height,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            coverImage: n.detail.coverImage.copyWith(height: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(
+              coverImage: n.detail.coverImage.copyWith(height: v),
+            ),
+          ),
         ),
         ParserTileConsumer(
           title: I.of(context).cover_x,
           selector: (n) => n.detail.coverImage.x,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            coverImage: n.detail.coverImage.copyWith(x: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(coverImage: n.detail.coverImage.copyWith(x: v)),
+          ),
         ),
         ParserTileConsumer(
           title: I.of(context).cover_y,
           selector: (n) => n.detail.coverImage.y,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            coverImage: n.detail.coverImage.copyWith(y: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(coverImage: n.detail.coverImage.copyWith(y: v)),
+          ),
         ),
       ],
     );
@@ -157,23 +161,23 @@ class DetailParserEditor extends HookWidget {
         ParserTileConsumer(
           title: '标签内容',
           selector: (n) => n.detail.tagItem.text,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            tagItem: n.detail.tagItem.copyWith(text: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(tagItem: n.detail.tagItem.copyWith(text: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '标签颜色',
           selector: (n) => n.detail.tagItem.color,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            tagItem: n.detail.tagItem.copyWith(color: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(tagItem: n.detail.tagItem.copyWith(color: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '标签分类',
           selector: (n) => n.detail.tagItem.category,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            tagItem: n.detail.tagItem.copyWith(category: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(tagItem: n.detail.tagItem.copyWith(category: v)),
+          ),
         ),
       ],
     );
@@ -194,23 +198,25 @@ class DetailParserEditor extends HookWidget {
         ParserTileConsumer(
           title: I.of(context).comment_content,
           selector: (n) => n.detail.comments.content,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            comments: n.detail.comments.copyWith(content: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(comments: n.detail.comments.copyWith(content: v)),
+          ),
         ),
         ParserTileConsumer(
           title: I.of(context).username,
           selector: (n) => n.detail.comments.username,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            comments: n.detail.comments.copyWith(username: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(
+              comments: n.detail.comments.copyWith(username: v),
+            ),
+          ),
         ),
         ParserTileConsumer(
           title: I.of(context).comment_time,
           selector: (n) => n.detail.comments.time,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            comments: n.detail.comments.copyWith(time: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(comments: n.detail.comments.copyWith(time: v)),
+          ),
         ),
       ],
     );
@@ -265,37 +271,39 @@ class DetailParserEditor extends HookWidget {
         ParserTileConsumer(
           title: I.of(context).thumbnail_img,
           selector: (n) => n.detail.thumbnail.url,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            thumbnail: n.detail.thumbnail.copyWith(url: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(thumbnail: n.detail.thumbnail.copyWith(url: v)),
+          ),
         ),
         ParserTileConsumer(
           title: I.of(context).thumbnail_width,
           selector: (n) => n.detail.thumbnail.width,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            thumbnail: n.detail.thumbnail.copyWith(width: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(thumbnail: n.detail.thumbnail.copyWith(width: v)),
+          ),
         ),
         ParserTileConsumer(
           title: I.of(context).thumbnail_height,
           selector: (n) => n.detail.thumbnail.height,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            thumbnail: n.detail.thumbnail.copyWith(height: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(
+              thumbnail: n.detail.thumbnail.copyWith(height: v),
+            ),
+          ),
         ),
         ParserTileConsumer(
           title: I.of(context).thumbnail_x,
           selector: (n) => n.detail.thumbnail.x,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            thumbnail: n.detail.thumbnail.copyWith(x: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(thumbnail: n.detail.thumbnail.copyWith(x: v)),
+          ),
         ),
         ParserTileConsumer(
           title: I.of(context).thumbnail_y,
           selector: (n) => n.detail.thumbnail.y,
-          onChanged: (n, v) => n.updateParser(n.detail.copyWith(
-            thumbnail: n.detail.thumbnail.copyWith(y: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.detail.copyWith(thumbnail: n.detail.thumbnail.copyWith(y: v)),
+          ),
         ),
       ],
     );

@@ -10,6 +10,7 @@ import 'package:catweb/ui/widgets/load_more_footer.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter/rendering.dart' show ScrollCacheExtent;
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
@@ -37,37 +38,33 @@ class SubPageListFragment extends HookWidget {
           enablePullDown: false,
           enablePullUp: true,
           onLoading: notifier.loadNextPage,
-          footer: LoadMoreFooter(
-            hasToolBar: hasToolBar,
-          ),
-          child: Selector<
-              SubListNotifier,
-              ({
-                PageLoaderState state,
-                Iterable<ListItemModel?> items,
-              })>(
-            selector: (_, notifier) => (
-              state: notifier.state,
-              items: notifier.items,
-            ),
-            builder: (_, value, __) {
-              return CustomScrollView(
-                controller: notifier.scrollController,
-                cacheExtent: 300,
-                physics: (value.state.isLoading && value.items.isEmpty)
-                    ? const NeverScrollableScrollPhysics()
-                    : null,
-                slivers: [
-                  SliverPullToRefresh(
-                    onRefresh: () => notifier.refresh(),
-                    extraHeight:
-                        hasTabBar ? tabBarHeight ?? kCupertinoTabBarHeight : 0,
-                  ),
-                  _buildBody(context),
-                ],
-              );
-            },
-          ),
+          footer: LoadMoreFooter(hasToolBar: hasToolBar),
+          child:
+              Selector<
+                SubListNotifier,
+                ({PageLoaderState state, Iterable<ListItemModel?> items})
+              >(
+                selector: (_, notifier) =>
+                    (state: notifier.state, items: notifier.items),
+                builder: (_, value, _) {
+                  return CustomScrollView(
+                    controller: notifier.scrollController,
+                    scrollCacheExtent: const ScrollCacheExtent.pixels(300),
+                    physics: (value.state.isLoading && value.items.isEmpty)
+                        ? const NeverScrollableScrollPhysics()
+                        : null,
+                    slivers: [
+                      SliverPullToRefresh(
+                        onRefresh: () => notifier.refresh(),
+                        extraHeight: hasTabBar
+                            ? tabBarHeight ?? kCupertinoTabBarHeight
+                            : 0,
+                      ),
+                      _buildBody(context),
+                    ],
+                  );
+                },
+              ),
         ),
       ),
     );
@@ -75,19 +72,17 @@ class SubPageListFragment extends HookWidget {
 
   Widget _buildBody(BuildContext context) {
     return Selector<
-        SubListNotifier,
-        ({
-          PageLoaderState state,
-          Iterable<ListItemModel?> items,
-        })>(
+      SubListNotifier,
+      ({PageLoaderState state, Iterable<ListItemModel?> items})
+    >(
       selector: (_, n) => (state: n.state, items: n.items),
-      builder: (_, value, __) {
+      builder: (_, value, _) {
         return switch (value.state) {
           PageLoaderState.loading when value.items.isEmpty =>
             const LoadingSliver(),
           PageLoaderStateError(:final error) when value.items.isEmpty =>
             ExceptionSliver(errMsg: error.toString()),
-          _ => _buildSliverList(context)
+          _ => _buildSliverList(context),
         };
       },
     );
@@ -96,38 +91,35 @@ class SubPageListFragment extends HookWidget {
   Widget _buildSliverList(BuildContext context) {
     final SubListNotifier notifier = context.read();
     return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          if (index.isOdd) {
-            return const ImageListDivider();
-          }
-          final ListItemModel model = notifier.items.toList()[index ~/ 2]!;
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            child: ListExtendedCard(
-              model: model.previewModel,
-              queue: notifier.previewConcurrency,
-              onTap: () {
-                if (model.idCode?.isEmpty == true) {
-                  BotToast.showText(text: '跳转目标为空');
-                  return;
-                }
-                // TODO 跳转到详情界面
-                // NavigatorNotifier.push(
-                //   targetName: (controller.siteRule.template as TemplateList)
-                //       .targetItem
-                //       .value,
-                //   envModel: SiteEnvStore({
-                //     'idCode': model.idCode ?? '',
-                //   }),
-                //   model: model,
-                // );
-              },
-            ),
-          );
-        },
-        childCount: notifier.items.length * 2,
-      ),
+      delegate: SliverChildBuilderDelegate((context, index) {
+        if (index.isOdd) {
+          return const ImageListDivider();
+        }
+        final ListItemModel model = notifier.items.toList()[index ~/ 2]!;
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+          child: ListExtendedCard(
+            model: model.previewModel,
+            queue: notifier.previewConcurrency,
+            onTap: () {
+              if (model.idCode?.isEmpty == true) {
+                BotToast.showText(text: '跳转目标为空');
+                return;
+              }
+              // TODO 跳转到详情界面
+              // NavigatorNotifier.push(
+              //   targetName: (controller.siteRule.template as TemplateList)
+              //       .targetItem
+              //       .value,
+              //   envModel: SiteEnvStore({
+              //     'idCode': model.idCode ?? '',
+              //   }),
+              //   model: model,
+              // );
+            },
+          ),
+        );
+      }, childCount: notifier.items.length * 2),
     );
   }
 }

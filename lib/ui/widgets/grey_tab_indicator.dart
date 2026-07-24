@@ -34,7 +34,7 @@ class GreyUnderlineTabIndicator extends Decoration {
 
 class _UnderlinePainter extends BoxPainter {
   _UnderlinePainter(this.decoration, VoidCallback? onChanged)
-      : super(onChanged);
+    : super(onChanged);
 
   final GreyUnderlineTabIndicator decoration;
 
@@ -58,7 +58,10 @@ class _UnderlinePainter extends BoxPainter {
       ..color = CupertinoColors.systemGrey4;
 
     canvas.drawLine(
-        Offset(0, indicator.bottom), Offset(5000, indicator.bottom), paint2);
+      Offset(0, indicator.bottom),
+      Offset(5000, indicator.bottom),
+      paint2,
+    );
 
     canvas.drawLine(indicator.bottomLeft, indicator.bottomRight, paint);
   }

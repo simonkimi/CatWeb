@@ -25,17 +25,17 @@ sealed class PageLoaderState with _$PageLoaderState {
   }
 
   bool get isLoading => switch (this) {
-        _Running() => true,
-        _ => false,
-      };
+    _Running() => true,
+    _ => false,
+  };
 
   bool get isError => switch (this) {
-        PageLoaderStateError() => true,
-        _ => false,
-      };
+    PageLoaderStateError() => true,
+    _ => false,
+  };
 
   bool get isEnd => switch (this) {
-        _End() => true,
-        _ => false,
-      };
+    _End() => true,
+    _ => false,
+  };
 }

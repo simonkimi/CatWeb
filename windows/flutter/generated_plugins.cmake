@@ -4,11 +4,10 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   flutter_inappwebview_windows
-  sqlite3_flutter_libs
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
-  catweb_parser
+  jni
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

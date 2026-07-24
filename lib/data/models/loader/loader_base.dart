@@ -71,8 +71,9 @@ abstract base class LoadPageLoaderBase<TPageItem> with ChangeNotifier {
       // 没有总数, 则数据是连续的
       final maxIndex = _pages.keys.fold(-1, max);
       for (var i = 0; i <= maxIndex; i++) {
-        final chunk =
-            i == maxIndex ? _pages[maxIndex]!.items.length : chunkSize!;
+        final chunk = i == maxIndex
+            ? _pages[maxIndex]!.items.length
+            : chunkSize!;
         for (var j = 0; j < chunk; j++) {
           yield _pages[i]?.items[j];
         }

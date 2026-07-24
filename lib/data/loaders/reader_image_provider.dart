@@ -14,14 +14,12 @@ class ReaderImageProvider extends ImageProvider<ReaderImageProvider> {
   final ImageResult imageResult;
   final CancelToken _cancelToken = CancelToken();
 
-  ReaderImageProvider({
-    required this.dio,
-    required this.imageResult,
-  });
+  ReaderImageProvider({required this.dio, required this.imageResult});
 
   @override
   Future<ReaderImageProvider> obtainKey(
-      ImageConfiguration configuration) async {
+    ImageConfiguration configuration,
+  ) async {
     return this;
   }
 
@@ -52,20 +50,24 @@ class ReaderImageProvider extends ImageProvider<ReaderImageProvider> {
     StreamController<ImageChunkEvent> chunkEvents,
   ) async {
     try {
-      final rsp = await dio.get<Uint8List>(imageResult.url!,
-          cancelToken: _cancelToken,
-          onReceiveProgress: (r, t) => chunkEvents.add(ImageChunkEvent(
-                cumulativeBytesLoaded: r,
-                expectedTotalBytes: t,
-              )),
-          options: getIt
-              .get<GlobalService>()
-              .imageCacheOption
-              .toOptions()
-              .copyWith(responseType: ResponseType.bytes));
+      final rsp = await dio.get<Uint8List>(
+        imageResult.url!,
+        cancelToken: _cancelToken,
+        onReceiveProgress: (r, t) => chunkEvents.add(
+          ImageChunkEvent(cumulativeBytesLoaded: r, expectedTotalBytes: t),
+        ),
+        options: getIt
+            .get<GlobalService>()
+            .imageCacheOption
+            .toOptions()
+            .copyWith(responseType: ResponseType.bytes),
+      );
       if (rsp.data == null || rsp.data!.isEmpty) {
-        chunkEvents.addError(StateError(
-            '${imageResult.url} is empty and cannot be loaded as an image.'));
+        chunkEvents.addError(
+          StateError(
+            '${imageResult.url} is empty and cannot be loaded as an image.',
+          ),
+        );
       }
       final buffer = await ImmutableBuffer.fromUint8List(rsp.data!);
       return decode(buffer);

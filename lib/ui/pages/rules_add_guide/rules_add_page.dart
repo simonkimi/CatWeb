@@ -13,11 +13,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 class RulesEditPage extends StatelessWidget {
-  const RulesEditPage({
-    super.key,
-    this.db,
-    this.blueprint,
-  });
+  const RulesEditPage({super.key, this.db, this.blueprint});
 
   final WebTableData? db;
   final SiteBlueprint? blueprint;
@@ -27,8 +23,16 @@ class RulesEditPage extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => RulesEditorNotifier(blueprint ?? const SiteBlueprint()),
       builder: (context, child) {
-        return WillPopScope(
-          onWillPop: () => _showExitConfine(context),
+        return PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) async {
+            if (didPop) {
+              return;
+            }
+            if (await _showExitConfine(context) && context.mounted) {
+              context.pop();
+            }
+          },
           child: CupertinoPageScaffold(
             navigationBar: _buildAppbar(context),
             child: CupertinoTabBarView(
@@ -63,14 +67,14 @@ class RulesEditPage extends StatelessWidget {
           });
         },
         padding: EdgeInsets.zero,
-        minSize: 0,
+        minimumSize: Size(0, 0),
         child: const Icon(CupertinoIcons.back),
       ),
       middle: Text(I.of(context).rule_edit),
       trailing: CupertinoButton(
         onPressed: () => _save(context),
         padding: EdgeInsets.zero,
-        minSize: 0,
+        minimumSize: Size(0, 0),
         child: Text(I.of(context).save, style: const TextStyle(fontSize: 15)),
       ),
       border: const Border(),

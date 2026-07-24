@@ -68,7 +68,9 @@ class ListExtendedCard extends StatelessWidget {
             softWrap: true,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-                color: FixColor.title.resolveFrom(context), fontSize: 15),
+              color: FixColor.title.resolveFrom(context),
+              fontSize: 15,
+            ),
           ),
         if (model.subtitle != null)
           Text(
@@ -96,8 +98,8 @@ class ListExtendedCard extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: context.isDarkMode
-                    ? CupertinoColors.white.withOpacity(0.2)
-                    : CupertinoColors.black.withOpacity(0.1),
+                    ? CupertinoColors.white.withValues(alpha: 0.2)
+                    : CupertinoColors.black.withValues(alpha: 0.1),
                 blurRadius: 10,
                 spreadRadius: 1,
                 offset: const Offset(1, 1),
@@ -113,7 +115,8 @@ class ListExtendedCard extends StatelessWidget {
       constraints: const BoxConstraints(maxHeight: 160, minHeight: 140),
       child: SizedBox(
         width: 110,
-        child: model.previewImage!.width != null &&
+        child:
+            model.previewImage!.width != null &&
                 model.previewImage!.height != null
             ? AspectRatio(
                 aspectRatio:
@@ -174,8 +177,9 @@ class ListExtendedCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 12.5,
                         height: 1.1,
-                        color:
-                            CupertinoColors.secondaryLabel.resolveFrom(context),
+                        color: CupertinoColors.secondaryLabel.resolveFrom(
+                          context,
+                        ),
                       ),
                     ),
                   if (model.imageCount != null)
@@ -186,8 +190,9 @@ class ListExtendedCard extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 12.5,
-                          color: CupertinoColors.secondaryLabel
-                              .resolveFrom(context),
+                          color: CupertinoColors.secondaryLabel.resolveFrom(
+                            context,
+                          ),
                           height: 1.1,
                         ),
                       ),
@@ -203,7 +208,7 @@ class ListExtendedCard extends StatelessWidget {
                   ),
                 ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -220,10 +225,7 @@ class ListExtendedCard extends StatelessWidget {
           initialRating: model.star!,
           onRatingUpdate: (value) {},
           itemBuilder: (BuildContext context, int index) {
-            return const Icon(
-              Icons.star,
-              color: Colors.amber,
-            );
+            return const Icon(Icons.star, color: Colors.amber);
           },
         ),
         const SizedBox(width: 5),

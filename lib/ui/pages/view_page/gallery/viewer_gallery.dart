@@ -14,7 +14,6 @@ import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/gallery/viewer_gallery_images.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/theme/themes.dart';
-import 'package:catweb/utils/helper.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +35,8 @@ class ViewerGalleryFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ViewerGalleryNotifier(
-        siteRule: sitePageRule,
-        localEnv: env,
-      ),
+      create: (_) =>
+          ViewerGalleryNotifier(siteRule: sitePageRule, localEnv: env),
       builder: (context, _) {
         return CupertinoPageScaffold(
           child: CupertinoAppBar(
@@ -55,13 +52,15 @@ class ViewerGalleryFragment extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     ViewerGalleryNotifier notifier = context.read();
     final firstPage = context.select((ViewerGalleryNotifier n) => n.firstPage);
-    final fillRemaining =
-        context.select((ViewerGalleryNotifier n) => n.fillRemaining);
+    final fillRemaining = context.select(
+      (ViewerGalleryNotifier n) => n.fillRemaining,
+    );
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: CustomScrollView(
-        physics:
-            firstPage == null ? const NeverScrollableScrollPhysics() : null,
+        physics: firstPage == null
+            ? const NeverScrollableScrollPhysics()
+            : null,
         slivers: [
           // 上方内容
           SliverPullToRefresh(onRefresh: notifier.refresh),
@@ -69,18 +68,10 @@ class ViewerGalleryFragment extends StatelessWidget {
           // 下方内容, 有信息才会展现
           if (firstPage != null) ...[
             // 描述
-            SliverToBoxAdapter(
-              child: _buildDescription(context),
-            ),
-            SliverToBoxAdapter(
-              child: _buildPreviewList(context),
-            ),
-            SliverToBoxAdapter(
-              child: _buildTagList(context),
-            ),
-            SliverToBoxAdapter(
-              child: _buildCommentList(context),
-            ),
+            SliverToBoxAdapter(child: _buildDescription(context)),
+            SliverToBoxAdapter(child: _buildPreviewList(context)),
+            SliverToBoxAdapter(child: _buildTagList(context)),
+            SliverToBoxAdapter(child: _buildCommentList(context)),
             const SliverPadding(padding: EdgeInsets.only(bottom: 20)),
           ],
 
@@ -93,10 +84,12 @@ class ViewerGalleryFragment extends StatelessWidget {
 
   Widget _buildPreviewList(BuildContext context) {
     ViewerGalleryNotifier notifier = context.read();
-    final successiveItems =
-        context.select((ViewerGalleryNotifier n) => n.successiveItems).toList();
-    final imageCount = context
-        .select((ViewerGalleryNotifier n) => n.firstPage?.pageData.imageCount);
+    final successiveItems = context
+        .select((ViewerGalleryNotifier n) => n.successiveItems)
+        .toList();
+    final imageCount = context.select(
+      (ViewerGalleryNotifier n) => n.firstPage?.pageData.imageCount,
+    );
 
     return Column(
       children: [
@@ -126,10 +119,12 @@ class ViewerGalleryFragment extends StatelessWidget {
                                 );
                               },
                             )
-                          : Builder(builder: (context) {
-                              notifier.loadIndex(index);
-                              return const CupertinoActivityIndicator();
-                            }),
+                          : Builder(
+                              builder: (context) {
+                                notifier.loadIndex(index);
+                                return const CupertinoActivityIndicator();
+                              },
+                            ),
                     ),
                   ),
                 ),
@@ -152,14 +147,16 @@ class ViewerGalleryFragment extends StatelessWidget {
               ),
             const Expanded(child: SizedBox()),
             _buildShowMore(context, () {
-              Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
-                return ChangeNotifierProvider.value(
-                  value: notifier,
-                  child: ViewerGalleryImages(
-                    onOpenPage: _openReadPage,
-                  ),
-                );
-              }));
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) {
+                    return ChangeNotifierProvider.value(
+                      value: notifier,
+                      child: ViewerGalleryImages(onOpenPage: _openReadPage),
+                    );
+                  },
+                ),
+              );
             }),
           ],
         ),
@@ -174,10 +171,7 @@ class ViewerGalleryFragment extends StatelessWidget {
       onTap: onTap,
       child: const Text(
         '显示全部',
-        style: TextStyle(
-          color: CupertinoColors.activeBlue,
-          fontSize: 14,
-        ),
+        style: TextStyle(color: CupertinoColors.activeBlue, fontSize: 14),
       ),
     );
   }
@@ -192,10 +186,7 @@ class ViewerGalleryFragment extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _buildLeftImage(context),
-                  _buildRightInfo(context),
-                ],
+                children: [_buildLeftImage(context), _buildRightInfo(context)],
               ),
             ),
           ),
@@ -207,8 +198,9 @@ class ViewerGalleryFragment extends StatelessWidget {
   }
 
   Widget _buildTagList(BuildContext context) {
-    final badges = context
-        .select((ViewerGalleryNotifier n) => n.firstPage?.pageData.badges);
+    final badges = context.select(
+      (ViewerGalleryNotifier n) => n.firstPage?.pageData.badges,
+    );
     if (badges == null || badges.isEmpty) {
       return const SizedBox();
     }
@@ -217,8 +209,9 @@ class ViewerGalleryFragment extends StatelessWidget {
 
     for (final tag in badges) {
       tagMaps[tag.category?.isEmpty == true ? '_' : tag.category!] ??= [];
-      tagMaps[tag.category?.isEmpty == true ? '_' : tag.category]!
-          .add(tag.text ?? '');
+      tagMaps[tag.category?.isEmpty == true ? '_' : tag.category]!.add(
+        tag.text ?? '',
+      );
     }
 
     return Column(
@@ -236,7 +229,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                     color: cupertinoLightColors(
                       context,
                       tagMaps.keys.toList().indexOf(e.key),
-                    ).withOpacity(0.5),
+                    ).withValues(alpha: 0.5),
                   ),
                   const SizedBox(width: 10),
                 ],
@@ -283,11 +276,13 @@ class ViewerGalleryFragment extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
                 boxShadow: [
                   BoxShadow(
-                    color: CupertinoColors.opaqueSeparator.withOpacity(0.2),
+                    color: CupertinoColors.opaqueSeparator.withValues(
+                      alpha: 0.2,
+                    ),
                     offset: const Offset(2, 2),
                     blurRadius: 2,
                     spreadRadius: 0,
-                  )
+                  ),
                 ],
               ),
               child: child,
@@ -318,14 +313,14 @@ class ViewerGalleryFragment extends StatelessWidget {
               if (comments?.isEmpty ?? true) ...[
                 const SizedBox(height: 5),
                 _buildStarBar(context),
-              ]
+              ],
             ],
           ),
           Row(
             children: [
               _buildReadButton(context),
               const SizedBox(width: 10),
-              _buildLanguage(context)
+              _buildLanguage(context),
             ],
           ),
         ],
@@ -334,20 +329,19 @@ class ViewerGalleryFragment extends StatelessWidget {
   }
 
   Widget _buildRemaining(BuildContext context) {
-    final errMsg =
-        context.select((ViewerGalleryNotifier n) => switch (n.state) {
-              PageLoaderStateError(:final error) => error.toString(),
-              _ => null,
-            });
+    final errMsg = context.select(
+      (ViewerGalleryNotifier n) => switch (n.state) {
+        PageLoaderStateError(:final error) => error.toString(),
+        _ => null,
+      },
+    );
 
     return SliverFillRemaining(
       child: Center(
         child: errMsg != null
             ? Text(
                 errMsg,
-                style: TextStyle(
-                  color: FixColor.title.resolveFrom(context),
-                ),
+                style: TextStyle(color: FixColor.title.resolveFrom(context)),
               )
             : const CupertinoActivityIndicator(),
       ),
@@ -355,8 +349,9 @@ class ViewerGalleryFragment extends StatelessWidget {
   }
 
   Widget _buildLanguage(BuildContext context) {
-    final language = context
-        .select((ViewerGalleryNotifier n) => n.firstPage?.pageData.language);
+    final language = context.select(
+      (ViewerGalleryNotifier n) => n.firstPage?.pageData.language,
+    );
 
     if (language == null) return const SizedBox();
     return Text(
@@ -369,8 +364,9 @@ class ViewerGalleryFragment extends StatelessWidget {
   }
 
   Widget _buildStarBar(BuildContext context) {
-    final star =
-        context.select((ViewerGalleryNotifier n) => n.firstPage?.pageData.star);
+    final star = context.select(
+      (ViewerGalleryNotifier n) => n.firstPage?.pageData.star,
+    );
 
     if (star == null) return const SizedBox();
     return Row(
@@ -403,11 +399,11 @@ class ViewerGalleryFragment extends StatelessWidget {
     return CupertinoButton(
       color: CupertinoColors.systemBlue.resolveFrom(context),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
-      minSize: 0,
       onPressed: () async {
         await _openReadPage();
       },
       borderRadius: BorderRadius.circular(20),
+      minimumSize: Size(0, 0),
       child: const Text(
         '阅读',
         style: TextStyle(
@@ -504,7 +500,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                     color: CupertinoColors.secondaryLabel.resolveFrom(context),
                     fontSize: 12,
                   ),
-                )
+                ),
             ],
           ),
           const SizedBox(height: 10),
@@ -556,9 +552,7 @@ class ViewerGalleryFragment extends StatelessWidget {
                 showCupertinoModalSheet(
                   context: context,
                   builder: (context) {
-                    return CommentListPage(
-                      comments: comments,
-                    );
+                    return CommentListPage(comments: comments);
                   },
                 );
               }),

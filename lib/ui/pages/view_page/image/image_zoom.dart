@@ -28,8 +28,10 @@ class ZoomWidget extends StatelessWidget {
               // 缩放
               final position = detail.globalPosition;
               final currentScale = controller.scale ?? 1.0;
-              var index = doubleTapScales
-                      .indexOf(currentScale.nearList(doubleTapScales)) +
+              var index =
+                  doubleTapScales.indexOf(
+                    currentScale.nearList(doubleTapScales),
+                  ) +
                   1;
               if (index >= doubleTapScales.length) index = 0;
               final scale = doubleTapScales[index];

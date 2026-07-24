@@ -43,7 +43,6 @@ sealed class SitePageRule with _$SitePageRule {
       PageTemplateGallery() => ParserModelType.detail,
       PageTemplateImageViewer() => ParserModelType.imageReader,
       PageTemplateAutoComplete() => ParserModelType.autoComplete,
-      _ => throw UnimplementedError('$template not implemented'),
     };
   }
 
@@ -96,7 +95,7 @@ enum SiteNetType implements IEnumDescription {
       SiteNetType.get => 'GET',
       SiteNetType.post => 'POST',
       SiteNetType.put => 'PUT',
-      SiteNetType.delete => 'DELETE'
+      SiteNetType.delete => 'DELETE',
     };
   }
 }

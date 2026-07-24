@@ -10,24 +10,21 @@ class CookieJarDao extends DatabaseAccessor<AppDataBase>
   CookieJarDao(super.attachedDatabase);
 
   Future<void> write(String uuid, String key, String value) async {
-    final entity = await (select(cookieJarTable)
-          ..where((tbl) => tbl.webUuid.equals(uuid) & tbl.key.equals(key)))
-        .getSingleOrNull();
+    final entity =
+        await (select(cookieJarTable)
+              ..where((tbl) => tbl.webUuid.equals(uuid) & tbl.key.equals(key)))
+            .getSingleOrNull();
 
     if (entity == null) {
-      await into(cookieJarTable).insert(CookieJarTableCompanion.insert(
-        webUuid: uuid,
-        key: key,
-        value: value,
-      ));
+      await into(cookieJarTable).insert(
+        CookieJarTableCompanion.insert(webUuid: uuid, key: key, value: value),
+      );
     } else {
-      await (update(cookieJarTable)
-            ..where((tbl) => tbl.webUuid.equals(uuid) & tbl.key.equals(key)))
-          .write(CookieJarTableCompanion.insert(
-        webUuid: uuid,
-        key: key,
-        value: value,
-      ));
+      await (update(
+        cookieJarTable,
+      )..where((tbl) => tbl.webUuid.equals(uuid) & tbl.key.equals(key))).write(
+        CookieJarTableCompanion.insert(webUuid: uuid, key: key, value: value),
+      );
     }
   }
 
@@ -39,7 +36,7 @@ class CookieJarDao extends DatabaseAccessor<AppDataBase>
   Future<void> deleteAll(String uuid) =>
       (delete(cookieJarTable)..where((tbl) => tbl.webUuid.equals(uuid))).go();
 
-  Future<void> remove(String uuid, String key) => (delete(cookieJarTable)
-        ..where((tbl) => tbl.webUuid.equals(uuid) & tbl.key.equals(key)))
-      .go();
+  Future<void> remove(String uuid, String key) => (delete(
+    cookieJarTable,
+  )..where((tbl) => tbl.webUuid.equals(uuid) & tbl.key.equals(key))).go();
 }

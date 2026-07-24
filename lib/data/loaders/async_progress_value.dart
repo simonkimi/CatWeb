@@ -19,34 +19,34 @@ sealed class AsyncProgressValue<T> with _$AsyncProgressValue<T> {
   const factory AsyncProgressValue.cached() = AsyncProgressCached<T>;
 
   bool get isLoading => switch (this) {
-        AsyncProgressLoading() => true,
-        _ => false,
-      };
+    AsyncProgressLoading() => true,
+    _ => false,
+  };
 
   double get progress => switch (this) {
-        AsyncProgressLoading(:final progress) => progress,
-        _ => 0,
-      };
+    AsyncProgressLoading(:final progress) => progress,
+    _ => 0,
+  };
 
   bool get hasValue => switch (this) {
-        AsyncProgressData() => true,
-        _ => false,
-      };
+    AsyncProgressData() => true,
+    _ => false,
+  };
 
   T? get value => switch (this) {
-        AsyncProgressData(:final value) => value,
-        _ => null,
-      };
+    AsyncProgressData(:final value) => value,
+    _ => null,
+  };
 
   Object? get error => switch (this) {
-        AsyncProgressError(:final error) => error,
-        _ => null,
-      };
+    AsyncProgressError(:final error) => error,
+    _ => null,
+  };
 
   StackTrace? get stackTrace => switch (this) {
-        AsyncProgressError(:final stackTrace) => stackTrace,
-        _ => null,
-      };
+    AsyncProgressError(:final stackTrace) => stackTrace,
+    _ => null,
+  };
 
   static Future<AsyncProgressValue<T>> guard<T>(
     Future<T> Function() future,

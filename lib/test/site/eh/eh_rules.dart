@@ -31,21 +31,17 @@ final ehTestSite = SiteBlueprint(
     RegField(reg: r'104.20.134.21', value: 'host=e-hentai.org'),
     RegField(reg: r'178.162.147.246', value: 'host=api.e-hentai.org'),
   ],
-  cookies: const [
-    RegField(reg: '104.20.134.21', value: 'nw=1'),
-  ],
+  cookies: const [RegField(reg: '104.20.134.21', value: 'nw=1')],
   pageList: [
     SitePageRule(
-        name: '搜索补全',
-        uuid: _autoCompleteUuid,
-        url: 'https://api.e-hentai.org/api.php',
-        action: SiteNetType.post,
-        formData: r'{"method":"tagsuggest","text":"{search}"}',
-        parserId: ehAutoCompleteParser.uuid,
-        template: const PageTemplate.autoComplete(
-          splitChar: ' ',
-          timeout: 2000,
-        )),
+      name: '搜索补全',
+      uuid: _autoCompleteUuid,
+      url: 'https://api.e-hentai.org/api.php',
+      action: SiteNetType.post,
+      formData: r'{"method":"tagsuggest","text":"{search}"}',
+      parserId: ehAutoCompleteParser.uuid,
+      template: const PageTemplate.autoComplete(splitChar: ' ', timeout: 2000),
+    ),
     SitePageRule(
       name: '图片显示器',
       url: 's/{idCode}',
@@ -56,9 +52,7 @@ final ehTestSite = SiteBlueprint(
     SitePageRule(
       name: '画廊',
       uuid: _detailUuid,
-      template: PageTemplate.gallery(
-        targetReader: _readerUuid,
-      ),
+      template: PageTemplate.gallery(targetReader: _readerUuid),
       parserId: ehGalleryParser.uuid,
       url: 'g/{idCode}/?p={page:0}',
     ),
@@ -183,59 +177,61 @@ final ehTestSite = SiteBlueprint(
       parserId: ehListParser.uuid,
       displayType: SiteDisplayType.show,
       flag: 'requireLogin',
-      template: const PageTemplate.list(subPages: [
-        TemplateListSubPage(name: '全部'),
-        TemplateListSubPage(
-          name: r'${fav0Tag:{fav0Tag}:Favourite 0}',
-          key: 'favcat',
-          value: '0',
-        ),
-        TemplateListSubPage(
-          name: r'${fav1Tag:{fav1Tag}:Favourite 1}',
-          key: 'favcat',
-          value: '1',
-        ),
-        TemplateListSubPage(
-          name: r'${fav2Tag:{fav2Tag}:Favourite 2}',
-          key: 'favcat',
-          value: '2',
-        ),
-        TemplateListSubPage(
-          name: r'${fav3Tag:{fav3Tag}:Favourite 3}',
-          key: 'favcat',
-          value: '3',
-        ),
-        TemplateListSubPage(
-          name: r'${fav4Tag:{fav4Tag}:Favourite 4}',
-          key: 'favcat',
-          value: '4',
-        ),
-        TemplateListSubPage(
-          name: r'${fav5Tag:{fav5Tag}:Favourite 5}',
-          key: 'favcat',
-          value: '5',
-        ),
-        TemplateListSubPage(
-          name: r'${fav6Tag:{fav6Tag}:Favourite 6}',
-          key: 'favcat',
-          value: '6',
-        ),
-        TemplateListSubPage(
-          name: r'${fav7Tag:{fav7Tag}:Favourite 7}',
-          key: 'favcat',
-          value: '7',
-        ),
-        TemplateListSubPage(
-          name: r'${fav8Tag:{fav8Tag}:Favourite 8}',
-          key: 'favcat',
-          value: '8',
-        ),
-        TemplateListSubPage(
-          name: r'${fav9Tag:{fav9Tag}:Favourite 9}',
-          key: 'favcat',
-          value: '9',
-        ),
-      ]),
+      template: const PageTemplate.list(
+        subPages: [
+          TemplateListSubPage(name: '全部'),
+          TemplateListSubPage(
+            name: r'${fav0Tag:{fav0Tag}:Favourite 0}',
+            key: 'favcat',
+            value: '0',
+          ),
+          TemplateListSubPage(
+            name: r'${fav1Tag:{fav1Tag}:Favourite 1}',
+            key: 'favcat',
+            value: '1',
+          ),
+          TemplateListSubPage(
+            name: r'${fav2Tag:{fav2Tag}:Favourite 2}',
+            key: 'favcat',
+            value: '2',
+          ),
+          TemplateListSubPage(
+            name: r'${fav3Tag:{fav3Tag}:Favourite 3}',
+            key: 'favcat',
+            value: '3',
+          ),
+          TemplateListSubPage(
+            name: r'${fav4Tag:{fav4Tag}:Favourite 4}',
+            key: 'favcat',
+            value: '4',
+          ),
+          TemplateListSubPage(
+            name: r'${fav5Tag:{fav5Tag}:Favourite 5}',
+            key: 'favcat',
+            value: '5',
+          ),
+          TemplateListSubPage(
+            name: r'${fav6Tag:{fav6Tag}:Favourite 6}',
+            key: 'favcat',
+            value: '6',
+          ),
+          TemplateListSubPage(
+            name: r'${fav7Tag:{fav7Tag}:Favourite 7}',
+            key: 'favcat',
+            value: '7',
+          ),
+          TemplateListSubPage(
+            name: r'${fav8Tag:{fav8Tag}:Favourite 8}',
+            key: 'favcat',
+            value: '8',
+          ),
+          TemplateListSubPage(
+            name: r'${fav9Tag:{fav9Tag}:Favourite 9}',
+            key: 'favcat',
+            value: '9',
+          ),
+        ],
+      ),
       icon: 'heart',
     ),
   ],

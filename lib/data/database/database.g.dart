@@ -12,83 +12,118 @@ class $WebTableTable extends WebTable
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
   static const VerificationMeta _uuidMeta = const VerificationMeta('uuid');
   @override
   late final GeneratedColumn<String> uuid = GeneratedColumn<String>(
-      'uuid', aliasedName, false,
-      type: DriftSqlType.string,
-      requiredDuringInsert: false,
-      clientDefault: () => const Uuid().v4().toString());
-  static const VerificationMeta _blueprintMeta =
-      const VerificationMeta('blueprint');
+    'uuid',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: () => const Uuid().v4().toString(),
+  );
+  static const VerificationMeta _blueprintMeta = const VerificationMeta(
+    'blueprint',
+  );
   @override
   late final GeneratedColumn<String> blueprint = GeneratedColumn<String>(
-      'blueprint', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+    'blueprint',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _envMeta = const VerificationMeta('env');
   @override
   late final GeneratedColumn<String> env = GeneratedColumn<String>(
-      'env', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _faviconMeta =
-      const VerificationMeta('favicon');
+    'env',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _faviconMeta = const VerificationMeta(
+    'favicon',
+  );
   @override
   late final GeneratedColumn<Uint8List> favicon = GeneratedColumn<Uint8List>(
-      'favicon', aliasedName, false,
-      type: DriftSqlType.blob,
-      requiredDuringInsert: false,
-      clientDefault: () => Uint8List.fromList([]));
-  static const VerificationMeta _lastOpenMeta =
-      const VerificationMeta('lastOpen');
+    'favicon',
+    aliasedName,
+    false,
+    type: DriftSqlType.blob,
+    requiredDuringInsert: false,
+    clientDefault: () => Uint8List.fromList([]),
+  );
+  static const VerificationMeta _lastOpenMeta = const VerificationMeta(
+    'lastOpen',
+  );
   @override
   late final GeneratedColumn<int> lastOpen = GeneratedColumn<int>(
-      'last_open', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      clientDefault: () => DateTime.now().millisecond);
-  static const VerificationMeta _securityModelMeta =
-      const VerificationMeta('securityModel');
+    'last_open',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    clientDefault: () => DateTime.now().millisecond,
+  );
+  static const VerificationMeta _securityModelMeta = const VerificationMeta(
+    'securityModel',
+  );
   @override
   late final GeneratedColumn<bool> securityModel = GeneratedColumn<bool>(
-      'security_model', aliasedName, false,
-      type: DriftSqlType.bool,
-      requiredDuringInsert: false,
-      defaultConstraints: GeneratedColumn.constraintIsAlways(
-          'CHECK ("security_model" IN (0, 1))'),
-      clientDefault: () => true);
-  static const VerificationMeta _loginCookiesMeta =
-      const VerificationMeta('loginCookies');
+    'security_model',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("security_model" IN (0, 1))',
+    ),
+    clientDefault: () => true,
+  );
+  static const VerificationMeta _loginCookiesMeta = const VerificationMeta(
+    'loginCookies',
+  );
   @override
   late final GeneratedColumn<String> loginCookies = GeneratedColumn<String>(
-      'login_cookies', aliasedName, false,
-      type: DriftSqlType.string,
-      requiredDuringInsert: false,
-      clientDefault: () => '');
+    'login_cookies',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: () => '',
+  );
   @override
   List<GeneratedColumn> get $columns => [
-        id,
-        uuid,
-        blueprint,
-        env,
-        favicon,
-        lastOpen,
-        securityModel,
-        loginCookies
-      ];
+    id,
+    uuid,
+    blueprint,
+    env,
+    favicon,
+    lastOpen,
+    securityModel,
+    loginCookies,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
   static const String $name = 'web_table';
   @override
-  VerificationContext validateIntegrity(Insertable<WebTableData> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<WebTableData> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
@@ -96,39 +131,55 @@ class $WebTableTable extends WebTable
     }
     if (data.containsKey('uuid')) {
       context.handle(
-          _uuidMeta, uuid.isAcceptableOrUnknown(data['uuid']!, _uuidMeta));
+        _uuidMeta,
+        uuid.isAcceptableOrUnknown(data['uuid']!, _uuidMeta),
+      );
     }
     if (data.containsKey('blueprint')) {
-      context.handle(_blueprintMeta,
-          blueprint.isAcceptableOrUnknown(data['blueprint']!, _blueprintMeta));
+      context.handle(
+        _blueprintMeta,
+        blueprint.isAcceptableOrUnknown(data['blueprint']!, _blueprintMeta),
+      );
     } else if (isInserting) {
       context.missing(_blueprintMeta);
     }
     if (data.containsKey('env')) {
       context.handle(
-          _envMeta, env.isAcceptableOrUnknown(data['env']!, _envMeta));
+        _envMeta,
+        env.isAcceptableOrUnknown(data['env']!, _envMeta),
+      );
     } else if (isInserting) {
       context.missing(_envMeta);
     }
     if (data.containsKey('favicon')) {
-      context.handle(_faviconMeta,
-          favicon.isAcceptableOrUnknown(data['favicon']!, _faviconMeta));
+      context.handle(
+        _faviconMeta,
+        favicon.isAcceptableOrUnknown(data['favicon']!, _faviconMeta),
+      );
     }
     if (data.containsKey('last_open')) {
-      context.handle(_lastOpenMeta,
-          lastOpen.isAcceptableOrUnknown(data['last_open']!, _lastOpenMeta));
+      context.handle(
+        _lastOpenMeta,
+        lastOpen.isAcceptableOrUnknown(data['last_open']!, _lastOpenMeta),
+      );
     }
     if (data.containsKey('security_model')) {
       context.handle(
+        _securityModelMeta,
+        securityModel.isAcceptableOrUnknown(
+          data['security_model']!,
           _securityModelMeta,
-          securityModel.isAcceptableOrUnknown(
-              data['security_model']!, _securityModelMeta));
+        ),
+      );
     }
     if (data.containsKey('login_cookies')) {
       context.handle(
+        _loginCookiesMeta,
+        loginCookies.isAcceptableOrUnknown(
+          data['login_cookies']!,
           _loginCookiesMeta,
-          loginCookies.isAcceptableOrUnknown(
-              data['login_cookies']!, _loginCookiesMeta));
+        ),
+      );
     }
     return context;
   }
@@ -139,22 +190,38 @@ class $WebTableTable extends WebTable
   WebTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return WebTableData(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      uuid: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}uuid'])!,
-      blueprint: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}blueprint'])!,
-      env: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}env'])!,
-      favicon: attachedDatabase.typeMapping
-          .read(DriftSqlType.blob, data['${effectivePrefix}favicon'])!,
-      lastOpen: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}last_open'])!,
-      securityModel: attachedDatabase.typeMapping
-          .read(DriftSqlType.bool, data['${effectivePrefix}security_model'])!,
-      loginCookies: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}login_cookies'])!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      uuid: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}uuid'],
+      )!,
+      blueprint: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}blueprint'],
+      )!,
+      env: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}env'],
+      )!,
+      favicon: attachedDatabase.typeMapping.read(
+        DriftSqlType.blob,
+        data['${effectivePrefix}favicon'],
+      )!,
+      lastOpen: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}last_open'],
+      )!,
+      securityModel: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}security_model'],
+      )!,
+      loginCookies: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}login_cookies'],
+      )!,
     );
   }
 
@@ -173,15 +240,16 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
   final int lastOpen;
   final bool securityModel;
   final String loginCookies;
-  const WebTableData(
-      {required this.id,
-      required this.uuid,
-      required this.blueprint,
-      required this.env,
-      required this.favicon,
-      required this.lastOpen,
-      required this.securityModel,
-      required this.loginCookies});
+  const WebTableData({
+    required this.id,
+    required this.uuid,
+    required this.blueprint,
+    required this.env,
+    required this.favicon,
+    required this.lastOpen,
+    required this.securityModel,
+    required this.loginCookies,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -209,8 +277,10 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
     );
   }
 
-  factory WebTableData.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory WebTableData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return WebTableData(
       id: serializer.fromJson<int>(json['id']),
@@ -238,25 +308,25 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
     };
   }
 
-  WebTableData copyWith(
-          {int? id,
-          String? uuid,
-          String? blueprint,
-          String? env,
-          Uint8List? favicon,
-          int? lastOpen,
-          bool? securityModel,
-          String? loginCookies}) =>
-      WebTableData(
-        id: id ?? this.id,
-        uuid: uuid ?? this.uuid,
-        blueprint: blueprint ?? this.blueprint,
-        env: env ?? this.env,
-        favicon: favicon ?? this.favicon,
-        lastOpen: lastOpen ?? this.lastOpen,
-        securityModel: securityModel ?? this.securityModel,
-        loginCookies: loginCookies ?? this.loginCookies,
-      );
+  WebTableData copyWith({
+    int? id,
+    String? uuid,
+    String? blueprint,
+    String? env,
+    Uint8List? favicon,
+    int? lastOpen,
+    bool? securityModel,
+    String? loginCookies,
+  }) => WebTableData(
+    id: id ?? this.id,
+    uuid: uuid ?? this.uuid,
+    blueprint: blueprint ?? this.blueprint,
+    env: env ?? this.env,
+    favicon: favicon ?? this.favicon,
+    lastOpen: lastOpen ?? this.lastOpen,
+    securityModel: securityModel ?? this.securityModel,
+    loginCookies: loginCookies ?? this.loginCookies,
+  );
   WebTableData copyWithCompanion(WebTableCompanion data) {
     return WebTableData(
       id: data.id.present ? data.id.value : this.id,
@@ -290,8 +360,16 @@ class WebTableData extends DataClass implements Insertable<WebTableData> {
   }
 
   @override
-  int get hashCode => Object.hash(id, uuid, blueprint, env,
-      $driftBlobEquality.hash(favicon), lastOpen, securityModel, loginCookies);
+  int get hashCode => Object.hash(
+    id,
+    uuid,
+    blueprint,
+    env,
+    $driftBlobEquality.hash(favicon),
+    lastOpen,
+    securityModel,
+    loginCookies,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -334,8 +412,8 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
     this.lastOpen = const Value.absent(),
     this.securityModel = const Value.absent(),
     this.loginCookies = const Value.absent(),
-  })  : blueprint = Value(blueprint),
-        env = Value(env);
+  }) : blueprint = Value(blueprint),
+       env = Value(env);
   static Insertable<WebTableData> custom({
     Expression<int>? id,
     Expression<String>? uuid,
@@ -358,15 +436,16 @@ class WebTableCompanion extends UpdateCompanion<WebTableData> {
     });
   }
 
-  WebTableCompanion copyWith(
-      {Value<int>? id,
-      Value<String>? uuid,
-      Value<String>? blueprint,
-      Value<String>? env,
-      Value<Uint8List>? favicon,
-      Value<int>? lastOpen,
-      Value<bool>? securityModel,
-      Value<String>? loginCookies}) {
+  WebTableCompanion copyWith({
+    Value<int>? id,
+    Value<String>? uuid,
+    Value<String>? blueprint,
+    Value<String>? env,
+    Value<Uint8List>? favicon,
+    Value<int>? lastOpen,
+    Value<bool>? securityModel,
+    Value<String>? loginCookies,
+  }) {
     return WebTableCompanion(
       id: id ?? this.id,
       uuid: uuid ?? this.uuid,
@@ -434,28 +513,45 @@ class $ReaderHistoryTableTable extends ReaderHistoryTable
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
   static const VerificationMeta _uuidMeta = const VerificationMeta('uuid');
   @override
   late final GeneratedColumn<String> uuid = GeneratedColumn<String>(
-      'uuid', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+    'uuid',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _idCodeMeta = const VerificationMeta('idCode');
   @override
   late final GeneratedColumn<String> idCode = GeneratedColumn<String>(
-      'id_code', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _pageIndexMeta =
-      const VerificationMeta('pageIndex');
+    'id_code',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _pageIndexMeta = const VerificationMeta(
+    'pageIndex',
+  );
   @override
   late final GeneratedColumn<int> pageIndex = GeneratedColumn<int>(
-      'page_index', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+    'page_index',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
   @override
   List<GeneratedColumn> get $columns => [id, uuid, idCode, pageIndex];
   @override
@@ -465,8 +561,9 @@ class $ReaderHistoryTableTable extends ReaderHistoryTable
   static const String $name = 'reader_history_table';
   @override
   VerificationContext validateIntegrity(
-      Insertable<ReaderHistoryTableData> instance,
-      {bool isInserting = false}) {
+    Insertable<ReaderHistoryTableData> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
@@ -474,19 +571,25 @@ class $ReaderHistoryTableTable extends ReaderHistoryTable
     }
     if (data.containsKey('uuid')) {
       context.handle(
-          _uuidMeta, uuid.isAcceptableOrUnknown(data['uuid']!, _uuidMeta));
+        _uuidMeta,
+        uuid.isAcceptableOrUnknown(data['uuid']!, _uuidMeta),
+      );
     } else if (isInserting) {
       context.missing(_uuidMeta);
     }
     if (data.containsKey('id_code')) {
-      context.handle(_idCodeMeta,
-          idCode.isAcceptableOrUnknown(data['id_code']!, _idCodeMeta));
+      context.handle(
+        _idCodeMeta,
+        idCode.isAcceptableOrUnknown(data['id_code']!, _idCodeMeta),
+      );
     } else if (isInserting) {
       context.missing(_idCodeMeta);
     }
     if (data.containsKey('page_index')) {
-      context.handle(_pageIndexMeta,
-          pageIndex.isAcceptableOrUnknown(data['page_index']!, _pageIndexMeta));
+      context.handle(
+        _pageIndexMeta,
+        pageIndex.isAcceptableOrUnknown(data['page_index']!, _pageIndexMeta),
+      );
     } else if (isInserting) {
       context.missing(_pageIndexMeta);
     }
@@ -499,14 +602,22 @@ class $ReaderHistoryTableTable extends ReaderHistoryTable
   ReaderHistoryTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return ReaderHistoryTableData(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      uuid: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}uuid'])!,
-      idCode: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}id_code'])!,
-      pageIndex: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}page_index'])!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      uuid: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}uuid'],
+      )!,
+      idCode: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id_code'],
+      )!,
+      pageIndex: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}page_index'],
+      )!,
     );
   }
 
@@ -522,11 +633,12 @@ class ReaderHistoryTableData extends DataClass
   final String uuid;
   final String idCode;
   final int pageIndex;
-  const ReaderHistoryTableData(
-      {required this.id,
-      required this.uuid,
-      required this.idCode,
-      required this.pageIndex});
+  const ReaderHistoryTableData({
+    required this.id,
+    required this.uuid,
+    required this.idCode,
+    required this.pageIndex,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -546,8 +658,10 @@ class ReaderHistoryTableData extends DataClass
     );
   }
 
-  factory ReaderHistoryTableData.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory ReaderHistoryTableData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return ReaderHistoryTableData(
       id: serializer.fromJson<int>(json['id']),
@@ -567,14 +681,17 @@ class ReaderHistoryTableData extends DataClass
     };
   }
 
-  ReaderHistoryTableData copyWith(
-          {int? id, String? uuid, String? idCode, int? pageIndex}) =>
-      ReaderHistoryTableData(
-        id: id ?? this.id,
-        uuid: uuid ?? this.uuid,
-        idCode: idCode ?? this.idCode,
-        pageIndex: pageIndex ?? this.pageIndex,
-      );
+  ReaderHistoryTableData copyWith({
+    int? id,
+    String? uuid,
+    String? idCode,
+    int? pageIndex,
+  }) => ReaderHistoryTableData(
+    id: id ?? this.id,
+    uuid: uuid ?? this.uuid,
+    idCode: idCode ?? this.idCode,
+    pageIndex: pageIndex ?? this.pageIndex,
+  );
   ReaderHistoryTableData copyWithCompanion(ReaderHistoryTableCompanion data) {
     return ReaderHistoryTableData(
       id: data.id.present ? data.id.value : this.id,
@@ -624,9 +741,9 @@ class ReaderHistoryTableCompanion
     required String uuid,
     required String idCode,
     required int pageIndex,
-  })  : uuid = Value(uuid),
-        idCode = Value(idCode),
-        pageIndex = Value(pageIndex);
+  }) : uuid = Value(uuid),
+       idCode = Value(idCode),
+       pageIndex = Value(pageIndex);
   static Insertable<ReaderHistoryTableData> custom({
     Expression<int>? id,
     Expression<String>? uuid,
@@ -641,11 +758,12 @@ class ReaderHistoryTableCompanion
     });
   }
 
-  ReaderHistoryTableCompanion copyWith(
-      {Value<int>? id,
-      Value<String>? uuid,
-      Value<String>? idCode,
-      Value<int>? pageIndex}) {
+  ReaderHistoryTableCompanion copyWith({
+    Value<int>? id,
+    Value<String>? uuid,
+    Value<String>? idCode,
+    Value<int>? pageIndex,
+  }) {
     return ReaderHistoryTableCompanion(
       id: id ?? this.id,
       uuid: uuid ?? this.uuid,
@@ -690,22 +808,35 @@ class $CookieJarTableTable extends CookieJarTable
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $CookieJarTableTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _webUuidMeta =
-      const VerificationMeta('webUuid');
+  static const VerificationMeta _webUuidMeta = const VerificationMeta(
+    'webUuid',
+  );
   @override
   late final GeneratedColumn<String> webUuid = GeneratedColumn<String>(
-      'web_uuid', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+    'web_uuid',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _keyMeta = const VerificationMeta('key');
   @override
   late final GeneratedColumn<String> key = GeneratedColumn<String>(
-      'key', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+    'key',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _valueMeta = const VerificationMeta('value');
   @override
   late final GeneratedColumn<String> value = GeneratedColumn<String>(
-      'value', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+    'value',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   @override
   List<GeneratedColumn> get $columns => [webUuid, key, value];
   @override
@@ -714,25 +845,33 @@ class $CookieJarTableTable extends CookieJarTable
   String get actualTableName => $name;
   static const String $name = 'cookie_jar_table';
   @override
-  VerificationContext validateIntegrity(Insertable<CookieJarTableData> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<CookieJarTableData> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('web_uuid')) {
-      context.handle(_webUuidMeta,
-          webUuid.isAcceptableOrUnknown(data['web_uuid']!, _webUuidMeta));
+      context.handle(
+        _webUuidMeta,
+        webUuid.isAcceptableOrUnknown(data['web_uuid']!, _webUuidMeta),
+      );
     } else if (isInserting) {
       context.missing(_webUuidMeta);
     }
     if (data.containsKey('key')) {
       context.handle(
-          _keyMeta, key.isAcceptableOrUnknown(data['key']!, _keyMeta));
+        _keyMeta,
+        key.isAcceptableOrUnknown(data['key']!, _keyMeta),
+      );
     } else if (isInserting) {
       context.missing(_keyMeta);
     }
     if (data.containsKey('value')) {
       context.handle(
-          _valueMeta, value.isAcceptableOrUnknown(data['value']!, _valueMeta));
+        _valueMeta,
+        value.isAcceptableOrUnknown(data['value']!, _valueMeta),
+      );
     } else if (isInserting) {
       context.missing(_valueMeta);
     }
@@ -745,12 +884,18 @@ class $CookieJarTableTable extends CookieJarTable
   CookieJarTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return CookieJarTableData(
-      webUuid: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}web_uuid'])!,
-      key: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}key'])!,
-      value: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}value'])!,
+      webUuid: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}web_uuid'],
+      )!,
+      key: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}key'],
+      )!,
+      value: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}value'],
+      )!,
     );
   }
 
@@ -765,8 +910,11 @@ class CookieJarTableData extends DataClass
   final String webUuid;
   final String key;
   final String value;
-  const CookieJarTableData(
-      {required this.webUuid, required this.key, required this.value});
+  const CookieJarTableData({
+    required this.webUuid,
+    required this.key,
+    required this.value,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -784,8 +932,10 @@ class CookieJarTableData extends DataClass
     );
   }
 
-  factory CookieJarTableData.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory CookieJarTableData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return CookieJarTableData(
       webUuid: serializer.fromJson<String>(json['webUuid']),
@@ -854,9 +1004,9 @@ class CookieJarTableCompanion extends UpdateCompanion<CookieJarTableData> {
     required String key,
     required String value,
     this.rowid = const Value.absent(),
-  })  : webUuid = Value(webUuid),
-        key = Value(key),
-        value = Value(value);
+  }) : webUuid = Value(webUuid),
+       key = Value(key),
+       value = Value(value);
   static Insertable<CookieJarTableData> custom({
     Expression<String>? webUuid,
     Expression<String>? key,
@@ -871,11 +1021,12 @@ class CookieJarTableCompanion extends UpdateCompanion<CookieJarTableData> {
     });
   }
 
-  CookieJarTableCompanion copyWith(
-      {Value<String>? webUuid,
-      Value<String>? key,
-      Value<String>? value,
-      Value<int>? rowid}) {
+  CookieJarTableCompanion copyWith({
+    Value<String>? webUuid,
+    Value<String>? key,
+    Value<String>? value,
+    Value<int>? rowid,
+  }) {
     return CookieJarTableCompanion(
       webUuid: webUuid ?? this.webUuid,
       key: key ?? this.key,
@@ -922,37 +1073,43 @@ abstract class _$AppDataBase extends GeneratedDatabase {
       $ReaderHistoryTableTable(this);
   late final $CookieJarTableTable cookieJarTable = $CookieJarTableTable(this);
   late final WebDao webDao = WebDao(this as AppDataBase);
-  late final ReaderHistoryDao readerHistoryDao =
-      ReaderHistoryDao(this as AppDataBase);
+  late final ReaderHistoryDao readerHistoryDao = ReaderHistoryDao(
+    this as AppDataBase,
+  );
   late final CookieJarDao cookieJarDao = CookieJarDao(this as AppDataBase);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [webTable, readerHistoryTable, cookieJarTable];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [
+    webTable,
+    readerHistoryTable,
+    cookieJarTable,
+  ];
 }
 
-typedef $$WebTableTableCreateCompanionBuilder = WebTableCompanion Function({
-  Value<int> id,
-  Value<String> uuid,
-  required String blueprint,
-  required String env,
-  Value<Uint8List> favicon,
-  Value<int> lastOpen,
-  Value<bool> securityModel,
-  Value<String> loginCookies,
-});
-typedef $$WebTableTableUpdateCompanionBuilder = WebTableCompanion Function({
-  Value<int> id,
-  Value<String> uuid,
-  Value<String> blueprint,
-  Value<String> env,
-  Value<Uint8List> favicon,
-  Value<int> lastOpen,
-  Value<bool> securityModel,
-  Value<String> loginCookies,
-});
+typedef $$WebTableTableCreateCompanionBuilder =
+    WebTableCompanion Function({
+      Value<int> id,
+      Value<String> uuid,
+      required String blueprint,
+      required String env,
+      Value<Uint8List> favicon,
+      Value<int> lastOpen,
+      Value<bool> securityModel,
+      Value<String> loginCookies,
+    });
+typedef $$WebTableTableUpdateCompanionBuilder =
+    WebTableCompanion Function({
+      Value<int> id,
+      Value<String> uuid,
+      Value<String> blueprint,
+      Value<String> env,
+      Value<Uint8List> favicon,
+      Value<int> lastOpen,
+      Value<bool> securityModel,
+      Value<String> loginCookies,
+    });
 
 class $$WebTableTableFilterComposer
     extends Composer<_$AppDataBase, $WebTableTable> {
@@ -964,28 +1121,44 @@ class $$WebTableTableFilterComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnFilters<int> get id => $composableBuilder(
-      column: $table.id, builder: (column) => ColumnFilters(column));
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<String> get uuid => $composableBuilder(
-      column: $table.uuid, builder: (column) => ColumnFilters(column));
+    column: $table.uuid,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<String> get blueprint => $composableBuilder(
-      column: $table.blueprint, builder: (column) => ColumnFilters(column));
+    column: $table.blueprint,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<String> get env => $composableBuilder(
-      column: $table.env, builder: (column) => ColumnFilters(column));
+    column: $table.env,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<Uint8List> get favicon => $composableBuilder(
-      column: $table.favicon, builder: (column) => ColumnFilters(column));
+    column: $table.favicon,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get lastOpen => $composableBuilder(
-      column: $table.lastOpen, builder: (column) => ColumnFilters(column));
+    column: $table.lastOpen,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<bool> get securityModel => $composableBuilder(
-      column: $table.securityModel, builder: (column) => ColumnFilters(column));
+    column: $table.securityModel,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<String> get loginCookies => $composableBuilder(
-      column: $table.loginCookies, builder: (column) => ColumnFilters(column));
+    column: $table.loginCookies,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$WebTableTableOrderingComposer
@@ -998,30 +1171,44 @@ class $$WebTableTableOrderingComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnOrderings<int> get id => $composableBuilder(
-      column: $table.id, builder: (column) => ColumnOrderings(column));
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<String> get uuid => $composableBuilder(
-      column: $table.uuid, builder: (column) => ColumnOrderings(column));
+    column: $table.uuid,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<String> get blueprint => $composableBuilder(
-      column: $table.blueprint, builder: (column) => ColumnOrderings(column));
+    column: $table.blueprint,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<String> get env => $composableBuilder(
-      column: $table.env, builder: (column) => ColumnOrderings(column));
+    column: $table.env,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<Uint8List> get favicon => $composableBuilder(
-      column: $table.favicon, builder: (column) => ColumnOrderings(column));
+    column: $table.favicon,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get lastOpen => $composableBuilder(
-      column: $table.lastOpen, builder: (column) => ColumnOrderings(column));
+    column: $table.lastOpen,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<bool> get securityModel => $composableBuilder(
-      column: $table.securityModel,
-      builder: (column) => ColumnOrderings(column));
+    column: $table.securityModel,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<String> get loginCookies => $composableBuilder(
-      column: $table.loginCookies,
-      builder: (column) => ColumnOrderings(column));
+    column: $table.loginCookies,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$WebTableTableAnnotationComposer
@@ -1052,26 +1239,37 @@ class $$WebTableTableAnnotationComposer
       $composableBuilder(column: $table.lastOpen, builder: (column) => column);
 
   GeneratedColumn<bool> get securityModel => $composableBuilder(
-      column: $table.securityModel, builder: (column) => column);
+    column: $table.securityModel,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get loginCookies => $composableBuilder(
-      column: $table.loginCookies, builder: (column) => column);
+    column: $table.loginCookies,
+    builder: (column) => column,
+  );
 }
 
-class $$WebTableTableTableManager extends RootTableManager<
-    _$AppDataBase,
-    $WebTableTable,
-    WebTableData,
-    $$WebTableTableFilterComposer,
-    $$WebTableTableOrderingComposer,
-    $$WebTableTableAnnotationComposer,
-    $$WebTableTableCreateCompanionBuilder,
-    $$WebTableTableUpdateCompanionBuilder,
-    (WebTableData, BaseReferences<_$AppDataBase, $WebTableTable, WebTableData>),
-    WebTableData,
-    PrefetchHooks Function()> {
+class $$WebTableTableTableManager
+    extends
+        RootTableManager<
+          _$AppDataBase,
+          $WebTableTable,
+          WebTableData,
+          $$WebTableTableFilterComposer,
+          $$WebTableTableOrderingComposer,
+          $$WebTableTableAnnotationComposer,
+          $$WebTableTableCreateCompanionBuilder,
+          $$WebTableTableUpdateCompanionBuilder,
+          (
+            WebTableData,
+            BaseReferences<_$AppDataBase, $WebTableTable, WebTableData>,
+          ),
+          WebTableData,
+          PrefetchHooks Function()
+        > {
   $$WebTableTableTableManager(_$AppDataBase db, $WebTableTable table)
-      : super(TableManagerState(
+    : super(
+        TableManagerState(
           db: db,
           table: table,
           createFilteringComposer: () =>
@@ -1080,79 +1278,85 @@ class $$WebTableTableTableManager extends RootTableManager<
               $$WebTableTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
               $$WebTableTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<String> uuid = const Value.absent(),
-            Value<String> blueprint = const Value.absent(),
-            Value<String> env = const Value.absent(),
-            Value<Uint8List> favicon = const Value.absent(),
-            Value<int> lastOpen = const Value.absent(),
-            Value<bool> securityModel = const Value.absent(),
-            Value<String> loginCookies = const Value.absent(),
-          }) =>
-              WebTableCompanion(
-            id: id,
-            uuid: uuid,
-            blueprint: blueprint,
-            env: env,
-            favicon: favicon,
-            lastOpen: lastOpen,
-            securityModel: securityModel,
-            loginCookies: loginCookies,
-          ),
-          createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<String> uuid = const Value.absent(),
-            required String blueprint,
-            required String env,
-            Value<Uint8List> favicon = const Value.absent(),
-            Value<int> lastOpen = const Value.absent(),
-            Value<bool> securityModel = const Value.absent(),
-            Value<String> loginCookies = const Value.absent(),
-          }) =>
-              WebTableCompanion.insert(
-            id: id,
-            uuid: uuid,
-            blueprint: blueprint,
-            env: env,
-            favicon: favicon,
-            lastOpen: lastOpen,
-            securityModel: securityModel,
-            loginCookies: loginCookies,
-          ),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> uuid = const Value.absent(),
+                Value<String> blueprint = const Value.absent(),
+                Value<String> env = const Value.absent(),
+                Value<Uint8List> favicon = const Value.absent(),
+                Value<int> lastOpen = const Value.absent(),
+                Value<bool> securityModel = const Value.absent(),
+                Value<String> loginCookies = const Value.absent(),
+              }) => WebTableCompanion(
+                id: id,
+                uuid: uuid,
+                blueprint: blueprint,
+                env: env,
+                favicon: favicon,
+                lastOpen: lastOpen,
+                securityModel: securityModel,
+                loginCookies: loginCookies,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> uuid = const Value.absent(),
+                required String blueprint,
+                required String env,
+                Value<Uint8List> favicon = const Value.absent(),
+                Value<int> lastOpen = const Value.absent(),
+                Value<bool> securityModel = const Value.absent(),
+                Value<String> loginCookies = const Value.absent(),
+              }) => WebTableCompanion.insert(
+                id: id,
+                uuid: uuid,
+                blueprint: blueprint,
+                env: env,
+                favicon: favicon,
+                lastOpen: lastOpen,
+                securityModel: securityModel,
+                loginCookies: loginCookies,
+              ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
               .toList(),
           prefetchHooksCallback: null,
-        ));
+        ),
+      );
 }
 
-typedef $$WebTableTableProcessedTableManager = ProcessedTableManager<
-    _$AppDataBase,
-    $WebTableTable,
-    WebTableData,
-    $$WebTableTableFilterComposer,
-    $$WebTableTableOrderingComposer,
-    $$WebTableTableAnnotationComposer,
-    $$WebTableTableCreateCompanionBuilder,
-    $$WebTableTableUpdateCompanionBuilder,
-    (WebTableData, BaseReferences<_$AppDataBase, $WebTableTable, WebTableData>),
-    WebTableData,
-    PrefetchHooks Function()>;
-typedef $$ReaderHistoryTableTableCreateCompanionBuilder
-    = ReaderHistoryTableCompanion Function({
-  Value<int> id,
-  required String uuid,
-  required String idCode,
-  required int pageIndex,
-});
-typedef $$ReaderHistoryTableTableUpdateCompanionBuilder
-    = ReaderHistoryTableCompanion Function({
-  Value<int> id,
-  Value<String> uuid,
-  Value<String> idCode,
-  Value<int> pageIndex,
-});
+typedef $$WebTableTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDataBase,
+      $WebTableTable,
+      WebTableData,
+      $$WebTableTableFilterComposer,
+      $$WebTableTableOrderingComposer,
+      $$WebTableTableAnnotationComposer,
+      $$WebTableTableCreateCompanionBuilder,
+      $$WebTableTableUpdateCompanionBuilder,
+      (
+        WebTableData,
+        BaseReferences<_$AppDataBase, $WebTableTable, WebTableData>,
+      ),
+      WebTableData,
+      PrefetchHooks Function()
+    >;
+typedef $$ReaderHistoryTableTableCreateCompanionBuilder =
+    ReaderHistoryTableCompanion Function({
+      Value<int> id,
+      required String uuid,
+      required String idCode,
+      required int pageIndex,
+    });
+typedef $$ReaderHistoryTableTableUpdateCompanionBuilder =
+    ReaderHistoryTableCompanion Function({
+      Value<int> id,
+      Value<String> uuid,
+      Value<String> idCode,
+      Value<int> pageIndex,
+    });
 
 class $$ReaderHistoryTableTableFilterComposer
     extends Composer<_$AppDataBase, $ReaderHistoryTableTable> {
@@ -1164,16 +1368,24 @@ class $$ReaderHistoryTableTableFilterComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnFilters<int> get id => $composableBuilder(
-      column: $table.id, builder: (column) => ColumnFilters(column));
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<String> get uuid => $composableBuilder(
-      column: $table.uuid, builder: (column) => ColumnFilters(column));
+    column: $table.uuid,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<String> get idCode => $composableBuilder(
-      column: $table.idCode, builder: (column) => ColumnFilters(column));
+    column: $table.idCode,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get pageIndex => $composableBuilder(
-      column: $table.pageIndex, builder: (column) => ColumnFilters(column));
+    column: $table.pageIndex,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$ReaderHistoryTableTableOrderingComposer
@@ -1186,16 +1398,24 @@ class $$ReaderHistoryTableTableOrderingComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnOrderings<int> get id => $composableBuilder(
-      column: $table.id, builder: (column) => ColumnOrderings(column));
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<String> get uuid => $composableBuilder(
-      column: $table.uuid, builder: (column) => ColumnOrderings(column));
+    column: $table.uuid,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<String> get idCode => $composableBuilder(
-      column: $table.idCode, builder: (column) => ColumnOrderings(column));
+    column: $table.idCode,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get pageIndex => $composableBuilder(
-      column: $table.pageIndex, builder: (column) => ColumnOrderings(column));
+    column: $table.pageIndex,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$ReaderHistoryTableTableAnnotationComposer
@@ -1220,25 +1440,33 @@ class $$ReaderHistoryTableTableAnnotationComposer
       $composableBuilder(column: $table.pageIndex, builder: (column) => column);
 }
 
-class $$ReaderHistoryTableTableTableManager extends RootTableManager<
-    _$AppDataBase,
-    $ReaderHistoryTableTable,
-    ReaderHistoryTableData,
-    $$ReaderHistoryTableTableFilterComposer,
-    $$ReaderHistoryTableTableOrderingComposer,
-    $$ReaderHistoryTableTableAnnotationComposer,
-    $$ReaderHistoryTableTableCreateCompanionBuilder,
-    $$ReaderHistoryTableTableUpdateCompanionBuilder,
-    (
-      ReaderHistoryTableData,
-      BaseReferences<_$AppDataBase, $ReaderHistoryTableTable,
-          ReaderHistoryTableData>
-    ),
-    ReaderHistoryTableData,
-    PrefetchHooks Function()> {
+class $$ReaderHistoryTableTableTableManager
+    extends
+        RootTableManager<
+          _$AppDataBase,
+          $ReaderHistoryTableTable,
+          ReaderHistoryTableData,
+          $$ReaderHistoryTableTableFilterComposer,
+          $$ReaderHistoryTableTableOrderingComposer,
+          $$ReaderHistoryTableTableAnnotationComposer,
+          $$ReaderHistoryTableTableCreateCompanionBuilder,
+          $$ReaderHistoryTableTableUpdateCompanionBuilder,
+          (
+            ReaderHistoryTableData,
+            BaseReferences<
+              _$AppDataBase,
+              $ReaderHistoryTableTable,
+              ReaderHistoryTableData
+            >,
+          ),
+          ReaderHistoryTableData,
+          PrefetchHooks Function()
+        > {
   $$ReaderHistoryTableTableTableManager(
-      _$AppDataBase db, $ReaderHistoryTableTable table)
-      : super(TableManagerState(
+    _$AppDataBase db,
+    $ReaderHistoryTableTable table,
+  ) : super(
+        TableManagerState(
           db: db,
           table: table,
           createFilteringComposer: () =>
@@ -1247,68 +1475,76 @@ class $$ReaderHistoryTableTableTableManager extends RootTableManager<
               $$ReaderHistoryTableTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
               $$ReaderHistoryTableTableAnnotationComposer(
-                  $db: db, $table: table),
-          updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<String> uuid = const Value.absent(),
-            Value<String> idCode = const Value.absent(),
-            Value<int> pageIndex = const Value.absent(),
-          }) =>
-              ReaderHistoryTableCompanion(
-            id: id,
-            uuid: uuid,
-            idCode: idCode,
-            pageIndex: pageIndex,
-          ),
-          createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            required String uuid,
-            required String idCode,
-            required int pageIndex,
-          }) =>
-              ReaderHistoryTableCompanion.insert(
-            id: id,
-            uuid: uuid,
-            idCode: idCode,
-            pageIndex: pageIndex,
-          ),
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> uuid = const Value.absent(),
+                Value<String> idCode = const Value.absent(),
+                Value<int> pageIndex = const Value.absent(),
+              }) => ReaderHistoryTableCompanion(
+                id: id,
+                uuid: uuid,
+                idCode: idCode,
+                pageIndex: pageIndex,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String uuid,
+                required String idCode,
+                required int pageIndex,
+              }) => ReaderHistoryTableCompanion.insert(
+                id: id,
+                uuid: uuid,
+                idCode: idCode,
+                pageIndex: pageIndex,
+              ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
               .toList(),
           prefetchHooksCallback: null,
-        ));
+        ),
+      );
 }
 
-typedef $$ReaderHistoryTableTableProcessedTableManager = ProcessedTableManager<
-    _$AppDataBase,
-    $ReaderHistoryTableTable,
-    ReaderHistoryTableData,
-    $$ReaderHistoryTableTableFilterComposer,
-    $$ReaderHistoryTableTableOrderingComposer,
-    $$ReaderHistoryTableTableAnnotationComposer,
-    $$ReaderHistoryTableTableCreateCompanionBuilder,
-    $$ReaderHistoryTableTableUpdateCompanionBuilder,
-    (
+typedef $$ReaderHistoryTableTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDataBase,
+      $ReaderHistoryTableTable,
       ReaderHistoryTableData,
-      BaseReferences<_$AppDataBase, $ReaderHistoryTableTable,
-          ReaderHistoryTableData>
-    ),
-    ReaderHistoryTableData,
-    PrefetchHooks Function()>;
-typedef $$CookieJarTableTableCreateCompanionBuilder = CookieJarTableCompanion
-    Function({
-  required String webUuid,
-  required String key,
-  required String value,
-  Value<int> rowid,
-});
-typedef $$CookieJarTableTableUpdateCompanionBuilder = CookieJarTableCompanion
-    Function({
-  Value<String> webUuid,
-  Value<String> key,
-  Value<String> value,
-  Value<int> rowid,
-});
+      $$ReaderHistoryTableTableFilterComposer,
+      $$ReaderHistoryTableTableOrderingComposer,
+      $$ReaderHistoryTableTableAnnotationComposer,
+      $$ReaderHistoryTableTableCreateCompanionBuilder,
+      $$ReaderHistoryTableTableUpdateCompanionBuilder,
+      (
+        ReaderHistoryTableData,
+        BaseReferences<
+          _$AppDataBase,
+          $ReaderHistoryTableTable,
+          ReaderHistoryTableData
+        >,
+      ),
+      ReaderHistoryTableData,
+      PrefetchHooks Function()
+    >;
+typedef $$CookieJarTableTableCreateCompanionBuilder =
+    CookieJarTableCompanion Function({
+      required String webUuid,
+      required String key,
+      required String value,
+      Value<int> rowid,
+    });
+typedef $$CookieJarTableTableUpdateCompanionBuilder =
+    CookieJarTableCompanion Function({
+      Value<String> webUuid,
+      Value<String> key,
+      Value<String> value,
+      Value<int> rowid,
+    });
 
 class $$CookieJarTableTableFilterComposer
     extends Composer<_$AppDataBase, $CookieJarTableTable> {
@@ -1320,13 +1556,19 @@ class $$CookieJarTableTableFilterComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnFilters<String> get webUuid => $composableBuilder(
-      column: $table.webUuid, builder: (column) => ColumnFilters(column));
+    column: $table.webUuid,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<String> get key => $composableBuilder(
-      column: $table.key, builder: (column) => ColumnFilters(column));
+    column: $table.key,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<String> get value => $composableBuilder(
-      column: $table.value, builder: (column) => ColumnFilters(column));
+    column: $table.value,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$CookieJarTableTableOrderingComposer
@@ -1339,13 +1581,19 @@ class $$CookieJarTableTableOrderingComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnOrderings<String> get webUuid => $composableBuilder(
-      column: $table.webUuid, builder: (column) => ColumnOrderings(column));
+    column: $table.webUuid,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<String> get key => $composableBuilder(
-      column: $table.key, builder: (column) => ColumnOrderings(column));
+    column: $table.key,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<String> get value => $composableBuilder(
-      column: $table.value, builder: (column) => ColumnOrderings(column));
+    column: $table.value,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$CookieJarTableTableAnnotationComposer
@@ -1367,24 +1615,33 @@ class $$CookieJarTableTableAnnotationComposer
       $composableBuilder(column: $table.value, builder: (column) => column);
 }
 
-class $$CookieJarTableTableTableManager extends RootTableManager<
-    _$AppDataBase,
-    $CookieJarTableTable,
-    CookieJarTableData,
-    $$CookieJarTableTableFilterComposer,
-    $$CookieJarTableTableOrderingComposer,
-    $$CookieJarTableTableAnnotationComposer,
-    $$CookieJarTableTableCreateCompanionBuilder,
-    $$CookieJarTableTableUpdateCompanionBuilder,
-    (
-      CookieJarTableData,
-      BaseReferences<_$AppDataBase, $CookieJarTableTable, CookieJarTableData>
-    ),
-    CookieJarTableData,
-    PrefetchHooks Function()> {
+class $$CookieJarTableTableTableManager
+    extends
+        RootTableManager<
+          _$AppDataBase,
+          $CookieJarTableTable,
+          CookieJarTableData,
+          $$CookieJarTableTableFilterComposer,
+          $$CookieJarTableTableOrderingComposer,
+          $$CookieJarTableTableAnnotationComposer,
+          $$CookieJarTableTableCreateCompanionBuilder,
+          $$CookieJarTableTableUpdateCompanionBuilder,
+          (
+            CookieJarTableData,
+            BaseReferences<
+              _$AppDataBase,
+              $CookieJarTableTable,
+              CookieJarTableData
+            >,
+          ),
+          CookieJarTableData,
+          PrefetchHooks Function()
+        > {
   $$CookieJarTableTableTableManager(
-      _$AppDataBase db, $CookieJarTableTable table)
-      : super(TableManagerState(
+    _$AppDataBase db,
+    $CookieJarTableTable table,
+  ) : super(
+        TableManagerState(
           db: db,
           table: table,
           createFilteringComposer: () =>
@@ -1393,52 +1650,55 @@ class $$CookieJarTableTableTableManager extends RootTableManager<
               $$CookieJarTableTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
               $$CookieJarTableTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback: ({
-            Value<String> webUuid = const Value.absent(),
-            Value<String> key = const Value.absent(),
-            Value<String> value = const Value.absent(),
-            Value<int> rowid = const Value.absent(),
-          }) =>
-              CookieJarTableCompanion(
-            webUuid: webUuid,
-            key: key,
-            value: value,
-            rowid: rowid,
-          ),
-          createCompanionCallback: ({
-            required String webUuid,
-            required String key,
-            required String value,
-            Value<int> rowid = const Value.absent(),
-          }) =>
-              CookieJarTableCompanion.insert(
-            webUuid: webUuid,
-            key: key,
-            value: value,
-            rowid: rowid,
-          ),
+          updateCompanionCallback:
+              ({
+                Value<String> webUuid = const Value.absent(),
+                Value<String> key = const Value.absent(),
+                Value<String> value = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CookieJarTableCompanion(
+                webUuid: webUuid,
+                key: key,
+                value: value,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String webUuid,
+                required String key,
+                required String value,
+                Value<int> rowid = const Value.absent(),
+              }) => CookieJarTableCompanion.insert(
+                webUuid: webUuid,
+                key: key,
+                value: value,
+                rowid: rowid,
+              ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
               .toList(),
           prefetchHooksCallback: null,
-        ));
+        ),
+      );
 }
 
-typedef $$CookieJarTableTableProcessedTableManager = ProcessedTableManager<
-    _$AppDataBase,
-    $CookieJarTableTable,
-    CookieJarTableData,
-    $$CookieJarTableTableFilterComposer,
-    $$CookieJarTableTableOrderingComposer,
-    $$CookieJarTableTableAnnotationComposer,
-    $$CookieJarTableTableCreateCompanionBuilder,
-    $$CookieJarTableTableUpdateCompanionBuilder,
-    (
+typedef $$CookieJarTableTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDataBase,
+      $CookieJarTableTable,
       CookieJarTableData,
-      BaseReferences<_$AppDataBase, $CookieJarTableTable, CookieJarTableData>
-    ),
-    CookieJarTableData,
-    PrefetchHooks Function()>;
+      $$CookieJarTableTableFilterComposer,
+      $$CookieJarTableTableOrderingComposer,
+      $$CookieJarTableTableAnnotationComposer,
+      $$CookieJarTableTableCreateCompanionBuilder,
+      $$CookieJarTableTableUpdateCompanionBuilder,
+      (
+        CookieJarTableData,
+        BaseReferences<_$AppDataBase, $CookieJarTableTable, CookieJarTableData>,
+      ),
+      CookieJarTableData,
+      PrefetchHooks Function()
+    >;
 
 class $AppDataBaseManager {
   final _$AppDataBase _db;

@@ -21,21 +21,16 @@ class ListFilterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoButton(
       padding: EdgeInsets.zero,
-      minSize: 0,
+      onPressed: () => _showFilterDialog(context),
+      minimumSize: Size(0, 0),
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
-        transitionBuilder: (child, animation) => ScaleTransition(
-          scale: animation,
-          child: child,
-        ),
+        transitionBuilder: (child, animation) =>
+            ScaleTransition(scale: animation, child: child),
         child: initFilter.isFilterChanged
             ? const Icon(Icons.filter_alt, key: ValueKey('enable'))
-            : const Icon(
-                Icons.filter_alt_outlined,
-                key: ValueKey('disable'),
-              ),
+            : const Icon(Icons.filter_alt_outlined, key: ValueKey('disable')),
       ),
-      onPressed: () => _showFilterDialog(context),
     );
   }
 
@@ -97,20 +92,17 @@ class FilterDialog extends HookWidget {
       children: [
         Text(
           I.of(context).filter,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const Expanded(child: SizedBox()),
         CupertinoButton(
           padding: EdgeInsets.zero,
-          minSize: 0,
           onPressed: () {
             currentFilter.value = currentFilter.value.reset();
           },
+          minimumSize: Size(0, 0),
           child: const Icon(CupertinoIcons.refresh),
-        )
+        ),
       ],
     );
   }
@@ -174,10 +166,7 @@ class FilterDialog extends HookWidget {
       child: Transform.scale(
         scale: 0.8,
         alignment: Alignment.centerRight,
-        child: CupertinoSwitch(
-          value: value,
-          onChanged: onChanged,
-        ),
+        child: CupertinoSwitch(value: value, onChanged: onChanged),
       ),
     );
   }
@@ -195,36 +184,53 @@ class FilterDialog extends HookWidget {
           Text(item.name),
           const Expanded(child: SizedBox()),
           switch (item) {
-            TemplateListFilterItemString item =>
-              _buildStringFilter(context, item.value, (value) {
+            TemplateListFilterItemString item => _buildStringFilter(
+              context,
+              item.value,
+              (value) {
                 currentFilter.value = currentFilter.value.copyWith(
-                  items: currentFilter.value.items
-                      .replaceAt(index, item.copyWith(value: value)),
+                  items: currentFilter.value.items.replaceAt(
+                    index,
+                    item.copyWith(value: value),
+                  ),
                 );
-              }),
-            TemplateListFilterItemNumber item =>
-              _buildIntFilter(context, item, (value) {
+              },
+            ),
+            TemplateListFilterItemNumber item => _buildIntFilter(
+              context,
+              item,
+              (value) {
                 currentFilter.value = currentFilter.value.copyWith(
-                  items: currentFilter.value.items
-                      .replaceAt(index, item.copyWith(value: value)),
+                  items: currentFilter.value.items.replaceAt(
+                    index,
+                    item.copyWith(value: value),
+                  ),
                 );
-              }),
-            TemplateListFilterItemFloat item =>
-              _buildFloatFilter(context, item, (value) {
+              },
+            ),
+            TemplateListFilterItemFloat item => _buildFloatFilter(
+              context,
+              item,
+              (value) {
                 currentFilter.value = currentFilter.value.copyWith(
-                  items: currentFilter.value.items
-                      .replaceAt(index, item.copyWith(value: value)),
+                  items: currentFilter.value.items.replaceAt(
+                    index,
+                    item.copyWith(value: value),
+                  ),
                 );
-              }),
-            TemplateListFilterItemBool item =>
-              _buildBoolFilter(item.value, (value) {
-                currentFilter.value = currentFilter.value.copyWith(
-                  items: currentFilter.value.items
-                      .replaceAt(index, item.copyWith(value: value)),
-                );
-              }),
-            _ => throw UnimplementedError(),
-          }
+              },
+            ),
+            TemplateListFilterItemBool item => _buildBoolFilter(item.value, (
+              value,
+            ) {
+              currentFilter.value = currentFilter.value.copyWith(
+                items: currentFilter.value.items.replaceAt(
+                  index,
+                  item.copyWith(value: value),
+                ),
+              );
+            }),
+          },
         ],
       ),
     );

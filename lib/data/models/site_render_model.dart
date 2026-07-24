@@ -18,13 +18,11 @@ import '../controller/db.dart';
 
 /// 渲染时所创建的模型
 class SiteRenderConfigModel {
-  SiteRenderConfigModel({
-    required this.blueMap,
-    required this.dbEntity,
-  })  : globalEnv = SiteEnvStore.fromJson(jsonDecode(dbEntity.env)),
-        favicon = dbEntity.favicon.isNotEmpty
-            ? ValueNotifier<Uint8List?>(dbEntity.favicon)
-            : ValueNotifier<Uint8List?>(null) {
+  SiteRenderConfigModel({required this.blueMap, required this.dbEntity})
+    : globalEnv = SiteEnvStore.fromJson(jsonDecode(dbEntity.env)),
+      favicon = dbEntity.favicon.isNotEmpty
+          ? ValueNotifier<Uint8List?>(dbEntity.favicon)
+          : ValueNotifier<Uint8List?>(null) {
     client = NetClient(
       blueMap: blueMap,
       db: dbEntity,
@@ -50,7 +48,9 @@ class SiteRenderConfigModel {
 
   Future<void> setFavicon(Uint8List bin) async {
     favicon.value = bin;
-    await getIt.get<DbService>().webDao.replace(dbEntity.copyWith(favicon: bin));
+    await getIt.get<DbService>().webDao.replace(
+      dbEntity.copyWith(favicon: bin),
+    );
   }
 
   Future<void> updateCookies() async {}
@@ -65,10 +65,12 @@ class SiteRenderConfigModel {
 
   void updateGlobalEnv(Iterable<EnvResult> envs) async {
     var didUpdate = false;
-    for (final env in envs.where((e) =>
-        e.global == true &&
-        e.id?.isNotEmpty == true &&
-        e.value?.isNotEmpty == true)) {
+    for (final env in envs.where(
+      (e) =>
+          e.global == true &&
+          e.id?.isNotEmpty == true &&
+          e.value?.isNotEmpty == true,
+    )) {
       if (!globalEnv.env.containsKey(env.id) ||
           globalEnv.env[env.id] != env.value) {
         didUpdate = true;
@@ -76,9 +78,9 @@ class SiteRenderConfigModel {
       }
     }
     if (didUpdate) {
-      await getIt.get<DbService>()
-          .webDao
-          .replace(dbEntity.copyWith(env: globalEnv.toJsonString()));
+      await getIt.get<DbService>().webDao.replace(
+        dbEntity.copyWith(env: globalEnv.toJsonString()),
+      );
     }
   }
 }

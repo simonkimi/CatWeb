@@ -18,8 +18,9 @@ class SettingsPage extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             CupertinoSliverNavigationBar(
-                padding: kAppbarPadding,
-                largeTitle: Text(I.of(context).setting)),
+              padding: kAppbarPadding,
+              largeTitle: Text(I.of(context).setting),
+            ),
             SliverToBoxAdapter(
               child: CupertinoListSection.insetGrouped(
                 children: [

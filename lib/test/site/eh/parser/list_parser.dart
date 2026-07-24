@@ -5,7 +5,7 @@ import 'package:uuid/uuid.dart';
 
 final ehListParser = ParserModelList(
   name: '通用列表',
-  uuid: const Uuid().v5(Uuid.NAMESPACE_URL, 'commonListUuid').toString(),
+  uuid: const Uuid().v5(Namespace.url.value, 'commonListUuid').toString(),
   itemSelector: const SelectorModel(
     selector: "//div[@class='gl1t'] | //*[starts-with(@class, 'gl2')]/..",
     type: SelectorQuery.xpath(),
@@ -44,9 +44,7 @@ final ehListParser = ParserModelList(
     function: SelectorFunction.text(),
     regex: r'\d+',
   ),
-  badgeSelector: const SelectorModel(
-    selector: '.gt, .gtl',
-  ),
+  badgeSelector: const SelectorModel(selector: '.gt, .gtl'),
   badgeItem: const TagSelectorModel(
     text: SelectorModel(
       function: SelectorFunction.attr(),
@@ -81,9 +79,7 @@ final ehListParser = ParserModelList(
     param: 'style',
     regex: r'background-position:-?(\d+)px -?(\d+)px',
     replace: r'5-$1/16-($2-1)/40',
-    script: ScriptField.js(
-      script: r'eval($arg)',
-    ),
+    script: ScriptField.js(script: r'eval($arg)'),
   ),
   uploadTime: const SelectorModel(
     selector: '.gl2c>div:nth-child(3),.glnew,.gl3e>div:nth-child(2)',

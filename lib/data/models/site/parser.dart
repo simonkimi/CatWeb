@@ -119,7 +119,6 @@ sealed class ParserModel with _$ParserModel {
       ParserModelDetail() => ParserModelType.detail,
       ParserModelImageReader() => ParserModelType.imageReader,
       ParserModelList() => ParserModelType.list,
-      _ => throw UnimplementedError('未知的ParserModel类型 $runtimeType'),
     };
   }
 
@@ -138,17 +137,11 @@ sealed class ParserModel with _$ParserModel {
       ParserModelDetail() => '详情页',
       ParserModelImageReader() => '图片阅读器',
       ParserModelList() => '列表页',
-      _ => throw UnimplementedError('未知的ParserModel类型 $runtimeType'),
     };
   }
 }
 
-enum ParserModelType {
-  autoComplete,
-  detail,
-  imageReader,
-  list,
-}
+enum ParserModelType { autoComplete, detail, imageReader, list }
 
 extension ParserModelTypeExtension on ParserModelType {
   String get type {

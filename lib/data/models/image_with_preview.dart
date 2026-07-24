@@ -58,7 +58,7 @@ abstract class ImageWithPreviewModel extends ChangeNotifier {
         ImageQuality.larger =>
           value?.largerImage ?? value?.image ?? value?.rawImage,
         ImageQuality.defaultQ =>
-          value?.image ?? value?.largerImage ?? value?.rawImage
+          value?.image ?? value?.largerImage ?? value?.rawImage,
       };
     }
     return null;

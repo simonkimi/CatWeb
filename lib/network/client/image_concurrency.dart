@@ -1,7 +1,6 @@
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/loaders/async_progress_value.dart';
-import 'package:catweb/data/loaders/priority_task_query.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/app.dart';
 import 'package:collection/collection.dart';
@@ -11,11 +10,9 @@ import 'package:dio/dio.dart';
 import 'image_loader.dart';
 
 class ImageLoaderQueue {
-  ImageLoaderQueue({
-    Dio? dio,
-    int? concurrency,
-  })  : concurrency = concurrency ?? settingsService.concurrencyCount,
-        dio = dio ?? siteService.currentSite!.client.imageDio;
+  ImageLoaderQueue({Dio? dio, int? concurrency})
+    : concurrency = concurrency ?? settingsService.concurrencyCount,
+      dio = dio ?? siteService.currentSite!.client.imageDio;
 
   final Dio dio;
   final int concurrency;

@@ -12,9 +12,7 @@ class GlobalService {
   late final MemCacheStore memCacheStore;
 
   Future<GlobalService> init() async {
-    dbCacheStore = DriftCacheStore(
-      databasePath: await getDocumentDir(),
-    );
+    dbCacheStore = DriftCacheStore(databasePath: await getDocumentDir());
 
     memCacheStore = MemCacheStore(
       maxSize: 100 * 1024 * 1024,

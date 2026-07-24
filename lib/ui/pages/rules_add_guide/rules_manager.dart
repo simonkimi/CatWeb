@@ -20,12 +20,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-enum _MenuSelect {
-  edit,
-  share,
-  delete,
-  login,
-}
+enum _MenuSelect { edit, share, delete, login }
 
 class SiteManager extends StatelessWidget {
   const SiteManager({super.key});
@@ -68,8 +63,11 @@ class SiteManager extends StatelessWidget {
               children: [
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.add),
-                  onPressed: () => _toEditPage(Navigator.of(context),
-                      entity: null, db: null),
+                  onPressed: () => _toEditPage(
+                    Navigator.of(context),
+                    entity: null,
+                    db: null,
+                  ),
                 ),
                 CupertinoButton(
                   child: const Icon(CupertinoIcons.qrcode_viewfinder),
@@ -98,9 +96,7 @@ class SiteManager extends StatelessWidget {
         subtitle: Text(model.baseUrl),
         trailing: const Icon(Icons.more_horiz),
         onTrailingTap: () => _onTrailingTap(context, e, model),
-        onTap: () => siteService.setNewSite(
-          siteService.id == e.id ? null : e,
-        ),
+        onTap: () => siteService.setNewSite(siteService.id == e.id ? null : e),
       );
     });
   }
@@ -113,9 +109,7 @@ class SiteManager extends StatelessWidget {
       return Center(
         child: Text(
           '没有找到站点, 请点击下面的按钮添加',
-          style: TextStyle(
-            color: CupertinoColors.label.resolveFrom(context),
-          ),
+          style: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
         ),
       );
     }
@@ -131,7 +125,7 @@ class SiteManager extends StatelessWidget {
       leading: CupertinoButton(
         onPressed: () => context.pop(),
         padding: EdgeInsets.zero,
-        minSize: 0,
+        minimumSize: Size(0, 0),
         child: const Icon(CupertinoIcons.back),
       ),
       middle: const Text('站点管理'),
@@ -152,10 +146,11 @@ class SiteManager extends StatelessWidget {
         SelectTileItem(title: I.of(context).edit, value: _MenuSelect.edit),
         const SelectTileItem(title: '分享', value: _MenuSelect.share),
         SelectTileItem(
-            title: db.loginCookies.isNotEmpty
-                ? I.of(context).logout
-                : I.of(context).login,
-            value: _MenuSelect.login),
+          title: db.loginCookies.isNotEmpty
+              ? I.of(context).logout
+              : I.of(context).login,
+          value: _MenuSelect.login,
+        ),
         SelectTileItem(
           title: I.of(context).delete,
           value: _MenuSelect.delete,
@@ -219,9 +214,9 @@ class SiteManager extends StatelessWidget {
         }
       }
 
-      final List<Cookie>? cookies = await context.to(WebViewLoginIn(
-        url: entity.loginUrl,
-      ));
+      final List<Cookie>? cookies = await context.to(
+        WebViewLoginIn(url: entity.loginUrl),
+      );
 
       if (cookies != null) {
         final cookieStr = cookies.map((e) => '${e.name}=${e.value}').join('; ');
@@ -235,7 +230,10 @@ class SiteManager extends StatelessWidget {
   Future<void> _share() async {}
 
   Future<void> _onDelete(
-      BuildContext context, WebTableData db, SiteBlueprint entity) async {
+    BuildContext context,
+    WebTableData db,
+    SiteBlueprint entity,
+  ) async {
     if (await showCupertinoConfirmDialog(
           context: context,
           content: I.of(context).delete_confirm(entity.name),

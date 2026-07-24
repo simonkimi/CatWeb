@@ -4,11 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:catweb/ui/theme/colors.dart';
 
 class RulesCard extends StatelessWidget {
-  const RulesCard({
-    super.key,
-    required this.title,
-    required this.children,
-  });
+  const RulesCard({super.key, required this.title, required this.children});
 
   final String title;
 
@@ -46,11 +42,9 @@ class RulesCard extends StatelessWidget {
                       : CupertinoColors.systemBackground,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                child: Column(
-                  children: children,
-                ),
+                child: Column(children: children),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -23,13 +23,11 @@ class EmptyFragment extends StatelessWidget {
             );
           },
           padding: EdgeInsets.zero,
-          minSize: 0,
+          minimumSize: Size(0, 0),
           child: const Icon(CupertinoIcons.layers_alt),
         ),
       ),
-      child: SafeArea(
-        child: _emptyWidget(context),
-      ),
+      child: SafeArea(child: _emptyWidget(context)),
     );
   }
 
@@ -39,11 +37,13 @@ class EmptyFragment extends StatelessWidget {
         Center(
           child: CupertinoButton(
             onPressed: () {
-              Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
-                return RulesEditPage(
-                  blueprint: ehTestSite,
-                );
-              }));
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) {
+                    return RulesEditPage(blueprint: ehTestSite);
+                  },
+                ),
+              );
             },
             color: FixColor.groupedColor,
             child: Row(
@@ -61,7 +61,7 @@ class EmptyFragment extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -77,10 +77,10 @@ class EmptyFragment extends StatelessWidget {
                   fontSize: 12,
                   color: CupertinoColors.systemGrey,
                 ),
-              )
+              ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

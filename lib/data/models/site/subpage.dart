@@ -81,25 +81,27 @@ sealed class TemplateListFilterItem with _$TemplateListFilterItem {
 
   TemplateListFilterItem reset() {
     return switch (this) {
-      TemplateListFilterItemString item =>
-        item.copyWith(value: item.defaultValue),
-      TemplateListFilterItemNumber item =>
-        item.copyWith(value: item.defaultValue),
-      TemplateListFilterItemFloat item =>
-        item.copyWith(value: item.defaultValue),
-      TemplateListFilterItemBool item =>
-        item.copyWith(value: item.defaultValue),
-      _ => throw UnimplementedError()
+      TemplateListFilterItemString item => item.copyWith(
+        value: item.defaultValue,
+      ),
+      TemplateListFilterItemNumber item => item.copyWith(
+        value: item.defaultValue,
+      ),
+      TemplateListFilterItemFloat item => item.copyWith(
+        value: item.defaultValue,
+      ),
+      TemplateListFilterItemBool item => item.copyWith(
+        value: item.defaultValue,
+      ),
     };
   }
 
   FilterType get type => switch (this) {
-        TemplateListFilterItemString _ => FilterType.string,
-        TemplateListFilterItemNumber _ => FilterType.int,
-        TemplateListFilterItemFloat _ => FilterType.float,
-        TemplateListFilterItemBool _ => FilterType.bool,
-        _ => throw UnimplementedError()
-      };
+    TemplateListFilterItemString _ => FilterType.string,
+    TemplateListFilterItemNumber _ => FilterType.int,
+    TemplateListFilterItemFloat _ => FilterType.float,
+    TemplateListFilterItemBool _ => FilterType.bool,
+  };
 }
 
 enum FilterType implements IEnumDescription {

@@ -13,16 +13,15 @@ class CupertinoImageSlider extends HookWidget {
     final ReaderNotifier controller = context.watch();
 
     final pageCount = controller.imageLoadNotifier.readerInfo.items.length;
-    final currentDisplay =
-        isChanging.value ? changeValue.value : controller.currentPage;
+    final currentDisplay = isChanging.value
+        ? changeValue.value
+        : controller.currentPage;
 
     return Row(
       children: [
         Text(
           (currentDisplay + 1).toString(),
-          style: const TextStyle(
-            color: CupertinoColors.white,
-          ),
+          style: const TextStyle(color: CupertinoColors.white),
         ),
         Expanded(
           child: CupertinoSlider(
@@ -46,9 +45,7 @@ class CupertinoImageSlider extends HookWidget {
         ),
         Text(
           pageCount.toString(),
-          style: const TextStyle(
-            color: CupertinoColors.white,
-          ),
+          style: const TextStyle(color: CupertinoColors.white),
         ),
       ],
     );

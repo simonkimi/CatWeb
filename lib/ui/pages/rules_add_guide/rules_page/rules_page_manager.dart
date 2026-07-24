@@ -10,18 +10,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
-enum _MenuSelect {
-  edit,
-  delete,
-}
+enum _MenuSelect { edit, delete }
 
 class RulesPageManager extends StatelessWidget {
   const RulesPageManager({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final pageList =
-        context.select((RulesEditorNotifier n) => n.blueprint.pageList);
+    final pageList = context.select(
+      (RulesEditorNotifier n) => n.blueprint.pageList,
+    );
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       children: [
@@ -31,9 +29,9 @@ class RulesPageManager extends StatelessWidget {
             subtitle: Text(page.template.getDescription(context)),
             trailing: CupertinoButton(
               padding: EdgeInsets.zero,
-              minSize: 10,
-              child: const Icon(Icons.more_horiz_outlined),
               onPressed: () => _onTrailingTap(context, page),
+              minimumSize: Size(10, 10),
+              child: const Icon(Icons.more_horiz_outlined),
             ),
             onTap: () => _toRulesPageEdit(context, page),
           ),
@@ -48,10 +46,7 @@ class RulesPageManager extends StatelessWidget {
     );
   }
 
-  Future<void> _onTrailingTap(
-    BuildContext context,
-    SitePageRule model,
-  ) async {
+  Future<void> _onTrailingTap(BuildContext context, SitePageRule model) async {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: I.of(context).cancel,
       context: context,
@@ -81,14 +76,16 @@ class RulesPageManager extends StatelessWidget {
     final pageList = notifier.blueprint.pageList;
     final using = pageList
         .where(
-            (p0) => p0.getDependPage().any((element) => element == model.uuid))
+          (p0) => p0.getDependPage().any((element) => element == model.uuid),
+        )
         .map((e) => e.name)
         .toList();
 
     if (using.isNotEmpty) {
       showCupertinoConfirmDialog(
-          context: context,
-          content: '无法删除, 因下列页面会跳转到此页面:\n ${using.join(' ')}');
+        context: context,
+        content: '无法删除, 因下列页面会跳转到此页面:\n ${using.join(' ')}',
+      );
     } else {
       showCupertinoConfirmDialog(
         context: context,
@@ -104,17 +101,23 @@ class RulesPageManager extends StatelessWidget {
     }
   }
 
-  Future<void> _toRulesPageEdit(BuildContext context,
-      [SitePageRule? model]) async {
+  Future<void> _toRulesPageEdit(
+    BuildContext context, [
+    SitePageRule? model,
+  ]) async {
     final input = model ?? await _genRules(context);
     if (input == null) return;
     final notifier = context.read<RulesEditorNotifier>();
-    await Navigator.of(context).push(CupertinoPageRoute(builder: (_) {
-      return ChangeNotifierProvider.value(
-        value: notifier,
-        builder: (context, child) => RulesPageEdit(pageRule: input),
-      );
-    }));
+    await Navigator.of(context).push(
+      CupertinoPageRoute(
+        builder: (_) {
+          return ChangeNotifierProvider.value(
+            value: notifier,
+            builder: (context, child) => RulesPageEdit(pageRule: input),
+          );
+        },
+      ),
+    );
   }
 
   Future<SitePageRule?> _genRules(BuildContext context) async {
@@ -130,7 +133,8 @@ class RulesPageManager extends StatelessWidget {
       context: context,
       items: PageTemplateType.values
           .map(
-              (e) => SelectTileItem(title: e.getDescription(context), value: e))
+            (e) => SelectTileItem(title: e.getDescription(context), value: e),
+          )
           .toList(),
     );
     if (select == null) {

@@ -5,7 +5,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import '../theme/colors.dart';
 
 class DescriptionWidget extends HookWidget {
-  const DescriptionWidget({super.key, required String text}) : _text = text;
+  const DescriptionWidget({super.key, required this._text});
 
   final String _text;
 
@@ -18,15 +18,13 @@ class DescriptionWidget extends HookWidget {
       color: FixColor.text.resolveFrom(context),
     );
 
-    final overflow = (TextPainter(
-      maxLines: 3,
-      textDirection: TextDirection.ltr,
-      text: TextSpan(
-        text: _text,
-        style: textStyle,
-      ),
-    )..layout(maxWidth: MediaQuery.of(context).size.width - 20))
-        .didExceedMaxLines;
+    final overflow =
+        (TextPainter(
+              maxLines: 3,
+              textDirection: TextDirection.ltr,
+              text: TextSpan(text: _text, style: textStyle),
+            )..layout(maxWidth: MediaQuery.of(context).size.width - 20))
+            .didExceedMaxLines;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,9 +38,7 @@ class DescriptionWidget extends HookWidget {
                     text: _text,
                     overflow: TextOverflow.ellipsis,
                     maxLines: isExtended.value ? 100 : 3,
-                    options: const LinkifyOptions(
-                      looseUrl: true,
-                    ),
+                    options: const LinkifyOptions(looseUrl: true),
                     style: TextStyle(
                       height: 1.1,
                       fontSize: 14,
@@ -74,17 +70,16 @@ class DescriptionWidget extends HookWidget {
           ShaderMask(
             blendMode: BlendMode.src,
             shaderCallback: (bounds) {
-              return LinearGradient(colors: [
-                CupertinoTheme.of(context)
-                    .scaffoldBackgroundColor
-                    .withOpacity(0),
-                CupertinoTheme.of(context).scaffoldBackgroundColor,
-                CupertinoTheme.of(context).scaffoldBackgroundColor,
-              ], stops: const [
-                0,
-                0.65,
-                1
-              ]).createShader(bounds);
+              return LinearGradient(
+                colors: [
+                  CupertinoTheme.of(
+                    context,
+                  ).scaffoldBackgroundColor.withValues(alpha: 0),
+                  CupertinoTheme.of(context).scaffoldBackgroundColor,
+                  CupertinoTheme.of(context).scaffoldBackgroundColor,
+                ],
+                stops: const [0, 0.65, 1],
+              ).createShader(bounds);
             },
             child: Container(
               width: 100,
@@ -103,7 +98,7 @@ class DescriptionWidget extends HookWidget {
                 fontSize: 14,
               ),
             ),
-          )
+          ),
         ],
       ),
     );

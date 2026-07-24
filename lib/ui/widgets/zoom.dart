@@ -60,16 +60,18 @@ class ZoomAnimation {
   void animationOffset(Offset? begin, Offset end) {
     _offsetController.stop();
     _offsetController.reset();
-    _offsetAnimation =
-        _offsetController.drive(Tween<Offset>(begin: begin, end: end));
+    _offsetAnimation = _offsetController.drive(
+      Tween<Offset>(begin: begin, end: end),
+    );
     _offsetController.forward();
   }
 
   void animationScale(double? begin, double end) {
     _scaleController.stop();
     _scaleController.reset();
-    _scaleAnimation =
-        _scaleController.drive(Tween<double>(begin: begin, end: end));
+    _scaleAnimation = _scaleController.drive(
+      Tween<double>(begin: begin, end: end),
+    );
     _scaleController.forward();
   }
 

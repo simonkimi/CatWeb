@@ -28,10 +28,11 @@ class RulesAdvance extends HookWidget {
           decoration: BoxDecoration(
             color: CupertinoColors.systemBackground.resolveFrom(context),
             border: Border.symmetric(
-                horizontal: BorderSide(
-              width: 0.4,
-              color: CupertinoColors.separator.resolveFrom(context),
-            )),
+              horizontal: BorderSide(
+                width: 0.4,
+                color: CupertinoColors.separator.resolveFrom(context),
+              ),
+            ),
           ),
           child: Column(
             children: [
@@ -55,10 +56,11 @@ class RulesAdvance extends HookWidget {
           decoration: BoxDecoration(
             color: CupertinoColors.systemBackground.resolveFrom(context),
             border: Border.symmetric(
-                horizontal: BorderSide(
-              width: 0.4,
-              color: CupertinoColors.separator.resolveFrom(context),
-            )),
+              horizontal: BorderSide(
+                width: 0.4,
+                color: CupertinoColors.separator.resolveFrom(context),
+              ),
+            ),
           ),
           child: Column(
             children: [
@@ -81,7 +83,9 @@ class RulesAdvance extends HookWidget {
   }
 
   Widget _buildRegFieldList(
-      BuildContext context, SwipeActionController controller) {
+    BuildContext context,
+    SwipeActionController controller,
+  ) {
     final notifier = context.read<RulesEditorNotifier>();
     final headers = context.select(
       (RulesEditorNotifier notifier) => notifier.blueprint.headers,
@@ -172,11 +176,10 @@ class RegFieldDialog extends HookWidget {
         ),
         CupertinoButton(
           child: Text(I.of(context).positive),
-          onPressed: () => context.pop(RegField(
-            reg: regController.text,
-            value: valueController.text,
-          )),
-        )
+          onPressed: () => context.pop(
+            RegField(reg: regController.text, value: valueController.text),
+          ),
+        ),
       ],
       content: Column(
         children: [

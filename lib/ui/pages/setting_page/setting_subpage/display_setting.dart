@@ -11,10 +11,7 @@ import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:flutter/cupertino.dart';
 
 class DisplaySettingPage extends StatelessWidget {
-  const DisplaySettingPage({
-    super.key,
-    this.fromSetting = true,
-  });
+  const DisplaySettingPage({super.key, this.fromSetting = true});
 
   final bool fromSetting;
 
@@ -56,7 +53,9 @@ class DisplaySettingPage extends StatelessWidget {
               value: controller.preloadCountNotifier,
               items: [
                 SelectTileItem(
-                    value: 0, title: I.of(context).disable), // 0禁用, 只加载自己
+                  value: 0,
+                  title: I.of(context).disable,
+                ), // 0禁用, 只加载自己
                 for (var i = 1; i <= 17; i += 2)
                   SelectTileItem(value: i, title: '$i'),
               ],
@@ -67,11 +66,17 @@ class DisplaySettingPage extends StatelessWidget {
               value: controller.readerDirectoryNotifier,
               items: [
                 SelectTileItem(
-                    value: ReaderDirection.ltr, title: I.of(context).ltr),
+                  value: ReaderDirection.ltr,
+                  title: I.of(context).ltr,
+                ),
                 SelectTileItem(
-                    value: ReaderDirection.rtl, title: I.of(context).rtl),
+                  value: ReaderDirection.rtl,
+                  title: I.of(context).rtl,
+                ),
                 SelectTileItem(
-                    value: ReaderDirection.ttb, title: I.of(context).ttb),
+                  value: ReaderDirection.ttb,
+                  title: I.of(context).ttb,
+                ),
               ],
             ),
           ],

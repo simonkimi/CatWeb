@@ -25,9 +25,10 @@ class CommentItem extends StatelessWidget {
                 Text(
                   model.username!,
                   style: const TextStyle(
-                      color: CupertinoColors.activeBlue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
+                    color: CupertinoColors.activeBlue,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
                 ),
               const Expanded(child: SizedBox()),
               if (model.score != null)

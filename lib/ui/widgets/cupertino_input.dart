@@ -90,11 +90,15 @@ class TripleTextField extends HookWidget {
     this.keyboardType,
     this.onSubmitted,
     TextEditingController? controller,
-  })  : outerController = controller,
-        assert(initialValue == null || controller == null,
-            'Cannot provide both value and controller'),
-        assert(initialValue != null || controller != null,
-            'Must provide either value or controller');
+  }) : outerController = controller,
+       assert(
+         initialValue == null || controller == null,
+         'Cannot provide both value and controller',
+       ),
+       assert(
+         initialValue != null || controller != null,
+         'Must provide either value or controller',
+       );
 
   final String labelText;
   final String? initialValue;
@@ -112,8 +116,9 @@ class TripleTextField extends HookWidget {
   @override
   Widget build(BuildContext context) {
     var controller = useMemoized(
-        () => outerController ?? TextEditingController(text: initialValue),
-        [outerController, initialValue]);
+      () => outerController ?? TextEditingController(text: initialValue),
+      [outerController, initialValue],
+    );
 
     useEffect(() {
       if (outerController == null) {
@@ -211,7 +216,9 @@ class TripleIntField extends HookWidget {
           Text(
             labelText,
             style: TextStyle(
-                color: FixColor.title.resolveFrom(context), fontSize: 13),
+              color: FixColor.title.resolveFrom(context),
+              fontSize: 13,
+            ),
           ),
           const SizedBox(height: 3),
           CupertinoTextField(
@@ -282,7 +289,9 @@ class TripleDoubleField extends HookWidget {
           Text(
             labelText,
             style: TextStyle(
-                color: FixColor.title.resolveFrom(context), fontSize: 13),
+              color: FixColor.title.resolveFrom(context),
+              fontSize: 13,
+            ),
           ),
           const SizedBox(height: 3),
           CupertinoTextField(
@@ -298,7 +307,7 @@ class TripleDoubleField extends HookWidget {
             },
             prefix: prefix,
             inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))
+              FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
             ],
             keyboardType: TextInputType.number,
           ),
@@ -345,7 +354,9 @@ class TripleBoolField extends StatelessWidget {
           Text(
             labelText,
             style: TextStyle(
-                color: FixColor.title.resolveFrom(context), fontSize: 13),
+              color: FixColor.title.resolveFrom(context),
+              fontSize: 13,
+            ),
           ),
           const SizedBox(height: 3),
           CupertinoSwitch(
@@ -398,8 +409,9 @@ class CupertinoText extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller = useMemoized(
-        () => outerController ?? TextEditingController(text: initialValue),
-        [outerController, initialValue]);
+      () => outerController ?? TextEditingController(text: initialValue),
+      [outerController, initialValue],
+    );
     useEffect(() {
       if (outerController == null) {
         controller.text = initialValue!;
@@ -456,11 +468,7 @@ class CupertinoIntInput extends HookWidget {
       decoration: decoration,
     );
     if (height != null || width != null) {
-      return SizedBox(
-        width: width,
-        height: height,
-        child: text,
-      );
+      return SizedBox(width: width, height: height, child: text);
     }
     return text;
   }
@@ -515,11 +523,7 @@ class CupertinoDoubleInput extends HookWidget {
       decoration: decoration,
     );
     if (height != null || width != null) {
-      return SizedBox(
-        width: width,
-        height: height,
-        child: text,
-      );
+      return SizedBox(width: width, height: height, child: text);
     }
     return text;
   }

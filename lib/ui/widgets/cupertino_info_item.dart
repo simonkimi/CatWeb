@@ -16,26 +16,22 @@ class CupertinoInfoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: 20,
-          child: _buildSize(context, top, 14),
-        ),
+        SizedBox(height: 20, child: _buildSize(context, top, 14)),
         SizedBox(
           height: 30,
-          child: Center(
-            child: _buildSize(context, middle, 20, true),
-          ),
+          child: Center(child: _buildSize(context, middle, 20, true)),
         ),
-        SizedBox(
-          height: 20,
-          child: _buildSize(context, bottom, 14),
-        ),
+        SizedBox(height: 20, child: _buildSize(context, bottom, 14)),
       ],
     );
   }
 
-  Widget _buildSize(BuildContext context, Widget child, double size,
-      [bool? bold]) {
+  Widget _buildSize(
+    BuildContext context,
+    Widget child,
+    double size, [
+    bool? bold,
+  ]) {
     if (child is Text) {
       return Text(
         child.data!,
@@ -46,10 +42,7 @@ class CupertinoInfoItem extends StatelessWidget {
         ),
       );
     } else if (child is Icon) {
-      return Icon(
-        child.icon,
-        size: size + 2,
-      );
+      return Icon(child.icon, size: size + 2);
     } else {
       return child;
     }

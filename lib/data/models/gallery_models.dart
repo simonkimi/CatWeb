@@ -5,7 +5,7 @@ import 'package:catweb/data/models/image_with_preview.dart';
 
 class GalleryPageModel extends BasePageData<GalleryItemModel> {
   GalleryPageModel(this.pageData)
-      : _items = pageData.previews!.map((e) => GalleryItemModel(e)).toList();
+    : _items = pageData.previews!.map((e) => GalleryItemModel(e)).toList();
 
   final DetailParserResult pageData;
 

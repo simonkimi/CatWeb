@@ -24,37 +24,37 @@ class NewImageParserEditor extends StatelessWidget {
         ParserTileConsumer(
           title: '图片地址',
           selector: (n) => n.image.image.url,
-          onChanged: (n, v) => n.updateParser(n.image.copyWith(
-            image: n.image.image.copyWith(url: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.image.copyWith(image: n.image.image.copyWith(url: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '图片宽度',
           selector: (n) => n.image.image.width,
-          onChanged: (n, v) => n.updateParser(n.image.copyWith(
-            image: n.image.image.copyWith(width: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.image.copyWith(image: n.image.image.copyWith(width: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '图片高度',
           selector: (n) => n.image.image.height,
-          onChanged: (n, v) => n.updateParser(n.image.copyWith(
-            image: n.image.image.copyWith(height: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.image.copyWith(image: n.image.image.copyWith(height: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '图片X偏移',
           selector: (n) => n.image.image.x,
-          onChanged: (n, v) => n.updateParser(n.image.copyWith(
-            image: n.image.image.copyWith(x: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.image.copyWith(image: n.image.image.copyWith(x: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '图片Y偏移',
           selector: (n) => n.image.image.y,
-          onChanged: (n, v) => n.updateParser(n.image.copyWith(
-            image: n.image.image.copyWith(y: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.image.copyWith(image: n.image.image.copyWith(y: v)),
+          ),
         ),
       ],
     );
@@ -136,23 +136,23 @@ class NewImageParserEditor extends StatelessWidget {
         ParserTileConsumer(
           title: '标签内容',
           selector: (n) => n.image.tagItem.text,
-          onChanged: (n, v) => n.updateParser(n.image.copyWith(
-            tagItem: n.image.tagItem.copyWith(text: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.image.copyWith(tagItem: n.image.tagItem.copyWith(text: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '标签类型',
           selector: (n) => n.image.tagItem.category,
-          onChanged: (n, v) => n.updateParser(n.image.copyWith(
-            tagItem: n.image.tagItem.copyWith(category: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.image.copyWith(tagItem: n.image.tagItem.copyWith(category: v)),
+          ),
         ),
         ParserTileConsumer(
           title: '标签颜色',
           selector: (n) => n.image.tagItem.color,
-          onChanged: (n, v) => n.updateParser(n.image.copyWith(
-            tagItem: n.image.tagItem.copyWith(color: v),
-          )),
+          onChanged: (n, v) => n.updateParser(
+            n.image.copyWith(tagItem: n.image.tagItem.copyWith(color: v)),
+          ),
         ),
       ],
     );

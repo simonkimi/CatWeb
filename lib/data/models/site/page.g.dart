@@ -7,33 +7,34 @@ part of 'page.dart';
 // **************************************************************************
 
 _SitePage _$SitePageFromJson(Map<String, dynamic> json) => _SitePage(
-      name: json['name'] as String? ?? '',
-      uuid: json['uuid'] as String,
-      template: PageTemplate.fromJson(json['template'] as Map<String, dynamic>),
-      url: json['url'] as String? ?? '',
-      action: $enumDecodeNullable(_$SiteNetTypeEnumMap, json['action']) ??
-          SiteNetType.get,
-      formData: json['formData'] as String? ?? '',
-      icon: json['icon'] as String? ?? '',
-      displayType:
-          $enumDecodeNullable(_$SiteDisplayTypeEnumMap, json['displayType']) ??
-              SiteDisplayType.show,
-      flag: json['flag'] as String? ?? '',
-      parserId: json['parserId'] as String? ?? '',
-    );
+  name: json['name'] as String? ?? '',
+  uuid: json['uuid'] as String,
+  template: PageTemplate.fromJson(json['template'] as Map<String, dynamic>),
+  url: json['url'] as String? ?? '',
+  action:
+      $enumDecodeNullable(_$SiteNetTypeEnumMap, json['action']) ??
+      SiteNetType.get,
+  formData: json['formData'] as String? ?? '',
+  icon: json['icon'] as String? ?? '',
+  displayType:
+      $enumDecodeNullable(_$SiteDisplayTypeEnumMap, json['displayType']) ??
+      SiteDisplayType.show,
+  flag: json['flag'] as String? ?? '',
+  parserId: json['parserId'] as String? ?? '',
+);
 
 Map<String, dynamic> _$SitePageToJson(_SitePage instance) => <String, dynamic>{
-      'name': instance.name,
-      'uuid': instance.uuid,
-      'template': instance.template,
-      'url': instance.url,
-      'action': _$SiteNetTypeEnumMap[instance.action]!,
-      'formData': instance.formData,
-      'icon': instance.icon,
-      'displayType': _$SiteDisplayTypeEnumMap[instance.displayType]!,
-      'flag': instance.flag,
-      'parserId': instance.parserId,
-    };
+  'name': instance.name,
+  'uuid': instance.uuid,
+  'template': instance.template,
+  'url': instance.url,
+  'action': _$SiteNetTypeEnumMap[instance.action]!,
+  'formData': instance.formData,
+  'icon': instance.icon,
+  'displayType': _$SiteDisplayTypeEnumMap[instance.displayType]!,
+  'flag': instance.flag,
+  'parserId': instance.parserId,
+};
 
 const _$SiteNetTypeEnumMap = {
   SiteNetType.get: 'get',

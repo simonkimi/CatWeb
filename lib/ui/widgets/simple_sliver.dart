@@ -5,11 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'cupertino_divider.dart';
 
 class ExceptionSliver extends StatelessWidget {
-  const ExceptionSliver({
-    super.key,
-    this.errMsg,
-    this.onRetry,
-  });
+  const ExceptionSliver({super.key, this.errMsg, this.onRetry});
 
   final String? errMsg;
   final VoidCallback? onRetry;
@@ -34,9 +30,7 @@ class ExceptionSliver extends StatelessWidget {
                 Text(
                   errMsg!,
                   maxLines: 10,
-                  style: TextStyle(
-                    color: FixColor.title.resolveFrom(context),
-                  ),
+                  style: TextStyle(color: FixColor.title.resolveFrom(context)),
                 ),
             ],
           ),
@@ -52,19 +46,13 @@ class LoadingSliver extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SliverFillRemaining(
-      child: Center(
-        child: CupertinoActivityIndicator(),
-      ),
+      child: Center(child: CupertinoActivityIndicator()),
     );
   }
 }
 
 class SliverPullToRefresh extends StatelessWidget {
-  const SliverPullToRefresh({
-    super.key,
-    this.onRefresh,
-    this.extraHeight = 0,
-  });
+  const SliverPullToRefresh({super.key, this.onRefresh, this.extraHeight = 0});
 
   final RefreshCallback? onRefresh;
   final double extraHeight;
@@ -73,7 +61,8 @@ class SliverPullToRefresh extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverPadding(
       padding: EdgeInsets.only(
-        top: MediaQuery.of(context).padding.top +
+        top:
+            MediaQuery.of(context).padding.top +
             kCupertinoNavigatorBar +
             extraHeight +
             5,

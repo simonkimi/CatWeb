@@ -36,11 +36,8 @@ sealed class CommentResult with _$CommentResult {
 
 @freezed
 sealed class TagResult with _$TagResult {
-  const factory TagResult({
-    String? text,
-    String? color,
-    String? category,
-  }) = _TagResult;
+  const factory TagResult({String? text, String? color, String? category}) =
+      _TagResult;
 
   factory TagResult.fromJson(Map<String, dynamic> json) =>
       _$TagResultFromJson(json);
@@ -48,11 +45,8 @@ sealed class TagResult with _$TagResult {
 
 @freezed
 sealed class EnvResult with _$EnvResult {
-  const factory EnvResult({
-    String? id,
-    bool? global,
-    String? value,
-  }) = _EnvResult;
+  const factory EnvResult({String? id, bool? global, String? value}) =
+      _EnvResult;
 
   factory EnvResult.fromJson(Map<String, dynamic> json) =>
       _$EnvResultFromJson(json);
@@ -60,10 +54,8 @@ sealed class EnvResult with _$EnvResult {
 
 @freezed
 sealed class ParserError with _$ParserError {
-  const factory ParserError({
-    required int code,
-    required String message,
-  }) = _ParserError;
+  const factory ParserError({required int code, required String message}) =
+      _ParserError;
 
   factory ParserError.fromJson(Map<String, dynamic> json) =>
       _$ParserErrorFromJson(json);

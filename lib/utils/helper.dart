@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 
 extension DoubleUtils on num {
   T nearList<T extends num>(List<T> nums) {
-    return nums.reduce((value, element) =>
-        (this - value).abs() < (this - element).abs() ? value : element);
+    return nums.reduce(
+      (value, element) =>
+          (this - value).abs() < (this - element).abs() ? value : element,
+    );
   }
 }
 

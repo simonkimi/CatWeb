@@ -14,9 +14,7 @@ import 'package:catweb/app.dart';
 
 import 'package:catweb/network/interceptor/cookie_interceptor.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
-import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/num_helper.dart';
-import 'package:catweb_parser/catweb_parser.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
@@ -36,17 +34,13 @@ class NetClient {
     required this.blueMap,
     required CookieJar cookieJar,
     required WebTableData db,
-  })  : dio = _buildDio(
-          model: blueMap,
-          cookieJar: cookieJar,
-          db: db,
-        ),
-        imageDio = _buildDio(
-          model: blueMap,
-          cookieJar: cookieJar,
-          isImage: true,
-          db: db,
-        );
+  }) : dio = _buildDio(model: blueMap, cookieJar: cookieJar, db: db),
+       imageDio = _buildDio(
+         model: blueMap,
+         cookieJar: cookieJar,
+         isImage: true,
+         db: db,
+       );
 
   final Dio dio;
   final Dio imageDio;
@@ -65,7 +59,7 @@ class NetClient {
       SiteNetType.delete => dio.delete<String>(url2, options: options),
       SiteNetType.get => dio.get<String>(url2, options: options),
       SiteNetType.post => dio.post<String>(url2, data: form, options: options),
-      SiteNetType.put => dio.put<String>(url2, data: form, options: options)
+      SiteNetType.put => dio.put<String>(url2, data: form, options: options),
     };
 
     final rsp = await req;
@@ -92,20 +86,12 @@ class NetClient {
   }) async {
     final parser = blueMap.getParserById<ParserModelList>(model.parserId);
 
-    final req = await _buildRequest(
-      url: url,
-      model: model,
-      localEnv: localEnv,
-    );
+    final req = await _buildRequest(url: url, model: model, localEnv: localEnv);
 
     final content = req.data!;
     final parserStr = jsonEncode(parser.toJson());
 
-    final rsp = await callFFiParser(
-      content,
-      ParserModelType.list,
-      parserStr,
-    );
+    final rsp = await callFFiParser(content, ParserModelType.list, parserStr);
 
     final result = ListParserResult.fromJson(rsp);
     _checkSuccessFlag(result.isSuccess, result.failMessage);
@@ -148,8 +134,9 @@ class NetClient {
     required SitePageRule model,
     required SiteEnvStore localEnv,
   }) async {
-    final parser =
-        blueMap.getParserById<ParserModelImageReader>(model.parserId);
+    final parser = blueMap.getParserById<ParserModelImageReader>(
+      model.parserId,
+    );
 
     final options = getIt
         .get<GlobalService>()
@@ -181,8 +168,9 @@ class NetClient {
     required SitePageRule model,
     required SiteEnvStore localEnv,
   }) async {
-    final parser =
-        blueMap.getParserById<ParserModelAutoComplete>(model.parserId);
+    final parser = blueMap.getParserById<ParserModelAutoComplete>(
+      model.parserId,
+    );
 
     final rsp = await _buildRequest(url: url, model: model, localEnv: localEnv);
 
@@ -219,20 +207,23 @@ class NetClient {
 
     dio.interceptors.add(CookieManager(cookieJar));
     dio.interceptors.add(HeaderCookieInterceptor(model: model, db: db));
-    dio.interceptors.add(RetryInterceptor(
-      dio: dio,
-      logPrint: print,
-      retries: 3,
-      retryDelays: const [
-        Duration(seconds: 1),
-        Duration(seconds: 2),
-        Duration(seconds: 3),
-      ],
-    ));
+    dio.interceptors.add(
+      RetryInterceptor(
+        dio: dio,
+        logPrint: print,
+        retries: 3,
+        retryDelays: const [
+          Duration(seconds: 1),
+          Duration(seconds: 2),
+          Duration(seconds: 3),
+        ],
+      ),
+    );
 
     if (!isImage) {
-      dio.interceptors
-          .add(DioCacheInterceptor(options: globalService.cacheOptions));
+      dio.interceptors.add(
+        DioCacheInterceptor(options: globalService.cacheOptions),
+      );
       dio.interceptors.add(HttpFormatter(includeResponseBody: false));
     } else {
       dio.interceptors.add(
@@ -260,11 +251,17 @@ Future<Map<String, dynamic>> callFFiParser(
   ParserModelType parserType,
   String parser,
 ) async {
-  final rsp = await parseHtmlAsync(content, parserType.type, parser);
-  final json = jsonDecode(rsp);
-  if (json['hasError'] == true) {
-    final errMsg = json['error'] as String;
-    throw Exception(errMsg);
-  }
-  return jsonDecode(json['data']);
+  // TODO(parser): Replace this placeholder when the new parser is integrated.
+  const message = '解析器正在重构，当前版本暂不可用';
+  return {
+    'isSuccess': false,
+    'failMessage': message,
+    'envs': const <Map<String, dynamic>>[],
+    'errors': const [
+      {'code': -1, 'message': message},
+    ],
+    if (parserType == ParserModelType.list ||
+        parserType == ParserModelType.autoComplete)
+      'items': const <Map<String, dynamic>>[],
+  };
 }

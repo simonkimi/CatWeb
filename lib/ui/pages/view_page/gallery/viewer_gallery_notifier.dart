@@ -12,10 +12,7 @@ import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 class ViewerGalleryNotifier
     extends BasePageLoaderNotifier<GalleryItemModel, GalleryPageModel> {
-  ViewerGalleryNotifier({
-    required this.siteRule,
-    required this.localEnv,
-  });
+  ViewerGalleryNotifier({required this.siteRule, required this.localEnv});
 
   final SitePageRule siteRule;
   final SiteEnvStore localEnv;

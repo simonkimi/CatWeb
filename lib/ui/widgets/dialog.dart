@@ -111,9 +111,7 @@ Future<bool?> showCupertinoConfirmDialog({
               child: Text(
                 cancelText ?? I.of(context).negative,
                 style: cancelColor != null
-                    ? TextStyle(
-                        color: cancelColor,
-                      )
+                    ? TextStyle(color: cancelColor)
                     : null,
               ),
               onPressed: () {
@@ -124,9 +122,7 @@ Future<bool?> showCupertinoConfirmDialog({
             child: Text(
               confineText ?? I.of(context).positive,
               style: confineTextColor != null
-                  ? TextStyle(
-                      color: confineTextColor,
-                    )
+                  ? TextStyle(color: confineTextColor)
                   : null,
             ),
             onPressed: () {
@@ -147,47 +143,49 @@ Future<T?> showSelectDialog<T>({
   bool displayRadio = true,
 }) async {
   return await showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                child: Text(
-                  title,
-                  style: const TextStyle(fontSize: 20),
+    context: context,
+    builder: (context) {
+      return Dialog(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              child: Text(title, style: const TextStyle(fontSize: 20)),
+            ),
+            const Divider(height: 0),
+            if (!displayRadio)
+              ...items.map(
+                (e) => ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Text(e.title),
+                  ),
+                  onTap: () => Navigator.of(context).pop(e.value),
+                ),
+              )
+            else
+              RadioGroup<T>(
+                groupValue: selectedValue,
+                onChanged: Navigator.of(context).pop,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: items
+                      .map(
+                        (e) => RadioListTile<T>(
+                          value: e.value,
+                          title: Text(e.title),
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
-              const Divider(height: 0),
-              ...items.map(
-                (e) {
-                  if (!displayRadio) {
-                    return ListTile(
-                      title: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: Text(e.title),
-                      ),
-                      onTap: () {
-                        Navigator.of(context).pop(e.value);
-                      },
-                    );
-                  }
-                  return RadioListTile<T>(
-                    value: e.value,
-                    groupValue: selectedValue,
-                    onChanged: Navigator.of(context).pop,
-                    title: Text(e.title),
-                  );
-                },
-              )
-            ],
-          ),
-        );
-      });
+          ],
+        ),
+      );
+    },
+  );
 }
 
 Future<String?> showCupertinoIconDialog(BuildContext context) async {
@@ -226,19 +224,21 @@ Future<String?> showCupertinoIconDialog(BuildContext context) async {
                     padding: EdgeInsets.zero,
                     children: cupertinoIcons.entries
                         .where((e) => filter.isEmpty || e.key.contains(filter))
-                        .map((e) => AspectRatio(
-                              aspectRatio: 1,
-                              child: CupertinoButton(
-                                padding: EdgeInsets.zero,
-                                child: Icon(e.value),
-                                onPressed: () {
-                                  context.pop(e.key);
-                                },
-                              ),
-                            ))
+                        .map(
+                          (e) => AspectRatio(
+                            aspectRatio: 1,
+                            child: CupertinoButton(
+                              padding: EdgeInsets.zero,
+                              child: Icon(e.value),
+                              onPressed: () {
+                                context.pop(e.key);
+                              },
+                            ),
+                          ),
+                        )
                         .toList(),
                   ),
-                )
+                ),
               ],
             );
           },

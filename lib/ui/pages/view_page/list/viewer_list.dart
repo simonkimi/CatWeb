@@ -32,11 +32,15 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
     if (isSingleTab) {
       sublistNotifiers = [SubListNotifier(siteRule: pageConfig.pageRule)];
     } else {
-      tabController =
-          TabController(length: template.subPages.length, vsync: this);
+      tabController = TabController(
+        length: template.subPages.length,
+        vsync: this,
+      );
       sublistNotifiers = template.subPages
-          .map((e) =>
-              SubListNotifier(siteRule: pageConfig.pageRule, subPageModel: e))
+          .map(
+            (e) =>
+                SubListNotifier(siteRule: pageConfig.pageRule, subPageModel: e),
+          )
           .toList();
     }
     sublistNotifiers.first.requireFirstLoad();
@@ -59,8 +63,6 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
   Widget _buildLeading(BuildContext context) {
     return CupertinoButton(
       padding: EdgeInsets.zero,
-      minSize: 0,
-      child: const Icon(CupertinoIcons.layers_alt),
       onPressed: () {
         showCupertinoModalSheet(
           context: context,
@@ -69,6 +71,8 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
           },
         );
       },
+      minimumSize: Size(0, 0),
+      child: const Icon(CupertinoIcons.layers_alt),
     );
   }
 
@@ -77,17 +81,18 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
       if (pageRule.url.contains('{search}'))
         CupertinoButton(
           padding: EdgeInsets.zero,
-          minSize: 0,
-          child: const Icon(CupertinoIcons.search),
           onPressed: () {
             context.to(const SearchPage(), [
               Provider.value(value: pageRule),
               Provider.value(value: viewerConfig),
               Provider.value(value: context.read<PageConfigProvider>()),
               ChangeNotifierProvider.value(
-                  value: context.read<SubListNotifier>())
+                value: context.read<SubListNotifier>(),
+              ),
             ]);
           },
+          minimumSize: Size(0, 0),
+          child: const Icon(CupertinoIcons.search),
         ),
       // if (template.filter.items.isNotEmpty)
       //   ListFilterButton(

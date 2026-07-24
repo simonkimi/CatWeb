@@ -1376,5 +1376,5 @@ const cupertinoIcons = <String, IconData>{
   'zoom_in': CupertinoIcons.zoom_in,
   'zoom_out': CupertinoIcons.zoom_out,
   'zzz': CupertinoIcons.zzz,
-  'whatshot': Icons.whatshot
+  'whatshot': Icons.whatshot,
 };

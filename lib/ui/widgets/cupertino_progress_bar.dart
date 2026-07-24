@@ -16,8 +16,9 @@ class CupertinoInfProgress extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final aniController = useAnimationController(duration: duration);
-    final ani =
-        useAnimation(Tween<double>(begin: 0, end: 1).animate(aniController));
+    final ani = useAnimation(
+      Tween<double>(begin: 0, end: 1).animate(aniController),
+    );
     aniController.repeat();
     return CustomPaint(
       size: Size.square(size ?? 20),
@@ -47,15 +48,13 @@ class _CircularInfProgressPaint extends CustomPainter {
       ..color = CupertinoColors.white
       ..strokeWidth = 5;
 
-    canvas.drawCircle(
-      center,
-      min(size.width, size.height),
-      outerPaint,
-    );
+    canvas.drawCircle(center, min(size.width, size.height), outerPaint);
 
     canvas.drawCircle(
-      Offset(center.dx - sin(progress) * size.width,
-          center.dy + cos(progress) * size.width),
+      Offset(
+        center.dx - sin(progress) * size.width,
+        center.dy + cos(progress) * size.width,
+      ),
       size.width * 0.15,
       innerPaint,
     );
@@ -98,8 +97,13 @@ class _CupertinoProgressState
 
   @override
   void forEachTween(TweenVisitor<dynamic> visitor) {
-    _progressTween = visitor(_progressTween, widget.progress,
-        (dynamic value) => Tween<double>(begin: value)) as Tween<double>?;
+    _progressTween =
+        visitor(
+              _progressTween,
+              widget.progress,
+              (dynamic value) => Tween<double>(begin: value),
+            )
+            as Tween<double>?;
   }
 }
 
@@ -121,11 +125,7 @@ class _CircularProgressPaint extends CustomPainter {
       ..color = CupertinoColors.white
       ..strokeWidth = 5;
 
-    canvas.drawCircle(
-      center,
-      min(size.width, size.height),
-      outerPaint,
-    );
+    canvas.drawCircle(center, min(size.width, size.height), outerPaint);
 
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: size.width - (0.1 * size.width)),

@@ -37,9 +37,7 @@ class RulesEditorNotifier extends ValueNotifier<SiteBlueprint> {
   }
 
   void setLoginCookieDescription(String loginCookieDescription) {
-    value = blueprint.copyWith(
-      loginCookieDescription: loginCookieDescription,
-    );
+    value = blueprint.copyWith(loginCookieDescription: loginCookieDescription);
   }
 
   void removeHeader(int index) {
@@ -99,9 +97,7 @@ class RulesEditorNotifier extends ValueNotifier<SiteBlueprint> {
     } else {
       newParserList.add(model);
     }
-    value = blueprint.copyWith(
-      parserList: newParserList,
-    );
+    value = blueprint.copyWith(parserList: newParserList);
     notifyListeners();
   }
 
@@ -110,15 +106,18 @@ class RulesEditorNotifier extends ValueNotifier<SiteBlueprint> {
     SiteService siteService = getIt.get();
 
     if (oldConfig == null) {
-      await dbService.webDao.insert(WebTableCompanion.insert(
-        blueprint: jsonEncode(blueprint.toJson()),
-        env: '{}',
-      ));
+      await dbService.webDao.insert(
+        WebTableCompanion.insert(
+          blueprint: jsonEncode(blueprint.toJson()),
+          env: '{}',
+        ),
+      );
       return;
     }
 
-    final newConfig =
-        oldConfig.copyWith(blueprint: jsonEncode(blueprint.toJson()));
+    final newConfig = oldConfig.copyWith(
+      blueprint: jsonEncode(blueprint.toJson()),
+    );
     await dbService.webDao.replace(newConfig);
     if (siteService.currentSite?.id == oldConfig.id) {
       siteService.setNewSite(newConfig);

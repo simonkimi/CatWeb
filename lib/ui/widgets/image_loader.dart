@@ -10,14 +10,14 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-typedef ImageWidgetBuilder = Widget Function(
-    BuildContext context, Uint8List imgData);
+typedef ImageWidgetBuilder =
+    Widget Function(BuildContext context, Uint8List imgData);
 
-typedef LoadingWidgetBuilder = Widget Function(
-    BuildContext context, double progress);
+typedef LoadingWidgetBuilder =
+    Widget Function(BuildContext context, double progress);
 
-typedef ErrorBuilder = Widget Function(
-    BuildContext context, Object? err, VoidCallback reload);
+typedef ErrorBuilder =
+    Widget Function(BuildContext context, Object? err, VoidCallback reload);
 
 typedef WidgetBuilder = Widget Function(BuildContext context, Widget child);
 
@@ -83,7 +83,6 @@ class _ImageLoaderState extends State<ImageLoader> {
       case AsyncProgressCached<Uint8List>():
         throw UnimplementedError();
     }
-    throw UnimplementedError();
   }
 
   void _onReload() {
@@ -136,21 +135,15 @@ class _ImageLoaderState extends State<ImageLoader> {
         },
       );
     } else {
-      child = Center(
-        child: innerImageBuilder(context, Image.memory(imgData)),
-      );
+      child = Center(child: innerImageBuilder(context, Image.memory(imgData)));
     }
 
     return widget.enableHero
         ? Hero(
             tag: widget.model.cacheKey ?? widget.model.url!,
-            child: DarkWidget(
-              child: child,
-            ),
+            child: DarkWidget(child: child),
           )
-        : DarkWidget(
-            child: child,
-          );
+        : DarkWidget(child: child);
   }
 
   ImageResult get model => widget.model;
@@ -165,7 +158,8 @@ Widget _defaultErrorBuilder(
 ) {
   if (err is DioException) {
     logger.e(
-        '图片网路错误: \n url: <${err.requestOptions.path}>\n path: <${err.requestOptions.path}>');
+      '图片网路错误: \n url: <${err.requestOptions.path}>\n path: <${err.requestOptions.path}>',
+    );
   } else {
     logger.e('图片加载错误', err);
   }
@@ -181,9 +175,7 @@ Widget _defaultErrorBuilder(
           child: Text(
             err?.toString() ?? '',
             maxLines: 5,
-            style: const TextStyle(
-              fontSize: 12,
-            ),
+            style: const TextStyle(fontSize: 12),
           ),
         ),
       ],
@@ -193,10 +185,6 @@ Widget _defaultErrorBuilder(
 
 Widget _defaultLoadingBuilder(BuildContext context, double progress) {
   return const Center(
-    child: SizedBox(
-      width: 24,
-      height: 24,
-      child: CupertinoActivityIndicator(),
-    ),
+    child: SizedBox(width: 24, height: 24, child: CupertinoActivityIndicator()),
   );
 }

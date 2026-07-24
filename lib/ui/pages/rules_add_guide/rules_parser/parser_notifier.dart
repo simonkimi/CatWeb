@@ -16,16 +16,16 @@ class RuleParserNotifier with ChangeNotifier {
   ParserModelAutoComplete get autoComplete => parser as ParserModelAutoComplete;
 
   void addExtra(String id) {
-    parser = parser.copyWith(extra: [
-      ...parser.extra,
-      ExtraSelectorModel(id: id),
-    ]);
+    parser = parser.copyWith(
+      extra: [
+        ...parser.extra,
+        ExtraSelectorModel(id: id),
+      ],
+    );
   }
 
   void updateExtra(int index, ExtraSelectorModel extra) {
-    parser = parser.copyWith(
-      extra: List.from(parser.extra)..[index] = extra,
-    );
+    parser = parser.copyWith(extra: List.from(parser.extra)..[index] = extra);
   }
 
   void updateParser(ParserModel parser) {

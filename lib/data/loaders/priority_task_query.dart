@@ -46,7 +46,8 @@ class _TaskPriority<T extends PriorityTask> implements Comparable {
       return priority.compareTo(other.priority);
     }
     throw ArgumentError(
-        'Cannot compare _TaskPriority with ${other.runtimeType}');
+      'Cannot compare _TaskPriority with ${other.runtimeType}',
+    );
   }
 }
 

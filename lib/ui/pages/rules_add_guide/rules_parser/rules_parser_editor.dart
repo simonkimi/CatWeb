@@ -12,10 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RulesParserEditor extends StatelessWidget {
-  const RulesParserEditor({
-    super.key,
-    required this.model,
-  });
+  const RulesParserEditor({super.key, required this.model});
 
   final ParserModel model;
 
@@ -35,14 +32,8 @@ class RulesParserEditor extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return CupertinoTabBarView(
-      tabs: const [
-        CupertinoTab('基础规则'),
-        CupertinoTab('附加字段'),
-      ],
-      children: [
-        _buildEditor(context),
-        const ExtraParserEditor(),
-      ],
+      tabs: const [CupertinoTab('基础规则'), CupertinoTab('附加字段')],
+      children: [_buildEditor(context), const ExtraParserEditor()],
     );
   }
 
@@ -51,7 +42,7 @@ class RulesParserEditor extends StatelessWidget {
       leading: CupertinoButton(
         onPressed: () => context.pop(),
         padding: EdgeInsets.zero,
-        minSize: 0,
+        minimumSize: Size(0, 0),
         child: const Icon(CupertinoIcons.back),
       ),
       middle: const Text('规则'),
@@ -68,7 +59,6 @@ class RulesParserEditor extends StatelessWidget {
           ParserModelList() => const ListParserEditor(),
           ParserModelAutoComplete() => const AutoCompleteParserEditor(),
           ParserModelImageReader() => const NewImageParserEditor(),
-          _ => throw UnimplementedError('Unknown parser type: $parser'),
         };
       },
     );

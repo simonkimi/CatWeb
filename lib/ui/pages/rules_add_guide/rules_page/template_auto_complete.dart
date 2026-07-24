@@ -20,7 +20,7 @@ class TemplateAutoCompleteEditor extends StatelessWidget {
             labelText: '开始搜索时间',
             selector: (n) => n.templateAutoComplete.timeout,
             save: (n) => n.updateAutoCompleteTimeout,
-          )
+          ),
         ],
       ),
     );

@@ -25,8 +25,8 @@ class CupertinoBackLeading extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoButton(
       padding: EdgeInsets.zero,
-      minSize: 0,
       onPressed: onPressed ?? () => Navigator.of(context).pop(),
+      minimumSize: Size(0, 0),
       child: Row(
         children: [
           Icon(CupertinoIcons.back, color: color),
@@ -121,12 +121,7 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        _buildChild(context),
-        _buildAppBar(context),
-      ],
-    );
+    return Stack(children: [_buildChild(context), _buildAppBar(context)]);
   }
 
   SlideTransition _buildAppBar(BuildContext context) {
@@ -159,7 +154,8 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
         } else {
           _setTranslateCurve(Curves.linear);
           final delta = pixel - _lastPixel;
-          _translateController.value += delta /
+          _translateController.value +=
+              delta /
               (kCupertinoNavigatorBar +
                   (widget.tabBar != null
                       ? widget.tabBarHeight ?? kCupertinoTabBarHeight
@@ -196,7 +192,8 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
                 width: 0.3,
               ),
             ),
-            color: widget.backgroundColor ??
+            color:
+                widget.backgroundColor ??
                 CupertinoTheme.of(context).barBackgroundColor,
           ),
           child: Column(
@@ -225,10 +222,7 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
         child: Stack(
           children: [
             if (leading != null)
-              Align(
-                alignment: Alignment.centerLeft,
-                child: leading,
-              ),
+              Align(alignment: Alignment.centerLeft, child: leading),
             if (widget.title != null)
               Align(
                 alignment: Alignment.center,
@@ -288,10 +282,7 @@ class AppBarScrollNotifier extends StatelessWidget {
 }
 
 class AppBarScrollNotification extends ScrollNotification {
-  AppBarScrollNotification({
-    super.context,
-    required super.metrics,
-  });
+  AppBarScrollNotification({super.context, required super.metrics});
 }
 
 class OffsetCupertinoAppBar extends StatelessWidget
@@ -307,10 +298,7 @@ class OffsetCupertinoAppBar extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return SlideTransition(
-      position: offset,
-      child: child,
-    );
+    return SlideTransition(position: offset, child: child);
   }
 
   @override

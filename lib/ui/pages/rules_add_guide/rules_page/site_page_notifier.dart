@@ -92,8 +92,9 @@ mixin _ListTemplateUpdater on ValueNotifier<SitePageRule> {
   void updateListTemplateFilter(int key, TemplateListFilterItem result) {
     value = value.copyWith(
       template: templateList.copyWith(
-        filter: templateList.filter
-            .copyWith(items: templateList.filter.items.replaceAt(key, result)),
+        filter: templateList.filter.copyWith(
+          items: templateList.filter.items.replaceAt(key, result),
+        ),
       ),
     );
   }
@@ -104,7 +105,7 @@ mixin _ListTemplateUpdater on ValueNotifier<SitePageRule> {
         filter: templateList.filter.copyWith(
           items: [
             ...templateList.filter.items,
-            const TemplateListFilterItem.string()
+            const TemplateListFilterItem.string(),
           ],
         ),
       ),

@@ -39,8 +39,8 @@ class CupertinoCardTile extends HookWidget {
 
     final textColor = selected
         ? bgColor.isDark
-            ? CupertinoColors.white
-            : CupertinoColors.black
+              ? CupertinoColors.white
+              : CupertinoColors.black
         : _buildColor(context);
 
     return GestureDetector(
@@ -68,7 +68,7 @@ class CupertinoCardTile extends HookWidget {
           duration: const Duration(milliseconds: 100),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: isTap.value ? bgColor.withOpacity(0.4) : bgColor,
+            color: isTap.value ? bgColor.withValues(alpha: 0.4) : bgColor,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
@@ -124,10 +124,7 @@ class CupertinoCardTile extends HookWidget {
 
   Widget _buildText(BuildContext context, Widget widget, TextStyle style) {
     if (widget is Text) {
-      return Text(
-        widget.data!,
-        style: widget.style ?? style,
-      );
+      return Text(widget.data!, style: widget.style ?? style);
     }
     return widget;
   }

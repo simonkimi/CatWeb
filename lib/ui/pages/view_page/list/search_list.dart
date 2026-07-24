@@ -46,16 +46,11 @@ class SearchPage extends StatelessWidget {
     final suggestions = context.select((SearchNotifier n) => n.suggestions);
     return CustomScrollView(
       slivers: [
-        const SliverPullToRefresh(
-          extraHeight: 40,
-        ),
+        const SliverPullToRefresh(extraHeight: 40),
         SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return _buildSuggestionItem(suggestions[index], context);
-            },
-            childCount: suggestions.length,
-          ),
+          delegate: SliverChildBuilderDelegate((context, index) {
+            return _buildSuggestionItem(suggestions[index], context);
+          }, childCount: suggestions.length),
         ),
       ],
     );
@@ -99,8 +94,9 @@ class SearchPage extends StatelessWidget {
                         model.subtitle!,
                         style: TextStyle(
                           fontSize: 14,
-                          color: CupertinoColors.placeholderText
-                              .resolveFrom(context),
+                          color: CupertinoColors.placeholderText.resolveFrom(
+                            context,
+                          ),
                         ),
                       ),
                     ],

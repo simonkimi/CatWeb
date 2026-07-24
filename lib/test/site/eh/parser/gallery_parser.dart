@@ -12,9 +12,10 @@ final ehGalleryParser = ParserModelDetail(
     function: SelectorFunction.text(),
   ),
   failedSelector: const SelectorModel(
-      selector: '//*[contains(text(), "IP address has")]',
-      type: SelectorQuery.xpath(),
-      function: SelectorFunction.text()),
+    selector: '//*[contains(text(), "IP address has")]',
+    type: SelectorQuery.xpath(),
+    function: SelectorFunction.text(),
+  ),
   subtitle: const SelectorModel(
     selector: '#gdn',
     function: SelectorFunction.text(),
@@ -46,9 +47,7 @@ final ehGalleryParser = ParserModelDetail(
     function: SelectorFunction.text(),
   ),
   tagItem: const TagSelectorModel(
-    text: SelectorModel(
-      function: SelectorFunction.text(),
-    ),
+    text: SelectorModel(function: SelectorFunction.text()),
     color: SelectorModel(
       selector: '.cs',
       function: SelectorFunction.attr(),
@@ -62,9 +61,7 @@ final ehGalleryParser = ParserModelDetail(
   ),
   badgeSelector: const SelectorModel(selector: '.gt,.gtl'),
   badgeItem: const TagSelectorModel(
-    text: SelectorModel(
-      function: SelectorFunction.text(),
-    ),
+    text: SelectorModel(function: SelectorFunction.text()),
     category: SelectorModel(
       function: SelectorFunction.attr(),
       param: 'id',

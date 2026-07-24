@@ -1,11 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class NullableHero extends StatelessWidget {
-  const NullableHero({
-    super.key,
-    required this.child,
-    this.tag,
-  });
+  const NullableHero({super.key, required this.child, this.tag});
 
   final Widget child;
   final String? tag;

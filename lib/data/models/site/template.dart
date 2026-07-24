@@ -18,9 +18,8 @@ sealed class PageTemplate with _$PageTemplate {
     @Default(ScriptField.output()) ScriptField script,
   }) = PageTemplateAutoComplete;
 
-  const factory PageTemplate.gallery({
-    @Default('') String targetReader,
-  }) = PageTemplateGallery;
+  const factory PageTemplate.gallery({@Default('') String targetReader}) =
+      PageTemplateGallery;
 
   const factory PageTemplate.list({
     @Default('') String name,
@@ -45,7 +44,6 @@ sealed class PageTemplate with _$PageTemplate {
       PageTemplateGallery() => PageTemplateType.gallery,
       PageTemplateList() => PageTemplateType.list,
       PageTemplateImageViewer() => PageTemplateType.imageViewer,
-      _ => throw UnimplementedError('Unknown template type: $this'),
     };
   }
 

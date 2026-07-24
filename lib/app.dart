@@ -32,16 +32,15 @@ extension NavigatorExt on NavigatorState {
     Widget child, [
     List<SingleChildWidget>? providers,
   ]) {
-    return push(CupertinoPageRoute(
-      builder: (context) {
-        if (providers == null || providers.isEmpty) {
-          return child;
-        }
-        return MultiProvider(
-          providers: providers,
-          child: child,
-        );
-      },
-    ));
+    return push(
+      CupertinoPageRoute(
+        builder: (context) {
+          if (providers == null || providers.isEmpty) {
+            return child;
+          }
+          return MultiProvider(providers: providers, child: child);
+        },
+      ),
+    );
   }
 }

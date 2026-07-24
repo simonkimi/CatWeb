@@ -21,9 +21,7 @@ class SettingScaffold extends StatelessWidget {
         middle: Text(title),
         previousPageTitle: fromSetting ? I.of(context).setting : null,
       ),
-      child: ListView(
-        children: children,
-      ),
+      child: ListView(children: children),
     );
   }
 }

@@ -23,10 +23,7 @@ sealed class LoaderState {
 }
 
 class LoaderStateIdle extends LoaderState {
-  const LoaderStateIdle({
-    this.error,
-    this.stackTrace,
-  }) : super._();
+  const LoaderStateIdle({this.error, this.stackTrace}) : super._();
 
   @override
   bool get isLoading => false;

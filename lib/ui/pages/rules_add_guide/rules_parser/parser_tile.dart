@@ -25,7 +25,7 @@ class ParserTileConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Selector<RuleParserNotifier, SelectorModel>(
       selector: (_, n) => selector(n),
-      builder: (_, selector, __) {
+      builder: (_, selector, _) {
         return ParserTile(
           title: title,
           selector: selector,

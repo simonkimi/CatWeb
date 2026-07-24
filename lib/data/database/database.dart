@@ -29,14 +29,16 @@ DynamicLibrary openOnWindows() {
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final file = File(
-        p.join((await getApplicationDocumentsDirectory()).path, 'db.sqlite'));
+      p.join((await getApplicationDocumentsDirectory()).path, 'db.sqlite'),
+    );
     return NativeDatabase(file);
   });
 }
 
 @DriftDatabase(
-    tables: [WebTable, ReaderHistoryTable, CookieJarTable],
-    daos: [WebDao, ReaderHistoryDao, CookieJarDao])
+  tables: [WebTable, ReaderHistoryTable, CookieJarTable],
+  daos: [WebDao, ReaderHistoryDao, CookieJarDao],
+)
 class AppDataBase extends _$AppDataBase {
   AppDataBase() : super(_openConnection());
 

@@ -38,15 +38,19 @@ class ImageReader extends HookWidget {
       duration: const Duration(milliseconds: 200),
     );
 
-    final hideToolbarAni = useMemoized(() => Tween(
-          begin: const Offset(0, 0),
-          end: const Offset(0, -1),
-        ).animate(hideToolbarAniController));
+    final hideToolbarAni = useMemoized(
+      () => Tween(
+        begin: const Offset(0, 0),
+        end: const Offset(0, -1),
+      ).animate(hideToolbarAniController),
+    );
 
-    final hideTabBarAni = useMemoized(() => Tween(
-          begin: const Offset(0, 0),
-          end: const Offset(0, 1),
-        ).animate(hideToolbarAniController));
+    final hideTabBarAni = useMemoized(
+      () => Tween(
+        begin: const Offset(0, 0),
+        end: const Offset(0, 1),
+      ).animate(hideToolbarAniController),
+    );
 
     void onHideToolbar() {
       if (hideToolbarAniController.isAnimating) return;
@@ -72,12 +76,8 @@ class ImageReader extends HookWidget {
           ),
         ),
       ],
-      builder: (context, _) => _buildScaffold(
-        context,
-        hideToolbarAni,
-        hideTabBarAni,
-        onHideToolbar,
-      ),
+      builder: (context, _) =>
+          _buildScaffold(context, hideToolbarAni, hideTabBarAni, onHideToolbar),
     );
   }
 
@@ -92,9 +92,7 @@ class ImageReader extends HookWidget {
         offset: hideToolbarAni,
         child: CupertinoNavigationBar(
           backgroundColor: FixColor.navigationBarBackground.darkColor,
-          leading: const CupertinoBackLeading(
-            color: CupertinoColors.white,
-          ),
+          leading: const CupertinoBackLeading(color: CupertinoColors.white),
           trailing: _ImageReaderTrailing(),
         ),
       ),
@@ -120,8 +118,9 @@ class _ImageReaderTrailing extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final readerDirectory =
-        useValueListenable(settingService.readerDirectoryNotifier);
+    final readerDirectory = useValueListenable(
+      settingService.readerDirectoryNotifier,
+    );
     final displayType = useValueListenable(settingService.displayTypeNotifier);
 
     return Row(
@@ -130,35 +129,34 @@ class _ImageReaderTrailing extends HookWidget {
         switch (readerDirectory) {
           ReaderDirection.ttb => const SizedBox(),
           ReaderDirection.ltr || ReaderDirection.rtl => CupertinoButton(
-              padding: EdgeInsets.zero,
-              minSize: 0,
-              child: Icon(switch (displayType) {
-                ReaderDisplayType.single => CupertinoIcons.square,
-                ReaderDisplayType.double => CupertinoIcons.square_split_2x1,
-                ReaderDisplayType.doubleCover =>
-                  CupertinoIcons.square_split_2x1_fill,
-              }),
-              onPressed: () {
-                settingService.displayTypeNotifier.value =
-                    switch (displayType) {
-                  ReaderDisplayType.single => ReaderDisplayType.double,
-                  ReaderDisplayType.double => ReaderDisplayType.doubleCover,
-                  ReaderDisplayType.doubleCover => ReaderDisplayType.single,
-                };
-              },
-            ),
+            padding: EdgeInsets.zero,
+            onPressed: () {
+              settingService.displayTypeNotifier.value = switch (displayType) {
+                ReaderDisplayType.single => ReaderDisplayType.double,
+                ReaderDisplayType.double => ReaderDisplayType.doubleCover,
+                ReaderDisplayType.doubleCover => ReaderDisplayType.single,
+              };
+            },
+            minimumSize: Size(0, 0),
+            child: Icon(switch (displayType) {
+              ReaderDisplayType.single => CupertinoIcons.square,
+              ReaderDisplayType.double => CupertinoIcons.square_split_2x1,
+              ReaderDisplayType.doubleCover =>
+                CupertinoIcons.square_split_2x1_fill,
+            }),
+          ),
         },
         const SizedBox(width: 5),
         CupertinoButton(
           padding: EdgeInsets.zero,
-          minSize: 0,
+          onPressed: () {
+            context.to(const DisplaySettingPage(fromSetting: false));
+          },
+          minimumSize: Size(0, 0),
           child: const Icon(
             CupertinoIcons.settings,
             color: CupertinoColors.white,
           ),
-          onPressed: () {
-            context.to(const DisplaySettingPage(fromSetting: false));
-          },
         ),
       ],
     );
@@ -175,38 +173,42 @@ class _ImageReaderImage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final readController = context.read<ReaderNotifier>();
-    final itemList =
-        context.read<ReaderLoaderNotifier>().readerInfo.items.toList();
+    final itemList = context
+        .read<ReaderLoaderNotifier>()
+        .readerInfo
+        .items
+        .toList();
     final ticker = useSingleTickerProvider();
 
-    final readerDirectory =
-        useValueListenable(settingService.readerDirectoryNotifier);
+    final readerDirectory = useValueListenable(
+      settingService.readerDirectoryNotifier,
+    );
 
     return switch (readerDirectory) {
       ReaderDirection.ttb => GestureDetector(
-          onTap: () {},
-          onTapUp: (detail) => _onImageTap(context, detail),
-          child: ScrollablePositionedList.builder(
-            itemScrollController: readController.listController,
-            itemCount: readController.displayPageCount,
-            itemPositionsListener: readController.listPositionsListener,
-            initialScrollIndex: readController.currentPage,
-            itemBuilder: (context, index) {
-              return ImageViewer(
-                index: index,
-                imageWithPreviewModel: itemList.elementAtOrNull(index),
-              );
-            },
-          ),
-        ),
-      ReaderDirection.ltr || ReaderDirection.rtl => PhotoViewGallery.builder(
+        onTap: () {},
+        onTapUp: (detail) => _onImageTap(context, detail),
+        child: ScrollablePositionedList.builder(
+          itemScrollController: readController.listController,
           itemCount: readController.displayPageCount,
-          builder: (context, index) {
-            return readController.isSingleWidget(index)
-                ? _buildSinglePageImage(context, index, ticker)
-                : _buildDoublePageImage(context, index, ticker);
+          itemPositionsListener: readController.listPositionsListener,
+          initialScrollIndex: readController.currentPage,
+          itemBuilder: (context, index) {
+            return ImageViewer(
+              index: index,
+              imageWithPreviewModel: itemList.elementAtOrNull(index),
+            );
           },
         ),
+      ),
+      ReaderDirection.ltr || ReaderDirection.rtl => PhotoViewGallery.builder(
+        itemCount: readController.displayPageCount,
+        builder: (context, index) {
+          return readController.isSingleWidget(index)
+              ? _buildSinglePageImage(context, index, ticker)
+              : _buildDoublePageImage(context, index, ticker);
+        },
+      ),
     };
   }
 
@@ -291,8 +293,9 @@ class _ImageReaderImage extends HookWidget {
               ),
               Expanded(
                 child: ImageViewer(
-                  imageWithPreviewModel:
-                      itemList.elementAtOrNull(realIndex + 1),
+                  imageWithPreviewModel: itemList.elementAtOrNull(
+                    realIndex + 1,
+                  ),
                   index: realIndex + 1,
                 ),
               ),
@@ -339,10 +342,7 @@ class _ImageReaderSlider extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 ImagePreviewSlider(),
-                SizedBox(
-                  height: 50,
-                  child: CupertinoImageSlider(),
-                )
+                SizedBox(height: 50, child: CupertinoImageSlider()),
               ],
             ),
           ),

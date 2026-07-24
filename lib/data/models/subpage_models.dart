@@ -6,7 +6,7 @@ import 'package:catweb/data/models/image_with_preview.dart';
 /// List中每一页的数据
 class ListPageData extends BasePageData<ListItemModel> {
   ListPageData(this.pageData)
-      : _items = pageData.items!.map((e) => ListItemModel(e)).toList();
+    : _items = pageData.items!.map((e) => ListItemModel(e)).toList();
 
   final ListParserResult pageData;
 

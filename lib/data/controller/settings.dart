@@ -8,15 +8,18 @@ class SettingService {
   final imageMaskInDarkModeNotifier = ValueNotifier<bool>(true);
   final cardSizeNotifier = ValueNotifier<CardSize>(CardSize.medium);
   final preloadCountNotifier = ValueNotifier<int>(3);
-  final readerDirectoryNotifier =
-      ValueNotifier<ReaderDirection>(ReaderDirection.rtl);
-  final displayTypeNotifier =
-      ValueNotifier<ReaderDisplayType>(ReaderDisplayType.single);
+  final readerDirectoryNotifier = ValueNotifier<ReaderDirection>(
+    ReaderDirection.rtl,
+  );
+  final displayTypeNotifier = ValueNotifier<ReaderDisplayType>(
+    ReaderDisplayType.single,
+  );
   final concurrencyCountNotifier = ValueNotifier<int>(3);
   final protectCookieNotifier = ValueNotifier<bool>(true);
   final blurWhenBackgroundNotifier = ValueNotifier<bool>(false);
-  final imageQualityNotifier =
-      ValueNotifier<ImageQuality>(ImageQuality.defaultQ);
+  final imageQualityNotifier = ValueNotifier<ImageQuality>(
+    ImageQuality.defaultQ,
+  );
 
   Future<SettingService> init() async {
     _prefs = await SharedPreferences.getInstance();
@@ -109,27 +112,10 @@ class SettingService {
   }
 }
 
-enum CardSize {
-  small,
-  medium,
-  large,
-  huge;
-}
+enum CardSize { small, medium, large, huge }
 
-enum ReaderDirection {
-  ltr,
-  rtl,
-  ttb;
-}
+enum ReaderDirection { ltr, rtl, ttb }
 
-enum ReaderDisplayType {
-  single,
-  double,
-  doubleCover;
-}
+enum ReaderDisplayType { single, double, doubleCover }
 
-enum ImageQuality {
-  defaultQ,
-  larger,
-  original;
-}
+enum ImageQuality { defaultQ, larger, original }

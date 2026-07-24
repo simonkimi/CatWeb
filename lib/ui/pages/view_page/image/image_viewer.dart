@@ -5,8 +5,8 @@ import 'package:catweb/ui/widgets/cupertino_progress_bar.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 
-typedef ChildWidgetBuilder = Widget Function(
-    BuildContext context, Widget child);
+typedef ChildWidgetBuilder =
+    Widget Function(BuildContext context, Widget child);
 
 Widget _defaultChildBuilder(BuildContext context, Widget child) {
   return child;
@@ -34,13 +34,17 @@ class ImageViewer extends StatelessWidget {
       builder: (context, child) {
         return switch (imageWithPreviewModel!.imageModel) {
           AsyncProgressIdle() ||
-          AsyncProgressLoading() =>
-            _buildInfProgressBar(context),
-          AsyncProgressError(:final error, :final stackTrace) =>
-            _buildError(context, error, stackTrace),
-          AsyncProgressData() =>
-            _defaultImageBuilder(context, imageWithPreviewModel!.getImage()),
-          _ => throw UnimplementedError()
+          AsyncProgressLoading() => _buildInfProgressBar(context),
+          AsyncProgressError(:final error, :final stackTrace) => _buildError(
+            context,
+            error,
+            stackTrace,
+          ),
+          AsyncProgressData() => _defaultImageBuilder(
+            context,
+            imageWithPreviewModel!.getImage(),
+          ),
+          _ => throw UnimplementedError(),
         };
       },
     );
@@ -152,14 +156,12 @@ class ImageViewer extends StatelessWidget {
       case LoadState.loading:
         final progress = state.loadingProgress?.expectedTotalBytes != null
             ? state.loadingProgress!.cumulativeBytesLoaded /
-                state.loadingProgress!.expectedTotalBytes!
+                  state.loadingProgress!.expectedTotalBytes!
             : 0.0;
         return _buildCenterColumn([
           _buildIndexText(),
           const SizedBox(height: 50),
-          CupertinoProgress(
-            progress: progress,
-          ),
+          CupertinoProgress(progress: progress),
         ]);
       case LoadState.completed:
         return null;

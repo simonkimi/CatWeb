@@ -23,17 +23,19 @@ class ExtraParserEditor extends StatelessWidget {
               title: Text(extra.id),
               trailing: const Icon(Icons.more_horiz_outlined),
               onTap: () async {
-                final newSelector =
-                    await Navigator.of(context).push(CupertinoPageRoute(
-                  builder: (context) => SelectorEditor(
-                    selector: extra.selector,
-                    title: extra.id,
+                final newSelector = await Navigator.of(context).push(
+                  CupertinoPageRoute(
+                    builder: (context) => SelectorEditor(
+                      selector: extra.selector,
+                      title: extra.id,
+                    ),
                   ),
-                ));
+                );
                 if (newSelector != null) {
-                  context
-                      .read<RuleParserNotifier>()
-                      .updateExtra(index, newSelector);
+                  context.read<RuleParserNotifier>().updateExtra(
+                    index,
+                    newSelector,
+                  );
                 }
               },
               onTrailingTap: () {},

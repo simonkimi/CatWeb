@@ -6,11 +6,7 @@ import 'package:catweb/ui/theme/colors.dart';
 import 'dark_image.dart';
 
 class SimpleCard extends StatelessWidget {
-  const SimpleCard({
-    super.key,
-    required this.model,
-    this.useCard = true,
-  });
+  const SimpleCard({super.key, required this.model, this.useCard = true});
 
   final ListParserResultItem model;
   final bool useCard;
@@ -23,9 +19,7 @@ class SimpleCard extends StatelessWidget {
         if (model.title != null)
           Text(
             model.title!,
-            style: TextStyle(
-              color: FixColor.title.resolveFrom(context),
-            ),
+            style: TextStyle(color: FixColor.title.resolveFrom(context)),
           ),
         if (model.subtitle != null)
           Text(
@@ -35,7 +29,7 @@ class SimpleCard extends StatelessWidget {
               color: FixColor.title.resolveFrom(context),
             ),
           ),
-        if (model.badges?.isNotEmpty == true) _buildTagList()
+        if (model.badges?.isNotEmpty == true) _buildTagList(),
       ],
     );
 
@@ -72,7 +66,8 @@ class SimpleCard extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: tagBackground ??
+                  color:
+                      tagBackground ??
                       (context.isDarkMode
                           ? const Color(0xFF312F32)
                           : const Color(0xFFEFEEF1)),
@@ -86,11 +81,11 @@ class SimpleCard extends StatelessWidget {
                       fontSize: 11,
                       color: tagBackground != null
                           ? tagBackground.isDark
-                              ? Colors.white
-                              : Colors.black
+                                ? Colors.white
+                                : Colors.black
                           : context.isDarkMode
-                              ? Colors.white
-                              : Colors.black,
+                          ? Colors.white
+                          : Colors.black,
                     ),
                   ),
                 ),
@@ -109,9 +104,7 @@ class SimpleCard extends StatelessWidget {
       child: const SizedBox(
         width: 11,
         height: 11,
-        child: ColoredBox(
-          color: Colors.red,
-        ),
+        child: ColoredBox(color: Colors.red),
       ),
     );
   }
@@ -120,22 +113,12 @@ class SimpleCard extends StatelessWidget {
     return Stack(
       children: [
         DarkWidget(
-          child: Image.asset(
-            'assets/images/sample2.jpg',
-            fit: BoxFit.fill,
-          ),
+          child: Image.asset('assets/images/sample2.jpg', fit: BoxFit.fill),
         ),
         if (model.paper != null)
-          Positioned(
-            left: 0,
-            bottom: 0,
-            child: _buildPaper(context),
-          ),
+          Positioned(left: 0, bottom: 0, child: _buildPaper(context)),
         if (model.tags != null)
-          Positioned(
-            right: 0,
-            child: _buildCategory(context),
-          ),
+          Positioned(right: 0, child: _buildCategory(context)),
       ],
     );
   }

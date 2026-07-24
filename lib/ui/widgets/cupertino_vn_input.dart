@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 
-
 class VnSwitchField extends StatelessWidget {
   const VnSwitchField({
     super.key,

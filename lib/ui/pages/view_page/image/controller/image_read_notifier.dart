@@ -70,12 +70,10 @@ class ReaderNotifier extends ChangeNotifier {
         return imageLoadNotifier.readerInfo.items.length.isOdd &&
             index == displayPageCount - 1;
       case ReaderDisplayType.doubleCover: // 封面双面的封面和多出的一面
-
         return index == 0 ||
             (imageLoadNotifier.readerInfo.items.length.isEven &&
                 index == displayPageCount - 1);
       case ReaderDisplayType.single: // 单面
-      default:
         return true;
     }
   }
@@ -104,7 +102,6 @@ class ReaderNotifier extends ChangeNotifier {
       case ReaderDisplayType.doubleCover:
         return ((index + 1) / 2).floor();
       case ReaderDisplayType.single:
-      default:
         return index;
     }
   }
@@ -119,7 +116,6 @@ class ReaderNotifier extends ChangeNotifier {
       case ReaderDisplayType.doubleCover:
         return (imageLoadNotifier.readerInfo.items.length / 2).ceil();
       case ReaderDisplayType.single:
-      default:
         return imageLoadNotifier.readerInfo.items.length;
     }
   }

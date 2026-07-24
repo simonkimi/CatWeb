@@ -8,10 +8,8 @@ part 'result.g.dart';
 
 @freezed
 sealed class DetailPreviewItem with _$DetailPreviewItem {
-  const factory DetailPreviewItem({
-    ImageResult? previewImage,
-    String? target,
-  }) = _PreviewItem;
+  const factory DetailPreviewItem({ImageResult? previewImage, String? target}) =
+      _PreviewItem;
 
   factory DetailPreviewItem.fromJson(Map<String, dynamic> json) =>
       _$DetailPreviewItemFromJson(json);

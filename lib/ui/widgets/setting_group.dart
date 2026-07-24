@@ -2,10 +2,7 @@ import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
 
 class SettingGroupSliver extends StatelessWidget {
-  const SettingGroupSliver({
-    super.key,
-    required this.children,
-  });
+  const SettingGroupSliver({super.key, required this.children});
 
   final List<Widget> children;
 
@@ -22,10 +19,7 @@ class SettingGroupSliver extends StatelessWidget {
                 : CupertinoColors.systemBackground,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: children,
-          ),
+          child: Column(mainAxisSize: MainAxisSize.min, children: children),
         ),
       ),
     );
@@ -33,10 +27,7 @@ class SettingGroupSliver extends StatelessWidget {
 }
 
 class SettingGroupTitle extends StatelessWidget {
-  const SettingGroupTitle(
-    this.title, {
-    super.key,
-  });
+  const SettingGroupTitle(this.title, {super.key});
 
   final String title;
 
@@ -53,10 +44,7 @@ class SettingGroupTitle extends StatelessWidget {
 }
 
 class SettingGroupWidget extends StatelessWidget {
-  const SettingGroupWidget({
-    super.key,
-    required this.children,
-  });
+  const SettingGroupWidget({super.key, required this.children});
 
   final List<Widget> children;
 
@@ -72,10 +60,7 @@ class SettingGroupWidget extends StatelessWidget {
               : CupertinoColors.systemBackground,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: children,
-        ),
+        child: Column(mainAxisSize: MainAxisSize.min, children: children),
       ),
     );
   }

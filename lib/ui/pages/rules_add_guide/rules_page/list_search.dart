@@ -24,7 +24,7 @@ class ListFilterEditor extends HookWidget {
       children: [
         Selector<SitePageNotifier, ScriptField>(
           selector: (_, n) => n.templateList.filter.script,
-          builder: (_, script, __) {
+          builder: (_, script, _) {
             return TripleReadonlyTextField(
               labelText: I.of(context).script,
               value: script.toString(),
@@ -42,7 +42,7 @@ class ListFilterEditor extends HookWidget {
         ),
         Selector<SitePageNotifier, List<TemplateListFilterItem>>(
           selector: (_, n) => n.templateList.filter.items,
-          builder: (_, filters, __) {
+          builder: (_, filters, _) {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -109,25 +109,25 @@ class RulesFilterDialog extends HookWidget {
           onPressed: () {
             context.pop(switch (type.value) {
               FilterType.int => TemplateListFilterItem.int(
-                  name: nameController.text,
-                  key: keyController.text,
-                  defaultValue: defaultValue.value as int,
-                ),
+                name: nameController.text,
+                key: keyController.text,
+                defaultValue: defaultValue.value as int,
+              ),
               FilterType.float => TemplateListFilterItem.float(
-                  name: nameController.text,
-                  key: keyController.text,
-                  defaultValue: defaultValue.value as double,
-                ),
+                name: nameController.text,
+                key: keyController.text,
+                defaultValue: defaultValue.value as double,
+              ),
               FilterType.string => TemplateListFilterItem.string(
-                  name: nameController.text,
-                  key: keyController.text,
-                  defaultValue: defaultValue.value as String,
-                ),
+                name: nameController.text,
+                key: keyController.text,
+                defaultValue: defaultValue.value as String,
+              ),
               FilterType.bool => TemplateListFilterItem.bool(
-                  name: nameController.text,
-                  key: keyController.text,
-                  defaultValue: defaultValue.value as bool,
-                )
+                name: nameController.text,
+                key: keyController.text,
+                defaultValue: defaultValue.value as bool,
+              ),
             });
           },
         ),
@@ -168,34 +168,34 @@ class RulesFilterDialog extends HookWidget {
           ),
           switch (type.value) {
             FilterType.int => TripleIntField(
-                labelText: I.of(context).default_value,
-                initialValue: defaultValue.value as int,
-                onSubmitted: (value) {
-                  defaultValue.value = value;
-                },
-              ),
+              labelText: I.of(context).default_value,
+              initialValue: defaultValue.value as int,
+              onSubmitted: (value) {
+                defaultValue.value = value;
+              },
+            ),
             FilterType.float => TripleDoubleField(
-                labelText: I.of(context).default_value,
-                initialValue: defaultValue.value as double,
-                onSubmitted: (value) {
-                  defaultValue.value = value;
-                },
-              ),
+              labelText: I.of(context).default_value,
+              initialValue: defaultValue.value as double,
+              onSubmitted: (value) {
+                defaultValue.value = value;
+              },
+            ),
             FilterType.string => TripleTextField(
-                labelText: I.of(context).default_value,
-                initialValue: defaultValue.value as String,
-                onSubmitted: (value) {
-                  defaultValue.value = value;
-                },
-              ),
+              labelText: I.of(context).default_value,
+              initialValue: defaultValue.value as String,
+              onSubmitted: (value) {
+                defaultValue.value = value;
+              },
+            ),
             FilterType.bool => TripleBoolField(
-                labelText: I.of(context).default_value,
-                initialValue: defaultValue.value as bool,
-                onSubmitted: (value) {
-                  defaultValue.value = value;
-                },
-              ),
-          }
+              labelText: I.of(context).default_value,
+              initialValue: defaultValue.value as bool,
+              onSubmitted: (value) {
+                defaultValue.value = value;
+              },
+            ),
+          },
         ],
       ),
     );

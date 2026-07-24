@@ -18,16 +18,15 @@ import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 class SubListNotifier
     extends BasePageLoaderNotifier<ListItemModel, ListPageData>
     implements ReaderInfo<ListItemModel> {
-  SubListNotifier({
-    required this.siteRule,
-    this.subPageModel,
-  }) : localEnv =
-            SiteEnvStore(subPageModel != null && subPageModel.value.isNotEmpty
-                ? {
-                    subPageModel.key.isNotEmpty ? subPageModel.key : 'subKey':
-                        subPageModel.value,
-                  }
-                : null);
+  SubListNotifier({required this.siteRule, this.subPageModel})
+    : localEnv = SiteEnvStore(
+        subPageModel != null && subPageModel.value.isNotEmpty
+            ? {
+                subPageModel.key.isNotEmpty ? subPageModel.key : 'subKey':
+                    subPageModel.value,
+              }
+            : null,
+      );
 
   final SitePageRule siteRule;
   final TemplateListSubPage? subPageModel;
@@ -41,7 +40,9 @@ class SubListNotifier
 
   /// 应用一个新的过滤器
   Future setNewFilter(
-      List<String> filterKeys, Map<String, String> filter) async {
+    List<String> filterKeys,
+    Map<String, String> filter,
+  ) async {
     currentFilter = filter;
     localEnv.removeKeys(filterKeys);
     localEnv.mergeMap(filter);
@@ -85,9 +86,7 @@ class SubListNotifier
     baseUrl = localEnv.apply(baseUrl);
     // 添加缓存
     if (subPageModel != null && subPageModel!.key.isNotEmpty) {
-      localEnv.mergeMap({
-        subPageModel!.key: subPageModel!.value,
-      });
+      localEnv.mergeMap({subPageModel!.key: subPageModel!.value});
     }
 
     logger.d('加载网址: $baseUrl');

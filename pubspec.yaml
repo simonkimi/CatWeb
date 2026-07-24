@@ -6,7 +6,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.12.2
 
 dependencies:
   flutter:
@@ -18,9 +18,9 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_linkify: ^6.0.0
   flutter_highlight: ^0.7.0
-  cupertino_icons: ^1.0.8
-  flutter_swipe_action_cell: ^3.1.5
-  extended_image: ^10.0.1
+  cupertino_icons: ^1.0.9
+  flutter_swipe_action_cell: ^3.1.9
+  extended_image: ^10.1.0
   cupertino_modal_sheet: ^1.1.0
   bot_toast: ^4.1.3
   scrollable_positioned_list: ^0.3.8
@@ -32,58 +32,49 @@ dependencies:
 
   # network
   brotli: ^0.6.0
-  dio: ^5.8.0+1
-  dio_cache_interceptor: ^4.0.3
-  http_cache_drift_store : ^7.0.0
+  dio: ^5.10.0
+  dio_cache_interceptor: ^4.0.7
+  http_cache_drift_store: ^7.0.1
   dio_smart_retry: ^7.0.1
-  cookie_jar: ^4.0.8
-  dio_cookie_manager: ^3.2.0
-  dio_http_formatter: ^3.3.0
+  cookie_jar: ^4.0.9
+  dio_cookie_manager: ^3.4.0
+  dio_http_formatter: ^3.3.1
 
-  flutter_inappwebview: ^6.1.5
-  webview_cookie_manager: ^2.0.6
+  flutter_inappwebview: ^6.2.0-beta.3
 
   # state
-  flutter_hooks: ^0.21.2
-  get_it: ^8.0.3
-  provider: ^6.1.5
+  flutter_hooks: ^0.21.3+1
+  get_it: ^9.2.1
+  provider: ^6.1.5+1
 
 
   # database
-  drift: ^2.26.1
-  shared_preferences: ^2.5.3
-  sqlite3_flutter_libs: ^0.5.33
-  path_provider: ^2.1.5
+  drift: ^2.34.2
+  shared_preferences: ^2.5.5
+  path_provider: ^2.1.6
   path: ^1.9.1
 
   # tools
   intl: 0.20.2
-  synchronized: ^3.3.1
-  uuid: ^4.5.1
+  synchronized: ^3.4.1+1
+  uuid: ^4.6.0
   rxdart: ^0.28.0
-  logger: ^2.5.0
+  logger: ^2.7.0
   yaml: ^3.1.3
-  json_annotation: ^4.9.0
-  freezed_annotation: ^3.0.0
+  json_annotation: ^4.12.0
+  freezed_annotation: ^3.1.0
   collection: ^1.19.1
-
-
-  catweb_parser:
-    path: ../catweb_parser_go
-
-
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^6.0.0
-  drift_dev: ^2.26.1
-  freezed: ^3.0.6
-  json_serializable: ^6.9.5
-  build_runner: ^2.4.15
-  custom_lint: ^0.7.5
-  test: ^1.25.7
+  drift_dev: 2.34.0
+  freezed: ^3.2.5
+  json_serializable: ^6.14.0
+  build_runner: 2.15.1
+  test: ^1.31.0
 
 
 

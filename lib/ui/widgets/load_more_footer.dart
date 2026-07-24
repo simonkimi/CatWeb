@@ -3,10 +3,7 @@ import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:catweb/data/constant.dart';
 
 class LoadMoreFooter extends StatelessWidget {
-  const LoadMoreFooter({
-    super.key,
-    this.hasToolBar = false,
-  });
+  const LoadMoreFooter({super.key, this.hasToolBar = false});
 
   final bool hasToolBar;
 

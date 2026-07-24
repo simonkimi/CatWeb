@@ -11,11 +11,7 @@ import 'package:provider/provider.dart';
 import 'gallery/viewer_gallery.dart';
 
 class ViewerPage extends StatelessWidget {
-  const ViewerPage({
-    super.key,
-    required this.sitePageRule,
-    this.fromParams,
-  });
+  const ViewerPage({super.key, required this.sitePageRule, this.fromParams});
 
   final SitePageRule sitePageRule;
   final Object? fromParams;
@@ -45,7 +41,8 @@ class ViewerPage extends StatelessWidget {
         );
       default:
         throw UnimplementedError(
-            'ViewerPage can not handle ${sitePageRule.template}');
+          'ViewerPage can not handle ${sitePageRule.template}',
+        );
     }
   }
 }
