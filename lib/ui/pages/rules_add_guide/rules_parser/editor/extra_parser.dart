@@ -1,7 +1,9 @@
+import 'package:catweb/data/models/site/selector.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/parser_notifier.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_parser/selector_editor.dart';
 import 'package:catweb/ui/widgets/cupertino_list_tile.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
+import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,18 +25,17 @@ class ExtraParserEditor extends StatelessWidget {
               title: Text(extra.id),
               trailing: const Icon(Icons.more_horiz_outlined),
               onTap: () async {
-                final newSelector = await Navigator.of(context).push(
-                  CupertinoPageRoute(
-                    builder: (context) => SelectorEditor(
-                      selector: extra.selector,
-                      title: extra.id,
-                    ),
+                final newSelector = await showCupertinoModalSheet(
+                  context: context,
+                  builder: (context) => SelectorEditor(
+                    selector: extra.selector,
+                    title: extra.id,
                   ),
                 );
-                if (newSelector != null) {
+                if (newSelector is SelectorModel && context.mounted) {
                   context.read<RuleParserNotifier>().updateExtra(
                     index,
-                    newSelector,
+                    extra.copyWith(selector: newSelector),
                   );
                 }
               },

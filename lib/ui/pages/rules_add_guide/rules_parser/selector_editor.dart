@@ -26,19 +26,21 @@ class SelectorEditor extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => SelectorEditorNotifier(selector: selector),
-      child: CupertinoPageScaffold(
-        navigationBar: _buildAppbar(context),
-        child: SafeArea(
-          child: ListView(
-            padding: const EdgeInsets.all(10),
-            children: [
-              ..._buildMainSelector(context),
-              ..._otherSelector(context),
-              ..._extraSelector(context),
-            ],
+      builder: (context, _) {
+        return CupertinoPageScaffold(
+          navigationBar: _buildAppbar(context),
+          child: SafeArea(
+            child: ListView(
+              padding: const EdgeInsets.all(10),
+              children: [
+                ..._buildMainSelector(context),
+                ..._otherSelector(context),
+                ..._extraSelector(context),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -134,8 +136,12 @@ class SelectorEditor extends StatelessWidget {
 
   CupertinoNavigationBar _buildAppbar(BuildContext context) {
     return CupertinoNavigationBar(
-      leading: null,
-      automaticallyImplyLeading: false,
+      leading: CupertinoButton(
+        onPressed: () => Navigator.of(context).pop(),
+        padding: EdgeInsets.zero,
+        minimumSize: Size(0, 0),
+        child: const Icon(CupertinoIcons.back),
+      ),
       padding: const EdgeInsetsDirectional.only(start: 10),
       middle: Text('规则: $title'),
       transitionBetweenRoutes: false,

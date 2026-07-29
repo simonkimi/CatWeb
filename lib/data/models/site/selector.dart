@@ -84,10 +84,9 @@ sealed class SelectorFunction with _$SelectorFunction {
 
   SelectorFunctionType toType() {
     return switch (this) {
-      SelectorFunction.text => SelectorFunctionType.text,
-      SelectorFunction.attr => SelectorFunctionType.attr,
-      SelectorFunction.raw => SelectorFunctionType.raw,
-      _ => throw Exception('Unknown SelectorFunction: $this'),
+      SelectorFunctionText() => SelectorFunctionType.text,
+      SelectorFunctionAttr() => SelectorFunctionType.attr,
+      SelectorFunctionRaw() => SelectorFunctionType.raw,
     };
   }
 }
