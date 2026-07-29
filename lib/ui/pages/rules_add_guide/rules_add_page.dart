@@ -1,118 +1,151 @@
+import 'dart:convert';
+
+import 'package:catweb/app.dart';
+import 'package:catweb/data/controller/db.dart';
+import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/database/database.dart';
-import 'package:catweb/data/models/site/site_blueprint.dart';
+import 'package:catweb/data/site_runtime/site_compiler.dart';
 import 'package:catweb/i18n.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_editor_notifier.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
-import 'package:catweb/ui/widgets/tab_bar.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_advance/rules_advance.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_basic/rules_basic.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_page/rules_page_manager.dart';
-import 'package:catweb/ui/pages/rules_add_guide/rules_parser/rules_parser_manager.dart';
 import 'package:catweb/utils/context_helper.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 
-class RulesEditPage extends StatelessWidget {
-  const RulesEditPage({super.key, this.db, this.blueprint});
+class RulesEditPage extends StatefulWidget {
+  const RulesEditPage({super.key, this.db});
 
   final WebTableData? db;
-  final SiteBlueprint? blueprint;
+
+  @override
+  State<RulesEditPage> createState() => _RulesEditPageState();
+}
+
+class _RulesEditPageState extends State<RulesEditPage> {
+  late final TextEditingController controller;
+  bool saving = false;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController(
+      text: widget.db?.blueprint ?? _newDefinitionJson(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => RulesEditorNotifier(blueprint ?? const SiteBlueprint()),
-      builder: (context, child) {
-        return PopScope(
-          canPop: false,
-          onPopInvokedWithResult: (didPop, result) async {
-            if (didPop) {
-              return;
-            }
-            if (await _showExitConfine(context) && context.mounted) {
-              context.pop();
-            }
-          },
-          child: CupertinoPageScaffold(
-            navigationBar: _buildAppbar(context),
-            child: CupertinoTabBarView(
-              tabs: [
-                CupertinoTab(I.of(context).basic_setting),
-                CupertinoTab(I.of(context).page_manager),
-                CupertinoTab(I.of(context).parser),
-                CupertinoTab(I.of(context).identity),
-              ],
-              children: const [
-                RulesBasic(),
-                RulesPageManager(),
-                RulesParserManager(),
-                RulesAdvance(),
-              ],
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) async {
+        if (didPop) return;
+        if (await _confirmExit() && context.mounted) context.pop();
+      },
+      child: CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          leading: CupertinoButton(
+            padding: EdgeInsets.zero,
+            minimumSize: Size.zero,
+            onPressed: () async {
+              if (await _confirmExit() && context.mounted) context.pop();
+            },
+            child: const Icon(CupertinoIcons.back),
+          ),
+          middle: Text(I.of(context).rule_edit),
+          trailing: CupertinoButton(
+            padding: EdgeInsets.zero,
+            minimumSize: Size.zero,
+            onPressed: saving ? null : _save,
+            child: saving
+                ? const CupertinoActivityIndicator()
+                : Text(I.of(context).save),
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: CupertinoTextField(
+              controller: controller,
+              expands: true,
+              minLines: null,
+              maxLines: null,
+              keyboardType: TextInputType.multiline,
+              textAlignVertical: TextAlignVertical.top,
+              placeholder: 'Schema v2 JSON',
+              style: const TextStyle(fontFamily: 'monospace', fontSize: 13),
+              padding: const EdgeInsets.all(12),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Future<bool> _confirmExit() async =>
+      (await showCupertinoConfirmDialog(
+        context: context,
+        title: I.of(context).exit,
+        content: I.of(context).exit_not_save,
+        showCancel: true,
+      )) ==
+      true;
+
+  Future<void> _save() async {
+    try {
+      final decoded = jsonDecode(controller.text);
+      if (decoded is! Map) {
+        throw const FormatException('站点规则必须是 JSON object');
+      }
+      final json = decoded.map<String, Object?>(
+        (key, value) => MapEntry(key.toString(), value),
+      );
+      final definition = const SiteCompiler().compileJson(json).definition;
+      final canonical = const JsonEncoder.withIndent(
+        '  ',
+      ).convert(definition.toJson());
+
+      setState(() => saving = true);
+      final dbService = getIt.get<DbService>();
+      final siteService = getIt.get<SiteService>();
+      final old = widget.db;
+      if (old == null) {
+        await dbService.webDao.insert(
+          WebTableCompanion.insert(blueprint: canonical, env: '{}'),
         );
-      },
-    );
-  }
-
-  CupertinoNavigationBar _buildAppbar(BuildContext context) {
-    return CupertinoNavigationBar(
-      padding: const EdgeInsetsDirectional.only(start: 10, end: 10),
-      leading: CupertinoButton(
-        onPressed: () {
-          _showExitConfine(context).then((value) {
-            if (value) {
-              context.pop();
-            }
-          });
-        },
-        padding: EdgeInsets.zero,
-        minimumSize: Size(0, 0),
-        child: const Icon(CupertinoIcons.back),
-      ),
-      middle: Text(I.of(context).rule_edit),
-      trailing: CupertinoButton(
-        onPressed: () => _save(context),
-        padding: EdgeInsets.zero,
-        minimumSize: Size(0, 0),
-        child: Text(I.of(context).save, style: const TextStyle(fontSize: 15)),
-      ),
-      border: const Border(),
-    );
-  }
-
-  Future<bool> _showExitConfine(BuildContext context) async {
-    return (await showCupertinoConfirmDialog(
-          context: context,
-          title: I.of(context).exit,
-          content: I.of(context).exit_not_save,
-          showCancel: true,
-        )) ==
-        true;
-  }
-
-  Future<void> _save(BuildContext context) async {
-    final notifier = context.read<RulesEditorNotifier>();
-    if (notifier.blueprint.name.isEmpty) {
-      showCupertinoConfirmDialog(
+      } else {
+        final replacement = old.copyWith(blueprint: canonical);
+        await dbService.webDao.replace(replacement);
+        if (siteService.id == old.id) {
+          await siteService.setNewSite(replacement);
+        }
+      }
+      if (mounted) context.pop();
+    } catch (error) {
+      if (!mounted) return;
+      await showCupertinoConfirmDialog(
         context: context,
-        title: I.of(context).title,
-        content: I.of(context).rule_name_empty,
+        title: '规则校验失败',
+        content: error.toString(),
         showCancel: false,
       );
-      return;
+    } finally {
+      if (mounted) setState(() => saving = false);
     }
-    if (notifier.blueprint.baseUrl.isEmpty) {
-      showCupertinoConfirmDialog(
-        context: context,
-        title: I.of(context).website,
-        content: I.of(context).base_url_empty,
-        showCancel: false,
-      );
-      return;
-    }
+  }
 
-    await notifier.save(db);
-    context.pop();
+  String _newDefinitionJson() {
+    final id = 'site-${DateTime.now().microsecondsSinceEpoch}';
+    return const JsonEncoder.withIndent('  ').convert({
+      'schemaVersion': 2,
+      'id': id,
+      'name': 'New site',
+      'baseUrl': 'https://example.com/',
+      'parsers': <Object?>[],
+      'endpoints': <Object?>[],
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

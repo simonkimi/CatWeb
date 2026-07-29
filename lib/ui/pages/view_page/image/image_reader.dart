@@ -2,8 +2,10 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:catweb/data/controller/settings.dart';
-import 'package:catweb/data/models/site/page.dart';
-import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/data/models/image_with_preview.dart';
+import 'package:catweb/data/models/site_render_model.dart';
+import 'package:catweb/data/site_runtime/runtime_contracts.dart';
+import 'package:catweb/data/site_runtime/site_definition.dart';
 import 'package:catweb/app.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
 import 'package:catweb/ui/theme/colors.dart';
@@ -26,11 +28,15 @@ class ImageReader extends HookWidget {
   const ImageReader({
     super.key,
     required this.readerInfo,
-    required this.sitePageRule,
+    required this.endpoint,
+    required this.website,
+    required this.requestContext,
   });
 
-  final ReaderInfo readerInfo;
-  final SitePageRule sitePageRule;
+  final ReaderInfo<ImageWithPreviewModel> readerInfo;
+  final EndpointRule endpoint;
+  final SiteRenderConfigModel website;
+  final RequestContext requestContext;
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +72,9 @@ class ImageReader extends HookWidget {
         ChangeNotifierProvider(
           create: (_) => ReaderLoaderNotifier(
             readerInfo: readerInfo,
-            sitePageRule: sitePageRule,
-            localEnv: SiteEnvStore(),
+            endpoint: endpoint,
+            requestContext: requestContext,
+            session: website.session,
           ),
         ),
         ChangeNotifierProvider(
@@ -173,11 +180,6 @@ class _ImageReaderImage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final readController = context.read<ReaderNotifier>();
-    final itemList = context
-        .read<ReaderLoaderNotifier>()
-        .readerInfo
-        .items
-        .toList();
     final ticker = useSingleTickerProvider();
 
     final readerDirectory = useValueListenable(
@@ -194,10 +196,7 @@ class _ImageReaderImage extends HookWidget {
           itemPositionsListener: readController.listPositionsListener,
           initialScrollIndex: readController.currentPage,
           itemBuilder: (context, index) {
-            return ImageViewer(
-              index: index,
-              imageWithPreviewModel: itemList.elementAtOrNull(index),
-            );
+            return ImageViewer(index: index);
           },
         ),
       ),
@@ -218,14 +217,12 @@ class _ImageReaderImage extends HookWidget {
     TickerProvider ticker,
   ) {
     final controller = context.read<ReaderNotifier>();
-    final loader = context.read<ReaderLoaderNotifier>();
 
     final int readIndex = switch (settingService.displayType) {
       ReaderDisplayType.double => index * 2,
       ReaderDisplayType.doubleCover => max((index - 1) * 2 + 1, 0),
       ReaderDisplayType.single => index,
     };
-    final itemList = loader.readerInfo.items.toList();
     return PhotoViewGalleryPageOptions.customChild(
       minScale: 1.0,
       maxScale: 5.0,
@@ -234,9 +231,7 @@ class _ImageReaderImage extends HookWidget {
         onTap: () {},
         onTapUp: (detail) => _onImageTap(context, detail),
         child: ImageViewer(
-          // TODO 空检查
           index: readIndex,
-          imageWithPreviewModel: itemList.elementAtOrNull(readIndex),
           imageWrapBuilder: (context, child) {
             return ZoomWidget(
               controller: controller.photoViewController,
@@ -265,8 +260,6 @@ class _ImageReaderImage extends HookWidget {
     };
 
     final notifier = context.read<ReaderNotifier>();
-    final loader = context.read<ReaderLoaderNotifier>();
-    final itemList = loader.readerInfo.items.toList();
 
     return PhotoViewGalleryPageOptions.customChild(
       minScale: 1.0,
@@ -285,20 +278,8 @@ class _ImageReaderImage extends HookWidget {
           child: Row(
             children: [
               // TODO 空检查
-              Expanded(
-                child: ImageViewer(
-                  imageWithPreviewModel: itemList.elementAtOrNull(realIndex),
-                  index: realIndex,
-                ),
-              ),
-              Expanded(
-                child: ImageViewer(
-                  imageWithPreviewModel: itemList.elementAtOrNull(
-                    realIndex + 1,
-                  ),
-                  index: realIndex + 1,
-                ),
-              ),
+              Expanded(child: ImageViewer(index: realIndex)),
+              Expanded(child: ImageViewer(index: realIndex + 1)),
             ],
           ),
         ),

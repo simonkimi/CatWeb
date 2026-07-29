@@ -18,8 +18,9 @@ class SearchPage extends StatelessWidget {
     ViewerConfigProvider viewerConfig = context.read();
     return ChangeNotifierProvider(
       create: (_) => SearchNotifier(
-        listRule: pageConfig.pageRule,
+        listEndpoint: pageConfig.endpoint,
         website: viewerConfig.website,
+        requestContext: pageConfig.context,
       ),
       builder: (context, child) {
         return CupertinoPageScaffold(
@@ -147,6 +148,7 @@ class SearchPage extends StatelessWidget {
             ),
           ),
           onSubmitted: (value) {
+            notifier.onSubmitted(value);
             context.pop(value);
           },
         ),

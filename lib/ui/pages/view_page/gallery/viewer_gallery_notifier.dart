@@ -1,73 +1,110 @@
-import 'package:catweb/data/controller/site.dart';
-import 'package:catweb/data/loaders/page_loader.dart';
+import 'package:catweb/data/loading/paged_loader.dart';
+import 'package:catweb/data/media/image_repository.dart';
+import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/gallery_models.dart';
-import 'package:catweb/data/models/page_loader_state.dart';
-import 'package:catweb/data/models/site/page.dart';
-import 'package:catweb/data/models/site_env_model.dart';
-
-import 'package:catweb/app.dart';
-import 'package:catweb/network/client/image_concurrency.dart';
-import 'package:catweb/utils/replace_utils.dart';
+import 'package:catweb/data/models/site_render_model.dart';
+import 'package:catweb/data/site_runtime/runtime_contracts.dart';
+import 'package:catweb/data/site_runtime/site_definition.dart';
+import 'package:catweb/data/site_runtime/site_page_source.dart';
+import 'package:catweb/network/runtime/dio_http_transport.dart';
+import 'package:catweb/ui/pages/view_page/image/controller/reader_load_notifier.dart';
+import 'package:catweb/ui/state/paged_loader_notifier.dart';
+import 'package:flutter/foundation.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
-class ViewerGalleryNotifier
-    extends BasePageLoaderNotifier<GalleryItemModel, GalleryPageModel> {
-  ViewerGalleryNotifier({required this.siteRule, required this.localEnv});
+/// 图库详情页的 Flutter 控制器。
+///
+/// 详情 payload 通过映射页面源拆分为页面元数据和可分页的预览项目。
+class ViewerGalleryNotifier extends ChangeNotifier
+    with PagedLoaderNotifier<GalleryItemModel>
+    implements ReaderInfo<GalleryItemModel> {
+  ViewerGalleryNotifier({
+    required this.endpoint,
+    required this.website,
+    required this.requestContext,
+  }) {
+    bindPageLoader(
+      PagedLoader<GalleryItemModel>(
+        source: MappedSitePageSource<DetailParserResult, GalleryItemModel>(
+          executor: website.session.executor,
+          endpointId: endpoint.id,
+          context: requestContext,
+          itemsOf: (payload) => GalleryPageModel(payload).items,
+          onPayload: (payload) {
+            firstPage ??= GalleryPageModel(payload);
+            if (!_disposed) notifyListeners();
+          },
+        ),
+        failureMapper: const SiteRuntimeFailureMapper(),
+      ),
+    );
+  }
 
-  final SitePageRule siteRule;
-  final SiteEnvStore localEnv;
-  final ImageLoaderQueue imageQueue = ImageLoaderQueue();
+  final EndpointRule endpoint;
+  final SiteRenderConfigModel website;
+  final RequestContext requestContext;
   GalleryPageModel? firstPage;
+  int? _startReadIndex;
+  bool _disposed = false;
 
   final RefreshController refreshController = RefreshController();
 
-  @override
-  Future<GalleryPageModel> loadPageImpl(int page) async {
-    var baseUrl = siteRule.url;
-    if (hasPageExpression(siteRule.url) || page == 0) {
-      baseUrl = pageReplace(siteRule.url, page);
-    } else {
-      if (pageData.isNotEmpty) {
-        final prePageUrl = pageData[page - 1]?.pageData.nextPage;
-        if (prePageUrl == null || prePageUrl.isEmpty) {
-          throw Exception('Error: Jump page to index $page ?');
-        }
-        baseUrl = prePageUrl;
-      }
-    }
-    baseUrl = localEnv.apply(baseUrl);
+  ImageRepository get imageRepository => website.imageRepository;
+  List<GalleryItemModel> get successiveItems => loadedItems.toList();
 
-    final detail = await siteService.currentSite!.client.getDetail(
-      url: baseUrl,
-      model: siteRule,
-      localEnv: localEnv,
-    );
-
-    if (!hasPageExpression(siteRule.url) &&
-        (detail.nextPage == baseUrl || detail.nextPage?.isEmpty == true)) {
-      state = const PageLoaderState.end();
-    }
-
-    var model = GalleryPageModel(detail);
-    firstPage ??= model;
-    return model;
+  void setStartReadIndex(int? index) {
+    _startReadIndex = index;
   }
 
+  @override
+  GalleryItemModel? itemAt(int index) => pageSnapshot.itemAt(index);
+
+  @override
+  int get itemCount => pageSnapshot.visibleLength;
+
+  @override
   Future<void> loadIndexModel(int index) => loadIndex(index);
 
-  SiteService get siteService => getIt.get();
+  @override
+  int? get startReadIndex => _startReadIndex;
 
   @override
-  int? get totalSize => firstPage?.pageData.imageCount;
+  ImageRepository get previewRepository => imageRepository;
+
+  bool get fillRemaining =>
+      pageSnapshot.isLoading && pageSnapshot.loadedCount == 0;
 
   @override
-  int? get chunkSize => firstPage?.pageData.countPrePage;
+  Future<void> loadNextPage() async {
+    await pageLoader.loadNext();
+    if (_disposed) return;
+    _finishLoadMore();
+  }
 
-  bool get fillRemaining => state.isLoading && successiveItems.isEmpty;
+  @override
+  Future<void> refresh() async {
+    firstPage = null;
+    refreshController.resetNoData();
+    notifyListeners();
+    await pageLoader.refresh();
+    if (_disposed) return;
+    _finishLoadMore();
+  }
+
+  void _finishLoadMore() {
+    if (pageSnapshot.failure != null) {
+      refreshController.loadFailed();
+    } else if (!pageSnapshot.hasNext) {
+      refreshController.loadNoData();
+    } else {
+      refreshController.loadComplete();
+    }
+  }
 
   @override
   void dispose() {
-    imageQueue.dispose();
+    _disposed = true;
+    disposePageLoader();
     refreshController.dispose();
     super.dispose();
   }

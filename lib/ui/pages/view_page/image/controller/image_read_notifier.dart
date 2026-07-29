@@ -34,7 +34,7 @@ class ReaderNotifier extends ChangeNotifier {
 
   void onPageIndexChanged(int index) {
     final realIndex = _getRealIndex(index);
-    if (realIndex >= imageLoadNotifier.readerInfo.items.length) {
+    if (realIndex >= imageLoadNotifier.readerInfo.itemCount) {
       return;
     }
 
@@ -46,7 +46,9 @@ class ReaderNotifier extends ChangeNotifier {
         _isForwardDirection = math.min(-3, _isForwardDirection - 1);
       }
     }
-    imageLoadNotifier.onIndexChanged(index, isForwardDirection);
+    currentPage = realIndex;
+    imageLoadNotifier.onIndexChanged(realIndex, isForwardDirection);
+    notifyListeners();
   }
 
   void toNextPage() {
@@ -59,7 +61,7 @@ class ReaderNotifier extends ChangeNotifier {
 
   void toPreviousPage() {
     final displayIndex = _getDisplayIndex(currentPage);
-    if (displayIndex - 1 > 0) {
+    if (displayIndex - 1 >= 0) {
       jumpToPage(displayIndex - 1);
     }
   }
@@ -67,11 +69,11 @@ class ReaderNotifier extends ChangeNotifier {
   bool isSingleWidget(int index) {
     switch (displayType) {
       case ReaderDisplayType.double: // 普通双面多出一面
-        return imageLoadNotifier.readerInfo.items.length.isOdd &&
+        return imageLoadNotifier.readerInfo.itemCount.isOdd &&
             index == displayPageCount - 1;
       case ReaderDisplayType.doubleCover: // 封面双面的封面和多出的一面
         return index == 0 ||
-            (imageLoadNotifier.readerInfo.items.length.isEven &&
+            (imageLoadNotifier.readerInfo.itemCount.isEven &&
                 index == displayPageCount - 1);
       case ReaderDisplayType.single: // 单面
         return true;
@@ -108,15 +110,15 @@ class ReaderNotifier extends ChangeNotifier {
 
   int get displayPageCount {
     if (readerDirectory == ReaderDirection.ttb) {
-      return imageLoadNotifier.readerInfo.items.length;
+      return imageLoadNotifier.readerInfo.itemCount;
     }
     switch (displayType) {
       case ReaderDisplayType.double:
-        return 1 + ((imageLoadNotifier.readerInfo.items.length - 1) / 2).ceil();
+        return 1 + ((imageLoadNotifier.readerInfo.itemCount - 1) / 2).ceil();
       case ReaderDisplayType.doubleCover:
-        return (imageLoadNotifier.readerInfo.items.length / 2).ceil();
+        return (imageLoadNotifier.readerInfo.itemCount / 2).ceil();
       case ReaderDisplayType.single:
-        return imageLoadNotifier.readerInfo.items.length;
+        return imageLoadNotifier.readerInfo.itemCount;
     }
   }
 

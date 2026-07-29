@@ -1,8 +1,9 @@
+import 'dart:async';
 import 'dart:typed_data';
-import 'package:catweb/data/loaders/async_progress_value.dart';
+
+import 'package:catweb/data/loading/resource_loader.dart';
+import 'package:catweb/data/media/image_repository.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
-import 'package:catweb/network/client/image_concurrency.dart';
-import 'package:catweb/network/client/image_loader.dart';
 import 'package:catweb/ui/widgets/dark_image.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:dio/dio.dart';
@@ -12,19 +13,16 @@ import 'package:flutter/material.dart';
 
 typedef ImageWidgetBuilder =
     Widget Function(BuildContext context, Uint8List imgData);
-
 typedef LoadingWidgetBuilder =
-    Widget Function(BuildContext context, double progress);
-
+    Widget Function(BuildContext context, double? progress);
 typedef ErrorBuilder =
     Widget Function(BuildContext context, Object? err, VoidCallback reload);
-
 typedef WidgetBuilder = Widget Function(BuildContext context, Widget child);
 
 class ImageLoader extends StatefulWidget {
   const ImageLoader({
     super.key,
-    required this.queue,
+    required this.repository,
     required this.model,
     this.imageBuilder,
     this.errorBuilder,
@@ -33,15 +31,16 @@ class ImageLoader extends StatefulWidget {
     this.imageWidgetBuilder,
     this.innerImageBuilder,
     this.enableHero = true,
+    this.variant = ImageResourceVariant.preview,
   });
 
-  final ImageLoaderQueue queue;
+  final ImageRepository repository;
   final ImageResult model;
   final ImageWidgetBuilder? imageBuilder;
   final ErrorBuilder? errorBuilder;
   final bool hasSize;
   final bool enableHero;
-
+  final ImageResourceVariant variant;
   final LoadingWidgetBuilder? loadingBuilder;
   final WidgetBuilder? imageWidgetBuilder;
   final WidgetBuilder? innerImageBuilder;
@@ -51,64 +50,101 @@ class ImageLoader extends StatefulWidget {
 }
 
 class _ImageLoaderState extends State<ImageLoader> {
-  late final ImageLoadNotifier _imageLoadNotifier;
-  late final ErrorBuilder errorBuilder;
-  late final LoadingWidgetBuilder loadingBuilder;
-  late final ImageWidgetBuilder imageBuilder;
-  late final WidgetBuilder imageWidgetBuilder;
-  late final WidgetBuilder innerImageBuilder;
+  late ResourceHandle<ImageResourceKey, Uint8List> _handle;
+  StreamSubscription<ResourceSnapshot<Uint8List>>? _subscription;
+  late ResourceSnapshot<Uint8List> _state;
+
+  ErrorBuilder get errorBuilder => widget.errorBuilder ?? _defaultErrorBuilder;
+  LoadingWidgetBuilder get loadingBuilder =>
+      widget.loadingBuilder ?? _defaultLoadingBuilder;
+  ImageWidgetBuilder get imageBuilder =>
+      widget.imageBuilder ?? _defaultImageBuilder;
+  WidgetBuilder get imageWidgetBuilder =>
+      widget.imageWidgetBuilder ?? _defaultWidgetBuilder;
+  WidgetBuilder get innerImageBuilder =>
+      widget.innerImageBuilder ?? _defaultWidgetBuilder;
 
   @override
   void initState() {
-    loadingBuilder = widget.loadingBuilder ?? _defaultLoadingBuilder;
-    imageBuilder = widget.imageBuilder ?? _defaultImageBuilder;
-    errorBuilder = widget.errorBuilder ?? _defaultErrorBuilder;
-    _imageLoadNotifier = widget.queue.create(widget.model);
-    imageWidgetBuilder = widget.imageWidgetBuilder ?? _defaultWidgetBuilder;
-    innerImageBuilder = widget.innerImageBuilder ?? _defaultWidgetBuilder;
     super.initState();
+    _acquire();
+  }
+
+  @override
+  void didUpdateWidget(ImageLoader oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.repository != widget.repository ||
+        oldWidget.model.url != widget.model.url ||
+        oldWidget.model.cacheKey != widget.model.cacheKey ||
+        oldWidget.variant != widget.variant) {
+      final oldHandle = _handle;
+      final oldSubscription = _subscription;
+      _subscription = null;
+      _acquire();
+      unawaited(_release(oldHandle, oldSubscription));
+    }
+  }
+
+  void _acquire() {
+    _handle = widget.repository.acquire(
+      ImageResourceDescriptor.fromUrl(
+        widget.model.url ?? '',
+        cacheKey: widget.model.cacheKey,
+      ),
+      variant: widget.variant,
+    );
+    _state = _handle.state;
+    _subscription = _handle.states.listen((state) {
+      if (mounted) setState(() => _state = state);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    switch (_imageLoadNotifier.value) {
-      case AsyncProgressIdle():
-        return loadingBuilder(context, 0);
-      case AsyncProgressLoading(:final progress):
-        return loadingBuilder(context, progress);
-      case AsyncProgressError(:final error):
-        return errorBuilder(context, error, _onReload);
-      case AsyncProgressData(:final value):
-        return imageWidgetBuilder(context, imageBuilder(context, value));
-      case AsyncProgressCached<Uint8List>():
-        throw UnimplementedError();
-    }
+    return switch (_state) {
+      ResourceIdle<Uint8List>() => loadingBuilder(context, null),
+      ResourceLoading<Uint8List>(:final progress) => loadingBuilder(
+        context,
+        progress?.fraction,
+      ),
+      ResourceFailure<Uint8List>(:final failure) => errorBuilder(
+        context,
+        failure.error,
+        _handle.retry,
+      ),
+      ResourceSuccess<Uint8List>(:final value) => imageWidgetBuilder(
+        context,
+        imageBuilder(context, value),
+      ),
+    };
   }
 
-  void _onReload() {
-    _imageLoadNotifier.free();
-    widget.queue.trigger();
+  Future<void> _release(
+    ResourceHandle<ImageResourceKey, Uint8List> handle,
+    StreamSubscription<ResourceSnapshot<Uint8List>>? subscription,
+  ) async {
+    await subscription?.cancel();
+    await handle.release();
   }
 
   @override
   void dispose() {
-    _imageLoadNotifier.handleUnMounted();
+    unawaited(_release(_handle, _subscription));
+    _subscription = null;
     super.dispose();
   }
 
   Widget _defaultImageBuilder(BuildContext context, Uint8List imgData) {
     late Widget child;
-
+    final model = widget.model;
     if (model.width != null && model.height != null) {
       child = ExtendedImage(
         width: model.width,
         height: model.height,
         image: MemoryImage(imgData),
         loadStateChanged: (state) {
-          if (state.extendedImageLoadState != LoadState.completed) {
-            return null;
-          }
-          final img = ExtendedRawImage(
+          if (state.extendedImageLoadState != LoadState.completed) return null;
+          final image = ExtendedRawImage(
             image: state.extendedImageInfo?.image,
             width: model.width,
             height: model.height,
@@ -121,17 +157,13 @@ class _ImageLoaderState extends State<ImageLoader> {
             ),
             scale: 0.2,
           );
-
-          if (model.width != null && model.height != null) {
-            return AspectRatio(
-              aspectRatio: model.width! / model.height!,
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: innerImageBuilder(context, img),
-              ),
-            );
-          }
-          return innerImageBuilder(context, img);
+          return AspectRatio(
+            aspectRatio: model.width! / model.height!,
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: innerImageBuilder(context, image),
+            ),
+          );
         },
       );
     } else {
@@ -145,8 +177,6 @@ class _ImageLoaderState extends State<ImageLoader> {
           )
         : DarkWidget(child: child);
   }
-
-  ImageResult get model => widget.model;
 }
 
 Widget _defaultWidgetBuilder(BuildContext context, Widget widget) => widget;
@@ -157,33 +187,26 @@ Widget _defaultErrorBuilder(
   VoidCallback reload,
 ) {
   if (err is DioException) {
-    logger.e(
-      '图片网路错误: \n url: <${err.requestOptions.path}>\n path: <${err.requestOptions.path}>',
-    );
+    logger.e('图片网络错误: ${err.requestOptions.path}');
   } else {
     logger.e('图片加载错误', err);
   }
-
   return GestureDetector(
-    onTap: () => reload(),
+    onTap: reload,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Icon(Icons.info),
         Padding(
           padding: const EdgeInsets.only(right: 5, left: 5, top: 5),
-          child: Text(
-            err?.toString() ?? '',
-            maxLines: 5,
-            style: const TextStyle(fontSize: 12),
-          ),
+          child: Text(err?.toString() ?? '', maxLines: 5),
         ),
       ],
     ),
   );
 }
 
-Widget _defaultLoadingBuilder(BuildContext context, double progress) {
+Widget _defaultLoadingBuilder(BuildContext context, double? progress) {
   return const Center(
     child: SizedBox(width: 24, height: 24, child: CupertinoActivityIndicator()),
   );

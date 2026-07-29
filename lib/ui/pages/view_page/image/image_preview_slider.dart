@@ -96,7 +96,7 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
       if (boxSize != null) {
         final offset = scrollController.offset;
         final end = min(
-          controller.imageLoadNotifier.readerInfo.items.length,
+          controller.imageLoadNotifier.readerInfo.itemCount,
           ((offset + boxSize.width) / (boxSize.height * 0.618 + 2)).ceil(),
         );
         final start = (offset / (boxSize.height * 0.618 + 2)).floor();
@@ -122,7 +122,7 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
             key: listGlobalKey,
             controller: scrollController,
             scrollDirection: Axis.horizontal,
-            itemCount: controller.imageLoadNotifier.readerInfo.items.length,
+            itemCount: controller.imageLoadNotifier.readerInfo.itemCount,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () => controller.jumpToPage(index),
@@ -151,8 +151,7 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
                               final item = controller
                                   .imageLoadNotifier
                                   .readerInfo
-                                  .items
-                                  .toList()[index];
+                                  .itemAt(index);
                               if (item == null) {
                                 return Center(
                                   child: Text(
@@ -165,16 +164,11 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
                                 );
                               }
                               return ImageLoader(
-                                queue: controller
+                                repository: controller
                                     .imageLoadNotifier
                                     .readerInfo
-                                    .previewConcurrency,
-                                model: controller
-                                    .imageLoadNotifier
-                                    .readerInfo
-                                    .items
-                                    .toList()[index]!
-                                    .previewImage!,
+                                    .previewRepository,
+                                model: item.previewImage!,
                                 enableHero: false,
                               );
                             },

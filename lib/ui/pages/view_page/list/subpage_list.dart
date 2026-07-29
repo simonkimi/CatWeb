@@ -1,8 +1,12 @@
+import 'dart:math' as math;
+
 import 'package:bot_toast/bot_toast.dart';
+import 'package:catweb/app.dart';
 import 'package:catweb/data/constant.dart';
-import 'package:catweb/data/models/page_loader_state.dart';
+import 'package:catweb/data/loading/paged_loader.dart';
 import 'package:catweb/data/models/subpage_models.dart';
 import 'package:catweb/ui/pages/view_page/list/subpage_notifier.dart';
+import 'package:catweb/ui/pages/view_page/viewer_subpage_scaffold.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/list_extended_card.dart';
@@ -42,10 +46,15 @@ class SubPageListFragment extends HookWidget {
           child:
               Selector<
                 SubListNotifier,
-                ({PageLoaderState state, Iterable<ListItemModel?> items})
+                ({
+                  PagedSnapshot<ListItemModel> state,
+                  List<ListItemModel> items,
+                })
               >(
-                selector: (_, notifier) =>
-                    (state: notifier.state, items: notifier.items),
+                selector: (_, notifier) => (
+                  state: notifier.pageSnapshot,
+                  items: notifier.loadedItems.toList(),
+                ),
                 builder: (_, value, _) {
                   return CustomScrollView(
                     controller: notifier.scrollController,
@@ -73,17 +82,21 @@ class SubPageListFragment extends HookWidget {
   Widget _buildBody(BuildContext context) {
     return Selector<
       SubListNotifier,
-      ({PageLoaderState state, Iterable<ListItemModel?> items})
+      ({PagedSnapshot<ListItemModel> state, List<ListItemModel> items})
     >(
-      selector: (_, n) => (state: n.state, items: n.items),
+      selector: (_, n) =>
+          (state: n.pageSnapshot, items: n.loadedItems.toList()),
       builder: (_, value, _) {
-        return switch (value.state) {
-          PageLoaderState.loading when value.items.isEmpty =>
-            const LoadingSliver(),
-          PageLoaderStateError(:final error) when value.items.isEmpty =>
-            ExceptionSliver(errMsg: error.toString()),
-          _ => _buildSliverList(context),
-        };
+        if (value.items.isEmpty && value.state.isLoading) {
+          return const LoadingSliver();
+        }
+        if (value.items.isEmpty) {
+          final failure = value.state.failure;
+          if (failure != null) {
+            return ExceptionSliver(errMsg: failure.error.toString());
+          }
+        }
+        return _buildSliverList(context);
       },
     );
   }
@@ -95,31 +108,36 @@ class SubPageListFragment extends HookWidget {
         if (index.isOdd) {
           return const ImageListDivider();
         }
-        final ListItemModel model = notifier.items.toList()[index ~/ 2]!;
+        final ListItemModel model = notifier.loadedItems.elementAt(index ~/ 2);
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
           child: ListExtendedCard(
             model: model.previewModel,
-            queue: notifier.previewConcurrency,
+            repository: notifier.previewRepository,
             onTap: () {
-              if (model.idCode?.isEmpty == true) {
+              final idCode = model.idCode;
+              if (idCode == null || idCode.isEmpty) {
                 BotToast.showText(text: '跳转目标为空');
                 return;
               }
-              // TODO 跳转到详情界面
-              // NavigatorNotifier.push(
-              //   targetName: (controller.siteRule.template as TemplateList)
-              //       .targetItem
-              //       .value,
-              //   envModel: SiteEnvStore({
-              //     'idCode': model.idCode ?? '',
-              //   }),
-              //   model: model,
-              // );
+              final targetId = notifier.endpoint.links.item;
+              if (targetId == null) {
+                BotToast.showText(text: '列表端点未配置详情链接');
+                return;
+              }
+              context.to(
+                ViewerPage(
+                  endpoint: notifier.website.endpoint(targetId),
+                  website: notifier.website,
+                  requestContext: notifier.requestContext.apply({
+                    'idCode': idCode,
+                  }),
+                ),
+              );
             },
           ),
         );
-      }, childCount: notifier.items.length * 2),
+      }, childCount: math.max(0, notifier.pageSnapshot.loadedCount * 2 - 1)),
     );
   }
 }

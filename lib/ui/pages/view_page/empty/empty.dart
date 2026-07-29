@@ -1,5 +1,4 @@
 import 'package:catweb/i18n.dart';
-import 'package:catweb/test/site/eh/eh_rules.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
 import 'package:catweb/ui/theme/colors.dart';
@@ -40,7 +39,7 @@ class EmptyFragment extends StatelessWidget {
               Navigator.of(context).push(
                 CupertinoPageRoute(
                   builder: (context) {
-                    return RulesEditPage(blueprint: ehTestSite);
+                    return const RulesEditPage();
                   },
                 ),
               );

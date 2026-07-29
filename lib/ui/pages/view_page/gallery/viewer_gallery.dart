@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'dart:math' as math;
 
-import 'package:catweb/data/models/page_loader_state.dart';
-import 'package:catweb/data/models/site/page.dart';
-import 'package:catweb/data/models/site_env_model.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:catweb/data/models/site_render_model.dart';
+import 'package:catweb/data/site_runtime/runtime_contracts.dart';
+import 'package:catweb/data/site_runtime/site_definition.dart';
+import 'package:catweb/ui/pages/view_page/image/image_reader.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/comment_item.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
@@ -22,21 +25,40 @@ import 'package:provider/provider.dart';
 import 'comment_list.dart';
 import 'viewer_gallery_notifier.dart';
 
-class ViewerGalleryFragment extends StatelessWidget {
+class ViewerGalleryFragment extends StatefulWidget {
   const ViewerGalleryFragment({
     super.key,
-    required this.sitePageRule,
-    required this.env,
+    required this.endpoint,
+    required this.website,
+    required this.requestContext,
   });
 
-  final SitePageRule sitePageRule;
-  final SiteEnvStore env;
+  final EndpointRule endpoint;
+  final SiteRenderConfigModel website;
+  final RequestContext requestContext;
+
+  @override
+  State<ViewerGalleryFragment> createState() => _ViewerGalleryFragmentState();
+}
+
+class _ViewerGalleryFragmentState extends State<ViewerGalleryFragment> {
+  late final ViewerGalleryNotifier notifier;
+
+  @override
+  void initState() {
+    super.initState();
+    notifier = ViewerGalleryNotifier(
+      endpoint: widget.endpoint,
+      website: widget.website,
+      requestContext: widget.requestContext,
+    );
+    unawaited(notifier.loadInitial());
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) =>
-          ViewerGalleryNotifier(siteRule: sitePageRule, localEnv: env),
+    return ChangeNotifierProvider.value(
+      value: notifier,
       builder: (context, _) {
         return CupertinoPageScaffold(
           child: CupertinoAppBar(
@@ -47,6 +69,12 @@ class ViewerGalleryFragment extends StatelessWidget {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    notifier.dispose();
+    super.dispose();
   }
 
   Widget _buildBody(BuildContext context) {
@@ -108,23 +136,16 @@ class ViewerGalleryFragment extends StatelessWidget {
                     aspectRatio: 200 / 282,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
-                      child: successiveItems.elementAtOrNull(index) != null
-                          ? ImageLoader(
-                              queue: notifier.imageQueue,
-                              model: successiveItems[index].previewImage,
-                              innerImageBuilder: (context, child) {
-                                return ClipRRect(
-                                  borderRadius: BorderRadius.circular(5),
-                                  child: child,
-                                );
-                              },
-                            )
-                          : Builder(
-                              builder: (context) {
-                                notifier.loadIndex(index);
-                                return const CupertinoActivityIndicator();
-                              },
-                            ),
+                      child: ImageLoader(
+                        repository: notifier.imageRepository,
+                        model: successiveItems[index].previewImage,
+                        innerImageBuilder: (context, child) {
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: child,
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -267,7 +288,7 @@ class ViewerGalleryFragment extends StatelessWidget {
       child: SizedBox(
         width: 140,
         child: ImageLoader(
-          queue: notifier.imageQueue,
+          repository: notifier.imageRepository,
           model: coverImage,
           innerImageBuilder: (context, child) {
             return Container(
@@ -330,10 +351,7 @@ class ViewerGalleryFragment extends StatelessWidget {
 
   Widget _buildRemaining(BuildContext context) {
     final errMsg = context.select(
-      (ViewerGalleryNotifier n) => switch (n.state) {
-        PageLoaderStateError(:final error) => error.toString(),
-        _ => null,
-      },
+      (ViewerGalleryNotifier n) => n.pageSnapshot.failure?.error.toString(),
     );
 
     return SliverFillRemaining(
@@ -416,14 +434,22 @@ class ViewerGalleryFragment extends StatelessWidget {
   }
 
   Future<void> _openReadPage([int? startPage]) async {
-    // if (startPage != null) {
-    //   previewController.lastReadIndex.value = startPage;
-    // }
-    // await NavigatorNotifier.push(
-    //   targetName: previewController.extra.targetReader.value,
-    //   envModel: previewController.localEnv.clone(),
-    //   model: previewController,
-    // );
+    final readerId = widget.endpoint.links.reader;
+    if (readerId == null) {
+      BotToast.showText(text: '详情端点未配置阅读链接');
+      return;
+    }
+    notifier.setStartReadIndex(startPage);
+    await Navigator.of(context).push(
+      CupertinoPageRoute(
+        builder: (_) => ImageReader(
+          readerInfo: notifier,
+          endpoint: widget.website.endpoint(readerId),
+          website: widget.website,
+          requestContext: widget.requestContext,
+        ),
+      ),
+    );
   }
 
   Widget _buildTitle(BuildContext context) {

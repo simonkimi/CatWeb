@@ -1,5 +1,5 @@
 import 'package:catweb/data/models/ffi/result/result.dart';
-import 'package:catweb/network/client/image_concurrency.dart';
+import 'package:catweb/data/media/image_repository.dart';
 import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:catweb/ui/theme/colors.dart';
@@ -13,12 +13,12 @@ class ListExtendedCard extends StatelessWidget {
     super.key,
     required this.model,
     required this.onTap,
-    required this.queue,
+    required this.repository,
   });
 
   final ListParserResultItem model;
   final VoidCallback onTap;
-  final ImageLoaderQueue queue;
+  final ImageRepository repository;
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class ListExtendedCard extends StatelessWidget {
   Widget _buildLeftImage() {
     final child = ImageLoader(
       model: model.previewImage!,
-      queue: queue,
+      repository: repository,
       innerImageBuilder: (context, child) {
         return Container(
           clipBehavior: Clip.antiAlias,

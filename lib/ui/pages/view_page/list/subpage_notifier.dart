@@ -1,142 +1,134 @@
-import 'package:catweb/data/controller/site.dart';
-import 'package:catweb/data/loaders/page_loader.dart';
-import 'package:catweb/data/models/page_loader_state.dart';
-import 'package:catweb/data/models/site/page.dart';
-import 'package:catweb/data/models/site/subpage.dart';
-import 'package:catweb/data/models/site_env_model.dart';
+import 'package:catweb/data/loading/paged_loader.dart';
+import 'package:catweb/data/media/image_repository.dart';
+import 'package:catweb/data/models/ffi/result/result.dart';
+import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/data/models/subpage_models.dart';
-import 'package:catweb/app.dart';
-
-import 'package:catweb/network/client/image_concurrency.dart';
+import 'package:catweb/data/site_runtime/runtime_contracts.dart';
+import 'package:catweb/data/site_runtime/site_definition.dart';
+import 'package:catweb/data/site_runtime/site_page_source.dart';
+import 'package:catweb/network/runtime/dio_http_transport.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/reader_load_notifier.dart';
-import 'package:catweb/utils/debug.dart';
-import 'package:catweb/utils/helper.dart';
-import 'package:catweb/utils/replace_utils.dart';
+import 'package:catweb/ui/state/paged_loader_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
-class SubListNotifier
-    extends BasePageLoaderNotifier<ListItemModel, ListPageData>
+/// 列表页面的 Flutter 控制器。
+///
+/// 分页和请求行为由纯 Dart 加载器处理，本类只持有滚动/刷新控件并桥接快照。
+class SubListNotifier extends ChangeNotifier
+    with PagedLoaderNotifier<ListItemModel>
     implements ReaderInfo<ListItemModel> {
-  SubListNotifier({required this.siteRule, this.subPageModel})
-    : localEnv = SiteEnvStore(
-        subPageModel != null && subPageModel.value.isNotEmpty
-            ? {
-                subPageModel.key.isNotEmpty ? subPageModel.key : 'subKey':
-                    subPageModel.value,
-              }
-            : null,
-      );
+  SubListNotifier({
+    required this.endpoint,
+    required this.website,
+    required this.requestContext,
+  }) {
+    _source = MappedSitePageSource<ListParserResult, ListItemModel>(
+      executor: website.session.executor,
+      endpointId: endpoint.id,
+      context: requestContext,
+      itemsOf: (payload) => (payload.items ?? const [])
+          .map(ListItemModel.new)
+          .toList(growable: false),
+    );
+    bindPageLoader(
+      PagedLoader<ListItemModel>(
+        source: _source,
+        failureMapper: const SiteRuntimeFailureMapper(),
+      ),
+    );
+  }
 
-  final SitePageRule siteRule;
-  final TemplateListSubPage? subPageModel;
-  final SiteEnvStore localEnv;
+  final EndpointRule endpoint;
+  final SiteRenderConfigModel website;
+  final RequestContext requestContext;
+  late final MappedSitePageSource<ListParserResult, ListItemModel> _source;
 
   final ScrollController scrollController = ScrollController();
   final RefreshController refreshController = RefreshController();
 
   String searchKeywords = '';
-  Map<String, String> currentFilter = {};
+  Map<String, String> currentFilter = const {};
+  bool _disposed = false;
 
-  /// 应用一个新的过滤器
-  Future setNewFilter(
+  Future<void> setNewFilter(
     List<String> filterKeys,
     Map<String, String> filter,
   ) async {
-    currentFilter = filter;
-    localEnv.removeKeys(filterKeys);
-    localEnv.mergeMap(filter);
-    refresh();
-  }
-
-  /// 开始一个新的搜索, 用户点击搜索按钮触发
-  Future<void> onNewSearch(String keywords) async {
-    searchKeywords = keywords.trim();
-    localEnv.mergeMap({'search': searchKeywords});
+    currentFilter = Map<String, String>.unmodifiable(filter);
+    _updateInputs();
     await refresh();
   }
 
+  Future<void> onNewSearch(String keywords) async {
+    searchKeywords = keywords.trim();
+    _updateInputs();
+    await refresh();
+  }
+
+  void _updateInputs() {
+    _source.updateInputs({
+      ...currentFilter,
+      if (searchKeywords.isNotEmpty) 'search': searchKeywords,
+    });
+  }
+
   Future<void> requireFirstLoad() async {
-    if (state == const PageLoaderState.idle() && pageData.isEmpty) {
-      await loadNextPage();
+    if (pageSnapshot.loadedCount == 0 && !pageSnapshot.isLoading) {
+      await loadInitial();
     }
   }
 
   @override
-  Future<ListPageData> loadPageImpl(int page) async {
-    var baseUrl = siteRule.url;
-    if (hasPageExpression(baseUrl) || page == 0) {
-      // 有面数
-      baseUrl = pageReplace(baseUrl, page);
+  Future<void> loadNextPage() async {
+    await pageLoader.loadNext();
+    if (_disposed) return;
+    _finishLoadMore();
+  }
+
+  @override
+  Future<void> refresh() async {
+    refreshController.resetNoData();
+    await pageLoader.refresh();
+    if (_disposed) return;
+    _finishLoadMore();
+  }
+
+  void _finishLoadMore() {
+    if (pageSnapshot.failure != null) {
+      refreshController.loadFailed();
+    } else if (!pageSnapshot.hasNext) {
+      refreshController.loadNoData();
     } else {
-      // 无面数, 最后一个为面数
-      if (pageData.isNotEmpty) {
-        final maxPage = iterableMax(pageData.keys);
-        if (maxPage == null) {
-          throw Exception('No page loaded? WTF?');
-        }
-        if (pageData[maxPage]!.pageData.nextPage?.isEmpty ?? true) {
-          print('hasPageExpression loadNoData()');
-          state = const PageLoaderState.end();
-          return ListPageData(pageData[maxPage]!.pageData);
-        }
-        baseUrl = pageData[maxPage]!.pageData.nextPage!;
-      }
+      refreshController.loadComplete();
     }
-    baseUrl = localEnv.apply(baseUrl);
-    // 添加缓存
-    if (subPageModel != null && subPageModel!.key.isNotEmpty) {
-      localEnv.mergeMap({subPageModel!.key: subPageModel!.value});
-    }
-
-    logger.d('加载网址: $baseUrl');
-    final data = await global.currentSite!.client.getList(
-      url: baseUrl,
-      model: siteRule,
-      localEnv: localEnv,
-    );
-
-    if (!hasPageExpression(baseUrl) &&
-        (data.nextPage == baseUrl || data.nextPage!.isEmpty)) {
-      print('hasPageExpression loadNoData()');
-      state = const PageLoaderState.end();
-    }
-    return ListPageData(data);
   }
 
-  SiteEnvStore get env => global.currentSite!.globalEnv.create(localEnv);
-
-  bool get isFullScreenLoading => items.isEmpty && state.isError;
-
-  bool get isFullScreenError => items.isEmpty && state.isError;
+  bool get isFullScreenLoading => loadedItems.isEmpty && pageSnapshot.isLoading;
+  bool get isFullScreenError =>
+      loadedItems.isEmpty && pageSnapshot.failure != null;
 
   @override
-  void dispose() {
-    super.dispose();
-    scrollController.dispose();
-    refreshController.dispose();
-  }
-
-  @override
-  int? get chunkSize => null;
-
-  @override
-  int? get totalSize => null;
+  ListItemModel? itemAt(int index) => pageSnapshot.itemAt(index);
 
   @override
   Future<void> loadIndexModel(int index) => loadIndex(index);
 
   @override
-  int? get itemsCount => null;
+  int get itemCount => pageSnapshot.visibleLength;
 
   @override
   int? get startReadIndex => null;
 
   @override
-  late final previewConcurrency = ImageLoaderQueue(
-    dio: global.currentSite!.client.imageDio,
-    concurrency: 4,
-  );
+  ImageRepository get previewRepository => website.imageRepository;
 
-  SiteService get global => getIt.get();
+  @override
+  void dispose() {
+    _disposed = true;
+    disposePageLoader();
+    scrollController.dispose();
+    refreshController.dispose();
+    super.dispose();
+  }
 }

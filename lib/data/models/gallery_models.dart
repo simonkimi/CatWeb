@@ -1,25 +1,21 @@
-import 'package:catweb/data/loaders/page_loader.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/data/models/ffi/result/result.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 
-class GalleryPageModel extends BasePageData<GalleryItemModel> {
+/// 图库详情页的元数据及不可变预览项集合。
+final class GalleryPageModel {
   GalleryPageModel(this.pageData)
-    : _items = pageData.previews!.map((e) => GalleryItemModel(e)).toList();
+    : items = List<GalleryItemModel>.unmodifiable(
+        (pageData.previews ?? const []).map(GalleryItemModel.new),
+      );
 
   final DetailParserResult pageData;
 
-  final List<GalleryItemModel> _items;
-
-  @override
-  List<GalleryItemModel> get items => _items;
-
-  @override
-  void dispose() {}
+  final List<GalleryItemModel> items;
 }
 
-/// Detail带预览的加载项目
-class GalleryItemModel extends ImageWithPreviewModel {
+/// 图库预览结果的不可变业务适配项。
+final class GalleryItemModel implements ImageWithPreviewModel {
   GalleryItemModel(this.previewModel);
 
   final DetailPreviewItem previewModel;

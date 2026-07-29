@@ -48,7 +48,7 @@ class ViewerGalleryImages extends StatelessWidget {
                           children: [
                             Expanded(
                               child: ImageLoader(
-                                queue: notifier.imageQueue,
+                                repository: notifier.imageRepository,
                                 model: successiveItems[index].previewImage,
                                 imageWidgetBuilder: (context, child) {
                                   return FittedBox(

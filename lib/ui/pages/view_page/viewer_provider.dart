@@ -1,6 +1,6 @@
-import 'package:catweb/data/models/site/page.dart';
-import 'package:catweb/data/models/site_env_model.dart';
 import 'package:catweb/data/models/site_render_model.dart';
+import 'package:catweb/data/site_runtime/runtime_contracts.dart';
+import 'package:catweb/data/site_runtime/site_definition.dart';
 
 class ViewerConfigProvider {
   ViewerConfigProvider({required this.website});
@@ -11,8 +11,9 @@ class ViewerConfigProvider {
 }
 
 class PageConfigProvider {
-  PageConfigProvider({required this.pageRule});
+  PageConfigProvider({required this.endpoint, RequestContext? context})
+    : context = context ?? RequestContext();
 
-  final SitePageRule pageRule;
-  final SiteEnvStore env = SiteEnvStore();
+  final EndpointRule endpoint;
+  final RequestContext context;
 }

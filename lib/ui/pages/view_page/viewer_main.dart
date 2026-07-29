@@ -34,7 +34,12 @@ class ViewerMain extends HookWidget {
         valueListenable: getIt.get<SiteService>().currentSiteNotifier,
         builder: (BuildContext context, SiteRenderConfigModel? website, _) {
           if (website == null) {
-            return const EmptyFragment();
+            return ValueListenableBuilder<String?>(
+              valueListenable: getIt.get<SiteService>().loadFailureNotifier,
+              builder: (_, failure, _) => failure == null
+                  ? const EmptyFragment()
+                  : _SiteLoadFailure(message: failure),
+            );
           }
           return Provider(
             create: (_) => ViewerConfigProvider(website: website),
@@ -46,8 +51,11 @@ class ViewerMain extends HookWidget {
   }
 
   Widget _buildBody(BuildContext context, SiteRenderConfigModel website) {
+    if (website.displayPage.isEmpty) {
+      return const EmptyFragment();
+    }
     if (website.displayPage.length <= 1) {
-      return ViewerPage(sitePageRule: website.displayPage.first);
+      return ViewerPage(endpoint: website.displayPage.first, website: website);
     }
 
     return CupertinoTabScaffold(
@@ -64,8 +72,32 @@ class ViewerMain extends HookWidget {
         }).toList(),
       ),
       tabBuilder: (BuildContext context, int index) {
-        return ViewerPage(sitePageRule: website.displayPage[index]);
+        return ViewerPage(
+          endpoint: website.displayPage[index],
+          website: website,
+        );
       },
+    );
+  }
+}
+
+class _SiteLoadFailure extends StatelessWidget {
+  const _SiteLoadFailure({required this.message});
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      navigationBar: const CupertinoNavigationBar(middle: Text('CatWeb')),
+      child: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Text(message, textAlign: TextAlign.center),
+          ),
+        ),
+      ),
     );
   }
 }

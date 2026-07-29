@@ -12,7 +12,7 @@ class CupertinoImageSlider extends HookWidget {
     final changeValue = useState(0);
     final ReaderNotifier controller = context.watch();
 
-    final pageCount = controller.imageLoadNotifier.readerInfo.items.length;
+    final pageCount = controller.imageLoadNotifier.readerInfo.itemCount;
     final currentDisplay = isChanging.value
         ? changeValue.value
         : controller.currentPage;
