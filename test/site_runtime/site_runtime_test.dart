@@ -46,6 +46,58 @@ void main() {
       );
     });
 
+    test('generated serializers preserve the schema v2 JSON shape', () {
+      final parser = ParserRule(
+        id: 'list-parser',
+        kind: EndpointKind.list,
+        config: const ParserConfig(
+          selectors: {'item': SelectorRule(selector: '.item')},
+        ),
+      );
+
+      expect(parser.toJson(), {
+        'id': 'list-parser',
+        'name': '',
+        'kind': 'list',
+        'config': {
+          'selectors': {
+            'item': {
+              'selector': '.item',
+              'queryType': 'css',
+              'function': 'text',
+              'parameter': '',
+              'regex': '',
+              'replace': '',
+              'script': {'type': 'output'},
+              'defaultValue': '',
+            },
+          },
+          'extras': <Object?>[],
+        },
+      });
+      final selector = SelectorRule.fromJson(
+        const SelectorRule(
+          selector: '//a',
+          queryType: SelectorQueryType.xpath,
+          function: SelectorFunctionType.attribute,
+          parameter: 'href',
+          regex: r'/g/(.+)',
+          script: SelectorScript.javaScript(source: r'return $arg;'),
+        ).toJson(),
+      );
+      expect(selector.queryType, SelectorQueryType.xpath);
+      expect(selector.parameter, 'href');
+      expect(selector.script, isA<JavaScriptSelectorScript>());
+      expect(const EndpointLinks(item: 'gallery').toJson(), {
+        'item': 'gallery',
+      });
+      expect(RequestBodyRule.json(const {'page': 1}).toJson(), {
+        'value': {'page': 1},
+        'type': 'json',
+      });
+      expect(const PaginationRule.none().toJson(), {'type': 'none'});
+    });
+
     test('strictly rejects unknown enum and pagination values', () {
       final json = _siteDefinition().toJson();
       final endpoints = json['endpoints']! as List<Object?>;
@@ -437,9 +489,7 @@ SiteDefinition _siteDefinition({
     id: 'test',
     name: 'Test',
     baseUrl: 'https://example.test/',
-    parsers: [
-      ParserRule(id: 'list-parser', kind: EndpointKind.list, config: const {}),
-    ],
+    parsers: [ParserRule(id: 'list-parser', kind: EndpointKind.list)],
     endpoints: [
       _endpoint(request: request, pagination: pagination, links: links),
     ],

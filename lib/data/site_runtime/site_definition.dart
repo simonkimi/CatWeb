@@ -1,4 +1,9 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'json_values.dart';
+
+part 'site_definition.freezed.dart';
+part 'site_definition.g.dart';
 
 /// JSON object 的统一类型别名。
 typedef JsonMap = Map<String, Object?>;
@@ -21,277 +26,271 @@ enum ContinuationTarget { url, variable }
 /// schema v2 站点的声明式定义。
 ///
 /// 定义本身不执行网络或解析操作，必须先通过 `SiteCompiler` 校验。
-final class SiteDefinition {
-  SiteDefinition({
-    required this.schemaVersion,
-    required this.id,
-    required this.name,
-    required this.baseUrl,
-    required List<ParserRule> parsers,
-    required List<EndpointRule> endpoints,
-  }) : parsers = List<ParserRule>.unmodifiable(parsers),
-       endpoints = List<EndpointRule>.unmodifiable(endpoints);
+@freezed
+sealed class SiteDefinition with _$SiteDefinition {
+  const SiteDefinition._();
+
+  @JsonSerializable(explicitToJson: true)
+  const factory SiteDefinition({
+    @Default(0) int schemaVersion,
+    @Default('') String id,
+    @Default('') String name,
+    @Default('') String baseUrl,
+    @Default(SiteOptions()) SiteOptions options,
+    @Default(<ParserRule>[]) List<ParserRule> parsers,
+    @Default(<EndpointRule>[]) List<EndpointRule> endpoints,
+  }) = _SiteDefinition;
 
   /// 当前加载层唯一接受的 schema 版本。
   static const currentSchemaVersion = 2;
 
-  final int schemaVersion;
-  final String id;
-  final String name;
-  final String baseUrl;
-  final List<ParserRule> parsers;
-  final List<EndpointRule> endpoints;
+  factory SiteDefinition.fromJson(Map<String, dynamic> json) =>
+      _$SiteDefinitionFromJson(json);
+}
 
-  /// 从 JSON object 解码；跨字段约束由 `SiteCompiler` 校验。
-  factory SiteDefinition.fromJson(JsonMap json) => SiteDefinition(
-    schemaVersion: json['schemaVersion'] as int? ?? 0,
-    id: json['id'] as String? ?? '',
-    name: json['name'] as String? ?? '',
-    baseUrl: json['baseUrl'] as String? ?? '',
-    parsers: _jsonList(
-      json['parsers'],
-    ).map(ParserRule.fromJson).toList(growable: false),
-    endpoints: _jsonList(
-      json['endpoints'],
-    ).map(EndpointRule.fromJson).toList(growable: false),
-  );
+@freezed
+sealed class RegexValueRule with _$RegexValueRule {
+  const factory RegexValueRule({
+    @Default('') String pattern,
+    @Default('') String value,
+  }) = _RegexValueRule;
 
-  /// 编码为可持久化的 JSON object。
-  JsonMap toJson() => {
-    'schemaVersion': schemaVersion,
-    'id': id,
-    'name': name,
-    'baseUrl': baseUrl,
-    'parsers': parsers.map((parser) => parser.toJson()).toList(),
-    'endpoints': endpoints.map((endpoint) => endpoint.toJson()).toList(),
-  };
+  factory RegexValueRule.fromJson(Map<String, dynamic> json) =>
+      _$RegexValueRuleFromJson(json);
+}
+
+@freezed
+sealed class SiteOptions with _$SiteOptions {
+  @JsonSerializable(explicitToJson: true)
+  const factory SiteOptions({
+    @Default('') String flags,
+    @Default('') String loginUrl,
+    @Default('') String loginCookiePattern,
+    @Default('') String loginCookieDescription,
+    @Default(<RegexValueRule>[]) List<RegexValueRule> headers,
+    @Default(<RegexValueRule>[]) List<RegexValueRule> cookies,
+  }) = _SiteOptions;
+
+  factory SiteOptions.fromJson(Map<String, dynamic> json) =>
+      _$SiteOptionsFromJson(json);
 }
 
 /// 一个可注入解析引擎的 parser 声明。
-final class ParserRule {
-  ParserRule({required this.id, required this.kind, required JsonMap config})
-    : config = freezeJsonMap(config, path: r'$.parser.config');
+@freezed
+sealed class ParserRule with _$ParserRule {
+  @JsonSerializable(explicitToJson: true)
+  const factory ParserRule({
+    required String id,
+    @Default('') String name,
+    @ParserEndpointKindJsonConverter() required EndpointKind kind,
+    @Default(ParserConfig()) ParserConfig config,
+  }) = _ParserRule;
 
-  final String id;
-  final EndpointKind kind;
-  final JsonMap config;
+  factory ParserRule.fromJson(Map<String, dynamic> json) =>
+      _$ParserRuleFromJson(json);
+}
 
-  factory ParserRule.fromJson(JsonMap json) => ParserRule(
-    id: json['id'] as String? ?? '',
-    kind: _requiredEnumByName(EndpointKind.values, json['kind'], 'parser.kind'),
-    config: _jsonMap(json['config']),
-  );
+enum SelectorQueryType { self, css, xpath, jsonPath }
 
-  JsonMap toJson() => {'id': id, 'kind': kind.name, 'config': config};
+enum SelectorFunctionType { text, attribute, raw }
+
+@Freezed(unionKey: 'type')
+sealed class SelectorScript with _$SelectorScript {
+  const factory SelectorScript.output() = OutputSelectorScript;
+
+  const factory SelectorScript.replace({
+    @Default(<String, String>{}) Map<String, String> values,
+  }) = ReplaceSelectorScript;
+
+  const factory SelectorScript.javaScript({@Default('') String source}) =
+      JavaScriptSelectorScript;
+
+  factory SelectorScript.fromJson(Map<String, dynamic> json) =>
+      _$SelectorScriptFromJson(json);
+}
+
+@freezed
+sealed class SelectorRule with _$SelectorRule {
+  const SelectorRule._();
+
+  @JsonSerializable(explicitToJson: true)
+  const factory SelectorRule({
+    @Default('') String selector,
+    @Default(SelectorQueryType.css) SelectorQueryType queryType,
+    @Default(SelectorFunctionType.text) SelectorFunctionType function,
+    @Default('') String parameter,
+    @Default('') String regex,
+    @Default('') String replace,
+    @Default(SelectorScript.output()) SelectorScript script,
+    @Default('') String defaultValue,
+  }) = _SelectorRule;
+
+  factory SelectorRule.fromJson(Map<String, dynamic> json) =>
+      _$SelectorRuleFromJson(json);
+
+  bool get isEmpty =>
+      selector.isEmpty && parameter.isEmpty && defaultValue.isEmpty;
+}
+
+@freezed
+sealed class ExtraSelectorRule with _$ExtraSelectorRule {
+  @JsonSerializable(explicitToJson: true)
+  const factory ExtraSelectorRule({
+    required String id,
+    @Default(false) bool persistent,
+    @Default(SelectorRule()) SelectorRule selector,
+  }) = _ExtraSelectorRule;
+
+  factory ExtraSelectorRule.fromJson(Map<String, dynamic> json) =>
+      _$ExtraSelectorRuleFromJson(json);
+}
+
+@freezed
+sealed class ParserConfig with _$ParserConfig {
+  @JsonSerializable(explicitToJson: true)
+  const factory ParserConfig({
+    @Default(<String, SelectorRule>{}) Map<String, SelectorRule> selectors,
+    @Default(<ExtraSelectorRule>[]) List<ExtraSelectorRule> extras,
+  }) = _ParserConfig;
+
+  factory ParserConfig.fromJson(Map<String, dynamic> json) =>
+      _$ParserConfigFromJson(json);
 }
 
 /// 一个业务操作的完整声明。
 ///
 /// [links] 只描述业务 endpoint 之间的导航关系，不包含 UI 路由对象。
-final class EndpointRule {
-  EndpointRule({
-    required this.id,
-    required this.kind,
-    required this.name,
-    required this.request,
-    required this.parserId,
-    required this.pagination,
-    this.cachePolicy = EndpointCachePolicy.networkFirst,
-    this.icon = '',
-    this.visible = true,
-    this.links = const EndpointLinks(),
-  });
+@freezed
+sealed class EndpointRule with _$EndpointRule {
+  @JsonSerializable(explicitToJson: true)
+  const factory EndpointRule({
+    required String id,
+    @EndpointEndpointKindJsonConverter() required EndpointKind kind,
+    required String name,
+    @Default('') String icon,
+    @Default(true) bool visible,
+    required RequestRule request,
+    required String parserId,
+    required PaginationRule pagination,
+    @Default(EndpointCachePolicy.networkFirst) EndpointCachePolicy cachePolicy,
+    @Default(EndpointLinks()) EndpointLinks links,
+    @Default(EndpointPresentation()) EndpointPresentation presentation,
+  }) = _EndpointRule;
 
-  final String id;
-  final EndpointKind kind;
-  final String name;
-  final String icon;
-  final bool visible;
-  final RequestRule request;
-  final String parserId;
-  final PaginationRule pagination;
-  final EndpointCachePolicy cachePolicy;
-  final EndpointLinks links;
+  factory EndpointRule.fromJson(Map<String, dynamic> json) =>
+      _$EndpointRuleFromJson(json);
+}
 
-  factory EndpointRule.fromJson(JsonMap json) => EndpointRule(
-    id: json['id'] as String? ?? '',
-    kind: _requiredEnumByName(
-      EndpointKind.values,
-      json['kind'],
-      'endpoint.kind',
-    ),
-    name: json['name'] as String? ?? '',
-    icon: json['icon'] as String? ?? '',
-    visible: json['visible'] as bool? ?? true,
-    request: RequestRule.fromJson(_jsonMap(json['request'])),
-    parserId: json['parserId'] as String? ?? '',
-    pagination: PaginationRule.fromJson(_jsonMap(json['pagination'])),
-    cachePolicy: json['cachePolicy'] == null
-        ? EndpointCachePolicy.networkFirst
-        : _requiredEnumByName(
-            EndpointCachePolicy.values,
-            json['cachePolicy'],
-            'endpoint.cachePolicy',
-          ),
-    links: EndpointLinks.fromJson(_jsonMap(json['links'])),
-  );
+enum EndpointFilterType { boolean, integer, decimal, text }
 
-  JsonMap toJson() => {
-    'id': id,
-    'kind': kind.name,
-    'name': name,
-    'icon': icon,
-    'visible': visible,
-    'request': request.toJson(),
-    'parserId': parserId,
-    'pagination': pagination.toJson(),
-    'cachePolicy': cachePolicy.name,
-    'links': links.toJson(),
-  };
+@freezed
+sealed class EndpointSubpage with _$EndpointSubpage {
+  const factory EndpointSubpage({
+    @Default('') String name,
+    @Default('') String key,
+    @Default('') String value,
+  }) = _EndpointSubpage;
+
+  factory EndpointSubpage.fromJson(Map<String, dynamic> json) =>
+      _$EndpointSubpageFromJson(json);
+}
+
+@freezed
+sealed class EndpointFilter with _$EndpointFilter {
+  const factory EndpointFilter({
+    @Default('') String name,
+    @Default('') String key,
+    @Default(EndpointFilterType.text) EndpointFilterType type,
+    @Default('') String defaultValue,
+  }) = _EndpointFilter;
+
+  factory EndpointFilter.fromJson(Map<String, dynamic> json) =>
+      _$EndpointFilterFromJson(json);
+}
+
+@freezed
+sealed class EndpointPresentation with _$EndpointPresentation {
+  @JsonSerializable(explicitToJson: true)
+  const factory EndpointPresentation({
+    @Default(<EndpointSubpage>[]) List<EndpointSubpage> subpages,
+    @Default(<EndpointFilter>[]) List<EndpointFilter> filters,
+    @Default(SelectorScript.output()) SelectorScript filterScript,
+    @Default(' ') String autocompleteSplitChar,
+    @Default(2000) int autocompleteTimeout,
+  }) = _EndpointPresentation;
+
+  factory EndpointPresentation.fromJson(Map<String, dynamic> json) =>
+      _$EndpointPresentationFromJson(json);
 }
 
 /// endpoint 之间的业务关联。
-final class EndpointLinks {
-  const EndpointLinks({this.item, this.autocomplete, this.reader});
+@freezed
+sealed class EndpointLinks with _$EndpointLinks {
+  const EndpointLinks._();
 
-  final String? item;
-  final String? autocomplete;
-  final String? reader;
+  const factory EndpointLinks({
+    @JsonKey(includeIfNull: false) String? item,
+    @JsonKey(includeIfNull: false) String? autocomplete,
+    @JsonKey(includeIfNull: false) String? reader,
+  }) = _EndpointLinks;
 
-  factory EndpointLinks.fromJson(JsonMap json) => EndpointLinks(
-    item: json['item'] as String?,
-    autocomplete: json['autocomplete'] as String?,
-    reader: json['reader'] as String?,
-  );
+  factory EndpointLinks.fromJson(Map<String, dynamic> json) =>
+      _$EndpointLinksFromJson(json);
 
   /// 返回所有非空目标 ID，供编译器统一校验引用。
   Iterable<String> get ids => [item, autocomplete, reader].whereType<String>();
-
-  JsonMap toJson() {
-    final json = <String, Object?>{};
-    if (item != null) json['item'] = item;
-    if (autocomplete != null) json['autocomplete'] = autocomplete;
-    if (reader != null) json['reader'] = reader;
-    return json;
-  }
 }
 
 /// URI、query、header 和 body 分离的结构化请求规则。
 ///
 /// query、header 和 body 中的值允许使用 `{{variable}}` 模板。
-final class RequestRule {
-  RequestRule({
-    required this.method,
-    required this.url,
-    Map<String, Object?> query = const {},
-    Map<String, Object?> headers = const {},
-    this.body = const RequestBodyRule.none(),
-    this.idempotent = false,
-  }) : query = freezeJsonMap(query, path: r'$.request.query'),
-       headers = freezeJsonMap(headers, path: r'$.request.headers');
+@freezed
+sealed class RequestRule with _$RequestRule {
+  const RequestRule._();
 
-  final RequestMethod method;
-  final String url;
-  final Map<String, Object?> query;
-  final Map<String, Object?> headers;
-  final RequestBodyRule body;
-  final bool idempotent;
+  @JsonSerializable(explicitToJson: true)
+  const factory RequestRule({
+    required RequestMethod method,
+    required String url,
+    @FrozenJsonMapConverter() @Default(<String, Object?>{}) JsonMap query,
+    @FrozenJsonMapConverter() @Default(<String, Object?>{}) JsonMap headers,
+    @Default(RequestBodyRule.none()) RequestBodyRule body,
+    @Default(false) bool idempotent,
+  }) = _RequestRule;
+
+  factory RequestRule.fromJson(Map<String, dynamic> json) =>
+      _$RequestRuleFromJson(json);
 
   /// 此请求是否允许传输层自动重试。
   bool get canRetryAutomatically =>
       method == RequestMethod.get ||
       method == RequestMethod.delete ||
       idempotent;
-
-  factory RequestRule.fromJson(JsonMap json) => RequestRule(
-    method: _requiredEnumByName(
-      RequestMethod.values,
-      json['method'],
-      'request.method',
-    ),
-    url: json['url'] as String? ?? '',
-    query: _jsonMap(json['query']),
-    headers: _jsonMap(json['headers']),
-    body: RequestBodyRule.fromJson(_jsonMap(json['body'])),
-    idempotent: json['idempotent'] as bool? ?? false,
-  );
-
-  JsonMap toJson() => {
-    'method': method.name,
-    'url': url,
-    'query': query,
-    'headers': headers,
-    'body': body.toJson(),
-    'idempotent': idempotent,
-  };
 }
 
-/// endpoint 请求体的声明式规则。
-sealed class RequestBodyRule {
-  const RequestBodyRule();
-
+/// 请求体的声明式规则。
+@Freezed(unionKey: 'type')
+sealed class RequestBodyRule with _$RequestBodyRule {
   const factory RequestBodyRule.none() = NoRequestBodyRule;
-  factory RequestBodyRule.json(Object? value) = JsonRequestBodyRule;
-  factory RequestBodyRule.form(Map<String, Object?> fields) =
+
+  const factory RequestBodyRule.json(
+    @FrozenJsonValueConverter() Object? value,
+  ) = JsonRequestBodyRule;
+
+  const factory RequestBodyRule.form(@FrozenJsonMapConverter() JsonMap fields) =
       FormRequestBodyRule;
+
   const factory RequestBodyRule.text(String value) = TextRequestBodyRule;
 
-  factory RequestBodyRule.fromJson(JsonMap json) {
-    return switch (json['type']) {
-      'json' => RequestBodyRule.json(json['value']),
-      'form' => RequestBodyRule.form(_jsonMap(json['fields'])),
-      'text' => RequestBodyRule.text(json['value'] as String? ?? ''),
-      'none' => const RequestBodyRule.none(),
-      _ => throw FormatException('Unknown request body type: ${json['type']}'),
-    };
-  }
-
-  JsonMap toJson();
-}
-
-/// 不发送请求体。
-final class NoRequestBodyRule extends RequestBodyRule {
-  const NoRequestBodyRule();
-
-  @override
-  JsonMap toJson() => const {'type': 'none'};
-}
-
-/// 保留 JSON 类型的请求体。
-final class JsonRequestBodyRule extends RequestBodyRule {
-  JsonRequestBodyRule(Object? value)
-    : value = freezeJsonValue(value, path: r'$.request.body.value');
-  final Object? value;
-
-  @override
-  JsonMap toJson() => {'type': 'json', 'value': value};
-}
-
-/// application/x-www-form-urlencoded 表单请求体。
-final class FormRequestBodyRule extends RequestBodyRule {
-  FormRequestBodyRule(Map<String, Object?> fields)
-    : fields = freezeJsonMap(fields, path: r'$.request.body.fields');
-
-  final Map<String, Object?> fields;
-
-  @override
-  JsonMap toJson() => {'type': 'form', 'fields': fields};
-}
-
-/// 纯文本请求体。
-final class TextRequestBodyRule extends RequestBodyRule {
-  const TextRequestBodyRule(this.value);
-  final String value;
-
-  @override
-  JsonMap toJson() => {'type': 'text', 'value': value};
+  factory RequestBodyRule.fromJson(Map<String, dynamic> json) =>
+      _$RequestBodyRuleFromJson(json);
 }
 
 /// endpoint 的显式分页规则。
-sealed class PaginationRule {
-  const PaginationRule();
-
+@Freezed(unionKey: 'type')
+sealed class PaginationRule with _$PaginationRule {
   const factory PaginationRule.none() = NoPaginationRule;
+
   const factory PaginationRule.pageNumber({
     required String variable,
     required int initial,
@@ -299,114 +298,67 @@ sealed class PaginationRule {
     required int pageSize,
     required PageEndCondition endCondition,
   }) = PageNumberPaginationRule;
+
   const factory PaginationRule.continuation({
     required ContinuationTarget target,
-    String? variable,
-    required String responseField,
+    @JsonKey(includeIfNull: false) String? variable,
+    @Default('continuation') String responseField,
   }) = ContinuationPaginationRule;
 
-  factory PaginationRule.fromJson(JsonMap json) {
-    return switch (json['type']) {
-      'pageNumber' => PaginationRule.pageNumber(
-        variable: json['variable'] as String? ?? 'page',
-        initial: json['initial'] as int? ?? 0,
-        step: json['step'] as int? ?? 1,
-        pageSize: json['pageSize'] as int? ?? 1,
-        endCondition: _requiredEnumByName(
-          PageEndCondition.values,
-          json['endCondition'],
-          'pagination.endCondition',
-        ),
-      ),
-      'continuation' => PaginationRule.continuation(
-        target: _requiredEnumByName(
-          ContinuationTarget.values,
-          json['target'],
-          'pagination.target',
-        ),
-        variable: json['variable'] as String?,
-        responseField: json['responseField'] as String? ?? '',
-      ),
-      'none' => const PaginationRule.none(),
-      _ => throw FormatException('Unknown pagination type: ${json['type']}'),
-    };
+  factory PaginationRule.fromJson(Map<String, dynamic> json) =>
+      _$PaginationRuleFromJson(json);
+}
+
+final class FrozenJsonMapConverter implements JsonConverter<JsonMap, Object?> {
+  const FrozenJsonMapConverter();
+
+  @override
+  JsonMap fromJson(Object? json) {
+    if (json is! Map) return const {};
+    return freezeJsonMap(
+      json.map((key, value) => MapEntry(key.toString(), value)),
+      path: r'$.json',
+    );
   }
 
-  JsonMap toJson();
+  @override
+  Object? toJson(JsonMap object) => object;
 }
 
-/// 不支持分页的 endpoint。
-final class NoPaginationRule extends PaginationRule {
-  const NoPaginationRule();
+final class FrozenJsonValueConverter
+    implements JsonConverter<Object?, Object?> {
+  const FrozenJsonValueConverter();
 
   @override
-  JsonMap toJson() => const {'type': 'none'};
-}
-
-/// 使用固定起点、步长和页大小的页码分页。
-final class PageNumberPaginationRule extends PaginationRule {
-  const PageNumberPaginationRule({
-    required this.variable,
-    required this.initial,
-    required this.step,
-    required this.pageSize,
-    required this.endCondition,
-  });
-
-  final String variable;
-  final int initial;
-  final int step;
-  final int pageSize;
-  final PageEndCondition endCondition;
+  Object? fromJson(Object? json) => freezeJsonValue(json, path: r'$.json');
 
   @override
-  JsonMap toJson() => {
-    'type': 'pageNumber',
-    'variable': variable,
-    'initial': initial,
-    'step': step,
-    'pageSize': pageSize,
-    'endCondition': endCondition.name,
-  };
+  Object? toJson(Object? object) => object;
 }
 
-/// 使用响应返回的 continuation 值进行顺序分页。
-///
-/// [responseField] 告知解析器从响应的哪个业务字段读取 continuation。
-final class ContinuationPaginationRule extends PaginationRule {
-  const ContinuationPaginationRule({
-    required this.target,
-    this.variable,
-    this.responseField = 'continuation',
-  });
-
-  final ContinuationTarget target;
-  final String? variable;
-  final String responseField;
+final class ParserEndpointKindJsonConverter
+    implements JsonConverter<EndpointKind, String> {
+  const ParserEndpointKindJsonConverter();
 
   @override
-  JsonMap toJson() {
-    final json = <String, Object?>{
-      'type': 'continuation',
-      'target': target.name,
-      'responseField': responseField,
-    };
-    if (variable != null) json['variable'] = variable;
-    return json;
-  }
+  EndpointKind fromJson(String json) =>
+      _requiredEnumByName(EndpointKind.values, json, 'parser.kind');
+
+  @override
+  String toJson(EndpointKind object) => object.name;
 }
 
-List<JsonMap> _jsonList(Object? value) => switch (value) {
-  List<Object?> values => values.map(_jsonMap).toList(growable: false),
-  _ => const [],
-};
+final class EndpointEndpointKindJsonConverter
+    implements JsonConverter<EndpointKind, String> {
+  const EndpointEndpointKindJsonConverter();
 
-JsonMap _jsonMap(Object? value) => switch (value) {
-  Map<Object?, Object?> map => map.map(
-    (key, value) => MapEntry(key.toString(), value),
-  ),
-  _ => <String, Object?>{},
-};
+  @override
+  EndpointKind fromJson(String json) =>
+      _requiredEnumByName(EndpointKind.values, json, 'endpoint.kind');
+
+  @override
+  String toJson(EndpointKind object) => object.name;
+}
 
 T _requiredEnumByName<T extends Enum>(
   List<T> values,

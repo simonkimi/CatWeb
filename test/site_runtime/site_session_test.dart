@@ -59,7 +59,6 @@ SiteDefinition _definition() => SiteDefinition(
     ParserRule(
       id: 'reader-parser',
       kind: EndpointKind.reader,
-      config: const {},
     ),
   ],
   endpoints: [

@@ -10,7 +10,6 @@ void main() {
     final parser = ParserRule(
       id: 'list-parser',
       kind: EndpointKind.list,
-      config: {},
     );
     final endpoint = EndpointRule(
       id: 'list',

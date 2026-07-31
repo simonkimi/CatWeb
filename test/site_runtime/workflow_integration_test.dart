@@ -70,7 +70,7 @@ SiteDefinition _definition() {
     baseUrl: 'https://example.test/',
     parsers: [
       for (final kind in EndpointKind.values)
-        ParserRule(id: '${kind.name}-parser', kind: kind, config: const {}),
+        ParserRule(id: '${kind.name}-parser', kind: kind),
     ],
     endpoints: [
       EndpointRule(

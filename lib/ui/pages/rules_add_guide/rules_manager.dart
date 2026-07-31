@@ -15,19 +15,19 @@ import 'package:catweb/utils/context_helper.dart';
 import 'package:catweb/utils/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
-enum _MenuSelect { edit, share, delete }
+enum _MenuSelect { edit, exportJson, delete }
 
 class SiteManager extends StatelessWidget {
   const SiteManager({super.key});
 
   static const routeName = 'SiteManager';
 
-  DbService get dbService => getIt.get();
-  SiteService get siteService => getIt.get();
-
   @override
   Widget build(BuildContext context) {
+    final dbService = context.read<DbService>();
     return CupertinoPageScaffold(
       navigationBar: _buildAppbar(context),
       child: SafeArea(
@@ -73,19 +73,20 @@ class SiteManager extends StatelessWidget {
 
   Widget _buildSiteItem(BuildContext context, WebTableData db) {
     final summary = _summaryOf(db.blueprint);
+    final siteService = context.read<SiteService>();
     return siteService.currentSiteNotifier.obx((site) {
       return CupertinoCardTile(
         selected: site?.id == db.id,
         title: Text(summary.name),
         subtitle: Text(
-          summary.valid ? summary.baseUrl : '旧版或无效规则，需要重新导入 schemaVersion 2',
+          summary.valid ? summary.baseUrl : '无效规则，仅支持 schemaVersion 2',
         ),
         trailing: const Icon(Icons.more_horiz),
         onTrailingTap: () => _onTrailingTap(context, db, summary),
         onTap: () async {
           await siteService.setNewSite(siteService.id == db.id ? null : db);
           final failure = siteService.loadFailureNotifier.value;
-          if (failure != null) BotToast.showText(text: failure);
+          if (failure != null) BotToast.showText(text: failure.toString());
         },
       );
     });
@@ -130,7 +131,7 @@ class SiteManager extends StatelessWidget {
       context: context,
       items: [
         SelectTileItem(title: I.of(context).edit, value: _MenuSelect.edit),
-        const SelectTileItem(title: '分享', value: _MenuSelect.share),
+        const SelectTileItem(title: '导出 JSON', value: _MenuSelect.exportJson),
         SelectTileItem(
           title: I.of(context).delete,
           value: _MenuSelect.delete,
@@ -141,12 +142,32 @@ class SiteManager extends StatelessWidget {
     switch (result) {
       case null:
         return;
-      case _MenuSelect.share:
+      case _MenuSelect.exportJson:
+        await _exportJson(db);
         return;
       case _MenuSelect.edit:
         await navigator.to(RulesEditPage(db: db));
+        return;
       case _MenuSelect.delete:
         await _onDelete(context, db, summary.name);
+    }
+  }
+
+  Future<void> _exportJson(WebTableData db) async {
+    try {
+      final decoded = jsonDecode(db.blueprint);
+      if (decoded is! Map) throw const FormatException('规则格式无效');
+      final json = decoded.map<String, Object?>(
+        (key, value) => MapEntry(key.toString(), value),
+      );
+      final definition = const SiteCompiler().compileJson(json).definition;
+      final output = const JsonEncoder.withIndent(
+        '  ',
+      ).convert(definition.toJson());
+      await Clipboard.setData(ClipboardData(text: output));
+      BotToast.showText(text: '规则 JSON 已复制到剪贴板');
+    } catch (error) {
+      BotToast.showText(text: '导出失败: $error');
     }
   }
 
@@ -163,7 +184,7 @@ class SiteManager extends StatelessWidget {
           confineTextColor: CupertinoColors.systemRed.resolveFrom(context),
         ) ==
         true) {
-      await dbService.webDao.remove(db);
+      await context.read<DbService>().webDao.remove(db);
     }
   }
 
@@ -177,16 +198,6 @@ class SiteManager extends StatelessWidget {
       final site = const SiteCompiler().compileJson(json).definition;
       return _SiteSummary(site.name, site.baseUrl, true);
     } catch (_) {
-      try {
-        final decoded = jsonDecode(source);
-        if (decoded is Map) {
-          return _SiteSummary(
-            decoded['name']?.toString() ?? 'Invalid site',
-            decoded['baseUrl']?.toString() ?? '',
-            false,
-          );
-        }
-      } catch (_) {}
       return const _SiteSummary('Invalid site', '', false);
     }
   }

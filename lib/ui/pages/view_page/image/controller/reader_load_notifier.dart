@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:catweb/app.dart';
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/loading/cancellation.dart';
 import 'package:catweb/data/loading/resource_loader.dart';
@@ -34,14 +33,14 @@ final class ReaderLoaderNotifier extends ChangeNotifier {
     required this.endpoint,
     required this.requestContext,
     required this.session,
-  }) : settingService = getIt.get(),
-       _loader = ResourceLoader<int, ImageResult>(
+    required this.settingService,
+  }) : _loader = ResourceLoader<int, ImageResult>(
          source: _ReaderImageSource(
            readerInfo: readerInfo,
            endpoint: endpoint,
            requestContext: requestContext,
            session: session,
-           quality: () => getIt.get<SettingService>().imageQuality,
+           quality: () => settingService.imageQuality,
          ),
          maxConcurrency: 1,
          retention: ResourceRetention.memory,

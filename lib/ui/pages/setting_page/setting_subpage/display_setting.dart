@@ -1,7 +1,6 @@
 import 'package:catweb/data/controller/settings.dart';
 
 import 'package:catweb/i18n.dart';
-import 'package:catweb/app.dart';
 import 'package:catweb/ui/widgets/cupertino_vn_input.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
@@ -9,16 +8,16 @@ import 'package:catweb/ui/pages/setting_page/widgets/setting_base.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_selection.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class DisplaySettingPage extends StatelessWidget {
   const DisplaySettingPage({super.key, this.fromSetting = true});
 
   final bool fromSetting;
 
-  SettingService get controller => getIt.get();
-
   @override
   Widget build(BuildContext context) {
+    final controller = context.read<SettingService>();
     return SettingScaffold(
       title: I.of(context).display,
       children: [

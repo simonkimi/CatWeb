@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:catweb/data/controller/settings.dart';
-import 'package:catweb/app.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_read_notifier.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,74 +16,73 @@ class ImagePreviewSlider extends StatefulWidget {
 class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
   late final GlobalKey listGlobalKey;
   late final ScrollController scrollController;
+  late final ReaderNotifier readerController;
 
   @override
   void initState() {
     super.initState();
     listGlobalKey = GlobalKey();
     scrollController = ScrollController();
+    readerController = context.read<ReaderNotifier>();
     _onScroll();
+    readerController.addListener(_onReaderChanged);
+  }
 
-    final ReaderNotifier controller = context.watch();
+  void _onReaderChanged() {
     const aniDuration = Duration(milliseconds: 300);
 
-    controller.addListener(() {
-      if (!scrollController.hasClients) {
-        return;
+    if (!scrollController.hasClients) return;
+    final RenderBox? box =
+        listGlobalKey.currentContext?.findRenderObject() as RenderBox?;
+    final boxSize = box?.size;
+    if (boxSize == null) return;
+    if (readerController.isForwardDirection) {
+      final offset =
+          (readerController.currentPage - 1) * (boxSize.height * 0.618 + 2);
+
+      if ((offset - scrollController.offset).abs() > boxSize.width * 1.5) {
+        scrollController.jumpTo(offset);
       }
-      final RenderBox? box =
-          listGlobalKey.currentContext?.findRenderObject() as RenderBox?;
-      final boxSize = box?.size;
-      if (boxSize == null) {
-        return;
-      }
-      if (controller.isForwardDirection) {
-        final offset =
-            (controller.currentPage - 1) * (boxSize.height * 0.618 + 2);
 
-        if ((offset - scrollController.offset).abs() > boxSize.width * 1.5) {
-          scrollController.jumpTo(offset);
-        }
-
-        if (offset > scrollController.position.maxScrollExtent) {
-          scrollController.animateTo(
-            scrollController.position.maxScrollExtent,
-            duration: aniDuration,
-            curve: Curves.ease,
-          );
-          return;
-        }
-
+      if (offset > scrollController.position.maxScrollExtent) {
         scrollController.animateTo(
-          offset,
+          scrollController.position.maxScrollExtent,
           duration: aniDuration,
           curve: Curves.ease,
         );
-      } else {
-        final offset =
-            (controller.currentPage + 2) * (boxSize.height * 0.618 + 2) -
-            boxSize.width;
+        return;
+      }
 
-        if ((offset - scrollController.offset).abs() > boxSize.width * 1.5) {
-          scrollController.jumpTo(offset);
-        }
+      scrollController.animateTo(
+        offset,
+        duration: aniDuration,
+        curve: Curves.ease,
+      );
+    } else {
+      final offset =
+          (readerController.currentPage + 2) *
+              (boxSize.height * 0.618 + 2) -
+          boxSize.width;
 
-        if (offset < 0) {
-          scrollController.animateTo(
-            0,
-            duration: aniDuration,
-            curve: Curves.ease,
-          );
-          return;
-        }
+      if ((offset - scrollController.offset).abs() > boxSize.width * 1.5) {
+        scrollController.jumpTo(offset);
+      }
 
+      if (offset < 0) {
         scrollController.animateTo(
-          offset,
+          0,
           duration: aniDuration,
           curve: Curves.ease,
         );
+        return;
       }
-    });
+
+      scrollController.animateTo(
+        offset,
+        duration: aniDuration,
+        curve: Curves.ease,
+      );
+    }
   }
 
   void _onScroll() {
@@ -111,6 +109,7 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
   @override
   Widget build(BuildContext context) {
     final ReaderNotifier controller = context.read();
+    final settingService = context.read<SettingService>();
 
     return SizedBox(
       height: 50,
@@ -188,9 +187,8 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
 
   @override
   void dispose() {
-    super.dispose();
+    readerController.removeListener(_onReaderChanged);
     scrollController.dispose();
+    super.dispose();
   }
-
-  SettingService get settingService => getIt.get();
 }

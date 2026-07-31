@@ -1,71 +1,51 @@
-import 'dart:async';
 import 'dart:convert';
 
-import 'package:catweb/app.dart';
-import 'package:catweb/data/controller/db.dart';
-import 'package:catweb/data/controller/global.dart';
-import 'package:catweb/data/controller/settings.dart';
-import 'package:catweb/data/database/cookie_jar_storage.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/media/image_repository.dart';
-import 'package:catweb/data/site_runtime/json_values.dart';
+import 'package:catweb/data/repositories/site_repository.dart';
+import 'package:catweb/data/site_runtime/persistent_environment_store.dart';
 import 'package:catweb/data/site_runtime/runtime_contracts.dart';
 import 'package:catweb/data/site_runtime/site_definition.dart';
-import 'package:catweb/network/runtime/dio_http_transport.dart';
-import 'package:catweb/network/runtime/site_dio_factory.dart';
+import 'package:catweb/network/runtime/site_runtime_factory.dart';
 import 'package:catweb/network/runtime/site_session.dart';
-import 'package:cookie_jar/cookie_jar.dart';
 import 'package:flutter/foundation.dart';
 
 /// Flutter 应用层持有的站点运行配置。
 ///
-/// 该对象负责把数据库、设置和 Dio 适配器组装为一个 [SiteSession]；业务页面只通过
+/// 该对象只适配数据库实体、UI 可监听状态和已组装的 [SiteSession]；业务页面只通过
 /// [session] 和 [imageRepository] 访问加载能力。切换站点时必须调用 [dispose]。
 final class SiteRenderConfigModel {
   SiteRenderConfigModel({
     required this.definition,
     required WebTableData dbEntity,
+    required this.repository,
+    required SiteRuntimeFactory runtimeFactory,
     this.parserEngine = const UnavailableParserEngine(),
   }) : _dbEntity = dbEntity,
        favicon = dbEntity.favicon.isNotEmpty
            ? ValueNotifier<Uint8List?>(dbEntity.favicon)
            : ValueNotifier<Uint8List?>(null) {
     final environment = _decodeEnvironment(dbEntity.env);
-    final globalService = getIt.get<GlobalService>();
-    final clients = const SiteDioFactory().create(
-      definition: definition,
-      cookieJar: PersistCookieJar(
-        ignoreExpires: false,
-        storage: CookieJarStorage(dbEntity.uuid),
-      ),
-      documentCacheOptions: globalService.cacheOptions,
-      imageCacheOptions: globalService.imageCacheOption,
-    );
-    _environment = _PersistentEnvironmentStore(
+    _environment = PersistentEnvironmentStore(
       initial: environment,
       persist: (values) async {
         await _replaceEntity(_dbEntity.copyWith(env: jsonEncode(values)));
       },
     );
-    final configuredConcurrency = getIt.get<SettingService>().concurrencyCount;
-    session = SiteSession(
+    session = runtimeFactory.create(
       definition: definition,
       parser: parserEngine,
+      entity: dbEntity,
       environment: _environment,
-      documentDio: clients.document,
-      imageDio: clients.image,
-      documentCacheOptions: globalService.cacheOptions,
-      imageCacheOptions: globalService.imageCacheOption,
-      imageConcurrency: configuredConcurrency < 1 ? 1 : configuredConcurrency,
-      failureMapper: const SiteRuntimeFailureMapper(),
     );
   }
 
   WebTableData _dbEntity;
   final SiteDefinition definition;
+  final SiteRepository repository;
   final ParserEngine parserEngine;
   final ValueNotifier<Uint8List?> favicon;
-  late final _PersistentEnvironmentStore _environment;
+  late final PersistentEnvironmentStore _environment;
   late final SiteSession session;
 
   WebTableData get dbEntity => _dbEntity;
@@ -90,7 +70,7 @@ final class SiteRenderConfigModel {
   }
 
   Future<void> _replaceEntity(WebTableData entity) async {
-    await getIt.get<DbService>().webDao.replace(entity);
+    await repository.replace(entity);
     _dbEntity = entity;
   }
 
@@ -110,36 +90,5 @@ final class SiteRenderConfigModel {
       }
     } catch (_) {}
     return const {};
-  }
-}
-
-final class _PersistentEnvironmentStore implements EnvironmentStore {
-  _PersistentEnvironmentStore({
-    required Map<String, Object?> initial,
-    required this.persist,
-  }) : _values = Map<String, Object?>.of(
-         freezeScalarMap(initial, path: r'$.environment'),
-       );
-
-  final Future<void> Function(Map<String, Object?> values) persist;
-  Map<String, Object?> _values;
-  Future<void> _tail = Future<void>.value();
-
-  @override
-  Future<Map<String, Object?>> snapshot() async {
-    await _tail;
-    return Map<String, Object?>.unmodifiable(_values);
-  }
-
-  @override
-  Future<void> apply(Map<String, Object?> patch) {
-    final frozen = freezeScalarMap(patch, path: r'$.environment.patch');
-    final commit = _tail.then((_) async {
-      final next = <String, Object?>{..._values, ...frozen};
-      await persist(next);
-      _values = next;
-    });
-    _tail = commit.catchError((_) {});
-    return commit;
   }
 }

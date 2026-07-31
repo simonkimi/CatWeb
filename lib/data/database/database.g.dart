@@ -74,7 +74,7 @@ class $WebTableTable extends WebTable
     false,
     type: DriftSqlType.int,
     requiredDuringInsert: false,
-    clientDefault: () => DateTime.now().millisecond,
+    clientDefault: currentTimestampMillis,
   );
   static const VerificationMeta _securityModelMeta = const VerificationMeta(
     'securityModel',

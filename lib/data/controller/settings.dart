@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -38,7 +40,21 @@ class SettingService {
         _prefs.getBool('blurWhenBackground') ?? false;
     imageQualityNotifier.value =
         ImageQuality.values[_prefs.getInt('imageQuality') ?? 0];
+    _bindPersistence();
     return this;
+  }
+
+  void _bindPersistence() {
+    defaultSiteNotifier.addListener(_persistDefaultSite);
+    imageMaskInDarkModeNotifier.addListener(_persistImageMaskInDarkMode);
+    cardSizeNotifier.addListener(_persistCardSize);
+    preloadCountNotifier.addListener(_persistPreloadCount);
+    readerDirectoryNotifier.addListener(_persistReaderDirectory);
+    displayTypeNotifier.addListener(_persistDisplayType);
+    concurrencyCountNotifier.addListener(_persistConcurrencyCount);
+    protectCookieNotifier.addListener(_persistProtectCookie);
+    blurWhenBackgroundNotifier.addListener(_persistBlurWhenBackground);
+    imageQualityNotifier.addListener(_persistImageQuality);
   }
 
   int get defaultSite => defaultSiteNotifier.value;
@@ -62,53 +78,97 @@ class SettingService {
   ImageQuality get imageQuality => imageQualityNotifier.value;
 
   void setDefaultSite(int value) {
-    _prefs.setInt('defaultSite', value);
     defaultSiteNotifier.value = value;
   }
 
   void setImageMaskInDarkMode(bool value) {
-    _prefs.setBool('imageMaskInDarkMode', value);
     imageMaskInDarkModeNotifier.value = value;
   }
 
   void setCardSize(CardSize value) {
-    _prefs.setInt('cardSize', value.index);
     cardSizeNotifier.value = value;
   }
 
   void setPreloadCount(int value) {
-    _prefs.setInt('preloadCount', value);
     preloadCountNotifier.value = value;
   }
 
   void setReaderDirectory(ReaderDirection value) {
-    _prefs.setInt('readerDirectory', value.index);
     readerDirectoryNotifier.value = value;
   }
 
   void setDisplayType(ReaderDisplayType value) {
-    _prefs.setInt('displayType', value.index);
     displayTypeNotifier.value = value;
   }
 
   void setConcurrencyCount(int value) {
-    _prefs.setInt('concurrencyCount', value);
     concurrencyCountNotifier.value = value;
   }
 
   void setProtectCookie(bool value) {
-    _prefs.setBool('protectCookie', value);
     protectCookieNotifier.value = value;
   }
 
   void setBlurWhenBackground(bool value) {
-    _prefs.setBool('blurWhenBackground', value);
     blurWhenBackgroundNotifier.value = value;
   }
 
   void setImageQuality(ImageQuality value) {
-    _prefs.setInt('imageQuality', value.index);
     imageQualityNotifier.value = value;
+  }
+
+  void _persistDefaultSite() =>
+      unawaited(_prefs.setInt('defaultSite', defaultSite));
+
+  void _persistImageMaskInDarkMode() => unawaited(
+    _prefs.setBool('imageMaskInDarkMode', imageMaskInDarkMode),
+  );
+
+  void _persistCardSize() =>
+      unawaited(_prefs.setInt('cardSize', cardSize.index));
+
+  void _persistPreloadCount() =>
+      unawaited(_prefs.setInt('preloadCount', preloadCount));
+
+  void _persistReaderDirectory() =>
+      unawaited(_prefs.setInt('readerDirectory', readerDirectory.index));
+
+  void _persistDisplayType() =>
+      unawaited(_prefs.setInt('displayType', displayType.index));
+
+  void _persistConcurrencyCount() =>
+      unawaited(_prefs.setInt('concurrencyCount', concurrencyCount));
+
+  void _persistProtectCookie() =>
+      unawaited(_prefs.setBool('protectCookie', protectCookie));
+
+  void _persistBlurWhenBackground() =>
+      unawaited(_prefs.setBool('blurWhenBackground', blurWhenBackground));
+
+  void _persistImageQuality() =>
+      unawaited(_prefs.setInt('imageQuality', imageQuality.index));
+
+  void dispose() {
+    defaultSiteNotifier.removeListener(_persistDefaultSite);
+    imageMaskInDarkModeNotifier.removeListener(_persistImageMaskInDarkMode);
+    cardSizeNotifier.removeListener(_persistCardSize);
+    preloadCountNotifier.removeListener(_persistPreloadCount);
+    readerDirectoryNotifier.removeListener(_persistReaderDirectory);
+    displayTypeNotifier.removeListener(_persistDisplayType);
+    concurrencyCountNotifier.removeListener(_persistConcurrencyCount);
+    protectCookieNotifier.removeListener(_persistProtectCookie);
+    blurWhenBackgroundNotifier.removeListener(_persistBlurWhenBackground);
+    imageQualityNotifier.removeListener(_persistImageQuality);
+    defaultSiteNotifier.dispose();
+    imageMaskInDarkModeNotifier.dispose();
+    cardSizeNotifier.dispose();
+    preloadCountNotifier.dispose();
+    readerDirectoryNotifier.dispose();
+    displayTypeNotifier.dispose();
+    concurrencyCountNotifier.dispose();
+    protectCookieNotifier.dispose();
+    blurWhenBackgroundNotifier.dispose();
+    imageQualityNotifier.dispose();
   }
 }
 

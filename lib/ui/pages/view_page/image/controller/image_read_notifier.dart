@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 import 'package:catweb/data/controller/settings.dart';
-import 'package:catweb/app.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/reader_load_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:photo_view/photo_view.dart';
@@ -9,7 +8,10 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 class ReaderNotifier extends ChangeNotifier {
   final ReaderLoaderNotifier imageLoadNotifier;
 
-  ReaderNotifier({required this.imageLoadNotifier});
+  ReaderNotifier({
+    required this.imageLoadNotifier,
+    required this.settingService,
+  });
 
   int currentPage = 0;
 
@@ -17,7 +19,7 @@ class ReaderNotifier extends ChangeNotifier {
   final ItemPositionsListener listPositionsListener =
       ItemPositionsListener.create();
   final PageController pageController = PageController();
-  final SettingService settingService = getIt.get();
+  final SettingService settingService;
   final PhotoViewController photoViewController = PhotoViewController();
 
   int _isForwardDirection = 0;

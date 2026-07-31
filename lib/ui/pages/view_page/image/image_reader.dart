@@ -1,12 +1,12 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:catweb/app.dart';
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/models/image_with_preview.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/data/site_runtime/runtime_contracts.dart';
 import 'package:catweb/data/site_runtime/site_definition.dart';
-import 'package:catweb/app.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
@@ -40,6 +40,7 @@ class ImageReader extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settingService = context.read<SettingService>();
     final hideToolbarAniController = useAnimationController(
       duration: const Duration(milliseconds: 200),
     );
@@ -75,11 +76,13 @@ class ImageReader extends HookWidget {
             endpoint: endpoint,
             requestContext: requestContext,
             session: website.session,
+            settingService: settingService,
           ),
         ),
         ChangeNotifierProvider(
           create: (context) => ReaderNotifier(
             imageLoadNotifier: context.read<ReaderLoaderNotifier>(),
+            settingService: settingService,
           ),
         ),
       ],
@@ -125,6 +128,7 @@ class _ImageReaderTrailing extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settingService = context.read<SettingService>();
     final readerDirectory = useValueListenable(
       settingService.readerDirectoryNotifier,
     );
@@ -168,8 +172,6 @@ class _ImageReaderTrailing extends HookWidget {
       ],
     );
   }
-
-  SettingService get settingService => getIt.get();
 }
 
 class _ImageReaderImage extends HookWidget {
@@ -180,6 +182,7 @@ class _ImageReaderImage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final readController = context.read<ReaderNotifier>();
+    final settingService = context.read<SettingService>();
     final ticker = useSingleTickerProvider();
 
     final readerDirectory = useValueListenable(
@@ -217,6 +220,7 @@ class _ImageReaderImage extends HookWidget {
     TickerProvider ticker,
   ) {
     final controller = context.read<ReaderNotifier>();
+    final settingService = context.read<SettingService>();
 
     final int readIndex = switch (settingService.displayType) {
       ReaderDisplayType.double => index * 2,
@@ -253,6 +257,7 @@ class _ImageReaderImage extends HookWidget {
     int index,
     TickerProvider ticker,
   ) {
+    final settingService = context.read<SettingService>();
     final realIndex = switch (settingService.displayType) {
       ReaderDisplayType.double => index * 2,
       ReaderDisplayType.doubleCover => max((index - 1) * 2 + 1, 0),
@@ -303,8 +308,6 @@ class _ImageReaderImage extends HookWidget {
       controller.toNextPage();
     }
   }
-
-  SettingService get settingService => getIt.get();
 }
 
 class _ImageReaderSlider extends StatelessWidget {

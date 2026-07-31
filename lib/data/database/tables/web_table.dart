@@ -1,6 +1,8 @@
 import 'package:drift/drift.dart';
 import 'package:uuid/uuid.dart';
 
+int currentTimestampMillis() => DateTime.now().millisecondsSinceEpoch;
+
 class WebTable extends Table {
   IntColumn get id => integer().autoIncrement()();
 
@@ -15,7 +17,7 @@ class WebTable extends Table {
       blob().clientDefault(() => Uint8List.fromList([]))();
 
   IntColumn get lastOpen =>
-      integer().clientDefault(() => DateTime.now().millisecond)();
+      integer().clientDefault(currentTimestampMillis)();
 
   BoolColumn get securityModel => boolean().clientDefault(() => true)();
 
