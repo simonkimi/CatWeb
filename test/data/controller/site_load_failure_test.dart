@@ -6,10 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('maps compile errors to a non-retryable configuration failure', () {
     final cause = SiteCompileException(['missing parser', 'invalid endpoint']);
-    final failure = const SiteLoadFailureMapper().map(
-      cause,
-      StackTrace.empty,
-    );
+    final failure = const SiteLoadFailureMapper().map(cause, StackTrace.empty);
 
     expect(failure.kind, LoadFailureKind.configuration);
     expect(failure.retryable, isFalse);

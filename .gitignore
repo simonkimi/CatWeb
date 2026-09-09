@@ -25,6 +25,9 @@
 # is commented out by default.
 #.vscode/
 
+# Rust related
+rust/target/
+
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id

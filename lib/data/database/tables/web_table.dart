@@ -16,8 +16,7 @@ class WebTable extends Table {
   BlobColumn get favicon =>
       blob().clientDefault(() => Uint8List.fromList([]))();
 
-  IntColumn get lastOpen =>
-      integer().clientDefault(currentTimestampMillis)();
+  IntColumn get lastOpen => integer().clientDefault(currentTimestampMillis)();
 
   BoolColumn get securityModel => boolean().clientDefault(() => true)();
 

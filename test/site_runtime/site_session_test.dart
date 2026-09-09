@@ -55,12 +55,7 @@ SiteDefinition _definition() => SiteDefinition(
   id: 'session',
   name: 'Session',
   baseUrl: 'https://example.test/',
-  parsers: [
-    ParserRule(
-      id: 'reader-parser',
-      kind: EndpointKind.reader,
-    ),
-  ],
+  parsers: [ParserRule(id: 'reader-parser', kind: EndpointKind.reader)],
   endpoints: [
     EndpointRule(
       id: 'reader',

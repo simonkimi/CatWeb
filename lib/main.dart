@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/data/controller/db.dart';
 import 'package:catweb/data/controller/global.dart';
@@ -7,8 +8,9 @@ import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/repositories/site_repository.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/network/runtime/site_runtime_factory.dart';
-import 'package:catweb/ui/theme/themes.dart';
+import 'package:catweb/src/rust/frb_generated.dart';
 import 'package:catweb/ui/pages/view_page/viewer_main.dart';
+import 'package:catweb/ui/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -57,6 +59,7 @@ Future<void> initializeApp() async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await RustLib.init();
   await initializeApp();
   runApp(
     MyApp(

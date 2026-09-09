@@ -18,6 +18,7 @@ analyzer:
     - macos/**
 
 
+    - rust_builder/cargokit/**
 linter:
   rules:
     avoid_print: false

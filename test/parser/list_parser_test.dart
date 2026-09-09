@@ -7,10 +7,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('unavailable parser fails explicitly', () async {
-    final parser = ParserRule(
-      id: 'list-parser',
-      kind: EndpointKind.list,
-    );
+    final parser = ParserRule(id: 'list-parser', kind: EndpointKind.list);
     final endpoint = EndpointRule(
       id: 'list',
       kind: EndpointKind.list,

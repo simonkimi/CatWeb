@@ -60,8 +60,7 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
       );
     } else {
       final offset =
-          (readerController.currentPage + 2) *
-              (boxSize.height * 0.618 + 2) -
+          (readerController.currentPage + 2) * (boxSize.height * 0.618 + 2) -
           boxSize.width;
 
       if ((offset - scrollController.offset).abs() > boxSize.width * 1.5) {

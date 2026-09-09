@@ -120,9 +120,8 @@ class SettingService {
   void _persistDefaultSite() =>
       unawaited(_prefs.setInt('defaultSite', defaultSite));
 
-  void _persistImageMaskInDarkMode() => unawaited(
-    _prefs.setBool('imageMaskInDarkMode', imageMaskInDarkMode),
-  );
+  void _persistImageMaskInDarkMode() =>
+      unawaited(_prefs.setBool('imageMaskInDarkMode', imageMaskInDarkMode));
 
   void _persistCardSize() =>
       unawaited(_prefs.setInt('cardSize', cardSize.index));
