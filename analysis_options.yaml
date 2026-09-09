@@ -11,6 +11,11 @@ analyzer:
     - '**/*.h.dart'
     - 'lib/gen/*.dart'
     - '**/*.mocks.dart'
+    - build/**
+    - android/**
+    - ios/**
+    - windows/**
+    - macos/**
 
 
 linter:
