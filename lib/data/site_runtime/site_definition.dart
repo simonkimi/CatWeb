@@ -2,6 +2,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'json_values.dart';
 
+export 'parser_selector_keys.dart';
+
 part 'site_definition.freezed.dart';
 part 'site_definition.g.dart';
 

@@ -29,29 +29,35 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       kind: EndpointKind.list,
       config: ParserConfig(
         selectors: {
-          'item': SelectorRule(
+          ParserSelectorKey.item: SelectorRule(
             selector:
                 "//div[@class='gl1t'] | //*[starts-with(@class, 'gl2')]/..",
             queryType: SelectorQueryType.xpath,
           ),
-          'idCode': SelectorRule(
+          ParserSelectorKey.idCode: SelectorRule(
             selector: '.glname a, .gl1e a, .gl3t a',
             function: SelectorFunctionType.attribute,
             parameter: 'href',
             regex: r'g\/(\d+\/\w+)',
           ),
-          'title': SelectorRule(selector: '.glink'),
-          'subtitle': SelectorRule(selector: '.gl5m a, .gl4c a, .gl3e a'),
-          'language': SelectorRule(selector: '.gt[title^=language]'),
-          'imageCount': SelectorRule(
+          ParserSelectorKey.title: SelectorRule(selector: '.glink'),
+          ParserSelectorKey.subtitle: SelectorRule(
+            selector: '.gl5m a, .gl4c a, .gl3e a',
+          ),
+          ParserSelectorKey.language: SelectorRule(
+            selector: '.gt[title^=language]',
+          ),
+          ParserSelectorKey.imageCount: SelectorRule(
             selector:
                 "//div[@class='glthumb']/*[2]/*[2]|//div[@class='gl3e']/*[5]|//div[@class='gl5t']/*[2]/*[2]",
             queryType: SelectorQueryType.xpath,
             regex: r'\d+',
           ),
-          'badge.container': SelectorRule(selector: '.gt, .gtl'),
-          'tag.container': SelectorRule(selector: '.cn, .cs'),
-          'rating': SelectorRule(
+          ParserSelectorKey.badge: SelectorRule(
+            selector: '.gt, .gtl',
+          ),
+          ParserSelectorKey.tag: SelectorRule(selector: '.cn, .cs'),
+          ParserSelectorKey.rating: SelectorRule(
             selector: '.ir',
             function: SelectorFunctionType.attribute,
             parameter: 'style',
@@ -59,20 +65,20 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
             replace: r'5-$1/16-($2-1)/40',
             script: SelectorScript.javaScript(source: r'eval($arg)'),
           ),
-          'uploadTime': SelectorRule(
+          ParserSelectorKey.uploadTime: SelectorRule(
             selector: '.gl2c>div:nth-child(3),.glnew,.gl3e>div:nth-child(2)',
           ),
-          'preview.url': SelectorRule(
+          ParserSelectorKey.previewUrl: SelectorRule(
             selector: '.gl2c img,.glthumb img,.gl1e img,.gl3t img',
             function: SelectorFunctionType.attribute,
             parameter: 'data-src,src',
           ),
-          'nextPage': SelectorRule(
+          ParserSelectorKey.nextPage: SelectorRule(
             selector: '#unext',
             function: SelectorFunctionType.attribute,
             parameter: 'href',
           ),
-          'failure': SelectorRule(
+          ParserSelectorKey.failure: SelectorRule(
             selector: '//*[contains(text(), "IP address has")]',
             queryType: SelectorQueryType.xpath,
           ),
@@ -85,47 +91,53 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       kind: EndpointKind.gallery,
       config: ParserConfig(
         selectors: {
-          'title': SelectorRule(
+          ParserSelectorKey.title: SelectorRule(
             selector: '//h1[@id="gj"]/text() | //h1[@id="gn"]/text()',
             queryType: SelectorQueryType.xpath,
           ),
-          'subtitle': SelectorRule(selector: '#gdn'),
-          'uploadTime': SelectorRule(selector: '#gdd tr:nth-child(1)>.gdt2'),
-          'language': SelectorRule(selector: '#gdd tr:nth-child(4)>.gdt2'),
-          'imageCount': SelectorRule(
+          ParserSelectorKey.subtitle: SelectorRule(selector: '#gdn'),
+          ParserSelectorKey.uploadTime: SelectorRule(
+            selector: '#gdd tr:nth-child(1)>.gdt2',
+          ),
+          ParserSelectorKey.language: SelectorRule(
+            selector: '#gdd tr:nth-child(4)>.gdt2',
+          ),
+          ParserSelectorKey.imageCount: SelectorRule(
             selector: '#gdd tr:nth-child(6)>.gdt2',
             regex: r'\d+',
           ),
-          'rating': SelectorRule(
+          ParserSelectorKey.rating: SelectorRule(
             selector: '#rating_label',
             regex: r'Average: (.+)',
           ),
-          'tag.container': SelectorRule(selector: '.cs'),
-          'badge.container': SelectorRule(selector: '.gt,.gtl'),
-          'description': SelectorRule(
+          ParserSelectorKey.tag: SelectorRule(selector: '.cs'),
+          ParserSelectorKey.badge: SelectorRule(selector: '.gt,.gtl'),
+          ParserSelectorKey.description: SelectorRule(
             selector:
                 '//a[@name="ulcomment"]/ancestor::div[@class="c1"]//div[@id="comment_0"]',
             queryType: SelectorQueryType.xpath,
           ),
-          'comment.container': SelectorRule(
+          ParserSelectorKey.comment: SelectorRule(
             selector: "//div[starts-with(@class, 'c5')]/../..",
             queryType: SelectorQueryType.xpath,
           ),
-          'thumbnail.container': SelectorRule(selector: '.gdtm, .gdtl'),
-          'thumbnail.target': SelectorRule(
+          ParserSelectorKey.thumbnail: SelectorRule(
+            selector: '.gdtm, .gdtl',
+          ),
+          ParserSelectorKey.thumbnailTarget: SelectorRule(
             selector: 'a',
             function: SelectorFunctionType.attribute,
             parameter: 'href',
             regex: r'\/s\/(.+)',
           ),
-          'cover.url': SelectorRule(
+          ParserSelectorKey.coverUrl: SelectorRule(
             selector: '#gd1 div',
             function: SelectorFunctionType.attribute,
             parameter: 'style',
             regex: r'url\((.+)\)',
           ),
-          'countPerPage': SelectorRule(selector: '#gdo'),
-          'failure': SelectorRule(
+          ParserSelectorKey.countPerPage: SelectorRule(selector: '#gdo'),
+          ParserSelectorKey.failure: SelectorRule(
             selector: '//*[contains(text(), "IP address has")]',
             queryType: SelectorQueryType.xpath,
           ),
@@ -138,18 +150,18 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       kind: EndpointKind.reader,
       config: ParserConfig(
         selectors: {
-          'id': SelectorRule(
+          ParserSelectorKey.id: SelectorRule(
             selector: '#i2 .sn a:nth-child(1)',
             function: SelectorFunctionType.attribute,
             parameter: 'href',
             regex: r's\/(.+)',
           ),
-          'image.url': SelectorRule(
+          ParserSelectorKey.imageUrl: SelectorRule(
             selector: '#i3 img',
             function: SelectorFunctionType.attribute,
             parameter: 'src',
           ),
-          'rawImage': SelectorRule(
+          ParserSelectorKey.rawImage: SelectorRule(
             selector: '#i7 a',
             function: SelectorFunctionType.attribute,
             parameter: 'href',
@@ -163,16 +175,16 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       kind: EndpointKind.autocomplete,
       config: ParserConfig(
         selectors: {
-          'item': SelectorRule(
+          ParserSelectorKey.item: SelectorRule(
             selector: r'tags.*',
             queryType: SelectorQueryType.jsonPath,
           ),
-          'title': SelectorRule(
+          ParserSelectorKey.title: SelectorRule(
             script: SelectorScript.javaScript(
               source: r'var r=JSON.parse($arg);r.ns+":"+r.tn',
             ),
           ),
-          'subtitle': SelectorRule(
+          ParserSelectorKey.subtitle: SelectorRule(
             script: SelectorScript.javaScript(
               source: r'var r=JSON.parse($arg);r.mns+":"+r.mtn',
             ),
