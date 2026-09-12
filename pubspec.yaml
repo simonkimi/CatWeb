@@ -40,7 +40,9 @@ dependencies:
   dio_cookie_manager: ^3.4.0
   dio_http_formatter: ^3.3.1
 
-  flutter_inappwebview: ^6.2.0-beta.3
+  # Disabled: Xcode 26.4 / Swift 6.3 breaks flutter_inappwebview_macos
+  # (ASWebAuthenticationPresentationContextProviding availability).
+  # flutter_inappwebview: ^6.2.0-beta.3
 
   # state
   flutter_hooks: ^0.21.3+1

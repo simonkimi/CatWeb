@@ -1,3 +1,31 @@
+import 'package:catweb/i18n.dart';
+import 'package:flutter/cupertino.dart';
+
+class WebViewLoginIn extends StatelessWidget {
+  const WebViewLoginIn({super.key, required this.url});
+
+  final String url;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text(I.of(context).login),
+      ),
+      child: const Center(
+        child: Padding(
+          padding: EdgeInsets.all(24),
+          child: Text(
+            '网页登录暂时不可用。',
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/*
 import 'dart:ui';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
@@ -134,3 +162,4 @@ class _WebViewLoginInState extends State<WebViewLoginIn> {
   Future<List<Cookie>> _getCookies() =>
       _cookieManager.getCookies(url: WebUri.uri(currentUri ?? Uri.base));
 }
+*/

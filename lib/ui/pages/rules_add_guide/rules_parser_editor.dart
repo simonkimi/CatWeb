@@ -683,7 +683,7 @@ const _listSections = [
   ]),
   _SelectorSection('标签', [
     _SelectorField(
-      ParserSelectorKey.tagContainer,
+      ParserSelectorKey.tag,
       '标签选择器',
       onlySelector: true,
     ),
@@ -693,7 +693,7 @@ const _listSections = [
   ]),
   _SelectorSection('徽章', [
     _SelectorField(
-      ParserSelectorKey.badgeContainer,
+      ParserSelectorKey.badge,
       '徽章选择器',
       onlySelector: true,
     ),
@@ -731,7 +731,7 @@ const _gallerySections = [
   ]),
   _SelectorSection('标签', [
     _SelectorField(
-      ParserSelectorKey.tagContainer,
+      ParserSelectorKey.tag,
       '标签选择器',
       onlySelector: true,
     ),
@@ -741,7 +741,7 @@ const _gallerySections = [
   ]),
   _SelectorSection('评论', [
     _SelectorField(
-      ParserSelectorKey.commentContainer,
+      ParserSelectorKey.comment,
       '评论项目',
       onlySelector: true,
     ),
@@ -751,7 +751,7 @@ const _gallerySections = [
   ]),
   _SelectorSection('缩略图', [
     _SelectorField(
-      ParserSelectorKey.thumbnailContainer,
+      ParserSelectorKey.thumbnail,
       '缩略图选择器',
       onlySelector: true,
     ),
@@ -787,7 +787,7 @@ const _readerSections = [
     _SelectorField(ParserSelectorKey.uploadTime, '上传时间'),
   ]),
   _SelectorSection('标签', [
-    _SelectorField(ParserSelectorKey.tagContainer, '标签项目'),
+    _SelectorField(ParserSelectorKey.tag, '标签项目'),
     _SelectorField(ParserSelectorKey.tagText, '标签内容'),
     _SelectorField(ParserSelectorKey.tagCategory, '标签类型'),
     _SelectorField(ParserSelectorKey.tagColor, '标签颜色'),
