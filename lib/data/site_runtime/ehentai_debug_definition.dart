@@ -1,3 +1,5 @@
+import 'package:catweb/env.dart';
+
 import 'site_definition.dart';
 
 /// 新建规则时使用的 E-Hentai 调试模板。
@@ -8,19 +10,25 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
   id: id,
   name: 'E-Hentai',
   baseUrl: 'https://e-hentai.org/',
-  options: const SiteOptions(
+  options: SiteOptions(
     flags: 'ignoreCertificate',
     loginUrl: 'https://e-hentai.org/bounce_login.php',
     loginCookiePattern: 'e-hentai.org',
     loginCookieDescription: '因为登录无法直连，登录域名与站点域名不同',
-    headers: [
-      RegexValueRule(pattern: r'104.20.134.21', value: 'host=e-hentai.org'),
+    headers: const [],
+    cookies: [
+      RegexValueRule(pattern: r'e-hentai.org', value: 'nw=1'),
       RegexValueRule(
-        pattern: r'178.162.147.246',
-        value: 'host=api.e-hentai.org',
+        pattern: r'e-hentai.org',
+        value:
+            'ipb_member_id=${AppEnv.maybeGet('IPB_MEMBER_ID', defaultValue: '')}',
+      ),
+      RegexValueRule(
+        pattern: r'e-hentai.org',
+        value:
+            'ipb_pass_hash=${AppEnv.maybeGet('IPB_PASS_HASH', defaultValue: '')}',
       ),
     ],
-    cookies: [RegexValueRule(pattern: r'104.20.134.21', value: 'nw=1')],
   ),
   parsers: const [
     ParserRule(

@@ -6,6 +6,7 @@ import 'package:catweb/data/controller/global.dart';
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/repositories/site_repository.dart';
+import 'package:catweb/env.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/network/runtime/site_runtime_factory.dart';
 import 'package:catweb/src/rust/frb_generated.dart';
@@ -58,6 +59,7 @@ Future<void> initializeApp() async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await AppEnv.load();
   await RustLib.init();
   await initializeApp();
   runApp(

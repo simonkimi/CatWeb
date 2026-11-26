@@ -59,6 +59,7 @@ dependencies:
   path: ^1.9.1
 
   # tools
+  flutter_dotenv: ^6.0.2
   intl: 0.20.3
   synchronized: ^3.6.1
   uuid: ^4.6.0
@@ -90,5 +91,6 @@ flutter:
   generate: true
 
   assets:
+    - .env
     - assets/images/
     - assets/svgs/

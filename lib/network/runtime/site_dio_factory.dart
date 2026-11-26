@@ -1,5 +1,6 @@
 import 'package:catweb/data/site_runtime/site_definition.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
+import 'package:catweb/network/interceptor/site_option_rules_interceptor.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
@@ -58,6 +59,7 @@ final class SiteDioFactory {
       ),
     );
     dio.transformer = EncodeTransformer();
+    dio.interceptors.add(SiteOptionRulesInterceptor(definition.options));
     dio.interceptors.add(CookieManager(cookieJar));
     dio.interceptors.add(DioCacheInterceptor(options: cacheOptions));
     if (!image) {
