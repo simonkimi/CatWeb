@@ -1,12 +1,14 @@
 use std::collections::HashMap;
 use std::fmt;
 
+use serde::{Deserialize, Serialize};
+
 pub const INTERNAL_ERROR: i32 = 0;
 pub const PARSER_ERROR: i32 = 1;
 pub const ELEMENT_NOT_FOUND: i32 = 2;
 pub const CONVERTER_ERROR: i32 = 3;
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ParseError {
     pub code: i32,
     pub message: String,

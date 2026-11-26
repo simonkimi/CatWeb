@@ -48,14 +48,11 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
             selector: '.gt[title^=language]',
           ),
           ParserSelectorKey.imageCount: SelectorRule(
-            selector:
-                "//div[@class='glthumb']/*[2]/*[2]|//div[@class='gl3e']/*[5]|//div[@class='gl5t']/*[2]/*[2]",
+            selector: ".//div[@class='glthumb']/*[2]/*[2]|.//div[@class='gl3e']/*[5]|.//div[@class='gl5t']/*[2]/*[2]",
             queryType: SelectorQueryType.xpath,
             regex: r'\d+',
           ),
-          ParserSelectorKey.badge: SelectorRule(
-            selector: '.gt, .gtl',
-          ),
+          ParserSelectorKey.badge: SelectorRule(selector: '.gt, .gtl'),
           ParserSelectorKey.tag: SelectorRule(selector: '.cn, .cs'),
           ParserSelectorKey.rating: SelectorRule(
             selector: '.ir',
@@ -113,17 +110,14 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
           ParserSelectorKey.tag: SelectorRule(selector: '.cs'),
           ParserSelectorKey.badge: SelectorRule(selector: '.gt,.gtl'),
           ParserSelectorKey.description: SelectorRule(
-            selector:
-                '//a[@name="ulcomment"]/ancestor::div[@class="c1"]//div[@id="comment_0"]',
+            selector: '//a[@name="ulcomment"]/ancestor::div[@class="c1"]//div[@id="comment_0"]',
             queryType: SelectorQueryType.xpath,
           ),
           ParserSelectorKey.comment: SelectorRule(
             selector: "//div[starts-with(@class, 'c5')]/../..",
             queryType: SelectorQueryType.xpath,
           ),
-          ParserSelectorKey.thumbnail: SelectorRule(
-            selector: '.gdtm, .gdtl',
-          ),
+          ParserSelectorKey.thumbnail: SelectorRule(selector: '.gdtm, .gdtl'),
           ParserSelectorKey.thumbnailTarget: SelectorRule(
             selector: 'a',
             function: SelectorFunctionType.attribute,
@@ -265,8 +259,7 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       presentation: EndpointPresentation(
         filters: _ehHomeFilters,
         filterScript: SelectorScript.javaScript(
-          source:
-              'function hook(n){var a=JSON.parse(n),r=0,i=0,o=["misc","doujinshi","manga","artistcg","gamecg","imageset","cosplay","asianporn","nonh","western"];for(var s in o)r+=a["b_"+o[s]]?0:1<<i,i+=1;var e=["advsearch=1"];for(var s in 0!=r&&e.push("f_cats="+r),a)-1!=s.indexOf("f")&&a[s]&&e.push(s+"=on");return e.join("&")}',
+          source: 'function hook(n){var a=JSON.parse(n),r=0,i=0,o=["misc","doujinshi","manga","artistcg","gamecg","imageset","cosplay","asianporn","nonh","western"];for(var s in o)r+=a["b_"+o[s]]?0:1<<i,i+=1;var e=["advsearch=1"];for(var s in 0!=r&&e.push("f_cats="+r),a)-1!=s.indexOf("f")&&a[s]&&e.push(s+"=on");return e.join("&")}',
         ),
       ),
     ),

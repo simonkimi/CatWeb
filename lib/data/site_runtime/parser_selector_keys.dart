@@ -13,6 +13,7 @@ abstract final class ParserSelectorKey {
   static const pageCount = 'pageCount';
   static const countPerPage = 'countPerPage';
   static const language = 'language';
+  static const paper = 'paper';
   static const description = 'description';
   static const nextPage = 'nextPage';
   static const success = 'success';
@@ -23,6 +24,7 @@ abstract final class ParserSelectorKey {
 
   static const preview = 'preview';
   static const previewUrl = 'preview.url';
+  static const previewCacheKey = 'preview.cacheKey';
   static const previewWidth = 'preview.width';
   static const previewHeight = 'preview.height';
   static const previewX = 'preview.x';

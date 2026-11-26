@@ -9,11 +9,13 @@ crate-type = ["cdylib", "staticlib"]
 [dependencies]
 flutter_rust_bridge = "=2.13.0"
 serde = { version = "1.0.229", features = ["derive"] }
-xmloxide = { git = "https://github.com/simonkimi/xmloxide.git" , tag = "0.5.1"}
-thiserror = "2.0.10"
-boa_engine = "0.21.0"
-regex = "1.12.3"
+xmloxide = { git = "https://github.com/simonkimi/xmloxide.git", branch = "feature/html-serialize" }
+thiserror = "2.0.21"
+boa_engine = "0.22.0"
+regex = "1.13.2"
+
+[dev-dependencies]
+serde_json = "1.0"
 
 [lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(frb_expand)'] }
- 
