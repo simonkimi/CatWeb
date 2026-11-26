@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/reader_load_notifier.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 

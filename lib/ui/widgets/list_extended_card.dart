@@ -4,8 +4,8 @@ import 'package:catweb/ui/widgets/badge.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/utils/context_helper.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ListExtendedCard extends StatelessWidget {

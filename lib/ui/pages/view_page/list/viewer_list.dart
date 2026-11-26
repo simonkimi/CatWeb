@@ -6,7 +6,7 @@ import 'package:catweb/ui/pages/view_page/list/subpage_list.dart';
 import 'package:catweb/ui/pages/view_page/viewer_provider.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:provider/provider.dart';
 
 import 'subpage_notifier.dart';

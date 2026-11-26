@@ -6,7 +6,7 @@ import 'package:catweb/ui/pages/view_page/image/controller/reader_load_notifier.
 import 'package:catweb/ui/pages/view_page/image/image_reader.dart';
 import 'package:catweb/ui/pages/view_page/list/viewer_list.dart';
 import 'package:catweb/ui/pages/view_page/viewer_provider.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:provider/provider.dart';
 
 import 'gallery/viewer_gallery.dart';

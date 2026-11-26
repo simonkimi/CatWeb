@@ -14,7 +14,7 @@ import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
 import 'package:catweb/utils/context_helper.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:provider/provider.dart';
 
 class RulesEditPage extends StatefulWidget {

@@ -8,7 +8,7 @@ import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/widgets/setting_group.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_base.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:provider/provider.dart';
 
 class SecuritySettingPage extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 class RuleFormPage extends StatelessWidget {
   const RuleFormPage({required this.children, super.key});

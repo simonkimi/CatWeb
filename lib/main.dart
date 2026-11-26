@@ -11,9 +11,8 @@ import 'package:catweb/network/runtime/site_runtime_factory.dart';
 import 'package:catweb/src/rust/frb_generated.dart';
 import 'package:catweb/ui/pages/view_page/viewer_main.dart';
 import 'package:catweb/ui/theme/themes.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
@@ -103,12 +102,7 @@ class MyApp extends HookWidget {
       child: CupertinoApp(
         title: 'CatWeb',
         debugShowCheckedModeBanner: false,
-        localizationsDelegates: [
-          GlobalCupertinoLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          I.delegate,
-        ],
+        localizationsDelegates: I.localizationsDelegates,
         home: ViewerMain(siteService: siteService),
         builder: (context, child) {
           final root = Stack(

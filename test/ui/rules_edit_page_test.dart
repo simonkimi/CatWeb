@@ -1,6 +1,6 @@
-import 'package:catweb/l10n/app_localizations.dart';
+import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -9,8 +9,8 @@ void main() {
   ) async {
     await tester.pumpWidget(
       const CupertinoApp(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: I.localizationsDelegates,
+        supportedLocales: I.supportedLocales,
         home: RulesEditPage(),
       ),
     );
@@ -40,8 +40,8 @@ void main() {
   ) async {
     await tester.pumpWidget(
       const CupertinoApp(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: I.localizationsDelegates,
+        supportedLocales: I.supportedLocales,
         home: RulesEditPage(),
       ),
     );
@@ -86,8 +86,8 @@ void main() {
   ) async {
     await tester.pumpWidget(
       const CupertinoApp(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: I.localizationsDelegates,
+        supportedLocales: I.supportedLocales,
         home: RulesEditPage(),
       ),
     );

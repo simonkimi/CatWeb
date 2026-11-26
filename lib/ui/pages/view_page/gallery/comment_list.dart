@@ -3,7 +3,7 @@ import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/widgets/comment_item.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 class CommentListPage extends StatelessWidget {
   const CommentListPage({super.key, required this.comments});

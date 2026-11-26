@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'site_definition.dart';
@@ -9,6 +9,7 @@ part of 'site_definition.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $SiteDefinitionCopyWith<SiteDefinition> get copyWith => _$SiteDefinitionCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SiteDefinition&&(identical(other.schemaVersion, schemaVersion) || other.schemaVersion == schemaVersion)&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.baseUrl, baseUrl) || other.baseUrl == baseUrl)&&(identical(other.options, options) || other.options == options)&&const DeepCollectionEquality().equals(other.parsers, parsers)&&const DeepCollectionEquality().equals(other.endpoints, endpoints));
+  final _this = this as SiteDefinition;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SiteDefinition&&(identical(other.schemaVersion, _this.schemaVersion) || other.schemaVersion == _this.schemaVersion)&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.baseUrl, _this.baseUrl) || other.baseUrl == _this.baseUrl)&&(identical(other.options, _this.options) || other.options == _this.options)&&const DeepCollectionEquality().equals(other.parsers, _this.parsers)&&const DeepCollectionEquality().equals(other.endpoints, _this.endpoints));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,schemaVersion,id,name,baseUrl,options,const DeepCollectionEquality().hash(parsers),const DeepCollectionEquality().hash(endpoints));
+int get hashCode {
+  final _this = this as SiteDefinition;
+  return Object.hash(runtimeType,_this.schemaVersion,_this.id,_this.name,_this.baseUrl,_this.options,const DeepCollectionEquality().hash(_this.parsers),const DeepCollectionEquality().hash(_this.endpoints));
+}
 
 @override
 String toString() {
-  return 'SiteDefinition(schemaVersion: $schemaVersion, id: $id, name: $name, baseUrl: $baseUrl, options: $options, parsers: $parsers, endpoints: $endpoints)';
+  final _this = this as SiteDefinition;
+  return 'SiteDefinition(schemaVersion: ${_this.schemaVersion}, id: ${_this.id}, name: ${_this.name}, baseUrl: ${_this.baseUrl}, options: ${_this.options}, parsers: ${_this.parsers}, endpoints: ${_this.endpoints})';
 }
 
 
@@ -66,7 +72,7 @@ class _$SiteDefinitionCopyWithImpl<$Res>
 /// Create a copy of SiteDefinition
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? schemaVersion = null,Object? id = null,Object? name = null,Object? baseUrl = null,Object? options = null,Object? parsers = null,Object? endpoints = null,}) {
-  return _then(_self.copyWith(
+  return _then(SiteDefinition(
 schemaVersion: null == schemaVersion ? _self.schemaVersion : schemaVersion // ignore: cast_nullable_to_non_nullable
 as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -218,7 +224,7 @@ return $default(_that.schemaVersion,_that.id,_that.name,_that.baseUrl,_that.opti
 
 @JsonSerializable(explicitToJson: true)
 class _SiteDefinition extends SiteDefinition {
-  const _SiteDefinition({this.schemaVersion = 0, this.id = '', this.name = '', this.baseUrl = '', this.options = const SiteOptions(), final  List<ParserRule> parsers = const <ParserRule>[], final  List<EndpointRule> endpoints = const <EndpointRule>[]}): _parsers = parsers,_endpoints = endpoints,super._();
+  const _SiteDefinition({this.schemaVersion = 0, this.id = '', this.name = '', this.baseUrl = '', this.options = const SiteOptions(),  List<ParserRule> parsers = const <ParserRule>[],  List<EndpointRule> endpoints = const <EndpointRule>[]}): _parsers = parsers,_endpoints = endpoints,super._();
   factory _SiteDefinition.fromJson(Map<String, dynamic> json) => _$SiteDefinitionFromJson(json);
 
 @override@JsonKey() final  int schemaVersion;
@@ -254,16 +260,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SiteDefinition&&(identical(other.schemaVersion, schemaVersion) || other.schemaVersion == schemaVersion)&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.baseUrl, baseUrl) || other.baseUrl == baseUrl)&&(identical(other.options, options) || other.options == options)&&const DeepCollectionEquality().equals(other._parsers, _parsers)&&const DeepCollectionEquality().equals(other._endpoints, _endpoints));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SiteDefinition&&(identical(other.schemaVersion, schemaVersion) || other.schemaVersion == schemaVersion)&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.baseUrl, baseUrl) || other.baseUrl == baseUrl)&&(identical(other.options, options) || other.options == options)&&const DeepCollectionEquality().equals(other.parsers, _parsers)&&const DeepCollectionEquality().equals(other.endpoints, _endpoints));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,schemaVersion,id,name,baseUrl,options,const DeepCollectionEquality().hash(_parsers),const DeepCollectionEquality().hash(_endpoints));
+int get hashCode {
+    return Object.hash(runtimeType,schemaVersion,id,name,baseUrl,options,const DeepCollectionEquality().hash(_parsers),const DeepCollectionEquality().hash(_endpoints));
+}
 
 @override
 String toString() {
-  return 'SiteDefinition(schemaVersion: $schemaVersion, id: $id, name: $name, baseUrl: $baseUrl, options: $options, parsers: $parsers, endpoints: $endpoints)';
+    return 'SiteDefinition(schemaVersion: $schemaVersion, id: $id, name: $name, baseUrl: $baseUrl, options: $options, parsers: $parsers, endpoints: $endpoints)';
 }
 
 
@@ -333,16 +341,21 @@ $RegexValueRuleCopyWith<RegexValueRule> get copyWith => _$RegexValueRuleCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RegexValueRule&&(identical(other.pattern, pattern) || other.pattern == pattern)&&(identical(other.value, value) || other.value == value));
+  final _this = this as RegexValueRule;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RegexValueRule&&(identical(other.pattern, _this.pattern) || other.pattern == _this.pattern)&&(identical(other.value, _this.value) || other.value == _this.value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,pattern,value);
+int get hashCode {
+  final _this = this as RegexValueRule;
+  return Object.hash(runtimeType,_this.pattern,_this.value);
+}
 
 @override
 String toString() {
-  return 'RegexValueRule(pattern: $pattern, value: $value)';
+  final _this = this as RegexValueRule;
+  return 'RegexValueRule(pattern: ${_this.pattern}, value: ${_this.value})';
 }
 
 
@@ -371,7 +384,7 @@ class _$RegexValueRuleCopyWithImpl<$Res>
 /// Create a copy of RegexValueRule
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? pattern = null,Object? value = null,}) {
-  return _then(_self.copyWith(
+  return _then(RegexValueRule(
 pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
 as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,
@@ -528,16 +541,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RegexValueRule&&(identical(other.pattern, pattern) || other.pattern == pattern)&&(identical(other.value, value) || other.value == value));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _RegexValueRule&&(identical(other.pattern, pattern) || other.pattern == pattern)&&(identical(other.value, value) || other.value == value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,pattern,value);
+int get hashCode {
+    return Object.hash(runtimeType,pattern,value);
+}
 
 @override
 String toString() {
-  return 'RegexValueRule(pattern: $pattern, value: $value)';
+    return 'RegexValueRule(pattern: $pattern, value: $value)';
 }
 
 
@@ -593,16 +608,21 @@ $SiteOptionsCopyWith<SiteOptions> get copyWith => _$SiteOptionsCopyWithImpl<Site
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SiteOptions&&(identical(other.flags, flags) || other.flags == flags)&&(identical(other.loginUrl, loginUrl) || other.loginUrl == loginUrl)&&(identical(other.loginCookiePattern, loginCookiePattern) || other.loginCookiePattern == loginCookiePattern)&&(identical(other.loginCookieDescription, loginCookieDescription) || other.loginCookieDescription == loginCookieDescription)&&const DeepCollectionEquality().equals(other.headers, headers)&&const DeepCollectionEquality().equals(other.cookies, cookies));
+  final _this = this as SiteOptions;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SiteOptions&&(identical(other.flags, _this.flags) || other.flags == _this.flags)&&(identical(other.loginUrl, _this.loginUrl) || other.loginUrl == _this.loginUrl)&&(identical(other.loginCookiePattern, _this.loginCookiePattern) || other.loginCookiePattern == _this.loginCookiePattern)&&(identical(other.loginCookieDescription, _this.loginCookieDescription) || other.loginCookieDescription == _this.loginCookieDescription)&&const DeepCollectionEquality().equals(other.headers, _this.headers)&&const DeepCollectionEquality().equals(other.cookies, _this.cookies));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,flags,loginUrl,loginCookiePattern,loginCookieDescription,const DeepCollectionEquality().hash(headers),const DeepCollectionEquality().hash(cookies));
+int get hashCode {
+  final _this = this as SiteOptions;
+  return Object.hash(runtimeType,_this.flags,_this.loginUrl,_this.loginCookiePattern,_this.loginCookieDescription,const DeepCollectionEquality().hash(_this.headers),const DeepCollectionEquality().hash(_this.cookies));
+}
 
 @override
 String toString() {
-  return 'SiteOptions(flags: $flags, loginUrl: $loginUrl, loginCookiePattern: $loginCookiePattern, loginCookieDescription: $loginCookieDescription, headers: $headers, cookies: $cookies)';
+  final _this = this as SiteOptions;
+  return 'SiteOptions(flags: ${_this.flags}, loginUrl: ${_this.loginUrl}, loginCookiePattern: ${_this.loginCookiePattern}, loginCookieDescription: ${_this.loginCookieDescription}, headers: ${_this.headers}, cookies: ${_this.cookies})';
 }
 
 
@@ -631,7 +651,7 @@ class _$SiteOptionsCopyWithImpl<$Res>
 /// Create a copy of SiteOptions
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? flags = null,Object? loginUrl = null,Object? loginCookiePattern = null,Object? loginCookieDescription = null,Object? headers = null,Object? cookies = null,}) {
-  return _then(_self.copyWith(
+  return _then(SiteOptions(
 flags: null == flags ? _self.flags : flags // ignore: cast_nullable_to_non_nullable
 as String,loginUrl: null == loginUrl ? _self.loginUrl : loginUrl // ignore: cast_nullable_to_non_nullable
 as String,loginCookiePattern: null == loginCookiePattern ? _self.loginCookiePattern : loginCookiePattern // ignore: cast_nullable_to_non_nullable
@@ -773,7 +793,7 @@ return $default(_that.flags,_that.loginUrl,_that.loginCookiePattern,_that.loginC
 
 @JsonSerializable(explicitToJson: true)
 class _SiteOptions implements SiteOptions {
-  const _SiteOptions({this.flags = '', this.loginUrl = '', this.loginCookiePattern = '', this.loginCookieDescription = '', final  List<RegexValueRule> headers = const <RegexValueRule>[], final  List<RegexValueRule> cookies = const <RegexValueRule>[]}): _headers = headers,_cookies = cookies;
+  const _SiteOptions({this.flags = '', this.loginUrl = '', this.loginCookiePattern = '', this.loginCookieDescription = '',  List<RegexValueRule> headers = const <RegexValueRule>[],  List<RegexValueRule> cookies = const <RegexValueRule>[]}): _headers = headers,_cookies = cookies;
   factory _SiteOptions.fromJson(Map<String, dynamic> json) => _$SiteOptionsFromJson(json);
 
 @override@JsonKey() final  String flags;
@@ -808,16 +828,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SiteOptions&&(identical(other.flags, flags) || other.flags == flags)&&(identical(other.loginUrl, loginUrl) || other.loginUrl == loginUrl)&&(identical(other.loginCookiePattern, loginCookiePattern) || other.loginCookiePattern == loginCookiePattern)&&(identical(other.loginCookieDescription, loginCookieDescription) || other.loginCookieDescription == loginCookieDescription)&&const DeepCollectionEquality().equals(other._headers, _headers)&&const DeepCollectionEquality().equals(other._cookies, _cookies));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SiteOptions&&(identical(other.flags, flags) || other.flags == flags)&&(identical(other.loginUrl, loginUrl) || other.loginUrl == loginUrl)&&(identical(other.loginCookiePattern, loginCookiePattern) || other.loginCookiePattern == loginCookiePattern)&&(identical(other.loginCookieDescription, loginCookieDescription) || other.loginCookieDescription == loginCookieDescription)&&const DeepCollectionEquality().equals(other.headers, _headers)&&const DeepCollectionEquality().equals(other.cookies, _cookies));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,flags,loginUrl,loginCookiePattern,loginCookieDescription,const DeepCollectionEquality().hash(_headers),const DeepCollectionEquality().hash(_cookies));
+int get hashCode {
+    return Object.hash(runtimeType,flags,loginUrl,loginCookiePattern,loginCookieDescription,const DeepCollectionEquality().hash(_headers),const DeepCollectionEquality().hash(_cookies));
+}
 
 @override
 String toString() {
-  return 'SiteOptions(flags: $flags, loginUrl: $loginUrl, loginCookiePattern: $loginCookiePattern, loginCookieDescription: $loginCookieDescription, headers: $headers, cookies: $cookies)';
+    return 'SiteOptions(flags: $flags, loginUrl: $loginUrl, loginCookiePattern: $loginCookiePattern, loginCookieDescription: $loginCookieDescription, headers: $headers, cookies: $cookies)';
 }
 
 
@@ -877,16 +899,21 @@ $ParserRuleCopyWith<ParserRule> get copyWith => _$ParserRuleCopyWithImpl<ParserR
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ParserRule&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.config, config) || other.config == config));
+  final _this = this as ParserRule;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ParserRule&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.kind, _this.kind) || other.kind == _this.kind)&&(identical(other.config, _this.config) || other.config == _this.config));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,kind,config);
+int get hashCode {
+  final _this = this as ParserRule;
+  return Object.hash(runtimeType,_this.id,_this.name,_this.kind,_this.config);
+}
 
 @override
 String toString() {
-  return 'ParserRule(id: $id, name: $name, kind: $kind, config: $config)';
+  final _this = this as ParserRule;
+  return 'ParserRule(id: ${_this.id}, name: ${_this.name}, kind: ${_this.kind}, config: ${_this.config})';
 }
 
 
@@ -915,7 +942,7 @@ class _$ParserRuleCopyWithImpl<$Res>
 /// Create a copy of ParserRule
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? kind = null,Object? config = null,}) {
-  return _then(_self.copyWith(
+  return _then(ParserRule(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
@@ -1085,16 +1112,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ParserRule&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.config, config) || other.config == config));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ParserRule&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.config, config) || other.config == config));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,kind,config);
+int get hashCode {
+    return Object.hash(runtimeType,id,name,kind,config);
+}
 
 @override
 String toString() {
-  return 'ParserRule(id: $id, name: $name, kind: $kind, config: $config)';
+    return 'ParserRule(id: $id, name: $name, kind: $kind, config: $config)';
 }
 
 
@@ -1183,7 +1212,7 @@ mixin _$SelectorScript {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SelectorScript);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SelectorScript);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1192,7 +1221,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SelectorScript()';
+    return 'SelectorScript()';
 }
 
 
@@ -1344,7 +1373,7 @@ return javaScript(_that.source);case _:
 @JsonSerializable()
 
 class OutputSelectorScript implements SelectorScript {
-  const OutputSelectorScript({final  String? $type}): $type = $type ?? 'output';
+  const OutputSelectorScript({ String? $type}): $type = $type ?? 'output';
   factory OutputSelectorScript.fromJson(Map<String, dynamic> json) => _$OutputSelectorScriptFromJson(json);
 
 
@@ -1361,7 +1390,7 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OutputSelectorScript);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is OutputSelectorScript);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1370,7 +1399,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SelectorScript.output()';
+    return 'SelectorScript.output()';
 }
 
 
@@ -1383,7 +1412,7 @@ String toString() {
 @JsonSerializable()
 
 class ReplaceSelectorScript implements SelectorScript {
-  const ReplaceSelectorScript({final  Map<String, String> values = const <String, String>{}, final  String? $type}): _values = values,$type = $type ?? 'replace';
+  const ReplaceSelectorScript({ Map<String, String> values = const <String, String>{},  String? $type}): _values = values,$type = $type ?? 'replace';
   factory ReplaceSelectorScript.fromJson(Map<String, dynamic> json) => _$ReplaceSelectorScriptFromJson(json);
 
  final  Map<String, String> _values;
@@ -1411,16 +1440,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReplaceSelectorScript&&const DeepCollectionEquality().equals(other._values, _values));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ReplaceSelectorScript&&const DeepCollectionEquality().equals(other.values, _values));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_values));
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_values));
+}
 
 @override
 String toString() {
-  return 'SelectorScript.replace(values: $values)';
+    return 'SelectorScript.replace(values: $values)';
 }
 
 
@@ -1462,7 +1493,7 @@ as Map<String, String>,
 @JsonSerializable()
 
 class JavaScriptSelectorScript implements SelectorScript {
-  const JavaScriptSelectorScript({this.source = '', final  String? $type}): $type = $type ?? 'javaScript';
+  const JavaScriptSelectorScript({this.source = '',  String? $type}): $type = $type ?? 'javaScript';
   factory JavaScriptSelectorScript.fromJson(Map<String, dynamic> json) => _$JavaScriptSelectorScriptFromJson(json);
 
 @JsonKey() final  String source;
@@ -1484,16 +1515,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JavaScriptSelectorScript&&(identical(other.source, source) || other.source == source));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JavaScriptSelectorScript&&(identical(other.source, source) || other.source == source));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,source);
+int get hashCode {
+    return Object.hash(runtimeType,source);
+}
 
 @override
 String toString() {
-  return 'SelectorScript.javaScript(source: $source)';
+    return 'SelectorScript.javaScript(source: $source)';
 }
 
 
@@ -1548,16 +1581,21 @@ $SelectorRuleCopyWith<SelectorRule> get copyWith => _$SelectorRuleCopyWithImpl<S
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SelectorRule&&(identical(other.selector, selector) || other.selector == selector)&&(identical(other.queryType, queryType) || other.queryType == queryType)&&(identical(other.function, function) || other.function == function)&&(identical(other.parameter, parameter) || other.parameter == parameter)&&(identical(other.regex, regex) || other.regex == regex)&&(identical(other.replace, replace) || other.replace == replace)&&(identical(other.script, script) || other.script == script)&&(identical(other.defaultValue, defaultValue) || other.defaultValue == defaultValue));
+  final _this = this as SelectorRule;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SelectorRule&&(identical(other.selector, _this.selector) || other.selector == _this.selector)&&(identical(other.queryType, _this.queryType) || other.queryType == _this.queryType)&&(identical(other.function, _this.function) || other.function == _this.function)&&(identical(other.parameter, _this.parameter) || other.parameter == _this.parameter)&&(identical(other.regex, _this.regex) || other.regex == _this.regex)&&(identical(other.replace, _this.replace) || other.replace == _this.replace)&&(identical(other.script, _this.script) || other.script == _this.script)&&(identical(other.defaultValue, _this.defaultValue) || other.defaultValue == _this.defaultValue));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,selector,queryType,function,parameter,regex,replace,script,defaultValue);
+int get hashCode {
+  final _this = this as SelectorRule;
+  return Object.hash(runtimeType,_this.selector,_this.queryType,_this.function,_this.parameter,_this.regex,_this.replace,_this.script,_this.defaultValue);
+}
 
 @override
 String toString() {
-  return 'SelectorRule(selector: $selector, queryType: $queryType, function: $function, parameter: $parameter, regex: $regex, replace: $replace, script: $script, defaultValue: $defaultValue)';
+  final _this = this as SelectorRule;
+  return 'SelectorRule(selector: ${_this.selector}, queryType: ${_this.queryType}, function: ${_this.function}, parameter: ${_this.parameter}, regex: ${_this.regex}, replace: ${_this.replace}, script: ${_this.script}, defaultValue: ${_this.defaultValue})';
 }
 
 
@@ -1586,7 +1624,7 @@ class _$SelectorRuleCopyWithImpl<$Res>
 /// Create a copy of SelectorRule
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? selector = null,Object? queryType = null,Object? function = null,Object? parameter = null,Object? regex = null,Object? replace = null,Object? script = null,Object? defaultValue = null,}) {
-  return _then(_self.copyWith(
+  return _then(SelectorRule(
 selector: null == selector ? _self.selector : selector // ignore: cast_nullable_to_non_nullable
 as String,queryType: null == queryType ? _self.queryType : queryType // ignore: cast_nullable_to_non_nullable
 as SelectorQueryType,function: null == function ? _self.function : function // ignore: cast_nullable_to_non_nullable
@@ -1764,16 +1802,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SelectorRule&&(identical(other.selector, selector) || other.selector == selector)&&(identical(other.queryType, queryType) || other.queryType == queryType)&&(identical(other.function, function) || other.function == function)&&(identical(other.parameter, parameter) || other.parameter == parameter)&&(identical(other.regex, regex) || other.regex == regex)&&(identical(other.replace, replace) || other.replace == replace)&&(identical(other.script, script) || other.script == script)&&(identical(other.defaultValue, defaultValue) || other.defaultValue == defaultValue));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SelectorRule&&(identical(other.selector, selector) || other.selector == selector)&&(identical(other.queryType, queryType) || other.queryType == queryType)&&(identical(other.function, function) || other.function == function)&&(identical(other.parameter, parameter) || other.parameter == parameter)&&(identical(other.regex, regex) || other.regex == regex)&&(identical(other.replace, replace) || other.replace == replace)&&(identical(other.script, script) || other.script == script)&&(identical(other.defaultValue, defaultValue) || other.defaultValue == defaultValue));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,selector,queryType,function,parameter,regex,replace,script,defaultValue);
+int get hashCode {
+    return Object.hash(runtimeType,selector,queryType,function,parameter,regex,replace,script,defaultValue);
+}
 
 @override
 String toString() {
-  return 'SelectorRule(selector: $selector, queryType: $queryType, function: $function, parameter: $parameter, regex: $regex, replace: $replace, script: $script, defaultValue: $defaultValue)';
+    return 'SelectorRule(selector: $selector, queryType: $queryType, function: $function, parameter: $parameter, regex: $regex, replace: $replace, script: $script, defaultValue: $defaultValue)';
 }
 
 
@@ -1844,16 +1884,21 @@ $ExtraSelectorRuleCopyWith<ExtraSelectorRule> get copyWith => _$ExtraSelectorRul
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExtraSelectorRule&&(identical(other.id, id) || other.id == id)&&(identical(other.persistent, persistent) || other.persistent == persistent)&&(identical(other.selector, selector) || other.selector == selector));
+  final _this = this as ExtraSelectorRule;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExtraSelectorRule&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.persistent, _this.persistent) || other.persistent == _this.persistent)&&(identical(other.selector, _this.selector) || other.selector == _this.selector));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,persistent,selector);
+int get hashCode {
+  final _this = this as ExtraSelectorRule;
+  return Object.hash(runtimeType,_this.id,_this.persistent,_this.selector);
+}
 
 @override
 String toString() {
-  return 'ExtraSelectorRule(id: $id, persistent: $persistent, selector: $selector)';
+  final _this = this as ExtraSelectorRule;
+  return 'ExtraSelectorRule(id: ${_this.id}, persistent: ${_this.persistent}, selector: ${_this.selector})';
 }
 
 
@@ -1882,7 +1927,7 @@ class _$ExtraSelectorRuleCopyWithImpl<$Res>
 /// Create a copy of ExtraSelectorRule
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? persistent = null,Object? selector = null,}) {
-  return _then(_self.copyWith(
+  return _then(ExtraSelectorRule(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,persistent: null == persistent ? _self.persistent : persistent // ignore: cast_nullable_to_non_nullable
 as bool,selector: null == selector ? _self.selector : selector // ignore: cast_nullable_to_non_nullable
@@ -2050,16 +2095,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExtraSelectorRule&&(identical(other.id, id) || other.id == id)&&(identical(other.persistent, persistent) || other.persistent == persistent)&&(identical(other.selector, selector) || other.selector == selector));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExtraSelectorRule&&(identical(other.id, id) || other.id == id)&&(identical(other.persistent, persistent) || other.persistent == persistent)&&(identical(other.selector, selector) || other.selector == selector));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,persistent,selector);
+int get hashCode {
+    return Object.hash(runtimeType,id,persistent,selector);
+}
 
 @override
 String toString() {
-  return 'ExtraSelectorRule(id: $id, persistent: $persistent, selector: $selector)';
+    return 'ExtraSelectorRule(id: $id, persistent: $persistent, selector: $selector)';
 }
 
 
@@ -2125,16 +2172,21 @@ $ParserConfigCopyWith<ParserConfig> get copyWith => _$ParserConfigCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ParserConfig&&const DeepCollectionEquality().equals(other.selectors, selectors)&&const DeepCollectionEquality().equals(other.extras, extras));
+  final _this = this as ParserConfig;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ParserConfig&&const DeepCollectionEquality().equals(other.selectors, _this.selectors)&&const DeepCollectionEquality().equals(other.extras, _this.extras));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(selectors),const DeepCollectionEquality().hash(extras));
+int get hashCode {
+  final _this = this as ParserConfig;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.selectors),const DeepCollectionEquality().hash(_this.extras));
+}
 
 @override
 String toString() {
-  return 'ParserConfig(selectors: $selectors, extras: $extras)';
+  final _this = this as ParserConfig;
+  return 'ParserConfig(selectors: ${_this.selectors}, extras: ${_this.extras})';
 }
 
 
@@ -2163,7 +2215,7 @@ class _$ParserConfigCopyWithImpl<$Res>
 /// Create a copy of ParserConfig
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? selectors = null,Object? extras = null,}) {
-  return _then(_self.copyWith(
+  return _then(ParserConfig(
 selectors: null == selectors ? _self.selectors : selectors // ignore: cast_nullable_to_non_nullable
 as Map<String, SelectorRule>,extras: null == extras ? _self.extras : extras // ignore: cast_nullable_to_non_nullable
 as List<ExtraSelectorRule>,
@@ -2301,7 +2353,7 @@ return $default(_that.selectors,_that.extras);case _:
 
 @JsonSerializable(explicitToJson: true)
 class _ParserConfig implements ParserConfig {
-  const _ParserConfig({final  Map<String, SelectorRule> selectors = const <String, SelectorRule>{}, final  List<ExtraSelectorRule> extras = const <ExtraSelectorRule>[]}): _selectors = selectors,_extras = extras;
+  const _ParserConfig({ Map<String, SelectorRule> selectors = const <String, SelectorRule>{},  List<ExtraSelectorRule> extras = const <ExtraSelectorRule>[]}): _selectors = selectors,_extras = extras;
   factory _ParserConfig.fromJson(Map<String, dynamic> json) => _$ParserConfigFromJson(json);
 
  final  Map<String, SelectorRule> _selectors;
@@ -2332,16 +2384,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ParserConfig&&const DeepCollectionEquality().equals(other._selectors, _selectors)&&const DeepCollectionEquality().equals(other._extras, _extras));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ParserConfig&&const DeepCollectionEquality().equals(other.selectors, _selectors)&&const DeepCollectionEquality().equals(other.extras, _extras));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_selectors),const DeepCollectionEquality().hash(_extras));
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_selectors),const DeepCollectionEquality().hash(_extras));
+}
 
 @override
 String toString() {
-  return 'ParserConfig(selectors: $selectors, extras: $extras)';
+    return 'ParserConfig(selectors: $selectors, extras: $extras)';
 }
 
 
@@ -2397,16 +2451,21 @@ $EndpointRuleCopyWith<EndpointRule> get copyWith => _$EndpointRuleCopyWithImpl<E
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EndpointRule&&(identical(other.id, id) || other.id == id)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.name, name) || other.name == name)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.visible, visible) || other.visible == visible)&&(identical(other.request, request) || other.request == request)&&(identical(other.parserId, parserId) || other.parserId == parserId)&&(identical(other.pagination, pagination) || other.pagination == pagination)&&(identical(other.cachePolicy, cachePolicy) || other.cachePolicy == cachePolicy)&&(identical(other.links, links) || other.links == links)&&(identical(other.presentation, presentation) || other.presentation == presentation));
+  final _this = this as EndpointRule;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EndpointRule&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.kind, _this.kind) || other.kind == _this.kind)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.icon, _this.icon) || other.icon == _this.icon)&&(identical(other.visible, _this.visible) || other.visible == _this.visible)&&(identical(other.request, _this.request) || other.request == _this.request)&&(identical(other.parserId, _this.parserId) || other.parserId == _this.parserId)&&(identical(other.pagination, _this.pagination) || other.pagination == _this.pagination)&&(identical(other.cachePolicy, _this.cachePolicy) || other.cachePolicy == _this.cachePolicy)&&(identical(other.links, _this.links) || other.links == _this.links)&&(identical(other.presentation, _this.presentation) || other.presentation == _this.presentation));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,kind,name,icon,visible,request,parserId,pagination,cachePolicy,links,presentation);
+int get hashCode {
+  final _this = this as EndpointRule;
+  return Object.hash(runtimeType,_this.id,_this.kind,_this.name,_this.icon,_this.visible,_this.request,_this.parserId,_this.pagination,_this.cachePolicy,_this.links,_this.presentation);
+}
 
 @override
 String toString() {
-  return 'EndpointRule(id: $id, kind: $kind, name: $name, icon: $icon, visible: $visible, request: $request, parserId: $parserId, pagination: $pagination, cachePolicy: $cachePolicy, links: $links, presentation: $presentation)';
+  final _this = this as EndpointRule;
+  return 'EndpointRule(id: ${_this.id}, kind: ${_this.kind}, name: ${_this.name}, icon: ${_this.icon}, visible: ${_this.visible}, request: ${_this.request}, parserId: ${_this.parserId}, pagination: ${_this.pagination}, cachePolicy: ${_this.cachePolicy}, links: ${_this.links}, presentation: ${_this.presentation})';
 }
 
 
@@ -2435,7 +2494,7 @@ class _$EndpointRuleCopyWithImpl<$Res>
 /// Create a copy of EndpointRule
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? kind = null,Object? name = null,Object? icon = null,Object? visible = null,Object? request = null,Object? parserId = null,Object? pagination = null,Object? cachePolicy = null,Object? links = null,Object? presentation = null,}) {
-  return _then(_self.copyWith(
+  return _then(EndpointRule(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
 as EndpointKind,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -2646,16 +2705,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EndpointRule&&(identical(other.id, id) || other.id == id)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.name, name) || other.name == name)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.visible, visible) || other.visible == visible)&&(identical(other.request, request) || other.request == request)&&(identical(other.parserId, parserId) || other.parserId == parserId)&&(identical(other.pagination, pagination) || other.pagination == pagination)&&(identical(other.cachePolicy, cachePolicy) || other.cachePolicy == cachePolicy)&&(identical(other.links, links) || other.links == links)&&(identical(other.presentation, presentation) || other.presentation == presentation));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _EndpointRule&&(identical(other.id, id) || other.id == id)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.name, name) || other.name == name)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.visible, visible) || other.visible == visible)&&(identical(other.request, request) || other.request == request)&&(identical(other.parserId, parserId) || other.parserId == parserId)&&(identical(other.pagination, pagination) || other.pagination == pagination)&&(identical(other.cachePolicy, cachePolicy) || other.cachePolicy == cachePolicy)&&(identical(other.links, links) || other.links == links)&&(identical(other.presentation, presentation) || other.presentation == presentation));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,kind,name,icon,visible,request,parserId,pagination,cachePolicy,links,presentation);
+int get hashCode {
+    return Object.hash(runtimeType,id,kind,name,icon,visible,request,parserId,pagination,cachePolicy,links,presentation);
+}
 
 @override
 String toString() {
-  return 'EndpointRule(id: $id, kind: $kind, name: $name, icon: $icon, visible: $visible, request: $request, parserId: $parserId, pagination: $pagination, cachePolicy: $cachePolicy, links: $links, presentation: $presentation)';
+    return 'EndpointRule(id: $id, kind: $kind, name: $name, icon: $icon, visible: $visible, request: $request, parserId: $parserId, pagination: $pagination, cachePolicy: $cachePolicy, links: $links, presentation: $presentation)';
 }
 
 
@@ -2756,16 +2817,21 @@ $EndpointSubpageCopyWith<EndpointSubpage> get copyWith => _$EndpointSubpageCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EndpointSubpage&&(identical(other.name, name) || other.name == name)&&(identical(other.key, key) || other.key == key)&&(identical(other.value, value) || other.value == value));
+  final _this = this as EndpointSubpage;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EndpointSubpage&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.key, _this.key) || other.key == _this.key)&&(identical(other.value, _this.value) || other.value == _this.value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,key,value);
+int get hashCode {
+  final _this = this as EndpointSubpage;
+  return Object.hash(runtimeType,_this.name,_this.key,_this.value);
+}
 
 @override
 String toString() {
-  return 'EndpointSubpage(name: $name, key: $key, value: $value)';
+  final _this = this as EndpointSubpage;
+  return 'EndpointSubpage(name: ${_this.name}, key: ${_this.key}, value: ${_this.value})';
 }
 
 
@@ -2794,7 +2860,7 @@ class _$EndpointSubpageCopyWithImpl<$Res>
 /// Create a copy of EndpointSubpage
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? key = null,Object? value = null,}) {
-  return _then(_self.copyWith(
+  return _then(EndpointSubpage(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,key: null == key ? _self.key : key // ignore: cast_nullable_to_non_nullable
 as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
@@ -2953,16 +3019,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EndpointSubpage&&(identical(other.name, name) || other.name == name)&&(identical(other.key, key) || other.key == key)&&(identical(other.value, value) || other.value == value));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _EndpointSubpage&&(identical(other.name, name) || other.name == name)&&(identical(other.key, key) || other.key == key)&&(identical(other.value, value) || other.value == value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,key,value);
+int get hashCode {
+    return Object.hash(runtimeType,name,key,value);
+}
 
 @override
 String toString() {
-  return 'EndpointSubpage(name: $name, key: $key, value: $value)';
+    return 'EndpointSubpage(name: $name, key: $key, value: $value)';
 }
 
 
@@ -3019,16 +3087,21 @@ $EndpointFilterCopyWith<EndpointFilter> get copyWith => _$EndpointFilterCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EndpointFilter&&(identical(other.name, name) || other.name == name)&&(identical(other.key, key) || other.key == key)&&(identical(other.type, type) || other.type == type)&&(identical(other.defaultValue, defaultValue) || other.defaultValue == defaultValue));
+  final _this = this as EndpointFilter;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EndpointFilter&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.key, _this.key) || other.key == _this.key)&&(identical(other.type, _this.type) || other.type == _this.type)&&(identical(other.defaultValue, _this.defaultValue) || other.defaultValue == _this.defaultValue));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,key,type,defaultValue);
+int get hashCode {
+  final _this = this as EndpointFilter;
+  return Object.hash(runtimeType,_this.name,_this.key,_this.type,_this.defaultValue);
+}
 
 @override
 String toString() {
-  return 'EndpointFilter(name: $name, key: $key, type: $type, defaultValue: $defaultValue)';
+  final _this = this as EndpointFilter;
+  return 'EndpointFilter(name: ${_this.name}, key: ${_this.key}, type: ${_this.type}, defaultValue: ${_this.defaultValue})';
 }
 
 
@@ -3057,7 +3130,7 @@ class _$EndpointFilterCopyWithImpl<$Res>
 /// Create a copy of EndpointFilter
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? key = null,Object? type = null,Object? defaultValue = null,}) {
-  return _then(_self.copyWith(
+  return _then(EndpointFilter(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,key: null == key ? _self.key : key // ignore: cast_nullable_to_non_nullable
 as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
@@ -3218,16 +3291,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EndpointFilter&&(identical(other.name, name) || other.name == name)&&(identical(other.key, key) || other.key == key)&&(identical(other.type, type) || other.type == type)&&(identical(other.defaultValue, defaultValue) || other.defaultValue == defaultValue));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _EndpointFilter&&(identical(other.name, name) || other.name == name)&&(identical(other.key, key) || other.key == key)&&(identical(other.type, type) || other.type == type)&&(identical(other.defaultValue, defaultValue) || other.defaultValue == defaultValue));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,key,type,defaultValue);
+int get hashCode {
+    return Object.hash(runtimeType,name,key,type,defaultValue);
+}
 
 @override
 String toString() {
-  return 'EndpointFilter(name: $name, key: $key, type: $type, defaultValue: $defaultValue)';
+    return 'EndpointFilter(name: $name, key: $key, type: $type, defaultValue: $defaultValue)';
 }
 
 
@@ -3285,16 +3360,21 @@ $EndpointPresentationCopyWith<EndpointPresentation> get copyWith => _$EndpointPr
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EndpointPresentation&&const DeepCollectionEquality().equals(other.subpages, subpages)&&const DeepCollectionEquality().equals(other.filters, filters)&&(identical(other.filterScript, filterScript) || other.filterScript == filterScript)&&(identical(other.autocompleteSplitChar, autocompleteSplitChar) || other.autocompleteSplitChar == autocompleteSplitChar)&&(identical(other.autocompleteTimeout, autocompleteTimeout) || other.autocompleteTimeout == autocompleteTimeout));
+  final _this = this as EndpointPresentation;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EndpointPresentation&&const DeepCollectionEquality().equals(other.subpages, _this.subpages)&&const DeepCollectionEquality().equals(other.filters, _this.filters)&&(identical(other.filterScript, _this.filterScript) || other.filterScript == _this.filterScript)&&(identical(other.autocompleteSplitChar, _this.autocompleteSplitChar) || other.autocompleteSplitChar == _this.autocompleteSplitChar)&&(identical(other.autocompleteTimeout, _this.autocompleteTimeout) || other.autocompleteTimeout == _this.autocompleteTimeout));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(subpages),const DeepCollectionEquality().hash(filters),filterScript,autocompleteSplitChar,autocompleteTimeout);
+int get hashCode {
+  final _this = this as EndpointPresentation;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.subpages),const DeepCollectionEquality().hash(_this.filters),_this.filterScript,_this.autocompleteSplitChar,_this.autocompleteTimeout);
+}
 
 @override
 String toString() {
-  return 'EndpointPresentation(subpages: $subpages, filters: $filters, filterScript: $filterScript, autocompleteSplitChar: $autocompleteSplitChar, autocompleteTimeout: $autocompleteTimeout)';
+  final _this = this as EndpointPresentation;
+  return 'EndpointPresentation(subpages: ${_this.subpages}, filters: ${_this.filters}, filterScript: ${_this.filterScript}, autocompleteSplitChar: ${_this.autocompleteSplitChar}, autocompleteTimeout: ${_this.autocompleteTimeout})';
 }
 
 
@@ -3323,7 +3403,7 @@ class _$EndpointPresentationCopyWithImpl<$Res>
 /// Create a copy of EndpointPresentation
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? subpages = null,Object? filters = null,Object? filterScript = null,Object? autocompleteSplitChar = null,Object? autocompleteTimeout = null,}) {
-  return _then(_self.copyWith(
+  return _then(EndpointPresentation(
 subpages: null == subpages ? _self.subpages : subpages // ignore: cast_nullable_to_non_nullable
 as List<EndpointSubpage>,filters: null == filters ? _self.filters : filters // ignore: cast_nullable_to_non_nullable
 as List<EndpointFilter>,filterScript: null == filterScript ? _self.filterScript : filterScript // ignore: cast_nullable_to_non_nullable
@@ -3473,7 +3553,7 @@ return $default(_that.subpages,_that.filters,_that.filterScript,_that.autocomple
 
 @JsonSerializable(explicitToJson: true)
 class _EndpointPresentation implements EndpointPresentation {
-  const _EndpointPresentation({final  List<EndpointSubpage> subpages = const <EndpointSubpage>[], final  List<EndpointFilter> filters = const <EndpointFilter>[], this.filterScript = const SelectorScript.output(), this.autocompleteSplitChar = ' ', this.autocompleteTimeout = 2000}): _subpages = subpages,_filters = filters;
+  const _EndpointPresentation({ List<EndpointSubpage> subpages = const <EndpointSubpage>[],  List<EndpointFilter> filters = const <EndpointFilter>[], this.filterScript = const SelectorScript.output(), this.autocompleteSplitChar = ' ', this.autocompleteTimeout = 2000}): _subpages = subpages,_filters = filters;
   factory _EndpointPresentation.fromJson(Map<String, dynamic> json) => _$EndpointPresentationFromJson(json);
 
  final  List<EndpointSubpage> _subpages;
@@ -3507,16 +3587,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EndpointPresentation&&const DeepCollectionEquality().equals(other._subpages, _subpages)&&const DeepCollectionEquality().equals(other._filters, _filters)&&(identical(other.filterScript, filterScript) || other.filterScript == filterScript)&&(identical(other.autocompleteSplitChar, autocompleteSplitChar) || other.autocompleteSplitChar == autocompleteSplitChar)&&(identical(other.autocompleteTimeout, autocompleteTimeout) || other.autocompleteTimeout == autocompleteTimeout));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _EndpointPresentation&&const DeepCollectionEquality().equals(other.subpages, _subpages)&&const DeepCollectionEquality().equals(other.filters, _filters)&&(identical(other.filterScript, filterScript) || other.filterScript == filterScript)&&(identical(other.autocompleteSplitChar, autocompleteSplitChar) || other.autocompleteSplitChar == autocompleteSplitChar)&&(identical(other.autocompleteTimeout, autocompleteTimeout) || other.autocompleteTimeout == autocompleteTimeout));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_subpages),const DeepCollectionEquality().hash(_filters),filterScript,autocompleteSplitChar,autocompleteTimeout);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_subpages),const DeepCollectionEquality().hash(_filters),filterScript,autocompleteSplitChar,autocompleteTimeout);
+}
 
 @override
 String toString() {
-  return 'EndpointPresentation(subpages: $subpages, filters: $filters, filterScript: $filterScript, autocompleteSplitChar: $autocompleteSplitChar, autocompleteTimeout: $autocompleteTimeout)';
+    return 'EndpointPresentation(subpages: $subpages, filters: $filters, filterScript: $filterScript, autocompleteSplitChar: $autocompleteSplitChar, autocompleteTimeout: $autocompleteTimeout)';
 }
 
 
@@ -3584,16 +3666,21 @@ $EndpointLinksCopyWith<EndpointLinks> get copyWith => _$EndpointLinksCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EndpointLinks&&(identical(other.item, item) || other.item == item)&&(identical(other.autocomplete, autocomplete) || other.autocomplete == autocomplete)&&(identical(other.reader, reader) || other.reader == reader));
+  final _this = this as EndpointLinks;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EndpointLinks&&(identical(other.item, _this.item) || other.item == _this.item)&&(identical(other.autocomplete, _this.autocomplete) || other.autocomplete == _this.autocomplete)&&(identical(other.reader, _this.reader) || other.reader == _this.reader));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,item,autocomplete,reader);
+int get hashCode {
+  final _this = this as EndpointLinks;
+  return Object.hash(runtimeType,_this.item,_this.autocomplete,_this.reader);
+}
 
 @override
 String toString() {
-  return 'EndpointLinks(item: $item, autocomplete: $autocomplete, reader: $reader)';
+  final _this = this as EndpointLinks;
+  return 'EndpointLinks(item: ${_this.item}, autocomplete: ${_this.autocomplete}, reader: ${_this.reader})';
 }
 
 
@@ -3622,7 +3709,7 @@ class _$EndpointLinksCopyWithImpl<$Res>
 /// Create a copy of EndpointLinks
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? item = freezed,Object? autocomplete = freezed,Object? reader = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(EndpointLinks(
 item: freezed == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
 as String?,autocomplete: freezed == autocomplete ? _self.autocomplete : autocomplete // ignore: cast_nullable_to_non_nullable
 as String?,reader: freezed == reader ? _self.reader : reader // ignore: cast_nullable_to_non_nullable
@@ -3781,16 +3868,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EndpointLinks&&(identical(other.item, item) || other.item == item)&&(identical(other.autocomplete, autocomplete) || other.autocomplete == autocomplete)&&(identical(other.reader, reader) || other.reader == reader));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _EndpointLinks&&(identical(other.item, item) || other.item == item)&&(identical(other.autocomplete, autocomplete) || other.autocomplete == autocomplete)&&(identical(other.reader, reader) || other.reader == reader));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,item,autocomplete,reader);
+int get hashCode {
+    return Object.hash(runtimeType,item,autocomplete,reader);
+}
 
 @override
 String toString() {
-  return 'EndpointLinks(item: $item, autocomplete: $autocomplete, reader: $reader)';
+    return 'EndpointLinks(item: $item, autocomplete: $autocomplete, reader: $reader)';
 }
 
 
@@ -3847,16 +3936,21 @@ $RequestRuleCopyWith<RequestRule> get copyWith => _$RequestRuleCopyWithImpl<Requ
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RequestRule&&(identical(other.method, method) || other.method == method)&&(identical(other.url, url) || other.url == url)&&const DeepCollectionEquality().equals(other.query, query)&&const DeepCollectionEquality().equals(other.headers, headers)&&(identical(other.body, body) || other.body == body)&&(identical(other.idempotent, idempotent) || other.idempotent == idempotent));
+  final _this = this as RequestRule;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RequestRule&&(identical(other.method, _this.method) || other.method == _this.method)&&(identical(other.url, _this.url) || other.url == _this.url)&&const DeepCollectionEquality().equals(other.query, _this.query)&&const DeepCollectionEquality().equals(other.headers, _this.headers)&&(identical(other.body, _this.body) || other.body == _this.body)&&(identical(other.idempotent, _this.idempotent) || other.idempotent == _this.idempotent));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,method,url,const DeepCollectionEquality().hash(query),const DeepCollectionEquality().hash(headers),body,idempotent);
+int get hashCode {
+  final _this = this as RequestRule;
+  return Object.hash(runtimeType,_this.method,_this.url,const DeepCollectionEquality().hash(_this.query),const DeepCollectionEquality().hash(_this.headers),_this.body,_this.idempotent);
+}
 
 @override
 String toString() {
-  return 'RequestRule(method: $method, url: $url, query: $query, headers: $headers, body: $body, idempotent: $idempotent)';
+  final _this = this as RequestRule;
+  return 'RequestRule(method: ${_this.method}, url: ${_this.url}, query: ${_this.query}, headers: ${_this.headers}, body: ${_this.body}, idempotent: ${_this.idempotent})';
 }
 
 
@@ -3885,7 +3979,7 @@ class _$RequestRuleCopyWithImpl<$Res>
 /// Create a copy of RequestRule
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? method = null,Object? url = null,Object? query = null,Object? headers = null,Object? body = null,Object? idempotent = null,}) {
-  return _then(_self.copyWith(
+  return _then(RequestRule(
 method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
 as RequestMethod,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
@@ -4036,7 +4130,7 @@ return $default(_that.method,_that.url,_that.query,_that.headers,_that.body,_tha
 
 @JsonSerializable(explicitToJson: true)
 class _RequestRule extends RequestRule {
-  const _RequestRule({required this.method, required this.url, @FrozenJsonMapConverter() final  JsonMap query = const <String, Object?>{}, @FrozenJsonMapConverter() final  JsonMap headers = const <String, Object?>{}, this.body = const RequestBodyRule.none(), this.idempotent = false}): _query = query,_headers = headers,super._();
+  const _RequestRule({required this.method, required this.url, @FrozenJsonMapConverter()  JsonMap query = const <String, Object?>{}, @FrozenJsonMapConverter()  JsonMap headers = const <String, Object?>{}, this.body = const RequestBodyRule.none(), this.idempotent = false}): _query = query,_headers = headers,super._();
   factory _RequestRule.fromJson(Map<String, dynamic> json) => _$RequestRuleFromJson(json);
 
 @override final  RequestMethod method;
@@ -4071,16 +4165,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RequestRule&&(identical(other.method, method) || other.method == method)&&(identical(other.url, url) || other.url == url)&&const DeepCollectionEquality().equals(other._query, _query)&&const DeepCollectionEquality().equals(other._headers, _headers)&&(identical(other.body, body) || other.body == body)&&(identical(other.idempotent, idempotent) || other.idempotent == idempotent));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _RequestRule&&(identical(other.method, method) || other.method == method)&&(identical(other.url, url) || other.url == url)&&const DeepCollectionEquality().equals(other.query, _query)&&const DeepCollectionEquality().equals(other.headers, _headers)&&(identical(other.body, body) || other.body == body)&&(identical(other.idempotent, idempotent) || other.idempotent == idempotent));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,method,url,const DeepCollectionEquality().hash(_query),const DeepCollectionEquality().hash(_headers),body,idempotent);
+int get hashCode {
+    return Object.hash(runtimeType,method,url,const DeepCollectionEquality().hash(_query),const DeepCollectionEquality().hash(_headers),body,idempotent);
+}
 
 @override
 String toString() {
-  return 'RequestRule(method: $method, url: $url, query: $query, headers: $headers, body: $body, idempotent: $idempotent)';
+    return 'RequestRule(method: $method, url: $url, query: $query, headers: $headers, body: $body, idempotent: $idempotent)';
 }
 
 
@@ -4175,7 +4271,7 @@ mixin _$RequestBodyRule {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RequestBodyRule);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is RequestBodyRule);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4184,7 +4280,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'RequestBodyRule()';
+    return 'RequestBodyRule()';
 }
 
 
@@ -4342,7 +4438,7 @@ return text(_that.value);case _:
 @JsonSerializable()
 
 class NoRequestBodyRule implements RequestBodyRule {
-  const NoRequestBodyRule({final  String? $type}): $type = $type ?? 'none';
+  const NoRequestBodyRule({ String? $type}): $type = $type ?? 'none';
   factory NoRequestBodyRule.fromJson(Map<String, dynamic> json) => _$NoRequestBodyRuleFromJson(json);
 
 
@@ -4359,7 +4455,7 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NoRequestBodyRule);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is NoRequestBodyRule);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4368,7 +4464,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'RequestBodyRule.none()';
+    return 'RequestBodyRule.none()';
 }
 
 
@@ -4381,7 +4477,7 @@ String toString() {
 @JsonSerializable()
 
 class JsonRequestBodyRule implements RequestBodyRule {
-  const JsonRequestBodyRule(@FrozenJsonValueConverter() this.value, {final  String? $type}): $type = $type ?? 'json';
+  const JsonRequestBodyRule(@FrozenJsonValueConverter() this.value, { String? $type}): $type = $type ?? 'json';
   factory JsonRequestBodyRule.fromJson(Map<String, dynamic> json) => _$JsonRequestBodyRuleFromJson(json);
 
 @FrozenJsonValueConverter() final  Object? value;
@@ -4403,16 +4499,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsonRequestBodyRule&&const DeepCollectionEquality().equals(other.value, value));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsonRequestBodyRule&&const DeepCollectionEquality().equals(other.value, value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(value));
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(value));
+}
 
 @override
 String toString() {
-  return 'RequestBodyRule.json(value: $value)';
+    return 'RequestBodyRule.json(value: $value)';
 }
 
 
@@ -4453,7 +4551,7 @@ freezed == value ? _self.value : value ,
 @JsonSerializable()
 
 class FormRequestBodyRule implements RequestBodyRule {
-  const FormRequestBodyRule(@FrozenJsonMapConverter() final  JsonMap fields, {final  String? $type}): _fields = fields,$type = $type ?? 'form';
+  const FormRequestBodyRule(@FrozenJsonMapConverter()  JsonMap fields, { String? $type}): _fields = fields,$type = $type ?? 'form';
   factory FormRequestBodyRule.fromJson(Map<String, dynamic> json) => _$FormRequestBodyRuleFromJson(json);
 
  final  JsonMap _fields;
@@ -4481,16 +4579,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FormRequestBodyRule&&const DeepCollectionEquality().equals(other._fields, _fields));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is FormRequestBodyRule&&const DeepCollectionEquality().equals(other.fields, _fields));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_fields));
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_fields));
+}
 
 @override
 String toString() {
-  return 'RequestBodyRule.form(fields: $fields)';
+    return 'RequestBodyRule.form(fields: $fields)';
 }
 
 
@@ -4532,7 +4632,7 @@ as JsonMap,
 @JsonSerializable()
 
 class TextRequestBodyRule implements RequestBodyRule {
-  const TextRequestBodyRule(this.value, {final  String? $type}): $type = $type ?? 'text';
+  const TextRequestBodyRule(this.value, { String? $type}): $type = $type ?? 'text';
   factory TextRequestBodyRule.fromJson(Map<String, dynamic> json) => _$TextRequestBodyRuleFromJson(json);
 
  final  String value;
@@ -4554,16 +4654,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TextRequestBodyRule&&(identical(other.value, value) || other.value == value));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is TextRequestBodyRule&&(identical(other.value, value) || other.value == value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,value);
+int get hashCode {
+    return Object.hash(runtimeType,value);
+}
 
 @override
 String toString() {
-  return 'RequestBodyRule.text(value: $value)';
+    return 'RequestBodyRule.text(value: $value)';
 }
 
 
@@ -4640,7 +4742,7 @@ mixin _$PaginationRule {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaginationRule);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is PaginationRule);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4649,7 +4751,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'PaginationRule()';
+    return 'PaginationRule()';
 }
 
 
@@ -4801,7 +4903,7 @@ return continuation(_that.target,_that.variable,_that.responseField);case _:
 @JsonSerializable()
 
 class NoPaginationRule implements PaginationRule {
-  const NoPaginationRule({final  String? $type}): $type = $type ?? 'none';
+  const NoPaginationRule({ String? $type}): $type = $type ?? 'none';
   factory NoPaginationRule.fromJson(Map<String, dynamic> json) => _$NoPaginationRuleFromJson(json);
 
 
@@ -4818,7 +4920,7 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NoPaginationRule);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is NoPaginationRule);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4827,7 +4929,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'PaginationRule.none()';
+    return 'PaginationRule.none()';
 }
 
 
@@ -4840,7 +4942,7 @@ String toString() {
 @JsonSerializable()
 
 class PageNumberPaginationRule implements PaginationRule {
-  const PageNumberPaginationRule({required this.variable, required this.initial, required this.step, required this.pageSize, required this.endCondition, final  String? $type}): $type = $type ?? 'pageNumber';
+  const PageNumberPaginationRule({required this.variable, required this.initial, required this.step, required this.pageSize, required this.endCondition,  String? $type}): $type = $type ?? 'pageNumber';
   factory PageNumberPaginationRule.fromJson(Map<String, dynamic> json) => _$PageNumberPaginationRuleFromJson(json);
 
  final  String variable;
@@ -4866,16 +4968,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PageNumberPaginationRule&&(identical(other.variable, variable) || other.variable == variable)&&(identical(other.initial, initial) || other.initial == initial)&&(identical(other.step, step) || other.step == step)&&(identical(other.pageSize, pageSize) || other.pageSize == pageSize)&&(identical(other.endCondition, endCondition) || other.endCondition == endCondition));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is PageNumberPaginationRule&&(identical(other.variable, variable) || other.variable == variable)&&(identical(other.initial, initial) || other.initial == initial)&&(identical(other.step, step) || other.step == step)&&(identical(other.pageSize, pageSize) || other.pageSize == pageSize)&&(identical(other.endCondition, endCondition) || other.endCondition == endCondition));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,variable,initial,step,pageSize,endCondition);
+int get hashCode {
+    return Object.hash(runtimeType,variable,initial,step,pageSize,endCondition);
+}
 
 @override
 String toString() {
-  return 'PaginationRule.pageNumber(variable: $variable, initial: $initial, step: $step, pageSize: $pageSize, endCondition: $endCondition)';
+    return 'PaginationRule.pageNumber(variable: $variable, initial: $initial, step: $step, pageSize: $pageSize, endCondition: $endCondition)';
 }
 
 
@@ -4921,7 +5025,7 @@ as PageEndCondition,
 @JsonSerializable()
 
 class ContinuationPaginationRule implements PaginationRule {
-  const ContinuationPaginationRule({required this.target, @JsonKey(includeIfNull: false) this.variable, this.responseField = 'continuation', final  String? $type}): $type = $type ?? 'continuation';
+  const ContinuationPaginationRule({required this.target, @JsonKey(includeIfNull: false) this.variable, this.responseField = 'continuation',  String? $type}): $type = $type ?? 'continuation';
   factory ContinuationPaginationRule.fromJson(Map<String, dynamic> json) => _$ContinuationPaginationRuleFromJson(json);
 
  final  ContinuationTarget target;
@@ -4945,16 +5049,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ContinuationPaginationRule&&(identical(other.target, target) || other.target == target)&&(identical(other.variable, variable) || other.variable == variable)&&(identical(other.responseField, responseField) || other.responseField == responseField));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ContinuationPaginationRule&&(identical(other.target, target) || other.target == target)&&(identical(other.variable, variable) || other.variable == variable)&&(identical(other.responseField, responseField) || other.responseField == responseField));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,target,variable,responseField);
+int get hashCode {
+    return Object.hash(runtimeType,target,variable,responseField);
+}
 
 @override
 String toString() {
-  return 'PaginationRule.continuation(target: $target, variable: $variable, responseField: $responseField)';
+    return 'PaginationRule.continuation(target: $target, variable: $variable, responseField: $responseField)';
 }
 
 

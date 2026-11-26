@@ -6,7 +6,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.12.2
+  sdk: ^3.14.0
 
 dependencies:
   flutter:
@@ -15,6 +15,8 @@ dependencies:
     sdk: flutter
 
   # ui
+  cupertino_ui: ^1.1.7
+  material_ui: ^1.11.1
   flutter_rating_bar: ^4.0.1
   flutter_linkify: ^6.0.0
   flutter_highlight: ^0.7.0
@@ -51,7 +53,7 @@ dependencies:
 
 
   # database
-  drift: ^2.34.2
+  drift: ^2.35.0
   shared_preferences: ^2.5.5
   path_provider: ^2.1.6
   path: ^1.9.1
@@ -75,10 +77,10 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^6.0.0
-  drift_dev: 2.34.0
-  freezed: ^3.2.5
+  drift_dev: ^2.35.3
+  freezed: ^4.0.3
   json_serializable: ^6.14.0
-  build_runner: 2.15.1
+  build_runner: ^2.16.2
   test: ^1.31.0
 
 

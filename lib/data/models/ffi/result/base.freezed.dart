@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'base.dart';
@@ -9,6 +9,7 @@ part of 'base.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -27,23 +28,29 @@ $ImageResultCopyWith<ImageResult> get copyWith => _$ImageResultCopyWithImpl<Imag
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as ImageResult;
   properties
     ..add(DiagnosticsProperty('type', 'ImageResult'))
-    ..add(DiagnosticsProperty('url', url))..add(DiagnosticsProperty('cacheKey', cacheKey))..add(DiagnosticsProperty('width', width))..add(DiagnosticsProperty('height', height))..add(DiagnosticsProperty('x', x))..add(DiagnosticsProperty('y', y));
+    ..add(DiagnosticsProperty('url', _this.url))..add(DiagnosticsProperty('cacheKey', _this.cacheKey))..add(DiagnosticsProperty('width', _this.width))..add(DiagnosticsProperty('height', _this.height))..add(DiagnosticsProperty('x', _this.x))..add(DiagnosticsProperty('y', _this.y));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImageResult&&(identical(other.url, url) || other.url == url)&&(identical(other.cacheKey, cacheKey) || other.cacheKey == cacheKey)&&(identical(other.width, width) || other.width == width)&&(identical(other.height, height) || other.height == height)&&(identical(other.x, x) || other.x == x)&&(identical(other.y, y) || other.y == y));
+  final _this = this as ImageResult;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImageResult&&(identical(other.url, _this.url) || other.url == _this.url)&&(identical(other.cacheKey, _this.cacheKey) || other.cacheKey == _this.cacheKey)&&(identical(other.width, _this.width) || other.width == _this.width)&&(identical(other.height, _this.height) || other.height == _this.height)&&(identical(other.x, _this.x) || other.x == _this.x)&&(identical(other.y, _this.y) || other.y == _this.y));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url,cacheKey,width,height,x,y);
+int get hashCode {
+  final _this = this as ImageResult;
+  return Object.hash(runtimeType,_this.url,_this.cacheKey,_this.width,_this.height,_this.x,_this.y);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'ImageResult(url: $url, cacheKey: $cacheKey, width: $width, height: $height, x: $x, y: $y)';
+  final _this = this as ImageResult;
+  return 'ImageResult(url: ${_this.url}, cacheKey: ${_this.cacheKey}, width: ${_this.width}, height: ${_this.height}, x: ${_this.x}, y: ${_this.y})';
 }
 
 
@@ -72,7 +79,7 @@ class _$ImageResultCopyWithImpl<$Res>
 /// Create a copy of ImageResult
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? url = freezed,Object? cacheKey = freezed,Object? width = freezed,Object? height = freezed,Object? x = freezed,Object? y = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ImageResult(
 url: freezed == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String?,cacheKey: freezed == cacheKey ? _self.cacheKey : cacheKey // ignore: cast_nullable_to_non_nullable
 as String?,width: freezed == width ? _self.width : width // ignore: cast_nullable_to_non_nullable
@@ -236,23 +243,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'ImageResult'))
     ..add(DiagnosticsProperty('url', url))..add(DiagnosticsProperty('cacheKey', cacheKey))..add(DiagnosticsProperty('width', width))..add(DiagnosticsProperty('height', height))..add(DiagnosticsProperty('x', x))..add(DiagnosticsProperty('y', y));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImageResult&&(identical(other.url, url) || other.url == url)&&(identical(other.cacheKey, cacheKey) || other.cacheKey == cacheKey)&&(identical(other.width, width) || other.width == width)&&(identical(other.height, height) || other.height == height)&&(identical(other.x, x) || other.x == x)&&(identical(other.y, y) || other.y == y));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImageResult&&(identical(other.url, url) || other.url == url)&&(identical(other.cacheKey, cacheKey) || other.cacheKey == cacheKey)&&(identical(other.width, width) || other.width == width)&&(identical(other.height, height) || other.height == height)&&(identical(other.x, x) || other.x == x)&&(identical(other.y, y) || other.y == y));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url,cacheKey,width,height,x,y);
+int get hashCode {
+    return Object.hash(runtimeType,url,cacheKey,width,height,x,y);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'ImageResult(url: $url, cacheKey: $cacheKey, width: $width, height: $height, x: $x, y: $y)';
+    return 'ImageResult(url: $url, cacheKey: $cacheKey, width: $width, height: $height, x: $x, y: $y)';
 }
 
 
@@ -311,23 +320,29 @@ $CommentResultCopyWith<CommentResult> get copyWith => _$CommentResultCopyWithImp
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as CommentResult;
   properties
     ..add(DiagnosticsProperty('type', 'CommentResult'))
-    ..add(DiagnosticsProperty('username', username))..add(DiagnosticsProperty('content', content))..add(DiagnosticsProperty('time', time))..add(DiagnosticsProperty('score', score))..add(DiagnosticsProperty('avatar', avatar));
+    ..add(DiagnosticsProperty('username', _this.username))..add(DiagnosticsProperty('content', _this.content))..add(DiagnosticsProperty('time', _this.time))..add(DiagnosticsProperty('score', _this.score))..add(DiagnosticsProperty('avatar', _this.avatar));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CommentResult&&(identical(other.username, username) || other.username == username)&&(identical(other.content, content) || other.content == content)&&(identical(other.time, time) || other.time == time)&&(identical(other.score, score) || other.score == score)&&(identical(other.avatar, avatar) || other.avatar == avatar));
+  final _this = this as CommentResult;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CommentResult&&(identical(other.username, _this.username) || other.username == _this.username)&&(identical(other.content, _this.content) || other.content == _this.content)&&(identical(other.time, _this.time) || other.time == _this.time)&&(identical(other.score, _this.score) || other.score == _this.score)&&(identical(other.avatar, _this.avatar) || other.avatar == _this.avatar));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,username,content,time,score,avatar);
+int get hashCode {
+  final _this = this as CommentResult;
+  return Object.hash(runtimeType,_this.username,_this.content,_this.time,_this.score,_this.avatar);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CommentResult(username: $username, content: $content, time: $time, score: $score, avatar: $avatar)';
+  final _this = this as CommentResult;
+  return 'CommentResult(username: ${_this.username}, content: ${_this.content}, time: ${_this.time}, score: ${_this.score}, avatar: ${_this.avatar})';
 }
 
 
@@ -356,7 +371,7 @@ class _$CommentResultCopyWithImpl<$Res>
 /// Create a copy of CommentResult
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? username = freezed,Object? content = freezed,Object? time = freezed,Object? score = freezed,Object? avatar = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(CommentResult(
 username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String?,content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as String?,time: freezed == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
@@ -530,23 +545,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'CommentResult'))
     ..add(DiagnosticsProperty('username', username))..add(DiagnosticsProperty('content', content))..add(DiagnosticsProperty('time', time))..add(DiagnosticsProperty('score', score))..add(DiagnosticsProperty('avatar', avatar));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CommentResult&&(identical(other.username, username) || other.username == username)&&(identical(other.content, content) || other.content == content)&&(identical(other.time, time) || other.time == time)&&(identical(other.score, score) || other.score == score)&&(identical(other.avatar, avatar) || other.avatar == avatar));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CommentResult&&(identical(other.username, username) || other.username == username)&&(identical(other.content, content) || other.content == content)&&(identical(other.time, time) || other.time == time)&&(identical(other.score, score) || other.score == score)&&(identical(other.avatar, avatar) || other.avatar == avatar));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,username,content,time,score,avatar);
+int get hashCode {
+    return Object.hash(runtimeType,username,content,time,score,avatar);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CommentResult(username: $username, content: $content, time: $time, score: $score, avatar: $avatar)';
+    return 'CommentResult(username: $username, content: $content, time: $time, score: $score, avatar: $avatar)';
 }
 
 
@@ -616,23 +633,29 @@ $TagResultCopyWith<TagResult> get copyWith => _$TagResultCopyWithImpl<TagResult>
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as TagResult;
   properties
     ..add(DiagnosticsProperty('type', 'TagResult'))
-    ..add(DiagnosticsProperty('text', text))..add(DiagnosticsProperty('color', color))..add(DiagnosticsProperty('category', category));
+    ..add(DiagnosticsProperty('text', _this.text))..add(DiagnosticsProperty('color', _this.color))..add(DiagnosticsProperty('category', _this.category));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TagResult&&(identical(other.text, text) || other.text == text)&&(identical(other.color, color) || other.color == color)&&(identical(other.category, category) || other.category == category));
+  final _this = this as TagResult;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TagResult&&(identical(other.text, _this.text) || other.text == _this.text)&&(identical(other.color, _this.color) || other.color == _this.color)&&(identical(other.category, _this.category) || other.category == _this.category));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,text,color,category);
+int get hashCode {
+  final _this = this as TagResult;
+  return Object.hash(runtimeType,_this.text,_this.color,_this.category);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'TagResult(text: $text, color: $color, category: $category)';
+  final _this = this as TagResult;
+  return 'TagResult(text: ${_this.text}, color: ${_this.color}, category: ${_this.category})';
 }
 
 
@@ -661,7 +684,7 @@ class _$TagResultCopyWithImpl<$Res>
 /// Create a copy of TagResult
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? text = freezed,Object? color = freezed,Object? category = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(TagResult(
 text: freezed == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
 as String?,color: freezed == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
 as String?,category: freezed == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
@@ -819,23 +842,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'TagResult'))
     ..add(DiagnosticsProperty('text', text))..add(DiagnosticsProperty('color', color))..add(DiagnosticsProperty('category', category));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TagResult&&(identical(other.text, text) || other.text == text)&&(identical(other.color, color) || other.color == color)&&(identical(other.category, category) || other.category == category));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _TagResult&&(identical(other.text, text) || other.text == text)&&(identical(other.color, color) || other.color == color)&&(identical(other.category, category) || other.category == category));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,text,color,category);
+int get hashCode {
+    return Object.hash(runtimeType,text,color,category);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'TagResult(text: $text, color: $color, category: $category)';
+    return 'TagResult(text: $text, color: $color, category: $category)';
 }
 
 
@@ -891,23 +916,29 @@ $EnvResultCopyWith<EnvResult> get copyWith => _$EnvResultCopyWithImpl<EnvResult>
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as EnvResult;
   properties
     ..add(DiagnosticsProperty('type', 'EnvResult'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('global', global))..add(DiagnosticsProperty('value', value));
+    ..add(DiagnosticsProperty('id', _this.id))..add(DiagnosticsProperty('global', _this.global))..add(DiagnosticsProperty('value', _this.value));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EnvResult&&(identical(other.id, id) || other.id == id)&&(identical(other.global, global) || other.global == global)&&(identical(other.value, value) || other.value == value));
+  final _this = this as EnvResult;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EnvResult&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.global, _this.global) || other.global == _this.global)&&(identical(other.value, _this.value) || other.value == _this.value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,global,value);
+int get hashCode {
+  final _this = this as EnvResult;
+  return Object.hash(runtimeType,_this.id,_this.global,_this.value);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'EnvResult(id: $id, global: $global, value: $value)';
+  final _this = this as EnvResult;
+  return 'EnvResult(id: ${_this.id}, global: ${_this.global}, value: ${_this.value})';
 }
 
 
@@ -936,7 +967,7 @@ class _$EnvResultCopyWithImpl<$Res>
 /// Create a copy of EnvResult
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? global = freezed,Object? value = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(EnvResult(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,global: freezed == global ? _self.global : global // ignore: cast_nullable_to_non_nullable
 as bool?,value: freezed == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
@@ -1094,23 +1125,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'EnvResult'))
     ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('global', global))..add(DiagnosticsProperty('value', value));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EnvResult&&(identical(other.id, id) || other.id == id)&&(identical(other.global, global) || other.global == global)&&(identical(other.value, value) || other.value == value));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _EnvResult&&(identical(other.id, id) || other.id == id)&&(identical(other.global, global) || other.global == global)&&(identical(other.value, value) || other.value == value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,global,value);
+int get hashCode {
+    return Object.hash(runtimeType,id,global,value);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'EnvResult(id: $id, global: $global, value: $value)';
+    return 'EnvResult(id: $id, global: $global, value: $value)';
 }
 
 
@@ -1166,23 +1199,29 @@ $ParserErrorCopyWith<ParserError> get copyWith => _$ParserErrorCopyWithImpl<Pars
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as ParserError;
   properties
     ..add(DiagnosticsProperty('type', 'ParserError'))
-    ..add(DiagnosticsProperty('code', code))..add(DiagnosticsProperty('message', message));
+    ..add(DiagnosticsProperty('code', _this.code))..add(DiagnosticsProperty('message', _this.message));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ParserError&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message));
+  final _this = this as ParserError;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ParserError&&(identical(other.code, _this.code) || other.code == _this.code)&&(identical(other.message, _this.message) || other.message == _this.message));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,code,message);
+int get hashCode {
+  final _this = this as ParserError;
+  return Object.hash(runtimeType,_this.code,_this.message);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'ParserError(code: $code, message: $message)';
+  final _this = this as ParserError;
+  return 'ParserError(code: ${_this.code}, message: ${_this.message})';
 }
 
 
@@ -1211,7 +1250,7 @@ class _$ParserErrorCopyWithImpl<$Res>
 /// Create a copy of ParserError
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? code = null,Object? message = null,}) {
-  return _then(_self.copyWith(
+  return _then(ParserError(
 code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as int,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,
@@ -1367,23 +1406,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'ParserError'))
     ..add(DiagnosticsProperty('code', code))..add(DiagnosticsProperty('message', message));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ParserError&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ParserError&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,code,message);
+int get hashCode {
+    return Object.hash(runtimeType,code,message);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'ParserError(code: $code, message: $message)';
+    return 'ParserError(code: $code, message: $message)';
 }
 
 

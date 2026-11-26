@@ -9,7 +9,7 @@ import 'package:catweb/data/site_runtime/site_page_source.dart';
 import 'package:catweb/network/runtime/dio_http_transport.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/reader_load_notifier.dart';
 import 'package:catweb/ui/state/paged_loader_notifier.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 /// 列表页面的 Flutter 控制器。

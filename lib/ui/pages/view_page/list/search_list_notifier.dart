@@ -6,7 +6,7 @@ import 'package:catweb/data/site_runtime/site_definition.dart';
 import 'package:catweb/data/site_runtime/site_executor.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:catweb/utils/delay_task.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 /// 搜索输入和自动补全请求的状态控制器。
 ///

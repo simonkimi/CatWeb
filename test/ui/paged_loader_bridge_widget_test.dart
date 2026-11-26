@@ -4,7 +4,7 @@ import 'package:catweb/data/loading/cancellation.dart';
 import 'package:catweb/data/loading/load_failure.dart';
 import 'package:catweb/data/loading/paged_loader.dart';
 import 'package:catweb/ui/state/paged_loader_notifier.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

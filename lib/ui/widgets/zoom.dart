@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class GestureAnimationData {
   GestureAnimationData({required this.scale, required this.offset});

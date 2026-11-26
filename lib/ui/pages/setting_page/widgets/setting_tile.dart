@@ -1,7 +1,7 @@
 import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/utils/widget.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter/services.dart';
 
 class SettingIconDivider extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 class NullableHero extends StatelessWidget {
   const NullableHero({super.key, required this.child, this.tag});

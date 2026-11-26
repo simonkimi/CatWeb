@@ -4,7 +4,7 @@ import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/reader_load_notifier.dart';
 import 'package:catweb/ui/widgets/cupertino_progress_bar.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:provider/provider.dart';
 
 typedef ChildWidgetBuilder =

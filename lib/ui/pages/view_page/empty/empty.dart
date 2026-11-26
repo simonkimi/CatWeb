@@ -3,7 +3,7 @@ import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 class EmptyFragment extends StatelessWidget {
   const EmptyFragment({super.key});

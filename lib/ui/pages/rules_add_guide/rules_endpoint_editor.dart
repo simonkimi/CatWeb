@@ -8,8 +8,8 @@ import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
 import 'package:catweb/utils/icons.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 enum _EndpointAction { edit, delete }

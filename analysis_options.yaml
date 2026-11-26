@@ -11,6 +11,7 @@ analyzer:
     - '**/*.h.dart'
     - 'lib/gen/*.dart'
     - '**/*.mocks.dart'
+    - 'lib/l10n/**'
     - build/**
     - android/**
     - ios/**

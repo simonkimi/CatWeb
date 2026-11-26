@@ -11,7 +11,7 @@ import 'package:catweb/data/site_runtime/site_compiler.dart';
 import 'package:catweb/network/runtime/site_runtime_factory.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 class SiteService {
   final SettingService setting;

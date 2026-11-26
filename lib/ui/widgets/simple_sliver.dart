@@ -1,6 +1,6 @@
 import 'package:catweb/data/constant.dart';
 import 'package:catweb/ui/theme/colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 import 'cupertino_divider.dart';
 

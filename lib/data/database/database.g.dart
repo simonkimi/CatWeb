@@ -1088,28 +1088,26 @@ abstract class _$AppDataBase extends GeneratedDatabase {
   ];
 }
 
-typedef $$WebTableTableCreateCompanionBuilder =
-    WebTableCompanion Function({
-      Value<int> id,
-      Value<String> uuid,
-      required String blueprint,
-      required String env,
-      Value<Uint8List> favicon,
-      Value<int> lastOpen,
-      Value<bool> securityModel,
-      Value<String> loginCookies,
-    });
-typedef $$WebTableTableUpdateCompanionBuilder =
-    WebTableCompanion Function({
-      Value<int> id,
-      Value<String> uuid,
-      Value<String> blueprint,
-      Value<String> env,
-      Value<Uint8List> favicon,
-      Value<int> lastOpen,
-      Value<bool> securityModel,
-      Value<String> loginCookies,
-    });
+typedef $$WebTableTableCreateCompanionBuilder = WebTableCompanion Function({
+  Value<int> id,
+  Value<String> uuid,
+  required String blueprint,
+  required String env,
+  Value<Uint8List> favicon,
+  Value<int> lastOpen,
+  Value<bool> securityModel,
+  Value<String> loginCookies,
+});
+typedef $$WebTableTableUpdateCompanionBuilder = WebTableCompanion Function({
+  Value<int> id,
+  Value<String> uuid,
+  Value<String> blueprint,
+  Value<String> env,
+  Value<Uint8List> favicon,
+  Value<int> lastOpen,
+  Value<bool> securityModel,
+  Value<String> loginCookies,
+});
 
 class $$WebTableTableFilterComposer
     extends Composer<_$AppDataBase, $WebTableTable> {
@@ -1319,7 +1317,16 @@ class $$WebTableTableTableManager
                 loginCookies: loginCookies,
               ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable<$WebTableTable, WebTableData>(table),
+                  BaseReferences<_$AppDataBase, $WebTableTable, WebTableData>(
+                    db,
+                    table,
+                    e,
+                  ),
+                ),
+              )
               .toList(),
           prefetchHooksCallback: null,
         ),
@@ -1503,7 +1510,18 @@ class $$ReaderHistoryTableTableTableManager
                 pageIndex: pageIndex,
               ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable<$ReaderHistoryTableTable, ReaderHistoryTableData>(
+                    table,
+                  ),
+                  BaseReferences<
+                    _$AppDataBase,
+                    $ReaderHistoryTableTable,
+                    ReaderHistoryTableData
+                  >(db, table, e),
+                ),
+              )
               .toList(),
           prefetchHooksCallback: null,
         ),
@@ -1675,7 +1693,16 @@ class $$CookieJarTableTableTableManager
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable<$CookieJarTableTable, CookieJarTableData>(table),
+                  BaseReferences<
+                    _$AppDataBase,
+                    $CookieJarTableTable,
+                    CookieJarTableData
+                  >(db, table, e),
+                ),
+              )
               .toList(),
           prefetchHooksCallback: null,
         ),

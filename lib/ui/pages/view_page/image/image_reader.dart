@@ -11,7 +11,7 @@ import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dar
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/zoom.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:provider/provider.dart';

@@ -3,7 +3,7 @@ import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/security_setting.dart';
 import 'package:catweb/ui/pages/setting_page/widgets/setting_tile.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 import 'package:catweb/app.dart';
 

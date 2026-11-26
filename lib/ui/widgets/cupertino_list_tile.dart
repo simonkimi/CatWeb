@@ -1,6 +1,6 @@
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/utils/context_helper.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class CupertinoCardTile extends HookWidget {

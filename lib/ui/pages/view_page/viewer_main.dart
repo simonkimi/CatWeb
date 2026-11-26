@@ -12,7 +12,7 @@ import 'package:catweb/ui/pages/view_page/viewer_subpage_scaffold.dart';
 import 'package:catweb/utils/context_helper.dart';
 import 'package:catweb/utils/icons.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 

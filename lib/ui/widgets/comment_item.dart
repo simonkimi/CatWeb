@@ -1,6 +1,6 @@
 import 'package:catweb/data/models/ffi/result/base.dart';
 import 'package:catweb/ui/theme/colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 
 class CommentItem extends StatelessWidget {
