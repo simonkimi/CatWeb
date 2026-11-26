@@ -6,8 +6,15 @@ import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/loading/load_failure.dart';
+import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/data/repositories/site_repository.dart';
+import 'package:catweb/data/site_runtime/rust_parser_engine.dart';
+import 'package:catweb/data/site_runtime/runtime_contracts.dart';
+import 'package:catweb/data/site_runtime/site_definition.dart';
 import 'package:catweb/network/runtime/site_runtime_factory.dart';
+import 'package:catweb/src/rust/models/result.dart' as native;
+import 'package:catweb/ui/pages/view_page/list/subpage_notifier.dart';
+import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -39,6 +46,7 @@ void main() {
     await service.setNewSite(_row(blueprint: jsonEncode(_validDefinition)));
     final active = service.currentSite;
     expect(active, isNotNull);
+    expect(active!.parserEngine, isA<RustParserEngine>());
 
     final invalidSite = _row(blueprint: '{}');
     await service.setNewSite(invalidSite);
@@ -50,6 +58,78 @@ void main() {
       LoadFailureKind.configuration,
     );
   });
+
+  test(
+    'list controller loads, searches and clears search using the parser engine',
+    () async {
+      final fixture = await _createFixture();
+      addTearDown(fixture.dispose);
+      final definition = SiteDefinition.fromJson(_validDefinition);
+      final endpoint = definition.endpoints.single.copyWith(
+        request: RequestRule(
+          method: RequestMethod.get,
+          url: '/items',
+          query: {'q': '{{search}}'},
+        ),
+      );
+      final website = SiteRenderConfigModel(
+        definition: definition.copyWith(endpoints: [endpoint]),
+        dbEntity: _row(blueprint: jsonEncode(_validDefinition)),
+        repository: fixture.service.repository,
+        runtimeFactory: fixture.service.runtimeFactory,
+        parserEngine: RustParserEngine(
+          listParser: ({required html, required config}) async =>
+              const native.ListParserResult(
+                items: [
+                  native.ListParserResultItem(
+                    title: 'Result',
+                    badges: [],
+                    tags: [],
+                  ),
+                ],
+                envs: [],
+                errors: [],
+              ),
+        ),
+      );
+      addTearDown(website.dispose);
+      final requests = <RequestOptions>[];
+      website.session.documentDio.interceptors.add(
+        InterceptorsWrapper(
+          onRequest: (options, handler) {
+            requests.add(options);
+            handler.resolve(
+              Response<List<int>>(
+                requestOptions: options,
+                statusCode: 200,
+                data: utf8.encode('<li>Result</li>'),
+              ),
+            );
+          },
+        ),
+      );
+      final notifier = SubListNotifier(
+        endpoint: endpoint,
+        website: website,
+        requestContext: RequestContext(),
+      );
+      addTearDown(notifier.dispose);
+
+      await notifier.requireFirstLoad();
+      expect(notifier.pageSnapshot.failure, isNull);
+      expect(notifier.loadedItems.single.previewModel.title, 'Result');
+      expect(notifier.loadedItems.single.previewImage, isNull);
+      expect(requests.last.uri.queryParameters['q'], '');
+
+      await notifier.onNewSearch(' cat ');
+      expect(notifier.pageSnapshot.failure, isNull);
+      expect(requests.last.uri.queryParameters['q'], 'cat');
+      await notifier.onNewSearch('');
+      expect(notifier.pageSnapshot.failure, isNull);
+      expect(requests.last.uri.queryParameters['q'], '');
+      expect(requests, hasLength(3));
+    },
+  );
 }
 
 Future<_Fixture> _createFixture() async {

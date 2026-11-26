@@ -9,7 +9,7 @@ final class ListItemModel implements ImageWithPreviewModel {
   final ListParserResultItem previewModel;
 
   @override
-  ImageResult get previewImage => previewModel.previewImage!;
+  ImageResult? get previewImage => previewModel.previewImage;
 
   @override
   String? get idCode => previewModel.idCode;

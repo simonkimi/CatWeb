@@ -23,6 +23,7 @@ class SubListNotifier extends ChangeNotifier
     required this.website,
     required this.requestContext,
   }) {
+    searchKeywords = requestContext.variables['search']?.toString() ?? '';
     _source = MappedSitePageSource<ListParserResult, ListItemModel>(
       executor: website.session.executor,
       endpointId: endpoint.id,
@@ -31,6 +32,7 @@ class SubListNotifier extends ChangeNotifier
           .map(ListItemModel.new)
           .toList(growable: false),
     );
+    _updateInputs();
     bindPageLoader(
       PagedLoader<ListItemModel>(
         source: _source,
@@ -67,10 +69,7 @@ class SubListNotifier extends ChangeNotifier
   }
 
   void _updateInputs() {
-    _source.updateInputs({
-      ...currentFilter,
-      if (searchKeywords.isNotEmpty) 'search': searchKeywords,
-    });
+    _source.updateInputs({...currentFilter, 'search': searchKeywords});
   }
 
   Future<void> requireFirstLoad() async {

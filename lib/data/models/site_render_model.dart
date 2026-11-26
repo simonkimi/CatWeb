@@ -5,6 +5,7 @@ import 'package:catweb/data/media/image_repository.dart';
 import 'package:catweb/data/repositories/site_repository.dart';
 import 'package:catweb/data/site_runtime/persistent_environment_store.dart';
 import 'package:catweb/data/site_runtime/runtime_contracts.dart';
+import 'package:catweb/data/site_runtime/rust_parser_engine.dart';
 import 'package:catweb/data/site_runtime/site_definition.dart';
 import 'package:catweb/network/runtime/site_runtime_factory.dart';
 import 'package:catweb/network/runtime/site_session.dart';
@@ -20,7 +21,7 @@ final class SiteRenderConfigModel {
     required WebTableData dbEntity,
     required this.repository,
     required SiteRuntimeFactory runtimeFactory,
-    this.parserEngine = const UnavailableParserEngine(),
+    this.parserEngine = const RustParserEngine(),
   }) : _dbEntity = dbEntity,
        favicon = dbEntity.favicon.isNotEmpty
            ? ValueNotifier<Uint8List?>(dbEntity.favicon)

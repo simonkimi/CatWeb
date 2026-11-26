@@ -4,7 +4,9 @@ Rust 入口为 `parser::list_parser(&str, &ParserConfig)`，Flutter 入口为
 `lib/src/rust/api/parser.dart` 的 `parseList(html: ..., config: ...)`。
 调用 Flutter 接口前需要初始化 `RustLib`。参数和返回值使用 FRB 生成的类型，
 与 `data/site_runtime` 的规则模型、现有 Dart 业务结果模型分别独立。
-本轮尚未接入 `ParserEngine` 和页面加载。
+Flutter 的 `RustParserEngine` 已接入站点默认会话和列表页面，负责规则与结果模型
+转换、分页信息、环境补丁和失败处理。当前支持 HTML 列表和搜索结果，详情、阅读器
+及自动补全端点会明确返回尚未实现的解析错误。
 
 结果模型通过 Rust 结构体上的 `frb(dart_metadata = ("freezed"))` 标记生成
 Freezed 类型，支持 `copyWith`、集合深度比较和只读集合。重新生成时应同时

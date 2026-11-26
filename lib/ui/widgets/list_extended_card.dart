@@ -28,8 +28,10 @@ class ListExtendedCard extends StatelessWidget {
       child: IntrinsicHeight(
         child: Row(
           children: [
-            _buildLeftImage(),
-            const SizedBox(width: 3),
+            if (model.previewImage?.url?.isNotEmpty == true) ...[
+              _buildLeftImage(),
+              const SizedBox(width: 3),
+            ],
             _buildRightInfo(context),
           ],
         ),
