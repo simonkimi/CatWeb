@@ -1,5 +1,3 @@
-import 'package:catweb/env.dart';
-
 import 'site_definition.dart';
 
 /// 新建规则时使用的 E-Hentai 调试模板。
@@ -261,7 +259,7 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       presentation: EndpointPresentation(
         filters: _ehHomeFilters,
         filterScript: SelectorScript.javaScript(
-          source: 'function hook(n){var a=JSON.parse(n),r=0,i=0,o=["misc","doujinshi","manga","artistcg","gamecg","imageset","cosplay","asianporn","nonh","western"];for(var s in o)r+=a["b_"+o[s]]?0:1<<i,i+=1;var e=["advsearch=1"];for(var s in 0!=r&&e.push("f_cats="+r),a)-1!=s.indexOf("f")&&a[s]&&e.push(s+"=on");return e.join("&")}',
+          source: r'var a=JSON.parse($arg),r=0,i=0,o=["misc","doujinshi","manga","artistcg","gamecg","imageset","cosplay","asianporn","nonh","western"];for(var s in o)r+=a["b_"+o[s]]?0:1<<i,i+=1;var e=["advsearch=1"];for(var s in 0!=r&&e.push("f_cats="+r),a)-1!=s.indexOf("f")&&a[s]&&e.push(s+"=on");e.join("&")',
         ),
       ),
     ),
