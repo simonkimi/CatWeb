@@ -73,7 +73,7 @@ void main() {
       expect(data.star, 4.75);
       expect(data.imageCount, 3);
       expect(data.pageCount, 2);
-      expect(data.countPrePage, 40);
+      expect(data.countPrePage, isNull);
       expect(data.coverImage!.url, 'https://images.test/cover.jpg');
       expect(data.tags!.single.text, 'Manga');
       expect(data.badges!.map((tag) => tag.text), ['tag one', 'tag two']);
@@ -95,6 +95,46 @@ void main() {
       expect(result.totalCount, 3);
       expect(result.itemCount, 2);
       expect(result.continuation, '?p=1');
+      expect(
+        data.errors.where((error) => error.code == 1 || error.code == 3),
+        isEmpty,
+      );
+    },
+  );
+
+  test(
+    'current E-Hentai gallery markup parses metadata and sprite offsets',
+    () async {
+      final result = await _parseFixture('gallery_current.html');
+      final data = result.data;
+      expect(data.title, '(杂图)胶袜爱宕被电刑');
+      expect(data.subtitle, 'deright');
+      expect(data.language, 'Japanese');
+      expect(data.uploadTime, '2026-11-27 07:14');
+      expect(data.star, 0);
+      expect(data.imageCount, 13);
+      expect(data.pageCount, 1);
+      expect(data.countPrePage, isNull);
+      expect(
+        data.coverImage!.url,
+        'https://ehgt.org/w/02/831/67940-thngf4jq.webp',
+      );
+      expect(data.tags!.single.text, 'Doujinshi');
+      expect(data.badges!.single.text, 'stockings');
+      expect(data.badges!.single.category, 'female');
+      expect(data.comments, isEmpty);
+      expect(result.continuation, isNull);
+      expect(data.previews, hasLength(2));
+      expect(data.previews![0].target, '4d4fd2a351/4360417-1');
+      final first = data.previews![0].previewImage!;
+      expect(first.url, 'https://images.test/sprite.webp');
+      expect([first.width, first.height, first.x, first.y], [186, 300, 0, 0]);
+      final second = data.previews![1].previewImage!;
+      expect(second.url, 'https://images.test/sprite.webp');
+      expect(
+        [second.width, second.height, second.x, second.y],
+        [186, 300, 200, 0],
+      );
       expect(
         data.errors.where((error) => error.code == 1 || error.code == 3),
         isEmpty,

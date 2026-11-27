@@ -92,24 +92,30 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
             selector: '//h1[@id="gj"]/text() | //h1[@id="gn"]/text()',
             queryType: SelectorQueryType.xpath,
           ),
-          ParserSelectorKey.subtitle: SelectorRule(selector: '#gdn'),
+          ParserSelectorKey.subtitle: SelectorRule(selector: '#gdn a'),
           ParserSelectorKey.uploadTime: SelectorRule(
             selector: '#gdd tr:nth-child(1)>.gdt2',
           ),
           ParserSelectorKey.language: SelectorRule(
             selector: '#gdd tr:nth-child(4)>.gdt2',
+            regex: r'\S+',
           ),
           ParserSelectorKey.imageCount: SelectorRule(
             selector: '#gdd tr:nth-child(6)>.gdt2',
             regex: r'\d+',
           ),
           ParserSelectorKey.rating: SelectorRule(
-            selector: '#rating_label',
-            regex: r'Average: (.+)',
+            selector: "//script[contains(.,'average_rating')]",
+            queryType: SelectorQueryType.xpath,
+            regex: r'average_rating\s*=\s*([0-9]+(?:\.[0-9]+)?)',
           ),
           ParserSelectorKey.tag: SelectorRule(selector: '#gdc .cs'),
           ParserSelectorKey.badge: SelectorRule(
             selector: '#taglist .gt, #taglist .gtl',
+          ),
+          ParserSelectorKey.badgeText: SelectorRule(
+            queryType: SelectorQueryType.self,
+            script: SelectorScript.javaScript(source: r'$arg.trim()'),
           ),
           ParserSelectorKey.badgeCategory: SelectorRule(
             selector: "ancestor::tr[1]/td[contains(@class,'tc')][1]",
@@ -169,7 +175,7 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
             queryType: SelectorQueryType.xpath,
             defaultValue: '0',
             script: SelectorScript.javaScript(
-              source: r'const m=$arg.match(/(?:\)|background-position:)\s*(-?\d+)px\s+(-?\d+)px/);m?String(-Number(m[1])):"0"',
+              source: r'const m=$arg.match(/(?:\)|background-position:)\s*(-?\d+(?:\.\d+)?)px\s+(-?\d+(?:\.\d+)?)(?:px)?/);m?String(-Number(m[1])):"0"',
             ),
           ),
           ParserSelectorKey.thumbnailY: SelectorRule(
@@ -177,7 +183,7 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
             queryType: SelectorQueryType.xpath,
             defaultValue: '0',
             script: SelectorScript.javaScript(
-              source: r'const m=$arg.match(/(?:\)|background-position:)\s*(-?\d+)px\s+(-?\d+)px/);m?String(-Number(m[2])):"0"',
+              source: r'const m=$arg.match(/(?:\)|background-position:)\s*(-?\d+(?:\.\d+)?)px\s+(-?\d+(?:\.\d+)?)(?:px)?/);m?String(-Number(m[2])):"0"',
             ),
           ),
           ParserSelectorKey.coverUrl: SelectorRule(
@@ -189,12 +195,6 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
           ParserSelectorKey.pageCount: SelectorRule(
             selector: "(//table[contains(@class,'ptt')])[1]//a[normalize-space(.)!='' and number(normalize-space(.))=number(normalize-space(.))][last()]",
             queryType: SelectorQueryType.xpath,
-          ),
-          ParserSelectorKey.countPerPage: SelectorRule(
-            selector: '#gdo select option[selected]',
-            function: SelectorFunctionType.attribute,
-            parameter: 'value',
-            regex: r'\d+',
           ),
           ParserSelectorKey.nextPage: SelectorRule(
             selector:
@@ -315,16 +315,10 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       request: RequestRule(
         method: RequestMethod.get,
         url: '/',
-        query: {'page': '{{page}}', 'f_search': '{{search}}'},
+        query: {'f_search': '{{search}}'},
       ),
       parserId: 'eh-list-parser',
-      pagination: PaginationRule.pageNumber(
-        variable: 'page',
-        initial: 0,
-        step: 1,
-        pageSize: 25,
-        endCondition: PageEndCondition.emptyItems,
-      ),
+      pagination: _ehNextPage,
       links: EndpointLinks(item: 'eh-gallery', autocomplete: 'eh-autocomplete'),
       presentation: EndpointPresentation(
         filters: _ehHomeFilters,
@@ -338,19 +332,9 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       kind: EndpointKind.list,
       name: '热门',
       icon: 'flame',
-      request: RequestRule(
-        method: RequestMethod.get,
-        url: '/popular',
-        query: {'page': '{{page}}'},
-      ),
+      request: RequestRule(method: RequestMethod.get, url: '/popular'),
       parserId: 'eh-list-parser',
-      pagination: PaginationRule.pageNumber(
-        variable: 'page',
-        initial: 0,
-        step: 1,
-        pageSize: 25,
-        endCondition: PageEndCondition.emptyItems,
-      ),
+      pagination: _ehNextPage,
       links: EndpointLinks(item: 'eh-gallery'),
     ),
     EndpointRule(
@@ -358,19 +342,9 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       kind: EndpointKind.list,
       name: '关注',
       icon: 'eye',
-      request: RequestRule(
-        method: RequestMethod.get,
-        url: '/watched',
-        query: {'page': '{{page}}'},
-      ),
+      request: RequestRule(method: RequestMethod.get, url: '/watched'),
       parserId: 'eh-list-parser',
-      pagination: PaginationRule.pageNumber(
-        variable: 'page',
-        initial: 0,
-        step: 1,
-        pageSize: 25,
-        endCondition: PageEndCondition.emptyItems,
-      ),
+      pagination: _ehNextPage,
       links: EndpointLinks(item: 'eh-gallery'),
     ),
     EndpointRule(
@@ -381,20 +355,19 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       request: RequestRule(
         method: RequestMethod.get,
         url: '/favorites.php',
-        query: {'page': '{{page}}', 'favcat': '{{favcat}}'},
+        query: {'favcat': '{{favcat}}'},
       ),
       parserId: 'eh-list-parser',
-      pagination: PaginationRule.pageNumber(
-        variable: 'page',
-        initial: 0,
-        step: 1,
-        pageSize: 25,
-        endCondition: PageEndCondition.emptyItems,
-      ),
+      pagination: _ehNextPage,
       links: EndpointLinks(item: 'eh-gallery'),
       presentation: EndpointPresentation(subpages: _ehFavoriteSubpages),
     ),
   ],
+);
+
+const _ehNextPage = PaginationRule.continuation(
+  target: ContinuationTarget.url,
+  responseField: ParserSelectorKey.nextPage,
 );
 
 const _ehHomeFilters = [

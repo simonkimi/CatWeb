@@ -186,6 +186,18 @@ void main() {
         startsWith('https://ehgt.org/4f/2e/'),
       );
       expect(result.continuation, 'https://e-hentai.org/?next=3099159');
+      for (final id in [
+        'eh-home',
+        'eh-popular',
+        'eh-watched',
+        'eh-favorites',
+      ]) {
+        final listEndpoint = definition.endpoints.singleWhere(
+          (rule) => rule.id == id,
+        );
+        expect(listEndpoint.request.query.containsKey('page'), isFalse);
+        expect(listEndpoint.pagination, isA<ContinuationPaginationRule>());
+      }
       expect(
         result.data.items!.map(ListItemModel.new).first.idCode,
         '3099188/0e6cda8513',
