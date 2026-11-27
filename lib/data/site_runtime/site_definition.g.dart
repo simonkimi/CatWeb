@@ -38,14 +38,29 @@ Map<String, dynamic> _$SiteDefinitionToJson(_SiteDefinition instance) =>
       'endpoints': instance.endpoints.map((e) => e.toJson()).toList(),
     };
 
-_RegexValueRule _$RegexValueRuleFromJson(Map<String, dynamic> json) =>
-    _RegexValueRule(
+_DomainValueRule _$DomainValueRuleFromJson(Map<String, dynamic> json) =>
+    _DomainValueRule(
+      mode:
+          $enumDecodeNullable(_$DomainMatchModeEnumMap, json['mode']) ??
+          DomainMatchMode.regex,
       pattern: json['pattern'] as String? ?? '',
       value: json['value'] as String? ?? '',
     );
 
-Map<String, dynamic> _$RegexValueRuleToJson(_RegexValueRule instance) =>
-    <String, dynamic>{'pattern': instance.pattern, 'value': instance.value};
+Map<String, dynamic> _$DomainValueRuleToJson(_DomainValueRule instance) =>
+    <String, dynamic>{
+      'mode': _$DomainMatchModeEnumMap[instance.mode]!,
+      'pattern': instance.pattern,
+      'value': instance.value,
+    };
+
+const _$DomainMatchModeEnumMap = {
+  DomainMatchMode.all: 'all',
+  DomainMatchMode.exact: 'exact',
+  DomainMatchMode.suffix: 'suffix',
+  DomainMatchMode.keyword: 'keyword',
+  DomainMatchMode.regex: 'regex',
+};
 
 _SiteOptions _$SiteOptionsFromJson(Map<String, dynamic> json) => _SiteOptions(
   flags: json['flags'] as String? ?? '',
@@ -54,14 +69,14 @@ _SiteOptions _$SiteOptionsFromJson(Map<String, dynamic> json) => _SiteOptions(
   loginCookieDescription: json['loginCookieDescription'] as String? ?? '',
   headers:
       (json['headers'] as List<dynamic>?)
-          ?.map((e) => RegexValueRule.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => DomainValueRule.fromJson(e as Map<String, dynamic>))
           .toList() ??
-      const <RegexValueRule>[],
+      const <DomainValueRule>[],
   cookies:
       (json['cookies'] as List<dynamic>?)
-          ?.map((e) => RegexValueRule.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => DomainValueRule.fromJson(e as Map<String, dynamic>))
           .toList() ??
-      const <RegexValueRule>[],
+      const <DomainValueRule>[],
 );
 
 Map<String, dynamic> _$SiteOptionsToJson(_SiteOptions instance) =>

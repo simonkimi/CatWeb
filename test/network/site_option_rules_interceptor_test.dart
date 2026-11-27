@@ -18,21 +18,49 @@ void main() {
         baseUrl: 'https://e-hentai.org/',
         options: SiteOptions(
           headers: const [
-            RegexValueRule(
-              pattern: r'e-hentai\.org',
+            DomainValueRule(
+              mode: DomainMatchMode.exact,
+              pattern: 'e-hentai.org',
               value: 'host=e-hentai.org',
             ),
-            RegexValueRule(pattern: r'api\.example', value: 'x-skip=1'),
+            DomainValueRule(
+              mode: DomainMatchMode.exact,
+              pattern: 'api.example',
+              value: 'x-skip=1',
+            ),
+            DomainValueRule(mode: DomainMatchMode.all, value: 'x-all=1'),
           ],
           cookies: const [
-            RegexValueRule(pattern: r'e-hentai\.org', value: 'nw=1'),
-            RegexValueRule(
-              pattern: r'e-hentai\.org',
+            DomainValueRule(
+              mode: DomainMatchMode.suffix,
+              pattern: 'e-hentai.org',
+              value: 'nw=1',
+            ),
+            DomainValueRule(
+              mode: DomainMatchMode.keyword,
+              pattern: 'hentai',
               value: 'ipb_member_id=42',
             ),
-            RegexValueRule(pattern: r'e-hentai\.org', value: 'ipb_pass_hash='),
-            RegexValueRule(pattern: r'other\.example', value: 'skip=1'),
-            RegexValueRule(pattern: '(', value: 'broken=1'),
+            DomainValueRule(
+              mode: DomainMatchMode.regex,
+              pattern: r'^e-hentai\.org$',
+              value: 'seen=1',
+            ),
+            DomainValueRule(
+              mode: DomainMatchMode.regex,
+              pattern: r'e-hentai\.org',
+              value: 'ipb_pass_hash=',
+            ),
+            DomainValueRule(
+              mode: DomainMatchMode.suffix,
+              pattern: 'other.example',
+              value: 'skip=1',
+            ),
+            DomainValueRule(
+              mode: DomainMatchMode.regex,
+              pattern: '(',
+              value: 'broken=1',
+            ),
           ],
         ),
       ),
@@ -49,10 +77,12 @@ void main() {
     );
 
     expect(adapter.headers?['host'], 'e-hentai.org');
+    expect(adapter.headers?['x-all'], '1');
     expect(adapter.headers?.containsKey('x-skip'), isFalse);
     expect(_cookiePairs(adapter.headers?['cookie']), {
       'nw=1',
       'ipb_member_id=42',
+      'seen=1',
       'session=from-jar',
     });
     clients.document.close(force: true);
@@ -64,7 +94,13 @@ void main() {
       definition: SiteDefinition(
         baseUrl: 'https://example.test/',
         options: const SiteOptions(
-          cookies: [RegexValueRule(pattern: r'e-hentai\.org', value: 'nw=1')],
+          cookies: [
+            DomainValueRule(
+              mode: DomainMatchMode.exact,
+              pattern: 'e-hentai.org',
+              value: 'nw=1',
+            ),
+          ],
         ),
       ),
       cookieJar: CookieJar(),

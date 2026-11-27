@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:catweb/data/site_runtime/site_definition.dart';
 import 'package:dio/dio.dart';
 
-/// 把站点规则里匹配当前 URL 的 Header 和 Cookie 写进请求。
+/// 把站点规则里匹配当前主机名的 Header 和 Cookie 写进请求。
 ///
 /// 必须排在 `CookieManager` 之前。`CookieManager` 会把这里的 Cookie 与 cookie jar
 /// 合并，并写出最终的 Cookie 头。
@@ -17,9 +17,9 @@ final class SiteOptionRulesInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    final url = options.uri.toString();
+    final host = options.uri.host;
     for (final rule in _headers) {
-      if (!rule.pattern.hasMatch(url)) continue;
+      if (!rule.matchesHost(host)) continue;
       options.headers[rule.name] = rule.value;
     }
 
@@ -29,7 +29,7 @@ final class SiteOptionRulesInterceptor extends Interceptor {
         : <String, String>{};
     var matched = false;
     for (final rule in _cookies) {
-      if (!rule.pattern.hasMatch(url)) continue;
+      if (!rule.matchesHost(host)) continue;
       cookies[rule.name] = rule.value;
       matched = true;
     }
@@ -42,23 +42,18 @@ final class SiteOptionRulesInterceptor extends Interceptor {
   }
 
   static List<_CompiledRule> _compile(
-    List<RegexValueRule> rules, {
+    List<DomainValueRule> rules, {
     required bool cookies,
   }) {
     final compiled = <_CompiledRule>[];
     for (final rule in rules) {
       final assignment = _assignment(rule.value);
-      final pattern = _compilePattern(rule.pattern);
-      if (assignment == null || pattern == null) continue;
+      if (assignment == null) continue;
       if (cookies && !_canSerializeCookie(assignment.$1, assignment.$2)) {
         continue;
       }
       compiled.add(
-        _CompiledRule(
-          pattern: pattern,
-          name: assignment.$1,
-          value: assignment.$2,
-        ),
+        _CompiledRule(rule: rule, name: assignment.$1, value: assignment.$2),
       );
     }
     return compiled;
@@ -73,15 +68,6 @@ final class SiteOptionRulesInterceptor extends Interceptor {
       return false;
     } on FormatException {
       return false;
-    }
-  }
-
-  static RegExp? _compilePattern(String pattern) {
-    if (pattern.isEmpty) return null;
-    try {
-      return RegExp(pattern == '*' ? '.*' : pattern);
-    } on FormatException {
-      return null;
     }
   }
 
@@ -106,12 +92,14 @@ final class SiteOptionRulesInterceptor extends Interceptor {
 
 final class _CompiledRule {
   const _CompiledRule({
-    required this.pattern,
+    required this.rule,
     required this.name,
     required this.value,
   });
 
-  final RegExp pattern;
+  final DomainValueRule rule;
   final String name;
   final String value;
+
+  bool matchesHost(String host) => rule.matchesHost(host);
 }

@@ -17,16 +17,33 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
     loginCookieDescription: '因为登录无法直连，登录域名与站点域名不同',
     headers: const [],
     cookies: [
-      RegexValueRule(pattern: r'e-hentai.org', value: 'nw=1'),
-      RegexValueRule(
-        pattern: r'e-hentai.org',
-        value:
-            'ipb_member_id=${AppEnv.maybeGet('IPB_MEMBER_ID', defaultValue: '')}',
+      DomainValueRule(
+        mode: DomainMatchMode.suffix,
+        pattern: 'e-hentai.org',
+        value: 'nw=1',
       ),
-      RegexValueRule(
-        pattern: r'e-hentai.org',
+      DomainValueRule(
+        mode: DomainMatchMode.suffix,
+        pattern: 'e-hentai.org',
         value:
-            'ipb_pass_hash=${AppEnv.maybeGet('IPB_PASS_HASH', defaultValue: '')}',
+            'ipb_member_id=${AppEnv.maybeGet('EH_IPB_MEMBER_ID', defaultValue: '')}',
+      ),
+      DomainValueRule(
+        mode: DomainMatchMode.suffix,
+        pattern: 'e-hentai.org',
+        value:
+            'ipb_pass_hash=${AppEnv.maybeGet('EH_IPB_PASS_HASH', defaultValue: '')}',
+      ),
+      DomainValueRule(
+        mode: DomainMatchMode.suffix,
+        pattern: 'e-hentai.org',
+        value: 'star=${AppEnv.maybeGet('EH_STAR', defaultValue: '')}',
+      ),
+      DomainValueRule(
+        mode: DomainMatchMode.suffix,
+        pattern: 'e-hentai.org',
+        value:
+            'hath_perks=${AppEnv.maybeGet('EH_HATH_PERKS', defaultValue: '')}',
       ),
     ],
   ),

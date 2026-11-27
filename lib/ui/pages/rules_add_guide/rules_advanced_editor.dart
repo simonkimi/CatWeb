@@ -3,6 +3,7 @@ import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_editor_controller.dart';
 import 'package:catweb/ui/widgets/cupertino_deletable_tile.dart';
 import 'package:catweb/ui/widgets/cupertino_input.dart';
+import 'package:catweb/ui/widgets/dialog.dart';
 import 'package:catweb/utils/context_helper.dart';
 import 'package:catweb/utils/hook_helper.dart';
 import 'package:cupertino_ui/cupertino_ui.dart';
@@ -31,7 +32,7 @@ class RulesAdvancedEditor extends HookWidget {
                 CupertinoDeletableTile(
                   index: entry.key,
                   controller: headerController,
-                  text: '${entry.value.pattern}: ${entry.value.value}',
+                  text: _ruleText(entry.value),
                   onDelete: (index) => _removeHeader(editor, index),
                   onTap: () => _editHeader(context, editor, entry.key),
                 ),
@@ -56,7 +57,7 @@ class RulesAdvancedEditor extends HookWidget {
                 CupertinoDeletableTile(
                   index: entry.key,
                   controller: cookieController,
-                  text: '${entry.value.pattern}: ${entry.value.value}',
+                  text: _ruleText(entry.value),
                   onDelete: (index) => _removeCookie(editor, index),
                   onTap: () => _editCookie(context, editor, entry.key),
                 ),
@@ -89,7 +90,10 @@ class RulesAdvancedEditor extends HookWidget {
     BuildContext context,
     RulesEditorController editor,
   ) async {
-    final value = await _editRule(context, const RegexValueRule(pattern: '*'));
+    final value = await _editRule(
+      context,
+      const DomainValueRule(mode: DomainMatchMode.all),
+    );
     if (value == null) return;
     editor.updateOptions(
       editor.definition.options.copyWith(
@@ -119,7 +123,10 @@ class RulesAdvancedEditor extends HookWidget {
     BuildContext context,
     RulesEditorController editor,
   ) async {
-    final value = await _editRule(context, const RegexValueRule(pattern: '*'));
+    final value = await _editRule(
+      context,
+      const DomainValueRule(mode: DomainMatchMode.all),
+    );
     if (value == null) return;
     editor.updateOptions(
       editor.definition.options.copyWith(
@@ -145,16 +152,43 @@ class RulesAdvancedEditor extends HookWidget {
     editor.updateOptions(editor.definition.options.copyWith(cookies: cookies));
   }
 
-  Future<RegexValueRule?> _editRule(
+  Future<DomainValueRule?> _editRule(
     BuildContext context,
-    RegexValueRule initialValue,
+    DomainValueRule initialValue,
   ) {
-    return showCupertinoDialog<RegexValueRule>(
+    return showCupertinoDialog<DomainValueRule>(
       barrierDismissible: true,
       context: context,
-      builder: (_) => _RegexValueDialog(initialValue: initialValue),
+      builder: (_) => _DomainValueDialog(initialValue: initialValue),
     );
   }
+}
+
+String _ruleText(DomainValueRule rule) {
+  final scope = rule.mode == DomainMatchMode.all
+      ? '全部'
+      : '${_modeLabel(rule.mode)} ${rule.pattern}';
+  return '$scope: ${rule.value}';
+}
+
+String _modeLabel(DomainMatchMode mode) {
+  return switch (mode) {
+    DomainMatchMode.all => '全部',
+    DomainMatchMode.exact => '完整域名',
+    DomainMatchMode.suffix => '域名后缀',
+    DomainMatchMode.keyword => '域名关键字',
+    DomainMatchMode.regex => '域名正则',
+  };
+}
+
+String _patternLabel(DomainMatchMode mode) {
+  return switch (mode) {
+    DomainMatchMode.exact => '域名',
+    DomainMatchMode.suffix => '域名后缀',
+    DomainMatchMode.keyword => '关键字',
+    DomainMatchMode.regex => '正则',
+    DomainMatchMode.all => '匹配',
+  };
 }
 
 class _SectionTitle extends StatelessWidget {
@@ -177,19 +211,40 @@ class _SectionTitle extends StatelessWidget {
   }
 }
 
-class _RegexValueDialog extends HookWidget {
-  const _RegexValueDialog({required this.initialValue});
+class _DomainValueDialog extends HookWidget {
+  const _DomainValueDialog({required this.initialValue});
 
-  final RegexValueRule initialValue;
+  final DomainValueRule initialValue;
 
   @override
   Widget build(BuildContext context) {
+    final mode = useState(initialValue.mode);
     final pattern = useTextEditingController(text: initialValue.pattern);
     final value = useTextEditingController(text: initialValue.value);
     return CupertinoAlertDialog(
       content: Column(
         children: [
-          TripleTextField(labelText: '正则', controller: pattern),
+          TripleReadonlyTextField(
+            labelText: '匹配方式',
+            value: _modeLabel(mode.value),
+            onTap: () async {
+              final selected = await showCupertinoSelectDialog<DomainMatchMode>(
+                context: context,
+                selectedValue: mode.value,
+                cancelText: '取消',
+                items: DomainMatchMode.values.map(
+                  (item) =>
+                      SelectTileItem(title: _modeLabel(item), value: item),
+                ),
+              );
+              if (selected != null) mode.value = selected;
+            },
+          ),
+          if (mode.value != DomainMatchMode.all)
+            TripleTextField(
+              labelText: _patternLabel(mode.value),
+              controller: pattern,
+            ),
           TripleTextField(labelText: '内容', controller: value),
         ],
       ),
@@ -200,7 +255,11 @@ class _RegexValueDialog extends HookWidget {
         ),
         CupertinoDialogAction(
           onPressed: () => context.pop(
-            RegexValueRule(pattern: pattern.text, value: value.text),
+            DomainValueRule(
+              mode: mode.value,
+              pattern: mode.value == DomainMatchMode.all ? '' : pattern.text,
+              value: value.text,
+            ),
           ),
           child: const Text('确定'),
         ),

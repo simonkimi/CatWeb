@@ -326,47 +326,48 @@ $SiteOptionsCopyWith<$Res> get options {
 
 
 /// @nodoc
-mixin _$RegexValueRule {
+mixin _$DomainValueRule {
 
- String get pattern; String get value;
-/// Create a copy of RegexValueRule
+/// 缺少该字段的旧数据仍按正则匹配主机名。
+ DomainMatchMode get mode; String get pattern; String get value;
+/// Create a copy of DomainValueRule
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$RegexValueRuleCopyWith<RegexValueRule> get copyWith => _$RegexValueRuleCopyWithImpl<RegexValueRule>(this as RegexValueRule, _$identity);
+$DomainValueRuleCopyWith<DomainValueRule> get copyWith => _$DomainValueRuleCopyWithImpl<DomainValueRule>(this as DomainValueRule, _$identity);
 
-  /// Serializes this RegexValueRule to a JSON map.
+  /// Serializes this DomainValueRule to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  final _this = this as RegexValueRule;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RegexValueRule&&(identical(other.pattern, _this.pattern) || other.pattern == _this.pattern)&&(identical(other.value, _this.value) || other.value == _this.value));
+  final _this = this as DomainValueRule;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DomainValueRule&&(identical(other.mode, _this.mode) || other.mode == _this.mode)&&(identical(other.pattern, _this.pattern) || other.pattern == _this.pattern)&&(identical(other.value, _this.value) || other.value == _this.value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-  final _this = this as RegexValueRule;
-  return Object.hash(runtimeType,_this.pattern,_this.value);
+  final _this = this as DomainValueRule;
+  return Object.hash(runtimeType,_this.mode,_this.pattern,_this.value);
 }
 
 @override
 String toString() {
-  final _this = this as RegexValueRule;
-  return 'RegexValueRule(pattern: ${_this.pattern}, value: ${_this.value})';
+  final _this = this as DomainValueRule;
+  return 'DomainValueRule(mode: ${_this.mode}, pattern: ${_this.pattern}, value: ${_this.value})';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $RegexValueRuleCopyWith<$Res>  {
-  factory $RegexValueRuleCopyWith(RegexValueRule value, $Res Function(RegexValueRule) _then) = _$RegexValueRuleCopyWithImpl;
+abstract mixin class $DomainValueRuleCopyWith<$Res>  {
+  factory $DomainValueRuleCopyWith(DomainValueRule value, $Res Function(DomainValueRule) _then) = _$DomainValueRuleCopyWithImpl;
 @useResult
 $Res call({
- String pattern, String value
+ DomainMatchMode mode, String pattern, String value
 });
 
 
@@ -374,18 +375,19 @@ $Res call({
 
 }
 /// @nodoc
-class _$RegexValueRuleCopyWithImpl<$Res>
-    implements $RegexValueRuleCopyWith<$Res> {
-  _$RegexValueRuleCopyWithImpl(this._self, this._then);
+class _$DomainValueRuleCopyWithImpl<$Res>
+    implements $DomainValueRuleCopyWith<$Res> {
+  _$DomainValueRuleCopyWithImpl(this._self, this._then);
 
-  final RegexValueRule _self;
-  final $Res Function(RegexValueRule) _then;
+  final DomainValueRule _self;
+  final $Res Function(DomainValueRule) _then;
 
-/// Create a copy of RegexValueRule
+/// Create a copy of DomainValueRule
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? pattern = null,Object? value = null,}) {
-  return _then(RegexValueRule(
-pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+@pragma('vm:prefer-inline') @override $Res call({Object? mode = null,Object? pattern = null,Object? value = null,}) {
+  return _then(DomainValueRule(
+mode: null == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
+as DomainMatchMode,pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
 as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -394,8 +396,8 @@ as String,
 }
 
 
-/// Adds pattern-matching-related methods to [RegexValueRule].
-extension RegexValueRulePatterns on RegexValueRule {
+/// Adds pattern-matching-related methods to [DomainValueRule].
+extension DomainValueRulePatterns on DomainValueRule {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -408,10 +410,10 @@ extension RegexValueRulePatterns on RegexValueRule {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _RegexValueRule value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _DomainValueRule value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _RegexValueRule() when $default != null:
+case _DomainValueRule() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -430,10 +432,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _RegexValueRule value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _DomainValueRule value)  $default,){
 final _that = this;
 switch (_that) {
-case _RegexValueRule():
+case _DomainValueRule():
 return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -448,10 +450,10 @@ return $default(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _RegexValueRule value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _DomainValueRule value)?  $default,){
 final _that = this;
 switch (_that) {
-case _RegexValueRule() when $default != null:
+case _DomainValueRule() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -469,10 +471,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String pattern,  String value)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DomainMatchMode mode,  String pattern,  String value)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _RegexValueRule() when $default != null:
-return $default(_that.pattern,_that.value);case _:
+case _DomainValueRule() when $default != null:
+return $default(_that.mode,_that.pattern,_that.value);case _:
   return orElse();
 
 }
@@ -490,10 +492,10 @@ return $default(_that.pattern,_that.value);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String pattern,  String value)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DomainMatchMode mode,  String pattern,  String value)  $default,) {final _that = this;
 switch (_that) {
-case _RegexValueRule():
-return $default(_that.pattern,_that.value);}
+case _DomainValueRule():
+return $default(_that.mode,_that.pattern,_that.value);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -507,10 +509,10 @@ return $default(_that.pattern,_that.value);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String pattern,  String value)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DomainMatchMode mode,  String pattern,  String value)?  $default,) {final _that = this;
 switch (_that) {
-case _RegexValueRule() when $default != null:
-return $default(_that.pattern,_that.value);case _:
+case _DomainValueRule() when $default != null:
+return $default(_that.mode,_that.pattern,_that.value);case _:
   return null;
 
 }
@@ -521,49 +523,51 @@ return $default(_that.pattern,_that.value);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _RegexValueRule implements RegexValueRule {
-  const _RegexValueRule({this.pattern = '', this.value = ''});
-  factory _RegexValueRule.fromJson(Map<String, dynamic> json) => _$RegexValueRuleFromJson(json);
+class _DomainValueRule extends DomainValueRule {
+  const _DomainValueRule({this.mode = DomainMatchMode.regex, this.pattern = '', this.value = ''}): super._();
+  factory _DomainValueRule.fromJson(Map<String, dynamic> json) => _$DomainValueRuleFromJson(json);
 
+/// 缺少该字段的旧数据仍按正则匹配主机名。
+@override@JsonKey() final  DomainMatchMode mode;
 @override@JsonKey() final  String pattern;
 @override@JsonKey() final  String value;
 
-/// Create a copy of RegexValueRule
+/// Create a copy of DomainValueRule
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$RegexValueRuleCopyWith<_RegexValueRule> get copyWith => __$RegexValueRuleCopyWithImpl<_RegexValueRule>(this, _$identity);
+_$DomainValueRuleCopyWith<_DomainValueRule> get copyWith => __$DomainValueRuleCopyWithImpl<_DomainValueRule>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$RegexValueRuleToJson(this, );
+  return _$DomainValueRuleToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _RegexValueRule&&(identical(other.pattern, pattern) || other.pattern == pattern)&&(identical(other.value, value) || other.value == value));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DomainValueRule&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.pattern, pattern) || other.pattern == pattern)&&(identical(other.value, value) || other.value == value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,pattern,value);
+    return Object.hash(runtimeType,mode,pattern,value);
 }
 
 @override
 String toString() {
-    return 'RegexValueRule(pattern: $pattern, value: $value)';
+    return 'DomainValueRule(mode: $mode, pattern: $pattern, value: $value)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$RegexValueRuleCopyWith<$Res> implements $RegexValueRuleCopyWith<$Res> {
-  factory _$RegexValueRuleCopyWith(_RegexValueRule value, $Res Function(_RegexValueRule) _then) = __$RegexValueRuleCopyWithImpl;
+abstract mixin class _$DomainValueRuleCopyWith<$Res> implements $DomainValueRuleCopyWith<$Res> {
+  factory _$DomainValueRuleCopyWith(_DomainValueRule value, $Res Function(_DomainValueRule) _then) = __$DomainValueRuleCopyWithImpl;
 @override @useResult
 $Res call({
- String pattern, String value
+ DomainMatchMode mode, String pattern, String value
 });
 
 
@@ -571,18 +575,19 @@ $Res call({
 
 }
 /// @nodoc
-class __$RegexValueRuleCopyWithImpl<$Res>
-    implements _$RegexValueRuleCopyWith<$Res> {
-  __$RegexValueRuleCopyWithImpl(this._self, this._then);
+class __$DomainValueRuleCopyWithImpl<$Res>
+    implements _$DomainValueRuleCopyWith<$Res> {
+  __$DomainValueRuleCopyWithImpl(this._self, this._then);
 
-  final _RegexValueRule _self;
-  final $Res Function(_RegexValueRule) _then;
+  final _DomainValueRule _self;
+  final $Res Function(_DomainValueRule) _then;
 
-/// Create a copy of RegexValueRule
+/// Create a copy of DomainValueRule
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? pattern = null,Object? value = null,}) {
-  return _then(_RegexValueRule(
-pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
+@override @pragma('vm:prefer-inline') $Res call({Object? mode = null,Object? pattern = null,Object? value = null,}) {
+  return _then(_DomainValueRule(
+mode: null == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
+as DomainMatchMode,pattern: null == pattern ? _self.pattern : pattern // ignore: cast_nullable_to_non_nullable
 as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -595,7 +600,7 @@ as String,
 /// @nodoc
 mixin _$SiteOptions {
 
- String get flags; String get loginUrl; String get loginCookiePattern; String get loginCookieDescription; List<RegexValueRule> get headers; List<RegexValueRule> get cookies;
+ String get flags; String get loginUrl; String get loginCookiePattern; String get loginCookieDescription; List<DomainValueRule> get headers; List<DomainValueRule> get cookies;
 /// Create a copy of SiteOptions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -633,7 +638,7 @@ abstract mixin class $SiteOptionsCopyWith<$Res>  {
   factory $SiteOptionsCopyWith(SiteOptions value, $Res Function(SiteOptions) _then) = _$SiteOptionsCopyWithImpl;
 @useResult
 $Res call({
- String flags, String loginUrl, String loginCookiePattern, String loginCookieDescription, List<RegexValueRule> headers, List<RegexValueRule> cookies
+ String flags, String loginUrl, String loginCookiePattern, String loginCookieDescription, List<DomainValueRule> headers, List<DomainValueRule> cookies
 });
 
 
@@ -657,8 +662,8 @@ as String,loginUrl: null == loginUrl ? _self.loginUrl : loginUrl // ignore: cast
 as String,loginCookiePattern: null == loginCookiePattern ? _self.loginCookiePattern : loginCookiePattern // ignore: cast_nullable_to_non_nullable
 as String,loginCookieDescription: null == loginCookieDescription ? _self.loginCookieDescription : loginCookieDescription // ignore: cast_nullable_to_non_nullable
 as String,headers: null == headers ? _self.headers : headers // ignore: cast_nullable_to_non_nullable
-as List<RegexValueRule>,cookies: null == cookies ? _self.cookies : cookies // ignore: cast_nullable_to_non_nullable
-as List<RegexValueRule>,
+as List<DomainValueRule>,cookies: null == cookies ? _self.cookies : cookies // ignore: cast_nullable_to_non_nullable
+as List<DomainValueRule>,
   ));
 }
 
@@ -740,7 +745,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String flags,  String loginUrl,  String loginCookiePattern,  String loginCookieDescription,  List<RegexValueRule> headers,  List<RegexValueRule> cookies)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String flags,  String loginUrl,  String loginCookiePattern,  String loginCookieDescription,  List<DomainValueRule> headers,  List<DomainValueRule> cookies)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SiteOptions() when $default != null:
 return $default(_that.flags,_that.loginUrl,_that.loginCookiePattern,_that.loginCookieDescription,_that.headers,_that.cookies);case _:
@@ -761,7 +766,7 @@ return $default(_that.flags,_that.loginUrl,_that.loginCookiePattern,_that.loginC
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String flags,  String loginUrl,  String loginCookiePattern,  String loginCookieDescription,  List<RegexValueRule> headers,  List<RegexValueRule> cookies)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String flags,  String loginUrl,  String loginCookiePattern,  String loginCookieDescription,  List<DomainValueRule> headers,  List<DomainValueRule> cookies)  $default,) {final _that = this;
 switch (_that) {
 case _SiteOptions():
 return $default(_that.flags,_that.loginUrl,_that.loginCookiePattern,_that.loginCookieDescription,_that.headers,_that.cookies);}
@@ -778,7 +783,7 @@ return $default(_that.flags,_that.loginUrl,_that.loginCookiePattern,_that.loginC
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String flags,  String loginUrl,  String loginCookiePattern,  String loginCookieDescription,  List<RegexValueRule> headers,  List<RegexValueRule> cookies)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String flags,  String loginUrl,  String loginCookiePattern,  String loginCookieDescription,  List<DomainValueRule> headers,  List<DomainValueRule> cookies)?  $default,) {final _that = this;
 switch (_that) {
 case _SiteOptions() when $default != null:
 return $default(_that.flags,_that.loginUrl,_that.loginCookiePattern,_that.loginCookieDescription,_that.headers,_that.cookies);case _:
@@ -793,22 +798,22 @@ return $default(_that.flags,_that.loginUrl,_that.loginCookiePattern,_that.loginC
 
 @JsonSerializable(explicitToJson: true)
 class _SiteOptions implements SiteOptions {
-  const _SiteOptions({this.flags = '', this.loginUrl = '', this.loginCookiePattern = '', this.loginCookieDescription = '',  List<RegexValueRule> headers = const <RegexValueRule>[],  List<RegexValueRule> cookies = const <RegexValueRule>[]}): _headers = headers,_cookies = cookies;
+  const _SiteOptions({this.flags = '', this.loginUrl = '', this.loginCookiePattern = '', this.loginCookieDescription = '',  List<DomainValueRule> headers = const <DomainValueRule>[],  List<DomainValueRule> cookies = const <DomainValueRule>[]}): _headers = headers,_cookies = cookies;
   factory _SiteOptions.fromJson(Map<String, dynamic> json) => _$SiteOptionsFromJson(json);
 
 @override@JsonKey() final  String flags;
 @override@JsonKey() final  String loginUrl;
 @override@JsonKey() final  String loginCookiePattern;
 @override@JsonKey() final  String loginCookieDescription;
- final  List<RegexValueRule> _headers;
-@override@JsonKey() List<RegexValueRule> get headers {
+ final  List<DomainValueRule> _headers;
+@override@JsonKey() List<DomainValueRule> get headers {
   if (_headers is EqualUnmodifiableListView) return _headers;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_headers);
 }
 
- final  List<RegexValueRule> _cookies;
-@override@JsonKey() List<RegexValueRule> get cookies {
+ final  List<DomainValueRule> _cookies;
+@override@JsonKey() List<DomainValueRule> get cookies {
   if (_cookies is EqualUnmodifiableListView) return _cookies;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_cookies);
@@ -850,7 +855,7 @@ abstract mixin class _$SiteOptionsCopyWith<$Res> implements $SiteOptionsCopyWith
   factory _$SiteOptionsCopyWith(_SiteOptions value, $Res Function(_SiteOptions) _then) = __$SiteOptionsCopyWithImpl;
 @override @useResult
 $Res call({
- String flags, String loginUrl, String loginCookiePattern, String loginCookieDescription, List<RegexValueRule> headers, List<RegexValueRule> cookies
+ String flags, String loginUrl, String loginCookiePattern, String loginCookieDescription, List<DomainValueRule> headers, List<DomainValueRule> cookies
 });
 
 
@@ -874,8 +879,8 @@ as String,loginUrl: null == loginUrl ? _self.loginUrl : loginUrl // ignore: cast
 as String,loginCookiePattern: null == loginCookiePattern ? _self.loginCookiePattern : loginCookiePattern // ignore: cast_nullable_to_non_nullable
 as String,loginCookieDescription: null == loginCookieDescription ? _self.loginCookieDescription : loginCookieDescription // ignore: cast_nullable_to_non_nullable
 as String,headers: null == headers ? _self._headers : headers // ignore: cast_nullable_to_non_nullable
-as List<RegexValueRule>,cookies: null == cookies ? _self._cookies : cookies // ignore: cast_nullable_to_non_nullable
-as List<RegexValueRule>,
+as List<DomainValueRule>,cookies: null == cookies ? _self._cookies : cookies // ignore: cast_nullable_to_non_nullable
+as List<DomainValueRule>,
   ));
 }
 

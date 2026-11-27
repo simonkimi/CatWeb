@@ -50,15 +50,82 @@ sealed class SiteDefinition with _$SiteDefinition {
       _$SiteDefinitionFromJson(json);
 }
 
+/// Header 和 Cookie 按主机名生效的方式。
+enum DomainMatchMode {
+  /// 忽略 pattern，对所有主机生效。
+  all,
+
+  /// 主机名与 pattern 完全相同。
+  exact,
+
+  /// 主机名等于 pattern，或以 `.` + pattern 结尾。
+  suffix,
+
+  /// 主机名包含 pattern。
+  keyword,
+
+  /// pattern 是匹配主机名的正则表达式。
+  regex,
+}
+
+/// 按主机名决定是否写入的 Header 或 Cookie。
 @freezed
-sealed class RegexValueRule with _$RegexValueRule {
-  const factory RegexValueRule({
+sealed class DomainValueRule with _$DomainValueRule {
+  const DomainValueRule._();
+
+  const factory DomainValueRule({
+    /// 缺少该字段的旧数据仍按正则匹配主机名。
+    @Default(DomainMatchMode.regex) DomainMatchMode mode,
     @Default('') String pattern,
     @Default('') String value,
-  }) = _RegexValueRule;
+  }) = _DomainValueRule;
 
-  factory RegexValueRule.fromJson(Map<String, dynamic> json) =>
-      _$RegexValueRuleFromJson(json);
+  factory DomainValueRule.fromJson(Map<String, dynamic> json) =>
+      _$DomainValueRuleFromJson(json);
+
+  /// [host] 是否应带上 [value]。`all` 不读取 [pattern]。
+  bool matchesHost(String host) {
+    switch (mode) {
+      case DomainMatchMode.all:
+        return true;
+      case DomainMatchMode.exact:
+        final domain = _normalizedDomain(pattern);
+        return domain.isNotEmpty && host.toLowerCase() == domain;
+      case DomainMatchMode.suffix:
+        final suffix = _normalizedDomain(pattern);
+        if (suffix.isEmpty) return false;
+        final normalizedHost = host.toLowerCase();
+        return normalizedHost == suffix || normalizedHost.endsWith('.$suffix');
+      case DomainMatchMode.keyword:
+        final keyword = pattern.trim().toLowerCase();
+        return keyword.isNotEmpty && host.toLowerCase().contains(keyword);
+      case DomainMatchMode.regex:
+        final expression = _domainPattern(pattern);
+        return expression != null && expression.hasMatch(host);
+    }
+  }
+
+  static String _normalizedDomain(String raw) {
+    var value = raw.trim().toLowerCase();
+    while (value.startsWith('.')) {
+      value = value.substring(1);
+    }
+    while (value.endsWith('.')) {
+      value = value.substring(0, value.length - 1);
+    }
+    return value;
+  }
+
+  static RegExp? _domainPattern(String raw) {
+    final source = raw.trim();
+    if (source.isEmpty) return null;
+    try {
+      // 旧规则用 `*` 表示匹配任意地址。
+      return RegExp(source == '*' ? '.*' : source, caseSensitive: false);
+    } on FormatException {
+      return null;
+    }
+  }
 }
 
 @freezed
@@ -69,8 +136,8 @@ sealed class SiteOptions with _$SiteOptions {
     @Default('') String loginUrl,
     @Default('') String loginCookiePattern,
     @Default('') String loginCookieDescription,
-    @Default(<RegexValueRule>[]) List<RegexValueRule> headers,
-    @Default(<RegexValueRule>[]) List<RegexValueRule> cookies,
+    @Default(<DomainValueRule>[]) List<DomainValueRule> headers,
+    @Default(<DomainValueRule>[]) List<DomainValueRule> cookies,
   }) = _SiteOptions;
 
   factory SiteOptions.fromJson(Map<String, dynamic> json) =>
