@@ -44,15 +44,38 @@ final class RequestResolver {
       if (value != null) headers[entry.key] = value.toString();
     }
 
+    final encodedQuery = _encodeQuery(query);
     return ResolvedRequest(
       method: endpoint.request.method,
-      uri: resolvedUrl.replace(queryParameters: query.isEmpty ? null : query),
+      uri: encodedQuery == null
+          ? resolvedUrl
+          : resolvedUrl.replace(query: encodedQuery),
       headers: headers,
       body: _resolveBody(endpoint.request.body, variables),
       cachePolicy: endpoint.cachePolicy,
       cacheDirective: cacheDirective,
       canRetryAutomatically: endpoint.request.canRetryAutomatically,
     );
+  }
+
+  /// 空字符串也要保留 `=`。`Uri.queryParameters` 会把 `key=` 编成 `key`。
+  static String? _encodeQuery(Map<String, List<String>> query) {
+    if (query.isEmpty) return null;
+    final buffer = StringBuffer();
+    var first = true;
+    for (final entry in query.entries) {
+      final key = Uri.encodeQueryComponent(entry.key);
+      for (final value in entry.value) {
+        if (!first) buffer.write('&');
+        first = false;
+        buffer
+          ..write(key)
+          ..write('=')
+          ..write(Uri.encodeQueryComponent(value));
+      }
+    }
+    final encoded = buffer.toString();
+    return encoded.isEmpty ? null : encoded;
   }
 
   ResolvedRequestBody _resolveBody(

@@ -147,6 +147,19 @@ void main() {
 
       expect(request.uri.toString(), 'https://example.test/items/42?page=3');
       expect(request.headers, {'x-token': 'secret'});
+
+      final blank = const RequestResolver().resolve(
+        baseUri: Uri.parse('https://e-hentai.org/'),
+        endpoint: _endpoint(
+          request: RequestRule(
+            method: RequestMethod.get,
+            url: '/',
+            query: {'page': '{{page}}', 'f_search': '{{search}}'},
+          ),
+        ),
+        variables: {'page': 0, 'search': ''},
+      );
+      expect(blank.uri.toString(), 'https://e-hentai.org/?page=0&f_search=');
       final body = request.body as JsonResolvedRequestBody;
       expect(body.value, {'enabled': true, 'label': 'item-42'});
     });
@@ -564,13 +577,12 @@ final class _FakeParserEngine implements ParserEngine {
   ) async {
     cancellation.throwIfCancelled();
     return handler(
-          ParseJob<Object?>(
-            endpoint: job.endpoint,
-            parser: job.parser,
-            response: job.response,
-          ),
-        )
-        as ParsedPayload<T>;
+      ParseJob<Object?>(
+        endpoint: job.endpoint,
+        parser: job.parser,
+        response: job.response,
+      ),
+    ) as ParsedPayload<T>;
   }
 }
 
