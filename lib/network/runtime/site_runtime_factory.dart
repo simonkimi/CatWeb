@@ -3,6 +3,7 @@ import 'package:catweb/data/database/daos/cookie_jar_dao.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/site_runtime/runtime_contracts.dart';
 import 'package:catweb/data/site_runtime/site_definition.dart';
+import 'package:catweb/network/interceptor/http_dump_interceptor.dart';
 import 'package:catweb/network/runtime/dio_http_transport.dart';
 import 'package:catweb/network/runtime/site_dio_factory.dart';
 import 'package:catweb/network/runtime/site_session.dart';
@@ -38,6 +39,7 @@ final class SiteRuntimeFactory {
       cookieJar: cookieJar,
       documentCacheOptions: documentCacheOptions,
       imageCacheOptions: imageCacheOptions,
+      dumpHttp: debugHttpDumpEnabled,
     );
     return SiteSession(
       definition: definition,

@@ -1,5 +1,6 @@
 import 'package:catweb/data/site_runtime/site_definition.dart';
 import 'package:catweb/network/interceptor/encode_transform.dart';
+import 'package:catweb/network/interceptor/http_dump_interceptor.dart';
 import 'package:catweb/network/interceptor/site_option_rules_interceptor.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
@@ -27,19 +28,24 @@ final class SiteDioFactory {
     required CookieJar cookieJar,
     required CacheOptions documentCacheOptions,
     required CacheOptions imageCacheOptions,
+    bool dumpHttp = false,
+    HttpDumpSink? dumpSink,
   }) {
+    final sink = dumpSink ?? (dumpHttp ? HttpDumpSink() : null);
     return SiteDioClients(
       document: _createClient(
         definition: definition,
         cookieJar: cookieJar,
         cacheOptions: documentCacheOptions,
         image: false,
+        dumpSink: sink,
       ),
       image: _createClient(
         definition: definition,
         cookieJar: cookieJar,
         cacheOptions: imageCacheOptions,
         image: true,
+        dumpSink: sink,
       ),
     );
   }
@@ -49,6 +55,7 @@ final class SiteDioFactory {
     required CookieJar cookieJar,
     required CacheOptions cacheOptions,
     required bool image,
+    HttpDumpSink? dumpSink,
   }) {
     final dio = Dio(
       BaseOptions(
@@ -61,6 +68,15 @@ final class SiteDioFactory {
     dio.transformer = EncodeTransformer();
     dio.interceptors.add(SiteOptionRulesInterceptor(definition.options));
     dio.interceptors.add(CookieManager(cookieJar));
+    if (dumpSink != null && !image) {
+      dio.interceptors.add(
+        HttpDumpInterceptor(
+          cookieJar: cookieJar,
+          sink: dumpSink,
+          channel: 'document',
+        ),
+      );
+    }
     dio.interceptors.add(DioCacheInterceptor(options: cacheOptions));
     if (!image) {
       dio.interceptors.add(HttpFormatter(includeResponseBody: false));

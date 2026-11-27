@@ -62,3 +62,6 @@ assets/images/sample**
 .env
 .env.*
 !.env.example
+
+# HTTP dumps written when DEBUG_HTTP_DUMP=1
+/http_dump/
