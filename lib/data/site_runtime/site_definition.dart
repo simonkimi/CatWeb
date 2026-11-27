@@ -313,6 +313,7 @@ sealed class EndpointLinks with _$EndpointLinks {
 /// URI、query、header 和 body 分离的结构化请求规则。
 ///
 /// query、header 和 body 中的值允许使用 `{{variable}}` 模板。
+/// `!` 表示必填，`?` 表示为空时丢掉该字段，`??value` 表示为空时使用缺省值。
 @freezed
 sealed class RequestRule with _$RequestRule {
   const RequestRule._();

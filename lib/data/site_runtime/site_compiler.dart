@@ -1,3 +1,4 @@
+import 'request_resolver.dart';
 import 'site_definition.dart';
 
 /// 站点定义未通过启用前校验。
@@ -296,7 +297,7 @@ final class SiteCompiler {
 
   bool _hasMalformedTemplate(String input) {
     final withoutValidTemplates = input.replaceAll(
-      RegExp(r'\{\{[a-zA-Z_][\w.-]*\}\}'),
+      RequestResolver.templatePattern,
       '',
     );
     return withoutValidTemplates.contains('{{') ||

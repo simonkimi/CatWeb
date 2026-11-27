@@ -145,7 +145,10 @@ void main() {
         },
       );
 
-      expect(request.uri.toString(), 'https://example.test/items/42?page=3');
+      expect(
+        request.uri.toString(),
+        'https://example.test/items/42?page=3&empty=',
+      );
       expect(request.headers, {'x-token': 'secret'});
 
       final blank = const RequestResolver().resolve(
@@ -162,6 +165,137 @@ void main() {
       expect(blank.uri.toString(), 'https://e-hentai.org/?page=0&f_search=');
       final body = request.body as JsonResolvedRequestBody;
       expect(body.value, {'enabled': true, 'label': 'item-42'});
+    });
+
+    test('applies required, default, fallback and omit templates', () {
+      final request = const RequestResolver().resolve(
+        baseUri: Uri.parse('https://example.test/'),
+        endpoint: _endpoint(
+          request: RequestRule(
+            method: RequestMethod.post,
+            url: '/items/{{id!}}',
+            query: {
+              'favcat': '{{favcat?}}',
+              'label': 'item-{{labelId?}}',
+              'kept': 'item-{{keptId?}}',
+              'blank': '{{blank}}',
+              'same': '{{same??}}',
+              'fallback': '{{fallback??abc}}',
+              'count': '{{count?}}',
+              'flag': '{{flag??yes}}',
+            },
+            headers: {'x-token': '{{token?}}', 'x-keep': '{{keep!}}'},
+            body: RequestBodyRule.json({
+              'drop': '{{drop?}}',
+              'prefixed': 'item-{{drop?}}',
+              'items': ['{{drop?}}', '{{keptId?}}', 1],
+            }),
+          ),
+        ),
+        variables: {
+          'id': 42,
+          'keptId': '7',
+          'count': 0,
+          'flag': false,
+          'keep': '',
+        },
+      );
+
+      expect(request.uri.path, '/items/42');
+      expect(request.uri.queryParametersAll['favcat'], isNull);
+      expect(request.uri.queryParametersAll['label'], isNull);
+      expect(request.uri.queryParameters['kept'], 'item-7');
+      expect(request.uri.queryParameters['blank'], '');
+      expect(request.uri.queryParameters['same'], '');
+      expect(request.uri.queryParameters['fallback'], 'abc');
+      expect(request.uri.queryParameters['count'], '0');
+      expect(request.uri.queryParameters['flag'], 'false');
+      expect(request.headers, {'x-keep': ''});
+      final body = request.body as JsonResolvedRequestBody;
+      expect(body.value, {
+        'items': ['7', 1],
+      });
+    });
+
+    test('rejects omit templates in URL and text bodies', () {
+      expect(
+        () => const RequestResolver().resolve(
+          baseUri: Uri.parse('https://example.test/'),
+          endpoint: _endpoint(
+            request: RequestRule(
+              method: RequestMethod.get,
+              url: '/items/item-{{id?}}',
+            ),
+          ),
+          variables: {'id': '1'},
+        ),
+        throwsA(
+          isA<SiteRuntimeException>().having(
+            (error) => error.toString(),
+            'message',
+            contains('not allowed in URL'),
+          ),
+        ),
+      );
+      expect(
+        () => const RequestResolver().resolve(
+          baseUri: Uri.parse('https://example.test/'),
+          endpoint: _endpoint(
+            request: RequestRule(
+              method: RequestMethod.post,
+              url: '/items',
+              body: RequestBodyRule.text('item-{{id?}}'),
+            ),
+          ),
+          variables: const {},
+        ),
+        throwsA(
+          isA<SiteRuntimeException>().having(
+            (error) => error.toString(),
+            'message',
+            contains('not allowed in text body'),
+          ),
+        ),
+      );
+      expect(
+        () => const RequestResolver().resolve(
+          baseUri: Uri.parse('https://example.test/'),
+          endpoint: _endpoint(
+            request: RequestRule(
+              method: RequestMethod.get,
+              url: '/items/{{id!}}',
+            ),
+          ),
+          variables: {'id': null},
+        ),
+        throwsA(
+          isA<SiteRuntimeException>().having(
+            (error) => error.toString(),
+            'message',
+            contains('Missing request variable: id'),
+          ),
+        ),
+      );
+    });
+
+    test('omits an empty form field and keeps a fallback', () {
+      final request = const RequestResolver().resolve(
+        baseUri: Uri.parse('https://example.test/'),
+        endpoint: _endpoint(
+          request: RequestRule(
+            method: RequestMethod.post,
+            url: '/',
+            body: RequestBodyRule.form({
+              'favcat': '{{favcat?}}',
+              'note': '{{note??none}}',
+            }),
+          ),
+        ),
+        variables: const {},
+      );
+
+      final body = request.body as FormResolvedRequestBody;
+      expect(body.fields, {'note': 'none'});
     });
   });
 

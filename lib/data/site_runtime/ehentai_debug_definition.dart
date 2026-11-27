@@ -283,7 +283,7 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       kind: EndpointKind.reader,
       name: '图片显示器',
       visible: false,
-      request: RequestRule(method: RequestMethod.get, url: '/s/{{idCode}}'),
+      request: RequestRule(method: RequestMethod.get, url: '/s/{{idCode!}}'),
       parserId: 'eh-reader-parser',
       pagination: PaginationRule.none(),
     ),
@@ -294,8 +294,8 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       visible: false,
       request: RequestRule(
         method: RequestMethod.get,
-        url: '/g/{{idCode}}/',
-        query: {'p': '{{page}}'},
+        url: '/g/{{idCode!}}/',
+        query: {'p': '{{page!}}'},
       ),
       parserId: 'eh-gallery-parser',
       pagination: PaginationRule.pageNumber(
@@ -355,7 +355,7 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       request: RequestRule(
         method: RequestMethod.get,
         url: '/favorites.php',
-        query: {'favcat': '{{favcat}}'},
+        query: {'favcat': '{{favcat?}}'},
       ),
       parserId: 'eh-list-parser',
       pagination: _ehNextPage,

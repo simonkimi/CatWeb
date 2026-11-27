@@ -6,6 +6,7 @@ import 'package:catweb/data/models/subpage_models.dart';
 import 'package:catweb/data/site_runtime/runtime_contracts.dart';
 import 'package:catweb/data/site_runtime/site_definition.dart';
 import 'package:catweb/data/site_runtime/site_page_source.dart';
+import 'package:catweb/data/site_runtime/subpage_variables.dart';
 import 'package:catweb/network/runtime/dio_http_transport.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/reader_load_notifier.dart';
 import 'package:catweb/ui/state/paged_loader_notifier.dart';
@@ -51,7 +52,20 @@ class SubListNotifier extends ChangeNotifier
 
   String searchKeywords = '';
   Map<String, String> currentFilter = const {};
+  int _subpageIndex = 0;
   bool _disposed = false;
+
+  int get subpageIndex => _subpageIndex;
+
+  Future<void> selectSubpage(int index) async {
+    final pages = endpoint.presentation.subpages;
+    if (pages.isEmpty) return;
+    final next = index.clamp(0, pages.length - 1);
+    if (next == _subpageIndex) return;
+    _subpageIndex = next;
+    _updateInputs();
+    await refresh();
+  }
 
   Future<void> setNewFilter(
     List<String> filterKeys,
@@ -69,7 +83,14 @@ class SubListNotifier extends ChangeNotifier
   }
 
   void _updateInputs() {
-    _source.updateInputs({...currentFilter, 'search': searchKeywords});
+    _source.updateInputs({
+      ...subpageRequestVariables(
+        endpoint.presentation.subpages,
+        _subpageIndex,
+      ),
+      ...currentFilter,
+      'search': searchKeywords,
+    });
   }
 
   Future<void> requireFirstLoad() async {
