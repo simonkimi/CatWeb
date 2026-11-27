@@ -32,6 +32,7 @@ abstract final class ParserSelectorKey {
 
   static const cover = 'cover';
   static const coverUrl = 'cover.url';
+  static const coverCacheKey = 'cover.cacheKey';
   static const coverWidth = 'cover.width';
   static const coverHeight = 'cover.height';
   static const coverX = 'cover.x';
@@ -47,6 +48,7 @@ abstract final class ParserSelectorKey {
   static const thumbnail = 'thumbnail';
   static const thumbnailTarget = 'thumbnail.target';
   static const thumbnailUrl = 'thumbnail.url';
+  static const thumbnailCacheKey = 'thumbnail.cacheKey';
   static const thumbnailWidth = 'thumbnail.width';
   static const thumbnailHeight = 'thumbnail.height';
   static const thumbnailX = 'thumbnail.x';
@@ -66,4 +68,11 @@ abstract final class ParserSelectorKey {
   static const commentContent = 'comment.content';
   static const commentUsername = 'comment.username';
   static const commentTime = 'comment.time';
+  static const commentScore = 'comment.score';
+  static const commentAvatarUrl = 'comment.avatar.url';
+  static const commentAvatarCacheKey = 'comment.avatar.cacheKey';
+  static const commentAvatarWidth = 'comment.avatar.width';
+  static const commentAvatarHeight = 'comment.avatar.height';
+  static const commentAvatarX = 'comment.avatar.x';
+  static const commentAvatarY = 'comment.avatar.y';
 }

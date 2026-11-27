@@ -1,12 +1,13 @@
-# HTML 列表解析
+# HTML 列表与画廊解析
 
 Rust 入口为 `parser::list_parser(&str, &ParserConfig)`，Flutter 入口为
 `lib/src/rust/api/parser.dart` 的 `parseList(html: ..., config: ...)`。
 调用 Flutter 接口前需要初始化 `RustLib`。参数和返回值使用 FRB 生成的类型，
 与 `data/site_runtime` 的规则模型、现有 Dart 业务结果模型分别独立。
 Flutter 的 `RustParserEngine` 已接入站点默认会话和列表页面，负责规则与结果模型
-转换、分页信息、环境补丁和失败处理。当前支持 HTML 列表和搜索结果，详情、阅读器
-及自动补全端点会明确返回尚未实现的解析错误。
+转换、分页信息、环境补丁和失败处理。画廊入口为
+`parser::gallery_parser(&str, &ParserConfig)` / `parseGallery(html: ..., config: ...)`，
+已接入 Flutter 画廊详情、预览分页和评论。阅读器及自动补全仍未实现。
 
 结果模型通过 Rust 结构体上的 `frb(dart_metadata = ("freezed"))` 标记生成
 Freezed 类型，支持 `copyWith`、集合深度比较和只读集合。重新生成时应同时
@@ -22,7 +23,20 @@ Freezed 类型，支持 `copyWith`、集合深度比较和只读集合。重新�
 当前仅支持 HTML，不兼容旧 Go JSON 配置。字符串字段依次执行提取、正则和脚本，
 之后再进行数值转换。替换表按完整值匹配，JavaScript 每次使用独立上下文，
 以 `$arg` 接收输入。字段错误保留在结果的 `errors` 中，包含字段路径；
-缺少 `item` 属于顶层错误。extras 仅返回提取结果，不提交环境更新。
+缺少 `item` 属于顶层错误。Rust 仅返回 extras 提取结果，Flutter 执行器在验证
+成功后提交环境更新。
+
+画廊的 `cover.*` 解析封面，`thumbnail` 定位缩略图，`thumbnail.target` 提供
+阅读目标，`thumbnail.*` 提取图片和雪碧图尺寸／偏移；`comment` 定位评论，
+支持 `comment.content`、`comment.username`、`comment.time`、字符串
+`comment.score` 和 `comment.avatar.*`。所有图片支持 `.cacheKey`。
+缺少缩略图配置时只展示元数据；缺图或缺目标的条目保留原位置，UI 显示占位。
+缩略图集合的查询错误会使页面失败；其他字段诊断保留在 `errors`。
+
+画廊 `imageCount` 映射为分页总图片数，`pageCount` 仅是页面总数元数据；
+`countPerPage` 映射到业务模型既有的 `countPrePage`，不覆盖端点
+`pagination.pageSize`，随机索引始终按端点配置计算。模板和离线样例覆盖
+普通、大图及雪碧图缩略图；模板更新不迁移已有站点规则。
 
 ```powershell
 # Rust 验证
@@ -37,6 +51,7 @@ cargo fmt --manifest-path rust/Cargo.toml
 
 # 包含真实动态库调用；测试自动执行 cargo build --locked
 flutter test test/parser
+flutter test test/site_runtime test/ui/gallery_test.dart
 ```
 
 `test/parser/testdata/list_parser.json` 是从旧配置迁移的新格式样例，

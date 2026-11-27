@@ -13,12 +13,56 @@ import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'result.freezed.dart';
 
 @freezed
+sealed class CommentResult with _$CommentResult {
+  const factory CommentResult({
+    String? username,
+    String? content,
+    String? time,
+    String? score,
+    ImageResult? avatar,
+  }) = _CommentResult;
+}
+
+@freezed
 sealed class EnvResult with _$EnvResult {
   const factory EnvResult({
     required String id,
     required bool global,
     String? value,
   }) = _EnvResult;
+}
+
+@freezed
+sealed class GalleryParserResult with _$GalleryParserResult {
+  const factory GalleryParserResult({
+    String? title,
+    String? subtitle,
+    String? language,
+    String? uploadTime,
+    String? description,
+    double? star,
+    int? imageCount,
+    int? pageCount,
+    int? countPerPage,
+    ImageResult? coverImage,
+    required List<GalleryPreviewItem> previews,
+    required List<TagResult> tags,
+    required List<TagResult> badges,
+    required List<CommentResult> comments,
+    String? nextPage,
+    bool? isSuccess,
+    String? failMessage,
+    required List<EnvResult> envs,
+    required List<ParseError> errors,
+  }) = _GalleryParserResult;
+}
+
+@freezed
+sealed class GalleryPreviewItem with _$GalleryPreviewItem {
+  const factory GalleryPreviewItem({
+    ImageResult? previewImage,
+    String? target,
+  }) = _GalleryPreviewItem;
 }
 
 @freezed

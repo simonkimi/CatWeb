@@ -14,6 +14,7 @@ import 'package:catweb/ui/widgets/cupertino_divider.dart';
 import 'package:catweb/ui/widgets/description.dart';
 import 'package:catweb/ui/widgets/icon_text.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
+import 'package:catweb/ui/widgets/preview_image.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:catweb/ui/pages/view_page/gallery/viewer_gallery_images.dart';
 import 'package:catweb/ui/theme/colors.dart';
@@ -23,6 +24,7 @@ import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
+
 import 'comment_list.dart';
 import 'viewer_gallery_notifier.dart';
 
@@ -127,6 +129,7 @@ class _ViewerGalleryFragmentState extends State<ViewerGalleryFragment> {
     final imageCount = context.select(
       (ViewerGalleryNotifier n) => n.firstPage?.pageData.imageCount,
     );
+    final indices = notifier.loadedPreviewIndices;
 
     return Column(
       children: [
@@ -138,14 +141,14 @@ class _ViewerGalleryFragmentState extends State<ViewerGalleryFragment> {
             itemCount: math.min(successiveItems.length, 60),
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: () => _openReadPage(index),
+                onTap: () => _openReadPage(indices[index]),
                 child: Padding(
                   padding: const EdgeInsets.only(right: 5),
                   child: AspectRatio(
                     aspectRatio: 200 / 282,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
-                      child: ImageLoader(
+                      child: PreviewImage(
                         repository: notifier.imageRepository,
                         model: successiveItems[index].previewImage,
                         innerImageBuilder: (context, child) {
@@ -238,10 +241,9 @@ class _ViewerGalleryFragmentState extends State<ViewerGalleryFragment> {
     final tagMaps = <String, List<String>>{'_': []};
 
     for (final tag in badges) {
-      tagMaps[tag.category?.isEmpty == true ? '_' : tag.category!] ??= [];
-      tagMaps[tag.category?.isEmpty == true ? '_' : tag.category]!.add(
-        tag.text ?? '',
-      );
+      final category = tag.category?.trim();
+      final key = category == null || category.isEmpty ? '_' : category;
+      (tagMaps[key] ??= []).add(tag.text ?? '');
     }
 
     return Column(
@@ -289,7 +291,7 @@ class _ViewerGalleryFragmentState extends State<ViewerGalleryFragment> {
     );
     final notifier = context.read<ViewerGalleryNotifier>();
 
-    if (coverImage == null) {
+    if (coverImage?.url?.trim().isNotEmpty != true) {
       return const SizedBox();
     }
     return Padding(
@@ -298,7 +300,7 @@ class _ViewerGalleryFragmentState extends State<ViewerGalleryFragment> {
         width: 140,
         child: ImageLoader(
           repository: notifier.imageRepository,
-          model: coverImage,
+          model: coverImage!,
           innerImageBuilder: (context, child) {
             return Container(
               clipBehavior: Clip.antiAlias,
@@ -362,16 +364,17 @@ class _ViewerGalleryFragmentState extends State<ViewerGalleryFragment> {
     final errMsg = context.select(
       (ViewerGalleryNotifier n) => n.pageSnapshot.failure?.error.toString(),
     );
+    if (errMsg != null) {
+      return ExceptionSliver(
+        errMsg: errMsg,
+        onRetry: () {
+          unawaited(context.read<ViewerGalleryNotifier>().pageLoader.retry());
+        },
+      );
+    }
 
-    return SliverFillRemaining(
-      child: Center(
-        child: errMsg != null
-            ? Text(
-                errMsg,
-                style: TextStyle(color: FixColor.title.resolveFrom(context)),
-              )
-            : const CupertinoActivityIndicator(),
-      ),
+    return const SliverFillRemaining(
+      child: Center(child: CupertinoActivityIndicator()),
     );
   }
 
@@ -443,6 +446,11 @@ class _ViewerGalleryFragmentState extends State<ViewerGalleryFragment> {
   }
 
   Future<void> _openReadPage([int? startPage]) async {
+    final item = notifier.itemAt(startPage ?? 0);
+    if (item?.idCode?.trim().isNotEmpty != true) {
+      BotToast.showText(text: '缩略图未配置阅读目标');
+      return;
+    }
     final readerId = widget.endpoint.links.reader;
     if (readerId == null) {
       BotToast.showText(text: '详情端点未配置阅读链接');

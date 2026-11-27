@@ -27,6 +27,7 @@ _DetailParserResult _$DetailParserResultFromJson(Map<String, dynamic> json) =>
       imageCount: (json['imageCount'] as num?)?.toInt(),
       uploadTime: json['uploadTime'] as String?,
       countPrePage: (json['countPrePage'] as num?)?.toInt(),
+      pageCount: (json['pageCount'] as num?)?.toInt(),
       description: json['description'] as String?,
       star: (json['star'] as num?)?.toDouble(),
       previews: (json['previews'] as List<dynamic>?)
@@ -63,6 +64,7 @@ Map<String, dynamic> _$DetailParserResultToJson(_DetailParserResult instance) =>
       'imageCount': instance.imageCount,
       'uploadTime': instance.uploadTime,
       'countPrePage': instance.countPrePage,
+      'pageCount': instance.pageCount,
       'description': instance.description,
       'star': instance.star,
       'previews': instance.previews,

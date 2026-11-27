@@ -662,9 +662,7 @@ List<_SelectorSection> _sectionsFor(EndpointKind kind) => switch (kind) {
 };
 
 const _listSections = [
-  _SelectorSection('基础信息', [
-    _SelectorField(ParserSelectorKey.item, '项目选择器'),
-  ]),
+  _SelectorSection('基础信息', [_SelectorField(ParserSelectorKey.item, '项目选择器')]),
   _SelectorSection('信息设置', [
     _SelectorField(ParserSelectorKey.idCode, 'idCode'),
     _SelectorField(ParserSelectorKey.title, '标题'),
@@ -682,28 +680,18 @@ const _listSections = [
     _SelectorField(ParserSelectorKey.previewY, '封面 Y 偏移'),
   ]),
   _SelectorSection('标签', [
-    _SelectorField(
-      ParserSelectorKey.tag,
-      '标签选择器',
-      onlySelector: true,
-    ),
+    _SelectorField(ParserSelectorKey.tag, '标签选择器', onlySelector: true),
     _SelectorField(ParserSelectorKey.tagText, '标签文本'),
     _SelectorField(ParserSelectorKey.tagCategory, '标签类型'),
     _SelectorField(ParserSelectorKey.tagColor, '标签颜色'),
   ]),
   _SelectorSection('徽章', [
-    _SelectorField(
-      ParserSelectorKey.badge,
-      '徽章选择器',
-      onlySelector: true,
-    ),
+    _SelectorField(ParserSelectorKey.badge, '徽章选择器', onlySelector: true),
     _SelectorField(ParserSelectorKey.badgeText, '徽章文本'),
     _SelectorField(ParserSelectorKey.badgeCategory, '徽章类型'),
     _SelectorField(ParserSelectorKey.badgeColor, '徽章颜色'),
   ]),
-  _SelectorSection('索引', [
-    _SelectorField(ParserSelectorKey.nextPage, '下一页地址'),
-  ]),
+  _SelectorSection('索引', [_SelectorField(ParserSelectorKey.nextPage, '下一页地址')]),
   _SelectorSection('标志位', [
     _SelectorField(ParserSelectorKey.success, '请求成功'),
     _SelectorField(ParserSelectorKey.failure, '请求失败'),
@@ -724,39 +712,42 @@ const _gallerySections = [
   ]),
   _SelectorSection('封面', [
     _SelectorField(ParserSelectorKey.coverUrl, '封面图片'),
+    _SelectorField(ParserSelectorKey.coverCacheKey, '封面缓存键'),
     _SelectorField(ParserSelectorKey.coverWidth, '封面宽度'),
     _SelectorField(ParserSelectorKey.coverHeight, '封面高度'),
     _SelectorField(ParserSelectorKey.coverX, '封面 X 偏移'),
     _SelectorField(ParserSelectorKey.coverY, '封面 Y 偏移'),
   ]),
   _SelectorSection('标签', [
-    _SelectorField(
-      ParserSelectorKey.tag,
-      '标签选择器',
-      onlySelector: true,
-    ),
+    _SelectorField(ParserSelectorKey.tag, '标签选择器', onlySelector: true),
     _SelectorField(ParserSelectorKey.tagText, '标签内容'),
     _SelectorField(ParserSelectorKey.tagColor, '标签颜色'),
     _SelectorField(ParserSelectorKey.tagCategory, '标签分类'),
   ]),
+  _SelectorSection('徽章', [
+    _SelectorField(ParserSelectorKey.badge, '徽章选择器', onlySelector: true),
+    _SelectorField(ParserSelectorKey.badgeText, '徽章文本'),
+    _SelectorField(ParserSelectorKey.badgeCategory, '徽章分类'),
+    _SelectorField(ParserSelectorKey.badgeColor, '徽章颜色'),
+  ]),
   _SelectorSection('评论', [
-    _SelectorField(
-      ParserSelectorKey.comment,
-      '评论项目',
-      onlySelector: true,
-    ),
+    _SelectorField(ParserSelectorKey.comment, '评论项目', onlySelector: true),
     _SelectorField(ParserSelectorKey.commentContent, '评论内容'),
     _SelectorField(ParserSelectorKey.commentUsername, '用户名'),
     _SelectorField(ParserSelectorKey.commentTime, '评论时间'),
+    _SelectorField(ParserSelectorKey.commentScore, '评论评分'),
+    _SelectorField(ParserSelectorKey.commentAvatarUrl, '评论头像'),
+    _SelectorField(ParserSelectorKey.commentAvatarCacheKey, '头像缓存键'),
+    _SelectorField(ParserSelectorKey.commentAvatarWidth, '头像宽度'),
+    _SelectorField(ParserSelectorKey.commentAvatarHeight, '头像高度'),
+    _SelectorField(ParserSelectorKey.commentAvatarX, '头像 X 偏移'),
+    _SelectorField(ParserSelectorKey.commentAvatarY, '头像 Y 偏移'),
   ]),
   _SelectorSection('缩略图', [
-    _SelectorField(
-      ParserSelectorKey.thumbnail,
-      '缩略图选择器',
-      onlySelector: true,
-    ),
+    _SelectorField(ParserSelectorKey.thumbnail, '缩略图选择器', onlySelector: true),
     _SelectorField(ParserSelectorKey.thumbnailTarget, '缩略图目标'),
     _SelectorField(ParserSelectorKey.thumbnailUrl, '缩略图地址'),
+    _SelectorField(ParserSelectorKey.thumbnailCacheKey, '缩略图缓存键'),
     _SelectorField(ParserSelectorKey.thumbnailWidth, '缩略图宽度'),
     _SelectorField(ParserSelectorKey.thumbnailHeight, '缩略图高度'),
     _SelectorField(ParserSelectorKey.thumbnailX, '缩略图 X 偏移'),

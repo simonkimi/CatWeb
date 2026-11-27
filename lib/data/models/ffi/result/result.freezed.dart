@@ -327,7 +327,7 @@ $ImageResultCopyWith<$Res>? get previewImage {
 /// @nodoc
 mixin _$DetailParserResult implements DiagnosticableTreeMixin {
 
- String? get title; String? get subtitle; String? get language; int? get imageCount; String? get uploadTime; int? get countPrePage; String? get description; double? get star; List<DetailPreviewItem>? get previews; ImageResult? get coverImage; List<TagResult>? get badges; List<TagResult>? get tags; List<CommentResult>? get comments; String? get nextPage; bool? get isSuccess; String? get failMessage; List<EnvResult> get envs; List<ParserError> get errors;
+ String? get title; String? get subtitle; String? get language; int? get imageCount; String? get uploadTime; int? get countPrePage; int? get pageCount; String? get description; double? get star; List<DetailPreviewItem>? get previews; ImageResult? get coverImage; List<TagResult>? get badges; List<TagResult>? get tags; List<CommentResult>? get comments; String? get nextPage; bool? get isSuccess; String? get failMessage; List<EnvResult> get envs; List<ParserError> get errors;
 /// Create a copy of DetailParserResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -342,26 +342,26 @@ void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   final _this = this as DetailParserResult;
   properties
     ..add(DiagnosticsProperty('type', 'DetailParserResult'))
-    ..add(DiagnosticsProperty('title', _this.title))..add(DiagnosticsProperty('subtitle', _this.subtitle))..add(DiagnosticsProperty('language', _this.language))..add(DiagnosticsProperty('imageCount', _this.imageCount))..add(DiagnosticsProperty('uploadTime', _this.uploadTime))..add(DiagnosticsProperty('countPrePage', _this.countPrePage))..add(DiagnosticsProperty('description', _this.description))..add(DiagnosticsProperty('star', _this.star))..add(DiagnosticsProperty('previews', _this.previews))..add(DiagnosticsProperty('coverImage', _this.coverImage))..add(DiagnosticsProperty('badges', _this.badges))..add(DiagnosticsProperty('tags', _this.tags))..add(DiagnosticsProperty('comments', _this.comments))..add(DiagnosticsProperty('nextPage', _this.nextPage))..add(DiagnosticsProperty('isSuccess', _this.isSuccess))..add(DiagnosticsProperty('failMessage', _this.failMessage))..add(DiagnosticsProperty('envs', _this.envs))..add(DiagnosticsProperty('errors', _this.errors));
+    ..add(DiagnosticsProperty('title', _this.title))..add(DiagnosticsProperty('subtitle', _this.subtitle))..add(DiagnosticsProperty('language', _this.language))..add(DiagnosticsProperty('imageCount', _this.imageCount))..add(DiagnosticsProperty('uploadTime', _this.uploadTime))..add(DiagnosticsProperty('countPrePage', _this.countPrePage))..add(DiagnosticsProperty('pageCount', _this.pageCount))..add(DiagnosticsProperty('description', _this.description))..add(DiagnosticsProperty('star', _this.star))..add(DiagnosticsProperty('previews', _this.previews))..add(DiagnosticsProperty('coverImage', _this.coverImage))..add(DiagnosticsProperty('badges', _this.badges))..add(DiagnosticsProperty('tags', _this.tags))..add(DiagnosticsProperty('comments', _this.comments))..add(DiagnosticsProperty('nextPage', _this.nextPage))..add(DiagnosticsProperty('isSuccess', _this.isSuccess))..add(DiagnosticsProperty('failMessage', _this.failMessage))..add(DiagnosticsProperty('envs', _this.envs))..add(DiagnosticsProperty('errors', _this.errors));
 }
 
 @override
 bool operator ==(Object other) {
   final _this = this as DetailParserResult;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetailParserResult&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.subtitle, _this.subtitle) || other.subtitle == _this.subtitle)&&(identical(other.language, _this.language) || other.language == _this.language)&&(identical(other.imageCount, _this.imageCount) || other.imageCount == _this.imageCount)&&(identical(other.uploadTime, _this.uploadTime) || other.uploadTime == _this.uploadTime)&&(identical(other.countPrePage, _this.countPrePage) || other.countPrePage == _this.countPrePage)&&(identical(other.description, _this.description) || other.description == _this.description)&&(identical(other.star, _this.star) || other.star == _this.star)&&const DeepCollectionEquality().equals(other.previews, _this.previews)&&(identical(other.coverImage, _this.coverImage) || other.coverImage == _this.coverImage)&&const DeepCollectionEquality().equals(other.badges, _this.badges)&&const DeepCollectionEquality().equals(other.tags, _this.tags)&&const DeepCollectionEquality().equals(other.comments, _this.comments)&&(identical(other.nextPage, _this.nextPage) || other.nextPage == _this.nextPage)&&(identical(other.isSuccess, _this.isSuccess) || other.isSuccess == _this.isSuccess)&&(identical(other.failMessage, _this.failMessage) || other.failMessage == _this.failMessage)&&const DeepCollectionEquality().equals(other.envs, _this.envs)&&const DeepCollectionEquality().equals(other.errors, _this.errors));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetailParserResult&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.subtitle, _this.subtitle) || other.subtitle == _this.subtitle)&&(identical(other.language, _this.language) || other.language == _this.language)&&(identical(other.imageCount, _this.imageCount) || other.imageCount == _this.imageCount)&&(identical(other.uploadTime, _this.uploadTime) || other.uploadTime == _this.uploadTime)&&(identical(other.countPrePage, _this.countPrePage) || other.countPrePage == _this.countPrePage)&&(identical(other.pageCount, _this.pageCount) || other.pageCount == _this.pageCount)&&(identical(other.description, _this.description) || other.description == _this.description)&&(identical(other.star, _this.star) || other.star == _this.star)&&const DeepCollectionEquality().equals(other.previews, _this.previews)&&(identical(other.coverImage, _this.coverImage) || other.coverImage == _this.coverImage)&&const DeepCollectionEquality().equals(other.badges, _this.badges)&&const DeepCollectionEquality().equals(other.tags, _this.tags)&&const DeepCollectionEquality().equals(other.comments, _this.comments)&&(identical(other.nextPage, _this.nextPage) || other.nextPage == _this.nextPage)&&(identical(other.isSuccess, _this.isSuccess) || other.isSuccess == _this.isSuccess)&&(identical(other.failMessage, _this.failMessage) || other.failMessage == _this.failMessage)&&const DeepCollectionEquality().equals(other.envs, _this.envs)&&const DeepCollectionEquality().equals(other.errors, _this.errors));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as DetailParserResult;
-  return Object.hash(runtimeType,_this.title,_this.subtitle,_this.language,_this.imageCount,_this.uploadTime,_this.countPrePage,_this.description,_this.star,const DeepCollectionEquality().hash(_this.previews),_this.coverImage,const DeepCollectionEquality().hash(_this.badges),const DeepCollectionEquality().hash(_this.tags),const DeepCollectionEquality().hash(_this.comments),_this.nextPage,_this.isSuccess,_this.failMessage,const DeepCollectionEquality().hash(_this.envs),const DeepCollectionEquality().hash(_this.errors));
+  return Object.hashAll([runtimeType,_this.title,_this.subtitle,_this.language,_this.imageCount,_this.uploadTime,_this.countPrePage,_this.pageCount,_this.description,_this.star,const DeepCollectionEquality().hash(_this.previews),_this.coverImage,const DeepCollectionEquality().hash(_this.badges),const DeepCollectionEquality().hash(_this.tags),const DeepCollectionEquality().hash(_this.comments),_this.nextPage,_this.isSuccess,_this.failMessage,const DeepCollectionEquality().hash(_this.envs),const DeepCollectionEquality().hash(_this.errors)]);
 }
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   final _this = this as DetailParserResult;
-  return 'DetailParserResult(title: ${_this.title}, subtitle: ${_this.subtitle}, language: ${_this.language}, imageCount: ${_this.imageCount}, uploadTime: ${_this.uploadTime}, countPrePage: ${_this.countPrePage}, description: ${_this.description}, star: ${_this.star}, previews: ${_this.previews}, coverImage: ${_this.coverImage}, badges: ${_this.badges}, tags: ${_this.tags}, comments: ${_this.comments}, nextPage: ${_this.nextPage}, isSuccess: ${_this.isSuccess}, failMessage: ${_this.failMessage}, envs: ${_this.envs}, errors: ${_this.errors})';
+  return 'DetailParserResult(title: ${_this.title}, subtitle: ${_this.subtitle}, language: ${_this.language}, imageCount: ${_this.imageCount}, uploadTime: ${_this.uploadTime}, countPrePage: ${_this.countPrePage}, pageCount: ${_this.pageCount}, description: ${_this.description}, star: ${_this.star}, previews: ${_this.previews}, coverImage: ${_this.coverImage}, badges: ${_this.badges}, tags: ${_this.tags}, comments: ${_this.comments}, nextPage: ${_this.nextPage}, isSuccess: ${_this.isSuccess}, failMessage: ${_this.failMessage}, envs: ${_this.envs}, errors: ${_this.errors})';
 }
 
 
@@ -372,7 +372,7 @@ abstract mixin class $DetailParserResultCopyWith<$Res>  {
   factory $DetailParserResultCopyWith(DetailParserResult value, $Res Function(DetailParserResult) _then) = _$DetailParserResultCopyWithImpl;
 @useResult
 $Res call({
- String? title, String? subtitle, String? language, int? imageCount, String? uploadTime, int? countPrePage, String? description, double? star, List<DetailPreviewItem>? previews, ImageResult? coverImage, List<TagResult>? badges, List<TagResult>? tags, List<CommentResult>? comments, String? nextPage, bool? isSuccess, String? failMessage, List<EnvResult> envs, List<ParserError> errors
+ String? title, String? subtitle, String? language, int? imageCount, String? uploadTime, int? countPrePage, int? pageCount, String? description, double? star, List<DetailPreviewItem>? previews, ImageResult? coverImage, List<TagResult>? badges, List<TagResult>? tags, List<CommentResult>? comments, String? nextPage, bool? isSuccess, String? failMessage, List<EnvResult> envs, List<ParserError> errors
 });
 
 
@@ -389,7 +389,7 @@ class _$DetailParserResultCopyWithImpl<$Res>
 
 /// Create a copy of DetailParserResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? subtitle = freezed,Object? language = freezed,Object? imageCount = freezed,Object? uploadTime = freezed,Object? countPrePage = freezed,Object? description = freezed,Object? star = freezed,Object? previews = freezed,Object? coverImage = freezed,Object? badges = freezed,Object? tags = freezed,Object? comments = freezed,Object? nextPage = freezed,Object? isSuccess = freezed,Object? failMessage = freezed,Object? envs = null,Object? errors = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? subtitle = freezed,Object? language = freezed,Object? imageCount = freezed,Object? uploadTime = freezed,Object? countPrePage = freezed,Object? pageCount = freezed,Object? description = freezed,Object? star = freezed,Object? previews = freezed,Object? coverImage = freezed,Object? badges = freezed,Object? tags = freezed,Object? comments = freezed,Object? nextPage = freezed,Object? isSuccess = freezed,Object? failMessage = freezed,Object? envs = null,Object? errors = null,}) {
   return _then(DetailParserResult(
 title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String?,subtitle: freezed == subtitle ? _self.subtitle : subtitle // ignore: cast_nullable_to_non_nullable
@@ -397,6 +397,7 @@ as String?,language: freezed == language ? _self.language : language // ignore: 
 as String?,imageCount: freezed == imageCount ? _self.imageCount : imageCount // ignore: cast_nullable_to_non_nullable
 as int?,uploadTime: freezed == uploadTime ? _self.uploadTime : uploadTime // ignore: cast_nullable_to_non_nullable
 as String?,countPrePage: freezed == countPrePage ? _self.countPrePage : countPrePage // ignore: cast_nullable_to_non_nullable
+as int?,pageCount: freezed == pageCount ? _self.pageCount : pageCount // ignore: cast_nullable_to_non_nullable
 as int?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,star: freezed == star ? _self.star : star // ignore: cast_nullable_to_non_nullable
 as double?,previews: freezed == previews ? _self.previews : previews // ignore: cast_nullable_to_non_nullable
@@ -503,10 +504,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? title,  String? subtitle,  String? language,  int? imageCount,  String? uploadTime,  int? countPrePage,  String? description,  double? star,  List<DetailPreviewItem>? previews,  ImageResult? coverImage,  List<TagResult>? badges,  List<TagResult>? tags,  List<CommentResult>? comments,  String? nextPage,  bool? isSuccess,  String? failMessage,  List<EnvResult> envs,  List<ParserError> errors)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? title,  String? subtitle,  String? language,  int? imageCount,  String? uploadTime,  int? countPrePage,  int? pageCount,  String? description,  double? star,  List<DetailPreviewItem>? previews,  ImageResult? coverImage,  List<TagResult>? badges,  List<TagResult>? tags,  List<CommentResult>? comments,  String? nextPage,  bool? isSuccess,  String? failMessage,  List<EnvResult> envs,  List<ParserError> errors)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DetailParserResult() when $default != null:
-return $default(_that.title,_that.subtitle,_that.language,_that.imageCount,_that.uploadTime,_that.countPrePage,_that.description,_that.star,_that.previews,_that.coverImage,_that.badges,_that.tags,_that.comments,_that.nextPage,_that.isSuccess,_that.failMessage,_that.envs,_that.errors);case _:
+return $default(_that.title,_that.subtitle,_that.language,_that.imageCount,_that.uploadTime,_that.countPrePage,_that.pageCount,_that.description,_that.star,_that.previews,_that.coverImage,_that.badges,_that.tags,_that.comments,_that.nextPage,_that.isSuccess,_that.failMessage,_that.envs,_that.errors);case _:
   return orElse();
 
 }
@@ -524,10 +525,10 @@ return $default(_that.title,_that.subtitle,_that.language,_that.imageCount,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? title,  String? subtitle,  String? language,  int? imageCount,  String? uploadTime,  int? countPrePage,  String? description,  double? star,  List<DetailPreviewItem>? previews,  ImageResult? coverImage,  List<TagResult>? badges,  List<TagResult>? tags,  List<CommentResult>? comments,  String? nextPage,  bool? isSuccess,  String? failMessage,  List<EnvResult> envs,  List<ParserError> errors)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? title,  String? subtitle,  String? language,  int? imageCount,  String? uploadTime,  int? countPrePage,  int? pageCount,  String? description,  double? star,  List<DetailPreviewItem>? previews,  ImageResult? coverImage,  List<TagResult>? badges,  List<TagResult>? tags,  List<CommentResult>? comments,  String? nextPage,  bool? isSuccess,  String? failMessage,  List<EnvResult> envs,  List<ParserError> errors)  $default,) {final _that = this;
 switch (_that) {
 case _DetailParserResult():
-return $default(_that.title,_that.subtitle,_that.language,_that.imageCount,_that.uploadTime,_that.countPrePage,_that.description,_that.star,_that.previews,_that.coverImage,_that.badges,_that.tags,_that.comments,_that.nextPage,_that.isSuccess,_that.failMessage,_that.envs,_that.errors);}
+return $default(_that.title,_that.subtitle,_that.language,_that.imageCount,_that.uploadTime,_that.countPrePage,_that.pageCount,_that.description,_that.star,_that.previews,_that.coverImage,_that.badges,_that.tags,_that.comments,_that.nextPage,_that.isSuccess,_that.failMessage,_that.envs,_that.errors);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -541,10 +542,10 @@ return $default(_that.title,_that.subtitle,_that.language,_that.imageCount,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? title,  String? subtitle,  String? language,  int? imageCount,  String? uploadTime,  int? countPrePage,  String? description,  double? star,  List<DetailPreviewItem>? previews,  ImageResult? coverImage,  List<TagResult>? badges,  List<TagResult>? tags,  List<CommentResult>? comments,  String? nextPage,  bool? isSuccess,  String? failMessage,  List<EnvResult> envs,  List<ParserError> errors)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? title,  String? subtitle,  String? language,  int? imageCount,  String? uploadTime,  int? countPrePage,  int? pageCount,  String? description,  double? star,  List<DetailPreviewItem>? previews,  ImageResult? coverImage,  List<TagResult>? badges,  List<TagResult>? tags,  List<CommentResult>? comments,  String? nextPage,  bool? isSuccess,  String? failMessage,  List<EnvResult> envs,  List<ParserError> errors)?  $default,) {final _that = this;
 switch (_that) {
 case _DetailParserResult() when $default != null:
-return $default(_that.title,_that.subtitle,_that.language,_that.imageCount,_that.uploadTime,_that.countPrePage,_that.description,_that.star,_that.previews,_that.coverImage,_that.badges,_that.tags,_that.comments,_that.nextPage,_that.isSuccess,_that.failMessage,_that.envs,_that.errors);case _:
+return $default(_that.title,_that.subtitle,_that.language,_that.imageCount,_that.uploadTime,_that.countPrePage,_that.pageCount,_that.description,_that.star,_that.previews,_that.coverImage,_that.badges,_that.tags,_that.comments,_that.nextPage,_that.isSuccess,_that.failMessage,_that.envs,_that.errors);case _:
   return null;
 
 }
@@ -556,7 +557,7 @@ return $default(_that.title,_that.subtitle,_that.language,_that.imageCount,_that
 @JsonSerializable()
 
 class _DetailParserResult with DiagnosticableTreeMixin implements DetailParserResult {
-  const _DetailParserResult({this.title, this.subtitle, this.language, this.imageCount, this.uploadTime, this.countPrePage, this.description, this.star,  List<DetailPreviewItem>? previews, this.coverImage,  List<TagResult>? badges,  List<TagResult>? tags,  List<CommentResult>? comments, this.nextPage, this.isSuccess, this.failMessage, required  List<EnvResult> envs, required  List<ParserError> errors}): _previews = previews,_badges = badges,_tags = tags,_comments = comments,_envs = envs,_errors = errors;
+  const _DetailParserResult({this.title, this.subtitle, this.language, this.imageCount, this.uploadTime, this.countPrePage, this.pageCount, this.description, this.star,  List<DetailPreviewItem>? previews, this.coverImage,  List<TagResult>? badges,  List<TagResult>? tags,  List<CommentResult>? comments, this.nextPage, this.isSuccess, this.failMessage, required  List<EnvResult> envs, required  List<ParserError> errors}): _previews = previews,_badges = badges,_tags = tags,_comments = comments,_envs = envs,_errors = errors;
   factory _DetailParserResult.fromJson(Map<String, dynamic> json) => _$DetailParserResultFromJson(json);
 
 @override final  String? title;
@@ -565,6 +566,7 @@ class _DetailParserResult with DiagnosticableTreeMixin implements DetailParserRe
 @override final  int? imageCount;
 @override final  String? uploadTime;
 @override final  int? countPrePage;
+@override final  int? pageCount;
 @override final  String? description;
 @override final  double? star;
  final  List<DetailPreviewItem>? _previews;
@@ -636,23 +638,23 @@ Map<String, dynamic> toJson() {
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     properties
     ..add(DiagnosticsProperty('type', 'DetailParserResult'))
-    ..add(DiagnosticsProperty('title', title))..add(DiagnosticsProperty('subtitle', subtitle))..add(DiagnosticsProperty('language', language))..add(DiagnosticsProperty('imageCount', imageCount))..add(DiagnosticsProperty('uploadTime', uploadTime))..add(DiagnosticsProperty('countPrePage', countPrePage))..add(DiagnosticsProperty('description', description))..add(DiagnosticsProperty('star', star))..add(DiagnosticsProperty('previews', previews))..add(DiagnosticsProperty('coverImage', coverImage))..add(DiagnosticsProperty('badges', badges))..add(DiagnosticsProperty('tags', tags))..add(DiagnosticsProperty('comments', comments))..add(DiagnosticsProperty('nextPage', nextPage))..add(DiagnosticsProperty('isSuccess', isSuccess))..add(DiagnosticsProperty('failMessage', failMessage))..add(DiagnosticsProperty('envs', envs))..add(DiagnosticsProperty('errors', errors));
+    ..add(DiagnosticsProperty('title', title))..add(DiagnosticsProperty('subtitle', subtitle))..add(DiagnosticsProperty('language', language))..add(DiagnosticsProperty('imageCount', imageCount))..add(DiagnosticsProperty('uploadTime', uploadTime))..add(DiagnosticsProperty('countPrePage', countPrePage))..add(DiagnosticsProperty('pageCount', pageCount))..add(DiagnosticsProperty('description', description))..add(DiagnosticsProperty('star', star))..add(DiagnosticsProperty('previews', previews))..add(DiagnosticsProperty('coverImage', coverImage))..add(DiagnosticsProperty('badges', badges))..add(DiagnosticsProperty('tags', tags))..add(DiagnosticsProperty('comments', comments))..add(DiagnosticsProperty('nextPage', nextPage))..add(DiagnosticsProperty('isSuccess', isSuccess))..add(DiagnosticsProperty('failMessage', failMessage))..add(DiagnosticsProperty('envs', envs))..add(DiagnosticsProperty('errors', errors));
 }
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DetailParserResult&&(identical(other.title, title) || other.title == title)&&(identical(other.subtitle, subtitle) || other.subtitle == subtitle)&&(identical(other.language, language) || other.language == language)&&(identical(other.imageCount, imageCount) || other.imageCount == imageCount)&&(identical(other.uploadTime, uploadTime) || other.uploadTime == uploadTime)&&(identical(other.countPrePage, countPrePage) || other.countPrePage == countPrePage)&&(identical(other.description, description) || other.description == description)&&(identical(other.star, star) || other.star == star)&&const DeepCollectionEquality().equals(other.previews, _previews)&&(identical(other.coverImage, coverImage) || other.coverImage == coverImage)&&const DeepCollectionEquality().equals(other.badges, _badges)&&const DeepCollectionEquality().equals(other.tags, _tags)&&const DeepCollectionEquality().equals(other.comments, _comments)&&(identical(other.nextPage, nextPage) || other.nextPage == nextPage)&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess)&&(identical(other.failMessage, failMessage) || other.failMessage == failMessage)&&const DeepCollectionEquality().equals(other.envs, _envs)&&const DeepCollectionEquality().equals(other.errors, _errors));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DetailParserResult&&(identical(other.title, title) || other.title == title)&&(identical(other.subtitle, subtitle) || other.subtitle == subtitle)&&(identical(other.language, language) || other.language == language)&&(identical(other.imageCount, imageCount) || other.imageCount == imageCount)&&(identical(other.uploadTime, uploadTime) || other.uploadTime == uploadTime)&&(identical(other.countPrePage, countPrePage) || other.countPrePage == countPrePage)&&(identical(other.pageCount, pageCount) || other.pageCount == pageCount)&&(identical(other.description, description) || other.description == description)&&(identical(other.star, star) || other.star == star)&&const DeepCollectionEquality().equals(other.previews, _previews)&&(identical(other.coverImage, coverImage) || other.coverImage == coverImage)&&const DeepCollectionEquality().equals(other.badges, _badges)&&const DeepCollectionEquality().equals(other.tags, _tags)&&const DeepCollectionEquality().equals(other.comments, _comments)&&(identical(other.nextPage, nextPage) || other.nextPage == nextPage)&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess)&&(identical(other.failMessage, failMessage) || other.failMessage == failMessage)&&const DeepCollectionEquality().equals(other.envs, _envs)&&const DeepCollectionEquality().equals(other.errors, _errors));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,title,subtitle,language,imageCount,uploadTime,countPrePage,description,star,const DeepCollectionEquality().hash(_previews),coverImage,const DeepCollectionEquality().hash(_badges),const DeepCollectionEquality().hash(_tags),const DeepCollectionEquality().hash(_comments),nextPage,isSuccess,failMessage,const DeepCollectionEquality().hash(_envs),const DeepCollectionEquality().hash(_errors));
+    return Object.hashAll([runtimeType,title,subtitle,language,imageCount,uploadTime,countPrePage,pageCount,description,star,const DeepCollectionEquality().hash(_previews),coverImage,const DeepCollectionEquality().hash(_badges),const DeepCollectionEquality().hash(_tags),const DeepCollectionEquality().hash(_comments),nextPage,isSuccess,failMessage,const DeepCollectionEquality().hash(_envs),const DeepCollectionEquality().hash(_errors)]);
 }
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-    return 'DetailParserResult(title: $title, subtitle: $subtitle, language: $language, imageCount: $imageCount, uploadTime: $uploadTime, countPrePage: $countPrePage, description: $description, star: $star, previews: $previews, coverImage: $coverImage, badges: $badges, tags: $tags, comments: $comments, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
+    return 'DetailParserResult(title: $title, subtitle: $subtitle, language: $language, imageCount: $imageCount, uploadTime: $uploadTime, countPrePage: $countPrePage, pageCount: $pageCount, description: $description, star: $star, previews: $previews, coverImage: $coverImage, badges: $badges, tags: $tags, comments: $comments, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
 }
 
 
@@ -663,7 +665,7 @@ abstract mixin class _$DetailParserResultCopyWith<$Res> implements $DetailParser
   factory _$DetailParserResultCopyWith(_DetailParserResult value, $Res Function(_DetailParserResult) _then) = __$DetailParserResultCopyWithImpl;
 @override @useResult
 $Res call({
- String? title, String? subtitle, String? language, int? imageCount, String? uploadTime, int? countPrePage, String? description, double? star, List<DetailPreviewItem>? previews, ImageResult? coverImage, List<TagResult>? badges, List<TagResult>? tags, List<CommentResult>? comments, String? nextPage, bool? isSuccess, String? failMessage, List<EnvResult> envs, List<ParserError> errors
+ String? title, String? subtitle, String? language, int? imageCount, String? uploadTime, int? countPrePage, int? pageCount, String? description, double? star, List<DetailPreviewItem>? previews, ImageResult? coverImage, List<TagResult>? badges, List<TagResult>? tags, List<CommentResult>? comments, String? nextPage, bool? isSuccess, String? failMessage, List<EnvResult> envs, List<ParserError> errors
 });
 
 
@@ -680,7 +682,7 @@ class __$DetailParserResultCopyWithImpl<$Res>
 
 /// Create a copy of DetailParserResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? subtitle = freezed,Object? language = freezed,Object? imageCount = freezed,Object? uploadTime = freezed,Object? countPrePage = freezed,Object? description = freezed,Object? star = freezed,Object? previews = freezed,Object? coverImage = freezed,Object? badges = freezed,Object? tags = freezed,Object? comments = freezed,Object? nextPage = freezed,Object? isSuccess = freezed,Object? failMessage = freezed,Object? envs = null,Object? errors = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? subtitle = freezed,Object? language = freezed,Object? imageCount = freezed,Object? uploadTime = freezed,Object? countPrePage = freezed,Object? pageCount = freezed,Object? description = freezed,Object? star = freezed,Object? previews = freezed,Object? coverImage = freezed,Object? badges = freezed,Object? tags = freezed,Object? comments = freezed,Object? nextPage = freezed,Object? isSuccess = freezed,Object? failMessage = freezed,Object? envs = null,Object? errors = null,}) {
   return _then(_DetailParserResult(
 title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String?,subtitle: freezed == subtitle ? _self.subtitle : subtitle // ignore: cast_nullable_to_non_nullable
@@ -688,6 +690,7 @@ as String?,language: freezed == language ? _self.language : language // ignore: 
 as String?,imageCount: freezed == imageCount ? _self.imageCount : imageCount // ignore: cast_nullable_to_non_nullable
 as int?,uploadTime: freezed == uploadTime ? _self.uploadTime : uploadTime // ignore: cast_nullable_to_non_nullable
 as String?,countPrePage: freezed == countPrePage ? _self.countPrePage : countPrePage // ignore: cast_nullable_to_non_nullable
+as int?,pageCount: freezed == pageCount ? _self.pageCount : pageCount // ignore: cast_nullable_to_non_nullable
 as int?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,star: freezed == star ? _self.star : star // ignore: cast_nullable_to_non_nullable
 as double?,previews: freezed == previews ? _self._previews : previews // ignore: cast_nullable_to_non_nullable

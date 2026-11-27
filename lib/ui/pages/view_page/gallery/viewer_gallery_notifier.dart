@@ -51,6 +51,8 @@ class ViewerGalleryNotifier extends ChangeNotifier
 
   ImageRepository get imageRepository => website.imageRepository;
   List<GalleryItemModel> get successiveItems => loadedItems.toList();
+  List<int> get loadedPreviewIndices =>
+      pageSnapshot.items.keys.toList()..sort();
 
   void setStartReadIndex(int? index) {
     _startReadIndex = index;
@@ -72,7 +74,8 @@ class ViewerGalleryNotifier extends ChangeNotifier
   ImageRepository get previewRepository => imageRepository;
 
   bool get fillRemaining =>
-      pageSnapshot.isLoading && pageSnapshot.loadedCount == 0;
+      firstPage == null &&
+      (pageSnapshot.isLoading || pageSnapshot.failure != null);
 
   @override
   Future<void> loadNextPage() async {

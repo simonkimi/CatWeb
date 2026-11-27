@@ -24,6 +24,7 @@ sealed class DetailParserResult with _$DetailParserResult {
     int? imageCount,
     String? uploadTime,
     int? countPrePage,
+    int? pageCount,
     String? description,
     double? star,
     List<DetailPreviewItem>? previews,

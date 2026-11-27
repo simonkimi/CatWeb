@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/ui/pages/view_page/image/controller/image_read_notifier.dart';
-import 'package:catweb/ui/widgets/image_loader.dart';
+import 'package:catweb/ui/widgets/preview_image.dart';
 import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:provider/provider.dart';
 
@@ -161,12 +161,12 @@ class _ImagePreviewSliderState extends State<ImagePreviewSlider> {
                                   ),
                                 );
                               }
-                              return ImageLoader(
+                              return PreviewImage(
                                 repository: controller
                                     .imageLoadNotifier
                                     .readerInfo
                                     .previewRepository,
-                                model: item.previewImage!,
+                                model: item.previewImage,
                                 enableHero: false,
                               );
                             },

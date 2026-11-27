@@ -21,7 +21,7 @@ final class GalleryItemModel implements ImageWithPreviewModel {
   final DetailPreviewItem previewModel;
 
   @override
-  ImageResult get previewImage => previewModel.previewImage!;
+  ImageResult? get previewImage => previewModel.previewImage;
 
   @override
   String? get idCode => previewModel.target;

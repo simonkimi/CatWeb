@@ -2,6 +2,7 @@ use serde_json::{Value, json};
 
 use super::*;
 use crate::errors::{CONVERTER_ERROR, ELEMENT_NOT_FOUND};
+use crate::models::result::TagResult;
 
 fn config(selectors: Value) -> ParserConfig {
     serde_json::from_value(json!({"selectors": selectors})).unwrap()

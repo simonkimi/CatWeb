@@ -60,3 +60,47 @@ pub struct ListParserResult {
     pub envs: Vec<EnvResult>,
     pub errors: Vec<ParseError>,
 }
+
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+#[flutter_rust_bridge::frb(dart_metadata = ("freezed"))]
+pub struct CommentResult {
+    pub username: Option<String>,
+    pub content: Option<String>,
+    pub time: Option<String>,
+    pub score: Option<String>,
+    pub avatar: Option<ImageResult>,
+}
+
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+#[flutter_rust_bridge::frb(dart_metadata = ("freezed"))]
+pub struct GalleryPreviewItem {
+    pub preview_image: Option<ImageResult>,
+    pub target: Option<String>,
+}
+
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+#[flutter_rust_bridge::frb(dart_metadata = ("freezed"))]
+pub struct GalleryParserResult {
+    pub title: Option<String>,
+    pub subtitle: Option<String>,
+    pub language: Option<String>,
+    pub upload_time: Option<String>,
+    pub description: Option<String>,
+    pub star: Option<f64>,
+    pub image_count: Option<i64>,
+    pub page_count: Option<i64>,
+    pub count_per_page: Option<i64>,
+    pub cover_image: Option<ImageResult>,
+    pub previews: Vec<GalleryPreviewItem>,
+    pub tags: Vec<TagResult>,
+    pub badges: Vec<TagResult>,
+    pub comments: Vec<CommentResult>,
+    pub next_page: Option<String>,
+    pub is_success: Option<bool>,
+    pub fail_message: Option<String>,
+    pub envs: Vec<EnvResult>,
+    pub errors: Vec<ParseError>,
+}

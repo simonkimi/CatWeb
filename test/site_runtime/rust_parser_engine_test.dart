@@ -306,11 +306,7 @@ void main() {
   });
 
   test('unsupported kinds and result types fail explicitly', () async {
-    for (final kind in [
-      EndpointKind.gallery,
-      EndpointKind.reader,
-      EndpointKind.autocomplete,
-    ]) {
+    for (final kind in [EndpointKind.reader, EndpointKind.autocomplete]) {
       await expectLater(
         const RustParserEngine().parse(_job(kind: kind), CancellationScope()),
         throwsA(isA<ParserException>()),

@@ -57,6 +57,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   ParserConfig dco_decode_box_autoadd_parser_config(dynamic raw);
 
   @protected
+  CommentResult dco_decode_comment_result(dynamic raw);
+
+  @protected
   EnvResult dco_decode_env_result(dynamic raw);
 
   @protected
@@ -64,6 +67,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   double dco_decode_f_64(dynamic raw);
+
+  @protected
+  GalleryParserResult dco_decode_gallery_parser_result(dynamic raw);
+
+  @protected
+  GalleryPreviewItem dco_decode_gallery_preview_item(dynamic raw);
 
   @protected
   int dco_decode_i_32(dynamic raw);
@@ -75,10 +84,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   ImageResult dco_decode_image_result(dynamic raw);
 
   @protected
+  List<CommentResult> dco_decode_list_comment_result(dynamic raw);
+
+  @protected
   List<EnvResult> dco_decode_list_env_result(dynamic raw);
 
   @protected
   List<ExtraSelectorRule> dco_decode_list_extra_selector_rule(dynamic raw);
+
+  @protected
+  List<GalleryPreviewItem> dco_decode_list_gallery_preview_item(dynamic raw);
 
   @protected
   List<ListParserResultItem> dco_decode_list_list_parser_result_item(
@@ -190,6 +205,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   );
 
   @protected
+  CommentResult sse_decode_comment_result(SseDeserializer deserializer);
+
+  @protected
   EnvResult sse_decode_env_result(SseDeserializer deserializer);
 
   @protected
@@ -201,6 +219,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   double sse_decode_f_64(SseDeserializer deserializer);
 
   @protected
+  GalleryParserResult sse_decode_gallery_parser_result(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  GalleryPreviewItem sse_decode_gallery_preview_item(
+    SseDeserializer deserializer,
+  );
+
+  @protected
   int sse_decode_i_32(SseDeserializer deserializer);
 
   @protected
@@ -210,10 +238,20 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   ImageResult sse_decode_image_result(SseDeserializer deserializer);
 
   @protected
+  List<CommentResult> sse_decode_list_comment_result(
+    SseDeserializer deserializer,
+  );
+
+  @protected
   List<EnvResult> sse_decode_list_env_result(SseDeserializer deserializer);
 
   @protected
   List<ExtraSelectorRule> sse_decode_list_extra_selector_rule(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  List<GalleryPreviewItem> sse_decode_list_gallery_preview_item(
     SseDeserializer deserializer,
   );
 
@@ -347,6 +385,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   );
 
   @protected
+  void sse_encode_comment_result(CommentResult self, SseSerializer serializer);
+
+  @protected
   void sse_encode_env_result(EnvResult self, SseSerializer serializer);
 
   @protected
@@ -359,6 +400,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_f_64(double self, SseSerializer serializer);
 
   @protected
+  void sse_encode_gallery_parser_result(
+    GalleryParserResult self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void sse_encode_gallery_preview_item(
+    GalleryPreviewItem self,
+    SseSerializer serializer,
+  );
+
+  @protected
   void sse_encode_i_32(int self, SseSerializer serializer);
 
   @protected
@@ -366,6 +419,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_image_result(ImageResult self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_comment_result(
+    List<CommentResult> self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_list_env_result(
@@ -376,6 +435,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   void sse_encode_list_extra_selector_rule(
     List<ExtraSelectorRule> self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void sse_encode_list_gallery_preview_item(
+    List<GalleryPreviewItem> self,
     SseSerializer serializer,
   );
 

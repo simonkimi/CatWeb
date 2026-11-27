@@ -13,6 +13,300 @@ part of 'result.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
+mixin _$CommentResult {
+
+ String? get username; String? get content; String? get time; String? get score; ImageResult? get avatar;
+/// Create a copy of CommentResult
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CommentResultCopyWith<CommentResult> get copyWith => _$CommentResultCopyWithImpl<CommentResult>(this as CommentResult, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as CommentResult;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CommentResult&&(identical(other.username, _this.username) || other.username == _this.username)&&(identical(other.content, _this.content) || other.content == _this.content)&&(identical(other.time, _this.time) || other.time == _this.time)&&(identical(other.score, _this.score) || other.score == _this.score)&&(identical(other.avatar, _this.avatar) || other.avatar == _this.avatar));
+}
+
+
+@override
+int get hashCode {
+  final _this = this as CommentResult;
+  return Object.hash(runtimeType,_this.username,_this.content,_this.time,_this.score,_this.avatar);
+}
+
+@override
+String toString() {
+  final _this = this as CommentResult;
+  return 'CommentResult(username: ${_this.username}, content: ${_this.content}, time: ${_this.time}, score: ${_this.score}, avatar: ${_this.avatar})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CommentResultCopyWith<$Res>  {
+  factory $CommentResultCopyWith(CommentResult value, $Res Function(CommentResult) _then) = _$CommentResultCopyWithImpl;
+@useResult
+$Res call({
+ String? username, String? content, String? time, String? score, ImageResult? avatar
+});
+
+
+$ImageResultCopyWith<$Res>? get avatar;
+
+}
+/// @nodoc
+class _$CommentResultCopyWithImpl<$Res>
+    implements $CommentResultCopyWith<$Res> {
+  _$CommentResultCopyWithImpl(this._self, this._then);
+
+  final CommentResult _self;
+  final $Res Function(CommentResult) _then;
+
+/// Create a copy of CommentResult
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? username = freezed,Object? content = freezed,Object? time = freezed,Object? score = freezed,Object? avatar = freezed,}) {
+  return _then(CommentResult(
+username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as String?,content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
+as String?,time: freezed == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
+as String?,score: freezed == score ? _self.score : score // ignore: cast_nullable_to_non_nullable
+as String?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as ImageResult?,
+  ));
+}
+/// Create a copy of CommentResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageResultCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
+
+  return $ImageResultCopyWith<$Res>(_self.avatar!, (value) {
+    return _then(_self.copyWith(avatar: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [CommentResult].
+extension CommentResultPatterns on CommentResult {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CommentResult value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CommentResult() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CommentResult value)  $default,){
+final _that = this;
+switch (_that) {
+case _CommentResult():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CommentResult value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CommentResult() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? username,  String? content,  String? time,  String? score,  ImageResult? avatar)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CommentResult() when $default != null:
+return $default(_that.username,_that.content,_that.time,_that.score,_that.avatar);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? username,  String? content,  String? time,  String? score,  ImageResult? avatar)  $default,) {final _that = this;
+switch (_that) {
+case _CommentResult():
+return $default(_that.username,_that.content,_that.time,_that.score,_that.avatar);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? username,  String? content,  String? time,  String? score,  ImageResult? avatar)?  $default,) {final _that = this;
+switch (_that) {
+case _CommentResult() when $default != null:
+return $default(_that.username,_that.content,_that.time,_that.score,_that.avatar);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _CommentResult implements CommentResult {
+  const _CommentResult({this.username, this.content, this.time, this.score, this.avatar});
+
+
+@override final  String? username;
+@override final  String? content;
+@override final  String? time;
+@override final  String? score;
+@override final  ImageResult? avatar;
+
+/// Create a copy of CommentResult
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CommentResultCopyWith<_CommentResult> get copyWith => __$CommentResultCopyWithImpl<_CommentResult>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CommentResult&&(identical(other.username, username) || other.username == username)&&(identical(other.content, content) || other.content == content)&&(identical(other.time, time) || other.time == time)&&(identical(other.score, score) || other.score == score)&&(identical(other.avatar, avatar) || other.avatar == avatar));
+}
+
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,username,content,time,score,avatar);
+}
+
+@override
+String toString() {
+    return 'CommentResult(username: $username, content: $content, time: $time, score: $score, avatar: $avatar)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CommentResultCopyWith<$Res> implements $CommentResultCopyWith<$Res> {
+  factory _$CommentResultCopyWith(_CommentResult value, $Res Function(_CommentResult) _then) = __$CommentResultCopyWithImpl;
+@override @useResult
+$Res call({
+ String? username, String? content, String? time, String? score, ImageResult? avatar
+});
+
+
+@override $ImageResultCopyWith<$Res>? get avatar;
+
+}
+/// @nodoc
+class __$CommentResultCopyWithImpl<$Res>
+    implements _$CommentResultCopyWith<$Res> {
+  __$CommentResultCopyWithImpl(this._self, this._then);
+
+  final _CommentResult _self;
+  final $Res Function(_CommentResult) _then;
+
+/// Create a copy of CommentResult
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? username = freezed,Object? content = freezed,Object? time = freezed,Object? score = freezed,Object? avatar = freezed,}) {
+  return _then(_CommentResult(
+username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as String?,content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
+as String?,time: freezed == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
+as String?,score: freezed == score ? _self.score : score // ignore: cast_nullable_to_non_nullable
+as String?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as ImageResult?,
+  ));
+}
+
+/// Create a copy of CommentResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageResultCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
+
+  return $ImageResultCopyWith<$Res>(_self.avatar!, (value) {
+    return _then(_self.copyWith(avatar: value));
+  });
+}
+}
+
+/// @nodoc
 mixin _$EnvResult {
 
  String get id; bool get global; String? get value;
@@ -209,7 +503,7 @@ return $default(_that.id,_that.global,_that.value);case _:
 
 class _EnvResult implements EnvResult {
   const _EnvResult({required this.id, required this.global, this.value});
-  
+
 
 @override final  String id;
 @override final  bool global;
@@ -274,6 +568,663 @@ as String?,
 }
 
 
+}
+
+/// @nodoc
+mixin _$GalleryParserResult {
+
+ String? get title; String? get subtitle; String? get language; String? get uploadTime; String? get description; double? get star; int? get imageCount; int? get pageCount; int? get countPerPage; ImageResult? get coverImage; List<GalleryPreviewItem> get previews; List<TagResult> get tags; List<TagResult> get badges; List<CommentResult> get comments; String? get nextPage; bool? get isSuccess; String? get failMessage; List<EnvResult> get envs; List<ParseError> get errors;
+/// Create a copy of GalleryParserResult
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GalleryParserResultCopyWith<GalleryParserResult> get copyWith => _$GalleryParserResultCopyWithImpl<GalleryParserResult>(this as GalleryParserResult, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as GalleryParserResult;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GalleryParserResult&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.subtitle, _this.subtitle) || other.subtitle == _this.subtitle)&&(identical(other.language, _this.language) || other.language == _this.language)&&(identical(other.uploadTime, _this.uploadTime) || other.uploadTime == _this.uploadTime)&&(identical(other.description, _this.description) || other.description == _this.description)&&(identical(other.star, _this.star) || other.star == _this.star)&&(identical(other.imageCount, _this.imageCount) || other.imageCount == _this.imageCount)&&(identical(other.pageCount, _this.pageCount) || other.pageCount == _this.pageCount)&&(identical(other.countPerPage, _this.countPerPage) || other.countPerPage == _this.countPerPage)&&(identical(other.coverImage, _this.coverImage) || other.coverImage == _this.coverImage)&&const DeepCollectionEquality().equals(other.previews, _this.previews)&&const DeepCollectionEquality().equals(other.tags, _this.tags)&&const DeepCollectionEquality().equals(other.badges, _this.badges)&&const DeepCollectionEquality().equals(other.comments, _this.comments)&&(identical(other.nextPage, _this.nextPage) || other.nextPage == _this.nextPage)&&(identical(other.isSuccess, _this.isSuccess) || other.isSuccess == _this.isSuccess)&&(identical(other.failMessage, _this.failMessage) || other.failMessage == _this.failMessage)&&const DeepCollectionEquality().equals(other.envs, _this.envs)&&const DeepCollectionEquality().equals(other.errors, _this.errors));
+}
+
+
+@override
+int get hashCode {
+  final _this = this as GalleryParserResult;
+  return Object.hashAll([runtimeType,_this.title,_this.subtitle,_this.language,_this.uploadTime,_this.description,_this.star,_this.imageCount,_this.pageCount,_this.countPerPage,_this.coverImage,const DeepCollectionEquality().hash(_this.previews),const DeepCollectionEquality().hash(_this.tags),const DeepCollectionEquality().hash(_this.badges),const DeepCollectionEquality().hash(_this.comments),_this.nextPage,_this.isSuccess,_this.failMessage,const DeepCollectionEquality().hash(_this.envs),const DeepCollectionEquality().hash(_this.errors)]);
+}
+
+@override
+String toString() {
+  final _this = this as GalleryParserResult;
+  return 'GalleryParserResult(title: ${_this.title}, subtitle: ${_this.subtitle}, language: ${_this.language}, uploadTime: ${_this.uploadTime}, description: ${_this.description}, star: ${_this.star}, imageCount: ${_this.imageCount}, pageCount: ${_this.pageCount}, countPerPage: ${_this.countPerPage}, coverImage: ${_this.coverImage}, previews: ${_this.previews}, tags: ${_this.tags}, badges: ${_this.badges}, comments: ${_this.comments}, nextPage: ${_this.nextPage}, isSuccess: ${_this.isSuccess}, failMessage: ${_this.failMessage}, envs: ${_this.envs}, errors: ${_this.errors})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $GalleryParserResultCopyWith<$Res>  {
+  factory $GalleryParserResultCopyWith(GalleryParserResult value, $Res Function(GalleryParserResult) _then) = _$GalleryParserResultCopyWithImpl;
+@useResult
+$Res call({
+ String? title, String? subtitle, String? language, String? uploadTime, String? description, double? star, int? imageCount, int? pageCount, int? countPerPage, ImageResult? coverImage, List<GalleryPreviewItem> previews, List<TagResult> tags, List<TagResult> badges, List<CommentResult> comments, String? nextPage, bool? isSuccess, String? failMessage, List<EnvResult> envs, List<ParseError> errors
+});
+
+
+$ImageResultCopyWith<$Res>? get coverImage;
+
+}
+/// @nodoc
+class _$GalleryParserResultCopyWithImpl<$Res>
+    implements $GalleryParserResultCopyWith<$Res> {
+  _$GalleryParserResultCopyWithImpl(this._self, this._then);
+
+  final GalleryParserResult _self;
+  final $Res Function(GalleryParserResult) _then;
+
+/// Create a copy of GalleryParserResult
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? subtitle = freezed,Object? language = freezed,Object? uploadTime = freezed,Object? description = freezed,Object? star = freezed,Object? imageCount = freezed,Object? pageCount = freezed,Object? countPerPage = freezed,Object? coverImage = freezed,Object? previews = null,Object? tags = null,Object? badges = null,Object? comments = null,Object? nextPage = freezed,Object? isSuccess = freezed,Object? failMessage = freezed,Object? envs = null,Object? errors = null,}) {
+  return _then(GalleryParserResult(
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,subtitle: freezed == subtitle ? _self.subtitle : subtitle // ignore: cast_nullable_to_non_nullable
+as String?,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String?,uploadTime: freezed == uploadTime ? _self.uploadTime : uploadTime // ignore: cast_nullable_to_non_nullable
+as String?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,star: freezed == star ? _self.star : star // ignore: cast_nullable_to_non_nullable
+as double?,imageCount: freezed == imageCount ? _self.imageCount : imageCount // ignore: cast_nullable_to_non_nullable
+as int?,pageCount: freezed == pageCount ? _self.pageCount : pageCount // ignore: cast_nullable_to_non_nullable
+as int?,countPerPage: freezed == countPerPage ? _self.countPerPage : countPerPage // ignore: cast_nullable_to_non_nullable
+as int?,coverImage: freezed == coverImage ? _self.coverImage : coverImage // ignore: cast_nullable_to_non_nullable
+as ImageResult?,previews: null == previews ? _self.previews : previews // ignore: cast_nullable_to_non_nullable
+as List<GalleryPreviewItem>,tags: null == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
+as List<TagResult>,badges: null == badges ? _self.badges : badges // ignore: cast_nullable_to_non_nullable
+as List<TagResult>,comments: null == comments ? _self.comments : comments // ignore: cast_nullable_to_non_nullable
+as List<CommentResult>,nextPage: freezed == nextPage ? _self.nextPage : nextPage // ignore: cast_nullable_to_non_nullable
+as String?,isSuccess: freezed == isSuccess ? _self.isSuccess : isSuccess // ignore: cast_nullable_to_non_nullable
+as bool?,failMessage: freezed == failMessage ? _self.failMessage : failMessage // ignore: cast_nullable_to_non_nullable
+as String?,envs: null == envs ? _self.envs : envs // ignore: cast_nullable_to_non_nullable
+as List<EnvResult>,errors: null == errors ? _self.errors : errors // ignore: cast_nullable_to_non_nullable
+as List<ParseError>,
+  ));
+}
+/// Create a copy of GalleryParserResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageResultCopyWith<$Res>? get coverImage {
+    if (_self.coverImage == null) {
+    return null;
+  }
+
+  return $ImageResultCopyWith<$Res>(_self.coverImage!, (value) {
+    return _then(_self.copyWith(coverImage: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [GalleryParserResult].
+extension GalleryParserResultPatterns on GalleryParserResult {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _GalleryParserResult value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _GalleryParserResult() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _GalleryParserResult value)  $default,){
+final _that = this;
+switch (_that) {
+case _GalleryParserResult():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _GalleryParserResult value)?  $default,){
+final _that = this;
+switch (_that) {
+case _GalleryParserResult() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? title,  String? subtitle,  String? language,  String? uploadTime,  String? description,  double? star,  int? imageCount,  int? pageCount,  int? countPerPage,  ImageResult? coverImage,  List<GalleryPreviewItem> previews,  List<TagResult> tags,  List<TagResult> badges,  List<CommentResult> comments,  String? nextPage,  bool? isSuccess,  String? failMessage,  List<EnvResult> envs,  List<ParseError> errors)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _GalleryParserResult() when $default != null:
+return $default(_that.title,_that.subtitle,_that.language,_that.uploadTime,_that.description,_that.star,_that.imageCount,_that.pageCount,_that.countPerPage,_that.coverImage,_that.previews,_that.tags,_that.badges,_that.comments,_that.nextPage,_that.isSuccess,_that.failMessage,_that.envs,_that.errors);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? title,  String? subtitle,  String? language,  String? uploadTime,  String? description,  double? star,  int? imageCount,  int? pageCount,  int? countPerPage,  ImageResult? coverImage,  List<GalleryPreviewItem> previews,  List<TagResult> tags,  List<TagResult> badges,  List<CommentResult> comments,  String? nextPage,  bool? isSuccess,  String? failMessage,  List<EnvResult> envs,  List<ParseError> errors)  $default,) {final _that = this;
+switch (_that) {
+case _GalleryParserResult():
+return $default(_that.title,_that.subtitle,_that.language,_that.uploadTime,_that.description,_that.star,_that.imageCount,_that.pageCount,_that.countPerPage,_that.coverImage,_that.previews,_that.tags,_that.badges,_that.comments,_that.nextPage,_that.isSuccess,_that.failMessage,_that.envs,_that.errors);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? title,  String? subtitle,  String? language,  String? uploadTime,  String? description,  double? star,  int? imageCount,  int? pageCount,  int? countPerPage,  ImageResult? coverImage,  List<GalleryPreviewItem> previews,  List<TagResult> tags,  List<TagResult> badges,  List<CommentResult> comments,  String? nextPage,  bool? isSuccess,  String? failMessage,  List<EnvResult> envs,  List<ParseError> errors)?  $default,) {final _that = this;
+switch (_that) {
+case _GalleryParserResult() when $default != null:
+return $default(_that.title,_that.subtitle,_that.language,_that.uploadTime,_that.description,_that.star,_that.imageCount,_that.pageCount,_that.countPerPage,_that.coverImage,_that.previews,_that.tags,_that.badges,_that.comments,_that.nextPage,_that.isSuccess,_that.failMessage,_that.envs,_that.errors);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _GalleryParserResult implements GalleryParserResult {
+  const _GalleryParserResult({this.title, this.subtitle, this.language, this.uploadTime, this.description, this.star, this.imageCount, this.pageCount, this.countPerPage, this.coverImage, required  List<GalleryPreviewItem> previews, required  List<TagResult> tags, required  List<TagResult> badges, required  List<CommentResult> comments, this.nextPage, this.isSuccess, this.failMessage, required  List<EnvResult> envs, required  List<ParseError> errors}): _previews = previews,_tags = tags,_badges = badges,_comments = comments,_envs = envs,_errors = errors;
+
+
+@override final  String? title;
+@override final  String? subtitle;
+@override final  String? language;
+@override final  String? uploadTime;
+@override final  String? description;
+@override final  double? star;
+@override final  int? imageCount;
+@override final  int? pageCount;
+@override final  int? countPerPage;
+@override final  ImageResult? coverImage;
+ final  List<GalleryPreviewItem> _previews;
+@override List<GalleryPreviewItem> get previews {
+  if (_previews is EqualUnmodifiableListView) return _previews;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_previews);
+}
+
+ final  List<TagResult> _tags;
+@override List<TagResult> get tags {
+  if (_tags is EqualUnmodifiableListView) return _tags;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_tags);
+}
+
+ final  List<TagResult> _badges;
+@override List<TagResult> get badges {
+  if (_badges is EqualUnmodifiableListView) return _badges;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_badges);
+}
+
+ final  List<CommentResult> _comments;
+@override List<CommentResult> get comments {
+  if (_comments is EqualUnmodifiableListView) return _comments;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_comments);
+}
+
+@override final  String? nextPage;
+@override final  bool? isSuccess;
+@override final  String? failMessage;
+ final  List<EnvResult> _envs;
+@override List<EnvResult> get envs {
+  if (_envs is EqualUnmodifiableListView) return _envs;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_envs);
+}
+
+ final  List<ParseError> _errors;
+@override List<ParseError> get errors {
+  if (_errors is EqualUnmodifiableListView) return _errors;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_errors);
+}
+
+
+/// Create a copy of GalleryParserResult
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GalleryParserResultCopyWith<_GalleryParserResult> get copyWith => __$GalleryParserResultCopyWithImpl<_GalleryParserResult>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GalleryParserResult&&(identical(other.title, title) || other.title == title)&&(identical(other.subtitle, subtitle) || other.subtitle == subtitle)&&(identical(other.language, language) || other.language == language)&&(identical(other.uploadTime, uploadTime) || other.uploadTime == uploadTime)&&(identical(other.description, description) || other.description == description)&&(identical(other.star, star) || other.star == star)&&(identical(other.imageCount, imageCount) || other.imageCount == imageCount)&&(identical(other.pageCount, pageCount) || other.pageCount == pageCount)&&(identical(other.countPerPage, countPerPage) || other.countPerPage == countPerPage)&&(identical(other.coverImage, coverImage) || other.coverImage == coverImage)&&const DeepCollectionEquality().equals(other.previews, _previews)&&const DeepCollectionEquality().equals(other.tags, _tags)&&const DeepCollectionEquality().equals(other.badges, _badges)&&const DeepCollectionEquality().equals(other.comments, _comments)&&(identical(other.nextPage, nextPage) || other.nextPage == nextPage)&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess)&&(identical(other.failMessage, failMessage) || other.failMessage == failMessage)&&const DeepCollectionEquality().equals(other.envs, _envs)&&const DeepCollectionEquality().equals(other.errors, _errors));
+}
+
+
+@override
+int get hashCode {
+    return Object.hashAll([runtimeType,title,subtitle,language,uploadTime,description,star,imageCount,pageCount,countPerPage,coverImage,const DeepCollectionEquality().hash(_previews),const DeepCollectionEquality().hash(_tags),const DeepCollectionEquality().hash(_badges),const DeepCollectionEquality().hash(_comments),nextPage,isSuccess,failMessage,const DeepCollectionEquality().hash(_envs),const DeepCollectionEquality().hash(_errors)]);
+}
+
+@override
+String toString() {
+    return 'GalleryParserResult(title: $title, subtitle: $subtitle, language: $language, uploadTime: $uploadTime, description: $description, star: $star, imageCount: $imageCount, pageCount: $pageCount, countPerPage: $countPerPage, coverImage: $coverImage, previews: $previews, tags: $tags, badges: $badges, comments: $comments, nextPage: $nextPage, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$GalleryParserResultCopyWith<$Res> implements $GalleryParserResultCopyWith<$Res> {
+  factory _$GalleryParserResultCopyWith(_GalleryParserResult value, $Res Function(_GalleryParserResult) _then) = __$GalleryParserResultCopyWithImpl;
+@override @useResult
+$Res call({
+ String? title, String? subtitle, String? language, String? uploadTime, String? description, double? star, int? imageCount, int? pageCount, int? countPerPage, ImageResult? coverImage, List<GalleryPreviewItem> previews, List<TagResult> tags, List<TagResult> badges, List<CommentResult> comments, String? nextPage, bool? isSuccess, String? failMessage, List<EnvResult> envs, List<ParseError> errors
+});
+
+
+@override $ImageResultCopyWith<$Res>? get coverImage;
+
+}
+/// @nodoc
+class __$GalleryParserResultCopyWithImpl<$Res>
+    implements _$GalleryParserResultCopyWith<$Res> {
+  __$GalleryParserResultCopyWithImpl(this._self, this._then);
+
+  final _GalleryParserResult _self;
+  final $Res Function(_GalleryParserResult) _then;
+
+/// Create a copy of GalleryParserResult
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? subtitle = freezed,Object? language = freezed,Object? uploadTime = freezed,Object? description = freezed,Object? star = freezed,Object? imageCount = freezed,Object? pageCount = freezed,Object? countPerPage = freezed,Object? coverImage = freezed,Object? previews = null,Object? tags = null,Object? badges = null,Object? comments = null,Object? nextPage = freezed,Object? isSuccess = freezed,Object? failMessage = freezed,Object? envs = null,Object? errors = null,}) {
+  return _then(_GalleryParserResult(
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,subtitle: freezed == subtitle ? _self.subtitle : subtitle // ignore: cast_nullable_to_non_nullable
+as String?,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String?,uploadTime: freezed == uploadTime ? _self.uploadTime : uploadTime // ignore: cast_nullable_to_non_nullable
+as String?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,star: freezed == star ? _self.star : star // ignore: cast_nullable_to_non_nullable
+as double?,imageCount: freezed == imageCount ? _self.imageCount : imageCount // ignore: cast_nullable_to_non_nullable
+as int?,pageCount: freezed == pageCount ? _self.pageCount : pageCount // ignore: cast_nullable_to_non_nullable
+as int?,countPerPage: freezed == countPerPage ? _self.countPerPage : countPerPage // ignore: cast_nullable_to_non_nullable
+as int?,coverImage: freezed == coverImage ? _self.coverImage : coverImage // ignore: cast_nullable_to_non_nullable
+as ImageResult?,previews: null == previews ? _self._previews : previews // ignore: cast_nullable_to_non_nullable
+as List<GalleryPreviewItem>,tags: null == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
+as List<TagResult>,badges: null == badges ? _self._badges : badges // ignore: cast_nullable_to_non_nullable
+as List<TagResult>,comments: null == comments ? _self._comments : comments // ignore: cast_nullable_to_non_nullable
+as List<CommentResult>,nextPage: freezed == nextPage ? _self.nextPage : nextPage // ignore: cast_nullable_to_non_nullable
+as String?,isSuccess: freezed == isSuccess ? _self.isSuccess : isSuccess // ignore: cast_nullable_to_non_nullable
+as bool?,failMessage: freezed == failMessage ? _self.failMessage : failMessage // ignore: cast_nullable_to_non_nullable
+as String?,envs: null == envs ? _self._envs : envs // ignore: cast_nullable_to_non_nullable
+as List<EnvResult>,errors: null == errors ? _self._errors : errors // ignore: cast_nullable_to_non_nullable
+as List<ParseError>,
+  ));
+}
+
+/// Create a copy of GalleryParserResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageResultCopyWith<$Res>? get coverImage {
+    if (_self.coverImage == null) {
+    return null;
+  }
+
+  return $ImageResultCopyWith<$Res>(_self.coverImage!, (value) {
+    return _then(_self.copyWith(coverImage: value));
+  });
+}
+}
+
+/// @nodoc
+mixin _$GalleryPreviewItem {
+
+ ImageResult? get previewImage; String? get target;
+/// Create a copy of GalleryPreviewItem
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GalleryPreviewItemCopyWith<GalleryPreviewItem> get copyWith => _$GalleryPreviewItemCopyWithImpl<GalleryPreviewItem>(this as GalleryPreviewItem, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as GalleryPreviewItem;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GalleryPreviewItem&&(identical(other.previewImage, _this.previewImage) || other.previewImage == _this.previewImage)&&(identical(other.target, _this.target) || other.target == _this.target));
+}
+
+
+@override
+int get hashCode {
+  final _this = this as GalleryPreviewItem;
+  return Object.hash(runtimeType,_this.previewImage,_this.target);
+}
+
+@override
+String toString() {
+  final _this = this as GalleryPreviewItem;
+  return 'GalleryPreviewItem(previewImage: ${_this.previewImage}, target: ${_this.target})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $GalleryPreviewItemCopyWith<$Res>  {
+  factory $GalleryPreviewItemCopyWith(GalleryPreviewItem value, $Res Function(GalleryPreviewItem) _then) = _$GalleryPreviewItemCopyWithImpl;
+@useResult
+$Res call({
+ ImageResult? previewImage, String? target
+});
+
+
+$ImageResultCopyWith<$Res>? get previewImage;
+
+}
+/// @nodoc
+class _$GalleryPreviewItemCopyWithImpl<$Res>
+    implements $GalleryPreviewItemCopyWith<$Res> {
+  _$GalleryPreviewItemCopyWithImpl(this._self, this._then);
+
+  final GalleryPreviewItem _self;
+  final $Res Function(GalleryPreviewItem) _then;
+
+/// Create a copy of GalleryPreviewItem
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? previewImage = freezed,Object? target = freezed,}) {
+  return _then(GalleryPreviewItem(
+previewImage: freezed == previewImage ? _self.previewImage : previewImage // ignore: cast_nullable_to_non_nullable
+as ImageResult?,target: freezed == target ? _self.target : target // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+/// Create a copy of GalleryPreviewItem
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageResultCopyWith<$Res>? get previewImage {
+    if (_self.previewImage == null) {
+    return null;
+  }
+
+  return $ImageResultCopyWith<$Res>(_self.previewImage!, (value) {
+    return _then(_self.copyWith(previewImage: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [GalleryPreviewItem].
+extension GalleryPreviewItemPatterns on GalleryPreviewItem {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _GalleryPreviewItem value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _GalleryPreviewItem() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _GalleryPreviewItem value)  $default,){
+final _that = this;
+switch (_that) {
+case _GalleryPreviewItem():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _GalleryPreviewItem value)?  $default,){
+final _that = this;
+switch (_that) {
+case _GalleryPreviewItem() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ImageResult? previewImage,  String? target)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _GalleryPreviewItem() when $default != null:
+return $default(_that.previewImage,_that.target);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ImageResult? previewImage,  String? target)  $default,) {final _that = this;
+switch (_that) {
+case _GalleryPreviewItem():
+return $default(_that.previewImage,_that.target);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ImageResult? previewImage,  String? target)?  $default,) {final _that = this;
+switch (_that) {
+case _GalleryPreviewItem() when $default != null:
+return $default(_that.previewImage,_that.target);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _GalleryPreviewItem implements GalleryPreviewItem {
+  const _GalleryPreviewItem({this.previewImage, this.target});
+
+
+@override final  ImageResult? previewImage;
+@override final  String? target;
+
+/// Create a copy of GalleryPreviewItem
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GalleryPreviewItemCopyWith<_GalleryPreviewItem> get copyWith => __$GalleryPreviewItemCopyWithImpl<_GalleryPreviewItem>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GalleryPreviewItem&&(identical(other.previewImage, previewImage) || other.previewImage == previewImage)&&(identical(other.target, target) || other.target == target));
+}
+
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,previewImage,target);
+}
+
+@override
+String toString() {
+    return 'GalleryPreviewItem(previewImage: $previewImage, target: $target)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$GalleryPreviewItemCopyWith<$Res> implements $GalleryPreviewItemCopyWith<$Res> {
+  factory _$GalleryPreviewItemCopyWith(_GalleryPreviewItem value, $Res Function(_GalleryPreviewItem) _then) = __$GalleryPreviewItemCopyWithImpl;
+@override @useResult
+$Res call({
+ ImageResult? previewImage, String? target
+});
+
+
+@override $ImageResultCopyWith<$Res>? get previewImage;
+
+}
+/// @nodoc
+class __$GalleryPreviewItemCopyWithImpl<$Res>
+    implements _$GalleryPreviewItemCopyWith<$Res> {
+  __$GalleryPreviewItemCopyWithImpl(this._self, this._then);
+
+  final _GalleryPreviewItem _self;
+  final $Res Function(_GalleryPreviewItem) _then;
+
+/// Create a copy of GalleryPreviewItem
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? previewImage = freezed,Object? target = freezed,}) {
+  return _then(_GalleryPreviewItem(
+previewImage: freezed == previewImage ? _self.previewImage : previewImage // ignore: cast_nullable_to_non_nullable
+as ImageResult?,target: freezed == target ? _self.target : target // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+/// Create a copy of GalleryPreviewItem
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageResultCopyWith<$Res>? get previewImage {
+    if (_self.previewImage == null) {
+    return null;
+  }
+
+  return $ImageResultCopyWith<$Res>(_self.previewImage!, (value) {
+    return _then(_self.copyWith(previewImage: value));
+  });
+}
 }
 
 /// @nodoc
@@ -476,7 +1427,7 @@ return $default(_that.url,_that.cacheKey,_that.width,_that.height,_that.x,_that.
 
 class _ImageResult implements ImageResult {
   const _ImageResult({this.url, this.cacheKey, this.width, this.height, this.x, this.y});
-  
+
 
 @override final  String? url;
 @override final  String? cacheKey;
@@ -749,7 +1700,7 @@ return $default(_that.items,_that.nextPage,_that.isSuccess,_that.failMessage,_th
 
 class _ListParserResult implements ListParserResult {
   const _ListParserResult({required  List<ListParserResultItem> items, this.nextPage, this.isSuccess, this.failMessage, required  List<EnvResult> envs, required  List<ParseError> errors}): _items = items,_envs = envs,_errors = errors;
-  
+
 
  final  List<ListParserResultItem> _items;
 @override List<ListParserResultItem> get items {
@@ -1057,7 +2008,7 @@ return $default(_that.title,_that.subtitle,_that.uploadTime,_that.star,_that.ima
 
 class _ListParserResultItem implements ListParserResultItem {
   const _ListParserResultItem({this.title, this.subtitle, this.uploadTime, this.star, this.imageCount, this.previewImage, required  List<TagResult> badges, required  List<TagResult> tags, this.language, this.idCode, this.paper}): _badges = badges,_tags = tags;
-  
+
 
 @override final  String? title;
 @override final  String? subtitle;
@@ -1361,7 +2312,7 @@ return $default(_that.text,_that.color,_that.category);case _:
 
 class _TagResult implements TagResult {
   const _TagResult({this.text, this.color, this.category});
-  
+
 
 @override final  String? text;
 @override final  String? color;

@@ -1,5 +1,5 @@
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
-import 'package:catweb/ui/widgets/image_loader.dart';
+import 'package:catweb/ui/widgets/preview_image.dart';
 import 'package:catweb/ui/widgets/load_more_footer.dart';
 import 'package:catweb/ui/widgets/simple_sliver.dart';
 import 'package:catweb/ui/theme/colors.dart';
@@ -20,6 +20,7 @@ class ViewerGalleryImages extends StatelessWidget {
     final successiveItems = context
         .select((ViewerGalleryNotifier n) => n.successiveItems)
         .toList();
+    final indices = notifier.loadedPreviewIndices;
 
     return CupertinoPageScaffold(
       child: CupertinoAppBar(
@@ -41,13 +42,13 @@ class ViewerGalleryImages extends StatelessWidget {
                   ),
                   delegate: SliverChildBuilderDelegate((context, index) {
                     return GestureDetector(
-                      onTap: () => onOpenPage(index),
+                      onTap: () => onOpenPage(indices[index]),
                       child: Padding(
                         padding: const EdgeInsets.all(4),
                         child: Column(
                           children: [
                             Expanded(
-                              child: ImageLoader(
+                              child: PreviewImage(
                                 repository: notifier.imageRepository,
                                 model: successiveItems[index].previewImage,
                                 imageWidgetBuilder: (context, child) {
@@ -66,7 +67,7 @@ class ViewerGalleryImages extends StatelessWidget {
                             ),
                             const SizedBox(height: 5),
                             Text(
-                              (index + 1).toString(),
+                              (indices[index] + 1).toString(),
                               style: TextStyle(
                                 height: 1,
                                 fontSize: 14,

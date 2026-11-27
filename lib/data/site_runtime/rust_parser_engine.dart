@@ -14,14 +14,22 @@ typedef NativeListParser = Future<native_result.ListParserResult> Function({
   required native.ParserConfig config,
 });
 
-/// 将站点规则和页面结果适配到 Rust。应用启动时须先初始化 RustLib。
-///
-/// 当前实现 HTML 列表；条目字段诊断保留在业务结果中，页面失败和列表查询错误
-/// 则抛出 ParserException，由加载器展示。取消后不返回结果或环境补丁。
+typedef NativeGalleryParser =
+    Future<native_result.GalleryParserResult> Function({
+      required String html,
+      required native.ParserConfig config,
+    });
+
+/// 将 HTML 列表、画廊的站点规则和页面结果适配到 Rust。
+/// 字段诊断保留在业务结果中；页面失败与主集合查询错误抛出 ParserException。
 final class RustParserEngine implements ParserEngine {
-  const RustParserEngine({this.listParser = native_parser.parseList});
+  const RustParserEngine({
+    this.listParser = native_parser.parseList,
+    this.galleryParser = native_parser.parseGallery,
+  });
 
   final NativeListParser listParser;
+  final NativeGalleryParser galleryParser;
 
   @override
   Future<ParsedPayload<T>> parse<T>(
@@ -32,7 +40,8 @@ final class RustParserEngine implements ParserEngine {
     if (job.endpoint.kind != job.parser.kind) {
       throw const SiteRuntimeException('Endpoint and parser kinds must match');
     }
-    if (job.parser.kind != EndpointKind.list) {
+    if (job.parser.kind != EndpointKind.list &&
+        job.parser.kind != EndpointKind.gallery) {
       throw ParserException('尚未实现 ${job.parser.kind.name} 类型的 Rust 解析器');
     }
     if (job.endpoint.pagination case ContinuationPaginationRule(
@@ -40,63 +49,131 @@ final class RustParserEngine implements ParserEngine {
     )) {
       if (responseField != 'continuation' &&
           responseField != ParserSelectorKey.nextPage) {
-        throw SiteRuntimeException('列表解析器不支持分页字段：$responseField');
+        throw SiteRuntimeException('解析器不支持分页字段：$responseField');
       }
     }
-
-    final native_result.ListParserResult result;
-    try {
-      result = await listParser(
-        html: job.response.bodyText,
-        config: _config(job.parser.config),
+    final config = _config(job.parser.config);
+    if (job.parser.kind == EndpointKind.gallery) {
+      final result = await _invoke(
+        () => galleryParser(html: job.response.bodyText, config: config),
+        cancellation,
       );
-    } on native_error.ParseError catch (error) {
-      cancellation.throwIfCancelled();
-      throw ParserException(error.message, error);
-    } catch (error) {
-      cancellation.throwIfCancelled();
-      if (error is CancellationException) rethrow;
-      throw ParserException('Rust 列表解析失败', error);
-    }
-    cancellation.throwIfCancelled();
-
-    if (result.failMessage case final message?) {
-      throw ParserException(
-        message.trim().isEmpty ? '页面返回失败标志' : message,
+      _validateResult(
+        job.parser.config,
+        result.isSuccess,
+        result.failMessage,
+        result.errors,
+        'thumbnail',
         result,
       );
+      final thumbnails = _hasNodes(
+        job.parser.config.selectors[ParserSelectorKey.thumbnail],
+      );
+      return _payload<T>(
+        data: _galleryResult(result),
+        envs: result.envs,
+        continuation: result.nextPage,
+        itemCount: result.previews.length,
+        totalCount: thumbnails ? result.imageCount : null,
+        isLast: thumbnails ? null : true,
+      );
     }
-    if (result.isSuccess == false ||
-        (_hasRule(job.parser.config.selectors[ParserSelectorKey.success]) &&
-            result.isSuccess != true)) {
-      throw ParserException('未检测到请求成功标志', result);
-    }
-    // Rust returns collection-query errors as diagnostics; they must not be
-    // mistaken for an empty final page. Item-field errors remain recoverable.
-    for (final error in result.errors) {
-      if (error.message.startsWith('item:')) {
-        throw ParserException(error.message, error);
-      }
-    }
-
-    final data = _listResult(result);
-    if (data is! T) {
-      throw SiteRuntimeException('列表解析器返回 ListParserResult，调用方请求的是 $T');
-    }
-    final global = <String, Object?>{};
-    final local = <String, Object?>{};
-    for (final env in result.envs) {
-      // A missing optional selector must not erase a previously stored token.
-      if (env.id.trim().isEmpty || env.value == null) continue;
-      (env.global ? global : local)[env.id] = env.value;
-    }
-    return ParsedPayload<T>(
-      data: data as T,
+    final result = await _invoke(
+      () => listParser(html: job.response.bodyText, config: config),
+      cancellation,
+    );
+    _validateResult(
+      job.parser.config,
+      result.isSuccess,
+      result.failMessage,
+      result.errors,
+      'item',
+      result,
+    );
+    return _payload<T>(
+      data: _listResult(result),
+      envs: result.envs,
       continuation: result.nextPage,
       itemCount: result.items.length,
-      environment: EnvironmentPatch(global: global, local: local),
     );
   }
+}
+
+Future<R> _invoke<R>(
+  Future<R> Function() parse,
+  CancellationScope cancellation,
+) async {
+  try {
+    final result = await parse();
+    cancellation.throwIfCancelled();
+    return result;
+  } on native_error.ParseError catch (error) {
+    cancellation.throwIfCancelled();
+    throw ParserException(error.message, error);
+  } catch (error) {
+    cancellation.throwIfCancelled();
+    if (error is CancellationException) rethrow;
+    throw ParserException('Rust 解析失败', error);
+  }
+}
+
+void _validateResult(
+  ParserConfig config,
+  bool? success,
+  String? failure,
+  List<native_error.ParseError> errors,
+  String collection,
+  Object source,
+) {
+  if (failure != null) {
+    throw ParserException(
+      failure.trim().isEmpty ? '页面返回失败标志' : failure,
+      source,
+    );
+  }
+  if (success == false ||
+      (_hasRule(config.selectors[ParserSelectorKey.success]) &&
+          success != true)) {
+    throw ParserException('未检测到请求成功标志', source);
+  }
+  for (final error in errors) {
+    if (error.message.startsWith('$collection:')) {
+      throw ParserException(error.message, error);
+    }
+  }
+}
+
+bool _hasNodes(SelectorRule? rule) =>
+    rule != null &&
+    (rule.queryType == SelectorQueryType.self ||
+        rule.selector.trim().isNotEmpty);
+
+ParsedPayload<T> _payload<T>({
+  required Object data,
+  required List<native_result.EnvResult> envs,
+  String? continuation,
+  required int itemCount,
+  int? totalCount,
+  bool? isLast,
+}) {
+  if (data is! T) {
+    throw SiteRuntimeException('解析器返回 ${data.runtimeType}，调用方请求的是 $T');
+  }
+  final global = <String, Object?>{};
+  final local = <String, Object?>{};
+  for (final env in envs) {
+    // Missing optional fields must not erase a previously stored token.
+    if (env.id.trim().isEmpty || env.value == null) continue;
+    (env.global ? global : local)[env.id] = env.value;
+  }
+  return ParsedPayload<T>(
+    data: data as T,
+    continuation: continuation,
+    itemCount: itemCount,
+    totalCount: totalCount,
+    isLast: isLast,
+    environment: EnvironmentPatch(global: global, local: local),
+  );
 }
 
 native.ParserConfig _config(ParserConfig config) => native.ParserConfig(
@@ -161,17 +238,7 @@ model.ListParserResult _listResult(native_result.ListParserResult result) =>
               uploadTime: item.uploadTime,
               star: item.star,
               imageCount: item.imageCount,
-              previewImage: switch (item.previewImage) {
-                final image? => model.ImageResult(
-                  url: image.url,
-                  cacheKey: image.cacheKey,
-                  width: image.width,
-                  height: image.height,
-                  x: image.x,
-                  y: image.y,
-                ),
-                null => null,
-              },
+              previewImage: _image(item.previewImage),
               badges: item.badges.map(_tag).toList(growable: false),
               tags: item.tags.map(_tag).toList(growable: false),
               language: item.language,
@@ -202,3 +269,64 @@ model.ListParserResult _listResult(native_result.ListParserResult result) =>
 
 model.TagResult _tag(native_result.TagResult tag) =>
     model.TagResult(text: tag.text, color: tag.color, category: tag.category);
+
+model.ImageResult? _image(native_result.ImageResult? image) => image == null
+    ? null
+    : model.ImageResult(
+        url: image.url,
+        cacheKey: image.cacheKey,
+        width: image.width,
+        height: image.height,
+        x: image.x,
+        y: image.y,
+      );
+
+model.DetailParserResult _galleryResult(
+  native_result.GalleryParserResult result,
+) => model.DetailParserResult(
+  title: result.title,
+  subtitle: result.subtitle,
+  language: result.language,
+  imageCount: result.imageCount,
+  pageCount: result.pageCount,
+  countPrePage: result.countPerPage,
+  uploadTime: result.uploadTime,
+  description: result.description,
+  star: result.star,
+  coverImage: _image(result.coverImage),
+  previews: result.previews
+      .map(
+        (preview) => model.DetailPreviewItem(
+          previewImage: _image(preview.previewImage),
+          target: preview.target,
+        ),
+      )
+      .toList(growable: false),
+  tags: result.tags.map(_tag).toList(growable: false),
+  badges: result.badges.map(_tag).toList(growable: false),
+  comments: result.comments
+      .map(
+        (comment) => model.CommentResult(
+          username: comment.username,
+          content: comment.content,
+          time: comment.time,
+          score: comment.score,
+          avatar: _image(comment.avatar),
+        ),
+      )
+      .toList(growable: false),
+  nextPage: result.nextPage,
+  isSuccess: result.isSuccess,
+  failMessage: result.failMessage,
+  envs: result.envs
+      .map(
+        (env) =>
+            model.EnvResult(id: env.id, global: env.global, value: env.value),
+      )
+      .toList(growable: false),
+  errors: result.errors
+      .map(
+        (error) => model.ParserError(code: error.code, message: error.message),
+      )
+      .toList(growable: false),
+);

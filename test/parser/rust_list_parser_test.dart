@@ -20,8 +20,9 @@ import 'package:catweb/src/rust/api/parser.dart' as parser;
 import 'package:catweb/src/rust/errors.dart' as native_errors;
 import 'package:catweb/src/rust/frb_generated.dart';
 import 'package:catweb/src/rust/models/selector.dart' as native;
-import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart'
-    show ExternalLibrary;
+
+import 'native_test_support.dart';
+
 import 'package:test/test.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
@@ -45,30 +46,7 @@ native.SelectorRule rule(
 );
 
 void main() {
-  setUpAll(() async {
-    // Build the actual host library so this test never silently uses a mock or
-    // an outdated binary. Cargo reuses incremental artifacts on later runs.
-    final build = await Process.run('cargo', [
-      'build',
-      '--locked',
-      '--manifest-path',
-      'rust/Cargo.toml',
-    ]);
-    if (build.exitCode != 0) {
-      throw StateError('Native test build failed:\n${build.stderr}');
-    }
-    final target = Directory(
-      Platform.environment['CARGO_TARGET_DIR'] ?? 'rust/target',
-    ).absolute.path;
-    final name = Platform.isWindows
-        ? 'rust_lib_catweb.dll'
-        : Platform.isMacOS
-        ? 'librust_lib_catweb.dylib'
-        : 'librust_lib_catweb.so';
-    await RustLib.init(
-      externalLibrary: ExternalLibrary.open('$target/debug/$name'),
-    );
-  });
+  setUpAll(initializeNativeParser);
 
   tearDownAll(RustLib.dispose);
 

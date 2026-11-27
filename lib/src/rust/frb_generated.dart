@@ -75,7 +75,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.13.0';
 
   @override
-  int get rustContentHash => -1590645918;
+  int get rustContentHash => -1828886175;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -90,6 +90,11 @@ abstract class RustLibApi extends BaseApi {
   String crateApiSimpleGreet({required String name});
 
   Future<void> crateApiSimpleInitApp();
+
+  Future<GalleryParserResult> crateApiParserParseGallery({
+    required String html,
+    required ParserConfig config,
+  });
 
   Future<ListParserResult> crateApiParserParseList({
     required String html,
@@ -156,7 +161,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       const TaskConstMeta(debugName: "init_app", argNames: []);
 
   @override
-  Future<ListParserResult> crateApiParserParseList({
+  Future<GalleryParserResult> crateApiParserParseGallery({
     required String html,
     required ParserConfig config,
   }) {
@@ -170,6 +175,40 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             generalizedFrbRustBinding,
             serializer,
             funcId: 3,
+            port: port_,
+          );
+        },
+        codec: SseCodec(
+          decodeSuccessData: sse_decode_gallery_parser_result,
+          decodeErrorData: sse_decode_parse_error,
+        ),
+        constMeta: kCrateApiParserParseGalleryConstMeta,
+        argValues: [html, config],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiParserParseGalleryConstMeta => const TaskConstMeta(
+    debugName: "parse_gallery",
+    argNames: ["html", "config"],
+  );
+
+  @override
+  Future<ListParserResult> crateApiParserParseList({
+    required String html,
+    required ParserConfig config,
+  }) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          sse_encode_String(html, serializer);
+          sse_encode_box_autoadd_parser_config(config, serializer);
+          pdeCallFfi(
+            generalizedFrbRustBinding,
+            serializer,
+            funcId: 4,
             port: port_,
           );
         },
@@ -254,6 +293,21 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  CommentResult dco_decode_comment_result(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 5)
+      throw Exception('unexpected arr length: expect 5 but see ${arr.length}');
+    return CommentResult(
+      username: dco_decode_opt_String(arr[0]),
+      content: dco_decode_opt_String(arr[1]),
+      time: dco_decode_opt_String(arr[2]),
+      score: dco_decode_opt_String(arr[3]),
+      avatar: dco_decode_opt_box_autoadd_image_result(arr[4]),
+    );
+  }
+
+  @protected
   EnvResult dco_decode_env_result(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
@@ -286,6 +340,47 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  GalleryParserResult dco_decode_gallery_parser_result(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 19)
+      throw Exception('unexpected arr length: expect 19 but see ${arr.length}');
+    return GalleryParserResult(
+      title: dco_decode_opt_String(arr[0]),
+      subtitle: dco_decode_opt_String(arr[1]),
+      language: dco_decode_opt_String(arr[2]),
+      uploadTime: dco_decode_opt_String(arr[3]),
+      description: dco_decode_opt_String(arr[4]),
+      star: dco_decode_opt_box_autoadd_f_64(arr[5]),
+      imageCount: dco_decode_opt_CastedPrimitive_i_64(arr[6]),
+      pageCount: dco_decode_opt_CastedPrimitive_i_64(arr[7]),
+      countPerPage: dco_decode_opt_CastedPrimitive_i_64(arr[8]),
+      coverImage: dco_decode_opt_box_autoadd_image_result(arr[9]),
+      previews: dco_decode_list_gallery_preview_item(arr[10]),
+      tags: dco_decode_list_tag_result(arr[11]),
+      badges: dco_decode_list_tag_result(arr[12]),
+      comments: dco_decode_list_comment_result(arr[13]),
+      nextPage: dco_decode_opt_String(arr[14]),
+      isSuccess: dco_decode_opt_box_autoadd_bool(arr[15]),
+      failMessage: dco_decode_opt_String(arr[16]),
+      envs: dco_decode_list_env_result(arr[17]),
+      errors: dco_decode_list_parse_error(arr[18]),
+    );
+  }
+
+  @protected
+  GalleryPreviewItem dco_decode_gallery_preview_item(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2)
+      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+    return GalleryPreviewItem(
+      previewImage: dco_decode_opt_box_autoadd_image_result(arr[0]),
+      target: dco_decode_opt_String(arr[1]),
+    );
+  }
+
+  @protected
   int dco_decode_i_32(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as int;
@@ -314,6 +409,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  List<CommentResult> dco_decode_list_comment_result(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return (raw as List<dynamic>).map(dco_decode_comment_result).toList();
+  }
+
+  @protected
   List<EnvResult> dco_decode_list_env_result(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return (raw as List<dynamic>).map(dco_decode_env_result).toList();
@@ -323,6 +424,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   List<ExtraSelectorRule> dco_decode_list_extra_selector_rule(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return (raw as List<dynamic>).map(dco_decode_extra_selector_rule).toList();
+  }
+
+  @protected
+  List<GalleryPreviewItem> dco_decode_list_gallery_preview_item(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return (raw as List<dynamic>).map(dco_decode_gallery_preview_item).toList();
   }
 
   @protected
@@ -619,6 +726,23 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  CommentResult sse_decode_comment_result(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_username = sse_decode_opt_String(deserializer);
+    var var_content = sse_decode_opt_String(deserializer);
+    var var_time = sse_decode_opt_String(deserializer);
+    var var_score = sse_decode_opt_String(deserializer);
+    var var_avatar = sse_decode_opt_box_autoadd_image_result(deserializer);
+    return CommentResult(
+      username: var_username,
+      content: var_content,
+      time: var_time,
+      score: var_score,
+      avatar: var_avatar,
+    );
+  }
+
+  @protected
   EnvResult sse_decode_env_result(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var var_id = sse_decode_String(deserializer);
@@ -646,6 +770,68 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   double sse_decode_f_64(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getFloat64();
+  }
+
+  @protected
+  GalleryParserResult sse_decode_gallery_parser_result(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_title = sse_decode_opt_String(deserializer);
+    var var_subtitle = sse_decode_opt_String(deserializer);
+    var var_language = sse_decode_opt_String(deserializer);
+    var var_uploadTime = sse_decode_opt_String(deserializer);
+    var var_description = sse_decode_opt_String(deserializer);
+    var var_star = sse_decode_opt_box_autoadd_f_64(deserializer);
+    var var_imageCount = sse_decode_opt_CastedPrimitive_i_64(deserializer);
+    var var_pageCount = sse_decode_opt_CastedPrimitive_i_64(deserializer);
+    var var_countPerPage = sse_decode_opt_CastedPrimitive_i_64(deserializer);
+    var var_coverImage = sse_decode_opt_box_autoadd_image_result(deserializer);
+    var var_previews = sse_decode_list_gallery_preview_item(deserializer);
+    var var_tags = sse_decode_list_tag_result(deserializer);
+    var var_badges = sse_decode_list_tag_result(deserializer);
+    var var_comments = sse_decode_list_comment_result(deserializer);
+    var var_nextPage = sse_decode_opt_String(deserializer);
+    var var_isSuccess = sse_decode_opt_box_autoadd_bool(deserializer);
+    var var_failMessage = sse_decode_opt_String(deserializer);
+    var var_envs = sse_decode_list_env_result(deserializer);
+    var var_errors = sse_decode_list_parse_error(deserializer);
+    return GalleryParserResult(
+      title: var_title,
+      subtitle: var_subtitle,
+      language: var_language,
+      uploadTime: var_uploadTime,
+      description: var_description,
+      star: var_star,
+      imageCount: var_imageCount,
+      pageCount: var_pageCount,
+      countPerPage: var_countPerPage,
+      coverImage: var_coverImage,
+      previews: var_previews,
+      tags: var_tags,
+      badges: var_badges,
+      comments: var_comments,
+      nextPage: var_nextPage,
+      isSuccess: var_isSuccess,
+      failMessage: var_failMessage,
+      envs: var_envs,
+      errors: var_errors,
+    );
+  }
+
+  @protected
+  GalleryPreviewItem sse_decode_gallery_preview_item(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_previewImage = sse_decode_opt_box_autoadd_image_result(
+      deserializer,
+    );
+    var var_target = sse_decode_opt_String(deserializer);
+    return GalleryPreviewItem(
+      previewImage: var_previewImage,
+      target: var_target,
+    );
   }
 
   @protected
@@ -680,6 +866,20 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  List<CommentResult> sse_decode_list_comment_result(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var len_ = sse_decode_i_32(deserializer);
+    var ans_ = <CommentResult>[];
+    for (var idx_ = 0; idx_ < len_; ++idx_) {
+      ans_.add(sse_decode_comment_result(deserializer));
+    }
+    return ans_;
+  }
+
+  @protected
   List<EnvResult> sse_decode_list_env_result(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
 
@@ -701,6 +901,20 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     var ans_ = <ExtraSelectorRule>[];
     for (var idx_ = 0; idx_ < len_; ++idx_) {
       ans_.add(sse_decode_extra_selector_rule(deserializer));
+    }
+    return ans_;
+  }
+
+  @protected
+  List<GalleryPreviewItem> sse_decode_list_gallery_preview_item(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var len_ = sse_decode_i_32(deserializer);
+    var ans_ = <GalleryPreviewItem>[];
+    for (var idx_ = 0; idx_ < len_; ++idx_) {
+      ans_.add(sse_decode_gallery_preview_item(deserializer));
     }
     return ans_;
   }
@@ -1076,6 +1290,16 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_comment_result(CommentResult self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_opt_String(self.username, serializer);
+    sse_encode_opt_String(self.content, serializer);
+    sse_encode_opt_String(self.time, serializer);
+    sse_encode_opt_String(self.score, serializer);
+    sse_encode_opt_box_autoadd_image_result(self.avatar, serializer);
+  }
+
+  @protected
   void sse_encode_env_result(EnvResult self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_String(self.id, serializer);
@@ -1098,6 +1322,43 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void sse_encode_f_64(double self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putFloat64(self);
+  }
+
+  @protected
+  void sse_encode_gallery_parser_result(
+    GalleryParserResult self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_opt_String(self.title, serializer);
+    sse_encode_opt_String(self.subtitle, serializer);
+    sse_encode_opt_String(self.language, serializer);
+    sse_encode_opt_String(self.uploadTime, serializer);
+    sse_encode_opt_String(self.description, serializer);
+    sse_encode_opt_box_autoadd_f_64(self.star, serializer);
+    sse_encode_opt_CastedPrimitive_i_64(self.imageCount, serializer);
+    sse_encode_opt_CastedPrimitive_i_64(self.pageCount, serializer);
+    sse_encode_opt_CastedPrimitive_i_64(self.countPerPage, serializer);
+    sse_encode_opt_box_autoadd_image_result(self.coverImage, serializer);
+    sse_encode_list_gallery_preview_item(self.previews, serializer);
+    sse_encode_list_tag_result(self.tags, serializer);
+    sse_encode_list_tag_result(self.badges, serializer);
+    sse_encode_list_comment_result(self.comments, serializer);
+    sse_encode_opt_String(self.nextPage, serializer);
+    sse_encode_opt_box_autoadd_bool(self.isSuccess, serializer);
+    sse_encode_opt_String(self.failMessage, serializer);
+    sse_encode_list_env_result(self.envs, serializer);
+    sse_encode_list_parse_error(self.errors, serializer);
+  }
+
+  @protected
+  void sse_encode_gallery_preview_item(
+    GalleryPreviewItem self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_opt_box_autoadd_image_result(self.previewImage, serializer);
+    sse_encode_opt_String(self.target, serializer);
   }
 
   @protected
@@ -1124,6 +1385,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_list_comment_result(
+    List<CommentResult> self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.length, serializer);
+    for (final item in self) {
+      sse_encode_comment_result(item, serializer);
+    }
+  }
+
+  @protected
   void sse_encode_list_env_result(
     List<EnvResult> self,
     SseSerializer serializer,
@@ -1144,6 +1417,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     sse_encode_i_32(self.length, serializer);
     for (final item in self) {
       sse_encode_extra_selector_rule(item, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_list_gallery_preview_item(
+    List<GalleryPreviewItem> self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.length, serializer);
+    for (final item in self) {
+      sse_encode_gallery_preview_item(item, serializer);
     }
   }
 

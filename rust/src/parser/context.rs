@@ -82,7 +82,11 @@ impl HtmlContext {
         let Some(rule) = rule else { return Vec::new() };
         let result = match rule.query_type {
             SelectorQueryType::This => return vec![root],
-            SelectorQueryType::Css if rule.selector.trim().is_empty() => return Vec::new(),
+            SelectorQueryType::Css | SelectorQueryType::Xpath
+                if rule.selector.trim().is_empty() =>
+            {
+                return Vec::new();
+            }
             SelectorQueryType::Css => {
                 css::select(&self.doc, root, &rule.selector).map_err(|err| err.to_string())
             }

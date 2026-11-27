@@ -39,7 +39,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.13.0";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1590645918;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1828886175;
 
 // Section: executor
 
@@ -105,6 +105,40 @@ fn wire__crate__api__simple__init_app_impl(
                     let output_ok = Ok::<_, ()>({
                         crate::api::simple::init_app();
                     })?;
+                    std::result::Result::Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__crate__api__parser__parse_gallery_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "parse_gallery",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_html = <String>::sse_decode(&mut deserializer);
+            let api_config = <crate::models::selector::ParserConfig>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| {
+                transform_result_sse::<_, crate::errors::ParseError>((move || {
+                    let output_ok = crate::api::parser::parse_gallery(api_html, api_config)?;
                     std::result::Result::Ok(output_ok)
                 })())
             }
@@ -180,6 +214,24 @@ impl SseDecode for bool {
     }
 }
 
+impl SseDecode for crate::models::result::CommentResult {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_username = <Option<String>>::sse_decode(deserializer);
+        let mut var_content = <Option<String>>::sse_decode(deserializer);
+        let mut var_time = <Option<String>>::sse_decode(deserializer);
+        let mut var_score = <Option<String>>::sse_decode(deserializer);
+        let mut var_avatar = <Option<crate::models::result::ImageResult>>::sse_decode(deserializer);
+        return crate::models::result::CommentResult {
+            username: var_username,
+            content: var_content,
+            time: var_time,
+            score: var_score,
+            avatar: var_avatar,
+        };
+    }
+}
+
 impl SseDecode for crate::models::result::EnvResult {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -212,6 +264,68 @@ impl SseDecode for f64 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         deserializer.cursor.read_f64::<NativeEndian>().unwrap()
+    }
+}
+
+impl SseDecode for crate::models::result::GalleryParserResult {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_title = <Option<String>>::sse_decode(deserializer);
+        let mut var_subtitle = <Option<String>>::sse_decode(deserializer);
+        let mut var_language = <Option<String>>::sse_decode(deserializer);
+        let mut var_uploadTime = <Option<String>>::sse_decode(deserializer);
+        let mut var_description = <Option<String>>::sse_decode(deserializer);
+        let mut var_star = <Option<f64>>::sse_decode(deserializer);
+        let mut var_imageCount = <Option<i64>>::sse_decode(deserializer);
+        let mut var_pageCount = <Option<i64>>::sse_decode(deserializer);
+        let mut var_countPerPage = <Option<i64>>::sse_decode(deserializer);
+        let mut var_coverImage =
+            <Option<crate::models::result::ImageResult>>::sse_decode(deserializer);
+        let mut var_previews =
+            <Vec<crate::models::result::GalleryPreviewItem>>::sse_decode(deserializer);
+        let mut var_tags = <Vec<crate::models::result::TagResult>>::sse_decode(deserializer);
+        let mut var_badges = <Vec<crate::models::result::TagResult>>::sse_decode(deserializer);
+        let mut var_comments =
+            <Vec<crate::models::result::CommentResult>>::sse_decode(deserializer);
+        let mut var_nextPage = <Option<String>>::sse_decode(deserializer);
+        let mut var_isSuccess = <Option<bool>>::sse_decode(deserializer);
+        let mut var_failMessage = <Option<String>>::sse_decode(deserializer);
+        let mut var_envs = <Vec<crate::models::result::EnvResult>>::sse_decode(deserializer);
+        let mut var_errors = <Vec<crate::errors::ParseError>>::sse_decode(deserializer);
+        return crate::models::result::GalleryParserResult {
+            title: var_title,
+            subtitle: var_subtitle,
+            language: var_language,
+            upload_time: var_uploadTime,
+            description: var_description,
+            star: var_star,
+            image_count: var_imageCount,
+            page_count: var_pageCount,
+            count_per_page: var_countPerPage,
+            cover_image: var_coverImage,
+            previews: var_previews,
+            tags: var_tags,
+            badges: var_badges,
+            comments: var_comments,
+            next_page: var_nextPage,
+            is_success: var_isSuccess,
+            fail_message: var_failMessage,
+            envs: var_envs,
+            errors: var_errors,
+        };
+    }
+}
+
+impl SseDecode for crate::models::result::GalleryPreviewItem {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_previewImage =
+            <Option<crate::models::result::ImageResult>>::sse_decode(deserializer);
+        let mut var_target = <Option<String>>::sse_decode(deserializer);
+        return crate::models::result::GalleryPreviewItem {
+            preview_image: var_previewImage,
+            target: var_target,
+        };
     }
 }
 
@@ -249,6 +363,20 @@ impl SseDecode for crate::models::result::ImageResult {
     }
 }
 
+impl SseDecode for Vec<crate::models::result::CommentResult> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::models::result::CommentResult>::sse_decode(
+                deserializer,
+            ));
+        }
+        return ans_;
+    }
+}
+
 impl SseDecode for Vec<crate::models::result::EnvResult> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -268,6 +396,20 @@ impl SseDecode for Vec<crate::models::selector::ExtraSelectorRule> {
         let mut ans_ = Vec::with_capacity(len_ as usize);
         for idx_ in 0..len_ {
             ans_.push(<crate::models::selector::ExtraSelectorRule>::sse_decode(
+                deserializer,
+            ));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::models::result::GalleryPreviewItem> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::models::result::GalleryPreviewItem>::sse_decode(
                 deserializer,
             ));
         }
@@ -617,7 +759,8 @@ fn pde_ffi_dispatcher_primary_impl(
     // Codec=Pde (Serialization + dispatch), see doc to use other codecs
     match func_id {
         2 => wire__crate__api__simple__init_app_impl(port, ptr, rust_vec_len, data_len),
-        3 => wire__crate__api__parser__parse_list_impl(port, ptr, rust_vec_len, data_len),
+        3 => wire__crate__api__parser__parse_gallery_impl(port, ptr, rust_vec_len, data_len),
+        4 => wire__crate__api__parser__parse_list_impl(port, ptr, rust_vec_len, data_len),
         _ => unreachable!(),
     }
 }
@@ -637,6 +780,30 @@ fn pde_ffi_dispatcher_sync_impl(
 
 // Section: rust2dart
 
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::models::result::CommentResult {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.username.into_into_dart().into_dart(),
+            self.content.into_into_dart().into_dart(),
+            self.time.into_into_dart().into_dart(),
+            self.score.into_into_dart().into_dart(),
+            self.avatar.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::models::result::CommentResult
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::models::result::CommentResult>
+    for crate::models::result::CommentResult
+{
+    fn into_into_dart(self) -> crate::models::result::CommentResult {
+        self
+    }
+}
 // Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for crate::models::result::EnvResult {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
@@ -678,6 +845,65 @@ impl flutter_rust_bridge::IntoIntoDart<crate::models::selector::ExtraSelectorRul
     for crate::models::selector::ExtraSelectorRule
 {
     fn into_into_dart(self) -> crate::models::selector::ExtraSelectorRule {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::models::result::GalleryParserResult {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.title.into_into_dart().into_dart(),
+            self.subtitle.into_into_dart().into_dart(),
+            self.language.into_into_dart().into_dart(),
+            self.upload_time.into_into_dart().into_dart(),
+            self.description.into_into_dart().into_dart(),
+            self.star.into_into_dart().into_dart(),
+            self.image_count.into_into_dart().into_dart(),
+            self.page_count.into_into_dart().into_dart(),
+            self.count_per_page.into_into_dart().into_dart(),
+            self.cover_image.into_into_dart().into_dart(),
+            self.previews.into_into_dart().into_dart(),
+            self.tags.into_into_dart().into_dart(),
+            self.badges.into_into_dart().into_dart(),
+            self.comments.into_into_dart().into_dart(),
+            self.next_page.into_into_dart().into_dart(),
+            self.is_success.into_into_dart().into_dart(),
+            self.fail_message.into_into_dart().into_dart(),
+            self.envs.into_into_dart().into_dart(),
+            self.errors.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::models::result::GalleryParserResult
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::models::result::GalleryParserResult>
+    for crate::models::result::GalleryParserResult
+{
+    fn into_into_dart(self) -> crate::models::result::GalleryParserResult {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::models::result::GalleryPreviewItem {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.preview_image.into_into_dart().into_dart(),
+            self.target.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::models::result::GalleryPreviewItem
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::models::result::GalleryPreviewItem>
+    for crate::models::result::GalleryPreviewItem
+{
+    fn into_into_dart(self) -> crate::models::result::GalleryPreviewItem {
         self
     }
 }
@@ -952,6 +1178,17 @@ impl SseEncode for bool {
     }
 }
 
+impl SseEncode for crate::models::result::CommentResult {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <Option<String>>::sse_encode(self.username, serializer);
+        <Option<String>>::sse_encode(self.content, serializer);
+        <Option<String>>::sse_encode(self.time, serializer);
+        <Option<String>>::sse_encode(self.score, serializer);
+        <Option<crate::models::result::ImageResult>>::sse_encode(self.avatar, serializer);
+    }
+}
+
 impl SseEncode for crate::models::result::EnvResult {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -974,6 +1211,39 @@ impl SseEncode for f64 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         serializer.cursor.write_f64::<NativeEndian>(self).unwrap();
+    }
+}
+
+impl SseEncode for crate::models::result::GalleryParserResult {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <Option<String>>::sse_encode(self.title, serializer);
+        <Option<String>>::sse_encode(self.subtitle, serializer);
+        <Option<String>>::sse_encode(self.language, serializer);
+        <Option<String>>::sse_encode(self.upload_time, serializer);
+        <Option<String>>::sse_encode(self.description, serializer);
+        <Option<f64>>::sse_encode(self.star, serializer);
+        <Option<i64>>::sse_encode(self.image_count, serializer);
+        <Option<i64>>::sse_encode(self.page_count, serializer);
+        <Option<i64>>::sse_encode(self.count_per_page, serializer);
+        <Option<crate::models::result::ImageResult>>::sse_encode(self.cover_image, serializer);
+        <Vec<crate::models::result::GalleryPreviewItem>>::sse_encode(self.previews, serializer);
+        <Vec<crate::models::result::TagResult>>::sse_encode(self.tags, serializer);
+        <Vec<crate::models::result::TagResult>>::sse_encode(self.badges, serializer);
+        <Vec<crate::models::result::CommentResult>>::sse_encode(self.comments, serializer);
+        <Option<String>>::sse_encode(self.next_page, serializer);
+        <Option<bool>>::sse_encode(self.is_success, serializer);
+        <Option<String>>::sse_encode(self.fail_message, serializer);
+        <Vec<crate::models::result::EnvResult>>::sse_encode(self.envs, serializer);
+        <Vec<crate::errors::ParseError>>::sse_encode(self.errors, serializer);
+    }
+}
+
+impl SseEncode for crate::models::result::GalleryPreviewItem {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <Option<crate::models::result::ImageResult>>::sse_encode(self.preview_image, serializer);
+        <Option<String>>::sse_encode(self.target, serializer);
     }
 }
 
@@ -1003,6 +1273,16 @@ impl SseEncode for crate::models::result::ImageResult {
     }
 }
 
+impl SseEncode for Vec<crate::models::result::CommentResult> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::models::result::CommentResult>::sse_encode(item, serializer);
+        }
+    }
+}
+
 impl SseEncode for Vec<crate::models::result::EnvResult> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -1019,6 +1299,16 @@ impl SseEncode for Vec<crate::models::selector::ExtraSelectorRule> {
         <i32>::sse_encode(self.len() as _, serializer);
         for item in self {
             <crate::models::selector::ExtraSelectorRule>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::models::result::GalleryPreviewItem> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::models::result::GalleryPreviewItem>::sse_encode(item, serializer);
         }
     }
 }
