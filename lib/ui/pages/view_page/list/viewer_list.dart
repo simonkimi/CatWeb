@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:catweb/app.dart';
+import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/site_runtime/site_definition.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
 import 'package:catweb/ui/pages/view_page/list/search_list.dart';
@@ -21,17 +24,24 @@ class ViewerListFragment extends StatefulWidget {
 class _ViewerListFragmentState extends State<ViewerListFragment>
     with AutomaticKeepAliveClientMixin {
   late final SubListNotifier notifier;
+  late final SiteService _siteService;
 
   @override
   void initState() {
     super.initState();
+    _siteService = context.read<SiteService>();
     final page = pageConfig;
     notifier = SubListNotifier(
       endpoint: page.endpoint,
       website: viewerConfig.website,
       requestContext: page.context,
     );
+    _siteService.pageReloadNotifier.addListener(_reloadCurrentPage);
     notifier.requireFirstLoad();
+  }
+
+  void _reloadCurrentPage() {
+    unawaited(notifier.refresh());
   }
 
   @override
@@ -107,6 +117,7 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
 
   @override
   void dispose() {
+    _siteService.pageReloadNotifier.removeListener(_reloadCurrentPage);
     notifier.dispose();
     super.dispose();
   }

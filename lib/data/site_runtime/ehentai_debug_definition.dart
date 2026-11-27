@@ -22,29 +22,6 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
         pattern: 'e-hentai.org',
         value: 'nw=1',
       ),
-      DomainValueRule(
-        mode: DomainMatchMode.suffix,
-        pattern: 'e-hentai.org',
-        value:
-            'ipb_member_id=${AppEnv.maybeGet('EH_IPB_MEMBER_ID', defaultValue: '')}',
-      ),
-      DomainValueRule(
-        mode: DomainMatchMode.suffix,
-        pattern: 'e-hentai.org',
-        value:
-            'ipb_pass_hash=${AppEnv.maybeGet('EH_IPB_PASS_HASH', defaultValue: '')}',
-      ),
-      DomainValueRule(
-        mode: DomainMatchMode.suffix,
-        pattern: 'e-hentai.org',
-        value: 'star=${AppEnv.maybeGet('EH_STAR', defaultValue: '')}',
-      ),
-      DomainValueRule(
-        mode: DomainMatchMode.suffix,
-        pattern: 'e-hentai.org',
-        value:
-            'hath_perks=${AppEnv.maybeGet('EH_HATH_PERKS', defaultValue: '')}',
-      ),
     ],
   ),
   parsers: const [

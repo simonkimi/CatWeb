@@ -29,12 +29,13 @@ final class SiteRuntimeFactory {
     required EnvironmentStore environment,
   }) {
     final configuredConcurrency = imageConcurrency();
+    final cookieJar = PersistCookieJar(
+      ignoreExpires: false,
+      storage: CookieJarStorage(entity.uuid, cookieJarDao),
+    );
     final clients = const SiteDioFactory().create(
       definition: definition,
-      cookieJar: PersistCookieJar(
-        ignoreExpires: false,
-        storage: CookieJarStorage(entity.uuid, cookieJarDao),
-      ),
+      cookieJar: cookieJar,
       documentCacheOptions: documentCacheOptions,
       imageCacheOptions: imageCacheOptions,
     );
@@ -44,6 +45,7 @@ final class SiteRuntimeFactory {
       environment: environment,
       documentDio: clients.document,
       imageDio: clients.image,
+      cookieJar: cookieJar,
       documentCacheOptions: documentCacheOptions,
       imageCacheOptions: imageCacheOptions,
       imageConcurrency: configuredConcurrency < 1 ? 1 : configuredConcurrency,

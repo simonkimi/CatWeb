@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:bot_toast/bot_toast.dart';
+import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/data/site_runtime/runtime_contracts.dart';
 import 'package:catweb/data/site_runtime/site_definition.dart';
@@ -43,16 +44,23 @@ class ViewerGalleryFragment extends StatefulWidget {
 
 class _ViewerGalleryFragmentState extends State<ViewerGalleryFragment> {
   late final ViewerGalleryNotifier notifier;
+  late final SiteService _siteService;
 
   @override
   void initState() {
     super.initState();
+    _siteService = context.read<SiteService>();
     notifier = ViewerGalleryNotifier(
       endpoint: widget.endpoint,
       website: widget.website,
       requestContext: widget.requestContext,
     );
+    _siteService.pageReloadNotifier.addListener(_reloadCurrentPage);
     unawaited(notifier.loadInitial());
+  }
+
+  void _reloadCurrentPage() {
+    unawaited(notifier.refresh());
   }
 
   @override
@@ -73,6 +81,7 @@ class _ViewerGalleryFragmentState extends State<ViewerGalleryFragment> {
 
   @override
   void dispose() {
+    _siteService.pageReloadNotifier.removeListener(_reloadCurrentPage);
     notifier.dispose();
     super.dispose();
   }

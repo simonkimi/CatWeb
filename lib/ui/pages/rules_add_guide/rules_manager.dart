@@ -133,6 +133,10 @@ class SiteManager extends StatelessWidget {
     final result = await showCupertinoSelectDialog<_MenuSelect>(
       cancelText: I.of(context).cancel,
       context: context,
+      confirm: (value) {
+        if (value != _MenuSelect.importCookies) return Future.value(true);
+        return _importCookies(context, db);
+      },
       items: [
         SelectTileItem(title: I.of(context).edit, value: _MenuSelect.edit),
         SelectTileItem(
@@ -157,33 +161,41 @@ class SiteManager extends StatelessWidget {
         await navigator.to(RulesEditPage(db: db));
         return;
       case _MenuSelect.importCookies:
-        await _importCookies(context, db);
+        BotToast.showText(text: '导入完成');
         return;
       case _MenuSelect.delete:
         await _onDelete(context, db, summary.name);
     }
   }
 
-  Future<void> _importCookies(BuildContext context, WebTableData db) async {
+  Future<bool> _importCookies(BuildContext context, WebTableData db) async {
     final result = await FilePicker.pickFile(dialogTitle: '导入Cookies.txt');
-    if (result == null || !context.mounted) return;
+    if (result == null || !context.mounted) return false;
 
     final cookieJarDao = context.read<DbService>().cookieJarDao;
     final siteService = context.read<SiteService>();
     try {
       final content = decodeCookieFile(await result.readAsBytes());
+      final current = siteService.currentSite;
       final count = await saveNetscapeCookies(
-        PersistCookieJar(storage: CookieJarStorage(db.uuid, cookieJarDao)),
+        current != null && current.id == db.id
+            ? current.session.cookieJar
+            : PersistCookieJar(
+                storage: CookieJarStorage(db.uuid, cookieJarDao),
+              ),
         content,
       );
       if (count == 0) {
         BotToast.showText(text: '没有可导入的 Cookie');
-        return;
+        return false;
       }
-      if (siteService.id == db.id) await siteService.setNewSite(db);
-      BotToast.showText(text: '已导入 $count 条 Cookie');
+      if (current != null && current.id == db.id) {
+        siteService.reloadCurrentPages();
+      }
+      return true;
     } catch (error) {
       BotToast.showText(text: '导入失败: $error');
+      return false;
     }
   }
 

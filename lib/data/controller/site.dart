@@ -27,6 +27,7 @@ class SiteService {
   final ValueNotifier<SiteRenderConfigModel?> currentSiteNotifier =
       ValueNotifier(null);
   final ValueNotifier<LoadFailure?> loadFailureNotifier = ValueNotifier(null);
+  final ValueNotifier<int> pageReloadNotifier = ValueNotifier(0);
   WebTableData? _failedSite;
 
   SiteRenderConfigModel? get currentSite => currentSiteNotifier.value;
@@ -74,6 +75,11 @@ class SiteService {
     }
     await previous?.dispose();
     if (currentSite case final site?) setting.setDefaultSite(site.id);
+  }
+
+  /// 让当前站点已经打开的页面重新请求一次。
+  void reloadCurrentPages() {
+    pageReloadNotifier.value++;
   }
 
   Future<void> setDefaultSite() async {
@@ -141,6 +147,7 @@ class SiteService {
     await currentSite?.dispose();
     currentSiteNotifier.dispose();
     loadFailureNotifier.dispose();
+    pageReloadNotifier.dispose();
   }
 
   int? get id => currentSite?.id;

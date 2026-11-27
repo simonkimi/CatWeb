@@ -27,11 +27,13 @@ Future<T?> showCupertinoSelectDialog<T>({
   String? cancelText,
   bool barrierDismissible = true,
   void Function(T?)? onSelected,
+  Future<bool> Function(T value)? confirm,
 }) {
   return showCupertinoModalPopup<T>(
     barrierDismissible: barrierDismissible,
     context: context,
     builder: (context) {
+      var busy = false;
       return CupertinoActionSheet(
         title: title != null ? Text(title) : null,
         message: message != null ? Text(message) : null,
@@ -39,9 +41,19 @@ Future<T?> showCupertinoSelectDialog<T>({
           return CupertinoActionSheetAction(
             isDefaultAction: item.value == selectedValue,
             isDestructiveAction: item.destructive,
-            onPressed: () {
-              onSelected?.call(item.value);
-              Navigator.pop(context, item.value);
+            onPressed: () async {
+              if (busy) return;
+              busy = true;
+              try {
+                if (confirm != null) {
+                  final accepted = await confirm(item.value);
+                  if (!accepted || !context.mounted) return;
+                }
+                onSelected?.call(item.value);
+                Navigator.pop(context, item.value);
+              } finally {
+                busy = false;
+              }
             },
             child: Text(item.title),
           );

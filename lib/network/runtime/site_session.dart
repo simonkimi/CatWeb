@@ -9,6 +9,7 @@ import 'package:catweb/data/site_runtime/site_compiler.dart';
 import 'package:catweb/data/site_runtime/site_definition.dart';
 import 'package:catweb/data/site_runtime/site_executor.dart';
 import 'package:catweb/data/site_runtime/site_page_source.dart';
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 
@@ -28,10 +29,12 @@ final class SiteSession {
     required CacheOptions documentCacheOptions,
     required CacheOptions imageCacheOptions,
     required int imageConcurrency,
+    CookieJar? cookieJar,
     LoadFailureMapper failureMapper = const SiteRuntimeFailureMapper(),
   }) : site = const SiteCompiler().compile(definition),
        documentDio = documentDio,
-       imageDio = imageDio {
+       imageDio = imageDio,
+       cookieJar = cookieJar ?? CookieJar() {
     final delegate = DefaultSiteExecutor(
       site: site,
       transport: DioHttpTransport(
@@ -54,6 +57,7 @@ final class SiteSession {
   final CompiledSite site;
   final Dio documentDio;
   final Dio imageDio;
+  final CookieJar cookieJar;
   final CancellationScope _lifetime = CancellationScope();
   late final _SessionExecutor _executor;
   late final ImageRepository images;
