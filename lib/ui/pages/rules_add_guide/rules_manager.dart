@@ -4,8 +4,10 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:catweb/app.dart';
 import 'package:catweb/data/controller/db.dart';
 import 'package:catweb/data/controller/site.dart';
+import 'package:catweb/data/database/cookie_jar_storage.dart';
 import 'package:catweb/data/database/database.dart';
 import 'package:catweb/data/site_runtime/site_compiler.dart';
+import 'package:catweb/utils/netscape_cookies.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
 import 'package:catweb/ui/pages/setting_page/setting_page.dart';
@@ -17,8 +19,10 @@ import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:cookie_jar/cookie_jar.dart';
+import 'package:file_picker/file_picker.dart';
 
-enum _MenuSelect { edit, exportJson, delete }
+enum _MenuSelect { edit, exportJson, importCookies, delete }
 
 class SiteManager extends StatelessWidget {
   const SiteManager({super.key});
@@ -131,6 +135,10 @@ class SiteManager extends StatelessWidget {
       context: context,
       items: [
         SelectTileItem(title: I.of(context).edit, value: _MenuSelect.edit),
+        SelectTileItem(
+          title: '导入Cookies.txt',
+          value: _MenuSelect.importCookies,
+        ),
         const SelectTileItem(title: '导出 JSON', value: _MenuSelect.exportJson),
         SelectTileItem(
           title: I.of(context).delete,
@@ -148,8 +156,34 @@ class SiteManager extends StatelessWidget {
       case _MenuSelect.edit:
         await navigator.to(RulesEditPage(db: db));
         return;
+      case _MenuSelect.importCookies:
+        await _importCookies(context, db);
+        return;
       case _MenuSelect.delete:
         await _onDelete(context, db, summary.name);
+    }
+  }
+
+  Future<void> _importCookies(BuildContext context, WebTableData db) async {
+    final result = await FilePicker.pickFile(dialogTitle: '导入Cookies.txt');
+    if (result == null || !context.mounted) return;
+
+    final cookieJarDao = context.read<DbService>().cookieJarDao;
+    final siteService = context.read<SiteService>();
+    try {
+      final content = decodeCookieFile(await result.readAsBytes());
+      final count = await saveNetscapeCookies(
+        PersistCookieJar(storage: CookieJarStorage(db.uuid, cookieJarDao)),
+        content,
+      );
+      if (count == 0) {
+        BotToast.showText(text: '没有可导入的 Cookie');
+        return;
+      }
+      if (siteService.id == db.id) await siteService.setNewSite(db);
+      BotToast.showText(text: '已导入 $count 条 Cookie');
+    } catch (error) {
+      BotToast.showText(text: '导入失败: $error');
     }
   }
 
