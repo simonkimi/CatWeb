@@ -13,3 +13,6 @@ abstract final class AppEnv {
     return value;
   }
 }
+
+/// `.env` 中 `DEBUG_BLUR_IMAGE=1` 时为真。
+bool get debugBlurImageEnabled => AppEnv.maybeGet('DEBUG_BLUR_IMAGE') == '1';

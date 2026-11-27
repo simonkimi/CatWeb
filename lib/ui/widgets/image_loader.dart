@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:typed_data';
+import 'dart:ui';
 
 import 'package:catweb/data/loading/resource_loader.dart';
 import 'package:catweb/data/media/image_repository.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
+import 'package:catweb/env.dart';
 import 'package:catweb/ui/widgets/dark_image.dart';
 import 'package:catweb/utils/debug.dart';
 import 'package:dio/dio.dart';
@@ -11,12 +13,19 @@ import 'package:extended_image/extended_image.dart';
 import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
-typedef ImageWidgetBuilder =
-    Widget Function(BuildContext context, Uint8List imgData);
-typedef LoadingWidgetBuilder =
-    Widget Function(BuildContext context, double? progress);
-typedef ErrorBuilder =
-    Widget Function(BuildContext context, Object? err, VoidCallback reload);
+typedef ImageWidgetBuilder = Widget Function(
+  BuildContext context,
+  Uint8List imgData,
+);
+typedef LoadingWidgetBuilder = Widget Function(
+  BuildContext context,
+  double? progress,
+);
+typedef ErrorBuilder = Widget Function(
+  BuildContext context,
+  Object? err,
+  VoidCallback reload,
+);
 typedef WidgetBuilder = Widget Function(BuildContext context, Widget child);
 
 class ImageLoader extends StatefulWidget {
@@ -170,13 +179,29 @@ class _ImageLoaderState extends State<ImageLoader> {
       child = Center(child: innerImageBuilder(context, Image.memory(imgData)));
     }
 
+    final displayed = DarkWidget(child: _withDebugImageBlur(child));
     return widget.enableHero
         ? Hero(
             tag: widget.model.cacheKey ?? widget.model.url!,
-            child: DarkWidget(child: child),
+            child: displayed,
           )
-        : DarkWidget(child: child);
+        : displayed;
   }
+}
+
+const _debugImageBlurSigma = 60.0;
+
+Widget _withDebugImageBlur(Widget child) {
+  if (!debugBlurImageEnabled) return child;
+  return ClipRect(
+    child: ImageFiltered(
+      imageFilter: ImageFilter.blur(
+        sigmaX: _debugImageBlurSigma,
+        sigmaY: _debugImageBlurSigma,
+      ),
+      child: child,
+    ),
+  );
 }
 
 Widget _defaultWidgetBuilder(BuildContext context, Widget widget) => widget;
