@@ -7,9 +7,15 @@ class RuleFormPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
-      children: children,
+    return Align(
+      alignment: Alignment.topCenter,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 720),
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
+          children: children,
+        ),
+      ),
     );
   }
 }

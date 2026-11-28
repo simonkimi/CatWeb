@@ -6,9 +6,11 @@ import 'package:catweb/data/models/site_render_model.dart';
 import 'package:catweb/i18n.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_add_page.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
+import 'package:catweb/ui/layout/window_size.dart';
 import 'package:catweb/ui/pages/view_page/empty/empty.dart';
 import 'package:catweb/ui/pages/view_page/viewer_provider.dart';
 import 'package:catweb/ui/pages/view_page/viewer_subpage_scaffold.dart';
+import 'package:catweb/ui/widgets/side_navigation.dart';
 import 'package:catweb/utils/context_helper.dart';
 import 'package:catweb/utils/icons.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
@@ -67,25 +69,160 @@ class ViewerMain extends HookWidget {
       return ViewerPage(endpoint: website.displayPage.first, website: website);
     }
 
-    return CupertinoTabScaffold(
-      resizeToAvoidBottomInset: true,
-      tabBar: CupertinoTabBar(
-        items: website.displayPage.map((e) {
-          return BottomNavigationBarItem(
-            icon: Icon(
-              cupertinoIcons[e.icon] ?? CupertinoIcons.circle,
-              size: 22,
+    return _SiteNavigationShell(website: website);
+  }
+}
+
+class _SiteNavigationShell extends StatefulWidget {
+  const _SiteNavigationShell({required this.website});
+
+  final SiteRenderConfigModel website;
+
+  @override
+  State<_SiteNavigationShell> createState() => _SiteNavigationShellState();
+}
+
+class _SiteNavigationShellState extends State<_SiteNavigationShell> {
+  final _controller = CupertinoTabController();
+  final Map<String, GlobalKey> _pageKeys = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onTabChanged);
+  }
+
+  @override
+  void didUpdateWidget(covariant _SiteNavigationShell oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final count = widget.website.displayPage.length;
+    if (count > 0 && _controller.index >= count) {
+      _controller.index = count - 1;
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(_onTabChanged);
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onTabChanged() {
+    if (mounted) setState(() {});
+  }
+
+  GlobalKey _keyFor(String id) => _pageKeys.putIfAbsent(id, GlobalKey.new);
+
+  Widget _pageAt(int index) {
+    final endpoint = widget.website.displayPage[index];
+    return ViewerPage(
+      key: _keyFor(endpoint.id),
+      endpoint: endpoint,
+      website: widget.website,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final pages = widget.website.displayPage;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final wide = constraints.maxWidth >= WindowSize.medium;
+        if (!wide) {
+          return CupertinoTabScaffold(
+            controller: _controller,
+            resizeToAvoidBottomInset: true,
+            tabBar: CupertinoTabBar(
+              items: [
+                for (final endpoint in pages)
+                  BottomNavigationBarItem(
+                    icon: Icon(
+                      cupertinoIcons[endpoint.icon] ?? CupertinoIcons.circle,
+                      size: 22,
+                    ),
+                    label: endpoint.name,
+                  ),
+              ],
             ),
-            label: e.name,
+            tabBuilder: (context, index) => _pageAt(index),
           );
-        }).toList(),
-      ),
-      tabBuilder: (BuildContext context, int index) {
-        return ViewerPage(
-          endpoint: website.displayPage[index],
-          website: website,
+        }
+
+        final extended = constraints.maxWidth >= WindowSize.expanded;
+        return ColoredBox(
+          color: CupertinoTheme.of(context).scaffoldBackgroundColor,
+          child: Row(
+            children: [
+              SideNavigation(
+                extended: extended,
+                selectedIndex: _controller.index,
+                onDestinationSelected: (index) => _controller.index = index,
+                destinations: [
+                  for (final endpoint in pages)
+                    SideNavigationDestination(
+                      icon:
+                          cupertinoIcons[endpoint.icon] ??
+                          CupertinoIcons.circle,
+                      label: endpoint.name,
+                    ),
+                ],
+              ),
+              Expanded(
+                child: _LazyTabStack(
+                  index: _controller.index,
+                  itemCount: pages.length,
+                  itemBuilder: _pageAt,
+                ),
+              ),
+            ],
+          ),
         );
       },
+    );
+  }
+}
+
+class _LazyTabStack extends StatefulWidget {
+  const _LazyTabStack({
+    required this.index,
+    required this.itemCount,
+    required this.itemBuilder,
+  });
+
+  final int index;
+  final int itemCount;
+  final Widget Function(int index) itemBuilder;
+
+  @override
+  State<_LazyTabStack> createState() => _LazyTabStackState();
+}
+
+class _LazyTabStackState extends State<_LazyTabStack> {
+  late List<bool> _built = List<bool>.filled(widget.itemCount, false);
+
+  @override
+  void didUpdateWidget(covariant _LazyTabStack oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final lengthDiff = widget.itemCount - _built.length;
+    if (lengthDiff > 0) {
+      _built.addAll(List<bool>.filled(lengthDiff, false));
+    } else if (lengthDiff < 0) {
+      _built.removeRange(widget.itemCount, _built.length);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.itemCount == 0) return const SizedBox.shrink();
+    _built[widget.index] = true;
+    return IndexedStack(
+      index: widget.index,
+      sizing: StackFit.expand,
+      children: [
+        for (var i = 0; i < widget.itemCount; i++)
+          _built[i] ? widget.itemBuilder(i) : const SizedBox.shrink(),
+      ],
     );
   }
 }

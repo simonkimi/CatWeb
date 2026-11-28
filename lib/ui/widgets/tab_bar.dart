@@ -1,7 +1,9 @@
+import 'package:catweb/ui/layout/window_size.dart';
+import 'package:catweb/ui/theme/colors.dart';
+import 'package:catweb/ui/widgets/side_navigation.dart';
 import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
-import 'package:catweb/ui/theme/colors.dart';
 import 'grey_tab_indicator.dart';
 
 class CupertinoTab extends StatelessWidget {
@@ -41,19 +43,79 @@ class CupertinoTabBarView extends StatelessWidget {
     return DefaultTabController(
       length: tabs.length,
       child: SafeArea(
-        child: Column(
-          children: [
-            Material(
-              color: FixColor.navigationBarBackground.resolveFrom(context),
-              child: TabBar(
-                padding: EdgeInsets.zero,
-                labelColor: FixColor.title.resolveFrom(context),
-                indicator: const GreyUnderlineTabIndicator(),
-                tabs: tabs,
-              ),
-            ),
-            Expanded(child: TabBarView(children: children)),
-          ],
+        child: Builder(
+          builder: (context) {
+            final controller = DefaultTabController.of(context);
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                final expanded = constraints.maxWidth >= WindowSize.expanded;
+                return AnimatedBuilder(
+                  animation: controller,
+                  builder: (context, _) {
+                    return Row(
+                      children: [
+                        if (expanded)
+                          SideNavigation(
+                            width: 176,
+                            destinations: [
+                              for (final tab in tabs)
+                                SideNavigationDestination(label: tab.text),
+                            ],
+                            selectedIndex: controller.index,
+                            onDestinationSelected: (index) {
+                              if (controller.index != index) {
+                                controller.animateTo(index);
+                              }
+                            },
+                          )
+                        else
+                          const SizedBox.shrink(),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              if (expanded)
+                                const SizedBox.shrink()
+                              else
+                                Material(
+                                  color: FixColor.navigationBarBackground
+                                      .resolveFrom(context),
+                                  child: TabBar(
+                                    controller: controller,
+                                    isScrollable: true,
+                                    tabAlignment: TabAlignment.start,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                    ),
+                                    labelPadding: const EdgeInsets.symmetric(
+                                      horizontal: 14,
+                                    ),
+                                    labelColor: FixColor.title.resolveFrom(
+                                      context,
+                                    ),
+                                    indicator:
+                                        const GreyUnderlineTabIndicator(),
+                                    tabs: tabs,
+                                  ),
+                                ),
+                              Expanded(
+                                child: TabBarView(
+                                  controller: controller,
+                                  physics: expanded
+                                      ? const NeverScrollableScrollPhysics()
+                                      : null,
+                                  children: children,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            );
+          },
         ),
       ),
     );
