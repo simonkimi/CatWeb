@@ -64,6 +64,7 @@ class SubListNotifier extends ChangeNotifier
     if (next == _subpageIndex) return;
     _subpageIndex = next;
     _updateInputs();
+    if (!_disposed) notifyListeners();
     await refresh();
   }
 
@@ -84,10 +85,7 @@ class SubListNotifier extends ChangeNotifier
 
   void _updateInputs() {
     _source.updateInputs({
-      ...subpageRequestVariables(
-        endpoint.presentation.subpages,
-        _subpageIndex,
-      ),
+      ...subpageRequestVariables(endpoint.presentation.subpages, _subpageIndex),
       ...currentFilter,
       'search': searchKeywords,
     });

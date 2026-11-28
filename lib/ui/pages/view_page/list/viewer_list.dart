@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:catweb/app.dart';
+import 'package:catweb/data/constant.dart';
 import 'package:catweb/data/controller/site.dart';
 import 'package:catweb/data/site_runtime/site_definition.dart';
 import 'package:catweb/ui/pages/rules_add_guide/rules_manager.dart';
@@ -11,7 +12,6 @@ import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
 import 'package:catweb/ui/widgets/tab_bar.dart';
 import 'package:cupertino_modal_sheet/cupertino_modal_sheet.dart';
 import 'package:cupertino_ui/cupertino_ui.dart';
-import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 import 'subpage_notifier.dart';
@@ -24,10 +24,9 @@ class ViewerListFragment extends StatefulWidget {
 }
 
 class _ViewerListFragmentState extends State<ViewerListFragment>
-    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+    with AutomaticKeepAliveClientMixin {
   late final SubListNotifier notifier;
   late final SiteService _siteService;
-  TabController? _subpageController;
 
   @override
   void initState() {
@@ -39,20 +38,8 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
       website: viewerConfig.website,
       requestContext: page.context,
     );
-    final subpages = page.endpoint.presentation.subpages;
-    if (subpages.length > 1) {
-      _subpageController = TabController(length: subpages.length, vsync: this);
-      _subpageController!.addListener(_onSubpageChanged);
-    }
     _siteService.pageReloadNotifier.addListener(_reloadCurrentPage);
     notifier.requireFirstLoad();
-  }
-
-  void _onSubpageChanged() {
-    final controller = _subpageController;
-    if (controller == null || controller.indexIsChanging) return;
-    if (controller.index == notifier.subpageIndex) return;
-    unawaited(notifier.selectSubpage(controller.index));
   }
 
   void _reloadCurrentPage() {
@@ -67,31 +54,32 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
       child: CupertinoPageScaffold(
         child: Selector<SubListNotifier, bool>(
           selector: (_, state) => state.pageSnapshot.loadedCount > 0,
-          builder: (context, hasItem, _) => CupertinoAppBar(
-            canHide: hasItem,
-            title: endpoint.name,
-            leading: _buildLeading(context),
-            actions: _buildActions(context),
-            tabBar: _buildSubpageBar(),
-            child: SubPageListFragment(
-              hasTabBar: _subpageController != null,
-              hasToolBar: viewerConfig.hasToolBar,
-            ),
-          ),
+          builder: (context, hasItem, _) {
+            final subpages = endpoint.presentation.subpages;
+            final useMenu = subpages.length > kMaxSegmentedChoices;
+            final useSegment = subpages.length > 1 && !useMenu;
+            return CupertinoAppBar(
+              canHide: hasItem,
+              title: useMenu ? null : endpoint.name,
+              titleWidget: useMenu
+                  ? _ListSubpageMenu(title: endpoint.name)
+                  : null,
+              leading: _buildLeading(context),
+              actions: _buildActions(context),
+              tabBar: useSegment
+                  ? _ListSubpageSegments(
+                      labels: [for (final page in subpages) page.name],
+                    )
+                  : null,
+              tabBarHeight: useSegment ? kCupertinoTabBarHeight : null,
+              child: SubPageListFragment(
+                hasTabBar: useSegment,
+                hasToolBar: viewerConfig.hasToolBar,
+              ),
+            );
+          },
         ),
       ),
-    );
-  }
-
-  Widget? _buildSubpageBar() {
-    final controller = _subpageController;
-    if (controller == null) return null;
-    return CupertinoCustomTabBar(
-      tabController: controller,
-      tabs: [
-        for (final page in endpoint.presentation.subpages)
-          CupertinoTab(page.name),
-      ],
     );
   }
 
@@ -145,10 +133,51 @@ class _ViewerListFragmentState extends State<ViewerListFragment>
 
   @override
   void dispose() {
-    _subpageController?.removeListener(_onSubpageChanged);
-    _subpageController?.dispose();
     _siteService.pageReloadNotifier.removeListener(_reloadCurrentPage);
     notifier.dispose();
     super.dispose();
+  }
+}
+
+class _ListSubpageMenu extends StatelessWidget {
+  const _ListSubpageMenu({required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    final notifier = context.read<SubListNotifier>();
+    final index = context.select((SubListNotifier n) => n.subpageIndex);
+    return CupertinoTitleMenu(
+      title: title,
+      labels: [
+        for (final page in notifier.endpoint.presentation.subpages) page.name,
+      ],
+      selectedIndex: index,
+      onSelected: (value) => notifier.selectSubpage(value),
+    );
+  }
+}
+
+class _ListSubpageSegments extends StatelessWidget {
+  const _ListSubpageSegments({required this.labels});
+
+  final List<String> labels;
+
+  @override
+  Widget build(BuildContext context) {
+    final notifier = context.read<SubListNotifier>();
+    final index = context.select((SubListNotifier n) => n.subpageIndex);
+    return SizedBox(
+      height: kCupertinoTabBarHeight,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 2, bottom: 6),
+        child: CupertinoSegmentedTabs(
+          labels: labels,
+          selectedIndex: index,
+          onChanged: (value) => notifier.selectSubpage(value),
+        ),
+      ),
+    );
   }
 }

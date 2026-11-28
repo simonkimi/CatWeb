@@ -1,13 +1,9 @@
 import 'dart:ui';
 
 import 'package:catweb/data/constant.dart';
-import 'package:catweb/ui/widgets/tab_bar.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/utils/context_helper.dart';
 import 'package:cupertino_ui/cupertino_ui.dart';
-import 'package:material_ui/material_ui.dart';
-
-import 'grey_tab_indicator.dart';
 
 class CupertinoBackLeading extends StatelessWidget {
   const CupertinoBackLeading({
@@ -37,33 +33,6 @@ class CupertinoBackLeading extends StatelessWidget {
   }
 }
 
-class CupertinoCustomTabBar extends StatelessWidget {
-  const CupertinoCustomTabBar({
-    super.key,
-    required this.tabController,
-    required this.tabs,
-  });
-
-  final TabController tabController;
-  final List<CupertinoTab> tabs;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: kCupertinoTabBarHeight,
-      child: Material(
-        color: const Color(0x00000000),
-        child: TabBar(
-          isScrollable: true,
-          controller: tabController,
-          indicator: const GreyUnderlineTabIndicator(),
-          tabs: tabs,
-        ),
-      ),
-    );
-  }
-}
-
 class CupertinoAppBar extends StatefulWidget {
   const CupertinoAppBar({
     super.key,
@@ -74,12 +43,14 @@ class CupertinoAppBar extends StatefulWidget {
     this.backgroundColor,
     this.padding = const EdgeInsets.symmetric(horizontal: 10),
     this.automaticallyImplyLeading = true,
+    this.titleWidget,
     this.tabBar,
     this.tabBarHeight,
     this.canHide = true,
   });
 
   final String? title;
+  final Widget? titleWidget;
   final Widget? leading;
   final List<Widget>? actions;
   final Color? backgroundColor;
@@ -223,7 +194,9 @@ class _CupertinoAppBarState extends State<CupertinoAppBar>
           children: [
             if (leading != null)
               Align(alignment: Alignment.centerLeft, child: leading),
-            if (widget.title != null)
+            if (widget.titleWidget != null)
+              Align(alignment: Alignment.center, child: widget.titleWidget)
+            else if (widget.title != null)
               Align(
                 alignment: Alignment.center,
                 child: Text(
