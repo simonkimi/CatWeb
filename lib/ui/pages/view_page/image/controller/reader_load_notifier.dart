@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:catweb/data/controller/settings.dart';
 import 'package:catweb/data/loading/cancellation.dart';
+import 'package:catweb/data/loading/load_failure.dart';
 import 'package:catweb/data/loading/resource_loader.dart';
 import 'package:catweb/data/media/image_repository.dart';
 import 'package:catweb/data/models/ffi/result/base.dart';
@@ -34,18 +35,20 @@ final class ReaderLoaderNotifier extends ChangeNotifier {
     required this.requestContext,
     required this.session,
     required this.settingService,
-  }) : _loader = ResourceLoader<int, ImageResult>(
-         source: _ReaderImageSource(
-           readerInfo: readerInfo,
-           endpoint: endpoint,
-           requestContext: requestContext,
-           session: session,
-           quality: () => settingService.imageQuality,
-         ),
-         maxConcurrency: 1,
-         retention: ResourceRetention.memory,
-         failureMapper: const SiteRuntimeFailureMapper(),
-       ) {
+  }) {
+    _source = _ReaderImageSource(
+      readerInfo: readerInfo,
+      endpoint: endpoint,
+      requestContext: requestContext,
+      session: session,
+      quality: () => settingService.imageQuality,
+    );
+    _loader = ResourceLoader<int, ImageResult>(
+      source: _source,
+      maxConcurrency: 1,
+      retention: ResourceRetention.memory,
+      failureMapper: const _ReaderFailureMapper(),
+    );
     scheduleMicrotask(
       () => onIndexChanged(readerInfo.startReadIndex ?? 0, true),
     );
@@ -56,7 +59,8 @@ final class ReaderLoaderNotifier extends ChangeNotifier {
   final RequestContext requestContext;
   final SiteSession session;
   final SettingService settingService;
-  final ResourceLoader<int, ImageResult> _loader;
+  late final _ReaderImageSource _source;
+  late final ResourceLoader<int, ImageResult> _loader;
   final Map<int, ResourceHandle<int, ImageResult>> _handles = {};
   final Map<int, StreamSubscription<ResourceSnapshot<ImageResult>>>
   _subscriptions = {};
@@ -115,7 +119,14 @@ final class ReaderLoaderNotifier extends ChangeNotifier {
     if (!_disposed) notifyListeners();
   }
 
-  void retry(int index) => _handles[index]?.retry();
+  void retry(int index) {
+    if (_disposed || !_handles.containsKey(index)) return;
+    if (_states[index] case ResourceFailure<ImageResult>(:final failure)
+        when failure.retryable) {
+      _source.refresh(index);
+      _handles[index]!.retry();
+    }
+  }
 
   int get preloadCount => settingService.preloadCount;
 
@@ -133,8 +144,28 @@ final class ReaderLoaderNotifier extends ChangeNotifier {
   }
 }
 
+/// Reader pages can temporarily return a failure document or omit image URLs.
+/// Allow the existing manual retry action to fetch and parse the page again.
+final class _ReaderFailureMapper implements LoadFailureMapper {
+  const _ReaderFailureMapper();
+
+  @override
+  LoadFailure map(Object error, StackTrace stackTrace) {
+    final failure = const SiteRuntimeFailureMapper().map(error, stackTrace);
+    if (error is ParserException && error is! ParserUnavailableException) {
+      return LoadFailure(
+        kind: failure.kind,
+        error: error,
+        stackTrace: stackTrace,
+        retryable: true,
+      );
+    }
+    return failure;
+  }
+}
+
 final class _ReaderImageSource implements ResourceSource<int, ImageResult> {
-  const _ReaderImageSource({
+  _ReaderImageSource({
     required this.readerInfo,
     required this.endpoint,
     required this.requestContext,
@@ -147,6 +178,9 @@ final class _ReaderImageSource implements ResourceSource<int, ImageResult> {
   final RequestContext requestContext;
   final SiteSession session;
   final ImageQuality Function() quality;
+  final Set<int> _refreshIndices = {};
+
+  void refresh(int index) => _refreshIndices.add(index);
 
   @override
   Future<ResourceLoadResult<ImageResult>> load(
@@ -172,6 +206,9 @@ final class _ReaderImageSource implements ResourceSource<int, ImageResult> {
         endpointId: endpoint.id,
         context: requestContext,
         inputs: {'idCode': idCode},
+        cacheDirective: _refreshIndices.remove(index)
+            ? CacheDirective.refresh
+            : CacheDirective.normal,
       ),
       cancellation,
     );
@@ -180,14 +217,26 @@ final class _ReaderImageSource implements ResourceSource<int, ImageResult> {
   }
 
   ImageResult _selectImage(ImageReaderResult result) {
-    final selected = switch (quality()) {
-      ImageQuality.original =>
-        result.rawImage ?? result.largerImage ?? result.image,
-      ImageQuality.larger =>
-        result.largerImage ?? result.image ?? result.rawImage,
-      ImageQuality.defaultQ =>
-        result.image ?? result.largerImage ?? result.rawImage,
+    final candidates = switch (quality()) {
+      ImageQuality.original => [
+        result.rawImage,
+        result.largerImage,
+        result.image,
+      ],
+      ImageQuality.larger => [
+        result.largerImage,
+        result.image,
+        result.rawImage,
+      ],
+      ImageQuality.defaultQ => [
+        result.image,
+        result.largerImage,
+        result.rawImage,
+      ],
     };
-    return selected ?? (throw StateError('Reader parser returned no image'));
+    for (final image in candidates) {
+      if (image?.url?.trim().isNotEmpty == true) return image!;
+    }
+    throw StateError('Reader parser returned no usable image URL');
   }
 }

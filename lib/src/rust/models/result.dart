@@ -66,6 +66,26 @@ sealed class GalleryPreviewItem with _$GalleryPreviewItem {
 }
 
 @freezed
+sealed class ImageReaderResult with _$ImageReaderResult {
+  const factory ImageReaderResult({
+    ImageResult? image,
+    ImageResult? largerImage,
+    ImageResult? rawImage,
+    String? uploadTime,
+    String? source,
+    String? rating,
+    double? score,
+    required List<TagResult> badges,
+    required List<TagResult> tags,
+    required List<CommentResult> comments,
+    bool? isSuccess,
+    String? failMessage,
+    required List<EnvResult> envs,
+    required List<ParseError> errors,
+  }) = _ImageReaderResult;
+}
+
+@freezed
 sealed class ImageResult with _$ImageResult {
   const factory ImageResult({
     String? url,

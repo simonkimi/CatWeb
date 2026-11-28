@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:catweb/data/controller/db.dart';
@@ -15,6 +16,7 @@ import 'package:catweb/src/rust/models/result.dart' as native;
 import 'package:catweb/ui/pages/view_page/gallery/viewer_gallery.dart';
 import 'package:catweb/ui/pages/view_page/gallery/viewer_gallery_notifier.dart';
 import 'package:catweb/ui/pages/view_page/gallery/viewer_gallery_images.dart';
+import 'package:catweb/ui/pages/view_page/image/image_reader.dart';
 import 'package:catweb/ui/widgets/image_loader.dart';
 import 'package:catweb/ui/widgets/preview_image.dart';
 import 'package:cupertino_ui/cupertino_ui.dart';
@@ -27,6 +29,73 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  testWidgets(
+    'gallery opens reader, displays image bytes and retries page failures',
+    (tester) async {
+      final fixture = (await tester.runAsync(
+        () => _fixture(_result('Gallery').copyWith(imageCount: 1)),
+      ))!;
+      addTearDown(() async {
+        await tester.pumpWidget(const SizedBox());
+        await tester.runAsync(fixture.dispose);
+      });
+      fixture.readerResponse = fixture.readerResponse.copyWith(
+        failMessage: 'Reader blocked',
+      );
+      await tester.pumpWidget(
+        _app(
+          fixture,
+          ViewerGalleryFragment(
+            endpoint: fixture.endpoint,
+            website: fixture.website,
+            requestContext: RequestContext(),
+          ),
+        ),
+      );
+      await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byType(PreviewImage));
+      await tester.pump();
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 50)),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byType(ImageReader), findsOneWidget);
+      expect(find.textContaining('Reader blocked'), findsOneWidget);
+      fixture.readerResponse = fixture.readerResponse.copyWith(
+        failMessage: null,
+      );
+      await tester.tap(find.textContaining('Reader blocked'));
+      await tester.pump(const Duration(milliseconds: 350));
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 100)),
+      );
+      await tester.pump();
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 100)),
+      );
+      await tester.pumpAndSettle();
+      expect(
+        fixture.requests.where((r) => r.uri.path == '/s/target'),
+        hasLength(2),
+      );
+      expect(find.textContaining('Reader blocked'), findsNothing);
+      expect(
+        fixture.imageRequests.single.uri.toString(),
+        'https://images.test/reader.png',
+      );
+      final image = tester.widget<ImageLoader>(find.byType(ImageLoader));
+      expect(image.model.url, 'https://images.test/reader.png');
+      expect(find.byType(RawImage), findsWidgets);
+      expect(
+        tester.widget<CupertinoSlider>(find.byType(CupertinoSlider)).onChanged,
+        isNull,
+      );
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
 
   testWidgets(
     'gallery metadata renders with uncategorized tags and missing preview images',
@@ -133,8 +202,11 @@ void main() {
   );
 }
 
-Widget _app(_Fixture fixture, Widget child) => Provider.value(
-  value: fixture.service,
+Widget _app(_Fixture fixture, Widget child) => MultiProvider(
+  providers: [
+    Provider.value(value: fixture.service),
+    Provider.value(value: fixture.setting),
+  ],
   child: CupertinoApp(
     localizationsDelegates: I.localizationsDelegates,
     supportedLocales: I.supportedLocales,
@@ -187,6 +259,7 @@ Future<_Fixture> _fixture(native.GalleryParserResult result) async {
           selectors: {'thumbnail': SelectorRule(selector: 'a')},
         ),
       ),
+      ParserRule(id: 'reader-parser', kind: EndpointKind.reader),
     ],
     endpoints: [
       EndpointRule(
@@ -206,6 +279,15 @@ Future<_Fixture> _fixture(native.GalleryParserResult result) async {
           pageSize: 2,
           endCondition: PageEndCondition.emptyItems,
         ),
+        links: const EndpointLinks(reader: 'reader'),
+      ),
+      EndpointRule(
+        id: 'reader',
+        name: 'Reader',
+        kind: EndpointKind.reader,
+        request: RequestRule(method: RequestMethod.get, url: '/s/{{idCode!}}'),
+        parserId: 'reader-parser',
+        pagination: const PaginationRule.none(),
       ),
     ],
   );
@@ -227,6 +309,8 @@ Future<_Fixture> _fixture(native.GalleryParserResult result) async {
     parserEngine: RustParserEngine(
       galleryParser: ({required html, required config}) async =>
           fixture.response,
+      readerParser: ({required html, required config}) async =>
+          fixture.readerResponse,
     ),
   );
   fixture.website.session.documentDio.interceptors.clear();
@@ -244,6 +328,23 @@ Future<_Fixture> _fixture(native.GalleryParserResult result) async {
       },
     ),
   );
+  fixture.website.session.imageDio.interceptors.clear();
+  fixture.website.session.imageDio.interceptors.add(
+    InterceptorsWrapper(
+      onRequest: (options, handler) {
+        fixture.imageRequests.add(options);
+        handler.resolve(
+          Response<Uint8List>(
+            requestOptions: options,
+            statusCode: 200,
+            data: base64Decode(
+              'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aSaUAAAAASUVORK5CYII=',
+            ),
+          ),
+        );
+      },
+    ),
+  );
   return fixture;
 }
 
@@ -254,9 +355,18 @@ class _Fixture {
   final SiteService service;
   final SiteDefinition definition;
   native.GalleryParserResult response;
+  native.ImageReaderResult readerResponse = const native.ImageReaderResult(
+    image: native.ImageResult(url: 'https://images.test/reader.png'),
+    tags: [],
+    badges: [],
+    comments: [],
+    envs: [],
+    errors: [],
+  );
   late final SiteRenderConfigModel website;
   final requests = <RequestOptions>[];
-  EndpointRule get endpoint => definition.endpoints.single;
+  final imageRequests = <RequestOptions>[];
+  EndpointRule get endpoint => definition.endpoints.first;
 
   Future<void> dispose() async {
     await website.dispose();

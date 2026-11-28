@@ -18,6 +18,13 @@ Future<ListParserResult> parseList({
   required ParserConfig config,
 }) => RustLib.instance.api.crateApiParserParseList(html: html, config: config);
 
+/// Parse an HTML image reader, including all quality variants and metadata.
+Future<ImageReaderResult> parseReader({
+  required String html,
+  required ParserConfig config,
+}) =>
+    RustLib.instance.api.crateApiParserParseReader(html: html, config: config);
+
 /// Parse an HTML gallery, including metadata, previews and comments.
 Future<GalleryParserResult> parseGallery({
   required String html,

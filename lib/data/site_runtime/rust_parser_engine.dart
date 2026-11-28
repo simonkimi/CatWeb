@@ -21,16 +21,23 @@ typedef NativeGalleryParser =
       required native.ParserConfig config,
     });
 
-/// 将 HTML 列表、画廊的站点规则和页面结果适配到 Rust。
+typedef NativeReaderParser = Future<native_result.ImageReaderResult> Function({
+  required String html,
+  required native.ParserConfig config,
+});
+
+/// 将 HTML 列表、画廊、阅读器的站点规则和页面结果适配到 Rust。
 /// 字段诊断保留在业务结果中；页面失败与主集合查询错误抛出 ParserException。
 final class RustParserEngine implements ParserEngine {
   const RustParserEngine({
     this.listParser = native_parser.parseList,
     this.galleryParser = native_parser.parseGallery,
+    this.readerParser = native_parser.parseReader,
   });
 
   final NativeListParser listParser;
   final NativeGalleryParser galleryParser;
+  final NativeReaderParser readerParser;
 
   @override
   Future<ParsedPayload<T>> parse<T>(
@@ -42,7 +49,8 @@ final class RustParserEngine implements ParserEngine {
       throw const SiteRuntimeException('Endpoint and parser kinds must match');
     }
     if (job.parser.kind != EndpointKind.list &&
-        job.parser.kind != EndpointKind.gallery) {
+        job.parser.kind != EndpointKind.gallery &&
+        job.parser.kind != EndpointKind.reader) {
       throw ParserException('尚未实现 ${job.parser.kind.name} 类型的 Rust 解析器');
     }
     if (job.endpoint.pagination case ContinuationPaginationRule(
@@ -54,6 +62,33 @@ final class RustParserEngine implements ParserEngine {
       }
     }
     final config = _config(job.parser.config);
+    if (job.parser.kind == EndpointKind.reader) {
+      final result = await _invoke(
+        () => readerParser(html: job.response.bodyText, config: config),
+        cancellation,
+      );
+      _validateResult(
+        job.parser.config,
+        result.isSuccess,
+        result.failMessage,
+        result.errors,
+        null,
+        result,
+      );
+      if (![
+        result.image,
+        result.largerImage,
+        result.rawImage,
+      ].any((image) => image?.url?.trim().isNotEmpty == true)) {
+        throw ParserException('阅读页未解析到可用图片地址', result);
+      }
+      return _payload<T>(
+        data: _readerResult(result),
+        envs: result.envs,
+        itemCount: 1,
+        isLast: true,
+      );
+    }
     if (job.parser.kind == EndpointKind.gallery) {
       final result = await _invoke(
         () => galleryParser(html: job.response.bodyText, config: config),
@@ -124,7 +159,7 @@ void _validateResult(
   bool? success,
   String? failure,
   List<native_error.ParseError> errors,
-  String collection,
+  String? collection,
   Object source,
 ) {
   if (failure != null) {
@@ -139,7 +174,7 @@ void _validateResult(
     throw ParserException('未检测到请求成功标志', source);
   }
   for (final error in errors) {
-    if (error.message.startsWith('$collection:')) {
+    if (collection != null && error.message.startsWith('$collection:')) {
       throw ParserException(error.message, error);
     }
   }
@@ -272,6 +307,46 @@ model.ListParserResult _listResult(native_result.ListParserResult result) =>
 model.TagResult _tag(native_result.TagResult tag) =>
     model.TagResult(text: tag.text, color: tag.color, category: tag.category);
 
+model.CommentResult _comment(native_result.CommentResult comment) =>
+    model.CommentResult(
+      username: comment.username,
+      content: comment.content,
+      time: comment.time,
+      score: comment.score,
+      avatar: _image(comment.avatar),
+    );
+
+model.ImageReaderResult _readerResult(native_result.ImageReaderResult result) =>
+    model.ImageReaderResult(
+      image: _image(result.image),
+      largerImage: _image(result.largerImage),
+      rawImage: _image(result.rawImage),
+      uploadTime: result.uploadTime,
+      source: result.source,
+      rating: result.rating,
+      score: result.score,
+      tags: result.tags.map(_tag).toList(growable: false),
+      badges: result.badges.map(_tag).toList(growable: false),
+      comments: result.comments.map(_comment).toList(growable: false),
+      isSuccess: result.isSuccess,
+      failMessage: result.failMessage,
+      envs: result.envs
+          .map(
+            (env) => model.EnvResult(
+              id: env.id,
+              global: env.global,
+              value: env.value,
+            ),
+          )
+          .toList(growable: false),
+      errors: result.errors
+          .map(
+            (error) =>
+                model.ParserError(code: error.code, message: error.message),
+          )
+          .toList(growable: false),
+    );
+
 model.ImageResult? _image(native_result.ImageResult? image) => image == null
     ? null
     : model.ImageResult(
@@ -306,17 +381,7 @@ model.DetailParserResult _galleryResult(
       .toList(growable: false),
   tags: result.tags.map(_tag).toList(growable: false),
   badges: result.badges.map(_tag).toList(growable: false),
-  comments: result.comments
-      .map(
-        (comment) => model.CommentResult(
-          username: comment.username,
-          content: comment.content,
-          time: comment.time,
-          score: comment.score,
-          avatar: _image(comment.avatar),
-        ),
-      )
-      .toList(growable: false),
+  comments: result.comments.map(_comment).toList(growable: false),
   nextPage: result.nextPage,
   isSuccess: result.isSuccess,
   failMessage: result.failMessage,

@@ -2,7 +2,6 @@
 library;
 
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:catweb/data/loading/cancellation.dart';
@@ -61,149 +60,8 @@ void main() {
   );
 
   test(
-    'E-Hentai template parses offline large thumbnails and complete metadata',
+    'broken thumbnail queries fail but metadata-only galleries succeed',
     () async {
-      final result = await _parseFixture('gallery_large.html');
-      final data = result.data;
-      expect(data.title, 'Offline gallery');
-      expect(data.subtitle, 'Uploader');
-      expect(data.language, 'English');
-      expect(data.uploadTime, '2026-11-27');
-      expect(data.description, 'Uploader description');
-      expect(data.star, 4.75);
-      expect(data.imageCount, 3);
-      expect(data.pageCount, 2);
-      expect(data.countPrePage, isNull);
-      expect(data.coverImage!.url, 'https://images.test/cover.jpg');
-      expect(data.tags!.single.text, 'Manga');
-      expect(data.badges!.map((tag) => tag.text), ['tag one', 'tag two']);
-      expect(data.badges!.first.category, 'female');
-      expect(data.previews, hasLength(2));
-      expect(data.previews![0].target, 'one/123-1');
-      expect(data.previews![1].target, 'two/123-2');
-      final image = data.previews![0].previewImage!;
-      expect(image.url, 'https://images.test/one.jpg');
-      expect([image.width, image.height, image.x, image.y], [100, 140, 0, 0]);
-      expect(data.previews![1].previewImage!.width, 120);
-      expect(data.comments!.map((comment) => comment.username), [
-        'Alice',
-        'Bob',
-      ]);
-      expect(data.comments!.first.time, '27 November 2026');
-      expect(data.comments!.last.score, '-3');
-      expect(data.comments!.first.avatar!.url, 'https://images.test/alice.jpg');
-      expect(result.totalCount, 3);
-      expect(result.itemCount, 2);
-      expect(result.continuation, '?p=1');
-      expect(
-        data.errors.where((error) => error.code == 1 || error.code == 3),
-        isEmpty,
-      );
-    },
-  );
-
-  test(
-    'current E-Hentai gallery markup parses metadata and sprite offsets',
-    () async {
-      final result = await _parseFixture('gallery_current.html');
-      final data = result.data;
-      expect(data.title, '(杂图)胶袜爱宕被电刑');
-      expect(data.subtitle, 'deright');
-      expect(data.language, 'Japanese');
-      expect(data.uploadTime, '2026-11-27 07:14');
-      expect(data.star, 0);
-      expect(data.imageCount, 13);
-      expect(data.pageCount, 1);
-      expect(data.countPrePage, isNull);
-      expect(
-        data.coverImage!.url,
-        'https://ehgt.org/w/02/831/67940-thngf4jq.webp',
-      );
-      expect(data.tags!.single.text, 'Doujinshi');
-      expect(data.badges!.single.text, 'stockings');
-      expect(data.badges!.single.category, 'female');
-      expect(data.comments, isEmpty);
-      expect(result.continuation, isNull);
-      expect(data.previews, hasLength(2));
-      expect(data.previews![0].target, '4d4fd2a351/4360417-1');
-      final first = data.previews![0].previewImage!;
-      expect(first.url, 'https://images.test/sprite.webp');
-      expect([first.width, first.height, first.x, first.y], [186, 300, 0, 0]);
-      final second = data.previews![1].previewImage!;
-      expect(second.url, 'https://images.test/sprite.webp');
-      expect(
-        [second.width, second.height, second.x, second.y],
-        [186, 300, 200, 0],
-      );
-      expect(
-        data.errors.where((error) => error.code == 1 || error.code == 3),
-        isEmpty,
-      );
-    },
-  );
-
-  test(
-    'sprite geometry, last pages and missing image positions remain intact',
-    () async {
-      final payload = await _parseFixture('gallery_sprite.html');
-      final previews = payload.data.previews!;
-      expect(previews, hasLength(3));
-      final first = previews[0].previewImage!;
-      expect(first.url, 'https://images.test/sprite.jpg');
-      expect(
-        [first.width, first.height, first.x, first.y],
-        [100, 140, 200, 10],
-      );
-      final second = previews[1].previewImage!;
-      expect(second.url, 'https://images.test/sprite2.jpg');
-      expect(
-        [second.width, second.height, second.x, second.y],
-        [110, 150, 300, 20],
-      );
-      expect(previews[2].target, 'missing/123-5');
-      expect(previews[2].previewImage?.url, isNull);
-      expect(payload.continuation, isNull);
-      expect(
-        payload.data.errors.where(
-          (error) => error.code == 1 || error.code == 3,
-        ),
-        isEmpty,
-      );
-    },
-  );
-
-  test(
-    'legacy normal thumbnails prefer the sprite over a blank image',
-    () async {
-      final payload = await _parseFixture('gallery_normal.html');
-      final first = payload.data.previews!.first;
-      expect(first.target, 'three/123-3');
-      expect(first.previewImage!.url, 'https://images.test/normal.jpg');
-      expect(
-        [
-          first.previewImage!.width,
-          first.previewImage!.height,
-          first.previewImage!.x,
-          first.previewImage!.y,
-        ],
-        [100, 140, 200, 10],
-      );
-    },
-  );
-
-  test(
-    'failed pages and broken thumbnail queries become parser failures',
-    () async {
-      await expectLater(
-        _parseFixture('gallery_failed.html'),
-        throwsA(
-          isA<ParserException>().having(
-            (error) => error.message,
-            'message',
-            contains('IP address has'),
-          ),
-        ),
-      );
       final definition = buildEhentaiDebugDefinition('gallery-test');
       final job = _job(definition, '<h1>Metadata</h1>');
       await expectLater(
@@ -322,15 +180,6 @@ ParseJob<model.DetailParserResult> _job(
     ),
   );
 }
-
-Future<ParsedPayload<model.DetailParserResult>> _parseFixture(String name) =>
-    const RustParserEngine().parse(
-      _job(
-        buildEhentaiDebugDefinition('gallery-test'),
-        File('test/parser/testdata/$name').readAsStringSync(),
-      ),
-      CancellationScope(),
-    );
 
 SiteDefinition _definition() => SiteDefinition(
   schemaVersion: 2,

@@ -1,11 +1,11 @@
 use crate::errors::ParseError;
 use crate::models::{
-    result::{CommentResult, GalleryParserResult, GalleryPreviewItem},
+    result::{GalleryParserResult, GalleryPreviewItem},
     selector::ParserConfig,
 };
 
 use super::{
-    components::{extras, image, tags},
+    components::{comments, extras, image, tags},
     context::HtmlContext,
 };
 
@@ -53,36 +53,7 @@ pub fn gallery_parser(
             ),
         });
     }
-    for (index, node) in context
-        .nodes(root, config.selectors.get("comment"), "comment")
-        .into_iter()
-        .enumerate()
-    {
-        let prefix = format!("comments[{index}]");
-        result.comments.push(CommentResult {
-            username: context.string(
-                node,
-                config.selectors.get("comment.username"),
-                &format!("{prefix}.username"),
-            ),
-            content: context.string(
-                node,
-                config.selectors.get("comment.content"),
-                &format!("{prefix}.content"),
-            ),
-            time: context.string(
-                node,
-                config.selectors.get("comment.time"),
-                &format!("{prefix}.time"),
-            ),
-            score: context.string(
-                node,
-                config.selectors.get("comment.score"),
-                &format!("{prefix}.score"),
-            ),
-            avatar: image(&mut context, node, config, &prefix, "comment.avatar"),
-        });
-    }
+    result.comments = comments(&mut context, root, config);
     result.errors = context.errors;
     Ok(result)
 }

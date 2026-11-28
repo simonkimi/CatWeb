@@ -25,14 +25,16 @@ class CupertinoImageSlider extends HookWidget {
         ),
         Expanded(
           child: CupertinoSlider(
-            value:
-                (isChanging.value ? changeValue.value : controller.currentPage)
-                    .toDouble(),
+            value: pageCount > 1
+                ? currentDisplay.clamp(0, pageCount - 1).toDouble()
+                : 0,
             min: 0,
-            max: pageCount - 1,
-            onChanged: (value) {
-              changeValue.value = value.toInt();
-            },
+            max: pageCount > 1 ? pageCount - 1 : 1,
+            onChanged: pageCount > 1
+                ? (value) {
+                    changeValue.value = value.toInt();
+                  }
+                : null,
             onChangeStart: (value) {
               changeValue.value = value.toInt();
               isChanging.value = true;

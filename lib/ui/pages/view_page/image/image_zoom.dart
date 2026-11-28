@@ -4,29 +4,50 @@ import 'package:catweb/utils/helper.dart';
 import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:photo_view/photo_view.dart';
 
-class ZoomWidget extends StatelessWidget {
+class ZoomWidget extends StatefulWidget {
   const ZoomWidget({
     super.key,
     required this.controller,
-    required this.animation,
     required this.canZoom,
     required this.child,
   });
 
   final PhotoViewController controller;
-  final ZoomAnimation animation;
   final bool canZoom;
   final Widget child;
 
   @override
+  State<ZoomWidget> createState() => _ZoomWidgetState();
+}
+
+class _ZoomWidgetState extends State<ZoomWidget> with TickerProviderStateMixin {
+  late final ZoomAnimation animation;
+
+  @override
+  void initState() {
+    super.initState();
+    animation = ZoomAnimation(
+      this,
+      duration: const Duration(milliseconds: 200),
+    );
+  }
+
+  @override
+  void dispose() {
+    animation.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return canZoom
+    return widget.canZoom
         ? GestureDetector(
-            child: child,
+            child: widget.child,
             onDoubleTap: () {},
             onDoubleTapDown: (detail) {
               // 缩放
               final position = detail.globalPosition;
+              final controller = widget.controller;
               final currentScale = controller.scale ?? 1.0;
               var index =
                   doubleTapScales.indexOf(
@@ -55,6 +76,6 @@ class ZoomWidget extends StatelessWidget {
               );
             },
           )
-        : child;
+        : widget.child;
   }
 }

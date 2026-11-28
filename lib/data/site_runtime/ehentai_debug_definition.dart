@@ -214,18 +214,12 @@ SiteDefinition buildEhentaiDebugDefinition(String id) => SiteDefinition(
       kind: EndpointKind.reader,
       config: ParserConfig(
         selectors: {
-          ParserSelectorKey.id: SelectorRule(
-            selector: '#i2 .sn a:nth-child(1)',
-            function: SelectorFunctionType.attribute,
-            parameter: 'href',
-            regex: r's\/(.+)',
-          ),
           ParserSelectorKey.imageUrl: SelectorRule(
             selector: '#i3 img',
             function: SelectorFunctionType.attribute,
             parameter: 'src',
           ),
-          ParserSelectorKey.rawImage: SelectorRule(
+          ParserSelectorKey.rawImageUrl: SelectorRule(
             selector: '#i7 a',
             function: SelectorFunctionType.attribute,
             parameter: 'href',

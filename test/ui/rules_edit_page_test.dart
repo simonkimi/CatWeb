@@ -4,6 +4,77 @@ import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  testWidgets(
+    'reader fields use complete image groups and retain saved URL rules',
+    (tester) async {
+      await tester.pumpWidget(
+        const CupertinoApp(
+          localizationsDelegates: I.localizationsDelegates,
+          supportedLocales: I.supportedLocales,
+          home: RulesEditPage(),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('解析器'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('画廊查看器'));
+      await tester.pumpAndSettle();
+      expect(find.text('图片 ID'), findsNothing);
+      for (final text in [
+        '图片缓存键',
+        '大图缓存键',
+        '原图宽度',
+        '徽章分类',
+        '评论评分',
+        '请求成功',
+        '请求失败',
+      ]) {
+        // ListView lays out sections lazily; scroll to each group before inspecting.
+        await tester.scrollUntilVisible(
+          find.text(text),
+          300,
+          scrollable: find.byType(Scrollable).last,
+        );
+        expect(find.text(text), findsOneWidget);
+      }
+      await tester.scrollUntilVisible(
+        find.text('原图地址'),
+        -300,
+        scrollable: find.byType(Scrollable).last,
+      );
+      await Scrollable.ensureVisible(
+        tester.element(find.text('原图地址')),
+        alignment: 0.5,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('原图地址'));
+      await tester.pumpAndSettle();
+      expect(find.text('#i7 a'), findsOneWidget);
+      await tester.enterText(
+        find.byType(CupertinoTextField).first,
+        '#original a',
+      );
+      await tester.tap(find.text('保存'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('完成'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('画廊查看器'));
+      await tester.pumpAndSettle();
+      await tester.scrollUntilVisible(
+        find.text('原图地址'),
+        300,
+        scrollable: find.byType(Scrollable).last,
+      );
+      await Scrollable.ensureVisible(
+        tester.element(find.text('原图地址')),
+        alignment: 0.5,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('原图地址'));
+      await tester.pumpAndSettle();
+      expect(find.text('#original a'), findsOneWidget);
+    },
+  );
   testWidgets('rule editor exposes forms and no JSON source editor', (
     tester,
   ) async {

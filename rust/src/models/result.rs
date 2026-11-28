@@ -83,6 +83,26 @@ pub struct GalleryPreviewItem {
 #[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 #[flutter_rust_bridge::frb(dart_metadata = ("freezed"))]
+pub struct ImageReaderResult {
+    pub image: Option<ImageResult>,
+    pub larger_image: Option<ImageResult>,
+    pub raw_image: Option<ImageResult>,
+    pub upload_time: Option<String>,
+    pub source: Option<String>,
+    pub rating: Option<String>,
+    pub score: Option<f64>,
+    pub badges: Vec<TagResult>,
+    pub tags: Vec<TagResult>,
+    pub comments: Vec<CommentResult>,
+    pub is_success: Option<bool>,
+    pub fail_message: Option<String>,
+    pub envs: Vec<EnvResult>,
+    pub errors: Vec<ParseError>,
+}
+
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+#[flutter_rust_bridge::frb(dart_metadata = ("freezed"))]
 pub struct GalleryParserResult {
     pub title: Option<String>,
     pub subtitle: Option<String>,

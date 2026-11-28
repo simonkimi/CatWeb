@@ -40,10 +40,25 @@ abstract final class ParserSelectorKey {
 
   static const image = 'image';
   static const imageUrl = 'image.url';
+  static const imageCacheKey = 'image.cacheKey';
   static const imageWidth = 'image.width';
   static const imageHeight = 'image.height';
   static const imageX = 'image.x';
   static const imageY = 'image.y';
+
+  static const largerImageUrl = 'largerImage.url';
+  static const largerImageCacheKey = 'largerImage.cacheKey';
+  static const largerImageWidth = 'largerImage.width';
+  static const largerImageHeight = 'largerImage.height';
+  static const largerImageX = 'largerImage.x';
+  static const largerImageY = 'largerImage.y';
+
+  static const rawImageUrl = 'rawImage.url';
+  static const rawImageCacheKey = 'rawImage.cacheKey';
+  static const rawImageWidth = 'rawImage.width';
+  static const rawImageHeight = 'rawImage.height';
+  static const rawImageX = 'rawImage.x';
+  static const rawImageY = 'rawImage.y';
 
   static const thumbnail = 'thumbnail';
   static const thumbnailTarget = 'thumbnail.target';

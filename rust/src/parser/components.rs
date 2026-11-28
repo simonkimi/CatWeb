@@ -2,7 +2,7 @@ use xmloxide::NodeId;
 
 use super::context::HtmlContext;
 use crate::models::{
-    result::{EnvResult, ImageResult, TagResult},
+    result::{CommentResult, EnvResult, ImageResult, TagResult},
     selector::{ParserConfig, SelectorQueryType, SelectorRule},
 };
 
@@ -126,4 +126,43 @@ pub(super) fn tags(
             }
         })
         .collect()
+}
+
+pub(super) fn comments(
+    context: &mut HtmlContext,
+    root: NodeId,
+    config: &ParserConfig,
+) -> Vec<CommentResult> {
+    let mut results = Vec::new();
+    for (index, node) in context
+        .nodes(root, config.selectors.get("comment"), "comment")
+        .into_iter()
+        .enumerate()
+    {
+        let prefix = format!("comments[{index}]");
+        results.push(CommentResult {
+            username: context.string(
+                node,
+                config.selectors.get("comment.username"),
+                &format!("{prefix}.username"),
+            ),
+            content: context.string(
+                node,
+                config.selectors.get("comment.content"),
+                &format!("{prefix}.content"),
+            ),
+            time: context.string(
+                node,
+                config.selectors.get("comment.time"),
+                &format!("{prefix}.time"),
+            ),
+            score: context.string(
+                node,
+                config.selectors.get("comment.score"),
+                &format!("{prefix}.score"),
+            ),
+            avatar: image(context, node, config, &prefix, "comment.avatar"),
+        });
+    }
+    results
 }

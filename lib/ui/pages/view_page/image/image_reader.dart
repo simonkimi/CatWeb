@@ -10,7 +10,6 @@ import 'package:catweb/data/site_runtime/site_definition.dart';
 import 'package:catweb/ui/pages/setting_page/setting_subpage/display_setting.dart';
 import 'package:catweb/ui/theme/colors.dart';
 import 'package:catweb/ui/widgets/cupertino_app_bar.dart';
-import 'package:catweb/ui/widgets/zoom.dart';
 import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -183,7 +182,6 @@ class _ImageReaderImage extends HookWidget {
   Widget build(BuildContext context) {
     final readController = context.read<ReaderNotifier>();
     final settingService = context.read<SettingService>();
-    final ticker = useSingleTickerProvider();
 
     final readerDirectory = useValueListenable(
       settingService.readerDirectoryNotifier,
@@ -207,8 +205,8 @@ class _ImageReaderImage extends HookWidget {
         itemCount: readController.displayPageCount,
         builder: (context, index) {
           return readController.isSingleWidget(index)
-              ? _buildSinglePageImage(context, index, ticker)
-              : _buildDoublePageImage(context, index, ticker);
+              ? _buildSinglePageImage(context, index)
+              : _buildDoublePageImage(context, index);
         },
       ),
     };
@@ -217,7 +215,6 @@ class _ImageReaderImage extends HookWidget {
   PhotoViewGalleryPageOptions _buildSinglePageImage(
     BuildContext context,
     int index,
-    TickerProvider ticker,
   ) {
     final controller = context.read<ReaderNotifier>();
     final settingService = context.read<SettingService>();
@@ -239,10 +236,6 @@ class _ImageReaderImage extends HookWidget {
           imageWrapBuilder: (context, child) {
             return ZoomWidget(
               controller: controller.photoViewController,
-              animation: ZoomAnimation(
-                ticker,
-                duration: const Duration(milliseconds: 200),
-              ),
               canZoom: true,
               child: child,
             );
@@ -255,7 +248,6 @@ class _ImageReaderImage extends HookWidget {
   PhotoViewGalleryPageOptions _buildDoublePageImage(
     BuildContext context,
     int index,
-    TickerProvider ticker,
   ) {
     final settingService = context.read<SettingService>();
     final realIndex = switch (settingService.displayType) {
@@ -275,10 +267,6 @@ class _ImageReaderImage extends HookWidget {
         onTapUp: (detail) => _onImageTap(context, detail),
         child: ZoomWidget(
           controller: notifier.photoViewController,
-          animation: ZoomAnimation(
-            ticker,
-            duration: const Duration(milliseconds: 200),
-          ),
           canZoom: true,
           child: Row(
             children: [

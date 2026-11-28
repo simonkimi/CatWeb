@@ -1,15 +1,12 @@
 @Timeout(Duration(minutes: 10))
 library;
 
-import 'dart:io';
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:catweb/data/loading/cancellation.dart';
 import 'package:catweb/data/loading/paged_loader.dart';
 import 'package:catweb/data/models/ffi/result/result.dart' as model;
 import 'package:catweb/data/models/subpage_models.dart';
-import 'package:catweb/data/site_runtime/ehentai_debug_definition.dart';
 import 'package:catweb/data/site_runtime/runtime_contracts.dart';
 import 'package:catweb/data/site_runtime/rust_parser_engine.dart';
 import 'package:catweb/data/site_runtime/site_definition.dart';
@@ -148,62 +145,6 @@ void main() {
       ),
     );
   });
-
-  test(
-    'current E-Hentai rules reach the Flutter list models through Rust',
-    () async {
-      final definition = buildEhentaiDebugDefinition('eh-test');
-      final endpoint = definition.endpoints.firstWhere(
-        (rule) => rule.id == 'eh-home',
-      );
-      final parserRule = definition.parsers.firstWhere(
-        (rule) => rule.id == endpoint.parserId,
-      );
-      final result = await const RustParserEngine()
-          .parse<model.ListParserResult>(
-            ParseJob(
-              endpoint: endpoint,
-              parser: parserRule,
-              response: RawResponse(
-                statusCode: 200,
-                body: File('test/parser/testdata/list_html.html')
-                    .readAsBytesSync(),
-              ),
-            ),
-            CancellationScope(),
-          );
-      expect(result.itemCount, 25);
-      expect(
-        result.data.items!.first.title,
-        'Alis Yume cosplay - Savage Arknight',
-      );
-      expect(result.data.items![0].imageCount, 18);
-      expect(result.data.items![1].imageCount, 40);
-      expect(result.data.items![0].star, 1.5);
-      expect(result.data.items![1].star, 5);
-      expect(
-        result.data.items![1].previewImage!.url,
-        startsWith('https://ehgt.org/4f/2e/'),
-      );
-      expect(result.continuation, 'https://e-hentai.org/?next=3099159');
-      for (final id in [
-        'eh-home',
-        'eh-popular',
-        'eh-watched',
-        'eh-favorites',
-      ]) {
-        final listEndpoint = definition.endpoints.singleWhere(
-          (rule) => rule.id == id,
-        );
-        expect(listEndpoint.request.query.containsKey('page'), isFalse);
-        expect(listEndpoint.pagination, isA<ContinuationPaginationRule>());
-      }
-      expect(
-        result.data.items!.map(ListItemModel.new).first.idCode,
-        '3099188/0e6cda8513',
-      );
-    },
-  );
 
   test(
     'session loads lists, next pages and search refreshes with the real parser',

@@ -83,6 +83,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   PlatformInt64 dco_decode_i_64(dynamic raw);
 
   @protected
+  ImageReaderResult dco_decode_image_reader_result(dynamic raw);
+
+  @protected
   ImageResult dco_decode_image_result(dynamic raw);
 
   @protected
@@ -235,6 +238,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   PlatformInt64 sse_decode_i_64(SseDeserializer deserializer);
+
+  @protected
+  ImageReaderResult sse_decode_image_reader_result(
+    SseDeserializer deserializer,
+  );
 
   @protected
   ImageResult sse_decode_image_result(SseDeserializer deserializer);
@@ -418,6 +426,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_image_reader_result(
+    ImageReaderResult self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_image_result(ImageResult self, SseSerializer serializer);

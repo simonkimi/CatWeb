@@ -75,7 +75,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.13.0';
 
   @override
-  int get rustContentHash => -1828886175;
+  int get rustContentHash => 264256748;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -97,6 +97,11 @@ abstract class RustLibApi extends BaseApi {
   });
 
   Future<ListParserResult> crateApiParserParseList({
+    required String html,
+    required ParserConfig config,
+  });
+
+  Future<ImageReaderResult> crateApiParserParseReader({
     required String html,
     required ParserConfig config,
   });
@@ -225,6 +230,40 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   TaskConstMeta get kCrateApiParserParseListConstMeta => const TaskConstMeta(
     debugName: "parse_list",
+    argNames: ["html", "config"],
+  );
+
+  @override
+  Future<ImageReaderResult> crateApiParserParseReader({
+    required String html,
+    required ParserConfig config,
+  }) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          final serializer = SseSerializer(generalizedFrbRustBinding);
+          sse_encode_String(html, serializer);
+          sse_encode_box_autoadd_parser_config(config, serializer);
+          pdeCallFfi(
+            generalizedFrbRustBinding,
+            serializer,
+            funcId: 5,
+            port: port_,
+          );
+        },
+        codec: SseCodec(
+          decodeSuccessData: sse_decode_image_reader_result,
+          decodeErrorData: sse_decode_parse_error,
+        ),
+        constMeta: kCrateApiParserParseReaderConstMeta,
+        argValues: [html, config],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiParserParseReaderConstMeta => const TaskConstMeta(
+    debugName: "parse_reader",
     argNames: ["html", "config"],
   );
 
@@ -390,6 +429,30 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   PlatformInt64 dco_decode_i_64(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dcoDecodeI64(raw);
+  }
+
+  @protected
+  ImageReaderResult dco_decode_image_reader_result(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 14)
+      throw Exception('unexpected arr length: expect 14 but see ${arr.length}');
+    return ImageReaderResult(
+      image: dco_decode_opt_box_autoadd_image_result(arr[0]),
+      largerImage: dco_decode_opt_box_autoadd_image_result(arr[1]),
+      rawImage: dco_decode_opt_box_autoadd_image_result(arr[2]),
+      uploadTime: dco_decode_opt_String(arr[3]),
+      source: dco_decode_opt_String(arr[4]),
+      rating: dco_decode_opt_String(arr[5]),
+      score: dco_decode_opt_box_autoadd_f_64(arr[6]),
+      badges: dco_decode_list_tag_result(arr[7]),
+      tags: dco_decode_list_tag_result(arr[8]),
+      comments: dco_decode_list_comment_result(arr[9]),
+      isSuccess: dco_decode_opt_box_autoadd_bool(arr[10]),
+      failMessage: dco_decode_opt_String(arr[11]),
+      envs: dco_decode_list_env_result(arr[12]),
+      errors: dco_decode_list_parse_error(arr[13]),
+    );
   }
 
   @protected
@@ -844,6 +907,43 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   PlatformInt64 sse_decode_i_64(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getPlatformInt64();
+  }
+
+  @protected
+  ImageReaderResult sse_decode_image_reader_result(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_image = sse_decode_opt_box_autoadd_image_result(deserializer);
+    var var_largerImage = sse_decode_opt_box_autoadd_image_result(deserializer);
+    var var_rawImage = sse_decode_opt_box_autoadd_image_result(deserializer);
+    var var_uploadTime = sse_decode_opt_String(deserializer);
+    var var_source = sse_decode_opt_String(deserializer);
+    var var_rating = sse_decode_opt_String(deserializer);
+    var var_score = sse_decode_opt_box_autoadd_f_64(deserializer);
+    var var_badges = sse_decode_list_tag_result(deserializer);
+    var var_tags = sse_decode_list_tag_result(deserializer);
+    var var_comments = sse_decode_list_comment_result(deserializer);
+    var var_isSuccess = sse_decode_opt_box_autoadd_bool(deserializer);
+    var var_failMessage = sse_decode_opt_String(deserializer);
+    var var_envs = sse_decode_list_env_result(deserializer);
+    var var_errors = sse_decode_list_parse_error(deserializer);
+    return ImageReaderResult(
+      image: var_image,
+      largerImage: var_largerImage,
+      rawImage: var_rawImage,
+      uploadTime: var_uploadTime,
+      source: var_source,
+      rating: var_rating,
+      score: var_score,
+      badges: var_badges,
+      tags: var_tags,
+      comments: var_comments,
+      isSuccess: var_isSuccess,
+      failMessage: var_failMessage,
+      envs: var_envs,
+      errors: var_errors,
+    );
   }
 
   @protected
@@ -1371,6 +1471,28 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putPlatformInt64(self);
+  }
+
+  @protected
+  void sse_encode_image_reader_result(
+    ImageReaderResult self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_opt_box_autoadd_image_result(self.image, serializer);
+    sse_encode_opt_box_autoadd_image_result(self.largerImage, serializer);
+    sse_encode_opt_box_autoadd_image_result(self.rawImage, serializer);
+    sse_encode_opt_String(self.uploadTime, serializer);
+    sse_encode_opt_String(self.source, serializer);
+    sse_encode_opt_String(self.rating, serializer);
+    sse_encode_opt_box_autoadd_f_64(self.score, serializer);
+    sse_encode_list_tag_result(self.badges, serializer);
+    sse_encode_list_tag_result(self.tags, serializer);
+    sse_encode_list_comment_result(self.comments, serializer);
+    sse_encode_opt_box_autoadd_bool(self.isSuccess, serializer);
+    sse_encode_opt_String(self.failMessage, serializer);
+    sse_encode_list_env_result(self.envs, serializer);
+    sse_encode_list_parse_error(self.errors, serializer);
   }
 
   @protected

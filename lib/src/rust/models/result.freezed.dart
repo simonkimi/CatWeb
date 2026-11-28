@@ -1228,6 +1228,405 @@ $ImageResultCopyWith<$Res>? get previewImage {
 }
 
 /// @nodoc
+mixin _$ImageReaderResult {
+
+ ImageResult? get image; ImageResult? get largerImage; ImageResult? get rawImage; String? get uploadTime; String? get source; String? get rating; double? get score; List<TagResult> get badges; List<TagResult> get tags; List<CommentResult> get comments; bool? get isSuccess; String? get failMessage; List<EnvResult> get envs; List<ParseError> get errors;
+/// Create a copy of ImageReaderResult
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ImageReaderResultCopyWith<ImageReaderResult> get copyWith => _$ImageReaderResultCopyWithImpl<ImageReaderResult>(this as ImageReaderResult, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as ImageReaderResult;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImageReaderResult&&(identical(other.image, _this.image) || other.image == _this.image)&&(identical(other.largerImage, _this.largerImage) || other.largerImage == _this.largerImage)&&(identical(other.rawImage, _this.rawImage) || other.rawImage == _this.rawImage)&&(identical(other.uploadTime, _this.uploadTime) || other.uploadTime == _this.uploadTime)&&(identical(other.source, _this.source) || other.source == _this.source)&&(identical(other.rating, _this.rating) || other.rating == _this.rating)&&(identical(other.score, _this.score) || other.score == _this.score)&&const DeepCollectionEquality().equals(other.badges, _this.badges)&&const DeepCollectionEquality().equals(other.tags, _this.tags)&&const DeepCollectionEquality().equals(other.comments, _this.comments)&&(identical(other.isSuccess, _this.isSuccess) || other.isSuccess == _this.isSuccess)&&(identical(other.failMessage, _this.failMessage) || other.failMessage == _this.failMessage)&&const DeepCollectionEquality().equals(other.envs, _this.envs)&&const DeepCollectionEquality().equals(other.errors, _this.errors));
+}
+
+
+@override
+int get hashCode {
+  final _this = this as ImageReaderResult;
+  return Object.hash(runtimeType,_this.image,_this.largerImage,_this.rawImage,_this.uploadTime,_this.source,_this.rating,_this.score,const DeepCollectionEquality().hash(_this.badges),const DeepCollectionEquality().hash(_this.tags),const DeepCollectionEquality().hash(_this.comments),_this.isSuccess,_this.failMessage,const DeepCollectionEquality().hash(_this.envs),const DeepCollectionEquality().hash(_this.errors));
+}
+
+@override
+String toString() {
+  final _this = this as ImageReaderResult;
+  return 'ImageReaderResult(image: ${_this.image}, largerImage: ${_this.largerImage}, rawImage: ${_this.rawImage}, uploadTime: ${_this.uploadTime}, source: ${_this.source}, rating: ${_this.rating}, score: ${_this.score}, badges: ${_this.badges}, tags: ${_this.tags}, comments: ${_this.comments}, isSuccess: ${_this.isSuccess}, failMessage: ${_this.failMessage}, envs: ${_this.envs}, errors: ${_this.errors})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ImageReaderResultCopyWith<$Res>  {
+  factory $ImageReaderResultCopyWith(ImageReaderResult value, $Res Function(ImageReaderResult) _then) = _$ImageReaderResultCopyWithImpl;
+@useResult
+$Res call({
+ ImageResult? image, ImageResult? largerImage, ImageResult? rawImage, String? uploadTime, String? source, String? rating, double? score, List<TagResult> badges, List<TagResult> tags, List<CommentResult> comments, bool? isSuccess, String? failMessage, List<EnvResult> envs, List<ParseError> errors
+});
+
+
+$ImageResultCopyWith<$Res>? get image;$ImageResultCopyWith<$Res>? get largerImage;$ImageResultCopyWith<$Res>? get rawImage;
+
+}
+/// @nodoc
+class _$ImageReaderResultCopyWithImpl<$Res>
+    implements $ImageReaderResultCopyWith<$Res> {
+  _$ImageReaderResultCopyWithImpl(this._self, this._then);
+
+  final ImageReaderResult _self;
+  final $Res Function(ImageReaderResult) _then;
+
+/// Create a copy of ImageReaderResult
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? image = freezed,Object? largerImage = freezed,Object? rawImage = freezed,Object? uploadTime = freezed,Object? source = freezed,Object? rating = freezed,Object? score = freezed,Object? badges = null,Object? tags = null,Object? comments = null,Object? isSuccess = freezed,Object? failMessage = freezed,Object? envs = null,Object? errors = null,}) {
+  return _then(ImageReaderResult(
+image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as ImageResult?,largerImage: freezed == largerImage ? _self.largerImage : largerImage // ignore: cast_nullable_to_non_nullable
+as ImageResult?,rawImage: freezed == rawImage ? _self.rawImage : rawImage // ignore: cast_nullable_to_non_nullable
+as ImageResult?,uploadTime: freezed == uploadTime ? _self.uploadTime : uploadTime // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as String?,score: freezed == score ? _self.score : score // ignore: cast_nullable_to_non_nullable
+as double?,badges: null == badges ? _self.badges : badges // ignore: cast_nullable_to_non_nullable
+as List<TagResult>,tags: null == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
+as List<TagResult>,comments: null == comments ? _self.comments : comments // ignore: cast_nullable_to_non_nullable
+as List<CommentResult>,isSuccess: freezed == isSuccess ? _self.isSuccess : isSuccess // ignore: cast_nullable_to_non_nullable
+as bool?,failMessage: freezed == failMessage ? _self.failMessage : failMessage // ignore: cast_nullable_to_non_nullable
+as String?,envs: null == envs ? _self.envs : envs // ignore: cast_nullable_to_non_nullable
+as List<EnvResult>,errors: null == errors ? _self.errors : errors // ignore: cast_nullable_to_non_nullable
+as List<ParseError>,
+  ));
+}
+/// Create a copy of ImageReaderResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageResultCopyWith<$Res>? get image {
+    if (_self.image == null) {
+    return null;
+  }
+
+  return $ImageResultCopyWith<$Res>(_self.image!, (value) {
+    return _then(_self.copyWith(image: value));
+  });
+}/// Create a copy of ImageReaderResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageResultCopyWith<$Res>? get largerImage {
+    if (_self.largerImage == null) {
+    return null;
+  }
+
+  return $ImageResultCopyWith<$Res>(_self.largerImage!, (value) {
+    return _then(_self.copyWith(largerImage: value));
+  });
+}/// Create a copy of ImageReaderResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageResultCopyWith<$Res>? get rawImage {
+    if (_self.rawImage == null) {
+    return null;
+  }
+
+  return $ImageResultCopyWith<$Res>(_self.rawImage!, (value) {
+    return _then(_self.copyWith(rawImage: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [ImageReaderResult].
+extension ImageReaderResultPatterns on ImageReaderResult {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ImageReaderResult value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ImageReaderResult() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ImageReaderResult value)  $default,){
+final _that = this;
+switch (_that) {
+case _ImageReaderResult():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ImageReaderResult value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ImageReaderResult() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ImageResult? image,  ImageResult? largerImage,  ImageResult? rawImage,  String? uploadTime,  String? source,  String? rating,  double? score,  List<TagResult> badges,  List<TagResult> tags,  List<CommentResult> comments,  bool? isSuccess,  String? failMessage,  List<EnvResult> envs,  List<ParseError> errors)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ImageReaderResult() when $default != null:
+return $default(_that.image,_that.largerImage,_that.rawImage,_that.uploadTime,_that.source,_that.rating,_that.score,_that.badges,_that.tags,_that.comments,_that.isSuccess,_that.failMessage,_that.envs,_that.errors);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ImageResult? image,  ImageResult? largerImage,  ImageResult? rawImage,  String? uploadTime,  String? source,  String? rating,  double? score,  List<TagResult> badges,  List<TagResult> tags,  List<CommentResult> comments,  bool? isSuccess,  String? failMessage,  List<EnvResult> envs,  List<ParseError> errors)  $default,) {final _that = this;
+switch (_that) {
+case _ImageReaderResult():
+return $default(_that.image,_that.largerImage,_that.rawImage,_that.uploadTime,_that.source,_that.rating,_that.score,_that.badges,_that.tags,_that.comments,_that.isSuccess,_that.failMessage,_that.envs,_that.errors);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ImageResult? image,  ImageResult? largerImage,  ImageResult? rawImage,  String? uploadTime,  String? source,  String? rating,  double? score,  List<TagResult> badges,  List<TagResult> tags,  List<CommentResult> comments,  bool? isSuccess,  String? failMessage,  List<EnvResult> envs,  List<ParseError> errors)?  $default,) {final _that = this;
+switch (_that) {
+case _ImageReaderResult() when $default != null:
+return $default(_that.image,_that.largerImage,_that.rawImage,_that.uploadTime,_that.source,_that.rating,_that.score,_that.badges,_that.tags,_that.comments,_that.isSuccess,_that.failMessage,_that.envs,_that.errors);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _ImageReaderResult implements ImageReaderResult {
+  const _ImageReaderResult({this.image, this.largerImage, this.rawImage, this.uploadTime, this.source, this.rating, this.score, required  List<TagResult> badges, required  List<TagResult> tags, required  List<CommentResult> comments, this.isSuccess, this.failMessage, required  List<EnvResult> envs, required  List<ParseError> errors}): _badges = badges,_tags = tags,_comments = comments,_envs = envs,_errors = errors;
+
+
+@override final  ImageResult? image;
+@override final  ImageResult? largerImage;
+@override final  ImageResult? rawImage;
+@override final  String? uploadTime;
+@override final  String? source;
+@override final  String? rating;
+@override final  double? score;
+ final  List<TagResult> _badges;
+@override List<TagResult> get badges {
+  if (_badges is EqualUnmodifiableListView) return _badges;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_badges);
+}
+
+ final  List<TagResult> _tags;
+@override List<TagResult> get tags {
+  if (_tags is EqualUnmodifiableListView) return _tags;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_tags);
+}
+
+ final  List<CommentResult> _comments;
+@override List<CommentResult> get comments {
+  if (_comments is EqualUnmodifiableListView) return _comments;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_comments);
+}
+
+@override final  bool? isSuccess;
+@override final  String? failMessage;
+ final  List<EnvResult> _envs;
+@override List<EnvResult> get envs {
+  if (_envs is EqualUnmodifiableListView) return _envs;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_envs);
+}
+
+ final  List<ParseError> _errors;
+@override List<ParseError> get errors {
+  if (_errors is EqualUnmodifiableListView) return _errors;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_errors);
+}
+
+
+/// Create a copy of ImageReaderResult
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ImageReaderResultCopyWith<_ImageReaderResult> get copyWith => __$ImageReaderResultCopyWithImpl<_ImageReaderResult>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImageReaderResult&&(identical(other.image, image) || other.image == image)&&(identical(other.largerImage, largerImage) || other.largerImage == largerImage)&&(identical(other.rawImage, rawImage) || other.rawImage == rawImage)&&(identical(other.uploadTime, uploadTime) || other.uploadTime == uploadTime)&&(identical(other.source, source) || other.source == source)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.score, score) || other.score == score)&&const DeepCollectionEquality().equals(other.badges, _badges)&&const DeepCollectionEquality().equals(other.tags, _tags)&&const DeepCollectionEquality().equals(other.comments, _comments)&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess)&&(identical(other.failMessage, failMessage) || other.failMessage == failMessage)&&const DeepCollectionEquality().equals(other.envs, _envs)&&const DeepCollectionEquality().equals(other.errors, _errors));
+}
+
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,image,largerImage,rawImage,uploadTime,source,rating,score,const DeepCollectionEquality().hash(_badges),const DeepCollectionEquality().hash(_tags),const DeepCollectionEquality().hash(_comments),isSuccess,failMessage,const DeepCollectionEquality().hash(_envs),const DeepCollectionEquality().hash(_errors));
+}
+
+@override
+String toString() {
+    return 'ImageReaderResult(image: $image, largerImage: $largerImage, rawImage: $rawImage, uploadTime: $uploadTime, source: $source, rating: $rating, score: $score, badges: $badges, tags: $tags, comments: $comments, isSuccess: $isSuccess, failMessage: $failMessage, envs: $envs, errors: $errors)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ImageReaderResultCopyWith<$Res> implements $ImageReaderResultCopyWith<$Res> {
+  factory _$ImageReaderResultCopyWith(_ImageReaderResult value, $Res Function(_ImageReaderResult) _then) = __$ImageReaderResultCopyWithImpl;
+@override @useResult
+$Res call({
+ ImageResult? image, ImageResult? largerImage, ImageResult? rawImage, String? uploadTime, String? source, String? rating, double? score, List<TagResult> badges, List<TagResult> tags, List<CommentResult> comments, bool? isSuccess, String? failMessage, List<EnvResult> envs, List<ParseError> errors
+});
+
+
+@override $ImageResultCopyWith<$Res>? get image;@override $ImageResultCopyWith<$Res>? get largerImage;@override $ImageResultCopyWith<$Res>? get rawImage;
+
+}
+/// @nodoc
+class __$ImageReaderResultCopyWithImpl<$Res>
+    implements _$ImageReaderResultCopyWith<$Res> {
+  __$ImageReaderResultCopyWithImpl(this._self, this._then);
+
+  final _ImageReaderResult _self;
+  final $Res Function(_ImageReaderResult) _then;
+
+/// Create a copy of ImageReaderResult
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? image = freezed,Object? largerImage = freezed,Object? rawImage = freezed,Object? uploadTime = freezed,Object? source = freezed,Object? rating = freezed,Object? score = freezed,Object? badges = null,Object? tags = null,Object? comments = null,Object? isSuccess = freezed,Object? failMessage = freezed,Object? envs = null,Object? errors = null,}) {
+  return _then(_ImageReaderResult(
+image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as ImageResult?,largerImage: freezed == largerImage ? _self.largerImage : largerImage // ignore: cast_nullable_to_non_nullable
+as ImageResult?,rawImage: freezed == rawImage ? _self.rawImage : rawImage // ignore: cast_nullable_to_non_nullable
+as ImageResult?,uploadTime: freezed == uploadTime ? _self.uploadTime : uploadTime // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as String?,score: freezed == score ? _self.score : score // ignore: cast_nullable_to_non_nullable
+as double?,badges: null == badges ? _self._badges : badges // ignore: cast_nullable_to_non_nullable
+as List<TagResult>,tags: null == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
+as List<TagResult>,comments: null == comments ? _self._comments : comments // ignore: cast_nullable_to_non_nullable
+as List<CommentResult>,isSuccess: freezed == isSuccess ? _self.isSuccess : isSuccess // ignore: cast_nullable_to_non_nullable
+as bool?,failMessage: freezed == failMessage ? _self.failMessage : failMessage // ignore: cast_nullable_to_non_nullable
+as String?,envs: null == envs ? _self._envs : envs // ignore: cast_nullable_to_non_nullable
+as List<EnvResult>,errors: null == errors ? _self._errors : errors // ignore: cast_nullable_to_non_nullable
+as List<ParseError>,
+  ));
+}
+
+/// Create a copy of ImageReaderResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageResultCopyWith<$Res>? get image {
+    if (_self.image == null) {
+    return null;
+  }
+
+  return $ImageResultCopyWith<$Res>(_self.image!, (value) {
+    return _then(_self.copyWith(image: value));
+  });
+}/// Create a copy of ImageReaderResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageResultCopyWith<$Res>? get largerImage {
+    if (_self.largerImage == null) {
+    return null;
+  }
+
+  return $ImageResultCopyWith<$Res>(_self.largerImage!, (value) {
+    return _then(_self.copyWith(largerImage: value));
+  });
+}/// Create a copy of ImageReaderResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageResultCopyWith<$Res>? get rawImage {
+    if (_self.rawImage == null) {
+    return null;
+  }
+
+  return $ImageResultCopyWith<$Res>(_self.rawImage!, (value) {
+    return _then(_self.copyWith(rawImage: value));
+  });
+}
+}
+
+/// @nodoc
 mixin _$ImageResult {
 
  String? get url; String? get cacheKey; double? get width; double? get height; double? get x; double? get y;
