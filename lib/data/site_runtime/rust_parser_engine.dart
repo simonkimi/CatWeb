@@ -5,6 +5,7 @@ import 'package:catweb/src/rust/api/parser.dart' as native_parser;
 import 'package:catweb/src/rust/errors.dart' as native_error;
 import 'package:catweb/src/rust/models/result.dart' as native_result;
 import 'package:catweb/src/rust/models/selector.dart' as native;
+import 'package:flutter/foundation.dart';
 
 import 'runtime_contracts.dart';
 import 'site_definition.dart';
@@ -113,6 +114,7 @@ Future<R> _invoke<R>(
   } catch (error) {
     cancellation.throwIfCancelled();
     if (error is CancellationException) rethrow;
+    debugPrint('Rust 解析失败: $error');
     throw ParserException('Rust 解析失败', error);
   }
 }

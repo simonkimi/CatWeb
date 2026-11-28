@@ -11,7 +11,7 @@ flutter_rust_bridge = "=2.13.0"
 serde = { version = "1.0.229", features = ["derive"] }
 xmloxide = { git = "https://github.com/simonkimi/xmloxide.git", branch = "feature/html-serialize" }
 thiserror = "2.0.21"
-boa_engine = "0.22.0"
+boa_engine = { version = "0.22.0", features = ["jsvalue-enum"] }
 regex = "1.13.2"
 
 [dev-dependencies]
